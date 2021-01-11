@@ -15,9 +15,7 @@ const categoryNodeFragment = `
 		category_level
 		category_url_key
 	}
-	products {
-		total_count
-	}
+	product_count
 `
 
 /**
