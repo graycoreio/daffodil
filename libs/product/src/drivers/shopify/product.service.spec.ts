@@ -7,7 +7,6 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
-
 import { DaffShopifyProductService, GetAllProductsQuery, GetAProduct } from './product.service';
 
 describe('Driver | Shopify | Product | ProductService', () => {
@@ -36,10 +35,11 @@ describe('Driver | Shopify | Product | ProductService', () => {
   });
 
   describe('getAll | getting a list of products', () => {
-    it('should should return an observable array of 20 products by default', () => {
+    it('should should return an observable array of 20 products by default', done => {
       productService.getAll().subscribe((result) => {
         expect(Array.isArray(result)).toEqual(true);
         expect(result.length).toEqual(20);
+        done();
       });
 
       const products = productFactory.createMany(20);
@@ -70,12 +70,13 @@ describe('Driver | Shopify | Product | ProductService', () => {
   });
 
   describe('get | getting a single product', () => {
-    it('should return an observable single product', () => {
+    it('should return an observable single product', done => {
       const product = productFactory.create();
 
       productService.get(product.id).subscribe((result) => {
         expect(result.id).toEqual(product.id);
         expect(result.name).toEqual(product.name);
+        done();
       });
 
       const op = controller.expectOne(GetAProduct);
@@ -85,6 +86,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
       op.flush({
         data: {
           node: {
+            __typename: 'Product',
             id: product.id,
             title: product.name
           }
