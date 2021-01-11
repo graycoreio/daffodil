@@ -5,8 +5,6 @@ import { orderShipmentTrackingFragment } from './order-shipment-tracking';
 
 export const orderShipmentFragment = gql`
   fragment orderShipment on OrderShipment {
-    __typename
-    id
     tracking {
       ...orderShipmentTracking
     }

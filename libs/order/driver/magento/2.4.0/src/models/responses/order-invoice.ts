@@ -3,6 +3,7 @@ import { MagentoGraycoreOrderAddress } from './order-address';
 import { MagentoGraycoreOrderPayment } from './order-payment';
 
 export interface MagentoGraycoreOrderInvoice {
+  __typename?: 'GraycoreOrderInvoice';
   items: MagentoGraycoreOrderShipmentItem[];
   grand_total: number;
   subtotal: number;

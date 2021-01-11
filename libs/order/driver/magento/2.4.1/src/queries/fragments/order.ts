@@ -10,7 +10,6 @@ import { orderTotalFragment } from './order-total';
 
 export const orderFragment = gql`
   fragment order on GraycoreGuestOrder {
-    __typename
     id
     order_date
     status

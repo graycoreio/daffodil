@@ -3,7 +3,6 @@ import {gql} from 'apollo-angular';
 
 export const orderAddressFragment = gql`
   fragment orderAddress on OrderAddress {
-    __typename
     city
     company
     country_code

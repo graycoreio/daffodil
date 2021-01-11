@@ -2,6 +2,7 @@ import { MagentoOrder } from '../../models/responses/order';
 
 export interface MagentoGetGuestOrdersResponse {
   graycoreGuestOrders: {
-    items: MagentoOrder[];
+    __typename?: string;
+    items: MagentoOrder[] | null;
   }
 }
