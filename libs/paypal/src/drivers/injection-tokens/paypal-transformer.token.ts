@@ -1,3 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-export const DaffPaypalTransformer = new InjectionToken('DaffPaypalTransformer');
+import { DaffPaypalTransformerInterface } from '../interfaces/paypal-transformer.interface';
+
+export const DaffPaypalTransformer = new InjectionToken<DaffPaypalTransformerInterface>('DaffPaypalTransformer');
