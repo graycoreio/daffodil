@@ -1,10 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import { Injectable } from '@angular/core';
 
 import { DaffCountry } from '@daffodil/geography';
 import { DaffGeographyFacadeInterface } from '@daffodil/geography/state';
-import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
 export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
