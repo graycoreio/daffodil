@@ -6,7 +6,7 @@ import { MockDaffContactFacade } from './mock-contact-facade';
 
 @NgModule({
 	providers: [
-		{ provide: DaffContactFacade, useClass: MockDaffContactFacade }
+		{ provide: DaffContactFacade, useExisting: MockDaffContactFacade }
 	]
 })
 export class DaffContactTestingModule { }
