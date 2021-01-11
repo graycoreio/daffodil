@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
 
 export const orderBundleItemSelectedOptionFragment = gql`
   fragment orderBundleItemSelectedOption on ItemSelectedBundleOption {

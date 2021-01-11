@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
 
 import { orderCreditItemFragment } from './order-credit-item';
 import { orderCreditTotalFragment } from './order-credit-total';
