@@ -1,7 +1,7 @@
+import {Apollo} from 'apollo-angular';
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Apollo } from 'apollo-angular';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {

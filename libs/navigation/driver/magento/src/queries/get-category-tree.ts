@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
 
 import { getCategoryNodeFragment } from './fragments/category-node';
 

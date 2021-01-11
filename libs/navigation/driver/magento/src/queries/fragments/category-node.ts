@@ -1,5 +1,6 @@
+import {gql} from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
+
 
 /**
  * A category tree fragment with no nested children.

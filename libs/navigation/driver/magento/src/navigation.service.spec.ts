@@ -1,12 +1,13 @@
+import {addTypenameToDocument} from '@apollo/client/utilities';
+import {InMemoryCache} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
-import { addTypenameToDocument } from 'apollo-utilities';
+
 import { schema } from '@daffodil/driver/magento';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 import {
@@ -43,9 +44,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				}
       ]
