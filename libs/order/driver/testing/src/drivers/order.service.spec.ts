@@ -11,7 +11,9 @@ import { DaffTestingOrderService } from './order.service';
 describe('Driver | Testing | Order | OrderService', () => {
   let service: DaffTestingOrderService;
 
-  let orderFactorySpy: jasmine.SpyObj<DaffOrderFactory>;
+  let orderCreateSpy: jasmine.Spy;
+  let orderCreateManySpy: jasmine.Spy;
+  let orderFactoryService: DaffOrderFactory;
 
   let orderFactory: DaffOrderFactory;
 
@@ -21,24 +23,22 @@ describe('Driver | Testing | Order | OrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        {
-          provide: DaffOrderFactory,
-          useValue: jasmine.createSpyObj('DaffOrderFactory', ['create', 'createMany'])
-        },
         DaffTestingOrderService
       ]
     });
 
     service = TestBed.inject(DaffTestingOrderService);
-    orderFactorySpy = TestBed.inject(DaffOrderFactory);
+    orderFactoryService = TestBed.inject(DaffOrderFactory);
 
     orderFactory = new DaffOrderFactory();
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;
 
-    orderFactorySpy.create.and.returnValue(mockOrder);
-    orderFactorySpy.createMany.and.returnValue([mockOrder]);
+    orderCreateSpy = spyOn(orderFactoryService, 'create');
+    orderCreateManySpy = spyOn(orderFactoryService, 'createMany');
+    orderCreateSpy.and.returnValue(mockOrder);
+    orderCreateManySpy.and.returnValue([mockOrder]);
   });
 
   it('should be created', () => {

@@ -1,7 +1,11 @@
+import {InMemoryCache} from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
+
+import { schema } from '@daffodil/driver/magento';
 
 import {
   DaffOrder,
@@ -101,6 +105,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       ],
       providers: [
         DaffOrderMagentoService,
+        {
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
@@ -211,6 +222,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
     cartId = 'cartId';
 
     mockMagentoOrderItem = {
+      __typename: 'GraycoreOrderItem',
       qty_ordered: mockDaffOrderItem.qty_ordered,
       qty_canceled: mockDaffOrderItem.qty_canceled,
       qty_fulfilled: mockDaffOrderItem.qty_fulfilled,
@@ -234,6 +246,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       tax_before_discount: mockDaffOrderItem.tax_before_discount,
     };
     mockMagentoOrderAddress = {
+      __typename: 'GraycoreOrderAddress',
       order_id: Number(mockDaffOrderAddress.order_id),
       prefix: mockDaffOrderAddress.prefix,
       suffix: mockDaffOrderAddress.suffix,
@@ -250,19 +263,23 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       postcode: mockDaffOrderAddress.postcode,
     };
     mockMagentoOrderShipmentTracking = {
+      __typename: 'GraycoreOrderShipmentTracking',
       tracking_number: mockDaffOrderShipmentTracking.tracking_number,
       carrier: mockDaffOrderShipmentTracking.carrier,
       title: mockDaffOrderShipmentTracking.title,
     };
     mockMagentoOrderShipmentItem = {
+      __typename: 'GraycoreOrderShipmentItem',
       item: mockMagentoOrderItem,
       qty: mockDaffOrderShipmentItem.qty
     };
     mockMagentoOrderShipment = {
+      __typename: 'GraycoreOrderShipment',
       tracking: [mockMagentoOrderShipmentTracking],
       items: [mockMagentoOrderShipmentItem]
 		};
     mockMagentoOrderPayment = {
+      __typename: 'GraycoreOrderPayment',
       payment_id: Number(mockDaffOrderPayment.payment_id),
       order_id: Number(mockDaffOrderPayment.order_id),
       method: mockDaffOrderPayment.method,
@@ -273,6 +290,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       cc_exp_year: mockDaffOrderPayment.cc_exp_year,
     };
     mockMagentoOrderInvoice = {
+      __typename: 'GraycoreOrderInvoice',
       items: [mockMagentoOrderShipmentItem],
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
@@ -284,6 +302,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       payment: mockMagentoOrderPayment,
     };
     mockMagentoOrder = {
+      __typename: 'GraycoreOrder',
       id: Number(mockDaffOrder.id),
       order_number: mockDaffOrder.id,
       customer_id: Number(mockDaffOrder.customer_id),
@@ -307,6 +326,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
     mockDaffOrder.extra_attributes = mockMagentoOrder;
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
+        __typename: 'GraycoreGuestOrders',
         orders: [mockMagentoOrder]
       }
     };
@@ -332,7 +352,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([]));
+          const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -349,7 +369,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([]));
+            const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -375,7 +395,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([]));
+            const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -395,7 +415,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([]));
+        const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -420,7 +440,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             done();
           });
 
-          const op = controller.expectOne(getGuestOrders([]));
+          const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -442,7 +462,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([]));
+          const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -461,7 +481,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([]));
+        const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
