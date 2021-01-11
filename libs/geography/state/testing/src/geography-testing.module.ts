@@ -6,7 +6,7 @@ import { MockDaffGeographyFacade } from './mock-geography-facade';
 
 @NgModule({
   providers: [
-		{ provide: DaffGeographyFacade, useClass: MockDaffGeographyFacade }
+		{ provide: DaffGeographyFacade, useExisting: MockDaffGeographyFacade }
 	]
 })
 export class DaffGeographyTestingModule {}

@@ -4,7 +4,9 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffCountry } from '@daffodil/geography';
 import { DaffGeographyFacadeInterface } from '@daffodil/geography/state';
+import { Injectable } from '@angular/core';
 
+@Injectable({providedIn: 'root'})
 export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
   errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
