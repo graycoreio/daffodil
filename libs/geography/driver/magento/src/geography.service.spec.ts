@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
@@ -13,6 +15,7 @@ import {
   DaffSubdivisionFactory
 } from '@daffodil/geography/testing';
 import { DaffCountryNotFoundError, DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffGeographyMagentoService } from './geography.service';
 
@@ -23,7 +26,8 @@ describe('Driver | Magento | Geography | GeographyService', () => {
   let daffCountryFactory: DaffCountryFactory;
   let daffSubdivisionFactory: DaffSubdivisionFactory;
 
-  let countryTransformerSpy: jasmine.SpyObj<DaffMagentoCountryTransformer>;
+  let countryTransformer: DaffMagentoCountryTransformer;
+  let countryTransformerSpy: jasmine.Spy;
 
   let countryId: DaffCountry['id'];
   let mockDaffCountry: DaffCountry;
@@ -41,9 +45,12 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       providers: [
         DaffGeographyMagentoService,
         {
-          provide: DaffMagentoCountryTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCountryTransformer', ['transform'])
-        }
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+            possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
@@ -53,18 +60,20 @@ describe('Driver | Magento | Geography | GeographyService', () => {
     daffSubdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
     daffCountryFactory = TestBed.inject(DaffCountryFactory);
 
-    countryTransformerSpy = TestBed.inject(DaffMagentoCountryTransformer);
+    countryTransformer = TestBed.inject(DaffMagentoCountryTransformer);
 
     mockDaffCountry = daffCountryFactory.create();
     mockDaffSubdivision = daffSubdivisionFactory.create();
 
     countryId = mockDaffCountry.id;
     mockMagentoRegion = {
+      __typename: 'Region',
       id: Number(mockDaffSubdivision.id),
       name: mockDaffSubdivision.name,
       code: mockDaffSubdivision.iso_3166_2
     };
     mockMagentoCountry = {
+      __typename: 'Country',
       id: mockDaffCountry.id,
       two_letter_abbreviation: mockDaffCountry.alpha2,
       three_letter_abbreviation: mockDaffCountry.alpha3,
@@ -78,7 +87,8 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       country: mockMagentoCountry
     };
 
-    countryTransformerSpy.transform.and.returnValue(mockDaffCountry);
+    countryTransformerSpy = spyOn(countryTransformer, 'transform');
+    countryTransformerSpy.and.returnValue(mockDaffCountry);
   });
 
   it('should be created', () => {
@@ -94,11 +104,11 @@ describe('Driver | Magento | Geography | GeographyService', () => {
 
       it('should call the transformer with the Magento country', done => {
         service.get(countryId).subscribe(() => {
-          expect(countryTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoCountry);
+          expect(countryTransformerSpy).toHaveBeenCalledWith(jasmine.objectContaining(mockMagentoCountry));
           done();
         });
 
-        const op = controller.expectOne(getCountry);
+        const op = controller.expectOne(addTypenameToDocument(getCountry));
 
         op.flush({
           data: mockGetCountryResponse
@@ -111,7 +121,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           done();
         });
 
-        const op = controller.expectOne(getCountry);
+        const op = controller.expectOne(addTypenameToDocument(getCountry));
 
         op.flush({
           data: mockGetCountryResponse
@@ -129,7 +139,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getCountry);
+        const op = controller.expectOne(addTypenameToDocument(getCountry));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a country with that ID.',
@@ -150,11 +160,11 @@ describe('Driver | Magento | Geography | GeographyService', () => {
 
         it('should call the transformer with the each of Magento countries', done => {
           service.list().subscribe(() => {
-            expect(countryTransformerSpy.transform).toHaveBeenCalledWith(mockGetCountriesResponse.countries[0]);
+            expect(countryTransformerSpy).toHaveBeenCalledWith(mockGetCountriesResponse.countries[0]);
             done();
           });
 
-          const op = controller.expectOne(getCountries);
+          const op = controller.expectOne(addTypenameToDocument(getCountries));
 
           op.flush({
             data: mockGetCountriesResponse
@@ -167,7 +177,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
             done();
           });
 
-          const op = controller.expectOne(getCountries);
+          const op = controller.expectOne(addTypenameToDocument(getCountries));
 
           op.flush({
             data: mockGetCountriesResponse
@@ -191,7 +201,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getCountries);
+          const op = controller.expectOne(addTypenameToDocument(getCountries));
 
           op.flush({
             data: mockGetCountriesResponse
@@ -202,7 +212,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
 
     describe('when the call to the Magento API is unsuccessful', () => {
       it('should throw an Error with a GraphQLError', done => {
-        service.get(countryId).pipe(
+        service.list().pipe(
           catchError(err => {
             expect(err).toEqual(jasmine.any(Error));
             expect(err.graphQLErrors[0]).toEqual(jasmine.any(GraphQLError));
@@ -211,7 +221,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getCountry);
+        const op = controller.expectOne(addTypenameToDocument(getCountries));
 
         op.graphqlErrors([new GraphQLError(
           'Generic error.',

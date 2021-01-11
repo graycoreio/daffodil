@@ -14,6 +14,7 @@ import {
   DaffCountryListSuccess,
   DaffCountryListFailure,
 } from '@daffodil/geography/state';
+import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 
 import { DaffGeographyEffects } from './geography.effects';
 
@@ -26,26 +27,30 @@ describe('Daffodil | Geography | GeographyEffects', () => {
 
   let countryFactory: DaffCountryFactory;
 
-  let daffDriverSpy: jasmine.SpyObj<DaffGeographyServiceInterface<DaffCountry>>;
+  let daffDriver: DaffGeographyServiceInterface<DaffCountry>;
+  let driverGetSpy: jasmine.Spy;
+  let driverListSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffGeographyTestingDriverModule.forRoot()
+      ],
       providers: [
         DaffGeographyEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffGeographyDriver,
-          useValue: jasmine.createSpyObj('DaffGeographyDriver', ['get', 'list'])
-        }
       ]
     });
 
     effects = TestBed.inject<DaffGeographyEffects<DaffCountry>>(DaffGeographyEffects);
-    daffDriverSpy = TestBed.inject<DaffGeographyServiceInterface<DaffCountry>>(DaffGeographyDriver);
+    daffDriver = TestBed.inject(DaffGeographyDriver);
     countryFactory = TestBed.inject<DaffCountryFactory>(DaffCountryFactory);
 
     mockCountry = countryFactory.create();
     countryId = mockCountry.id;
+
+    driverGetSpy = spyOn(daffDriver, 'get');
+    driverListSpy = spyOn(daffDriver, 'list');
   });
 
   it('should be created', () => {
@@ -58,7 +63,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
 
     describe('and the call to GeographyService is successful', () => {
       beforeEach(() => {
-        daffDriverSpy.get.and.returnValue(of(mockCountry));
+        driverGetSpy.and.returnValue(of(mockCountry));
         const countryLoadSuccessAction = new DaffCountryLoadSuccess(mockCountry);
         actions$ = hot('--a', { a: countryLoadAction });
         expected = cold('--b', { b: countryLoadSuccessAction });
@@ -73,7 +78,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
       beforeEach(() => {
         const error = 'Failed to load country';
         const response = cold('#', {}, error);
-        daffDriverSpy.get.and.returnValue(response);
+        driverGetSpy.and.returnValue(response);
         const countryLoadFailureAction = new DaffCountryLoadFailure(error);
         actions$ = hot('--a', { a: countryLoadAction });
         expected = cold('--b', { b: countryLoadFailureAction });
@@ -91,7 +96,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
 
     describe('and the call to GeographyService is successful', () => {
       beforeEach(() => {
-        daffDriverSpy.list.and.returnValue(of([mockCountry]));
+        driverListSpy.and.returnValue(of([mockCountry]));
         const countryListSuccessAction = new DaffCountryListSuccess([mockCountry]);
         actions$ = hot('--a', { a: countryListAction });
         expected = cold('--b', { b: countryListSuccessAction });
@@ -105,7 +110,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
       beforeEach(() => {
         const error = 'Failed to list the countries';
         const response = cold('#', {}, error);
-        daffDriverSpy.list.and.returnValue(response);
+        driverListSpy.and.returnValue(response);
         const countryListFailureAction = new DaffCountryListFailure(error);
         actions$ = hot('--a', { a: countryListAction });
         expected = cold('--b', { b: countryListFailureAction });
