@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -10,7 +9,7 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 import { DaffNavigationFacade } from './navigation.facade';
 
 describe('DaffNavigationFacade', () => {
-  let store: MockStore<Partial<DaffNavigationReducersState<DaffNavigationTree>>>;
+  let store: Store<Partial<DaffNavigationReducersState<DaffNavigationTree>>>;
   let facade: DaffNavigationFacade<DaffNavigationTree>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   let navigation: DaffNavigationTree;
