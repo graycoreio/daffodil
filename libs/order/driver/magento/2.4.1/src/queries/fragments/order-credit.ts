@@ -5,8 +5,6 @@ import { orderCreditTotalFragment } from './order-credit-total';
 
 export const orderCreditFragment = gql`
   fragment orderCredit on CreditMemo {
-    __typename
-    id
     items {
       ...orderCreditItem
     }

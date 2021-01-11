@@ -1,8 +1,12 @@
-import { MagentoMoney } from '@daffodil/driver/magento';
-
 import { MagentoOrderBundleItemSelectedOption, MagentoOrderItem } from './order-item';
 
+export type MagentoOrderShipmentItemTypenames =
+  'ShipmentItem' |
+  'BundleShipmentItem' |
+  'GiftCardShipmentItem';
+
 export interface MagentoOrderShipmentItem {
+  __typename?: MagentoOrderShipmentItemTypenames;
   order_item: MagentoOrderItem;
   quantity_shipped: number;
 };

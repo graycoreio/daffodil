@@ -8,13 +8,20 @@ export enum MagentoOrderItemType {
   Bundle = 'bundle'
 };
 
+export type MagentoOrderItemTypenames =
+  'OrderItem' |
+  'BundleOrderItem' |
+  'GiftCardOrderItem' |
+  'DownloadableOrderItem';
+
 export interface MagentoOrderItemOption {
+  __typename?: string;
   label: string;
   value: string;
 };
 
 export interface MagentoOrderItem {
-  id: string;
+  __typename?: MagentoOrderItemTypenames;
   discounts: MagentoDiscount[];
   product_name: string;
   product_sale_price: MagentoMoney;
@@ -33,13 +40,12 @@ export interface MagentoOrderItem {
 }
 
 export interface MagentoOrderBundleItemSelectedOption {
-  id: string;
+  __typename?: string;
   label: string;
   values: MagentoOrderBundleItemSelectedOptionValue[];
 };
 
 export interface MagentoOrderBundleItemSelectedOptionValue {
-  id: string;
   price: MagentoMoney;
   product_name: string;
   product_sku: string;

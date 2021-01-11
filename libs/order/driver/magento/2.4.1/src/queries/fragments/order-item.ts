@@ -2,12 +2,8 @@ import {gql} from 'apollo-angular';
 
 export const orderBundleItemSelectedOptionFragment = gql`
   fragment orderBundleItemSelectedOption on ItemSelectedBundleOption {
-    __typename
-    id
     label
     values {
-      __typename
-      id
       product_name
     }
   }
@@ -15,8 +11,6 @@ export const orderBundleItemSelectedOptionFragment = gql`
 
 export const orderItemFragment = gql`
   fragment orderItem on OrderItemInterface {
-    __typename
-    id
     quantity_ordered
     quantity_canceled
     quantity_shipped

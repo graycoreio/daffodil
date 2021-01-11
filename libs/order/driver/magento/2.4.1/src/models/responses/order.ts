@@ -7,6 +7,7 @@ import { MagentoOrderTotal } from './order-total';
 import { MagentoOrderCredit } from './order-credit';
 
 export interface MagentoOrder {
+  __typename?: 'GraycoreGuestOrder';
   id: string;
   order_date: string;
   status: string;

@@ -5,8 +5,6 @@ import { orderInvoiceTotalFragment } from './order-invoice-total';
 
 export const orderInvoiceFragment = gql`
   fragment orderInvoice on Invoice {
-    __typename
-    id
     items {
       ...orderInvoiceItem
     }

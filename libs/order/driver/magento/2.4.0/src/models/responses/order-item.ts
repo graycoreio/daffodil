@@ -1,4 +1,5 @@
 export interface MagentoGraycoreOrderItem {
+  __typename?: 'GraycoreOrderItem';
   qty_ordered: number;
   qty_canceled: number;
   qty_fulfilled: number;
