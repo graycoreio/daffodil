@@ -1,7 +1,7 @@
+import {Apollo} from 'apollo-angular';
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Apollo } from 'apollo-angular';
 
 import { DaffPaypalServiceInterface } from '../interfaces/paypal-service.interface';
 import { DaffPaypalTransformer } from '../injection-tokens/paypal-transformer.token';
@@ -17,7 +17,7 @@ import { DaffPaypalConfig } from '../injection-tokens/paypal-config.token';
   providedIn: 'root'
 })
 export class DaffMagentoPaypalService implements DaffPaypalServiceInterface {
-  
+
   constructor(
     private apollo: Apollo,
 		@Inject(DaffPaypalTransformer) private transformer: DaffPaypalTransformerInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>,
