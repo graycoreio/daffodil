@@ -1,8 +1,8 @@
+import {Apollo} from 'apollo-angular';
+import {MutationOptions, FetchResult} from '@apollo/client/core';
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { R } from 'apollo-angular/types';
-import { MutationOptions } from 'apollo-client';
-import { FetchResult } from 'apollo-link';
+import { EmptyObject } from 'apollo-angular/types';
+
 import { Observable, Subscriber, Subscription } from 'rxjs';
 
 /**
@@ -29,7 +29,7 @@ export class DaffQueuedApollo {
    * The observable will complete after it emits once.
    * @param options Mutation options.
    */
-  mutate<T, V = R>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
+  mutate<T, V = EmptyObject>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
     return new Observable(subscriber => this.addRequestToQueue(subscriber, this.apollo.mutate(options)))
   }
 
