@@ -1,8 +1,7 @@
+import {gql, Apollo} from 'apollo-angular';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
-import { Apollo } from 'apollo-angular';
 
 import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
 import { daffBuildFragmentDefinition } from './build-fragment-definition';
