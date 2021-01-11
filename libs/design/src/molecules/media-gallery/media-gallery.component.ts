@@ -14,17 +14,16 @@ let uniqueGalleryId = 0;
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffMediaGalleryComponent {
+	@HostBinding('class.daff-media-gallery') class = true;
 
 	/**
 	 * The name of the gallery
 	 */
-	@Input('name') _name: string = "";
+	@Input('name') _name = '';
 
 	get name() {
 		return this._name ? this._name : uniqueGalleryId.toString();
 	}
-
-	@HostBinding('class.daff-media-gallery') class = true;
 	
 	constructor() {
 		uniqueGalleryId++;

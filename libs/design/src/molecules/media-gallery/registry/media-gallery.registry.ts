@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
-import { DaffThumbnailDirective } from "../thumbnail/thumbnail.directive";
+import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface DaffMediaGalleryDict {
@@ -50,11 +50,11 @@ export class DaffMediaGalleryRegistry {
 	 * Removes a media element from the internal registry.
 	 */
 	remove(thumbnail: DaffThumbnailDirective) {
-		let galleries = this._galleries$.getValue();
+		const galleries = this._galleries$.getValue();
 		const index = this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.indexOf(thumbnail);
 
 		//This should never happen, but we don't need to remove it if it doesn't exist.
-		if(index == -1){
+		if(index === -1){
 			return;	
 		} 
 
@@ -75,7 +75,7 @@ export class DaffMediaGalleryRegistry {
 	 * Selects a media element for a given gallery.
 	 */
 	select(thumbnail: DaffThumbnailDirective) {
-		let galleries = this._galleries$.getValue();
+		const galleries = this._galleries$.getValue();
 		const index = this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.indexOf(thumbnail);
 
 		if(thumbnail.selected){
@@ -83,7 +83,7 @@ export class DaffMediaGalleryRegistry {
 		}
 
 		//This should never happen, but we don't need to remove it if it doesn't exist.
-		if(index == -1){
+		if(index === -1){
 			return;	
 		} 
 

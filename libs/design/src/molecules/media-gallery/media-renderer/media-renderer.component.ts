@@ -48,12 +48,12 @@ export class DaffMediaRendererComponent implements OnInit {
 				return;
 			}
 
-			let _selectedThumbnailComponent = _selectedThumbnail.component;
+			const _selectedThumbnailComponent = _selectedThumbnail.component;
 			
 			/**
 			 * Then we create the component to insert.
 			 */
-			let component = this.componentFactoryResolver.resolveComponentFactory(
+			const component = this.componentFactoryResolver.resolveComponentFactory(
 				_selectedThumbnailComponent.constructor as Type<unknown>
 			);
 			const componentRef = this.slot.createComponent(component);
