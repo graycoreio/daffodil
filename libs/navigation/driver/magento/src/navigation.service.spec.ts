@@ -90,7 +90,8 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
               total_count: navigation.total_products
             },
             children_count: navigation.children_count,
-            children: []
+						children: [],
+						breadcrumbs: []
           }]
         }
       });
