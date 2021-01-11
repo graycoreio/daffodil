@@ -1,5 +1,7 @@
+import {InMemoryCache} from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
@@ -11,8 +13,8 @@ import {
   DaffOrderNotFoundError,
 } from '@daffodil/order/driver';
 import { MagentoOrder, MagentoGetGuestOrdersResponse, getGuestOrders } from '@daffodil/order/driver/magento/2.4.1';
+import { schema } from '@daffodil/driver/magento';
 
-import * as validators from './validators/public_api';
 import { MagentoOrderTestDataFactory } from './helpers/public_api';
 import { DaffOrderMagentoService } from './order.service';
 
@@ -20,8 +22,6 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
   let testDataFactory: MagentoOrderTestDataFactory;
-
-  let validatorSpy: jasmine.Spy;
 
   let cartId: string;
   let orderId: DaffOrder['id'];
@@ -36,6 +36,13 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
       ],
       providers: [
         DaffOrderMagentoService,
+        {
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
@@ -52,12 +59,10 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
 
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
+        __typename: 'GraycoreGuestOrders',
         items: [mockMagentoOrder]
       }
     };
-
-    validatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateGetOrdersResponse').and.returnValue(validatorSpy);
   });
 
   it('should be created', () => {
@@ -68,9 +73,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
-          });
+          mockGetOrdersResponse.graycoreGuestOrders.items = null;
         });
 
         it('should throw a DaffOrderInvalidAPIResponseError', done => {
@@ -82,7 +85,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([]));
+          const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -91,18 +94,17 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          validatorSpy.and.returnValue({data: mockGetOrdersResponse});
-        });
-
         describe('and the order is found', () => {
           it('should return the correct Daffodil order', done => {
             service.get(orderId, cartId).subscribe(result => {
-              expect(result).toEqual(jasmine.objectContaining(mockDaffOrder));
+              expect(result).toEqual(jasmine.objectContaining({
+                ...mockDaffOrder,
+                extra_attributes: jasmine.anything()
+              }));
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([]));
+            const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -128,7 +130,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([]));
+            const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -148,7 +150,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([]));
+        const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -166,17 +168,16 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
   describe('list | listing the available orders', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          validatorSpy.and.returnValue({data: mockGetOrdersResponse});
-        });
-
         it('should return the list of Daffodil orders', done => {
           service.list(cartId).subscribe(result => {
-            expect(result).toEqual([jasmine.objectContaining(mockDaffOrder)]);
+            expect(result).toEqual([jasmine.objectContaining({
+              ...mockDaffOrder,
+              extra_attributes: jasmine.anything()
+            })]);
             done();
           });
 
-          const op = controller.expectOne(getGuestOrders([]));
+          const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -186,9 +187,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
-          });
+          mockGetOrdersResponse.graycoreGuestOrders.items = null;
         });
 
         it('should throw a DaffOrderInvalidAPIResponseError', done => {
@@ -200,7 +199,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([]));
+          const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -219,7 +218,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([]));
+        const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
