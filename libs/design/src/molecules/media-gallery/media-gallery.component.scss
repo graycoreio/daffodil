@@ -1,49 +1,60 @@
-@import '../../scss/daff-util.scss';
+@import '../../scss/daff-util';
 
 :host(.daff-media-gallery) {
 	/* autoprefixer grid: autoplace */
 	$root: '.daff-media-gallery';
-	display: grid;
-	grid-template-areas:
-		'main-image'
-		'list';
-	grid-template-columns: 1fr;
-	grid-gap: 8px;
+	display: flex;
+	flex-direction: column;
 
-	@include breakpoint(mobile) {
-		grid-template-areas: 'list main-image';
-		grid-template-columns: 80px 1fr;
-		grid-gap: 24px;
+	@include breakpoint(big-tablet) {
+		flex-direction: row;
 	}
 
 	::ng-deep {
 		.daff-thumbnail {
 			@include clickable();
-			display: block;
-			margin: 10px 0;
+			display: inline-block;
+			height: calc(25% - 8px);
+			width: calc(25% - 8px);
+			margin: 0 4px;
 			max-width: 100%;
 			overflow: hidden;
-			width: 50px;
-			height: 50px;
+			user-select: none;
 
-			&--selected {
-				outline: 1px solid blue;
+			@include breakpoint(mobile) {
+				height: calc(15% - 8px);
+				width: calc(15% - 8px);
+			}
+
+			@include breakpoint(big-tablet) {
+				display: block;
+				margin: 0 0 8px;
+				height: 80px;
+				width: 80px;
 			}
 		}
 	}
 }
 
 .daff-media-gallery {
-	&__list {
-		grid-area: list;
-		display: inline-block;
+	&__thumbnails {
+		margin: 0 -4px;
+		max-height: 100%;
+		order: 2;
 
-		@include breakpoint(mobile) {
-			flex-direction: block;
+		@include breakpoint(big-tablet) {
+			margin: 0 8px 0 0;
+			order: 1;
 		}
 	}
 
-	&__main-image {
-		grid-area: main-image;
+	&__selected-thumbnail {
+		display: block;
+		flex-grow: 1;
+		order: 1;
+
+		@include breakpoint(big-tablet) {
+			order: 2;
+		}
 	}	
 }
