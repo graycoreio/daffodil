@@ -8,16 +8,16 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockOrderItem implements DaffOrderItem {
   item_id = faker.random.number({min: 1, max: 1000});
   image = {
-    url: faker.image.imageUrl,
-    id: faker.random.number({min: 1, max: 1000}),
+    url: faker.image.imageUrl(),
+    id: String(faker.random.number({min: 1, max: 1000})),
     label: faker.random.word()
   };
   order_id = faker.random.number({min: 1, max: 1000});
   qty_ordered = faker.random.number({min: 1, max: 1000});
   qty_canceled = faker.random.number({min: 1, max: 1000});
   qty_fulfilled = faker.random.number({min: 1, max: 1000});
-  created_at = faker.date.past();
-  updated_at = faker.date.past();
+  created_at = faker.date.past().toString();
+  updated_at = faker.date.past().toString();
   product_id = faker.random.number({min: 1, max: 1000});
   parent_item_id = faker.random.number({min: 1, max: 1000});
   sku = 'sku';
