@@ -8,24 +8,19 @@ import { isProduct } from '../../helpers/product-helper';
 
 describe('Driver | Testing | Product | ProductService', () => {
   let productService;
-  let productImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
+  let productImageFactory: DaffProductImageFactory;
   let stubProductImages: DaffProductImage[];
 
   beforeEach(() => {
     stubProductImages = new DaffProductImageFactory().createMany(5);
-    const productImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['createMany', 'create']);
 
-    TestBed.configureTestingModule({
-      providers: [
-        { provide: DaffProductImageFactory, useValue: productImageFactorySpy }
-      ]
-    });
+    TestBed.configureTestingModule({});
 
     productService = TestBed.inject(DaffTestingProductService);
     productImageFactory = TestBed.inject(DaffProductImageFactory);
 
-    productImageFactory.createMany.and.returnValue(stubProductImages);
-    productImageFactory.create.and.returnValue(stubProductImages[0]);
+    spyOn(productImageFactory, 'createMany').and.returnValue(stubProductImages);
+    spyOn(productImageFactory, 'create').and.returnValue(stubProductImages[0]);
   });
 
   it('should be created', () => {
