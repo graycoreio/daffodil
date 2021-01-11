@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -15,7 +14,7 @@ import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProductFacade } from './configurable-product.facade';
 
 describe('DaffConfigurableProductFacade', () => {
-  let store: MockStore<Partial<DaffProductReducersState>>;
+  let store: Store<Partial<DaffProductReducersState>>;
 	let facade: DaffConfigurableProductFacade;
 	let stubConfigurableProduct: DaffConfigurableProduct;
 

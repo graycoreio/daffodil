@@ -3,7 +3,6 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ActivatedRoute } from '@angular/router';
-import { MockStore } from '@ngrx/store/testing';
 import { fail } from 'assert';
 import { PLATFORM_ID } from '@angular/core';
 import { ɵPLATFORM_BROWSER_ID, ɵPLATFORM_SERVER_ID } from '@angular/common';
@@ -19,7 +18,7 @@ import { DaffProductReducersState } from '../../reducers/public_api';
 describe('DaffProductPageResolver', () => {
 	const actions$: Observable<any> = null;
 	let resolver: DaffProductPageResolver;
-  let store: MockStore<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState>;
   let ProductFactory: DaffProductFactory;
   let stubProduct: DaffProduct;
 	let route: ActivatedRoute;
