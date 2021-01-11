@@ -6,7 +6,7 @@ import { MockDaffNewsletterFacade } from './mock-newsletter-facade';
 
 @NgModule({
   providers: [
-		{ provide: DaffNewsletterFacade, useClass: MockDaffNewsletterFacade }
+		{ provide: DaffNewsletterFacade, useExisting: MockDaffNewsletterFacade }
 	]
 })
 export class DaffNewsletterTestingModule { }
