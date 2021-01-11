@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -20,7 +19,7 @@ import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/
 import { DaffGeographyFacade } from './geography.facade';
 
 describe('DaffGeographyFacade', () => {
-  let store: MockStore<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyFeatureState> }>;
+  let store: Store<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyFeatureState> }>;
   let facade: DaffGeographyFacade;
   let countryFactory: DaffCountryFactory;
   let subdivisionFactory: DaffSubdivisionFactory;
