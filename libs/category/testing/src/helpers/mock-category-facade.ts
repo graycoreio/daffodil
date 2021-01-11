@@ -1,17 +1,19 @@
 import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 
 import { DaffProduct } from '@daffodil/product';
-import { 
-	DaffCategoryFacadeInterface, 
-	DaffCategory, 
-	DaffCategoryPageConfigurationState, 
-	DaffCategoryFilter, 
-	DaffCategorySortOption, 
-	DaffCategoryAppliedFilter, 
-	DaffSortDirectionEnum 
+import {
+	DaffCategoryFacadeInterface,
+	DaffCategory,
+	DaffCategoryPageConfigurationState,
+	DaffCategoryFilter,
+	DaffCategorySortOption,
+	DaffCategoryAppliedFilter,
+	DaffSortDirectionEnum
 } from '@daffodil/category';
 
+@Injectable({providedIn: 'root'})
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);
@@ -30,7 +32,7 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   productsLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
 	isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-	
+
 	getCategoryById(id: string): BehaviorSubject<DaffCategory> {
 		return new BehaviorSubject(null);
 	};

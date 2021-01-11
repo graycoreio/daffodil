@@ -1,7 +1,9 @@
 import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 import { DaffProduct, DaffProductFacadeInterface } from '@daffodil/product';
 
+@Injectable({providedIn: 'root'})
 export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	/**

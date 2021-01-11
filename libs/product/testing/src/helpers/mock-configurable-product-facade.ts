@@ -1,8 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
 import { Dictionary } from '@ngrx/entity';
+import { Injectable } from '@angular/core';
 
 import { DaffConfigurableProductFacadeInterface, DaffConfigurableProductVariant } from '@daffodil/product';
 
+@Injectable({providedIn: 'root'})
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
 	getAllAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
 		return new BehaviorSubject({});

@@ -6,7 +6,7 @@ import { MockDaffOrderFacade } from './mock-order-facade';
 
 @NgModule({
   providers: [
-		{ provide: DaffOrderFacade, useClass: MockDaffOrderFacade }
+		{ provide: DaffOrderFacade, useExisting: MockDaffOrderFacade }
 	]
 })
 export class DaffOrderTestingModule {}

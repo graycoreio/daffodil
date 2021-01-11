@@ -6,7 +6,7 @@ import { MockDaffCategoryFacade } from './mock-category-facade';
 
 @NgModule({
   providers: [
-		{ provide: DaffCategoryFacade, useClass: MockDaffCategoryFacade }
+		{ provide: DaffCategoryFacade, useExisting: MockDaffCategoryFacade }
 	]
 })
 export class DaffCategoryTestingModule { }
