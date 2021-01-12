@@ -19,11 +19,11 @@ export class DaffListItemComponent {
 	/**
 	 * @docs-private
 	 */
-	@ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
+  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 	/**
 	 * @docs-private
 	 */
-  @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
+  @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
 
   constructor(private elementRef: ElementRef) {}
 
