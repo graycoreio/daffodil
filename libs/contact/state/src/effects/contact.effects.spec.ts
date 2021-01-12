@@ -14,7 +14,7 @@ import {
 
 import { DaffContactDriver } from '@daffodil/contact/driver'
 
-import { DaffContactTestingDriverModule } from '@daffodil/contact/testing';
+import { DaffContactTestingDriverModule } from '@daffodil/contact/driver/testing';
 
 import { DaffContactEffects } from './contact.effects';
 
