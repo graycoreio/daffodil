@@ -23,8 +23,5 @@
   "peerDependencies": {
     "@angular/core": "0.0.0-PLACEHOLDER",
     "graphql": "0.0.0-PLACEHOLDER"
-  },
-  "devDependencies": {
-    "graphql-tag": "0.0.0-PLACEHOLDER"
   }
 }
