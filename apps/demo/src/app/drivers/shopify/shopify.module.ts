@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { DaffProductShopifyDriverModule } from '@daffodil/product';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
-import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
+import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 
 import { environment } from '../../../environments/environment';
 import { ShopifyEnviromentDriverConfiguration } from '../../../environments/environment.interface';

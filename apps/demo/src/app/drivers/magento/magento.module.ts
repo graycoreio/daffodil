@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { DaffProductMagentoDriverModule } from '@daffodil/product';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
-import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
+import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
 

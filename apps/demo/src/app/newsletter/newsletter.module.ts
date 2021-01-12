@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NewsletterComponent } from './newsletter.component';
 
 import { DaffInputModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
-import { DaffNewsletterModule } from '@daffodil/newsletter';
+import { DaffNewsletterStateModule } from '@daffodil/newsletter/state';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DaffInputModule,
     DaffButtonModule,
     DaffContainerModule,
-    DaffNewsletterModule,
+    DaffNewsletterStateModule,
     ReactiveFormsModule
   ],
   declarations: [

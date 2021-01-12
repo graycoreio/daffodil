@@ -10,12 +10,14 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import {
-  DaffNewsletterFacade,
   DaffNewsletterSubscribe,
-  DaffNewsletterSubmission,
+  DaffNewsletterFacade,
+  DaffNewsletterActionTypes,
   DaffNewsletterCancel,
-  DaffNewsletterRetry,
-} from '@daffodil/newsletter';
+  DaffNewsletterRetry
+} from '@daffodil/newsletter/state';
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+
 
 @Component({
   selector: 'demo-newsletter',

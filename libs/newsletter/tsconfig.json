@@ -2,30 +2,27 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@daffodil/core": [
-        "dist/core"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
-      ],
-      "@daffodil/core/graphql": [
-        "dist/core/graphql"
-      ],
-      "@daffodil/core/state": [
-        "dist/core/state"
-      ],
-      "@daffodil/driver": [
-        "dist/driver"
-      ],
-      "@daffodil/driver/hubspot": [
-        "dist/driver/hubspot"
+      "@daffodil/*": [
+        "dist/*"
       ],
       "@daffodil/newsletter": [
         "libs/newsletter/src"
       ],
-      "@daffodil/newsletter/testing": [
-        "libs/newsletter/testing/src"
+      "@daffodil/newsletter/driver": [
+        "libs/newsletter/driver/src"
       ],
+      "@daffodil/newsletter/driver/in-memory": [
+        "libs/newsletter/driver/in-memory/src"
+      ],
+      "@daffodil/newsletter/driver/hubspot": [
+        "libs/newsletter/driver/hubspot/src"
+      ],
+      "@daffodil/newsletter/testing": [
+        "libs/newsletter/driver/testing/src"
+      ],
+      "@daffodil/newsletter/state": [
+        "libs/newsletter/state/src"
+      ]
     }
   }
 }

@@ -1,5 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DaffNewsletterFacade } from '@daffodil/newsletter/state';
+import { Observable } from 'apollo-link';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffContainerModule } from '@daffodil/design';

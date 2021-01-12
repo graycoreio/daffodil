@@ -5,7 +5,7 @@ import { DaffProductInMemoryDriverModule } from '@daffodil/product/testing';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/driver/in-memory';
-import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
+import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/testing';
 import { DemoInMemoryBackendService } from './backend/backend.service';
 

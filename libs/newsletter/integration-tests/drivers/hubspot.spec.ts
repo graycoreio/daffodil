@@ -2,13 +2,9 @@ import { TestBed } from '@angular/core/testing';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DaffNewsletterServiceInterface, DaffNewsletterDriver } from '@daffodil/newsletter/driver';
+import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
 
-import {
-	DaffNewsletterHubSpotDriverModule,
-	DaffNewsletterDriver,
-	DaffNewsletterServiceInterface,
-  DaffNewsletterSubmission
-} from '@daffodil/newsletter';
 
 describe('DaffNewsletterHubspotDriver', () => {
 	let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
