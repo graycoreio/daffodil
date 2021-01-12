@@ -27,7 +27,7 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
 	/**
 	 * @docs-private
 	 */
-  @ContentChild(DaffSidebarComponent, { static: false }) sidebar: DaffSidebarComponent;
+  @ContentChild(DaffSidebarComponent) sidebar: DaffSidebarComponent;
   /**
    * Internal tracking variable for the state of sidebar viewport.
 	 * @docs-private
@@ -50,12 +50,12 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Input state for whether or not the backdrop is 
+   * Input state for whether or not the backdrop is
    * "visible" to the human eye
    */
   // tslint:disable-next-line: no-inferrable-types
   @Input() backdropIsVisible: boolean = true;
-	
+
 	/**
 	 * Property for the "opened" state of the sidebar
 	 */
@@ -84,7 +84,7 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this._animationState = getAnimationState(this.opened, this.animationsEnabled);
 	}
-	
+
 	/**
 	 * @docs-private
 	 */
@@ -109,7 +109,7 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
   get hasBackdrop(): boolean {
     return (this.mode === 'over' || this.mode === 'push');
 	}
-	
+
 	/**
 	 * @docs-private
 	 */

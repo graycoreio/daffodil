@@ -34,7 +34,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * The child form control that the form-field manages
 	 * @docs-private
    */
-  @ContentChild(DaffFormFieldControl, { static: false }) _control: DaffFormFieldControl;
+  @ContentChild(DaffFormFieldControl) _control: DaffFormFieldControl;
 
   /**
    * Tracking property to keep a record of whether or not the
