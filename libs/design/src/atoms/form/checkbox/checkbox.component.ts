@@ -64,7 +64,7 @@ export class DaffCheckboxComponent {
    * The aria-label of the checkbox. If not set by user then it defaults to the name of the checkbox.
    */
   //tslint:disable-next-line:no-input-rename
-  @Input('aria-label') label = name;
+  @Input('aria-label') label: string = name;
   /**
    * The aria-labeledby of the checkbox.
    */
