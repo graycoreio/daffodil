@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/category": [
+        "libs/category/src"
+      ],
+      "@daffodil/category/testing": [
+        "libs/category/testing/src"
+      ],
+    }
+  }
+}
