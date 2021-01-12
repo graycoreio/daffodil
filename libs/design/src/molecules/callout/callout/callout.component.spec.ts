@@ -47,9 +47,7 @@ describe('DaffCalloutComponent', () => {
 
   describe('<daff-callout>', () => {
     it('should add a class of "daff-callout" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-callout': true,
-      }));
+			expect(de.nativeElement.classList.contains('daff-callout')).toBeTruthy();
     });
   });
 
@@ -71,17 +69,13 @@ describe('DaffCalloutComponent', () => {
       it('should add a class of "daff-callout--centered" to the host element', () => {
         wrapper.layout = 'centered';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-callout--centered': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-callout--centered')).toBeTruthy();
       });
     });
 
     it('should not set a default layout', () => {
-      expect(component.layout).toBeFalsy();
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-callout--centered': false,
-      }));
+			expect(component.layout).toBeFalsy();
+      expect(de.nativeElement.classList.contains('daff-callout--centered')).toBeFalsy();
     });
   });
 
@@ -90,17 +84,13 @@ describe('DaffCalloutComponent', () => {
       it('should add a class of "daff-callout--compact" to the host element', () => {
         wrapper.size = 'compact';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-callout--compact': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-callout--compact')).toBeTruthy();
       });
     });
 
     it('should not set a default size', () => {
       expect(component.size).toBeFalsy();
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-callout--compact': false,
-      }));
+			expect(de.nativeElement.classList.contains('daff-callout--compact')).toBeFalsy();
     });
   });
 });

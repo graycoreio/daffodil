@@ -83,14 +83,10 @@ describe('DaffBackdropComponent | Usage', () => {
   describe('when fullscreen is set to true on the backdrop', () => {
     it('should add the class `daff-backdrop--fullscreen to the host element', () => {
         expect(backdrop.fullscreen).toEqual(true);
-        expect(backdropEl.classes).toEqual(jasmine.objectContaining({
-          'daff-backdrop--fullscreen': true,
-        }));
+				expect(backdropEl.nativeElement.classList).toContain('daff-backdrop--fullscreen');
         wrapper.fullscreen = false;
         fixture.detectChanges();
-        expect(backdropEl.classes).toEqual(jasmine.objectContaining({
-          'daff-backdrop--fullscreen': false,
-        }));
+				expect(backdropEl.nativeElement.classList).not.toContain('daff-backdrop--fullscreen');
     });
   });
 });
