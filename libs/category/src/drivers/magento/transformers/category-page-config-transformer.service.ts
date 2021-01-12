@@ -8,6 +8,7 @@ import { MagentoCompleteCategoryResponse } from '../models/complete-category-res
 import { DaffCategoryFromToFilterSeparator } from '../../../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 import { DaffCategoryRequest } from '../../../models/requests/category-request';
+import { coerceDefaultSortOptionFirst } from './pure/sort-default-option-first';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 			total_pages: categoryResponse.page_info.total_pages,
 			total_products: categoryResponse.total_count,
       filters: categoryResponse.aggregates.map(this.transformAggregate.bind(this)),
-			sort_options: this.makeDefaultOptionFirst(categoryResponse.sort_fields).options,
+			sort_options: coerceDefaultSortOptionFirst(categoryResponse.sort_fields).options,
 			product_ids: categoryResponse.products.map(product => product.sku)
     }
   }
@@ -53,16 +54,5 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 
 	private transformRangeValue(value: string): string {
 		return value.replace('_', DaffCategoryFromToFilterSeparator);
-	}
-
-	private makeDefaultOptionFirst(sort_fields: MagentoSortFields): MagentoSortFields {
-		sort_fields.options.forEach((sort, index) => {
-			if(sort_fields.default === sort.value) {
-				const temp = sort_fields.options[0];
-				sort_fields.options[0] = sort;
-				sort_fields.options[index] = temp;
-			}
-		})
-		return sort_fields;
 	}
 }
