@@ -2,23 +2,23 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export enum DemoDriverVariantEnum {
-	IN_MEMORY,
-	MAGENTO,
-	SHOPIFY
+export const DemoDriverVariantEnum = {
+	IN_MEMORY: 0,
+	MAGENTO: 1,
+	SHOPIFY: 2
 }
 
 export interface InMemoryEnviromentDriverConfiguration {
-	variant: DemoDriverVariantEnum.IN_MEMORY;
+	variant: typeof DemoDriverVariantEnum.IN_MEMORY;
 }
 
 export interface MagentoEnvironmentDriverConfiguration {
-	variant: DemoDriverVariantEnum.MAGENTO;
+	variant: typeof DemoDriverVariantEnum.MAGENTO;
 	domain: string;
 }
 
 export interface ShopifyEnviromentDriverConfiguration {
-	variant: DemoDriverVariantEnum.SHOPIFY;
+	variant: typeof DemoDriverVariantEnum.SHOPIFY;
 	domain: string;
 	publicAccessToken: string;
 }
