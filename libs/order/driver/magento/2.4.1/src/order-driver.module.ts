@@ -21,11 +21,6 @@ export class DaffOrderMagentoDriverModule {
           provide: DaffOrderDriver,
           useExisting: DaffOrderMagentoService
         },
-        {
-          provide: DaffMagentoExtraOrderFragments,
-          useValue: daffMagentoNoopOrderFragment,
-          multi: true
-        }
       ]
     };
   }
