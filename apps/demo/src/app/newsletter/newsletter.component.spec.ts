@@ -1,21 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { DaffContainerModule } from '@daffodil/design';
+import { DaffNewsletterTestingModule, MockDaffNewsletterFacade } from '@daffodil/newsletter/testing';
+
 
 import { NewsletterComponent } from './newsletter.component';
-import { DaffContainerModule } from '@daffodil/design';
-
-import { By } from '@angular/platform-browser';
-import { DaffNewsletterFacade } from '@daffodil/newsletter';
-import { Observable } from 'apollo-link';
-import { ReactiveFormsModule } from '@angular/forms';
-import { of, empty } from 'rxjs';
-import { cold, hot } from 'jasmine-marbles';
-
-
-class MockDaffNewsletterFacade {
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
-  success$: Observable<boolean>;
-}
 
 describe('NewsletterComponent', () => {
   let component: NewsletterComponent;
@@ -29,10 +20,8 @@ describe('NewsletterComponent', () => {
       ],
       imports: [
         DaffContainerModule,
-        ReactiveFormsModule
-      ],
-      providers: [
-        { provide: DaffNewsletterFacade, useClass: MockDaffNewsletterFacade }
+        ReactiveFormsModule,
+        DaffNewsletterTestingModule
       ]
     })
       .compileComponents();
@@ -41,7 +30,7 @@ describe('NewsletterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsletterComponent);
     component = fixture.componentInstance;
-    facade = TestBed.inject(DaffNewsletterFacade);
+    facade = TestBed.inject(MockDaffNewsletterFacade);
     fixture.detectChanges();
 
   });
@@ -61,8 +50,8 @@ describe('NewsletterComponent', () => {
     let newsletterElement;
 
     beforeEach(() => {
-      component.loading$ = of(false);
-      component.success$ = of(false);
+      facade.loading$.next(false);
+      facade.success$.next(false);
       fixture.detectChanges();
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__right');
@@ -82,8 +71,8 @@ describe('NewsletterComponent', () => {
     let newsletterElement;
 
     beforeEach(() => {
-      component.loading$ = of(true);
-      component.success$ = of(false);
+      facade.loading$.next(true);
+      facade.success$.next(false);
       fixture.detectChanges();
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__loading');
@@ -103,8 +92,8 @@ describe('NewsletterComponent', () => {
     let newsletterElement;
 
     beforeEach(() => {
-      component.loading$ = of(false);
-      component.success$ = of(true);
+      facade.loading$.next(false);
+      facade.success$.next(true);
       fixture.detectChanges();
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__success');
@@ -117,9 +106,9 @@ describe('NewsletterComponent', () => {
     let newsletterElement;
 
     beforeEach(() => {
-      component.loading$ = of(false);
-      component.success$ = of(false);
-      component.error$ = of('Error');
+      facade.loading$.next(false);
+      facade.success$.next(false);
+      facade.error$.next('Error');
       fixture.detectChanges();
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__retry');

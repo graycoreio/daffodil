@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of, BehaviorSubject } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFacade } from '@daffodil/cart/state';
 import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
@@ -41,10 +39,10 @@ describe('PlaceOrderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlaceOrderComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     cartFactory = TestBed.inject(DaffCartFactory);
 		stubCart = cartFactory.create();
-		cartFacade = TestBed.inject(DaffCartFacade);
+		cartFacade = TestBed.inject(MockDaffCartFacade);
 		cartFacade.cart$.next(stubCart);
 
     spyOn(cartFacade, 'dispatch');

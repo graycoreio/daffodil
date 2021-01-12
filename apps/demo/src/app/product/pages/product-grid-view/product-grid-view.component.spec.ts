@@ -1,23 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of, Observable, BehaviorSubject } from 'rxjs';
-import { cold, hot } from 'jasmine-marbles';
 
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductTestingModule, MockDaffProductGridFacade } from '@daffodil/product/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
-import { DaffProductGridFacade, DaffProduct } from '@daffodil/product';
+import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
-
-class MockDaffProductGridFacade {
-  loading$: Observable<boolean> = new BehaviorSubject(false);
-  products$: Observable<DaffProduct[]> = new BehaviorSubject([]);
-  dispatch() { }
-}
-
 
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
@@ -28,15 +19,14 @@ describe('ProductGridViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ProductGridViewComponent
+        ProductGridViewComponent,
       ],
       imports: [
         DaffContainerModule,
         DaffLoadingIconModule,
-        ProductGridModule
-      ],
-      providers: [
-        { provide: DaffProductGridFacade, useClass: MockDaffProductGridFacade }
+        ProductGridModule,
+        DaffProductTestingModule,
+        DaffCartTestingModule
       ]
     })
       .compileComponents();
@@ -45,7 +35,7 @@ describe('ProductGridViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductGridViewComponent);
     component = fixture.componentInstance;
-    facade = TestBed.inject(DaffProductGridFacade);
+    facade = TestBed.inject(MockDaffProductGridFacade);
     fixture.detectChanges();
 
     productGridComponent = fixture.debugElement.query(By.css('demo-product-grid')).componentInstance;
@@ -57,21 +47,6 @@ describe('ProductGridViewComponent', () => {
 
 
   describe('ngOnInit', () => {
-    it('should set loading$ to loading$ on the DaffProductGridFacade', () => {
-      facade.loading$ = hot('ab', { a: false, b: true });
-      component.ngOnInit();
-      const expected = cold('ab', { a: false, b: true });
-      expect(component.loading$).toBeObservable(expected);
-    });
-
-    it('should set products$ to products$ on the DaffProductGridFacade', () => {
-      const products = new DaffProductFactory().createMany(2);
-      facade.loading$ = hot('ab', { a: [], b: products });
-      component.ngOnInit();
-      const expected = cold('ab', { a: [], b: products });
-      expect(component.loading$).toBeObservable(expected);
-    });
-
     it('should dispatch a DaffProductLoad', () => {
       spyOn(facade, 'dispatch');
       component.ngOnInit();
@@ -98,7 +73,7 @@ describe('ProductGridViewComponent', () => {
   describe('when loading$ becomes false', () => {
 
     beforeEach(() => {
-      component.loading$ = of(false);
+      facade.loading$.next(false);
       fixture.detectChanges();
     });
 
@@ -118,7 +93,7 @@ describe('ProductGridViewComponent', () => {
   describe('when loading$ becomes true', () => {
 
     beforeEach(() => {
-      component.loading$ = of(true);
+      facade.loading$.next(true);
       fixture.detectChanges();
     });
 

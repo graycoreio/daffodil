@@ -1,18 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BehaviorSubject } from 'rxjs';
 
-import { DaffProduct, DaffBestSellersFacade } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductFactory, DaffProductTestingModule, MockDaffBestSellersFacade } from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
-
-class MockDaffBestSellersFacade {
-  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  bestSellers$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
-}
 
 @Component({
   selector: 'demo-product-grid',
@@ -32,14 +26,12 @@ describe('BestSellersComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffLoadingIconModule
+        DaffLoadingIconModule,
+        DaffProductTestingModule
       ],
       declarations: [
         BestSellersComponent,
         MockProductGridComponent
-			],
-			providers: [
-				{ provide: DaffBestSellersFacade, useClass: MockDaffBestSellersFacade }
 			]
     })
     .compileComponents();
@@ -47,7 +39,7 @@ describe('BestSellersComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BestSellersComponent);
-		bestSellersFacade = TestBed.inject(DaffBestSellersFacade);
+		bestSellersFacade = TestBed.inject(MockDaffBestSellersFacade);
 		bestSellersFacade.bestSellers$.next(stubProducts)
     component = fixture.componentInstance;
     fixture.detectChanges();

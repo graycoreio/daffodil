@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
 
@@ -10,6 +9,7 @@ import { DaffSidebarModule, DaffSidebarComponent, DaffLoadingIconModule, DaffLin
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation/state';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
+import { DaffNavigationTestingModule, MockDaffNavigationFacade } from '@daffodil/navigation/state/testing';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -19,19 +19,12 @@ import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list
 @Component({template: '<demo-sidebar></demo-sidebar>'})
 class WrapperComponent {}
 
-class MockDaffNavigationFacade {
-  loading$: Observable<boolean> = new BehaviorSubject(false);
-  tree$: Observable<DaffNavigationTree> = new BehaviorSubject(null);
-  errors$: Observable<string[]> = new BehaviorSubject([]);
-  dispatch() { }
-}
-
 describe('SidebarContainer', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: SidebarContainer;
   let daffSidebar: DaffSidebarComponent;
-  let navFacade: MockDaffNavigationFacade;
+  let navFacade: MockDaffNavigationFacade<DaffNavigationTree>;
   const daffNavigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   const tree: DaffNavigationTree = daffNavigationTreeFactory.create();
 
@@ -42,6 +35,7 @@ describe('SidebarContainer', () => {
         FontAwesomeModule,
         DaffLoadingIconModule,
         DaffLinkSetModule,
+        DaffNavigationTestingModule
       ],
       declarations: [
         WrapperComponent,
@@ -50,7 +44,6 @@ describe('SidebarContainer', () => {
       ],
       providers: [
         provideMockStore(),
-        { provide: DaffNavigationFacade, useClass: MockDaffNavigationFacade },
       ]
     })
     .overrideComponent(SidebarListComponent, {
@@ -66,7 +59,7 @@ describe('SidebarContainer', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    navFacade = TestBed.inject(DaffNavigationFacade);
+    navFacade = TestBed.inject(MockDaffNavigationFacade);
 
     fixture.detectChanges();
 
@@ -80,27 +73,6 @@ describe('SidebarContainer', () => {
   });
 
   describe('ngOnInit', () => {
-    it('should set loading$ to loading$ on the DaffNavigationFacade', () => {
-      navFacade.loading$ = hot('ab', { a: false, b: true });
-      component.ngOnInit();
-      const expected = cold('ab', { a: false, b: true });
-      expect(component.treeLoading$).toBeObservable(expected);
-    });
-
-    it('should set tree$ to tree$ on the DaffNavigationFacade', () => {
-      navFacade.tree$ = hot('ab', { a: null, b: daffNavigationTreeFactory });
-      component.ngOnInit();
-      const expected = cold('ab', { a: null, b: daffNavigationTreeFactory });
-      expect(component.tree$).toBeObservable(expected);
-    });
-
-    it('should set treeErrors$ to errors$ on the DaffNavigationFacade', () => {
-      navFacade.errors$ = hot('ab', { a: null, b: [] });
-      component.ngOnInit();
-      const expected = cold('ab', { a: null, b: [] });
-      expect(component.treeErrors$).toBeObservable(expected);
-    });
-
     it('should dispatch a DaffNavigationTreeLoad', () => {
       spyOn(navFacade, 'dispatch');
       component.ngOnInit();

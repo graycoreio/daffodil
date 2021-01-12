@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { Subject } from 'rxjs';
 
-import { DemoIndicatorComponent } from './indicator.component';
 import { DaffProgressIndicatorModule } from '@daffodil/design';
-import { By } from '@angular/platform-browser';
 
-@Injectable()
+import { DemoIndicatorComponent } from './indicator.component';
+
+@Injectable({providedIn: 'root'})
 class MockRouter {
   events = new Subject<Event>();
 }
@@ -31,7 +31,7 @@ describe('DemoIndicatorComponent', () => {
         DemoIndicatorComponent
       ],
       providers: [
-        {provide: Router, useClass: MockRouter}
+        {provide: Router, useExisting: MockRouter}
       ]
     })
     .compileComponents();
@@ -39,7 +39,7 @@ describe('DemoIndicatorComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoIndicatorComponent);
-    router = TestBed.inject(Router);
+    router = TestBed.inject(MockRouter);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -69,6 +69,4 @@ describe('DemoIndicatorComponent', () => {
       expect(fixture.debugElement.query(By.css('daff-progress-indicator'))).toBe(null);
     });
   });
-
-
 });

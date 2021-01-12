@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFacade } from '@daffodil/cart/state';
 import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
@@ -45,7 +44,7 @@ describe('DemoCartViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoCartViewComponent);
 		component = fixture.componentInstance;
-		cartFacade = TestBed.inject(DaffCartFacade);
+		cartFacade = TestBed.inject(MockDaffCartFacade);
 
 		cartFacade.cart$ = new BehaviorSubject(cart);
 		cartFacade.loading$ = new BehaviorSubject(false);

@@ -2,14 +2,12 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Store } from '@ngrx/store';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFacade } from '@daffodil/cart/state';
 import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { ShippingContainer, PaymentInfo } from '@daffodil/checkout';
@@ -136,11 +134,11 @@ describe('CheckoutViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckoutViewComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
     store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
 		spyOn(store, 'dispatch');
-		cartFacade = TestBed.inject(DaffCartFacade);
+		cartFacade = TestBed.inject(MockDaffCartFacade);
 		cartFacade.cart$ = new BehaviorSubject(stubCart);
 		cartFacade.loading$ = new BehaviorSubject(false);
 
