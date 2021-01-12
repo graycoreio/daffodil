@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFacade } from '@daffodil/cart/state';
 import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
@@ -82,7 +81,7 @@ describe('Cart', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-		daffCartFacade = TestBed.inject(DaffCartFacade);
+		daffCartFacade = TestBed.inject(MockDaffCartFacade);
 		daffCartFacade.items$ = new BehaviorSubject(cart.items);
 		daffCartFacade.isCartEmpty$ = new BehaviorSubject(true);
     wrapper.cartValue = cart;

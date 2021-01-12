@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,7 +43,7 @@ describe('SidebarViewportContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SidebarViewportContainer);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     store.overrideSelector(fromDemoSidebar.selectShowSidebar, false);
     fixture.detectChanges();
 
