@@ -1,7 +1,6 @@
 import { Component, Input, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { BehaviorSubject } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 
@@ -59,7 +58,7 @@ describe('Cart', () => {
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffCartTestingModule

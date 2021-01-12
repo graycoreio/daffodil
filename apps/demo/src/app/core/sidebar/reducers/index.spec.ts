@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import * as fromSidebar from './index';
@@ -8,7 +8,7 @@ describe('selectDemoSidebarState', () => {
   let store: Store<fromSidebar.DemoSidebarState>;
   let expectedShowSidebar: boolean;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

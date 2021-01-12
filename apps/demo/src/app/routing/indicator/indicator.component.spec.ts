@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -20,7 +20,7 @@ describe('DemoIndicatorComponent', () => {
   let fixture: ComponentFixture<DemoIndicatorComponent>;
   let router: MockRouter;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports:[
         NoopAnimationsModule,

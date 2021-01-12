@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { Component } from '@angular/core';
@@ -21,8 +21,8 @@ describe('CartTotalsItemComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartTotalsItemComponent;
-  
-  beforeEach(async(() => {
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsItemComponent,

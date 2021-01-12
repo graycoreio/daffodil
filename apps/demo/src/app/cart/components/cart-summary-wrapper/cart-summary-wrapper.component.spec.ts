@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -55,7 +55,7 @@ describe('CartSummaryWrapper', () => {
   let helpBoxComponent: MockHelpBoxComponent;
   let router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,

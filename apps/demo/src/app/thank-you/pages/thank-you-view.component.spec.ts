@@ -1,15 +1,15 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
-import { DaffAccordionModule, 
-  DaffAccordionItemComponent, 
+import { DaffAccordionModule,
+  DaffAccordionItemComponent,
   DaffLoadingIconModule,
-  DaffContainerModule, 
+  DaffContainerModule,
   DaffContainerComponent
 } from '@daffodil/design';
 
@@ -44,7 +44,7 @@ describe('ThankYouViewComponent', () => {
   let accordionItem: DaffAccordionItemComponent;
   let orderContainer: MockOrderContainer;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffContainerModule,
@@ -52,7 +52,7 @@ describe('ThankYouViewComponent', () => {
         DaffLoadingIconModule,
         NoopAnimationsModule
       ],
-      declarations: [ 
+      declarations: [
         ThankYouViewComponent,
         MockThankYouComponent,
         MockOrderContainer,
@@ -78,7 +78,7 @@ describe('ThankYouViewComponent', () => {
   });
 
   describe('on <daff-container>', () => {
-    
+
     it('should set size', () => {
       expect(daffContainer.size).toEqual('md');
     });
@@ -99,7 +99,7 @@ describe('ThankYouViewComponent', () => {
   });
 
   describe('on desktop-cart <demo-cart-summary-wrapper>', () => {
-    
+
     it('should set cart', () => {
       expect(cartSummaryWrappers[1].componentInstance.cart).toEqual(stubCart);
     });
@@ -114,11 +114,11 @@ describe('ThankYouViewComponent', () => {
   });
 
   describe('on <daff-accordion-item>', () => {
-    
+
     it('should set initiallyAction to false', () => {
       expect(accordionItem.initiallyActive).toBeFalsy();
     });
-      
+
     it('should show the number of cart items in the accordion title', () => {
       expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
     });
@@ -136,7 +136,7 @@ describe('ThankYouViewComponent', () => {
       thankYouElement = fixture.debugElement.query(By.css('.demo-thank-you'));
       loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
-    
+
     it('should not render thankYouElement', () => {
       expect(thankYouElement).toBeNull();
     });
@@ -158,7 +158,7 @@ describe('ThankYouViewComponent', () => {
       thankYouElement = fixture.debugElement.query(By.css('.demo-thank-you-view'));
       loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
-    
+
     it('should render demo-thank-you', () => {
       expect(thankYouElement).not.toBeNull();
     });

@@ -1,5 +1,5 @@
-import { Component, Input, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { CartItemCountComponent } from './cart-item-count.component';
@@ -15,7 +15,7 @@ describe('CartItemCount', () => {
   let component: CartItemCountComponent;
   let element: DebugElement
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,

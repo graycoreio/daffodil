@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ import { DaffInputModule, DaffNativeSelectComponent, DaffFormFieldModule, DaffNa
 import { AddressFormComponent } from './address-form.component';
 
 @Component({
-  template: '<demo-address-form [formGroup]="formGroupValue" ' + 
+  template: '<demo-address-form [formGroup]="formGroupValue" ' +
                 '[submitted]="submittedValue"></demo-address-form>'
 })
 class WrapperComponent {
@@ -20,7 +20,7 @@ describe('AddressFormComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let addressForm: AddressFormComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
@@ -29,7 +29,7 @@ describe('AddressFormComponent', () => {
         DaffNativeSelectModule,
         DaffFormFieldModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         AddressFormComponent
       ]
@@ -77,7 +77,7 @@ describe('AddressFormComponent', () => {
     beforeEach(() => {
       input = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
     });
-    
+
     it('should set formControl', () => {
       expect(input.ngControl.control).toEqual(addressForm.formGroup.controls['firstname']);
     });
@@ -94,7 +94,7 @@ describe('AddressFormComponent', () => {
     beforeEach(() => {
       select = fixture.debugElement.queryAll(By.css('[daff-native-select]'))[0].componentInstance;
     });
-    
+
     it('should set formControl', () => {
       expect(select.ngControl.control).toEqual(<AbstractControl> addressForm.formGroup.controls['state']);
     });

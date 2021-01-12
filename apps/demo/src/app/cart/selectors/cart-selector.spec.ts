@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
@@ -14,7 +14,7 @@ describe('selectCartState', () => {
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: DaffCart;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
