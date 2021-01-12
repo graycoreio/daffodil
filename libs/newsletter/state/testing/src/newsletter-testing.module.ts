@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffNewsletterFacade } from '';
+import { DaffNewsletterFacade } from '@daffodil/newsletter/state';
 
 import { MockDaffNewsletterFacade } from './mock-newsletter-facade';
 
@@ -9,4 +9,4 @@ import { MockDaffNewsletterFacade } from './mock-newsletter-facade';
 		{ provide: DaffNewsletterFacade, useExisting: MockDaffNewsletterFacade }
 	]
 })
-export class DaffNewsletterTestingModule { }
+export class DaffNewsletterStateTestingModule { }

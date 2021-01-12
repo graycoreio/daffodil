@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 
-import { DaffNewsletterFacadeInterface } from 'libs/newsletter/state/src/public_api';
+import { DaffNewsletterFacadeInterface } from '@daffodil/newsletter/state';
 
 @Injectable({providedIn: 'root'})
 export class MockDaffNewsletterFacade implements DaffNewsletterFacadeInterface {
