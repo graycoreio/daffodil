@@ -107,7 +107,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '0',
 				material: '0'
 			},
-			price: this.stubPriceVariant1.toString(),
+			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
 				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
@@ -121,7 +121,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '1',
 				material: '0'
 			},
-			price: this.stubPriceVariant1.toString(),
+			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
 				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
@@ -135,7 +135,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '1',
 				material: '2'
 			},
-			price: this.stubPriceVariant3.toString(),
+			price: this.stubPriceVariant3,
 			discount: {
 				amount: this.stubDiscountVariant3,
 				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
@@ -149,7 +149,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '2',
 				material: '0'
 			},
-			price: this.stubPriceVariant1.toString(),
+			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
 				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
@@ -163,7 +163,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '0',
 				material: '0'
 			},
-			price: this.stubPriceVariant1.toString(),
+			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
 				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
@@ -177,7 +177,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '0',
 				material: '2'
 			},
-			price: this.stubPriceVariant3.toString(),
+			price: this.stubPriceVariant3,
 			discount: {
 				amount: this.stubDiscountVariant3,
 				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
@@ -233,7 +233,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '2',
 				material: '0'
 			},
-			price: this.stubPriceVariant1.toString(),
+			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
 				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
