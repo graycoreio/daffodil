@@ -17,11 +17,14 @@
       "@daffodil/contact/driver/hubspot": [
         "libs/contact/driver/hubspot/src"
       ],
-      "@daffodil/contact/testing": [
+      "@daffodil/contact/driver/testing": [
         "libs/contact/driver/testing/src"
       ],
       "@daffodil/contact/state": [
         "libs/contact/state/src"
+      ],
+      "@daffodil/contact/state/testing": [
+        "libs/contact/state/testing/src"
       ]
     }
   }
