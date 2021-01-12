@@ -105,12 +105,6 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoCartItemUpdateInputTransformer,
         DaffMagentoPaymentMethodInputTransformer,
         DaffMagentoShippingMethodInputTransformer,
-
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
-        }
       ]
     };
   }
