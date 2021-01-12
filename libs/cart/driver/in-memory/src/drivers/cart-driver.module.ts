@@ -33,7 +33,7 @@ import { DaffInMemoryCartAddressService } from './cart-address/cart-address.serv
   ]
 })
 export class DaffCartInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffCartInMemoryDriverModule> {
     return {
       ngModule: DaffCartInMemoryDriverModule,
       providers: [

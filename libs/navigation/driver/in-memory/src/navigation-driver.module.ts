@@ -11,7 +11,7 @@ import { DaffInMemoryNavigationService } from './navigation.service';
   ]
 })
 export class DaffNavigationInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffNavigationInMemoryDriverModule> {
     return {
       ngModule: DaffNavigationInMemoryDriverModule,
       providers: [

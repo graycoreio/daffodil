@@ -8,7 +8,7 @@ import { DaffInMemoryContactService } from './contact.service';
 	imports: [CommonModule],
 })
 export class DaffContactInMemoryDriverModule {
-	static forRoot(): ModuleWithProviders {
+	static forRoot(): ModuleWithProviders<DaffContactInMemoryDriverModule> {
 		return {
 			ngModule: DaffContactInMemoryDriverModule,
 			providers: [

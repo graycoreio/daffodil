@@ -33,7 +33,7 @@ import { DaffTestingCartItemService } from './cart-item/cart-item.service';
   ]
 })
 export class DaffTestingCartDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffTestingCartDriverModule> {
     return {
       ngModule: DaffTestingCartDriverModule,
       providers: [
