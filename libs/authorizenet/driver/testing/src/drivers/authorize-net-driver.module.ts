@@ -10,7 +10,7 @@ import { DaffTestingAuthorizeNetService } from './authorize-net.service';
   ]
 })
 export class DaffTestingAuthorizeNetDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffTestingAuthorizeNetDriverModule> {
     return {
       ngModule: DaffTestingAuthorizeNetDriverModule,
       providers: [

@@ -17,7 +17,7 @@ import { DaffTestingAuthService } from './auth/auth.service';
   ]
 })
 export class DaffAuthTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffAuthTestingDriverModule> {
     return {
       ngModule: DaffAuthTestingDriverModule,
       providers: [

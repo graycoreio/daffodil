@@ -11,7 +11,7 @@ import { DaffTestingCategoryService } from './category.service';
   ]
 })
 export class DaffCategoryTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffCategoryTestingDriverModule> {
     return {
       ngModule: DaffCategoryTestingDriverModule,
       providers: [
