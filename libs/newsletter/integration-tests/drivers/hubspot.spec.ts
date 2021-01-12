@@ -6,11 +6,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {
 	DaffNewsletterHubSpotDriverModule,
 	DaffNewsletterDriver,
-	DaffNewsletterServiceInterface
+	DaffNewsletterServiceInterface,
+  DaffNewsletterSubmission
 } from '@daffodil/newsletter';
 
 describe('DaffNewsletterHubspotDriver', () => {
-	let newsletterService: DaffNewsletterServiceInterface<any, any>;
+	let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
 	let httpMock: HttpTestingController;
 
 	beforeEach(() => {
@@ -27,9 +28,7 @@ describe('DaffNewsletterHubspotDriver', () => {
 
 		httpMock = TestBed.inject(HttpTestingController);
 
-		newsletterService = TestBed.inject(
-			DaffNewsletterDriver
-		);
+		newsletterService = TestBed.inject(DaffNewsletterDriver);
 	});
 
 	it('should provide an instance of the DaffNewsletterDriver', () => {
@@ -41,7 +40,11 @@ describe('DaffNewsletterHubspotDriver', () => {
 		newsletterService.send(newsletterSubmission).subscribe((resp) => {
 			expect(resp).toEqual(newsletterSubmission);
 		});
-		const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/123123/123123');
+    const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/123123/123123');
+    expect(req.request.body).toEqual(jasmine.objectContaining({
+      fields: [Object({ name: 'email', value: 'test@email.com' })],
+      context: Object({ hutk: null, pageUri: '/', pageName: jasmine.any(String) }),
+    }));
 		req.flush(newsletterSubmission);
 		httpMock.verify();
 	})

@@ -38,16 +38,17 @@ describe('DaffContactHubspotDriver', () => {
 	describe('when sending', () => {
 		it('should send a submission', () => {
 			const forumSubmission = { email: 'test@email.com' };
-			const mockReq = of(forumSubmission);
-			contactService.send(forumSubmission).subscribe();
+			contactService.send(forumSubmission).subscribe((resp) => {
+        expect(resp).toEqual(forumSubmission);
+      });
 			const req = httpMock.expectOne(
-				`${'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123'}`,
+				'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123',
 			);
-			expect(req.request.body).toEqual({
+			expect(req.request.body).toEqual(jasmine.objectContaining({
 				fields: [Object({ name: 'email', value: 'test@email.com' })],
-				context: Object({ hutk: null, pageUri: '/', pageName: '' }),
-			});
-			req.flush(mockReq);
+				context: Object({ hutk: null, pageUri: '/', pageName: jasmine.any(String) }),
+			}));
+			req.flush(forumSubmission);
 			httpMock.verify();
     });
 
