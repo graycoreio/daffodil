@@ -1,0 +1,28 @@
+{
+  "name": "@daffodil/external-router",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A platform-agnostic package that connects the @angular/router with an external routing service (e.g. an API), allowing for runtime route resolution.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build external-router",
+    "lint": "ng lint external-router",
+    "test": "ng test external-router --watch=false --browsers=ChromeHeadless",
+    "reportcoverage":
+      "(cd ../../ && ./cc-test-reporter format-coverage -t lcov -o coverage/cc.external-router.json coverage/libs/core/lcov.info)",
+    "publish": "(cd ../../dist/external-router; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    
+  },
+  "devDependencies": {
+  }
+}

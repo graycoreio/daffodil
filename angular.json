@@ -1214,7 +1214,42 @@
           }
         }
       }
-		}
+		},
+    "external-router": {
+      "projectType": "library",
+      "root": "libs/external-router",
+      "sourceRoot": "libs/external-router/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/external-router/tsconfig.lib.json",
+            "project": "libs/external-router/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/external-router/src/test.ts",
+            "tsConfig": "libs/external-router/tsconfig.spec.json",
+            "karmaConfig": "libs/external-router/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/external-router/tsconfig.lib.json",
+              "libs/external-router/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
   },
   "defaultProject": "demo",
   "schematics": {
