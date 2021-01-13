@@ -12,7 +12,6 @@ import {
 } from '@daffodil/cart';
 import {
   MagentoCart,
-  daffMagentoNoopCartFragment,
   updateAddress,
   updateAddressWithEmail,
   MagentoUpdateAddressResponse,
@@ -21,7 +20,6 @@ import {
   MagentoShippingAddressInput,
   DaffMagentoCartTransformer,
   DaffMagentoCartAddressInputTransformer,
-  DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,

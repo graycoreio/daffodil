@@ -7,7 +7,7 @@ import { schema } from '@daffodil/driver/magento';
 import {
   DaffCartShippingRate,
 } from '@daffodil/cart';
-import { MagentoCartShippingMethod, MagentoListShippingMethodsResponse, DaffMagentoCartShippingRateTransformer, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, listShippingMethods } from '@daffodil/cart/driver/magento';
+import { MagentoCartShippingMethod, MagentoListShippingMethodsResponse, DaffMagentoCartShippingRateTransformer, listShippingMethods } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartShippingMethodFactory
 } from '@daffodil/cart/driver/magento/testing';

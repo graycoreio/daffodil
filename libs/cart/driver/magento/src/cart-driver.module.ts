@@ -30,8 +30,6 @@ import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/b
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
-import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
-import { daffMagentoNoopCartFragment } from './queries/public_api';
 
 @NgModule({
   imports: [

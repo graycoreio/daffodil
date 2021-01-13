@@ -9,7 +9,7 @@ import {
   DaffCartCoupon,
 } from '@daffodil/cart';
 import { DaffCartNotFoundError } from '@daffodil/cart/driver';
-import { MagentoCart, MagentoApplyCouponResponse, MagentoListCartCouponsResponse, MagentoRemoveAllCouponsResponse, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, applyCoupon, listCartCoupons, removeAllCoupons } from '@daffodil/cart/driver/magento';
+import { MagentoCart, MagentoApplyCouponResponse, MagentoListCartCouponsResponse, MagentoRemoveAllCouponsResponse, applyCoupon, listCartCoupons, removeAllCoupons } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
 } from '@daffodil/cart/driver/magento/testing';
