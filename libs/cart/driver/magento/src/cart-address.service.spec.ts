@@ -70,11 +70,6 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           provide: DaffMagentoCartAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
         },
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
-        },
 				{
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({

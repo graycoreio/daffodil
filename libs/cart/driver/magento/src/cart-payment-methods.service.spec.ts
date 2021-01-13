@@ -37,11 +37,6 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
           provide: DaffMagentoCartPaymentTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform'])
         },
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
-        },
       ]
     });
 

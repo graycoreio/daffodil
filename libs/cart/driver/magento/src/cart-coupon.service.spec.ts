@@ -41,11 +41,6 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
       ],
       providers: [
         DaffMagentoCartCouponService,
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
-        },
       ]
     });
 

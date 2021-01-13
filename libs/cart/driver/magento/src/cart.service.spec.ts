@@ -51,11 +51,6 @@ describe('Driver | Magento | Cart | CartService', () => {
           provide: DaffCartItemDriver,
           useValue: jasmine.createSpyObj('DaffCartItemDriver', ['delete', 'list'])
         },
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
-        },
 				{
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
