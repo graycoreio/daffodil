@@ -100,8 +100,18 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				sort_fields: sort_fields,
 				products: products,
 				total_count: stubCategoryPageConfigurationState.total_products
-			}
-		});
+      }
+    });
+
+    describe('when the sort options are immutable', () => {
+      beforeEach(() => {
+        Object.freeze(sort_fields.options);
+      });
+
+      it('should complete successfully', () => {
+        expect(service.transform(completeCategoryResponse)).toBeTruthy();
+      });
+    });
 
 		describe('when the filter type is select', () => {
 
