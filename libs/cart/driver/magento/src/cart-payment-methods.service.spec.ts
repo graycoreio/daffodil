@@ -4,7 +4,7 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import {
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, listPaymentMethods } from '@daffodil/cart/driver/magento';
+import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer, listPaymentMethods } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartPaymentMethodFactory
 } from '@daffodil/cart/driver/magento/testing';
@@ -36,11 +36,6 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         {
           provide: DaffMagentoCartPaymentTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform'])
-        },
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
         },
       ]
     });
@@ -90,7 +85,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
+      const op = controller.expectOne(listPaymentMethods([]));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse
@@ -103,7 +98,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
+      const op = controller.expectOne(listPaymentMethods([]));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse

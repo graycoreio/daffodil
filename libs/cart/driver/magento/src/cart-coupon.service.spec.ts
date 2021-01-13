@@ -9,7 +9,7 @@ import {
   DaffCartCoupon,
 } from '@daffodil/cart';
 import { DaffCartNotFoundError } from '@daffodil/cart/driver';
-import { MagentoCart, MagentoApplyCouponResponse, MagentoListCartCouponsResponse, MagentoRemoveAllCouponsResponse, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, applyCoupon, listCartCoupons, removeAllCoupons } from '@daffodil/cart/driver/magento';
+import { MagentoCart, MagentoApplyCouponResponse, MagentoListCartCouponsResponse, MagentoRemoveAllCouponsResponse, applyCoupon, listCartCoupons, removeAllCoupons } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
 } from '@daffodil/cart/driver/magento/testing';
@@ -41,11 +41,6 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
       ],
       providers: [
         DaffMagentoCartCouponService,
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
-        },
       ]
     });
 
@@ -94,7 +89,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
           done();
         });
 
-        const op = controller.expectOne(applyCoupon([daffMagentoNoopCartFragment]));
+        const op = controller.expectOne(applyCoupon([]));
 
         op.flush({
           data: mockApplyCouponResponse
@@ -113,7 +108,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(applyCoupon([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(applyCoupon([]));
 
           op.graphqlErrors([new GraphQLError(
             'Can\'t find a cart with that ID.',
@@ -137,7 +132,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(applyCoupon([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(applyCoupon([]));
 
           op.graphqlErrors([new GraphQLError(
             'The required coupon_code argument contains an empty value.',
@@ -169,7 +164,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
           done();
         });
 
-        const op = controller.expectOne(listCartCoupons([daffMagentoNoopCartFragment]));
+        const op = controller.expectOne(listCartCoupons([]));
 
         op.flush({
           data: mockListCouponsResponse
@@ -188,7 +183,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(listCartCoupons([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(listCartCoupons([]));
 
           op.graphqlErrors([new GraphQLError(
             'Can\'t find a cart with that ID.',
@@ -212,7 +207,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(listCartCoupons([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(listCartCoupons([]));
 
           op.graphqlErrors([new GraphQLError(
             'The required coupon_code argument contains an empty value.',
@@ -244,7 +239,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
           done();
         });
 
-        const op = controller.expectOne(removeAllCoupons([daffMagentoNoopCartFragment]));
+        const op = controller.expectOne(removeAllCoupons([]));
 
         op.flush({
           data: mockRemoveAllCouponsResponse
@@ -263,7 +258,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(removeAllCoupons([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(removeAllCoupons([]));
 
           op.graphqlErrors([new GraphQLError(
             'Can\'t find a cart with that ID.',
@@ -287,7 +282,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(removeAllCoupons([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(removeAllCoupons([]));
 
           op.graphqlErrors([new GraphQLError(
             'The required coupon_code argument contains an empty value.',
@@ -319,7 +314,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
           done();
         });
 
-        const op = controller.expectOne(removeAllCoupons([daffMagentoNoopCartFragment]));
+        const op = controller.expectOne(removeAllCoupons([]));
 
         op.flush({
           data: mockRemoveAllCouponsResponse
@@ -338,7 +333,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(removeAllCoupons([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(removeAllCoupons([]));
 
           op.graphqlErrors([new GraphQLError(
             'Can\'t find a cart with that ID.',
@@ -362,7 +357,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(removeAllCoupons([daffMagentoNoopCartFragment]));
+          const op = controller.expectOne(removeAllCoupons([]));
 
           op.graphqlErrors([new GraphQLError(
             'The required cart_id argument contains an empty value.',

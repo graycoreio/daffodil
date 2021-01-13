@@ -12,7 +12,6 @@ import {
 } from '@daffodil/cart';
 import {
   MagentoCart,
-  daffMagentoNoopCartFragment,
   updateAddress,
   updateAddressWithEmail,
   MagentoUpdateAddressResponse,
@@ -21,7 +20,6 @@ import {
   MagentoShippingAddressInput,
   DaffMagentoCartTransformer,
   DaffMagentoCartAddressInputTransformer,
-  DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -69,11 +67,6 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
         {
           provide: DaffMagentoCartAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
-        },
-        {
-          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-          useValue: daffMagentoNoopCartFragment,
-          multi: true
         },
 				{
 					provide: APOLLO_TESTING_CACHE,
@@ -176,7 +169,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
 
           op.flush({
             data: mockUpdateAddressWithEmailResponse
@@ -202,7 +195,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateAddress([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateAddress([])));
 
           op.flush({
             data: mockUpdateAddressResponse
@@ -221,7 +214,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
