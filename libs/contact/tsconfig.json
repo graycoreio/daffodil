@@ -2,30 +2,30 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@daffodil/core": [
-        "dist/core"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
-      ],
-      "@daffodil/core/graphql": [
-        "dist/core/graphql"
-      ],
-      "@daffodil/core/state": [
-        "dist/core/state"
-      ],
-      "@daffodil/driver": [
-        "dist/driver"
-      ],
-      "@daffodil/driver/hubspot": [
-        "dist/driver/hubspot"
+      "@daffodil/*": [
+        "dist/*"
       ],
       "@daffodil/contact": [
         "libs/contact/src"
       ],
-      "@daffodil/contact/testing": [
-        "libs/contact/testing/src"
+      "@daffodil/contact/driver": [
+        "libs/contact/driver/src"
       ],
+      "@daffodil/contact/driver/in-memory": [
+        "libs/contact/driver/in-memory/src"
+      ],
+      "@daffodil/contact/driver/hubspot": [
+        "libs/contact/driver/hubspot/src"
+      ],
+      "@daffodil/contact/driver/testing": [
+        "libs/contact/driver/testing/src"
+      ],
+      "@daffodil/contact/state": [
+        "libs/contact/state/src"
+      ],
+      "@daffodil/contact/state/testing": [
+        "libs/contact/state/testing/src"
+      ]
     }
   }
 }
