@@ -120,12 +120,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '0',
 				material: '0'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant1,
-			discount: {
-				amount: this.stubDiscountVariant1,
-				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant1.toString(),
 				discount: {
@@ -133,7 +127,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant1
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -144,12 +137,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '1',
 				material: '0'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant1,
-			discount: {
-				amount: this.stubDiscountVariant1,
-				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant2.toString(),
 				discount: {
@@ -157,7 +144,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant2/this.stubPriceVariant2) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant2
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -168,12 +154,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '1',
 				material: '2'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant3,
-			discount: {
-				amount: this.stubDiscountVariant3,
-				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant3.toString(),
 				discount: {
@@ -181,7 +161,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant3
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -192,12 +171,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '2',
 				material: '0'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant1,
-			discount: {
-				amount: this.stubDiscountVariant1,
-				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant1.toString(),
 				discount: {
@@ -205,7 +178,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant1
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -216,12 +188,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '0',
 				material: '0'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant1,
-			discount: {
-				amount: this.stubDiscountVariant1,
-				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant1.toString(),
 				discount: {
@@ -229,7 +195,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant1
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -240,12 +205,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '0',
 				material: '2'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant3,
-			discount: {
-				amount: this.stubDiscountVariant3,
-				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant3.toString(),
 				discount: {
@@ -253,7 +212,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant3
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -315,12 +273,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				size: '2',
 				material: '0'
 			},
-<<<<<<< HEAD
-			price: this.stubPriceVariant1,
-			discount: {
-				amount: this.stubDiscountVariant1,
-				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
-=======
 			price: {
 				originalPrice: this.stubPriceVariant1.toString(),
 				discount: {
@@ -328,7 +280,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 				},
 				discountedPrice: this.stubDiscountedPriceVariant1
->>>>>>> feat(product): change the DaffProduct.price model
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true

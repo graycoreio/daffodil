@@ -296,10 +296,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('isConfigurablePriceRanged', () => {
 
 		it('should return true when more than one price is possible', () => {
-			stubConfigurableProduct.variants[0].price = 2;
-			stubConfigurableProduct.variants[1].price = 1;
-			stubConfigurableProduct.variants[2].price = 3;
-			stubConfigurableProduct.variants[3].price = 4;
+			stubConfigurableProduct.variants[0].price.originalPrice = 2;
+			stubConfigurableProduct.variants[1].price.originalPrice = 1;
+			stubConfigurableProduct.variants[2].price.originalPrice = 3;
+			stubConfigurableProduct.variants[3].price.originalPrice = 4;
 			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,

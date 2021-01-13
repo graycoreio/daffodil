@@ -220,7 +220,7 @@ describe('DaffConfigurableProductFacade', () => {
 							discountedPrice: 1
 						},
             discount: {
-              ...stubConfigurableProduct.variants[0].discount,
+              ...stubConfigurableProduct.variants[0].price.discount,
               amount: 3
             }
           },

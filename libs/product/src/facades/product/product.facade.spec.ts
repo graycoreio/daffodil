@@ -90,7 +90,7 @@ describe('DaffProductFacade', () => {
 	describe('getPrice()', () => {
 		it('should be an observable of a product', () => {
 			const product = new DaffProductFactory().create();
-      const expected = cold('a', { a: product.price });
+      const expected = cold('a', { a: product.price.originalPrice });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getPrice(product.id)).toBeObservable(expected);
@@ -120,7 +120,7 @@ describe('DaffProductFacade', () => {
 	describe('getDiscountedPrice()', () => {
 		it('should be an observable of the discounted price of a product', () => {
 			const product = new DaffProductFactory().create();
-      const expected = cold('a', { a: daffSubtract(product.price, product.discount.amount) });
+      const expected = cold('a', { a: product.price.discountedPrice });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);

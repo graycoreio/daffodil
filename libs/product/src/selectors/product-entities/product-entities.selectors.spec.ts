@@ -104,7 +104,7 @@ describe('selectProductEntitiesState', () => {
     
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectProductPrice, { id: mockProduct.id }));
-			const expected = cold('a', { a: mockProduct.price });
+			const expected = cold('a', { a: mockProduct.price.originalPrice });
 
 			expect(selector).toBeObservable(expected);
     });
@@ -124,7 +124,7 @@ describe('selectProductEntitiesState', () => {
     
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectProductDiscountedPrice, { id: mockProduct.id }));
-			const expected = cold('a', { a: daffSubtract(mockProduct.price, mockProduct.discount.amount) });
+			const expected = cold('a', { a: mockProduct.price.discountedPrice });
 
 			expect(selector).toBeObservable(expected);
     });
