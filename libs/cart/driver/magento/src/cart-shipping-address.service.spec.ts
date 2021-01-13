@@ -148,7 +148,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getShippingAddress([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
 
       op.flush({
         data: mockGetShippingAddressResponse
@@ -161,7 +161,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getShippingAddress([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
 
       op.flush({
         data: mockGetShippingAddressResponse
@@ -179,7 +179,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(getShippingAddress([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
 
         op.flush({
           data: mockGetShippingAddressResponse
@@ -203,7 +203,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateShippingAddressWithEmail([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(updateShippingAddressWithEmail([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -235,7 +235,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateShippingAddressWithEmail([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateShippingAddressWithEmail([])));
 
           op.flush({
             data: mockUpdateShippingAddressWithEmailResponse
@@ -260,7 +260,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateShippingAddress([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateShippingAddress([])));
 
           op.flush({
             data: mockUpdateShippingAddressResponse

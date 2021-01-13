@@ -85,7 +85,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
+      const op = controller.expectOne(listPaymentMethods([]));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse
@@ -98,7 +98,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
+      const op = controller.expectOne(listPaymentMethods([]));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse

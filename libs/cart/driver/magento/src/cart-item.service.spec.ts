@@ -205,7 +205,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listCartItems([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(listCartItems([])));
 
       op.flush({
         data: mockListCartItemResponse
@@ -242,7 +242,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 
-				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([daffMagentoNoopCartFragment])));
+				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([])));
 
 				op.flush({
 					data: mockAddBundleCartItemResponse
@@ -257,7 +257,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 
-				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([daffMagentoNoopCartFragment])));
+				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([])));
 
 				op.flush({
 					data: mockAddSimpleCartItemResponse
@@ -272,7 +272,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 
-				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([daffMagentoNoopCartFragment])));
+				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([])));
 
 				op.flush({
 					data: mockAddConfigurableCartItemResponse
@@ -302,7 +302,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(updateCartItem([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
 
       op.flush({
         data: mockUpdateCartItemResponse
@@ -328,7 +328,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(removeCartItem([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(removeCartItem([])));
 
       op.flush({
         data: mockRemoveCartItemResponse

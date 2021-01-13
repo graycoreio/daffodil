@@ -171,7 +171,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
 
           op.flush({
             data: mockUpdateAddressWithEmailResponse
@@ -197,7 +197,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateAddress([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateAddress([])));
 
           op.flush({
             data: mockUpdateAddressResponse
@@ -216,7 +216,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',

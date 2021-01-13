@@ -136,7 +136,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getBillingAddress([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getBillingAddress([])));
 
       op.flush({
         data: mockGetBillingAddressResponse
@@ -149,7 +149,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getBillingAddress([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getBillingAddress([])));
 
       op.flush({
         data: mockGetBillingAddressResponse
@@ -167,7 +167,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(getBillingAddress([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(getBillingAddress([])));
 
         op.flush({
           data: mockGetBillingAddressResponse
@@ -191,7 +191,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -223,7 +223,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail([])));
 
           op.flush({
             data: mockUpdateBillingAddressWithEmailResponse
@@ -248,7 +248,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateBillingAddress([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(updateBillingAddress([])));
 
           op.flush({
             data: mockUpdateBillingAddressResponse

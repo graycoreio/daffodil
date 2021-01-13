@@ -179,7 +179,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([])));
 
       op.flush({
         data: mockGetSelectedPaymentMethodResponse
@@ -192,7 +192,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([])));
 
       op.flush({
         data: mockGetSelectedPaymentMethodResponse
@@ -220,7 +220,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([])));
 
       op.flush({
         data: mockSetSelectedPaymentMethodResponse
@@ -259,7 +259,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([])));
 
           op.flush({
             data: mockSetSelectedPaymentMethodWithBillingAndEmailResponse
@@ -289,7 +289,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBilling([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBilling([])));
 
           op.flush({
             data: mockSetSelectedPaymentMethodWithBillingResponse
@@ -308,7 +308,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -339,7 +339,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([])));
 
       op.flush({
         data: mockSetSelectedPaymentMethodResponse

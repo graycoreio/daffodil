@@ -110,7 +110,7 @@ describe('Driver | Magento | Cart | CartService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getCart([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getCart([])));
 
       op.flush({
         data: mockCartResponse
@@ -123,7 +123,7 @@ describe('Driver | Magento | Cart | CartService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getCart([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getCart([])));
 
       op.flush({
         data: mockCartResponse

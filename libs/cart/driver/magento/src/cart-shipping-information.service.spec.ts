@@ -147,7 +147,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
 
       op.flush({
         data: mockGetSelectedShippingMethodResponse
@@ -160,7 +160,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
 
       op.flush({
         data: mockGetSelectedShippingMethodResponse
@@ -178,7 +178,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
 
         op.flush({
           data: mockGetSelectedShippingMethodResponse
@@ -207,7 +207,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const setSelectedShippingMethodOp = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([daffMagentoNoopCartFragment])));
+      const setSelectedShippingMethodOp = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([])));
 
       setSelectedShippingMethodOp.flush({
         data: mockSetSelectedShippingMethodResponse
@@ -215,7 +215,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
 
       // set timeout because the requests here are made in series
       setTimeout(() => {
-        const listShippingMethodsOp = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
+        const listShippingMethodsOp = controller.expectOne(addTypenameToDocument(listShippingMethods([])));
 
         listShippingMethodsOp.flush({
           data: mockListCartShippingMethodsResponse
@@ -240,7 +240,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([])));
 
       op.flush({
         data: mockSetSelectedShippingMethodResponse
