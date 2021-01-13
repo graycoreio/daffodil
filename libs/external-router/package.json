@@ -16,12 +16,12 @@
     "lint": "ng lint external-router",
     "test": "ng test external-router --watch=false --browsers=ChromeHeadless",
     "reportcoverage":
-      "(cd ../../ && ./cc-test-reporter format-coverage -t lcov -o coverage/cc.external-router.json coverage/libs/core/lcov.info)",
+      "echo '(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.external-router.json ../../coverage/libs/external-router/lcov.info)'",
     "publish": "(cd ../../dist/external-router; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
-    
+
   },
   "devDependencies": {
   }
