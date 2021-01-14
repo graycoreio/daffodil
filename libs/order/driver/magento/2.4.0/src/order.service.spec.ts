@@ -43,8 +43,6 @@ import {
   MagentoGraycoreOrderShipmentItem,
   MagentoGraycoreOrderShipmentTracking,
   MagentoGraycoreOrderShipment,
-  DaffMagentoExtraOrderFragments,
-  daffMagentoNoopOrderFragment,
   getGuestOrders,
   MagentoGetGuestOrdersResponse
 } from '@daffodil/order/driver/magento/2.4.0';
@@ -106,11 +104,6 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       ],
       providers: [
         DaffOrderMagentoService,
-        {
-          provide: DaffMagentoExtraOrderFragments,
-          useValue: daffMagentoNoopOrderFragment,
-          multi: true
-        }
       ]
     });
 
@@ -347,7 +340,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne(getGuestOrders([]));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -367,7 +360,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+            const op = controller.expectOne(getGuestOrders([]));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -393,7 +386,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+            const op = controller.expectOne(getGuestOrders([]));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -413,7 +406,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+        const op = controller.expectOne(getGuestOrders([]));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -441,7 +434,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             done();
           });
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne(getGuestOrders([]));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -465,7 +458,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne(getGuestOrders([]));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -484,7 +477,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+        const op = controller.expectOne(getGuestOrders([]));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
