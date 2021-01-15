@@ -11,8 +11,10 @@
 
 <daff-sidebar-viewport [mode]="mode" [opened]="open" [fixed]="fixed">
   <daff-sidebar>
-      <a routerLink="accordion">Accordion</a><br>
-      <a routerLink="article">Article</a><br>
+    <daff-link-set>
+      <a daff-link-set-item routerLink="accordion">Accordion</a>
+      <a daff-link-set-item routerLink="article">Article</a>
+    </daff-link-set>
   </daff-sidebar>
   <p>Some Content</p>
 </daff-sidebar-viewport>

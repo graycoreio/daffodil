@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     DaffFormFieldModule,
     DaffButtonModule,
     DaffSidebarModule,
+    DaffLinkSetModule,
     SidebarRoutingModule
   ]
 })
