@@ -1,10 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffProductTestingModule, MockDaffProductGridFacade } from '@daffodil/product/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
-import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
@@ -16,7 +14,7 @@ describe('ProductGridViewComponent', () => {
   let productGridComponent: ProductGridComponent;
   let facade: MockDaffProductGridFacade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         ProductGridViewComponent,
@@ -26,7 +24,6 @@ describe('ProductGridViewComponent', () => {
         DaffLoadingIconModule,
         ProductGridModule,
         DaffProductTestingModule,
-        DaffCartTestingModule
       ]
     })
       .compileComponents();
