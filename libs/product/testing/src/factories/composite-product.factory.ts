@@ -10,7 +10,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	private stubPrice = faker.random.number({min: 1, max: 1500});
 	private stubDiscount = faker.random.number({min: 0, max: this.stubPrice - 1});
 	type = DaffProductTypeEnum.Composite;
-	id = faker.random.number({min: 1, max: 10000}).toString();
+	id = faker.random.uuid();
 	url = faker.random.alphaNumeric(16);
 	price = this.stubPrice;
 	images = [];
@@ -24,13 +24,13 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.'
 	items = [
 		{
-			id: faker.random.alphaNumeric(10),
+			id: faker.random.uuid(),
 			required: faker.random.boolean(),
 			title: faker.commerce.productName(),
 			input_type: DaffCompositeProductItemInputEnum.select,
 			options: [
 				{
-					id: faker.random.alphaNumeric(10),
+					id: faker.random.uuid(),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
 					images: [],
@@ -43,7 +43,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					in_stock: true
 				},
 				{
-					id: faker.random.alphaNumeric(10),
+					id: faker.random.uuid(),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
 					images: [],
@@ -58,13 +58,13 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 			]
 		},
 		{
-			id: faker.random.alphaNumeric(10),
+			id: faker.random.uuid(),
 			required: faker.random.boolean(),
 			title: faker.commerce.productName(),
 			input_type: DaffCompositeProductItemInputEnum.select,
 			options: [
 				{
-					id: faker.random.alphaNumeric(10),
+					id: faker.random.uuid(),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
 					images: [],
@@ -77,7 +77,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					in_stock: true
 				},
 				{
-					id: faker.random.alphaNumeric(10),
+					id: faker.random.uuid(),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
 					images: [],

@@ -8,7 +8,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * @deprecated
  */
 export class MockOrder implements DaffOrder {
-  id = faker.random.number({min: 1, max: 1000});
+  id = faker.random.uuid();
   created_at = new Date();
   updated_at = new Date();
   store_to_base_rate = faker.random.number({min: 1, max: 1000});

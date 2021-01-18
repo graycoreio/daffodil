@@ -6,20 +6,20 @@ import { DaffOrderItem, DaffOrderItemType } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderItem implements DaffOrderItem {
-  item_id = faker.random.number({min: 1, max: 1000});
+  item_id = faker.random.uuid();
   image = {
     url: faker.image.imageUrl(),
-    id: String(faker.random.number({min: 1, max: 1000})),
+    id: faker.random.uuid(),
     label: faker.random.word()
   };
-  order_id = faker.random.number({min: 1, max: 1000});
+  order_id = faker.random.uuid();
   qty_ordered = faker.random.number({min: 1, max: 1000});
   qty_canceled = faker.random.number({min: 1, max: 1000});
   qty_fulfilled = faker.random.number({min: 1, max: 1000});
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();
-  product_id = faker.random.number({min: 1, max: 1000});
-  parent_item_id = faker.random.number({min: 1, max: 1000});
+  product_id = faker.random.uuid();
+  parent_item_id = faker.random.uuid();
   sku = faker.random.alphaNumeric(20);
   name = faker.random.word();
   weight = faker.random.number({min: 1, max: 1000});

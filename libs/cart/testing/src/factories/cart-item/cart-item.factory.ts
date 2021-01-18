@@ -7,10 +7,10 @@ import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffProductImage } from '@daffodil/product';
 
 export class DaffMockCartItem implements DaffCartItem {
-	item_id = faker.random.number({min: 1, max: 1000});
+	item_id = faker.random.uuid();
 	type = DaffCartItemInputType.Simple;
-  product_id = String(faker.random.number({min: 1, max: 1000}));
-	parent_item_id = faker.random.number({min: 1, max: 1000});
+  product_id = faker.random.uuid();
+	parent_item_id = faker.random.uuid();
 	image = <DaffProductImage>new DaffProductImageFactory().create();
   sku = 'sku';
   name = 'Product Name';

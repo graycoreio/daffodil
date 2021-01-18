@@ -12,13 +12,13 @@ export class MockMagentoBundleCartItem extends MockMagentoCartItem implements Ma
   __typename = MagentoCartItemTypeEnum.Bundle;
   bundle_options = [
 		{
-			id: faker.random.number({min: 1, max: 1000}),
+			id: faker.random.uuid(),
 			type: 'radio',
 			label: faker.random.word(),
 			price: faker.random.number({min: 1, max: 99}),
 			quantity: 1,
 			values: [{
-				id: faker.random.number({min:1, max: 1000}),
+				id: faker.random.uuid(),
 				label: faker.random.word(),
 				price: faker.random.number({min: 1, max: 99}),
 				quantity: 1
