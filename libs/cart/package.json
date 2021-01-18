@@ -15,6 +15,7 @@
     "build": "ng build cart --prod",
     "lint": "ng lint cart",
     "test": "ng test cart --watch=false --browsers=ChromeHeadless",
+    "reportcoverage": "(cd ../../ && ./cc-test-reporter format-coverage -t lcov -o coverage/cc.cart.json coverage/libs/cart/lcov.info)",
     "publish": "(cd ../../dist/cart; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
