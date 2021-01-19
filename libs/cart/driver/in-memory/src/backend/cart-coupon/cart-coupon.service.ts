@@ -51,7 +51,7 @@ export class DaffInMemoryBackendCartCouponService implements DaffInMemoryDataSer
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, Number(reqInfo.id))
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
   }
 
   private listCoupons(reqInfo): DaffCartCoupon[] {
