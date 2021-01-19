@@ -14,6 +14,7 @@ import {
 } from '@daffodil/order/driver';
 import { MagentoOrder, MagentoGetGuestOrdersResponse, getGuestOrders } from '@daffodil/order/driver/magento/2.4.1';
 import { schema } from '@daffodil/driver/magento';
+import { DaffCart } from '@daffodil/cart';
 
 import { MagentoOrderTestDataFactory } from './helpers/public_api';
 import { DaffOrderMagentoService } from './order.service';
@@ -23,7 +24,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
   let controller: ApolloTestingController;
   let testDataFactory: MagentoOrderTestDataFactory;
 
-  let cartId: string;
+  let cartId: DaffCart['id'];
   let orderId: DaffOrder['id'];
   let mockDaffOrder: DaffOrder;
   let mockMagentoOrder: MagentoOrder;

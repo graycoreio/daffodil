@@ -1,5 +1,7 @@
+import { ID } from '@daffodil/core';
+
 export interface DaffConfigurableProductEntity {
-	id: string;
+	id: ID;
 	attributes: DaffConfigurableProductEntityAttribute[];
 }
 

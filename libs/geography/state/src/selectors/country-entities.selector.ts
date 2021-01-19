@@ -11,14 +11,14 @@ import {
 } from '../reducers/public_api';
 import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 
-export interface DaffCountryEntitySelectors<T extends DaffCountry> {
+export interface DaffCountryEntitySelectors<T extends DaffCountry = DaffCountry> {
   selectCountryEntitiesState: MemoizedSelector<object, DaffCountryEntityState<T>>;
-  selectCountryIds: MemoizedSelector<object, string[] | number[]>;
+  selectCountryIds: MemoizedSelector<object, T['id'][] | number[]>;
   selectCountryEntities: MemoizedSelector<object, Dictionary<T>>;
   selectAllCountries: MemoizedSelector<object, T[]>;
   selectCountryTotal: MemoizedSelector<object, number>;
-  selectCountry: MemoizedSelectorWithProps<object, {id: string | number}, T>;
-  selectCountrySubdivisions: MemoizedSelectorWithProps<object, {id: string | number}, T['subdivisions']>;
+  selectCountry: MemoizedSelectorWithProps<object, {id: T['id']}, T>;
+  selectCountrySubdivisions: MemoizedSelectorWithProps<object, {id: T['id']}, T['subdivisions']>;
   selectIsCountryFullyLoaded: MemoizedSelector<object, boolean>;
 }
 

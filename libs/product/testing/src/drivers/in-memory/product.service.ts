@@ -6,7 +6,7 @@ import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
 
 /**
  * The product inmemory driver to mock the product backend service.
- * 
+ *
  * @Param HttpClient
  */
 @Injectable({
@@ -19,7 +19,7 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
 
   /**
    * Gets all products.
-   * 
+   *
    * @returns An Observable of DaffProduct[]
    */
   getAll(): Observable<DaffProduct[]> {
@@ -28,7 +28,7 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
 
   /**
    * Gets all best selling products.
-   * 
+   *
    * @returns An Observable of DaffProduct[]
    */
   getBestSellers(): Observable<DaffProduct[]> {
@@ -37,11 +37,11 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
 
   /**
    * Get a product by ID.
-   * 
+   *
    * @param productId string - product ID
    * @returns An Observable of a DaffProduct
    */
-  get(productId: string): Observable<DaffProduct> {
+  get(productId: DaffProduct['id']): Observable<DaffProduct> {
     return this.http.get<DaffProduct>(this.url + productId);
   }
 }

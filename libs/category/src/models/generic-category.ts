@@ -1,10 +1,12 @@
+import { ID } from '@daffodil/core';
+
 import { DaffCategoryBreadcrumb } from './category-breadcrumb';
 
 /**
  * The DaffGenericCategory should be used only in extension when defining a new model.
  */
 export interface DaffGenericCategory<T extends DaffGenericCategory<T>> {
-  id: string;
+  id: ID;
 	name: string;
 	description?: string;
   children_count?: number;

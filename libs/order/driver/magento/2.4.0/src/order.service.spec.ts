@@ -50,6 +50,7 @@ import {
   getGuestOrders,
   MagentoGetGuestOrdersResponse
 } from '@daffodil/order/driver/magento/2.4.0';
+import { DaffCart } from '@daffodil/cart';
 
 import { DaffOrderMagentoService } from './order.service';
 
@@ -69,7 +70,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
   let daffOrderShippingMethodFactory: DaffOrderShippingMethodFactory;
   let daffOrderTotalFactory: DaffOrderTotalFactory;
 
-  let cartId: string;
+  let cartId: DaffCart['id'];
   let orderId: DaffOrder['id'];
   let mockDaffOrder: DaffOrder;
   let mockDaffOrderAddress: DaffOrderAddress;

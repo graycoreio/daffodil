@@ -41,7 +41,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
     public billingAddressInputTransformer: DaffMagentoBillingAddressInputTransformer
   ) {}
 
-  get(cartId: string): Observable<DaffCartAddress> {
+  get(cartId: DaffCart['id']): Observable<DaffCartAddress> {
     return this.apollo.query<MagentoGetBillingAddressResponse>({
       query: getBillingAddress(this.extraCartFragments),
       variables: {cartId}
@@ -56,11 +56,11 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
     )
   }
 
-  update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
   }
 
-  private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  private updateAddress(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoUpdateBillingAddressResponse>({
       mutation: updateBillingAddress(this.extraCartFragments),
       variables: {
@@ -73,7 +73,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
     )
   }
 
-  private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  private updateAddressWithEmail(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoUpdateBillingAddressWithEmailResponse>({
       mutation: updateBillingAddressWithEmail(this.extraCartFragments),
       variables: {

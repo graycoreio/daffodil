@@ -15,16 +15,16 @@ export interface DaffCompositeProductMemoizedSelectors {
 	/**
 	 * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
 	 */
-	selectCompositeProductRequiredItemPricesForConfiguration: MemoizedSelectorWithProps<object, { id: string, configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
+	selectCompositeProductRequiredItemPricesForConfiguration: MemoizedSelectorWithProps<object, { id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
 	/**
 	 * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
 	 */
-	selectCompositeProductOptionalItemPricesForConfiguration: MemoizedSelectorWithProps<object, { id: string, configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
+	selectCompositeProductOptionalItemPricesForConfiguration: MemoizedSelectorWithProps<object, { id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
 	/**
 	 * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state and
 	 * excluding unselected, optional item prices.
 	 */
-	selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<object, { id: string }, DaffPriceRange>;
+	selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<object, { id: DaffCompositeProduct['id'] }, DaffPriceRange>;
 }
 
 const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelectors => {
@@ -75,12 +75,12 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		selectCompositeProductAppliedOptionsEntitiesState,
 		//todo use optional chaining when possible
 		(products, appliedOptionsEntities, props) => selectCompositeProductRequiredItemPricesForConfiguration.projector(products, {
-			id: props.id, 
+			id: props.id,
 			configuration: appliedOptionsEntities.entities[props.id] ? appliedOptionsEntities.entities[props.id].items : null
 		})
 	);
 
-	return { 
+	return {
 		selectCompositeProductRequiredItemPricesForConfiguration,
 		selectCompositeProductOptionalItemPricesForConfiguration,
 		selectCompositeProductPricesAsCurrentlyConfigured
@@ -89,8 +89,8 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 export const getDaffCompositeProductSelectors = (() => {
 	let cache;
-	return (): DaffCompositeProductMemoizedSelectors => cache = cache 
-		? cache 
+	return (): DaffCompositeProductMemoizedSelectors => cache = cache
+		? cache
 		: createCompositeProductSelectors();
 })();
 
@@ -135,16 +135,16 @@ function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProdu
 function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeProductItemOption>): DaffProductPrices {
 	return {
 		discountedPrice: product.items.reduce((acc, item) => daffAdd(
-			acc, 
-			appliedOptionHasId(appliedOptions[item.id]) ? 
-				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) : 
+			acc,
+			appliedOptionHasId(appliedOptions[item.id]) ?
+				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
 				getMinimumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id]))
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: product.items.reduce((acc, item) => daffAdd(
-			acc, 
-			appliedOptionHasId(appliedOptions[item.id]) ? 
-				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 
+			acc,
+			appliedOptionHasId(appliedOptions[item.id]) ?
+				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
 				getMinimumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id]))
 		), product.price)
 	}
@@ -158,16 +158,16 @@ function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeProductItemOption>): DaffProductPrices {
 	return {
 		discountedPrice: product.items.reduce((acc, item) => daffAdd(
-			acc, 
-			appliedOptionHasId(appliedOptions[item.id]) ? 
-				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) : 
+			acc,
+			appliedOptionHasId(appliedOptions[item.id]) ?
+				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
 				getMaximumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id]))
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: product.items.reduce((acc, item) => daffAdd(
 			acc,
-			appliedOptionHasId(appliedOptions[item.id]) ? 
-				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 
+			appliedOptionHasId(appliedOptions[item.id]) ?
+				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
 				getMaximumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id]))
 		), product.price)
 	}
@@ -184,20 +184,20 @@ function getDiscountedPrice(product: DaffProduct): number {
 function getMaxPricesForConfigurationIncludingOptionalItems(product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeProductItemOption>): DaffProductPrices {
 	return {
 		discountedPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
-			acc, 
-			appliedOptionHasId(appliedOptions[item.id]) ? 
+			acc,
+			appliedOptionHasId(appliedOptions[item.id]) ?
 				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
 				appliedOptionHasQty(appliedOptions[item.id]) ?
-					daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), appliedOptions[item.id].quantity) : 
+					daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), appliedOptions[item.id].quantity) :
 					Math.max(...item.options.map(getDiscountedPrice))
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 			acc,
-			appliedOptionHasId(appliedOptions[item.id]) ? 
-				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 
+			appliedOptionHasId(appliedOptions[item.id]) ?
+				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
 				appliedOptionHasQty(appliedOptions[item.id]) ?
-					daffMultiply(Math.max(...item.options.map(option => option.price)), appliedOptions[item.id].quantity) : 
+					daffMultiply(Math.max(...item.options.map(option => option.price)), appliedOptions[item.id].quantity) :
 					Math.max(...item.options.map(option => option.price))
 		), product.price)
 	}

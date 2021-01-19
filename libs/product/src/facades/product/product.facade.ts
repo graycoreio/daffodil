@@ -11,7 +11,7 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
 
 /**
  * A facade for getting state about a particular product.
- * 
+ *
  * See the <a href="docs/api/product/DaffProductFacadeInterface">DaffProductFacadeInterface docs</a> for more details.
  */
 @Injectable({
@@ -28,31 +28,31 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 		this.product$ = this.store.pipe(select(this.selectors.selectSelectedProduct));
 	}
 
-	getProduct(id: string): Observable<T> {
+	getProduct(id: T['id']): Observable<T> {
 		return this.store.pipe(select(this.selectors.selectProduct, { id }));
 	}
 
-	getPrice(id: string): Observable<number> {
+	getPrice(id: T['id']): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectProductPrice, { id }));
 	}
 
-	hasDiscount(id: string): Observable<boolean> {
+	hasDiscount(id: T['id']): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
 	}
 
-	getDiscountAmount(id: string): Observable<number> {
+	getDiscountAmount(id: T['id']): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectProductDiscountAmount, { id }));
 	}
 
-	getDiscountedPrice(id: string): Observable<number> {
+	getDiscountedPrice(id: T['id']): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectProductDiscountedPrice, { id }));
 	}
 
-	getDiscountPercent(id: string): Observable<number> {
+	getDiscountPercent(id: T['id']): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectProductDiscountPercent, { id }));
 	}
 
-	isOutOfStock(id: string): Observable<boolean> {
+	isOutOfStock(id: T['id']): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectIsProductOutOfStock, { id }));
 	}
 

@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffCategoryFilterRequest } from './filter-request';
 
 export enum DaffSortDirectionEnum {
@@ -6,7 +8,7 @@ export enum DaffSortDirectionEnum {
 }
 
 export interface DaffCategoryRequest {
-  id: string;
+  id: ID;
   filter_requests?: DaffCategoryFilterRequest[];
   applied_sort_option?: string;
   applied_sort_direction?: DaffSortDirectionEnum;

@@ -87,17 +87,17 @@ export interface DaffCategoryFacadeInterface<
 	 * Get a category by the provided Id.
 	 * @param id
 	 */
-	getCategoryById(id: string): Observable<V>;
+	getCategoryById(id: V['id']): Observable<V>;
 
 	/**
 	 * Get products by a category Id.
 	 * @param categoryId
 	 */
-	getProductsByCategory(categoryId: string): Observable<W[]>;
+	getProductsByCategory(categoryId: V['id']): Observable<W[]>;
 
 	/**
 	 * Get products by a category Id.
 	 * @param categoryId
 	 */
-	getTotalProductsByCategory(categoryId: string): Observable<number>;
+	getTotalProductsByCategory(categoryId: V['id']): Observable<number>;
 }

@@ -1,4 +1,6 @@
+import { ID } from '@daffodil/core';
 import { DaffProductImage } from '@daffodil/product';
+
 import { DaffOrder } from './order';
 
 export enum DaffOrderItemType {
@@ -9,7 +11,7 @@ export enum DaffOrderItemType {
 
 export interface DaffOrderItem {
   type: DaffOrderItemType;
-  item_id: number;
+  item_id: ID;
   qty_ordered: number;
   qty_canceled: number;
   qty_fulfilled: number;
@@ -17,8 +19,8 @@ export interface DaffOrderItem {
   order_id: DaffOrder['id'];
   created_at: string;
   updated_at: string;
-  product_id: number;
-  parent_item_id: number;
+  product_id: ID;
+  parent_item_id: ID;
   sku: string;
   name: string;
   weight: number;

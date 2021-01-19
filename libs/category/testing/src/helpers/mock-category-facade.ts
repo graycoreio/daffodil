@@ -33,13 +33,13 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 	errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
 	isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-	getCategoryById(id: string): BehaviorSubject<DaffCategory> {
+	getCategoryById(id: DaffCategory['id']): BehaviorSubject<DaffCategory> {
 		return new BehaviorSubject(null);
 	};
-	getProductsByCategory(categoryId: string): BehaviorSubject<DaffProduct[]> {
+	getProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<DaffProduct[]> {
 		return new BehaviorSubject([]);
 	};
-	getTotalProductsByCategory(categoryId: string): BehaviorSubject<number> {
+	getTotalProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
   dispatch(action: Action) {};

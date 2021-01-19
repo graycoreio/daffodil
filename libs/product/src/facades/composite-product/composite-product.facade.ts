@@ -9,7 +9,6 @@ import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
 import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../models/composite-product-item';
-import { DaffCompositeProduct } from '../../models/composite-product';
 import { DaffPriceRange } from '../../models/prices';
 import { DaffCompositeConfigurationItem } from '../../models/composite-configuration-item';
 import { productPriceRangeHasDiscount, productPriceRangeHasPriceRange } from '../helpers';
@@ -17,14 +16,14 @@ import { productPriceRangeHasDiscount, productPriceRangeHasPriceRange } from '..
 /**
  * A facade for interacting with the composite product state.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
- * 
+ *
  * See the <a href="docs/api/product/DaffCompositeProductFacadeInterface">DaffCompositeProductFacadeInterface docs</a> for more details.
  */
 @Injectable({
   providedIn: DaffProductModule
 })
 export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> implements DaffCompositeProductFacadeInterface {
-	
+
 	constructor(private store: Store<DaffProductReducersState<T>>) {}
 
 	selectors = getDaffProductSelectors<T>();
@@ -41,23 +40,23 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	 */
 	hasPriceRange = productPriceRangeHasPriceRange;
 
-	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
+	getRequiredItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductRequiredItemPricesForConfiguration, { id, configuration }));
 	}
 
-	getOptionalItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
+	getOptionalItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductOptionalItemPricesForConfiguration, { id, configuration }));
 	}
 
-	getPricesAsCurrentlyConfigured(id: string): Observable<DaffPriceRange> {
+	getPricesAsCurrentlyConfigured(id: T['id']): Observable<DaffPriceRange> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductPricesAsCurrentlyConfigured, { id }));
 	}
 
-	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption>> {
+	getAppliedOptions(id: T['id']): Observable<Dictionary<DaffCompositeProductItemOption>> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductAppliedOptions, { id }));
 	}
 
-	isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']) {
+	isItemRequired(id: T['id'], item_id: DaffCompositeProductItem['id']) {
 		return this.store.pipe(select(this.selectors.selectIsCompositeProductItemRequired, { id, item_id }));
 	}
 

@@ -9,7 +9,7 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   loading$: Observable<boolean>;
   errors$: Observable<string[]>;
   orders$: Observable<T[]>;
-  orderIds$: Observable<(string | number)[]>;
+  orderIds$: Observable<T['id'][]>;
   orderCount$: Observable<number>;
   orderEntities$: Observable<Dictionary<T>>;
 

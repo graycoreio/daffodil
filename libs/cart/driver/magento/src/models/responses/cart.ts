@@ -10,7 +10,7 @@ import { MagentoShippingAddress } from './shipping-address';
  * An object for defining what the cart service requests and retrieves from a magento backend.
  */
 export interface MagentoCart {
-  id: number;
+  id: string;
   email: string;
   billing_address: MagentoCartAddress;
   shipping_addresses: MagentoShippingAddress[];

@@ -23,13 +23,13 @@ import { DaffCategoryFacadeInterface } from './category-facade.interface';
   providedIn: DaffCategoryModule
 })
 export class DaffCategoryFacade<
-	T extends DaffCategoryRequest = DaffCategoryRequest, 
-	V extends DaffGenericCategory<V> = DaffCategory, 
+	T extends DaffCategoryRequest = DaffCategoryRequest,
+	V extends DaffGenericCategory<V> = DaffCategory,
 	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
 > implements DaffCategoryFacadeInterface<T, V, U, W> {
 	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
-	
+
 	/**
    * The currently selected category.
    */
@@ -94,28 +94,28 @@ export class DaffCategoryFacade<
 	 * Is the category page empty of products.
 	 */
 	isCategoryEmpty$: Observable<boolean>;
-	
+
 	/**
 	 * Get a category by the provided Id.
-	 * @param id 
+	 * @param id
 	 */
-	getCategoryById(id: string): Observable<V> {
+	getCategoryById(id: V['id']): Observable<V> {
 		return this.store.pipe(select(this.categorySelectors.selectCategory, {id: id}));
 	}
 
 	/**
 	 * Get products by a category Id.
-	 * @param categoryId 
+	 * @param categoryId
 	 */
-	getProductsByCategory(categoryId: string): Observable<W[]> {
+	getProductsByCategory(categoryId: V['id']): Observable<W[]> {
 		return this.store.pipe(select(this.categorySelectors.selectProductsByCategory, {id: categoryId}))
 	}
 
 	/**
 	 * Get products by a category Id.
-	 * @param categoryId 
+	 * @param categoryId
 	 */
-	getTotalProductsByCategory(categoryId: string): Observable<number> {
+	getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
 		return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory, {id: categoryId}))
 	}
 

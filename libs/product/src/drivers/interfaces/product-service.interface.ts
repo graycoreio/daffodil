@@ -16,8 +16,8 @@ export interface DaffProductServiceInterface<T extends DaffProduct = DaffProduct
   getBestSellers(): Observable<T[]>;
   /**
    * Get a product by Id.
-   * 
+   *
    * @param productId - A string of the product ID.
    */
-  get(productId: string): Observable<T>;
+  get(productId: T['id']): Observable<T>;
 }

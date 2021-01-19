@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
+import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCartActionTypes {
   CartStorageFailureAction = '[DaffCart] Cart Storage Failure Action',
@@ -64,7 +65,7 @@ export class DaffCartCreateFailure implements Action {
 export class DaffAddToCart implements Action {
   readonly type = DaffCartActionTypes.AddToCartAction;
 
-  constructor(public payload: {productId: string, qty: number}) {}
+  constructor(public payload: {productId: DaffProduct['id'], qty: number}) {}
 }
 
 export class DaffAddToCartSuccess implements Action {

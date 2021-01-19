@@ -13,8 +13,8 @@ import { getDaffCategoryEntitiesSelectors } from './category-entities/category-e
 import { DaffCategory } from '../models/category';
 
 export interface DaffCategoryMemoizedSelectors<
-	T extends DaffCategoryRequest = DaffCategoryRequest, 
-	V extends DaffGenericCategory<V> = DaffCategory, 
+	T extends DaffCategoryRequest = DaffCategoryRequest,
+	V extends DaffGenericCategory<V> = DaffCategory,
 	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
 > extends
@@ -34,9 +34,9 @@ const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGe
 	const {
 		selectCategoryEntities
 	} = getDaffCategoryEntitiesSelectors<T, V, U>();
-	const { 
-		selectSelectedCategoryId, 
-		selectCategoryPageProductIds 
+	const {
+		selectSelectedCategoryId,
+		selectCategoryPageProductIds
 	} = getDaffCategoryPageSelectors<T, V, U>();
 	/**
 	 * Combinatoric Category Selectors
@@ -44,7 +44,7 @@ const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGe
 	const selectSelectedCategory = createSelector(
 		selectCategoryEntities,
 		selectSelectedCategoryId,
-		(entities: Dictionary<V>, selectedCategoryId: string) => entities[selectedCategoryId]
+		(entities: Dictionary<V>, selectedCategoryId: V['id']) => entities[selectedCategoryId]
 	);
 
 	const selectCategoryPageProducts = createSelector(
@@ -89,11 +89,11 @@ const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGe
 export const getDaffCategorySelectors = (() => {
 	let cache;
 	return <
-		T extends DaffCategoryRequest = DaffCategoryRequest, 
-		V extends DaffGenericCategory<V> = DaffCategory, 
-		U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>, 
+		T extends DaffCategoryRequest = DaffCategoryRequest,
+		V extends DaffGenericCategory<V> = DaffCategory,
+		U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 		W extends DaffProduct = DaffProduct
-	>(): DaffCategoryMemoizedSelectors<T, V, U, W> => cache = cache 
-		? cache 
+	>(): DaffCategoryMemoizedSelectors<T, V, U, W> => cache = cache
+		? cache
 		: createCategorySelectors<T, V, U, W>();
 })();

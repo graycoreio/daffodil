@@ -74,7 +74,7 @@ export class DaffCartEffects<T extends DaffCart> {
   addToCart$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.AddToCartAction),
     switchMap((action: DaffAddToCart) =>
-      this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
+      this.driver.addToCart(String(action.payload.productId), action.payload.qty).pipe(
         map((resp: T) => new DaffAddToCartSuccess(resp)),
         catchError(error => of(new DaffAddToCartFailure(this.errorMatcher(error))))
       )

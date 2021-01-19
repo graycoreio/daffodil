@@ -23,41 +23,41 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	 * Get a product.
 	 * @param id a product id
 	 */
-	getProduct(id: string): Observable<T>;
+	getProduct(id: T['id']): Observable<T>;
 
 	/**
 	 * Get the original price for a product.
 	 * @param id a product id
 	 */
-	getPrice(id: string): Observable<number>;
+	getPrice(id: T['id']): Observable<number>;
 
 	/**
 	 * Whether a particular product has a discount.
 	 * @param id a product id
 	 */
-	hasDiscount(id: string): Observable<boolean>;
+	hasDiscount(id: T['id']): Observable<boolean>;
 
 	/**
 	 * Get the discount amount of a product.
 	 * @param id a product id
 	 */
-	getDiscountAmount(id: string): Observable<number>;
+	getDiscountAmount(id: T['id']): Observable<number>;
 
 	/**
 	 * Get the discounted price for a product.
 	 * @param id a product id
 	 */
-	getDiscountedPrice(id: string): Observable<number>;
+	getDiscountedPrice(id: T['id']): Observable<number>;
 
 	/**
 	 * Get the discount percent of a product.
 	 * @param id a product id
 	 */
-	getDiscountPercent(id: string): Observable<number>;
+	getDiscountPercent(id: T['id']): Observable<number>;
 
 	/**
 	 * Whether a product is out of stock.
 	 * @param id a product id
 	 */
-	isOutOfStock(id: string): Observable<boolean>;
+	isOutOfStock(id: T['id']): Observable<boolean>;
 }

@@ -1,5 +1,7 @@
+import { ID } from '@daffodil/core';
+
 export interface DaffCartShippingRate {
-  id: string | number;
+  id: ID;
   carrier: string;
   carrier_title: string;
   method_code: string;

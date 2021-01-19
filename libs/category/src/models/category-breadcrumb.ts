@@ -1,5 +1,7 @@
+import { ID } from '@daffodil/core';
+
 export interface DaffCategoryBreadcrumb {
-  categoryId: number;
+  categoryId: ID;
   categoryName: string;
   categoryLevel: number;
   categoryUrlKey: string;

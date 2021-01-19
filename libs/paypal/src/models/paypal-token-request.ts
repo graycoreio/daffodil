@@ -1,3 +1,5 @@
+import { DaffCart } from '@daffodil/cart';
+
 export interface DaffPaypalTokenRequest {
-	cartId: string;
+	cartId: DaffCart['id'];
 }

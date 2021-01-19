@@ -2,47 +2,47 @@ import { BehaviorSubject } from 'rxjs';
 import { Dictionary } from '@ngrx/entity';
 import { Injectable } from '@angular/core';
 
-import { DaffConfigurableProductFacadeInterface, DaffConfigurableProductVariant } from '@daffodil/product';
+import { DaffConfigurableProductFacadeInterface, DaffConfigurableProductVariant, DaffConfigurableProduct } from '@daffodil/product';
 
 @Injectable({providedIn: 'root'})
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
-	getAllAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
+	getAllAttributes(id: DaffConfigurableProduct['id']): BehaviorSubject<Dictionary<string[]>> {
 		return new BehaviorSubject({});
 	};
-	getAllVariants(id: string): BehaviorSubject<DaffConfigurableProductVariant[]> {
+	getAllVariants(id: DaffConfigurableProduct['id']): BehaviorSubject<DaffConfigurableProductVariant[]> {
 		return new BehaviorSubject([]);
 	};
-	getAppliedAttributes(id: string): BehaviorSubject<Dictionary<string>> {
+	getAppliedAttributes(id: DaffConfigurableProduct['id']): BehaviorSubject<Dictionary<string>> {
 		return new BehaviorSubject({});
 	};
-	getMinimumPrice(id: string): BehaviorSubject<number> {
+	getMinimumPrice(id: DaffConfigurableProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaximumPrice(id: string): BehaviorSubject<number> {
+	getMaximumPrice(id: DaffConfigurableProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMinimumDiscountedPrice(id: string): BehaviorSubject<number> {
+	getMinimumDiscountedPrice(id: DaffConfigurableProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaximumDiscountedPrice(id: string): BehaviorSubject<number> {
+	getMaximumDiscountedPrice(id: DaffConfigurableProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMinimumPercentDiscount(id: string): BehaviorSubject<number> {
+	getMinimumPercentDiscount(id: DaffConfigurableProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaximumPercentDiscount(id: string): BehaviorSubject<number> {
+	getMaximumPercentDiscount(id: DaffConfigurableProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	isPriceRanged(id: string): BehaviorSubject<boolean> {
+	isPriceRanged(id: DaffConfigurableProduct['id']): BehaviorSubject<boolean> {
 		return new BehaviorSubject(null);
 	};
-	hasDiscount(id: string): BehaviorSubject<boolean> {
+	hasDiscount(id: DaffConfigurableProduct['id']): BehaviorSubject<boolean> {
 		return new BehaviorSubject(null);
 	};
-	getSelectableAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
+	getSelectableAttributes(id: DaffConfigurableProduct['id']): BehaviorSubject<Dictionary<string[]>> {
 		return new BehaviorSubject({});
 	};
-	getMatchingVariants(id: string): BehaviorSubject<DaffConfigurableProductVariant[]> {
+	getMatchingVariants(id: DaffConfigurableProduct['id']): BehaviorSubject<DaffConfigurableProductVariant[]> {
 		return new BehaviorSubject([]);
 	};
 	dispatch(action) {};

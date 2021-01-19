@@ -37,7 +37,7 @@ export class DaffTestingCartItemService implements DaffCartItemServiceInterface 
     return of(this.cartFactory.create());
   }
 
-  delete(cartId: string, itemId: string): Observable<Partial<DaffCart>> {
+  delete(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<Partial<DaffCart>> {
     return of(this.cartFactory.create());
   }
 }

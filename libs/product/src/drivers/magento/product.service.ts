@@ -23,7 +23,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
    * Get an Observable of a DaffProduct by id.
    * @param productId a product Id
    */
-  get(productId: string): Observable<DaffProduct> {
+  get(productId: DaffProduct['id']): Observable<DaffProduct> {
     return this.apollo.query<any>({
 			query: GetProductQuery,
 			variables: {
