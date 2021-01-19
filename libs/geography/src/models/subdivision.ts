@@ -1,4 +1,4 @@
-import { ID } from "@daffodil/core";
+import { ID } from '@daffodil/core';
 
 /**
  * The subdivisions of a country as per ISO-3166-2
