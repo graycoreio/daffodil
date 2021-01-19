@@ -12,16 +12,16 @@ export function transformCompositeCartItem(item: DaffCompositeCartItemInput): Ma
 export function transformSimpleCartItem(item: DaffCartItemInput): MagentoCartItemInput {
 	return {
 		quantity: item.qty,
-		sku: String(item.productId)
+		sku: item.productId
 	}
 }
 
 export function transformConfigurableCartItem(item: DaffConfigurableCartItemInput): MagentoConfigurableCartItemInput {
 	return {
-		parentSku: String(item.productId),
+		parentSku: item.productId,
 		data: {
 			quantity: item.qty,
-			sku: String(item.variantId)
+			sku: item.variantId
 		},
 	}
 }

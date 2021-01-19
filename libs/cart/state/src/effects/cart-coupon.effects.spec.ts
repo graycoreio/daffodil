@@ -69,7 +69,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
     driverRemoveSpy = spyOn(daffDriver, 'remove');
     driverRemoveAllSpy = spyOn(daffDriver, 'removeAll');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
-    getCartIdSpy.and.returnValue(String(mockCart.id));
+    getCartIdSpy.and.returnValue(mockCart.id);
   });
 
   it('should be created', () => {

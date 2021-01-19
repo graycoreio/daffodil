@@ -49,7 +49,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
     return this.list(cartId).pipe(
       map(orders => {
         for (const order of orders) {
-          if (String(order.id) === String(orderId)) {
+          if (order.id === orderId) {
             return order
           }
         }

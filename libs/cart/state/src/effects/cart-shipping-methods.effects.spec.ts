@@ -63,7 +63,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
 
     driverListSpy = spyOn(shippingMethodsDriver, 'list');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
-    getCartIdSpy.and.returnValue(String(mockCart.id));
+    getCartIdSpy.and.returnValue(mockCart.id);
   });
 
   it('should be created', () => {

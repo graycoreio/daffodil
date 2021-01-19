@@ -36,7 +36,7 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
     });
 
     it('should return an object with the correct values', () => {
-      expect(transformedCartItem.sku).toEqual(String(mockDaffCartItemInput.productId));
+      expect(transformedCartItem.sku).toEqual(mockDaffCartItemInput.productId);
       expect(transformedCartItem.quantity).toEqual(mockDaffCartItemInput.qty);
     });
   });
@@ -59,7 +59,7 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 
     it('should return an object with the correct values', () => {
 			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
-      expect(transformedCartItem.input.sku).toEqual(String(mockDaffCompositeCartItemInput.productId));
+      expect(transformedCartItem.input.sku).toEqual(mockDaffCompositeCartItemInput.productId);
       expect(transformedCartItem.input.quantity).toEqual(mockDaffCompositeCartItemInput.qty);
       expect(transformedCartItem.options[0].id).toEqual(Number(mockDaffCompositeCartItemInput.options[0].code));
       expect(transformedCartItem.options[0].quantity).toEqual(mockDaffCompositeCartItemInput.options[0].quantity);
@@ -87,9 +87,9 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 
     it('should return an object with the correct values', () => {
 			transformedCartItem = transformConfigurableCartItem(mockDaffConfigurableCartItemInput);
-      expect(transformedCartItem.parentSku).toEqual(String(mockDaffConfigurableCartItemInput.productId));
+      expect(transformedCartItem.parentSku).toEqual(mockDaffConfigurableCartItemInput.productId);
 			expect(transformedCartItem.data.quantity).toEqual(mockDaffConfigurableCartItemInput.qty);
-			expect(transformedCartItem.data.sku).toEqual(String(mockDaffConfigurableCartItemInput.variantId));
+			expect(transformedCartItem.data.sku).toEqual(mockDaffConfigurableCartItemInput.variantId);
 		});
   });
 });

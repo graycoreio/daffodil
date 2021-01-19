@@ -66,7 +66,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     driverPlaceOrderSpy = spyOn(cartOrderDriver, 'placeOrder');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
-    getCartIdSpy.and.returnValue(String(mockCart.id));
+    getCartIdSpy.and.returnValue(mockCart.id);
   });
 
   it('should be created', () => {

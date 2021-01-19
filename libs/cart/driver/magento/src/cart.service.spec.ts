@@ -77,12 +77,12 @@ describe('Driver | Magento | Cart | CartService', () => {
     mockMagentoCartItem = magentoCartItemFactory.create();
     mockDaffCartItem = daffCartItemFactory.create();
 
-    mockMagentoCartItem.id = String(mockDaffCartItem.item_id);
+    mockMagentoCartItem.id = mockDaffCartItem.item_id;
     cartId = mockDaffCart.id;
     mockMagentoCart.items = [mockMagentoCartItem];
     mockDaffCart.items = [mockDaffCartItem];
     mockCreateCartResponse = {
-      createEmptyCart: String(cartId)
+      createEmptyCart: cartId
     };
     mockCartResponse = {
 			__typename: 'Cart',
@@ -156,7 +156,7 @@ describe('Driver | Magento | Cart | CartService', () => {
   describe('create | creates the cart', () => {
     it('should return an observable with the cart ID', done => {
       service.create().subscribe(result => {
-        expect(String(result.id)).toEqual(String(cartId));
+        expect(result.id).toEqual(cartId);
         done();
       });
 

@@ -78,7 +78,7 @@ describe('Daffodil | Cart | CartEffects', () => {
     driverAddToCartSpy = spyOn(driver, 'addToCart');
     setCartIdSpy = spyOn(daffCartStorageService, 'setCartId');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
-    getCartIdSpy.and.returnValue(String(mockCart.id));
+    getCartIdSpy.and.returnValue(mockCart.id);
   });
 
   it('should be created', () => {
@@ -176,7 +176,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     it('should set the cart ID in storage', () => {
       expect(effects.storeId$).toBeObservable(expected);
-      expect(setCartIdSpy).toHaveBeenCalledWith(String(mockCart.id));
+      expect(setCartIdSpy).toHaveBeenCalledWith(mockCart.id);
     });
 
     describe('and the storage service throws an error', () => {
@@ -205,7 +205,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     it('should set the cart ID in storage', () => {
       expect(effects.storeId$).toBeObservable(expected);
-      expect(setCartIdSpy).toHaveBeenCalledWith(String(mockCart.id));
+      expect(setCartIdSpy).toHaveBeenCalledWith(mockCart.id);
     });
 
     describe('and the storage service throws an error', () => {

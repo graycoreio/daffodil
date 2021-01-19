@@ -82,7 +82,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     driverUpdateSpy = spyOn(daffCartItemDriver, 'update');
     driverDeleteSpy = spyOn(daffCartItemDriver, 'delete');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
-    getCartIdSpy.and.returnValue(String(mockCart.id));
+    getCartIdSpy.and.returnValue(mockCart.id);
   });
 
   it('should be created', () => {
