@@ -69,7 +69,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockShippingMethod = cartShippingMethodFactory.create();
     mockShippingInformation = {
       ...cartShippingMethodFactory.create(),
-      address_id: 0
+      address_id: null
     };
     cartId = mockCart.id;
     itemId = mockCartItem.item_id;
@@ -521,7 +521,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     beforeEach(done => {
       newShippingInformation = {
         ...cartShippingMethodFactory.create(),
-        address_id: 5
+        address_id: null
       };
 
       httpClient.put<any>(`/api/cart-shipping-information/${cartId}/`, newShippingInformation).subscribe(res => {

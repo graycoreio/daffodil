@@ -21,7 +21,7 @@ export class DaffMagentoCartShippingInformationTransformer {
     return shippingMethod ? {
       ...this.shippingRateTransformer.transform(shippingMethod),
       // TODO: implement
-      address_id: 0
+      address_id: null
     } : null
   }
 }

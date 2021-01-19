@@ -54,7 +54,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 
   get(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<DaffCartItem> {
     return this.list(cartId).pipe(
-      map(items => items.find(item => Number(item.item_id) === itemId))
+      map(items => items.find(item => item.item_id === itemId))
     )
   }
 

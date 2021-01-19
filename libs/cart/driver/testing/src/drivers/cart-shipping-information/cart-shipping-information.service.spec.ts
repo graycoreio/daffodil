@@ -37,7 +37,7 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     mockCart = cartFactory.create();
     mockCartShippingInfo = {
       ...cartShippingRateFactory.create(),
-      address_id: 0
+      address_id: null
     };
     mockCart.shipping_information = mockCartShippingInfo;
     cartId = mockCart.id;

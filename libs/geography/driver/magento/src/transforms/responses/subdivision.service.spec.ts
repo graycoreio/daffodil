@@ -29,7 +29,9 @@ describe('Driver | Magento | Geography | Transformer | Subdivision', () => {
 
     daffSubdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
 
-    mockDaffSubdivision = daffSubdivisionFactory.create();
+    mockDaffSubdivision = daffSubdivisionFactory.create({
+      id: '1'
+    });
     mockMagentoRegion = {
       id: Number(mockDaffSubdivision.id),
       name: mockDaffSubdivision.name,

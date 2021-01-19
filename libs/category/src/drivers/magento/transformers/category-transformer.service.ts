@@ -11,15 +11,15 @@ export class DaffMagentoCategoryTransformerService {
 
   transform(category: MagentoCategory): DaffCategory {
     return {
-      id: category.id,
+      id: String(category.id),
 			name: category.name,
 			description: category.description,
 			children_count: category.children_count,
 			//todo: use optional chaining when possible
-			breadcrumbs: category.breadcrumbs ? 
+			breadcrumbs: category.breadcrumbs ?
 				category.breadcrumbs
 					.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
-					.sort((a, b) => a.categoryLevel - b.categoryLevel) : 
+					.sort((a, b) => a.categoryLevel - b.categoryLevel) :
 				null,
 			product_ids: category.products.items.map(product => product.sku),
 			total_products: category.products.items.length
@@ -28,7 +28,7 @@ export class DaffMagentoCategoryTransformerService {
 
   private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffCategoryBreadcrumb {
     return {
-      categoryId: breadcrumb.category_id,
+      categoryId: String(breadcrumb.category_id),
       categoryName: breadcrumb.category_name,
       categoryLevel: breadcrumb.category_level,
       categoryUrlKey: breadcrumb.category_url_key

@@ -38,7 +38,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     mockCart = cartFactory.create();
     mockCartShippingInformation = {
       ...cartShippingInformationFactory.create(),
-      address_id: 0
+      address_id: null
     };
     mockCart.shipping_information = mockCartShippingInformation;
     collection = [mockCart];
@@ -85,7 +85,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     beforeEach(() => {
       newShippingInformation = {
         ...cartShippingInformationFactory.create(),
-        address_id: 5
+        address_id: null
       };
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = newShippingInformation;

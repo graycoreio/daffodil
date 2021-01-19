@@ -29,6 +29,6 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 		in_stock: cartItem.product.stock_status === MagentoProductStockStatusEnum.InStock,
 
 		// TODO: implement
-		parent_item_id: 0
+		parent_item_id: null
 	} : null
 }

@@ -20,7 +20,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
   let service: DaffMagentoCategoryPageConfigTransformerService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const stubCategory: DaffCategory = categoryFactory.create();
+  const stubCategory: DaffCategory = categoryFactory.create({
+    id: '1'
+  });
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationStateFactory.create();
@@ -52,10 +54,10 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
 		beforeEach(() => {
 			category = {
-        id: stubCategory.id,
+        id: Number(stubCategory.id),
         name: stubCategory.name,
         breadcrumbs: [{
-          category_id: stubCategory.breadcrumbs[0].categoryId,
+          category_id: Number(stubCategory.breadcrumbs[0].categoryId),
           category_name: stubCategory.breadcrumbs[0].categoryName,
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey

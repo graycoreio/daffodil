@@ -11,17 +11,18 @@ import { CategoryNode, MagentoBreadcrumb } from '../models/category-node';
 export class DaffMagentoNavigationTransformerService implements DaffNavigationTransformerInterface<DaffNavigationTree> {
 
   transform(node: CategoryNode): DaffNavigationTree {
+    const id = String(node.id);
     return {
-      id: node.id,
-      path: node.id,
+      id,
+      path: id,
       name: node.name,
       total_products: node.product_count,
       children_count: node.children_count,
 			//todo: use optional chaining when possible
-			breadcrumbs: node.breadcrumbs ? 
+			breadcrumbs: node.breadcrumbs ?
 				node.breadcrumbs
 					.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
-					.sort((a, b) => a.categoryLevel - b.categoryLevel) : 
+					.sort((a, b) => a.categoryLevel - b.categoryLevel) :
 				[],
       // TODO: optional chaining
       children: node.children && node.children.filter(child => child.include_in_menu).map(child => this.transform(child))
@@ -30,7 +31,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
 
   private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffNavigationBreadcrumb {
     return {
-      categoryId: breadcrumb.category_id,
+      categoryId: String(breadcrumb.category_id),
       categoryName: breadcrumb.category_name,
       categoryLevel: breadcrumb.category_level,
       categoryUrlKey: breadcrumb.category_url_key
