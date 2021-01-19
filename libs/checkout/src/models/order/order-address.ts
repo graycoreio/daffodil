@@ -22,7 +22,7 @@ export interface DaffOrderAddress extends DaffAddress {
   street: string;
   city: string;
   region: string;
-  region_id: number;
+  region_id: string;
   postcode: string;
   country_id: string; //todo: ISO code
   telephone: string;
