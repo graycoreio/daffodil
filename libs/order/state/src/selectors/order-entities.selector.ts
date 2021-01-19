@@ -15,7 +15,7 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selector for order IDs.
    */
-  selectOrderIds: MemoizedSelector<object, string[] | number[]>;
+  selectOrderIds: MemoizedSelector<object, T['id'][]>;
   /**
    * Selector for order entities.
    */

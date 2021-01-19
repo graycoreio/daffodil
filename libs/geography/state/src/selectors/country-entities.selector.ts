@@ -13,7 +13,7 @@ import { getDaffGeographyFeatureStateSelector } from './geography-feature.select
 
 export interface DaffCountryEntitySelectors<T extends DaffCountry = DaffCountry> {
   selectCountryEntitiesState: MemoizedSelector<object, DaffCountryEntityState<T>>;
-  selectCountryIds: MemoizedSelector<object, T['id'][] | number[]>;
+  selectCountryIds: MemoizedSelector<object, T['id'][]>;
   selectCountryEntities: MemoizedSelector<object, Dictionary<T>>;
   selectAllCountries: MemoizedSelector<object, T[]>;
   selectCountryTotal: MemoizedSelector<object, number>;
