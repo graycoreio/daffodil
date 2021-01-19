@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/paypal": [
+        "libs/paypal/src"
+      ],
+      "@daffodil/paypal/testing": [
+        "libs/paypal/testing/src"
+      ],
+    }
+  }
+}
