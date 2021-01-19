@@ -6,10 +6,8 @@ import {
 	Type,
 	ViewChild,
 	ViewContainerRef,
-	AfterViewInit,
 	TemplateRef,
 	ChangeDetectionStrategy,
-	SimpleChanges,
 } from '@angular/core';
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
