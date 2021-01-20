@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffNavigationReducer } from './navigation/navigation.reducer';
+/** @type {?} */
+export const daffNavigationReducers = {
+    navigation: daffNavigationReducer
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2aWdhdGlvbi1yZWR1Y2Vycy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9uYXZpZ2F0aW9uL3N0YXRlLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvbmF2aWdhdGlvbi1yZWR1Y2Vycy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0saUNBQWlDLENBQUM7O0FBRXhFLE1BQU0sT0FBTyxzQkFBc0IsR0FBRztJQUNyQyxVQUFVLEVBQUUscUJBQXFCO0NBQ2pDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGFmZk5hdmlnYXRpb25SZWR1Y2VyIH0gZnJvbSAnLi9uYXZpZ2F0aW9uL25hdmlnYXRpb24ucmVkdWNlcic7XG5cbmV4cG9ydCBjb25zdCBkYWZmTmF2aWdhdGlvblJlZHVjZXJzID0ge1xuXHRuYXZpZ2F0aW9uOiBkYWZmTmF2aWdhdGlvblJlZHVjZXJcbn1cbiJdfQ==

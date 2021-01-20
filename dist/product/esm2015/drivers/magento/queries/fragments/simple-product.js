@@ -1,0 +1,12 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+/** @type {?} */
+export const magentoSimpleProductFragment = gql `
+  fragment magentoSimpleProduct on SimpleProduct {
+    name
+  }
+`;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2ltcGxlLXByb2R1Y3QuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvcHJvZHVjdC8iLCJzb3VyY2VzIjpbImRyaXZlcnMvbWFnZW50by9xdWVyaWVzL2ZyYWdtZW50cy9zaW1wbGUtcHJvZHVjdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxHQUFHLE1BQU0sYUFBYSxDQUFDOztBQUU5QixNQUFNLE9BQU8sNEJBQTRCLEdBQUcsR0FBRyxDQUFBOzs7O0NBSTlDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGdxbCBmcm9tICdncmFwaHFsLXRhZyc7XG5cbmV4cG9ydCBjb25zdCBtYWdlbnRvU2ltcGxlUHJvZHVjdEZyYWdtZW50ID0gZ3FsYFxuICBmcmFnbWVudCBtYWdlbnRvU2ltcGxlUHJvZHVjdCBvbiBTaW1wbGVQcm9kdWN0IHtcbiAgICBuYW1lXG4gIH1cbmA7XG4iXX0=

@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { BasicRadioComponent } from './basic-radio/basic-radio.component';
+import { BasicRadioModule } from './basic-radio/basic-radio.module';
+/** @type {?} */
+export const RADIO_EXAMPLES = [
+    BasicRadioComponent
+];
+/** @type {?} */
+export const RADIO_EXAMPLES_MODULES = [
+    BasicRadioModule
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhhbXBsZXMuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvZGVzaWduL3JhZGlvL2V4YW1wbGVzLyIsInNvdXJjZXMiOlsiZXhhbXBsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLHFDQUFxQyxDQUFBO0FBQ3pFLE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLGtDQUFrQyxDQUFBOztBQUVuRSxNQUFNLE9BQU8sY0FBYyxHQUFHO0lBQzVCLG1CQUFtQjtDQUNwQjs7QUFFRCxNQUFNLE9BQU8sc0JBQXNCLEdBQUc7SUFDcEMsZ0JBQWdCO0NBQ2pCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQmFzaWNSYWRpb0NvbXBvbmVudCB9IGZyb20gJy4vYmFzaWMtcmFkaW8vYmFzaWMtcmFkaW8uY29tcG9uZW50J1xuaW1wb3J0IHsgQmFzaWNSYWRpb01vZHVsZSB9IGZyb20gJy4vYmFzaWMtcmFkaW8vYmFzaWMtcmFkaW8ubW9kdWxlJ1xuXG5leHBvcnQgY29uc3QgUkFESU9fRVhBTVBMRVMgPSBbXG4gIEJhc2ljUmFkaW9Db21wb25lbnRcbl1cblxuZXhwb3J0IGNvbnN0IFJBRElPX0VYQU1QTEVTX01PRFVMRVMgPSBbXG4gIEJhc2ljUmFkaW9Nb2R1bGVcbl0iXX0=

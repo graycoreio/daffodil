@@ -1,0 +1,22 @@
+{
+  "id": "card-with-image",
+  "docType": "design-example",
+  "name": "card-with-image",
+  "files": [
+    {
+      "name": "card-with-image.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-card</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">img</span> <span class=\"hljs-attr\">daffCardImage</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"/assets/card/uber-logo-dark.svg\"</span> /&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h4</span> <span class=\"hljs-attr\">daffCardTitle</span>&gt;</span>Title<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h4</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n  Some other content\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-card</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "card-with-image.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component, OnInit } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'card-with-image'</span>,\n  templateUrl: <span class=\"hljs-string\">'./card-with-image.component.html'</span>,\n  styles: [<span class=\"hljs-string\">`\n    daff-card {\n      max-width: 400px;\n    } \n  `</span>]\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> CardWithImageComponent {}\n",
+      "language": "typescript"
+    },
+    {
+      "name": "card-with-image.module.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { NgModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { CommonModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/common'</span>;\n\n<span class=\"hljs-keyword\">import</span> {\n  DaffCardModule,\n  DaffImageModule\n} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@daffodil/design'</span>;\n\n<span class=\"hljs-keyword\">import</span> { CardWithImageComponent } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./card-with-image.component'</span>;\n\n<span class=\"hljs-meta\">@NgModule</span>({\n  declarations: [\n    CardWithImageComponent\n  ],\n  imports: [\n    CommonModule,\n    DaffCardModule,\n    DaffImageModule\n  ],\n  exports: [\n    CardWithImageComponent\n  ]\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> CardWithImageModule { }\n",
+      "language": "typescript"
+    }
+  ]
+}

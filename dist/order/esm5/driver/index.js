@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffOrderDriver } from './interfaces/order-service.interface';
+export { DaffOrderInvalidAPIResponseError, DaffOrderNotFoundError } from './errors/public_api';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvZHJpdmVyLyIsInNvdXJjZXMiOlsiaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxlQUFlLEVBQTZCLE1BQU0sc0NBQXNDLENBQUM7QUFFbEcseUVBQWMscUJBQXFCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBEYWZmT3JkZXJEcml2ZXIsIERhZmZPcmRlclNlcnZpY2VJbnRlcmZhY2UgfSBmcm9tICcuL2ludGVyZmFjZXMvb3JkZXItc2VydmljZS5pbnRlcmZhY2UnO1xuXG5leHBvcnQgKiBmcm9tICcuL2Vycm9ycy9wdWJsaWNfYXBpJztcbiJdfQ==

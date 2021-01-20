@@ -1,0 +1,4462 @@
+import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { Injectable, Inject, PLATFORM_ID, ɵɵdefineInjectable, ɵɵinject, InjectionToken, NgModule } from '@angular/core';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Store, ActionsSubject, createFeatureSelector, createSelector, StoreModule, select } from '@ngrx/store';
+import { of, Observable } from 'rxjs';
+import { mapTo, take, switchMap, map, catchError } from 'rxjs/operators';
+import { createEntityAdapter } from '@ngrx/entity';
+import { daffSubtract, daffAdd, daffMultiply } from '@daffodil/core';
+import { __decorate, __metadata } from 'tslib';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffProductTypeEnum = {
+    Simple: 'simple',
+    Composite: 'composite',
+    Configurable: 'configurable',
+};
+/**
+ * An interface for a product usable by the \@daffodil/product library.
+ * @record
+ */
+function DaffProduct() { }
+if (false) {
+    /** @type {?} */
+    DaffProduct.prototype.id;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.type;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.url;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.price;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.discount;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.name;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.brand;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.description;
+    /** @type {?} */
+    DaffProduct.prototype.images;
+    /** @type {?|undefined} */
+    DaffProduct.prototype.in_stock;
+}
+/**
+ * The discount for a product.
+ * @record
+ */
+function DaffProductDiscount() { }
+if (false) {
+    /** @type {?} */
+    DaffProductDiscount.prototype.amount;
+    /** @type {?} */
+    DaffProductDiscount.prototype.percent;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffProductActionTypes = {
+    ProductLoadAction: '[Product] Load Action',
+    ProductLoadSuccessAction: '[Product] Load Success Action',
+    ProductLoadFailureAction: '[Product] Load Failure Action',
+    UpdateQtyAction: '[Product] Update Qty Action',
+    ProductModifyAction: '[Product] Product Modify Action',
+};
+/**
+ * Triggers a request for a Product.
+ *
+ * @param payload - Id of requested Product
+ */
+class DaffProductLoad {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffProductActionTypes.ProductLoadAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductLoad.prototype.type;
+    /** @type {?} */
+    DaffProductLoad.prototype.payload;
+}
+/**
+ * An action called when a request for a Product succeeded.
+ *
+ * @param payload - A Product
+ * @template T
+ */
+class DaffProductLoadSuccess {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffProductActionTypes.ProductLoadSuccessAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductLoadSuccess.prototype.type;
+    /** @type {?} */
+    DaffProductLoadSuccess.prototype.payload;
+}
+/**
+ * An action called when a request for a Product failed.
+ *
+ * @param payload - An error message
+ */
+class DaffProductLoadFailure {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffProductActionTypes.ProductLoadFailureAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductLoadFailure.prototype.type;
+    /** @type {?} */
+    DaffProductLoadFailure.prototype.payload;
+}
+/**
+ * Update the qty of a product in an redux store.
+ *
+ * @param payload - The qty of the product.
+ */
+class DaffProductUpdateQty {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffProductActionTypes.UpdateQtyAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductUpdateQty.prototype.type;
+    /** @type {?} */
+    DaffProductUpdateQty.prototype.payload;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffProductGridActionTypes = {
+    ProductGridLoadAction: '[ProductGrid] Load Action',
+    ProductGridLoadSuccessAction: '[ProductGrid] Load Success Action',
+    ProductGridLoadFailureAction: '[ProductGrid] Load Failure Action',
+    ProductGridResetAction: '[ProductGrid] Reset Action',
+};
+/**
+ * Triggers a request for an array of products.
+ */
+class DaffProductGridLoad {
+    constructor() {
+        this.type = DaffProductGridActionTypes.ProductGridLoadAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductGridLoad.prototype.type;
+}
+/**
+ * An action called when a request for of an array of products succeeded.
+ *
+ * @param payload - An array of Products
+ * @template T
+ */
+class DaffProductGridLoadSuccess {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffProductGridActionTypes.ProductGridLoadSuccessAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductGridLoadSuccess.prototype.type;
+    /** @type {?} */
+    DaffProductGridLoadSuccess.prototype.payload;
+}
+/**
+ * An action called when a request for an array of products failed.
+ *
+ * @param payload - An error message
+ */
+class DaffProductGridLoadFailure {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffProductGridActionTypes.ProductGridLoadFailureAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductGridLoadFailure.prototype.type;
+    /** @type {?} */
+    DaffProductGridLoadFailure.prototype.payload;
+}
+/**
+ * Resets the state of the product grid redux store to its initial state.
+ */
+class DaffProductGridReset {
+    constructor() {
+        this.type = DaffProductGridActionTypes.ProductGridResetAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffProductGridReset.prototype.type;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffBestSellersActionTypes = {
+    BestSellersLoadAction: '[BestSellers] Load Action',
+    BestSellersLoadSuccessAction: '[BestSellers] Load Success Action',
+    BestSellersLoadFailureAction: '[BestSellers] Load Failure Action',
+    BestSellersResetAction: '[BestSellers] Reset Action',
+};
+/**
+ * Triggers a request for best selling products.
+ */
+class DaffBestSellersLoad {
+    constructor() {
+        this.type = DaffBestSellersActionTypes.BestSellersLoadAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffBestSellersLoad.prototype.type;
+}
+/**
+ * An action called when a request for best selling products succeeded.
+ *
+ * @param payload - An array of Products
+ * @template T
+ */
+class DaffBestSellersLoadSuccess {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffBestSellersActionTypes.BestSellersLoadSuccessAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffBestSellersLoadSuccess.prototype.type;
+    /** @type {?} */
+    DaffBestSellersLoadSuccess.prototype.payload;
+}
+/**
+ * An action called when a request for best selling products failed.
+ *
+ * @param payload - An error message
+ */
+class DaffBestSellersLoadFailure {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = DaffBestSellersActionTypes.BestSellersLoadFailureAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffBestSellersLoadFailure.prototype.type;
+    /** @type {?} */
+    DaffBestSellersLoadFailure.prototype.payload;
+}
+/**
+ * Resets the state of the best sellers redux store to its initial state.
+ */
+class DaffBestSellersReset {
+    constructor() {
+        this.type = DaffBestSellersActionTypes.BestSellersResetAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffBestSellersReset.prototype.type;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffConfigurableProductActionTypes = {
+    ConfigurableProductApplyAttributeAction: '[Configurable Product] Configurable Product Apply Attribute Action',
+    ConfigurableProductRemoveAttributeAction: '[Configurable Product] Configurable Product Remove Attribute Action',
+    ConfigurableProductToggleAttributeAction: '[Configurable Product] Configurable Product Toggle Attribute Action',
+};
+/**
+ * Applies an attribute to a particular configurable product.
+ *
+ * @param id - Id of the Configurable Product
+ * @param attributeId - Id of the attribute to be applied
+ * @param attributeValue - Value of the attribute to be applied
+ * @template T
+ */
+class DaffConfigurableProductApplyAttribute {
+    /**
+     * @param {?} id
+     * @param {?} attributeId
+     * @param {?} attributeValue
+     */
+    constructor(id, attributeId, attributeValue) {
+        this.id = id;
+        this.attributeId = attributeId;
+        this.attributeValue = attributeValue;
+        this.type = DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductApplyAttribute.prototype.type;
+    /** @type {?} */
+    DaffConfigurableProductApplyAttribute.prototype.id;
+    /** @type {?} */
+    DaffConfigurableProductApplyAttribute.prototype.attributeId;
+    /** @type {?} */
+    DaffConfigurableProductApplyAttribute.prototype.attributeValue;
+}
+/**
+ * Removes an applied attribute from a particular configurable product.
+ *
+ * @param id - Id of the Configurable Product
+ * @param attributeId - Id of the attribute to be removed
+ * @template T
+ */
+class DaffConfigurableProductRemoveAttribute {
+    /**
+     * @param {?} id
+     * @param {?} attributeId
+     */
+    constructor(id, attributeId) {
+        this.id = id;
+        this.attributeId = attributeId;
+        this.type = DaffConfigurableProductActionTypes.ConfigurableProductRemoveAttributeAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductRemoveAttribute.prototype.type;
+    /** @type {?} */
+    DaffConfigurableProductRemoveAttribute.prototype.id;
+    /** @type {?} */
+    DaffConfigurableProductRemoveAttribute.prototype.attributeId;
+}
+/**
+ * Toggles an attribute of a particular configurable product. If the attribute type of the configurable product already has
+ * a different value than the one provided in the action, the attribute value in state will be overwritten by the value provided
+ * in the action.
+ *
+ * @param id - Id of the Configurable Product
+ * @param attributeId - Id of the attribute to be toggled
+ * @param attributeValue - Value of the attribute to be toggled
+ * @template T
+ */
+class DaffConfigurableProductToggleAttribute {
+    /**
+     * @param {?} id
+     * @param {?} attributeId
+     * @param {?} attributeValue
+     */
+    constructor(id, attributeId, attributeValue) {
+        this.id = id;
+        this.attributeId = attributeId;
+        this.attributeValue = attributeValue;
+        this.type = DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductToggleAttribute.prototype.type;
+    /** @type {?} */
+    DaffConfigurableProductToggleAttribute.prototype.id;
+    /** @type {?} */
+    DaffConfigurableProductToggleAttribute.prototype.attributeId;
+    /** @type {?} */
+    DaffConfigurableProductToggleAttribute.prototype.attributeValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffCompositeProductActionTypes = {
+    CompositeProductApplyOptionAction: '[Composite Product] Composite Product Apply Option Action',
+};
+/**
+ * Applies a product option to a particular composite product.
+ *
+ * @param id - Id of the Composite Product
+ * @param itemId - Id of the product item.
+ * @param optionId - Id of the option of the product item that is chosen.
+ * @template T
+ */
+class DaffCompositeProductApplyOption {
+    /**
+     * @param {?} id
+     * @param {?} itemId
+     * @param {?} optionId
+     * @param {?=} qty
+     */
+    constructor(id, itemId, optionId, qty) {
+        this.id = id;
+        this.itemId = itemId;
+        this.optionId = optionId;
+        this.qty = qty;
+        this.type = DaffCompositeProductActionTypes.CompositeProductApplyOptionAction;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DaffCompositeProductApplyOption.prototype.type;
+    /** @type {?} */
+    DaffCompositeProductApplyOption.prototype.id;
+    /** @type {?} */
+    DaffCompositeProductApplyOption.prototype.itemId;
+    /** @type {?} */
+    DaffCompositeProductApplyOption.prototype.optionId;
+    /** @type {?} */
+    DaffCompositeProductApplyOption.prototype.qty;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A composite product is a group of products sold together. It includes one primary product and many accessory "items".
+ * The composite product items are additional products the customer might want to purchase with the primary product,
+ * and each item has a number of options from which the user can choose. Composite product items can be optional or required.
+ * For example, a toolbox bundle might have a primary product of the toolbox. The items could be a hammer and a screw driver,
+ * and the options for these items could be two different hammers and two different screwdrivers between which the customer could choose.
+ * All of these items could have different prices/discounts/etc which would cause the composite products to have ranged prices.
+ * @record
+ */
+function DaffCompositeProduct() { }
+if (false) {
+    /** @type {?} */
+    DaffCompositeProduct.prototype.items;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const DaffCompositeProductItemInputEnum = {
+    select: 'select',
+    radio: 'radio',
+};
+/**
+ * The composite product item describes one set of product options that the user can add to the composite product.
+ * A composite product item can be required or optional. If it is required, an option _must_ be chosen in order to add the product to the cart.
+ * If the item is optional, the product can be added to the cart without an option having been chosen.
+ * For example, if a composite product is a toolbox bundle, a composite product item might be a screw driver, and the options contained in that
+ * item might be a phillips head and a flathead. The customer could choose to add either a phillips head or a flathead to the
+ * composite product, or neither if the item is optional.
+ * @record
+ */
+function DaffCompositeProductItem() { }
+if (false) {
+    /** @type {?} */
+    DaffCompositeProductItem.prototype.id;
+    /** @type {?} */
+    DaffCompositeProductItem.prototype.required;
+    /** @type {?} */
+    DaffCompositeProductItem.prototype.title;
+    /** @type {?} */
+    DaffCompositeProductItem.prototype.input_type;
+    /** @type {?} */
+    DaffCompositeProductItem.prototype.options;
+}
+/**
+ * The composite product item option is a DaffProduct that can be added to a composite product.
+ * @record
+ */
+function DaffCompositeProductItemOption() { }
+if (false) {
+    /** @type {?} */
+    DaffCompositeProductItemOption.prototype.id;
+    /** @type {?} */
+    DaffCompositeProductItemOption.prototype.name;
+    /** @type {?} */
+    DaffCompositeProductItemOption.prototype.price;
+    /** @type {?} */
+    DaffCompositeProductItemOption.prototype.is_default;
+    /** @type {?} */
+    DaffCompositeProductItemOption.prototype.quantity;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A configurable product is a product with configurable attributes. The price of a configurable product may change based on
+ * the attributes chosen, so a configurable product can have a price range. An example of a configurable product is a T-shirt.
+ * @record
+ */
+function DaffConfigurableProduct() { }
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProduct.prototype.configurableAttributes;
+    /** @type {?} */
+    DaffConfigurableProduct.prototype.variants;
+}
+/**
+ * An attribute of the configurable product that the customer must choose to add the configurable product to the cart.
+ * An example of an attribute would be size for clothing.
+ * @record
+ */
+function DaffConfigurableProductAttribute() { }
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductAttribute.prototype.code;
+    /** @type {?} */
+    DaffConfigurableProductAttribute.prototype.label;
+    /** @type {?} */
+    DaffConfigurableProductAttribute.prototype.values;
+}
+/**
+ * A variant is one version of the configurable product with all attributes chosen. Variants exist because not all versions of every configuration of
+ * the product might be in stock. For example, a shirt might have a medium, red shirt and a small,
+ * green shirt in stock, but no small, red shirts. In this case there would be two variants (mediumRed, smallGreen) rather than the maximum 4 variants
+ * (smallRed, mediumRed, smallGreen, mediumGreen). This ensures the customer can't add a configurable product to the cart that is not
+ * in stock. However, variants don't usually need to be considered by the frontend dev, because daffodil abstacts away the concept of variants into
+ * an "available attributes" selector.
+ * @record
+ */
+function DaffConfigurableProductVariant() { }
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductVariant.prototype.appliedAttributes;
+    /** @type {?} */
+    DaffConfigurableProductVariant.prototype.id;
+    /** @type {?} */
+    DaffConfigurableProductVariant.prototype.price;
+    /** @type {?} */
+    DaffConfigurableProductVariant.prototype.discount;
+    /** @type {?|undefined} */
+    DaffConfigurableProductVariant.prototype.image;
+    /** @type {?} */
+    DaffConfigurableProductVariant.prototype.in_stock;
+}
+/**
+ * The applied attributes for a particular product variant.
+ * @record
+ */
+function DaffProductVariantAttributesDictionary() { }
+/**
+ * The configurable option of a configurable product attribute. For example, this could be "blue" for the attribute "color" for a T-shirt.
+ * @record
+ */
+function DaffConfigurableProductOptionValue() { }
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductOptionValue.prototype.value;
+    /** @type {?} */
+    DaffConfigurableProductOptionValue.prototype.label;
+    /** @type {?|undefined} */
+    DaffConfigurableProductOptionValue.prototype.swatch;
+}
+/**
+ * An optional field for the hex color code for DaffConfigurableProductOptionValues that need it.
+ * @record
+ */
+function DaffSwatchOption() { }
+if (false) {
+    /** @type {?} */
+    DaffSwatchOption.prototype.value;
+    /** @type {?|undefined} */
+    DaffSwatchOption.prototype.thumbnail;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffProductPrices() { }
+if (false) {
+    /** @type {?} */
+    DaffProductPrices.prototype.discountedPrice;
+    /** @type {?} */
+    DaffProductPrices.prototype.discount;
+    /** @type {?} */
+    DaffProductPrices.prototype.originalPrice;
+}
+/**
+ * @record
+ */
+function DaffPriceRange() { }
+if (false) {
+    /** @type {?} */
+    DaffPriceRange.prototype.maxPrice;
+    /** @type {?} */
+    DaffPriceRange.prototype.minPrice;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffCompositeConfigurationItem() { }
+if (false) {
+    /** @type {?|undefined} */
+    DaffCompositeConfigurationItem.prototype.qty;
+    /** @type {?|undefined} */
+    DaffCompositeConfigurationItem.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Resolves product data for product pages, and will only resolve the url after a product request succeeds or fails. This resolver expects a url
+ * of the form `some/url/{id}` where `{id}` is the product id.
+ */
+class DaffProductPageResolver {
+    /**
+     * @param {?} platformId
+     * @param {?} store
+     * @param {?} dispatcher
+     */
+    constructor(platformId, store, dispatcher) {
+        this.platformId = platformId;
+        this.store = store;
+        this.dispatcher = dispatcher;
+    }
+    /**
+     * @param {?} route
+     * @return {?}
+     */
+    resolve(route) {
+        this.store.dispatch(new DaffProductLoad(route.paramMap.get('id')));
+        return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(ofType(DaffProductActionTypes.ProductLoadSuccessAction, DaffProductActionTypes.ProductLoadFailureAction), mapTo(true), take(1));
+    }
+}
+DaffProductPageResolver.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+/** @nocollapse */
+DaffProductPageResolver.ctorParameters = () => [
+    { type: String, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
+    { type: Store },
+    { type: ActionsSubject }
+];
+/** @nocollapse */ DaffProductPageResolver.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffProductPageResolver_Factory() { return new DaffProductPageResolver(ɵɵinject(PLATFORM_ID), ɵɵinject(Store), ɵɵinject(ActionsSubject)); }, token: DaffProductPageResolver, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductPageResolver.prototype.platformId;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductPageResolver.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductPageResolver.prototype.dispatcher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Initial values of the product grid state.
+ * @type {?}
+ */
+const initialState = {
+    products: [],
+    loading: false,
+    errors: []
+};
+/**
+ * Reducer function that catches actions and changes/overwrites product grid state.
+ *
+ * @template T
+ * @param {?=} state current State of the redux store
+ * @param {?=} action a product grid action
+ * @return {?} Product grid state
+ */
+function daffProductGridReducer(state = initialState, action) {
+    switch (action.type) {
+        case DaffProductGridActionTypes.ProductGridLoadAction:
+            return Object.assign({}, state, { loading: true });
+        case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+            return Object.assign({}, state, { loading: false });
+        case DaffProductGridActionTypes.ProductGridLoadFailureAction:
+            return Object.assign({}, state, { loading: false, errors: state.errors.concat(new Array(action.payload)) });
+        default:
+            return state;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Initial values of the product state.
+ * @type {?}
+ */
+const initialState$1 = {
+    selectedProductId: null,
+    qty: 1,
+    loading: false,
+    errors: []
+};
+/**
+ * Reducer function that catches actions and changes/overwrites product state.
+ *
+ * @template T
+ * @param {?=} state current State of the redux store
+ * @param {?=} action a product action
+ * @return {?} product state
+ */
+function daffProductReducer(state = initialState$1, action) {
+    switch (action.type) {
+        case DaffProductActionTypes.ProductLoadAction:
+            return Object.assign({}, state, { loading: true, selectedProductId: action.payload });
+        case DaffProductActionTypes.ProductLoadSuccessAction:
+            return Object.assign({}, state, { loading: false });
+        case DaffProductActionTypes.ProductLoadFailureAction:
+            return Object.assign({}, state, { loading: false, errors: state.errors.concat(new Array(action.payload)) });
+        case DaffProductActionTypes.UpdateQtyAction:
+            return Object.assign({}, state, { qty: action.payload });
+        default:
+            return state;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const initialState$2 = {
+    productIds: [],
+    loading: false,
+    errors: []
+};
+/** @type {?} */
+const resetState = Object.assign({}, initialState$2);
+/**
+ * @template T
+ * @param {?=} state
+ * @param {?=} action
+ * @return {?}
+ */
+function daffBestSellersReducer(state = initialState$2, action) {
+    switch (action.type) {
+        case DaffBestSellersActionTypes.BestSellersLoadAction:
+            return Object.assign({}, state, { loading: true });
+        case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+            return Object.assign({}, state, { loading: false, productIds: getIds(action.payload) });
+        case DaffBestSellersActionTypes.BestSellersLoadFailureAction:
+            return Object.assign({}, state, { loading: false, errors: state.errors.concat(new Array(action.payload)) });
+        case DaffBestSellersActionTypes.BestSellersResetAction:
+            return Object.assign({}, resetState);
+        default:
+            return state;
+    }
+}
+/**
+ * @template T
+ * @param {?} products
+ * @return {?}
+ */
+function getIds(products) {
+    /** @type {?} */
+    const ids = new Array();
+    products.forEach((/**
+     * @param {?} product
+     * @return {?}
+     */
+    product => {
+        ids.push(product.id);
+    }));
+    return ids;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+const ɵ0 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache || createEntityAdapter());
+};
+/**
+ * Product Adapter for changing/overwriting entity state.
+ * @type {?}
+ */
+const daffProductEntitiesAdapter = ((ɵ0))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Reducer function that catches actions and changes/overwrites product entities state.
+ *
+ * @template T
+ * @param {?=} state current State of the redux store
+ * @param {?=} action ProductGrid, BestSellers, or Product actions
+ * @return {?} Product entities state
+ */
+function daffProductEntitiesReducer(state = daffProductEntitiesAdapter().getInitialState(), action) {
+    /** @type {?} */
+    const adapter = daffProductEntitiesAdapter();
+    switch (action.type) {
+        case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+            return adapter.upsertMany(action.payload, state);
+        case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+            return adapter.upsertMany(action.payload, state);
+        case DaffProductActionTypes.ProductLoadSuccessAction:
+            return adapter.upsertOne(Object.assign({ id: action.payload.id }, action.payload), state);
+        case DaffProductGridActionTypes.ProductGridResetAction:
+            return adapter.removeAll(state);
+        default:
+            return state;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+const ɵ0$1 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @return {?}
+     */
+    () => cache = cache || createEntityAdapter());
+};
+/**
+ * Configurable Product Applied Attributes Adapter for changing/overwriting entity state.
+ * @type {?}
+ */
+const daffConfigurableProductAppliedAttributesEntitiesAdapter = ((ɵ0$1))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Reducer function that catches actions and changes/overwrites product entities state.
+ *
+ * @template T, V
+ * @param {?=} state current State of the redux store
+ * @param {?=} action ProductGrid, BestSellers, Product, or Configurable Product actions
+ * @return {?} Product entities state
+ */
+function daffConfigurableProductEntitiesReducer(state = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState(), action) {
+    /** @type {?} */
+    const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
+    switch (action.type) {
+        case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+        case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+            return adapter.upsertMany(action.payload
+                .filter((/**
+             * @param {?} product
+             * @return {?}
+             */
+            product => product.type === DaffProductTypeEnum.Configurable))
+                .map(buildConfigurableProductAppliedAttributesEntity), state);
+        case DaffProductActionTypes.ProductLoadSuccessAction:
+            if (action.payload.type === DaffProductTypeEnum.Configurable) {
+                return adapter.upsertOne(buildConfigurableProductAppliedAttributesEntity(action.payload), state);
+            }
+            ;
+            return state;
+        case DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction:
+            return adapter.upsertOne({
+                id: action.id,
+                attributes: applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
+            }, state);
+        case DaffConfigurableProductActionTypes.ConfigurableProductRemoveAttributeAction:
+            return adapter.upsertOne({
+                id: action.id,
+                attributes: removeAttribute(state.entities[action.id].attributes, action.attributeId)
+            }, state);
+        case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
+            return adapter.upsertOne({
+                id: action.id,
+                attributes: isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue) ?
+                    removeAttribute(state.entities[action.id].attributes, action.attributeId) :
+                    applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue)
+            }, state);
+        default:
+            return state;
+    }
+}
+/**
+ * @param {?} product
+ * @return {?}
+ */
+function buildConfigurableProductAppliedAttributesEntity(product) {
+    return {
+        id: product.id,
+        attributes: []
+    };
+}
+/**
+ * @param {?} currentAttributes
+ * @param {?} appliedAttributeCode
+ * @param {?} appliedAttributeValue
+ * @return {?}
+ */
+function applyAttribute(currentAttributes, appliedAttributeCode, appliedAttributeValue) {
+    /** @type {?} */
+    const attributeIndex = currentAttributes.findIndex((/**
+     * @param {?} attribute
+     * @return {?}
+     */
+    attribute => attribute.code === appliedAttributeCode));
+    /** @type {?} */
+    const retainedAttributes = attributeIndex > -1 ? currentAttributes.slice(0, attributeIndex) : currentAttributes;
+    return [
+        ...retainedAttributes,
+        {
+            code: appliedAttributeCode,
+            value: appliedAttributeValue
+        }
+    ];
+}
+/**
+ * @param {?} currentAttributes
+ * @param {?} appliedAttributeCode
+ * @return {?}
+ */
+function removeAttribute(currentAttributes, appliedAttributeCode) {
+    /** @type {?} */
+    const index = currentAttributes.findIndex((/**
+     * @param {?} attribute
+     * @return {?}
+     */
+    attribute => attribute.code === appliedAttributeCode));
+    return index > -1 ? currentAttributes.slice(0, index) : currentAttributes;
+}
+/**
+ * @param {?} currentAttributes
+ * @param {?} attributeCode
+ * @param {?} attributeValue
+ * @return {?}
+ */
+function isAttributeSelected(currentAttributes, attributeCode, attributeValue) {
+    /** @type {?} */
+    const index = currentAttributes.findIndex((/**
+     * @param {?} attribute
+     * @return {?}
+     */
+    attribute => attribute.code === attributeCode));
+    return index > -1 && currentAttributes[index].value === attributeValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+const ɵ0$2 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @return {?}
+     */
+    () => cache = cache || createEntityAdapter());
+};
+/**
+ * Composite Product Item Options Adapter for changing/overwriting entity state.
+ * @type {?}
+ */
+const daffCompositeProductAppliedOptionsEntitiesAdapter = ((ɵ0$2))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Reducer function that catches actions and changes/overwrites composite product entities state.
+ *
+ * @template T, V
+ * @param {?=} state current State of the redux store
+ * @param {?=} action ProductGrid, BestSellers, Product, or Composite Product actions
+ * @return {?} Product entities state
+ */
+function daffCompositeProductEntitiesReducer(state = daffCompositeProductAppliedOptionsEntitiesAdapter().getInitialState(), action) {
+    /** @type {?} */
+    const adapter = daffCompositeProductAppliedOptionsEntitiesAdapter();
+    switch (action.type) {
+        case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+        case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+            return adapter.upsertMany(action.payload
+                .filter((/**
+             * @param {?} product
+             * @return {?}
+             */
+            product => product.type === DaffProductTypeEnum.Composite))
+                .map((/**
+             * @param {?} product
+             * @return {?}
+             */
+            product => buildCompositeProductAppliedOptionsEntity((/** @type {?} */ ((/** @type {?} */ (product))))))), state);
+        case DaffProductActionTypes.ProductLoadSuccessAction:
+            if (action.payload.type === DaffProductTypeEnum.Composite) {
+                return adapter.upsertOne(buildCompositeProductAppliedOptionsEntity((/** @type {?} */ ((/** @type {?} */ (action.payload))))), state);
+            }
+            ;
+            return state;
+        case DaffCompositeProductActionTypes.CompositeProductApplyOptionAction:
+            return adapter.upsertOne({
+                id: action.id,
+                items: Object.assign({}, state.entities[action.id].items, { [action.itemId]: {
+                        value: action.optionId,
+                        qty: action.qty ? action.qty : 1
+                    } })
+            }, state);
+        default:
+            return state;
+    }
+}
+/**
+ * @param {?} product
+ * @return {?}
+ */
+function buildCompositeProductAppliedOptionsEntity(product) {
+    return {
+        id: product.id,
+        items: product.items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => (Object.assign({}, acc, { [item.id]: getDefaultOption(item) }))), {})
+    };
+}
+/**
+ * Sets the default item option to the specified default option if it is in stock.
+ * Does not set a default option if a default is not specified.
+ * Does not set a default option but does set a default qty if the default is out of stock.
+ * @param {?} item a DaffCompositeProductItem
+ * @return {?}
+ */
+function getDefaultOption(item) {
+    /** @type {?} */
+    const defaultOptionIndex = item.options.findIndex((/**
+     * @param {?} option
+     * @return {?}
+     */
+    option => option.is_default));
+    if (defaultOptionIndex > -1) {
+        return {
+            value: item.options[defaultOptionIndex].in_stock ? item.options[defaultOptionIndex].id : null,
+            qty: item.options[defaultOptionIndex].quantity
+        };
+    }
+    else {
+        return { value: null, qty: null };
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Returns state values from all product related reducers.
+ * @type {?}
+ */
+const daffProductReducers = {
+    products: daffProductEntitiesReducer,
+    productGrid: daffProductGridReducer,
+    product: daffProductReducer,
+    bestSellers: daffBestSellersReducer,
+    configurableProductAttributes: daffConfigurableProductEntitiesReducer,
+    compositeProductOptions: daffCompositeProductEntitiesReducer
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffCompositeProductEntity() { }
+if (false) {
+    /** @type {?} */
+    DaffCompositeProductEntity.prototype.id;
+    /** @type {?} */
+    DaffCompositeProductEntity.prototype.items;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DaffProductFeatureMemoizedSelector() { }
+if (false) {
+    /** @type {?} */
+    DaffProductFeatureMemoizedSelector.prototype.selectProductState;
+}
+const ɵ0$3 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : { selectProductState: createFeatureSelector('product') });
+};
+/** @type {?} */
+const getDaffProductFeatureSelector = ((ɵ0$3))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DaffProductPageMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffProductPageMemoizedSelectors.prototype.selectSelectedProductState;
+    /** @type {?} */
+    DaffProductPageMemoizedSelectors.prototype.selectSelectedProductId;
+    /** @type {?} */
+    DaffProductPageMemoizedSelectors.prototype.selectSelectedProductQty;
+    /** @type {?} */
+    DaffProductPageMemoizedSelectors.prototype.selectSelectedProductLoadingState;
+    /** @type {?} */
+    DaffProductPageMemoizedSelectors.prototype.selectSelectedProduct;
+}
+/** @type {?} */
+const createProductPageSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    const { selectProductState } = getDaffProductFeatureSelector();
+    /**
+     * Selector for product state.
+     * @type {?}
+     */
+    const selectSelectedProductState = createSelector(selectProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.product));
+    /**
+     * Selector for the selected product's ID.
+     * @deprecated
+     * @type {?}
+     */
+    const selectSelectedProductId = createSelector(selectSelectedProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.selectedProductId));
+    /**
+     * Selector for the quantity of the product.
+     * @deprecated
+     * @type {?}
+     */
+    const selectSelectedProductQty = createSelector(selectSelectedProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.qty));
+    /**
+     * Selector for the loading state of the selected product.
+     * @type {?}
+     */
+    const selectSelectedProductLoadingState = createSelector(selectSelectedProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.loading));
+    /**
+     * Selects the selected product from product state and the selected product ID.
+     * @deprecated use selectProduct entities selector instead.
+     * @type {?}
+     */
+    const selectSelectedProduct = createSelector(selectProductState, selectSelectedProductId, (/**
+     * @param {?} state
+     * @param {?} id
+     * @return {?}
+     */
+    (state, id) => state.products.entities[id]));
+    return {
+        selectSelectedProductState,
+        selectSelectedProductId,
+        selectSelectedProductQty,
+        selectSelectedProductLoadingState,
+        selectSelectedProduct
+    };
+});
+const ɵ0$4 = createProductPageSelectors;
+const ɵ1 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createProductPageSelectors());
+};
+/** @type {?} */
+const getDaffProductPageSelectors = ((ɵ1))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DaffProductEntitiesMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductEntitiesState;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductIds;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductEntities;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectAllProducts;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductTotal;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProduct;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductPrice;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductDiscountAmount;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductDiscountedPrice;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductDiscountPercent;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectProductHasDiscount;
+    /** @type {?} */
+    DaffProductEntitiesMemoizedSelectors.prototype.selectIsProductOutOfStock;
+}
+/** @type {?} */
+const createProductEntitiesSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    const { selectProductState } = getDaffProductFeatureSelector();
+    /** @type {?} */
+    const adapterSelectors = daffProductEntitiesAdapter().getSelectors();
+    /**
+     * Product Entities State
+     * @type {?}
+     */
+    const selectProductEntitiesState = createSelector(selectProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.products));
+    /**
+     * Selector for product IDs.
+     * @type {?}
+     */
+    const selectProductIds = createSelector(selectProductEntitiesState, adapterSelectors.selectIds);
+    /**
+     * Selector for all product entities (see ngrx/entity).
+     * @type {?}
+     */
+    const selectProductEntities = createSelector(selectProductEntitiesState, adapterSelectors.selectEntities);
+    /**
+     * Selector for all products on state.
+     * @type {?}
+     */
+    const selectAllProducts = createSelector(selectProductEntitiesState, adapterSelectors.selectAll);
+    /**
+     * Selector for the total number of products.
+     * @type {?}
+     */
+    const selectProductTotal = createSelector(selectProductEntitiesState, adapterSelectors.selectTotal);
+    /** @type {?} */
+    const selectProduct = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => products[props.id]));
+    /** @type {?} */
+    const selectProductPrice = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        //todo: use optional chaining when possible
+        return product && product.price || null;
+    }));
+    /** @type {?} */
+    const selectProductDiscountAmount = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        //todo: use optional chaining when possible
+        return (product.discount && product.discount.amount) || 0;
+    }));
+    /** @type {?} */
+    const selectProductDiscountedPrice = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const price = selectProductPrice.projector(products, { id: props.id });
+        /** @type {?} */
+        const discountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
+        return daffSubtract(price, discountAmount);
+    }))
+    //todo use optional chaining when possible.
+    ;
+    //todo use optional chaining when possible.
+    /** @type {?} */
+    const selectProductDiscountPercent = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        return (product.discount && product.discount.percent) || 0;
+    }));
+    /** @type {?} */
+    const selectProductHasDiscount = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const discountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
+        return !!discountAmount;
+    }));
+    /** @type {?} */
+    const selectIsProductOutOfStock = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        return product ? !product.in_stock : null;
+    }));
+    return {
+        selectProductEntitiesState,
+        selectProductIds,
+        selectProductEntities,
+        selectAllProducts,
+        selectProductTotal,
+        selectProduct,
+        selectProductPrice,
+        selectProductDiscountAmount,
+        selectProductDiscountedPrice,
+        selectProductDiscountPercent,
+        selectProductHasDiscount,
+        selectIsProductOutOfStock
+    };
+});
+const ɵ0$5 = createProductEntitiesSelectors;
+const ɵ1$1 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createProductEntitiesSelectors());
+};
+/** @type {?} */
+const getDaffProductEntitiesSelectors = ((ɵ1$1))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DaffBestSellersMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffBestSellersMemoizedSelectors.prototype.selectBestSellersState;
+    /** @type {?} */
+    DaffBestSellersMemoizedSelectors.prototype.selectBestSellersLoadingState;
+    /** @type {?} */
+    DaffBestSellersMemoizedSelectors.prototype.selectBestSellersIdsState;
+    /** @type {?} */
+    DaffBestSellersMemoizedSelectors.prototype.selectBestSellersProducts;
+}
+/** @type {?} */
+const createBestSellersSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    const { selectAllProducts } = getDaffProductEntitiesSelectors();
+    const { selectProductState } = getDaffProductFeatureSelector();
+    /**
+     * Selector for Best Seller State
+     * @type {?}
+     */
+    const selectBestSellersState = createSelector(selectProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.bestSellers));
+    /**
+     * Selector for the loading state of best selling products.
+     * @type {?}
+     */
+    const selectBestSellersLoadingState = createSelector(selectBestSellersState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.loading));
+    /**
+     * Selector for the IDs of best selling products.
+     * @type {?}
+     */
+    const selectBestSellersIdsState = createSelector(selectBestSellersState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.productIds));
+    /**
+     * Selector for the best selling products.
+     * @type {?}
+     */
+    const selectBestSellersProducts = createSelector(selectBestSellersIdsState, selectAllProducts, (/**
+     * @param {?} ids
+     * @param {?} products
+     * @return {?}
+     */
+    (ids, products) => products.filter((/**
+     * @param {?} product
+     * @return {?}
+     */
+    product => ids.indexOf(product.id) > -1))));
+    return {
+        selectBestSellersState,
+        selectBestSellersLoadingState,
+        selectBestSellersIdsState,
+        selectBestSellersProducts
+    };
+});
+const ɵ0$6 = createBestSellersSelectors;
+const ɵ1$2 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createBestSellersSelectors());
+};
+/** @type {?} */
+const getDaffBestSellersSelectors = ((ɵ1$2))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DaffProductGridMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffProductGridMemoizedSelectors.prototype.selectProductGridState;
+    /** @type {?} */
+    DaffProductGridMemoizedSelectors.prototype.selectProductGridLoadingState;
+}
+/** @type {?} */
+const createProductGridSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    const { selectProductState } = getDaffProductFeatureSelector();
+    /**
+     * Selector for Product Grid state.
+     * @type {?}
+     */
+    const selectProductGridState = createSelector(selectProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.productGrid));
+    /**
+     * Selector for product grid loading state.
+     * @type {?}
+     */
+    const selectProductGridLoadingState = createSelector(selectProductGridState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.loading));
+    return {
+        selectProductGridState,
+        selectProductGridLoadingState
+    };
+});
+const ɵ0$7 = createProductGridSelectors;
+const ɵ1$3 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createProductGridSelectors());
+};
+/** @type {?} */
+const getDaffProductGridSelectors = ((ɵ1$3))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffConfigurableProductEntitiesMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductEntitiesMemoizedSelectors.prototype.selectConfigurableProductAppliedAttributesEntitiesState;
+    /** @type {?} */
+    DaffConfigurableProductEntitiesMemoizedSelectors.prototype.selectConfigurableProductIds;
+    /** @type {?} */
+    DaffConfigurableProductEntitiesMemoizedSelectors.prototype.selectConfigurableProductAppliedAttributesEntities;
+    /** @type {?} */
+    DaffConfigurableProductEntitiesMemoizedSelectors.prototype.selectConfigurableProductTotal;
+    /** @type {?} */
+    DaffConfigurableProductEntitiesMemoizedSelectors.prototype.selectConfigurableProductAppliedAttributes;
+    /** @type {?} */
+    DaffConfigurableProductEntitiesMemoizedSelectors.prototype.selectConfigurableProductAppliedAttributesAsDictionary;
+}
+/** @type {?} */
+const createConfigurableProductAppliedAttributesEntitiesSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    const { selectProductState } = getDaffProductFeatureSelector();
+    /** @type {?} */
+    const adapterSelectors = daffConfigurableProductAppliedAttributesEntitiesAdapter().getSelectors();
+    /**
+     * Configurable Product Entities State
+     * @type {?}
+     */
+    const selectConfigurableProductAppliedAttributesEntitiesState = createSelector(selectProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.configurableProductAttributes));
+    /**
+     * Selector for configurable product IDs.
+     * @type {?}
+     */
+    const selectConfigurableProductIds = createSelector(selectConfigurableProductAppliedAttributesEntitiesState, adapterSelectors.selectIds);
+    /**
+     * Selector for all configurable product applied attributes as entities (see ngrx/entity).
+     * @type {?}
+     */
+    const selectConfigurableProductAppliedAttributesEntities = createSelector(selectConfigurableProductAppliedAttributesEntitiesState, adapterSelectors.selectEntities);
+    /**
+     * Selector for the total number of configurable products.
+     * @type {?}
+     */
+    const selectConfigurableProductTotal = createSelector(selectConfigurableProductAppliedAttributesEntitiesState, adapterSelectors.selectTotal);
+    /**
+     * Selector for the applied attributes of a particular configurable product.
+     * @type {?}
+     */
+    const selectConfigurableProductAppliedAttributes = createSelector(selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => products.entities[props.id].attributes));
+    /** @type {?} */
+    const selectConfigurableProductAppliedAttributesAsDictionary = createSelector(selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((/**
+     * @param {?} acc
+     * @param {?} attribute
+     * @return {?}
+     */
+    (acc, attribute) => (Object.assign({}, acc, { [attribute.code]: attribute.value }))), {})));
+    return {
+        selectConfigurableProductAppliedAttributesEntitiesState,
+        selectConfigurableProductIds,
+        selectConfigurableProductAppliedAttributesEntities,
+        selectConfigurableProductTotal,
+        selectConfigurableProductAppliedAttributes,
+        selectConfigurableProductAppliedAttributesAsDictionary
+    };
+});
+const ɵ0$8 = createConfigurableProductAppliedAttributesEntitiesSelectors;
+const ɵ1$4 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createConfigurableProductAppliedAttributesEntitiesSelectors());
+};
+/** @type {?} */
+const getDaffConfigurableProductEntitiesSelectors = ((ɵ1$4))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffConfigurableProductMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectAllConfigurableProductAttributes;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectAllConfigurableProductVariants;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectMatchingConfigurableProductVariants;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductPrices;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductDiscountedPrices;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductPercentDiscounts;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductHasDiscount;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductMinimumPrice;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductMaximumPrice;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductMinimumDiscountedPrice;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductMaximumDiscountedPrice;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductMinimumPercentDiscount;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectConfigurableProductMaximumPercentDiscount;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.isConfigurablePriceRanged;
+    /** @type {?} */
+    DaffConfigurableProductMemoizedSelectors.prototype.selectSelectableConfigurableProductAttributes;
+}
+/** @type {?} */
+const createConfigurableProductSelectors = (/**
+ * @return {?}
+ */
+() => {
+    const { selectConfigurableProductAppliedAttributes, selectConfigurableProductAppliedAttributesEntitiesState } = getDaffConfigurableProductEntitiesSelectors();
+    const { selectProductEntities, selectProduct } = getDaffProductEntitiesSelectors();
+    /**
+     * Selector for all variants of the product.
+     * @type {?}
+     */
+    const selectAllConfigurableProductVariants = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = (/** @type {?} */ (selectProduct.projector(products, { id: props.id })));
+        if (!product || product.type !== DaffProductTypeEnum.Configurable) {
+            return [];
+        }
+        return product.variants;
+    }));
+    /**
+     * Selector for the variants of the product that match the currently applied attributes.
+     * @type {?}
+     */
+    const selectMatchingConfigurableProductVariants = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        /** @type {?} */
+        const product = (/** @type {?} */ (selectProduct.projector(products, { id: props.id })));
+        if (!product || product.type !== DaffProductTypeEnum.Configurable) {
+            return [];
+        }
+        /** @type {?} */
+        const appliedAttributes = selectConfigurableProductAppliedAttributes.projector(appliedAttributesEntities, { id: props.id });
+        return product.variants.filter((/**
+         * @param {?} variant
+         * @return {?}
+         */
+        variant => isVariantAvailable(appliedAttributes, variant)));
+    }));
+    /**
+     * Selector for the range of price for current configuration of the configurable product.
+     * @type {?}
+     */
+    const selectConfigurableProductPrices = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+            .map((/**
+         * @param {?} variant
+         * @return {?}
+         */
+        variant => variant.price));
+    }));
+    /**
+     * Selector for the range of discounts for current configuration of the configurable product.
+     * @type {?}
+     */
+    const selectConfigurableProductDiscountedPrices = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+            .map((/**
+         * @param {?} variant
+         * @return {?}
+         */
+        variant => variant.discount ? daffSubtract(variant.price, variant.discount.amount) : variant.price));
+    }));
+    /**
+     * Selector for the range of percent discounts for current configuration of the configurable product.
+     * @type {?}
+     */
+    const selectConfigurableProductPercentDiscounts = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+            .map((/**
+         * @param {?} variant
+         * @return {?}
+         */
+        variant => variant.discount && variant.discount.percent));
+    }));
+    /**
+     * Selector that determines whether any of the variants for the current configuration of the configurable product has a discount.
+     * @type {?}
+     */
+    const selectConfigurableProductHasDiscount = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+            .reduce((/**
+         * @param {?} acc
+         * @param {?} variant
+         * @return {?}
+         */
+        (acc, variant) => acc || (variant.discount && variant.discount.amount > 0)), false);
+    }))
+    /**
+     * Selector for the minimum price in the range of configurable product variant prices.
+     */
+    ;
+    /**
+     * Selector for the minimum price in the range of configurable product variant prices.
+     * @type {?}
+     */
+    const selectConfigurableProductMinimumPrice = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => getMinimumPrice(selectConfigurableProductPrices.projector(products, appliedAttributesEntities, { id: props.id }))))
+    /**
+     * Selector for the maximum price in the range of configurable product variant prices.
+     */
+    ;
+    /**
+     * Selector for the maximum price in the range of configurable product variant prices.
+     * @type {?}
+     */
+    const selectConfigurableProductMaximumPrice = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => getMaximumPrice(selectConfigurableProductPrices.projector(products, appliedAttributesEntities, { id: props.id }))))
+    /**
+     * Selector for the minimum discounted price in the range of configurable product variants.
+     */
+    ;
+    /**
+     * Selector for the minimum discounted price in the range of configurable product variants.
+     * @type {?}
+     */
+    const selectConfigurableProductMinimumDiscountedPrice = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => getMinimumPrice(selectConfigurableProductDiscountedPrices.projector(products, appliedAttributesEntities, { id: props.id }))))
+    /**
+     * Selector for the maximum discounted price in the range of configurable product variants.
+     */
+    ;
+    /**
+     * Selector for the maximum discounted price in the range of configurable product variants.
+     * @type {?}
+     */
+    const selectConfigurableProductMaximumDiscountedPrice = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => getMaximumPrice(selectConfigurableProductDiscountedPrices.projector(products, appliedAttributesEntities, { id: props.id }))))
+    /**
+     * Selector for the minimum percent discount in the range of configurable product variants.
+     */
+    ;
+    /**
+     * Selector for the minimum percent discount in the range of configurable product variants.
+     * @type {?}
+     */
+    const selectConfigurableProductMinimumPercentDiscount = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => getMinimumPrice(selectConfigurableProductPercentDiscounts.projector(products, appliedAttributesEntities, { id: props.id }))))
+    /**
+     * Selector for the maximum percent discount in the range of configurable product variants.
+     */
+    ;
+    /**
+     * Selector for the maximum percent discount in the range of configurable product variants.
+     * @type {?}
+     */
+    const selectConfigurableProductMaximumPercentDiscount = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => getMaximumPrice(selectConfigurableProductPercentDiscounts.projector(products, appliedAttributesEntities, { id: props.id }))))
+    /**
+     * Selector for whether the configurable product variant prices have been narrowed to a single price.
+     */
+    ;
+    /**
+     * Selector for whether the configurable product variant prices have been narrowed to a single price.
+     * @type {?}
+     */
+    const isConfigurablePriceRanged = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        /** @type {?} */
+        const minPrice = selectConfigurableProductMinimumPrice.projector(products, appliedAttributesEntities, { id: props.id });
+        /** @type {?} */
+        const maxPrice = selectConfigurableProductMaximumPrice.projector(products, appliedAttributesEntities, { id: props.id });
+        return minPrice !== maxPrice;
+    }));
+    /** @type {?} */
+    const selectAllConfigurableProductAttributes = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = (/** @type {?} */ (selectProduct.projector(products, { id: props.id })));
+        if (product.type !== DaffProductTypeEnum.Configurable) {
+            return {};
+        }
+        return product.configurableAttributes.reduce((/**
+         * @param {?} acc
+         * @param {?} attribute
+         * @return {?}
+         */
+        (acc, attribute) => (Object.assign({}, acc, { [attribute.code]: attribute.values.map((/**
+             * @param {?} value
+             * @return {?}
+             */
+            value => value.value)) }))), {});
+    }));
+    /**
+     * Selector for selectable configurable product attributes derived from the remaining variants and the order of currently applied attributes.
+     * The remaining variants of the product are derived from the currently applied attributes.
+     * @type {?}
+     */
+    const selectSelectableConfigurableProductAttributes = createSelector(selectProductEntities, selectConfigurableProductAppliedAttributesEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedAttributesEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedAttributesEntities, props) => {
+        /** @type {?} */
+        const product = (/** @type {?} */ (selectProduct.projector(products, { id: props.id })));
+        if (product.type !== DaffProductTypeEnum.Configurable) {
+            return {};
+        }
+        /** @type {?} */
+        const appliedAttributes = selectConfigurableProductAppliedAttributes.projector(appliedAttributesEntities, { id: props.id });
+        /** @type {?} */
+        const selectableAttributes = initializeSelectableAttributes(product.configurableAttributes);
+        // Set which values of applied attribute codes should be set as selectable based on the order that they were selected
+        /** @type {?} */
+        const matchedVariants = appliedAttributes.reduce((/**
+         * @param {?} matchingVariants
+         * @param {?} appliedAttribute
+         * @param {?} i
+         * @return {?}
+         */
+        (matchingVariants, appliedAttribute, i) => {
+            /** @type {?} */
+            const filteredVariants = matchingVariants.filter((/**
+             * @param {?} variant
+             * @return {?}
+             */
+            variant => isVariantAvailable(appliedAttributes.slice(0, i), variant)));
+            selectableAttributes[appliedAttribute.code] = getSelectableAttributesFromVariants(selectableAttributes, filteredVariants, appliedAttribute.code);
+            return filteredVariants;
+        }), product.variants).filter((/**
+         * @param {?} variant
+         * @return {?}
+         */
+        variant => isVariantAvailable(appliedAttributes, variant)));
+        // Set which values of the unapplied attribute codes should be set as selectable based on the matching variants of all
+        // applied attributes.
+        product.configurableAttributes.forEach((/**
+         * @param {?} attribute
+         * @return {?}
+         */
+        attribute => {
+            if (!selectableAttributes[attribute.code].length) {
+                selectableAttributes[attribute.code] = getSelectableAttributesFromVariants(selectableAttributes, matchedVariants, attribute.code);
+            }
+        }));
+        return selectableAttributes;
+    }));
+    return {
+        selectAllConfigurableProductAttributes,
+        selectAllConfigurableProductVariants,
+        selectConfigurableProductPrices,
+        selectConfigurableProductDiscountedPrices,
+        selectConfigurableProductPercentDiscounts,
+        selectConfigurableProductHasDiscount,
+        selectConfigurableProductMinimumPrice,
+        selectConfigurableProductMaximumPrice,
+        selectConfigurableProductMinimumDiscountedPrice,
+        selectConfigurableProductMaximumDiscountedPrice,
+        selectConfigurableProductMinimumPercentDiscount,
+        selectConfigurableProductMaximumPercentDiscount,
+        isConfigurablePriceRanged,
+        selectMatchingConfigurableProductVariants,
+        selectSelectableConfigurableProductAttributes
+    };
+});
+const ɵ0$9 = createConfigurableProductSelectors;
+/**
+ * @param {?} selectableAttributes
+ * @param {?} variants
+ * @param {?} code
+ * @return {?}
+ */
+function getSelectableAttributesFromVariants(selectableAttributes, variants, code) {
+    return variants.reduce((/**
+     * @param {?} selectedAttributes
+     * @param {?} variant
+     * @return {?}
+     */
+    (selectedAttributes, variant) => isVariantAttributeMarkedAsSelectable(selectedAttributes, variant.appliedAttributes[code])
+        ? selectedAttributes
+        : [
+            ...selectedAttributes,
+            variant.appliedAttributes[code]
+        ]), selectableAttributes[code]);
+}
+const ɵ1$5 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createConfigurableProductSelectors());
+};
+/** @type {?} */
+const getDaffConfigurableProductSelectors = ((ɵ1$5))();
+/**
+ * @param {?} appliedAttributes
+ * @param {?} variant
+ * @return {?}
+ */
+function isVariantAvailable(appliedAttributes, variant) {
+    return variant.in_stock &&
+        appliedAttributes.reduce((/**
+         * @param {?} acc
+         * @param {?} attribute
+         * @return {?}
+         */
+        (acc, attribute) => acc && attribute.value === variant.appliedAttributes[attribute.code]), true);
+}
+/**
+ * @param {?} prices
+ * @return {?}
+ */
+function getMinimumPrice(prices) {
+    return prices.reduce((/**
+     * @param {?} acc
+     * @param {?} price
+     * @return {?}
+     */
+    (acc, price) => price < acc ? price : acc), prices[0]);
+}
+/**
+ * @param {?} prices
+ * @return {?}
+ */
+function getMaximumPrice(prices) {
+    return prices.reduce((/**
+     * @param {?} acc
+     * @param {?} price
+     * @return {?}
+     */
+    (acc, price) => price > acc ? price : acc), prices[0]);
+}
+/**
+ * @param {?} attributes
+ * @return {?}
+ */
+function initializeSelectableAttributes(attributes) {
+    return attributes.reduce((/**
+     * @param {?} acc
+     * @param {?} attribute
+     * @return {?}
+     */
+    (acc, attribute) => (Object.assign({}, acc, { [attribute.code]: [] }))), {});
+}
+/**
+ * @param {?} attributeArray
+ * @param {?} variantValue
+ * @return {?}
+ */
+function isVariantAttributeMarkedAsSelectable(attributeArray, variantValue) {
+    return attributeArray.indexOf(variantValue) > -1;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffCompositeProductEntitiesMemoizedSelectors() { }
+if (false) {
+    /** @type {?} */
+    DaffCompositeProductEntitiesMemoizedSelectors.prototype.selectCompositeProductAppliedOptionsEntitiesState;
+    /** @type {?} */
+    DaffCompositeProductEntitiesMemoizedSelectors.prototype.selectCompositeProductIds;
+    /** @type {?} */
+    DaffCompositeProductEntitiesMemoizedSelectors.prototype.selectCompositeProductAppliedOptionsEntities;
+    /** @type {?} */
+    DaffCompositeProductEntitiesMemoizedSelectors.prototype.selectCompositeProductTotal;
+    /** @type {?} */
+    DaffCompositeProductEntitiesMemoizedSelectors.prototype.selectCompositeProductAppliedOptions;
+    /** @type {?} */
+    DaffCompositeProductEntitiesMemoizedSelectors.prototype.selectIsCompositeProductItemRequired;
+}
+/** @type {?} */
+const createCompositeProductAppliedOptionsEntitiesSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    const { selectProductState } = getDaffProductFeatureSelector();
+    const { selectProductEntities, selectProduct, } = getDaffProductEntitiesSelectors();
+    /** @type {?} */
+    const adapterSelectors = daffCompositeProductAppliedOptionsEntitiesAdapter().getSelectors();
+    /**
+     * Composite Product Entities State
+     * @type {?}
+     */
+    const selectCompositeProductAppliedOptionsEntitiesState = createSelector(selectProductState, (/**
+     * @param {?} state
+     * @return {?}
+     */
+    (state) => state.compositeProductOptions));
+    /**
+     * Selector for composite product IDs.
+     * @type {?}
+     */
+    const selectCompositeProductIds = createSelector(selectCompositeProductAppliedOptionsEntitiesState, adapterSelectors.selectIds);
+    /**
+     * Selector for all composite product applied attributes as entities (see ngrx/entity).
+     * @type {?}
+     */
+    const selectCompositeProductAppliedOptionsEntities = createSelector(selectCompositeProductAppliedOptionsEntitiesState, adapterSelectors.selectEntities);
+    /**
+     * Selector for the total number of composite products.
+     * @type {?}
+     */
+    const selectCompositeProductTotal = createSelector(selectCompositeProductAppliedOptionsEntitiesState, adapterSelectors.selectTotal);
+    /**
+     * Selector for the applied attributes of a particular composite product.
+     * @type {?}
+     */
+    const selectCompositeProductAppliedOptions = createSelector(selectProductEntities, selectCompositeProductAppliedOptionsEntitiesState, (/**
+     * @param {?} products
+     * @param {?} appliedOptions
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedOptions, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        if (product.type !== DaffProductTypeEnum.Composite) {
+            return undefined;
+        }
+        return ((/** @type {?} */ (product))).items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => (Object.assign({}, acc, { [item.id]: appliedOptions.entities[product.id].items[item.id].value ? Object.assign({}, item.options.find((/**
+             * @param {?} option
+             * @return {?}
+             */
+            option => option.id === appliedOptions.entities[product.id].items[item.id].value)), { quantity: appliedOptions.entities[product.id].items[item.id].qty }) : null }))), {});
+    }));
+    /** @type {?} */
+    const selectIsCompositeProductItemRequired = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        if (product.type !== DaffProductTypeEnum.Composite) {
+            return undefined;
+        }
+        /** @type {?} */
+        const productItem = ((/** @type {?} */ (product))).items.find((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.id === props.item_id));
+        return productItem ? productItem.required : null;
+    }));
+    return {
+        selectCompositeProductAppliedOptionsEntitiesState,
+        selectCompositeProductIds,
+        selectCompositeProductAppliedOptionsEntities,
+        selectCompositeProductTotal,
+        selectCompositeProductAppliedOptions,
+        selectIsCompositeProductItemRequired
+    };
+});
+const ɵ0$a = createCompositeProductAppliedOptionsEntitiesSelectors;
+const ɵ1$6 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @template T
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createCompositeProductAppliedOptionsEntitiesSelectors());
+};
+/** @type {?} */
+const getDaffCompositeProductEntitiesSelectors = ((ɵ1$6))();
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function DaffCompositeProductMemoizedSelectors() { }
+if (false) {
+    /**
+     * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
+     * @type {?}
+     */
+    DaffCompositeProductMemoizedSelectors.prototype.selectCompositeProductRequiredItemPricesForConfiguration;
+    /**
+     * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
+     * @type {?}
+     */
+    DaffCompositeProductMemoizedSelectors.prototype.selectCompositeProductOptionalItemPricesForConfiguration;
+    /**
+     * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state and
+     * excluding unselected, optional item prices.
+     * @type {?}
+     */
+    DaffCompositeProductMemoizedSelectors.prototype.selectCompositeProductPricesAsCurrentlyConfigured;
+}
+/** @type {?} */
+const createCompositeProductSelectors = (/**
+ * @return {?}
+ */
+() => {
+    const { selectProductEntities, selectProduct } = getDaffProductEntitiesSelectors();
+    const { selectCompositeProductAppliedOptionsEntitiesState } = getDaffCompositeProductEntitiesSelectors();
+    /** @type {?} */
+    const selectCompositeProductRequiredItemPricesForConfiguration = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        if (product.type !== DaffProductTypeEnum.Composite) {
+            return undefined;
+        }
+        /** @type {?} */
+        const appliedOptions = props.configuration ? getAppliedOptionsForConfiguration((/** @type {?} */ (product)), props.configuration) : {};
+        return {
+            minPrice: getMinPricesForConfiguration((/** @type {?} */ (product)), appliedOptions),
+            maxPrice: getMaxPricesForConfiguration((/** @type {?} */ (product)), appliedOptions)
+        };
+    }));
+    /** @type {?} */
+    const selectCompositeProductOptionalItemPricesForConfiguration = createSelector(selectProductEntities, (/**
+     * @param {?} products
+     * @param {?} props
+     * @return {?}
+     */
+    (products, props) => {
+        /** @type {?} */
+        const product = selectProduct.projector(products, { id: props.id });
+        if (product.type !== DaffProductTypeEnum.Composite) {
+            return undefined;
+        }
+        /** @type {?} */
+        const appliedOptions = props.configuration ? getAppliedOptionsForConfiguration((/** @type {?} */ (product)), props.configuration) : {};
+        return {
+            minPrice: getMinPricesForConfiguration((/** @type {?} */ (product)), appliedOptions),
+            maxPrice: getMaxPricesForConfigurationIncludingOptionalItems((/** @type {?} */ (product)), appliedOptions)
+        };
+    }));
+    /** @type {?} */
+    const selectCompositeProductPricesAsCurrentlyConfigured = createSelector(selectProductEntities, selectCompositeProductAppliedOptionsEntitiesState, (
+    //todo use optional chaining when possible
+    /**
+     * @param {?} products
+     * @param {?} appliedOptionsEntities
+     * @param {?} props
+     * @return {?}
+     */
+    (products, appliedOptionsEntities, props) => selectCompositeProductRequiredItemPricesForConfiguration.projector(products, {
+        id: props.id,
+        configuration: appliedOptionsEntities.entities[props.id] ? appliedOptionsEntities.entities[props.id].items : null
+    })));
+    return {
+        selectCompositeProductRequiredItemPricesForConfiguration,
+        selectCompositeProductOptionalItemPricesForConfiguration,
+        selectCompositeProductPricesAsCurrentlyConfigured
+    };
+});
+const ɵ0$b = createCompositeProductSelectors;
+const ɵ1$7 = /**
+ * @return {?}
+ */
+() => {
+    /** @type {?} */
+    let cache;
+    return (/**
+     * @return {?}
+     */
+    () => cache = cache
+        ? cache
+        : createCompositeProductSelectors());
+};
+/** @type {?} */
+const getDaffCompositeProductSelectors = ((ɵ1$7))();
+/**
+ * The minimum price of an item is zero if the item is optional.
+ * @param {?} item DaffCompositeProductItem
+ * @param {?} qty
+ * @return {?}
+ */
+function getMinimumRequiredCompositeItemPrice(item, qty) {
+    return item.required ? daffMultiply(Math.min(...item.options.map((/**
+     * @param {?} option
+     * @return {?}
+     */
+    option => option.price))), qty) : 0;
+}
+/**
+ * The maximum price for an item is zero if the item is optional.
+ * @param {?} item DaffCompositeProductItem
+ * @param {?} qty
+ * @return {?}
+ */
+function getMaximumRequiredCompositeItemPrice(item, qty) {
+    return item.required ? daffMultiply(Math.max(...item.options.map((/**
+     * @param {?} option
+     * @return {?}
+     */
+    option => option.price))), qty) : 0;
+}
+/**
+ * The minimum discounted price of an item is zero if the item is optional.
+ * @param {?} item DaffCompositeProductItem
+ * @param {?} qty
+ * @return {?}
+ */
+//todo use optional chaining when possible
+function getMinimumRequiredCompositeItemDiscountedPrice(item, qty) {
+    return item.required ? daffMultiply(Math.min(...item.options.map(getDiscountedPrice)), qty) : 0;
+}
+/**
+ * The maximum discounted price of an item is zero if the item is optional.
+ * @param {?} item DaffCompositeProductItem
+ * @param {?} qty
+ * @return {?}
+ */
+//todo use optional chaining when possible
+function getMaximumRequiredCompositeItemDiscountedPrice(item, qty) {
+    return item.required ? daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), qty) : 0;
+}
+/**
+ * Gets the minimum prices of a composite product for the configuration provided excluding unselected, optional item prices.
+ * @param {?} product a DaffCompositeProduct
+ * @param {?} appliedOptions a Dictionary<DaffCompositeProductItemOption> that determines the current configuration of the composite product.
+ * @return {?}
+ */
+function getMinPricesForConfiguration(product, appliedOptions) {
+    return {
+        discountedPrice: product.items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => daffAdd(acc, appliedOptionHasId(appliedOptions[item.id]) ?
+            daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
+            getMinimumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id])))), getDiscountedPrice(product)),
+        discount: { amount: null, percent: null },
+        originalPrice: product.items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => daffAdd(acc, appliedOptionHasId(appliedOptions[item.id]) ?
+            daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
+            getMinimumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id])))), product.price)
+    };
+}
+/**
+ * Gets the maximum prices of a composite product for the configuration provided excluding unselected, optional item prices.
+ * @param {?} product a DaffCompositeProduct
+ * @param {?} appliedOptions a Dictionary<DaffCompositeProductItemOption> that determines the current configuration of the composite product.
+ * @return {?}
+ */
+function getMaxPricesForConfiguration(product, appliedOptions) {
+    return {
+        discountedPrice: product.items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => daffAdd(acc, appliedOptionHasId(appliedOptions[item.id]) ?
+            daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
+            getMaximumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id])))), getDiscountedPrice(product)),
+        discount: { amount: null, percent: null },
+        originalPrice: product.items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => daffAdd(acc, appliedOptionHasId(appliedOptions[item.id]) ?
+            daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
+            getMaximumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id])))), product.price)
+    };
+}
+/**
+ * @param {?} product
+ * @return {?}
+ */
+function getDiscountedPrice(product) {
+    return product.discount ? daffSubtract(product.price, product.discount.amount) : product.price;
+}
+/**
+ * Gets the maximum prices of a composite product including optional item prices.
+ * @param {?} product a DaffCompositeProduct
+ * @param {?} appliedOptions
+ * @return {?}
+ */
+function getMaxPricesForConfigurationIncludingOptionalItems(product, appliedOptions) {
+    return {
+        discountedPrice: ((/** @type {?} */ (product))).items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => daffAdd(acc, appliedOptionHasId(appliedOptions[item.id]) ?
+            daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
+            appliedOptionHasQty(appliedOptions[item.id]) ?
+                daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), appliedOptions[item.id].quantity) :
+                Math.max(...item.options.map(getDiscountedPrice)))), getDiscountedPrice(product)),
+        discount: { amount: null, percent: null },
+        originalPrice: ((/** @type {?} */ (product))).items.reduce((/**
+         * @param {?} acc
+         * @param {?} item
+         * @return {?}
+         */
+        (acc, item) => daffAdd(acc, appliedOptionHasId(appliedOptions[item.id]) ?
+            daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
+            appliedOptionHasQty(appliedOptions[item.id]) ?
+                daffMultiply(Math.max(...item.options.map((/**
+                 * @param {?} option
+                 * @return {?}
+                 */
+                option => option.price))), appliedOptions[item.id].quantity) :
+                Math.max(...item.options.map((/**
+                 * @param {?} option
+                 * @return {?}
+                 */
+                option => option.price))))), product.price)
+    };
+}
+/**
+ * Takes a product and a set of option configurations and convert it into a dictionary of the full option objects.
+ * @param {?} product a DaffCompositeProduct
+ * @param {?} configuration a Dictionary<DaffCompositeConfigurationItem> used to build the appliedOptions object.
+ * @return {?}
+ */
+function getAppliedOptionsForConfiguration(product, configuration) {
+    return ((/** @type {?} */ (product))).items.reduce((/**
+     * @param {?} acc
+     * @param {?} item
+     * @return {?}
+     */
+    (acc, item) => (Object.assign({}, acc, { [item.id]: configuration[item.id] ? Object.assign({}, item.options.find((/**
+         * @param {?} option
+         * @return {?}
+         */
+        option => option.id === configuration[item.id].value)), { quantity: (configuration[item.id].qty === null || configuration[item.id].qty === undefined) ? 1 : configuration[item.id].qty }) : null }))), {});
+}
+//todo: use optional chaining when possible
+/**
+ * @param {?} appliedOption
+ * @return {?}
+ */
+function appliedOptionHasId(appliedOption) {
+    return appliedOption && !!appliedOption.id;
+}
+/**
+ * @param {?} appliedOption
+ * @return {?}
+ */
+function getOptionQty(appliedOption) {
+    return appliedOptionHasQty(appliedOption) ? appliedOption.quantity : 1;
+}
+//todo: use optional chaining when possible
+/**
+ * @param {?} appliedOption
+ * @return {?}
+ */
+function appliedOptionHasQty(appliedOption) {
+    return appliedOption && appliedOption.quantity !== null;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DaffProductAllSelectors() { }
+/** @type {?} */
+const getDaffProductSelectors = (/**
+ * @template T
+ * @return {?}
+ */
+() => {
+    return Object.assign({}, getDaffBestSellersSelectors(), getDaffProductPageSelectors(), getDaffProductGridSelectors(), getDaffProductEntitiesSelectors(), getDaffProductFeatureSelector(), getDaffConfigurableProductEntitiesSelectors(), getDaffConfigurableProductSelectors(), getDaffCompositeProductEntitiesSelectors(), getDaffCompositeProductSelectors());
+});
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Injection token that serves as a placeholder for any service that implements the DaffProductServiceInterface.
+ * @type {?}
+ */
+const DaffProductDriver = new InjectionToken('DaffProductDriver');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Effects for handling product grid actions and for triggering corresponding service requests.
+ *
+ * @param action$ - Redux action object
+ * @param driver - A product service driver
+ * @template T
+ */
+class DaffProductGridEffects {
+    /**
+     * @param {?} actions$
+     * @param {?} driver
+     */
+    constructor(actions$, driver) {
+        this.actions$ = actions$;
+        this.driver = driver;
+        /**
+         * Handles ProductGridLoadAction by making a service call for products and returning a success or failure action
+         * to the action stream.
+         *
+         * @return An Observable of a DaffProductGridAction
+         */
+        this.loadAll$ = this.actions$.pipe(ofType(DaffProductGridActionTypes.ProductGridLoadAction), switchMap((/**
+         * @param {?} action
+         * @return {?}
+         */
+        (action) => this.driver.getAll()
+            .pipe(map((/**
+         * @param {?} resp
+         * @return {?}
+         */
+        (resp) => {
+            return new DaffProductGridLoadSuccess(resp);
+        })), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => {
+            return of(new DaffProductGridLoadFailure('Failed to load product grid'));
+        }))))));
+    }
+}
+DaffProductGridEffects.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+DaffProductGridEffects.ctorParameters = () => [
+    { type: Actions },
+    { type: undefined, decorators: [{ type: Inject, args: [DaffProductDriver,] }] }
+];
+__decorate([
+    Effect(),
+    __metadata("design:type", Observable)
+], DaffProductGridEffects.prototype, "loadAll$", void 0);
+if (false) {
+    /**
+     * Handles ProductGridLoadAction by making a service call for products and returning a success or failure action
+     * to the action stream.
+     *
+     * \@return An Observable of a DaffProductGridAction
+     * @type {?}
+     */
+    DaffProductGridEffects.prototype.loadAll$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductGridEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductGridEffects.prototype.driver;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Effects for handling product actions and for triggering corresponding service requests.
+ *
+ * @param action$ - Redux action object
+ * @param driver - A product service driver
+ * @template T
+ */
+class DaffProductEffects {
+    /**
+     * @param {?} actions$
+     * @param {?} driver
+     */
+    constructor(actions$, driver) {
+        this.actions$ = actions$;
+        this.driver = driver;
+        /**
+         * Handles ProductLoadAction by making a service call for a product and returning a success or
+         * failure action to the action stream.
+         *
+         * @return An Observable of a ProductLoadAction
+         */
+        this.load$ = this.actions$.pipe(ofType(DaffProductActionTypes.ProductLoadAction), switchMap((/**
+         * @param {?} action
+         * @return {?}
+         */
+        (action) => this.driver.get(action.payload)
+            .pipe(map((/**
+         * @param {?} resp
+         * @return {?}
+         */
+        (resp) => {
+            return new DaffProductLoadSuccess(resp);
+        })), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => {
+            return of(new DaffProductLoadFailure('Failed to load product'));
+        }))))));
+    }
+}
+DaffProductEffects.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+DaffProductEffects.ctorParameters = () => [
+    { type: Actions },
+    { type: undefined, decorators: [{ type: Inject, args: [DaffProductDriver,] }] }
+];
+__decorate([
+    Effect(),
+    __metadata("design:type", Observable)
+], DaffProductEffects.prototype, "load$", void 0);
+if (false) {
+    /**
+     * Handles ProductLoadAction by making a service call for a product and returning a success or
+     * failure action to the action stream.
+     *
+     * \@return An Observable of a ProductLoadAction
+     * @type {?}
+     */
+    DaffProductEffects.prototype.load$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductEffects.prototype.driver;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Effects for handling best seller actions and best seller service requests.
+ *
+ * @param action$ - Redux action object
+ * @param driver - A product service driver
+ * @template T
+ */
+class DaffBestSellersEffects {
+    /**
+     * @param {?} actions$
+     * @param {?} driver
+     */
+    constructor(actions$, driver) {
+        this.actions$ = actions$;
+        this.driver = driver;
+        /**
+         * Handles BestSellersLoadAction by making a service call for best selling products and returning a success or failure action
+         * to the action stream.
+         *
+         * @return An Observable of a BestSellersLoad action
+         */
+        this.loadBestSellers$ = this.actions$.pipe(ofType(DaffBestSellersActionTypes.BestSellersLoadAction), switchMap((/**
+         * @param {?} action
+         * @return {?}
+         */
+        (action) => this.driver.getBestSellers()
+            .pipe(map((/**
+         * @param {?} resp
+         * @return {?}
+         */
+        (resp) => {
+            return new DaffBestSellersLoadSuccess(resp);
+        })), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => {
+            return of(new DaffBestSellersLoadFailure('Failed to load best selling products'));
+        }))))));
+    }
+}
+DaffBestSellersEffects.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+DaffBestSellersEffects.ctorParameters = () => [
+    { type: Actions },
+    { type: undefined, decorators: [{ type: Inject, args: [DaffProductDriver,] }] }
+];
+__decorate([
+    Effect(),
+    __metadata("design:type", Observable)
+], DaffBestSellersEffects.prototype, "loadBestSellers$", void 0);
+if (false) {
+    /**
+     * Handles BestSellersLoadAction by making a service call for best selling products and returning a success or failure action
+     * to the action stream.
+     *
+     * \@return An Observable of a BestSellersLoad action
+     * @type {?}
+     */
+    DaffBestSellersEffects.prototype.loadBestSellers$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffBestSellersEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffBestSellersEffects.prototype.driver;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DaffProductStateModule {
+}
+DaffProductStateModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    StoreModule.forFeature('product', daffProductReducers),
+                    EffectsModule.forFeature([
+                        DaffProductGridEffects,
+                        DaffProductEffects,
+                        DaffBestSellersEffects
+                    ]),
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DaffProductModule {
+}
+DaffProductModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    /**
+                     * Ngrx/store
+                     */
+                    DaffProductStateModule,
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function GetAllProductsResponse() { }
+if (false) {
+    /** @type {?|undefined} */
+    GetAllProductsResponse.prototype.shop;
+}
+/**
+ * @record
+ */
+function GetAProductResponse() { }
+if (false) {
+    /** @type {?} */
+    GetAProductResponse.prototype.node;
+}
+/**
+ * @record
+ */
+function ShopGraph() { }
+if (false) {
+    /** @type {?|undefined} */
+    ShopGraph.prototype.products;
+}
+/**
+ * @record
+ */
+function ProductGraph() { }
+if (false) {
+    /** @type {?} */
+    ProductGraph.prototype.edges;
+}
+/**
+ * @record
+ */
+function ProductEdge() { }
+if (false) {
+    /** @type {?} */
+    ProductEdge.prototype.node;
+}
+/**
+ * @record
+ */
+function ProductNode() { }
+if (false) {
+    /** @type {?} */
+    ProductNode.prototype.id;
+    /** @type {?|undefined} */
+    ProductNode.prototype.title;
+    /** @type {?|undefined} */
+    ProductNode.prototype.price;
+}
+/**
+ * @record
+ */
+function Variables() { }
+if (false) {
+    /** @type {?} */
+    Variables.prototype.first;
+}
+;
+/**
+ * GraphQL query object for getting all products.
+ * @type {?}
+ */
+const GetAllProductsQuery = gql `
+  query GetAllProducts($length: Int) {
+    shop {
+      products(first: $length)  {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+/**
+ * GraphQL query object for getting a product by ID.
+ * @type {?}
+ */
+const GetAProduct = gql `
+  query GetAProduct($id: ID!){
+    node(id: $id) {
+      id
+      ... on Product {
+        title
+      }
+    }
+  }
+`;
+/**
+ * Transforms a ProductNode into a different object.
+ *
+ * \@param node - ProductNode object
+ * \@return A Product object
+ * @type {?}
+ */
+const DaffShopifyProductTransformer = (/**
+ * @param {?} node
+ * @return {?}
+ */
+(node) => {
+    return {
+        id: node.id,
+        name: node.title,
+        images: []
+    };
+})
+/**
+ * A service for getting DaffProducts from apollo shopify product requests.
+ *
+ * @Param apollo
+ */
+;
+/**
+ * A service for getting DaffProducts from apollo shopify product requests.
+ *
+ * \@Param apollo
+ */
+class DaffShopifyProductService {
+    /**
+     * @param {?} apollo
+     */
+    constructor(apollo) {
+        this.apollo = apollo;
+        this.defaultLength = 20;
+    }
+    /**
+     * A query for retrieving all Products as an Observable<DaffProduct[]>.
+     *
+     * @return {?} Observable<Product[]>
+     */
+    getAll() {
+        return this.apollo.query({
+            query: GetAllProductsQuery,
+            variables: {
+                length: this.defaultLength
+            }
+        }).pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => {
+            return result.data.shop.products.edges.map((/**
+             * @param {?} edge
+             * @return {?}
+             */
+            edge => DaffShopifyProductTransformer(edge.node)));
+        })));
+    }
+    //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
+    /**
+     * @return {?}
+     */
+    getBestSellers() {
+        return this.apollo.query({
+            query: GetAllProductsQuery,
+            variables: {
+                length: this.defaultLength
+            }
+        }).pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => {
+            return result.data.shop.products.edges.map((/**
+             * @param {?} edge
+             * @return {?}
+             */
+            edge => DaffShopifyProductTransformer(edge.node)));
+        })));
+    }
+    /**
+     * A query for retrieving a particular product as an Observable<DaffProduct>.
+     *
+     * @param {?} productId - A product ID
+     * @return {?} Observable<Product>
+     */
+    get(productId) {
+        return this.apollo.query({
+            query: GetAProduct,
+            variables: {
+                id: productId
+            }
+        }).pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => DaffShopifyProductTransformer(result.data.node))));
+    }
+}
+DaffShopifyProductService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+/** @nocollapse */
+DaffShopifyProductService.ctorParameters = () => [
+    { type: Apollo }
+];
+/** @nocollapse */ DaffShopifyProductService.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffShopifyProductService_Factory() { return new DaffShopifyProductService(ɵɵinject(Apollo)); }, token: DaffShopifyProductService, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    DaffShopifyProductService.prototype.defaultLength;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffShopifyProductService.prototype.apollo;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DaffProductShopifyDriverModule {
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: DaffProductShopifyDriverModule,
+            providers: [
+                {
+                    provide: DaffProductDriver,
+                    useExisting: DaffShopifyProductService
+                }
+            ]
+        };
+    }
+}
+DaffProductShopifyDriverModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A facade for accessing state for a list of products from an application component.
+ * @template T
+ */
+class DaffProductGridFacade {
+    /**
+     * @param {?} store
+     */
+    constructor(store) {
+        this.store = store;
+        const { selectProductGridLoadingState, selectAllProducts } = getDaffProductSelectors();
+        this.loading$ = this.store.pipe(select(selectProductGridLoadingState));
+        this.products$ = this.store.pipe(select(selectAllProducts));
+    }
+    /**
+     * Dispatches an action to the rxjs action stream.
+     * @param {?} action
+     * @return {?}
+     */
+    dispatch(action) {
+        this.store.dispatch(action);
+    }
+}
+DaffProductGridFacade.decorators = [
+    { type: Injectable, args: [{
+                providedIn: DaffProductModule
+            },] }
+];
+/** @nocollapse */
+DaffProductGridFacade.ctorParameters = () => [
+    { type: Store }
+];
+/** @nocollapse */ DaffProductGridFacade.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffProductGridFacade_Factory() { return new DaffProductGridFacade(ɵɵinject(Store)); }, token: DaffProductGridFacade, providedIn: DaffProductModule });
+if (false) {
+    /**
+     * The loading state for retrieving a list of products.
+     * @type {?}
+     */
+    DaffProductGridFacade.prototype.loading$;
+    /**
+     * The state for a list of products.
+     * @type {?}
+     */
+    DaffProductGridFacade.prototype.products$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductGridFacade.prototype.store;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A facade for getting state about a particular product.
+ *
+ * See the <a href="docs/api/product/DaffProductFacadeInterface">DaffProductFacadeInterface docs</a> for more details.
+ * @template T
+ */
+class DaffProductFacade {
+    /**
+     * @param {?} store
+     */
+    constructor(store) {
+        this.store = store;
+        this.selectors = getDaffProductSelectors();
+        this.loading$ = this.store.pipe(select(this.selectors.selectSelectedProductLoadingState));
+        this.product$ = this.store.pipe(select(this.selectors.selectSelectedProduct));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getProduct(id) {
+        return this.store.pipe(select(this.selectors.selectProduct, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getPrice(id) {
+        return this.store.pipe(select(this.selectors.selectProductPrice, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    hasDiscount(id) {
+        return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getDiscountAmount(id) {
+        return this.store.pipe(select(this.selectors.selectProductDiscountAmount, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getDiscountedPrice(id) {
+        return this.store.pipe(select(this.selectors.selectProductDiscountedPrice, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getDiscountPercent(id) {
+        return this.store.pipe(select(this.selectors.selectProductDiscountPercent, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    isOutOfStock(id) {
+        return this.store.pipe(select(this.selectors.selectIsProductOutOfStock, { id }));
+    }
+    /**
+     * Dispatches an action to the rxjs action stream.
+     * @param {?} action
+     * @return {?}
+     */
+    dispatch(action) {
+        this.store.dispatch(action);
+    }
+}
+DaffProductFacade.decorators = [
+    { type: Injectable, args: [{
+                providedIn: DaffProductModule
+            },] }
+];
+/** @nocollapse */
+DaffProductFacade.ctorParameters = () => [
+    { type: Store }
+];
+/** @nocollapse */ DaffProductFacade.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffProductFacade_Factory() { return new DaffProductFacade(ɵɵinject(Store)); }, token: DaffProductFacade, providedIn: DaffProductModule });
+if (false) {
+    /** @type {?} */
+    DaffProductFacade.prototype.loading$;
+    /** @type {?} */
+    DaffProductFacade.prototype.product$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductFacade.prototype.selectors;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffProductFacade.prototype.store;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A facade for interacting with the configurable product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
+ *
+ * See the <a href="docs/api/product/DaffConfigurableProductFacadeInterface">DaffConfigurableProductFacadeInterface docs</a> for more details.
+ * @template T
+ */
+class DaffConfigurableProductFacade {
+    /**
+     * @param {?} store
+     */
+    constructor(store) {
+        this.store = store;
+        this.selectors = getDaffProductSelectors();
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getAllAttributes(id) {
+        return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getAllVariants(id) {
+        return this.store.pipe(select(this.selectors.selectAllConfigurableProductVariants, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getAppliedAttributes(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributesAsDictionary, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMinimumPrice(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPrice, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMaximumPrice(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPrice, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMinimumDiscountedPrice(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumDiscountedPrice, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMaximumDiscountedPrice(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumDiscountedPrice, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMinimumPercentDiscount(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPercentDiscount, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMaximumPercentDiscount(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPercentDiscount, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    isPriceRanged(id) {
+        return this.store.pipe(select(this.selectors.isConfigurablePriceRanged, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    hasDiscount(id) {
+        return this.store.pipe(select(this.selectors.selectConfigurableProductHasDiscount, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getSelectableAttributes(id) {
+        return this.store.pipe(select(this.selectors.selectSelectableConfigurableProductAttributes, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getMatchingVariants(id) {
+        return this.store.pipe(select(this.selectors.selectMatchingConfigurableProductVariants, { id }));
+    }
+    /**
+     * Dispatches an action to the rxjs action stream.
+     * @param {?} action
+     * @return {?}
+     */
+    dispatch(action) {
+        this.store.dispatch(action);
+    }
+}
+DaffConfigurableProductFacade.decorators = [
+    { type: Injectable, args: [{
+                providedIn: DaffProductModule
+            },] }
+];
+/** @nocollapse */
+DaffConfigurableProductFacade.ctorParameters = () => [
+    { type: Store }
+];
+/** @nocollapse */ DaffConfigurableProductFacade.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffConfigurableProductFacade_Factory() { return new DaffConfigurableProductFacade(ɵɵinject(Store)); }, token: DaffConfigurableProductFacade, providedIn: DaffProductModule });
+if (false) {
+    /** @type {?} */
+    DaffConfigurableProductFacade.prototype.selectors;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffConfigurableProductFacade.prototype.store;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Returns whether a DaffPriceRange has a discount.
+ * \@param priceRange a DaffPriceRange
+ * @type {?}
+ */
+const productPriceRangeHasDiscount = (/**
+ * @param {?} priceRange
+ * @return {?}
+ */
+(priceRange) => {
+    return priceRange.minPrice.originalPrice !== priceRange.minPrice.discountedPrice ||
+        priceRange.maxPrice.originalPrice !== priceRange.maxPrice.discountedPrice;
+})
+/**
+ * Returns whether the min and max prices of a DaffPriceRange are different.
+ * @param priceRange a DaffPriceRange
+ */
+;
+/**
+ * Returns whether the min and max prices of a DaffPriceRange are different.
+ * \@param priceRange a DaffPriceRange
+ * @type {?}
+ */
+const productPriceRangeHasPriceRange = (/**
+ * @param {?} priceRange
+ * @return {?}
+ */
+(priceRange) => {
+    return priceRange.minPrice.originalPrice !== priceRange.maxPrice.originalPrice ||
+        priceRange.minPrice.discountedPrice !== priceRange.maxPrice.discountedPrice;
+});
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A facade for interacting with the composite product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
+ *
+ * See the <a href="docs/api/product/DaffCompositeProductFacadeInterface">DaffCompositeProductFacadeInterface docs</a> for more details.
+ * @template T
+ */
+class DaffCompositeProductFacade {
+    /**
+     * @param {?} store
+     */
+    constructor(store) {
+        this.store = store;
+        this.selectors = getDaffProductSelectors();
+        /**
+         * Returns whether a DaffPriceRange has a discount.
+         * @param priceRange a DaffPriceRange
+         */
+        this.hasDiscount = productPriceRangeHasDiscount;
+        /**
+         * Returns whether the min and max prices of a DaffPriceRange are different.
+         * @param priceRange a DaffPriceRange
+         */
+        this.hasPriceRange = productPriceRangeHasPriceRange;
+    }
+    /**
+     * @param {?} id
+     * @param {?=} configuration
+     * @return {?}
+     */
+    getRequiredItemPricesForConfiguration(id, configuration) {
+        return this.store.pipe(select(this.selectors.selectCompositeProductRequiredItemPricesForConfiguration, { id, configuration }));
+    }
+    /**
+     * @param {?} id
+     * @param {?=} configuration
+     * @return {?}
+     */
+    getOptionalItemPricesForConfiguration(id, configuration) {
+        return this.store.pipe(select(this.selectors.selectCompositeProductOptionalItemPricesForConfiguration, { id, configuration }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getPricesAsCurrentlyConfigured(id) {
+        return this.store.pipe(select(this.selectors.selectCompositeProductPricesAsCurrentlyConfigured, { id }));
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    getAppliedOptions(id) {
+        return this.store.pipe(select(this.selectors.selectCompositeProductAppliedOptions, { id }));
+    }
+    /**
+     * @param {?} id
+     * @param {?} item_id
+     * @return {?}
+     */
+    isItemRequired(id, item_id) {
+        return this.store.pipe(select(this.selectors.selectIsCompositeProductItemRequired, { id, item_id }));
+    }
+    /**
+     * Dispatches an action to the rxjs action stream.
+     * @param {?} action
+     * @return {?}
+     */
+    dispatch(action) {
+        this.store.dispatch(action);
+    }
+}
+DaffCompositeProductFacade.decorators = [
+    { type: Injectable, args: [{
+                providedIn: DaffProductModule
+            },] }
+];
+/** @nocollapse */
+DaffCompositeProductFacade.ctorParameters = () => [
+    { type: Store }
+];
+/** @nocollapse */ DaffCompositeProductFacade.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffCompositeProductFacade_Factory() { return new DaffCompositeProductFacade(ɵɵinject(Store)); }, token: DaffCompositeProductFacade, providedIn: DaffProductModule });
+if (false) {
+    /** @type {?} */
+    DaffCompositeProductFacade.prototype.selectors;
+    /**
+     * Returns whether a DaffPriceRange has a discount.
+     * \@param priceRange a DaffPriceRange
+     * @type {?}
+     */
+    DaffCompositeProductFacade.prototype.hasDiscount;
+    /**
+     * Returns whether the min and max prices of a DaffPriceRange are different.
+     * \@param priceRange a DaffPriceRange
+     * @type {?}
+     */
+    DaffCompositeProductFacade.prototype.hasPriceRange;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffCompositeProductFacade.prototype.store;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A facade for accessing best sellers state from an application component.
+ * @template T
+ */
+class DaffBestSellersFacade {
+    /**
+     * @param {?} store
+     */
+    constructor(store) {
+        this.store = store;
+        const { selectBestSellersProducts, selectBestSellersLoadingState } = getDaffProductSelectors();
+        this.loading$ = this.store.pipe(select(selectBestSellersLoadingState));
+        this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts));
+    }
+    /**
+     * Dispatches an action to the rxjs action stream.
+     * @param {?} action
+     * @return {?}
+     */
+    dispatch(action) {
+        this.store.dispatch(action);
+    }
+}
+DaffBestSellersFacade.decorators = [
+    { type: Injectable, args: [{
+                providedIn: DaffProductModule
+            },] }
+];
+/** @nocollapse */
+DaffBestSellersFacade.ctorParameters = () => [
+    { type: Store }
+];
+/** @nocollapse */ DaffBestSellersFacade.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffBestSellersFacade_Factory() { return new DaffBestSellersFacade(ɵɵinject(Store)); }, token: DaffBestSellersFacade, providedIn: DaffProductModule });
+if (false) {
+    /**
+     * The loading state for getting best selling products.
+     * @type {?}
+     */
+    DaffBestSellersFacade.prototype.loading$;
+    /**
+     * Best selling products.
+     * @type {?}
+     */
+    DaffBestSellersFacade.prototype.bestSellers$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffBestSellersFacade.prototype.store;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const MagentoProductTypeEnum = {
+    BundledProduct: 'BundleProduct',
+    ConfigurableProduct: 'ConfigurableProduct',
+    SimpleProduct: 'SimpleProduct',
+};
+/** @enum {string} */
+const MagentoProductStockStatusEnum = {
+    InStock: 'IN_STOCK',
+    OutOfStock: 'OUT_OF_STOCK',
+};
+/**
+ * An object for defining what the product service requests and retrieves from a magento backend.
+ * @record
+ */
+function MagentoProduct() { }
+if (false) {
+    /** @type {?} */
+    MagentoProduct.prototype.__typename;
+    /** @type {?} */
+    MagentoProduct.prototype.id;
+    /** @type {?} */
+    MagentoProduct.prototype.name;
+    /** @type {?} */
+    MagentoProduct.prototype.sku;
+    /** @type {?} */
+    MagentoProduct.prototype.url_key;
+    /** @type {?} */
+    MagentoProduct.prototype.image;
+    /** @type {?} */
+    MagentoProduct.prototype.thumbnail;
+    /** @type {?} */
+    MagentoProduct.prototype.price_range;
+    /** @type {?|undefined} */
+    MagentoProduct.prototype.stock_status;
+    /** @type {?|undefined} */
+    MagentoProduct.prototype.media_gallery_entries;
+    /** @type {?|undefined} */
+    MagentoProduct.prototype.short_description;
+    /** @type {?|undefined} */
+    MagentoProduct.prototype.description;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+const MagentoPriceTypeEnum = {
+    fixed: 'FIXED',
+    percent: 'PERCENT',
+    dynamic: 'DYNAMIC',
+};
+/**
+ * @record
+ */
+function MagentoBundledProduct() { }
+if (false) {
+    /** @type {?} */
+    MagentoBundledProduct.prototype.items;
+}
+/**
+ * @record
+ */
+function MagentoBundledProductItem() { }
+if (false) {
+    /** @type {?} */
+    MagentoBundledProductItem.prototype.required;
+    /** @type {?} */
+    MagentoBundledProductItem.prototype.sku;
+    /** @type {?} */
+    MagentoBundledProductItem.prototype.title;
+    /** @type {?} */
+    MagentoBundledProductItem.prototype.type;
+    /** @type {?} */
+    MagentoBundledProductItem.prototype.options;
+    /** @type {?|undefined} */
+    MagentoBundledProductItem.prototype.option_id;
+    /** @type {?|undefined} */
+    MagentoBundledProductItem.prototype.position;
+}
+/**
+ * @record
+ */
+function MagentoBundledProductItemOption() { }
+if (false) {
+    /** @type {?} */
+    MagentoBundledProductItemOption.prototype.id;
+    /** @type {?} */
+    MagentoBundledProductItemOption.prototype.label;
+    /** @type {?} */
+    MagentoBundledProductItemOption.prototype.price;
+    /** @type {?} */
+    MagentoBundledProductItemOption.prototype.quantity;
+    /** @type {?|undefined} */
+    MagentoBundledProductItemOption.prototype.can_change_quantity;
+    /** @type {?} */
+    MagentoBundledProductItemOption.prototype.is_default;
+    /** @type {?|undefined} */
+    MagentoBundledProductItemOption.prototype.position;
+    /** @type {?|undefined} */
+    MagentoBundledProductItemOption.prototype.price_type;
+    /** @type {?|undefined} */
+    MagentoBundledProductItemOption.prototype.product;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function MagentoConfigurableProduct() { }
+if (false) {
+    /** @type {?} */
+    MagentoConfigurableProduct.prototype.configurable_options;
+    /** @type {?} */
+    MagentoConfigurableProduct.prototype.variants;
+}
+/**
+ * @record
+ */
+function MagentoConfigurableProductOption() { }
+if (false) {
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.attribute_code;
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.attribute_id;
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.id;
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.label;
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.position;
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.product_id;
+    /** @type {?} */
+    MagentoConfigurableProductOption.prototype.values;
+}
+/**
+ * @record
+ */
+function MagentoConfigurableProductOptionsValue() { }
+if (false) {
+    /** @type {?} */
+    MagentoConfigurableProductOptionsValue.prototype.label;
+    /** @type {?|undefined} */
+    MagentoConfigurableProductOptionsValue.prototype.swatch_data;
+    /** @type {?} */
+    MagentoConfigurableProductOptionsValue.prototype.value_index;
+}
+/**
+ * @record
+ */
+function MagentoSwatchDataInterface() { }
+if (false) {
+    /** @type {?} */
+    MagentoSwatchDataInterface.prototype.value;
+    /** @type {?} */
+    MagentoSwatchDataInterface.prototype.thumbnail;
+}
+/**
+ * @record
+ */
+function MagentoConfigurableProductVariant() { }
+if (false) {
+    /** @type {?} */
+    MagentoConfigurableProductVariant.prototype.attributes;
+    /** @type {?} */
+    MagentoConfigurableProductVariant.prototype.product;
+}
+/**
+ * @record
+ */
+function MagentoConfigurableAttributeOption() { }
+if (false) {
+    /** @type {?} */
+    MagentoConfigurableAttributeOption.prototype.code;
+    /** @type {?} */
+    MagentoConfigurableAttributeOption.prototype.label;
+    /** @type {?} */
+    MagentoConfigurableAttributeOption.prototype.value_index;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const magentoBundledProductFragment = gql `
+  fragment magentoBundledProduct on BundleProduct {
+		items {
+			option_id
+			position
+			required
+			sku
+			title
+			type
+			options {
+				can_change_quantity
+				id
+				is_default
+				label
+				position
+				price_type
+				price
+				quantity
+				product {
+					id
+					name
+					sku
+					stock_status
+					price_range {
+						maximum_price {
+							regular_price {
+								value
+								currency
+							}
+							discount {
+								amount_off
+								percent_off
+							}
+						}
+					}
+				}
+			}
+		}
+  }
+`;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const magentoSimpleProductFragment = gql `
+  fragment magentoSimpleProduct on SimpleProduct {
+    name
+  }
+`;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const magentoConfigurableProductFragment = gql `
+  fragment magentoConfigurableProduct on ConfigurableProduct {
+		configurable_options {
+			attribute_code
+			attribute_id
+			id
+			label
+			position
+			product_id
+			values {
+				label
+				value_index
+			}
+		}
+		variants {
+			attributes {
+				code
+				label
+				value_index
+			}
+			product {
+				sku
+				price_range {
+					maximum_price {
+						regular_price {
+							value
+							currency
+						}
+						discount {
+							amount_off
+							percent_off
+						}
+					}
+				}
+				stock_status
+				image {
+					url
+					label
+				}
+			}
+		}
+  }
+`;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const magentoProductFragment = gql `
+  fragment product on ProductInterface {
+		__typename
+		id
+		url_key
+		name
+		sku
+		stock_status
+		price_range {
+			maximum_price {
+				regular_price {
+					value
+					currency
+				}
+				discount {
+					amount_off
+					percent_off
+				}
+			}
+		}
+		image {
+			url
+			label
+		}
+    thumbnail {
+			url
+			label
+		}
+		media_gallery_entries {
+			label
+			file
+			position
+			disabled
+			id
+		}
+		short_description {
+			html
+		}
+		description {
+			html
+		}
+		...magentoBundledProduct
+		...magentoSimpleProduct
+		...magentoConfigurableProduct
+	}
+	${magentoBundledProductFragment}
+	${magentoSimpleProductFragment}
+	${magentoConfigurableProductFragment}
+`;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const GetProductQuery = gql `
+query GetAProduct($sku: String!){
+	storeConfig {
+		secure_base_media_url
+	}
+	products(filter: {
+		sku: {
+			eq: $sku
+		}
+	}){
+		items {
+			...product
+		}
+	}
+}
+${magentoProductFragment}
+`;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const GetAllProductsQuery$1 = gql `
+query GetAllProducts($pageSize: Int)
+{
+	products(search: "Shirt", pageSize: $pageSize)
+	{
+		total_count
+		items {
+			...product
+		}
+		page_info {
+			page_size
+			current_page
+		}
+	}
+}
+${magentoProductFragment}
+`;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
+ * @param {?} product a magento product
+ * @param {?} mediaUrl
+ * @return {?}
+ */
+function transformMagentoSimpleProduct(product, mediaUrl) {
+    return {
+        type: DaffProductTypeEnum.Simple,
+        id: product.sku,
+        url: product.url_key,
+        name: product.name,
+        price: getPrice(product),
+        discount: getDiscount(product),
+        in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
+        images: [
+            { url: product.image.url, id: '0', label: product.image.label },
+            ...transformMediaGalleryEntries(product, mediaUrl)
+        ],
+        description: product.description.html
+    };
+}
+/**
+ * A function for null checking an object.
+ * @param {?} product
+ * @return {?}
+ */
+function getPrice(product) {
+    return product.price_range &&
+        product.price_range.maximum_price &&
+        product.price_range.maximum_price.regular_price &&
+        product.price_range.maximum_price.regular_price.value !== null
+        ? product.price_range.maximum_price.regular_price.value : null;
+}
+/**
+ * @param {?} product
+ * @return {?}
+ */
+function getDiscount(product) {
+    return product.price_range &&
+        product.price_range.maximum_price &&
+        product.price_range.maximum_price.discount
+        ? {
+            amount: product.price_range.maximum_price.discount.amount_off,
+            percent: product.price_range.maximum_price.discount.percent_off
+        } : { amount: null, percent: null };
+}
+/**
+ * @param {?} product
+ * @param {?} mediaUrl
+ * @return {?}
+ */
+function transformMediaGalleryEntries(product, mediaUrl) {
+    return product.media_gallery_entries ? product.media_gallery_entries.map((/**
+     * @param {?} image
+     * @return {?}
+     */
+    image => {
+        return {
+            url: mediaUrl + 'catalog/product' + image.file,
+            label: image.label,
+            id: image.id.toString()
+        };
+    })) : [];
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
+ * @param {?} product
+ * @param {?} mediaUrl
+ * @return {?}
+ */
+function transformMagentoBundledProduct(product, mediaUrl) {
+    return Object.assign({}, transformMagentoSimpleProduct(product, mediaUrl), { price: 0, discount: {
+            amount: 0,
+            percent: 0
+        }, type: DaffProductTypeEnum.Composite, items: product.items.map(transformMagentoBundledProductItem) });
+}
+/**
+ * @param {?} item
+ * @return {?}
+ */
+function transformMagentoBundledProductItem(item) {
+    return {
+        id: item.option_id.toString(),
+        required: item.required,
+        title: item.title,
+        input_type: (/** @type {?} */ (item.type)),
+        options: item.options.map(transformMagentoBundledProductItemOption)
+    };
+}
+/**
+ * @param {?} option
+ * @return {?}
+ */
+function transformMagentoBundledProductItemOption(option) {
+    return {
+        id: option.id.toString(),
+        name: option.label,
+        price: getPrice$1(option.product),
+        images: [],
+        discount: getDiscount$1(option.product),
+        quantity: option.quantity,
+        is_default: option.is_default,
+        in_stock: option.product.stock_status === MagentoProductStockStatusEnum.InStock
+    };
+}
+/**
+ * A function for null checking an object.
+ * @param {?} product
+ * @return {?}
+ */
+//TODO: use optional chaining after angular 9 and Typescript 3.7
+function getPrice$1(product) {
+    return product.price_range &&
+        product.price_range.maximum_price &&
+        product.price_range.maximum_price.regular_price &&
+        product.price_range.maximum_price.regular_price.value !== null
+        ? product.price_range.maximum_price.regular_price.value : null;
+}
+//TODO: use optional chaining after angular 9 and Typescript 3.7
+/**
+ * @param {?} product
+ * @return {?}
+ */
+function getDiscount$1(product) {
+    return product.price_range &&
+        product.price_range.maximum_price &&
+        product.price_range.maximum_price.discount
+        ? {
+            amount: product.price_range.maximum_price.discount.amount_off,
+            percent: product.price_range.maximum_price.discount.percent_off
+        } : { amount: null, percent: null };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
+ * @param {?} product
+ * @param {?} mediaUrl
+ * @return {?}
+ */
+function transformMagentoConfigurableProduct(product, mediaUrl) {
+    return Object.assign({}, transformMagentoSimpleProduct(product, mediaUrl), { type: DaffProductTypeEnum.Configurable, configurableAttributes: product.configurable_options.map(transformOption), variants: product.variants.map(transformVariant) });
+}
+/**
+ * @param {?} option
+ * @return {?}
+ */
+function transformOption(option) {
+    return {
+        order: option.position,
+        code: option.attribute_code,
+        label: option.label,
+        values: option.values.map(transformOptionValue)
+    };
+}
+/**
+ * @param {?} value
+ * @return {?}
+ */
+function transformOptionValue(value) {
+    return {
+        value: value.value_index.toString(),
+        label: value.label
+    };
+}
+/**
+ * @param {?} variant
+ * @return {?}
+ */
+function transformVariant(variant) {
+    return {
+        id: variant.product.sku,
+        appliedAttributes: transformVariantAttributes(variant.attributes),
+        price: getPrice$2(variant.product),
+        discount: getDiscount$2(variant.product),
+        image: {
+            id: '0',
+            url: variant.product.image.url,
+            label: variant.product.image.label
+        },
+        in_stock: variant.product.stock_status === MagentoProductStockStatusEnum.InStock
+    };
+}
+/**
+ * @param {?} attributes
+ * @return {?}
+ */
+function transformVariantAttributes(attributes) {
+    /** @type {?} */
+    let appliedAttributes = {};
+    attributes.forEach((/**
+     * @param {?} attribute
+     * @return {?}
+     */
+    attribute => {
+        appliedAttributes = Object.assign({}, appliedAttributes, { [attribute.code]: attribute.value_index.toString() });
+    }));
+    return appliedAttributes;
+}
+/**
+ * A function for null checking an object.
+ * @param {?} product
+ * @return {?}
+ */
+function getPrice$2(product) {
+    return product.price_range &&
+        product.price_range.maximum_price &&
+        product.price_range.maximum_price.regular_price &&
+        product.price_range.maximum_price.regular_price.value !== null
+        ? product.price_range.maximum_price.regular_price.value : null;
+}
+/**
+ * @param {?} product
+ * @return {?}
+ */
+function getDiscount$2(product) {
+    return product.price_range &&
+        product.price_range.maximum_price &&
+        product.price_range.maximum_price.discount
+        ? {
+            amount: product.price_range.maximum_price.discount.amount_off,
+            percent: product.price_range.maximum_price.discount.percent_off
+        } : { amount: null, percent: null };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
+ * @param {?} product a magento product
+ * @param {?=} mediaUrl
+ * @return {?}
+ */
+function transformMagentoProduct(product, mediaUrl) {
+    switch (product.__typename) {
+        case MagentoProductTypeEnum.BundledProduct:
+            return transformMagentoBundledProduct((/** @type {?} */ (product)), mediaUrl);
+        case MagentoProductTypeEnum.ConfigurableProduct:
+            return transformMagentoConfigurableProduct((/** @type {?} */ (product)), mediaUrl);
+        default:
+            return transformMagentoSimpleProduct(product, mediaUrl);
+    }
+}
+/**
+ * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
+ * @param {?} products
+ * @param {?=} mediaUrl
+ * @return {?}
+ */
+function transformManyMagentoProducts(products, mediaUrl) {
+    return products.map((/**
+     * @param {?} product
+     * @return {?}
+     */
+    product => transformMagentoProduct(product, mediaUrl)));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A service for making magento apollo queries for products of type, DaffProduct.
+ */
+class DaffMagentoProductService {
+    /**
+     * @param {?} apollo
+     */
+    constructor(apollo) {
+        this.apollo = apollo;
+    }
+    /**
+     * Get an Observable of a DaffProduct by id.
+     * @param {?} productId a product Id
+     * @return {?}
+     */
+    get(productId) {
+        return this.apollo.query({
+            query: GetProductQuery,
+            variables: {
+                sku: productId
+            }
+        }).pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => transformMagentoProduct(result.data.products.items[0], result.data.storeConfig.secure_base_media_url))));
+    }
+    /**
+     * Get an Observable of an array of DaffProducts.
+     * @return {?}
+     */
+    getAll() {
+        return this.apollo.query({
+            query: GetAllProductsQuery$1
+        }).pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => transformManyMagentoProducts(result.data.products.items, result.data.storeConfig.secure_base_media_url))));
+    }
+    //todo: add actual getBestSellers apollo call for Magento.
+    //todo: move to a different bestsellers module.
+    /**
+     * @return {?}
+     */
+    getBestSellers() {
+        return of(null);
+    }
+}
+DaffMagentoProductService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+/** @nocollapse */
+DaffMagentoProductService.ctorParameters = () => [
+    { type: Apollo }
+];
+/** @nocollapse */ DaffMagentoProductService.ngInjectableDef = ɵɵdefineInjectable({ factory: function DaffMagentoProductService_Factory() { return new DaffMagentoProductService(ɵɵinject(Apollo)); }, token: DaffMagentoProductService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DaffMagentoProductService.prototype.apollo;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DaffProductMagentoDriverModule {
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: DaffProductMagentoDriverModule,
+            providers: [
+                {
+                    provide: DaffProductDriver,
+                    useExisting: DaffMagentoProductService
+                }
+            ]
+        };
+    }
+}
+DaffProductMagentoDriverModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+export { DaffBestSellersActionTypes, DaffBestSellersFacade, DaffBestSellersLoad, DaffBestSellersLoadFailure, DaffBestSellersLoadSuccess, DaffBestSellersReset, DaffCompositeProductActionTypes, DaffCompositeProductApplyOption, DaffCompositeProductFacade, DaffCompositeProductItemInputEnum, DaffConfigurableProductActionTypes, DaffConfigurableProductApplyAttribute, DaffConfigurableProductFacade, DaffConfigurableProductRemoveAttribute, DaffConfigurableProductToggleAttribute, DaffMagentoProductService, DaffProductActionTypes, DaffProductDriver, DaffProductFacade, DaffProductGridActionTypes, DaffProductGridFacade, DaffProductGridLoad, DaffProductGridLoadFailure, DaffProductGridLoadSuccess, DaffProductGridReset, DaffProductLoad, DaffProductLoadFailure, DaffProductLoadSuccess, DaffProductMagentoDriverModule, DaffProductModule, DaffProductPageResolver, DaffProductShopifyDriverModule, DaffProductTypeEnum, DaffProductUpdateQty, DaffShopifyProductService, GetAllProductsQuery$1 as GetAllProductsQuery, GetProductQuery, MagentoPriceTypeEnum, MagentoProductStockStatusEnum, MagentoProductTypeEnum, daffBestSellersReducer, daffProductEntitiesAdapter, daffProductEntitiesReducer, daffProductGridReducer, daffProductReducer, daffProductReducers, getDaffProductSelectors, magentoBundledProductFragment, magentoProductFragment, productPriceRangeHasDiscount, productPriceRangeHasPriceRange, transformMagentoProduct, transformManyMagentoProducts, daffConfigurableProductEntitiesReducer as ɵa, daffCompositeProductEntitiesReducer as ɵb, DaffProductStateModule as ɵc, DaffProductGridEffects as ɵd, DaffProductEffects as ɵe, DaffBestSellersEffects as ɵf };
+//# sourceMappingURL=daffodil-product.js.map

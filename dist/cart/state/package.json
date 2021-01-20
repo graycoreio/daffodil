@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/cart/state",
+  "main": "../bundles/daffodil-cart-state.umd.js",
+  "module": "../fesm5/daffodil-cart-state.js",
+  "es2015": "../fesm2015/daffodil-cart-state.js",
+  "esm5": "../esm5/state/daffodil-cart-state.js",
+  "esm2015": "../esm2015/state/daffodil-cart-state.js",
+  "fesm5": "../fesm5/daffodil-cart-state.js",
+  "fesm2015": "../fesm2015/daffodil-cart-state.js",
+  "typings": "daffodil-cart-state.d.ts",
+  "metadata": "daffodil-cart-state.metadata.json",
+  "sideEffects": false
+}

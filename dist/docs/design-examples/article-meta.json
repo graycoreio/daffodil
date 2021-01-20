@@ -1,0 +1,17 @@
+{
+  "id": "article-meta",
+  "docType": "design-example",
+  "name": "article-meta",
+  "files": [
+    {
+      "name": "article-meta.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-article</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">daffArticleMeta</span>&gt;</span>Some interesting information about an article<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-article</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "article-meta.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'article-meta'</span>,\n  templateUrl: <span class=\"hljs-string\">'./article-meta.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> ArticleMetaComponent {}\n",
+      "language": "typescript"
+    }
+  ]
+}

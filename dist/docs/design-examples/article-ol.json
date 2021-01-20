@@ -1,0 +1,17 @@
+{
+  "id": "article-ol",
+  "docType": "design-example",
+  "name": "article-ol",
+  "files": [
+    {
+      "name": "article-ol.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-article</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">ol</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">li</span>&gt;</span>This is an ordered list.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">li</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">li</span>&gt;</span>This is an ordered list.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">li</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">li</span>&gt;</span>This is an ordered list.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">li</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">li</span>&gt;</span>This is an ordered list.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">li</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">li</span>&gt;</span>This is an ordered list.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">li</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">li</span>&gt;</span>This is an ordered list.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">li</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">ol</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-article</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "article-ol.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'article-ol'</span>,\n  templateUrl: <span class=\"hljs-string\">'./article-ol.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> ArticleOlComponent {}\n",
+      "language": "typescript"
+    }
+  ]
+}

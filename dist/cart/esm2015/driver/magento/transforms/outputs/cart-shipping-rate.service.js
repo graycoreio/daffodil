@@ -1,0 +1,26 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { Injectable } from '@angular/core';
+import * as i0 from "@angular/core";
+/**
+ * Transforms magento cart shipping methods into an object usable by daffodil.
+ */
+export class DaffMagentoCartShippingRateTransformer {
+    /**
+     * Transforms the magento shipping method from the magento cart query into a DaffCartShippingRate.
+     * @param {?} shippingMethod the shippingMethod from a magento cart query.
+     * @return {?}
+     */
+    transform(shippingMethod) {
+        return shippingMethod ? Object.assign({ magento_shipping_method: shippingMethod }, { carrier: shippingMethod.carrier_code, carrier_title: shippingMethod.carrier_title, price: shippingMethod.amount.value, method_code: shippingMethod.method_code, method_title: shippingMethod.method_title, id: null, method_description: null }) : null;
+    }
+}
+DaffMagentoCartShippingRateTransformer.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+/** @nocollapse */ DaffMagentoCartShippingRateTransformer.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DaffMagentoCartShippingRateTransformer_Factory() { return new DaffMagentoCartShippingRateTransformer(); }, token: DaffMagentoCartShippingRateTransformer, providedIn: "root" });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC1zaGlwcGluZy1yYXRlLnNlcnZpY2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2FydC9kcml2ZXIvbWFnZW50by8iLCJzb3VyY2VzIjpbInRyYW5zZm9ybXMvb3V0cHV0cy9jYXJ0LXNoaXBwaW5nLXJhdGUuc2VydmljZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7QUFZM0MsTUFBTSxPQUFPLHNDQUFzQzs7Ozs7O0lBS2pELFNBQVMsQ0FBQyxjQUF5QztRQUNqRCxPQUFPLGNBQWMsQ0FBQyxDQUFDLGVBQ2xCLEVBQUMsdUJBQXVCLEVBQUUsY0FBYyxFQUFDLElBRTVDLE9BQU8sRUFBRSxjQUFjLENBQUMsWUFBWSxFQUNwQyxhQUFhLEVBQUUsY0FBYyxDQUFDLGFBQWEsRUFDM0MsS0FBSyxFQUFFLGNBQWMsQ0FBQyxNQUFNLENBQUMsS0FBSyxFQUNsQyxXQUFXLEVBQUUsY0FBYyxDQUFDLFdBQVcsRUFDdkMsWUFBWSxFQUFFLGNBQWMsQ0FBQyxZQUFZLEVBR3pDLEVBQUUsRUFBRSxJQUFJLEVBQ1Isa0JBQWtCLEVBQUUsSUFBSSxJQUN4QixDQUFDLENBQUMsSUFBSSxDQUFBO0lBQ1YsQ0FBQzs7O1lBdEJGLFVBQVUsU0FBQztnQkFDVixVQUFVLEVBQUUsTUFBTTthQUNuQiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgRGFmZkNhcnRTaGlwcGluZ1JhdGUgfSBmcm9tICdAZGFmZm9kaWwvY2FydCc7XG5cbmltcG9ydCB7IE1hZ2VudG9DYXJ0U2hpcHBpbmdNZXRob2QgfSBmcm9tICcuLi8uLi9tb2RlbHMvcmVzcG9uc2VzL2NhcnQtc2hpcHBpbmctbWV0aG9kJztcblxuLyoqXG4gKiBUcmFuc2Zvcm1zIG1hZ2VudG8gY2FydCBzaGlwcGluZyBtZXRob2RzIGludG8gYW4gb2JqZWN0IHVzYWJsZSBieSBkYWZmb2RpbC5cbiAqL1xuQEluamVjdGFibGUoe1xuICBwcm92aWRlZEluOiAncm9vdCdcbn0pXG5leHBvcnQgY2xhc3MgRGFmZk1hZ2VudG9DYXJ0U2hpcHBpbmdSYXRlVHJhbnNmb3JtZXIge1xuICAvKipcbiAgICogVHJhbnNmb3JtcyB0aGUgbWFnZW50byBzaGlwcGluZyBtZXRob2QgZnJvbSB0aGUgbWFnZW50byBjYXJ0IHF1ZXJ5IGludG8gYSBEYWZmQ2FydFNoaXBwaW5nUmF0ZS5cbiAgICogQHBhcmFtIHNoaXBwaW5nTWV0aG9kIHRoZSBzaGlwcGluZ01ldGhvZCBmcm9tIGEgbWFnZW50byBjYXJ0IHF1ZXJ5LlxuICAgKi9cbiAgdHJhbnNmb3JtKHNoaXBwaW5nTWV0aG9kOiBNYWdlbnRvQ2FydFNoaXBwaW5nTWV0aG9kKTogRGFmZkNhcnRTaGlwcGluZ1JhdGUge1xuICAgIHJldHVybiBzaGlwcGluZ01ldGhvZCA/IHtcbiAgICAgIC4uLnttYWdlbnRvX3NoaXBwaW5nX21ldGhvZDogc2hpcHBpbmdNZXRob2R9LFxuXG4gICAgICBjYXJyaWVyOiBzaGlwcGluZ01ldGhvZC5jYXJyaWVyX2NvZGUsXG4gICAgICBjYXJyaWVyX3RpdGxlOiBzaGlwcGluZ01ldGhvZC5jYXJyaWVyX3RpdGxlLFxuICAgICAgcHJpY2U6IHNoaXBwaW5nTWV0aG9kLmFtb3VudC52YWx1ZSxcbiAgICAgIG1ldGhvZF9jb2RlOiBzaGlwcGluZ01ldGhvZC5tZXRob2RfY29kZSxcbiAgICAgIG1ldGhvZF90aXRsZTogc2hpcHBpbmdNZXRob2QubWV0aG9kX3RpdGxlLFxuXG4gICAgICAvLyBUT0RPOiBpbXBsZW1lbnRcbiAgICAgIGlkOiBudWxsLFxuICAgICAgbWV0aG9kX2Rlc2NyaXB0aW9uOiBudWxsXG4gICAgfSA6IG51bGxcbiAgfVxufVxuIl19

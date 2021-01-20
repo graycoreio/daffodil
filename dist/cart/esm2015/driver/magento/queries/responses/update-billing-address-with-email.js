@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function MagentoUpdateBillingAddressWithEmailResponse() { }
+if (false) {
+    /** @type {?} */
+    MagentoUpdateBillingAddressWithEmailResponse.prototype.setBillingAddressOnCart;
+    /** @type {?} */
+    MagentoUpdateBillingAddressWithEmailResponse.prototype.setGuestEmailOnCart;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXBkYXRlLWJpbGxpbmctYWRkcmVzcy13aXRoLWVtYWlsLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvZHJpdmVyL21hZ2VudG8vIiwic291cmNlcyI6WyJxdWVyaWVzL3Jlc3BvbnNlcy91cGRhdGUtYmlsbGluZy1hZGRyZXNzLXdpdGgtZW1haWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUVBLGtFQU9DOzs7SUFOQywrRUFBZ0Q7O0lBQ2hELDJFQUlFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTWFnZW50b0dldENhcnRSZXNwb25zZSB9IGZyb20gJy4vZ2V0LWNhcnQnO1xuXG5leHBvcnQgaW50ZXJmYWNlIE1hZ2VudG9VcGRhdGVCaWxsaW5nQWRkcmVzc1dpdGhFbWFpbFJlc3BvbnNlIHtcbiAgc2V0QmlsbGluZ0FkZHJlc3NPbkNhcnQ6IE1hZ2VudG9HZXRDYXJ0UmVzcG9uc2U7XG4gIHNldEd1ZXN0RW1haWxPbkNhcnQ6IHtcbiAgICBjYXJ0OiB7XG4gICAgICBlbWFpbDogTWFnZW50b0dldENhcnRSZXNwb25zZVsnY2FydCddWydlbWFpbCddXG4gICAgfVxuICB9O1xufVxuIl19

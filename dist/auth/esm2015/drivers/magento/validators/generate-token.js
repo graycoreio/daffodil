@@ -1,0 +1,19 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
+/** @type {?} */
+export const validateGenerateTokenResponse = (/**
+ * @param {?} response
+ * @return {?}
+ */
+(response) => {
+    if (response.data.generateCustomerToken.token) {
+        return response;
+    }
+    else {
+        throw new DaffAuthInvalidAPIResponseError('Generate token response does not contain an auth token.');
+    }
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXJhdGUtdG9rZW4uanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvYXV0aC8iLCJzb3VyY2VzIjpbImRyaXZlcnMvbWFnZW50by92YWxpZGF0b3JzL2dlbmVyYXRlLXRva2VuLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFHQSxPQUFPLEVBQUUsK0JBQStCLEVBQUUsTUFBTSw0QkFBNEIsQ0FBQzs7QUFFN0UsTUFBTSxPQUFPLDZCQUE2Qjs7OztBQUFHLENBQUMsUUFBeUQsRUFBRSxFQUFFO0lBQ3pHLElBQUksUUFBUSxDQUFDLElBQUksQ0FBQyxxQkFBcUIsQ0FBQyxLQUFLLEVBQUU7UUFDN0MsT0FBTyxRQUFRLENBQUE7S0FDaEI7U0FBTTtRQUNMLE1BQU0sSUFBSSwrQkFBK0IsQ0FBQyx5REFBeUQsQ0FBQyxDQUFBO0tBQ3JHO0FBQ0gsQ0FBQyxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQXBvbGxvUXVlcnlSZXN1bHQgfSBmcm9tICdhcG9sbG8tY2xpZW50JztcblxuaW1wb3J0IHsgTWFnZW50b0dlbmVyYXRlVG9rZW5SZXNwb25zZSB9IGZyb20gJy4uL3F1ZXJpZXMvcHVibGljX2FwaSc7XG5pbXBvcnQgeyBEYWZmQXV0aEludmFsaWRBUElSZXNwb25zZUVycm9yIH0gZnJvbSAnLi4vLi4vLi4vZXJyb3JzL3B1YmxpY19hcGknO1xuXG5leHBvcnQgY29uc3QgdmFsaWRhdGVHZW5lcmF0ZVRva2VuUmVzcG9uc2UgPSAocmVzcG9uc2U6IEFwb2xsb1F1ZXJ5UmVzdWx0PE1hZ2VudG9HZW5lcmF0ZVRva2VuUmVzcG9uc2U+KSA9PiB7XG4gIGlmIChyZXNwb25zZS5kYXRhLmdlbmVyYXRlQ3VzdG9tZXJUb2tlbi50b2tlbikge1xuICAgIHJldHVybiByZXNwb25zZVxuICB9IGVsc2Uge1xuICAgIHRocm93IG5ldyBEYWZmQXV0aEludmFsaWRBUElSZXNwb25zZUVycm9yKCdHZW5lcmF0ZSB0b2tlbiByZXNwb25zZSBkb2VzIG5vdCBjb250YWluIGFuIGF1dGggdG9rZW4uJylcbiAgfVxufVxuIl19

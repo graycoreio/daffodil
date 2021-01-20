@@ -1,0 +1,36 @@
+{
+  "name": "@daffodil/driver",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A consistent, sane api driver that works with different ecommerce systems.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
+  },
+  "main": "bundles/daffodil-driver.umd.js",
+  "module": "fesm5/daffodil-driver.js",
+  "es2015": "fesm2015/daffodil-driver.js",
+  "esm5": "esm5/daffodil-driver.js",
+  "esm2015": "esm2015/daffodil-driver.js",
+  "fesm5": "fesm5/daffodil-driver.js",
+  "fesm2015": "fesm2015/daffodil-driver.js",
+  "typings": "daffodil-driver.d.ts",
+  "metadata": "daffodil-driver.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

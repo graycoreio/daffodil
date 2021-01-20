@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A basic constructor type useful for mixins
+ * See https://blog.mariusschulz.com/2017/05/26/typescript-2-2-mixin-classes
+ * for a really good explanation of why mixins are useful.
+ */
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uc3RydWN0b3IuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvZGVzaWduLyIsInNvdXJjZXMiOlsiY29yZS9jb25zdHJ1Y3Rvci9jb25zdHJ1Y3Rvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBBIGJhc2ljIGNvbnN0cnVjdG9yIHR5cGUgdXNlZnVsIGZvciBtaXhpbnNcbiAqIFNlZSBodHRwczovL2Jsb2cubWFyaXVzc2NodWx6LmNvbS8yMDE3LzA1LzI2L3R5cGVzY3JpcHQtMi0yLW1peGluLWNsYXNzZXNcbiAqIGZvciBhIHJlYWxseSBnb29kIGV4cGxhbmF0aW9uIG9mIHdoeSBtaXhpbnMgYXJlIHVzZWZ1bC5cbiAqL1xuXG5leHBvcnQgdHlwZSBDb25zdHJ1Y3RvcjxUID0ge30+ID0gbmV3ICguLi5hcmdzOiBhbnlbXSkgPT4gVDsiXX0=

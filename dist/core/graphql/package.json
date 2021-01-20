@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/core/graphql",
+  "main": "../bundles/daffodil-core-graphql.umd.js",
+  "module": "../fesm5/daffodil-core-graphql.js",
+  "es2015": "../fesm2015/daffodil-core-graphql.js",
+  "esm5": "../esm5/graphql/daffodil-core-graphql.js",
+  "esm2015": "../esm2015/graphql/daffodil-core-graphql.js",
+  "fesm5": "../fesm5/daffodil-core-graphql.js",
+  "fesm2015": "../fesm2015/daffodil-core-graphql.js",
+  "typings": "daffodil-core-graphql.d.ts",
+  "metadata": "daffodil-core-graphql.metadata.json",
+  "sideEffects": false
+}

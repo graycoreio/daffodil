@@ -1,0 +1,22 @@
+{
+  "id": "basic-checkbox",
+  "docType": "design-example",
+  "name": "basic-checkbox",
+  "files": [
+    {
+      "name": "basic-checkbox.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-checkbox</span> [<span class=\"hljs-attr\">formControl</span>]=<span class=\"hljs-string\">\"checkboxExample\"</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"checkboxExample\"</span>&gt;</span>Checkbox<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-checkbox</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n  {{checkboxExample.value}}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">daff-button</span> <span class=\"hljs-attr\">color</span>=<span class=\"hljs-string\">\"primary\"</span> (<span class=\"hljs-attr\">click</span>)=<span class=\"hljs-string\">\"setFalse()\"</span>&gt;</span>Set to false<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">daff-button</span> (<span class=\"hljs-attr\">click</span>)=<span class=\"hljs-string\">\"setTrue()\"</span>&gt;</span>Set to true<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "basic-checkbox.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component, OnInit } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { FormControl } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/forms'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n    selector: <span class=\"hljs-string\">'basic-checkbox'</span>,\n    templateUrl: <span class=\"hljs-string\">'./basic-checkbox.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> BasicCheckboxComponent <span class=\"hljs-keyword\">implements</span> OnInit {\n    checkboxExample = <span class=\"hljs-keyword\">new</span> FormControl();\n\n    ngOnInit() {\n        <span class=\"hljs-keyword\">this</span>.checkboxExample.setValue(<span class=\"hljs-literal\">true</span>);\n    }\n    setFalse() {\n        <span class=\"hljs-keyword\">this</span>.checkboxExample.setValue(<span class=\"hljs-literal\">false</span>);\n    }\n    setTrue() {\n        <span class=\"hljs-keyword\">this</span>.checkboxExample.setValue(<span class=\"hljs-literal\">true</span>);\n    }\n}",
+      "language": "typescript"
+    },
+    {
+      "name": "basic-checkbox.module.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { NgModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { DaffButtonModule, DaffCheckboxModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@daffodil/design'</span>;\n\n<span class=\"hljs-keyword\">import</span> { BasicCheckboxComponent } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./basic-checkbox.component'</span>;\n<span class=\"hljs-keyword\">import</span> { ReactiveFormsModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/forms'</span>;\n\n\n<span class=\"hljs-meta\">@NgModule</span>({\n    declarations: [\n        BasicCheckboxComponent\n    ],\n    exports: [\n        BasicCheckboxComponent\n    ],\n    imports: [\n        DaffCheckboxModule,\n        DaffButtonModule,\n        ReactiveFormsModule\n    ],\n    providers: []\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> BasicCheckboxModule { }",
+      "language": "typescript"
+    }
+  ]
+}

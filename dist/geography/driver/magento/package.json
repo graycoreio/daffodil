@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/geography/driver/magento",
+  "main": "../../bundles/daffodil-geography-driver-magento.umd.js",
+  "module": "../../fesm5/daffodil-geography-driver-magento.js",
+  "es2015": "../../fesm2015/daffodil-geography-driver-magento.js",
+  "esm5": "../../esm5/driver/magento/daffodil-geography-driver-magento.js",
+  "esm2015": "../../esm2015/driver/magento/daffodil-geography-driver-magento.js",
+  "fesm5": "../../fesm5/daffodil-geography-driver-magento.js",
+  "fesm2015": "../../fesm2015/daffodil-geography-driver-magento.js",
+  "typings": "daffodil-geography-driver-magento.d.ts",
+  "metadata": "daffodil-geography-driver-magento.metadata.json",
+  "sideEffects": false
+}

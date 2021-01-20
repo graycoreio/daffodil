@@ -1,0 +1,5 @@
+{
+  "id": "api/checkout/DaffOrderServiceInterface",
+  "title": "DaffOrderServiceInterface",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffOrderServiceInterface</h1>\n  <label class=\"api-header__label interface\">interface</label>\n</header>\n\n\n<p class=\"api-subtitle\">Query order objects accessible by the logged-in user.</p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n\t\t<div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">get</div>\n<div class=\"members-table__cell\">Observable&lt;T&gt;</div>\n<div class=\"members-table__cell\">Get an order object with the specified order ID.</div>\n\n\n    \n\t\t\t\n<div class=\"members-table__cell\">list</div>\n<div class=\"members-table__cell\">Observable&lt;T[]&gt;</div>\n<div class=\"members-table__cell\">List all order objects for the logged-in user.</div>\n\n\n    </div>\n</section>\n\n</div>"
+}

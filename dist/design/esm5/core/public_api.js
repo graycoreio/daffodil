@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+// Core
+export { daffSuffixableMixin, daffPrefixableMixin, DaffPrefixSuffixModule, DaffPrefixDirective, DaffSuffixDirective } from './prefix-suffix/public_api';
+export { daffColorMixin, colorInPalette } from './colorable/colorable';
+export { DaffBreakpoints } from './breakpoints/breakpoints';
+export {} from './constructor/constructor';
+export { DaffStatusEnum } from './statusable/statusable';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJjb3JlL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFDQSwySEFBYyw0QkFBNEIsQ0FBQztBQUMzQywrQ0FBYyx1QkFBdUIsQ0FBQztBQUN0QyxnQ0FBYywyQkFBMkIsQ0FBQztBQUMxQyxlQUFjLDJCQUEyQixDQUFDO0FBQzFDLCtCQUFjLHlCQUF5QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQ29yZVxuZXhwb3J0ICogZnJvbSAnLi9wcmVmaXgtc3VmZml4L3B1YmxpY19hcGknO1xuZXhwb3J0ICogZnJvbSAnLi9jb2xvcmFibGUvY29sb3JhYmxlJztcbmV4cG9ydCAqIGZyb20gJy4vYnJlYWtwb2ludHMvYnJlYWtwb2ludHMnO1xuZXhwb3J0ICogZnJvbSAnLi9jb25zdHJ1Y3Rvci9jb25zdHJ1Y3Rvcic7XG5leHBvcnQgKiBmcm9tICcuL3N0YXR1c2FibGUvc3RhdHVzYWJsZSc7XG4iXX0=

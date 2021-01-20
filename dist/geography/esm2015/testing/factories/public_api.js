@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { MockDaffAddress, DaffAddressFactory } from './address.factory';
+export { MockDaffPersonalAddress, DaffPersonalAddressFactory } from './personal-address.factory';
+export { MockCountry, DaffCountryFactory } from './country.factory';
+export { MockSubdivision, DaffSubdivisionFactory } from './subdivision.factory';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9nZW9ncmFwaHkvdGVzdGluZy8iLCJzb3VyY2VzIjpbImZhY3Rvcmllcy9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxvREFBYyxtQkFBbUIsQ0FBQztBQUNsQyxvRUFBYyw0QkFBNEIsQ0FBQztBQUMzQyxnREFBYyxtQkFBbUIsQ0FBQztBQUNsQyx3REFBYyx1QkFBdUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vYWRkcmVzcy5mYWN0b3J5JztcbmV4cG9ydCAqIGZyb20gJy4vcGVyc29uYWwtYWRkcmVzcy5mYWN0b3J5JztcbmV4cG9ydCAqIGZyb20gJy4vY291bnRyeS5mYWN0b3J5JztcbmV4cG9ydCAqIGZyb20gJy4vc3ViZGl2aXNpb24uZmFjdG9yeSc7XG4iXX0=

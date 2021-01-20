@@ -1,0 +1,22 @@
+{
+  "id": "nav-list",
+  "docType": "design-example",
+  "name": "nav-list",
+  "files": [
+    {
+      "name": "nav-list.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-nav-list</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">daff-list-item</span>&gt;</span>\n\t\t\tNavigation list item 1\n\t\t\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">fa-icon</span> [<span class=\"hljs-attr\">icon</span>]=<span class=\"hljs-string\">\"faChevronRight\"</span> <span class=\"hljs-attr\">daffSuffix</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">fa-icon</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">daff-list-item</span>&gt;</span>\n\t\t\tNavigation list item 2\n\t<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">daff-list-item</span>&gt;</span>\n\t\t\tNavigation list item 3\n\t<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-nav-list</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "nav-list.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component, OnInit } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { faChevronRight } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@fortawesome/free-solid-svg-icons'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'nav-list'</span>,\n  templateUrl: <span class=\"hljs-string\">'./nav-list.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> NavListComponent {\n  faChevronRight = faChevronRight;\n}",
+      "language": "typescript"
+    },
+    {
+      "name": "nav-list.module.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { NgModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { CommonModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/common'</span>;\n\n<span class=\"hljs-keyword\">import</span> { NavListComponent } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./nav-list.component'</span>;\n\n<span class=\"hljs-keyword\">import</span> { DaffListModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@daffodil/design'</span>;\n<span class=\"hljs-keyword\">import</span> { FontAwesomeModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@fortawesome/angular-fontawesome'</span>;\n\n<span class=\"hljs-meta\">@NgModule</span>({\n  declarations: [\n    NavListComponent\n  ],\n  imports: [\n    CommonModule,\n    \n    DaffListModule,\n    FontAwesomeModule\n  ],\n  exports: [\n    NavListComponent\n  ]\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> NavListModule { }",
+      "language": "typescript"
+    }
+  ]
+}

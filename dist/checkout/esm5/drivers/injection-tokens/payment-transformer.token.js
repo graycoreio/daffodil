@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/** @type {?} */
+export var DaffPaymentTransformer = new InjectionToken('DaffPaymentTransformer');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGF5bWVudC10cmFuc2Zvcm1lci50b2tlbi5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jaGVja291dC8iLCJzb3VyY2VzIjpbImRyaXZlcnMvaW5qZWN0aW9uLXRva2Vucy9wYXltZW50LXRyYW5zZm9ybWVyLnRva2VuLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsY0FBYyxFQUFFLE1BQU0sZUFBZSxDQUFDOztBQUUvQyxNQUFNLEtBQU8sc0JBQXNCLEdBQUcsSUFBSSxjQUFjLENBQUMsd0JBQXdCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3Rpb25Ub2tlbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5leHBvcnQgY29uc3QgRGFmZlBheW1lbnRUcmFuc2Zvcm1lciA9IG5ldyBJbmplY3Rpb25Ub2tlbignRGFmZlBheW1lbnRUcmFuc2Zvcm1lcicpO1xuIl19

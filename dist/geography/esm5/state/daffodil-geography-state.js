@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { DaffGeographyFacade, DaffGeographyStateModule, getDaffGeographySelectors, daffGeographyReducers, DAFF_GEOGRAPHY_STORE_FEATURE_KEY, getCountryAdapter, daffCountryEntitiesInitialState, daffCountryEntitiesReducer, daffGeographyReducer, daffGeographyInitialState, DaffGeographyActionTypes, DaffCountryLoad, DaffCountryLoadSuccess, DaffCountryLoadFailure, DaffCountryList, DaffCountryListSuccess, DaffCountryListFailure } from './index';
+export { DaffGeographyEffects as ɵa } from './effects/geography.effects';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGFmZm9kaWwtZ2VvZ3JhcGh5LXN0YXRlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2dlb2dyYXBoeS9zdGF0ZS8iLCJzb3VyY2VzIjpbImRhZmZvZGlsLWdlb2dyYXBoeS1zdGF0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsK2FBQWMsU0FBUyxDQUFDO0FBRXhCLE9BQU8sRUFBQyxvQkFBb0IsSUFBSSxFQUFFLEVBQUMsTUFBTSw2QkFBNkIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogR2VuZXJhdGVkIGJ1bmRsZSBpbmRleC4gRG8gbm90IGVkaXQuXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9pbmRleCc7XG5cbmV4cG9ydCB7RGFmZkdlb2dyYXBoeUVmZmVjdHMgYXMgybVhfSBmcm9tICcuL2VmZmVjdHMvZ2VvZ3JhcGh5LmVmZmVjdHMnOyJdfQ==

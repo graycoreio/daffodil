@@ -1,0 +1,5 @@
+{
+  "id": "api/design/daffColorMixin",
+  "title": "daffColorMixin",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">daffColorMixin</h1>\n  <label class=\"api-header__label function\">function</label>\n</header>\n\n\n<p class=\"api-subtitle\">This should be a trait, but typescript only supports mixins.\nSee: https://github.com/Microsoft/TypeScript/issues/311\n\nTurns out the material team followed the same path with the color mixin.\nhttps://github.com/angular/material2/blob/master/src/lib/core/common-behaviors/color.ts</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

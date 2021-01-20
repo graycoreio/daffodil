@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffOrderReducer } from './order/order.reducer';
+/**
+ * @deprecated
+ * @type {?}
+ */
+export var daffOrderReducers = {
+    order: daffOrderReducer
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItcmVkdWNlcnMuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2hlY2tvdXQvIiwic291cmNlcyI6WyJvcmRlci9yZWR1Y2Vycy9vcmRlci1yZWR1Y2Vycy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBRUEsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sdUJBQXVCLENBQUM7Ozs7O0FBTXpELE1BQU0sS0FBTyxpQkFBaUIsR0FBNkM7SUFDekUsS0FBSyxFQUFFLGdCQUFnQjtDQUN4QiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFjdGlvblJlZHVjZXJNYXAgfSBmcm9tICdAbmdyeC9zdG9yZSc7XG5cbmltcG9ydCB7IGRhZmZPcmRlclJlZHVjZXIgfSBmcm9tICcuL29yZGVyL29yZGVyLnJlZHVjZXInO1xuaW1wb3J0IHsgRGFmZk9yZGVyUmVkdWNlcnNTdGF0ZSB9IGZyb20gJy4vb3JkZXItcmVkdWNlcnMuaW50ZXJmYWNlJztcblxuLyoqXG4gKiBAZGVwcmVjYXRlZFxuICovXG5leHBvcnQgY29uc3QgZGFmZk9yZGVyUmVkdWNlcnM6IEFjdGlvblJlZHVjZXJNYXA8RGFmZk9yZGVyUmVkdWNlcnNTdGF0ZT4gPSB7XG4gIG9yZGVyOiBkYWZmT3JkZXJSZWR1Y2VyXG59XG4iXX0=

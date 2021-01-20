@@ -1,0 +1,5 @@
+{
+  "id": "guides/cart/installation",
+  "title": "Installation",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"installation\">Installation</h1>\n<ul>\n<li><a href=\"#installation\">Installation</a><ul>\n<li><a href=\"#installing-with-npm\">Installing with <code>npm</code></a></li>\n<li><a href=\"#installing-with-yarn\">Installing with <code>yarn</code></a></li>\n<li><a href=\"#post-install\">Post-Install</a></li>\n</ul>\n</li>\n</ul>\n<h2 id=\"installing-with-npm\">Installing with <code>npm</code></h2>\n<p>To install the cart library and its dependencies, use the following command in the terminal.</p>\n<pre><code class=\"language-bash\">npm install @daffodil/cart @daffodil/core @ngrx/store @ngrx/effects --save</code></pre>\n<h2 id=\"installing-with-yarn\">Installing with <code>yarn</code></h2>\n<p>To install the cart library and its dependencies, use the following command in the terminal.</p>\n<pre><code class=\"language-bash\">yarn add @daffodil/cart @daffodil/core @ngrx/store @ngrx/effects</code></pre>\n<h2 id=\"post-install\">Post-Install</h2>\n<p>Refer to <a href=\"./getting-started.md\">the getting started guide</a> for next steps.</p>\n\n</div>\n"
+}

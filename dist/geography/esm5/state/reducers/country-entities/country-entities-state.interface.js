@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Interface for country entity state.
+ * @record
+ * @template T
+ */
+export function DaffCountryEntityState() { }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY291bnRyeS1lbnRpdGllcy1zdGF0ZS5pbnRlcmZhY2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvZ2VvZ3JhcGh5L3N0YXRlLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvY291bnRyeS1lbnRpdGllcy9jb3VudHJ5LWVudGl0aWVzLXN0YXRlLmludGVyZmFjZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFPQSw0Q0FBc0ciLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBFbnRpdHlTdGF0ZSB9IGZyb20gJ0BuZ3J4L2VudGl0eSc7XG5cbmltcG9ydCB7IERhZmZDb3VudHJ5IH0gZnJvbSAnQGRhZmZvZGlsL2dlb2dyYXBoeSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBjb3VudHJ5IGVudGl0eSBzdGF0ZS5cbiAqL1xuZXhwb3J0IGludGVyZmFjZSBEYWZmQ291bnRyeUVudGl0eVN0YXRlPFQgZXh0ZW5kcyBEYWZmQ291bnRyeSA9IERhZmZDb3VudHJ5PiBleHRlbmRzIEVudGl0eVN0YXRlPFQ+IHt9XG4iXX0=

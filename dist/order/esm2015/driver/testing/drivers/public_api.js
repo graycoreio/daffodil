@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffOrderTestingDriverModule } from './order-driver.module';
+export { DaffTestingOrderService } from './order.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9vcmRlci9kcml2ZXIvdGVzdGluZy8iLCJzb3VyY2VzIjpbImRyaXZlcnMvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLDRCQUE0QixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDckUsT0FBTyxFQUFFLHVCQUF1QixFQUFFLE1BQU0saUJBQWlCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBEYWZmT3JkZXJUZXN0aW5nRHJpdmVyTW9kdWxlIH0gZnJvbSAnLi9vcmRlci1kcml2ZXIubW9kdWxlJztcbmV4cG9ydCB7IERhZmZUZXN0aW5nT3JkZXJTZXJ2aWNlIH0gZnJvbSAnLi9vcmRlci5zZXJ2aWNlJztcbiJdfQ==

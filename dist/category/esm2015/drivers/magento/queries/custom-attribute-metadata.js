@@ -1,0 +1,22 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+/**
+ * A query for getting aggregation types.
+ * @type {?}
+ */
+export const MagentoGetCustomAttributeMetadata = gql `
+query MagentoGetCustomAttributeMetadata($attributes: [AttributeInput!]!)
+{
+	customAttributeMetadata(attributes: $attributes)
+	{
+		items {
+      attribute_code
+      attribute_type
+      input_type
+    }
+	}
+}`;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLWF0dHJpYnV0ZS1tZXRhZGF0YS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jYXRlZ29yeS8iLCJzb3VyY2VzIjpbImRyaXZlcnMvbWFnZW50by9xdWVyaWVzL2N1c3RvbS1hdHRyaWJ1dGUtbWV0YWRhdGEudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sR0FBRyxNQUFNLGFBQWEsQ0FBQzs7Ozs7QUFLOUIsTUFBTSxPQUFPLGlDQUFpQyxHQUFHLEdBQUcsQ0FBQTs7Ozs7Ozs7Ozs7RUFXbEQiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgZ3FsIGZyb20gJ2dyYXBocWwtdGFnJztcblxuLyoqXG4gKiBBIHF1ZXJ5IGZvciBnZXR0aW5nIGFnZ3JlZ2F0aW9uIHR5cGVzLlxuICovXG5leHBvcnQgY29uc3QgTWFnZW50b0dldEN1c3RvbUF0dHJpYnV0ZU1ldGFkYXRhID0gZ3FsYFxucXVlcnkgTWFnZW50b0dldEN1c3RvbUF0dHJpYnV0ZU1ldGFkYXRhKCRhdHRyaWJ1dGVzOiBbQXR0cmlidXRlSW5wdXQhXSEpXG57XG5cdGN1c3RvbUF0dHJpYnV0ZU1ldGFkYXRhKGF0dHJpYnV0ZXM6ICRhdHRyaWJ1dGVzKVxuXHR7XG5cdFx0aXRlbXMge1xuICAgICAgYXR0cmlidXRlX2NvZGVcbiAgICAgIGF0dHJpYnV0ZV90eXBlXG4gICAgICBpbnB1dF90eXBlXG4gICAgfVxuXHR9XG59YFxuIl19

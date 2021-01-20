@@ -1,0 +1,19 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
+/** @type {?} */
+export const validateGetCountriesResponse = (/**
+ * @param {?} response
+ * @return {?}
+ */
+(response) => {
+    if (response.data.countries) {
+        return response;
+    }
+    else {
+        throw new DaffGeographyInvalidAPIResponseError('Get countries response does not contain a valid list of countries.');
+    }
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2V0LWNvdW50cmllcy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9nZW9ncmFwaHkvZHJpdmVyL21hZ2VudG8vIiwic291cmNlcyI6WyJ2YWxpZGF0b3JzL2dldC1jb3VudHJpZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUVBLE9BQU8sRUFBRSxvQ0FBb0MsRUFBRSxNQUFNLDRCQUE0QixDQUFDOztBQUlsRixNQUFNLE9BQU8sNEJBQTRCOzs7O0FBQUcsQ0FBQyxRQUF3RCxFQUFFLEVBQUU7SUFDdkcsSUFBSSxRQUFRLENBQUMsSUFBSSxDQUFDLFNBQVMsRUFBRTtRQUMzQixPQUFPLFFBQVEsQ0FBQTtLQUNoQjtTQUFNO1FBQ0wsTUFBTSxJQUFJLG9DQUFvQyxDQUFDLG9FQUFvRSxDQUFDLENBQUE7S0FDckg7QUFDSCxDQUFDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBBcG9sbG9RdWVyeVJlc3VsdCB9IGZyb20gJ2Fwb2xsby1jbGllbnQnO1xuXG5pbXBvcnQgeyBEYWZmR2VvZ3JhcGh5SW52YWxpZEFQSVJlc3BvbnNlRXJyb3IgfSBmcm9tICdAZGFmZm9kaWwvZ2VvZ3JhcGh5L2RyaXZlcic7XG5cbmltcG9ydCB7IE1hZ2VudG9HZXRDb3VudHJpZXNSZXNwb25zZSB9IGZyb20gJy4uL3F1ZXJpZXMvcHVibGljX2FwaSc7XG5cbmV4cG9ydCBjb25zdCB2YWxpZGF0ZUdldENvdW50cmllc1Jlc3BvbnNlID0gKHJlc3BvbnNlOiBBcG9sbG9RdWVyeVJlc3VsdDxNYWdlbnRvR2V0Q291bnRyaWVzUmVzcG9uc2U+KSA9PiB7XG4gIGlmIChyZXNwb25zZS5kYXRhLmNvdW50cmllcykge1xuICAgIHJldHVybiByZXNwb25zZVxuICB9IGVsc2Uge1xuICAgIHRocm93IG5ldyBEYWZmR2VvZ3JhcGh5SW52YWxpZEFQSVJlc3BvbnNlRXJyb3IoJ0dldCBjb3VudHJpZXMgcmVzcG9uc2UgZG9lcyBub3QgY29udGFpbiBhIHZhbGlkIGxpc3Qgb2YgY291bnRyaWVzLicpXG4gIH1cbn1cbiJdfQ==

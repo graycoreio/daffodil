@@ -1,0 +1,26 @@
+{
+  "name": "@daffodil/branding",
+  "version": "0.0.0-PLACEHOLDER",
+  "private": true,
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
+  },
+  "main": "bundles/daffodil-branding.umd.js",
+  "module": "fesm5/daffodil-branding.js",
+  "es2015": "fesm2015/daffodil-branding.js",
+  "esm5": "esm5/daffodil-branding.js",
+  "esm2015": "esm2015/daffodil-branding.js",
+  "fesm5": "fesm5/daffodil-branding.js",
+  "fesm2015": "fesm2015/daffodil-branding.js",
+  "typings": "daffodil-branding.d.ts",
+  "metadata": "daffodil-branding.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

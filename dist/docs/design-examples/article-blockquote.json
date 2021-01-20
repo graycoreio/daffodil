@@ -1,0 +1,17 @@
+{
+  "id": "article-blockquote",
+  "docType": "design-example",
+  "name": "article-blockquote",
+  "files": [
+    {
+      "name": "article-blockquote.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-article</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">blockquote</span>&gt;</span>\n    This is a blockquote. This can be used for customer testimonals, document references, etc.\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">cite</span>&gt;</span>Name your quote source here.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">cite</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">blockquote</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-article</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "article-blockquote.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'article-blockquote'</span>,\n  templateUrl: <span class=\"hljs-string\">'./article-blockquote.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> ArticleBlockquoteComponent {}\n",
+      "language": "typescript"
+    }
+  ]
+}

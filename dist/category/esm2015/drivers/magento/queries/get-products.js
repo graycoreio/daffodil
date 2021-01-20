@@ -1,0 +1,30 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+import { magentoProductFragment } from '@daffodil/product';
+/**
+ * This query only exists because products and their associated aggregations/filter cannot
+ * be retrieved through a category call.
+ * @type {?}
+ */
+export const MagentoGetProductsQuery = gql `
+query MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)
+{
+	products(filter: $filter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)
+	{
+		total_count
+		items {
+			...product
+		}
+		page_info {
+			page_size
+			current_page
+			total_pages
+		}
+	}
+}
+${magentoProductFragment}
+`;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2V0LXByb2R1Y3RzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhdGVnb3J5LyIsInNvdXJjZXMiOlsiZHJpdmVycy9tYWdlbnRvL3F1ZXJpZXMvZ2V0LXByb2R1Y3RzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEdBQUcsTUFBTSxhQUFhLENBQUM7QUFDOUIsT0FBTyxFQUFFLHNCQUFzQixFQUFFLE1BQU0sbUJBQW1CLENBQUM7Ozs7OztBQU0zRCxNQUFNLE9BQU8sdUJBQXVCLEdBQUcsR0FBRyxDQUFBOzs7Ozs7Ozs7Ozs7Ozs7O0VBZ0J4QyxzQkFBc0I7Q0FDdkIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgZ3FsIGZyb20gJ2dyYXBocWwtdGFnJztcbmltcG9ydCB7IG1hZ2VudG9Qcm9kdWN0RnJhZ21lbnQgfSBmcm9tICdAZGFmZm9kaWwvcHJvZHVjdCc7XG5cbi8qKlxuICogVGhpcyBxdWVyeSBvbmx5IGV4aXN0cyBiZWNhdXNlIHByb2R1Y3RzIGFuZCB0aGVpciBhc3NvY2lhdGVkIGFnZ3JlZ2F0aW9ucy9maWx0ZXIgY2Fubm90XG4gKiBiZSByZXRyaWV2ZWQgdGhyb3VnaCBhIGNhdGVnb3J5IGNhbGwuXG4gKi9cbmV4cG9ydCBjb25zdCBNYWdlbnRvR2V0UHJvZHVjdHNRdWVyeSA9IGdxbGBcbnF1ZXJ5IE1hZ2VudG9HZXRQcm9kdWN0cygkZmlsdGVyOiBQcm9kdWN0QXR0cmlidXRlRmlsdGVySW5wdXQhLCAkc2VhcmNoOiBTdHJpbmcsICRwYWdlU2l6ZTogSW50LCAkY3VycmVudFBhZ2U6IEludCwgJHNvcnQ6IFByb2R1Y3RBdHRyaWJ1dGVTb3J0SW5wdXQpXG57XG5cdHByb2R1Y3RzKGZpbHRlcjogJGZpbHRlciwgc2VhcmNoOiAkc2VhcmNoLCBwYWdlU2l6ZTogJHBhZ2VTaXplLCBjdXJyZW50UGFnZTogJGN1cnJlbnRQYWdlLCBzb3J0OiAkc29ydClcblx0e1xuXHRcdHRvdGFsX2NvdW50XG5cdFx0aXRlbXMge1xuXHRcdFx0Li4ucHJvZHVjdFxuXHRcdH1cblx0XHRwYWdlX2luZm8ge1xuXHRcdFx0cGFnZV9zaXplXG5cdFx0XHRjdXJyZW50X3BhZ2Vcblx0XHRcdHRvdGFsX3BhZ2VzXG5cdFx0fVxuXHR9XG59XG4ke21hZ2VudG9Qcm9kdWN0RnJhZ21lbnR9XG5gXG4iXX0=

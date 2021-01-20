@@ -1,0 +1,6 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { daffCategoryValidateFilters } from './validate-filters';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jYXRlZ29yeS8iLCJzb3VyY2VzIjpbImhlbHBlcnMvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLDJCQUEyQixFQUFFLE1BQU0sb0JBQW9CLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBkYWZmQ2F0ZWdvcnlWYWxpZGF0ZUZpbHRlcnMgfSBmcm9tICcuL3ZhbGlkYXRlLWZpbHRlcnMnXG4iXX0=

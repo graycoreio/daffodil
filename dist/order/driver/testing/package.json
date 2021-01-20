@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/order/driver/testing",
+  "main": "../../bundles/daffodil-order-driver-testing.umd.js",
+  "module": "../../fesm5/daffodil-order-driver-testing.js",
+  "es2015": "../../fesm2015/daffodil-order-driver-testing.js",
+  "esm5": "../../esm5/driver/testing/daffodil-order-driver-testing.js",
+  "esm2015": "../../esm2015/driver/testing/daffodil-order-driver-testing.js",
+  "fesm5": "../../fesm5/daffodil-order-driver-testing.js",
+  "fesm2015": "../../fesm2015/daffodil-order-driver-testing.js",
+  "typings": "daffodil-order-driver-testing.d.ts",
+  "metadata": "daffodil-order-driver-testing.metadata.json",
+  "sideEffects": false
+}

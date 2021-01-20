@@ -1,0 +1,35 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { DaffProductGridActionTypes } from '../../actions/product-grid.actions';
+/**
+ * Initial values of the product grid state.
+ * @type {?}
+ */
+export const initialState = {
+    products: [],
+    loading: false,
+    errors: []
+};
+/**
+ * Reducer function that catches actions and changes/overwrites product grid state.
+ *
+ * @template T
+ * @param {?=} state current State of the redux store
+ * @param {?=} action a product grid action
+ * @return {?} Product grid state
+ */
+export function daffProductGridReducer(state = initialState, action) {
+    switch (action.type) {
+        case DaffProductGridActionTypes.ProductGridLoadAction:
+            return Object.assign({}, state, { loading: true });
+        case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+            return Object.assign({}, state, { loading: false });
+        case DaffProductGridActionTypes.ProductGridLoadFailureAction:
+            return Object.assign({}, state, { loading: false, errors: state.errors.concat(new Array(action.payload)) });
+        default:
+            return state;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZHVjdC1ncmlkLnJlZHVjZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvcHJvZHVjdC8iLCJzb3VyY2VzIjpbInJlZHVjZXJzL3Byb2R1Y3QtZ3JpZC9wcm9kdWN0LWdyaWQucmVkdWNlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLDBCQUEwQixFQUEwQixNQUFNLG9DQUFvQyxDQUFDOzs7OztBQU94RyxNQUFNLE9BQU8sWUFBWSxHQUFxQztJQUM1RCxRQUFRLEVBQUUsRUFBRTtJQUNaLE9BQU8sRUFBRSxLQUFLO0lBQ2QsTUFBTSxFQUFFLEVBQUU7Q0FDWDs7Ozs7Ozs7O0FBU0QsTUFBTSxVQUFVLHNCQUFzQixDQUF3QixLQUFLLEdBQUcsWUFBWSxFQUFFLE1BQWlDO0lBQ25ILFFBQVEsTUFBTSxDQUFDLElBQUksRUFBRTtRQUNuQixLQUFLLDBCQUEwQixDQUFDLHFCQUFxQjtZQUNuRCx5QkFBVyxLQUFLLElBQUUsT0FBTyxFQUFFLElBQUksSUFBRTtRQUNuQyxLQUFLLDBCQUEwQixDQUFDLDRCQUE0QjtZQUMxRCx5QkFBVyxLQUFLLElBQUUsT0FBTyxFQUFFLEtBQUssSUFBRTtRQUNwQyxLQUFLLDBCQUEwQixDQUFDLDRCQUE0QjtZQUMxRCx5QkFBVyxLQUFLLElBQ2QsT0FBTyxFQUFFLEtBQUssRUFDZCxNQUFNLEVBQUUsS0FBSyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUMsSUFBSSxLQUFLLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxDQUFDLElBQ3REO1FBQ0o7WUFDRSxPQUFPLEtBQUssQ0FBQztLQUNoQjtBQUNILENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEYWZmUHJvZHVjdEdyaWRBY3Rpb25UeXBlcywgRGFmZlByb2R1Y3RHcmlkQWN0aW9ucyB9IGZyb20gJy4uLy4uL2FjdGlvbnMvcHJvZHVjdC1ncmlkLmFjdGlvbnMnO1xuaW1wb3J0IHsgRGFmZlByb2R1Y3RHcmlkUmVkdWNlclN0YXRlIH0gZnJvbSAnLi9wcm9kdWN0LWdyaWQtcmVkdWNlci1zdGF0ZS5pbnRlcmZhY2UnO1xuaW1wb3J0IHsgRGFmZlByb2R1Y3QgfSBmcm9tICcuLi8uLi9tb2RlbHMvcHJvZHVjdCc7XG5cbi8qKlxuICogSW5pdGlhbCB2YWx1ZXMgb2YgdGhlIHByb2R1Y3QgZ3JpZCBzdGF0ZS5cbiAqL1xuZXhwb3J0IGNvbnN0IGluaXRpYWxTdGF0ZTogRGFmZlByb2R1Y3RHcmlkUmVkdWNlclN0YXRlPGFueT4gPSB7XG4gIHByb2R1Y3RzOiBbXSxcbiAgbG9hZGluZzogZmFsc2UsXG4gIGVycm9yczogW11cbn07XG5cbi8qKlxuICogUmVkdWNlciBmdW5jdGlvbiB0aGF0IGNhdGNoZXMgYWN0aW9ucyBhbmQgY2hhbmdlcy9vdmVyd3JpdGVzIHByb2R1Y3QgZ3JpZCBzdGF0ZS5cbiAqIFxuICogQHBhcmFtIHN0YXRlIGN1cnJlbnQgU3RhdGUgb2YgdGhlIHJlZHV4IHN0b3JlXG4gKiBAcGFyYW0gYWN0aW9uIGEgcHJvZHVjdCBncmlkIGFjdGlvblxuICogQHJldHVybnMgUHJvZHVjdCBncmlkIHN0YXRlXG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBkYWZmUHJvZHVjdEdyaWRSZWR1Y2VyPFQgZXh0ZW5kcyBEYWZmUHJvZHVjdD4oc3RhdGUgPSBpbml0aWFsU3RhdGUsIGFjdGlvbjogRGFmZlByb2R1Y3RHcmlkQWN0aW9uczxUPik6IERhZmZQcm9kdWN0R3JpZFJlZHVjZXJTdGF0ZTxUPiB7XG4gIHN3aXRjaCAoYWN0aW9uLnR5cGUpIHtcbiAgICBjYXNlIERhZmZQcm9kdWN0R3JpZEFjdGlvblR5cGVzLlByb2R1Y3RHcmlkTG9hZEFjdGlvbjpcbiAgICAgIHJldHVybiB7Li4uc3RhdGUsIGxvYWRpbmc6IHRydWV9O1xuICAgIGNhc2UgRGFmZlByb2R1Y3RHcmlkQWN0aW9uVHlwZXMuUHJvZHVjdEdyaWRMb2FkU3VjY2Vzc0FjdGlvbjpcbiAgICAgIHJldHVybiB7Li4uc3RhdGUsIGxvYWRpbmc6IGZhbHNlfTtcbiAgICBjYXNlIERhZmZQcm9kdWN0R3JpZEFjdGlvblR5cGVzLlByb2R1Y3RHcmlkTG9hZEZhaWx1cmVBY3Rpb246XG4gICAgICByZXR1cm4gey4uLnN0YXRlLCBcbiAgICAgICAgbG9hZGluZzogZmFsc2UsIFxuICAgICAgICBlcnJvcnM6IHN0YXRlLmVycm9ycy5jb25jYXQobmV3IEFycmF5KGFjdGlvbi5wYXlsb2FkKSlcbiAgICAgIH07XG4gICAgZGVmYXVsdDpcbiAgICAgIHJldHVybiBzdGF0ZTtcbiAgfVxufVxuIl19

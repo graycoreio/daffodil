@@ -1,0 +1,5 @@
+{
+  "id": "guides/external-router",
+  "title": "@daffodil/external-router",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"daffodilexternal-router\">@daffodil/external-router</h1>\n<h2 id=\"purpose\">Purpose</h2>\n<p>This package extends <code>@angular/router</code> allowing you to wire an external router into the Router.</p>\n<p>For example, this package allows you to <strong>define routes in an external system</strong> and have Angular render the appropriate component or lazy-loaded module.</p>\n\n</div>\n"
+}

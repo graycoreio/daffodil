@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+export function DaffPaypalReducersState() { }
+if (false) {
+    /** @type {?} */
+    DaffPaypalReducersState.prototype.paypal;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGF5cGFsLXJlZHVjZXJzLmludGVyZmFjZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9wYXlwYWwvIiwic291cmNlcyI6WyJyZWR1Y2Vycy9wYXlwYWwtcmVkdWNlcnMuaW50ZXJmYWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBR0EsNkNBRUM7OztJQURBLHlDQUFrQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZQYXlwYWxSZWR1Y2VyU3RhdGUgfSBmcm9tICcuL3BheXBhbC9wYXlwYWwtcmVkdWNlci5pbnRlcmZhY2UnO1xuaW1wb3J0IHsgRGFmZlBheXBhbFRva2VuUmVzcG9uc2UgfSBmcm9tICcuLi9tb2RlbHMvcGF5cGFsLXRva2VuLXJlc3BvbnNlJztcblxuZXhwb3J0IGludGVyZmFjZSBEYWZmUGF5cGFsUmVkdWNlcnNTdGF0ZTxUIGV4dGVuZHMgRGFmZlBheXBhbFRva2VuUmVzcG9uc2UgPSBEYWZmUGF5cGFsVG9rZW5SZXNwb25zZT4ge1xuXHRwYXlwYWw6IERhZmZQYXlwYWxSZWR1Y2VyU3RhdGU8VD47XG59XG4iXX0=

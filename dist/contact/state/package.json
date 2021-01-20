@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/daffodil-contact-state.umd.js",
+  "module": "../fesm5/daffodil-contact-state.js",
+  "es2015": "../fesm2015/daffodil-contact-state.js",
+  "esm5": "../esm5/state/daffodil-contact-state.js",
+  "esm2015": "../esm2015/state/daffodil-contact-state.js",
+  "fesm5": "../fesm5/daffodil-contact-state.js",
+  "fesm2015": "../fesm2015/daffodil-contact-state.js",
+  "typings": "daffodil-contact-state.d.ts",
+  "metadata": "daffodil-contact-state.metadata.json",
+  "sideEffects": false,
+  "name": "@daffodil/contact/state"
+}

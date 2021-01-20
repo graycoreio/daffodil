@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/design/checkbox/examples",
+  "main": "../../bundles/daffodil-design-checkbox-examples.umd.js",
+  "module": "../../fesm5/daffodil-design-checkbox-examples.js",
+  "es2015": "../../fesm2015/daffodil-design-checkbox-examples.js",
+  "esm5": "../../esm5/checkbox/examples/daffodil-design-checkbox-examples.js",
+  "esm2015": "../../esm2015/checkbox/examples/daffodil-design-checkbox-examples.js",
+  "fesm5": "../../fesm5/daffodil-design-checkbox-examples.js",
+  "fesm2015": "../../fesm2015/daffodil-design-checkbox-examples.js",
+  "typings": "daffodil-design-checkbox-examples.d.ts",
+  "metadata": "daffodil-design-checkbox-examples.metadata.json",
+  "sideEffects": false
+}

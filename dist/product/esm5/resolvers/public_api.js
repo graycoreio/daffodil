@@ -1,0 +1,6 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffProductPageResolver } from './product-page/product-page.resolver';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9wcm9kdWN0LyIsInNvdXJjZXMiOlsicmVzb2x2ZXJzL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxNQUFNLHNDQUFzQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZlByb2R1Y3RQYWdlUmVzb2x2ZXIgfSBmcm9tICcuL3Byb2R1Y3QtcGFnZS9wcm9kdWN0LXBhZ2UucmVzb2x2ZXInO1xuIl19

@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { DaffTestingNewsletterService, DaffNewsletterInMemoryDriverModule, DaffInMemoryBackendNewsletterService, DaffNewsletterTestingDriverModule, DaffNewsletterTestingModule, MockDaffNewsletterFacade } from './index';
+export { DaffInMemoryNewsletterService as ɵa } from './drivers/in-memory/newsletter.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGFmZm9kaWwtbmV3c2xldHRlci10ZXN0aW5nLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL25ld3NsZXR0ZXIvdGVzdGluZy8iLCJzb3VyY2VzIjpbImRhZmZvZGlsLW5ld3NsZXR0ZXItdGVzdGluZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsaU5BQWMsU0FBUyxDQUFDO0FBRXhCLE9BQU8sRUFBQyw2QkFBNkIsSUFBSSxFQUFFLEVBQUMsTUFBTSx3Q0FBd0MsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogR2VuZXJhdGVkIGJ1bmRsZSBpbmRleC4gRG8gbm90IGVkaXQuXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9pbmRleCc7XG5cbmV4cG9ydCB7RGFmZkluTWVtb3J5TmV3c2xldHRlclNlcnZpY2UgYXMgybVhfSBmcm9tICcuL2RyaXZlcnMvaW4tbWVtb3J5L25ld3NsZXR0ZXIuc2VydmljZSc7Il19

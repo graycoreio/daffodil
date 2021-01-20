@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var DAFF_NAVIGATION_STORE_FEATURE_KEY = 'daffNavigation';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2aWdhdGlvbi1zdG9yZS1mZWF0dXJlLWtleS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9uYXZpZ2F0aW9uL3N0YXRlLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvbmF2aWdhdGlvbi1zdG9yZS1mZWF0dXJlLWtleS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sS0FBTyxpQ0FBaUMsR0FBRyxnQkFBZ0IiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgREFGRl9OQVZJR0FUSU9OX1NUT1JFX0ZFQVRVUkVfS0VZID0gJ2RhZmZOYXZpZ2F0aW9uJztcbiJdfQ==

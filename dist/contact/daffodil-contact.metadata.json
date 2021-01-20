@@ -1,0 +1,1 @@
+{"__symbolic":"module","version":4,"metadata":{"DaffContactUnion":{"__symbolic":"interface"}},"origins":{"DaffContactUnion":"./models/contact-union"},"importAs":"@daffodil/contact"}

@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/design/radio/examples",
+  "main": "../../bundles/daffodil-design-radio-examples.umd.js",
+  "module": "../../fesm5/daffodil-design-radio-examples.js",
+  "es2015": "../../fesm2015/daffodil-design-radio-examples.js",
+  "esm5": "../../esm5/radio/examples/daffodil-design-radio-examples.js",
+  "esm2015": "../../esm2015/radio/examples/daffodil-design-radio-examples.js",
+  "fesm5": "../../fesm5/daffodil-design-radio-examples.js",
+  "fesm2015": "../../fesm2015/daffodil-design-radio-examples.js",
+  "typings": "daffodil-design-radio-examples.d.ts",
+  "metadata": "daffodil-design-radio-examples.metadata.json",
+  "sideEffects": false
+}

@@ -1,0 +1,61 @@
+import { Actions } from '@ngrx/effects';
+import { DaffCartItemInput, DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
+import { DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemStateReset } from '../actions/public_api';
+import { DaffStatefulCartItem } from '../models/public_api';
+export declare class DaffCartItemEffects<T extends DaffStatefulCartItem, U extends DaffCartItemInput, V extends DaffCart> {
+    private actions$;
+    private errorMatcher;
+    private driver;
+    private storage;
+    private cartItemStateDebounceTime;
+    constructor(actions$: Actions, errorMatcher: Function, driver: DaffCartItemServiceInterface<T, U, V>, storage: DaffCartStorageService, cartItemStateDebounceTime: number);
+    list$: import("rxjs").Observable<DaffCartItemListFailure | DaffCartItemListSuccess<T>>;
+    get$: import("rxjs").Observable<DaffCartItemLoadFailure | DaffCartItemLoadSuccess<T>>;
+    add$: import("rxjs").Observable<DaffCartItemAddFailure | DaffCartItemAddSuccess<{
+        id: string | number;
+        subtotal: number;
+        grand_total: number;
+        coupons: import("../../../../../dist/cart/daffodil-cart").DaffCartCoupon[];
+        items: import("../../../../../dist/cart/daffodil-cart").DaffCartItem[];
+        billing_address: import("../../../../../dist/cart/daffodil-cart").DaffCartAddress;
+        shipping_address: import("../../../../../dist/cart/daffodil-cart").DaffCartAddress;
+        payment: import("../../../../../dist/cart/daffodil-cart").DaffCartPaymentMethod;
+        totals: import("../../../../../dist/cart/daffodil-cart").DaffCartTotal[];
+        shipping_information: import("../../../../../dist/cart/daffodil-cart").DaffCartShippingInformation;
+        available_shipping_methods: import("../../../../../dist/cart/daffodil-cart").DaffCartShippingRate[];
+        available_payment_methods: import("../../../../../dist/cart/daffodil-cart").DaffCartPaymentMethod[];
+        extra_attributes: any;
+    }>>;
+    update$: import("rxjs").Observable<DaffCartItemUpdateFailure | DaffCartItemUpdateSuccess<{
+        id: string | number;
+        subtotal: number;
+        grand_total: number;
+        coupons: import("../../../../../dist/cart/daffodil-cart").DaffCartCoupon[];
+        items: import("../../../../../dist/cart/daffodil-cart").DaffCartItem[];
+        billing_address: import("../../../../../dist/cart/daffodil-cart").DaffCartAddress;
+        shipping_address: import("../../../../../dist/cart/daffodil-cart").DaffCartAddress;
+        payment: import("../../../../../dist/cart/daffodil-cart").DaffCartPaymentMethod;
+        totals: import("../../../../../dist/cart/daffodil-cart").DaffCartTotal[];
+        shipping_information: import("../../../../../dist/cart/daffodil-cart").DaffCartShippingInformation;
+        available_shipping_methods: import("../../../../../dist/cart/daffodil-cart").DaffCartShippingRate[];
+        available_payment_methods: import("../../../../../dist/cart/daffodil-cart").DaffCartPaymentMethod[];
+        extra_attributes: any;
+    }, T>>;
+    resetCartItemStateAfterChange$: import("rxjs").Observable<DaffCartItemStateReset>;
+    delete$: import("rxjs").Observable<DaffCartItemDeleteFailure | DaffCartItemDeleteSuccess<{
+        id: string | number;
+        subtotal: number;
+        grand_total: number;
+        coupons: import("../../../../../dist/cart/daffodil-cart").DaffCartCoupon[];
+        items: import("../../../../../dist/cart/daffodil-cart").DaffCartItem[];
+        billing_address: import("../../../../../dist/cart/daffodil-cart").DaffCartAddress;
+        shipping_address: import("../../../../../dist/cart/daffodil-cart").DaffCartAddress;
+        payment: import("../../../../../dist/cart/daffodil-cart").DaffCartPaymentMethod;
+        totals: import("../../../../../dist/cart/daffodil-cart").DaffCartTotal[];
+        shipping_information: import("../../../../../dist/cart/daffodil-cart").DaffCartShippingInformation;
+        available_shipping_methods: import("../../../../../dist/cart/daffodil-cart").DaffCartShippingRate[];
+        available_payment_methods: import("../../../../../dist/cart/daffodil-cart").DaffCartPaymentMethod[];
+        extra_attributes: any;
+    }>>;
+}

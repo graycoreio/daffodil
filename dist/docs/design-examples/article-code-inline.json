@@ -1,0 +1,17 @@
+{
+  "id": "article-code-inline",
+  "docType": "design-example",
+  "name": "article-code-inline",
+  "files": [
+    {
+      "name": "article-code-inline.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-article</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>We could be discussing <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">code</span>&gt;</span>functions<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">code</span>&gt;</span> or <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">code</span>&gt;</span>types<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">code</span>&gt;</span>, but we should indicate the difference between these elements and regular text!<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-article</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "article-code-inline.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'article-code-inline'</span>,\n  templateUrl: <span class=\"hljs-string\">'./article-code-inline.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> ArticleCodeInlineComponent {}\n",
+      "language": "typescript"
+    }
+  ]
+}

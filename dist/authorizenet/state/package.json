@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/authorizenet/state",
+  "main": "../bundles/daffodil-authorizenet-state.umd.js",
+  "module": "../fesm5/daffodil-authorizenet-state.js",
+  "es2015": "../fesm2015/daffodil-authorizenet-state.js",
+  "esm5": "../esm5/state/daffodil-authorizenet-state.js",
+  "esm2015": "../esm2015/state/daffodil-authorizenet-state.js",
+  "fesm5": "../fesm5/daffodil-authorizenet-state.js",
+  "fesm2015": "../fesm2015/daffodil-authorizenet-state.js",
+  "typings": "daffodil-authorizenet-state.d.ts",
+  "metadata": "daffodil-authorizenet-state.metadata.json",
+  "sideEffects": false
+}

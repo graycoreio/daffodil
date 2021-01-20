@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffSidebarModule } from './sidebar.module';
+export { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
+export { DaffSidebarComponent } from './sidebar/sidebar.component';
+export {} from './helper/sidebar-mode';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJtb2xlY3VsZXMvc2lkZWJhci9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxrQkFBa0IsQ0FBQztBQUNyRCw2Q0FBYywrQ0FBK0MsQ0FBQztBQUM5RCxxQ0FBYyw2QkFBNkIsQ0FBQztBQUM1QyxlQUFjLHVCQUF1QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZlNpZGViYXJNb2R1bGUgfSBmcm9tICcuL3NpZGViYXIubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vc2lkZWJhci12aWV3cG9ydC9zaWRlYmFyLXZpZXdwb3J0LmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL3NpZGViYXIvc2lkZWJhci5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9oZWxwZXIvc2lkZWJhci1tb2RlJztcbiJdfQ==

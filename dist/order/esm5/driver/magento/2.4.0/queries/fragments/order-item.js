@@ -1,0 +1,13 @@
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+/** @type {?} */
+export var orderItemFragment = gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  fragment orderItem on GraycoreOrderItem {\n    qty_ordered\n    image\n    qty_canceled\n    qty_fulfilled\n    order_id\n    created_at\n    updated_at\n    product_id\n    sku\n    name\n    weight\n    qty\n    price\n    discount_percent\n    discount_amount\n    tax_percent\n    tax_amount\n    row_total\n    row_total_with_discount\n    row_weight\n    tax_before_discount\n  }\n"], ["\n  fragment orderItem on GraycoreOrderItem {\n    qty_ordered\n    image\n    qty_canceled\n    qty_fulfilled\n    order_id\n    created_at\n    updated_at\n    product_id\n    sku\n    name\n    weight\n    qty\n    price\n    discount_percent\n    discount_amount\n    tax_percent\n    tax_amount\n    row_total\n    row_total_with_discount\n    row_weight\n    tax_before_discount\n  }\n"])));
+var templateObject_1;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItaXRlbS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9vcmRlci9kcml2ZXIvbWFnZW50by8yLjQuMC8iLCJzb3VyY2VzIjpbInF1ZXJpZXMvZnJhZ21lbnRzL29yZGVyLWl0ZW0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQSxPQUFPLEdBQUcsTUFBTSxhQUFhLENBQUM7O0FBRTlCLE1BQU0sS0FBTyxpQkFBaUIsR0FBRyxHQUFHLDRjQUFBLHlZQXdCbkMsSUFBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBncWwgZnJvbSAnZ3JhcGhxbC10YWcnO1xuXG5leHBvcnQgY29uc3Qgb3JkZXJJdGVtRnJhZ21lbnQgPSBncWxgXG4gIGZyYWdtZW50IG9yZGVySXRlbSBvbiBHcmF5Y29yZU9yZGVySXRlbSB7XG4gICAgcXR5X29yZGVyZWRcbiAgICBpbWFnZVxuICAgIHF0eV9jYW5jZWxlZFxuICAgIHF0eV9mdWxmaWxsZWRcbiAgICBvcmRlcl9pZFxuICAgIGNyZWF0ZWRfYXRcbiAgICB1cGRhdGVkX2F0XG4gICAgcHJvZHVjdF9pZFxuICAgIHNrdVxuICAgIG5hbWVcbiAgICB3ZWlnaHRcbiAgICBxdHlcbiAgICBwcmljZVxuICAgIGRpc2NvdW50X3BlcmNlbnRcbiAgICBkaXNjb3VudF9hbW91bnRcbiAgICB0YXhfcGVyY2VudFxuICAgIHRheF9hbW91bnRcbiAgICByb3dfdG90YWxcbiAgICByb3dfdG90YWxfd2l0aF9kaXNjb3VudFxuICAgIHJvd193ZWlnaHRcbiAgICB0YXhfYmVmb3JlX2Rpc2NvdW50XG4gIH1cbmA7XG4iXX0=

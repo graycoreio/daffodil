@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffLogoComponent } from './logo.component';
+export { DaffLogoModule } from './logo.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9icmFuZGluZy8iLCJzb3VyY2VzIjpbImxpYi9sb2dvL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxpQkFBaUIsRUFBK0IsTUFBTSxrQkFBa0IsQ0FBQztBQUNsRixPQUFPLEVBQUUsY0FBYyxFQUFFLE1BQU0sZUFBZSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZkxvZ29Db21wb25lbnQsIERhZmZMb2dvQ29sb3IsIERhZmZMb2dvVHlwZSB9IGZyb20gJy4vbG9nby5jb21wb25lbnQnO1xuZXhwb3J0IHsgRGFmZkxvZ29Nb2R1bGUgfSBmcm9tICcuL2xvZ28ubW9kdWxlJzsiXX0=

@@ -1,0 +1,5 @@
+{
+  "id": "api/checkout/selectPaymentFeatureState",
+  "title": "selectPaymentFeatureState",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">selectPaymentFeatureState</h1>\n  <label class=\"api-header__label const\">const</label>\n</header>\n\n\n<p class=\"api-subtitle\">Payment Feature State</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

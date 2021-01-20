@@ -1,0 +1,1 @@
+{"version":3,"file":"daffodil-external-router.js","sources":["ng://@daffodil/external-router/public_api.ts"],"sourcesContent":["/*\n * Public API Surface of @daffodil/external-router\n */\n\nexport const tmpApi = 'A fake token';\n"],"names":[],"mappings":";;;;;;;;AAIA,MAAa,MAAM,GAAG,cAAc;;;;;;;;;"}

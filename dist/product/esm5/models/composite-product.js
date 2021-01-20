@@ -1,0 +1,19 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A composite product is a group of products sold together. It includes one primary product and many accessory "items".
+ * The composite product items are additional products the customer might want to purchase with the primary product,
+ * and each item has a number of options from which the user can choose. Composite product items can be optional or required.
+ * For example, a toolbox bundle might have a primary product of the toolbox. The items could be a hammer and a screw driver,
+ * and the options for these items could be two different hammers and two different screwdrivers between which the customer could choose.
+ * All of these items could have different prices/discounts/etc which would cause the composite products to have ranged prices.
+ * @record
+ */
+export function DaffCompositeProduct() { }
+if (false) {
+    /** @type {?} */
+    DaffCompositeProduct.prototype.items;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tcG9zaXRlLXByb2R1Y3QuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvcHJvZHVjdC8iLCJzb3VyY2VzIjpbIm1vZGVscy9jb21wb3NpdGUtcHJvZHVjdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7O0FBV0EsMENBRUM7OztJQURBLHFDQUFrQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZQcm9kdWN0IH0gZnJvbSAnLi9wcm9kdWN0JztcbmltcG9ydCB7IERhZmZDb21wb3NpdGVQcm9kdWN0SXRlbSB9IGZyb20gJy4vY29tcG9zaXRlLXByb2R1Y3QtaXRlbSc7XG5cbi8qKlxuICogQSBjb21wb3NpdGUgcHJvZHVjdCBpcyBhIGdyb3VwIG9mIHByb2R1Y3RzIHNvbGQgdG9nZXRoZXIuIEl0IGluY2x1ZGVzIG9uZSBwcmltYXJ5IHByb2R1Y3QgYW5kIG1hbnkgYWNjZXNzb3J5IFwiaXRlbXNcIi4gXG4gKiBUaGUgY29tcG9zaXRlIHByb2R1Y3QgaXRlbXMgYXJlIGFkZGl0aW9uYWwgcHJvZHVjdHMgdGhlIGN1c3RvbWVyIG1pZ2h0IHdhbnQgdG8gcHVyY2hhc2Ugd2l0aCB0aGUgcHJpbWFyeSBwcm9kdWN0LCBcbiAqIGFuZCBlYWNoIGl0ZW0gaGFzIGEgbnVtYmVyIG9mIG9wdGlvbnMgZnJvbSB3aGljaCB0aGUgdXNlciBjYW4gY2hvb3NlLiBDb21wb3NpdGUgcHJvZHVjdCBpdGVtcyBjYW4gYmUgb3B0aW9uYWwgb3IgcmVxdWlyZWQuXG4gKiBGb3IgZXhhbXBsZSwgYSB0b29sYm94IGJ1bmRsZSBtaWdodCBoYXZlIGEgcHJpbWFyeSBwcm9kdWN0IG9mIHRoZSB0b29sYm94LiBUaGUgaXRlbXMgY291bGQgYmUgYSBoYW1tZXIgYW5kIGEgc2NyZXcgZHJpdmVyLCBcbiAqIGFuZCB0aGUgb3B0aW9ucyBmb3IgdGhlc2UgaXRlbXMgY291bGQgYmUgdHdvIGRpZmZlcmVudCBoYW1tZXJzIGFuZCB0d28gZGlmZmVyZW50IHNjcmV3ZHJpdmVycyBiZXR3ZWVuIHdoaWNoIHRoZSBjdXN0b21lciBjb3VsZCBjaG9vc2UuIFxuICogQWxsIG9mIHRoZXNlIGl0ZW1zIGNvdWxkIGhhdmUgZGlmZmVyZW50IHByaWNlcy9kaXNjb3VudHMvZXRjIHdoaWNoIHdvdWxkIGNhdXNlIHRoZSBjb21wb3NpdGUgcHJvZHVjdHMgdG8gaGF2ZSByYW5nZWQgcHJpY2VzLlxuICovXG5leHBvcnQgaW50ZXJmYWNlIERhZmZDb21wb3NpdGVQcm9kdWN0IGV4dGVuZHMgRGFmZlByb2R1Y3Qge1xuXHRpdGVtczogRGFmZkNvbXBvc2l0ZVByb2R1Y3RJdGVtW107XG59XG4iXX0=

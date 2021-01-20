@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var DAFF_ORDER_STORE_FEATURE_KEY = 'daffOrder';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItc3RvcmUtZmVhdHVyZS1rZXkuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvc3RhdGUvIiwic291cmNlcyI6WyJyZWR1Y2Vycy9vcmRlci1zdG9yZS1mZWF0dXJlLWtleS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sS0FBTyw0QkFBNEIsR0FBRyxXQUFXIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNvbnN0IERBRkZfT1JERVJfU1RPUkVfRkVBVFVSRV9LRVkgPSAnZGFmZk9yZGVyJztcbiJdfQ==

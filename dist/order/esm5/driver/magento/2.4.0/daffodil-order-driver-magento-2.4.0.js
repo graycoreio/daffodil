@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { daffMagentoTransformOrder, DaffOrderMagentoService, DaffOrderMagentoDriverModule, getGuestOrders, orderFragment, orderAddressFragment, orderInvoiceFragment, orderItemFragment, orderPaymentFragment, orderShipmentFragment, orderShipmentItemFragment, orderShipmentTrackingFragment, DaffMagentoExtraOrderFragments } from './index';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGFmZm9kaWwtb3JkZXItZHJpdmVyLW1hZ2VudG8tMi40LjAuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvZHJpdmVyL21hZ2VudG8vMi40LjAvIiwic291cmNlcyI6WyJkYWZmb2RpbC1vcmRlci1kcml2ZXItbWFnZW50by0yLjQuMC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsc1VBQWMsU0FBUyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBHZW5lcmF0ZWQgYnVuZGxlIGluZGV4LiBEbyBub3QgZWRpdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2luZGV4JztcbiJdfQ==

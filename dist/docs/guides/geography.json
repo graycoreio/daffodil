@@ -1,0 +1,5 @@
+{
+  "id": "guides/geography",
+  "title": "@daffodil/geography",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"daffodilgeography\">@daffodil/geography</h1>\n<p>The <code>@daffodil/geography</code> library intends to provide:</p>\n<ol>\n<li>Platform-agnostic drivers for retrieving the list of available &quot;regions&quot; or &quot;states&quot; for a given country supported by a platform.</li>\n<li>Useful models and functions for working with physical addresses.</li>\n</ol>\n\n</div>\n"
+}

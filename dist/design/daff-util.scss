@@ -1,0 +1,346 @@
+// @docs
+//
+// `daff-util` is a utility library that contains common functions,
+// mixins and variables that make writing SCSS style-sheets a bit
+// easier.
+//
+//
+// @note You can import this as often as you like, as it only contains SCSS
+// variables, mixins, and functions; thus it won't effect your final
+// compiled stylesheet size.
+//
+// @usage
+// ```
+// 
+// ```
+
+// Variables
+$body-font-family: proxima-nova, sans-serif;
+$base-font-family: $body-font-family;
+
+// deprecated
+$desktop-font-size: 16px;
+$mobile-font-size: 16px;
+
+$large-font-size: 1.5rem;
+$medium-font-size: 1.25rem;
+$normal-font-size: 1rem;
+$small-font-size: 0.75rem;
+
+//
+// @docs
+//
+// Sensible breakpoints to be used for layouts and interfaces.
+// These breakpoints are based on common devices viewport widths.
+$breakpoints: (
+	desktop: 1920px,
+	laptop: 1440px,
+	small-laptop: 1200px,
+	big-tablet: 1024px,
+	tablet: 768px,
+	mobile: 480px
+);
+
+
+// Daffodil SASS Core
+//
+// @docs
+// @private
+// Splits a string into an array based on a separator
+// Remember, string arrays begin at 1 in SASS.
+//
+// @returns comma-list
+//
+@function daff-string-split($string, $separator) {
+	$list: ();
+	$index: str-index($string, $separator);
+
+	@if ($index == null) {
+		@return $list;
+	}
+
+	@while $index !=null {
+		$item: str-slice($string, 1, $index - 1);
+
+		@if ($item != '') {
+			$list: append($list, $item, 'comma');
+		}
+
+		$string: str-slice($string, $index + 1);
+		$index: str-index($string, $separator);
+	}
+
+	@if ($string != '') {
+		$list: append($list, $string, 'comma');
+	}
+
+	@return $list;
+}
+
+
+//
+// Checks whether or not a map has a nested key
+//
+// @param $map - the map being checked
+// @param $keys - an list of ordered keys to traverse down
+//
+// @returns boolean
+// @throws error
+//
+@function daff-map-deep-check($map, $keys) {
+	@if (type-of($map) != 'map') {
+		@error 'Expected first parameter to be of type `map`';
+	}
+
+	@each $key in $keys {
+		@if (not map-has-key($map, $key)) {
+			@return false;
+		}
+
+		$map: map-get($map, $key);
+	}
+
+	@return true;
+}
+
+//
+// @docs
+// @private
+// Splits a string into an array based on a separator
+// Remember, string arrays begin at 1 in SASS.
+//
+// @returns comma-list
+//
+@function daff-string-split($string, $separator) {
+	$list: ();
+	$index: str-index($string, $separator);
+
+	@if ($index == null) {
+		@return $list;
+	}
+
+	@while $index !=null {
+		$item: str-slice($string, 1, $index - 1);
+
+		@if ($item != '') {
+			$list: append($list, $item, 'comma');
+		}
+
+		$string: str-slice($string, $index + 1);
+		$index: str-index($string, $separator);
+	}
+
+	@if ($string != '') {
+		$list: append($list, $string, 'comma');
+	}
+
+	@return $list;
+}
+
+//
+// Checks whether or not a map has a nested key
+//
+// @param $map - the map being checked
+// @param $keys - an list of ordered keys to traverse down
+//
+// @returns boolean
+// @throws error
+//
+@function daff-map-deep-check($map, $keys) {
+	@if (type-of($map) != 'map') {
+		@error 'Expected first parameter to be of type `map`';
+	}
+
+	@each $key in $keys {
+		@if (not map-has-key($map, $key)) {
+			@return false;
+		}
+
+		$map: map-get($map, $key);
+	}
+
+	@return true;
+}
+
+
+//
+// Return a the value of a nested key in a map if it exists.
+// If the key doesn't exist, it throw an error.
+//
+// Note: This function doesn't support the use
+// of the search character in your map key names.
+//
+// @usage daff-map-deep-get($map, "nested.map.key");
+// @returns any
+// @throws error
+@function daff-map-deep-get($map, $key, $search-character: '.') {
+	$keys: daff-string-split($key, $search-character);
+
+	@if not daff-map-deep-check($map, $keys) {
+		@error 'The map doesn\'t contain the $key: `#{$key}`\'';
+	}
+
+	@each $key in $keys {
+		$map: map-get($map, $key);
+	}
+
+	@return $map;
+}
+
+
+
+// Sass Mixins & Functions
+//
+// @docs
+//
+// The clickable() mixin sets mouse cursor to display when the mouse
+// pointer is over an element for all supported browsers
+//
+// Supported browsers: Chrome all/Safari all/Firefox all/IE 10+
+//
+// @usage
+// ```
+// @include clickable();
+// ```
+@mixin clickable() {
+	cursor: pointer;
+	-webkit-user-select: none;
+	/// Chrome all / Safari all ///
+	-moz-user-select: none;
+	/// Firefox all ///
+	-ms-user-select: none;
+	/// IE 10+ ///
+	user-select: none;
+}
+
+//
+// Take a the list of breakpoints and retrieves the defined point.
+// If an invalid breakpoint is defined, it will display a warning.
+//
+// @usage
+// ```
+// @include breakpoint(mobile) {}
+// ```
+//
+@mixin breakpoint($point) {
+	@if not map-has-key($map: $breakpoints, $key: $point) {
+		@warn 'breakpoint(): "#{$key}" is not defined in your $breakpoints setting.';
+	}
+
+	@media (min-width: map-get($breakpoints, $point)) {
+		@content;
+	}
+}
+
+//
+// @docs
+//
+// Changes the weight (boldness) of text to 700
+//
+// @usage
+// ```
+// @include embolden(500);
+// ```
+//
+@mixin embolden($weight: 700) {
+	font-weight: $weight;
+}
+
+//
+// @docs
+//
+// Changes the casing of a piece of text to uppercase
+//
+// @usage
+// ```
+// @include uppercase();
+// ```
+//
+@mixin uppercase() {
+	text-transform: uppercase;
+}
+
+//
+// @docs
+//
+// Forces a line of text (with a fixed width) to ellipsis
+// once it reaches the width of its container.
+//
+// @usage
+// ```
+// @include single-line-ellipsis();
+// ```
+@mixin single-line-ellipsis() {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// Sets the font size to 52/64px
+@mixin heading-xl() {
+	@include embolden();
+	font-size: 3.25rem;
+	line-height: 1.1em;
+	letter-spacing: -1.5px;
+
+	@include breakpoint(tablet) {
+		font-size: 4rem;
+	}
+}
+
+// Sets the font size to 36/48px
+@mixin heading-lg() {
+	@include embolden();
+	font-size: 2.25rem;
+	line-height: 1.1em;
+	letter-spacing: -0.5px;
+
+	@include breakpoint(tablet) {
+		font-size: 3rem;
+	}
+}
+
+// Sets the font size to 28/40px
+@mixin heading-md() {
+	@include embolden();
+	font-size: 1.75rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 2.5rem;
+	}
+}
+
+// Sets the font size to 24/32px
+@mixin heading-sm() {
+	@include embolden();
+	font-size: 1.5rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 2rem;
+	}
+}
+
+// Sets the font size to 20/24px
+@mixin heading-xs() {
+	@include embolden();
+	font-size: 1.25rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 1.5rem;
+	}
+}
+
+@mixin subheading() {
+	@include embolden();
+	@include uppercase();
+	font-size: 1rem;
+	letter-spacing: 1px;
+}
+

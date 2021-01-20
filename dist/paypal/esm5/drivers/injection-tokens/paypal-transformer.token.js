@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/** @type {?} */
+export var DaffPaypalTransformer = new InjectionToken('DaffPaypalTransformer');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGF5cGFsLXRyYW5zZm9ybWVyLnRva2VuLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL3BheXBhbC8iLCJzb3VyY2VzIjpbImRyaXZlcnMvaW5qZWN0aW9uLXRva2Vucy9wYXlwYWwtdHJhbnNmb3JtZXIudG9rZW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBRS9DLE1BQU0sS0FBTyxxQkFBcUIsR0FBRyxJQUFJLGNBQWMsQ0FBQyx1QkFBdUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGlvblRva2VuIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmV4cG9ydCBjb25zdCBEYWZmUGF5cGFsVHJhbnNmb3JtZXIgPSBuZXcgSW5qZWN0aW9uVG9rZW4oJ0RhZmZQYXlwYWxUcmFuc2Zvcm1lcicpOyJdfQ==

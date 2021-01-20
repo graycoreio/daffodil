@@ -1,0 +1,52 @@
+{
+  "name": "@daffodil/category",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "An ecommerce categories package that has multi-platform support and state management features.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/category"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "faker": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "apollo-client": "0.0.0-PLACEHOLDER",
+    "graphql-tag": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER"
+  },
+  "main": "bundles/daffodil-category.umd.js",
+  "module": "fesm5/daffodil-category.js",
+  "es2015": "fesm2015/daffodil-category.js",
+  "esm5": "esm5/daffodil-category.js",
+  "esm2015": "esm2015/daffodil-category.js",
+  "fesm5": "fesm5/daffodil-category.js",
+  "fesm2015": "fesm2015/daffodil-category.js",
+  "typings": "daffodil-category.d.ts",
+  "metadata": "daffodil-category.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

@@ -1,0 +1,17 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse() { }
+if (false) {
+    /** @type {?} */
+    MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse.prototype.setPaymentMethodOnCart;
+    /** @type {?} */
+    MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse.prototype.setBillingAddressOnCart;
+    /** @type {?} */
+    MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse.prototype.setGuestEmailOnCart;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2V0LXNlbGVjdGVkLXBheW1lbnQtbWV0aG9kLXdpdGgtYmlsbGluZy1hbmQtZW1haWwuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2FydC9kcml2ZXIvbWFnZW50by8iLCJzb3VyY2VzIjpbInF1ZXJpZXMvcmVzcG9uc2VzL3NldC1zZWxlY3RlZC1wYXltZW50LW1ldGhvZC13aXRoLWJpbGxpbmctYW5kLWVtYWlsLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFFQSxnRkFjQzs7O0lBYkMsNEZBS0U7O0lBQ0YsNkZBS0U7O0lBQ0YseUZBQTRDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTWFnZW50b0dldENhcnRSZXNwb25zZSB9IGZyb20gJy4vZ2V0LWNhcnQnO1xuXG5leHBvcnQgaW50ZXJmYWNlIE1hZ2VudG9TZXRTZWxlY3RlZFBheW1lbnRNZXRob2RXaXRoQmlsbGluZ0FuZEVtYWlsUmVzcG9uc2Uge1xuICBzZXRQYXltZW50TWV0aG9kT25DYXJ0OiB7XG4gICAgX190eXBlbmFtZTogc3RyaW5nO1xuICAgIGNhcnQ6IHtcbiAgICAgIGlkOiBNYWdlbnRvR2V0Q2FydFJlc3BvbnNlWydjYXJ0J11bJ2lkJ107XG4gICAgfVxuICB9O1xuICBzZXRCaWxsaW5nQWRkcmVzc09uQ2FydDoge1xuICAgIF9fdHlwZW5hbWU6IHN0cmluZztcbiAgICBjYXJ0OiB7XG4gICAgICBpZDogTWFnZW50b0dldENhcnRSZXNwb25zZVsnY2FydCddWydpZCddO1xuICAgIH1cbiAgfTtcbiAgc2V0R3Vlc3RFbWFpbE9uQ2FydDogTWFnZW50b0dldENhcnRSZXNwb25zZTtcbn1cblxuIl19

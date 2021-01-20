@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/order/driver/magento/2.4.0",
+  "main": "../../../bundles/daffodil-order-driver-magento-2.4.0.umd.js",
+  "module": "../../../fesm5/daffodil-order-driver-magento-2.4.0.js",
+  "es2015": "../../../fesm2015/daffodil-order-driver-magento-2.4.0.js",
+  "esm5": "../../../esm5/driver/magento/2.4.0/daffodil-order-driver-magento-2.4.0.js",
+  "esm2015": "../../../esm2015/driver/magento/2.4.0/daffodil-order-driver-magento-2.4.0.js",
+  "fesm5": "../../../fesm5/daffodil-order-driver-magento-2.4.0.js",
+  "fesm2015": "../../../fesm2015/daffodil-order-driver-magento-2.4.0.js",
+  "typings": "daffodil-order-driver-magento-2.4.0.d.ts",
+  "metadata": "daffodil-order-driver-magento-2.4.0.metadata.json",
+  "sideEffects": false
+}

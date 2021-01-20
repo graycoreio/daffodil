@@ -1,0 +1,488 @@
+//
+// @docs
+//
+// `daff-typography` is a generic typography library that
+// sets common typography settings for the daffodil design
+// package. It IS NOT necessary, but can be used.
+//
+// @note You SHOULD NOT import this as often as you like,
+// as it only contains CSS
+// and will effect your final compiled stylesheet size.
+//
+// @usage
+// ```
+// 
+// ```
+
+//
+// @docs
+//
+// Sensible breakpoints to be used for layouts and interfaces.
+// These breakpoints are based on common devices viewport widths.
+$breakpoints: (
+	desktop: 1920px,
+	laptop: 1440px,
+	small-laptop: 1200px,
+	big-tablet: 1024px,
+	tablet: 768px,
+	mobile: 480px
+);
+
+//
+// Take a the list of breakpoints and retrieves the defined point.
+// If an invalid breakpoint is defined, it will display a warning.
+//
+// @usage
+// ```
+// @include breakpoint(mobile) {}
+// ```
+//
+@mixin breakpoint($point) {
+	@if not map-has-key($map: $breakpoints, $key: $point) {
+		@warn 'breakpoint(): "#{$key}" is not defined in your $breakpoints setting.';
+	}
+
+	@media (min-width: map-get($breakpoints, $point)) {
+		@content;
+	}
+}
+
+$body-font-family: proxima-nova, sans-serif;
+$base-font-family: $body-font-family;
+
+// deprecated
+$desktop-font-size: 16px;
+$mobile-font-size: 16px;
+
+$large-font-size: 1.5rem;
+$medium-font-size: 1.25rem;
+$normal-font-size: 1rem;
+$small-font-size: 0.75rem;
+
+//
+// @docs
+//
+// Changes the weight (boldness) of text to 700
+//
+// @usage
+// ```
+// @include embolden(500);
+// ```
+//
+@mixin embolden($weight: 700) {
+	font-weight: $weight;
+}
+
+//
+// @docs
+//
+// Changes the casing of a piece of text to uppercase
+//
+// @usage
+// ```
+// @include uppercase();
+// ```
+//
+@mixin uppercase() {
+	text-transform: uppercase;
+}
+
+//
+// @docs
+//
+// Forces a line of text (with a fixed width) to ellipsis
+// once it reaches the width of its container.
+//
+// @usage
+// ```
+// @include single-line-ellipsis();
+// ```
+@mixin single-line-ellipsis() {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// Sets the font size to 52/64px
+@mixin heading-xl() {
+	@include embolden();
+	font-size: 3.25rem;
+	line-height: 1.1em;
+	letter-spacing: -1.5px;
+
+	@include breakpoint(tablet) {
+		font-size: 4rem;
+	}
+}
+
+// Sets the font size to 36/48px
+@mixin heading-lg() {
+	@include embolden();
+	font-size: 2.25rem;
+	line-height: 1.1em;
+	letter-spacing: -0.5px;
+
+	@include breakpoint(tablet) {
+		font-size: 3rem;
+	}
+}
+
+// Sets the font size to 28/40px
+@mixin heading-md() {
+	@include embolden();
+	font-size: 1.75rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 2.5rem;
+	}
+}
+
+// Sets the font size to 24/32px
+@mixin heading-sm() {
+	@include embolden();
+	font-size: 1.5rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 2rem;
+	}
+}
+
+// Sets the font size to 20/24px
+@mixin heading-xs() {
+	@include embolden();
+	font-size: 1.25rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 1.5rem;
+	}
+}
+
+@mixin subheading() {
+	@include embolden();
+	@include uppercase();
+	font-size: 1rem;
+	letter-spacing: 1px;
+}
+
+
+/*! modern-normalize | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * Use a better box model (opinionated).
+ */
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+/**
+ * Use a more readable tab size (opinionated).
+ */
+
+:root {
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+	line-height: 1.15; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+	margin: 0;
+}
+
+/**
+ * Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+ */
+
+body {
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Add the correct height in Firefox.
+ */
+
+hr {
+	height: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Add the correct text decoration in Chrome, Edge, and Safari.
+ */
+
+abbr[title] {
+	text-decoration: underline dotted;
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+/**
+ * 1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp,
+pre {
+	font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace; /* 1 */
+	font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+	font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+ */
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+sup {
+	top: -0.5em;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit; /* 1 */
+	font-size: 100%; /* 1 */
+	line-height: 1.15; /* 1 */
+	margin: 0; /* 2 */
+}
+
+/**
+ * Remove the inheritance of text transform in Edge and Firefox.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+	text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+	padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * Remove the padding so developers are not caught out when they zero out `fieldset` elements in all browsers.
+ */
+
+legend {
+	padding: 0;
+}
+
+/**
+ * Add the correct vertical alignment in Chrome and Firefox.
+ */
+
+progress {
+	vertical-align: baseline;
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Safari.
+ */
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+	height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type='search'] {
+	-webkit-appearance: textfield; /* 1 */
+	outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type='search']::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+	-webkit-appearance: button; /* 1 */
+	font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Chrome and Safari.
+ */
+
+summary {
+	display: list-item;
+}
+
+
+body,
+html {
+	font-family: $body-font-family;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	color: currentColor;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
+}
+
+.embolden { /* stylelint-disable-line selector-class-pattern */
+	@include embolden();
+}
+
+.uppercase { /* stylelint-disable-line selector-class-pattern */
+	@include uppercase();
+}
+
+.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
+	@include single-line-ellipsis();
+}

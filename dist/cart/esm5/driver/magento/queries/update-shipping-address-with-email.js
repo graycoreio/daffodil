@@ -1,0 +1,19 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import * as tslib_1 from "tslib";
+import gql from 'graphql-tag';
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
+import { cartFragment } from './fragments/public_api';
+/** @type {?} */
+export var updateShippingAddressWithEmail = (/**
+ * @param {?=} extraCartFragments
+ * @return {?}
+ */
+function (extraCartFragments) {
+    if (extraCartFragments === void 0) { extraCartFragments = []; }
+    return gql(templateObject_1 || (templateObject_1 = tslib_1.__makeTemplateObject(["\n  mutation UpdateShippingAddress(\n    $cartId: String!,\n    $address: ShippingAddressInput!,\n    $email: String!\n  ) {\n    setShippingAddressesOnCart(input: {\n      cart_id: $cartId\n      shipping_addresses: [$address]\n    }) {\n      cart {\n        ...cart\n        ", "\n      }\n    }\n    setGuestEmailOnCart(input: {\n      cart_id: $cartId,\n      email: $email\n    }) {\n      cart {\n        email\n      }\n    }\n  }\n  ", "\n  ", "\n"], ["\n  mutation UpdateShippingAddress(\n    $cartId: String!,\n    $address: ShippingAddressInput!,\n    $email: String!\n  ) {\n    setShippingAddressesOnCart(input: {\n      cart_id: $cartId\n      shipping_addresses: [$address]\n    }) {\n      cart {\n        ...cart\n        ", "\n      }\n    }\n    setGuestEmailOnCart(input: {\n      cart_id: $cartId,\n      email: $email\n    }) {\n      cart {\n        email\n      }\n    }\n  }\n  ", "\n  ", "\n"])), daffBuildFragmentNameSpread.apply(void 0, tslib_1.__spread(extraCartFragments)), cartFragment, daffBuildFragmentDefinition.apply(void 0, tslib_1.__spread(extraCartFragments)));
+});
+var templateObject_1;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXBkYXRlLXNoaXBwaW5nLWFkZHJlc3Mtd2l0aC1lbWFpbC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jYXJ0L2RyaXZlci9tYWdlbnRvLyIsInNvdXJjZXMiOlsicXVlcmllcy91cGRhdGUtc2hpcHBpbmctYWRkcmVzcy13aXRoLWVtYWlsLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQ0EsT0FBTyxHQUFHLE1BQU0sYUFBYSxDQUFDO0FBRTlCLE9BQU8sRUFBRSwyQkFBMkIsRUFBRSwyQkFBMkIsRUFBRSxNQUFNLHdCQUF3QixDQUFDO0FBRWxHLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSx3QkFBd0IsQ0FBQzs7QUFFdEQsTUFBTSxLQUFPLDhCQUE4Qjs7OztBQUFHLFVBQUMsa0JBQXVDO0lBQXZDLG1DQUFBLEVBQUEsdUJBQXVDO0lBQUssT0FBQSxHQUFHLHFoQkFBQSx3UkFZcEYsRUFBa0Qsa0tBWXhELEVBQVksTUFDWixFQUFrRCxJQUNyRCxLQWRTLDJCQUEyQixnQ0FBSSxrQkFBa0IsSUFZdkQsWUFBWSxFQUNaLDJCQUEyQixnQ0FBSSxrQkFBa0I7QUF6QnNDLENBMEIxRixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRG9jdW1lbnROb2RlIH0gZnJvbSAnZ3JhcGhxbCc7XG5pbXBvcnQgZ3FsIGZyb20gJ2dyYXBocWwtdGFnJztcblxuaW1wb3J0IHsgZGFmZkJ1aWxkRnJhZ21lbnROYW1lU3ByZWFkLCBkYWZmQnVpbGRGcmFnbWVudERlZmluaXRpb24gfSBmcm9tICdAZGFmZm9kaWwvY29yZS9ncmFwaHFsJztcblxuaW1wb3J0IHsgY2FydEZyYWdtZW50IH0gZnJvbSAnLi9mcmFnbWVudHMvcHVibGljX2FwaSc7XG5cbmV4cG9ydCBjb25zdCB1cGRhdGVTaGlwcGluZ0FkZHJlc3NXaXRoRW1haWwgPSAoZXh0cmFDYXJ0RnJhZ21lbnRzOiBEb2N1bWVudE5vZGVbXSA9IFtdKSA9PiBncWxgXG4gIG11dGF0aW9uIFVwZGF0ZVNoaXBwaW5nQWRkcmVzcyhcbiAgICAkY2FydElkOiBTdHJpbmchLFxuICAgICRhZGRyZXNzOiBTaGlwcGluZ0FkZHJlc3NJbnB1dCEsXG4gICAgJGVtYWlsOiBTdHJpbmchXG4gICkge1xuICAgIHNldFNoaXBwaW5nQWRkcmVzc2VzT25DYXJ0KGlucHV0OiB7XG4gICAgICBjYXJ0X2lkOiAkY2FydElkXG4gICAgICBzaGlwcGluZ19hZGRyZXNzZXM6IFskYWRkcmVzc11cbiAgICB9KSB7XG4gICAgICBjYXJ0IHtcbiAgICAgICAgLi4uY2FydFxuICAgICAgICAke2RhZmZCdWlsZEZyYWdtZW50TmFtZVNwcmVhZCguLi5leHRyYUNhcnRGcmFnbWVudHMpfVxuICAgICAgfVxuICAgIH1cbiAgICBzZXRHdWVzdEVtYWlsT25DYXJ0KGlucHV0OiB7XG4gICAgICBjYXJ0X2lkOiAkY2FydElkLFxuICAgICAgZW1haWw6ICRlbWFpbFxuICAgIH0pIHtcbiAgICAgIGNhcnQge1xuICAgICAgICBlbWFpbFxuICAgICAgfVxuICAgIH1cbiAgfVxuICAke2NhcnRGcmFnbWVudH1cbiAgJHtkYWZmQnVpbGRGcmFnbWVudERlZmluaXRpb24oLi4uZXh0cmFDYXJ0RnJhZ21lbnRzKX1cbmA7XG4iXX0=

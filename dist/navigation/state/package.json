@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/navigation/state",
+  "main": "../bundles/daffodil-navigation-state.umd.js",
+  "module": "../fesm5/daffodil-navigation-state.js",
+  "es2015": "../fesm2015/daffodil-navigation-state.js",
+  "esm5": "../esm5/state/daffodil-navigation-state.js",
+  "esm2015": "../esm2015/state/daffodil-navigation-state.js",
+  "fesm5": "../fesm5/daffodil-navigation-state.js",
+  "fesm2015": "../fesm2015/daffodil-navigation-state.js",
+  "typings": "daffodil-navigation-state.d.ts",
+  "metadata": "daffodil-navigation-state.metadata.json",
+  "sideEffects": false
+}

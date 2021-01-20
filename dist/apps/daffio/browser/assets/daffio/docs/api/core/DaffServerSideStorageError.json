@@ -1,0 +1,5 @@
+{
+  "id": "api/core/DaffServerSideStorageError",
+  "title": "DaffServerSideStorageError",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffServerSideStorageError</h1>\n  <label class=\"api-header__label class\">class</label>\n</header>\n\n\n<p class=\"api-subtitle\">An error thrown when there is an attempt to access storage on the server and none is available.</p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n    <div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">code</div>\n<div class=\"members-table__cell\">string</div>\n<div class=\"members-table__cell\"></div>\n\n\n    \n\t\t\t\n<div class=\"members-table__cell\">message</div>\n<div class=\"members-table__cell\">string</div>\n<div class=\"members-table__cell\"></div>\n\n\n    </div>\n</section>\n\n</div>"
+}

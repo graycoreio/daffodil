@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Transforms an error instance to a state error object.
+ * @param {?} __0
+ * @return {?}
+ */
+export function daffTransformErrorToStateError(_a) {
+    var code = _a.code, message = _a.message;
+    return { code: code, message: message };
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJhbnNmb3JtLWVycm9yLXRvLXN0YXRlLWVycm9yLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NvcmUvc3RhdGUvIiwic291cmNlcyI6WyJlcnJvcnMvdHJhbnNmb3JtLWVycm9yLXRvLXN0YXRlLWVycm9yLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQU9BLE1BQU0sVUFBVSw4QkFBOEIsQ0FBQyxFQUEwQjtRQUF6QixjQUFJLEVBQUUsb0JBQU87SUFDM0QsT0FBTyxFQUFDLElBQUksTUFBQSxFQUFFLE9BQU8sU0FBQSxFQUFDLENBQUM7QUFDekIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZFcnJvciB9IGZyb20gJ0BkYWZmb2RpbC9jb3JlJztcblxuaW1wb3J0IHsgRGFmZlN0YXRlRXJyb3IgfSBmcm9tICcuL3N0YXRlLWVycm9yLmludGVyZmFjZSc7XG5cbi8qKlxuICogVHJhbnNmb3JtcyBhbiBlcnJvciBpbnN0YW5jZSB0byBhIHN0YXRlIGVycm9yIG9iamVjdC5cbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGRhZmZUcmFuc2Zvcm1FcnJvclRvU3RhdGVFcnJvcih7Y29kZSwgbWVzc2FnZX06IERhZmZFcnJvcik6IERhZmZTdGF0ZUVycm9yIHtcbiAgcmV0dXJuIHtjb2RlLCBtZXNzYWdlfTtcbn1cbiJdfQ==

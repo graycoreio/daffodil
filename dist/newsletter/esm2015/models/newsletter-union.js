@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function DaffNewsletterUnion() { }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmV3c2xldHRlci11bmlvbi5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9uZXdzbGV0dGVyLyIsInNvdXJjZXMiOlsibW9kZWxzL25ld3NsZXR0ZXItdW5pb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUVBLHlDQUVDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGFmZk5ld3NsZXR0ZXJTdWJtaXNzaW9uIH0gZnJvbSAnLi9uZXdzbGV0dGVyLm1vZGVsJztcblxuZXhwb3J0IGludGVyZmFjZSBEYWZmTmV3c2xldHRlclVuaW9uIGV4dGVuZHMgRGFmZk5ld3NsZXR0ZXJTdWJtaXNzaW9uIHtcbiAgW3g6c3RyaW5nXTogYW55O1xufSJdfQ==

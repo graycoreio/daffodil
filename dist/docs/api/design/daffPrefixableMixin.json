@@ -1,0 +1,5 @@
+{
+  "id": "api/design/daffPrefixableMixin",
+  "title": "daffPrefixableMixin",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">daffPrefixableMixin</h1>\n  <label class=\"api-header__label function\">function</label>\n</header>\n\n\n<p class=\"api-subtitle\">A mixin for giving a component the ability to place content before another piece of content.</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

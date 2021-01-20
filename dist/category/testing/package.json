@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/category/testing",
+  "main": "../bundles/daffodil-category-testing.umd.js",
+  "module": "../fesm5/daffodil-category-testing.js",
+  "es2015": "../fesm2015/daffodil-category-testing.js",
+  "esm5": "../esm5/testing/daffodil-category-testing.js",
+  "esm2015": "../esm2015/testing/daffodil-category-testing.js",
+  "fesm5": "../fesm5/daffodil-category-testing.js",
+  "fesm2015": "../fesm2015/daffodil-category-testing.js",
+  "typings": "daffodil-category-testing.d.ts",
+  "metadata": "daffodil-category-testing.metadata.json",
+  "sideEffects": false
+}

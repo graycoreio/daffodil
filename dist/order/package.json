@@ -1,0 +1,42 @@
+{
+  "name": "@daffodil/order",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A client-side Angular package for managing ecommerce orders agnostic to the ecommerce platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER"
+  },
+  "main": "bundles/daffodil-order.umd.js",
+  "module": "fesm5/daffodil-order.js",
+  "es2015": "fesm2015/daffodil-order.js",
+  "esm5": "esm5/daffodil-order.js",
+  "esm2015": "esm2015/daffodil-order.js",
+  "fesm5": "fesm5/daffodil-order.js",
+  "fesm2015": "fesm2015/daffodil-order.js",
+  "typings": "daffodil-order.d.ts",
+  "metadata": "daffodil-order.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

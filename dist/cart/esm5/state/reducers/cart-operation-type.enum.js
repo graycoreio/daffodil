@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+var DaffCartOperationType = {
+    Cart: 'Cart',
+    Item: 'Item',
+    BillingAddress: 'Billing Address',
+    ShippingAddress: 'Shipping Address',
+    Payment: 'Payment',
+    PaymentMethods: 'Payment Methods',
+    ShippingInformation: 'Shipping Information',
+    ShippingMethods: 'Shipping Methods',
+    Coupon: 'Coupon',
+};
+export { DaffCartOperationType };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC1vcGVyYXRpb24tdHlwZS5lbnVtLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvc3RhdGUvIiwic291cmNlcyI6WyJyZWR1Y2Vycy9jYXJ0LW9wZXJhdGlvbi10eXBlLmVudW0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBTUUsTUFBTyxNQUFNO0lBQ2IsTUFBTyxNQUFNO0lBQ2IsZ0JBQWlCLGlCQUFpQjtJQUNsQyxpQkFBa0Isa0JBQWtCO0lBQ3BDLFNBQVUsU0FBUztJQUNuQixnQkFBaUIsaUJBQWlCO0lBQ2xDLHFCQUFzQixzQkFBc0I7SUFDNUMsaUJBQWtCLGtCQUFrQjtJQUNwQyxRQUFTLFFBQVEiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIFRoZSBwYXJ0aWN1bGFyIHNlZ21lbnQgb2YgRGFmZkNhcnQgdGhhdCBhbiBvcGVyYXRpb24gYXBwbGllcyB0by5cbiAqIEVycm9ycyBhbmQgbG9hZGluZyBhcmUgdHJhY2tlZCBzZXBhcmF0ZWx5IGZvciBlYWNoIHR5cGUgb2YgY2FydCBvcGVyYXRpb24uXG4gKi9cbi8vIFRPRE86IHRoaW5rIG9mIGEgYmV0dGVyIG5hbWVcbmV4cG9ydCBlbnVtIERhZmZDYXJ0T3BlcmF0aW9uVHlwZSB7XG4gIENhcnQgPSAnQ2FydCcsXG4gIEl0ZW0gPSAnSXRlbScsXG4gIEJpbGxpbmdBZGRyZXNzID0gJ0JpbGxpbmcgQWRkcmVzcycsXG4gIFNoaXBwaW5nQWRkcmVzcyA9ICdTaGlwcGluZyBBZGRyZXNzJyxcbiAgUGF5bWVudCA9ICdQYXltZW50JyxcbiAgUGF5bWVudE1ldGhvZHMgPSAnUGF5bWVudCBNZXRob2RzJyxcbiAgU2hpcHBpbmdJbmZvcm1hdGlvbiA9ICdTaGlwcGluZyBJbmZvcm1hdGlvbicsXG4gIFNoaXBwaW5nTWV0aG9kcyA9ICdTaGlwcGluZyBNZXRob2RzJyxcbiAgQ291cG9uID0gJ0NvdXBvbicsXG59XG4iXX0=

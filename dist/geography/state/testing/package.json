@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/geography/state/testing",
+  "main": "../../bundles/daffodil-geography-state-testing.umd.js",
+  "module": "../../fesm5/daffodil-geography-state-testing.js",
+  "es2015": "../../fesm2015/daffodil-geography-state-testing.js",
+  "esm5": "../../esm5/state/testing/daffodil-geography-state-testing.js",
+  "esm2015": "../../esm2015/state/testing/daffodil-geography-state-testing.js",
+  "fesm5": "../../fesm5/daffodil-geography-state-testing.js",
+  "fesm2015": "../../fesm2015/daffodil-geography-state-testing.js",
+  "typings": "daffodil-geography-state-testing.d.ts",
+  "metadata": "daffodil-geography-state-testing.metadata.json",
+  "sideEffects": false
+}

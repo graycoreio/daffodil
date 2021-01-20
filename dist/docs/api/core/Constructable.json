@@ -1,0 +1,5 @@
+{
+  "id": "api/core/Constructable",
+  "title": "Constructable",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">Constructable</h1>\n  <label class=\"api-header__label type-alias\">type-alias</label>\n</header>\n\n\n<p class=\"api-subtitle\">A type which describes a function which would return an instance of a class\nTypically, we call this the \"new\" method in a language. \n\nA sample usage:\n```ts\nclass MyClass {\n readonly myProp: string = 'prop';\n name: string;\n constructor(name: string){\n   this.name = name;\n }\n} \n\nconst map = {\n  \"key\": Myclass\n}\n\nlet instance = new map[\"key\"];\ninstance instanceof MyClass //true\n\n```</p>\n\n<div class=\"api-body\">\n  \n<div class=\"members-table\">\n  <div class=\"members-table__header\">Type</div>\n  <div class=\"members-table__header\">Options</div>\n  <div class=\"members-table__cell\">Constructable</div>\n  <div class=\"members-table__cell\"><code>new (...args: any[]) => T</code></div>\n</div>\n\n</div>"
+}

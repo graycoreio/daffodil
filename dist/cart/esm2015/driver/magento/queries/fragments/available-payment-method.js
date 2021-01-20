@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+/** @type {?} */
+export const availablePaymentMethodFragment = gql `
+  fragment availablePaymentMethod on AvailablePaymentMethod {
+    code
+    title
+  }
+`;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXZhaWxhYmxlLXBheW1lbnQtbWV0aG9kLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvZHJpdmVyL21hZ2VudG8vIiwic291cmNlcyI6WyJxdWVyaWVzL2ZyYWdtZW50cy9hdmFpbGFibGUtcGF5bWVudC1tZXRob2QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sR0FBRyxNQUFNLGFBQWEsQ0FBQzs7QUFFOUIsTUFBTSxPQUFPLDhCQUE4QixHQUFHLEdBQUcsQ0FBQTs7Ozs7Q0FLaEQiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgZ3FsIGZyb20gJ2dyYXBocWwtdGFnJztcblxuZXhwb3J0IGNvbnN0IGF2YWlsYWJsZVBheW1lbnRNZXRob2RGcmFnbWVudCA9IGdxbGBcbiAgZnJhZ21lbnQgYXZhaWxhYmxlUGF5bWVudE1ldGhvZCBvbiBBdmFpbGFibGVQYXltZW50TWV0aG9kIHtcbiAgICBjb2RlXG4gICAgdGl0bGVcbiAgfVxuYDtcbiJdfQ==

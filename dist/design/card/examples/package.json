@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/design/card/examples",
+  "main": "../../bundles/daffodil-design-card-examples.umd.js",
+  "module": "../../fesm5/daffodil-design-card-examples.js",
+  "es2015": "../../fesm2015/daffodil-design-card-examples.js",
+  "esm5": "../../esm5/card/examples/daffodil-design-card-examples.js",
+  "esm2015": "../../esm2015/card/examples/daffodil-design-card-examples.js",
+  "fesm5": "../../fesm5/daffodil-design-card-examples.js",
+  "fesm2015": "../../fesm2015/daffodil-design-card-examples.js",
+  "typings": "daffodil-design-card-examples.d.ts",
+  "metadata": "daffodil-design-card-examples.metadata.json",
+  "sideEffects": false
+}

@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { DaffContactTestingDriverModule } from './index';
+export { DaffTestingContactService as ɵa } from './contact.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGFmZm9kaWwtY29udGFjdC1kcml2ZXItdGVzdGluZy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jb250YWN0L2RyaXZlci90ZXN0aW5nLyIsInNvdXJjZXMiOlsiZGFmZm9kaWwtY29udGFjdC1kcml2ZXItdGVzdGluZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsK0NBQWMsU0FBUyxDQUFDO0FBRXhCLE9BQU8sRUFBQyx5QkFBeUIsSUFBSSxFQUFFLEVBQUMsTUFBTSxtQkFBbUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogR2VuZXJhdGVkIGJ1bmRsZSBpbmRleC4gRG8gbm90IGVkaXQuXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9pbmRleCc7XG5cbmV4cG9ydCB7RGFmZlRlc3RpbmdDb250YWN0U2VydmljZSBhcyDJtWF9IGZyb20gJy4vY29udGFjdC5zZXJ2aWNlJzsiXX0=

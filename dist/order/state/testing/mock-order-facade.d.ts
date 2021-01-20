@@ -1,0 +1,32 @@
+import { BehaviorSubject } from 'rxjs';
+import { Action } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
+import { DaffOrder, DaffOrderTotal } from '@daffodil/order';
+import { DaffOrderFacadeInterface } from '@daffodil/order/state';
+export declare class MockDaffOrderFacade implements DaffOrderFacadeInterface {
+    loading$: BehaviorSubject<boolean>;
+    errors$: BehaviorSubject<string[]>;
+    orders$: BehaviorSubject<DaffOrder[]>;
+    orderIds$: BehaviorSubject<(string | number)[]>;
+    orderCount$: BehaviorSubject<number>;
+    orderEntities$: BehaviorSubject<Dictionary<DaffOrder>>;
+    placedOrder$: BehaviorSubject<DaffOrder>;
+    hasPlacedOrder$: BehaviorSubject<boolean>;
+    getOrder$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder>;
+    getTotals$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['totals']>;
+    getAppliedCodes$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['applied_codes']>;
+    getItems$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['items']>;
+    getBillingAddresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['billing_addresses']>;
+    getShippingAddresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['shipping_addresses']>;
+    getShipments$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['shipments']>;
+    getPayment$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['payment']>;
+    getInvoices$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['invoices']>;
+    getCredits$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['credits']>;
+    getGrandTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal>;
+    getSubtotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal>;
+    getShippingTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal>;
+    getDiscountTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal>;
+    hasDiscount$(orderId: DaffOrder['id']): BehaviorSubject<boolean>;
+    getTaxTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal>;
+    dispatch(action: Action): void;
+}

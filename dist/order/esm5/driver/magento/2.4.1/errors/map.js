@@ -1,0 +1,12 @@
+var _a;
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { DaffCartNotFoundError } from '@daffodil/cart/driver';
+import { MagentoOrderGraphQlErrorCode } from './codes';
+/** @type {?} */
+export var DaffOrderMagentoErrorMap = (_a = {},
+    _a[MagentoOrderGraphQlErrorCode.CART_NOT_FOUND] = DaffCartNotFoundError,
+    _a);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFwLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL29yZGVyL2RyaXZlci9tYWdlbnRvLzIuNC4xLyIsInNvdXJjZXMiOlsiZXJyb3JzL21hcC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUNBLE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxNQUFNLHVCQUF1QixDQUFDO0FBRTlELE9BQU8sRUFBRSw0QkFBNEIsRUFBRSxNQUFNLFNBQVMsQ0FBQzs7QUFFdkQsTUFBTSxLQUFPLHdCQUF3QjtJQUNwQyxHQUFDLDRCQUE0QixDQUFDLGNBQWMsSUFBRyxxQkFBcUI7T0FDcEUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEYWZmRXJyb3JDb2RlTWFwIH0gZnJvbSAnQGRhZmZvZGlsL2NvcmUnO1xuaW1wb3J0IHsgRGFmZkNhcnROb3RGb3VuZEVycm9yIH0gZnJvbSAnQGRhZmZvZGlsL2NhcnQvZHJpdmVyJztcblxuaW1wb3J0IHsgTWFnZW50b09yZGVyR3JhcGhRbEVycm9yQ29kZSB9IGZyb20gJy4vY29kZXMnO1xuXG5leHBvcnQgY29uc3QgRGFmZk9yZGVyTWFnZW50b0Vycm9yTWFwOiBEYWZmRXJyb3JDb2RlTWFwID0ge1xuXHRbTWFnZW50b09yZGVyR3JhcGhRbEVycm9yQ29kZS5DQVJUX05PVF9GT1VORF06IERhZmZDYXJ0Tm90Rm91bmRFcnJvcixcbn07XG4iXX0=

@@ -1,0 +1,5 @@
+{
+  "id": "api/product/DaffCompositeProductActionTypes",
+  "title": "DaffCompositeProductActionTypes",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffCompositeProductActionTypes</h1>\n  <label class=\"api-header__label enum\">enum</label>\n</header>\n\n\n<p class=\"api-subtitle\">Action types for Composite Product Actions.</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

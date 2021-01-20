@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/**
+ * A token to define the default category page size on a category page load. This value is 12 by default.
+ * @type {?}
+ */
+export const DaffDefaultCategoryPageSize = new InjectionToken('DaffDefaultCategoryPageSize');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVmYXVsdC1jYXRlZ29yeS1wYWdlLXNpemUudG9rZW4uanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2F0ZWdvcnkvIiwic291cmNlcyI6WyJyZXNvbHZlcnMvY2F0ZWdvcnktcGFnZS9kZWZhdWx0LWNhdGVnb3J5LXBhZ2Utc2l6ZS50b2tlbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7QUFLL0MsTUFBTSxPQUFPLDJCQUEyQixHQUFHLElBQUksY0FBYyxDQUFTLDZCQUE2QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0aW9uVG9rZW4gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBBIHRva2VuIHRvIGRlZmluZSB0aGUgZGVmYXVsdCBjYXRlZ29yeSBwYWdlIHNpemUgb24gYSBjYXRlZ29yeSBwYWdlIGxvYWQuIFRoaXMgdmFsdWUgaXMgMTIgYnkgZGVmYXVsdC5cbiAqL1xuZXhwb3J0IGNvbnN0IERhZmZEZWZhdWx0Q2F0ZWdvcnlQYWdlU2l6ZSA9IG5ldyBJbmplY3Rpb25Ub2tlbjxudW1iZXI+KCdEYWZmRGVmYXVsdENhdGVnb3J5UGFnZVNpemUnKTtcbiJdfQ==

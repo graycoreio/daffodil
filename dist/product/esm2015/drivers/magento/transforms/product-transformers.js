@@ -1,0 +1,38 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { MagentoProductTypeEnum } from '../models/magento-product';
+import { transformMagentoBundledProduct } from './bundled-product-transformers';
+import { transformMagentoSimpleProduct } from './simple-product-transformers';
+import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
+/**
+ * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
+ * @param {?} product a magento product
+ * @param {?=} mediaUrl
+ * @return {?}
+ */
+export function transformMagentoProduct(product, mediaUrl) {
+    switch (product.__typename) {
+        case MagentoProductTypeEnum.BundledProduct:
+            return transformMagentoBundledProduct((/** @type {?} */ (product)), mediaUrl);
+        case MagentoProductTypeEnum.ConfigurableProduct:
+            return transformMagentoConfigurableProduct((/** @type {?} */ (product)), mediaUrl);
+        default:
+            return transformMagentoSimpleProduct(product, mediaUrl);
+    }
+}
+/**
+ * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
+ * @param {?} products
+ * @param {?=} mediaUrl
+ * @return {?}
+ */
+export function transformManyMagentoProducts(products, mediaUrl) {
+    return products.map((/**
+     * @param {?} product
+     * @return {?}
+     */
+    product => transformMagentoProduct(product, mediaUrl)));
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZHVjdC10cmFuc2Zvcm1lcnMuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvcHJvZHVjdC8iLCJzb3VyY2VzIjpbImRyaXZlcnMvbWFnZW50by90cmFuc2Zvcm1zL3Byb2R1Y3QtdHJhbnNmb3JtZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFDQSxPQUFPLEVBQWtCLHNCQUFzQixFQUFFLE1BQU0sMkJBQTJCLENBQUM7QUFFbkYsT0FBTyxFQUFFLDhCQUE4QixFQUFFLE1BQU0sZ0NBQWdDLENBQUM7QUFDaEYsT0FBTyxFQUFFLDZCQUE2QixFQUFFLE1BQU0sK0JBQStCLENBQUM7QUFDOUUsT0FBTyxFQUFFLG1DQUFtQyxFQUFFLE1BQU0scUNBQXFDLENBQUM7Ozs7Ozs7QUFPMUYsTUFBTSxVQUFVLHVCQUF1QixDQUFDLE9BQXVCLEVBQUUsUUFBaUI7SUFDakYsUUFBTyxPQUFPLENBQUMsVUFBVSxFQUFFO1FBQzFCLEtBQUssc0JBQXNCLENBQUMsY0FBYztZQUN6QyxPQUFPLDhCQUE4QixDQUFDLG1CQUF1QixPQUFPLEVBQUEsRUFBRSxRQUFRLENBQUMsQ0FBQztRQUNqRixLQUFLLHNCQUFzQixDQUFDLG1CQUFtQjtZQUM5QyxPQUFPLG1DQUFtQyxDQUFDLG1CQUE0QixPQUFPLEVBQUEsRUFBRSxRQUFRLENBQUMsQ0FBQztRQUMzRjtZQUNDLE9BQU8sNkJBQTZCLENBQUMsT0FBTyxFQUFFLFFBQVEsQ0FBQyxDQUFDO0tBQ3pEO0FBQ0YsQ0FBQzs7Ozs7OztBQUtELE1BQU0sVUFBVSw0QkFBNEIsQ0FBQyxRQUEwQixFQUFFLFFBQWlCO0lBQ3pGLE9BQU8sUUFBUSxDQUFDLEdBQUc7Ozs7SUFBQyxPQUFPLENBQUMsRUFBRSxDQUFDLHVCQUF1QixDQUFDLE9BQU8sRUFBRSxRQUFRLENBQUMsRUFBQyxDQUFDO0FBQzVFLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEYWZmUHJvZHVjdCB9IGZyb20gJy4uLy4uLy4uL21vZGVscy9wcm9kdWN0JztcbmltcG9ydCB7IE1hZ2VudG9Qcm9kdWN0LCBNYWdlbnRvUHJvZHVjdFR5cGVFbnVtIH0gZnJvbSAnLi4vbW9kZWxzL21hZ2VudG8tcHJvZHVjdCc7XG5pbXBvcnQgeyBNYWdlbnRvQnVuZGxlZFByb2R1Y3QgfSBmcm9tICcuLi9tb2RlbHMvYnVuZGxlZC1wcm9kdWN0JztcbmltcG9ydCB7IHRyYW5zZm9ybU1hZ2VudG9CdW5kbGVkUHJvZHVjdCB9IGZyb20gJy4vYnVuZGxlZC1wcm9kdWN0LXRyYW5zZm9ybWVycyc7XG5pbXBvcnQgeyB0cmFuc2Zvcm1NYWdlbnRvU2ltcGxlUHJvZHVjdCB9IGZyb20gJy4vc2ltcGxlLXByb2R1Y3QtdHJhbnNmb3JtZXJzJztcbmltcG9ydCB7IHRyYW5zZm9ybU1hZ2VudG9Db25maWd1cmFibGVQcm9kdWN0IH0gZnJvbSAnLi9jb25maWd1cmFibGUtcHJvZHVjdC10cmFuc2Zvcm1lcnMnO1xuaW1wb3J0IHsgTWFnZW50b0NvbmZpZ3VyYWJsZVByb2R1Y3QgfSBmcm9tICcuLi9tb2RlbHMvY29uZmlndXJhYmxlLXByb2R1Y3QnO1xuXG4vKipcbiAqIFRyYW5zZm9ybXMgdGhlIG1hZ2VudG8gTWFnZW50b1Byb2R1Y3QgZnJvbSB0aGUgbWFnZW50byBwcm9kdWN0IHF1ZXJ5IGludG8gYSBEYWZmUHJvZHVjdC4gXG4gKiBAcGFyYW0gcHJvZHVjdCBhIG1hZ2VudG8gcHJvZHVjdFxuICovXG5leHBvcnQgZnVuY3Rpb24gdHJhbnNmb3JtTWFnZW50b1Byb2R1Y3QocHJvZHVjdDogTWFnZW50b1Byb2R1Y3QsIG1lZGlhVXJsPzogc3RyaW5nKTogRGFmZlByb2R1Y3Qge1xuXHRzd2l0Y2gocHJvZHVjdC5fX3R5cGVuYW1lKSB7XG5cdFx0Y2FzZSBNYWdlbnRvUHJvZHVjdFR5cGVFbnVtLkJ1bmRsZWRQcm9kdWN0OlxuXHRcdFx0cmV0dXJuIHRyYW5zZm9ybU1hZ2VudG9CdW5kbGVkUHJvZHVjdCg8TWFnZW50b0J1bmRsZWRQcm9kdWN0PnByb2R1Y3QsIG1lZGlhVXJsKTtcblx0XHRjYXNlIE1hZ2VudG9Qcm9kdWN0VHlwZUVudW0uQ29uZmlndXJhYmxlUHJvZHVjdDpcblx0XHRcdHJldHVybiB0cmFuc2Zvcm1NYWdlbnRvQ29uZmlndXJhYmxlUHJvZHVjdCg8TWFnZW50b0NvbmZpZ3VyYWJsZVByb2R1Y3Q+cHJvZHVjdCwgbWVkaWFVcmwpO1xuXHRcdGRlZmF1bHQ6XG5cdFx0XHRyZXR1cm4gdHJhbnNmb3JtTWFnZW50b1NpbXBsZVByb2R1Y3QocHJvZHVjdCwgbWVkaWFVcmwpO1xuXHR9XG59XG5cbi8qKlxuICogVHJhbnNmb3JtcyBtYW55IG1hZ2VudG8gTWFnZW50b1Byb2R1Y3RzIGZyb20gdGhlIG1hZ2VudG8gcHJvZHVjdCBxdWVyeSBpbnRvIERhZmZQcm9kdWN0cy5cbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIHRyYW5zZm9ybU1hbnlNYWdlbnRvUHJvZHVjdHMocHJvZHVjdHM6IE1hZ2VudG9Qcm9kdWN0W10sIG1lZGlhVXJsPzogc3RyaW5nKTogRGFmZlByb2R1Y3RbXSB7XG5cdHJldHVybiBwcm9kdWN0cy5tYXAocHJvZHVjdCA9PiB0cmFuc2Zvcm1NYWdlbnRvUHJvZHVjdChwcm9kdWN0LCBtZWRpYVVybCkpO1xufVxuIl19

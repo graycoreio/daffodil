@@ -1,0 +1,30 @@
+{
+  "name": "@daffodil/external-router",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A platform-agnostic package that connects the @angular/router with an external routing service (e.g. an API), allowing for runtime route resolution.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {},
+  "devDependencies": {},
+  "main": "bundles/daffodil-external-router.umd.js",
+  "module": "fesm5/daffodil-external-router.js",
+  "es2015": "fesm2015/daffodil-external-router.js",
+  "esm5": "esm5/daffodil-external-router.js",
+  "esm2015": "esm2015/daffodil-external-router.js",
+  "fesm5": "fesm5/daffodil-external-router.js",
+  "fesm2015": "fesm2015/daffodil-external-router.js",
+  "typings": "daffodil-external-router.d.ts",
+  "metadata": "daffodil-external-router.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

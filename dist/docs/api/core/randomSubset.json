@@ -1,0 +1,5 @@
+{
+  "id": "api/core/randomSubset",
+  "title": "randomSubset",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">randomSubset</h1>\n  <label class=\"api-header__label const\">const</label>\n</header>\n\n\n<p class=\"api-subtitle\">Returns a random subset of an array in a random order.</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

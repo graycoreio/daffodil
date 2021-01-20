@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { DaffAuthMagentoErrorMap } from './map';
+/** @type {?} */
+export var transformMagentoAuthError = (/**
+ * @param {?} error
+ * @return {?}
+ */
+function (error) {
+    return daffTransformMagentoError(error, DaffAuthMagentoErrorMap);
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJhbnNmb3JtLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2F1dGgvIiwic291cmNlcyI6WyJkcml2ZXJzL21hZ2VudG8vZXJyb3JzL3RyYW5zZm9ybS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHlCQUF5QixFQUFFLE1BQU0sMEJBQTBCLENBQUM7QUFFckUsT0FBTyxFQUFFLHVCQUF1QixFQUFFLE1BQU0sT0FBTyxDQUFDOztBQUVoRCxNQUFNLEtBQU8seUJBQXlCOzs7O0FBQUcsVUFBQyxLQUFVO0lBQ25ELE9BQU8seUJBQXlCLENBQUMsS0FBSyxFQUFFLHVCQUF1QixDQUFDLENBQUE7QUFDakUsQ0FBQyxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGFmZlRyYW5zZm9ybU1hZ2VudG9FcnJvciB9IGZyb20gJ0BkYWZmb2RpbC9kcml2ZXIvbWFnZW50byc7XG5cbmltcG9ydCB7IERhZmZBdXRoTWFnZW50b0Vycm9yTWFwIH0gZnJvbSAnLi9tYXAnO1xuXG5leHBvcnQgY29uc3QgdHJhbnNmb3JtTWFnZW50b0F1dGhFcnJvciA9IChlcnJvcjogYW55KTogRXJyb3IgPT4ge1xuXHRyZXR1cm4gZGFmZlRyYW5zZm9ybU1hZ2VudG9FcnJvcihlcnJvciwgRGFmZkF1dGhNYWdlbnRvRXJyb3JNYXApXG59O1xuIl19

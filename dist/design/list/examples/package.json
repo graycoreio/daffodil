@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/design/list/examples",
+  "main": "../../bundles/daffodil-design-list-examples.umd.js",
+  "module": "../../fesm5/daffodil-design-list-examples.js",
+  "es2015": "../../fesm2015/daffodil-design-list-examples.js",
+  "esm5": "../../esm5/list/examples/daffodil-design-list-examples.js",
+  "esm2015": "../../esm2015/list/examples/daffodil-design-list-examples.js",
+  "fesm5": "../../fesm5/daffodil-design-list-examples.js",
+  "fesm2015": "../../fesm2015/daffodil-design-list-examples.js",
+  "typings": "daffodil-design-list-examples.d.ts",
+  "metadata": "daffodil-design-list-examples.metadata.json",
+  "sideEffects": false
+}

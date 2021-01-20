@@ -1,0 +1,5 @@
+{
+  "id": "guides/order",
+  "title": "@daffodil/order",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"daffodilorder\">@daffodil/order</h1>\n<p>The <code>@daffodil/order</code> library intends to provide:</p>\n<ol>\n<li>Platform-agnostic drivers for working with customer orders.</li>\n<li>Useful models and functions for working with customer orders.</li>\n</ol>\n\n</div>\n"
+}

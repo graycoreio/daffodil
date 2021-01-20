@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var DAFF_AUTH_STORE_FEATURE_KEY = 'daffAuth';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC1zdG9yZS1mZWF0dXJlLWtleS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9hdXRoLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvYXV0aC1zdG9yZS1mZWF0dXJlLWtleS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sS0FBTywyQkFBMkIsR0FBRyxVQUFVIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNvbnN0IERBRkZfQVVUSF9TVE9SRV9GRUFUVVJFX0tFWSA9ICdkYWZmQXV0aCc7XG4iXX0=

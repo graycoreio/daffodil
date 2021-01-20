@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/authorizenet/driver",
+  "main": "../bundles/daffodil-authorizenet-driver.umd.js",
+  "module": "../fesm5/daffodil-authorizenet-driver.js",
+  "es2015": "../fesm2015/daffodil-authorizenet-driver.js",
+  "esm5": "../esm5/driver/daffodil-authorizenet-driver.js",
+  "esm2015": "../esm2015/driver/daffodil-authorizenet-driver.js",
+  "fesm5": "../fesm5/daffodil-authorizenet-driver.js",
+  "fesm2015": "../fesm2015/daffodil-authorizenet-driver.js",
+  "typings": "daffodil-authorizenet-driver.d.ts",
+  "metadata": "daffodil-authorizenet-driver.metadata.json",
+  "sideEffects": false
+}

@@ -1,0 +1,5 @@
+{
+  "id": "api/product/DaffProductPageResolver",
+  "title": "DaffProductPageResolver",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffProductPageResolver</h1>\n  <label class=\"api-header__label class\">class</label>\n</header>\n\n\n<p class=\"api-subtitle\">Resolves product data for product pages, and will only resolve the url after a product request succeeds or fails. This resolver expects a url\nof the form `some/url/{id}` where `{id}` is the product id.</p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n    <div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">resolve</div>\n<div class=\"members-table__cell\">Observable&lt;boolean&gt;</div>\n<div class=\"members-table__cell\"></div>\n\n\n    </div>\n</section>\n\n</div>"
+}

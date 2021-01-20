@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffPaginatorModule } from './paginator.module';
+export { DaffPaginatorComponent } from './paginator.component';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJtb2xlY3VsZXMvcGFnaW5hdG9yL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBQ3pELE9BQU8sRUFBRSxzQkFBc0IsRUFBRSxNQUFNLHVCQUF1QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZlBhZ2luYXRvck1vZHVsZSB9IGZyb20gJy4vcGFnaW5hdG9yLm1vZHVsZSc7XG5leHBvcnQgeyBEYWZmUGFnaW5hdG9yQ29tcG9uZW50IH0gZnJvbSAnLi9wYWdpbmF0b3IuY29tcG9uZW50JztcbiJdfQ==

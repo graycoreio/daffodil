@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function MagentoApplyCouponResponse() { }
+if (false) {
+    /** @type {?} */
+    MagentoApplyCouponResponse.prototype.applyCouponToCart;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwbHktY291cG9uLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvZHJpdmVyL21hZ2VudG8vIiwic291cmNlcyI6WyJxdWVyaWVzL3Jlc3BvbnNlcy9hcHBseS1jb3Vwb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUVBLGdEQVVDOzs7SUFUQyx1REFRRSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE1hZ2VudG9DYXJ0IH0gZnJvbSAnLi4vLi4vbW9kZWxzL3Jlc3BvbnNlcy9jYXJ0JztcblxuZXhwb3J0IGludGVyZmFjZSBNYWdlbnRvQXBwbHlDb3Vwb25SZXNwb25zZSB7XG4gIGFwcGx5Q291cG9uVG9DYXJ0OiB7XG4gICAgY2FydDoge1xuICAgICAgaWQ6IE1hZ2VudG9DYXJ0WydpZCddLFxuICAgICAgaXRlbXM6IE1hZ2VudG9DYXJ0WydpdGVtcyddLFxuICAgICAgYXBwbGllZF9jb3Vwb25zOiBNYWdlbnRvQ2FydFsnYXBwbGllZF9jb3Vwb25zJ10sXG4gICAgICBwcmljZXM6IE1hZ2VudG9DYXJ0WydwcmljZXMnXSxcblx0XHRcdHNoaXBwaW5nX2FkZHJlc3NlczogUGFydGlhbDxNYWdlbnRvQ2FydFsnc2hpcHBpbmdfYWRkcmVzc2VzJ10+XG4gICAgfVxuICB9O1xufVxuIl19

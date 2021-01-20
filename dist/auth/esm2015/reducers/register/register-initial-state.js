@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export const daffAuthRegisterInitialState = {
+    loading: false,
+    errors: []
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVnaXN0ZXItaW5pdGlhbC1zdGF0ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9hdXRoLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvcmVnaXN0ZXIvcmVnaXN0ZXItaW5pdGlhbC1zdGF0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUVBLE1BQU0sT0FBTyw0QkFBNEIsR0FBaUM7SUFDeEUsT0FBTyxFQUFFLEtBQUs7SUFDZCxNQUFNLEVBQUUsRUFBRTtDQUNYIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGFmZkF1dGhSZWdpc3RlclJlZHVjZXJTdGF0ZSB9IGZyb20gJy4vcmVnaXN0ZXItcmVkdWNlci1zdGF0ZS5pbnRlcmZhY2UnO1xuXG5leHBvcnQgY29uc3QgZGFmZkF1dGhSZWdpc3RlckluaXRpYWxTdGF0ZTogRGFmZkF1dGhSZWdpc3RlclJlZHVjZXJTdGF0ZSA9IHtcbiAgbG9hZGluZzogZmFsc2UsXG4gIGVycm9yczogW11cbn07XG4iXX0=

@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/**
+ * An multi-provider injection token for providing extra GraphQL fragments that will be spread into order queries.
+ * This can be used to retrieve additional data that is not covered by the standard Daffodil interfaces.
+ * The data will appear in DaffOrder#extra_attributes.
+ *
+ * Fragment structure is platform-specific and this feature should be used with care.
+ * @type {?}
+ */
+export const DaffMagentoExtraOrderFragments = new InjectionToken('DaffMagentoExtraOrderFragments', { factory: (/**
+     * @return {?}
+     */
+    () => []) });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvZHJpdmVyL21hZ2VudG8vMi40LjAvIiwic291cmNlcyI6WyJpbmplY3Rpb24tdG9rZW5zL2ZyYWdtZW50cy9vcmRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7Ozs7O0FBVS9DLE1BQU0sT0FBTyw4QkFBOEIsR0FBRyxJQUFJLGNBQWMsQ0FBaUIsZ0NBQWdDLEVBQUUsRUFBQyxPQUFPOzs7SUFBRSxHQUFHLEVBQUUsQ0FBQyxFQUFFLENBQUEsRUFBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0aW9uVG9rZW4gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IERvY3VtZW50Tm9kZSB9IGZyb20gJ2dyYXBocWwnO1xuXG4vKipcbiAqIEFuIG11bHRpLXByb3ZpZGVyIGluamVjdGlvbiB0b2tlbiBmb3IgcHJvdmlkaW5nIGV4dHJhIEdyYXBoUUwgZnJhZ21lbnRzIHRoYXQgd2lsbCBiZSBzcHJlYWQgaW50byBvcmRlciBxdWVyaWVzLlxuICogVGhpcyBjYW4gYmUgdXNlZCB0byByZXRyaWV2ZSBhZGRpdGlvbmFsIGRhdGEgdGhhdCBpcyBub3QgY292ZXJlZCBieSB0aGUgc3RhbmRhcmQgRGFmZm9kaWwgaW50ZXJmYWNlcy5cbiAqIFRoZSBkYXRhIHdpbGwgYXBwZWFyIGluIERhZmZPcmRlciNleHRyYV9hdHRyaWJ1dGVzLlxuICpcbiAqIEZyYWdtZW50IHN0cnVjdHVyZSBpcyBwbGF0Zm9ybS1zcGVjaWZpYyBhbmQgdGhpcyBmZWF0dXJlIHNob3VsZCBiZSB1c2VkIHdpdGggY2FyZS5cbiAqL1xuZXhwb3J0IGNvbnN0IERhZmZNYWdlbnRvRXh0cmFPcmRlckZyYWdtZW50cyA9IG5ldyBJbmplY3Rpb25Ub2tlbjxEb2N1bWVudE5vZGVbXT4oJ0RhZmZNYWdlbnRvRXh0cmFPcmRlckZyYWdtZW50cycsIHtmYWN0b3J5OiAoKSA9PiBbXX0pO1xuIl19

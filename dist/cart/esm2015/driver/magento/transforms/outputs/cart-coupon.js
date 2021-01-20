@@ -1,0 +1,12 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @param {?} coupon
+ * @return {?}
+ */
+export function daffMagentoCouponTransform(coupon) {
+    return Object.assign({ magento_coupon: coupon }, { code: coupon.code });
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC1jb3Vwb24uanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2FydC9kcml2ZXIvbWFnZW50by8iLCJzb3VyY2VzIjpbInRyYW5zZm9ybXMvb3V0cHV0cy9jYXJ0LWNvdXBvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUlBLE1BQU0sVUFBVSwwQkFBMEIsQ0FBQyxNQUF5QjtJQUNsRSxxQkFDSyxFQUFDLGNBQWMsRUFBRSxNQUFNLEVBQUMsSUFDM0IsSUFBSSxFQUFFLE1BQU0sQ0FBQyxJQUFJLElBQ2xCO0FBQ0gsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZDYXJ0Q291cG9uIH0gZnJvbSAnQGRhZmZvZGlsL2NhcnQnO1xuXG5pbXBvcnQgeyBNYWdlbnRvQ2FydENvdXBvbiB9IGZyb20gJy4uLy4uL21vZGVscy9yZXNwb25zZXMvcHVibGljX2FwaSc7XG5cbmV4cG9ydCBmdW5jdGlvbiBkYWZmTWFnZW50b0NvdXBvblRyYW5zZm9ybShjb3Vwb246IE1hZ2VudG9DYXJ0Q291cG9uKTogRGFmZkNhcnRDb3Vwb24ge1xuICByZXR1cm4ge1xuICAgIC4uLnttYWdlbnRvX2NvdXBvbjogY291cG9ufSxcbiAgICBjb2RlOiBjb3Vwb24uY29kZVxuICB9XG59XG4iXX0=

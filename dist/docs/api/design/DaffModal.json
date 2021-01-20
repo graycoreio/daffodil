@@ -1,0 +1,5 @@
+{
+  "id": "api/design/DaffModal",
+  "title": "DaffModal",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffModal</h1>\n  <label class=\"api-header__label interface\">interface</label>\n</header>\n\n\n<p class=\"api-subtitle\"></p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n\t\t<div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">modal</div>\n<div class=\"members-table__cell\">ComponentRef&lt;DaffModalComponent&gt;</div>\n<div class=\"members-table__cell\">The reference to the modal in question</div>\n\n\n    \n\t\t\t\n<div class=\"members-table__cell\">overlay</div>\n<div class=\"members-table__cell\">OverlayRef</div>\n<div class=\"members-table__cell\">The overlay associated with a given modal.</div>\n\n\n    </div>\n</section>\n\n</div>"
+}

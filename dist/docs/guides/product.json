@@ -1,0 +1,5 @@
+{
+  "id": "guides/product",
+  "title": "@daffodil/product",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"daffodilproduct\">@daffodil/product</h1>\n<p>Building and maintaining a model and code for an ecommerce store is complex and mentally taxing. <code>@daffodil/product</code>\nprovides clear interfaces, models, and factories for the frontend of an ecommerce store so that you don&#39;t have to.</p>\n<h2 id=\"installation\">Installation</h2>\n<pre><code>npm install @daffodil/product</code></pre>\n\n</div>\n"
+}

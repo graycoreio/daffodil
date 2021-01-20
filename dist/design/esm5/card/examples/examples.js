@@ -1,0 +1,12 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { CardWithImageComponent } from './card-with-image/card-with-image.component';
+import { CardWithColorComponent } from './card-with-color/card-with-color.component';
+/** @type {?} */
+export var CARD_EXAMPLES = [
+    CardWithImageComponent,
+    CardWithColorComponent
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhhbXBsZXMuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvZGVzaWduL2NhcmQvZXhhbXBsZXMvIiwic291cmNlcyI6WyJleGFtcGxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHNCQUFzQixFQUFFLE1BQU0sNkNBQTZDLENBQUM7QUFDckYsT0FBTyxFQUFFLHNCQUFzQixFQUFFLE1BQU0sNkNBQTZDLENBQUM7O0FBRXJGLE1BQU0sS0FBTyxhQUFhLEdBQUc7SUFDM0Isc0JBQXNCO0lBQ3RCLHNCQUFzQjtDQUN2QiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENhcmRXaXRoSW1hZ2VDb21wb25lbnQgfSBmcm9tICcuL2NhcmQtd2l0aC1pbWFnZS9jYXJkLXdpdGgtaW1hZ2UuY29tcG9uZW50JztcbmltcG9ydCB7IENhcmRXaXRoQ29sb3JDb21wb25lbnQgfSBmcm9tICcuL2NhcmQtd2l0aC1jb2xvci9jYXJkLXdpdGgtY29sb3IuY29tcG9uZW50JztcblxuZXhwb3J0IGNvbnN0IENBUkRfRVhBTVBMRVMgPSBbXG4gIENhcmRXaXRoSW1hZ2VDb21wb25lbnQsXG4gIENhcmRXaXRoQ29sb3JDb21wb25lbnRcbl07Il19

@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/**
+ * An multi-provider injection token for providing extra GraphQL fragments that will be spread into cart queries.
+ * This can be used to retrieve additional data that is not covered by the standard Daffodil interfaces.
+ * The data will appear in DaffCart#extra_attributes.
+ *
+ * Fragment structure is platform-specific and this feature should be used with care.
+ * @type {?}
+ */
+export var DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS = new InjectionToken('DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS', { factory: (/**
+     * @return {?}
+     */
+    function () { return []; }) });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jYXJ0L2RyaXZlci9tYWdlbnRvLyIsInNvdXJjZXMiOlsiaW5qZWN0aW9uLXRva2Vucy9mcmFnbWVudHMvY2FydC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7Ozs7O0FBVS9DLE1BQU0sS0FBTyxzQ0FBc0MsR0FBRyxJQUFJLGNBQWMsQ0FBaUIsd0NBQXdDLEVBQUUsRUFBQyxPQUFPOzs7SUFBRSxjQUFNLE9BQUEsRUFBRSxFQUFGLENBQUUsQ0FBQSxFQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3Rpb25Ub2tlbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRG9jdW1lbnROb2RlIH0gZnJvbSAnZ3JhcGhxbCc7XG5cbi8qKlxuICogQW4gbXVsdGktcHJvdmlkZXIgaW5qZWN0aW9uIHRva2VuIGZvciBwcm92aWRpbmcgZXh0cmEgR3JhcGhRTCBmcmFnbWVudHMgdGhhdCB3aWxsIGJlIHNwcmVhZCBpbnRvIGNhcnQgcXVlcmllcy5cbiAqIFRoaXMgY2FuIGJlIHVzZWQgdG8gcmV0cmlldmUgYWRkaXRpb25hbCBkYXRhIHRoYXQgaXMgbm90IGNvdmVyZWQgYnkgdGhlIHN0YW5kYXJkIERhZmZvZGlsIGludGVyZmFjZXMuXG4gKiBUaGUgZGF0YSB3aWxsIGFwcGVhciBpbiBEYWZmQ2FydCNleHRyYV9hdHRyaWJ1dGVzLlxuICpcbiAqIEZyYWdtZW50IHN0cnVjdHVyZSBpcyBwbGF0Zm9ybS1zcGVjaWZpYyBhbmQgdGhpcyBmZWF0dXJlIHNob3VsZCBiZSB1c2VkIHdpdGggY2FyZS5cbiAqL1xuZXhwb3J0IGNvbnN0IERBRkZfQ0FSVF9NQUdFTlRPX0VYVFJBX0NBUlRfRlJBR01FTlRTID0gbmV3IEluamVjdGlvblRva2VuPERvY3VtZW50Tm9kZVtdPignREFGRl9DQVJUX01BR0VOVE9fRVhUUkFfQ0FSVF9GUkFHTUVOVFMnLCB7ZmFjdG9yeTogKCkgPT4gW119KTtcbiJdfQ==

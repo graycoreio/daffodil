@@ -1,0 +1,5 @@
+{
+  "id": "api/auth/daffAuthRegisterReducer",
+  "title": "daffAuthRegisterReducer",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">daffAuthRegisterReducer</h1>\n  <label class=\"api-header__label function\">function</label>\n</header>\n\n\n<p class=\"api-subtitle\"></p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

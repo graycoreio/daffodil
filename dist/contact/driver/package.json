@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/daffodil-contact-driver.umd.js",
+  "module": "../fesm5/daffodil-contact-driver.js",
+  "es2015": "../fesm2015/daffodil-contact-driver.js",
+  "esm5": "../esm5/driver/daffodil-contact-driver.js",
+  "esm2015": "../esm2015/driver/daffodil-contact-driver.js",
+  "fesm5": "../fesm5/daffodil-contact-driver.js",
+  "fesm2015": "../fesm2015/daffodil-contact-driver.js",
+  "typings": "daffodil-contact-driver.d.ts",
+  "metadata": "daffodil-contact-driver.metadata.json",
+  "sideEffects": false,
+  "name": "@daffodil/contact/driver"
+}

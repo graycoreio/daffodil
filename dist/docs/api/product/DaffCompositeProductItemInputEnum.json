@@ -1,0 +1,5 @@
+{
+  "id": "api/product/DaffCompositeProductItemInputEnum",
+  "title": "DaffCompositeProductItemInputEnum",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffCompositeProductItemInputEnum</h1>\n  <label class=\"api-header__label enum\">enum</label>\n</header>\n\n\n<p class=\"api-subtitle\">An enum for whether a composite product item should be displayed as a radio or select input.</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

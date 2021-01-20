@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { DaffOrderAddressFactory, DaffOrderItemFactory, DaffOrderPaymentFactory, DaffOrderShippingRateFactory, DaffOrderFactory, DaffPaymentFactory, DaffShippingOptionFactory, DaffShippingRateFactory, DaffTestingCheckoutService, DaffInMemoryCheckoutService, DaffCheckoutInMemoryDriverModule, DaffCheckoutTestingDriverModule, DaffInMemoryBackendCheckoutService } from './index';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGFmZm9kaWwtY2hlY2tvdXQtdGVzdGluZy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jaGVja291dC90ZXN0aW5nLyIsInNvdXJjZXMiOlsiZGFmZm9kaWwtY2hlY2tvdXQtdGVzdGluZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsK1dBQWMsU0FBUyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBHZW5lcmF0ZWQgYnVuZGxlIGluZGV4LiBEbyBub3QgZWRpdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2luZGV4JztcbiJdfQ==

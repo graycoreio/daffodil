@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffGeographyTestingModule } from './geography-testing.module';
+export { MockDaffGeographyFacade } from './mock-geography-facade';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9nZW9ncmFwaHkvc3RhdGUvdGVzdGluZy8iLCJzb3VyY2VzIjpbInB1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSwwQkFBMEIsRUFBRSxNQUFNLDRCQUE0QixDQUFDO0FBQ3hFLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxNQUFNLHlCQUF5QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZkdlb2dyYXBoeVRlc3RpbmdNb2R1bGUgfSBmcm9tICcuL2dlb2dyYXBoeS10ZXN0aW5nLm1vZHVsZSc7XG5leHBvcnQgeyBNb2NrRGFmZkdlb2dyYXBoeUZhY2FkZSB9IGZyb20gJy4vbW9jay1nZW9ncmFwaHktZmFjYWRlJztcbiJdfQ==

@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * This model is needed as a reference in concrete classes, because the DaffGenericCategory is recursive.
+ * @record
+ */
+export function DaffCategory() { }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2F0ZWdvcnkuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2F0ZWdvcnkvIiwic291cmNlcyI6WyJtb2RlbHMvY2F0ZWdvcnkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFLQSxrQ0FBMEUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEYWZmR2VuZXJpY0NhdGVnb3J5IH0gZnJvbSAnLi9nZW5lcmljLWNhdGVnb3J5JztcblxuLyoqXG4gKiBUaGlzIG1vZGVsIGlzIG5lZWRlZCBhcyBhIHJlZmVyZW5jZSBpbiBjb25jcmV0ZSBjbGFzc2VzLCBiZWNhdXNlIHRoZSBEYWZmR2VuZXJpY0NhdGVnb3J5IGlzIHJlY3Vyc2l2ZS5cbiAqL1xuZXhwb3J0IGludGVyZmFjZSBEYWZmQ2F0ZWdvcnkgZXh0ZW5kcyBEYWZmR2VuZXJpY0NhdGVnb3J5PERhZmZDYXRlZ29yeT4ge31cbiJdfQ==

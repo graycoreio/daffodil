@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export const MAGENTO_AUTHORIZE_NET_PAYMENT_ID = 'authorizenet_acceptjs';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aG9yaXplLW5ldC1wYXltZW50LWlkLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2F1dGhvcml6ZW5ldC9kcml2ZXIvbWFnZW50by8iLCJzb3VyY2VzIjpbImF1dGhvcml6ZS1uZXQtcGF5bWVudC1pZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sT0FBTyxnQ0FBZ0MsR0FBRyx1QkFBdUIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgTUFHRU5UT19BVVRIT1JJWkVfTkVUX1BBWU1FTlRfSUQgPSAnYXV0aG9yaXplbmV0X2FjY2VwdGpzJztcbiJdfQ==

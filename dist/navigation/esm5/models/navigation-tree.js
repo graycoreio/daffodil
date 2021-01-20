@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * This model is needed as a reference in concrete classes, because the DaffGenericNavigationTree is recursive.
+ * @record
+ */
+export function DaffNavigationTree() { }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2aWdhdGlvbi10cmVlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL25hdmlnYXRpb24vIiwic291cmNlcyI6WyJtb2RlbHMvbmF2aWdhdGlvbi10cmVlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBS0Esd0NBQTRGIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGFmZkdlbmVyaWNOYXZpZ2F0aW9uVHJlZSB9IGZyb20gJy4vZ2VuZXJpYy1uYXZpZ2F0aW9uLXRyZWUnO1xuXG4vKipcbiAqIFRoaXMgbW9kZWwgaXMgbmVlZGVkIGFzIGEgcmVmZXJlbmNlIGluIGNvbmNyZXRlIGNsYXNzZXMsIGJlY2F1c2UgdGhlIERhZmZHZW5lcmljTmF2aWdhdGlvblRyZWUgaXMgcmVjdXJzaXZlLlxuICovXG5leHBvcnQgaW50ZXJmYWNlIERhZmZOYXZpZ2F0aW9uVHJlZSBleHRlbmRzIERhZmZHZW5lcmljTmF2aWdhdGlvblRyZWU8RGFmZk5hdmlnYXRpb25UcmVlPiB7fVxuIl19

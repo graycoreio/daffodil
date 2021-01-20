@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A helper function to verify that a model is a Navigation.
+ * @param {?} navigation
+ * @return {?}
+ */
+export function isNavigation(navigation) {
+    return navigation.id != null && navigation.name != null && navigation.path != null;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2aWdhdGlvbi1oZWxwZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvbmF2aWdhdGlvbi90ZXN0aW5nLyIsInNvdXJjZXMiOlsiaGVscGVycy9uYXZpZ2F0aW9uLWhlbHBlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFNQSxNQUFNLFVBQVUsWUFBWSxDQUFDLFVBQThCO0lBQ3pELE9BQU8sVUFBVSxDQUFDLEVBQUUsSUFBSSxJQUFJLElBQUksVUFBVSxDQUFDLElBQUksSUFBSSxJQUFJLElBQUksVUFBVSxDQUFDLElBQUksSUFBSSxJQUFJLENBQUM7QUFDckYsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZOYXZpZ2F0aW9uVHJlZSB9IGZyb20gJ0BkYWZmb2RpbC9uYXZpZ2F0aW9uJztcblxuLyoqXG4gKiBBIGhlbHBlciBmdW5jdGlvbiB0byB2ZXJpZnkgdGhhdCBhIG1vZGVsIGlzIGEgTmF2aWdhdGlvbi5cbiAqIEBwYXJhbSBuYXZpZ2F0aW9uXG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBpc05hdmlnYXRpb24obmF2aWdhdGlvbjogRGFmZk5hdmlnYXRpb25UcmVlKTogYm9vbGVhbiB7XG4gIHJldHVybiBuYXZpZ2F0aW9uLmlkICE9IG51bGwgJiYgbmF2aWdhdGlvbi5uYW1lICE9IG51bGwgJiYgbmF2aWdhdGlvbi5wYXRoICE9IG51bGw7XG59XG4iXX0=

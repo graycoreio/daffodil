@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/core/testing",
+  "main": "../bundles/daffodil-core-testing.umd.js",
+  "module": "../fesm5/daffodil-core-testing.js",
+  "es2015": "../fesm2015/daffodil-core-testing.js",
+  "esm5": "../esm5/testing/daffodil-core-testing.js",
+  "esm2015": "../esm2015/testing/daffodil-core-testing.js",
+  "fesm5": "../fesm5/daffodil-core-testing.js",
+  "fesm2015": "../fesm2015/daffodil-core-testing.js",
+  "typings": "daffodil-core-testing.d.ts",
+  "metadata": "daffodil-core-testing.metadata.json",
+  "sideEffects": false
+}

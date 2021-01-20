@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { animate, state, style, transition, trigger, } from '@angular/animations';
+/** @type {?} */
+export var daffProgressIndicatorAnimation = {
+    fill: trigger('fill', [
+        state('*', style({ width: '{{ percentage }}%' }), { params: { percentage: 0 } }),
+        transition('* <=> *', animate(1000))
+    ])
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZ3Jlc3MtaW5kaWNhdG9yLWFuaW1hdGlvbi5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJhdG9tcy9wcm9ncmVzcy1pbmRpY2F0b3IvYW5pbWF0aW9uL3Byb2dyZXNzLWluZGljYXRvci1hbmltYXRpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFDSCxPQUFPLEVBQ1AsS0FBSyxFQUNMLEtBQUssRUFDTCxVQUFVLEVBQ1YsT0FBTyxHQUVSLE1BQU0scUJBQXFCLENBQUM7O0FBRTdCLE1BQU0sS0FBTyw4QkFBOEIsR0FFdkM7SUFDRixJQUFJLEVBQUUsT0FBTyxDQUFDLE1BQU0sRUFBRTtRQUNsQixLQUFLLENBQUMsR0FBRyxFQUFFLEtBQUssQ0FBQyxFQUFFLEtBQUssRUFBRSxtQkFBbUIsRUFBQyxDQUFDLEVBQUUsRUFBRSxNQUFNLEVBQUUsRUFBRSxVQUFVLEVBQUUsQ0FBQyxFQUFFLEVBQUUsQ0FBQztRQUMvRSxVQUFVLENBQUMsU0FBUyxFQUFFLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztLQUN2QyxDQUFDO0NBQ0giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1xuICAgIGFuaW1hdGUsXG4gICAgc3RhdGUsXG4gICAgc3R5bGUsXG4gICAgdHJhbnNpdGlvbixcbiAgICB0cmlnZ2VyLFxuICAgIEFuaW1hdGlvblRyaWdnZXJNZXRhZGF0YSxcbiAgfSBmcm9tICdAYW5ndWxhci9hbmltYXRpb25zJztcbiAgXG4gIGV4cG9ydCBjb25zdCBkYWZmUHJvZ3Jlc3NJbmRpY2F0b3JBbmltYXRpb246IHtcbiAgICByZWFkb25seSBmaWxsOiBBbmltYXRpb25UcmlnZ2VyTWV0YWRhdGEsXG4gIH0gPSB7XG4gICAgZmlsbDogdHJpZ2dlcignZmlsbCcsIFtcbiAgICAgICAgc3RhdGUoJyonLCBzdHlsZSh7IHdpZHRoOiAne3sgcGVyY2VudGFnZSB9fSUnfSksIHsgcGFyYW1zOiB7IHBlcmNlbnRhZ2U6IDAgfSB9KSxcbiAgICAgICAgdHJhbnNpdGlvbignKiA8PT4gKicsIGFuaW1hdGUoMTAwMCkpXG4gICAgXSlcbiAgfTtcbiAgIl19

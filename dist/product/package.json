@@ -1,0 +1,52 @@
+{
+  "name": "@daffodil/product",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Interfaces built for daffodil/state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/product"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "faker": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "apollo-client": "0.0.0-PLACEHOLDER",
+    "graphql-tag": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  },
+  "main": "bundles/daffodil-product.umd.js",
+  "module": "fesm5/daffodil-product.js",
+  "es2015": "fesm2015/daffodil-product.js",
+  "esm5": "esm5/daffodil-product.js",
+  "esm2015": "esm2015/daffodil-product.js",
+  "fesm5": "fesm5/daffodil-product.js",
+  "fesm2015": "fesm2015/daffodil-product.js",
+  "typings": "daffodil-product.d.ts",
+  "metadata": "daffodil-product.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export const DAFF_GEOGRAPHY_STORE_FEATURE_KEY = 'daffGeography';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VvZ3JhcGh5LXN0b3JlLWZlYXR1cmUta2V5LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2dlb2dyYXBoeS9zdGF0ZS8iLCJzb3VyY2VzIjpbInJlZHVjZXJzL2dlb2dyYXBoeS1zdG9yZS1mZWF0dXJlLWtleS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sT0FBTyxnQ0FBZ0MsR0FBRyxlQUFlIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNvbnN0IERBRkZfR0VPR1JBUEhZX1NUT1JFX0ZFQVRVUkVfS0VZID0gJ2RhZmZHZW9ncmFwaHknO1xuIl19

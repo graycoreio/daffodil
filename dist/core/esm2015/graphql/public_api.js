@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from './fragments/public_api';
+export { DaffQueuedApollo } from './apollo/public_api';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jb3JlL2dyYXBocWwvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSx5RUFBYyx3QkFBd0IsQ0FBQztBQUN2QyxpQ0FBYyxxQkFBcUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vZnJhZ21lbnRzL3B1YmxpY19hcGknO1xuZXhwb3J0ICogZnJvbSAnLi9hcG9sbG8vcHVibGljX2FwaSc7XG4iXX0=

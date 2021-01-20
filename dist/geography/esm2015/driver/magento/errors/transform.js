@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { DaffGeographyMagentoErrorMap } from './map';
+/**
+ * @param {?} error
+ * @return {?}
+ */
+export function transformMagentoGeographyError(error) {
+    return daffTransformMagentoError(error, DaffGeographyMagentoErrorMap);
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJhbnNmb3JtLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2dlb2dyYXBoeS9kcml2ZXIvbWFnZW50by8iLCJzb3VyY2VzIjpbImVycm9ycy90cmFuc2Zvcm0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSx5QkFBeUIsRUFBRSxNQUFNLDBCQUEwQixDQUFDO0FBRXJFLE9BQU8sRUFBRSw0QkFBNEIsRUFBRSxNQUFNLE9BQU8sQ0FBQzs7Ozs7QUFFckQsTUFBTSxVQUFVLDhCQUE4QixDQUFDLEtBQVU7SUFDdkQsT0FBTyx5QkFBeUIsQ0FBQyxLQUFLLEVBQUUsNEJBQTRCLENBQUMsQ0FBQTtBQUN2RSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGFmZlRyYW5zZm9ybU1hZ2VudG9FcnJvciB9IGZyb20gJ0BkYWZmb2RpbC9kcml2ZXIvbWFnZW50byc7XG5cbmltcG9ydCB7IERhZmZHZW9ncmFwaHlNYWdlbnRvRXJyb3JNYXAgfSBmcm9tICcuL21hcCc7XG5cbmV4cG9ydCBmdW5jdGlvbiB0cmFuc2Zvcm1NYWdlbnRvR2VvZ3JhcGh5RXJyb3IoZXJyb3I6IGFueSkge1xuICByZXR1cm4gZGFmZlRyYW5zZm9ybU1hZ2VudG9FcnJvcihlcnJvciwgRGFmZkdlb2dyYXBoeU1hZ2VudG9FcnJvck1hcClcbn1cbiJdfQ==

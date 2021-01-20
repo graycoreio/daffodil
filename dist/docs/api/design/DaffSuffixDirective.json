@@ -1,0 +1,5 @@
+{
+  "id": "api/design/DaffSuffixDirective",
+  "title": "DaffSuffixDirective",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffSuffixDirective</h1>\n  <label class=\"api-header__label class\">class</label>\n</header>\n\n\n<p class=\"api-subtitle\">Prefix can be used to place content after another piece of content in components like\n`daff-form-field`, `daff-solo-field`, and `daff-list`.</p>\n\n<div class=\"api-body\">\n  \n\n<section class=\"selectors\">\n  <span class=\"selectors__label\">Selector:</span>\n  <span class=\"selectors__name\"><code>'[daffSuffix]'</code></span>\n</section>\n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n    <div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">class</div>\n<div class=\"members-table__cell\">true</div>\n<div class=\"members-table__cell\"></div>\n\n\n    </div>\n</section>\n\n</div>"
+}

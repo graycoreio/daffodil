@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { daffCompareAddresses } from './address';
+export { daffComparePersonalAddresses } from './personal-address';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9nZW9ncmFwaHkvIiwic291cmNlcyI6WyJjb21wYXJhdG9ycy9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsb0JBQW9CLEVBQUUsTUFBTSxXQUFXLENBQUM7QUFDakQsT0FBTyxFQUFFLDRCQUE0QixFQUFFLE1BQU0sb0JBQW9CLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBkYWZmQ29tcGFyZUFkZHJlc3NlcyB9IGZyb20gJy4vYWRkcmVzcyc7XG5leHBvcnQgeyBkYWZmQ29tcGFyZVBlcnNvbmFsQWRkcmVzc2VzIH0gZnJvbSAnLi9wZXJzb25hbC1hZGRyZXNzJztcbiJdfQ==

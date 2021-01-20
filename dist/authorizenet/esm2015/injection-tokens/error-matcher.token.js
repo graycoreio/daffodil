@@ -1,0 +1,16 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+import { daffTransformErrorToStateError } from '@daffodil/core/state';
+/**
+ * Transforms `DaffError`s into `DaffStateError`s before they are serialized into state.
+ * Can be used to further refine Daffodil errors into more specific app errors.
+ * @type {?}
+ */
+export const DAFF_AUTHORIZENET_ERROR_MATCHER = new InjectionToken('DAFF_AUTHORIZENET_ERROR_MATCHER', { factory: (/**
+     * @return {?}
+     */
+    () => daffTransformErrorToStateError) });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXJyb3ItbWF0Y2hlci50b2tlbi5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9hdXRob3JpemVuZXQvIiwic291cmNlcyI6WyJpbmplY3Rpb24tdG9rZW5zL2Vycm9yLW1hdGNoZXIudG9rZW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFL0MsT0FBTyxFQUFFLDhCQUE4QixFQUFFLE1BQU0sc0JBQXNCLENBQUM7Ozs7OztBQU10RSxNQUFNLE9BQU8sK0JBQStCLEdBQUcsSUFBSSxjQUFjLENBQXdDLGlDQUFpQyxFQUFFLEVBQUMsT0FBTzs7O0lBQUUsR0FBRyxFQUFFLENBQUMsOEJBQThCLENBQUEsRUFBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0aW9uVG9rZW4gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgZGFmZlRyYW5zZm9ybUVycm9yVG9TdGF0ZUVycm9yIH0gZnJvbSAnQGRhZmZvZGlsL2NvcmUvc3RhdGUnO1xuXG4vKipcbiAqIFRyYW5zZm9ybXMgYERhZmZFcnJvcmBzIGludG8gYERhZmZTdGF0ZUVycm9yYHMgYmVmb3JlIHRoZXkgYXJlIHNlcmlhbGl6ZWQgaW50byBzdGF0ZS5cbiAqIENhbiBiZSB1c2VkIHRvIGZ1cnRoZXIgcmVmaW5lIERhZmZvZGlsIGVycm9ycyBpbnRvIG1vcmUgc3BlY2lmaWMgYXBwIGVycm9ycy5cbiAqL1xuZXhwb3J0IGNvbnN0IERBRkZfQVVUSE9SSVpFTkVUX0VSUk9SX01BVENIRVIgPSBuZXcgSW5qZWN0aW9uVG9rZW48dHlwZW9mIGRhZmZUcmFuc2Zvcm1FcnJvclRvU3RhdGVFcnJvcj4oJ0RBRkZfQVVUSE9SSVpFTkVUX0VSUk9SX01BVENIRVInLCB7ZmFjdG9yeTogKCkgPT4gZGFmZlRyYW5zZm9ybUVycm9yVG9TdGF0ZUVycm9yfSk7XG4iXX0=

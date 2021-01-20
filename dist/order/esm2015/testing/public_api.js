@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffOrderAddressFactory, DaffOrderCouponFactory, DaffOrderInvoiceFactory, DaffOrderPaymentFactory, DaffOrderItemFactory, DaffCompositeOrderItemFactory, DaffConfigurableOrderItemFactory, DaffOrderShipmentItemFactory, DaffOrderShipmentTrackingFactory, DaffOrderShipmentFactory, DaffOrderShippingMethodFactory, DaffOrderTotalFactory, DaffOrderFactory } from './factories/public_api';
+export { isOrder } from './helpers/public_api';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9vcmRlci90ZXN0aW5nLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsNFdBQWMsd0JBQXdCLENBQUM7QUFDdkMsd0JBQWMsc0JBQXNCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tICcuL2ZhY3Rvcmllcy9wdWJsaWNfYXBpJztcbmV4cG9ydCAqIGZyb20gJy4vaGVscGVycy9wdWJsaWNfYXBpJztcbiJdfQ==

@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/newsletter/testing",
+  "main": "../bundles/daffodil-newsletter-testing.umd.js",
+  "module": "../fesm5/daffodil-newsletter-testing.js",
+  "es2015": "../fesm2015/daffodil-newsletter-testing.js",
+  "esm5": "../esm5/testing/daffodil-newsletter-testing.js",
+  "esm2015": "../esm2015/testing/daffodil-newsletter-testing.js",
+  "fesm5": "../fesm5/daffodil-newsletter-testing.js",
+  "fesm2015": "../fesm2015/daffodil-newsletter-testing.js",
+  "typings": "daffodil-newsletter-testing.d.ts",
+  "metadata": "daffodil-newsletter-testing.metadata.json",
+  "sideEffects": false
+}

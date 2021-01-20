@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/geography/driver",
+  "main": "../bundles/daffodil-geography-driver.umd.js",
+  "module": "../fesm5/daffodil-geography-driver.js",
+  "es2015": "../fesm2015/daffodil-geography-driver.js",
+  "esm5": "../esm5/driver/daffodil-geography-driver.js",
+  "esm2015": "../esm2015/driver/daffodil-geography-driver.js",
+  "fesm5": "../fesm5/daffodil-geography-driver.js",
+  "fesm2015": "../fesm2015/daffodil-geography-driver.js",
+  "typings": "daffodil-geography-driver.d.ts",
+  "metadata": "daffodil-geography-driver.metadata.json",
+  "sideEffects": false
+}

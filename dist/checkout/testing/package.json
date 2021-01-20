@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/checkout/testing",
+  "main": "../bundles/daffodil-checkout-testing.umd.js",
+  "module": "../fesm5/daffodil-checkout-testing.js",
+  "es2015": "../fesm2015/daffodil-checkout-testing.js",
+  "esm5": "../esm5/testing/daffodil-checkout-testing.js",
+  "esm2015": "../esm2015/testing/daffodil-checkout-testing.js",
+  "fesm5": "../fesm5/daffodil-checkout-testing.js",
+  "fesm2015": "../fesm2015/daffodil-checkout-testing.js",
+  "typings": "daffodil-checkout-testing.d.ts",
+  "metadata": "daffodil-checkout-testing.metadata.json",
+  "sideEffects": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/driver/magento",
+  "main": "../bundles/daffodil-driver-magento.umd.js",
+  "module": "../fesm5/daffodil-driver-magento.js",
+  "es2015": "../fesm2015/daffodil-driver-magento.js",
+  "esm5": "../esm5/magento/daffodil-driver-magento.js",
+  "esm2015": "../esm2015/magento/daffodil-driver-magento.js",
+  "fesm5": "../fesm5/daffodil-driver-magento.js",
+  "fesm2015": "../fesm2015/daffodil-driver-magento.js",
+  "typings": "daffodil-driver-magento.d.ts",
+  "metadata": "daffodil-driver-magento.metadata.json",
+  "sideEffects": false
+}

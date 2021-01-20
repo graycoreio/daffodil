@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffAuthorizeNetReducer } from './authorize-net/authorize-net.reducer';
+/** @type {?} */
+export const daffAuthorizeNetReducers = {
+    authorizeNet: daffAuthorizeNetReducer
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aG9yaXplLW5ldC5yZWR1Y2Vycy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9hdXRob3JpemVuZXQvc3RhdGUvIiwic291cmNlcyI6WyJyZWR1Y2Vycy9hdXRob3JpemUtbmV0LnJlZHVjZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsTUFBTSx1Q0FBdUMsQ0FBQzs7QUFFaEYsTUFBTSxPQUFPLHdCQUF3QixHQUFHO0lBQ3ZDLFlBQVksRUFBRSx1QkFBdUI7Q0FDckMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBkYWZmQXV0aG9yaXplTmV0UmVkdWNlciB9IGZyb20gJy4vYXV0aG9yaXplLW5ldC9hdXRob3JpemUtbmV0LnJlZHVjZXInO1xuXG5leHBvcnQgY29uc3QgZGFmZkF1dGhvcml6ZU5ldFJlZHVjZXJzID0ge1xuXHRhdXRob3JpemVOZXQ6IGRhZmZBdXRob3JpemVOZXRSZWR1Y2VyXG59Il19

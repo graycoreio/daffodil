@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import * as tslib_1 from "tslib";
+import gql from 'graphql-tag';
+import { magentoProductFragment } from '@daffodil/product';
+/**
+ * This query only exists because products and their associated aggregations/filter cannot
+ * be retrieved through a category call.
+ * @type {?}
+ */
+export var MagentoGetProductsQuery = gql(templateObject_1 || (templateObject_1 = tslib_1.__makeTemplateObject(["\nquery MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)\n{\n\tproducts(filter: $filter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)\n\t{\n\t\ttotal_count\n\t\titems {\n\t\t\t...product\n\t\t}\n\t\tpage_info {\n\t\t\tpage_size\n\t\t\tcurrent_page\n\t\t\ttotal_pages\n\t\t}\n\t}\n}\n", "\n"], ["\nquery MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)\n{\n\tproducts(filter: $filter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)\n\t{\n\t\ttotal_count\n\t\titems {\n\t\t\t...product\n\t\t}\n\t\tpage_info {\n\t\t\tpage_size\n\t\t\tcurrent_page\n\t\t\ttotal_pages\n\t\t}\n\t}\n}\n", "\n"])), magentoProductFragment);
+var templateObject_1;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2V0LXByb2R1Y3RzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhdGVnb3J5LyIsInNvdXJjZXMiOlsiZHJpdmVycy9tYWdlbnRvL3F1ZXJpZXMvZ2V0LXByb2R1Y3RzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxHQUFHLE1BQU0sYUFBYSxDQUFDO0FBQzlCLE9BQU8sRUFBRSxzQkFBc0IsRUFBRSxNQUFNLG1CQUFtQixDQUFDOzs7Ozs7QUFNM0QsTUFBTSxLQUFPLHVCQUF1QixHQUFHLEdBQUcsOGVBQUEsNlpBZ0J4QyxFQUFzQixJQUN2QixLQURDLHNCQUFzQixDQUN2QiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBncWwgZnJvbSAnZ3JhcGhxbC10YWcnO1xuaW1wb3J0IHsgbWFnZW50b1Byb2R1Y3RGcmFnbWVudCB9IGZyb20gJ0BkYWZmb2RpbC9wcm9kdWN0JztcblxuLyoqXG4gKiBUaGlzIHF1ZXJ5IG9ubHkgZXhpc3RzIGJlY2F1c2UgcHJvZHVjdHMgYW5kIHRoZWlyIGFzc29jaWF0ZWQgYWdncmVnYXRpb25zL2ZpbHRlciBjYW5ub3RcbiAqIGJlIHJldHJpZXZlZCB0aHJvdWdoIGEgY2F0ZWdvcnkgY2FsbC5cbiAqL1xuZXhwb3J0IGNvbnN0IE1hZ2VudG9HZXRQcm9kdWN0c1F1ZXJ5ID0gZ3FsYFxucXVlcnkgTWFnZW50b0dldFByb2R1Y3RzKCRmaWx0ZXI6IFByb2R1Y3RBdHRyaWJ1dGVGaWx0ZXJJbnB1dCEsICRzZWFyY2g6IFN0cmluZywgJHBhZ2VTaXplOiBJbnQsICRjdXJyZW50UGFnZTogSW50LCAkc29ydDogUHJvZHVjdEF0dHJpYnV0ZVNvcnRJbnB1dClcbntcblx0cHJvZHVjdHMoZmlsdGVyOiAkZmlsdGVyLCBzZWFyY2g6ICRzZWFyY2gsIHBhZ2VTaXplOiAkcGFnZVNpemUsIGN1cnJlbnRQYWdlOiAkY3VycmVudFBhZ2UsIHNvcnQ6ICRzb3J0KVxuXHR7XG5cdFx0dG90YWxfY291bnRcblx0XHRpdGVtcyB7XG5cdFx0XHQuLi5wcm9kdWN0XG5cdFx0fVxuXHRcdHBhZ2VfaW5mbyB7XG5cdFx0XHRwYWdlX3NpemVcblx0XHRcdGN1cnJlbnRfcGFnZVxuXHRcdFx0dG90YWxfcGFnZXNcblx0XHR9XG5cdH1cbn1cbiR7bWFnZW50b1Byb2R1Y3RGcmFnbWVudH1cbmBcbiJdfQ==

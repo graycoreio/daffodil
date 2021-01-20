@@ -1,0 +1,5 @@
+{
+  "id": "api/auth/DaffLoginServiceInterface",
+  "title": "DaffLoginServiceInterface",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffLoginServiceInterface</h1>\n  <label class=\"api-header__label interface\">interface</label>\n</header>\n\n\n<p class=\"api-subtitle\"></p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n\t\t<div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">login</div>\n<div class=\"members-table__cell\">Observable&lt;TResponse&gt;</div>\n<div class=\"members-table__cell\">Logs the user in.\n</div>\n\n\n    \n\t\t\t\n<div class=\"members-table__cell\">logout</div>\n<div class=\"members-table__cell\">Observable&lt;void&gt;</div>\n<div class=\"members-table__cell\">Logs the user out by revoking their access token.</div>\n\n\n    </div>\n</section>\n\n</div>"
+}

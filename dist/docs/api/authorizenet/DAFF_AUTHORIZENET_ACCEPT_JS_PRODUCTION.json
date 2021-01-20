@@ -1,0 +1,5 @@
+{
+  "id": "api/authorizenet/DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION",
+  "title": "DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION</h1>\n  <label class=\"api-header__label const\">const</label>\n</header>\n\n\n<p class=\"api-subtitle\">A token that represents the version to use for Accept.JS calls.\nA \"true\" value configures the package to use the production AcceptJs endpoint, \nand a \"false\" value configures it to use the Sandbox AcceptJs endpoint. \nBy default, we assume you're using the sandbox (false).</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

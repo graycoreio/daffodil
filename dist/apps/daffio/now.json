@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "name": "daffio",
+  "public": true,
+  "builds": [
+      { "src": "serverless.js", "use": "@now/node-server" },
+      { "src": "browser/**/*", "use": "@now/static" }
+  ],
+  "routes": [
+      { "src": "/(.*[.].+)", "dest": "/browser/$1"},
+      { "src": "/(.*)", "dest": "/serverless.js" }
+  ]
+}

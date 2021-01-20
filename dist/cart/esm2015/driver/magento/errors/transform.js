@@ -1,0 +1,38 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { DaffCartDriverErrorMap } from '@daffodil/cart/driver';
+import { DaffCartMagentoErrorMap, DaffCartMagentoErrorMessageRegexMap } from './map';
+/**
+ * @param {?} error
+ * @return {?}
+ */
+function transformMagentoCartGraphQlError(error) {
+    // TODO: readdress this when we move to eslint
+    // tslint:disable-next-line
+    for (const code in DaffCartMagentoErrorMessageRegexMap) {
+        /** @type {?} */
+        const matchIndex = error.graphQLErrors[0].message.search(DaffCartMagentoErrorMessageRegexMap[code]);
+        if (matchIndex > -1 && DaffCartDriverErrorMap[code]) {
+            return new DaffCartDriverErrorMap[code](error.message);
+        }
+    }
+    return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
+}
+;
+/**
+ * @param {?} error
+ * @return {?}
+ */
+export function transformCartMagentoError(error) {
+    // TODO: optional chaining
+    if (error.graphQLErrors && error.graphQLErrors.length) {
+        return transformMagentoCartGraphQlError(error);
+    }
+    else {
+        return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJhbnNmb3JtLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvZHJpdmVyL21hZ2VudG8vIiwic291cmNlcyI6WyJlcnJvcnMvdHJhbnNmb3JtLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFFQSxPQUFPLEVBQUUseUJBQXlCLEVBQUUsTUFBTSwwQkFBMEIsQ0FBQztBQUNyRSxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSx1QkFBdUIsQ0FBQztBQUUvRCxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsbUNBQW1DLEVBQUUsTUFBTSxPQUFPLENBQUM7Ozs7O0FBR3JGLFNBQVMsZ0NBQWdDLENBQUMsS0FBa0I7SUFDMUQsOENBQThDO0lBQzlDLDJCQUEyQjtJQUMzQixLQUFLLE1BQU0sSUFBSSxJQUFJLG1DQUFtQyxFQUFFOztjQUNoRCxVQUFVLEdBQUcsS0FBSyxDQUFDLGFBQWEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxPQUFPLENBQUMsTUFBTSxDQUFDLG1DQUFtQyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBRW5HLElBQUksVUFBVSxHQUFHLENBQUMsQ0FBQyxJQUFJLHNCQUFzQixDQUFDLElBQUksQ0FBQyxFQUFFO1lBQ25ELE9BQU8sSUFBSSxzQkFBc0IsQ0FBQyxJQUFJLENBQUMsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLENBQUE7U0FDdkQ7S0FDRjtJQUVELE9BQU8seUJBQXlCLENBQUMsS0FBSyxFQUFFLHVCQUF1QixDQUFDLENBQUM7QUFDbkUsQ0FBQztBQUFBLENBQUM7Ozs7O0FBRUYsTUFBTSxVQUFVLHlCQUF5QixDQUFDLEtBQUs7SUFDN0MsMEJBQTBCO0lBQzFCLElBQUksS0FBSyxDQUFDLGFBQWEsSUFBSSxLQUFLLENBQUMsYUFBYSxDQUFDLE1BQU0sRUFBRTtRQUN2RCxPQUFPLGdDQUFnQyxDQUFDLEtBQUssQ0FBQyxDQUFDO0tBQy9DO1NBQU07UUFDTixPQUFPLHlCQUF5QixDQUFDLEtBQUssRUFBRSx1QkFBdUIsQ0FBQyxDQUFDO0tBQ2pFO0FBQ0YsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFwb2xsb0Vycm9yIH0gZnJvbSAnYXBvbGxvLWNsaWVudCc7XG5cbmltcG9ydCB7IGRhZmZUcmFuc2Zvcm1NYWdlbnRvRXJyb3IgfSBmcm9tICdAZGFmZm9kaWwvZHJpdmVyL21hZ2VudG8nO1xuaW1wb3J0IHsgRGFmZkNhcnREcml2ZXJFcnJvck1hcCB9IGZyb20gJ0BkYWZmb2RpbC9jYXJ0L2RyaXZlcic7XG5cbmltcG9ydCB7IERhZmZDYXJ0TWFnZW50b0Vycm9yTWFwLCBEYWZmQ2FydE1hZ2VudG9FcnJvck1lc3NhZ2VSZWdleE1hcCB9IGZyb20gJy4vbWFwJztcblxuXG5mdW5jdGlvbiB0cmFuc2Zvcm1NYWdlbnRvQ2FydEdyYXBoUWxFcnJvcihlcnJvcjogQXBvbGxvRXJyb3IpOiBFcnJvciB7XG4gIC8vIFRPRE86IHJlYWRkcmVzcyB0aGlzIHdoZW4gd2UgbW92ZSB0byBlc2xpbnRcbiAgLy8gdHNsaW50OmRpc2FibGUtbmV4dC1saW5lXG4gIGZvciAoY29uc3QgY29kZSBpbiBEYWZmQ2FydE1hZ2VudG9FcnJvck1lc3NhZ2VSZWdleE1hcCkge1xuICAgIGNvbnN0IG1hdGNoSW5kZXggPSBlcnJvci5ncmFwaFFMRXJyb3JzWzBdLm1lc3NhZ2Uuc2VhcmNoKERhZmZDYXJ0TWFnZW50b0Vycm9yTWVzc2FnZVJlZ2V4TWFwW2NvZGVdKTtcblxuICAgIGlmIChtYXRjaEluZGV4ID4gLTEgJiYgRGFmZkNhcnREcml2ZXJFcnJvck1hcFtjb2RlXSkge1xuICAgICAgcmV0dXJuIG5ldyBEYWZmQ2FydERyaXZlckVycm9yTWFwW2NvZGVdKGVycm9yLm1lc3NhZ2UpXG4gICAgfVxuICB9XG5cbiAgcmV0dXJuIGRhZmZUcmFuc2Zvcm1NYWdlbnRvRXJyb3IoZXJyb3IsIERhZmZDYXJ0TWFnZW50b0Vycm9yTWFwKTtcbn07XG5cbmV4cG9ydCBmdW5jdGlvbiB0cmFuc2Zvcm1DYXJ0TWFnZW50b0Vycm9yKGVycm9yKSB7XG4gIC8vIFRPRE86IG9wdGlvbmFsIGNoYWluaW5nXG4gIGlmIChlcnJvci5ncmFwaFFMRXJyb3JzICYmIGVycm9yLmdyYXBoUUxFcnJvcnMubGVuZ3RoKSB7XG5cdFx0cmV0dXJuIHRyYW5zZm9ybU1hZ2VudG9DYXJ0R3JhcGhRbEVycm9yKGVycm9yKTtcblx0fSBlbHNlIHtcblx0XHRyZXR1cm4gZGFmZlRyYW5zZm9ybU1hZ2VudG9FcnJvcihlcnJvciwgRGFmZkNhcnRNYWdlbnRvRXJyb3JNYXApO1xuXHR9XG59XG4iXX0=

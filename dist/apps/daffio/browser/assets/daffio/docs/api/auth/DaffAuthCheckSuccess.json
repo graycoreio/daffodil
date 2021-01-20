@@ -1,0 +1,5 @@
+{
+  "id": "api/auth/DaffAuthCheckSuccess",
+  "title": "DaffAuthCheckSuccess",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffAuthCheckSuccess</h1>\n  <label class=\"api-header__label class\">class</label>\n</header>\n\n\n<p class=\"api-subtitle\">An action triggered upon a successful auth check.\n</p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n    <div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">type</div>\n<div class=\"members-table__cell\">DaffAuthActionTypes.AuthCheckSuccessAction</div>\n<div class=\"members-table__cell\"></div>\n\n\n    </div>\n</section>\n\n</div>"
+}

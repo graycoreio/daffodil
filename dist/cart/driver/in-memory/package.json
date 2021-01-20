@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/cart/driver/in-memory",
+  "main": "../../bundles/daffodil-cart-driver-in-memory.umd.js",
+  "module": "../../fesm5/daffodil-cart-driver-in-memory.js",
+  "es2015": "../../fesm2015/daffodil-cart-driver-in-memory.js",
+  "esm5": "../../esm5/driver/in-memory/daffodil-cart-driver-in-memory.js",
+  "esm2015": "../../esm2015/driver/in-memory/daffodil-cart-driver-in-memory.js",
+  "fesm5": "../../fesm5/daffodil-cart-driver-in-memory.js",
+  "fesm2015": "../../fesm2015/daffodil-cart-driver-in-memory.js",
+  "typings": "daffodil-cart-driver-in-memory.d.ts",
+  "metadata": "daffodil-cart-driver-in-memory.metadata.json",
+  "sideEffects": false
+}

@@ -1,0 +1,5 @@
+{
+  "id": "api/product/daffProductReducer",
+  "title": "daffProductReducer",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">daffProductReducer</h1>\n  <label class=\"api-header__label function\">function</label>\n</header>\n\n\n<p class=\"api-subtitle\">Reducer function that catches actions and changes/overwrites product state.\n</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

@@ -1,0 +1,5 @@
+{
+  "id": "api/core/daffAdd",
+  "title": "daffAdd",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">daffAdd</h1>\n  <label class=\"api-header__label function\">function</label>\n</header>\n\n\n<p class=\"api-subtitle\">A function to add long numbers accurately with conversions and integer math.\nThis function only guarantees correct answers when the numbers given and the result are less than\n16 significant figures and less than 10^11\n</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

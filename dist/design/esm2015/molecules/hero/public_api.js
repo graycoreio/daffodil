@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffHeroModule } from './hero.module';
+export { DaffHeroLayoutEnum, DaffHeroSizeEnum, DaffHeroComponent } from './hero/hero.component';
+export { DaffHeroTitleDirective } from './hero-title/hero-title.directive';
+export { DaffHeroSubtitleDirective } from './hero-subtitle/hero-subtitle.directive';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJtb2xlY3VsZXMvaGVyby9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsY0FBYyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQy9DLHdFQUFjLHVCQUF1QixDQUFDO0FBQ3RDLHVDQUFjLG1DQUFtQyxDQUFDO0FBQ2xELDBDQUFjLHlDQUF5QyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZkhlcm9Nb2R1bGUgfSBmcm9tICcuL2hlcm8ubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vaGVyby9oZXJvLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2hlcm8tdGl0bGUvaGVyby10aXRsZS5kaXJlY3RpdmUnO1xuZXhwb3J0ICogZnJvbSAnLi9oZXJvLXN1YnRpdGxlL2hlcm8tc3VidGl0bGUuZGlyZWN0aXZlJztcbiJdfQ==

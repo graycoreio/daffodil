@@ -1,0 +1,6 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffOrderFacade } from './order/order.facade';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9vcmRlci9zdGF0ZS8iLCJzb3VyY2VzIjpbImZhY2FkZXMvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQ0EsT0FBTyxFQUFFLGVBQWUsRUFBRSxNQUFNLHNCQUFzQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRGFmZk9yZGVyRmFjYWRlSW50ZXJmYWNlIH0gZnJvbSAnLi9vcmRlci9vcmRlci1mYWNhZGUuaW50ZXJmYWNlJztcbmV4cG9ydCB7IERhZmZPcmRlckZhY2FkZSB9IGZyb20gJy4vb3JkZXIvb3JkZXIuZmFjYWRlJztcbiJdfQ==

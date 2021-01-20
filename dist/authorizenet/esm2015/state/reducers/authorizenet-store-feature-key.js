@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export const DAFF_AUTHORIZENET_STORE_FEATURE_KEY = 'daffAuthorizenet';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aG9yaXplbmV0LXN0b3JlLWZlYXR1cmUta2V5LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2F1dGhvcml6ZW5ldC9zdGF0ZS8iLCJzb3VyY2VzIjpbInJlZHVjZXJzL2F1dGhvcml6ZW5ldC1zdG9yZS1mZWF0dXJlLWtleS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sT0FBTyxtQ0FBbUMsR0FBRyxrQkFBa0IiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgREFGRl9BVVRIT1JJWkVORVRfU1RPUkVfRkVBVFVSRV9LRVkgPSAnZGFmZkF1dGhvcml6ZW5ldCc7XG4iXX0=

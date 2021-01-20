@@ -1,0 +1,22 @@
+{
+  "id": "multiline-list",
+  "docType": "design-example",
+  "name": "multiline-list",
+  "files": [
+    {
+      "name": "multiline-list.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n\t\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h5</span>&gt;</span>List item heading<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h5</span>&gt;</span>\n\t\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>List item description<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>\n\t\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>List item description line 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n\t\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h5</span>&gt;</span>List item heading<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h5</span>&gt;</span>\n\t\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>List item description<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "multiline-list.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component, OnInit } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'multiline-list'</span>,\n  templateUrl: <span class=\"hljs-string\">'./multiline-list.component.html'</span>,\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> MultilineListComponent {}",
+      "language": "typescript"
+    },
+    {
+      "name": "multiline-list.module.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { NgModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { CommonModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/common'</span>;\n\n<span class=\"hljs-keyword\">import</span> { MultilineListComponent } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./multiline-list.component'</span>;\n\n<span class=\"hljs-keyword\">import</span> { DaffListModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@daffodil/design'</span>;\n<span class=\"hljs-keyword\">import</span> { FontAwesomeModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@fortawesome/angular-fontawesome'</span>;\n\n<span class=\"hljs-meta\">@NgModule</span>({\n  declarations: [\n    MultilineListComponent\n  ],\n  imports: [\n    CommonModule,\n    \n    DaffListModule,\n    FontAwesomeModule\n  ],\n  exports: [\n    MultilineListComponent\n  ]\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> MultilineListModule { }",
+      "language": "typescript"
+    }
+  ]
+}

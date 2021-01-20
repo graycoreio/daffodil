@@ -1,0 +1,9 @@
+import { DaffError, DaffInheritableError } from '@daffodil/core';
+/**
+ * An error thrown when the credit card cvv number is invalid.
+ */
+export declare class DaffAuthorizeNetInvalidCCCVVError extends DaffInheritableError implements DaffError {
+    message: string;
+    readonly code: string;
+    constructor(message: string);
+}

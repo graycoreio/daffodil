@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * A type for a dictionary of error codes to errors.
+ * @record
+ */
+export function DaffErrorCodeMap() { }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXJyb3ItbWFwLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NvcmUvIiwic291cmNlcyI6WyJlcnJvcnMvZXJyb3ItbWFwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBS0Esc0NBRUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb25zdHJ1Y3RhYmxlIH0gZnJvbSAnLi4vY29uc3RydWN0YWJsZS9jb25zdHJ1Y3RhYmxlJztcblxuLyoqXG4gKiBBIHR5cGUgZm9yIGEgZGljdGlvbmFyeSBvZiBlcnJvciBjb2RlcyB0byBlcnJvcnMuXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgRGFmZkVycm9yQ29kZU1hcCB7XG5cdFt4OiBzdHJpbmddOiBDb25zdHJ1Y3RhYmxlPEVycm9yPjtcbn1cbiJdfQ==

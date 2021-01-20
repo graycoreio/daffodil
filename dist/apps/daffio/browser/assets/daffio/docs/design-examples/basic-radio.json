@@ -1,0 +1,22 @@
+{
+  "id": "basic-radio",
+  "docType": "design-example",
+  "name": "basic-radio",
+  "files": [
+    {
+      "name": "basic-radio.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h2</span>&gt;</span>Basic Radio<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h2</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-radio-set</span> [<span class=\"hljs-attr\">formGroup</span>]=<span class=\"hljs-string\">\"radioGroup\"</span> <span class=\"hljs-attr\">name</span>=<span class=\"hljs-string\">\"race\"</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-radio</span> <span class=\"hljs-attr\">formControlName</span>=<span class=\"hljs-string\">\"race\"</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"Terran\"</span>&gt;</span>Terran<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-radio</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-radio</span> <span class=\"hljs-attr\">formControlName</span>=<span class=\"hljs-string\">\"race\"</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"Protoss\"</span>&gt;</span>Protoss<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-radio</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-radio</span> <span class=\"hljs-attr\">formControlName</span>=<span class=\"hljs-string\">\"race\"</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"Zerg\"</span>&gt;</span>Zerg<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-radio</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-radio-set</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n  The best race to play as is: {{this.radioGroup.get('race').value}}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "basic-radio.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component, OnInit } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { FormGroup, FormControl } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/forms'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n    selector: <span class=\"hljs-string\">'basic-radio'</span>,\n    templateUrl: <span class=\"hljs-string\">'./basic-radio.component.html'</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> BasicRadioComponent <span class=\"hljs-keyword\">implements</span> OnInit {\n\n    radioGroup = <span class=\"hljs-keyword\">new</span> FormGroup({\n        race: <span class=\"hljs-keyword\">new</span> FormControl(<span class=\"hljs-string\">'Zerg'</span>)\n    });\n    <span class=\"hljs-keyword\">constructor</span>(<span class=\"hljs-params\"></span>) {\n    }\n\n    ngOnInit() {\n    }\n}",
+      "language": "typescript"
+    },
+    {
+      "name": "basic-radio.module.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { DaffRadioModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@daffodil/design'</span>;\n<span class=\"hljs-keyword\">import</span> { NgModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { ReactiveFormsModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/forms'</span>;\n\n<span class=\"hljs-keyword\">import</span> { BasicRadioComponent } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./basic-radio.component'</span>;\n\n<span class=\"hljs-meta\">@NgModule</span>({\n\n    declarations: [\n        BasicRadioComponent,\n    ],\n    exports: [\n        BasicRadioComponent\n    ],\n    imports: [\n        DaffRadioModule,\n        ReactiveFormsModule\n    ],\n    providers: []\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> BasicRadioModule { }",
+      "language": "typescript"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+/** @type {?} */
+export const orderShipmentTrackingFragment = gql `
+  fragment orderShipmentTracking on GraycoreOrderShipmentTracking {
+    tracking_number
+    carrier
+    title
+  }
+`;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItc2hpcG1lbnQtdHJhY2tpbmcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvZHJpdmVyL21hZ2VudG8vMi40LjAvIiwic291cmNlcyI6WyJxdWVyaWVzL2ZyYWdtZW50cy9vcmRlci1zaGlwbWVudC10cmFja2luZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxHQUFHLE1BQU0sYUFBYSxDQUFDOztBQUU5QixNQUFNLE9BQU8sNkJBQTZCLEdBQUcsR0FBRyxDQUFBOzs7Ozs7Q0FNL0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgZ3FsIGZyb20gJ2dyYXBocWwtdGFnJztcblxuZXhwb3J0IGNvbnN0IG9yZGVyU2hpcG1lbnRUcmFja2luZ0ZyYWdtZW50ID0gZ3FsYFxuICBmcmFnbWVudCBvcmRlclNoaXBtZW50VHJhY2tpbmcgb24gR3JheWNvcmVPcmRlclNoaXBtZW50VHJhY2tpbmcge1xuICAgIHRyYWNraW5nX251bWJlclxuICAgIGNhcnJpZXJcbiAgICB0aXRsZVxuICB9XG5gO1xuIl19

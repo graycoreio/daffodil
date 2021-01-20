@@ -1,0 +1,18 @@
+var _a, _b;
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { DaffBadInputError } from '@daffodil/driver';
+import { DaffCartNotFoundError, DaffCartDriverErrorCodes } from '@daffodil/cart/driver';
+import { MagentoCartGraphQlErrorCode } from './codes';
+/** @type {?} */
+export var DaffCartMagentoErrorMap = (_a = {},
+    _a[MagentoCartGraphQlErrorCode.CART_NOT_FOUND] = DaffCartNotFoundError,
+    _a[MagentoCartGraphQlErrorCode.BAD_INPUT] = DaffBadInputError,
+    _a);
+/** @type {?} */
+export var DaffCartMagentoErrorMessageRegexMap = (_b = {},
+    _b[DaffCartDriverErrorCodes.INVALID_COUPON_CODE] = /The coupon code isn\'t valid/,
+    _b);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFwLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvZHJpdmVyL21hZ2VudG8vIiwic291cmNlcyI6WyJlcnJvcnMvbWFwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQ0EsT0FBTyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sa0JBQWtCLENBQUM7QUFDckQsT0FBTyxFQUFFLHFCQUFxQixFQUFFLHdCQUF3QixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFFeEYsT0FBTyxFQUFFLDJCQUEyQixFQUFFLE1BQU0sU0FBUyxDQUFDOztBQUV0RCxNQUFNLEtBQU8sdUJBQXVCO0lBQ25DLEdBQUMsMkJBQTJCLENBQUMsY0FBYyxJQUFHLHFCQUFxQjtJQUNuRSxHQUFDLDJCQUEyQixDQUFDLFNBQVMsSUFBRyxpQkFBaUI7T0FDMUQ7O0FBRUQsTUFBTSxLQUFPLG1DQUFtQztJQUM5QyxHQUFDLHdCQUF3QixDQUFDLG1CQUFtQixJQUFHLDhCQUE4QjtPQUMvRSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZFcnJvckNvZGVNYXAgfSBmcm9tICdAZGFmZm9kaWwvY29yZSc7XG5pbXBvcnQgeyBEYWZmQmFkSW5wdXRFcnJvciB9IGZyb20gJ0BkYWZmb2RpbC9kcml2ZXInO1xuaW1wb3J0IHsgRGFmZkNhcnROb3RGb3VuZEVycm9yLCBEYWZmQ2FydERyaXZlckVycm9yQ29kZXMgfSBmcm9tICdAZGFmZm9kaWwvY2FydC9kcml2ZXInO1xuXG5pbXBvcnQgeyBNYWdlbnRvQ2FydEdyYXBoUWxFcnJvckNvZGUgfSBmcm9tICcuL2NvZGVzJztcblxuZXhwb3J0IGNvbnN0IERhZmZDYXJ0TWFnZW50b0Vycm9yTWFwOiBEYWZmRXJyb3JDb2RlTWFwID0ge1xuXHRbTWFnZW50b0NhcnRHcmFwaFFsRXJyb3JDb2RlLkNBUlRfTk9UX0ZPVU5EXTogRGFmZkNhcnROb3RGb3VuZEVycm9yLFxuXHRbTWFnZW50b0NhcnRHcmFwaFFsRXJyb3JDb2RlLkJBRF9JTlBVVF06IERhZmZCYWRJbnB1dEVycm9yLFxufTtcblxuZXhwb3J0IGNvbnN0IERhZmZDYXJ0TWFnZW50b0Vycm9yTWVzc2FnZVJlZ2V4TWFwID0ge1xuICBbRGFmZkNhcnREcml2ZXJFcnJvckNvZGVzLklOVkFMSURfQ09VUE9OX0NPREVdOiAvVGhlIGNvdXBvbiBjb2RlIGlzblxcJ3QgdmFsaWQvXG59XG4iXX0=

@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffGeographyInMemoryDriverModule, DaffInMemoryGeographyService } from './drivers/public_api';
+export { DaffInMemoryBackendGeographyService } from './backend/geography.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9nZW9ncmFwaHkvZHJpdmVyL2luLW1lbW9yeS8iLCJzb3VyY2VzIjpbInB1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLGdGQUFjLHNCQUFzQixDQUFDO0FBRXJDLE9BQU8sRUFBRSxtQ0FBbUMsRUFBRSxNQUFNLDZCQUE2QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9kcml2ZXJzL3B1YmxpY19hcGknO1xuXG5leHBvcnQgeyBEYWZmSW5NZW1vcnlCYWNrZW5kR2VvZ3JhcGh5U2VydmljZSB9IGZyb20gJy4vYmFja2VuZC9nZW9ncmFwaHkuc2VydmljZSc7XG4iXX0=

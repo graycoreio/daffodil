@@ -1,0 +1,16 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+export function DaffProductGridFacadeInterface() { }
+if (false) {
+    /** @type {?} */
+    DaffProductGridFacadeInterface.prototype.loading$;
+    /** @type {?} */
+    DaffProductGridFacadeInterface.prototype.products$;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZHVjdC1ncmlkLWZhY2FkZS5pbnRlcmZhY2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvcHJvZHVjdC8iLCJzb3VyY2VzIjpbImZhY2FkZXMvcHJvZHVjdC1ncmlkL3Byb2R1Y3QtZ3JpZC1mYWNhZGUuaW50ZXJmYWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBT0Esb0RBR0M7OztJQUZBLGtEQUE4Qjs7SUFDOUIsbURBQTJCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgT2JzZXJ2YWJsZSB9IGZyb20gJ3J4anMnO1xuaW1wb3J0IHsgQWN0aW9uIH0gZnJvbSAnQG5ncngvc3RvcmUnO1xuXG5pbXBvcnQgeyBEYWZmU3RvcmVGYWNhZGUgfSBmcm9tICdAZGFmZm9kaWwvY29yZS9zdGF0ZSc7XG5cbmltcG9ydCB7IERhZmZQcm9kdWN0IH0gZnJvbSAnLi4vLi4vbW9kZWxzL3Byb2R1Y3QnO1xuXG5leHBvcnQgaW50ZXJmYWNlIERhZmZQcm9kdWN0R3JpZEZhY2FkZUludGVyZmFjZTxUIGV4dGVuZHMgRGFmZlByb2R1Y3QgPSBEYWZmUHJvZHVjdD4gZXh0ZW5kcyBEYWZmU3RvcmVGYWNhZGU8QWN0aW9uPiB7XG5cdGxvYWRpbmckOiBPYnNlcnZhYmxlPGJvb2xlYW4+O1xuXHRwcm9kdWN0cyQ6IE9ic2VydmFibGU8VFtdPjtcbn1cbiJdfQ==

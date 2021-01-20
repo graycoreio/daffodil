@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/**
+ * An multi-provider injection token for providing extra GraphQL fragments that will be spread into cart queries.
+ * This can be used to retrieve additional data that is not covered by the standard Daffodil interfaces.
+ * The data will appear in DaffCart#extra_attributes.
+ *
+ * Fragment structure is platform-specific and this feature should be used with care.
+ * @type {?}
+ */
+export const DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS = new InjectionToken('DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS', { factory: (/**
+     * @return {?}
+     */
+    () => []) });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jYXJ0L2RyaXZlci9tYWdlbnRvLyIsInNvdXJjZXMiOlsiaW5qZWN0aW9uLXRva2Vucy9mcmFnbWVudHMvY2FydC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7Ozs7O0FBVS9DLE1BQU0sT0FBTyxzQ0FBc0MsR0FBRyxJQUFJLGNBQWMsQ0FBaUIsd0NBQXdDLEVBQUUsRUFBQyxPQUFPOzs7SUFBRSxHQUFHLEVBQUUsQ0FBQyxFQUFFLENBQUEsRUFBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0aW9uVG9rZW4gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IERvY3VtZW50Tm9kZSB9IGZyb20gJ2dyYXBocWwnO1xuXG4vKipcbiAqIEFuIG11bHRpLXByb3ZpZGVyIGluamVjdGlvbiB0b2tlbiBmb3IgcHJvdmlkaW5nIGV4dHJhIEdyYXBoUUwgZnJhZ21lbnRzIHRoYXQgd2lsbCBiZSBzcHJlYWQgaW50byBjYXJ0IHF1ZXJpZXMuXG4gKiBUaGlzIGNhbiBiZSB1c2VkIHRvIHJldHJpZXZlIGFkZGl0aW9uYWwgZGF0YSB0aGF0IGlzIG5vdCBjb3ZlcmVkIGJ5IHRoZSBzdGFuZGFyZCBEYWZmb2RpbCBpbnRlcmZhY2VzLlxuICogVGhlIGRhdGEgd2lsbCBhcHBlYXIgaW4gRGFmZkNhcnQjZXh0cmFfYXR0cmlidXRlcy5cbiAqXG4gKiBGcmFnbWVudCBzdHJ1Y3R1cmUgaXMgcGxhdGZvcm0tc3BlY2lmaWMgYW5kIHRoaXMgZmVhdHVyZSBzaG91bGQgYmUgdXNlZCB3aXRoIGNhcmUuXG4gKi9cbmV4cG9ydCBjb25zdCBEQUZGX0NBUlRfTUFHRU5UT19FWFRSQV9DQVJUX0ZSQUdNRU5UUyA9IG5ldyBJbmplY3Rpb25Ub2tlbjxEb2N1bWVudE5vZGVbXT4oJ0RBRkZfQ0FSVF9NQUdFTlRPX0VYVFJBX0NBUlRfRlJBR01FTlRTJywge2ZhY3Rvcnk6ICgpID0+IFtdfSk7XG4iXX0=

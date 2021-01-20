@@ -1,0 +1,22 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/**
+ * The interface responsible for retrieving the available shipping methods of a cart.
+ * @record
+ * @template T
+ */
+export function DaffCartShippingMethodsServiceInterface() { }
+if (false) {
+    /**
+     * List the available shipping methods for a cart.
+     * @param {?} cartId
+     * @return {?}
+     */
+    DaffCartShippingMethodsServiceInterface.prototype.list = function (cartId) { };
+}
+/** @type {?} */
+export var DaffCartShippingMethodsDriver = new InjectionToken('DaffCartShippingMethodsDriver');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC1zaGlwcGluZy1tZXRob2RzLXNlcnZpY2UuaW50ZXJmYWNlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2NhcnQvZHJpdmVyLyIsInNvdXJjZXMiOlsiaW50ZXJmYWNlcy9jYXJ0LXNoaXBwaW5nLW1ldGhvZHMtc2VydmljZS5pbnRlcmZhY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7OztBQVEvQyw2REFPQzs7Ozs7OztJQURBLCtFQUE4Qzs7O0FBRy9DLE1BQU0sS0FBTyw2QkFBNkIsR0FBRyxJQUFJLGNBQWMsQ0FFN0QsK0JBQStCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3Rpb25Ub2tlbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgT2JzZXJ2YWJsZSB9IGZyb20gJ3J4anMnO1xuXG5pbXBvcnQgeyBEYWZmQ2FydFNoaXBwaW5nUmF0ZSwgRGFmZkNhcnQgfSBmcm9tICdAZGFmZm9kaWwvY2FydCc7XG5cbi8qKlxuICogVGhlIGludGVyZmFjZSByZXNwb25zaWJsZSBmb3IgcmV0cmlldmluZyB0aGUgYXZhaWxhYmxlIHNoaXBwaW5nIG1ldGhvZHMgb2YgYSBjYXJ0LlxuICovXG5leHBvcnQgaW50ZXJmYWNlIERhZmZDYXJ0U2hpcHBpbmdNZXRob2RzU2VydmljZUludGVyZmFjZTxcblx0VCBleHRlbmRzIERhZmZDYXJ0U2hpcHBpbmdSYXRlID0gRGFmZkNhcnRTaGlwcGluZ1JhdGVcbj4ge1xuXHQvKipcblx0ICogTGlzdCB0aGUgYXZhaWxhYmxlIHNoaXBwaW5nIG1ldGhvZHMgZm9yIGEgY2FydC5cblx0ICovXG5cdGxpc3QoY2FydElkOiBEYWZmQ2FydFsnaWQnXSk6IE9ic2VydmFibGU8VFtdPjtcbn1cblxuZXhwb3J0IGNvbnN0IERhZmZDYXJ0U2hpcHBpbmdNZXRob2RzRHJpdmVyID0gbmV3IEluamVjdGlvblRva2VuPFxuXHREYWZmQ2FydFNoaXBwaW5nTWV0aG9kc1NlcnZpY2VJbnRlcmZhY2U8YW55PlxuPignRGFmZkNhcnRTaGlwcGluZ01ldGhvZHNEcml2ZXInKTtcbiJdfQ==

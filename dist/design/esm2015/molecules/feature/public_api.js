@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffFeatureModule } from './feature.module';
+export { DaffFeatureModeEnum, DaffFeatureComponent } from './feature/feature.component';
+export { DaffFeatureTitleDirective } from './feature-title/feature-title.directive';
+export { DaffFeatureSubtitleDirective } from './feature-subtitle/feature-subtitle.directive';
+export { DaffFeatureIconDirective } from './feature-icon/feature-icon.directive';
+export { DaffFeatureSubheaderDirective } from './feature-subheader/feature-subheader.directive';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJtb2xlY3VsZXMvZmVhdHVyZS9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxrQkFBa0IsQ0FBQztBQUNyRCwwREFBYyw2QkFBNkIsQ0FBQztBQUM1QywwQ0FBYyx5Q0FBeUMsQ0FBQztBQUN4RCw2Q0FBYywrQ0FBK0MsQ0FBQztBQUM5RCx5Q0FBYyx1Q0FBdUMsQ0FBQztBQUN0RCw4Q0FBYyxpREFBaUQsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7IERhZmZGZWF0dXJlTW9kdWxlIH0gZnJvbSAnLi9mZWF0dXJlLm1vZHVsZSc7XG5leHBvcnQgKiBmcm9tICcuL2ZlYXR1cmUvZmVhdHVyZS5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9mZWF0dXJlLXRpdGxlL2ZlYXR1cmUtdGl0bGUuZGlyZWN0aXZlJztcbmV4cG9ydCAqIGZyb20gJy4vZmVhdHVyZS1zdWJ0aXRsZS9mZWF0dXJlLXN1YnRpdGxlLmRpcmVjdGl2ZSc7XG5leHBvcnQgKiBmcm9tICcuL2ZlYXR1cmUtaWNvbi9mZWF0dXJlLWljb24uZGlyZWN0aXZlJztcbmV4cG9ydCAqIGZyb20gJy4vZmVhdHVyZS1zdWJoZWFkZXIvZmVhdHVyZS1zdWJoZWFkZXIuZGlyZWN0aXZlJztcbiJdfQ==

@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var daffGeographyInitialState = {
+    loading: false,
+    errors: [],
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VvZ3JhcGh5LWluaXRpYWwtc3RhdGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvZ2VvZ3JhcGh5L3N0YXRlLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvZ2VvZ3JhcGh5L2dlb2dyYXBoeS1pbml0aWFsLXN0YXRlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBRUEsTUFBTSxLQUFPLHlCQUF5QixHQUE4QjtJQUNsRSxPQUFPLEVBQUUsS0FBSztJQUNkLE1BQU0sRUFBRSxFQUFFO0NBQ1giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEYWZmR2VvZ3JhcGh5UmVkdWNlclN0YXRlIH0gZnJvbSAnLi9nZW9ncmFwaHktc3RhdGUuaW50ZXJmYWNlJztcblxuZXhwb3J0IGNvbnN0IGRhZmZHZW9ncmFwaHlJbml0aWFsU3RhdGU6IERhZmZHZW9ncmFwaHlSZWR1Y2VyU3RhdGUgPSB7XG4gIGxvYWRpbmc6IGZhbHNlLFxuICBlcnJvcnM6IFtdLFxufTtcbiJdfQ==

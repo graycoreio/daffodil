@@ -1,0 +1,5 @@
+{
+  "id": "api/cart/DaffCartPaymentMethodIdMap",
+  "title": "DaffCartPaymentMethodIdMap",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffCartPaymentMethodIdMap</h1>\n  <label class=\"api-header__label const\">const</label>\n</header>\n\n\n<p class=\"api-subtitle\">An injection token for a mapping from the platform-specific cart payment method\nto a user-defined platform-agnostic payment ID.\nIt should be an object whose keys are the cart payment's method and whose values are strings.\nDefaults to an empty object.</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

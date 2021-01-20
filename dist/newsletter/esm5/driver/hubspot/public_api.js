@@ -1,0 +1,6 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffNewsletterHubSpotDriverModule } from './hubspot-driver.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9uZXdzbGV0dGVyLyIsInNvdXJjZXMiOlsiZHJpdmVyL2h1YnNwb3QvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGlDQUFpQyxFQUFFLE1BQU0seUJBQXlCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBEYWZmTmV3c2xldHRlckh1YlNwb3REcml2ZXJNb2R1bGUgfSBmcm9tICcuL2h1YnNwb3QtZHJpdmVyLm1vZHVsZSc7Il19

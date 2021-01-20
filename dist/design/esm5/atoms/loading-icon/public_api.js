@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffLoadingIconModule } from './loading-icon.module';
+export { DaffLoadingIconComponent } from './loading-icon.component';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJhdG9tcy9sb2FkaW5nLWljb24vcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDOUQseUNBQWMsMEJBQTBCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBEYWZmTG9hZGluZ0ljb25Nb2R1bGUgfSBmcm9tICcuL2xvYWRpbmctaWNvbi5tb2R1bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9sb2FkaW5nLWljb24uY29tcG9uZW50JztcbiJdfQ==

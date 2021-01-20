@@ -1,0 +1,5 @@
+{
+  "id": "api/newsletter/selectDaffNewsletterLoading",
+  "title": "selectDaffNewsletterLoading",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">selectDaffNewsletterLoading</h1>\n  <label class=\"api-header__label const\">const</label>\n</header>\n\n\n<p class=\"api-subtitle\">Child key of feature state</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@daffodil/design",
+  "version": "0.0.0-PLACEHOLDER",
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "description": "A consistent, sane api driver that works with different ecommerce systems.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "peerDependencies": {
+    "@angular/animations": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/forms": "0.0.0-PLACEHOLDER",
+    "@angular/cdk": "0.0.0-PLACEHOLDER",
+    "@fortawesome/angular-fontawesome": "0.0.0-PLACEHOLDER",
+    "@fortawesome/fontawesome-svg-core": "0.0.0-PLACEHOLDER",
+    "@fortawesome/free-solid-svg-icons": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "faker": "0.0.0-PLACEHOLDER"
+  },
+  "main": "bundles/daffodil-design.umd.js",
+  "module": "fesm5/daffodil-design.js",
+  "es2015": "fesm2015/daffodil-design.js",
+  "esm5": "esm5/daffodil-design.js",
+  "esm2015": "esm2015/daffodil-design.js",
+  "fesm5": "fesm5/daffodil-design.js",
+  "fesm2015": "fesm2015/daffodil-design.js",
+  "typings": "daffodil-design.d.ts",
+  "metadata": "daffodil-design.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

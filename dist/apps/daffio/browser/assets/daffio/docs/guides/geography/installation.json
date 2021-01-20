@@ -1,0 +1,5 @@
+{
+  "id": "guides/geography/installation",
+  "title": "Installation",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"installation\">Installation</h1>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<ul>\n<li><a href=\"#installing-with-npm\">Installing with NPM</a></li>\n<li><a href=\"#installing-with-yarn\">Installing with yarn</a></li>\n<li><a href=\"#supported-platforms\">Platforms</a></li>\n</ul>\n<h2 id=\"installing-with-npm\">Installing with <code>npm</code></h2>\n<p>To install the <code>@daffodil/geography</code> library and its dependencies, use the following command in your terminal.</p>\n<pre><code class=\"language-bash\">npm install @daffodil/geography @daffodil/core</code></pre>\n<h2 id=\"installing-with-yarn\">Installing with <code>yarn</code></h2>\n<p>To install the <code>@daffodil/geography</code> library and its dependencies, use the following command in your terminal.</p>\n<pre><code class=\"language-bash\">yarn add @daffodil/geography  @daffodil/core</code></pre>\n<h2 id=\"supported-platforms\">Supported Platforms</h2>\n<p>Coming soon!</p>\n\n</div>\n"
+}

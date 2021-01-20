@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/authorizenet/driver/testing",
+  "main": "../../bundles/daffodil-authorizenet-driver-testing.umd.js",
+  "module": "../../fesm5/daffodil-authorizenet-driver-testing.js",
+  "es2015": "../../fesm2015/daffodil-authorizenet-driver-testing.js",
+  "esm5": "../../esm5/driver/testing/daffodil-authorizenet-driver-testing.js",
+  "esm2015": "../../esm2015/driver/testing/daffodil-authorizenet-driver-testing.js",
+  "fesm5": "../../fesm5/daffodil-authorizenet-driver-testing.js",
+  "fesm2015": "../../fesm2015/daffodil-authorizenet-driver-testing.js",
+  "typings": "daffodil-authorizenet-driver-testing.d.ts",
+  "metadata": "daffodil-authorizenet-driver-testing.metadata.json",
+  "sideEffects": false
+}

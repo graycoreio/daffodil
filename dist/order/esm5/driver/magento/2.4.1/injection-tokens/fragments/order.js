@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { InjectionToken } from '@angular/core';
+/**
+ * An multi-provider injection token for providing extra GraphQL fragments that will be spread into order queries.
+ * This can be used to retrieve additional data that is not covered by the standard Daffodil interfaces.
+ * The data will appear in DaffOrder#extra_attributes.
+ *
+ * Fragment structure is platform-specific and this feature should be used with care.
+ * @type {?}
+ */
+export var DaffMagentoExtraOrderFragments = new InjectionToken('DaffMagentoExtraOrderFragments', { factory: (/**
+     * @return {?}
+     */
+    function () { return []; }) });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvZHJpdmVyL21hZ2VudG8vMi40LjEvIiwic291cmNlcyI6WyJpbmplY3Rpb24tdG9rZW5zL2ZyYWdtZW50cy9vcmRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7Ozs7O0FBVS9DLE1BQU0sS0FBTyw4QkFBOEIsR0FBRyxJQUFJLGNBQWMsQ0FBaUIsZ0NBQWdDLEVBQUUsRUFBQyxPQUFPOzs7SUFBRSxjQUFNLE9BQUEsRUFBRSxFQUFGLENBQUUsQ0FBQSxFQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3Rpb25Ub2tlbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRG9jdW1lbnROb2RlIH0gZnJvbSAnZ3JhcGhxbCc7XG5cbi8qKlxuICogQW4gbXVsdGktcHJvdmlkZXIgaW5qZWN0aW9uIHRva2VuIGZvciBwcm92aWRpbmcgZXh0cmEgR3JhcGhRTCBmcmFnbWVudHMgdGhhdCB3aWxsIGJlIHNwcmVhZCBpbnRvIG9yZGVyIHF1ZXJpZXMuXG4gKiBUaGlzIGNhbiBiZSB1c2VkIHRvIHJldHJpZXZlIGFkZGl0aW9uYWwgZGF0YSB0aGF0IGlzIG5vdCBjb3ZlcmVkIGJ5IHRoZSBzdGFuZGFyZCBEYWZmb2RpbCBpbnRlcmZhY2VzLlxuICogVGhlIGRhdGEgd2lsbCBhcHBlYXIgaW4gRGFmZk9yZGVyI2V4dHJhX2F0dHJpYnV0ZXMuXG4gKlxuICogRnJhZ21lbnQgc3RydWN0dXJlIGlzIHBsYXRmb3JtLXNwZWNpZmljIGFuZCB0aGlzIGZlYXR1cmUgc2hvdWxkIGJlIHVzZWQgd2l0aCBjYXJlLlxuICovXG5leHBvcnQgY29uc3QgRGFmZk1hZ2VudG9FeHRyYU9yZGVyRnJhZ21lbnRzID0gbmV3IEluamVjdGlvblRva2VuPERvY3VtZW50Tm9kZVtdPignRGFmZk1hZ2VudG9FeHRyYU9yZGVyRnJhZ21lbnRzJywge2ZhY3Rvcnk6ICgpID0+IFtdfSk7XG4iXX0=

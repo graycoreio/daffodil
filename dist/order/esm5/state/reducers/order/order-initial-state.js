@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var daffOrderInitialState = {
+    loading: false,
+    errors: []
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItaW5pdGlhbC1zdGF0ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9vcmRlci9zdGF0ZS8iLCJzb3VyY2VzIjpbInJlZHVjZXJzL29yZGVyL29yZGVyLWluaXRpYWwtc3RhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFFQSxNQUFNLEtBQU8scUJBQXFCLEdBQTBCO0lBQzFELE9BQU8sRUFBRSxLQUFLO0lBQ2QsTUFBTSxFQUFFLEVBQUU7Q0FDWCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhZmZPcmRlclJlZHVjZXJTdGF0ZSB9IGZyb20gJy4vb3JkZXItcmVkdWNlci5pbnRlcmZhY2UnO1xuXG5leHBvcnQgY29uc3QgZGFmZk9yZGVySW5pdGlhbFN0YXRlOiBEYWZmT3JkZXJSZWR1Y2VyU3RhdGUgPSB7XG4gIGxvYWRpbmc6IGZhbHNlLFxuICBlcnJvcnM6IFtdXG59O1xuIl19

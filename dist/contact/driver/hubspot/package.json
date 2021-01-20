@@ -1,0 +1,13 @@
+{
+  "main": "../../bundles/daffodil-contact-driver-hubspot.umd.js",
+  "module": "../../fesm5/daffodil-contact-driver-hubspot.js",
+  "es2015": "../../fesm2015/daffodil-contact-driver-hubspot.js",
+  "esm5": "../../esm5/driver/hubspot/daffodil-contact-driver-hubspot.js",
+  "esm2015": "../../esm2015/driver/hubspot/daffodil-contact-driver-hubspot.js",
+  "fesm5": "../../fesm5/daffodil-contact-driver-hubspot.js",
+  "fesm2015": "../../fesm2015/daffodil-contact-driver-hubspot.js",
+  "typings": "daffodil-contact-driver-hubspot.d.ts",
+  "metadata": "daffodil-contact-driver-hubspot.metadata.json",
+  "sideEffects": false,
+  "name": "@daffodil/contact/driver/hubspot"
+}

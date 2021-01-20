@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffServerSideStorageError } from './server-error';
+export { DaffServerErrorStorageService } from './server-error.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jb3JlLyIsInNvdXJjZXMiOlsic3RvcmFnZS9zZXJ2ZXItZXJyb3IvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLDBCQUEwQixFQUFFLE1BQU0sZ0JBQWdCLENBQUM7QUFDNUQsT0FBTyxFQUFFLDZCQUE2QixFQUFFLE1BQU0sd0JBQXdCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBEYWZmU2VydmVyU2lkZVN0b3JhZ2VFcnJvciB9IGZyb20gJy4vc2VydmVyLWVycm9yJztcbmV4cG9ydCB7IERhZmZTZXJ2ZXJFcnJvclN0b3JhZ2VTZXJ2aWNlIH0gZnJvbSAnLi9zZXJ2ZXItZXJyb3Iuc2VydmljZSc7XG4iXX0=

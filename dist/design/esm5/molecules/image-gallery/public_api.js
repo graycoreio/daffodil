@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DaffImageGalleryComponent } from './image-gallery/image-gallery.component';
+export { DaffGalleryImageComponent } from './gallery-image/gallery-image.component';
+export { DaffImageGalleryModule } from './image-gallery.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9kZXNpZ24vIiwic291cmNlcyI6WyJtb2xlY3VsZXMvaW1hZ2UtZ2FsbGVyeS9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSwwQ0FBYyx5Q0FBeUMsQ0FBQztBQUN4RCwwQ0FBYyx5Q0FBeUMsQ0FBQztBQUN4RCxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSx3QkFBd0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vaW1hZ2UtZ2FsbGVyeS9pbWFnZS1nYWxsZXJ5LmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2dhbGxlcnktaW1hZ2UvZ2FsbGVyeS1pbWFnZS5jb21wb25lbnQnO1xuZXhwb3J0IHsgRGFmZkltYWdlR2FsbGVyeU1vZHVsZSB9IGZyb20gJy4vaW1hZ2UtZ2FsbGVyeS5tb2R1bGUnO1xuIl19

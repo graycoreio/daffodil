@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { MockDaffContactFacade } from './mock-contact-facade';
+export { DaffContactStateTestingModule } from './contact-testing.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jb250YWN0L3N0YXRlL3Rlc3RpbmcvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSx1QkFBdUIsQ0FBQztBQUM5RCxPQUFPLEVBQUUsNkJBQTZCLEVBQUUsTUFBTSwwQkFBMEIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7IE1vY2tEYWZmQ29udGFjdEZhY2FkZSB9IGZyb20gJy4vbW9jay1jb250YWN0LWZhY2FkZSc7XG5leHBvcnQgeyBEYWZmQ29udGFjdFN0YXRlVGVzdGluZ01vZHVsZSB9IGZyb20gJy4vY29udGFjdC10ZXN0aW5nLm1vZHVsZSc7Il19

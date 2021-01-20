@@ -1,0 +1,5 @@
+{
+  "id": "guides/newsletter",
+  "title": "@daffodil/newsletter",
+  "contents": "\n<div class=\"content\">\n<h1 id=\"daffodilnewsletter\">@daffodil/newsletter</h1>\n<p><code>@daffodil/newsletter</code> provides an easy to build newsletter module for an ecommerce store.</p>\n<h2 id=\"installation\">Installation</h2>\n<pre><code>npm install @daffodil/newsletter</code></pre>\n\n</div>\n"
+}

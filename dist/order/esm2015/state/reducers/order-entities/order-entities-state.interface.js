@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Interface for order entity state.
+ * @record
+ * @template T
+ */
+export function DaffOrderEntityState() { }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItZW50aXRpZXMtc3RhdGUuaW50ZXJmYWNlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL29yZGVyL3N0YXRlLyIsInNvdXJjZXMiOlsicmVkdWNlcnMvb3JkZXItZW50aXRpZXMvb3JkZXItZW50aXRpZXMtc3RhdGUuaW50ZXJmYWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQU9BLDBDQUFnRyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEVudGl0eVN0YXRlIH0gZnJvbSAnQG5ncngvZW50aXR5JztcblxuaW1wb3J0IHsgRGFmZk9yZGVyIH0gZnJvbSAnQGRhZmZvZGlsL29yZGVyJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIG9yZGVyIGVudGl0eSBzdGF0ZS5cbiAqL1xuZXhwb3J0IGludGVyZmFjZSBEYWZmT3JkZXJFbnRpdHlTdGF0ZTxUIGV4dGVuZHMgRGFmZk9yZGVyID0gRGFmZk9yZGVyPiBleHRlbmRzIEVudGl0eVN0YXRlPFQ+IHt9XG4iXX0=

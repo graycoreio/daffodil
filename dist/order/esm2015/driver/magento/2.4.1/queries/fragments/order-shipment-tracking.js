@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+/** @type {?} */
+export const orderShipmentTrackingFragment = gql `
+  fragment orderShipmentTracking on ShipmentTracking {
+    __typename
+    number
+    carrier
+    title
+  }
+`;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItc2hpcG1lbnQtdHJhY2tpbmcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvb3JkZXIvZHJpdmVyL21hZ2VudG8vMi40LjEvIiwic291cmNlcyI6WyJxdWVyaWVzL2ZyYWdtZW50cy9vcmRlci1zaGlwbWVudC10cmFja2luZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxHQUFHLE1BQU0sYUFBYSxDQUFDOztBQUU5QixNQUFNLE9BQU8sNkJBQTZCLEdBQUcsR0FBRyxDQUFBOzs7Ozs7O0NBTy9DIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGdxbCBmcm9tICdncmFwaHFsLXRhZyc7XG5cbmV4cG9ydCBjb25zdCBvcmRlclNoaXBtZW50VHJhY2tpbmdGcmFnbWVudCA9IGdxbGBcbiAgZnJhZ21lbnQgb3JkZXJTaGlwbWVudFRyYWNraW5nIG9uIFNoaXBtZW50VHJhY2tpbmcge1xuICAgIF9fdHlwZW5hbWVcbiAgICBudW1iZXJcbiAgICBjYXJyaWVyXG4gICAgdGl0bGVcbiAgfVxuYDtcbiJdfQ==

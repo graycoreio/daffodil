@@ -1,0 +1,22 @@
+{
+  "id": "basic-list",
+  "docType": "design-example",
+  "name": "basic-list",
+  "files": [
+    {
+      "name": "basic-list.component.html",
+      "content": "<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list</span> <span class=\"hljs-attr\">role</span>=<span class=\"hljs-string\">\"list\"</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list-item</span>&gt;</span>Basic list item 1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list-item</span>&gt;</span>Basic list item 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n\t<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">daff-list-item</span>&gt;</span>Basic list item 3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list-item</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">daff-list</span>&gt;</span>",
+      "language": "html"
+    },
+    {
+      "name": "basic-list.component.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { Component, OnInit } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n  <span class=\"hljs-comment\">// tslint:disable-next-line:component-selector</span>\n  selector: <span class=\"hljs-string\">'basic-list'</span>,\n  templateUrl: <span class=\"hljs-string\">'./basic-list.component.html'</span>,\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> BasicListComponent {}",
+      "language": "typescript"
+    },
+    {
+      "name": "basic-list.module.ts",
+      "content": "<span class=\"hljs-keyword\">import</span> { NgModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { CommonModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/common'</span>;\n\n<span class=\"hljs-keyword\">import</span> { BasicListComponent } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./basic-list.component'</span>;\n\n<span class=\"hljs-keyword\">import</span> { DaffListModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@daffodil/design'</span>;\n\n<span class=\"hljs-meta\">@NgModule</span>({\n  declarations: [\n    BasicListComponent\n  ],\n  imports: [\n    CommonModule,\n    DaffListModule\n  ],\n  exports: [\n    BasicListComponent\n  ]\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> BasicListModule { }",
+      "language": "typescript"
+    }
+  ]
+}

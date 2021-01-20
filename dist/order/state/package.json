@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/order/state",
+  "main": "../bundles/daffodil-order-state.umd.js",
+  "module": "../fesm5/daffodil-order-state.js",
+  "es2015": "../fesm2015/daffodil-order-state.js",
+  "esm5": "../esm5/state/daffodil-order-state.js",
+  "esm2015": "../esm2015/state/daffodil-order-state.js",
+  "fesm5": "../fesm5/daffodil-order-state.js",
+  "fesm2015": "../fesm2015/daffodil-order-state.js",
+  "typings": "daffodil-order-state.d.ts",
+  "metadata": "daffodil-order-state.metadata.json",
+  "sideEffects": false
+}

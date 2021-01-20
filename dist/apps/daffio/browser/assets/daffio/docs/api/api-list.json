@@ -1,0 +1,3931 @@
+[
+  {
+    "id": "auth",
+    "title": "@daffodil/auth",
+    "path": "/docs/api/auth",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "auth/src/DaffAuthFacade",
+        "title": "DaffAuthFacade",
+        "path": "/docs/api/auth/DaffAuthFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAccountRegistration",
+        "title": "DaffAccountRegistration",
+        "path": "/docs/api/auth/DaffAccountRegistration",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffCustomerRegistration",
+        "title": "DaffCustomerRegistration",
+        "path": "/docs/api/auth/DaffCustomerRegistration",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffAuthToken",
+        "title": "DaffAuthToken",
+        "path": "/docs/api/auth/DaffAuthToken",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffLoginInfo",
+        "title": "DaffLoginInfo",
+        "path": "/docs/api/auth/DaffLoginInfo",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffAuthModule",
+        "title": "DaffAuthModule",
+        "path": "/docs/api/auth/DaffAuthModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffRegisterDriver",
+        "title": "DaffRegisterDriver",
+        "path": "/docs/api/auth/DaffRegisterDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffRegisterServiceInterface",
+        "title": "DaffRegisterServiceInterface",
+        "path": "/docs/api/auth/DaffRegisterServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffLoginDriver",
+        "title": "DaffLoginDriver",
+        "path": "/docs/api/auth/DaffLoginDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffLoginServiceInterface",
+        "title": "DaffLoginServiceInterface",
+        "path": "/docs/api/auth/DaffLoginServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffAuthDriver",
+        "title": "DaffAuthDriver",
+        "path": "/docs/api/auth/DaffAuthDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthServiceInterface",
+        "title": "DaffAuthServiceInterface",
+        "path": "/docs/api/auth/DaffAuthServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffAuthStorageService",
+        "title": "DaffAuthStorageService",
+        "path": "/docs/api/auth/DaffAuthStorageService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthActionTypes",
+        "title": "DaffAuthActionTypes",
+        "path": "/docs/api/auth/DaffAuthActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "auth/src/DaffAuthGuardCheck",
+        "title": "DaffAuthGuardCheck",
+        "path": "/docs/api/auth/DaffAuthGuardCheck",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthGuardCheckCompletion",
+        "title": "DaffAuthGuardCheckCompletion",
+        "path": "/docs/api/auth/DaffAuthGuardCheckCompletion",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthStorageFailure",
+        "title": "DaffAuthStorageFailure",
+        "path": "/docs/api/auth/DaffAuthStorageFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLogin",
+        "title": "DaffAuthLogin",
+        "path": "/docs/api/auth/DaffAuthLogin",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLoginSuccess",
+        "title": "DaffAuthLoginSuccess",
+        "path": "/docs/api/auth/DaffAuthLoginSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLoginFailure",
+        "title": "DaffAuthLoginFailure",
+        "path": "/docs/api/auth/DaffAuthLoginFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLogout",
+        "title": "DaffAuthLogout",
+        "path": "/docs/api/auth/DaffAuthLogout",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLogoutSuccess",
+        "title": "DaffAuthLogoutSuccess",
+        "path": "/docs/api/auth/DaffAuthLogoutSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLogoutFailure",
+        "title": "DaffAuthLogoutFailure",
+        "path": "/docs/api/auth/DaffAuthLogoutFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthCheck",
+        "title": "DaffAuthCheck",
+        "path": "/docs/api/auth/DaffAuthCheck",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthCheckSuccess",
+        "title": "DaffAuthCheckSuccess",
+        "path": "/docs/api/auth/DaffAuthCheckSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthCheckFailure",
+        "title": "DaffAuthCheckFailure",
+        "path": "/docs/api/auth/DaffAuthCheckFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthRegister",
+        "title": "DaffAuthRegister",
+        "path": "/docs/api/auth/DaffAuthRegister",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthRegisterSuccess",
+        "title": "DaffAuthRegisterSuccess",
+        "path": "/docs/api/auth/DaffAuthRegisterSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthRegisterFailure",
+        "title": "DaffAuthRegisterFailure",
+        "path": "/docs/api/auth/DaffAuthRegisterFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthActions",
+        "title": "DaffAuthActions",
+        "path": "/docs/api/auth/DaffAuthActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "auth/src/DAFF_AUTH_STORE_FEATURE_KEY",
+        "title": "DAFF_AUTH_STORE_FEATURE_KEY",
+        "path": "/docs/api/auth/DAFF_AUTH_STORE_FEATURE_KEY",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/daffAuthReducers",
+        "title": "daffAuthReducers",
+        "path": "/docs/api/auth/daffAuthReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthFeatureState",
+        "title": "DaffAuthFeatureState",
+        "path": "/docs/api/auth/DaffAuthFeatureState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffAuthReducerState",
+        "title": "DaffAuthReducerState",
+        "path": "/docs/api/auth/DaffAuthReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/daffAuthReducer",
+        "title": "daffAuthReducer",
+        "path": "/docs/api/auth/daffAuthReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "auth/src/daffAuthInitialState",
+        "title": "daffAuthInitialState",
+        "path": "/docs/api/auth/daffAuthInitialState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthLoginReducerState",
+        "title": "DaffAuthLoginReducerState",
+        "path": "/docs/api/auth/DaffAuthLoginReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/daffAuthLoginReducer",
+        "title": "daffAuthLoginReducer",
+        "path": "/docs/api/auth/daffAuthLoginReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "auth/src/daffAuthLoginInitialState",
+        "title": "daffAuthLoginInitialState",
+        "path": "/docs/api/auth/daffAuthLoginInitialState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthRegisterReducerState",
+        "title": "DaffAuthRegisterReducerState",
+        "path": "/docs/api/auth/DaffAuthRegisterReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/daffAuthRegisterReducer",
+        "title": "daffAuthRegisterReducer",
+        "path": "/docs/api/auth/daffAuthRegisterReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "auth/src/daffAuthRegisterInitialState",
+        "title": "daffAuthRegisterInitialState",
+        "path": "/docs/api/auth/daffAuthRegisterInitialState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthSelectors",
+        "title": "DaffAuthSelectors",
+        "path": "/docs/api/auth/DaffAuthSelectors",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/getDaffAuthSelectors",
+        "title": "getDaffAuthSelectors",
+        "path": "/docs/api/auth/getDaffAuthSelectors",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthMagentoDriverModule",
+        "title": "DaffAuthMagentoDriverModule",
+        "path": "/docs/api/auth/DaffAuthMagentoDriverModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffMagentoAuthService",
+        "title": "DaffMagentoAuthService",
+        "path": "/docs/api/auth/DaffMagentoAuthService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffMagentoLoginService",
+        "title": "DaffMagentoLoginService",
+        "path": "/docs/api/auth/DaffMagentoLoginService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffMagentoRegisterService",
+        "title": "DaffMagentoRegisterService",
+        "path": "/docs/api/auth/DaffMagentoRegisterService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffMagentoAuthTransformerService",
+        "title": "DaffMagentoAuthTransformerService",
+        "path": "/docs/api/auth/DaffMagentoAuthTransformerService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffMagentoLoginInfoTransformerService",
+        "title": "DaffMagentoLoginInfoTransformerService",
+        "path": "/docs/api/auth/DaffMagentoLoginInfoTransformerService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/MagentoAuth",
+        "title": "MagentoAuth",
+        "path": "/docs/api/auth/MagentoAuth",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "auth/src/DaffUnauthorizedError",
+        "title": "DaffUnauthorizedError",
+        "path": "/docs/api/auth/DaffUnauthorizedError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthenticationFailedError",
+        "title": "DaffAuthenticationFailedError",
+        "path": "/docs/api/auth/DaffAuthenticationFailedError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/DaffAuthInvalidAPIResponseError",
+        "title": "DaffAuthInvalidAPIResponseError",
+        "path": "/docs/api/auth/DaffAuthInvalidAPIResponseError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/MemberOnlyGuard",
+        "title": "MemberOnlyGuard",
+        "path": "/docs/api/auth/MemberOnlyGuard",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "auth/src/GuestOnlyGuard",
+        "title": "GuestOnlyGuard",
+        "path": "/docs/api/auth/GuestOnlyGuard",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      }
+    ]
+  },
+  {
+    "id": "authorizenet",
+    "title": "@daffodil/authorizenet",
+    "path": "/docs/api/authorizenet",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "authorizenet/src/DaffAuthorizeNetCreditCard",
+        "title": "DaffAuthorizeNetCreditCard",
+        "path": "/docs/api/authorizenet/DaffAuthorizeNetCreditCard",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/DaffAuthorizeNetTokenRequest",
+        "title": "DaffAuthorizeNetTokenRequest",
+        "path": "/docs/api/authorizenet/DaffAuthorizeNetTokenRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/AcceptType",
+        "title": "AcceptType",
+        "path": "/docs/api/authorizenet/AcceptType",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/AuthorizeNetRequest",
+        "title": "AuthorizeNetRequest",
+        "path": "/docs/api/authorizenet/AuthorizeNetRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/AuthorizeNetCreditCard",
+        "title": "AuthorizeNetCreditCard",
+        "path": "/docs/api/authorizenet/AuthorizeNetCreditCard",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/AuthorizeNetMessage",
+        "title": "AuthorizeNetMessage",
+        "path": "/docs/api/authorizenet/AuthorizeNetMessage",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/AuthorizeNetResponse",
+        "title": "AuthorizeNetResponse",
+        "path": "/docs/api/authorizenet/AuthorizeNetResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "authorizenet/src/DaffAcceptJsLoadingService",
+        "title": "DaffAcceptJsLoadingService",
+        "path": "/docs/api/authorizenet/DaffAcceptJsLoadingService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "authorizenet/src/DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION",
+        "title": "DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION",
+        "path": "/docs/api/authorizenet/DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "authorizenet/src/DAFF_AUTHORIZENET_ERROR_MATCHER",
+        "title": "DAFF_AUTHORIZENET_ERROR_MATCHER",
+        "path": "/docs/api/authorizenet/DAFF_AUTHORIZENET_ERROR_MATCHER",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      }
+    ]
+  },
+  {
+    "id": "cart",
+    "title": "@daffodil/cart",
+    "path": "/docs/api/cart",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "cart/src/DaffCartStorageService",
+        "title": "DaffCartStorageService",
+        "path": "/docs/api/cart/DaffCartStorageService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "cart/src/DaffCartAddress",
+        "title": "DaffCartAddress",
+        "path": "/docs/api/cart/DaffCartAddress",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartPaymentMethod",
+        "title": "DaffCartPaymentMethod",
+        "path": "/docs/api/cart/DaffCartPaymentMethod",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartShippingRate",
+        "title": "DaffCartShippingRate",
+        "path": "/docs/api/cart/DaffCartShippingRate",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartShippingInformation",
+        "title": "DaffCartShippingInformation",
+        "path": "/docs/api/cart/DaffCartShippingInformation",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartCoupon",
+        "title": "DaffCartCoupon",
+        "path": "/docs/api/cart/DaffCartCoupon",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartOrderResult",
+        "title": "DaffCartOrderResult",
+        "path": "/docs/api/cart/DaffCartOrderResult",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCart",
+        "title": "DaffCart",
+        "path": "/docs/api/cart/DaffCart",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartItem",
+        "title": "DaffCartItem",
+        "path": "/docs/api/cart/DaffCartItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCompositeCartItem",
+        "title": "DaffCompositeCartItem",
+        "path": "/docs/api/cart/DaffCompositeCartItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCompositeCartItemOption",
+        "title": "DaffCompositeCartItemOption",
+        "path": "/docs/api/cart/DaffCompositeCartItemOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffConfigurableCartItem",
+        "title": "DaffConfigurableCartItem",
+        "path": "/docs/api/cart/DaffConfigurableCartItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffConfigurableCartItemAttribute",
+        "title": "DaffConfigurableCartItemAttribute",
+        "path": "/docs/api/cart/DaffConfigurableCartItemAttribute",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartItemInputType",
+        "title": "DaffCartItemInputType",
+        "path": "/docs/api/cart/DaffCartItemInputType",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "cart/src/DaffCartItemInput",
+        "title": "DaffCartItemInput",
+        "path": "/docs/api/cart/DaffCartItemInput",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffSimpleCartItemInput",
+        "title": "DaffSimpleCartItemInput",
+        "path": "/docs/api/cart/DaffSimpleCartItemInput",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCompositeCartItemInput",
+        "title": "DaffCompositeCartItemInput",
+        "path": "/docs/api/cart/DaffCompositeCartItemInput",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCompositeCartItemInputOption",
+        "title": "DaffCompositeCartItemInputOption",
+        "path": "/docs/api/cart/DaffCompositeCartItemInputOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffConfigurableCartItemInput",
+        "title": "DaffConfigurableCartItemInput",
+        "path": "/docs/api/cart/DaffConfigurableCartItemInput",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartTotalTypeEnum",
+        "title": "DaffCartTotalTypeEnum",
+        "path": "/docs/api/cart/DaffCartTotalTypeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "cart/src/DaffCartTotal",
+        "title": "DaffCartTotal",
+        "path": "/docs/api/cart/DaffCartTotal",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "cart/src/DaffCartPaymentMethodIdMap",
+        "title": "DaffCartPaymentMethodIdMap",
+        "path": "/docs/api/cart/DaffCartPaymentMethodIdMap",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "cart/src/DAFF_CART_ERROR_MATCHER",
+        "title": "DAFF_CART_ERROR_MATCHER",
+        "path": "/docs/api/cart/DAFF_CART_ERROR_MATCHER",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      }
+    ]
+  },
+  {
+    "id": "category",
+    "title": "@daffodil/category",
+    "path": "/docs/api/category",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "category/src/daffCategoryReducers",
+        "title": "daffCategoryReducers",
+        "path": "/docs/api/category/daffCategoryReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryFacade",
+        "title": "DaffCategoryFacade",
+        "path": "/docs/api/category/DaffCategoryFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryFacadeInterface",
+        "title": "DaffCategoryFacadeInterface",
+        "path": "/docs/api/category/DaffCategoryFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryModule",
+        "title": "DaffCategoryModule",
+        "path": "/docs/api/category/DaffCategoryModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryMagentoDriverModule",
+        "title": "DaffCategoryMagentoDriverModule",
+        "path": "/docs/api/category/DaffCategoryMagentoDriverModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryServiceInterface",
+        "title": "DaffCategoryServiceInterface",
+        "path": "/docs/api/category/DaffCategoryServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryDriver",
+        "title": "DaffCategoryDriver",
+        "path": "/docs/api/category/DaffCategoryDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffGetCategoryResponse",
+        "title": "DaffGetCategoryResponse",
+        "path": "/docs/api/category/DaffGetCategoryResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryFilter",
+        "title": "DaffCategoryFilter",
+        "path": "/docs/api/category/DaffCategoryFilter",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterOption",
+        "title": "DaffCategoryFilterOption",
+        "path": "/docs/api/category/DaffCategoryFilterOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterType",
+        "title": "DaffCategoryFilterType",
+        "path": "/docs/api/category/DaffCategoryFilterType",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "category/src/DaffCategoryPageConfigurationState",
+        "title": "DaffCategoryPageConfigurationState",
+        "path": "/docs/api/category/DaffCategoryPageConfigurationState",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "category/src/DaffCategoryBreadcrumb",
+        "title": "DaffCategoryBreadcrumb",
+        "path": "/docs/api/category/DaffCategoryBreadcrumb",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategory",
+        "title": "DaffCategory",
+        "path": "/docs/api/category/DaffCategory",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffGenericCategory",
+        "title": "DaffGenericCategory",
+        "path": "/docs/api/category/DaffGenericCategory",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryRequest",
+        "title": "DaffCategoryRequest",
+        "path": "/docs/api/category/DaffCategoryRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffSortDirectionEnum",
+        "title": "DaffSortDirectionEnum",
+        "path": "/docs/api/category/DaffSortDirectionEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "category/src/DaffCategorySortOption",
+        "title": "DaffCategorySortOption",
+        "path": "/docs/api/category/DaffCategorySortOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryActionTypes",
+        "title": "DaffCategoryActionTypes",
+        "path": "/docs/api/category/DaffCategoryActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "category/src/DaffCategoryLoad",
+        "title": "DaffCategoryLoad",
+        "path": "/docs/api/category/DaffCategoryLoad",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryLoadSuccess",
+        "title": "DaffCategoryLoadSuccess",
+        "path": "/docs/api/category/DaffCategoryLoadSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryLoadFailure",
+        "title": "DaffCategoryLoadFailure",
+        "path": "/docs/api/category/DaffCategoryLoadFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryPageLoad",
+        "title": "DaffCategoryPageLoad",
+        "path": "/docs/api/category/DaffCategoryPageLoad",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryPageLoadSuccess",
+        "title": "DaffCategoryPageLoadSuccess",
+        "path": "/docs/api/category/DaffCategoryPageLoadSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryPageLoadFailure",
+        "title": "DaffCategoryPageLoadFailure",
+        "path": "/docs/api/category/DaffCategoryPageLoadFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffChangeCategoryPageSize",
+        "title": "DaffChangeCategoryPageSize",
+        "path": "/docs/api/category/DaffChangeCategoryPageSize",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffChangeCategoryCurrentPage",
+        "title": "DaffChangeCategoryCurrentPage",
+        "path": "/docs/api/category/DaffChangeCategoryCurrentPage",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffChangeCategorySortingOption",
+        "title": "DaffChangeCategorySortingOption",
+        "path": "/docs/api/category/DaffChangeCategorySortingOption",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffChangeCategoryFilters",
+        "title": "DaffChangeCategoryFilters",
+        "path": "/docs/api/category/DaffChangeCategoryFilters",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffToggleCategoryFilter",
+        "title": "DaffToggleCategoryFilter",
+        "path": "/docs/api/category/DaffToggleCategoryFilter",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryActions",
+        "title": "DaffCategoryActions",
+        "path": "/docs/api/category/DaffCategoryActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "category/src/DaffCategoryPageResolver",
+        "title": "DaffCategoryPageResolver",
+        "path": "/docs/api/category/DaffCategoryPageResolver",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffDefaultCategoryPageSize",
+        "title": "DaffDefaultCategoryPageSize",
+        "path": "/docs/api/category/DaffDefaultCategoryPageSize",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryMemoizedSelectors",
+        "title": "DaffCategoryMemoizedSelectors",
+        "path": "/docs/api/category/DaffCategoryMemoizedSelectors",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/getDaffCategorySelectors",
+        "title": "getDaffCategorySelectors",
+        "path": "/docs/api/category/getDaffCategorySelectors",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffCategoryFromToFilterSeparator",
+        "title": "DaffCategoryFromToFilterSeparator",
+        "path": "/docs/api/category/DaffCategoryFromToFilterSeparator",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffToggleCategoryFilterMatchRequest",
+        "title": "DaffToggleCategoryFilterMatchRequest",
+        "path": "/docs/api/category/DaffToggleCategoryFilterMatchRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffToggleCategoryFilterEqualRequest",
+        "title": "DaffToggleCategoryFilterEqualRequest",
+        "path": "/docs/api/category/DaffToggleCategoryFilterEqualRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffToggleCategoryFilterRangeRequest",
+        "title": "DaffToggleCategoryFilterRangeRequest",
+        "path": "/docs/api/category/DaffToggleCategoryFilterRangeRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterEqualRequest",
+        "title": "DaffCategoryFilterEqualRequest",
+        "path": "/docs/api/category/DaffCategoryFilterEqualRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterMatchRequest",
+        "title": "DaffCategoryFilterMatchRequest",
+        "path": "/docs/api/category/DaffCategoryFilterMatchRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterRangeRequest",
+        "title": "DaffCategoryFilterRangeRequest",
+        "path": "/docs/api/category/DaffCategoryFilterRangeRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffToggleCategoryFilterRequest",
+        "title": "DaffToggleCategoryFilterRequest",
+        "path": "/docs/api/category/DaffToggleCategoryFilterRequest",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterRequest",
+        "title": "DaffCategoryFilterRequest",
+        "path": "/docs/api/category/DaffCategoryFilterRequest",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "category/src/DaffCategoryFilterBase",
+        "title": "DaffCategoryFilterBase",
+        "path": "/docs/api/category/DaffCategoryFilterBase",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryAppliedFilter",
+        "title": "DaffCategoryAppliedFilter",
+        "path": "/docs/api/category/DaffCategoryAppliedFilter",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffCategoryAppliedFilterOption",
+        "title": "DaffCategoryAppliedFilterOption",
+        "path": "/docs/api/category/DaffCategoryAppliedFilterOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/DaffMagentoCategoryService",
+        "title": "DaffMagentoCategoryService",
+        "path": "/docs/api/category/DaffMagentoCategoryService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/MagentoCompleteCategoryResponse",
+        "title": "MagentoCompleteCategoryResponse",
+        "path": "/docs/api/category/MagentoCompleteCategoryResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoCategory",
+        "title": "MagentoCategory",
+        "path": "/docs/api/category/MagentoCategory",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoBreadcrumb",
+        "title": "MagentoBreadcrumb",
+        "path": "/docs/api/category/MagentoBreadcrumb",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoGetACategoryResponse",
+        "title": "MagentoGetACategoryResponse",
+        "path": "/docs/api/category/MagentoGetACategoryResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoSortFields",
+        "title": "MagentoSortFields",
+        "path": "/docs/api/category/MagentoSortFields",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoSortOption",
+        "title": "MagentoSortOption",
+        "path": "/docs/api/category/MagentoSortOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoPageInfo",
+        "title": "MagentoPageInfo",
+        "path": "/docs/api/category/MagentoPageInfo",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoGetProductsResponse",
+        "title": "MagentoGetProductsResponse",
+        "path": "/docs/api/category/MagentoGetProductsResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoAggregation",
+        "title": "MagentoAggregation",
+        "path": "/docs/api/category/MagentoAggregation",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoAggregationOption",
+        "title": "MagentoAggregationOption",
+        "path": "/docs/api/category/MagentoAggregationOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoGetProductsByCategoriesRequest",
+        "title": "MagentoGetProductsByCategoriesRequest",
+        "path": "/docs/api/category/MagentoGetProductsByCategoriesRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoCategoryFilters",
+        "title": "MagentoCategoryFilters",
+        "path": "/docs/api/category/MagentoCategoryFilters",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoFilterAction",
+        "title": "MagentoFilterAction",
+        "path": "/docs/api/category/MagentoFilterAction",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "category/src/MagentoSortFieldAction",
+        "title": "MagentoSortFieldAction",
+        "path": "/docs/api/category/MagentoSortFieldAction",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "category/src/MagentoGetCategoryQuery",
+        "title": "MagentoGetCategoryQuery",
+        "path": "/docs/api/category/MagentoGetCategoryQuery",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/MagentoGetProductsQuery",
+        "title": "MagentoGetProductsQuery",
+        "path": "/docs/api/category/MagentoGetProductsQuery",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffMagentoAppliedFiltersTransformService",
+        "title": "DaffMagentoAppliedFiltersTransformService",
+        "path": "/docs/api/category/DaffMagentoAppliedFiltersTransformService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffMagentoAppliedSortOptionTransformService",
+        "title": "DaffMagentoAppliedSortOptionTransformService",
+        "path": "/docs/api/category/DaffMagentoAppliedSortOptionTransformService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffMagentoCategoryPageConfigTransformerService",
+        "title": "DaffMagentoCategoryPageConfigTransformerService",
+        "path": "/docs/api/category/DaffMagentoCategoryPageConfigTransformerService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffMagentoCategoryResponseTransformService",
+        "title": "DaffMagentoCategoryResponseTransformService",
+        "path": "/docs/api/category/DaffMagentoCategoryResponseTransformService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/DaffMagentoCategoryTransformerService",
+        "title": "DaffMagentoCategoryTransformerService",
+        "path": "/docs/api/category/DaffMagentoCategoryTransformerService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "category/src/daffCategoryValidateFilters",
+        "title": "daffCategoryValidateFilters",
+        "path": "/docs/api/category/daffCategoryValidateFilters",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      }
+    ]
+  },
+  {
+    "id": "checkout",
+    "title": "@daffodil/checkout",
+    "path": "/docs/api/checkout",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "checkout/src/DaffOrder",
+        "title": "DaffOrder",
+        "path": "/docs/api/checkout/DaffOrder",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffOrderItem",
+        "title": "DaffOrderItem",
+        "path": "/docs/api/checkout/DaffOrderItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffOrderAddress",
+        "title": "DaffOrderAddress",
+        "path": "/docs/api/checkout/DaffOrderAddress",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffOrderPayment",
+        "title": "DaffOrderPayment",
+        "path": "/docs/api/checkout/DaffOrderPayment",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffOrderShippingRate",
+        "title": "DaffOrderShippingRate",
+        "path": "/docs/api/checkout/DaffOrderShippingRate",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/PaymentInfo",
+        "title": "PaymentInfo",
+        "path": "/docs/api/checkout/PaymentInfo",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/ShippingRate",
+        "title": "ShippingRate",
+        "path": "/docs/api/checkout/ShippingRate",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/ShippingOption",
+        "title": "ShippingOption",
+        "path": "/docs/api/checkout/ShippingOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/ShippingContainer",
+        "title": "ShippingContainer",
+        "path": "/docs/api/checkout/ShippingContainer",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/OrderContainer",
+        "title": "OrderContainer",
+        "path": "/docs/api/checkout/OrderContainer",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffPaymentFacade",
+        "title": "DaffPaymentFacade",
+        "path": "/docs/api/checkout/DaffPaymentFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffPaymentActionTypes",
+        "title": "DaffPaymentActionTypes",
+        "path": "/docs/api/checkout/DaffPaymentActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "checkout/src/DaffPaymentActions",
+        "title": "DaffPaymentActions",
+        "path": "/docs/api/checkout/DaffPaymentActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "checkout/src/DaffUpdatePaymentInfo",
+        "title": "DaffUpdatePaymentInfo",
+        "path": "/docs/api/checkout/DaffUpdatePaymentInfo",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/daffPaymentReducers",
+        "title": "daffPaymentReducers",
+        "path": "/docs/api/checkout/daffPaymentReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectPaymentFeatureState",
+        "title": "selectPaymentFeatureState",
+        "path": "/docs/api/checkout/selectPaymentFeatureState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectPaymentState",
+        "title": "selectPaymentState",
+        "path": "/docs/api/checkout/selectPaymentState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectPaymentInfo",
+        "title": "selectPaymentInfo",
+        "path": "/docs/api/checkout/selectPaymentInfo",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffPaymentDriver",
+        "title": "DaffPaymentDriver",
+        "path": "/docs/api/checkout/DaffPaymentDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffOrderDriver",
+        "title": "DaffOrderDriver",
+        "path": "/docs/api/checkout/DaffOrderDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffOrderServiceInterface",
+        "title": "DaffOrderServiceInterface",
+        "path": "/docs/api/checkout/DaffOrderServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffPaymentTransformer",
+        "title": "DaffPaymentTransformer",
+        "path": "/docs/api/checkout/DaffPaymentTransformer",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffCartProcessRequest",
+        "title": "DaffCartProcessRequest",
+        "path": "/docs/api/checkout/DaffCartProcessRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffBillingActionTypes",
+        "title": "DaffBillingActionTypes",
+        "path": "/docs/api/checkout/DaffBillingActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "checkout/src/DaffUpdateBillingAddress",
+        "title": "DaffUpdateBillingAddress",
+        "path": "/docs/api/checkout/DaffUpdateBillingAddress",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffToggleBillingAddressIsShippingAddress",
+        "title": "DaffToggleBillingAddressIsShippingAddress",
+        "path": "/docs/api/checkout/DaffToggleBillingAddressIsShippingAddress",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffBillingActions",
+        "title": "DaffBillingActions",
+        "path": "/docs/api/checkout/DaffBillingActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "checkout/src/selectBillingFeatureState",
+        "title": "selectBillingFeatureState",
+        "path": "/docs/api/checkout/selectBillingFeatureState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectBillingState",
+        "title": "selectBillingState",
+        "path": "/docs/api/checkout/selectBillingState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectBillingAddress",
+        "title": "selectBillingAddress",
+        "path": "/docs/api/checkout/selectBillingAddress",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectBillingAddressIsShippingAddress",
+        "title": "selectBillingAddressIsShippingAddress",
+        "path": "/docs/api/checkout/selectBillingAddressIsShippingAddress",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffBillingFacade",
+        "title": "DaffBillingFacade",
+        "path": "/docs/api/checkout/DaffBillingFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffBillingReducersState",
+        "title": "DaffBillingReducersState",
+        "path": "/docs/api/checkout/DaffBillingReducersState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffBillingReducerState",
+        "title": "DaffBillingReducerState",
+        "path": "/docs/api/checkout/DaffBillingReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/daffBillingReducers",
+        "title": "daffBillingReducers",
+        "path": "/docs/api/checkout/daffBillingReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/daffBillingReducer",
+        "title": "daffBillingReducer",
+        "path": "/docs/api/checkout/daffBillingReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "checkout/src/DaffShippingFacade",
+        "title": "DaffShippingFacade",
+        "path": "/docs/api/checkout/DaffShippingFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffShippingActionTypes",
+        "title": "DaffShippingActionTypes",
+        "path": "/docs/api/checkout/DaffShippingActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "checkout/src/DaffUpdateShippingAddress",
+        "title": "DaffUpdateShippingAddress",
+        "path": "/docs/api/checkout/DaffUpdateShippingAddress",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffSelectShippingOption",
+        "title": "DaffSelectShippingOption",
+        "path": "/docs/api/checkout/DaffSelectShippingOption",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffShippingActions",
+        "title": "DaffShippingActions",
+        "path": "/docs/api/checkout/DaffShippingActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "checkout/src/daffShippingReducer",
+        "title": "daffShippingReducer",
+        "path": "/docs/api/checkout/daffShippingReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "checkout/src/DaffShippingReducerState",
+        "title": "DaffShippingReducerState",
+        "path": "/docs/api/checkout/DaffShippingReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/daffShippingReducers",
+        "title": "daffShippingReducers",
+        "path": "/docs/api/checkout/daffShippingReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffShippingReducersState",
+        "title": "DaffShippingReducersState",
+        "path": "/docs/api/checkout/DaffShippingReducersState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/selectShippingFeatureState",
+        "title": "selectShippingFeatureState",
+        "path": "/docs/api/checkout/selectShippingFeatureState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectShippingState",
+        "title": "selectShippingState",
+        "path": "/docs/api/checkout/selectShippingState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectShippingAddress",
+        "title": "selectShippingAddress",
+        "path": "/docs/api/checkout/selectShippingAddress",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectShippingOptionId",
+        "title": "selectShippingOptionId",
+        "path": "/docs/api/checkout/selectShippingOptionId",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectIsShippingAddressValid",
+        "title": "selectIsShippingAddressValid",
+        "path": "/docs/api/checkout/selectIsShippingAddressValid",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/PlaceOrder",
+        "title": "PlaceOrder",
+        "path": "/docs/api/checkout/PlaceOrder",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/OrderActionTypes",
+        "title": "OrderActionTypes",
+        "path": "/docs/api/checkout/OrderActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "checkout/src/DaffOrderActionTypes",
+        "title": "DaffOrderActionTypes",
+        "path": "/docs/api/checkout/DaffOrderActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "checkout/src/DaffOrderActions",
+        "title": "DaffOrderActions",
+        "path": "/docs/api/checkout/DaffOrderActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "checkout/src/DaffPlaceOrder",
+        "title": "DaffPlaceOrder",
+        "path": "/docs/api/checkout/DaffPlaceOrder",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffPlaceOrderFailure",
+        "title": "DaffPlaceOrderFailure",
+        "path": "/docs/api/checkout/DaffPlaceOrderFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffPlaceOrderSuccess",
+        "title": "DaffPlaceOrderSuccess",
+        "path": "/docs/api/checkout/DaffPlaceOrderSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectErrors",
+        "title": "selectErrors",
+        "path": "/docs/api/checkout/selectErrors",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectLoading",
+        "title": "selectLoading",
+        "path": "/docs/api/checkout/selectLoading",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectOrder",
+        "title": "selectOrder",
+        "path": "/docs/api/checkout/selectOrder",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectOrderState",
+        "title": "selectOrderState",
+        "path": "/docs/api/checkout/selectOrderState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/selectOrderFeatureState",
+        "title": "selectOrderFeatureState",
+        "path": "/docs/api/checkout/selectOrderFeatureState",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffOrderReducersState",
+        "title": "DaffOrderReducersState",
+        "path": "/docs/api/checkout/DaffOrderReducersState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffOrderReducerState",
+        "title": "DaffOrderReducerState",
+        "path": "/docs/api/checkout/DaffOrderReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/daffOrderReducers",
+        "title": "daffOrderReducers",
+        "path": "/docs/api/checkout/daffOrderReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/daffOrderReducer",
+        "title": "daffOrderReducer",
+        "path": "/docs/api/checkout/daffOrderReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "checkout/src/DaffOrderFacade",
+        "title": "DaffOrderFacade",
+        "path": "/docs/api/checkout/DaffOrderFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffBillingModule",
+        "title": "DaffBillingModule",
+        "path": "/docs/api/checkout/DaffBillingModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffShippingModule",
+        "title": "DaffShippingModule",
+        "path": "/docs/api/checkout/DaffShippingModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffOrderModule",
+        "title": "DaffOrderModule",
+        "path": "/docs/api/checkout/DaffOrderModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/StateCheckoutModule",
+        "title": "StateCheckoutModule",
+        "path": "/docs/api/checkout/StateCheckoutModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "checkout/src/DaffCheckoutServiceInterface",
+        "title": "DaffCheckoutServiceInterface",
+        "path": "/docs/api/checkout/DaffCheckoutServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "checkout/src/DaffCheckoutDriver",
+        "title": "DaffCheckoutDriver",
+        "path": "/docs/api/checkout/DaffCheckoutDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      }
+    ]
+  },
+  {
+    "id": "contact",
+    "title": "@daffodil/contact",
+    "path": "/docs/api/contact",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "contact/src/DaffContactUnion",
+        "title": "DaffContactUnion",
+        "path": "/docs/api/contact/DaffContactUnion",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      }
+    ]
+  },
+  {
+    "id": "core",
+    "title": "@daffodil/core",
+    "path": "/docs/api/core",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "core/src/DaffAddress",
+        "title": "DaffAddress",
+        "path": "/docs/api/core/DaffAddress",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "core/src/range",
+        "title": "range",
+        "path": "/docs/api/core/range",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/shuffle",
+        "title": "shuffle",
+        "path": "/docs/api/core/shuffle",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/randomSubset",
+        "title": "randomSubset",
+        "path": "/docs/api/core/randomSubset",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/randomSlice",
+        "title": "randomSlice",
+        "path": "/docs/api/core/randomSlice",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/Constructable",
+        "title": "Constructable",
+        "path": "/docs/api/core/Constructable",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "core/src/DaffSortable",
+        "title": "DaffSortable",
+        "path": "/docs/api/core/DaffSortable",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "core/src/daffAdd",
+        "title": "daffAdd",
+        "path": "/docs/api/core/daffAdd",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "core/src/daffSubtract",
+        "title": "daffSubtract",
+        "path": "/docs/api/core/daffSubtract",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "core/src/daffMultiply",
+        "title": "daffMultiply",
+        "path": "/docs/api/core/daffMultiply",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "core/src/daffDivide",
+        "title": "daffDivide",
+        "path": "/docs/api/core/daffDivide",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "core/src/DaffErrorCodeMap",
+        "title": "DaffErrorCodeMap",
+        "path": "/docs/api/core/DaffErrorCodeMap",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "core/src/DaffError",
+        "title": "DaffError",
+        "path": "/docs/api/core/DaffError",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "core/src/DaffInheritableError",
+        "title": "DaffInheritableError",
+        "path": "/docs/api/core/DaffInheritableError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffLocalStorageService",
+        "title": "DaffLocalStorageService",
+        "path": "/docs/api/core/DaffLocalStorageService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffNoopStorageService",
+        "title": "DaffNoopStorageService",
+        "path": "/docs/api/core/DaffNoopStorageService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffPersistenceService",
+        "title": "DaffPersistenceService",
+        "path": "/docs/api/core/DaffPersistenceService",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "core/src/DaffPersistenceServiceToken",
+        "title": "DaffPersistenceServiceToken",
+        "path": "/docs/api/core/DaffPersistenceServiceToken",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffStorageServiceError",
+        "title": "DaffStorageServiceError",
+        "path": "/docs/api/core/DaffStorageServiceError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffErrorStorageService",
+        "title": "DaffErrorStorageService",
+        "path": "/docs/api/core/DaffErrorStorageService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffServerSideStorageError",
+        "title": "DaffServerSideStorageError",
+        "path": "/docs/api/core/DaffServerSideStorageError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/DaffServerErrorStorageService",
+        "title": "DaffServerErrorStorageService",
+        "path": "/docs/api/core/DaffServerErrorStorageService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "core/src/backoff",
+        "title": "backoff",
+        "path": "/docs/api/core/backoff",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "core/src/ID",
+        "title": "ID",
+        "path": "/docs/api/core/ID",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      }
+    ]
+  },
+  {
+    "id": "design",
+    "title": "@daffodil/design",
+    "path": "/docs/api/design",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "design/src/DaffButtonModule",
+        "title": "DaffButtonModule",
+        "path": "/docs/api/design/DaffButtonModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffButtonType",
+        "title": "DaffButtonType",
+        "path": "/docs/api/design/DaffButtonType",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffButtonSize",
+        "title": "DaffButtonSize",
+        "path": "/docs/api/design/DaffButtonSize",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffButtonComponent",
+        "title": "DaffButtonComponent",
+        "path": "/docs/api/design/DaffButtonComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffErrorStateMatcher",
+        "title": "DaffErrorStateMatcher",
+        "path": "/docs/api/design/DaffErrorStateMatcher",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFormFieldModule",
+        "title": "DaffFormFieldModule",
+        "path": "/docs/api/design/DaffFormFieldModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFormFieldControl",
+        "title": "DaffFormFieldControl",
+        "path": "/docs/api/design/DaffFormFieldControl",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFormFieldComponent",
+        "title": "DaffFormFieldComponent",
+        "path": "/docs/api/design/DaffFormFieldComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffImageModule",
+        "title": "DaffImageModule",
+        "path": "/docs/api/design/DaffImageModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffImageComponent",
+        "title": "DaffImageComponent",
+        "path": "/docs/api/design/DaffImageComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffInputModule",
+        "title": "DaffInputModule",
+        "path": "/docs/api/design/DaffInputModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffInputComponent",
+        "title": "DaffInputComponent",
+        "path": "/docs/api/design/DaffInputComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffNativeSelectModule",
+        "title": "DaffNativeSelectModule",
+        "path": "/docs/api/design/DaffNativeSelectModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffNativeSelectComponent",
+        "title": "DaffNativeSelectComponent",
+        "path": "/docs/api/design/DaffNativeSelectComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCheckboxModule",
+        "title": "DaffCheckboxModule",
+        "path": "/docs/api/design/DaffCheckboxModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCheckboxComponent",
+        "title": "DaffCheckboxComponent",
+        "path": "/docs/api/design/DaffCheckboxComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCheckboxSetComponent",
+        "title": "DaffCheckboxSetComponent",
+        "path": "/docs/api/design/DaffCheckboxSetComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffContainerModule",
+        "title": "DaffContainerModule",
+        "path": "/docs/api/design/DaffContainerModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffContainerComponent",
+        "title": "DaffContainerComponent",
+        "path": "/docs/api/design/DaffContainerComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLoadingIconModule",
+        "title": "DaffLoadingIconModule",
+        "path": "/docs/api/design/DaffLoadingIconModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLoadingIconComponent",
+        "title": "DaffLoadingIconComponent",
+        "path": "/docs/api/design/DaffLoadingIconComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffProgressIndicatorModule",
+        "title": "DaffProgressIndicatorModule",
+        "path": "/docs/api/design/DaffProgressIndicatorModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffProgressIndicatorComponent",
+        "title": "DaffProgressIndicatorComponent",
+        "path": "/docs/api/design/DaffProgressIndicatorComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffRadioModule",
+        "title": "DaffRadioModule",
+        "path": "/docs/api/design/DaffRadioModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffRadioComponent",
+        "title": "DaffRadioComponent",
+        "path": "/docs/api/design/DaffRadioComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffRadioSetComponent",
+        "title": "DaffRadioSetComponent",
+        "path": "/docs/api/design/DaffRadioSetComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffAccordionModule",
+        "title": "DaffAccordionModule",
+        "path": "/docs/api/design/DaffAccordionModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffAccordionComponent",
+        "title": "DaffAccordionComponent",
+        "path": "/docs/api/design/DaffAccordionComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffAccordionItemComponent",
+        "title": "DaffAccordionItemComponent",
+        "path": "/docs/api/design/DaffAccordionItemComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffAccordionItemTitleDirective",
+        "title": "DaffAccordionItemTitleDirective",
+        "path": "/docs/api/design/DaffAccordionItemTitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffAccordionItemContentDirective",
+        "title": "DaffAccordionItemContentDirective",
+        "path": "/docs/api/design/DaffAccordionItemContentDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffArticleComponent",
+        "title": "DaffArticleComponent",
+        "path": "/docs/api/design/DaffArticleComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffArticleModule",
+        "title": "DaffArticleModule",
+        "path": "/docs/api/design/DaffArticleModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffArticleTitleDirective",
+        "title": "DaffArticleTitleDirective",
+        "path": "/docs/api/design/DaffArticleTitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffArticleLeadDirective",
+        "title": "DaffArticleLeadDirective",
+        "path": "/docs/api/design/DaffArticleLeadDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffArticleMetaDirective",
+        "title": "DaffArticleMetaDirective",
+        "path": "/docs/api/design/DaffArticleMetaDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffBackdropModule",
+        "title": "DaffBackdropModule",
+        "path": "/docs/api/design/DaffBackdropModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffBackdropComponent",
+        "title": "DaffBackdropComponent",
+        "path": "/docs/api/design/DaffBackdropComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffButtonSetModule",
+        "title": "DaffButtonSetModule",
+        "path": "/docs/api/design/DaffButtonSetModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffButtonSetComponent",
+        "title": "DaffButtonSetComponent",
+        "path": "/docs/api/design/DaffButtonSetComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffImageGalleryModule",
+        "title": "DaffImageGalleryModule",
+        "path": "/docs/api/design/DaffImageGalleryModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffImageGalleryComponent",
+        "title": "DaffImageGalleryComponent",
+        "path": "/docs/api/design/DaffImageGalleryComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffGalleryImageComponent",
+        "title": "DaffGalleryImageComponent",
+        "path": "/docs/api/design/DaffGalleryImageComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffImageListModule",
+        "title": "DaffImageListModule",
+        "path": "/docs/api/design/DaffImageListModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffImageListComponent",
+        "title": "DaffImageListComponent",
+        "path": "/docs/api/design/DaffImageListComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLinkSetModule",
+        "title": "DaffLinkSetModule",
+        "path": "/docs/api/design/DaffLinkSetModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLinkSetSubheadingDirective",
+        "title": "DaffLinkSetSubheadingDirective",
+        "path": "/docs/api/design/DaffLinkSetSubheadingDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLinkSetHeadingDirective",
+        "title": "DaffLinkSetHeadingDirective",
+        "path": "/docs/api/design/DaffLinkSetHeadingDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLinkSetItemComponent",
+        "title": "DaffLinkSetItemComponent",
+        "path": "/docs/api/design/DaffLinkSetItemComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffLinkSetComponent",
+        "title": "DaffLinkSetComponent",
+        "path": "/docs/api/design/DaffLinkSetComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffListModule",
+        "title": "DaffListModule",
+        "path": "/docs/api/design/DaffListModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffListMode",
+        "title": "DaffListMode",
+        "path": "/docs/api/design/DaffListMode",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffListModeEnum",
+        "title": "DaffListModeEnum",
+        "path": "/docs/api/design/DaffListModeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/DaffListType",
+        "title": "DaffListType",
+        "path": "/docs/api/design/DaffListType",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffListComponent",
+        "title": "DaffListComponent",
+        "path": "/docs/api/design/DaffListComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffListSubheaderDirective",
+        "title": "DaffListSubheaderDirective",
+        "path": "/docs/api/design/DaffListSubheaderDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffListItemComponent",
+        "title": "DaffListItemComponent",
+        "path": "/docs/api/design/DaffListItemComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffModalModule",
+        "title": "DaffModalModule",
+        "path": "/docs/api/design/DaffModalModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffModalService",
+        "title": "DaffModalService",
+        "path": "/docs/api/design/DaffModalService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffModal",
+        "title": "DaffModal",
+        "path": "/docs/api/design/DaffModal",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "design/src/DaffModalComponent",
+        "title": "DaffModalComponent",
+        "path": "/docs/api/design/DaffModalComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffNavbarModule",
+        "title": "DaffNavbarModule",
+        "path": "/docs/api/design/DaffNavbarModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffNavbarComponent",
+        "title": "DaffNavbarComponent",
+        "path": "/docs/api/design/DaffNavbarComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffPaginatorModule",
+        "title": "DaffPaginatorModule",
+        "path": "/docs/api/design/DaffPaginatorModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffPaginatorComponent",
+        "title": "DaffPaginatorComponent",
+        "path": "/docs/api/design/DaffPaginatorComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffQtyDropdownModule",
+        "title": "DaffQtyDropdownModule",
+        "path": "/docs/api/design/DaffQtyDropdownModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffQtyDropdownComponent",
+        "title": "DaffQtyDropdownComponent",
+        "path": "/docs/api/design/DaffQtyDropdownComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffSidebarModule",
+        "title": "DaffSidebarModule",
+        "path": "/docs/api/design/DaffSidebarModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffSidebarViewportComponent",
+        "title": "DaffSidebarViewportComponent",
+        "path": "/docs/api/design/DaffSidebarViewportComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffSidebarComponent",
+        "title": "DaffSidebarComponent",
+        "path": "/docs/api/design/DaffSidebarComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffSidebarMode",
+        "title": "DaffSidebarMode",
+        "path": "/docs/api/design/DaffSidebarMode",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffHeroModule",
+        "title": "DaffHeroModule",
+        "path": "/docs/api/design/DaffHeroModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffHeroLayout",
+        "title": "DaffHeroLayout",
+        "path": "/docs/api/design/DaffHeroLayout",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffHeroLayoutEnum",
+        "title": "DaffHeroLayoutEnum",
+        "path": "/docs/api/design/DaffHeroLayoutEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/DaffHeroSize",
+        "title": "DaffHeroSize",
+        "path": "/docs/api/design/DaffHeroSize",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffHeroSizeEnum",
+        "title": "DaffHeroSizeEnum",
+        "path": "/docs/api/design/DaffHeroSizeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/DaffHeroComponent",
+        "title": "DaffHeroComponent",
+        "path": "/docs/api/design/DaffHeroComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffHeroTitleDirective",
+        "title": "DaffHeroTitleDirective",
+        "path": "/docs/api/design/DaffHeroTitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffHeroSubtitleDirective",
+        "title": "DaffHeroSubtitleDirective",
+        "path": "/docs/api/design/DaffHeroSubtitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCalloutModule",
+        "title": "DaffCalloutModule",
+        "path": "/docs/api/design/DaffCalloutModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCalloutLayout",
+        "title": "DaffCalloutLayout",
+        "path": "/docs/api/design/DaffCalloutLayout",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffCalloutLayoutEnum",
+        "title": "DaffCalloutLayoutEnum",
+        "path": "/docs/api/design/DaffCalloutLayoutEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/DaffCalloutSize",
+        "title": "DaffCalloutSize",
+        "path": "/docs/api/design/DaffCalloutSize",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffCalloutSizeEnum",
+        "title": "DaffCalloutSizeEnum",
+        "path": "/docs/api/design/DaffCalloutSizeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/DaffCalloutComponent",
+        "title": "DaffCalloutComponent",
+        "path": "/docs/api/design/DaffCalloutComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCalloutTitleDirective",
+        "title": "DaffCalloutTitleDirective",
+        "path": "/docs/api/design/DaffCalloutTitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCalloutSubtitleDirective",
+        "title": "DaffCalloutSubtitleDirective",
+        "path": "/docs/api/design/DaffCalloutSubtitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFeatureModule",
+        "title": "DaffFeatureModule",
+        "path": "/docs/api/design/DaffFeatureModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFeatureMode",
+        "title": "DaffFeatureMode",
+        "path": "/docs/api/design/DaffFeatureMode",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffFeatureModeEnum",
+        "title": "DaffFeatureModeEnum",
+        "path": "/docs/api/design/DaffFeatureModeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/DaffFeatureComponent",
+        "title": "DaffFeatureComponent",
+        "path": "/docs/api/design/DaffFeatureComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFeatureTitleDirective",
+        "title": "DaffFeatureTitleDirective",
+        "path": "/docs/api/design/DaffFeatureTitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFeatureSubtitleDirective",
+        "title": "DaffFeatureSubtitleDirective",
+        "path": "/docs/api/design/DaffFeatureSubtitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFeatureIconDirective",
+        "title": "DaffFeatureIconDirective",
+        "path": "/docs/api/design/DaffFeatureIconDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffFeatureSubheaderDirective",
+        "title": "DaffFeatureSubheaderDirective",
+        "path": "/docs/api/design/DaffFeatureSubheaderDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCardModule",
+        "title": "DaffCardModule",
+        "path": "/docs/api/design/DaffCardModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCardComponent",
+        "title": "DaffCardComponent",
+        "path": "/docs/api/design/DaffCardComponent",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCardTitleDirective",
+        "title": "DaffCardTitleDirective",
+        "path": "/docs/api/design/DaffCardTitleDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffCardImageDirective",
+        "title": "DaffCardImageDirective",
+        "path": "/docs/api/design/DaffCardImageDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/daffSuffixableMixin",
+        "title": "daffSuffixableMixin",
+        "path": "/docs/api/design/daffSuffixableMixin",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "design/src/DaffSuffixable",
+        "title": "DaffSuffixable",
+        "path": "/docs/api/design/DaffSuffixable",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "design/src/DaffPrefixable",
+        "title": "DaffPrefixable",
+        "path": "/docs/api/design/DaffPrefixable",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "design/src/daffPrefixableMixin",
+        "title": "daffPrefixableMixin",
+        "path": "/docs/api/design/daffPrefixableMixin",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "design/src/DaffPrefixSuffixModule",
+        "title": "DaffPrefixSuffixModule",
+        "path": "/docs/api/design/DaffPrefixSuffixModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffPrefixDirective",
+        "title": "DaffPrefixDirective",
+        "path": "/docs/api/design/DaffPrefixDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/DaffSuffixDirective",
+        "title": "DaffSuffixDirective",
+        "path": "/docs/api/design/DaffSuffixDirective",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "design/src/daffColorMixin",
+        "title": "daffColorMixin",
+        "path": "/docs/api/design/daffColorMixin",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "design/src/colorInPalette",
+        "title": "colorInPalette",
+        "path": "/docs/api/design/colorInPalette",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "design/src/DaffColorable",
+        "title": "DaffColorable",
+        "path": "/docs/api/design/DaffColorable",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "design/src/DaffPalette",
+        "title": "DaffPalette",
+        "path": "/docs/api/design/DaffPalette",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffBreakpoints",
+        "title": "DaffBreakpoints",
+        "path": "/docs/api/design/DaffBreakpoints",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "design/src/Constructor",
+        "title": "Constructor",
+        "path": "/docs/api/design/Constructor",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffStatusable",
+        "title": "DaffStatusable",
+        "path": "/docs/api/design/DaffStatusable",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "design/src/DaffStatus",
+        "title": "DaffStatus",
+        "path": "/docs/api/design/DaffStatus",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "design/src/DaffStatusEnum",
+        "title": "DaffStatusEnum",
+        "path": "/docs/api/design/DaffStatusEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      }
+    ]
+  },
+  {
+    "id": "driver",
+    "title": "@daffodil/driver",
+    "path": "/docs/api/driver",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "driver/src/DaffBadInputError",
+        "title": "DaffBadInputError",
+        "path": "/docs/api/driver/DaffBadInputError",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      }
+    ]
+  },
+  {
+    "id": "geography",
+    "title": "@daffodil/geography",
+    "path": "/docs/api/geography",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "geography/src/DaffAddress",
+        "title": "DaffAddress",
+        "path": "/docs/api/geography/DaffAddress",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "geography/src/DaffPersonalAddress",
+        "title": "DaffPersonalAddress",
+        "path": "/docs/api/geography/DaffPersonalAddress",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "geography/src/DaffCountry",
+        "title": "DaffCountry",
+        "path": "/docs/api/geography/DaffCountry",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "geography/src/DaffSubdivision",
+        "title": "DaffSubdivision",
+        "path": "/docs/api/geography/DaffSubdivision",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "geography/src/daffCompareAddresses",
+        "title": "daffCompareAddresses",
+        "path": "/docs/api/geography/daffCompareAddresses",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "geography/src/daffComparePersonalAddresses",
+        "title": "daffComparePersonalAddresses",
+        "path": "/docs/api/geography/daffComparePersonalAddresses",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      }
+    ]
+  },
+  {
+    "id": "navigation",
+    "title": "@daffodil/navigation",
+    "path": "/docs/api/navigation",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "navigation/src/DaffGenericNavigationTree",
+        "title": "DaffGenericNavigationTree",
+        "path": "/docs/api/navigation/DaffGenericNavigationTree",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "navigation/src/DaffNavigationTree",
+        "title": "DaffNavigationTree",
+        "path": "/docs/api/navigation/DaffNavigationTree",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "navigation/src/DaffNavigationBreadcrumb",
+        "title": "DaffNavigationBreadcrumb",
+        "path": "/docs/api/navigation/DaffNavigationBreadcrumb",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      }
+    ]
+  },
+  {
+    "id": "newsletter",
+    "title": "@daffodil/newsletter",
+    "path": "/docs/api/newsletter",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "newsletter/src/DaffNewsletterSubmission",
+        "title": "DaffNewsletterSubmission",
+        "path": "/docs/api/newsletter/DaffNewsletterSubmission",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterUnion",
+        "title": "DaffNewsletterUnion",
+        "path": "/docs/api/newsletter/DaffNewsletterUnion",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterState",
+        "title": "DaffNewsletterState",
+        "path": "/docs/api/newsletter/DaffNewsletterState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "newsletter/src/reducer",
+        "title": "reducer",
+        "path": "/docs/api/newsletter/reducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "newsletter/src/State",
+        "title": "State",
+        "path": "/docs/api/newsletter/State",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "newsletter/src/selectDaffNewsletterError",
+        "title": "selectDaffNewsletterError",
+        "path": "/docs/api/newsletter/selectDaffNewsletterError",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/selectDaffNewsletterLoading",
+        "title": "selectDaffNewsletterLoading",
+        "path": "/docs/api/newsletter/selectDaffNewsletterLoading",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/selectDaffNewsletterSuccess",
+        "title": "selectDaffNewsletterSuccess",
+        "path": "/docs/api/newsletter/selectDaffNewsletterSuccess",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterFacade",
+        "title": "DaffNewsletterFacade",
+        "path": "/docs/api/newsletter/DaffNewsletterFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterFacadeInterface",
+        "title": "DaffNewsletterFacadeInterface",
+        "path": "/docs/api/newsletter/DaffNewsletterFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterModule",
+        "title": "DaffNewsletterModule",
+        "path": "/docs/api/newsletter/DaffNewsletterModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterActionTypes",
+        "title": "DaffNewsletterActionTypes",
+        "path": "/docs/api/newsletter/DaffNewsletterActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterSubscribe",
+        "title": "DaffNewsletterSubscribe",
+        "path": "/docs/api/newsletter/DaffNewsletterSubscribe",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterRetry",
+        "title": "DaffNewsletterRetry",
+        "path": "/docs/api/newsletter/DaffNewsletterRetry",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterCancel",
+        "title": "DaffNewsletterCancel",
+        "path": "/docs/api/newsletter/DaffNewsletterCancel",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterFailedSubscribe",
+        "title": "DaffNewsletterFailedSubscribe",
+        "path": "/docs/api/newsletter/DaffNewsletterFailedSubscribe",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterSuccessSubscribe",
+        "title": "DaffNewsletterSuccessSubscribe",
+        "path": "/docs/api/newsletter/DaffNewsletterSuccessSubscribe",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterReset",
+        "title": "DaffNewsletterReset",
+        "path": "/docs/api/newsletter/DaffNewsletterReset",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterActions",
+        "title": "DaffNewsletterActions",
+        "path": "/docs/api/newsletter/DaffNewsletterActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterHubSpotDriverModule",
+        "title": "DaffNewsletterHubSpotDriverModule",
+        "path": "/docs/api/newsletter/DaffNewsletterHubSpotDriverModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterDriver",
+        "title": "DaffNewsletterDriver",
+        "path": "/docs/api/newsletter/DaffNewsletterDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "newsletter/src/DaffNewsletterServiceInterface",
+        "title": "DaffNewsletterServiceInterface",
+        "path": "/docs/api/newsletter/DaffNewsletterServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      }
+    ]
+  },
+  {
+    "id": "order",
+    "title": "@daffodil/order",
+    "path": "/docs/api/order",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "order/src/DaffOrderAddress",
+        "title": "DaffOrderAddress",
+        "path": "/docs/api/order/DaffOrderAddress",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderCoupon",
+        "title": "DaffOrderCoupon",
+        "path": "/docs/api/order/DaffOrderCoupon",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderInvoice",
+        "title": "DaffOrderInvoice",
+        "path": "/docs/api/order/DaffOrderInvoice",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderItem",
+        "title": "DaffOrderItem",
+        "path": "/docs/api/order/DaffOrderItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderItemType",
+        "title": "DaffOrderItemType",
+        "path": "/docs/api/order/DaffOrderItemType",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "order/src/DaffCompositeOrderItem",
+        "title": "DaffCompositeOrderItem",
+        "path": "/docs/api/order/DaffCompositeOrderItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffCompositeOrderItemOption",
+        "title": "DaffCompositeOrderItemOption",
+        "path": "/docs/api/order/DaffCompositeOrderItemOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffConfigurableOrderItem",
+        "title": "DaffConfigurableOrderItem",
+        "path": "/docs/api/order/DaffConfigurableOrderItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffConfigurableOrderItemAttribute",
+        "title": "DaffConfigurableOrderItemAttribute",
+        "path": "/docs/api/order/DaffConfigurableOrderItemAttribute",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderPayment",
+        "title": "DaffOrderPayment",
+        "path": "/docs/api/order/DaffOrderPayment",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "order/src/DaffOrderShipmentItem",
+        "title": "DaffOrderShipmentItem",
+        "path": "/docs/api/order/DaffOrderShipmentItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderShipmentTracking",
+        "title": "DaffOrderShipmentTracking",
+        "path": "/docs/api/order/DaffOrderShipmentTracking",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderShipment",
+        "title": "DaffOrderShipment",
+        "path": "/docs/api/order/DaffOrderShipment",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderShippingMethod",
+        "title": "DaffOrderShippingMethod",
+        "path": "/docs/api/order/DaffOrderShippingMethod",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderTotal",
+        "title": "DaffOrderTotal",
+        "path": "/docs/api/order/DaffOrderTotal",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "order/src/DaffOrderTotalTypeEnum",
+        "title": "DaffOrderTotalTypeEnum",
+        "path": "/docs/api/order/DaffOrderTotalTypeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "order/src/DaffOrder",
+        "title": "DaffOrder",
+        "path": "/docs/api/order/DaffOrder",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      }
+    ]
+  },
+  {
+    "id": "paypal",
+    "title": "@daffodil/paypal",
+    "path": "/docs/api/paypal",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "paypal/src/DaffGeneratePaypalExpressToken",
+        "title": "DaffGeneratePaypalExpressToken",
+        "path": "/docs/api/paypal/DaffGeneratePaypalExpressToken",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffGeneratePaypalExpressTokenSuccess",
+        "title": "DaffGeneratePaypalExpressTokenSuccess",
+        "path": "/docs/api/paypal/DaffGeneratePaypalExpressTokenSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffGeneratePaypalExpressTokenFailure",
+        "title": "DaffGeneratePaypalExpressTokenFailure",
+        "path": "/docs/api/paypal/DaffGeneratePaypalExpressTokenFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalActions",
+        "title": "DaffPaypalActions",
+        "path": "/docs/api/paypal/DaffPaypalActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "paypal/src/DaffPaypalActionTypes",
+        "title": "DaffPaypalActionTypes",
+        "path": "/docs/api/paypal/DaffPaypalActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "paypal/src/DaffPaypalServiceInterface",
+        "title": "DaffPaypalServiceInterface",
+        "path": "/docs/api/paypal/DaffPaypalServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/DaffPaypalTransformerInterface",
+        "title": "DaffPaypalTransformerInterface",
+        "path": "/docs/api/paypal/DaffPaypalTransformerInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/DaffPaypalTransformer",
+        "title": "DaffPaypalTransformer",
+        "path": "/docs/api/paypal/DaffPaypalTransformer",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalDriver",
+        "title": "DaffPaypalDriver",
+        "path": "/docs/api/paypal/DaffPaypalDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalConfig",
+        "title": "DaffPaypalConfig",
+        "path": "/docs/api/paypal/DaffPaypalConfig",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalMagentoDriverModule",
+        "title": "DaffPaypalMagentoDriverModule",
+        "path": "/docs/api/paypal/DaffPaypalMagentoDriverModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/GenerateTokenMutation",
+        "title": "GenerateTokenMutation",
+        "path": "/docs/api/paypal/GenerateTokenMutation",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalEffects",
+        "title": "DaffPaypalEffects",
+        "path": "/docs/api/paypal/DaffPaypalEffects",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalTokenRequest",
+        "title": "DaffPaypalTokenRequest",
+        "path": "/docs/api/paypal/DaffPaypalTokenRequest",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/DaffPaypalTokenResponse",
+        "title": "DaffPaypalTokenResponse",
+        "path": "/docs/api/paypal/DaffPaypalTokenResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/DaffPaypalUrlsResponse",
+        "title": "DaffPaypalUrlsResponse",
+        "path": "/docs/api/paypal/DaffPaypalUrlsResponse",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/DaffPaypalReducersState",
+        "title": "DaffPaypalReducersState",
+        "path": "/docs/api/paypal/DaffPaypalReducersState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/daffPaypalReducers",
+        "title": "daffPaypalReducers",
+        "path": "/docs/api/paypal/daffPaypalReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalReducerState",
+        "title": "DaffPaypalReducerState",
+        "path": "/docs/api/paypal/DaffPaypalReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/daffPaypalReducer",
+        "title": "daffPaypalReducer",
+        "path": "/docs/api/paypal/daffPaypalReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "paypal/src/DaffPaypalStateModule",
+        "title": "DaffPaypalStateModule",
+        "path": "/docs/api/paypal/DaffPaypalStateModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalModule",
+        "title": "DaffPaypalModule",
+        "path": "/docs/api/paypal/DaffPaypalModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalFacade",
+        "title": "DaffPaypalFacade",
+        "path": "/docs/api/paypal/DaffPaypalFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "paypal/src/DaffPaypalFacadeInterface",
+        "title": "DaffPaypalFacadeInterface",
+        "path": "/docs/api/paypal/DaffPaypalFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/DaffPaypalMemoizedSelectors",
+        "title": "DaffPaypalMemoizedSelectors",
+        "path": "/docs/api/paypal/DaffPaypalMemoizedSelectors",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "paypal/src/getDaffPaypalSelectors",
+        "title": "getDaffPaypalSelectors",
+        "path": "/docs/api/paypal/getDaffPaypalSelectors",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      }
+    ]
+  },
+  {
+    "id": "product",
+    "title": "@daffodil/product",
+    "path": "/docs/api/product",
+    "docType": "package",
+    "docTypeShorthand": "pk",
+    "items": [
+      {
+        "id": "product/src/DaffCompositeProduct",
+        "title": "DaffCompositeProduct",
+        "path": "/docs/api/product/DaffCompositeProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductImage",
+        "title": "DaffProductImage",
+        "path": "/docs/api/product/DaffProductImage",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductModule",
+        "title": "DaffProductModule",
+        "path": "/docs/api/product/DaffProductModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffShopifyProductService",
+        "title": "DaffShopifyProductService",
+        "path": "/docs/api/product/DaffShopifyProductService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductServiceInterface",
+        "title": "DaffProductServiceInterface",
+        "path": "/docs/api/product/DaffProductServiceInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductShopifyDriverModule",
+        "title": "DaffProductShopifyDriverModule",
+        "path": "/docs/api/product/DaffProductShopifyDriverModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductDriver",
+        "title": "DaffProductDriver",
+        "path": "/docs/api/product/DaffProductDriver",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductGridFacade",
+        "title": "DaffProductGridFacade",
+        "path": "/docs/api/product/DaffProductGridFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductGridFacadeInterface",
+        "title": "DaffProductGridFacadeInterface",
+        "path": "/docs/api/product/DaffProductGridFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductFacade",
+        "title": "DaffProductFacade",
+        "path": "/docs/api/product/DaffProductFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductFacadeInterface",
+        "title": "DaffProductFacadeInterface",
+        "path": "/docs/api/product/DaffProductFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductFacade",
+        "title": "DaffConfigurableProductFacade",
+        "path": "/docs/api/product/DaffConfigurableProductFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductFacadeInterface",
+        "title": "DaffConfigurableProductFacadeInterface",
+        "path": "/docs/api/product/DaffConfigurableProductFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffCompositeProductFacade",
+        "title": "DaffCompositeProductFacade",
+        "path": "/docs/api/product/DaffCompositeProductFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffCompositeProductFacadeInterface",
+        "title": "DaffCompositeProductFacadeInterface",
+        "path": "/docs/api/product/DaffCompositeProductFacadeInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffBestSellersFacade",
+        "title": "DaffBestSellersFacade",
+        "path": "/docs/api/product/DaffBestSellersFacade",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductTypeEnum",
+        "title": "DaffProductTypeEnum",
+        "path": "/docs/api/product/DaffProductTypeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffProduct",
+        "title": "DaffProduct",
+        "path": "/docs/api/product/DaffProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductDiscount",
+        "title": "DaffProductDiscount",
+        "path": "/docs/api/product/DaffProductDiscount",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductActionTypes",
+        "title": "DaffProductActionTypes",
+        "path": "/docs/api/product/DaffProductActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffProductLoad",
+        "title": "DaffProductLoad",
+        "path": "/docs/api/product/DaffProductLoad",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductLoadSuccess",
+        "title": "DaffProductLoadSuccess",
+        "path": "/docs/api/product/DaffProductLoadSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductLoadFailure",
+        "title": "DaffProductLoadFailure",
+        "path": "/docs/api/product/DaffProductLoadFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductUpdateQty",
+        "title": "DaffProductUpdateQty",
+        "path": "/docs/api/product/DaffProductUpdateQty",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductActions",
+        "title": "DaffProductActions",
+        "path": "/docs/api/product/DaffProductActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "product/src/DaffProductGridActionTypes",
+        "title": "DaffProductGridActionTypes",
+        "path": "/docs/api/product/DaffProductGridActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffProductGridLoad",
+        "title": "DaffProductGridLoad",
+        "path": "/docs/api/product/DaffProductGridLoad",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductGridLoadSuccess",
+        "title": "DaffProductGridLoadSuccess",
+        "path": "/docs/api/product/DaffProductGridLoadSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductGridLoadFailure",
+        "title": "DaffProductGridLoadFailure",
+        "path": "/docs/api/product/DaffProductGridLoadFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductGridReset",
+        "title": "DaffProductGridReset",
+        "path": "/docs/api/product/DaffProductGridReset",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductGridActions",
+        "title": "DaffProductGridActions",
+        "path": "/docs/api/product/DaffProductGridActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "product/src/DaffBestSellersActionTypes",
+        "title": "DaffBestSellersActionTypes",
+        "path": "/docs/api/product/DaffBestSellersActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffBestSellersLoad",
+        "title": "DaffBestSellersLoad",
+        "path": "/docs/api/product/DaffBestSellersLoad",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffBestSellersLoadSuccess",
+        "title": "DaffBestSellersLoadSuccess",
+        "path": "/docs/api/product/DaffBestSellersLoadSuccess",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffBestSellersLoadFailure",
+        "title": "DaffBestSellersLoadFailure",
+        "path": "/docs/api/product/DaffBestSellersLoadFailure",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffBestSellersReset",
+        "title": "DaffBestSellersReset",
+        "path": "/docs/api/product/DaffBestSellersReset",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffBestSellersActions",
+        "title": "DaffBestSellersActions",
+        "path": "/docs/api/product/DaffBestSellersActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductActionTypes",
+        "title": "DaffConfigurableProductActionTypes",
+        "path": "/docs/api/product/DaffConfigurableProductActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductApplyAttribute",
+        "title": "DaffConfigurableProductApplyAttribute",
+        "path": "/docs/api/product/DaffConfigurableProductApplyAttribute",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductRemoveAttribute",
+        "title": "DaffConfigurableProductRemoveAttribute",
+        "path": "/docs/api/product/DaffConfigurableProductRemoveAttribute",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductToggleAttribute",
+        "title": "DaffConfigurableProductToggleAttribute",
+        "path": "/docs/api/product/DaffConfigurableProductToggleAttribute",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductActions",
+        "title": "DaffConfigurableProductActions",
+        "path": "/docs/api/product/DaffConfigurableProductActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "product/src/DaffCompositeProductActionTypes",
+        "title": "DaffCompositeProductActionTypes",
+        "path": "/docs/api/product/DaffCompositeProductActionTypes",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffCompositeProductApplyOption",
+        "title": "DaffCompositeProductApplyOption",
+        "path": "/docs/api/product/DaffCompositeProductApplyOption",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffCompositeProductActions",
+        "title": "DaffCompositeProductActions",
+        "path": "/docs/api/product/DaffCompositeProductActions",
+        "docType": "type-alias",
+        "docTypeShorthand": "t"
+      },
+      {
+        "id": "product/src/DaffCompositeProductItemInputEnum",
+        "title": "DaffCompositeProductItemInputEnum",
+        "path": "/docs/api/product/DaffCompositeProductItemInputEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/DaffCompositeProductItem",
+        "title": "DaffCompositeProductItem",
+        "path": "/docs/api/product/DaffCompositeProductItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffCompositeProductItemOption",
+        "title": "DaffCompositeProductItemOption",
+        "path": "/docs/api/product/DaffCompositeProductItemOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffConfigurableProduct",
+        "title": "DaffConfigurableProduct",
+        "path": "/docs/api/product/DaffConfigurableProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductAttribute",
+        "title": "DaffConfigurableProductAttribute",
+        "path": "/docs/api/product/DaffConfigurableProductAttribute",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductVariant",
+        "title": "DaffConfigurableProductVariant",
+        "path": "/docs/api/product/DaffConfigurableProductVariant",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductVariantAttributesDictionary",
+        "title": "DaffProductVariantAttributesDictionary",
+        "path": "/docs/api/product/DaffProductVariantAttributesDictionary",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffConfigurableProductOptionValue",
+        "title": "DaffConfigurableProductOptionValue",
+        "path": "/docs/api/product/DaffConfigurableProductOptionValue",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffSwatchOption",
+        "title": "DaffSwatchOption",
+        "path": "/docs/api/product/DaffSwatchOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductPrices",
+        "title": "DaffProductPrices",
+        "path": "/docs/api/product/DaffProductPrices",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffPriceRange",
+        "title": "DaffPriceRange",
+        "path": "/docs/api/product/DaffPriceRange",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffCompositeConfigurationItem",
+        "title": "DaffCompositeConfigurationItem",
+        "path": "/docs/api/product/DaffCompositeConfigurationItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductPageResolver",
+        "title": "DaffProductPageResolver",
+        "path": "/docs/api/product/DaffProductPageResolver",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/daffProductReducers",
+        "title": "daffProductReducers",
+        "path": "/docs/api/product/daffProductReducers",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductReducersState",
+        "title": "DaffProductReducersState",
+        "path": "/docs/api/product/DaffProductReducersState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductGridReducerState",
+        "title": "DaffProductGridReducerState",
+        "path": "/docs/api/product/DaffProductGridReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/daffProductGridReducer",
+        "title": "daffProductGridReducer",
+        "path": "/docs/api/product/daffProductGridReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "product/src/daffProductEntitiesAdapter",
+        "title": "daffProductEntitiesAdapter",
+        "path": "/docs/api/product/daffProductEntitiesAdapter",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/daffProductEntitiesReducer",
+        "title": "daffProductEntitiesReducer",
+        "path": "/docs/api/product/daffProductEntitiesReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "product/src/DaffProductReducerState",
+        "title": "DaffProductReducerState",
+        "path": "/docs/api/product/DaffProductReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/daffProductReducer",
+        "title": "daffProductReducer",
+        "path": "/docs/api/product/daffProductReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "product/src/DaffBestSellersReducerState",
+        "title": "DaffBestSellersReducerState",
+        "path": "/docs/api/product/DaffBestSellersReducerState",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/daffBestSellersReducer",
+        "title": "daffBestSellersReducer",
+        "path": "/docs/api/product/daffBestSellersReducer",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "product/src/DaffCompositeProductEntity",
+        "title": "DaffCompositeProductEntity",
+        "path": "/docs/api/product/DaffCompositeProductEntity",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/DaffProductAllSelectors",
+        "title": "DaffProductAllSelectors",
+        "path": "/docs/api/product/DaffProductAllSelectors",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/getDaffProductSelectors",
+        "title": "getDaffProductSelectors",
+        "path": "/docs/api/product/getDaffProductSelectors",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/productPriceRangeHasDiscount",
+        "title": "productPriceRangeHasDiscount",
+        "path": "/docs/api/product/productPriceRangeHasDiscount",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/productPriceRangeHasPriceRange",
+        "title": "productPriceRangeHasPriceRange",
+        "path": "/docs/api/product/productPriceRangeHasPriceRange",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/MagentoBundledProduct",
+        "title": "MagentoBundledProduct",
+        "path": "/docs/api/product/MagentoBundledProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoBundledProductItemOption",
+        "title": "MagentoBundledProductItemOption",
+        "path": "/docs/api/product/MagentoBundledProductItemOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoBundledProductItem",
+        "title": "MagentoBundledProductItem",
+        "path": "/docs/api/product/MagentoBundledProductItem",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoPriceTypeEnum",
+        "title": "MagentoPriceTypeEnum",
+        "path": "/docs/api/product/MagentoPriceTypeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/MagentoSimpleProduct",
+        "title": "MagentoSimpleProduct",
+        "path": "/docs/api/product/MagentoSimpleProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/GetProductQuery",
+        "title": "GetProductQuery",
+        "path": "/docs/api/product/GetProductQuery",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/GetAllProductsQuery",
+        "title": "GetAllProductsQuery",
+        "path": "/docs/api/product/GetAllProductsQuery",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/magentoBundledProductFragment",
+        "title": "magentoBundledProductFragment",
+        "path": "/docs/api/product/magentoBundledProductFragment",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/magentoProductFragment",
+        "title": "magentoProductFragment",
+        "path": "/docs/api/product/magentoProductFragment",
+        "docType": "const",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffMagentoProductService",
+        "title": "DaffMagentoProductService",
+        "path": "/docs/api/product/DaffMagentoProductService",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/DaffProductMagentoDriverModule",
+        "title": "DaffProductMagentoDriverModule",
+        "path": "/docs/api/product/DaffProductMagentoDriverModule",
+        "docType": "class",
+        "docTypeShorthand": "c"
+      },
+      {
+        "id": "product/src/transformMagentoProduct",
+        "title": "transformMagentoProduct",
+        "path": "/docs/api/product/transformMagentoProduct",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "product/src/transformManyMagentoProducts",
+        "title": "transformManyMagentoProducts",
+        "path": "/docs/api/product/transformManyMagentoProducts",
+        "docType": "function",
+        "docTypeShorthand": "f"
+      },
+      {
+        "id": "product/src/MagentoProductTypeEnum",
+        "title": "MagentoProductTypeEnum",
+        "path": "/docs/api/product/MagentoProductTypeEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/MagentoProductStockStatusEnum",
+        "title": "MagentoProductStockStatusEnum",
+        "path": "/docs/api/product/MagentoProductStockStatusEnum",
+        "docType": "enum",
+        "docTypeShorthand": "e"
+      },
+      {
+        "id": "product/src/MagentoProduct",
+        "title": "MagentoProduct",
+        "path": "/docs/api/product/MagentoProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoConfigurableProduct",
+        "title": "MagentoConfigurableProduct",
+        "path": "/docs/api/product/MagentoConfigurableProduct",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoConfigurableProductOption",
+        "title": "MagentoConfigurableProductOption",
+        "path": "/docs/api/product/MagentoConfigurableProductOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoConfigurableProductOptionsValue",
+        "title": "MagentoConfigurableProductOptionsValue",
+        "path": "/docs/api/product/MagentoConfigurableProductOptionsValue",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoSwatchDataInterface",
+        "title": "MagentoSwatchDataInterface",
+        "path": "/docs/api/product/MagentoSwatchDataInterface",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoConfigurableProductVariant",
+        "title": "MagentoConfigurableProductVariant",
+        "path": "/docs/api/product/MagentoConfigurableProductVariant",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      },
+      {
+        "id": "product/src/MagentoConfigurableAttributeOption",
+        "title": "MagentoConfigurableAttributeOption",
+        "path": "/docs/api/product/MagentoConfigurableAttributeOption",
+        "docType": "interface",
+        "docTypeShorthand": "i"
+      }
+    ]
+  }
+]

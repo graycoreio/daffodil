@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { DaffProductFactory, DaffCompositeProductFactory, DaffConfigurableProductFactory, DaffProductImageFactory, DaffInMemoryBackendProductService, DaffTestingProductService, DaffInMemoryProductService, DaffProductInMemoryDriverModule, DaffProductTestingDriverModule, MockDaffProductFacade, DaffProductTestingModule, MockDaffProductGridFacade, MockDaffConfigurableProductFacade, MockDaffCompositeProductFacade, MockDaffBestSellersFacade, MagentoSimpleProductFactory, MagentoProductFactory, MagentoBundledProductFactory, MagentoConfigurableProductFactory } from './index';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGFmZm9kaWwtcHJvZHVjdC10ZXN0aW5nLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL3Byb2R1Y3QvdGVzdGluZy8iLCJzb3VyY2VzIjpbImRhZmZvZGlsLXByb2R1Y3QtdGVzdGluZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsbWpCQUFjLFNBQVMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogR2VuZXJhdGVkIGJ1bmRsZSBpbmRleC4gRG8gbm90IGVkaXQuXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9pbmRleCc7XG4iXX0=

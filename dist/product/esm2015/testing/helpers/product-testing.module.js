@@ -1,0 +1,25 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { NgModule } from '@angular/core';
+import { DaffProductFacade, DaffProductGridFacade, DaffConfigurableProductFacade, DaffCompositeProductFacade, DaffBestSellersFacade } from '@daffodil/product';
+import { MockDaffProductFacade } from './mock-product-facade';
+import { MockDaffProductGridFacade } from './mock-product-grid-facade';
+import { MockDaffConfigurableProductFacade } from './mock-configurable-product-facade';
+import { MockDaffCompositeProductFacade } from './mock-composite-product-facade';
+import { MockDaffBestSellersFacade } from './mock-best-sellers.facade';
+export class DaffProductTestingModule {
+}
+DaffProductTestingModule.decorators = [
+    { type: NgModule, args: [{
+                providers: [
+                    { provide: DaffProductFacade, useExisting: MockDaffProductFacade },
+                    { provide: DaffProductGridFacade, useExisting: MockDaffProductGridFacade },
+                    { provide: DaffConfigurableProductFacade, useExisting: MockDaffConfigurableProductFacade },
+                    { provide: DaffCompositeProductFacade, useExisting: MockDaffCompositeProductFacade },
+                    { provide: DaffBestSellersFacade, useExisting: MockDaffBestSellersFacade },
+                ]
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZHVjdC10ZXN0aW5nLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9wcm9kdWN0L3Rlc3RpbmcvIiwic291cmNlcyI6WyJoZWxwZXJzL3Byb2R1Y3QtdGVzdGluZy5tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxRQUFRLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDekMsT0FBTyxFQUFFLGlCQUFpQixFQUFFLHFCQUFxQixFQUFFLDZCQUE2QixFQUFFLDBCQUEwQixFQUFFLHFCQUFxQixFQUFFLE1BQU0sbUJBQW1CLENBQUM7QUFFL0osT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDOUQsT0FBTyxFQUFFLHlCQUF5QixFQUFFLE1BQU0sNEJBQTRCLENBQUM7QUFDdkUsT0FBTyxFQUFFLGlDQUFpQyxFQUFFLE1BQU0sb0NBQW9DLENBQUM7QUFDdkYsT0FBTyxFQUFFLDhCQUE4QixFQUFFLE1BQU0saUNBQWlDLENBQUM7QUFDakYsT0FBTyxFQUFFLHlCQUF5QixFQUFFLE1BQU0sNEJBQTRCLENBQUM7QUFXdkUsTUFBTSxPQUFPLHdCQUF3Qjs7O1lBVHBDLFFBQVEsU0FBQztnQkFDVCxTQUFTLEVBQUU7b0JBQ1YsRUFBRSxPQUFPLEVBQUUsaUJBQWlCLEVBQUUsV0FBVyxFQUFFLHFCQUFxQixFQUFFO29CQUNsRSxFQUFFLE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxXQUFXLEVBQUUseUJBQXlCLEVBQUU7b0JBQzFFLEVBQUUsT0FBTyxFQUFFLDZCQUE2QixFQUFFLFdBQVcsRUFBRSxpQ0FBaUMsRUFBRTtvQkFDMUYsRUFBRSxPQUFPLEVBQUUsMEJBQTBCLEVBQUUsV0FBVyxFQUFFLDhCQUE4QixFQUFFO29CQUNwRixFQUFFLE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxXQUFXLEVBQUUseUJBQXlCLEVBQUU7aUJBQzFFO2FBQ0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRGFmZlByb2R1Y3RGYWNhZGUsIERhZmZQcm9kdWN0R3JpZEZhY2FkZSwgRGFmZkNvbmZpZ3VyYWJsZVByb2R1Y3RGYWNhZGUsIERhZmZDb21wb3NpdGVQcm9kdWN0RmFjYWRlLCBEYWZmQmVzdFNlbGxlcnNGYWNhZGUgfSBmcm9tICdAZGFmZm9kaWwvcHJvZHVjdCc7XG5cbmltcG9ydCB7IE1vY2tEYWZmUHJvZHVjdEZhY2FkZSB9IGZyb20gJy4vbW9jay1wcm9kdWN0LWZhY2FkZSc7XG5pbXBvcnQgeyBNb2NrRGFmZlByb2R1Y3RHcmlkRmFjYWRlIH0gZnJvbSAnLi9tb2NrLXByb2R1Y3QtZ3JpZC1mYWNhZGUnO1xuaW1wb3J0IHsgTW9ja0RhZmZDb25maWd1cmFibGVQcm9kdWN0RmFjYWRlIH0gZnJvbSAnLi9tb2NrLWNvbmZpZ3VyYWJsZS1wcm9kdWN0LWZhY2FkZSc7XG5pbXBvcnQgeyBNb2NrRGFmZkNvbXBvc2l0ZVByb2R1Y3RGYWNhZGUgfSBmcm9tICcuL21vY2stY29tcG9zaXRlLXByb2R1Y3QtZmFjYWRlJztcbmltcG9ydCB7IE1vY2tEYWZmQmVzdFNlbGxlcnNGYWNhZGUgfSBmcm9tICcuL21vY2stYmVzdC1zZWxsZXJzLmZhY2FkZSc7XG5cbkBOZ01vZHVsZSh7XG5cdHByb3ZpZGVyczogW1xuXHRcdHsgcHJvdmlkZTogRGFmZlByb2R1Y3RGYWNhZGUsIHVzZUV4aXN0aW5nOiBNb2NrRGFmZlByb2R1Y3RGYWNhZGUgfSxcblx0XHR7IHByb3ZpZGU6IERhZmZQcm9kdWN0R3JpZEZhY2FkZSwgdXNlRXhpc3Rpbmc6IE1vY2tEYWZmUHJvZHVjdEdyaWRGYWNhZGUgfSxcblx0XHR7IHByb3ZpZGU6IERhZmZDb25maWd1cmFibGVQcm9kdWN0RmFjYWRlLCB1c2VFeGlzdGluZzogTW9ja0RhZmZDb25maWd1cmFibGVQcm9kdWN0RmFjYWRlIH0sXG5cdFx0eyBwcm92aWRlOiBEYWZmQ29tcG9zaXRlUHJvZHVjdEZhY2FkZSwgdXNlRXhpc3Rpbmc6IE1vY2tEYWZmQ29tcG9zaXRlUHJvZHVjdEZhY2FkZSB9LFxuXHRcdHsgcHJvdmlkZTogRGFmZkJlc3RTZWxsZXJzRmFjYWRlLCB1c2VFeGlzdGluZzogTW9ja0RhZmZCZXN0U2VsbGVyc0ZhY2FkZSB9LFxuXHRdXG59KVxuZXhwb3J0IGNsYXNzIERhZmZQcm9kdWN0VGVzdGluZ01vZHVsZSB7IH1cbiJdfQ==

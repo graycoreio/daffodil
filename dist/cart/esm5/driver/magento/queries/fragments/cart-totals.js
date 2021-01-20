@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import * as tslib_1 from "tslib";
+import gql from 'graphql-tag';
+import { cartAddressFragment } from './cart-address';
+import { selectedShippingMethodFragment } from './selected-shipping-method';
+import { pricesFragment } from './prices';
+/** @type {?} */
+export var cartTotalsFragment = gql(templateObject_1 || (templateObject_1 = tslib_1.__makeTemplateObject(["\n  fragment cartTotals on Cart {\n    id\n    shipping_addresses {\n      ...cartAddress\n      ... on ShippingCartAddress {\n        selected_shipping_method {\n          ...selectedShippingMethod\n        }\n      }\n    }\n    prices {\n      ...prices\n    }\n  }\n  ", "\n  ", "\n  ", "\n"], ["\n  fragment cartTotals on Cart {\n    id\n    shipping_addresses {\n      ...cartAddress\n      ... on ShippingCartAddress {\n        selected_shipping_method {\n          ...selectedShippingMethod\n        }\n      }\n    }\n    prices {\n      ...prices\n    }\n  }\n  ", "\n  ", "\n  ", "\n"])), cartAddressFragment, selectedShippingMethodFragment, pricesFragment);
+var templateObject_1;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC10b3RhbHMuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGFmZm9kaWwvY2FydC9kcml2ZXIvbWFnZW50by8iLCJzb3VyY2VzIjpbInF1ZXJpZXMvZnJhZ21lbnRzL2NhcnQtdG90YWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxHQUFHLE1BQU0sYUFBYSxDQUFDO0FBRTlCLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLGdCQUFnQixDQUFDO0FBQ3JELE9BQU8sRUFBRSw4QkFBOEIsRUFBRSxNQUFNLDRCQUE0QixDQUFDO0FBQzVFLE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxVQUFVLENBQUM7O0FBRTFDLE1BQU0sS0FBTyxrQkFBa0IsR0FBRyxHQUFHLG1YQUFBLGtSQWVqQyxFQUFtQixNQUNuQixFQUE4QixNQUM5QixFQUFjLElBQ2pCLEtBSEcsbUJBQW1CLEVBQ25CLDhCQUE4QixFQUM5QixjQUFjLENBQ2pCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGdxbCBmcm9tICdncmFwaHFsLXRhZyc7XG5cbmltcG9ydCB7IGNhcnRBZGRyZXNzRnJhZ21lbnQgfSBmcm9tICcuL2NhcnQtYWRkcmVzcyc7XG5pbXBvcnQgeyBzZWxlY3RlZFNoaXBwaW5nTWV0aG9kRnJhZ21lbnQgfSBmcm9tICcuL3NlbGVjdGVkLXNoaXBwaW5nLW1ldGhvZCc7XG5pbXBvcnQgeyBwcmljZXNGcmFnbWVudCB9IGZyb20gJy4vcHJpY2VzJztcblxuZXhwb3J0IGNvbnN0IGNhcnRUb3RhbHNGcmFnbWVudCA9IGdxbGBcbiAgZnJhZ21lbnQgY2FydFRvdGFscyBvbiBDYXJ0IHtcbiAgICBpZFxuICAgIHNoaXBwaW5nX2FkZHJlc3NlcyB7XG4gICAgICAuLi5jYXJ0QWRkcmVzc1xuICAgICAgLi4uIG9uIFNoaXBwaW5nQ2FydEFkZHJlc3Mge1xuICAgICAgICBzZWxlY3RlZF9zaGlwcGluZ19tZXRob2Qge1xuICAgICAgICAgIC4uLnNlbGVjdGVkU2hpcHBpbmdNZXRob2RcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cbiAgICBwcmljZXMge1xuICAgICAgLi4ucHJpY2VzXG4gICAgfVxuICB9XG4gICR7Y2FydEFkZHJlc3NGcmFnbWVudH1cbiAgJHtzZWxlY3RlZFNoaXBwaW5nTWV0aG9kRnJhZ21lbnR9XG4gICR7cHJpY2VzRnJhZ21lbnR9XG5gO1xuIl19

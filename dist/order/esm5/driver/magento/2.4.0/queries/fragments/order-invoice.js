@@ -1,0 +1,16 @@
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import gql from 'graphql-tag';
+import { orderShipmentItemFragment } from './order-shipment-item';
+import { orderAddressFragment } from './order-address';
+import { orderPaymentFragment } from './order-payment';
+/** @type {?} */
+export var orderInvoiceFragment = gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  fragment orderInvoice on GraycoreOrderInvoice {\n    items {\n      ...orderShipmentItem\n    }\n    grand_total\n    subtotal\n    shipping\n    discount\n    tax\n    billing_address {\n      ...orderAddress\n    }\n    shipping_address {\n      ...orderAddress\n\t\t}\n\t\tpayment {\n\t\t\t...orderPayment\n\t\t}\n  }\n  ", "\n  ", "\n  ", "\n"], ["\n  fragment orderInvoice on GraycoreOrderInvoice {\n    items {\n      ...orderShipmentItem\n    }\n    grand_total\n    subtotal\n    shipping\n    discount\n    tax\n    billing_address {\n      ...orderAddress\n    }\n    shipping_address {\n      ...orderAddress\n\t\t}\n\t\tpayment {\n\t\t\t...orderPayment\n\t\t}\n  }\n  ", "\n  ", "\n  ", "\n"])), orderShipmentItemFragment, orderAddressFragment, orderPaymentFragment);
+var templateObject_1;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3JkZXItaW52b2ljZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9vcmRlci9kcml2ZXIvbWFnZW50by8yLjQuMC8iLCJzb3VyY2VzIjpbInF1ZXJpZXMvZnJhZ21lbnRzL29yZGVyLWludm9pY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQSxPQUFPLEdBQUcsTUFBTSxhQUFhLENBQUM7QUFFOUIsT0FBTyxFQUFFLHlCQUF5QixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDbEUsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0saUJBQWlCLENBQUM7QUFDdkQsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0saUJBQWlCLENBQUM7O0FBRXZELE1BQU0sS0FBTyxvQkFBb0IsR0FBRyxHQUFHLG1hQUFBLDBVQW9CbkMsRUFBeUIsTUFDekIsRUFBb0IsTUFDcEIsRUFBb0IsSUFDdkIsS0FIRyx5QkFBeUIsRUFDekIsb0JBQW9CLEVBQ3BCLG9CQUFvQixDQUN2QiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBncWwgZnJvbSAnZ3JhcGhxbC10YWcnO1xuXG5pbXBvcnQgeyBvcmRlclNoaXBtZW50SXRlbUZyYWdtZW50IH0gZnJvbSAnLi9vcmRlci1zaGlwbWVudC1pdGVtJztcbmltcG9ydCB7IG9yZGVyQWRkcmVzc0ZyYWdtZW50IH0gZnJvbSAnLi9vcmRlci1hZGRyZXNzJztcbmltcG9ydCB7IG9yZGVyUGF5bWVudEZyYWdtZW50IH0gZnJvbSAnLi9vcmRlci1wYXltZW50JztcblxuZXhwb3J0IGNvbnN0IG9yZGVySW52b2ljZUZyYWdtZW50ID0gZ3FsYFxuICBmcmFnbWVudCBvcmRlckludm9pY2Ugb24gR3JheWNvcmVPcmRlckludm9pY2Uge1xuICAgIGl0ZW1zIHtcbiAgICAgIC4uLm9yZGVyU2hpcG1lbnRJdGVtXG4gICAgfVxuICAgIGdyYW5kX3RvdGFsXG4gICAgc3VidG90YWxcbiAgICBzaGlwcGluZ1xuICAgIGRpc2NvdW50XG4gICAgdGF4XG4gICAgYmlsbGluZ19hZGRyZXNzIHtcbiAgICAgIC4uLm9yZGVyQWRkcmVzc1xuICAgIH1cbiAgICBzaGlwcGluZ19hZGRyZXNzIHtcbiAgICAgIC4uLm9yZGVyQWRkcmVzc1xuXHRcdH1cblx0XHRwYXltZW50IHtcblx0XHRcdC4uLm9yZGVyUGF5bWVudFxuXHRcdH1cbiAgfVxuICAke29yZGVyU2hpcG1lbnRJdGVtRnJhZ21lbnR9XG4gICR7b3JkZXJBZGRyZXNzRnJhZ21lbnR9XG4gICR7b3JkZXJQYXltZW50RnJhZ21lbnR9XG5gO1xuIl19

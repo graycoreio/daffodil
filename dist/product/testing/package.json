@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/product/testing",
+  "main": "../bundles/daffodil-product-testing.umd.js",
+  "module": "../fesm5/daffodil-product-testing.js",
+  "es2015": "../fesm2015/daffodil-product-testing.js",
+  "esm5": "../esm5/testing/daffodil-product-testing.js",
+  "esm2015": "../esm2015/testing/daffodil-product-testing.js",
+  "fesm5": "../fesm5/daffodil-product-testing.js",
+  "fesm2015": "../fesm2015/daffodil-product-testing.js",
+  "typings": "daffodil-product-testing.d.ts",
+  "metadata": "daffodil-product-testing.metadata.json",
+  "sideEffects": false
+}

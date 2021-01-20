@@ -1,0 +1,24 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffCompareAddresses } from './address';
+/**
+ * Compares two personal addresses and returns true if all of their fields are equal.
+ *
+ * @param {?} address0 A personal address.
+ * @param {?} address1 A personal address.
+ * @return {?}
+ */
+export function daffComparePersonalAddresses(address0, address1) {
+    return !!(address0 && address1 &&
+        address0.prefix === address1.prefix &&
+        address0.suffix === address1.suffix &&
+        address0.firstname === address1.firstname &&
+        address0.middlename === address1.middlename &&
+        address0.lastname === address1.lastname &&
+        address0.telephone === address1.telephone &&
+        address0.email === address1.email &&
+        daffCompareAddresses(address0, address1));
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGVyc29uYWwtYWRkcmVzcy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9nZW9ncmFwaHkvIiwic291cmNlcyI6WyJjb21wYXJhdG9ycy9wZXJzb25hbC1hZGRyZXNzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFDQSxPQUFPLEVBQUUsb0JBQW9CLEVBQUUsTUFBTSxXQUFXLENBQUM7Ozs7Ozs7O0FBUWpELE1BQU0sVUFBVSw0QkFBNEIsQ0FBQyxRQUE2QixFQUFFLFFBQTZCO0lBQ3ZHLE9BQU8sQ0FBQyxDQUFDLENBQUMsUUFBUSxJQUFJLFFBQVE7UUFDNUIsUUFBUSxDQUFDLE1BQU0sS0FBSyxRQUFRLENBQUMsTUFBTTtRQUNuQyxRQUFRLENBQUMsTUFBTSxLQUFLLFFBQVEsQ0FBQyxNQUFNO1FBQ25DLFFBQVEsQ0FBQyxTQUFTLEtBQUssUUFBUSxDQUFDLFNBQVM7UUFDekMsUUFBUSxDQUFDLFVBQVUsS0FBSyxRQUFRLENBQUMsVUFBVTtRQUMzQyxRQUFRLENBQUMsUUFBUSxLQUFLLFFBQVEsQ0FBQyxRQUFRO1FBQ3ZDLFFBQVEsQ0FBQyxTQUFTLEtBQUssUUFBUSxDQUFDLFNBQVM7UUFDekMsUUFBUSxDQUFDLEtBQUssS0FBSyxRQUFRLENBQUMsS0FBSztRQUNqQyxvQkFBb0IsQ0FBQyxRQUFRLEVBQUUsUUFBUSxDQUFDLENBQUMsQ0FBQTtBQUM3QyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGFmZlBlcnNvbmFsQWRkcmVzcyB9IGZyb20gJy4uL21vZGVscy9wZXJzb25hbC1hZGRyZXNzJztcbmltcG9ydCB7IGRhZmZDb21wYXJlQWRkcmVzc2VzIH0gZnJvbSAnLi9hZGRyZXNzJztcblxuLyoqXG4gKiBDb21wYXJlcyB0d28gcGVyc29uYWwgYWRkcmVzc2VzIGFuZCByZXR1cm5zIHRydWUgaWYgYWxsIG9mIHRoZWlyIGZpZWxkcyBhcmUgZXF1YWwuXG4gKlxuICogQHBhcmFtIGFkZHJlc3MwIEEgcGVyc29uYWwgYWRkcmVzcy5cbiAqIEBwYXJhbSBhZGRyZXNzMSBBIHBlcnNvbmFsIGFkZHJlc3MuXG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBkYWZmQ29tcGFyZVBlcnNvbmFsQWRkcmVzc2VzKGFkZHJlc3MwOiBEYWZmUGVyc29uYWxBZGRyZXNzLCBhZGRyZXNzMTogRGFmZlBlcnNvbmFsQWRkcmVzcyk6IGJvb2xlYW4ge1xuICByZXR1cm4gISEoYWRkcmVzczAgJiYgYWRkcmVzczEgJiZcbiAgICBhZGRyZXNzMC5wcmVmaXggPT09IGFkZHJlc3MxLnByZWZpeCAmJlxuICAgIGFkZHJlc3MwLnN1ZmZpeCA9PT0gYWRkcmVzczEuc3VmZml4ICYmXG4gICAgYWRkcmVzczAuZmlyc3RuYW1lID09PSBhZGRyZXNzMS5maXJzdG5hbWUgJiZcbiAgICBhZGRyZXNzMC5taWRkbGVuYW1lID09PSBhZGRyZXNzMS5taWRkbGVuYW1lICYmXG4gICAgYWRkcmVzczAubGFzdG5hbWUgPT09IGFkZHJlc3MxLmxhc3RuYW1lICYmXG4gICAgYWRkcmVzczAudGVsZXBob25lID09PSBhZGRyZXNzMS50ZWxlcGhvbmUgJiZcbiAgICBhZGRyZXNzMC5lbWFpbCA9PT0gYWRkcmVzczEuZW1haWwgJiZcbiAgICBkYWZmQ29tcGFyZUFkZHJlc3NlcyhhZGRyZXNzMCwgYWRkcmVzczEpKVxufVxuIl19

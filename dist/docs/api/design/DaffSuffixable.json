@@ -1,0 +1,5 @@
+{
+  "id": "api/design/DaffSuffixable",
+  "title": "DaffSuffixable",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffSuffixable</h1>\n  <label class=\"api-header__label interface\">interface</label>\n</header>\n\n\n<p class=\"api-subtitle\">An interface enforcing that a component has the ability to interact with a given DaffSuffixDirective.</p>\n\n<div class=\"api-body\">\n  \n\n\n<section class=\"members\">\n  <h2>Properties</h2>\n  <div class=\"members-table\">\n    <div class=\"members-table__header\">Name</div>\n    <div class=\"members-table__header\">Type</div>\n\t\t<div class=\"members-table__header\">Description</div>\n\t\t\t\n<div class=\"members-table__cell\">_suffix</div>\n<div class=\"members-table__cell\">DaffSuffixDirective</div>\n<div class=\"members-table__cell\"></div>\n\n\n    </div>\n</section>\n\n</div>"
+}

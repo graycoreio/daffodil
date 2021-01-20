@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/design/button/examples",
+  "main": "../../bundles/daffodil-design-button-examples.umd.js",
+  "module": "../../fesm5/daffodil-design-button-examples.js",
+  "es2015": "../../fesm2015/daffodil-design-button-examples.js",
+  "esm5": "../../esm5/button/examples/daffodil-design-button-examples.js",
+  "esm2015": "../../esm2015/button/examples/daffodil-design-button-examples.js",
+  "fesm5": "../../fesm5/daffodil-design-button-examples.js",
+  "fesm2015": "../../fesm2015/daffodil-design-button-examples.js",
+  "typings": "daffodil-design-button-examples.d.ts",
+  "metadata": "daffodil-design-button-examples.metadata.json",
+  "sideEffects": false
+}

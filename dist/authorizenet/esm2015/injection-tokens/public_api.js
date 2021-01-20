@@ -1,0 +1,6 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { DAFF_AUTHORIZENET_ERROR_MATCHER } from './error-matcher.token';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9hdXRob3JpemVuZXQvIiwic291cmNlcyI6WyJpbmplY3Rpb24tdG9rZW5zL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSwrQkFBK0IsRUFBRSxNQUFNLHVCQUF1QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgREFGRl9BVVRIT1JJWkVORVRfRVJST1JfTUFUQ0hFUiB9IGZyb20gJy4vZXJyb3ItbWF0Y2hlci50b2tlbic7XG4iXX0=

@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/auth/testing",
+  "main": "../bundles/daffodil-auth-testing.umd.js",
+  "module": "../fesm5/daffodil-auth-testing.js",
+  "es2015": "../fesm2015/daffodil-auth-testing.js",
+  "esm5": "../esm5/testing/daffodil-auth-testing.js",
+  "esm2015": "../esm2015/testing/daffodil-auth-testing.js",
+  "fesm5": "../fesm5/daffodil-auth-testing.js",
+  "fesm2015": "../fesm2015/daffodil-auth-testing.js",
+  "typings": "daffodil-auth-testing.d.ts",
+  "metadata": "daffodil-auth-testing.metadata.json",
+  "sideEffects": false
+}

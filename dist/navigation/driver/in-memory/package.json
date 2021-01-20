@@ -1,0 +1,13 @@
+{
+  "name": "@daffodil/navigation/driver/in-memory",
+  "main": "../../bundles/daffodil-navigation-driver-in-memory.umd.js",
+  "module": "../../fesm5/daffodil-navigation-driver-in-memory.js",
+  "es2015": "../../fesm2015/daffodil-navigation-driver-in-memory.js",
+  "esm5": "../../esm5/driver/in-memory/daffodil-navigation-driver-in-memory.js",
+  "esm2015": "../../esm2015/driver/in-memory/daffodil-navigation-driver-in-memory.js",
+  "fesm5": "../../fesm5/daffodil-navigation-driver-in-memory.js",
+  "fesm2015": "../../fesm2015/daffodil-navigation-driver-in-memory.js",
+  "typings": "daffodil-navigation-driver-in-memory.d.ts",
+  "metadata": "daffodil-navigation-driver-in-memory.metadata.json",
+  "sideEffects": false
+}

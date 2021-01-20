@@ -1,0 +1,5 @@
+{
+  "id": "api/core/shuffle",
+  "title": "shuffle",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">shuffle</h1>\n  <label class=\"api-header__label const\">const</label>\n</header>\n\n\n<p class=\"api-subtitle\">Immutable Fisher-Yates Shuffle\nhttps://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle</p>\n\n<div class=\"api-body\">\n  \n</div>"
+}

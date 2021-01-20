@@ -1,0 +1,5 @@
+{
+  "id": "api/checkout/DaffPaymentActions",
+  "title": "DaffPaymentActions",
+  "contents": "\n<header class=\"api-header\">\n  <h1 class=\"api-header__name\">DaffPaymentActions</h1>\n  <label class=\"api-header__label type-alias\">type-alias</label>\n</header>\n\n\n<p class=\"api-subtitle\"></p>\n\n<div class=\"api-body\">\n  \n<div class=\"members-table\">\n  <div class=\"members-table__header\">Type</div>\n  <div class=\"members-table__header\">Options</div>\n  <div class=\"members-table__cell\">DaffPaymentActions</div>\n  <div class=\"members-table__cell\"><code>DaffUpdatePaymentInfo</code></div>\n</div>\n\n</div>"
+}

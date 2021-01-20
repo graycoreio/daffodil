@@ -1,0 +1,16 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { inject, InjectionToken } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
+/** @type {?} */
+export var DAFF_MAGENTO_CART_MUTATION_QUEUE = new InjectionToken('DAFF_MAGENTO_CART_MUTATION_QUEUE', {
+    providedIn: 'root',
+    factory: (/**
+     * @return {?}
+     */
+    function () { return new DaffQueuedApollo(inject(Apollo)); })
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FydC1tdXRhdGlvbi1xdWV1ZS50b2tlbi5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkYWZmb2RpbC9jYXJ0L2RyaXZlci9tYWdlbnRvLyIsInNvdXJjZXMiOlsiaW5qZWN0aW9uLXRva2Vucy9jYXJ0LW11dGF0aW9uLXF1ZXVlLnRva2VuLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsTUFBTSxFQUFFLGNBQWMsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUN2RCxPQUFPLEVBQUUsTUFBTSxFQUFFLE1BQU0sZ0JBQWdCLENBQUM7QUFFeEMsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sd0JBQXdCLENBQUE7O0FBRXpELE1BQU0sS0FBTyxnQ0FBZ0MsR0FBRyxJQUFJLGNBQWMsQ0FBQyxrQ0FBa0MsRUFBRTtJQUNyRyxVQUFVLEVBQUUsTUFBTTtJQUNsQixPQUFPOzs7SUFBRSxjQUFNLE9BQUEsSUFBSSxnQkFBZ0IsQ0FBQyxNQUFNLENBQUMsTUFBTSxDQUFDLENBQUMsRUFBcEMsQ0FBb0MsQ0FBQTtDQUNwRCxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgaW5qZWN0LCBJbmplY3Rpb25Ub2tlbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQXBvbGxvIH0gZnJvbSAnYXBvbGxvLWFuZ3VsYXInO1xuXG5pbXBvcnQgeyBEYWZmUXVldWVkQXBvbGxvIH0gZnJvbSAnQGRhZmZvZGlsL2NvcmUvZ3JhcGhxbCdcblxuZXhwb3J0IGNvbnN0IERBRkZfTUFHRU5UT19DQVJUX01VVEFUSU9OX1FVRVVFID0gbmV3IEluamVjdGlvblRva2VuKCdEQUZGX01BR0VOVE9fQ0FSVF9NVVRBVElPTl9RVUVVRScsIHtcbiAgcHJvdmlkZWRJbjogJ3Jvb3QnLFxuICBmYWN0b3J5OiAoKSA9PiBuZXcgRGFmZlF1ZXVlZEFwb2xsbyhpbmplY3QoQXBvbGxvKSlcbn0pXG4iXX0=

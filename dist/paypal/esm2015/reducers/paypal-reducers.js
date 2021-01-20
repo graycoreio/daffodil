@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { daffPaypalReducer } from './paypal/paypal.reducer';
+/** @type {?} */
+export const daffPaypalReducers = {
+    paypal: daffPaypalReducer
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGF5cGFsLXJlZHVjZXJzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL3BheXBhbC8iLCJzb3VyY2VzIjpbInJlZHVjZXJzL3BheXBhbC1yZWR1Y2Vycy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGlCQUFpQixFQUFFLE1BQU0seUJBQXlCLENBQUM7O0FBRTVELE1BQU0sT0FBTyxrQkFBa0IsR0FBRztJQUNqQyxNQUFNLEVBQUUsaUJBQWlCO0NBQ3pCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGFmZlBheXBhbFJlZHVjZXIgfSBmcm9tICcuL3BheXBhbC9wYXlwYWwucmVkdWNlcic7XG5cbmV4cG9ydCBjb25zdCBkYWZmUGF5cGFsUmVkdWNlcnMgPSB7XG5cdHBheXBhbDogZGFmZlBheXBhbFJlZHVjZXJcbn1cbiJdfQ==

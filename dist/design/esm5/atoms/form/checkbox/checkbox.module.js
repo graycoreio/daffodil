@@ -1,0 +1,36 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { NgModule } from '@angular/core';
+import { DaffCheckboxComponent } from './checkbox.component';
+import { DaffCheckboxSetComponent } from '../checkbox-set/checkbox-set.component';
+import { DaffCheckboxControlValueAccessorDirective } from './cva/checkbox-cva.directive';
+import { CommonModule } from '@angular/common';
+var DaffCheckboxModule = /** @class */ (function () {
+    function DaffCheckboxModule() {
+    }
+    DaffCheckboxModule.decorators = [
+        { type: NgModule, args: [{
+                    exports: [
+                        DaffCheckboxComponent,
+                        DaffCheckboxSetComponent,
+                        DaffCheckboxControlValueAccessorDirective
+                    ],
+                    declarations: [
+                        DaffCheckboxComponent,
+                        DaffCheckboxSetComponent,
+                        DaffCheckboxControlValueAccessorDirective
+                    ],
+                    imports: [
+                        CommonModule
+                    ],
+                    providers: [
+                        DaffCheckboxSetComponent,
+                    ]
+                },] }
+    ];
+    return DaffCheckboxModule;
+}());
+export { DaffCheckboxModule };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hlY2tib3gubW9kdWxlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRhZmZvZGlsL2Rlc2lnbi8iLCJzb3VyY2VzIjpbImF0b21zL2Zvcm0vY2hlY2tib3gvY2hlY2tib3gubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBR3pDLE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxNQUFNLHNCQUFzQixDQUFDO0FBQzdELE9BQU8sRUFBRSx3QkFBd0IsRUFBRSxNQUFNLHdDQUF3QyxDQUFDO0FBQ2xGLE9BQU8sRUFBRSx5Q0FBeUMsRUFBRSxNQUFNLDhCQUE4QixDQUFDO0FBQ3pGLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUUvQztJQUFBO0lBa0JrQyxDQUFDOztnQkFsQmxDLFFBQVEsU0FBQztvQkFDTixPQUFPLEVBQUU7d0JBQ0wscUJBQXFCO3dCQUNyQix3QkFBd0I7d0JBQ3hCLHlDQUF5QztxQkFDNUM7b0JBQ0QsWUFBWSxFQUFFO3dCQUNWLHFCQUFxQjt3QkFDckIsd0JBQXdCO3dCQUN4Qix5Q0FBeUM7cUJBQzVDO29CQUNELE9BQU8sRUFBRTt3QkFDTCxZQUFZO3FCQUNmO29CQUNELFNBQVMsRUFBRTt3QkFDUCx3QkFBd0I7cUJBQzNCO2lCQUNKOztJQUNpQyx5QkFBQztDQUFBLEFBbEJuQyxJQWtCbUM7U0FBdEIsa0JBQWtCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuXG5pbXBvcnQgeyBEYWZmQ2hlY2tib3hDb21wb25lbnQgfSBmcm9tICcuL2NoZWNrYm94LmNvbXBvbmVudCc7XG5pbXBvcnQgeyBEYWZmQ2hlY2tib3hTZXRDb21wb25lbnQgfSBmcm9tICcuLi9jaGVja2JveC1zZXQvY2hlY2tib3gtc2V0LmNvbXBvbmVudCc7XG5pbXBvcnQgeyBEYWZmQ2hlY2tib3hDb250cm9sVmFsdWVBY2Nlc3NvckRpcmVjdGl2ZSB9IGZyb20gJy4vY3ZhL2NoZWNrYm94LWN2YS5kaXJlY3RpdmUnO1xuaW1wb3J0IHsgQ29tbW9uTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuQE5nTW9kdWxlKHtcbiAgICBleHBvcnRzOiBbXG4gICAgICAgIERhZmZDaGVja2JveENvbXBvbmVudCxcbiAgICAgICAgRGFmZkNoZWNrYm94U2V0Q29tcG9uZW50LFxuICAgICAgICBEYWZmQ2hlY2tib3hDb250cm9sVmFsdWVBY2Nlc3NvckRpcmVjdGl2ZVxuICAgIF0sXG4gICAgZGVjbGFyYXRpb25zOiBbXG4gICAgICAgIERhZmZDaGVja2JveENvbXBvbmVudCxcbiAgICAgICAgRGFmZkNoZWNrYm94U2V0Q29tcG9uZW50LFxuICAgICAgICBEYWZmQ2hlY2tib3hDb250cm9sVmFsdWVBY2Nlc3NvckRpcmVjdGl2ZVxuICAgIF0sXG4gICAgaW1wb3J0czogW1xuICAgICAgICBDb21tb25Nb2R1bGVcbiAgICBdLFxuICAgIHByb3ZpZGVyczogW1xuICAgICAgICBEYWZmQ2hlY2tib3hTZXRDb21wb25lbnQsXG4gICAgXVxufSlcbmV4cG9ydCBjbGFzcyBEYWZmQ2hlY2tib3hNb2R1bGUgeyB9Il19
