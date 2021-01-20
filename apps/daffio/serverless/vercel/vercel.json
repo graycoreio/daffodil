@@ -3,13 +3,18 @@
   "public": true,
   "functions": {
     "api/serverless.js": {
-      "includeFiles": "+(server|browser)/+(main.js|index.html)",
+      "includeFiles": "browser/index.html",
       "runtime": "@vercel/node@1.8.5"
     }
   },
   "rewrites": [
-    { "source": "/", "destination": "api/serverless.js"},
-    { "source": "/(.*)", "destination": "api/serverless.js" },
-    { "source": "/(.*[.].+)", "destination": "/$1"}
+    {
+      "source": "/(.*[.].+)",
+      "destination": "/browser/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "api/serverless"
+    }
   ]
 }
