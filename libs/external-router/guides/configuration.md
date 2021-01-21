@@ -1,0 +1,2 @@
+# `@daffodil/external-router` Configuration
+

@@ -1277,7 +1277,7 @@
           }
         }
       }
-		},
+    },
     "external-router": {
       "projectType": "library",
       "root": "libs/external-router",
@@ -1300,7 +1300,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/external-router/src/test.ts",
+            "main": "libs/external-router/test.ts",
             "tsConfig": "libs/external-router/tsconfig.spec.json",
             "karmaConfig": "libs/external-router/karma.conf.js"
           }
@@ -1331,6 +1331,6 @@
       "typescriptMismatch": false,
       "versionMismatch": false
     },
-    "analytics": "afd3c7da-d12a-4ec7-8adc-6cb3b4e33196"
+    "analytics": "853a4c87-95ff-4225-a73e-d782b970fc52"
   }
 }
