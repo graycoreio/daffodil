@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -22,7 +22,7 @@ describe('DaffImageComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapperDE: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffImageComponent,
@@ -70,7 +70,7 @@ describe('DaffImageComponent', () => {
   it('should be able to take `height` as an input', () => {
     wrapper.height = 100;
     fixture.detectChanges();
-    
+
     expect(component.height).toEqual(100);
   });
 

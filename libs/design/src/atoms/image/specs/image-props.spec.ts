@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { DaffImageComponent } from '../image.component';
@@ -17,7 +17,7 @@ class WrapperComponent {
 describe('DaffImageComponent | Props Validation', () => {
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffImageComponent,

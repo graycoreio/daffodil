@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
@@ -16,7 +16,7 @@ class CheckboxWrapperComponent { }
 
 @Component({
   template: `
- 
+
 <daff-checkbox-set name="toppings">
   <daff-checkbox value="lettuce">Apple</daff-checkbox>
   <daff-checkbox value="tomato">Grape</daff-checkbox>
@@ -38,7 +38,7 @@ describe('DaffCheckboxComponent', () => {
 
   let de: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         CheckboxWrapperComponent,

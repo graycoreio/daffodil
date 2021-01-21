@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 
 import { DaffModalHeaderComponent } from './modal-header.component';
@@ -16,7 +16,7 @@ describe('DaffModalHeaderComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffModalHeaderComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffModalHeaderComponent,

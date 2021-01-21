@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -15,8 +15,8 @@ const stubPaymentInfo: PaymentInfo = {
 };
 
 @Component({
-  template: '<demo-payment-summary ' + 
-              '[paymentInfo]="paymentInfoValue" '+ 
+  template: '<demo-payment-summary ' +
+              '[paymentInfo]="paymentInfoValue" '+
               '(editPaymentInfo)="editPaymentInfoFunction()"></demo-payment-summary>'
 })
 class WrapperComponent {
@@ -29,7 +29,7 @@ describe('PaymentSummaryComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let paymentSummaryComponent: PaymentSummaryComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
@@ -56,7 +56,7 @@ describe('PaymentSummaryComponent', () => {
   });
 
   describe('when edit anchor tag is clicked', () => {
-    
+
     it('should call onEdit', () => {
       spyOn(paymentSummaryComponent, 'onEdit');
 
@@ -67,7 +67,7 @@ describe('PaymentSummaryComponent', () => {
   });
 
   describe('onEdit', () => {
-    
+
     it('should call editPaymentInfo.emit', () => {
       spyOn(paymentSummaryComponent.editPaymentInfo, 'emit');
 

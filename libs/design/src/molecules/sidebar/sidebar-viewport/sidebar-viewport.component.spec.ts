@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -17,7 +17,7 @@ import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public
     <daff-sidebar-viewport
       [backdropIsVisible]="backdropIsVisible"
       [mode]="mode"
-      [opened]="open" 
+      [opened]="open"
       (backdropClicked)="incrementBackdropClicked()"></daff-sidebar-viewport>
   </div>
 `})
@@ -45,7 +45,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
   let component: DaffSidebarViewportComponent;
   let backdrop: DaffBackdropComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -201,7 +201,7 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
   let fixture: ComponentFixture<DaffSidebarViewportComponent>;
   let component: DaffSidebarViewportComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,

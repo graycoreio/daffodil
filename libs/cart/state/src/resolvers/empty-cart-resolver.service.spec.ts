@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -21,7 +21,7 @@ describe('DaffEmptyCartResolver', () => {
 	let router: Router;
 	const stubUrl = '/cart';
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),

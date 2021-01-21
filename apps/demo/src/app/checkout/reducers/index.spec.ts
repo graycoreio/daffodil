@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import * as fromCheckout from './index';
@@ -11,7 +11,7 @@ describe('selectDemoCheckoutState', () => {
   let expectedShowPaymentView: boolean;
   let expectedShowPaymentForm: boolean;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

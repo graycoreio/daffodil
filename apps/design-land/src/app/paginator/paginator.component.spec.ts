@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffPaginatorModule } from '@daffodil/design';
 
@@ -8,7 +8,7 @@ describe('PaginatorComponent', () => {
   let component: PaginatorComponent;
   let fixture: ComponentFixture<PaginatorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffPaginatorModule

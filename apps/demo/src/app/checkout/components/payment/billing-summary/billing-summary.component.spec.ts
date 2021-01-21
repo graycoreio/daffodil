@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -29,10 +29,10 @@ describe('BillingSummaryComponent', () => {
   let addressSummary: MockAddressSummaryComponent;
   let addressSummaryElement;
   let billingAddressIsShippingAddress;
-  
-  beforeEach(async(() => {
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         BillingSummaryComponent,
         MockAddressSummaryComponent
@@ -63,7 +63,7 @@ describe('BillingSummaryComponent', () => {
   });
 
   describe('on <address-summary>', () => {
-    
+
     it('should set address', () => {
       expect(addressSummary.address).toEqual(stubBillingAddress);
     });
@@ -75,7 +75,7 @@ describe('BillingSummaryComponent', () => {
       billingSummary.billingAddress = null;
       fixture.detectChanges();
     });
-    
+
     it('should not render demo-address-summary', () => {
       addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
@@ -90,7 +90,7 @@ describe('BillingSummaryComponent', () => {
     });
 
     describe('and billingAddressIsShippingAddress is false', () => {
-      
+
       it('should render demo-address-summary', () => {
         billingSummary.billingAddressIsShippingAddress = false;
         fixture.detectChanges();
@@ -102,11 +102,11 @@ describe('BillingSummaryComponent', () => {
     });
 
     describe('and billingAddressIsShippingAddress is true', () => {
-      
+
       it('should not render demo-address-summary', () => {
         billingSummary.billingAddressIsShippingAddress = true;
         fixture.detectChanges();
-        
+
         addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
         expect(addressSummaryElement).toBeNull();

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,13 +23,13 @@ describe('DaffAccordionItemComponent', () => {
   let accordionHeader: DebugElement;
   let daffAccordionItem: DaffAccordionItemComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         FontAwesomeModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffAccordionItemComponent
       ]
@@ -40,10 +40,10 @@ describe('DaffAccordionItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    
+
     fixture.detectChanges();
-    
-    daffAccordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;    
+
+    daffAccordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
     accordionHeader = fixture.debugElement.query(By.css('.daff-accordion-item__header'));
   });
 
@@ -74,14 +74,14 @@ describe('DaffAccordionItemComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    
+
     describe('when initiallyActive is true', () => {
 
       beforeEach(() => {
         wrapper.initiallyActiveValue = true;
         fixture.detectChanges();
       })
-      
+
       it('should set _open to true', () => {
         daffAccordionItem.ngOnInit();
         expect(daffAccordionItem._open).toBeTruthy();
@@ -94,7 +94,7 @@ describe('DaffAccordionItemComponent', () => {
         wrapper.initiallyActiveValue = undefined;
         fixture.detectChanges();
       })
-      
+
       it('should set open to false', () => {
         daffAccordionItem.ngOnInit();
         expect(daffAccordionItem._open).toBeFalsy();
@@ -106,7 +106,7 @@ describe('DaffAccordionItemComponent', () => {
 
     beforeEach(() => {
       spyOn(daffAccordionItem, 'toggleActive');
-      
+
       accordionHeader.nativeElement.click();
     });
 

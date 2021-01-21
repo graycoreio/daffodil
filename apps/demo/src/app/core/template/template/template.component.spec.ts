@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { TemplateComponent } from './template.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 describe('TemplateComponent', () => {
   let component: TemplateComponent;
   let fixture: ComponentFixture<TemplateComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         TemplateComponent

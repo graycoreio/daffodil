@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffImageGalleryComponent } from './image-gallery.component';
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 import { DaffImageListComponent } from '../../image-list/public_api';
 import { DaffGalleryImageComponent } from '../gallery-image/gallery-image.component';
 
-@Component({ template: 
+@Component({ template:
   `<daff-image-gallery>
     <div daff-active-image class="test-active-image"></div>
     <daff-gallery-image class="test-gallery-image"></daff-gallery-image>
@@ -17,9 +17,9 @@ describe('DaffImageGalleryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffImageListComponent,
         DaffImageGalleryComponent,
@@ -32,7 +32,7 @@ describe('DaffImageGalleryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    
+
     fixture.detectChanges();
   });
 

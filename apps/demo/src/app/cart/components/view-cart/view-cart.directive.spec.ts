@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewCartDirective } from './view-cart.directive';
 import { By } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ describe('ViewCartDirective', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule

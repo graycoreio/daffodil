@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -8,7 +8,7 @@ import { DaffCheckboxModule } from '../checkbox/checkbox.module';
 
 @Component({
   template: `
- 
+
   <daff-checkbox-set name="example" [formArray]="checkboxArray">
   <daff-checkbox [formControl]="checkboxArray.at(0)" value="option1">Option 1 </daff-checkbox>
   <daff-checkbox [formControl]="checkboxArray.at(1)" value="option2">Option 2 </daff-checkbox>
@@ -38,7 +38,7 @@ describe('DaffCheckboxSetComponent', () => {
   let embeddedComponent: DaffCheckboxSetComponent;
   let embeddedFixture: ComponentFixture<CheckboxEmbeddedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         CheckboxEmbeddedComponent

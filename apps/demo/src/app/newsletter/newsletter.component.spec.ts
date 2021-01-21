@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,7 +13,7 @@ describe('NewsletterComponent', () => {
   let fixture: ComponentFixture<NewsletterComponent>;
   let facade: MockDaffNewsletterFacade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         NewsletterComponent

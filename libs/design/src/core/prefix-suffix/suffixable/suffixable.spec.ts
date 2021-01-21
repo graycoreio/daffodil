@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ComponentFixture, async, TestBed } from '@angular/core/testing';
+import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { daffSuffixableMixin } from './suffixable';
@@ -32,7 +32,7 @@ describe('daffSuffixableMixin', () => {
   let wrapper: WrapperComponent;
   let suffixableComponent: SuffixableComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,

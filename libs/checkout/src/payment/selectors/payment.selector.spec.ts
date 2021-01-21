@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -15,7 +15,7 @@ describe('selectPaymentState', () => {
   const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

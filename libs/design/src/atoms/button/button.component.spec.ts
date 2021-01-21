@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffButtonComponent, DaffButtonSize } from './button.component';
@@ -32,9 +32,9 @@ describe('DaffButtonComponent', () => {
   let buttonDE: DebugElement;
   let anchorDE: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         DaffButtonComponent,
         WrapperComponent
       ]
@@ -119,7 +119,7 @@ describe('DaffButtonComponent', () => {
         'daff-icon-button': true,
       }));
     });
-  }); 
+  });
 
   describe('<daff-underline-button>', () => {
     beforeEach(() => {
@@ -142,7 +142,7 @@ describe('DaffButtonComponent', () => {
     it('should add the class of the defined color to the host element', () => {
       wrapper.color = 'primary';
       fixture.detectChanges();
-      
+
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 

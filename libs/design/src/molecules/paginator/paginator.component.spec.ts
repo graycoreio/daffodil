@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 
@@ -19,12 +19,12 @@ describe('DaffPaginatorComponent', () => {
   let de: DebugElement;
   let component: DaffPaginatorComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffPaginatorModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent
       ]
     })
@@ -132,7 +132,7 @@ describe('DaffPaginatorComponent', () => {
         expect(paginator.nativeElement.innerText.includes('4')).toBeTruthy();
       });
     });
-    
+
     describe('when the current page is one of the last two pages', () => {
       it('should show _numberOfPages-3 and lesser numbers', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue;
@@ -155,7 +155,7 @@ describe('DaffPaginatorComponent', () => {
         expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('1...')).toBeFalsy();
       });
     });
-  
+
     describe('when some pages between the currentPage and page 1 are not shown', () => {
       it('should show an ellipsis between 1 and the current page', () => {
         wrapper.currentPageValue = 7;
@@ -165,7 +165,7 @@ describe('DaffPaginatorComponent', () => {
         expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('1...')).toBeTruthy();
       });
     });
-  
+
     describe('when some pages between the currentPage and the last page are not shown', () => {
       it('should show an ellipsis between the current page and the last page', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue - 8;
@@ -196,22 +196,22 @@ describe('DaffPaginatorComponent', () => {
         expect(fixture.debugElement.query(By.css('.daff-paginator__previous')).nativeElement.disabled).toBeTruthy();
       });
     });
-  
+
     describe('when the currentPage is the last page', () => {
       it('should disable the next button', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue;
         fixture.detectChanges();
-  
+
         expect(fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.disabled).toBeTruthy();
       });
     });
-  
+
     describe('when a page number is clicked', () => {
       it('should emit notifyPageChange with the page number', () => {
         spyOn(component.notifyPageChange, 'emit');
         const paginatorElements = fixture.debugElement.queryAll(By.css('.daff-paginator__page-link'));
         paginatorElements[4].nativeElement.click();
-  
+
         expect(component.notifyPageChange.emit).toHaveBeenCalledWith(parseInt(paginatorElements[4].nativeElement.innerText, 10));
       });
     });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, async, TestBed } from '@angular/core/testing';
+import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -24,7 +24,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
 
     let fixture: ComponentFixture<CheckboxWrapperComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [
           CheckboxWrapperComponent,
@@ -67,7 +67,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
 
     let fixture: ComponentFixture<CheckboxWrapperComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [
           CheckboxWrapperComponent,

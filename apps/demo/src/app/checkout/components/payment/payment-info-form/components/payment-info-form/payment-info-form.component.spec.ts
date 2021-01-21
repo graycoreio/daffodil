@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import {
@@ -32,7 +32,7 @@ describe('PaymentInfoFormComponent', () => {
   const paymentInfoFormFactory = new PaymentInfoFormFactory(new FormBuilder());
   const paymentInfoGroup = paymentInfoFormFactory.create(null);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,

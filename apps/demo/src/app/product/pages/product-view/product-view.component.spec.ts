@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -46,7 +46,7 @@ describe('ProductViewComponent', () => {
   let addToCartComponent: AddToCartComponent;
   let facade: MockDaffProductFacade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,

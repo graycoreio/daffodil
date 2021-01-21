@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QtyDropdownComponent } from './qty-dropdown.component';
 
@@ -6,7 +6,7 @@ describe('QtyDropdownComponent', () => {
   let component: QtyDropdownComponent;
   let fixture: ComponentFixture<QtyDropdownComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ QtyDropdownComponent ]
     })

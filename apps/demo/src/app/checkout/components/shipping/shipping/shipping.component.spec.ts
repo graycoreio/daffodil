@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -67,7 +67,7 @@ describe('ShippingComponent', () => {
   let shipping: ShippingComponent;
   let store;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

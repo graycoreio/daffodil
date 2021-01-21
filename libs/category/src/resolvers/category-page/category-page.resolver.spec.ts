@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -27,7 +27,7 @@ describe('DaffCategoryPageResolver', () => {
 
 	describe('resolve - on server', () => {
 
-		beforeEach(async(() => {
+		beforeEach(waitForAsync(() => {
 			TestBed.configureTestingModule({
 				imports: [
 					StoreModule.forRoot({
@@ -90,7 +90,7 @@ describe('DaffCategoryPageResolver', () => {
 
 	describe('resolve - in the browser', () => {
 
-		beforeEach(async(() => {
+		beforeEach(waitForAsync(() => {
 			TestBed.configureTestingModule({
 				imports: [
 					StoreModule.forRoot({

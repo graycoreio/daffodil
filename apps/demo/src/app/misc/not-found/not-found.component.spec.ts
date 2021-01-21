@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundComponent } from './not-found.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,9 +12,9 @@ describe('NotFoundComponent', () => {
   let fixture: ComponentFixture<NotFoundComponent>;
   let de: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         NotFoundComponent,
         MockBestSellersComponent
       ]
@@ -28,7 +28,7 @@ describe('NotFoundComponent', () => {
 
     de = fixture.debugElement.query(By.css('h1'));
 
-    
+
     fixture.detectChanges();
   });
 

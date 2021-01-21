@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffProduct } from '@daffodil/product';
@@ -26,7 +26,7 @@ describe('ProductAddedComponent', () => {
   let productAdded: ProductAddedComponent;
   let productAddedElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,

@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,14 +25,14 @@ describe('DaffProgressIndicatorComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffProgressIndicatorComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
-        DaffProgressIndicatorComponent 
+        DaffProgressIndicatorComponent
       ]
     })
     .compileComponents();
@@ -61,7 +61,7 @@ describe('DaffProgressIndicatorComponent', () => {
   it('should be able to take `percentage` as an input', () =>{
     wrapper.percentage = 20;
     fixture.detectChanges();
-    
+
     expect(component.percentage).toEqual(20);
   });
 
@@ -71,7 +71,7 @@ describe('DaffProgressIndicatorComponent', () => {
   it('should emit `finished` when the progress bar is filled and the animation is complete', fakeAsync(() => {
     wrapper.percentage = 100;
     spyOn(wrapper, 'onComplete');
-   
+
     fixture.detectChanges();
     flush();
 

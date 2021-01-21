@@ -1,5 +1,5 @@
 import { Component, Input, Directive, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -45,7 +45,7 @@ describe('CartSidebar', () => {
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,

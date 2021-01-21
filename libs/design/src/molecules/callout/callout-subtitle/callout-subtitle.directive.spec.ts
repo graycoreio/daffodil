@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { DaffCalloutSubtitleDirective } from './callout-subtitle.directive';
@@ -15,7 +15,7 @@ describe('DaffCalloutSubtitleDirective', () => {
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffCalloutSubtitleDirective,
@@ -41,4 +41,4 @@ describe('DaffCalloutSubtitleDirective', () => {
       expect(de.nativeElement.classList.contains('daff-callout__subtitle')).toEqual(true);
     });
   });
-}); 
+});

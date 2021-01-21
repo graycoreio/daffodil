@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import * as fromDemoImageGallery from './index';
@@ -8,7 +8,7 @@ describe('selectImageGalleryState', () => {
 
   let store: Store<fromDemoImageGallery.State>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

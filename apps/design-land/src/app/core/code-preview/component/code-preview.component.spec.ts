@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -35,7 +35,7 @@ describe('CodePreviewComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent

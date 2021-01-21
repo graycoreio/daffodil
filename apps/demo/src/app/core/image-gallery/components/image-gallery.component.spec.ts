@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -28,7 +28,7 @@ describe('ImageGalleryComponent', () => {
   let daffGalleryImages;
   let store: MockStore<any>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffImageGalleryModule

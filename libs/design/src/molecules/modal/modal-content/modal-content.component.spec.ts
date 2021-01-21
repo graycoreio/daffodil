@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffModalContentComponent } from './modal-content.component';
 
@@ -6,7 +6,7 @@ describe('DaffModalContentComponent', () => {
   let component: DaffModalContentComponent;
   let fixture: ComponentFixture<DaffModalContentComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffModalContentComponent

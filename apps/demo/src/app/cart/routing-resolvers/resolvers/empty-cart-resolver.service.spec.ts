@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -22,7 +22,7 @@ describe('EmptyCartResolver', () => {
   let router: Router;
   const cartResolverSpy = jasmine.createSpyObj('CartResolver', ['resolve']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

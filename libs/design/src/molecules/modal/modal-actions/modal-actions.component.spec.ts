@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffModalActionsComponent } from './modal-actions.component';
 
@@ -6,7 +6,7 @@ describe('DaffModalActionsComponent', () => {
   let component: DaffModalActionsComponent;
   let fixture: ComponentFixture<DaffModalActionsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffModalActionsComponent

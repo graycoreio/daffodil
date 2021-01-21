@@ -1,5 +1,5 @@
 import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
@@ -39,7 +39,7 @@ describe('AddToCartNotificationComponent', () => {
   let addToCartNotification: AddToCartNotificationComponent;
   let productAdded: MockProductAddedComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

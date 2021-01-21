@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffProduct } from '@daffodil/product';
@@ -23,7 +23,7 @@ describe('BestSellersComponent', () => {
 	let productGridComponent: MockProductGridComponent;
 	const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffLoadingIconModule,

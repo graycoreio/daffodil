@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
@@ -31,7 +31,7 @@ describe('CartTotalsComponent', () => {
     })
   });
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
@@ -49,7 +49,7 @@ describe('CartTotalsComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     currencyPipe = spyOn(DaffMockCurrencyPipe.prototype, 'transform');
-    
+
     wrapper.cartValue = mockCart;
 
     fixture.detectChanges();
@@ -65,11 +65,11 @@ describe('CartTotalsComponent', () => {
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[1].nativeElement;
     });
-  
+
     it('should set label', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Shipping');
     });
-  
+
     it('should set value', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('FREE (HC)');
     });
@@ -80,37 +80,37 @@ describe('CartTotalsComponent', () => {
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[2].nativeElement;
     });
-  
+
     it('should set label', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Tax');
     });
-  
+
     it('should call the angular CurrencyPipe.transform with cartTax', () => {
       expect(currencyPipe).toHaveBeenCalledWith(0);
     });
   });
 
   describe('on subtotal <demo-cart-totals-item>', () => {
-    
+
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
     });
-  
+
     it('should set label', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
     });
-    
-    it('should call the angular CurrencyPipe.transform with cart subtotal', () => {  
+
+    it('should call the angular CurrencyPipe.transform with cart subtotal', () => {
       expect(currencyPipe).toHaveBeenCalledWith(mockCart.subtotal);
     });
   });
 
   describe('on estimated total <demo-cart-totals-item>', () => {
-    
+
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[3].nativeElement;
     });
-  
+
     it('should set label', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Total');
     });

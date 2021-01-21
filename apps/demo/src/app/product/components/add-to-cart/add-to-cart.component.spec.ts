@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -17,12 +17,12 @@ describe('AddToCartComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let addToCartComponent: AddToCartComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         AddToCartComponent
       ]
@@ -34,7 +34,7 @@ describe('AddToCartComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     wrapper.eventCatcher = () => {};
-    
+
     fixture.detectChanges();
 
     addToCartComponent = fixture.debugElement.query(By.css('demo-add-to-cart')).componentInstance;
@@ -57,16 +57,16 @@ describe('AddToCartComponent', () => {
     beforeEach(() => {
       spyOn(addToCartComponent, 'emitAddToCart');
 
-      fixture.debugElement.query(By.css('button')).nativeElement.click();      
+      fixture.debugElement.query(By.css('button')).nativeElement.click();
     });
-    
+
     it('should call emitAddToCart', () => {
       expect(addToCartComponent.emitAddToCart).toHaveBeenCalled();
     });
   });
 
   describe('emitAddToCart', () => {
-    
+
     it('should call addToCart.emit', () => {
       spyOn(addToCartComponent.addToCart, 'emit');
 

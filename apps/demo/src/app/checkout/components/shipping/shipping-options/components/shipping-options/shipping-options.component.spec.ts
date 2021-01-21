@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingOptionsComponent } from './shipping-options.component';
 import { Component } from '@angular/core';
@@ -30,7 +30,7 @@ describe('ShippingOptionsComponent', () => {
   let shippingOptionsComponent: ShippingOptionsComponent;
   let shippingOptionsService: ShippingOptionsService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -28,7 +28,7 @@ describe('DemoAuthEffects', () => {
 
   let mockAuthToken: DaffAuthToken;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
