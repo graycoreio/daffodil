@@ -8,11 +8,12 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "npm run build:client-and-server-bundles && npm run build:serverless",
+    "build": "npm run build:client && npm run build:server && npm run build:serverless",
     "build:client": "ng build daffio --prod",
     "build:server": "ng run daffio:server:production",
-    "build:client-and-server-bundles": "npm run build:client && npm run build:server",
-    "build:serverless": "cp -r ./serverless/vercel/* ../../dist/apps/daffio/",
+    "build:serverless": "npm run build:serverless:compile && npm run build:serverless:vercel",
+    "build:serverless:compile": "webpack-cli --config serverless/webpack.serverless.config.js",
+    "build:serverless:vercel": "cp -r ./serverless/vercel/. ../../dist/apps/daffio/",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint daffio",
     "dev:ssr": "ng run daffio:serve-ssr",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@daffodil/branding": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/design": "0.0.0-PLACEHOLDER"
+    "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER"
   }
 }
