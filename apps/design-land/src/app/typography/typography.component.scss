@@ -1,0 +1,75 @@
+@import 'utilities';
+@import 'theme';
+
+.dl-typography {
+	&__typescale-card {
+		border: 1px solid daff-color($gray, 20);
+		border-radius: 8px;
+		padding: 24px;
+		margin: 24px 0;
+	}
+
+	&__desktop-subheading,
+	&__mobile-subheading {
+		@include subheading();
+		color: daff-color($gray);
+		margin: 0 0 8px;
+		padding: 0;
+	}
+
+	&__desktop-subheading {
+		display: none;
+
+		@include breakpoint(tablet) {
+			display: block;
+		}
+	}
+
+	&__mobile-subheading {
+		display: block;
+
+		@include breakpoint(tablet) {
+			display: none;
+		}
+	}
+
+	&__headline-xl {
+		@include headline-xl();
+	}
+
+	&__headline-lg {
+		@include headline-lg();
+	}
+
+	&__headline-md {
+		@include headline-md();
+	}
+
+	&__headline-sm {
+		@include headline-sm();
+	}
+
+	&__body-lg {
+		@include body-lg();
+	}
+
+	&__body-md {
+		@include body-md();
+	}
+
+	&__body-sm {
+		@include body-sm();
+	}
+
+	&__body-xs {
+		@include body-xs();
+	}
+
+	&__subheading {
+		@include subheading();
+	}
+
+	&__caption {
+		@include caption();
+	}
+}
