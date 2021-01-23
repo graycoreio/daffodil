@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { DaffNewsletterEffects } from './newsletter.effects';
-import { DaffNewsletterSubmission } from '../../../src/model/newsletter.model';
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
 	DaffNewsletterSubscribe,
 	DaffNewsletterSuccessSubscribe,

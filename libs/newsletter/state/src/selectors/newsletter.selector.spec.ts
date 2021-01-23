@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
-import { DaffNewsletterState, reducer } from '../reducers/newsletter.reducer';
+import { DaffNewsletterState, reducer } from '@daffodil/newsletter/state';
 import { Store, StoreModule, select } from '@ngrx/store';
 import { selectDaffNewsletterLoading, DaffNewsletterFeatureState, selectDaffNewsletterSuccess, selectDaffNewsletterError } from './newsletter.selector';
 

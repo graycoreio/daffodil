@@ -17,11 +17,14 @@
       "@daffodil/newsletter/driver/hubspot": [
         "libs/newsletter/driver/hubspot/src"
       ],
-      "@daffodil/newsletter/testing": [
+      "@daffodil/newsletter/driver/testing": [
         "libs/newsletter/driver/testing/src"
       ],
       "@daffodil/newsletter/state": [
         "libs/newsletter/state/src"
+      ],
+      "@daffodil/newsletter/state/testing": [
+        "libs/newsletter/state/testing/src"
       ]
     }
   }

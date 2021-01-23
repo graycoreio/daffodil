@@ -5,11 +5,11 @@ import {
   DaffNewsletterFailedSubscribe,
   DaffNewsletterSuccessSubscribe,
   DaffNewsletterReset,
-  DaffNewsletterState,
-  reducer
+  DaffNewsletterState
 } from '@daffodil/newsletter/state';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
-import { any } from 'async';
+
+import { reducer } from './newsletter.reducer';
 
 describe('the newsletter reducer', () => {
   it('should create an initial state', () => {
