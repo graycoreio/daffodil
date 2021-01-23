@@ -21,9 +21,6 @@ import { DaffRadioRegistry } from './registry/radio-registry';
   ],
   imports: [
     CommonModule
-  ],
-  providers:[
-    DaffRadioRegistry
   ]
 })
 export class DaffRadioModule { }

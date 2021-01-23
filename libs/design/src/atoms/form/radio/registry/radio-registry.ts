@@ -7,7 +7,7 @@ export interface ControlAccessorPair {
   accessor: DaffRadioControlValueAccessorDirective;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 export class DaffRadioRegistry {
   private _accessors: ControlAccessorPair[] = [];
 
