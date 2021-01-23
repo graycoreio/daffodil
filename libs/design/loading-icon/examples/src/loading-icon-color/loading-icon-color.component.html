@@ -1,0 +1,7 @@
+<daff-loading-icon [diameter]="50" [color]="colorGroup.get('color').value"></daff-loading-icon>
+
+<daff-radio-set [formGroup]="colorGroup" name="color">
+  <daff-radio formControlName="color" value="primary">Primary</daff-radio>
+  <daff-radio formControlName="color" value="secondary">Secondary</daff-radio>
+  <daff-radio formControlName="color" value="tertiary">Tertiary</daff-radio>
+</daff-radio-set>
