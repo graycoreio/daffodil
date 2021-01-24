@@ -245,7 +245,6 @@ export class MagentoOrderTestDataFactory {
       customer_id: null,
       updated_at: null
     });
-    // magento order IDs are strings, and the type mismatch will cause the equality check to fail
     mockDaffOrder.id = mockDaffOrder.id;
     mockDaffOrderAddress.order_id = mockDaffOrder.id;
     mockDaffOrderPayment.order_id = mockDaffOrder.id;
