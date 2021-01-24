@@ -1,7 +1,7 @@
-import { ID } from '@daffodil/core';
+import { DaffProduct } from '../../models/product';
 
 export interface DaffConfigurableProductEntity {
-	id: ID;
+	id: DaffProduct['id'];
 	attributes: DaffConfigurableProductEntityAttribute[];
 }
 
