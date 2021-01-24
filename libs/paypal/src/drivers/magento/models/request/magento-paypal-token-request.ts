@@ -1,9 +1,7 @@
-import { ID } from '@daffodil/core';
-
 import { MagentoPaypalUrlsRequest } from './magento-paypal-urls';
 
 export interface MagentoPaypalTokenRequest {
-	cart_id: ID;
+	cart_id: string;
 	code: string;
 	urls: MagentoPaypalUrlsRequest;
 	express_button?: boolean;
