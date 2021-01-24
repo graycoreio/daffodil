@@ -77,7 +77,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.productTestingService, 'get').and.returnValue(returnedValue);;
+        spyOn(service.productTestingService, 'get').and.returnValue(returnedValue);
         reqInfo = {
           collectionName: 'products'
         }
@@ -102,7 +102,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.navigationTestingService, 'get').and.returnValue(returnedValue);;
+        spyOn(service.navigationTestingService, 'get').and.returnValue(returnedValue);
         reqInfo = {
           collectionName: 'navigation'
         }
