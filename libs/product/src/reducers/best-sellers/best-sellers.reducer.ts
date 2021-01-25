@@ -17,8 +17,8 @@ export function daffBestSellersReducer<T extends DaffProduct>(state = initialSta
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return {...state, loading: false, productIds: getIds<T>(action.payload)};
     case DaffBestSellersActionTypes.BestSellersLoadFailureAction:
-      return {...state, 
-        loading: false, 
+      return {...state,
+        loading: false,
         errors: state.errors.concat(new Array(action.payload))
       };
     case DaffBestSellersActionTypes.BestSellersResetAction:
@@ -30,8 +30,8 @@ export function daffBestSellersReducer<T extends DaffProduct>(state = initialSta
   }
 }
 
-function getIds<T extends DaffProduct>(products: T[]): string[] {
-  const ids: string[] = new Array();
+function getIds<T extends DaffProduct>(products: T[]): T['id'][] {
+  const ids: T['id'][] = new Array();
 
   products.forEach(product => {
     ids.push(product.id)

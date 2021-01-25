@@ -21,7 +21,7 @@ export function transformConfigurableCartItem(item: DaffConfigurableCartItemInpu
 		parentSku: item.productId,
 		data: {
 			quantity: item.qty,
-			sku: String(item.variantId)
+			sku: item.variantId
 		},
 	}
 }

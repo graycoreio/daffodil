@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffOrderItem } from './order-item';
 import { DaffOrderAddress } from './order-address';
 import { DaffOrderPayment } from './order-payment';
@@ -8,8 +10,8 @@ import { DaffOrderInvoice } from './order-invoice';
 import { DaffOrderCredit } from './order-credit';
 
 export interface DaffOrder {
-  id: number | string;
-  customer_id: number | string;
+  id: ID;
+  customer_id: ID;
   created_at: string;
   updated_at: string;
   status: string;

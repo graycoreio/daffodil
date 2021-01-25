@@ -19,7 +19,7 @@ export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements
   errors$: Observable<string[]>;
 
   countries$: Observable<T[]>;
-  countryIds$: Observable<(string | number)[]>;
+  countryIds$: Observable<T['id'][]>;
   countryCount$: Observable<number>;
   countryEntities$: Observable<Dictionary<T>>;
 

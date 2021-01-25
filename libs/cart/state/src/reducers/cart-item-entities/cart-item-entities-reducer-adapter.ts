@@ -8,5 +8,5 @@ import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 export const daffCartItemEntitiesAdapter = (() => {
 	let cache;
   return <T extends DaffStatefulCartItem>(): EntityAdapter<T> =>
-    cache = cache || createEntityAdapter<T>({selectId: item => String(item.item_id)});
+    cache = cache || createEntityAdapter<T>({selectId: item => item.item_id});
 })();

@@ -11,7 +11,7 @@ export class MockProduct implements DaffProduct {
 	private stubDiscount = faker.random.number({min: 0, max: this.stubPrice - 1});
 
 	type = DaffProductTypeEnum.Simple;
-	id = faker.random.number({min: 1, max: 10000}).toString();
+	id = faker.random.uuid();
 	url = faker.random.alphaNumeric(16);
 	price = this.stubPrice;
 	in_stock = true;

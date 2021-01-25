@@ -1,3 +1,4 @@
+import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartActionTypes, DaffCartActions, DaffAddToCart } from '@daffodil/cart/state';
 
 import { AddToCartNotificationActionTypes, AddToCartNotificationActions } from '../actions/add-to-cart-notification.actions';
@@ -5,7 +6,7 @@ import { AddToCartNotificationActionTypes, AddToCartNotificationActions } from '
 export interface State {
   open: boolean,
   productQty: number,
-  productId: string,
+  productId: DaffCartItem['product_id'],
   loading: boolean
 }
 

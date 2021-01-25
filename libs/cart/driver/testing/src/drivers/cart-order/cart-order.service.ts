@@ -13,8 +13,8 @@ import {
 export class DaffTestingCartOrderService implements DaffCartOrderServiceInterface {
   placeOrder(cartId: DaffCart['id'], payment?: DaffCartPaymentMethod): Observable<DaffCartOrderResult> {
     return of({
-      id: faker.random.number(999999),
-      orderId: faker.random.number(999999),
+      id: faker.random.uuid(),
+      orderId: faker.random.uuid(),
       cartId,
     });
   }

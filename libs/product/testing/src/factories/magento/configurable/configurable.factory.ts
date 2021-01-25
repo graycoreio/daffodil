@@ -21,7 +21,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 		{
 			attribute_code: 'color',
 			attribute_id: faker.random.alphaNumeric(12),
-			id: faker.random.alphaNumeric(12),
+			id: faker.random.uuid(),
 			label: 'Color',
 			position: 0,
 			product_id: faker.random.number({min: 1, max: 1000}),
@@ -52,7 +52,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 			],
 			product: {
 				__typename: MagentoProductTypeEnum.SimpleProduct,
-				id: faker.random.number({min: 1, max: 1000}),
+				id: faker.random.uuid(),
 				url_key: faker.random.alphaNumeric(16),
 				name: faker.random.word(),
 				sku: faker.random.alphaNumeric(16),
@@ -95,7 +95,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 			],
 			product: {
 				__typename: MagentoProductTypeEnum.SimpleProduct,
-				id: faker.random.number({min: 1, max: 1000}),
+				id: faker.random.uuid(),
 				url_key: faker.random.alphaNumeric(16),
 				name: faker.random.word(),
 				sku: faker.random.alphaNumeric(16),
@@ -137,7 +137,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 			],
 			product: {
 				__typename: MagentoProductTypeEnum.SimpleProduct,
-				id: faker.random.number({min: 1, max: 1000}),
+				id: faker.random.uuid(),
 				url_key: faker.random.alphaNumeric(16),
 				name: faker.random.word(),
 				sku: faker.random.alphaNumeric(16),

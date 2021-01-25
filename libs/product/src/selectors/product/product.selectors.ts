@@ -7,13 +7,13 @@ import { DaffProduct } from '../../models/product';
 
 export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectSelectedProductState: MemoizedSelector<object, DaffProductReducerState>;
-	selectSelectedProductId: MemoizedSelector<object, string>;
+	selectSelectedProductId: MemoizedSelector<object, T['id']>;
 	selectSelectedProductQty: MemoizedSelector<object, number>;
 	selectSelectedProductLoadingState: MemoizedSelector<object, boolean>;
 	selectSelectedProduct: MemoizedSelector<object, T>;
 }
 
-const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {
+const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {
 
 	const {
 		selectProductState
@@ -60,10 +60,10 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 	const selectSelectedProduct = createSelector(
 		selectProductState,
 		selectSelectedProductId,
-		(state: DaffProductReducersState<T>, id: string) => state.products.entities[id]
+		(state: DaffProductReducersState<T>, id: T['id']) => state.products.entities[id]
 	);
 
-	return { 
+	return {
 		selectSelectedProductState,
 		selectSelectedProductId,
 		selectSelectedProductQty,
@@ -74,7 +74,7 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 
 export const getDaffProductPageSelectors = (() => {
 	let cache;
-	return <T extends DaffProduct>(): DaffProductPageMemoizedSelectors<T> => cache = cache 
-		? cache 
+	return <T extends DaffProduct>(): DaffProductPageMemoizedSelectors<T> => cache = cache
+		? cache
 		: createProductPageSelectors<T>();
 })();

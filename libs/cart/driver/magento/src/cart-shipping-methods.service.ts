@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffCartShippingRate } from '@daffodil/cart';
+import { DaffCartShippingRate, DaffCart } from '@daffodil/cart';
 import { DaffCartShippingMethodsServiceInterface } from '@daffodil/cart/driver';
 
 import { listShippingMethods } from './queries/public_api';
@@ -25,7 +25,7 @@ export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMe
     public shippingRateTransformer: DaffMagentoCartShippingRateTransformer
   ) {}
 
-  list(cartId: string): Observable<DaffCartShippingRate[]> {
+  list(cartId: DaffCart['id']): Observable<DaffCartShippingRate[]> {
     return this.apollo.query<MagentoListShippingMethodsResponse>({
       query: listShippingMethods(this.extraCartFragments),
       variables: {cartId}

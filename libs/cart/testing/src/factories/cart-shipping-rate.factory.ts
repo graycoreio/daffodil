@@ -5,7 +5,7 @@ import { DaffCartShippingRate } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartShippingRate implements DaffCartShippingRate {
-    id = faker.random.number({min: 1, max: 1000});
+    id = faker.random.uuid();
     carrier = 'Birds Inc.';
     carrier_title = 'laden';
     method_code = faker.random.word();

@@ -36,7 +36,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
     public shippingMethodInputTransformer: DaffMagentoShippingMethodInputTransformer,
   ) {}
 
-  get(cartId: string): Observable<DaffCartShippingRate> {
+  get(cartId: DaffCart['id']): Observable<DaffCartShippingRate> {
     return this.apollo.query<MagentoGetSelectedShippingMethodResponse>({
       query: getSelectedShippingMethod(this.extraCartFragments),
       variables: {cartId}
@@ -48,7 +48,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
     );
   }
 
-  update(cartId: string, shippingInfo: Partial<DaffCartShippingRate>): Observable<Partial<DaffCart>> {
+  update(cartId: DaffCart['id'], shippingInfo: Partial<DaffCartShippingRate>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoSetSelectedShippingMethodResponse>({
       mutation: setSelectedShippingMethod(this.extraCartFragments),
       variables: {
@@ -76,7 +76,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
     )
   }
 
-  delete(cartId: string, id?: string | number): Observable<Partial<DaffCart>> {
+  delete(cartId: DaffCart['id'], id?: DaffCartShippingRate['id']): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoSetSelectedShippingMethodResponse>({
       mutation: setSelectedShippingMethod(this.extraCartFragments),
       variables: {

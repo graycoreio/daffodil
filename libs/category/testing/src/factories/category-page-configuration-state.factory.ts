@@ -5,7 +5,7 @@ import { DaffCategoryPageConfigurationState, DaffCategoryFilterType, DaffCategor
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState<DaffCategoryRequest> {
-  id = String(faker.random.number({min: 1, max: 100}));
+  id = faker.random.uuid();
   page_size = 20;
   current_page = 1;
   filters = [{

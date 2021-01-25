@@ -49,7 +49,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartCreateSuccessAction, DaffCartActionTypes.ResolveCartSuccessAction),
     switchMap((action: DaffCartCreateSuccess<T>) => of(null).pipe(
       tap(() => {
-        this.storage.setCartId(String(action.payload.id))
+        this.storage.setCartId(action.payload.id)
       }),
       switchMapTo(EMPTY),
       catchError(error => of(new DaffCartStorageFailure(this.errorMatcher(error)))),

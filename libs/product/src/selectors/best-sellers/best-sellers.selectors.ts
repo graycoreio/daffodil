@@ -9,7 +9,7 @@ import { DaffProduct } from '../../models/product';
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectBestSellersState: MemoizedSelector<object, DaffBestSellersReducerState>;
 	selectBestSellersLoadingState: MemoizedSelector<object, boolean>;
-	selectBestSellersIdsState: MemoizedSelector<object, string[]>;
+	selectBestSellersIdsState: MemoizedSelector<object, T['id'][]>;
 	selectBestSellersProducts: MemoizedSelector<object, T[]>;
 }
 
@@ -50,10 +50,10 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 	const selectBestSellersProducts = createSelector(
 		selectBestSellersIdsState,
 		selectAllProducts,
-		(ids: string[], products: T[]) => products.filter(product => ids.indexOf(product.id) > -1)
+		(ids: T['id'][], products: T[]) => products.filter(product => ids.indexOf(product.id) > -1)
 	)
 
-	return { 
+	return {
 		selectBestSellersState,
 		selectBestSellersLoadingState,
 		selectBestSellersIdsState,
@@ -63,7 +63,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 
 export const getDaffBestSellersSelectors = (() => {
 	let cache;
-	return <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => cache = cache 
-		? cache 
+	return <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => cache = cache
+		? cache
 		: createBestSellersSelectors<T>();
 })();

@@ -37,11 +37,11 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
     public cartAddressInputTransformer: DaffMagentoCartAddressInputTransformer,
   ) {}
 
-  update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
   }
 
-  private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  private updateAddress(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoUpdateAddressResponse>({
       mutation: updateAddress(this.extraCartFragments),
       variables: {
@@ -54,7 +54,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
     )
   }
 
-  private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  private updateAddressWithEmail(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoUpdateAddressWithEmailResponse>({
       mutation: updateAddressWithEmail(this.extraCartFragments),
       variables: {

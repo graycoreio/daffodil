@@ -26,7 +26,7 @@ export class DaffInMemoryBackendCartShippingAddressService implements DaffInMemo
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, Number(reqInfo.id))
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
   }
 
   private getShippingAddress(reqInfo): DaffCartAddress {

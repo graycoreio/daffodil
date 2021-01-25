@@ -1,3 +1,5 @@
+import { MagentoCart } from '../../models/public_api';
+
 export interface MagentoCreateCartResponse {
-  createEmptyCart: string;
+  createEmptyCart: MagentoCart['id'];
 }

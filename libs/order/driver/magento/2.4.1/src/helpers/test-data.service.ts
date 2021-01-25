@@ -245,8 +245,7 @@ export class MagentoOrderTestDataFactory {
       customer_id: null,
       updated_at: null
     });
-    // magento order IDs are strings, and the type mismatch will cause the equality check to fail
-    mockDaffOrder.id = String(mockDaffOrder.id);
+    mockDaffOrder.id = mockDaffOrder.id;
     mockDaffOrderAddress.order_id = mockDaffOrder.id;
     mockDaffOrderPayment.order_id = mockDaffOrder.id;
     mockDaffOrderItem.order_id = mockDaffOrder.id;
@@ -371,8 +370,8 @@ export class MagentoOrderTestDataFactory {
       telephone: mockDaffOrderAddress.telephone,
       street: [mockDaffOrderAddress.street, mockDaffOrderAddress.street2],
       city: mockDaffOrderAddress.city,
-      region_id: String(mockDaffOrderAddress.region),
-      region: String(mockDaffOrderAddress.region),
+      region_id: mockDaffOrderAddress.region,
+      region: mockDaffOrderAddress.region,
       country_code: mockDaffOrderAddress.country,
       postcode: mockDaffOrderAddress.postcode,
       company: null,
@@ -396,7 +395,7 @@ export class MagentoOrderTestDataFactory {
     };
     mockMagentoOrderPayment = {
       __typename: 'OrderPaymentMethod',
-      name: String(mockDaffOrderPayment.payment_id),
+      name: mockDaffOrderPayment.payment_id,
       type: mockDaffOrderPayment.method,
       additional_data: [
         {
@@ -510,8 +509,8 @@ export class MagentoOrderTestDataFactory {
     };
     mockMagentoOrder = {
       __typename: 'GraycoreGuestOrder',
-      id: String(mockDaffOrder.id),
-      number: String(mockDaffOrder.id),
+      id: mockDaffOrder.id,
+      number: mockDaffOrder.id,
       order_date: mockDaffOrder.created_at,
       carrier: mockDaffOrderShipment.carrier,
       shipping_method: mockDaffOrderShipment.method,

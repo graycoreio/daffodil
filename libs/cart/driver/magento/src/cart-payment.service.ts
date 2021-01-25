@@ -45,7 +45,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
   ) {}
 
-  get(cartId: string): Observable<DaffCartPaymentMethod> {
+  get(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod> {
     return this.apollo.query<MagentoGetSelectedPaymentMethodResponse>({
       query: getSelectedPaymentMethod(this.extraCartFragments),
       variables: {cartId}
@@ -54,7 +54,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     );
   }
 
-  update(cartId: string, payment: Partial<DaffCartPaymentMethod>): Observable<Partial<DaffCart>> {
+  update(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoSetSelectedPaymentMethodResponse>({
       mutation: setSelectedPaymentMethod(this.extraCartFragments),
       variables: {
@@ -66,13 +66,13 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     )
   }
 
-  updateWithBilling(cartId: string, payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  updateWithBilling(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return address.email
       ? this.updateWithBillingAddressAndEmail(cartId, payment, address)
       : this.updateWithBillingAddress(cartId, payment, address)
   }
 
-  remove(cartId: string): Observable<void> {
+  remove(cartId: DaffCart['id']): Observable<void> {
     return this.mutationQueue.mutate({
       mutation: setSelectedPaymentMethod(this.extraCartFragments),
       variables: {
@@ -84,7 +84,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     )
   }
 
-  private updateWithBillingAddress(cartId: string, payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  private updateWithBillingAddress(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoSetSelectedPaymentMethodWithBillingResponse>({
       mutation: setSelectedPaymentMethodWithBilling(this.extraCartFragments),
       variables: {
@@ -98,7 +98,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     )
   }
 
-  private updateWithBillingAddressAndEmail(cartId: string, payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  private updateWithBillingAddressAndEmail(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse>({
       mutation: setSelectedPaymentMethodWithBillingAndEmail(this.extraCartFragments),
       variables: {

@@ -20,7 +20,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   errors$: Observable<string[]>;
 
   orders$: Observable<T[]>;
-  orderIds$: Observable<(string | number)[]>;
+  orderIds$: Observable<T['id'][]>;
   orderCount$: Observable<number>;
   orderEntities$: Observable<Dictionary<T>>;
 

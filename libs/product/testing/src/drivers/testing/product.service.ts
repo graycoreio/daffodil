@@ -8,7 +8,7 @@ import { DaffProductImageFactory } from '../../factories/product-image.factory';
 
 /**
  * The product testing driver to mock the backend product service.
- * 
+ *
  * @param productFactory - A DaffProductFactory instance
  * @param productImageFactory - A DaffProductImageFactory instance
  */
@@ -16,14 +16,14 @@ import { DaffProductImageFactory } from '../../factories/product-image.factory';
   providedIn: 'root'
 })
 export class DaffTestingProductService implements DaffProductServiceInterface {
- 
+
   constructor(
     private productFactory: DaffProductFactory,
     private productImageFactory: DaffProductImageFactory) {}
 
   /**
    * Get all products as DaffProduct[].
-   * 
+   *
    * @returns An Observable of Product[]
    */
   getAll(): Observable<DaffProduct[]> {
@@ -38,7 +38,7 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
 
   /**
    * Get all best selling products.
-   * 
+   *
    * @returns An Observable of Product[]
    */
   getBestSellers(): Observable<DaffProduct[]> {
@@ -52,11 +52,11 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
 
   /**
    * Get product by ID
-   * 
+   *
    * @param productId product ID
    * @returns An Observable of a Product
    */
-  get(productId: string): Observable<DaffProduct> {
+  get(productId: DaffProduct['id']): Observable<DaffProduct> {
     return of(this.productFactory.create({ images: this.productImageFactory.createMany(5)}));
   }
 }

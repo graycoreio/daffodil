@@ -12,7 +12,7 @@ export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
 
   orders$: BehaviorSubject<DaffOrder[]> = new BehaviorSubject([]);
-  orderIds$: BehaviorSubject<(string | number)[]> = new BehaviorSubject([]);
+  orderIds$: BehaviorSubject<DaffOrder['id'][]> = new BehaviorSubject([]);
   orderCount$: BehaviorSubject<number> = new BehaviorSubject(null);
   orderEntities$: BehaviorSubject<Dictionary<DaffOrder>> = new BehaviorSubject({});
 

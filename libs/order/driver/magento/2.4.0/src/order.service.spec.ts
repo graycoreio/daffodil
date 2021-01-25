@@ -50,6 +50,7 @@ import {
   getGuestOrders,
   MagentoGetGuestOrdersResponse
 } from '@daffodil/order/driver/magento/2.4.0';
+import { DaffCart } from '@daffodil/cart';
 
 import { DaffOrderMagentoService } from './order.service';
 
@@ -69,7 +70,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
   let daffOrderShippingMethodFactory: DaffOrderShippingMethodFactory;
   let daffOrderTotalFactory: DaffOrderTotalFactory;
 
-  let cartId: string;
+  let cartId: DaffCart['id'];
   let orderId: DaffOrder['id'];
   let mockDaffOrder: DaffOrder;
   let mockDaffOrderAddress: DaffOrderAddress;
@@ -130,10 +131,14 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
     daffOrderShippingMethodFactory = TestBed.inject(DaffOrderShippingMethodFactory);
     daffOrderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
 
-    mockDaffOrderAddress = daffOrderAddressFactory.create();
+    mockDaffOrderAddress = daffOrderAddressFactory.create({
+      order_id: '2',
+    });
     mockDaffOrderCoupon = daffOrderCouponFactory.create();
     mockDaffOrderPayment = daffOrderPaymentFactory.create({
       created_at: null,
+      order_id: '2',
+      payment_id: '6',
       updated_at: null,
     });
     mockDaffOrderItem = daffOrderItemFactory.create({
@@ -143,6 +148,8 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
         label: null
       },
       parent_item_id: null,
+      product_id: '4',
+      order_id: '2',
       item_id: null
     });
     mockDaffOrderShipmentItem = daffOrderShipmentItemFactory.create({
@@ -202,6 +209,8 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       shipping_method: null
     });
     mockDaffOrder = daffOrderFactory.create({
+      id: '2',
+      customer_id: '1',
       totals: jasmine.arrayContaining([
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
@@ -230,7 +239,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       order_id: String(mockDaffOrderItem.order_id),
       created_at: mockDaffOrderItem.created_at,
       updated_at: mockDaffOrderItem.updated_at,
-      product_id: mockDaffOrderItem.product_id,
+      product_id: Number(mockDaffOrderItem.product_id),
       sku: mockDaffOrderItem.sku,
       name: mockDaffOrderItem.name,
       weight: mockDaffOrderItem.weight,

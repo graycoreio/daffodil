@@ -63,8 +63,8 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
       };
     });
 	}
-	
-	private getTotalPages(allIds: string[], pageSize: number) {
+
+	private getTotalPages(allIds: DaffProduct['id'][], pageSize: number) {
 		return Math.ceil(allIds.length/pageSize);
 	}
 
@@ -76,7 +76,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 		return tempIds;
 	}
 
-	private generateProductIdSubset(products: DaffProduct[]): string[] {
+	private generateProductIdSubset(products: DaffProduct[]): DaffProduct['id'][] {
 		return randomSubset(products).map(product => product.id);
 	}
 

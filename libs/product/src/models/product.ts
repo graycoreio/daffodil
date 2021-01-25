@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffProductImage } from './product-image';
 
 export enum DaffProductTypeEnum {
@@ -10,7 +12,7 @@ export enum DaffProductTypeEnum {
  * An interface for a product usable by the @daffodil/product library.
  */
 export interface DaffProduct {
-	id: string;
+	id: ID;
 	type?: DaffProductTypeEnum;
 	url?: string;
 	price?: number;

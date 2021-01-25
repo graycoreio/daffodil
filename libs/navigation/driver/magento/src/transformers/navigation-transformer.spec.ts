@@ -23,13 +23,13 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
   it('should transform a CategoryNode into a DaffNavigationTree', () => {
     const categoryNode: CategoryNode = {
-      id: '1',
+      id: 1,
       name: 'Root Category',
       include_in_menu: true,
       product_count: 10,
       children_count: 0,
       children: [{
-        id: '2',
+        id: 2,
         include_in_menu: false,
         name: 'Subcategory',
         product_count: 10,
@@ -60,13 +60,13 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
   it('should filter out categories (and necessarily their children) that are include_in_menu false', () => {
     const categoryNode: CategoryNode = {
-      id: '1',
+      id: 1,
       name: 'Root Category',
       include_in_menu: true,
       product_count: 10,
       children_count: 1,
       children: [{
-        id: '2',
+        id: 2,
         include_in_menu: true,
         name: 'Subcategory',
         product_count: 10,
@@ -95,7 +95,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         children: [],
 				children_count: 0,
 				breadcrumbs: [{
-					categoryId: 1,
+					categoryId: '1',
 					categoryLevel: 1,
 					categoryName: 'name',
 					categoryUrlKey: 'url'

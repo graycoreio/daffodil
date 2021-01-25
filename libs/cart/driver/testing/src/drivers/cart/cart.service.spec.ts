@@ -42,7 +42,7 @@ describe('Driver | Testing | Cart | CartService', () => {
   describe('create | creating a cart', () => {
     it('should return a cart ID and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.objectContaining({
-        id: jasmine.any(Number)
+        id: jasmine.truthy()
       })});
       expect(service.create()).toBeObservable(expected);
     });

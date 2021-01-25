@@ -77,10 +77,10 @@ function transformItem(item: MagentoGraycoreOrderItem): DaffOrderItem {
       id: null,
       label: null
     },
-    order_id: Number(item.order_id),
+    order_id: item.order_id,
     created_at: item.created_at,
     updated_at: item.updated_at,
-    product_id: item.product_id,
+    product_id: String(item.product_id),
     parent_item_id: null,
     sku: item.sku,
     name: item.name,
@@ -99,7 +99,7 @@ function transformItem(item: MagentoGraycoreOrderItem): DaffOrderItem {
 
 function transformAddress(address: MagentoGraycoreOrderAddress): DaffOrderAddress {
   return {
-    order_id: address.order_id,
+    order_id: String(address.order_id),
     prefix: address.prefix,
     suffix: address.suffix,
     firstname: address.firstname,
@@ -147,8 +147,8 @@ function transformShipment(shipment: MagentoGraycoreOrderShipment): DaffOrderShi
 
 function transformPayment(payment: MagentoGraycoreOrderPayment): DaffOrderPayment {
   return {
-    payment_id: payment.payment_id,
-    order_id: payment.order_id,
+    payment_id: String(payment.payment_id),
+    order_id: String(payment.order_id),
     created_at: null,
     updated_at: null,
     method: payment.method,
@@ -178,8 +178,8 @@ export function daffMagentoTransformOrder(order: MagentoGraycoreOrder): DaffOrde
   return {
     extra_attributes: order,
 
-    id: order.order_number,
-    customer_id: order.customer_id,
+    id: String(order.order_number),
+    customer_id: String(order.customer_id),
     created_at: order.created_at,
     updated_at: order.updated_at,
     status: order.status,

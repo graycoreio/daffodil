@@ -155,7 +155,7 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     });
 
     it('should remove the cart item from the cart', () => {
-      expect(result.body.items.find(({item_id}) => String(itemId) === String(item_id))).toBeFalsy();
+      expect(result.body.items.find(({item_id}) => itemId === item_id)).toBeFalsy();
     });
   });
 });

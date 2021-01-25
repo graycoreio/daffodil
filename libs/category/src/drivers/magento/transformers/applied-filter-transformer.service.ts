@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 import { MagentoCategoryFilters, MagentoCategoryFilterActionEnum } from '../models/requests/filters';
 import { DaffCategoryFilterRequest, DaffCategoryFromToFilterSeparator } from '../../../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../../../models/category-filter-base';
+import { DaffCategory } from '../../../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoAppliedFiltersTransformService {
 
-  transform(categoryId: string, daffFilters: DaffCategoryFilterRequest[]): MagentoCategoryFilters {
+  transform(categoryId: DaffCategory['id'], daffFilters: DaffCategoryFilterRequest[]): MagentoCategoryFilters {
 		const magentoFilters: MagentoCategoryFilters = {
 			category_id: {
-				[MagentoCategoryFilterActionEnum.Equal]: categoryId
+				[MagentoCategoryFilterActionEnum.Equal]: String(categoryId)
 			}
 		};
 
@@ -38,12 +39,12 @@ export class DaffMagentoAppliedFiltersTransformService {
 
 		return magentoFilters;
 	}
-	
+
 	/**
 	 * Returns an In action for Equal type and a Match action for Match type.
 	 */
 	private getFilterAction(type: DaffCategoryFilterType): MagentoCategoryFilterActionEnum {
-		return type === DaffCategoryFilterType.Equal 
+		return type === DaffCategoryFilterType.Equal
 			? MagentoCategoryFilterActionEnum.In
 			: MagentoCategoryFilterActionEnum.Match;
 	}

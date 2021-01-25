@@ -5,7 +5,7 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockNavigationTree implements DaffNavigationTree {
-  id = '1';
+  id = faker.random.uuid();
   name = '';
   path = faker.commerce.department().toString().toLowerCase();
   total_products = faker.random.number({min: 1, max: 10});
@@ -18,35 +18,41 @@ export class MockNavigationTree implements DaffNavigationTree {
       ? [...Array(faker.random.number({min:1, max:3}))].map(() => this.fakeTree(depth - 1))
       : [];
 
-    return depth <= 0
-      ? {
-        id: faker.random.number({min:1, max:10000}).toString(),
+    if (depth <= 0) {
+      const id = faker.random.uuid();
+
+      return {
+        id,
         name: faker.commerce.department(),
         path: faker.commerce.department().toString().toLowerCase(),
         total_products: faker.random.number({min: 1, max: 20}),
         children: [],
 				children_count: 0,
 				breadcrumbs: [{
-					categoryId: 1,
+					categoryId: id,
 					categoryName: '',
 					categoryLevel: 1,
 					categoryUrlKey: faker.commerce.productMaterial()
 				}]
       }
-      : {
-        id: faker.random.number({min:1, max:10000}).toString(),
+    } else {
+      const id = faker.random.uuid();
+
+      return {
+        id,
         name: faker.commerce.department(),
         path: faker.commerce.department().toString().toLowerCase(),
         total_products: faker.random.number({min: 1, max: 20}),
         children: children,
 				children_count: children.length,
 				breadcrumbs: [{
-					categoryId: 1,
+					categoryId: id,
 					categoryName: '',
 					categoryLevel: 1,
 					categoryUrlKey: faker.commerce.productMaterial()
 				}]
       }
+    }
   }
 }
 

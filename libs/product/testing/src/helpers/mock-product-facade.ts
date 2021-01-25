@@ -10,25 +10,25 @@ export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	 * @deprecated use getProduct instead.
 	 */
 	product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
-	getProduct(id: string): BehaviorSubject<DaffProduct> {
+	getProduct(id: DaffProduct['id']): BehaviorSubject<DaffProduct> {
 		return new BehaviorSubject(null);
 	}
-	getPrice(id: string): BehaviorSubject<number> {
+	getPrice(id: DaffProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	}
-	hasDiscount(id: string): BehaviorSubject<boolean> {
+	hasDiscount(id: DaffProduct['id']): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	}
-	getDiscountAmount(id: string): BehaviorSubject<number> {
+	getDiscountAmount(id: DaffProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	}
-	getDiscountedPrice(id: string): BehaviorSubject<number> {
+	getDiscountedPrice(id: DaffProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	}
-	getDiscountPercent(id: string): BehaviorSubject<number> {
+	getDiscountPercent(id: DaffProduct['id']): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	}
-	isOutOfStock(id: string): BehaviorSubject<boolean> {
+	isOutOfStock(id: DaffProduct['id']): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	}
 	dispatch(action) {};

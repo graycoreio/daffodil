@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffSubdivision } from './subdivision';
 
 /**
@@ -5,7 +7,7 @@ import { DaffSubdivision } from './subdivision';
  * See: ISO-3166
  */
 export interface DaffCountry {
-	id: string;
+	id: ID;
 	name: string;
 	name_en: string;
 	alpha2: string;

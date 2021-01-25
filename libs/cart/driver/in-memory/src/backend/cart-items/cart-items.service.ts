@@ -63,7 +63,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, Number(reqInfo.id))
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
   }
 
   private transformItemInput(itemInput: DaffCartItemInput) {
@@ -81,13 +81,13 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
   private getItem(reqInfo: RequestInfo, itemId: DaffCartItem['item_id']): DaffCartItem {
     const cart = this.getCart(reqInfo);
 
-    return cart.items.find(({item_id}) => String(item_id) === String(itemId))
+    return cart.items.find(({item_id}) => itemId === item_id)
   }
 
   private updateItem(reqInfo: RequestInfo, itemId: DaffCartItem['item_id']): DaffCart {
     const cart = this.getCart(reqInfo);
     const item = reqInfo.utils.getJsonBody(reqInfo.req);
-    const itemIndex = cart.items.findIndex(({item_id}) => String(itemId) === String(item_id))
+    const itemIndex = cart.items.findIndex(({item_id}) => itemId === item_id)
 
     cart.items[itemIndex] = {
       ...cart.items[itemIndex],
@@ -114,7 +114,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
 
   private deleteItem(reqInfo: RequestInfo, itemId: DaffCartItem['item_id']): DaffCart {
     const cart = this.getCart(reqInfo);
-    const itemIndex = cart.items.findIndex(({item_id}) => String(itemId) === String(item_id));
+    const itemIndex = cart.items.findIndex(({item_id}) => itemId === item_id);
 
 		cart.items.splice(itemIndex, 1);
 		cart.items = Object.assign([], cart.items);

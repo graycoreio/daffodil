@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffCartItem } from './cart-item';
 import { DaffCartAddress } from './cart-address';
 import { DaffCartPaymentMethod } from './cart-payment';
@@ -7,7 +9,7 @@ import { DaffCartTotal } from './cart-total';
 import { DaffCartShippingRate } from './cart-shipping-rate';
 
 export interface DaffCart {
-	id: number | string;
+	id: ID;
 	/**
 	 * @deprecated use totals instead
 	 */

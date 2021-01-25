@@ -13,16 +13,16 @@ import {
 
 @Injectable({providedIn: 'root'})
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
-	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
+	getRequiredItemPricesForConfiguration(id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
 		return new BehaviorSubject(null);
 	}
-	getOptionalItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
+	getOptionalItemPricesForConfiguration(id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
 		return new BehaviorSubject(null);
 	}
-	getPricesAsCurrentlyConfigured(id: string): BehaviorSubject<DaffPriceRange> {
+	getPricesAsCurrentlyConfigured(id: DaffCompositeProduct['id']): BehaviorSubject<DaffPriceRange> {
 		return new BehaviorSubject(null);
 	}
-	getAppliedOptions(id: string): BehaviorSubject<Dictionary<DaffCompositeProductItemOption>> {
+	getAppliedOptions(id: DaffCompositeProduct['id']): BehaviorSubject<Dictionary<DaffCompositeProductItemOption>> {
 		return new BehaviorSubject({});
 	}
 	isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']): BehaviorSubject<boolean> {

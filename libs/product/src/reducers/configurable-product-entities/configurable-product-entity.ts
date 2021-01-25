@@ -1,5 +1,7 @@
+import { DaffProduct } from '../../models/product';
+
 export interface DaffConfigurableProductEntity {
-	id: string;
+	id: DaffProduct['id'];
 	attributes: DaffConfigurableProductEntityAttribute[];
 }
 

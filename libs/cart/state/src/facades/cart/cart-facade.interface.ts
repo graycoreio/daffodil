@@ -176,7 +176,7 @@ export interface DaffCartFacadeInterface<
   paymentMethodsErrors$: Observable<DaffCartErrors[DaffCartOperationType.PaymentMethods]>;
   couponErrors$: Observable<DaffCartErrors[DaffCartOperationType.Coupon]>;
 
-  id$: Observable<DaffCart['id']>;
+  id$: Observable<T['id']>;
   subtotal$: Observable<DaffCartTotal['value']>;
   grandTotal$: Observable<DaffCartTotal['value']>;
   subtotalExcludingTax$: Observable<DaffCartTotal['value']>;
@@ -186,21 +186,21 @@ export interface DaffCartFacadeInterface<
   discountTotals$: Observable<DaffCartTotal[]>;
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
-  coupons$: Observable<DaffCart['coupons']>;
-	items$: Observable<DaffCart['items']>;
+  coupons$: Observable<T['coupons']>;
+	items$: Observable<T['items']>;
 	/**
 	 * The total number of cart items, taking into account the quantity of each cart item.
 	 */
   totalItems$: Observable<number>;
   hasOutOfStockItems$: Observable<boolean>;
   itemDictionary$: Observable<Dictionary<U>>;
-  billingAddress$: Observable<DaffCart['billing_address']>;
-  shippingAddress$: Observable<DaffCart['shipping_address']>;
-  payment$: Observable<DaffCart['payment']>;
-  totals$: Observable<DaffCart['totals']>;
-  shippingInformation$: Observable<DaffCart['shipping_information']>;
-  availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
-  availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
+  billingAddress$: Observable<T['billing_address']>;
+  shippingAddress$: Observable<T['shipping_address']>;
+  payment$: Observable<T['payment']>;
+  totals$: Observable<T['totals']>;
+  shippingInformation$: Observable<T['shipping_information']>;
+  availableShippingMethods$: Observable<T['available_shipping_methods']>;
+  availablePaymentMethods$: Observable<T['available_payment_methods']>;
   /**
    * The user-defined platform-agnostic payment identifier that corresponds to the cart's current (platform-specific) payment method.
    * Define the mapping with the `DaffCartPaymentMethodIdMap` injection token.

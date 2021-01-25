@@ -60,7 +60,7 @@ describe('selectCartItemEntitiesState', () => {
 
       it('selects cart item ids', () => {
 				const selector = store.pipe(select(selectCartItemIds));
-				const expected = cold('a', { a: [String(mockCartItems[0].item_id), String(mockCartItems[1].item_id)] });
+				const expected = cold('a', { a: [mockCartItems[0].item_id, mockCartItems[1].item_id] });
 
 				expect(selector).toBeObservable(expected);
       });

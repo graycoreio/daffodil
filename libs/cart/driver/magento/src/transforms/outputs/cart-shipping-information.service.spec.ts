@@ -39,7 +39,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', (
 
     mockDaffShippingInformation = {
       ...daffCartShippingInformationFactory.create(),
-      address_id: 0
+      address_id: null
     };
     mockMagentoShippingMethod = magentoCartShippingMethodFactory.create();
 

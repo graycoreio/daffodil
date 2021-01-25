@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffCartPaymentMethod } from '@daffodil/cart';
+import { DaffCartPaymentMethod, DaffCart } from '@daffodil/cart';
 import { DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
 
 import { listPaymentMethods } from './queries/public_api';
@@ -25,7 +25,7 @@ export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMeth
     public paymentTransformer: DaffMagentoCartPaymentTransformer
   ) {}
 
-  list(cartId: string): Observable<DaffCartPaymentMethod[]> {
+  list(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod[]> {
     return this.apollo.query<MagentoListPaymentMethodsResponse>({
       query: listPaymentMethods(this.extraCartFragments),
       variables: {cartId}

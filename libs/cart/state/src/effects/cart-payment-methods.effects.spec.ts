@@ -59,7 +59,7 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
 
     driverListSpy = spyOn(paymentMethodsDriver, 'list');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
-    getCartIdSpy.and.returnValue(String(mockCart.id));
+    getCartIdSpy.and.returnValue(mockCart.id);
   });
 
   it('should be created', () => {

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { DaffProduct, getDaffProductSelectors } from '@daffodil/product';
+import { DaffCartItem } from '@daffodil/cart';
 
 import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
-import { switchMap } from 'rxjs/operators';
 
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,12 +19,12 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 export class AddToCartNotificationComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
-  
+
   open$: Observable<boolean>;
   productQty$: Observable<number>;
   cartItemCount$: Observable<number>;
   loading$: Observable<boolean>;
-  productId$: Observable<string>;
+  productId$: Observable<DaffCartItem['product_id']>;
   product$: Observable<DaffProduct>;
 
   constructor(private store: Store<fromDemoAddToCartNotification.State>) { }

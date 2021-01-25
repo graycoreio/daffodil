@@ -77,7 +77,7 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
       });
 
       it('should return an object with the correct values', () => {
-        expect(String(transformedCart.id)).toEqual(String(id));
+        expect(transformedCart.id).toEqual(id);
         expect(transformedCart.subtotal).toEqual(subtotal);
         expect(transformedCart.grand_total).toEqual(grand_total);
       });

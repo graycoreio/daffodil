@@ -11,7 +11,9 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
   let service: DaffMagentoCategoryTransformerService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-	const stubCategory: DaffCategory = categoryFactory.create();
+	const stubCategory: DaffCategory = categoryFactory.create({
+    id: '1'
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,15 +34,15 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
 		beforeEach(() => {
 			magentoCategory = {
-        id: stubCategory.id,
-				name: stubCategory.name,
-				description: stubCategory.description,
+        id: Number(stubCategory.id),
+        name: stubCategory.name,
         breadcrumbs: [{
-          category_id: stubCategory.breadcrumbs[0].categoryId,
+          category_id: Number(stubCategory.breadcrumbs[0].categoryId),
           category_name: stubCategory.breadcrumbs[0].categoryName,
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey
 				}],
+        description: stubCategory.description,
 				products: {
 					items: [{
 						__typename: 'simple',
@@ -84,19 +86,19 @@ describe('DaffMagentoCategoryTransformerService', () => {
 				category_url_key: 'urlKey2'
 			}];
 			const expectedBreadcrumbs: DaffCategoryBreadcrumb[] = [{
-				categoryId: 1,
+				categoryId: '1',
 				categoryName: 'category1',
 				categoryLevel: 1,
 				categoryUrlKey: 'urlKey1'
 			},
 			{
-				categoryId: 2,
+				categoryId: '2',
 				categoryName: 'category2',
 				categoryLevel: 2,
 				categoryUrlKey: 'urlKey2'
 			},
 			{
-				categoryId: 3,
+				categoryId: '3',
 				categoryName: 'category3',
 				categoryLevel: 3,
 				categoryUrlKey: 'urlKey3'

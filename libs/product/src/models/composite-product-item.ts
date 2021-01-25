@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffProduct } from './product';
 
 /**
@@ -17,7 +19,7 @@ export enum DaffCompositeProductItemInputEnum {
  * composite product, or neither if the item is optional.
  */
 export interface DaffCompositeProductItem {
-	id: number | string;
+	id: ID;
 	required: boolean;
 	title: string;
 	input_type: DaffCompositeProductItemInputEnum;
@@ -28,7 +30,7 @@ export interface DaffCompositeProductItem {
  * The composite product item option is a DaffProduct that can be added to a composite product.
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
-	id: string;
+	id: ID;
 	name: string;
 	price: number;
 	is_default: boolean;

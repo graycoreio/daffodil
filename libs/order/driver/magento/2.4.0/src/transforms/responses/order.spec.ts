@@ -91,10 +91,14 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
     daffOrderShippingMethodFactory = TestBed.inject(DaffOrderShippingMethodFactory);
     daffOrderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
 
-    mockDaffOrderAddress = daffOrderAddressFactory.create();
+    mockDaffOrderAddress = daffOrderAddressFactory.create({
+      order_id: '2',
+    });
     mockDaffOrderCoupon = daffOrderCouponFactory.create();
     mockDaffOrderPayment = daffOrderPaymentFactory.create({
       created_at: null,
+      order_id: '2',
+      payment_id: '6',
       updated_at: null,
     });
     mockDaffOrderItem = daffOrderItemFactory.create({
@@ -104,6 +108,8 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
         label: null
       },
       parent_item_id: null,
+      product_id: '4',
+      order_id: '2',
       item_id: null
     });
     mockDaffOrderShipmentItem = daffOrderShipmentItemFactory.create({
@@ -163,6 +169,8 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
       shipping_method: null
     });
     mockDaffOrder = daffOrderFactory.create({
+      id: '2',
+      customer_id: '1',
       totals: jasmine.arrayContaining([
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
@@ -188,7 +196,7 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
       order_id: String(mockDaffOrderItem.order_id),
       created_at: mockDaffOrderItem.created_at,
       updated_at: mockDaffOrderItem.updated_at,
-      product_id: mockDaffOrderItem.product_id,
+      product_id: Number(mockDaffOrderItem.product_id),
       sku: mockDaffOrderItem.sku,
       name: mockDaffOrderItem.name,
       weight: mockDaffOrderItem.weight,

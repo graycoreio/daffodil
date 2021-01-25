@@ -35,7 +35,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
   ) {}
 
-  get(cartId: string): Observable<DaffCart> {
+  get(cartId: DaffCart['id']): Observable<DaffCart> {
     return this.apollo.query<MagentoGetCartResponse>({
       query: getCart(this.extraCartFragments),
       variables: {cartId}
@@ -45,7 +45,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     );
   }
 
-  create(): Observable<{id: string}> {
+  create(): Observable<{id: DaffCart['id']}> {
     return this.mutationQueue.mutate<MagentoCreateCartResponse>({mutation: createCart}).pipe(
       map(result => ({id: result.data.createEmptyCart}))
     )
@@ -55,7 +55,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     throw new Error('Method is deprecated. Use DaffCartItemServiceInterface#add instead.');
   }
 
-  clear(cartId: string): Observable<Partial<DaffCart>> {
+  clear(cartId: DaffCart['id']): Observable<Partial<DaffCart>> {
     return this.cartItemDriver.list(cartId).pipe(
       switchMap(items =>
         forkJoin(...items.map(item =>
