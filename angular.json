@@ -211,7 +211,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/authorizenet/ng-package.prod.json"
+              "project": "libs/authorizenet/ng-package.prod.json",
+              "tsConfig": "libs/authorizenet/tsconfig.lib.prod.json"
             }
           }
         },
@@ -252,7 +253,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/product/ng-package.prod.json"
+              "project": "libs/product/ng-package.prod.json",
+              "tsConfig": "libs/product/tsconfig.lib.prod.json"
             }
           }
         },
@@ -294,7 +296,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/cart/ng-package.prod.json"
+              "project": "libs/cart/ng-package.prod.json",
+              "tsConfig": "libs/cart/tsconfig.lib.prod.json"
             }
           }
         },
@@ -335,7 +338,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/category/ng-package.prod.json"
+              "project": "libs/category/ng-package.prod.json",
+              "tsConfig": "libs/category/tsconfig.lib.prod.json"
             }
           }
         },
@@ -376,7 +380,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/checkout/ng-package.prod.json"
+              "project": "libs/checkout/ng-package.prod.json",
+              "tsConfig": "libs/checkout/tsconfig.lib.prod.json"
             }
           }
         },
@@ -417,7 +422,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/core/ng-package.prod.json"
+              "project": "libs/core/ng-package.prod.json",
+              "tsConfig": "libs/core/tsconfig.lib.prod.json"
             }
           }
         },
@@ -458,7 +464,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/driver/ng-package.prod.json"
+              "project": "libs/driver/ng-package.prod.json",
+              "tsConfig": "libs/driver/tsconfig.lib.prod.json"
             }
           }
         },
@@ -497,6 +504,12 @@
           "options": {
             "tsConfig": "libs/design/tsconfig.lib.json",
             "project": "libs/design/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/design/ng-package.prod.json",
+              "tsConfig": "libs/design/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -944,7 +957,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/branding/ng-package.prod.json"
+              "project": "libs/branding/ng-package.prod.json",
+              "tsConfig": "libs/branding/tsconfig.lib.prod.json"
             }
           }
         },
@@ -985,7 +999,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/navigation/ng-package.prod.json"
+              "project": "libs/navigation/ng-package.prod.json",
+              "tsConfig": "libs/navigation/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1026,7 +1041,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/newsletter/ng-package.prod.json"
+              "project": "libs/newsletter/ng-package.prod.json",
+              "tsConfig": "libs/newsletter/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1067,7 +1083,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/contact/ng-package.prod.json"
+              "project": "libs/contact/ng-package.prod.json",
+              "tsConfig": "libs/contact/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1108,7 +1125,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/auth/ng-package.prod.json"
+              "project": "libs/auth/ng-package.prod.json",
+              "tsConfig": "libs/auth/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1149,7 +1167,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/geography/ng-package.json"
+              "project": "libs/geography/ng-package.prod.json",
+              "tsConfig": "libs/geography/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1190,7 +1209,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/paypal/ng-package.prod.json"
+              "project": "libs/paypal/ng-package.prod.json",
+              "tsConfig": "libs/paypal/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1230,7 +1250,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/order/ng-package.json"
+              "project": "libs/order/ng-package.prod.json",
+              "tsConfig": "libs/order/tsconfig.lib.prod.json"
             }
           }
         },
@@ -1268,6 +1289,12 @@
           "options": {
             "tsConfig": "libs/external-router/tsconfig.lib.json",
             "project": "libs/external-router/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/external-router/ng-package.prod.json",
+              "tsConfig": "libs/external-router/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {

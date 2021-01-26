@@ -25,6 +25,9 @@
     },
     "allowSyntheticDefaultImports": true
   },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  },
   "exclude": [
     "node_modules",
     "tmp"
