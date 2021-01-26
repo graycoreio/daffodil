@@ -2,6 +2,69 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.24.0](https://github.com/graycoreio/daffodil/compare/v0.23.1...v0.24.0) (2021-01-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **all:** The types of all ID-related fields are now type string
+* **all:** Dropped support for Angular v8 and v9
+
+### Features
+
+* **all:** change ID type to string and generate IDs with uuid ([#1245](https://github.com/graycoreio/daffodil/issues/1245)) ([362f6e1](https://github.com/graycoreio/daffodil/commit/362f6e1d0271d801f9c8fe5e8a0d1cced653d9d6))
+* **all:** pass generic type to ModuleWithProviders ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([d958ee4](https://github.com/graycoreio/daffodil/commit/d958ee4815006ceaeb4844f5c635de89e79cbcb1))
+* **all:** provide mock facade in root and with useExisting ([#1217](https://github.com/graycoreio/daffodil/issues/1217)) ([90db80c](https://github.com/graycoreio/daffodil/commit/90db80c9ba8bb2385b74a71fac02446b5cb94d0d))
+* **auth:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([f8f8756](https://github.com/graycoreio/daffodil/commit/f8f8756dc183416462d25e3acdef8ca8bd5f9518))
+* **authorizenet:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([ebec1bc](https://github.com/graycoreio/daffodil/commit/ebec1bcce8d77f9a573aa2a5ee628155be57c514))
+* **cart:** add default value for extra cart fragments token ([#1239](https://github.com/graycoreio/daffodil/issues/1239)) ([c6a1de1](https://github.com/graycoreio/daffodil/commit/c6a1de1e2613bca38f073d85e653667fd1b07697))
+* **cart:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([9e7289e](https://github.com/graycoreio/daffodil/commit/9e7289ee580d8a82b12b78800cba092f4f91a1dd))
+* **cart:** add typename on all Magento responses ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([a9b01b8](https://github.com/graycoreio/daffodil/commit/a9b01b817c5e1aa2bcdbb3d3433ffda4c5e0ad03))
+* **cart:** provide cart item testing driver service ([#1218](https://github.com/graycoreio/daffodil/issues/1218)) ([07a6a10](https://github.com/graycoreio/daffodil/commit/07a6a1029af25d8b6e2644f505c9944cacdccb36))
+* **cart:** provide magento transformers in root ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([b2187dc](https://github.com/graycoreio/daffodil/commit/b2187dcfbd61b13846826f66b0d35aa39a2dfe78))
+* **cart:** transform invalid coupon code error from message ([#1199](https://github.com/graycoreio/daffodil/issues/1199)) ([2e59eeb](https://github.com/graycoreio/daffodil/commit/2e59eebdd968c6e7e95f881188413dfb3dd817d7))
+* **cart:** update to support @apollo/client 3 and apollo-angular ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([7837d80](https://github.com/graycoreio/daffodil/commit/7837d80b02970df143e421b656ed54fdac899225))
+* **category:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([3fd50a3](https://github.com/graycoreio/daffodil/commit/3fd50a3943e3b2aacea754036429c008627d397b))
+* **checkout:** add export ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([cf4e942](https://github.com/graycoreio/daffodil/commit/cf4e942862462bff1fa3202675bd5c3932dcadfc))
+* **contact:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([f8c313b](https://github.com/graycoreio/daffodil/commit/f8c313b6e88bdfb44553ad60cf1fb2599fae794c))
+* **core:** add scan generic in substream ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([2759927](https://github.com/graycoreio/daffodil/commit/27599274ffe68d898f9c9ae5d19b9534e8c12d48))
+* **core:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([8bbf1fe](https://github.com/graycoreio/daffodil/commit/8bbf1fee66e49ba16b7615a3a3a403fc8ac8642a))
+* **demo:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([578476c](https://github.com/graycoreio/daffodil/commit/578476ce4f7adba5fd38cdca11af0a0921bc6ab6))
+* **design:** add checkbox CVA export ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([0e32e9a](https://github.com/graycoreio/daffodil/commit/0e32e9a5d26562db732989021662141d58767dd0))
+* **design:** add Directive decorator to mixin ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([01e1ef6](https://github.com/graycoreio/daffodil/commit/01e1ef65a676bef4fd885b1efafd35c4aa258edd))
+* **design:** add form error messages export ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([a8922d1](https://github.com/graycoreio/daffodil/commit/a8922d16cab2a056d811fbfe423be120f80ee3b2))
+* **design:** add modal exports ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([a78a8d5](https://github.com/graycoreio/daffodil/commit/a78a8d58b8fe8b31654654746c38c8ca9a648464))
+* **design:** add radio CVA export ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([9720278](https://github.com/graycoreio/daffodil/commit/9720278052bec17f0ed40ee34a0008514818b56c))
+* **design-land:** remove unused entryComponents ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([c874fba](https://github.com/graycoreio/daffodil/commit/c874fbaafec9416680f022639b8d4c33aa9f3541))
+* **driver:** add typename to Magento models ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([1f81c64](https://github.com/graycoreio/daffodil/commit/1f81c64677e7acb5ad1785d6d72039ce41ef28e3))
+* **external-router:** add new external routing package scaffold ([#1216](https://github.com/graycoreio/daffodil/issues/1216)) ([de7af27](https://github.com/graycoreio/daffodil/commit/de7af27991487d49861b61b102b81035d4690eb6))
+* **geography:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([08010e9](https://github.com/graycoreio/daffodil/commit/08010e9965d29a116f4d2bb026a5b9bf449dfdbf))
+* **geography:** add typename to Magento models ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([2adbdc3](https://github.com/graycoreio/daffodil/commit/2adbdc3047e60f5051f0774f32df063a4be3ab80))
+* **geography:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([f7717ad](https://github.com/graycoreio/daffodil/commit/f7717ad3abc913712a01c972c92e24da050c84b3))
+* **navigation:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([6d00c08](https://github.com/graycoreio/daffodil/commit/6d00c08f4e00f7760305ba3dcd0289220976c244))
+* **newsletter:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([525434f](https://github.com/graycoreio/daffodil/commit/525434f8b912981ebe82f5583582c85ff6ae7eb6))
+* **order:** add default value for extra order fragments token ([#1238](https://github.com/graycoreio/daffodil/issues/1238)) ([c1409af](https://github.com/graycoreio/daffodil/commit/c1409aff4a6d92d6e041413e12be43215e384428))
+* **order:** add order payment to invoice fragment ([#1234](https://github.com/graycoreio/daffodil/issues/1234)) ([62375cd](https://github.com/graycoreio/daffodil/commit/62375cd227fbe0f45d00f0d21be26a8fbe7bfe8c))
+* **order:** add typename to driver response models ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([86dfb7f](https://github.com/graycoreio/daffodil/commit/86dfb7f496fdb8571a8204cecb47ba3e21780ca2))
+* **order:** randomly generate product name and SKU in order item fac… ([#1222](https://github.com/graycoreio/daffodil/issues/1222)) ([0b7de2c](https://github.com/graycoreio/daffodil/commit/0b7de2c1f5b954d48e0c23095bfeb7076997845c))
+* **order:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([64a941d](https://github.com/graycoreio/daffodil/commit/64a941d860c43056dcee90b72807335a5a240407))
+* **paypal:** add default generic types to transformer interface ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([a94557f](https://github.com/graycoreio/daffodil/commit/a94557f2f6578bcac000e7b45035c0d08d2554af))
+* **paypal:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([043a8db](https://github.com/graycoreio/daffodil/commit/043a8dbf0d8bc85b6068fae6bf25a2b20c862471))
+* **paypal:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([81c605d](https://github.com/graycoreio/daffodil/commit/81c605d83f29cd72022d9243977318200cbe3c6d))
+* **product:** add injection token types ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([8e0e776](https://github.com/graycoreio/daffodil/commit/8e0e776916178aa0307eea3bc14d23b7c132a7ec))
+* **product:** add typename to driver response models ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([7a7c2c6](https://github.com/graycoreio/daffodil/commit/7a7c2c6e35f82b6345facfc60f0906cd49d85d10))
+* **product:** update to support @apollo/client 3 and apollo-angular 2 ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([714f63c](https://github.com/graycoreio/daffodil/commit/714f63cf73bc6b216e7944a6266bfeed54854885))
+
+
+### Bug Fixes
+
+* **category:** default sort option transformer cannot set read only property '0' ([#1237](https://github.com/graycoreio/daffodil/issues/1237)) ([38b9959](https://github.com/graycoreio/daffodil/commit/38b995992b35870e7f07c4e8b616785f27c9fe07))
+* **demo:** aot compatible driver map ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([6f20d90](https://github.com/graycoreio/daffodil/commit/6f20d90b044de09b368094c758e8f5125fea9760))
+* **design:** handle edge case with [@self](https://github.com/self) injected control ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([81b245b](https://github.com/graycoreio/daffodil/commit/81b245bfd8e971abf42994781e71a9b8ada47992))
+
+
+* **all:** upgrade Angular to v10 package and dependencies ([#1229](https://github.com/graycoreio/daffodil/issues/1229)) ([7e15e0a](https://github.com/graycoreio/daffodil/commit/7e15e0aad0acd7a12528254e5af9ac385a4155cc))
+
 ### [0.23.1](https://github.com/graycoreio/daffodil/compare/v0.23.0...v0.23.1) (2021-01-11)
 
 
