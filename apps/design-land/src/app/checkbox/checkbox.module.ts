@@ -1,5 +1,5 @@
 import { NgModule, ComponentFactoryResolver, Injector } from '@angular/core';
-import { DaffCheckboxModule, DaffButtonModule } from '@daffodil/design';
+import { DaffCheckboxModule, DaffButtonModule, DaffArticleModule } from '@daffodil/design';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -27,6 +27,7 @@ export interface CustomClassElement<T> {
         DesignLandCheckboxRoutingModule,
         DaffCheckboxModule,
         ReactiveFormsModule,
+        DaffArticleModule,
         CommonModule,
     ]
 })
