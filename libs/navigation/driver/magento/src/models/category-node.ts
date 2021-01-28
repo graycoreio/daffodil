@@ -7,6 +7,7 @@ export interface CategoryNode {
   level?: number;
   children_count?: number;
 	children?: CategoryNode[];
+	position?: number;
 	breadcrumbs?: MagentoBreadcrumb[];
 }
 
