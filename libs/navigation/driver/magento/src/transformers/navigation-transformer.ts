@@ -16,7 +16,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       id,
       path: id,
       name: node.name,
-      total_products: node.product_count,
+			total_products: node.product_count,
       children_count: node.children_count,
 			//todo: use optional chaining when possible
 			breadcrumbs: node.breadcrumbs ?
@@ -24,8 +24,9 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
 					.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
 					.sort((a, b) => a.categoryLevel - b.categoryLevel) :
 				[],
-      // TODO: optional chaining
-      children: node.children && node.children.filter(child => child.include_in_menu).map(child => this.transform(child))
+			children: node.children?.filter(child => child.include_in_menu)
+				.sort((a, b) => a.position - b.position)
+				.map(child => this.transform(child))
     };
   }
 
