@@ -1,18 +1,33 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageConfigurationStateFactory,
+} from '@daffodil/category/testing';
+import {
+  DaffProductGridLoadSuccess,
+  daffProductReducers,
+  DaffProduct,
+} from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProductGridLoadSuccess, daffProductReducers, DaffProduct } from '@daffodil/product';
 
-import { DaffCategoryFacade } from './category.facade';
-import { DaffCategoryPageLoad, DaffCategoryPageLoadFailure, DaffCategoryPageLoadSuccess } from '../actions/category.actions';
-import { daffCategoryReducers } from '../reducers/category-reducers';
+import {
+  DaffCategoryPageLoad,
+  DaffCategoryPageLoadFailure,
+  DaffCategoryPageLoadSuccess,
+} from '../actions/category.actions';
 import { DaffCategory } from '../models/category';
-import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
+import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategoryRequest } from '../models/requests/category-request';
+import { daffCategoryReducers } from '../reducers/category-reducers';
+import { DaffCategoryFacade } from './category.facade';
 
 describe('DaffCategoryFacade', () => {
   let store: Store<any>;
@@ -22,36 +37,36 @@ describe('DaffCategoryFacade', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
   let categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
-	let product: DaffProduct;
+  let product: DaffProduct;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
           category: combineReducers(daffCategoryReducers),
-          product: combineReducers(daffProductReducers)
-        })
+          product: combineReducers(daffProductReducers),
+        }),
       ],
       providers: [
         DaffCategoryFacade,
-      ]
-    })
+      ],
+    });
 
     category = categoryFactory.create();
-		categoryPageConfigurationState = categoryPageConfigurationFactory.create();
-		categoryPageConfigurationState.filters = [
-			{
-				name: 'name',
-				label: 'label',
-				type: DaffCategoryFilterType.Equal,
-				options: [{
-					value: 'value',
-					label: 'option_label',
-					count: 2
-				}]
-			}
-		]
-		product = productFactory.create();
+    categoryPageConfigurationState = categoryPageConfigurationFactory.create();
+    categoryPageConfigurationState.filters = [
+      {
+        name: 'name',
+        label: 'label',
+        type: DaffCategoryFilterType.Equal,
+        options: [{
+          value: 'value',
+          label: 'option_label',
+          count: 2,
+        }],
+      },
+    ];
+    product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
     categoryPageConfigurationState.product_ids = [product.id];
     category.product_ids = [product.id];
@@ -65,7 +80,7 @@ describe('DaffCategoryFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);
@@ -80,7 +95,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should be a category after a category is loaded successfully', () => {
       const expected = cold('a', { a: category });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.category$).toBeObservable(expected);
     });
   });
@@ -89,7 +104,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the CategoryPageConfigurationState', () => {
       const expected = cold('a', { a: categoryPageConfigurationState });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.pageConfigurationState$).toBeObservable(expected);
     });
   });
@@ -102,7 +117,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the current page for the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.current_page });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.currentPage$).toBeObservable(expected);
     });
   });
@@ -115,7 +130,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the total number of pages for the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.total_pages });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.totalPages$).toBeObservable(expected);
     });
   });
@@ -128,7 +143,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the total number of pages for the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.total_products });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.totalProducts$).toBeObservable(expected);
     });
   });
@@ -141,33 +156,33 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the page size for the selected category page configuration', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.page_size });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.pageSize$).toBeObservable(expected);
     });
   });
 
   describe('filters$', () => {
     it('should be an empty array initially', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.filters$).toBeObservable(expected);
     });
 
     it('should return an observable of the filters for the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.filters });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.filters$).toBeObservable(expected);
     });
   });
 
   describe('sortOptions$', () => {
     it('should be an empty array initially', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.sortOptions$).toBeObservable(expected);
     });
 
     it('should return an observable of the sort options for the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.sort_options });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.sortOptions$).toBeObservable(expected);
     });
   });
@@ -175,22 +190,21 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the selected category', () => {
-			store.dispatch(new DaffCategoryPageLoad({ id: categoryPageConfigurationState.id, filter_requests: [{
-				name: 'name',
-				value: ['value'],
-				type: DaffCategoryFilterType.Equal
-			}]}));
-			const expected = cold('a', { a: [{
-					name: 'name',
-					label: 'label',
-					type: DaffCategoryFilterType.Equal,
-					options: [{
-						value: 'value',
-						label: 'option_label'
-					}]
-				}]
-			});
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoad({ id: categoryPageConfigurationState.id, filter_requests: [{
+        name: 'name',
+        value: ['value'],
+        type: DaffCategoryFilterType.Equal,
+      }]}));
+      const expected = cold('a', { a: [{
+        name: 'name',
+        label: 'label',
+        type: DaffCategoryFilterType.Equal,
+        options: [{
+          value: 'value',
+          label: 'option_label',
+        }],
+      }]});
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.appliedFilters$).toBeObservable(expected);
     });
   });
@@ -203,7 +217,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the applied sort option on the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.applied_sort_option });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.appliedSortOption$).toBeObservable(expected);
     });
   });
@@ -216,20 +230,20 @@ describe('DaffCategoryFacade', () => {
 
     it('should return an observable of the applied sort direction on the selected category', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.applied_sort_direction });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.appliedSortDirection$).toBeObservable(expected);
     });
   });
 
   describe('products$', () => {
     it('should be undefined initially', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.products$).toBeObservable(expected);
     });
 
     it('should return an observable of the selectCategoryProducts state', () => {
-      const expected = cold('a', { a: [product] });
-      store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      const expected = cold('a', { a: [product]});
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       store.dispatch(new DaffProductGridLoadSuccess([product]));
       expect(facade.products$).toBeObservable(expected);
     });
@@ -280,46 +294,46 @@ describe('DaffCategoryFacade', () => {
   describe('getCategoryById', () => {
 
     it('should be an observable of a category that matches the provided id', () => {
-			const expected = cold('a', { a: category });
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-			store.dispatch(new DaffProductGridLoadSuccess([product]));
-			expect(facade.getCategoryById(category.id)).toBeObservable(expected);
-		});
+      const expected = cold('a', { a: category });
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
+      store.dispatch(new DaffProductGridLoadSuccess([product]));
+      expect(facade.getCategoryById(category.id)).toBeObservable(expected);
+    });
   });
 
   describe('getProductsByCategory', () => {
 
     it('should be an observable of an array of products that are filtered by the provided category id', () => {
-			const expected = cold('a', { a: [product] });
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-			store.dispatch(new DaffProductGridLoadSuccess([product]));
-			expect(facade.getProductsByCategory(category.id)).toBeObservable(expected);
-		});
+      const expected = cold('a', { a: [product]});
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
+      store.dispatch(new DaffProductGridLoadSuccess([product]));
+      expect(facade.getProductsByCategory(category.id)).toBeObservable(expected);
+    });
   });
 
   describe('getTotalProductsByCategory', () => {
 
     it('should be an observable of an array of products that are filtered by the provided category id', () => {
-			const expected = cold('a', { a: 1 });
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-			store.dispatch(new DaffProductGridLoadSuccess([product]));
-			expect(facade.getTotalProductsByCategory(category.id)).toBeObservable(expected);
-		});
+      const expected = cold('a', { a: 1 });
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
+      store.dispatch(new DaffProductGridLoadSuccess([product]));
+      expect(facade.getTotalProductsByCategory(category.id)).toBeObservable(expected);
+    });
   });
 
   describe('isCategoryEmpty$', () => {
 
     it('should return false when the category has products', () => {
-			const expected = cold('a', { a: false });
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      const expected = cold('a', { a: false });
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.isCategoryEmpty$).toBeObservable(expected);
-		});
+    });
 
     it('should return true when the category has no products', () => {
-			const expected = cold('a', { a: true });
-			categoryPageConfigurationState.product_ids = [];
-			categoryPageConfigurationState.total_products = 0;
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [] }));
+      const expected = cold('a', { a: true });
+      categoryPageConfigurationState.product_ids = [];
+      categoryPageConfigurationState.total_products = 0;
+      store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: []}));
       expect(facade.isCategoryEmpty$).toBeObservable(expected);
     });
   });

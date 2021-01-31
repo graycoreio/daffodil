@@ -1,8 +1,9 @@
-import { MagentoCategory } from './category';
-import { MagentoSortFields } from './sort-fields';
-import { MagentoAggregation } from './aggregation';
 import { MagentoProduct } from '@daffodil/product';
+
+import { MagentoAggregation } from './aggregation';
+import { MagentoCategory } from './category';
 import { MagentoPageInfo } from './page-info';
+import { MagentoSortFields } from './sort-fields';
 
 export interface MagentoCompleteCategoryResponse {
   category: MagentoCategory;

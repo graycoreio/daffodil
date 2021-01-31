@@ -5,5 +5,5 @@ export interface MagentoGetCategoryAggregationsResponse {
 	products: {
 		aggregations: MagentoAggregation[];
 		sort_fields: MagentoSortFields;
-	}
+	};
 }

@@ -1,8 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffMagentoAppliedSortOptionTransformService } from './applied-sort-option-transformer.service';
-import { MagentoSortFieldAction, MagentoSortDirectionEnum } from '../models/requests/sort';
 import { DaffSortDirectionEnum } from '../../../models/requests/category-request';
+import {
+  MagentoSortFieldAction,
+  MagentoSortDirectionEnum,
+} from '../models/requests/sort';
+import { DaffMagentoAppliedSortOptionTransformService } from './applied-sort-option-transformer.service';
 
 describe('DaffMagentoAppliedSortOptionTransformService', () => {
 
@@ -11,8 +14,8 @@ describe('DaffMagentoAppliedSortOptionTransformService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoAppliedSortOptionTransformService
-      ]
+        DaffMagentoAppliedSortOptionTransformService,
+      ],
     });
     service = TestBed.inject(DaffMagentoAppliedSortOptionTransformService);
   });
@@ -24,9 +27,9 @@ describe('DaffMagentoAppliedSortOptionTransformService', () => {
   describe('transform', () => {
 
     it('should return a MagentoSortOptionAction', () => {
-			const expectedReturn: MagentoSortFieldAction = {
-				sortOption: MagentoSortDirectionEnum.Ascending
-			}
+      const expectedReturn: MagentoSortFieldAction = {
+        sortOption: MagentoSortDirectionEnum.Ascending,
+      };
       expect(service.transform('sortOption', DaffSortDirectionEnum.Ascending)).toEqual(expectedReturn);
     });
   });

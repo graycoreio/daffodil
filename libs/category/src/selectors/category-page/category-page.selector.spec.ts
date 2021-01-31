@@ -1,63 +1,74 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageConfigurationStateFactory,
+} from '@daffodil/category/testing';
 
-import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
-import { DaffCategoryRequest } from '../../models/requests/category-request';
+import {
+  DaffCategoryPageLoadSuccess,
+  DaffCategoryPageLoad,
+} from '../../actions/category.actions';
 import { DaffCategory } from '../../models/category';
-import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
-import { getDaffCategoryPageSelectors } from './category-page.selector';
-import { daffCategoryReducers } from '../../reducers/category-reducers';
-import { DaffCategoryFilterType } from '../../models/category-filter-base';
-import { DaffCategoryPageLoadSuccess, DaffCategoryPageLoad } from '../../actions/category.actions';
-import { DaffCategoryFilterRequest } from '../../models/requests/filter-request';
 import { DaffCategoryAppliedFilter } from '../../models/category-applied-filter';
+import { DaffCategoryFilterType } from '../../models/category-filter-base';
+import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
+import { DaffCategoryRequest } from '../../models/requests/category-request';
+import { DaffCategoryFilterRequest } from '../../models/requests/filter-request';
+import { daffCategoryReducers } from '../../reducers/category-reducers';
+import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
+import { getDaffCategoryPageSelectors } from './category-page.selector';
 
 describe('DaffCategoryPageSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-	let stubCategory: DaffCategory;
+  let stubCategory: DaffCategory;
   let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
-	const categorySelectors = getDaffCategoryPageSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
+  const categorySelectors = getDaffCategoryPageSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          category: combineReducers(daffCategoryReducers)
-        })
-      ]
+          category: combineReducers(daffCategoryReducers),
+        }),
+      ],
     });
 
     stubCategory = categoryFactory.create();
-    stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create()
+    stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
-		stubCategoryPageConfigurationState.filters = [
-			{
-				name: 'name',
-				type: DaffCategoryFilterType.Equal,
-				label: 'label',
-				options: [{
-					label: 'option_label',
-					value: 'value',
-					count: 2
-				}]
-			},
-			{
-				name: 'name2',
-				type: DaffCategoryFilterType.Equal,
-				label: 'label2',
-				options: [{
-					label: 'option_label2',
-					value: 'value2',
-					count: 2
-				}]
-			}
-		];
+    stubCategoryPageConfigurationState.filters = [
+      {
+        name: 'name',
+        type: DaffCategoryFilterType.Equal,
+        label: 'label',
+        options: [{
+          label: 'option_label',
+          value: 'value',
+          count: 2,
+        }],
+      },
+      {
+        name: 'name2',
+        type: DaffCategoryFilterType.Equal,
+        label: 'label2',
+        options: [{
+          label: 'option_label2',
+          value: 'value2',
+          count: 2,
+        }],
+      },
+    ];
     store = TestBed.inject(Store);
 
     store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
@@ -70,8 +81,8 @@ describe('DaffCategoryPageSelectors', () => {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
         categoryLoading: false,
         productsLoading: false,
-        errors: []
-      }
+        errors: [],
+      };
       const selector = store.pipe(select(categorySelectors.selectCategoryState));
       const expected = cold('a', { a: expectedFeatureState });
       expect(selector).toBeObservable(expected);
@@ -126,52 +137,52 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectCategoryPageAppliedFilters', () => {
 
     it('sets applied filters to [] if the available filters is []', () => {
-			store.dispatch(new DaffCategoryPageLoadSuccess({
+      store.dispatch(new DaffCategoryPageLoadSuccess({
         category: stubCategory,
         categoryPageConfigurationState: {
           ...stubCategoryPageConfigurationState,
-          filters: []
+          filters: [],
         },
-        products: null
+        products: null,
       }));
-			const filterRequests: DaffCategoryFilterRequest[] = [
-				{
-					name: 'name',
-					type: DaffCategoryFilterType.Equal,
-					value: ['value']
-				}
-			];
-			const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [];
-			store.dispatch(new DaffCategoryPageLoad({
-				id: stubCategoryPageConfigurationState.id,
-				filter_requests: filterRequests
-			}));
+      const filterRequests: DaffCategoryFilterRequest[] = [
+        {
+          name: 'name',
+          type: DaffCategoryFilterType.Equal,
+          value: ['value'],
+        },
+      ];
+      const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [];
+      store.dispatch(new DaffCategoryPageLoad({
+        id: stubCategoryPageConfigurationState.id,
+        filter_requests: filterRequests,
+      }));
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedFilters));
       const expected = cold('a', { a: expectedAppliedFilters });
       expect(selector).toBeObservable(expected);
     });
 
     it('selects the applied filters of the current category', () => {
-			const filterRequests: DaffCategoryFilterRequest[] = [
-				{
-					name: 'name',
-					type: DaffCategoryFilterType.Equal,
-					value: ['value']
-				}
-			];
-			const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [{
-				name: 'name',
-				label: 'label',
-				type: DaffCategoryFilterType.Equal,
-				options: [{
-					label: 'option_label',
-					value: 'value'
-				}]
-			}]
-			store.dispatch(new DaffCategoryPageLoad({
-				id: stubCategoryPageConfigurationState.id,
-				filter_requests: filterRequests
-			}));
+      const filterRequests: DaffCategoryFilterRequest[] = [
+        {
+          name: 'name',
+          type: DaffCategoryFilterType.Equal,
+          value: ['value'],
+        },
+      ];
+      const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [{
+        name: 'name',
+        label: 'label',
+        type: DaffCategoryFilterType.Equal,
+        options: [{
+          label: 'option_label',
+          value: 'value',
+        }],
+      }];
+      store.dispatch(new DaffCategoryPageLoad({
+        id: stubCategoryPageConfigurationState.id,
+        filter_requests: filterRequests,
+      }));
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedFilters));
       const expected = cold('a', { a: expectedAppliedFilters });
       expect(selector).toBeObservable(expected);
@@ -272,7 +283,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('returns the selected category id', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryErrors));
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(selector).toBeObservable(expected);
     });
   });

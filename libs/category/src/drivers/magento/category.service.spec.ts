@@ -4,8 +4,11 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageConfigurationStateFactory,
+} from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
 import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
@@ -32,12 +35,12 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCategoryService,
-        { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryResponseTransformerService }
-      ]
+        { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryResponseTransformerService },
+      ],
     });
 
     categoryService = TestBed.inject(DaffMagentoCategoryService);

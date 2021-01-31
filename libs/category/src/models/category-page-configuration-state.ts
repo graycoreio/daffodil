@@ -8,4 +8,4 @@ export type DaffCategoryPageConfigurationState<T extends DaffCategoryRequest = D
 	total_pages: number;
 	total_products: number;
 	product_ids: string[];
-}
+};

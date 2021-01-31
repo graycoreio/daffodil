@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { daffCategoryReducers } from './reducers/category-reducers';
-import { DaffCategoryEffects } from './effects/category.effects';
-import { DaffDefaultCategoryPageSize } from './resolvers/public_api';
 import { DaffCategoryPageEffects } from './effects/category-page.effects';
+import { DaffCategoryEffects } from './effects/category.effects';
+import { daffCategoryReducers } from './reducers/category-reducers';
+import { DaffDefaultCategoryPageSize } from './resolvers/public_api';
 
 @NgModule({
   imports: [
     StoreModule.forFeature('category', daffCategoryReducers),
     EffectsModule.forFeature([DaffCategoryEffects, DaffCategoryPageEffects]),
-	],
-	providers: [
-		{ provide: DaffDefaultCategoryPageSize, useValue: 12 }
-	]
+  ],
+  providers: [
+    { provide: DaffDefaultCategoryPageSize, useValue: 12 },
+  ],
 })
 export class DaffCategoryStateModule { }

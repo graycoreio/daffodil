@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { magentoProductFragment } from '@daffodil/product';
 
@@ -24,4 +24,4 @@ query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInp
 	}
 }
 ${magentoProductFragment}
-`
+`;

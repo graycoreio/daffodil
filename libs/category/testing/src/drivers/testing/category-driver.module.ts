@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffCategoryDriver } from '@daffodil/category';
 
@@ -7,8 +10,8 @@ import { DaffTestingCategoryService } from './category.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffCategoryTestingDriverModule {
   static forRoot(): ModuleWithProviders<DaffCategoryTestingDriverModule> {
@@ -17,9 +20,9 @@ export class DaffCategoryTestingDriverModule {
       providers: [
         {
           provide: DaffCategoryDriver,
-          useExisting: DaffTestingCategoryService
-        }
-      ]
+          useExisting: DaffTestingCategoryService,
+        },
+      ],
     };
   }
 }

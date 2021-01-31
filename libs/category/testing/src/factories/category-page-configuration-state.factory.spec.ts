@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryPageConfigurationState, DaffCategoryRequest } from '@daffodil/category';
+import {
+  DaffCategoryPageConfigurationState,
+  DaffCategoryRequest,
+} from '@daffodil/category';
 
 import { DaffCategoryPageConfigurationStateFactory } from './category-page-configuration-state.factory';
 
@@ -10,7 +13,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCategoryPageConfigurationStateFactory]
+      providers: [DaffCategoryPageConfigurationStateFactory],
     });
 
     categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageConfigurationStateFactory);
@@ -34,9 +37,9 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
       expect(result.sort_options[0].value).toBeDefined();
       expect(result.total_pages).toBeDefined();
       expect(result.filters).toBeDefined();
-			expect(result.filter_requests).toBeDefined();
-			expect(result.product_ids).toBeDefined();
-			expect(result.total_products).toBeDefined();
+      expect(result.filter_requests).toBeDefined();
+      expect(result.product_ids).toBeDefined();
+      expect(result.total_products).toBeDefined();
     });
   });
 
@@ -49,6 +52,6 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
 
       result = categoryPageConfigurationStateFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

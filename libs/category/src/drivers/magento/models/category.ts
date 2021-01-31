@@ -9,7 +9,7 @@ export interface MagentoCategory {
 	children_count?: number;
 	products?: {
 		items?: MagentoProduct[];
-	}
+	};
   children?: MagentoCategory[];
 }
 

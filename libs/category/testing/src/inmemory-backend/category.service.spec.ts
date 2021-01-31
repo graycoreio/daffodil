@@ -12,8 +12,8 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCategoryService,
-        DaffInMemoryBackendProductService
-      ]
+        DaffInMemoryBackendProductService,
+      ],
     });
 
     inMemoryBackendProductService = TestBed.inject(DaffInMemoryBackendProductService);
@@ -32,22 +32,20 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     const stubCurrentPage = 2;
 
     beforeEach(() => {
-			const paramsMap = new Map()
-				.set('page_size', [stubPageSize])
-				.set('current_page', [stubCurrentPage]);
+      const paramsMap = new Map()
+        .set('page_size', [stubPageSize])
+        .set('current_page', [stubCurrentPage]);
       reqInfoStub = {
         id: 'any parameter',
-				req: {
-					params: {
-						map: paramsMap
-					}
-				},
+        req: {
+          params: {
+            map: paramsMap,
+          },
+        },
         utils: {
-          createResponse$: (func) => {
-            return func();
-          }
-        }
-      }
+          createResponse$: (func) => func(),
+        },
+      };
 
       result = categoryTestingService.get(reqInfoStub);
     });
@@ -56,19 +54,19 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
       expect(result.body).toEqual({
         category: categoryTestingService.category,
         categoryPageConfigurationState: categoryTestingService.categoryPageConfigurationState,
-        products: inMemoryBackendProductService.products
+        products: inMemoryBackendProductService.products,
       });
     });
 
     it('should set total_pages', () => {
-			const totalProducts = result.body.category.total_products;
-			const pageSize = result.body.categoryPageConfigurationState.page_size;
+      const totalProducts = result.body.category.total_products;
+      const pageSize = result.body.categoryPageConfigurationState.page_size;
       expect(result.body.categoryPageConfigurationState.total_pages).toEqual(Math.ceil(totalProducts/pageSize));
-		});
+    });
 
-		it('should set no more products on the category than the page_size', () => {
-			expect(result.body.categoryPageConfigurationState.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
-		});
+    it('should set no more products on the category than the page_size', () => {
+      expect(result.body.categoryPageConfigurationState.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
+    });
 
     it('should set page_size when the page_size is provided', () => {
       expect(result.body.categoryPageConfigurationState.page_size).toEqual(stubPageSize);
