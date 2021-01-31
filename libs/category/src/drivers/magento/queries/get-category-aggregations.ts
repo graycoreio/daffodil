@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 export const DAFF_MAGENTO_GET_CATEGORY_AGGREGATIONS_QUERY_NAME = 'MagentoGetCategoryAggregations';
 
@@ -29,4 +29,4 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AGGREGATIONS_QUERY_NAME}($filter: ProductAttri
 			}
 		}
 	}
-}`
+}`;

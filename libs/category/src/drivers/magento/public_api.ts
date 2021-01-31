@@ -2,14 +2,26 @@ export { DaffMagentoCategoryService } from './category.service';
 export { DaffCategoryMagentoDriverModule } from './category-driver.module';
 
 export { MagentoCompleteCategoryResponse } from './models/complete-category-response';
-export { MagentoCategory, MagentoBreadcrumb } from './models/category';
+export {
+  MagentoCategory,
+  MagentoBreadcrumb,
+} from './models/category';
 export { MagentoGetACategoryResponse } from './models/get-category-response';
-export { MagentoSortFields, MagentoSortOption } from './models/sort-fields';
+export {
+  MagentoSortFields,
+  MagentoSortOption,
+} from './models/sort-fields';
 export { MagentoPageInfo } from './models/page-info';
 export { MagentoGetProductsResponse } from './models/get-products-response';
-export { MagentoAggregation, MagentoAggregationOption } from './models/aggregation';
+export {
+  MagentoAggregation,
+  MagentoAggregationOption,
+} from './models/aggregation';
 export { MagentoGetProductsByCategoriesRequest } from './models/requests/get-products-by-categories-request';
-export { MagentoCategoryFilters, MagentoFilterAction } from './models/requests/filters';
+export {
+  MagentoCategoryFilters,
+  MagentoFilterAction,
+} from './models/requests/filters';
 export { MagentoSortFieldAction } from './models/requests/sort';
 
 export { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';

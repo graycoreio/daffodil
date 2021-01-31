@@ -1,32 +1,41 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
-import { daffCategoryReducers } from '../../reducers/category-reducers';
-import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
-import { DaffCategoryRequest } from '../../models/requests/category-request';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageConfigurationStateFactory,
+} from '@daffodil/category/testing';
+
+import { DaffCategoryPageLoadSuccess } from '../../actions/category.actions';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
+import { DaffCategoryRequest } from '../../models/requests/category-request';
+import { daffCategoryReducers } from '../../reducers/category-reducers';
+import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
-import { DaffCategoryPageLoadSuccess } from '../../actions/category.actions';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-	let stubCategory: DaffCategory;
+  let stubCategory: DaffCategory;
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
-	const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
+  const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          category: combineReducers(daffCategoryReducers)
-        })
-      ]
+          category: combineReducers(daffCategoryReducers),
+        }),
+      ],
     });
 
     stubCategory = categoryFactory.create();
@@ -39,7 +48,7 @@ describe('DaffCategoryEntitiesSelectors', () => {
 
     it('returns all category ids', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryIds));
-      const expected = cold('a', { a: [stubCategory.id] });
+      const expected = cold('a', { a: [stubCategory.id]});
       expect(selector).toBeObservable(expected);
     });
   });
@@ -60,7 +69,7 @@ describe('DaffCategoryEntitiesSelectors', () => {
 
     it('returns all categories as an array', () => {
       const selector = store.pipe(select(categorySelectors.selectAllCategories));
-      const expected = cold('a', { a: [stubCategory] });
+      const expected = cold('a', { a: [stubCategory]});
       expect(selector).toBeObservable(expected);
     });
   });

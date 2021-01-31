@@ -1,6 +1,6 @@
+import { daffCategoryEntitiesReducer } from './category-entities/category-entities.reducer';
 import { daffCategoryReducers } from './category-reducers';
 import { daffCategoryReducer } from './category/category.reducer';
-import { daffCategoryEntitiesReducer } from './category-entities/category-entities.reducer';
 
 describe('selectCategoryState', () => {
 

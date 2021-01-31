@@ -1,19 +1,19 @@
-import { BehaviorSubject } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffProduct } from '@daffodil/product';
 import {
-	DaffCategoryFacadeInterface,
-	DaffCategory,
-	DaffCategoryPageConfigurationState,
-	DaffCategoryFilter,
-	DaffCategorySortOption,
-	DaffCategoryAppliedFilter,
-	DaffSortDirectionEnum
+  DaffCategoryFacadeInterface,
+  DaffCategory,
+  DaffCategoryPageConfigurationState,
+  DaffCategoryFilter,
+  DaffCategorySortOption,
+  DaffCategoryAppliedFilter,
+  DaffSortDirectionEnum,
 } from '@daffodil/category';
+import { DaffProduct } from '@daffodil/product';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);
@@ -34,13 +34,13 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 	isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
 	getCategoryById(id: DaffCategory['id']): BehaviorSubject<DaffCategory> {
-		return new BehaviorSubject(null);
+	  return new BehaviorSubject(null);
 	};
 	getProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<DaffProduct[]> {
-		return new BehaviorSubject([]);
+	  return new BehaviorSubject([]);
 	};
 	getTotalProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
+	  return new BehaviorSubject(null);
 	};
-  dispatch(action: Action) {};
+	dispatch(action: Action) {};
 }

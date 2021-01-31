@@ -1,16 +1,19 @@
-import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
-import { DaffCategoryFilter } from '../models/category-filter';
-import { DaffCategorySortOption } from '../models/category-sort-option';
-import { DaffSortDirectionEnum, DaffCategoryRequest } from '../models/requests/category-request';
-import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
-import { DaffGenericCategory } from '../models/generic-category';
 import { DaffCategory } from '../models/category';
+import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
+import { DaffCategoryFilter } from '../models/category-filter';
+import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategorySortOption } from '../models/category-sort-option';
+import { DaffGenericCategory } from '../models/generic-category';
+import {
+  DaffSortDirectionEnum,
+  DaffCategoryRequest,
+} from '../models/requests/category-request';
 
 export interface DaffCategoryFacadeInterface<
 	T extends DaffCategoryRequest = DaffCategoryRequest,
@@ -19,8 +22,8 @@ export interface DaffCategoryFacadeInterface<
 	W extends DaffProduct = DaffProduct
 > extends DaffStoreFacade<Action> {
 	/**
-   * The currently selected category.
-   */
+	 * The currently selected category.
+	 */
   category$: Observable<V>;
   /**
    * The page configuration state for the selected category.
@@ -85,18 +88,21 @@ export interface DaffCategoryFacadeInterface<
 
 	/**
 	 * Get a category by the provided Id.
+	 *
 	 * @param id
 	 */
 	getCategoryById(id: V['id']): Observable<V>;
 
 	/**
 	 * Get products by a category Id.
+	 *
 	 * @param categoryId
 	 */
 	getProductsByCategory(categoryId: V['id']): Observable<W[]>;
 
 	/**
 	 * Get products by a category Id.
+	 *
 	 * @param categoryId
 	 */
 	getTotalProductsByCategory(categoryId: V['id']): Observable<number>;

@@ -3,9 +3,9 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffTestingCategoryService } from './category.service';
-import { DaffCategoryFactory } from '../../factories/category.factory';
 import { DaffCategoryPageConfigurationStateFactory } from '../../factories/category-page-configuration-state.factory';
+import { DaffCategoryFactory } from '../../factories/category.factory';
+import { DaffTestingCategoryService } from './category.service';
 
 describe('Driver | Testing | Category | CategoryService', () => {
   let categoryService;
@@ -31,8 +31,8 @@ describe('Driver | Testing | Category | CategoryService', () => {
         { provide: DaffCategoryFactory, useValue: mockCategoryFactory },
         { provide: DaffCategoryPageConfigurationStateFactory, useValue: mockCategoryPageConfigurationStateFactory },
         { provide: DaffProductFactory, useValue: mockProductFactory },
-        DaffTestingCategoryService
-      ]
+        DaffTestingCategoryService,
+      ],
     });
     categoryService = TestBed.inject(DaffTestingCategoryService);
   });
@@ -44,7 +44,7 @@ describe('Driver | Testing | Category | CategoryService', () => {
   describe('get', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
-      const expected = cold('(a|)', { a: {category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: products }});
+      const expected = cold('(a|)', { a: { category, categoryPageConfigurationState, products }});
       expect(categoryService.get('id')).toBeObservable(expected);
     });
   });

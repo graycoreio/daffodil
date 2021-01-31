@@ -12,4 +12,4 @@ export interface MagentoCategoryFilters {
 
 export type MagentoFilterAction = {
 	[key in MagentoCategoryFilterActionEnum]?: string | string[];
-}
+};

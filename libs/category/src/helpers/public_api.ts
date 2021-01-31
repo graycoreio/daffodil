@@ -1,1 +1,1 @@
-export { daffCategoryValidateFilters } from './validate-filters'
+export { daffCategoryValidateFilters } from './validate-filters';

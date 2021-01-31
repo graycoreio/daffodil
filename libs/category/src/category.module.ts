@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { DaffProductModule } from '@daffodil/product';
 
 import { DaffCategoryStateModule } from './category-state.module';
-import { DaffProductModule } from '@daffodil/product';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { DaffProductModule } from '@daffodil/product';
      * Ngrx/store
      */
     DaffCategoryStateModule,
-    DaffProductModule
-  ]
+    DaffProductModule,
+  ],
 })
 export class DaffCategoryModule { }

@@ -14,15 +14,18 @@ export * from './resolvers/public_api';
 export * from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';
-export { DaffCategoryFilter, DaffCategoryFilterOption } from './models/category-filter';
+export {
+  DaffCategoryFilter,
+  DaffCategoryFilterOption,
+} from './models/category-filter';
 export { DaffCategoryFilterType } from './models/category-filter-base';
 export { DaffCategoryPageConfigurationState } from './models/category-page-configuration-state';
-export { DaffCategoryBreadcrumb } from './models/category-breadcrumb'
-export { DaffCategory } from './models/category'
-export { DaffGenericCategory } from './models/generic-category'
+export { DaffCategoryBreadcrumb } from './models/category-breadcrumb';
+export { DaffCategory } from './models/category';
+export { DaffGenericCategory } from './models/generic-category';
 export {
-	DaffCategoryRequest,
-	DaffSortDirectionEnum
+  DaffCategoryRequest,
+  DaffSortDirectionEnum,
 } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
 export * from './models/requests/filter-request';

@@ -1,4 +1,5 @@
 import { MagentoProduct } from '@daffodil/product';
+
 import { MagentoPageInfo } from './page-info';
 
 export interface MagentoGetProductsResponse {
@@ -6,5 +7,5 @@ export interface MagentoGetProductsResponse {
 		items: MagentoProduct[];
 		page_info: MagentoPageInfo;
 		total_count: number;
-	}
+	};
 }

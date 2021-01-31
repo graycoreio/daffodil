@@ -10,7 +10,7 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCategoryFactory]
+      providers: [DaffCategoryFactory],
     });
 
     categoryFactory = TestBed.inject(DaffCategoryFactory);
@@ -30,8 +30,8 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
 
     it('should return a Category with all required fields defined', () => {
       expect(result.id).toBeDefined();
-			expect(result.name).toBeDefined();
-			expect(result.description).toBeDefined();
+      expect(result.name).toBeDefined();
+      expect(result.description).toBeDefined();
       expect(result.children_count).toBeDefined();
       expect(result.total_products).toBeDefined();
       expect(result.product_ids).toBeDefined();
@@ -48,6 +48,6 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
 
       result = categoryFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

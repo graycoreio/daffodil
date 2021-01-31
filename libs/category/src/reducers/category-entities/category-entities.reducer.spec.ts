@@ -1,9 +1,12 @@
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
-import { DaffCategoryLoadSuccess, DaffCategoryPageLoadSuccess } from '../../actions/category.actions';
-import { daffCategoryEntitiesReducer } from './category-entities.reducer';
+import {
+  DaffCategoryLoadSuccess,
+  DaffCategoryPageLoadSuccess,
+} from '../../actions/category.actions';
 import { DaffCategory } from '../../models/category';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
+import { daffCategoryEntitiesReducer } from './category-entities.reducer';
 
 describe('Category | Category Entities Reducer', () => {
 
@@ -16,7 +19,7 @@ describe('Category | Category Entities Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), action);
 
@@ -34,7 +37,7 @@ describe('Category | Category Entities Reducer', () => {
       category = categoryFactory.create();
       categoryId = category.id;
 
-      const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({category: category, categoryPageConfigurationState: null, products: null});
+      const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState: null, products: null });
 
       result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
     });
@@ -54,7 +57,7 @@ describe('Category | Category Entities Reducer', () => {
       category = categoryFactory.create();
       categoryId = category.id;
 
-      const categoryLoadSuccess = new DaffCategoryLoadSuccess({category: category, categoryPageConfigurationState: null, products: null});
+      const categoryLoadSuccess = new DaffCategoryLoadSuccess({ category, categoryPageConfigurationState: null, products: null });
 
       result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
     });

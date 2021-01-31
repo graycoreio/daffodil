@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 export const DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME = 'MagentoGetCategoryQuery';
 
@@ -22,4 +22,4 @@ query ${DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME}($filters: CategoryFilterInput){
 		}
 		children_count
 	}
-}`
+}`;

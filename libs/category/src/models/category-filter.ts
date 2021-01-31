@@ -1,5 +1,5 @@
-import { DaffCategoryFilterBase } from './category-filter-base';
 import { DaffCategoryAppliedFilterOption } from './category-applied-filter';
+import { DaffCategoryFilterBase } from './category-filter-base';
 
 export interface DaffCategoryFilter extends DaffCategoryFilterBase {
 	options: DaffCategoryFilterOption[];
