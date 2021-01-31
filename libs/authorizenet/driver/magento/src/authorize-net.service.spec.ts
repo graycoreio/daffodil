@@ -1,9 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-
-import { AcceptType, AuthorizeNetResponse, DaffAuthorizeNetCreditCard, DaffAuthorizeNetTokenRequest, DaffAcceptJsLoadingService } from '@daffodil/authorizenet';
-import { DaffAuthorizeNetConfig, DaffAuthorizeNetConfigToken, DaffAuthorizeNetPastCCExpirationError } from '@daffodil/authorizenet/driver';
-import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
 import { hot } from 'jasmine-marbles';
+
+import {
+  AcceptType,
+  AuthorizeNetResponse,
+  DaffAuthorizeNetCreditCard,
+  DaffAuthorizeNetTokenRequest,
+  DaffAcceptJsLoadingService,
+} from '@daffodil/authorizenet';
+import {
+  DaffAuthorizeNetConfig,
+  DaffAuthorizeNetConfigToken,
+  DaffAuthorizeNetPastCCExpirationError,
+} from '@daffodil/authorizenet/driver';
+import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
 
 import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
 
@@ -24,7 +34,7 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
   const ccLast4 = '1234';
   const stubAuthData: DaffAuthorizeNetConfig = {
     apiLoginID: 'apiLoginID',
-    clientKey: 'clientKey'
+    clientKey: 'clientKey',
   };
 
   beforeEach(() => {
@@ -32,10 +42,10 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
       providers: [
         DaffMagentoAuthorizeNetService,
         {
-					provide: DaffAuthorizeNetConfigToken,
-					useValue: stubAuthData
-        }
-      ]
+          provide: DaffAuthorizeNetConfigToken,
+          useValue: stubAuthData,
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoAuthorizeNetService);
@@ -46,45 +56,45 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
       month: 'month',
       year: 'year',
       securitycode: 'securitycode',
-    }
+    };
 
     request = {
-      creditCard: stubCreditCard
+      creditCard: stubCreditCard,
     };
     expectedRequestObject = {
       cardData: {
         cardNumber: stubCreditCard.cardnumber,
         cardCode: stubCreditCard.securitycode,
         month: stubCreditCard.month,
-        year: stubCreditCard.year
+        year: stubCreditCard.year,
       },
       authData: {
         clientKey: stubAuthData.clientKey,
-        apiLoginID: stubAuthData.apiLoginID
-      }
+        apiLoginID: stubAuthData.apiLoginID,
+      },
     };
     authorizeNetResponse = {
       messages: {
         resultCode: 'Success',
-        message: []
+        message: [],
       },
       opaqueData: {
         dataValue: 'paymentNonce',
-        dataDescriptor: null
-      }
+        dataDescriptor: null,
+      },
     };
     authorizeNetPayment = {
       code: 'authorizenet_acceptjs',
       authorizenet_acceptjs: {
         cc_last_4: parseInt(ccLast4, 10),
         opaque_data_descriptor: 'COMMON.ACCEPT.INAPP.PAYMENT',
-        opaque_data_value: 'paymentNonce'
-      }
+        opaque_data_value: 'paymentNonce',
+      },
     };
 
-    acceptSpy = jasmine.createSpy()
+    acceptSpy = jasmine.createSpy();
     getAcceptSpy = spyOn(acceptJsLoaderService, 'getAccept');
-    getAcceptSpy.and.returnValue({dispatchData: acceptSpy});
+    getAcceptSpy.and.returnValue({ dispatchData: acceptSpy });
   });
 
   it('should be created', () => {
@@ -94,11 +104,11 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
   describe('generateToken | generating a payment token with acceptjs', () => {
     describe('when the request completes successfully', () => {
       beforeEach(() => {
-        acceptSpy.and.callFake((_, cb) => cb(authorizeNetResponse))
+        acceptSpy.and.callFake((_, cb) => cb(authorizeNetResponse));
       });
 
       it('should return the payment info', () => {
-        const expected = hot('a', {a: authorizeNetPayment});
+        const expected = hot('a', { a: authorizeNetPayment });
         expect(service.generateToken(request)).toBeObservable(expected);
       });
     });
@@ -117,12 +127,12 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
             message: [
               {
                 code: errorCode,
-                text: errorMessage
-              }
-            ]
-          }
+                text: errorMessage,
+              },
+            ],
+          },
         };
-        acceptSpy.and.callFake((_, cb) => cb(errorResponse))
+        acceptSpy.and.callFake((_, cb) => cb(errorResponse));
       });
 
       it('should throw a past CC expiration error', () => {

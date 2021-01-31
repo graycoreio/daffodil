@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Action, Store, select } from '@ngrx/store';
+import {
+  Action,
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
-import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
+import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
 
@@ -19,12 +23,12 @@ export class DaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
   acceptJsLoadError$: Observable<DaffStateError>;
 
   constructor(private store: Store<DaffAuthorizeNetReducersState>) {
-		const {
-			selectIsAcceptJsLoaded,
-			selectLoading,
-			selectPaymentError,
-			selectAcceptJsLoadError
-		} = daffAuthorizeNetSelectors();
+    const {
+      selectIsAcceptJsLoaded,
+      selectLoading,
+      selectPaymentError,
+      selectAcceptJsLoadError,
+    } = daffAuthorizeNetSelectors();
 
     this.isAcceptJsLoaded$ = this.store.pipe(select(selectIsAcceptJsLoaded));
     this.loading$ = this.store.pipe(select(selectLoading));

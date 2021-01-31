@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { DaffCartAddress } from '@daffodil/cart';
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import { DaffCartAddress } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffAuthorizeNetActionTypes {

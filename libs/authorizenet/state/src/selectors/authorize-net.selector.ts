@@ -1,4 +1,8 @@
-import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
+import {
+  createSelector,
+  createFeatureSelector,
+  MemoizedSelector,
+} from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
 
@@ -7,74 +11,74 @@ import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authoriz
 import { DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '../reducers/authorizenet-store-feature-key';
 
 export interface DaffAuthorizeNetMemoizedSelectors {
-	selectAuthorizeNetFeatureState: MemoizedSelector<object, DaffAuthorizeNetReducersState>;
-	selectAuthorizeNetState: MemoizedSelector<object, DaffAuthorizeNetReducerState> ;
-	selectLoading: MemoizedSelector<object, boolean>;
-	selectPaymentError: MemoizedSelector<object, DaffStateError>;
-	selectAcceptJsLoadError: MemoizedSelector<object, DaffStateError>;
-	selectIsAcceptJsLoaded: MemoizedSelector<object, boolean>;
+	selectAuthorizeNetFeatureState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducersState>;
+	selectAuthorizeNetState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducerState> ;
+	selectLoading: MemoizedSelector<Record<string, any>, boolean>;
+	selectPaymentError: MemoizedSelector<Record<string, any>, DaffStateError>;
+	selectAcceptJsLoadError: MemoizedSelector<Record<string, any>, DaffStateError>;
+	selectIsAcceptJsLoaded: MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
 
-	/**
-	 * AuthorizeNet Feature State
-	 */
-	const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetReducersState>(DAFF_AUTHORIZENET_STORE_FEATURE_KEY);
+  /**
+   * AuthorizeNet Feature State
+   */
+  const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetReducersState>(DAFF_AUTHORIZENET_STORE_FEATURE_KEY);
 
-	/**
-	 * AuthorizeNet State
-	 */
-	const selectAuthorizeNetState = createSelector(
-		selectAuthorizeNetFeatureState,
-		(state: DaffAuthorizeNetReducersState) => state.authorizeNet
-	);
+  /**
+   * AuthorizeNet State
+   */
+  const selectAuthorizeNetState = createSelector(
+    selectAuthorizeNetFeatureState,
+    (state: DaffAuthorizeNetReducersState) => state.authorizeNet,
+  );
 
-	/**
-	 * AuthorizeNet loading state
-	 */
-	const selectLoading = createSelector(
-		selectAuthorizeNetState,
-		(state: DaffAuthorizeNetReducerState) => state.loading
-	);
+  /**
+   * AuthorizeNet loading state
+   */
+  const selectLoading = createSelector(
+    selectAuthorizeNetState,
+    (state: DaffAuthorizeNetReducerState) => state.loading,
+  );
 
-	/**
-	 * AuthorizeNet payment error
-	 */
-	const selectPaymentError = createSelector(
-		selectAuthorizeNetState,
-		(state: DaffAuthorizeNetReducerState) => state.paymentError
-	);
+  /**
+   * AuthorizeNet payment error
+   */
+  const selectPaymentError = createSelector(
+    selectAuthorizeNetState,
+    (state: DaffAuthorizeNetReducerState) => state.paymentError,
+  );
 
-	/**
-	 * AcceptJs load error
-	 */
-	const selectAcceptJsLoadError = createSelector(
-		selectAuthorizeNetState,
-		(state: DaffAuthorizeNetReducerState) => state.acceptJsLoadError
-	);
+  /**
+   * AcceptJs load error
+   */
+  const selectAcceptJsLoadError = createSelector(
+    selectAuthorizeNetState,
+    (state: DaffAuthorizeNetReducerState) => state.acceptJsLoadError,
+  );
 
-	/**
-	 * AcceptJs is loaded
-	 */
-	const selectIsAcceptJsLoaded = createSelector(
-		selectAuthorizeNetState,
-		(state: DaffAuthorizeNetReducerState) => state.isAcceptLoaded
-	);
+  /**
+   * AcceptJs is loaded
+   */
+  const selectIsAcceptJsLoaded = createSelector(
+    selectAuthorizeNetState,
+    (state: DaffAuthorizeNetReducerState) => state.isAcceptLoaded,
+  );
 
-	return {
-		selectAuthorizeNetFeatureState,
-		selectAuthorizeNetState,
-		selectLoading,
-		selectPaymentError,
-		selectAcceptJsLoadError,
-		selectIsAcceptJsLoaded
-	}
-}
+  return {
+    selectAuthorizeNetFeatureState,
+    selectAuthorizeNetState,
+    selectLoading,
+    selectPaymentError,
+    selectAcceptJsLoadError,
+    selectIsAcceptJsLoaded,
+  };
+};
 
 export const daffAuthorizeNetSelectors = (() => {
-	let cache;
-	return (): DaffAuthorizeNetMemoizedSelectors => cache = cache
-		? cache
-		: createAuthorizeNetSelectors();
+  let cache;
+  return (): DaffAuthorizeNetMemoizedSelectors => cache = cache
+    ? cache
+    : createAuthorizeNetSelectors();
 })();

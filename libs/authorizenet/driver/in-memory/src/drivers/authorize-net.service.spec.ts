@@ -1,5 +1,8 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
 
@@ -7,19 +10,19 @@ import { DaffInMemoryAuthorizeNetService } from './authorize-net.service';
 
 describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
   let authorizeNetService: DaffInMemoryAuthorizeNetService;
-	let httpMock: HttpTestingController;
-	const flushedResponse = {
-		response: 'response'
-	};
+  let httpMock: HttpTestingController;
+  const flushedResponse = {
+    response: 'response',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryAuthorizeNetService
-      ]
+        DaffInMemoryAuthorizeNetService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -45,14 +48,14 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
 
     describe('a successful generateToken request', () => {
       it('should send a post request to `api/authorizenet/generateToken` and return a response', done => {
-				const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
-					creditCard: {
-						cardnumber: '5555555555554444',
-						month: 'month',
-						year: 'year',
-						securitycode: '123'
-					}
-				}
+        const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
+          creditCard: {
+            cardnumber: '5555555555554444',
+            month: 'month',
+            year: 'year',
+            securitycode: '123',
+          },
+        };
         authorizeNetService.generateToken(paymentTokenRequest).subscribe(response => {
           expect(response).toEqual(flushedResponse);
           done();
