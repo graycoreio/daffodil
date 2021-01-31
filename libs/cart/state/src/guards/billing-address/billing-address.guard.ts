@@ -1,7 +1,16 @@
-import { CanActivate, Router } from '@angular/router';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  CanActivate,
+  Router,
+} from '@angular/router';
 import { Observable } from 'rxjs';
-import { Injectable, Inject } from '@angular/core';
-import { tap, take } from 'rxjs/operators';
+import {
+  tap,
+  take,
+} from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-redirect.token';
@@ -13,23 +22,23 @@ import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-
  * Ensure that the cart is resolved prior to running this guard with the {@link DaffResolvedCartGuard}.
  */
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffBillingAddressGuard implements CanActivate {
   constructor(
 		private facade: DaffCartFacade,
 		private router: Router,
-		@Inject(DaffCartBillingAddressGuardRedirectUrl) private redirectUrl: string
-	) {}
+		@Inject(DaffCartBillingAddressGuardRedirectUrl) private redirectUrl: string,
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.facade.hasBillingAddress$.pipe(
       take(1),
-			tap(hasBillingAddress => {
-				if (!hasBillingAddress) {
-					this.router.navigateByUrl(this.redirectUrl)
-				}
-			})
-		)
+      tap(hasBillingAddress => {
+        if (!hasBillingAddress) {
+          this.router.navigateByUrl(this.redirectUrl);
+        }
+      }),
+    );
   }
 }

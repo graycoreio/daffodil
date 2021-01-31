@@ -1,13 +1,22 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
+  map,
+} from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartServiceInterface, DaffCartNotFoundError } from '@daffodil/cart/driver';
+import {
+  DaffCartServiceInterface,
+  DaffCartNotFoundError,
+} from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCart> {
   url = '/api/cart';
@@ -16,9 +25,9 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCar
 
   get(cartId: DaffCart['id']): Observable<DaffCart> {
     return this.http.get<DaffCart>(`${this.url}/${cartId}`).pipe(
-			catchError((error: Error) => throwError(new DaffCartNotFoundError(error.message))),
-			map(result => result)
-		);
+      catchError((error: Error) => throwError(new DaffCartNotFoundError(error.message))),
+      map(result => result),
+    );
   }
 
   addToCart(productId: string, qty: number): Observable<DaffCart> {

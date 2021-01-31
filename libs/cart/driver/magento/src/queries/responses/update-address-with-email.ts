@@ -5,15 +5,15 @@ export interface MagentoUpdateAddressWithEmailResponse {
     __typename?: string;
     cart: {
       __typename?: string;
-      id: MagentoGetCartResponse['cart']['id']
-    }
+      id: MagentoGetCartResponse['cart']['id'];
+    };
   };
   setShippingAddressesOnCart: {
     __typename?: string;
     cart: {
       __typename?: string;
-      id: MagentoGetCartResponse['cart']['id']
-    }
+      id: MagentoGetCartResponse['cart']['id'];
+    };
   };
   setGuestEmailOnCart: MagentoGetCartResponse;
 }

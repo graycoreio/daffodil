@@ -1,7 +1,17 @@
-import { CanActivate, Router } from '@angular/router';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  CanActivate,
+  Router,
+} from '@angular/router';
 import { Observable } from 'rxjs';
-import { Injectable, Inject } from '@angular/core';
-import { tap, take, map } from 'rxjs/operators';
+import {
+  tap,
+  take,
+  map,
+} from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartItemsGuardRedirectUrl } from './cart-items-guard-redirect.token';
@@ -14,24 +24,24 @@ import { DaffCartItemsGuardRedirectUrl } from './cart-items-guard-redirect.token
  * Ensure that the cart is resolved prior to running this guard with the {@link DaffResolvedCartGuard}.
  */
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffCartItemsGuard implements CanActivate {
   constructor(
 		private facade: DaffCartFacade,
 		private router: Router,
-		@Inject(DaffCartItemsGuardRedirectUrl) private redirectUrl: string
-	) {}
+		@Inject(DaffCartItemsGuardRedirectUrl) private redirectUrl: string,
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.facade.isCartEmpty$.pipe(
       map(isCartEmpty => !isCartEmpty),
       take(1),
-			tap(hasNonEmptyCart => {
-				if (!hasNonEmptyCart) {
-					this.router.navigateByUrl(this.redirectUrl)
-				}
-			})
-		)
+      tap(hasNonEmptyCart => {
+        if (!hasNonEmptyCart) {
+          this.router.navigateByUrl(this.redirectUrl);
+        }
+      }),
+    );
   }
 }

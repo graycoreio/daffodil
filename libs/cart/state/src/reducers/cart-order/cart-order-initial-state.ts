@@ -6,8 +6,8 @@ export const daffCartOrderInitialState: DaffCartOrderReducerState<any> = {
   cartOrderResult: {
     id: null,
     orderId: null,
-    cartId: null
+    cartId: null,
   },
   loading: DaffLoadingState.Complete,
-  errors: []
+  errors: [],
 };

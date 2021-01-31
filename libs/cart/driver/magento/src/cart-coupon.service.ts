@@ -1,33 +1,45 @@
-import { Injectable, Inject } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import { DocumentNode } from 'graphql';
-import { throwError, Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {
+  throwError,
+  Observable,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { DaffQueuedApollo } from '@daffodil/core/graphql'
-import { DaffCart, DaffCartCoupon } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartCoupon,
+} from '@daffodil/cart';
 import { DaffCartCouponServiceInterface } from '@daffodil/cart/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
+import { transformCartMagentoError } from './errors/transform';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import {
   listCartCoupons,
   applyCoupon,
-  removeAllCoupons
+  removeAllCoupons,
 } from './queries/public_api';
-import { transformCartMagentoError } from './errors/transform';
 import {
   MagentoListCartCouponsResponse,
   MagentoApplyCouponResponse,
-  MagentoRemoveAllCouponsResponse
+  MagentoRemoveAllCouponsResponse,
 } from './queries/responses/public_api';
 import { daffMagentoCouponTransform } from './transforms/outputs/cart-coupon';
 import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/cart-coupon-response.service';
-import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
-import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
  * A service for making Magento GraphQL queries for carts.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterface {
   constructor(
@@ -41,39 +53,39 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       mutation: applyCoupon(this.extraCartFragments),
       variables: {
         cartId,
-        couponCode: coupon.code
-      }
+        couponCode: coupon.code,
+      },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.applyCouponToCart.cart)),
       catchError(err => throwError(transformCartMagentoError(err))),
-    )
+    );
   }
 
   list(cartId: DaffCart['id']): Observable<DaffCartCoupon[]> {
     return this.mutationQueue.mutate<MagentoListCartCouponsResponse>({
       mutation: listCartCoupons(this.extraCartFragments),
       variables: {
-        cartId
-      }
+        cartId,
+      },
     }).pipe(
       map(result => result.data.cart.applied_coupons.map(daffMagentoCouponTransform)),
       catchError(err => throwError(transformCartMagentoError(err))),
-    )
+    );
   }
 
   remove(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {
-    return this.removeAll(cartId)
+    return this.removeAll(cartId);
   }
 
   removeAll(cartId: DaffCart['id']): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoRemoveAllCouponsResponse>({
       mutation: removeAllCoupons(this.extraCartFragments),
       variables: {
-        cartId
-      }
+        cartId,
+      },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.removeCouponFromCart.cart)),
       catchError(err => throwError(transformCartMagentoError(err))),
-    )
+    );
   }
 }

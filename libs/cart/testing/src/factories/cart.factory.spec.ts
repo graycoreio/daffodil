@@ -10,7 +10,7 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCartFactory]
+      providers: [DaffCartFactory],
     });
 
     cartFactory = TestBed.inject(DaffCartFactory);
@@ -22,7 +22,7 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
 
   describe('create', () => {
 
-    let result : DaffCart;
+    let result: DaffCart;
 
     beforeEach(() => {
       result = cartFactory.create();
@@ -35,7 +35,7 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
     describe('Cart object', () => {
 
       it('should have no CartItems', () => {
-        expect(result.items.length).toEqual(0)
+        expect(result.items.length).toEqual(0);
       });
 
       it('should not have a billing address', () => {
@@ -48,11 +48,11 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
 
       it('should not have a payment', () => {
         expect(result.payment).toEqual(null);
-			});
+      });
 
-			it('should have cart totals', () => {
-				expect(result.totals.length).toBeGreaterThan(0);
-			});
+      it('should have cart totals', () => {
+        expect(result.totals.length).toBeGreaterThan(0);
+      });
     });
   });
 
@@ -66,5 +66,5 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
       result = cartFactory.createMany(3);
       expect(result.length).toEqual(3);
     });
-  })
+  });
 });

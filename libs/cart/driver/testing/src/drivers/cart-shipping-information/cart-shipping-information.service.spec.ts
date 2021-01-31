@@ -4,11 +4,11 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffCart,
   DaffCartShippingRate,
-  DaffCartShippingInformation
+  DaffCartShippingInformation,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffTestingCartShippingInformationService } from './cart-shipping-information.service';
@@ -25,8 +25,8 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartShippingInformationService
-      ]
+        DaffTestingCartShippingInformationService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingCartShippingInformationService);
@@ -37,7 +37,7 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     mockCart = cartFactory.create();
     mockCartShippingInfo = {
       ...cartShippingRateFactory.create(),
-      address_id: null
+      address_id: null,
     };
     mockCart.shipping_information = mockCartShippingInfo;
     cartId = mockCart.id;
@@ -49,24 +49,24 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
 
   describe('get | getting a cart\'s shipping info', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.get(cartId)).toBeObservable(expected);
     });
   });
 
   describe('update', () => {
     const newPrice = 56.34;
-    const info: Partial<DaffCartShippingRate> = {price: newPrice};
+    const info: Partial<DaffCartShippingRate> = { price: newPrice };
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.update(cartId, info)).toBeObservable(expected);
     });
   });
 
   describe('delete | deleting the selected shipping method', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.delete(cartId)).toBeObservable(expected);
     });
   });

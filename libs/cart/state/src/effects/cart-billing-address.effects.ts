@@ -1,10 +1,30 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { DaffCartAddress, DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
-import { DaffCartBillingAddressDriver, DaffCartBillingAddressServiceInterface } from '@daffodil/cart/driver';
+import {
+  DaffCartAddress,
+  DaffCart,
+  DaffCartStorageService,
+  DAFF_CART_ERROR_MATCHER,
+} from '@daffodil/cart';
+import {
+  DaffCartBillingAddressDriver,
+  DaffCartBillingAddressServiceInterface,
+} from '@daffodil/cart/driver';
+import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartBillingAddressActionTypes,
@@ -20,9 +40,9 @@ import {
 export class DaffCartBillingAddressEffects<T extends DaffCartAddress, V extends DaffCart> {
   constructor(
     private actions$: Actions,
-    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartBillingAddressDriver) private driver: DaffCartBillingAddressServiceInterface<T, V>,
-    private storage: DaffCartStorageService
+    private storage: DaffCartStorageService,
   ) {}
 
   @Effect()
@@ -31,10 +51,10 @@ export class DaffCartBillingAddressEffects<T extends DaffCartAddress, V extends 
     switchMap((action: DaffCartBillingAddressLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
         map((resp: T) => new DaffCartBillingAddressLoadSuccess(resp)),
-        catchError(error => of(new DaffCartBillingAddressLoadFailure(this.errorMatcher(error))))
-      )
-    )
-  )
+        catchError(error => of(new DaffCartBillingAddressLoadFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 
   @Effect()
   update$ = this.actions$.pipe(
@@ -42,8 +62,8 @@ export class DaffCartBillingAddressEffects<T extends DaffCartAddress, V extends 
     switchMap((action: DaffCartBillingAddressUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
         map((resp: V) => new DaffCartBillingAddressUpdateSuccess(resp)),
-        catchError(error => of(new DaffCartBillingAddressUpdateFailure(this.errorMatcher(error))))
-      )
-    )
-  )
+        catchError(error => of(new DaffCartBillingAddressUpdateFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 }

@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
+import {
+  DaffCartCoupon,
+  DaffCart,
+} from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCartCoupon, DaffCart } from '@daffodil/cart';
 
 export enum DaffCartCouponActionTypes {
   CartCouponApplyAction = '[DaffCart] Cart Coupon Apply Action',

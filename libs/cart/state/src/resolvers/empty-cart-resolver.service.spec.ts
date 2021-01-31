@@ -1,13 +1,26 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  StoreModule,
+  Store,
+} from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartLoadSuccess, DaffCartResolverRedirectUrl, DaffEmptyCartResolverRedirectUrl }  from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartLoadSuccess,
+  DaffCartResolverRedirectUrl,
+  DaffEmptyCartResolverRedirectUrl,
+}  from '@daffodil/cart/state';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
 import { DaffEmptyCartResolver } from './empty-cart-resolver.service';
 
@@ -18,20 +31,20 @@ describe('DaffEmptyCartResolver', () => {
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let stubCart: DaffCart;
-	let router: Router;
-	const stubUrl = '/cart';
+  let router: Router;
+  const stubUrl = '/cart';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
-				RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
-				provideMockActions(() => actions$),
-				{ provide: DaffEmptyCartResolverRedirectUrl, useValue: stubUrl },
-				{ provide: DaffCartResolverRedirectUrl, useValue: stubUrl }
-      ]
+        provideMockActions(() => actions$),
+        { provide: DaffEmptyCartResolverRedirectUrl, useValue: stubUrl },
+        { provide: DaffCartResolverRedirectUrl, useValue: stubUrl },
+      ],
     });
 
     emptyCartResolver = TestBed.inject(DaffEmptyCartResolver);
@@ -55,30 +68,30 @@ describe('DaffEmptyCartResolver', () => {
       it('should resolve with a DaffCartLoadSuccess action', () => {
         emptyCartResolver.resolve().subscribe((resolvedValue) => {
           expect(resolvedValue).toEqual(new DaffCartLoadSuccess(stubCart));
-				});
+        });
 
-				store.dispatch(new DaffCartLoadSuccess(stubCart));
+        store.dispatch(new DaffCartLoadSuccess(stubCart));
       });
 
       describe('and cart is empty', () => {
 
         it('should redirect to the provided DaffEmptyCartRedirectUrl', () => {
-					stubCart.items = [];
+          stubCart.items = [];
 
           emptyCartResolver.resolve().subscribe();
           store.dispatch(new DaffCartLoadSuccess(stubCart));
-					expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+          expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
         });
       });
 
       describe('and cart is not empty', () => {
 
         it('should not redirect to the provided DaffEmptyCartRedirectUrl', () => {
-					stubCart = cartFactory.create({items: cartItemFactory.create()});
+          stubCart = cartFactory.create({ items: cartItemFactory.create() });
 
           emptyCartResolver.resolve().subscribe();
           store.dispatch(new DaffCartLoadSuccess(stubCart));
-					expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
+          expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
         });
       });
     });

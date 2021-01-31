@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartDriverErrorCodes } from './codes.enum';
 
@@ -7,9 +10,9 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
  * or missing where it is required.
  */
 export class DaffInvalidCountryError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUNTRY
+	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUNTRY;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

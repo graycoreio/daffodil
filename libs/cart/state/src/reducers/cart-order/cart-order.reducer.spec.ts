@@ -1,12 +1,21 @@
-import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
-import { DaffCartPlaceOrder, DaffCartOrderReducerState, DaffCartPlaceOrderSuccess, DaffCartPlaceOrderFailure, daffCartOrderInitialState as initialState } from '@daffodil/cart/state';
+import {
+  DaffCartPlaceOrder,
+  DaffCartOrderReducerState,
+  DaffCartPlaceOrderSuccess,
+  DaffCartPlaceOrderFailure,
+  daffCartOrderInitialState as initialState,
+} from '@daffodil/cart/state';
+import {
+  DaffLoadingState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { daffCartOrderReducer as reducer } from './cart-order.reducer';
 
 describe('Cart | Reducer | CartOrder', () => {
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
       const result = reducer(initialState, action);
 
       expect(result).toEqual(initialState);
@@ -34,8 +43,8 @@ describe('Cart | Reducer | CartOrder', () => {
       cartId = 'cartId';
       state = {
         ...initialState,
-        loading: DaffLoadingState.Resolving
-      }
+        loading: DaffLoadingState.Resolving,
+      };
 
       const cartPlaceOrderSuccess = new DaffCartPlaceOrderSuccess({
         orderId,
@@ -46,8 +55,8 @@ describe('Cart | Reducer | CartOrder', () => {
     });
 
     it('should set the order result from action.payload', () => {
-      expect(result.cartOrderResult.orderId).toEqual(orderId)
-      expect(result.cartOrderResult.cartId).toEqual(cartId)
+      expect(result.cartOrderResult.orderId).toEqual(orderId);
+      expect(result.cartOrderResult.cartId).toEqual(cartId);
     });
 
     it('should indicate that the place order operation is not in progress', () => {
@@ -60,7 +69,7 @@ describe('Cart | Reducer | CartOrder', () => {
   });
 
   describe('when CartPlaceOrderFailureAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartOrderReducerState;
 
@@ -70,9 +79,9 @@ describe('Cart | Reducer | CartOrder', () => {
         loading: DaffLoadingState.Resolving,
         errors: [
           ...initialState.errors,
-          error
-        ]
-      }
+          error,
+        ],
+      };
 
       const cartPlaceOrderFailure = new DaffCartPlaceOrderFailure(error);
 

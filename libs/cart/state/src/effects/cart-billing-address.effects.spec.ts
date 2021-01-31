@@ -1,21 +1,37 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import {
   DaffCart,
   DaffCartAddress,
   DaffCartStorageService,
 } from '@daffodil/cart';
-import { DaffCartBillingAddressServiceInterface, DaffCartBillingAddressDriver } from '@daffodil/cart/driver';
-import { DaffCartBillingAddressLoad, DaffCartBillingAddressLoadSuccess, DaffCartBillingAddressLoadFailure, DaffCartBillingAddressUpdate, DaffCartBillingAddressUpdateSuccess, DaffCartBillingAddressUpdateFailure } from '@daffodil/cart/state';
+import {
+  DaffCartBillingAddressServiceInterface,
+  DaffCartBillingAddressDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
+  DaffCartBillingAddressLoad,
+  DaffCartBillingAddressLoadSuccess,
+  DaffCartBillingAddressLoadFailure,
+  DaffCartBillingAddressUpdate,
+  DaffCartBillingAddressUpdateSuccess,
+  DaffCartBillingAddressUpdateFailure,
+} from '@daffodil/cart/state';
 import {
   DaffCartFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartBillingAddressEffects } from './cart-billing-address.effects';
 
@@ -39,12 +55,12 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartBillingAddressEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject<DaffCartBillingAddressEffects<DaffCartAddress, DaffCart>>(DaffCartBillingAddressEffects);
@@ -87,7 +103,7 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
 
     describe('and the call to CartBillingAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to load cart billing address'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to load cart billing address' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartBillingAddressLoadFailureAction = new DaffCartBillingAddressLoadFailure(error);
@@ -126,7 +142,7 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
 
     describe('and the call to CartBillingAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to update cart billing address'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to update cart billing address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartBillingAddressUpdateFailure(error);

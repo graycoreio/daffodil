@@ -1,22 +1,39 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffStorageServiceError } from '@daffodil/core';
 import {
   DaffCart,
   DaffCartAddress,
   DaffCartStorageService,
 } from '@daffodil/cart';
-import { DaffCartAddressServiceInterface, DaffCartAddressDriver } from '@daffodil/cart/driver';
-import { DaffCartStorageFailure, DaffCartAddressUpdate, DaffCartAddressUpdateSuccess, DaffCartAddressUpdateFailure } from '@daffodil/cart/state';
+import {
+  DaffCartAddressServiceInterface,
+  DaffCartAddressDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
+  DaffCartStorageFailure,
+  DaffCartAddressUpdate,
+  DaffCartAddressUpdateSuccess,
+  DaffCartAddressUpdateFailure,
+} from '@daffodil/cart/state';
 import {
   DaffCartFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
-import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DaffStateError,
+  daffTransformErrorToStateError,
+} from '@daffodil/core/state';
 
 import { DaffCartAddressEffects } from './cart-address.effects';
 
@@ -37,17 +54,19 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
   let getCartIdSpy: jasmine.Spy;
 
   const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
-  const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
+  const throwStorageError = () => {
+    throw new DaffStorageServiceError('An error occurred during storage.');
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartAddressEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject<DaffCartAddressEffects<DaffCartAddress, DaffCart>>(DaffCartAddressEffects);
@@ -82,7 +101,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        getCartIdSpy.and.callFake(throwStorageError)
+        getCartIdSpy.and.callFake(throwStorageError);
 
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--b', { b: cartStorageFailureAction });
@@ -108,7 +127,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the call to CartAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to update cart address'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to update cart address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);

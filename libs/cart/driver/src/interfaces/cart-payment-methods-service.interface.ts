@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartPaymentMethod, DaffCart } from '@daffodil/cart';
+import {
+  DaffCartPaymentMethod,
+  DaffCart,
+} from '@daffodil/cart';
 
 /**
  * The interface responsible for retrieving the available payment methods of a cart.

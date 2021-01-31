@@ -1,7 +1,10 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
-import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
+import {
+  daffBuildFragmentNameSpread,
+  daffBuildFragmentDefinition,
+} from '@daffodil/core/graphql';
 
 import { selectedShippingMethodFragment } from './fragments/public_api';
 

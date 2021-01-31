@@ -5,7 +5,7 @@ import { DaffCartAddress } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartAddress implements DaffCartAddress {
-  address_id = faker.random.number({min: 1, max: 1000});
+  address_id = faker.random.number({ min: 1, max: 1000 });
   address_type = 'apartment';
   email = 'email@email.com';
   prefix = 'prefix';
@@ -24,7 +24,7 @@ export class MockCartAddress implements DaffCartAddress {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffCartAddressFactory extends DaffModelFactory<DaffCartAddress> {
 

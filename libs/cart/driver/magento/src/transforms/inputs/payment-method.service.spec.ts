@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffCartPaymentFactory
-} from '@daffodil/cart/testing';
+import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoPaymentMethodInputTransformer } from './payment-method.service';
 
@@ -16,8 +14,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoPaymentMethodInput', ()
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoPaymentMethodInputTransformer
-      ]
+        DaffMagentoPaymentMethodInputTransformer,
+      ],
     });
 
     service = TestBed.inject(DaffMagentoPaymentMethodInputTransformer);
@@ -38,13 +36,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoPaymentMethodInput', ()
     beforeEach(() => {
       method = 'method';
 
-			mockDaffPayment.method = method;
-			mockDaffPayment.payment_info = {
-				field: 1,
-				field2: {
-					someField: 'test'
-				}
-			}
+      mockDaffPayment.method = method;
+      mockDaffPayment.payment_info = {
+        field: 1,
+        field2: {
+          someField: 'test',
+        },
+      };
 
       transformedPaymentMethod = service.transform(mockDaffPayment);
     });

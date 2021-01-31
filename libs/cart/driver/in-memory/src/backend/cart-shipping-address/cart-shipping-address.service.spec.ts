@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-	DaffCartAddress,
+  DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address.service';
@@ -28,7 +28,7 @@ describe('DaffInMemoryBackendCartShippingAddressService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartShippingAddressService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartShippingAddressService);
 
@@ -47,13 +47,13 @@ describe('DaffInMemoryBackendCartShippingAddressService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 
@@ -90,6 +90,6 @@ describe('DaffInMemoryBackendCartShippingAddressService', () => {
 
     it('should return a cart with the updated street', () => {
       expect(result.body.shipping_address.street).toEqual(updatedStreet);
-		});
+    });
   });
 });

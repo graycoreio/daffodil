@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffCartAddressFactory
-} from '@daffodil/cart/testing';
+import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartAddressInputTransformer } from './cart-address.service';
 
@@ -16,8 +14,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoCartAddressInputTransformer
-      ]
+        DaffMagentoCartAddressInputTransformer,
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartAddressInputTransformer);

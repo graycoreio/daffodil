@@ -1,4 +1,11 @@
-import { DaffCart, DaffCartAddress, DaffCartCoupon, DaffCartItemInput, DaffCartPaymentMethod, DaffCartShippingRate } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartAddress,
+  DaffCartCoupon,
+  DaffCartItemInput,
+  DaffCartPaymentMethod,
+  DaffCartShippingRate,
+} from '@daffodil/cart';
 
 import {
   DaffCartActions,
@@ -10,7 +17,7 @@ import {
   DaffCartPaymentActions,
   DaffCartPaymentMethodsActions,
   DaffCartCouponActions,
-  DaffCartAddressActions
+  DaffCartAddressActions,
 } from '../actions/public_api';
 import { DaffStatefulCartItem } from '../models/public_api';
 
@@ -31,4 +38,4 @@ export type ActionTypes<
   | DaffCartShippingInformationActions<X, T>
   | DaffCartPaymentActions<Y, T, W>
   | DaffCartPaymentMethodsActions<Y>
-  | DaffCartCouponActions<T, Z>
+  | DaffCartCouponActions<T, Z>;

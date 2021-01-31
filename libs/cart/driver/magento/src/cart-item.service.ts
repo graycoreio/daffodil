@@ -1,38 +1,56 @@
-import {Apollo} from 'apollo-angular';
-import { Injectable, Inject } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffQueuedApollo } from '@daffodil/core/graphql'
-import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartItemInputType, DaffCompositeCartItemInput, DaffConfigurableCartItemInput } from '@daffodil/cart';
-import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
-
-import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import {
-	listCartItems,
-	addConfigurableCartItem,
-	addBundleCartItem,
-	addSimpleCartItem,
-  removeCartItem,
-  updateCartItem
-} from './queries/public_api';
-import { MagentoConfigurableCartItemInput } from './models/requests/cart-item';
-import { transformCompositeCartItem, transformSimpleCartItem, transformConfigurableCartItem } from './transforms/inputs/cart-item-input-transformers';
-import { MagentoListCartItemsResponse } from './queries/responses/list-cart-items';
-import { MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse } from './queries/responses/add-cart-item';
-import { MagentoRemoveCartItemResponse } from './queries/responses/remove-cart-item';
-import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
-import { MagentoUpdateCartItemResponse } from './queries/responses/public_api';
-import { transformMagentoCartItem } from './transforms/outputs/cart-item/cart-item-transformer';
-import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
+  DaffCartItem,
+  DaffCartItemInput,
+  DaffCart,
+  DaffCartItemInputType,
+  DaffCompositeCartItemInput,
+  DaffConfigurableCartItemInput,
+} from '@daffodil/cart';
+import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
+
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
+import { MagentoConfigurableCartItemInput } from './models/requests/cart-item';
+import {
+  listCartItems,
+  addConfigurableCartItem,
+  addBundleCartItem,
+  addSimpleCartItem,
+  removeCartItem,
+  updateCartItem,
+} from './queries/public_api';
+import {
+  MagentoAddSimpleCartItemResponse,
+  MagentoAddBundleCartItemResponse,
+  MagentoAddConfigurableCartItemResponse,
+} from './queries/responses/add-cart-item';
+import { MagentoListCartItemsResponse } from './queries/responses/list-cart-items';
+import { MagentoUpdateCartItemResponse } from './queries/responses/public_api';
+import { MagentoRemoveCartItemResponse } from './queries/responses/remove-cart-item';
+import {
+  transformCompositeCartItem,
+  transformSimpleCartItem,
+  transformConfigurableCartItem,
+} from './transforms/inputs/cart-item-input-transformers';
+import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
+import { transformMagentoCartItem } from './transforms/outputs/cart-item/cart-item-transformer';
+import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartItemService implements DaffCartItemServiceInterface {
   constructor(
@@ -40,33 +58,33 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
-    public cartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer
+    public cartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer,
   ) {}
 
   list(cartId: DaffCart['id']): Observable<DaffCartItem[]> {
     return this.apollo.query<MagentoListCartItemsResponse>({
       query: listCartItems(this.extraCartFragments),
-      variables: {cartId}
+      variables: { cartId },
     }).pipe(
-      map(result => result.data.cart.items.map(transformMagentoCartItem))
-    )
+      map(result => result.data.cart.items.map(transformMagentoCartItem)),
+    );
   }
 
   get(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<DaffCartItem> {
     return this.list(cartId).pipe(
-      map(items => items.find(item => item.item_id === itemId))
-    )
+      map(items => items.find(item => item.item_id === itemId)),
+    );
   }
 
   add(cartId: DaffCart['id'], cartItemInput: DaffCartItemInput): Observable<Partial<DaffCart>> {
-		switch(cartItemInput.type) {
-			case (DaffCartItemInputType.Composite):
-				return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
-			case (DaffCartItemInputType.Configurable):
-				return this.addConfigurableProduct(cartId, <DaffConfigurableCartItemInput>cartItemInput);
-			default:
-				return this.addSimpleProduct(cartId, cartItemInput);
-		}
+    switch(cartItemInput.type) {
+    case (DaffCartItemInputType.Composite):
+      return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
+    case (DaffCartItemInputType.Configurable):
+      return this.addConfigurableProduct(cartId, <DaffConfigurableCartItemInput>cartItemInput);
+    default:
+      return this.addSimpleProduct(cartId, cartItemInput);
+    }
   }
 
   update(cartId: DaffCart['id'], itemId: DaffCartItem['item_id'], changes: Partial<DaffCartItem>): Observable<Partial<DaffCart>> {
@@ -76,12 +94,12 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
         cartId,
         input: this.cartItemUpdateInputTransformer.transform({
           ...changes,
-          item_id: itemId
-        })
-      }
+          item_id: itemId,
+        }),
+      },
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.updateCartItems.cart))
-    )
+      map(result => this.cartTransformer.transform(result.data.updateCartItems.cart)),
+    );
   }
 
   delete(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<Partial<DaffCart>> {
@@ -89,50 +107,50 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       mutation: removeCartItem(this.extraCartFragments),
       variables: {
         cartId,
-        itemId
-      }
+        itemId,
+      },
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.removeItemFromCart.cart))
-    )
+      map(result => this.cartTransformer.transform(result.data.removeItemFromCart.cart)),
+    );
   }
 
-	private addBundledProduct(cartId: DaffCart['id'], cartItemInput: DaffCompositeCartItemInput): Observable<Partial<DaffCart>> {
-		const bundleInput = transformCompositeCartItem(cartItemInput);
-		return this.mutationQueue.mutate<MagentoAddBundleCartItemResponse>({
+  private addBundledProduct(cartId: DaffCart['id'], cartItemInput: DaffCompositeCartItemInput): Observable<Partial<DaffCart>> {
+    const bundleInput = transformCompositeCartItem(cartItemInput);
+    return this.mutationQueue.mutate<MagentoAddBundleCartItemResponse>({
       mutation: addBundleCartItem(this.extraCartFragments),
       variables: {
         cartId,
-				input: bundleInput.input,
-				options: bundleInput.options
-      }
+        input: bundleInput.input,
+        options: bundleInput.options,
+      },
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.addBundleProductsToCart.cart))
-    )
-	}
+      map(result => this.cartTransformer.transform(result.data.addBundleProductsToCart.cart)),
+    );
+  }
 
-	private addConfigurableProduct(cartId: DaffCart['id'], cartItemInput: DaffConfigurableCartItemInput): Observable<Partial<DaffCart>> {
-		const configurableInput: MagentoConfigurableCartItemInput = transformConfigurableCartItem(cartItemInput);
-		return this.mutationQueue.mutate<MagentoAddConfigurableCartItemResponse>({
+  private addConfigurableProduct(cartId: DaffCart['id'], cartItemInput: DaffConfigurableCartItemInput): Observable<Partial<DaffCart>> {
+    const configurableInput: MagentoConfigurableCartItemInput = transformConfigurableCartItem(cartItemInput);
+    return this.mutationQueue.mutate<MagentoAddConfigurableCartItemResponse>({
       mutation: addConfigurableCartItem(this.extraCartFragments),
       variables: {
-				cartId,
-				parentSku: configurableInput.parentSku,
-				data: configurableInput.data
-      }
+        cartId,
+        parentSku: configurableInput.parentSku,
+        data: configurableInput.data,
+      },
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.addConfigurableProductsToCart.cart))
-    )
-	}
+      map(result => this.cartTransformer.transform(result.data.addConfigurableProductsToCart.cart)),
+    );
+  }
 
-	private addSimpleProduct(cartId: DaffCart['id'], cartItemInput: DaffCartItemInput): Observable<Partial<DaffCart>> {
-		return this.mutationQueue.mutate<MagentoAddSimpleCartItemResponse>({
+  private addSimpleProduct(cartId: DaffCart['id'], cartItemInput: DaffCartItemInput): Observable<Partial<DaffCart>> {
+    return this.mutationQueue.mutate<MagentoAddSimpleCartItemResponse>({
       mutation: addSimpleCartItem(this.extraCartFragments),
       variables: {
         cartId,
-        input: transformSimpleCartItem(cartItemInput)
-      }
+        input: transformSimpleCartItem(cartItemInput),
+      },
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.addSimpleProductsToCart.cart))
-    )
-	}
+      map(result => this.cartTransformer.transform(result.data.addSimpleProductsToCart.cart)),
+    );
+  }
 }

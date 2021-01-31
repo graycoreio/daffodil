@@ -14,5 +14,5 @@ export interface DaffCartStateResolutionConfiguration {
  * The default values of the resolution slice of the cart state configuration.
  */
 export const daffCartStateResolutionConfigurationDefault: DaffCartStateResolutionConfiguration = {
-	failedResolutionPath: null,
+  failedResolutionPath: null,
 };

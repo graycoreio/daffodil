@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartDriverErrorCodes } from './codes.enum';
 
@@ -10,6 +13,6 @@ export class DaffProductNotFoundError extends DaffInheritableError implements Da
 	public readonly code: string = DaffCartDriverErrorCodes.PRODUCT_NOT_FOUND;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

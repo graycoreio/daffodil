@@ -1,7 +1,23 @@
-import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartBillingAddressLoad, DaffCartOperationType, DaffCartReducerState, DaffCartBillingAddressLoadSuccess, DaffCartBillingAddressLoadFailure, DaffCartBillingAddressUpdate, DaffCartBillingAddressUpdateSuccess, DaffCartBillingAddressUpdateFailure, DaffCartAddressUpdate, DaffCartAddressUpdateSuccess, DaffCartAddressUpdateFailure, initialState } from '@daffodil/cart/state';
+import {
+  DaffCartBillingAddressLoad,
+  DaffCartOperationType,
+  DaffCartReducerState,
+  DaffCartBillingAddressLoadSuccess,
+  DaffCartBillingAddressLoadFailure,
+  DaffCartBillingAddressUpdate,
+  DaffCartBillingAddressUpdateSuccess,
+  DaffCartBillingAddressUpdateFailure,
+  DaffCartAddressUpdate,
+  DaffCartAddressUpdateSuccess,
+  DaffCartAddressUpdateFailure,
+  initialState,
+} from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import {
+  DaffLoadingState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { cartBillingAddressReducer } from './cart-billing-address.reducer';
 
@@ -17,7 +33,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = cartBillingAddressReducer(initialState, action);
 
@@ -44,9 +60,9 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+        },
+      };
 
       const cartListLoadSuccess = new DaffCartBillingAddressLoadSuccess(cart.billing_address);
 
@@ -58,7 +74,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should set billing_address from action.payload', () => {
-      expect(result.cart.billing_address).toEqual(cart.billing_address)
+      expect(result.cart.billing_address).toEqual(cart.billing_address);
     });
 
     it('should reset the errors in the billing address section of state.errors to an empty array', () => {
@@ -67,7 +83,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
   });
 
   describe('when CartBillingAddressLoadFailureAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -76,13 +92,13 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving
+          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.BillingAddress]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.BillingAddress]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
       const cartListLoadFailure = new DaffCartBillingAddressLoadFailure(error);
 
@@ -118,15 +134,15 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+        },
+      };
 
       result = cartBillingAddressReducer(state, cartBillingAddressUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
+      expect(result.cart).toEqual(cart);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -148,15 +164,15 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving
+          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.BillingAddress]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.BillingAddress]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
-      error = {code: 'error code', message: 'error message'};
+      error = { code: 'error code', message: 'error message' };
 
       const cartBillingAddressUpdateFailure = new DaffCartBillingAddressUpdateFailure(error);
 
@@ -192,15 +208,15 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+        },
+      };
 
       result = cartBillingAddressReducer(state, cartAddressUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
+      expect(result.cart).toEqual(cart);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -222,15 +238,15 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving
+          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.BillingAddress]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.BillingAddress]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
-      error = {code: 'error code', message: 'error message'};
+      error = { code: 'error code', message: 'error message' };
 
       const cartAddressUpdateFailure = new DaffCartAddressUpdateFailure(error);
 

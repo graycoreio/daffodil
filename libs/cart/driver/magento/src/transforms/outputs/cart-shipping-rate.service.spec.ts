@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  MagentoCartShippingMethodFactory
-} from '@daffodil/cart/driver/magento/testing';
+import { MagentoCartShippingMethodFactory } from '@daffodil/cart/driver/magento/testing';
 
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 
@@ -17,7 +15,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () =
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartShippingRateTransformer,
-      ]
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartShippingRateTransformer);

@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartErrorCodes } from '../codes.enum';
 
@@ -7,9 +10,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * This happens when loading the cart ID from storage throws an exception.
  */
 export class DaffCartStorageResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_STORAGE_RESOLUTION
+	public readonly code: string = DaffCartErrorCodes.CART_STORAGE_RESOLUTION;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

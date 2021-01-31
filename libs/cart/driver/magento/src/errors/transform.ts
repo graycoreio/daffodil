@@ -1,9 +1,12 @@
 import { ApolloError } from '@apollo/client/core';
 
-import { daffTransformMagentoError } from '@daffodil/driver/magento';
 import { DaffCartDriverErrorMap } from '@daffodil/cart/driver';
+import { daffTransformMagentoError } from '@daffodil/driver/magento';
 
-import { DaffCartMagentoErrorMap, DaffCartMagentoErrorMessageRegexMap } from './map';
+import {
+  DaffCartMagentoErrorMap,
+  DaffCartMagentoErrorMessageRegexMap,
+} from './map';
 
 
 function transformMagentoCartGraphQlError(error: ApolloError): Error {
@@ -13,7 +16,7 @@ function transformMagentoCartGraphQlError(error: ApolloError): Error {
     const matchIndex = error.graphQLErrors[0].message.search(DaffCartMagentoErrorMessageRegexMap[code]);
 
     if (matchIndex > -1 && DaffCartDriverErrorMap[code]) {
-      return new DaffCartDriverErrorMap[code](error.message)
+      return new DaffCartDriverErrorMap[code](error.message);
     }
   }
 
@@ -22,8 +25,8 @@ function transformMagentoCartGraphQlError(error: ApolloError): Error {
 
 export function transformCartMagentoError(error) {
   if (error.graphQLErrors?.length) {
-		return transformMagentoCartGraphQlError(error);
-	} else {
-		return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
-	}
+    return transformMagentoCartGraphQlError(error);
+  } else {
+    return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
+  }
 }

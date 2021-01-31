@@ -1,12 +1,12 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
-import { cartAddressFragment } from './cart-address';
 import { availablePaymentMethodFragment } from './available-payment-method';
-import { selectedPaymentMethodFragment } from './selected-payment-method';
-import { cartItemFragment } from './cart-item';
+import { cartAddressFragment } from './cart-address';
 import { cartCouponFragment } from './cart-coupon';
-import { selectedShippingMethodFragment } from './selected-shipping-method';
+import { cartItemFragment } from './cart-item';
 import { pricesFragment } from './prices';
+import { selectedPaymentMethodFragment } from './selected-payment-method';
+import { selectedShippingMethodFragment } from './selected-shipping-method';
 
 export const cartFragment = gql`
   fragment cart on Cart {

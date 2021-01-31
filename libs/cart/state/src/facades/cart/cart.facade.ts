@@ -1,27 +1,48 @@
-import { Inject, Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { Dictionary } from '@ngrx/entity';
+import {
+  Action,
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Action, Store, select } from '@ngrx/store';
-import { Dictionary } from '@ngrx/entity';
 
+import {
+  DaffCart,
+  DaffCartOrderResult,
+  DaffCartTotal,
+  DaffCartPaymentMethodIdMap,
+  DaffConfigurableCartItemAttribute,
+  DaffCompositeCartItemOption,
+  DaffCartItemDiscount,
+} from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemDiscount } from '@daffodil/cart';
 
-import { DaffCartReducersState, DaffCartResolveState } from '../../reducers/public_api';
-import { getDaffCartSelectors } from '../../selectors/public_api';
-import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
+import {
+  DaffCartItemStateEnum,
+  DaffStatefulCartItem,
+} from '../../models/stateful-cart-item';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
-import { DaffCartFacadeInterface } from './cart-facade.interface';
+import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
-import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
+import {
+  DaffCartReducersState,
+  DaffCartResolveState,
+} from '../../reducers/public_api';
+import { getDaffCartSelectors } from '../../selectors/public_api';
+import { DaffCartFacadeInterface } from './cart-facade.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffCartFacade<
   T extends DaffCart = DaffCart,
-	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffStatefulCartItem = DaffStatefulCartItem
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > implements DaffCartFacadeInterface<T, V, U> {
   cart$: Observable<T>;
 
@@ -56,7 +77,7 @@ export class DaffCartFacade<
   itemLoading$: Observable<boolean>;
   itemAdding$: Observable<boolean>;
   itemResolving$: Observable<boolean>;
-	itemMutating$: Observable<boolean>;
+  itemMutating$: Observable<boolean>;
 
   errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartOperationType.Cart]>;
@@ -103,10 +124,10 @@ export class DaffCartFacade<
   canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
-	orderResultErrors$: Observable<DaffStateError[]>;
-	orderResult$: Observable<V>;
-	orderResultId$: Observable<V['orderId']>;
-	orderResultCartId$: Observable<V['cartId']>;
+  orderResultErrors$: Observable<DaffStateError[]>;
+  orderResult$: Observable<V>;
+  orderResultId$: Observable<V['orderId']>;
+  orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
 	private _selectCartItemConfiguredAttributes;
@@ -121,9 +142,12 @@ export class DaffCartFacade<
 
   constructor(
     private store: Store<DaffCartReducersState<T, V, U>>,
-    @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object
+    // typing this as `Record<string, any>` or `object` fails the build
+    // because Angular explicitly types this as `Object`
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object,
   ) {
-		const {
+    const {
       selectCartValue,
 
       selectCartResolved,
@@ -159,40 +183,40 @@ export class DaffCartFacade<
       selectItemResolving,
       selectCartItemMutating,
 
-			selectCartErrorsObject,
-			selectCartErrors,
-			selectItemErrors,
-			selectBillingAddressErrors,
-			selectShippingAddressErrors,
-			selectShippingInformationErrors,
-			selectShippingMethodsErrors,
-			selectPaymentErrors,
+      selectCartErrorsObject,
+      selectCartErrors,
+      selectItemErrors,
+      selectBillingAddressErrors,
+      selectShippingAddressErrors,
+      selectShippingInformationErrors,
+      selectShippingMethodsErrors,
+      selectPaymentErrors,
       selectPaymentMethodsErrors,
       selectCouponErrors,
 
-			selectCartId,
-			selectCartSubtotal,
-			selectCartGrandTotal,
-			selectCartSubtotalExcludingTax,
-			selectCartSubtotalIncludingTax,
-			selectCartSubtotalWithDiscountExcludingTax,
-			selectCartSubtotalWithDiscountIncludingTax,
-			selectCartDiscountTotals,
-			selectCartTotalTax,
-			selectCartShippingTotal,
-			selectCartCoupons,
-			selectCartItems,
-			selectCartHasOutOfStockItems,
-			selectCartItemEntities,
-			selectTotalNumberOfCartItems,
-			selectCartItemConfiguredAttributes,
-			selectCartItemCompositeOptions,
-			selectCartBillingAddress,
-			selectCartShippingAddress,
-			selectCartPayment,
-			selectCartTotals,
-			selectCartShippingInformation,
-			selectCartAvailableShippingMethods,
+      selectCartId,
+      selectCartSubtotal,
+      selectCartGrandTotal,
+      selectCartSubtotalExcludingTax,
+      selectCartSubtotalIncludingTax,
+      selectCartSubtotalWithDiscountExcludingTax,
+      selectCartSubtotalWithDiscountIncludingTax,
+      selectCartDiscountTotals,
+      selectCartTotalTax,
+      selectCartShippingTotal,
+      selectCartCoupons,
+      selectCartItems,
+      selectCartHasOutOfStockItems,
+      selectCartItemEntities,
+      selectTotalNumberOfCartItems,
+      selectCartItemConfiguredAttributes,
+      selectCartItemCompositeOptions,
+      selectCartBillingAddress,
+      selectCartShippingAddress,
+      selectCartPayment,
+      selectCartTotals,
+      selectCartShippingInformation,
+      selectCartAvailableShippingMethods,
       selectCartAvailablePaymentMethods,
 
       selectIsCartEmpty,
@@ -201,11 +225,11 @@ export class DaffCartFacade<
       selectCartOrderLoading,
       selectCartOrderErrors,
       selectCartOrderValue,
-			selectCartOrderId,
-			selectCartOrderCartId,
+      selectCartOrderId,
+      selectCartOrderCartId,
       selectHasOrderResult,
-			selectIsCartItemOutOfStock,
-			selectCartItemState,
+      selectIsCartItemOutOfStock,
+      selectCartItemState,
 
       selectHasBillingAddress,
       selectHasShippingAddress,
@@ -218,11 +242,11 @@ export class DaffCartFacade<
       selectCartItemQuantity,
       selectCartItemDiscounts,
       selectCartItemTotalDiscount,
-		} = getDaffCartSelectors<T, V, U>();
-		this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
-		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
-		this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
-		this._selectCartItemState = selectCartItemState;
+    } = getDaffCartSelectors<T, V, U>();
+    this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
+    this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
+    this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
+    this._selectCartItemState = selectCartItemState;
     this._selectCartItemPrice = selectCartItemPrice;
     this._selectCartItemQuantity = selectCartItemQuantity;
     this._selectCartItemRowTotal = selectCartItemRowTotal;
@@ -301,8 +325,8 @@ export class DaffCartFacade<
       map(payment =>
         payment && payment.method
           ? this.paymentMethodMap[payment.method]
-          : null
-      )
+          : null,
+      ),
     );
 
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
@@ -320,42 +344,42 @@ export class DaffCartFacade<
     this.orderResultId$ = this.store.pipe(select(selectCartOrderId));
     this.orderResultCartId$ = this.store.pipe(select(selectCartOrderCartId));
     this.hasOrderResult$ = this.store.pipe(select(selectHasOrderResult));
-	}
+  }
 
-	getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]> {
-		return this.store.pipe(select(this._selectCartItemConfiguredAttributes, { id: itemId }))
-	};
+  getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]> {
+    return this.store.pipe(select(this._selectCartItemConfiguredAttributes, { id: itemId }));
+  };
 
   getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]> {
-		return this.store.pipe(select(this._selectCartItemCompositeOptions, { id: itemId }));
-	};
+    return this.store.pipe(select(this._selectCartItemCompositeOptions, { id: itemId }));
+  };
 
-	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean> {
+  isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean> {
     return this.store.pipe(select(this._selectIsCartItemOutOfStock, { id: itemId }));
-	}
+  }
 
-	getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum> {
+  getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum> {
     return this.store.pipe(select(this._selectCartItemState, { id: itemId }));
-	}
-
-	getCartItemPrice(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemPrice, { id: itemId }))
   }
 
-	getCartItemQuantity(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemQuantity, { id: itemId }))
+  getCartItemPrice(itemId: U['item_id']): Observable<number> {
+    return this.store.pipe(select(this._selectCartItemPrice, { id: itemId }));
   }
 
-	getCartItemRowTotal(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemRowTotal, { id: itemId }))
+  getCartItemQuantity(itemId: U['item_id']): Observable<number> {
+    return this.store.pipe(select(this._selectCartItemQuantity, { id: itemId }));
+  }
+
+  getCartItemRowTotal(itemId: U['item_id']): Observable<number> {
+    return this.store.pipe(select(this._selectCartItemRowTotal, { id: itemId }));
   }
 
   getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]> {
-    return this.store.pipe(select(this._selectCartItemDiscounts, { id: itemId }))
+    return this.store.pipe(select(this._selectCartItemDiscounts, { id: itemId }));
   }
 
-	getCartItemTotalDiscount(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemTotalDiscount, { id: itemId }))
+  getCartItemTotalDiscount(itemId: U['item_id']): Observable<number> {
+    return this.store.pipe(select(this._selectCartItemTotalDiscount, { id: itemId }));
   }
 
   dispatch(action: Action) {

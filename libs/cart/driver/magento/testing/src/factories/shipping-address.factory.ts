@@ -12,7 +12,7 @@ export class MockMagentoShippingAddress extends MockMagentoCartAddress implement
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoShippingAddressFactory extends DaffModelFactory<MagentoShippingAddress> {
   constructor() {

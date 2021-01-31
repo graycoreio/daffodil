@@ -7,15 +7,13 @@ import {
   DaffResolveCartFailure,
   initialState,
   DaffCartReducerState,
-  DaffCartResolveState
+  DaffCartResolveState,
 } from '@daffodil/cart/state';
-import {
-  DaffCartFactory,
-} from '@daffodil/cart/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { cartResolveReducer as reducer } from './cart-resolve.reducer';
 import { DaffResolveCartServerSide } from '../../actions/public_api';
+import { cartResolveReducer as reducer } from './cart-resolve.reducer';
 
 
 describe('Cart | Reducer | cartResolveReducer', () => {
@@ -30,7 +28,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -55,8 +53,8 @@ describe('Cart | Reducer | cartResolveReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        resolved: DaffCartResolveState.Resolving
-      }
+        resolved: DaffCartResolveState.Resolving,
+      };
 
       const cartResolveSuccess = new DaffResolveCartSuccess(cart);
 
@@ -69,7 +67,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
   });
 
   describe('when ResolveCartActionFailureAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -77,7 +75,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
       state = {
         ...initialState,
         resolved: DaffCartResolveState.Resolving,
-      }
+      };
 
       const cartResolveFailure = new DaffResolveCartFailure(error);
 
@@ -90,7 +88,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
   });
 
   describe('when ResolveCartServerSideAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -98,7 +96,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
       state = {
         ...initialState,
         resolved: DaffCartResolveState.Resolving,
-      }
+      };
 
       const serverSideResolve = new DaffResolveCartServerSide(error);
 

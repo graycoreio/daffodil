@@ -1,7 +1,23 @@
-import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartShippingAddressLoad, DaffCartOperationType, DaffCartReducerState, DaffCartShippingAddressLoadSuccess, DaffCartShippingAddressLoadFailure, DaffCartShippingAddressUpdate, DaffCartShippingAddressUpdateSuccess, DaffCartShippingAddressUpdateFailure, DaffCartAddressUpdate, DaffCartAddressUpdateSuccess, DaffCartAddressUpdateFailure, initialState } from '@daffodil/cart/state';
+import {
+  DaffCartShippingAddressLoad,
+  DaffCartOperationType,
+  DaffCartReducerState,
+  DaffCartShippingAddressLoadSuccess,
+  DaffCartShippingAddressLoadFailure,
+  DaffCartShippingAddressUpdate,
+  DaffCartShippingAddressUpdateSuccess,
+  DaffCartShippingAddressUpdateFailure,
+  DaffCartAddressUpdate,
+  DaffCartAddressUpdateSuccess,
+  DaffCartAddressUpdateFailure,
+  initialState,
+} from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import {
+  DaffLoadingState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { cartShippingAddressReducer } from './cart-shipping-address.reducer';
 
@@ -17,7 +33,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = cartShippingAddressReducer(initialState, action);
 
@@ -44,9 +60,9 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+        },
+      };
 
       const cartListLoadSuccess = new DaffCartShippingAddressLoadSuccess(cart.shipping_address);
 
@@ -58,7 +74,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should set shipping_address from action.payload', () => {
-      expect(result.cart.shipping_address).toEqual(cart.shipping_address)
+      expect(result.cart.shipping_address).toEqual(cart.shipping_address);
     });
 
     it('should reset the errors in the shipping address section of state.errors to an empty array', () => {
@@ -67,7 +83,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
   });
 
   describe('when CartShippingAddressLoadFailureAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -76,13 +92,13 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving
+          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.ShippingAddress]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.ShippingAddress]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
       const cartListLoadFailure = new DaffCartShippingAddressLoadFailure(error);
 
@@ -118,15 +134,15 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+        },
+      };
 
       result = cartShippingAddressReducer(state, cartShippingAddressUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
+      expect(result.cart).toEqual(cart);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -148,15 +164,15 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving
+          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.ShippingAddress]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.ShippingAddress]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
-      error = {code: 'error code', message: 'error message'};
+      error = { code: 'error code', message: 'error message' };
 
       const cartShippingAddressUpdateFailure = new DaffCartShippingAddressUpdateFailure(error);
 
@@ -192,15 +208,15 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+        },
+      };
 
       result = cartShippingAddressReducer(state, cartAddressUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
+      expect(result.cart).toEqual(cart);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -222,15 +238,15 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving
+          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.ShippingAddress]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.ShippingAddress]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
-      error = {code: 'error code', message: 'error message'};
+      error = { code: 'error code', message: 'error message' };
 
       const cartAddressUpdateFailure = new DaffCartAddressUpdateFailure(error);
 

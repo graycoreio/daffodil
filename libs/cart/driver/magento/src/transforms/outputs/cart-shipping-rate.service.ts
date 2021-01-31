@@ -8,16 +8,17 @@ import { MagentoCartShippingMethod } from '../../models/responses/cart-shipping-
  * Transforms magento cart shipping methods into an object usable by daffodil.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartShippingRateTransformer {
   /**
    * Transforms the magento shipping method from the magento cart query into a DaffCartShippingRate.
+   *
    * @param shippingMethod the shippingMethod from a magento cart query.
    */
   transform(shippingMethod: MagentoCartShippingMethod): DaffCartShippingRate {
     return shippingMethod ? {
-      ...{magento_shipping_method: shippingMethod},
+      ...{ magento_shipping_method: shippingMethod },
 
       carrier: shippingMethod.carrier_code,
       carrier_title: shippingMethod.carrier_title,
@@ -27,7 +28,7 @@ export class DaffMagentoCartShippingRateTransformer {
 
       // TODO: implement
       id: null,
-      method_description: null
-    } : null
+      method_description: null,
+    } : null;
   }
 }

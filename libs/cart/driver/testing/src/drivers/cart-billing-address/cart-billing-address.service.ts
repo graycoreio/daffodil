@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
-import { DaffCart, DaffCartAddress } from '@daffodil/cart';
 import {
-  DaffCartBillingAddressServiceInterface,
-} from '@daffodil/cart/driver';
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartAddress,
+} from '@daffodil/cart';
+import { DaffCartBillingAddressServiceInterface } from '@daffodil/cart/driver';
+import {
+  DaffCartAddressFactory,
+  DaffCartFactory,
+} from '@daffodil/cart/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingCartBillingAddressService implements DaffCartBillingAddressServiceInterface {
   constructor(
     private addressFactory: DaffCartAddressFactory,
-    private cartFactory: DaffCartFactory
+    private cartFactory: DaffCartFactory,
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartAddress> {

@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
+import {
+  DaffCart,
+  DaffCartItemInput,
+} from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCart, DaffCartItemInput } from '@daffodil/cart';
 
 import { DaffStatefulCartItem } from '../models/public_api';
 
@@ -64,7 +67,10 @@ export class DaffCartItemUpdate<T extends DaffStatefulCartItem = DaffStatefulCar
   constructor(public itemId: T['item_id'], public changes: Partial<T>) {}
 }
 
-export class DaffCartItemUpdateSuccess<T extends DaffCart = DaffCart, V extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemUpdateSuccess<
+  T extends DaffCart = DaffCart,
+  V extends DaffStatefulCartItem = DaffStatefulCartItem
+> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateSuccessAction;
 
   constructor(public payload: Partial<T>, public itemId: V['item_id']) {}

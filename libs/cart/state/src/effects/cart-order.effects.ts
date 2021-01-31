@@ -1,13 +1,33 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError, mapTo } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+  mapTo,
+} from 'rxjs/operators';
 
 import {
-  DaffStorageServiceError
-} from '@daffodil/core'
-import { DaffCart, DaffCartPaymentMethod, DaffCartOrderResult, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
-import { DaffCartOrderDriver, DaffCartOrderServiceInterface } from '@daffodil/cart/driver';
+  DaffCart,
+  DaffCartPaymentMethod,
+  DaffCartOrderResult,
+  DaffCartStorageService,
+  DAFF_CART_ERROR_MATCHER,
+} from '@daffodil/cart';
+import {
+  DaffCartOrderDriver,
+  DaffCartOrderServiceInterface,
+} from '@daffodil/cart/driver';
+import { DaffStorageServiceError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartOrderActionTypes,
@@ -15,7 +35,7 @@ import {
   DaffCartPlaceOrderSuccess,
   DaffCartPlaceOrderFailure,
   DaffCartStorageFailure,
-  DaffCartCreate
+  DaffCartCreate,
 } from '../actions/public_api';
 
 @Injectable()
@@ -26,7 +46,7 @@ export class DaffCartOrderEffects<
 > {
   constructor(
     private actions$: Actions,
-    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartOrderDriver) private driver: DaffCartOrderServiceInterface<T, V, R>,
     private storage: DaffCartStorageService,
   ) {}
@@ -40,14 +60,14 @@ export class DaffCartOrderEffects<
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartPlaceOrderFailure(this.errorMatcher(error))
+        : new DaffCartPlaceOrderFailure(this.errorMatcher(error)),
       )),
     )),
-  )
+  );
 
   @Effect()
   resetCart$ = this.actions$.pipe(
     ofType(DaffCartOrderActionTypes.CartPlaceOrderSuccessAction),
     mapTo(new DaffCartCreate()),
-  )
+  );
 }

@@ -8,16 +8,17 @@ import { MagentoCartAddress } from '../../models/responses/cart-address';
  * Transforms magento addresses into an object usable by daffodil.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartAddressTransformer {
   /**
    * Transforms the magento MagentoCart from the magento cart query into a DaffCartAddress.
+   *
    * @param address the address from a magento cart query.
    */
   transform(address: MagentoCartAddress): DaffCartAddress {
     return address ? {
-      ...{magento_address: address},
+      ...{ magento_address: address },
 
       // address
       street: address.street[0],
@@ -39,6 +40,6 @@ export class DaffMagentoCartAddressTransformer {
       middlename: null,
       prefix: null,
       address_type: null,
-    } : null
+    } : null;
   }
 }

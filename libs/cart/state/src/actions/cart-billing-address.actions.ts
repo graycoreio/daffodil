@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
+import {
+  DaffCartAddress,
+  DaffCart,
+} from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCartAddress, DaffCart } from '@daffodil/cart';
 
 export enum DaffCartBillingAddressActionTypes {
   CartBillingAddressLoadAction = '[DaffCart] Billing Address Load Action',
@@ -55,4 +58,4 @@ export type DaffCartBillingAddressActions<
   | DaffCartBillingAddressLoadFailure
   | DaffCartBillingAddressUpdate<T>
   | DaffCartBillingAddressUpdateSuccess<V>
-  | DaffCartBillingAddressUpdateFailure
+  | DaffCartBillingAddressUpdateFailure;

@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-	DaffCartShippingRate,
+  DaffCartShippingRate,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods.service';
@@ -28,7 +28,7 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartShippingMethodsService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartShippingMethodsService);
 
@@ -47,13 +47,13 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 

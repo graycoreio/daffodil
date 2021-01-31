@@ -1,22 +1,42 @@
+import { TestBed } from '@angular/core/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
-import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-import { catchError } from 'rxjs/operators';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs/operators';
 
-import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
-import { MagentoCart, MagentoShippingAddress, MagentoShippingAddressInput, MagentoUpdateShippingAddressResponse, MagentoUpdateShippingAddressWithEmailResponse, MagentoGetShippingAddressResponse, DaffMagentoCartTransformer, DaffMagentoShippingAddressTransformer, DaffMagentoShippingAddressInputTransformer, getShippingAddress, updateShippingAddressWithEmail, updateShippingAddress } from '@daffodil/cart/driver/magento';
+import {
+  MagentoCart,
+  MagentoShippingAddress,
+  MagentoShippingAddressInput,
+  MagentoUpdateShippingAddressResponse,
+  MagentoUpdateShippingAddressWithEmailResponse,
+  MagentoGetShippingAddressResponse,
+  DaffMagentoCartTransformer,
+  DaffMagentoShippingAddressTransformer,
+  DaffMagentoShippingAddressInputTransformer,
+  getShippingAddress,
+  updateShippingAddressWithEmail,
+  updateShippingAddress,
+} from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoShippingAddressFactory,
-  MagentoCartAddressInputFactory
+  MagentoCartAddressInputFactory,
 } from '@daffodil/cart/driver/magento/testing';
-import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartFactory,
+  DaffCartAddressFactory,
+} from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
 
@@ -48,30 +68,30 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartShippingAddressService,
         {
           provide: DaffMagentoCartTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform']),
         },
         {
           provide: DaffMagentoShippingAddressTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform']),
         },
         {
           provide: DaffMagentoShippingAddressInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressInputTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressInputTransformer', ['transform']),
         },
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartShippingAddressService);
@@ -92,8 +112,8 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
     mockMagentoShippingAddress = magentoShippingAddressFactory.create();
     mockDaffCartAddress = daffCartAddressFactory.create();
     mockMagentoShippingAddressInput = {
-      address: magentoCartAddressInputFactory.create()
-    }
+      address: magentoCartAddressInputFactory.create(),
+    };
 
     cartId = mockDaffCart.id;
     email = mockMagentoShippingAddress.email;
@@ -102,29 +122,29 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
     mockDaffCart.shipping_address = mockDaffCartAddress;
     mockGetShippingAddressResponse = {
       cart: {
-				__typename: 'Cart',
+        __typename: 'Cart',
         shipping_addresses: [mockMagentoShippingAddress],
-        email
-      }
+        email,
+      },
     };
     mockUpdateShippingAddressResponse = {
       setShippingAddressesOnCart: {
-				__typename: 'SetShippingAddresses',
-        cart: mockMagentoCart
+        __typename: 'SetShippingAddresses',
+        cart: mockMagentoCart,
       },
     };
     mockUpdateShippingAddressWithEmailResponse = {
       setShippingAddressesOnCart: {
-				__typename: 'SetShippingAddresses',
-        cart: mockMagentoCart
+        __typename: 'SetShippingAddresses',
+        cart: mockMagentoCart,
       },
       setGuestEmailOnCart: {
         __typename: 'Cart',
         cart: {
 				  __typename: 'Cart',
-          email
-        }
-      }
+          email,
+        },
+      },
     };
 
     magentoCartTransformerSpy.transform.withArgs(mockMagentoCart).and.returnValue(mockDaffCart);
@@ -139,7 +159,8 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
   describe('get | getting the shipping address', () => {
     it('should call the transformer with the correct argument', done => {
       service.get(cartId).subscribe(() => {
-        // can't check for all args because available_shipping_methods and selected_shipping_method are stripped out of the mock response by apollo
+        // can't check for all args because available_shipping_methods and
+        // selected_shipping_method are stripped out of the mock response by apollo
         expect(magentoShippingAddressTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining({
           email,
           street: mockMagentoShippingAddress.street,
@@ -151,7 +172,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
       const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
 
       op.flush({
-        data: mockGetShippingAddressResponse
+        data: mockGetShippingAddressResponse,
       });
     });
 
@@ -164,7 +185,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
       const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
 
       op.flush({
-        data: mockGetShippingAddressResponse
+        data: mockGetShippingAddressResponse,
       });
     });
 
@@ -182,7 +203,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
 
         op.flush({
-          data: mockGetShippingAddressResponse
+          data: mockGetShippingAddressResponse,
         });
       });
     });
@@ -200,7 +221,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
             expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(updateShippingAddressWithEmail([])));
@@ -212,7 +233,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });
@@ -238,7 +259,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           const op = controller.expectOne(addTypenameToDocument(updateShippingAddressWithEmail([])));
 
           op.flush({
-            data: mockUpdateShippingAddressWithEmailResponse
+            data: mockUpdateShippingAddressWithEmailResponse,
           });
         });
       });
@@ -263,7 +284,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           const op = controller.expectOne(addTypenameToDocument(updateShippingAddress([])));
 
           op.flush({
-            data: mockUpdateShippingAddressResponse
+            data: mockUpdateShippingAddressResponse,
           });
         });
       });

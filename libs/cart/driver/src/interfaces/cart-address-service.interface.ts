@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartAddress, DaffCart } from '@daffodil/cart';
+import {
+  DaffCartAddress,
+  DaffCart,
+} from '@daffodil/cart';
 
 /**
  * The interface responsible for managing the address of a cart.

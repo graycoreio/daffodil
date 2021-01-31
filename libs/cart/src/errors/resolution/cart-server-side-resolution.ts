@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartErrorCodes } from '../codes.enum';
 
@@ -8,9 +11,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * This is normal and expected in SSR.
  */
 export class DaffCartServerSideResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_SERVER_SIDE_RESOLUTION
+	public readonly code: string = DaffCartErrorCodes.CART_SERVER_SIDE_RESOLUTION;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

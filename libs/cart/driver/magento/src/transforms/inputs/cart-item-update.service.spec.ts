@@ -14,8 +14,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItemUpdateInput', (
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoCartItemUpdateInputTransformer
-      ]
+        DaffMagentoCartItemUpdateInputTransformer,
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);

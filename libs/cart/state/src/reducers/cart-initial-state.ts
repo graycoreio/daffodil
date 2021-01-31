@@ -1,9 +1,9 @@
 import { DaffLoadingState } from '@daffodil/core/state';
 
-import { DaffCartReducerState } from './cart-state.interface';
 import { DaffCartOperationType } from './cart-operation-type.enum';
-import { DaffCartItemLoadingState } from './loading/cart-loading.type';
 import { DaffCartResolveState } from './cart-resolve/cart-resolve-state.enum';
+import { DaffCartReducerState } from './cart-state.interface';
+import { DaffCartItemLoadingState } from './loading/cart-loading.type';
 
 export const initialState: DaffCartReducerState<any> = Object.freeze({
   cart: {
@@ -42,5 +42,5 @@ export const initialState: DaffCartReducerState<any> = Object.freeze({
     [DaffCartOperationType.PaymentMethods]: [],
     [DaffCartOperationType.Coupon]: [],
   },
-  resolved: DaffCartResolveState.Default
+  resolved: DaffCartResolveState.Default,
 });

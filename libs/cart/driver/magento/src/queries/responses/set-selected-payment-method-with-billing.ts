@@ -5,7 +5,7 @@ export interface MagentoSetSelectedPaymentMethodWithBillingResponse {
     __typename: string;
     cart: {
       id: MagentoGetCartResponse['cart']['id'];
-    }
+    };
   };
   setPaymentMethodOnCart: MagentoGetCartResponse;
 }

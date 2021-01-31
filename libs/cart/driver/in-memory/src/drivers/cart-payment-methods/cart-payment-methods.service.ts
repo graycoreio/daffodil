@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartPaymentMethod, DaffCart } from '@daffodil/cart';
 import {
-  DaffCartPaymentMethodsServiceInterface,
-} from '@daffodil/cart/driver';
+  DaffCartPaymentMethod,
+  DaffCart,
+} from '@daffodil/cart';
+import { DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryCartPaymentMethodsService implements DaffCartPaymentMethodsServiceInterface<DaffCartPaymentMethod> {
   url = '/api/cart-payment-methods';
@@ -16,6 +17,6 @@ export class DaffInMemoryCartPaymentMethodsService implements DaffCartPaymentMet
   constructor(private http: HttpClient) {}
 
   list(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod[]> {
-    return this.http.get<DaffCartPaymentMethod[]>(`${this.url}/${cartId}`)
+    return this.http.get<DaffCartPaymentMethod[]>(`${this.url}/${cartId}`);
   }
 }

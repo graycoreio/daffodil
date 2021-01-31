@@ -1,9 +1,9 @@
-import { MagentoMoney } from '@daffodil/driver/magento'
+import { MagentoMoney } from '@daffodil/driver/magento';
 
-import { MagentoCartItem } from './cart-item'
-import { MagentoCartPaymentMethod } from './cart-payment-method';
 import { MagentoCartAddress } from './cart-address';
 import { MagentoCartCoupon } from './cart-coupon';
+import { MagentoCartItem } from './cart-item';
+import { MagentoCartPaymentMethod } from './cart-payment-method';
 import { MagentoShippingAddress } from './shipping-address';
 
 /**
@@ -19,17 +19,17 @@ export interface MagentoCart {
   selected_payment_method: MagentoCartPaymentMethod;
   applied_coupons: MagentoCartCoupon[];
   prices: {
-    grand_total: MagentoMoney,
-    subtotal_excluding_tax: MagentoMoney,
-    subtotal_including_tax: MagentoMoney,
-		subtotal_with_discount_excluding_tax: MagentoMoney,
+    grand_total: MagentoMoney;
+    subtotal_excluding_tax: MagentoMoney;
+    subtotal_including_tax: MagentoMoney;
+		subtotal_with_discount_excluding_tax: MagentoMoney;
 		applied_taxes: {
-			amount: MagentoMoney,
-			label: string
-		}[],
+			amount: MagentoMoney;
+			label: string;
+		}[];
 		discounts: {
-			amount: MagentoMoney,
-			label: string
-		}[]
-  }
+			amount: MagentoMoney;
+			label: string;
+		}[];
+  };
 }

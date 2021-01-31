@@ -4,14 +4,18 @@ import {
   DaffCartItemInput,
   DaffCartItemInputType,
   DaffCompositeCartItemInput,
-  DaffConfigurableCartItemInput
+  DaffConfigurableCartItemInput,
 } from '@daffodil/cart';
-import { MagentoBundledCartItemInput, MagentoCartItemInput, MagentoConfigurableCartItemInput } from '@daffodil/cart/driver/magento';
+import {
+  MagentoBundledCartItemInput,
+  MagentoCartItemInput,
+  MagentoConfigurableCartItemInput,
+} from '@daffodil/cart/driver/magento';
 
 import {
-	transformCompositeCartItem,
-	transformSimpleCartItem,
-	transformConfigurableCartItem
+  transformCompositeCartItem,
+  transformSimpleCartItem,
+  transformConfigurableCartItem,
 } from './cart-item-input-transformers';
 
 describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => {
@@ -22,7 +26,7 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
     TestBed.configureTestingModule({});
 
     mockDaffCartItemInput = {
-			type: DaffCartItemInputType.Simple,
+      type: DaffCartItemInputType.Simple,
       productId: '3',
       qty: 2,
     };
@@ -43,53 +47,53 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 
   describe('transformCompositeCartItem', () => {
     let transformedCartItem: MagentoBundledCartItemInput;
-		let mockDaffCompositeCartItemInput: DaffCompositeCartItemInput;
+    let mockDaffCompositeCartItemInput: DaffCompositeCartItemInput;
 
     beforeEach(() => {
-			mockDaffCompositeCartItemInput = {
-				...mockDaffCartItemInput,
-				type: DaffCartItemInputType.Composite,
-				options: [{
-					code: 1,
-					quantity: 1,
-					value: 'value'
-				}]
-			};
+      mockDaffCompositeCartItemInput = {
+        ...mockDaffCartItemInput,
+        type: DaffCartItemInputType.Composite,
+        options: [{
+          code: 1,
+          quantity: 1,
+          value: 'value',
+        }],
+      };
     });
 
     it('should return an object with the correct values', () => {
-			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
+      transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
       expect(transformedCartItem.input.sku).toEqual(mockDaffCompositeCartItemInput.productId);
       expect(transformedCartItem.input.quantity).toEqual(mockDaffCompositeCartItemInput.qty);
       expect(transformedCartItem.options[0].id).toEqual(Number(mockDaffCompositeCartItemInput.options[0].code));
       expect(transformedCartItem.options[0].quantity).toEqual(mockDaffCompositeCartItemInput.options[0].quantity);
       expect(transformedCartItem.options[0].value).toEqual([mockDaffCompositeCartItemInput.options[0].value]);
-		});
+    });
 
-		it('should return the correct values when options is null', () => {
-			mockDaffCompositeCartItemInput.options = null;
-			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
-			expect(transformedCartItem.options).toEqual([]);
-		});
+    it('should return the correct values when options is null', () => {
+      mockDaffCompositeCartItemInput.options = null;
+      transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
+      expect(transformedCartItem.options).toEqual([]);
+    });
   });
 
   describe('transformConfigurableCartItem', () => {
     let transformedCartItem: MagentoConfigurableCartItemInput;
-		let mockDaffConfigurableCartItemInput: DaffConfigurableCartItemInput;
+    let mockDaffConfigurableCartItemInput: DaffConfigurableCartItemInput;
 
     beforeEach(() => {
-			mockDaffConfigurableCartItemInput = {
-				...mockDaffCartItemInput,
-				type: DaffCartItemInputType.Configurable,
-				variantId: 'variantId'
-			};
+      mockDaffConfigurableCartItemInput = {
+        ...mockDaffCartItemInput,
+        type: DaffCartItemInputType.Configurable,
+        variantId: 'variantId',
+      };
     });
 
     it('should return an object with the correct values', () => {
-			transformedCartItem = transformConfigurableCartItem(mockDaffConfigurableCartItemInput);
+      transformedCartItem = transformConfigurableCartItem(mockDaffConfigurableCartItemInput);
       expect(transformedCartItem.parentSku).toEqual(mockDaffConfigurableCartItemInput.productId);
-			expect(transformedCartItem.data.quantity).toEqual(mockDaffConfigurableCartItemInput.qty);
-			expect(transformedCartItem.data.sku).toEqual(mockDaffConfigurableCartItemInput.variantId);
-		});
+      expect(transformedCartItem.data.quantity).toEqual(mockDaffConfigurableCartItemInput.qty);
+      expect(transformedCartItem.data.sku).toEqual(mockDaffConfigurableCartItemInput.variantId);
+    });
   });
 });

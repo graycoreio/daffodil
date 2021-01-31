@@ -2,20 +2,19 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { MagentoCartAddress } from '@daffodil/cart/driver/magento';
-
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartAddress implements MagentoCartAddress {
 	__typename = 'BillingCartAddress';
   region = {
-		__typename: 'CartAddressRegion',
+    __typename: 'CartAddressRegion',
     code: faker.address.stateAbbr(),
-    label: faker.address.state()
+    label: faker.address.state(),
   };
   country = {
-		__typename: 'CartAddressCountry',
+    __typename: 'CartAddressCountry',
     code: faker.address.countryCode(),
-    label: faker.address.country()
+    label: faker.address.country(),
   };
   street = [faker.address.streetAddress()];
   company = faker.company.companyName();
@@ -28,7 +27,7 @@ export class MockMagentoCartAddress implements MagentoCartAddress {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoCartAddressFactory extends DaffModelFactory<MagentoCartAddress> {
   constructor() {

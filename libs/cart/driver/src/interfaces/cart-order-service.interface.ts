@@ -1,7 +1,11 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCart, DaffCartPaymentMethod, DaffCartOrderResult } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartPaymentMethod,
+  DaffCartOrderResult,
+} from '@daffodil/cart';
 
 /**
  * The interface responsible for placing an order for the customer's cart.
@@ -18,5 +22,5 @@ export interface DaffCartOrderServiceInterface<
 }
 
 export const DaffCartOrderDriver = new InjectionToken<DaffCartOrderServiceInterface>(
-	'DaffCartOrderDriver',
+  'DaffCartOrderDriver',
 );

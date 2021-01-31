@@ -1,7 +1,10 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartNotFoundError } from '@daffodil/cart/driver';
@@ -20,11 +23,11 @@ describe('Driver | In Memory | Cart | CartService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryCartService
-      ]
+        DaffInMemoryCartService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -54,21 +57,21 @@ describe('Driver | In Memory | Cart | CartService', () => {
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCart);
-		});
+    });
 
     it('should throw a daffodil error when it receives an error', (done) => {
-			cartService.get(cartId).pipe(
-				catchError((error) => {
-					expect(error).toEqual(new DaffCartNotFoundError(error.message));
-					done();
-					return of(null);
-				})
-			).subscribe();
+      cartService.get(cartId).pipe(
+        catchError((error) => {
+          expect(error).toEqual(new DaffCartNotFoundError(error.message));
+          done();
+          return of(null);
+        }),
+      ).subscribe();
 
-			const req = httpMock.expectOne(`${cartService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${cartService.url}/${cartId}`);
 
-			expect(req.request.method).toBe('GET');
-			req.error(new ErrorEvent('404'));
+      expect(req.request.method).toBe('GET');
+      req.error(new ErrorEvent('404'));
     });
   });
 
@@ -93,7 +96,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
           productId,
-          qty
+          qty,
         });
 
         req.flush(mockCart);
@@ -121,7 +124,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
   describe('create | creating a cart', () => {
     it('should send a post request and return the cart', done => {
       cartService.create().subscribe(result => {
-        expect(result).toEqual(jasmine.objectContaining({id: cartId}));
+        expect(result).toEqual(jasmine.objectContaining({ id: cartId }));
         done();
       });
 
@@ -130,7 +133,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
       expect(req.request.method).toBe('POST');
 
       req.flush({
-        id: cartId
+        id: cartId,
       });
     });
   });

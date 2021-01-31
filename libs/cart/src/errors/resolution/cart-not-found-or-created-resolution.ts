@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartErrorCodes } from '../codes.enum';
 
@@ -7,9 +10,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * This happens when the cart cannot be found and a new cart cannot be created.
  */
 export class DaffCartNotFoundOrCreatedResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION
+	public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

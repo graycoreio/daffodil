@@ -1,15 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { addTypenameToDocument } from '@apollo/client/utilities';
 import { InMemoryCache } from '@apollo/client/core';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { addTypenameToDocument } from '@apollo/client/utilities';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 
+import { DaffCartPaymentMethod } from '@daffodil/cart';
 import {
-  DaffCartPaymentMethod,
-} from '@daffodil/cart';
-import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer } from '@daffodil/cart/driver/magento';
-import {
-  MagentoCartPaymentMethodFactory
-} from '@daffodil/cart/driver/magento/testing';
+  MagentoCartPaymentMethod,
+  MagentoListPaymentMethodsResponse,
+  DaffMagentoCartPaymentTransformer,
+} from '@daffodil/cart/driver/magento';
+import { MagentoCartPaymentMethodFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
 import { schema } from '@daffodil/driver/magento';
 
@@ -34,18 +38,18 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartPaymentMethodsService,
-				{
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+        {
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartPaymentMethodsService);
@@ -62,15 +66,15 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     mockMagentoPaymentMethod = {
       __typename: 'AvailablePaymentMethod',
       code: temp.code,
-      title: temp.title
+      title: temp.title,
     };
 
     cartId = '15';
     mockListCartPaymentMethodsResponse = {
       cart: {
         __typename: 'Cart',
-        available_payment_methods: [mockMagentoPaymentMethod]
-      }
+        available_payment_methods: [mockMagentoPaymentMethod],
+      },
     };
 
     magentoCartPaymentTransformerSpy = spyOn(magentoCartPaymentTransformerService, 'transform');
@@ -99,7 +103,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
 
       op.flush({
-        data: mockListCartPaymentMethodsResponse
+        data: mockListCartPaymentMethodsResponse,
       });
     });
 
@@ -112,7 +116,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
 
       op.flush({
-        data: mockListCartPaymentMethodsResponse
+        data: mockListCartPaymentMethodsResponse,
       });
     });
 

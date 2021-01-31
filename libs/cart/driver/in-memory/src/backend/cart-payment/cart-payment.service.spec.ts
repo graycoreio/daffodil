@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-	DaffCartPaymentMethod,
+  DaffCartPaymentMethod,
   DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
   DaffCartPaymentFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartPaymentService } from './cart-payment.service';
@@ -32,7 +32,7 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartPaymentService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartPaymentService);
 
@@ -54,13 +54,13 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 
@@ -89,13 +89,13 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
     beforeEach(() => {
       newPayment = cartPaymentFactory.create();
       reqInfoStub.url = cartUrl;
-      reqInfoStub.req.body = {payment: newPayment};
+      reqInfoStub.req.body = { payment: newPayment };
       result = service.put(reqInfoStub);
     });
 
     it('should return a cart with the updated payment', () => {
       expect(result.body.payment).toEqual(newPayment);
-		});
+    });
   });
 
   describe('processing an update payment with billing request', () => {
@@ -107,7 +107,7 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = {
         payment: newPayment,
-        address: mockCartAddress
+        address: mockCartAddress,
       };
       result = service.put(reqInfoStub);
     });
@@ -115,7 +115,7 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
     it('should return a cart with the updated payment', () => {
       expect(result.body.payment).toEqual(newPayment);
       expect(result.body.billing_address).toEqual(mockCartAddress);
-		});
+    });
   });
 
   describe('processing a remove payment request', () => {

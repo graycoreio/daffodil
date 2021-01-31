@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { STATUS, RequestInfo } from 'angular-in-memory-web-api';
+import {
+  STATUS,
+  RequestInfo,
+} from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -8,25 +11,25 @@ import {
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendCartBillingAddressService implements DaffInMemoryDataServiceInterface {
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.getBillingAddress(reqInfo),
-      status: STATUS.OK
+      status: STATUS.OK,
     }));
   }
 
   put(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.updateBillingAddress(reqInfo),
-      status: STATUS.OK
+      status: STATUS.OK,
     }));
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
   }
 
   private getBillingAddress(reqInfo): DaffCartAddress {
@@ -37,7 +40,7 @@ export class DaffInMemoryBackendCartBillingAddressService implements DaffInMemor
     const cart = this.getCart(reqInfo);
     const address = reqInfo.utils.getJsonBody(reqInfo.req);
 
-		cart.billing_address = address;
+    cart.billing_address = address;
 
     return cart;
   }

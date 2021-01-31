@@ -1,17 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffCart,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import {
   MagentoCartItem,
   MagentoCart,
-  MagentoCartCoupon
+  MagentoCartCoupon,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory,
-  MagentoCartCouponFactory
+  MagentoCartCouponFactory,
 } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
@@ -33,8 +31,8 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoCartTransformer
-      ]
+        DaffMagentoCartTransformer,
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartTransformer);

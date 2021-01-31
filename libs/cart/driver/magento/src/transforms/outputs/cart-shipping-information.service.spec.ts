@@ -1,12 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MagentoCartShippingMethodFactory } from '@daffodil/cart/driver/magento/testing';
-import {
-  DaffCartShippingRateFactory
-} from '@daffodil/cart/testing';
+import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 
-import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 import { DaffMagentoCartShippingInformationTransformer } from './cart-shipping-information.service';
+import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 
 describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', () => {
   let service: DaffMagentoCartShippingInformationTransformer;
@@ -25,9 +23,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', (
         DaffMagentoCartShippingInformationTransformer,
         {
           provide: DaffMagentoCartShippingRateTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform'])
-        }
-      ]
+          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform']),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartShippingInformationTransformer);
@@ -39,7 +37,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', (
 
     mockDaffShippingInformation = {
       ...daffCartShippingInformationFactory.create(),
-      address_id: null
+      address_id: null,
     };
     mockMagentoShippingMethod = magentoCartShippingMethodFactory.create();
 
@@ -75,5 +73,5 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', (
         expect(transformedShippingInformation).toBeNull();
       });
     });
-  })
+  });
 });

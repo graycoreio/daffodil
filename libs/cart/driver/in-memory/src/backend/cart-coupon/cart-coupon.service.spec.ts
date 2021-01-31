@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-	DaffCartCoupon,
+  DaffCartCoupon,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartCouponFactory
+  DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon.service';
@@ -28,7 +28,7 @@ describe('DaffInMemoryBackendCartCouponService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartCouponService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartCouponService);
 
@@ -47,13 +47,13 @@ describe('DaffInMemoryBackendCartCouponService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 
@@ -85,9 +85,9 @@ describe('DaffInMemoryBackendCartCouponService', () => {
     });
 
     it('should return a cart with the added item', () => {
-			result = service.post(reqInfoStub);
+      result = service.post(reqInfoStub);
       expect(result.body.coupons).toContain(mockCartCoupon);
-		});
+    });
   });
 
   describe('processing a remove coupon request', () => {
@@ -102,7 +102,7 @@ describe('DaffInMemoryBackendCartCouponService', () => {
     });
 
     it('should remove the coupon from the cart', () => {
-      expect(result.body.coupons.find(({code}) => couponCode === code)).toBeFalsy();
+      expect(result.body.coupons.find(({ code }) => couponCode === code)).toBeFalsy();
     });
   });
 

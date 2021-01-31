@@ -5,13 +5,13 @@ import { DaffCartCoupon } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffCartCoupon implements DaffCartCoupon {
-  coupon_id = faker.random.number({min: 1, max: 1000});
+  coupon_id = faker.random.number({ min: 1, max: 1000 });
   code = faker.random.alphaNumeric(20);
   description = faker.random.words(5);
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffCartCouponFactory extends DaffModelFactory<DaffCartCoupon> {
   constructor() {

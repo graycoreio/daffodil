@@ -5,13 +5,13 @@ export interface MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse {
     __typename: string;
     cart: {
       id: MagentoGetCartResponse['cart']['id'];
-    }
+    };
   };
   setBillingAddressOnCart: {
     __typename: string;
     cart: {
       id: MagentoGetCartResponse['cart']['id'];
-    }
+    };
   };
   setGuestEmailOnCart: MagentoGetCartResponse;
 }

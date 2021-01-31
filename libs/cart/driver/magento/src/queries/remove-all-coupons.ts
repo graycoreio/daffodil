@@ -1,11 +1,14 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
-import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
+import {
+  daffBuildFragmentNameSpread,
+  daffBuildFragmentDefinition,
+} from '@daffodil/core/graphql';
 
 import { cartItemFragment } from './fragments/cart-item';
-import { cartCouponFragment } from './fragments/public_api';
 import { cartTotalsFragment } from './fragments/cart-totals';
+import { cartCouponFragment } from './fragments/public_api';
 
 export const removeAllCoupons = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation MagentoRemoveAllCoupons($cartId: String!) {

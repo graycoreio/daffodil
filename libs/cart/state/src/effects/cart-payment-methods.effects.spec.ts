@@ -1,21 +1,34 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import {
   DaffCart,
   DaffCartPaymentMethod,
   DaffCartStorageService,
 } from '@daffodil/cart';
-import { DaffCartPaymentMethodsServiceInterface, DaffCartPaymentMethodsDriver } from '@daffodil/cart/driver';
-import { DaffCartPaymentMethodsLoad, DaffCartPaymentMethodsLoadSuccess, DaffCartPaymentMethodsLoadFailure } from '@daffodil/cart/state';
+import {
+  DaffCartPaymentMethodsServiceInterface,
+  DaffCartPaymentMethodsDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
+  DaffCartPaymentMethodsLoad,
+  DaffCartPaymentMethodsLoadSuccess,
+  DaffCartPaymentMethodsLoadFailure,
+} from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartPaymentMethodsEffects } from './cart-payment-methods.effects';
 
@@ -38,12 +51,12 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartPaymentMethodsEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffCartPaymentMethodsEffects);
@@ -85,7 +98,7 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to list cart payment methods'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to list cart payment methods' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartPaymentMethodsLoadFailure(error);

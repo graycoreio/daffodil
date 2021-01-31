@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import * as faker from 'faker/locale/en_US';
-
-import { DaffCart, DaffCartPaymentMethod, DaffCartOrderResult } from '@daffodil/cart';
 import {
-  DaffCartOrderServiceInterface,
-} from '@daffodil/cart/driver';
+  Observable,
+  of,
+} from 'rxjs';
+
+import {
+  DaffCart,
+  DaffCartPaymentMethod,
+  DaffCartOrderResult,
+} from '@daffodil/cart';
+import { DaffCartOrderServiceInterface } from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingCartOrderService implements DaffCartOrderServiceInterface {
   placeOrder(cartId: DaffCart['id'], payment?: DaffCartPaymentMethod): Observable<DaffCartOrderResult> {

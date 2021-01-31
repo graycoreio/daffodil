@@ -26,8 +26,8 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartOrderService
-      ]
+        DaffTestingCartOrderService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingCartOrderService);
@@ -51,11 +51,11 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
 
   describe('placeOrder | placing an order and getting an order result', () => {
     it('should return the order ID and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.objectContaining({
+      const expected = cold('(a|)', { a: jasmine.objectContaining({
         id: jasmine.truthy(),
         orderId: jasmine.truthy(),
         cartId: jasmine.truthy(),
-      })});
+      }) });
       expect(service.placeOrder(cartId, mockCartPayment)).toBeObservable(expected);
     });
   });

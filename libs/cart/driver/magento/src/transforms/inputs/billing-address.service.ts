@@ -6,7 +6,7 @@ import { MagentoBillingAddressInput } from '../../models/requests/billing-addres
 import { DaffMagentoCartAddressInputTransformer } from './cart-address.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoBillingAddressInputTransformer {
   constructor(private cartAddressTransformer: DaffMagentoCartAddressInputTransformer) {}
@@ -20,6 +20,6 @@ export class DaffMagentoBillingAddressInputTransformer {
       : {
         address: this.cartAddressTransformer.transform(cartAddress),
         customer_address_id: null,
-      }
+      };
   }
 }

@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartDriverErrorCodes } from './codes.enum';
 
@@ -10,7 +13,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 export class DaffCartExpiredPaymentTokenError extends DaffInheritableError implements DaffError {
   public readonly code: string = DaffCartDriverErrorCodes.EXPIRED_PAYMENT_METHOD;
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }

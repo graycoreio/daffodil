@@ -3,11 +3,11 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
-  DaffCartAddress
+  DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffTestingCartAddressService } from './cart-address.service';
@@ -24,8 +24,8 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartAddressService
-      ]
+        DaffTestingCartAddressService,
+      ],
     });
 
     cartFactory = TestBed.inject(DaffCartFactory);
@@ -53,7 +53,7 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
     });
   });

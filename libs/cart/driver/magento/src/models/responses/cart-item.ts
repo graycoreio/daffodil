@@ -1,5 +1,8 @@
+import {
+  MagentoMoney,
+  MagentoDiscount,
+} from '@daffodil/driver/magento';
 import { MagentoProduct } from '@daffodil/product';
-import { MagentoMoney, MagentoDiscount } from '@daffodil/driver/magento'
 
 export enum MagentoCartItemTypeEnum {
 	Simple = 'SimpleCartItem',

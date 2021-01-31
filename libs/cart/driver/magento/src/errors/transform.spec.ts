@@ -14,18 +14,18 @@ describe('Cart | Driver | Magento | transformCartMagentoError', () => {
     beforeEach(() => {
       graphQlError = new GraphQLError('The coupon code isn\'t valid. Verify the code and try again.');
       apolloError = new ApolloError({
-        graphQLErrors: [graphQlError]
-      })
+        graphQLErrors: [graphQlError],
+      });
 
-      transformedError = transformCartMagentoError(apolloError)
-    })
+      transformedError = transformCartMagentoError(apolloError);
+    });
 
     it('should return a DaffInvalidCouponCodeError', () => {
-      expect(transformedError).toEqual(jasmine.any(DaffInvalidCouponCodeError))
-    })
+      expect(transformedError).toEqual(jasmine.any(DaffInvalidCouponCodeError));
+    });
 
     it('should return an error containing the GraphQL error message', () => {
-      expect(transformedError.message).toContain(graphQlError.message)
-    })
-  })
-})
+      expect(transformedError.message).toContain(graphQlError.message);
+    });
+  });
+});

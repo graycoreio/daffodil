@@ -1,7 +1,16 @@
-import { CanActivate, Router } from '@angular/router';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  CanActivate,
+  Router,
+} from '@angular/router';
 import { Observable } from 'rxjs';
-import { Injectable, Inject } from '@angular/core';
-import { tap, take } from 'rxjs/operators';
+import {
+  tap,
+  take,
+} from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartShippingMethodGuardRedirectUrl } from './shipping-method-guard-redirect.token';
@@ -13,23 +22,23 @@ import { DaffCartShippingMethodGuardRedirectUrl } from './shipping-method-guard-
  * Ensure that the cart is resolved prior to running this guard with the {@link DaffResolvedCartGuard}.
  */
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffShippingMethodGuard implements CanActivate {
   constructor(
 		private facade: DaffCartFacade,
 		private router: Router,
-		@Inject(DaffCartShippingMethodGuardRedirectUrl) private redirectUrl: string
-	) {}
+		@Inject(DaffCartShippingMethodGuardRedirectUrl) private redirectUrl: string,
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.facade.hasShippingMethod$.pipe(
       take(1),
-			tap(hasShippingMethod => {
-				if (!hasShippingMethod) {
-					this.router.navigateByUrl(this.redirectUrl)
-				}
-			})
-		)
+      tap(hasShippingMethod => {
+        if (!hasShippingMethod) {
+          this.router.navigateByUrl(this.redirectUrl);
+        }
+      }),
+    );
   }
 }

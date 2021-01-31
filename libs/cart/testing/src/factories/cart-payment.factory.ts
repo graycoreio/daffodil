@@ -8,10 +8,10 @@ export class MockCartPayment implements DaffCartPaymentMethod {
 }
 
 @Injectable({
-	providedIn: 'root',
+  providedIn: 'root',
 })
 export class DaffCartPaymentFactory extends DaffModelFactory<DaffCartPaymentMethod> {
-	constructor() {
-		super(MockCartPayment);
-	}
+  constructor() {
+    super(MockCartPayment);
+  }
 }

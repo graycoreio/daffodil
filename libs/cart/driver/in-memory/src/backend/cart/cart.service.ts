@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { STATUS, RequestInfo } from 'angular-in-memory-web-api';
+import {
+  STATUS,
+  RequestInfo,
+} from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
-import { DaffCartFactory } from '@daffodil/cart/testing';
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceInterface {
   constructor(
@@ -15,17 +17,17 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
   ) {}
 
   get(reqInfo: RequestInfo) {
-		const cart = this.getCart(reqInfo)
-		return reqInfo.utils.createResponse$(() => ({
-			body: cart,
-			status: cart ? STATUS.OK : STATUS.NOT_FOUND
-		}));
+    const cart = this.getCart(reqInfo);
+    return reqInfo.utils.createResponse$(() => ({
+      body: cart,
+      status: cart ? STATUS.OK : STATUS.NOT_FOUND,
+    }));
   }
 
   post(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => {
       let body;
-			const action = this.getAction(reqInfo);
+      const action = this.getAction(reqInfo);
 
       if (reqInfo.id === 'addToCart') {
         // deprecated
@@ -38,7 +40,7 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
 
       return {
         body,
-        status: STATUS.OK
+        status: STATUS.OK,
       };
     });
   }
@@ -47,7 +49,7 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
    * Gets whatever follows the cart ID section of the request URL.
    */
   private getAction(reqInfo: RequestInfo): string {
-    return reqInfo.url.replace(`/${reqInfo.resourceUrl}${reqInfo.id}/`, '')
+    return reqInfo.url.replace(`/${reqInfo.resourceUrl}${reqInfo.id}/`, '');
   }
 
   private clear(reqInfo: RequestInfo): DaffCart {
@@ -55,7 +57,7 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
 
     cart.items = [];
 
-    return cart
+    return cart;
   }
 
   private create(reqInfo: RequestInfo): Partial<{id: DaffCart['id']}> {
@@ -64,11 +66,11 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
     reqInfo.collection.push(cart);
 
     return {
-      id: cart.id
+      id: cart.id,
     };
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-		return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
   }
 }

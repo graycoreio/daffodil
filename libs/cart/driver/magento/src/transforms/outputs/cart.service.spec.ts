@@ -1,19 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 
-import { daffAdd } from '@daffodil/core';
 import {
   DaffCart,
-  DaffCartTotalTypeEnum
+  DaffCartTotalTypeEnum,
 } from '@daffodil/cart';
-import { MagentoCartAddress, MagentoShippingAddress, MagentoCartShippingMethod, MagentoCartItem, MagentoCartPaymentMethod, DaffMagentoCartPaymentTransformer, DaffMagentoCartShippingInformationTransformer, DaffMagentoCartAddressTransformer, DaffMagentoCartShippingRateTransformer, DaffMagentoShippingAddressTransformer } from '@daffodil/cart/driver/magento';
+import {
+  MagentoCartAddress,
+  MagentoShippingAddress,
+  MagentoCartShippingMethod,
+  MagentoCartItem,
+  MagentoCartPaymentMethod,
+  DaffMagentoCartPaymentTransformer,
+  DaffMagentoCartShippingInformationTransformer,
+  DaffMagentoCartAddressTransformer,
+  DaffMagentoCartShippingRateTransformer,
+  DaffMagentoShippingAddressTransformer,
+} from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoShippingAddressFactory,
   MagentoCartItemFactory,
   MagentoCartAddressFactory,
-  MagentoCartShippingMethodFactory
+  MagentoCartShippingMethodFactory,
 } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { daffAdd } from '@daffodil/core';
 
 import { DaffMagentoCartTransformer } from './cart.service';
 
@@ -47,25 +58,25 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         DaffMagentoCartTransformer,
         {
           provide: DaffMagentoCartPaymentTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform']),
         },
         {
           provide: DaffMagentoCartShippingInformationTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingInformationTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartShippingInformationTransformer', ['transform']),
         },
         {
           provide: DaffMagentoCartAddressTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartAddressTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartAddressTransformer', ['transform']),
         },
         {
           provide: DaffMagentoCartShippingRateTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform']),
         },
         {
           provide: DaffMagentoShippingAddressTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform'])
-        }
-      ]
+          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform']),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartTransformer);
@@ -89,19 +100,19 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         {
           selected_shipping_method: {
             amount: {
-              value: 100
-            }
-          }
-        }
-      ]
+              value: 100,
+            },
+          },
+        },
+      ],
     });
     mockShippingAddress = {
       ...magentoShippingAddressFactory.create(),
-      email: mockMagentoCart.email
+      email: mockMagentoCart.email,
     };
     mockBillingAddress = {
       ...magentoShippingAddressFactory.create(),
-      email: mockMagentoCart.email
+      email: mockMagentoCart.email,
     };
     mockCartItem = magentoCartItemFactory.create();
     mockShippingMethod = magentoShippingMethodFactory.create();
@@ -155,43 +166,43 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
           {
             name: DaffCartTotalTypeEnum.grandTotal,
             label: 'Grand Total',
-            value: mockMagentoCart.prices.grand_total.value
+            value: mockMagentoCart.prices.grand_total.value,
           },
           {
             name: DaffCartTotalTypeEnum.subtotalExcludingTax,
             label: 'Subtotal Excluding Tax',
-            value: mockMagentoCart.prices.subtotal_excluding_tax.value
+            value: mockMagentoCart.prices.subtotal_excluding_tax.value,
           },
           {
             name: DaffCartTotalTypeEnum.subtotalIncludingTax,
             label: 'Subtotal Including Tax',
-            value: mockMagentoCart.prices.subtotal_including_tax.value
+            value: mockMagentoCart.prices.subtotal_including_tax.value,
           },
           {
             name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
             label: 'Subtotal with Discount Excluding Tax',
-            value: mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value
+            value: mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value,
           },
           {
             name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
             label: 'Subtotal with Discount Including Tax',
-            value: daffAdd(mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax)
+            value: daffAdd(mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax),
           },
           {
             name: DaffCartTotalTypeEnum.tax,
             label: 'Tax',
-            value: totalTax
+            value: totalTax,
           },
           ...mockMagentoCart.prices.discounts.map(discount => ({
             name: DaffCartTotalTypeEnum.discount,
             label: discount.label,
-            value: discount.amount.value
+            value: discount.amount.value,
           })),
           {
             name: DaffCartTotalTypeEnum.shipping,
             label: 'Shipping',
-            value: mockMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value
-          }
+            value: mockMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value,
+          },
         ]);
       });
 

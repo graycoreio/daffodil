@@ -1,12 +1,27 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import { DocumentNode } from 'graphql';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { DaffQueuedApollo } from '@daffodil/core/graphql'
-import { DaffCartAddress, DaffCart } from '@daffodil/cart';
+import {
+  DaffCartAddress,
+  DaffCart,
+} from '@daffodil/cart';
 import { DaffCartAddressServiceInterface } from '@daffodil/cart/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
+import { transformCartMagentoError } from './errors/transform';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import {
   updateAddress,
   updateAddressWithEmail,
@@ -15,18 +30,15 @@ import {
   MagentoUpdateAddressResponse,
   MagentoUpdateAddressWithEmailResponse,
 } from './queries/responses/public_api';
+import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
-import { transformCartMagentoError } from './errors/transform';
-import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
-import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
-import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
  * A service for making Magento GraphQL queries for carts.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartAddressService implements DaffCartAddressServiceInterface {
   constructor(
@@ -38,7 +50,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
   ) {}
 
   update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
+    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address);
   }
 
   private updateAddress(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
@@ -46,12 +58,12 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
       mutation: updateAddress(this.extraCartFragments),
       variables: {
         cartId,
-        address: this.cartAddressInputTransformer.transform(address)
-      }
+        address: this.cartAddressInputTransformer.transform(address),
+      },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
-    )
+    );
   }
 
   private updateAddressWithEmail(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
@@ -60,11 +72,11 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
       variables: {
         cartId,
         email: address.email,
-        address: this.cartAddressInputTransformer.transform(address)
-      }
+        address: this.cartAddressInputTransformer.transform(address),
+      },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
-    )
+    );
   }
 }

@@ -1,25 +1,41 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
-
 import {
-  DaffStorageServiceError
-} from '@daffodil/core'
-import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
+
 import {
   DaffCart,
   DaffCartPaymentMethod,
   DaffCartOrderResult,
-  DaffCartStorageService
+  DaffCartStorageService,
 } from '@daffodil/cart';
-import { DaffCartOrderServiceInterface, DaffCartOrderDriver } from '@daffodil/cart/driver';
-import { DaffCartStorageFailure, DaffCartPlaceOrder, DaffCartPlaceOrderSuccess, DaffCartPlaceOrderFailure, DaffCartCreate } from '@daffodil/cart/state';
+import {
+  DaffCartOrderServiceInterface,
+  DaffCartOrderDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
+  DaffCartStorageFailure,
+  DaffCartPlaceOrder,
+  DaffCartPlaceOrderSuccess,
+  DaffCartPlaceOrderFailure,
+  DaffCartCreate,
+} from '@daffodil/cart/state';
 import {
   DaffCartFactory,
-  DaffCartPaymentFactory
+  DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DaffStateError,
+  daffTransformErrorToStateError,
+} from '@daffodil/core/state';
 
 import { DaffCartOrderEffects } from './cart-order.effects';
 
@@ -41,17 +57,19 @@ describe('Cart | Effect | CartOrderEffects', () => {
   let getCartIdSpy: jasmine.Spy;
 
   const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
-  const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
+  const throwStorageError = () => {
+    throw new DaffStorageServiceError('An error occurred during storage.');
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartOrderEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffCartOrderEffects);
@@ -97,7 +115,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     describe('and the call to CartOrderService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to place order'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to place order' };
         const response = cold('#', {}, error);
         const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure(error);
 
@@ -113,7 +131,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        getCartIdSpy.and.callFake(throwStorageError)
+        getCartIdSpy.and.callFake(throwStorageError);
 
         actions$ = hot('--a', { a: cartPlaceOrderAction });
         expected = cold('--b', { b: cartStorageFailureAction });
@@ -137,7 +155,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
       };
       cartOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
       actions$ = hot('--a', { a: cartOrderSuccessAction });
-      expected = cold('--b', {b: cartCreateAction});
+      expected = cold('--b', { b: cartCreateAction });
     });
 
     it('should create a new cart', () => {

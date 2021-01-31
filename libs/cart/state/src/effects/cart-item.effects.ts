@@ -1,10 +1,32 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError, debounceTime, concatMap, mergeMap } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+  debounceTime,
+  mergeMap,
+} from 'rxjs/operators';
 
-import { DaffCartItemInput, DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
-import { DaffCartItemDriver, DaffCartItemServiceInterface } from '@daffodil/cart/driver';
+import {
+  DaffCartItemInput,
+  DaffCart,
+  DaffCartStorageService,
+  DAFF_CART_ERROR_MATCHER,
+} from '@daffodil/cart';
+import {
+  DaffCartItemDriver,
+  DaffCartItemServiceInterface,
+} from '@daffodil/cart/driver';
+import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartItemActionTypes,
@@ -23,10 +45,10 @@ import {
   DaffCartItemAdd,
   DaffCartItemAddSuccess,
   DaffCartItemAddFailure,
-	DaffCartItemStateReset,
+  DaffCartItemStateReset,
 } from '../actions/public_api';
-import { DaffStatefulCartItem } from '../models/public_api';
 import { DaffCartItemStateDebounceTime } from '../injection-tokens/cart-item-state-debounce-time';
+import { DaffStatefulCartItem } from '../models/public_api';
 
 @Injectable()
 export class DaffCartItemEffects<
@@ -36,10 +58,10 @@ export class DaffCartItemEffects<
 > {
   constructor(
     private actions$: Actions,
-    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
 		private storage: DaffCartStorageService,
-		@Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number
+		@Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number,
   ) {}
 
   @Effect()
@@ -48,10 +70,10 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemList) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartItemListSuccess(resp)),
-        catchError(error => of(new DaffCartItemListFailure(this.errorMatcher(error))))
-      )
-    )
-  )
+        catchError(error => of(new DaffCartItemListFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 
   @Effect()
   get$ = this.actions$.pipe(
@@ -59,46 +81,46 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemLoad<T>) =>
       this.driver.get(this.storage.getCartId(), action.itemId).pipe(
         map((resp: T) => new DaffCartItemLoadSuccess(resp)),
-        catchError(error => of(new DaffCartItemLoadFailure(this.errorMatcher(error))))
-      )
-    )
-  )
+        catchError(error => of(new DaffCartItemLoadFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 
   @Effect()
   add$ = this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemAddAction),
     switchMap((action: DaffCartItemAdd<U>) =>
-			this.driver.add(
-				this.storage.getCartId(),
-				action.input
-			).pipe(
+      this.driver.add(
+        this.storage.getCartId(),
+        action.input,
+      ).pipe(
         map((resp: V) => new DaffCartItemAddSuccess(resp)),
-        catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error))))
-      )
-    )
-	)
+        catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 
   @Effect()
   update$ = this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemUpdateAction),
-		mergeMap((action: DaffCartItemUpdate<T>) => 
-			this.driver.update(
-				this.storage.getCartId(),
-				action.itemId,
-				action.changes
-			).pipe(
-				map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
-				catchError(error => of(new DaffCartItemUpdateFailure(this.errorMatcher(error))))
-			)
-		)
-	)
+    mergeMap((action: DaffCartItemUpdate<T>) =>
+      this.driver.update(
+        this.storage.getCartId(),
+        action.itemId,
+        action.changes,
+      ).pipe(
+        map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
+        catchError(error => of(new DaffCartItemUpdateFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 
 	@Effect()
   resetCartItemStateAfterChange$ = this.actions$.pipe(
-		ofType(DaffCartItemActionTypes.CartItemAddSuccessAction, DaffCartItemActionTypes.CartItemUpdateSuccessAction),
-		debounceTime(this.cartItemStateDebounceTime),
-		map(() => new DaffCartItemStateReset())
-  )
+    ofType(DaffCartItemActionTypes.CartItemAddSuccessAction, DaffCartItemActionTypes.CartItemUpdateSuccessAction),
+    debounceTime(this.cartItemStateDebounceTime),
+    map(() => new DaffCartItemStateReset()),
+  );
 
   @Effect()
   delete$ = this.actions$.pipe(
@@ -106,8 +128,8 @@ export class DaffCartItemEffects<
     mergeMap((action: DaffCartItemDelete<T>) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
         map((resp: V) => new DaffCartItemDeleteSuccess(resp)),
-        catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error))))
-      )
-    )
-  )
+        catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 }

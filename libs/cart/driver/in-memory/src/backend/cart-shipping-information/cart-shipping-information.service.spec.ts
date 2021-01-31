@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-	DaffCartShippingInformation,
+  DaffCartShippingInformation,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartShippingInformationService } from './cart-shipping-information.service';
@@ -28,7 +28,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartShippingInformationService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartShippingInformationService);
 
@@ -38,7 +38,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     mockCart = cartFactory.create();
     mockCartShippingInformation = {
       ...cartShippingInformationFactory.create(),
-      address_id: null
+      address_id: null,
     };
     mockCart.shipping_information = mockCartShippingInformation;
     collection = [mockCart];
@@ -50,13 +50,13 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 
@@ -85,7 +85,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     beforeEach(() => {
       newShippingInformation = {
         ...cartShippingInformationFactory.create(),
-        address_id: null
+        address_id: null,
       };
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = newShippingInformation;
@@ -94,7 +94,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
 
     it('should return a cart with the updated shipping information', () => {
       expect(result.body.shipping_information).toEqual(newShippingInformation);
-		});
+    });
   });
 
   describe('processing a remove shipping information request', () => {

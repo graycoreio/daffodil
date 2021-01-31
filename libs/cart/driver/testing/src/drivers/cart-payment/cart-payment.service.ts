@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
-import { DaffCart, DaffCartPaymentMethod, DaffCartAddress } from '@daffodil/cart';
 import {
-  DaffCartPaymentServiceInterface,
-} from '@daffodil/cart/driver';
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartPaymentMethod,
+  DaffCartAddress,
+} from '@daffodil/cart';
+import { DaffCartPaymentServiceInterface } from '@daffodil/cart/driver';
+import {
+  DaffCartFactory,
+  DaffCartPaymentFactory,
+} from '@daffodil/cart/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingCartPaymentService implements DaffCartPaymentServiceInterface {
   constructor(
     private paymentFactory: DaffCartPaymentFactory,
-    private cartFactory: DaffCartFactory
+    private cartFactory: DaffCartFactory,
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod> {
@@ -25,7 +32,11 @@ export class DaffTestingCartPaymentService implements DaffCartPaymentServiceInte
     return of(this.cartFactory.create());
   }
 
-  updateWithBilling(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+  updateWithBilling(
+    cartId: DaffCart['id'],
+    payment: Partial<DaffCartPaymentMethod>,
+    address: Partial<DaffCartAddress>,
+  ): Observable<Partial<DaffCart>> {
     return of(this.cartFactory.create());
   }
 

@@ -9,7 +9,7 @@ describe('Cart | Testing | Factories | CartFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoCartFactory]
+      providers: [MagentoCartFactory],
     });
 
     factory = TestBed.inject(MagentoCartFactory);

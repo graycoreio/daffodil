@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
+import {
+  DaffCartShippingRate,
+  DaffCart,
+} from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCartShippingRate, DaffCart } from '@daffodil/cart';
 
 export enum DaffCartShippingInformationActionTypes {
   CartShippingInformationLoadAction = '[DaffCart] Shipping Information Load Action',
@@ -79,4 +82,4 @@ export type DaffCartShippingInformationActions<
   | DaffCartShippingInformationUpdateFailure
   | DaffCartShippingInformationDelete<T>
   | DaffCartShippingInformationDeleteSuccess<V>
-  | DaffCartShippingInformationDeleteFailure
+  | DaffCartShippingInformationDeleteFailure;

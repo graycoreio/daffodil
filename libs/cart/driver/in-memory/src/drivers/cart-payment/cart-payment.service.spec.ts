@@ -1,15 +1,18 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import {
   DaffCart,
   DaffCartPaymentMethod,
-  DaffCartAddress
+  DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
   DaffCartPaymentFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCartPaymentService } from './cart-payment.service';
@@ -22,18 +25,18 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
   let cartAddressFactory: DaffCartAddressFactory;
 
   let mockCart: DaffCart;
-  let mockPayment: DaffCartPaymentMethod
+  let mockPayment: DaffCartPaymentMethod;
   let mockCartAddress: DaffCartAddress;
   let cartId;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryCartPaymentService
-      ]
+        DaffInMemoryCartPaymentService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -85,7 +88,7 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
       const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
 
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual({payment: mockPayment});
+      expect(req.request.body).toEqual({ payment: mockPayment });
 
       mockCart.payment = mockPayment;
 
@@ -109,7 +112,7 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual({
         payment: mockPayment,
-        address: mockCartAddress
+        address: mockCartAddress,
       });
 
       mockCart.payment = mockPayment;

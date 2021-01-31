@@ -18,7 +18,7 @@ export class MockMagentoCartAddressInput implements MagentoCartAddressInput {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoCartAddressInputFactory extends DaffModelFactory<MagentoCartAddressInput> {
   constructor() {

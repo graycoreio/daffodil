@@ -1,35 +1,47 @@
-import {Apollo} from 'apollo-angular';
-import { Injectable, Inject } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { DaffQueuedApollo } from '@daffodil/core/graphql'
-import { DaffCartAddress, DaffCart } from '@daffodil/cart';
+import {
+  DaffCartAddress,
+  DaffCart,
+} from '@daffodil/cart';
 import { DaffCartBillingAddressServiceInterface } from '@daffodil/cart/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
+import { transformCartMagentoError } from './errors/transform';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import {
   getBillingAddress,
   updateBillingAddress,
-  updateBillingAddressWithEmail
+  updateBillingAddressWithEmail,
 } from './queries/public_api';
 import {
   MagentoGetBillingAddressResponse,
   MagentoUpdateBillingAddressResponse,
-  MagentoUpdateBillingAddressWithEmailResponse
+  MagentoUpdateBillingAddressWithEmailResponse,
 } from './queries/responses/public_api';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
-import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
-import { transformCartMagentoError } from './errors/transform';
-import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
-import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
+import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddressServiceInterface {
   constructor(
@@ -38,26 +50,26 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public billingAddressTransformer: DaffMagentoBillingAddressTransformer,
-    public billingAddressInputTransformer: DaffMagentoBillingAddressInputTransformer
+    public billingAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartAddress> {
     return this.apollo.query<MagentoGetBillingAddressResponse>({
       query: getBillingAddress(this.extraCartFragments),
-      variables: {cartId}
+      variables: { cartId },
     }).pipe(
       map(result => result.data.cart.billing_address
         ? this.billingAddressTransformer.transform({
           ...result.data.cart.billing_address,
-          email: result.data.cart.email
+          email: result.data.cart.email,
         })
-        : null
-      )
-    )
+        : null,
+      ),
+    );
   }
 
   update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
+    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address);
   }
 
   private updateAddress(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
@@ -65,12 +77,12 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
       mutation: updateBillingAddress(this.extraCartFragments),
       variables: {
         cartId,
-        address: this.billingAddressInputTransformer.transform(address)
-      }
+        address: this.billingAddressInputTransformer.transform(address),
+      },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setBillingAddressOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
-    )
+    );
   }
 
   private updateAddressWithEmail(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
@@ -79,14 +91,14 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
       variables: {
         cartId,
         email: address.email,
-        address: this.billingAddressInputTransformer.transform(address)
-      }
+        address: this.billingAddressInputTransformer.transform(address),
+      },
     }).pipe(
       map(resp => this.cartTransformer.transform({
         ...resp.data.setBillingAddressOnCart.cart,
-        email: resp.data.setGuestEmailOnCart.cart.email
+        email: resp.data.setGuestEmailOnCart.cart.email,
       })),
       catchError(error => throwError(transformCartMagentoError(error))),
-    )
+    );
   }
 }

@@ -15,7 +15,7 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
   /**
    * Creates a cart.
    */
-  create(): Observable<{id: T['id']}>
+  create(): Observable<{id: T['id']}>;
 
 	/**
 	 * @deprecated
@@ -32,5 +32,5 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
 }
 
 export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface>(
-	'DaffCartDriver',
+  'DaffCartDriver',
 );

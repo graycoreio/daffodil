@@ -1,5 +1,5 @@
-import { DaffProduct } from '@daffodil/product';
 import { ID } from '@daffodil/core';
+import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCartItemInputType {
 	Simple = 'simple',

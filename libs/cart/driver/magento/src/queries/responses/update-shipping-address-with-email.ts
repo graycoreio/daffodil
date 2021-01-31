@@ -6,8 +6,8 @@ export interface MagentoUpdateShippingAddressWithEmailResponse {
     __typename?: string;
     cart: {
       __typename?: string;
-      email: MagentoGetCartResponse['cart']['email']
-    }
+      email: MagentoGetCartResponse['cart']['email'];
+    };
   };
 }
 

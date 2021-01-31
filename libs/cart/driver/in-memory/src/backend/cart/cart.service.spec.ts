@@ -4,12 +4,12 @@ import { STATUS } from 'angular-in-memory-web-api';
 import {
   DaffCart,
   DaffCartItemInput,
-	DaffCartItem,
-	DaffCartItemInputType
+  DaffCartItem,
+  DaffCartItemInputType,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartItemFactory
+  DaffCartItemFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartService } from './cart.service';
@@ -32,7 +32,7 @@ describe('DaffInMemoryBackendCartService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartService);
 
@@ -43,9 +43,9 @@ describe('DaffInMemoryBackendCartService', () => {
     mockCartItem = cartItemFactory.create();
     collection = [mockCart];
     mockCartItemInput = {
-			type: DaffCartItemInputType.Simple,
+      type: DaffCartItemInputType.Simple,
       productId: mockCartItem.product_id,
-      qty: mockCartItem.qty
+      qty: mockCartItem.qty,
     };
     cartId = mockCart.id;
     baseUrl = 'api/cart/';
@@ -55,13 +55,13 @@ describe('DaffInMemoryBackendCartService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 
@@ -78,17 +78,17 @@ describe('DaffInMemoryBackendCartService', () => {
     });
 
     it('should return the cart', () => {
-			result = service.get(reqInfoStub);
+      result = service.get(reqInfoStub);
       expect(result.body).toEqual(mockCart);
       expect(result.status).toEqual(STATUS.OK);
-		});
+    });
 
-		it('should return an error response when the cart does not exist', () => {
-			reqInfoStub.id = null;
-			result = service.get(reqInfoStub);
+    it('should return an error response when the cart does not exist', () => {
+      reqInfoStub.id = null;
+      result = service.get(reqInfoStub);
 
-			expect(result.status).toEqual(STATUS.NOT_FOUND);
-		});
+      expect(result.status).toEqual(STATUS.NOT_FOUND);
+    });
   });
 
   describe('processing a create request', () => {
