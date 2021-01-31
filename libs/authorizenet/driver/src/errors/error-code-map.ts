@@ -30,4 +30,4 @@ export const DAFF_AUTHORIZE_NET_ERROR_CODE_MAP = {
   E_WC_19: DaffAuthorizeNetInvalidLoginIdError,
   E_WC_21: DaffAuthorizeNetAuthFailedError,
   E_WC_23: DaffAuthorizeNetInputMissingError,
-}
+};

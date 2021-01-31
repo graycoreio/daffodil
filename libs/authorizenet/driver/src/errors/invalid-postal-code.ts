@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 /**
  * An error thrown when the postal code is invalid.
@@ -7,7 +10,7 @@ import { DaffError, DaffInheritableError } from '@daffodil/core';
 export class DaffAuthorizeNetInvalidPostalCodeError extends DaffInheritableError implements DaffError {
   public readonly code: string = 'DAFF_AUTHORIZE_NET_INVALID_POSTAL_CODE';
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }

@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 /**
  * An error thrown when either the API Login ID or Public Client Key values are incorrect.
@@ -6,7 +9,7 @@ import { DaffError, DaffInheritableError } from '@daffodil/core';
 export class DaffAuthorizeNetAuthFailedError extends DaffInheritableError implements DaffError {
   public readonly code: string = 'DAFF_AUTHORIZE_NET_AUTH_FAILED';
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }

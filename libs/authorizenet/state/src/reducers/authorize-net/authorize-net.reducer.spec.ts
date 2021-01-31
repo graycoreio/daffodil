@@ -1,4 +1,11 @@
-import { DaffAuthorizeNetUpdatePaymentSuccess, DaffAuthorizeNetUpdatePaymentFailure, DaffAuthorizeNetUpdatePayment, DaffLoadAcceptJsSuccess, DaffLoadAcceptJsFailure, DaffAuthorizeNetReducerState } from '@daffodil/authorizenet/state';
+import {
+  DaffAuthorizeNetUpdatePaymentSuccess,
+  DaffAuthorizeNetUpdatePaymentFailure,
+  DaffAuthorizeNetUpdatePayment,
+  DaffLoadAcceptJsSuccess,
+  DaffLoadAcceptJsFailure,
+  DaffAuthorizeNetReducerState,
+} from '@daffodil/authorizenet/state';
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
@@ -7,25 +14,25 @@ import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 
 describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
-	let stubPaymentNonce;
-	let initialState: DaffAuthorizeNetReducerState;
-	let stubAddress: DaffCartAddress;
+  let stubPaymentNonce;
+  let initialState: DaffAuthorizeNetReducerState;
+  let stubAddress: DaffCartAddress;
 
   beforeEach(() => {
-		stubAddress = new DaffCartAddressFactory().create();
-		stubPaymentNonce = 'tokenResponse';
-		initialState = {
-			isAcceptLoaded: false,
-			loading: false,
-			paymentError: null,
-			acceptJsLoadError: null
-		};
+    stubAddress = new DaffCartAddressFactory().create();
+    stubPaymentNonce = 'tokenResponse';
+    initialState = {
+      isAcceptLoaded: false,
+      loading: false,
+      paymentError: null,
+      acceptJsLoadError: null,
+    };
   });
 
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffAuthorizeNetReducer(initialState, action);
 
@@ -38,20 +45,20 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
     beforeEach(() => {
       const tokenLoad: DaffAuthorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment({
-				creditCard: {
-					cardnumber: '1234123412341234',
-					month: 'month',
-					year: 'year',
-					securitycode: '123'
-				}
-			}, stubAddress);
+        creditCard: {
+          cardnumber: '1234123412341234',
+          month: 'month',
+          year: 'year',
+          securitycode: '123',
+        },
+      }, stubAddress);
 
       result = daffAuthorizeNetReducer(initialState, tokenLoad);
     });
 
-		it('indicates that the request is loading', () => {
-			expect(result.loading).toBeTruthy();
-		});
+    it('indicates that the request is loading', () => {
+      expect(result.loading).toBeTruthy();
+    });
   });
 
   describe('when DaffAuthorizeNetUpdatePaymentSuccess is triggered', () => {
@@ -63,13 +70,13 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
       result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
     });
 
-		it('indicates that the request has finished loading', () => {
-			expect(result.loading).toBeFalsy();
-		});
+    it('indicates that the request has finished loading', () => {
+      expect(result.loading).toBeFalsy();
+    });
 
-		it('clears the payment error message', () => {
-			expect(result.paymentError).toBeNull();
-		});
+    it('clears the payment error message', () => {
+      expect(result.paymentError).toBeNull();
+    });
   });
 
   describe('when DaffAuthorizeNetUpdatePaymentFailure is triggered', () => {
@@ -79,39 +86,39 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
     beforeEach(() => {
       mockError = {
         code: 'error code',
-        message: 'error message'
+        message: 'error message',
       };
       const tokenResponseLoadFailure: DaffAuthorizeNetUpdatePaymentFailure = new DaffAuthorizeNetUpdatePaymentFailure(mockError);
 
       result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
     });
 
-		it('indicates that the request has finished loading', () => {
-			expect(result.loading).toBeFalsy();
-		});
+    it('indicates that the request has finished loading', () => {
+      expect(result.loading).toBeFalsy();
+    });
 
     it('sets payment error state to the action payload', () => {
       expect(result.paymentError).toEqual(mockError);
-		});
-	});
+    });
+  });
 
-	describe('when DaffLoadAcceptJsSuccess is triggered', () => {
+  describe('when DaffLoadAcceptJsSuccess is triggered', () => {
 
-		let result;
+    let result;
 
-		beforeEach(() => {
+    beforeEach(() => {
       const acceptJsLoaded: DaffLoadAcceptJsSuccess = new DaffLoadAcceptJsSuccess();
-			result = daffAuthorizeNetReducer(initialState, acceptJsLoaded);
-		});
+      result = daffAuthorizeNetReducer(initialState, acceptJsLoaded);
+    });
 
-		it('should indicate that accept js has loaded', () => {
-			expect(result.isAcceptLoaded).toEqual(true);
-		});
+    it('should indicate that accept js has loaded', () => {
+      expect(result.isAcceptLoaded).toEqual(true);
+    });
 
     it('clears the acceptJsLoad error state', () => {
       expect(result.acceptJsLoadError).toEqual(null);
-		});
-	});
+    });
+  });
 
   describe('when DaffLoadAcceptJsFailure is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
@@ -120,19 +127,19 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
     beforeEach(() => {
       mockError = {
         code: 'error code',
-        message: 'error message'
+        message: 'error message',
       };
       const loadAcceptJsFailure: DaffLoadAcceptJsFailure = new DaffLoadAcceptJsFailure(mockError);
 
       result = daffAuthorizeNetReducer(initialState, loadAcceptJsFailure);
     });
 
-		it('indicates that nothing is loading', () => {
-			expect(result.loading).toBeFalsy();
-		});
+    it('indicates that nothing is loading', () => {
+      expect(result.loading).toBeFalsy();
+    });
 
     it('sets acceptJsLoad error state to the action payload', () => {
       expect(result.acceptJsLoadError).toEqual(mockError);
-		});
-	});
+    });
+  });
 });

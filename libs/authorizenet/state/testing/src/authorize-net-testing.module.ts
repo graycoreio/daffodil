@@ -6,7 +6,7 @@ import { MockDaffAuthorizeNetFacade } from './mock-authorize-net-facade';
 
 @NgModule({
   providers: [
-		{ provide: DaffAuthorizeNetFacade, useExisting: MockDaffAuthorizeNetFacade }
-	]
+    { provide: DaffAuthorizeNetFacade, useExisting: MockDaffAuthorizeNetFacade },
+  ],
 })
 export class DaffAuthorizeNetTestingModule {}

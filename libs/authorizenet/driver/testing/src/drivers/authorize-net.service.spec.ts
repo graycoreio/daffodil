@@ -9,8 +9,8 @@ describe('Driver | Testing | AuthorizeNet | AuthorizeNetService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingAuthorizeNetService
-      ]
+        DaffTestingAuthorizeNetService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingAuthorizeNetService);
@@ -22,15 +22,15 @@ describe('Driver | Testing | AuthorizeNet | AuthorizeNetService', () => {
 
   describe('generateToken', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.generateToken({
-				creditCard: {
-					cardnumber: '1234123412341234',
-					month: 'month',
-					year: 'year',
-					securitycode: '123'
-				}
-			})).toBeObservable(expected);
+        creditCard: {
+          cardnumber: '1234123412341234',
+          month: 'month',
+          year: 'year',
+          securitycode: '123',
+        },
+      })).toBeObservable(expected);
     });
   });
 });

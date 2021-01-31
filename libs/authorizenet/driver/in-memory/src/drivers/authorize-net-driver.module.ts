@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffAuthorizeNetDriver } from '@daffodil/authorizenet/driver';
 
@@ -8,8 +11,8 @@ import { DaffInMemoryAuthorizeNetService } from './authorize-net.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffAuthorizeNetInMemoryDriverModule {
   static forRoot(): ModuleWithProviders<DaffAuthorizeNetInMemoryDriverModule> {
@@ -18,9 +21,9 @@ export class DaffAuthorizeNetInMemoryDriverModule {
       providers: [
         {
           provide: DaffAuthorizeNetDriver,
-          useExisting: DaffInMemoryAuthorizeNetService
-				}
-      ]
+          useExisting: DaffInMemoryAuthorizeNetService,
+        },
+      ],
     };
   }
 }

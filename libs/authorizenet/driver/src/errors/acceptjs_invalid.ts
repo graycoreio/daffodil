@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 /**
  * An error thrown when Accept.js has been loaded incorrectly.
@@ -8,7 +11,7 @@ import { DaffError, DaffInheritableError } from '@daffodil/core';
 export class DaffAuthorizeNetAcceptjsInvalidError extends DaffInheritableError implements DaffError {
   public readonly code: string = 'DAFF_AUTHORIZE_NET_ACCEPTJS_INVALID';
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }
