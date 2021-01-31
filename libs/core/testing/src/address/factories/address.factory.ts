@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import * as faker from 'faker/locale/en_US';
+
 import { DaffAddress } from '@daffodil/core';
 
-import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '../../factories/factory';
 
 /**
@@ -24,7 +25,7 @@ export class MockDaffAddress implements DaffAddress {
  * Prefer the `DaffAddressFactory` of `daffodil/geography/testing`
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffAddressFactory extends DaffModelFactory<DaffAddress>{
   constructor(){

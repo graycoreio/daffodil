@@ -12,4 +12,4 @@ export const shuffle = <T>(array: T[]): T[] => {
     result[s] = el;
   });
   return result;
-}
+};

@@ -4,7 +4,7 @@ import { DaffPersistenceService } from '../persistence.interface';
 import { DaffStorageServiceError } from './error';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffErrorStorageService implements DaffPersistenceService {
   static readonly ERROR_MESSAGE = 'The DaffErrorStorageService always throws an error.';

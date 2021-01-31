@@ -1,9 +1,15 @@
-import {Apollo} from 'apollo-angular';
-import {MutationOptions, FetchResult} from '@apollo/client/core';
 import { Injectable } from '@angular/core';
+import {
+  MutationOptions,
+  FetchResult,
+} from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 import { EmptyObject } from 'apollo-angular/types';
-
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import {
+  Observable,
+  Subscriber,
+  Subscription,
+} from 'rxjs';
 
 /**
  * A service that will queue mutate calls to Apollo.
@@ -12,13 +18,13 @@ import { Observable, Subscriber, Subscription } from 'rxjs';
  * This should be used alongside Apollo.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffQueuedApollo {
-  queue: Function[] = [];
+  queue: (() => void)[] = [];
 
   constructor(
-    private apollo: Apollo
+    private apollo: Apollo,
   ) {}
 
   /**
@@ -27,10 +33,11 @@ export class DaffQueuedApollo {
    * If the queue is empty, the request will be sent when it enters the queue.
    * Otherwise, it will be sent when it reaches the front of the queue.
    * The observable will complete after it emits once.
+   *
    * @param options Mutation options.
    */
   mutate<T, V = EmptyObject>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
-    return new Observable(subscriber => this.addRequestToQueue(subscriber, this.apollo.mutate(options)))
+    return new Observable(subscriber => this.addRequestToQueue(subscriber, this.apollo.mutate(options)));
   }
 
   private addRequestToQueue(subscriber: Subscriber<any>, request: Observable<any>): void {
@@ -44,18 +51,20 @@ export class DaffQueuedApollo {
           this.finishRequestSubscription(sub);
         },
         error => {
-          subscriber.error(error)
+          subscriber.error(error);
           this.finishRequestSubscription(sub);
         },
         () => {
-          subscriber.complete()
+          subscriber.complete();
           this.finishRequestSubscription(sub);
-        }
-      )
+        },
+      );
     });
 
     // start the queue if previously empty
-    if (this.queue.length === 1) this.queue[0]();
+    if (this.queue.length === 1) {
+      this.queue[0]();
+    }
   }
 
   private finishRequestSubscription(requestSubscription: Subscription): void {

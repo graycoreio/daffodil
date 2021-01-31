@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 import { daffBuildFragmentDefinition } from './build-fragment-definition';
@@ -52,7 +52,9 @@ describe('Core | GraphQL | daffBuildFragmentDefinition', () => {
     });
 
     it('should return a string of the document definitions separated by newlines', () => {
-      expect(builtString).toEqual(`${mockFragment1.loc.source.body}\n${mockFragment2.loc.source.body}\n${mockEmptyFragment.loc.source.body}\n`);
+      expect(builtString).toEqual(
+        `${mockFragment1.loc.source.body}\n${mockFragment2.loc.source.body}\n${mockEmptyFragment.loc.source.body}\n`,
+      );
     });
   });
 });

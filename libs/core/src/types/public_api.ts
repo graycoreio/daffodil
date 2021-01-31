@@ -1,1 +1,1 @@
-export { ID } from './id.type'
+export { ID } from './id.type';

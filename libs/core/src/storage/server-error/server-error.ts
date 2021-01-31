@@ -7,7 +7,7 @@ import { DaffStorageServiceError } from '../error/error';
 export class DaffServerSideStorageError extends DaffStorageServiceError implements DaffError {
   public readonly code: string = 'DAFF_SERVER_STORAGE_FAILURE';
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }

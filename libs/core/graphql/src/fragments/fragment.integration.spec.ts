@@ -1,11 +1,17 @@
-import {gql, Apollo} from 'apollo-angular';
+import { mergeSchemas } from '@angular-devkit/core/src/json/schema';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import {
+  gql,
+  Apollo,
+} from 'apollo-angular';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+} from 'apollo-angular/testing';
 import { DocumentNode } from 'graphql';
 
-import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
 import { daffBuildFragmentDefinition } from './build-fragment-definition';
-import { mergeSchemas } from '@angular-devkit/core/src/json/schema';
+import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
 
 describe('Core | GraphQL | Fragment Integration', () => {
   let controller: ApolloTestingController;
@@ -18,8 +24,8 @@ describe('Core | GraphQL | Fragment Integration', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
-      ]
+        ApolloTestingModule,
+      ],
     });
 
     controller = TestBed.inject(ApolloTestingController);
@@ -48,7 +54,7 @@ describe('Core | GraphQL | Fragment Integration', () => {
       field12: 'field12',
       field21: 'field21',
       field22: 'field22',
-    }
+    };
   });
 
   describe('adding fields to a query', () => {
@@ -65,7 +71,7 @@ describe('Core | GraphQL | Fragment Integration', () => {
     });
 
     it('should include the fragment fields in the response', done => {
-      apollo.query({query}).subscribe(resp => {
+      apollo.query({ query }).subscribe(resp => {
         expect(resp.data).toEqual(mockResponse);
         done();
       });
@@ -73,14 +79,14 @@ describe('Core | GraphQL | Fragment Integration', () => {
       const op = controller.expectOne(query);
 
       op.flush({
-        data: mockResponse
+        data: mockResponse,
       });
     });
 
     it('should not include fields not defined in the fragments', done => {
-      apollo.query({query}).subscribe(resp => {
+      apollo.query({ query }).subscribe(resp => {
         expect(resp.data).toEqual(mockResponse);
-        expect((resp.data as any).field3).not.toBeDefined();
+        expect((<any>resp.data).field3).not.toBeDefined();
         done();
       });
 
@@ -89,8 +95,8 @@ describe('Core | GraphQL | Fragment Integration', () => {
       op.flush({
         data: {
           ...mockResponse,
-          field3: 'field3'
-        }
+          field3: 'field3',
+        },
       });
     });
 

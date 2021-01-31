@@ -1,1 +1,1 @@
-export { DaffLoadingState } from './loading-state.enum'
+export { DaffLoadingState } from './loading-state.enum';

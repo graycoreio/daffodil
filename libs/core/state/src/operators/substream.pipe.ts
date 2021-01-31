@@ -1,6 +1,9 @@
 import { Action } from '@ngrx/store';
 import { pipe } from 'rxjs';
-import { scan, filter } from 'rxjs/operators';
+import {
+  scan,
+  filter,
+} from 'rxjs/operators';
 
 export type ActionType = Action['type'];
 export type ActionSequenceStep = ActionType | ActionType[];
@@ -8,7 +11,7 @@ export type ActionSequence = ActionSequenceStep[];
 
 const compareActionSequenceStep = (step: ActionSequenceStep, action: Action): boolean => Array.isArray(step)
   ? step.reduce((acc, type) => acc || action.type === type, false)
-  : action.type === step
+  : action.type === step;
 
 /**
  * Watches for a particular stream of actions in the specified order and
@@ -37,7 +40,7 @@ export const substream = (sequence: ActionSequence, ...terminators: ActionType[]
     compareActionSequenceStep(sequence[matchedSubstream.length], action)
       ? [
         ...matchedSubstream,
-        action
+        action,
       ]
       : matchedSubstream;
 
@@ -49,9 +52,9 @@ export const substream = (sequence: ActionSequence, ...terminators: ActionType[]
         : accumulateMatchedSubstream(
           // reset the list if fully matched
           isFullMatch(matchedSubstream) ? [] : matchedSubstream,
-          action
+          action,
         ),
     []),
-    filter(isFullMatch)
-  )
-}
+    filter(isFullMatch),
+  );
+};

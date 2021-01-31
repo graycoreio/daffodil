@@ -1,24 +1,23 @@
-import { IDaffModelFactory } from './factory.interface';
 import { range } from '@daffodil/core';
 
-interface ArglessConstructable<T> {
-    new() : T;
-}
+import { IDaffModelFactory } from './factory.interface';
+
+type ArglessConstructable<T> = new()  => T;
 
 
-export abstract class DaffModelFactory<T extends Object> implements IDaffModelFactory<T> {
-    constructor(public type: ArglessConstructable<T>){
+export abstract class DaffModelFactory<T extends Record<string, any>> implements IDaffModelFactory<T> {
+  constructor(public type: ArglessConstructable<T>){
 
-    }
+  }
 
-    create(partial = {}) : T {
-        return {
-            ...new this.type() as any, // TODO: remove in TS 3.3
-            ...partial
-        }
-    }
-    
-    createMany(qty = 1, partial = {}) : T[] {
-        return range(0, qty - 1).map(() => this.create(partial));
-    }
+  create(partial = {}): T {
+    return {
+      ...<any>new this.type(), // TODO: remove in TS 3.3
+      ...partial,
+    };
+  }
+
+  createMany(qty = 1, partial = {}): T[] {
+    return range(0, qty - 1).map(() => this.create(partial));
+  }
 }

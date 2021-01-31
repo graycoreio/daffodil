@@ -1,9 +1,14 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { DaffPersistenceService } from '../persistence.interface';
 import { isPlatformBrowser } from '@angular/common';
+import {
+  Injectable,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+
+import { DaffPersistenceService } from '../persistence.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffLocalStorageService implements DaffPersistenceService {
   constructor(@Inject(PLATFORM_ID) platformId: string){
@@ -13,7 +18,7 @@ export class DaffLocalStorageService implements DaffPersistenceService {
   }
 
   /**
-   * Persist the given item into local storage. 
+   * Persist the given item into local storage.
    */
   setItem(key: string, value: any): void {
     localStorage.setItem(key, value);
