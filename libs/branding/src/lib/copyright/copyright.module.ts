@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
-import { DaffCopyrightComponent } from './copyright.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { DaffCopyrightComponent } from './copyright.component';
 
 @NgModule({
   imports: [
     CommonModule,
   ],
   declarations: [
-    DaffCopyrightComponent
+    DaffCopyrightComponent,
   ],
   exports: [
-    DaffCopyrightComponent
-  ]
+    DaffCopyrightComponent,
+  ],
 })
 export class DaffCopyrightModule { }

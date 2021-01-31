@@ -1,4 +1,8 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
 
 export type DaffLogoType = 'icon' | 'full';
 export enum DaffLogoTypeEnum {
@@ -12,18 +16,18 @@ export enum DaffLogoColorEnum {
   WHITE = 'light',
   BASE = 'base',
   BASECONTRAST = 'baseContrast'
-} 
+}
 
 @Component({
   selector: 'daff-branding-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffLogoComponent {
   /**
    * @docs
-   * 
+   *
    * Rendering property for showing the "full" logo
    * with test, or only the flower.
    */
@@ -31,8 +35,8 @@ export class DaffLogoComponent {
 
   /**
    * @docs
-   * 
-   * Determines the color of the logo. The logo supports a 
+   *
+   * Determines the color of the logo. The logo supports a
    * smaller subset of DaffColorable, so it
    * has its own custom types.
    */
@@ -40,7 +44,7 @@ export class DaffLogoComponent {
 
   /**
    * @docs
-   * 
+   *
    * Path to the flower in a project, defaults
    * to what is handle by the branding schematics.
    */
