@@ -1,12 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
 
 /**
  * @docs
  * A mock CurrencyPipe that does nothing to a given input.
- * This pipe is useful for asserting that a CurrencyPipe is in use via a spy, 
+ * This pipe is useful for asserting that a CurrencyPipe is in use via a spy,
  * but ignoring the actual underlying implementation
  */
-@Pipe({name: 'currency'})
+@Pipe({ name: 'currency' })
 export class DaffMockCurrencyPipe implements PipeTransform {
   transform(value: number) {};
 }

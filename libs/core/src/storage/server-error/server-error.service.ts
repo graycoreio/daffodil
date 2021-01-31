@@ -8,7 +8,7 @@ import { DaffServerSideStorageError } from './server-error';
  * It will always throw the {@link DaffServerSideStorageError}.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffServerErrorStorageService implements DaffPersistenceService {
   static readonly ERROR_MESSAGE = 'The DaffServerErrorStorageService always throws an error.';
