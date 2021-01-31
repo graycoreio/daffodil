@@ -8,7 +8,7 @@ import { DaffCartMagentoErrorMap, DaffCartMagentoErrorMessageRegexMap } from './
 
 function transformMagentoCartGraphQlError(error: ApolloError): Error {
   // TODO: readdress this when we move to eslint
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   for (const code in DaffCartMagentoErrorMessageRegexMap) {
     const matchIndex = error.graphQLErrors[0].message.search(DaffCartMagentoErrorMessageRegexMap[code]);
 

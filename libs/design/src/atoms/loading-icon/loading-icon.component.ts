@@ -22,7 +22,7 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
   /**
    * The (pixel) diameter of the animation
    */
-  // tslint:disable-next-line: no-inferrable-types
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() diameter: number = 60;
 
 	/**

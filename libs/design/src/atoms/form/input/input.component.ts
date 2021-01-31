@@ -7,7 +7,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
  * DaffInputComponent provides the same functionality as a native `<input>` and contains custom styling and functionality.
  */
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'input[daff-input]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./input.component.scss'],

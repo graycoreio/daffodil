@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'stroked-button',
   templateUrl: './stroked-button.component.html',
   styles: [`

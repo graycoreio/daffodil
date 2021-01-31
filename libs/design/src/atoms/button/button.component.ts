@@ -51,7 +51,7 @@ enum DaffButtonTypeEnum {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '' +
     'button[daff-button]' + ',' +
     'button[daff-stroked-button]' + ',' +

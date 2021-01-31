@@ -40,7 +40,7 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
    * expressed as a whole number between 0 and 100.
    * 
    */
-  // tslint:disable-next-line: no-inferrable-types
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() percentage: number = 0;
 
   /**

@@ -6,7 +6,7 @@ import { DaffCheckboxComponent } from '../checkbox.component';
  * A directive for binding the DaffCheckboxComponent and the Control Value Accessor.
  */
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'daff-checkbox[ngModel], daff-checkbox[formControl], daff-checkbox[formControlName]',
 })
 export class DaffCheckboxControlValueAccessorDirective implements OnInit, ControlValueAccessor {

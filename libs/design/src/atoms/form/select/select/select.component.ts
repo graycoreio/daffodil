@@ -4,7 +4,7 @@ import { NgControl } from '@angular/forms';
 import { DaffFormFieldControl } from '../../form-field/form-field-control';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'select[daff-native-select]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./select.component.scss'],

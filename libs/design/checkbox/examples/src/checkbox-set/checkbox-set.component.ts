@@ -3,7 +3,7 @@ import { FormArray, FormControl } from '@angular/forms';
 import { DaffCheckboxSetComponent } from '@daffodil/design';
 
 @Component({
-    // tslint:disable-next-line:component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'checkbox-set',
     templateUrl: './checkbox-set.component.html'
 })
