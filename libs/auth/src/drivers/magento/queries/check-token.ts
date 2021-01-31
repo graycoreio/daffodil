@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 
 export const checkTokenQuery = gql`
@@ -7,4 +7,4 @@ export const checkTokenQuery = gql`
       id
     }
   }
-`
+`;

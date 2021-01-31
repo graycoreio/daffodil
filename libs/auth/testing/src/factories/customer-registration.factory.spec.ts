@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCustomerRegistration } from '@daffodil/auth';
+
 import { DaffCustomerRegistrationFactory } from './customer-registration.factory';
 
 describe('Auth | Testing | Factories | CustomerRegistrationFactory', () => {
@@ -9,7 +10,7 @@ describe('Auth | Testing | Factories | CustomerRegistrationFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCustomerRegistrationFactory]
+      providers: [DaffCustomerRegistrationFactory],
     });
 
     customerRegistrationFactory = TestBed.inject(DaffCustomerRegistrationFactory);
@@ -43,6 +44,6 @@ describe('Auth | Testing | Factories | CustomerRegistrationFactory', () => {
 
       result = customerRegistrationFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

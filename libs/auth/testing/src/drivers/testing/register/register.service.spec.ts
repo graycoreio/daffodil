@@ -4,10 +4,11 @@ import {
   DaffLoginInfo,
   DaffRegisterServiceInterface,
   DaffAccountRegistration,
-  DaffCustomerRegistration
+  DaffCustomerRegistration,
 } from '@daffodil/auth';
-import { DaffTestingRegisterService } from './register.service';
+
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
+import { DaffTestingRegisterService } from './register.service';
 
 describe('Driver | Testing | Auth | RegisterService', () => {
   let registerService: DaffRegisterServiceInterface<
@@ -23,8 +24,8 @@ describe('Driver | Testing | Auth | RegisterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingRegisterService
-      ]
+        DaffTestingRegisterService,
+      ],
     });
 
     registerService = TestBed.inject(DaffTestingRegisterService);
@@ -33,7 +34,7 @@ describe('Driver | Testing | Auth | RegisterService', () => {
 
     mockLoginInfo = {
       email: mockRegistration.customer.email,
-      password: mockRegistration.password
+      password: mockRegistration.password,
     };
   });
 

@@ -1,23 +1,33 @@
-import {Apollo} from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError, mapTo } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+  mapTo,
+} from 'rxjs/operators';
 
-import { DaffLoginServiceInterface } from '../interfaces/login-service.interface';
-import { DaffLoginInfo } from '../../models/login-info';
 import { DaffAuthToken } from '../../models/auth-token';
+import { DaffLoginInfo } from '../../models/login-info';
+import { DaffLoginServiceInterface } from '../interfaces/login-service.interface';
+import { transformMagentoAuthError } from './errors/transform';
 import {
   MagentoRevokeCustomerTokenResponse,
   MagentoGenerateTokenResponse,
   generateTokenMutation,
-  revokeCustomerTokenMutation
+  revokeCustomerTokenMutation,
 } from './queries/public_api';
 import { DaffMagentoAuthTransformerService } from './transforms/auth-transformer.service';
-import { transformMagentoAuthError } from './errors/transform';
-import { validateRevokeTokenResponse, validateGenerateTokenResponse } from './validators/public_api';
+import {
+  validateRevokeTokenResponse,
+  validateGenerateTokenResponse,
+} from './validators/public_api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoLoginService implements DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken> {
   constructor(
@@ -25,25 +35,25 @@ export class DaffMagentoLoginService implements DaffLoginServiceInterface<DaffLo
     public authTransformer: DaffMagentoAuthTransformerService,
   ) {}
 
-  login({email, password}: DaffLoginInfo): Observable<DaffAuthToken> {
+  login({ email, password }: DaffLoginInfo): Observable<DaffAuthToken> {
     return this.apollo.mutate<MagentoGenerateTokenResponse>({
       mutation: generateTokenMutation,
       variables: {
         email,
-        password
-      }
+        password,
+      },
     }).pipe(
       map(validateGenerateTokenResponse),
       map(res => this.authTransformer.transform(res.data.generateCustomerToken)),
-      catchError(err => throwError(transformMagentoAuthError(err)))
-    )
+      catchError(err => throwError(transformMagentoAuthError(err))),
+    );
   }
 
   logout() {
-    return this.apollo.mutate<MagentoRevokeCustomerTokenResponse>({mutation: revokeCustomerTokenMutation}).pipe(
+    return this.apollo.mutate<MagentoRevokeCustomerTokenResponse>({ mutation: revokeCustomerTokenMutation }).pipe(
       map(validateRevokeTokenResponse),
       mapTo(undefined),
-      catchError(err => throwError(transformMagentoAuthError(err)))
-    )
+      catchError(err => throwError(transformMagentoAuthError(err))),
+    );
   }
 }

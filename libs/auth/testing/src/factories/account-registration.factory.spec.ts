@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffAccountRegistration,
-} from '@daffodil/auth';
+import { DaffAccountRegistration } from '@daffodil/auth';
 
 import { DaffAccountRegistrationFactory } from './account-registration.factory';
 
@@ -11,7 +9,7 @@ describe('Auth | Testing | Factories | DaffAccountRegistrationFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffAccountRegistrationFactory]
+      providers: [DaffAccountRegistrationFactory],
     });
 
     accountRegistrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
@@ -43,6 +41,6 @@ describe('Auth | Testing | Factories | DaffAccountRegistrationFactory', () => {
 
       result = accountRegistrationFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

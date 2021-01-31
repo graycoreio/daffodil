@@ -4,14 +4,17 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
+import {
+  Actions,
+  ofType,
+} from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Actions, ofType } from '@ngrx/effects';
 
 import {
   DaffAuthActionTypes,
   DaffAuthGuardCheckCompletion,
-  DaffAuthGuardCheck
+  DaffAuthGuardCheck,
 } from '../actions/auth.actions';
 import { DaffAuthFacade } from '../facades/auth.facade';
 
@@ -29,13 +32,13 @@ export class MemberOnlyGuard implements CanActivate {
 
     this.facade.dispatch(new DaffAuthGuardCheck());
 
-    return ret
+    return ret;
   }
 
   isAuthenticated(): Observable<boolean> {
     return this.actions$.pipe(
       ofType(DaffAuthActionTypes.AuthGuardCheckCompletionAction),
-      map((action: DaffAuthGuardCheckCompletion) => action.result)
-    )
+      map((action: DaffAuthGuardCheckCompletion) => action.result),
+    );
   }
 }

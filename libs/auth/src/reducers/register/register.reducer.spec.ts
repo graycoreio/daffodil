@@ -1,17 +1,15 @@
-import {
-  DaffAccountRegistrationFactory
-} from '@daffodil/auth/testing';
+import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
-import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
 import {
   DaffAuthRegister,
   DaffAuthRegisterSuccess,
   DaffAuthRegisterFailure,
 } from '../../actions/auth.actions';
-import { daffAuthRegisterReducer as reducer } from './register.reducer';
-import { daffAuthRegisterInitialState as initialState } from './register-initial-state'
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffLoginInfo } from '../../models/login-info';
+import { daffAuthRegisterInitialState as initialState } from './register-initial-state';
+import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
+import { daffAuthRegisterReducer as reducer } from './register.reducer';
 
 describe('Auth | Reducer | Register', () => {
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
@@ -30,12 +28,12 @@ describe('Auth | Reducer | Register', () => {
     lastName = mockRegistration.customer.lastName;
     email = mockRegistration.customer.email;
     password = mockRegistration.password;
-    mockLoginInfo = {email, password};
+    mockLoginInfo = { email, password };
   });
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -64,8 +62,8 @@ describe('Auth | Reducer | Register', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       const authRegisterSuccess = new DaffAuthRegisterSuccess(mockLoginInfo);
       result = reducer(state, authRegisterSuccess);
@@ -85,8 +83,8 @@ describe('Auth | Reducer | Register', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
-      }
+        errors: new Array('firstError'),
+      };
 
       const authRegisterFailure = new DaffAuthRegisterFailure(error);
 

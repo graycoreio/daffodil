@@ -1,42 +1,45 @@
-import { createSelector, MemoizedSelector } from '@ngrx/store';
+import {
+  createSelector,
+  MemoizedSelector,
+} from '@ngrx/store';
 
-import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
 import { DaffAuthToken } from '../../models/auth-token';
 import { DaffAuthFeatureState } from '../../reducers/auth-feature-state.interface';
 import { DaffAuthLoginReducerState } from '../../reducers/public_api';
+import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
 
 export interface DaffAuthLoginSelectors<T extends DaffAuthToken> {
-  selectAuthLoginState: MemoizedSelector<object, DaffAuthLoginReducerState<T>>;
-  selectAuthLoginLoading: MemoizedSelector<object, boolean>;
-  selectAuthLoginErrors: MemoizedSelector<object, string[]>;
-  selectAuthLoginToken: MemoizedSelector<object, T>;
-  selectAuthLoginTokenValue: MemoizedSelector<object, T['token']>;
+  selectAuthLoginState: MemoizedSelector<Record<string, any>, DaffAuthLoginReducerState<T>>;
+  selectAuthLoginLoading: MemoizedSelector<Record<string, any>, boolean>;
+  selectAuthLoginErrors: MemoizedSelector<Record<string, any>, string[]>;
+  selectAuthLoginToken: MemoizedSelector<Record<string, any>, T>;
+  selectAuthLoginTokenValue: MemoizedSelector<Record<string, any>, T['token']>;
 }
 
 const createLoginSelectors = <T extends DaffAuthToken>() => {
   const selectAuthLoginState = createSelector(
     getDaffAuthFeatureStateSelector<T>(),
-    state => state.login
-  )
+    state => state.login,
+  );
 
   const selectAuthLoginLoading = createSelector(
     selectAuthLoginState,
-    state => state.loading
+    state => state.loading,
   );
 
   const selectAuthLoginErrors = createSelector(
     selectAuthLoginState,
-    state => state.errors
+    state => state.errors,
   );
 
   const selectAuthLoginToken = createSelector(
     selectAuthLoginState,
-    state => state.auth
+    state => state.auth,
   );
 
   const selectAuthLoginTokenValue = createSelector(
     selectAuthLoginToken,
-    state => state ? state.token : null
+    state => state ? state.token : null,
   );
 
   return {
@@ -44,12 +47,12 @@ const createLoginSelectors = <T extends DaffAuthToken>() => {
     selectAuthLoginLoading,
     selectAuthLoginErrors,
     selectAuthLoginToken,
-    selectAuthLoginTokenValue
-  }
+    selectAuthLoginTokenValue,
+  };
 };
 
 export const getDaffAuthLoginSelectors = (() => {
   let cache;
   return <T extends DaffAuthToken>(): DaffAuthLoginSelectors<T> =>
-    cache = cache || createLoginSelectors<T>()
+    cache = cache || createLoginSelectors<T>();
 })();

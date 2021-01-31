@@ -1,9 +1,12 @@
-import { DaffAuthActionTypes, DaffAuthActions } from '../../actions/auth.actions';
-import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
+import {
+  DaffAuthActionTypes,
+  DaffAuthActions,
+} from '../../actions/auth.actions';
+import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffAuthToken } from '../../models/auth-token';
 import { DaffLoginInfo } from '../../models/login-info';
-import { DaffAccountRegistration } from '../../models/account-registration';
 import { daffAuthRegisterInitialState } from './register-initial-state';
+import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
 
 export function daffAuthRegisterReducer<
   T extends DaffLoginInfo,
@@ -15,29 +18,29 @@ export function daffAuthRegisterReducer<
     T,
     U,
     S
-  >
+  >,
 ): DaffAuthRegisterReducerState {
   switch (action.type) {
-    case DaffAuthActionTypes.AuthRegisterAction:
-      return {
-        ...state,
-        loading: true
-      };
+  case DaffAuthActionTypes.AuthRegisterAction:
+    return {
+      ...state,
+      loading: true,
+    };
 
-    case DaffAuthActionTypes.AuthRegisterSuccessAction:
-      return {
-        ...state,
-        loading: false
-      };
+  case DaffAuthActionTypes.AuthRegisterSuccessAction:
+    return {
+      ...state,
+      loading: false,
+    };
 
-    case DaffAuthActionTypes.AuthRegisterFailureAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [action.errorMessage]
-      };
+  case DaffAuthActionTypes.AuthRegisterFailureAction:
+    return {
+      ...state,
+      loading: false,
+      errors: [action.errorMessage],
+    };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }

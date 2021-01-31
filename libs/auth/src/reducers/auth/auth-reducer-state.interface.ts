@@ -1,4 +1,4 @@
 export interface DaffAuthReducerState {
-  loading: boolean,
-  errors: string[]
+  loading: boolean;
+  errors: string[];
 }

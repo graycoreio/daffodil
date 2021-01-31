@@ -1,5 +1,11 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import {
   DaffAccountRegistration,
@@ -8,7 +14,7 @@ import {
 } from '@daffodil/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
   DaffAccountRegistration,
@@ -17,7 +23,7 @@ export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
   register(registration: DaffAccountRegistration): Observable<DaffLoginInfo> {
     return of({
       email: registration.customer.email,
-      password: registration.password
+      password: registration.password,
     });
   }
 }

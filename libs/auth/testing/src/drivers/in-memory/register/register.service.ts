@@ -1,5 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
 
@@ -7,11 +10,11 @@ import {
   DaffRegisterServiceInterface,
   DaffCustomerRegistration,
   DaffAccountRegistration,
-  DaffLoginInfo
+  DaffLoginInfo,
 } from '@daffodil/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface<
   DaffAccountRegistration,
@@ -27,8 +30,8 @@ export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface
     return this.http.post<DaffCustomerRegistration>(`${this.url}register`, registration).pipe(
       mapTo({
         email: registration.customer.email,
-        password: registration.password
-      })
+        password: registration.password,
+      }),
     );
   }
 }

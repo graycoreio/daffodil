@@ -1,12 +1,12 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
-import { MagentoRevokeCustomerTokenResponse } from '../queries/public_api';
 import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
+import { MagentoRevokeCustomerTokenResponse } from '../queries/public_api';
 
 export const validateRevokeTokenResponse = (response: ApolloQueryResult<MagentoRevokeCustomerTokenResponse>) => {
   if (response.data.revokeCustomerToken.result) {
-    return response
+    return response;
   } else {
-    throw new DaffAuthInvalidAPIResponseError('Revoke token response does not contain a successful result.')
+    throw new DaffAuthInvalidAPIResponseError('Revoke token response does not contain a successful result.');
   }
-}
+};

@@ -5,5 +5,5 @@ import { daffAuthRegisterReducer } from './register/public_api';
 export const daffAuthReducers = {
   auth: daffAuthReducer,
   login: daffAuthLoginReducer,
-  register: daffAuthRegisterReducer
-}
+  register: daffAuthRegisterReducer,
+};

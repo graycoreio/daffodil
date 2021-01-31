@@ -5,8 +5,8 @@ import {
   DaffAuthServiceInterface,
 } from '@daffodil/auth';
 
-import { DaffTestingAuthService } from './auth.service';
 import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
+import { DaffTestingAuthService } from './auth.service';
 
 describe('Driver | Testing | Auth | AuthService', () => {
   let service: DaffAuthServiceInterface;
@@ -18,8 +18,8 @@ describe('Driver | Testing | Auth | AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingAuthService
-      ]
+        DaffTestingAuthService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingAuthService);

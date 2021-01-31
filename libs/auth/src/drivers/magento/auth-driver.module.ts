@@ -1,19 +1,20 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DaffRegisterDriver } from '../interfaces/register-service.interface';
-import { DaffMagentoRegisterService } from './register.service';
-
-import { DaffLoginDriver } from '../interfaces/login-service.interface';
-import { DaffMagentoLoginService } from './login.service';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffAuthDriver } from '../interfaces/auth-service.interface';
+import { DaffLoginDriver } from '../interfaces/login-service.interface';
+import { DaffRegisterDriver } from '../interfaces/register-service.interface';
 import { DaffMagentoAuthService } from './auth.service';
+import { DaffMagentoLoginService } from './login.service';
+import { DaffMagentoRegisterService } from './register.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffAuthMagentoDriverModule {
   static forRoot(): ModuleWithProviders<DaffAuthMagentoDriverModule> {
@@ -22,17 +23,17 @@ export class DaffAuthMagentoDriverModule {
       providers: [
         {
           provide: DaffRegisterDriver,
-          useExisting: DaffMagentoRegisterService
+          useExisting: DaffMagentoRegisterService,
         },
         {
           provide: DaffLoginDriver,
-          useExisting: DaffMagentoLoginService
+          useExisting: DaffMagentoLoginService,
         },
         {
           provide: DaffAuthDriver,
-          useExisting: DaffMagentoAuthService
-        }
-      ]
+          useExisting: DaffMagentoAuthService,
+        },
+      ],
     };
   }
 }

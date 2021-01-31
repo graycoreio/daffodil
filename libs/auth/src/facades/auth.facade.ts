@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Action, Store, select } from '@ngrx/store';
-
-import { DaffAuthFeatureState } from '../reducers/public_api';
 import {
-  getDaffAuthSelectors
-} from '../selectors/public_api';
-import { DaffAuthToken } from '../models/auth-token';
+  Action,
+  Store,
+  select,
+} from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { DaffAuthFacadeInterface } from '../interfaces/auth-facade.interface';
+import { DaffAuthToken } from '../models/auth-token';
+import { DaffAuthFeatureState } from '../reducers/public_api';
+import { getDaffAuthSelectors } from '../selectors/public_api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffAuthFacade<T extends DaffAuthToken = DaffAuthToken> implements DaffAuthFacadeInterface<T> {
   auth$: Observable<T>;
-  token$: Observable<T['token']>
+  token$: Observable<T['token']>;
 
   authLoading$: Observable<boolean>;
   authErrors$: Observable<string[]>;
@@ -34,7 +36,7 @@ export class DaffAuthFacade<T extends DaffAuthToken = DaffAuthToken> implements 
       selectAuthLoginErrors,
       selectAuthRegisterLoading,
       selectAuthRegisterErrors,
-      selectAuthLoginTokenValue
+      selectAuthLoginTokenValue,
     } = getDaffAuthSelectors<T>();
 
     this.auth$ = this.store.pipe(select(selectAuthLoginToken));

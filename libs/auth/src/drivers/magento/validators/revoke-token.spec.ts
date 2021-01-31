@@ -1,8 +1,8 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
+import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 import { MagentoRevokeCustomerTokenResponse } from '../queries/public_api';
 import { validateRevokeTokenResponse as validator } from './revoke-token';
-import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 
 describe('Driver | Magento | Auth | Validator | RevokeToken', () => {
   let response: ApolloQueryResult<MagentoRevokeCustomerTokenResponse>;
@@ -11,8 +11,8 @@ describe('Driver | Magento | Auth | Validator | RevokeToken', () => {
     response = {
       data: {
         revokeCustomerToken: {
-          result: true
-        }
+          result: true,
+        },
       },
       loading: null,
       networkStatus: null,

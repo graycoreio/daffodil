@@ -7,9 +7,9 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MemberOnlyGuard } from './member-only.guard';
-import { DaffAuthFacade } from '../facades/auth.facade';
 import { DaffAuthGuardCheck } from '../actions/auth.actions';
+import { DaffAuthFacade } from '../facades/auth.facade';
+import { MemberOnlyGuard } from './member-only.guard';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ import { DaffAuthGuardCheck } from '../actions/auth.actions';
 export class GuestOnlyGuard implements CanActivate {
   constructor(
     private facade: DaffAuthFacade,
-    private memberOnlyGuard: MemberOnlyGuard
+    private memberOnlyGuard: MemberOnlyGuard,
   ) {}
 
   canActivate(): Observable<boolean> {
@@ -25,12 +25,12 @@ export class GuestOnlyGuard implements CanActivate {
 
     this.facade.dispatch(new DaffAuthGuardCheck());
 
-    return ret
+    return ret;
   }
 
   isUnauthenticated(): Observable<boolean> {
     return this.memberOnlyGuard.isAuthenticated().pipe(
-      map(authenticated => !authenticated)
-    )
+      map(authenticated => !authenticated),
+    );
   }
 }

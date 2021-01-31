@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import {
   DaffLoginDriver,
@@ -7,14 +10,14 @@ import {
   DaffAuthDriver,
 } from '@daffodil/auth';
 
+import { DaffInMemoryAuthService } from './auth/auth.service';
 import { DaffInMemoryLoginService } from './login/login.service';
 import { DaffInMemoryRegisterService } from './register/register.service';
-import { DaffInMemoryAuthService } from './auth/auth.service';
 
 @NgModule({
   imports: [
     CommonModule,
-  ]
+  ],
 })
 export class DaffAuthInMemoryDriverModule {
   static forRoot(): ModuleWithProviders<DaffAuthInMemoryDriverModule> {
@@ -23,17 +26,17 @@ export class DaffAuthInMemoryDriverModule {
       providers: [
         {
           provide: DaffLoginDriver,
-          useExisting: DaffInMemoryLoginService
+          useExisting: DaffInMemoryLoginService,
         },
         {
           provide: DaffRegisterDriver,
-          useExisting: DaffInMemoryRegisterService
+          useExisting: DaffInMemoryRegisterService,
         },
         {
           provide: DaffAuthDriver,
-          useExisting: DaffInMemoryAuthService
-        }
-      ]
+          useExisting: DaffInMemoryAuthService,
+        },
+      ],
     };
   }
 }

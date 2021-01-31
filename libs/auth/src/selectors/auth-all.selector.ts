@@ -1,17 +1,26 @@
 import { MemoizedSelector } from '@ngrx/store';
 
-import { getAuthSelectors, AuthSelectors } from './auth/auth.selector';
-import { getDaffAuthLoginSelectors, DaffAuthLoginSelectors } from './login/login.selector';
-import { getDaffAuthRegisterSelectors, DaffAuthRegisterSelectors } from './register/register.selector';
 import { DaffAuthToken } from '../models/auth-token';
 import { DaffAuthFeatureState } from '../reducers/public_api';
 import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';
+import {
+  getAuthSelectors,
+  AuthSelectors,
+} from './auth/auth.selector';
+import {
+  getDaffAuthLoginSelectors,
+  DaffAuthLoginSelectors,
+} from './login/login.selector';
+import {
+  getDaffAuthRegisterSelectors,
+  DaffAuthRegisterSelectors,
+} from './register/register.selector';
 
 export interface DaffAuthSelectors<T extends DaffAuthToken> extends
   DaffAuthRegisterSelectors,
   DaffAuthLoginSelectors<T>,
   AuthSelectors {
-  selectAuthFeatureState: MemoizedSelector<object, DaffAuthFeatureState<T>>;
+  selectAuthFeatureState: MemoizedSelector<Record<string, any>, DaffAuthFeatureState<T>>;
 }
 
 export const getDaffAuthSelectors = (() => {
@@ -21,6 +30,6 @@ export const getDaffAuthSelectors = (() => {
       ...getAuthSelectors<T>(),
       ...getDaffAuthLoginSelectors<T>(),
       ...getDaffAuthRegisterSelectors<T>(),
-      selectAuthFeatureState: getDaffAuthFeatureStateSelector<T>()
-    }
+      selectAuthFeatureState: getDaffAuthFeatureStateSelector<T>(),
+    };
 })();

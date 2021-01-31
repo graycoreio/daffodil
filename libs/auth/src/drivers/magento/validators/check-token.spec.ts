@@ -1,8 +1,8 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
+import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 import { MagentoCheckTokenResponse } from '../queries/public_api';
 import { validateCheckTokenResponse as validator } from './check-token';
-import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 
 describe('Driver | Magento | Auth | Validator | CheckToken', () => {
   let response: ApolloQueryResult<MagentoCheckTokenResponse>;
@@ -11,8 +11,8 @@ describe('Driver | Magento | Auth | Validator | CheckToken', () => {
     response = {
       data: {
         customer: {
-          id: 5
-        }
+          id: 5,
+        },
       },
       loading: null,
       networkStatus: null,
