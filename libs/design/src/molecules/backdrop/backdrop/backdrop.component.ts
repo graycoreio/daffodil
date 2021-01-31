@@ -16,14 +16,14 @@ export class DaffBackdropComponent {
   /**
    * Determines whether or not the backdrop is transparent.
    */
-  // tslint:disable-next-line: no-inferrable-types
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() transparent: boolean = false;
 
   /**
    * Boolean property that determines whether or not the 
    * backdrop should fill up its containing window.
    */
-  // tslint:disable-next-line: no-inferrable-types
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() fullscreen: boolean = false;
 
   /**

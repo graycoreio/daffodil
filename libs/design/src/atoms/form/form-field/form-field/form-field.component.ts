@@ -27,7 +27,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * 
    * @deprecated
    */
-  // tslint:disable-next-line: no-inferrable-types
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() formSubmitted: boolean = false;
 
   /**

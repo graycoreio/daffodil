@@ -22,7 +22,7 @@ const stubCart: DaffCart = cartFactory.create({items: [cartItemFactory.create()]
 @Component({selector: 'demo-thank-you', template: ''})
 class MockThankYouComponent {}
 
-// tslint:disable-next-line: component-selector
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({selector: '[order-container]', template: '<ng-content></ng-content>', exportAs: 'OrderContainer'})
 class MockOrderContainer {
   order$: Observable<DaffCart> = of(stubCart);

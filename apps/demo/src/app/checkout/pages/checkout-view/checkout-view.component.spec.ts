@@ -71,7 +71,7 @@ class MockPlaceOrderComponent {
   @Input() cart: DaffCart;
 }
 
-// tslint:disable-next-line: component-selector
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingAddressValid$: Observable<boolean> = of(stubIsShippingAddressValid);
@@ -81,7 +81,7 @@ class MockShippingContainer {
   selectShippingOption = () => {};
 }
 
-// tslint:disable-next-line: component-selector
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer'})
 class MockBillingContainer {
   paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);

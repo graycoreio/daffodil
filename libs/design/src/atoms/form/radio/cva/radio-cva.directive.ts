@@ -7,7 +7,7 @@ import { DaffRadioRegistry } from '../registry/radio-registry';
  * ControlValueAccessor functionality for the DaffRadio
  */
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'daff-radio[ngModel], daff-radio[formControl], daff-radio[formControlName]'
 })
 export class DaffRadioControlValueAccessorDirective implements OnInit, ControlValueAccessor {

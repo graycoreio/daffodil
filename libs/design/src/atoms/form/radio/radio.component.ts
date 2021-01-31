@@ -4,7 +4,7 @@ import { DaffRadioSetComponent } from '../radio-set/radio-set.component';
 
 let radioUniqueId = 0;
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'daff-radio',
   templateUrl: './radio.html',
   styleUrls: ['./radio.scss'],
@@ -76,12 +76,12 @@ export class DaffRadioComponent implements OnInit {
   /**
 	 * Used for aria-label. Default to name if user does not input a label.
    */
-  //tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('aria-label') label: string = name;
   /**
 	 * Used for aria-labelledby.
    */
-  //tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('aria-labelledby') labelledby: string;
 
 
