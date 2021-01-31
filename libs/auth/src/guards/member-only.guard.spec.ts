@@ -1,11 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
 
-import { MemberOnlyGuard } from './member-only.guard';
-import { DaffAuthGuardCheckCompletion, DaffAuthGuardCheck } from '../actions/auth.actions';
+import {
+  DaffAuthGuardCheckCompletion,
+  DaffAuthGuardCheck,
+} from '../actions/auth.actions';
 import { DaffAuthFacade } from '../facades/auth.facade';
+import { MemberOnlyGuard } from './member-only.guard';
 
 describe('Demo | Auth | MemberOnlyGuard', () => {
   let guard: MemberOnlyGuard;
@@ -19,9 +25,9 @@ describe('Demo | Auth | MemberOnlyGuard', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffAuthFacade,
-          useValue: jasmine.createSpyObj('DaffAuthFacade', ['dispatch'])
-        }
-      ]
+          useValue: jasmine.createSpyObj('DaffAuthFacade', ['dispatch']),
+        },
+      ],
     });
 
     guard = TestBed.inject(MemberOnlyGuard);

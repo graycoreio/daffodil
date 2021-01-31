@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 
-import { DaffLoginInfo } from '../../../models/login-info'
-import { DaffAccountRegistration } from '../../../models/account-registration'
+import { DaffAccountRegistration } from '../../../models/account-registration';
+import { DaffLoginInfo } from '../../../models/login-info';
 
 /**
  * Transforms magento auths into an object usable by daffodil.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoLoginInfoTransformerService {
   transform(registration: DaffAccountRegistration): DaffLoginInfo {
     return {
       email: registration.customer.email,
-      password: registration.password
-    }
+      password: registration.password,
+    };
   }
 }

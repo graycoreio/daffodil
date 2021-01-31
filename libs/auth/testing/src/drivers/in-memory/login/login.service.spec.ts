@@ -1,14 +1,17 @@
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 import {
   DaffAuthToken,
   DaffAccountRegistration,
 } from '@daffodil/auth';
 
-import { DaffInMemoryLoginService } from './login.service';
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
 import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
+import { DaffInMemoryLoginService } from './login.service';
 
 describe('Driver | InMemory | Auth | LoginService', () => {
   let loginService;
@@ -28,11 +31,11 @@ describe('Driver | InMemory | Auth | LoginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryLoginService
-      ]
+        DaffInMemoryLoginService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -58,14 +61,14 @@ describe('Driver | InMemory | Auth | LoginService', () => {
     });
 
     it('should send a post request and return an AuthToken', done => {
-      loginService.login({email, password}).subscribe(auth => {
+      loginService.login({ email, password }).subscribe(auth => {
         expect(auth).toEqual(mockAuth);
         done();
       });
 
       const req = httpMock.expectOne(`${loginService.url}login`);
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({email, password});
+      expect(req.request.body).toEqual({ email, password });
 
       req.flush(mockAuth);
     });
@@ -85,7 +88,7 @@ describe('Driver | InMemory | Auth | LoginService', () => {
       const req = httpMock.expectOne(`${loginService.url}logout`);
       expect(req.request.method).toBe('POST');
 
-      req.flush({success: true});
+      req.flush({ success: true });
     });
   });
 });

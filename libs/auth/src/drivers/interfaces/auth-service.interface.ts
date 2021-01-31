@@ -8,4 +8,4 @@ export interface DaffAuthServiceInterface {
   check(): Observable<void>;
 }
 
-export const DaffAuthDriver = new InjectionToken<DaffAuthServiceInterface>('DaffAuthDriver')
+export const DaffAuthDriver = new InjectionToken<DaffAuthServiceInterface>('DaffAuthDriver');

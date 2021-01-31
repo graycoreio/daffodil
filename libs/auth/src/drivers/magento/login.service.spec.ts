@@ -3,29 +3,36 @@ import {
   ApolloTestingModule,
   ApolloTestingController,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
 import { cold } from 'jasmine-marbles';
 import { catchError } from 'rxjs/operators';
-import { GraphQLError } from 'graphql';
 
-import { DaffAuthToken, DaffLoginInfo, DaffAccountRegistration, DaffAuthInvalidAPIResponseError, DaffAuthenticationFailedError, DaffUnauthorizedError } from '@daffodil/auth';
+import {
+  DaffAuthToken,
+  DaffLoginInfo,
+  DaffAccountRegistration,
+  DaffAuthInvalidAPIResponseError,
+  DaffAuthenticationFailedError,
+  DaffUnauthorizedError,
+} from '@daffodil/auth';
 import {
   DaffAccountRegistrationFactory,
-  DaffAuthTokenFactory
+  DaffAuthTokenFactory,
 } from '@daffodil/auth/testing';
 
+import { DaffMagentoLoginService } from './login.service';
 import {
   generateTokenMutation,
   revokeCustomerTokenMutation,
-  MagentoRevokeCustomerTokenResponse
+  MagentoRevokeCustomerTokenResponse,
 } from './queries/public_api';
 import { DaffMagentoAuthTransformerService } from './transforms/auth-transformer.service';
-import { DaffMagentoLoginService } from './login.service';
 
 describe('Driver | Magento | Auth | LoginService', () => {
   let controller: ApolloTestingController;
   let service: DaffMagentoLoginService;
 
-  const authTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoAuthTransformerService', ['transform'])
+  const authTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoAuthTransformerService', ['transform']);
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
@@ -42,15 +49,15 @@ describe('Driver | Magento | Auth | LoginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoLoginService,
         {
           provide: DaffMagentoAuthTransformerService,
-          useValue: authTransformerServiceSpy
-        }
-      ]
+          useValue: authTransformerServiceSpy,
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoLoginService);
@@ -64,7 +71,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
     lastName = mockRegistration.customer.lastName;
     email = mockRegistration.customer.email;
     password = mockRegistration.password;
-    mockLoginInfo = {email, password};
+    mockLoginInfo = { email, password };
   });
 
   it('should be created', () => {
@@ -78,8 +85,8 @@ describe('Driver | Magento | Auth | LoginService', () => {
       beforeEach(() => {
         response = {
           generateCustomerToken: {
-            token
-          }
+            token,
+          },
         };
 
         authTransformerServiceSpy.transform.withArgs(response.generateCustomerToken).and.returnValue(mockAuth);
@@ -96,7 +103,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
           const op = controller.expectOne(generateTokenMutation);
 
           op.flush({
-            data: response
+            data: response,
           });
         });
 
@@ -109,18 +116,18 @@ describe('Driver | Magento | Auth | LoginService', () => {
           const op = controller.expectOne(generateTokenMutation);
 
           op.flush({
-            data: response
+            data: response,
           });
         });
       });
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-					response = {
-						generateCustomerToken: {
-							token: null
-						}
-					};
+          response = {
+            generateCustomerToken: {
+              token: null,
+            },
+          };
         });
 
         it('should throw a DaffAuthInvalidAPIResponseError', done => {
@@ -129,13 +136,13 @@ describe('Driver | Magento | Auth | LoginService', () => {
               expect(err).toEqual(jasmine.any(DaffAuthInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(generateTokenMutation);
 
           op.flush({
-            data: response
+            data: response,
           });
         });
       });
@@ -148,7 +155,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
             expect(err).toEqual(jasmine.any(DaffAuthenticationFailedError));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(generateTokenMutation);
@@ -160,7 +167,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
           null,
           null,
           null,
-          {category: 'graphql-authentication'}
+          { category: 'graphql-authentication' },
         )]);
       });
     });
@@ -179,8 +186,8 @@ describe('Driver | Magento | Auth | LoginService', () => {
         result = true;
         response = {
           revokeCustomerToken: {
-            result
-          }
+            result,
+          },
         };
       });
 
@@ -194,18 +201,18 @@ describe('Driver | Magento | Auth | LoginService', () => {
           const op = controller.expectOne(revokeCustomerTokenMutation);
 
           op.flush({
-            data: response
+            data: response,
           });
         });
       });
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-					response = {
-						revokeCustomerToken: {
-							result: null
-						}
-					};
+          response = {
+            revokeCustomerToken: {
+              result: null,
+            },
+          };
         });
 
         // TODO: test for specific errors
@@ -215,13 +222,13 @@ describe('Driver | Magento | Auth | LoginService', () => {
               expect(err).toEqual(jasmine.any(DaffAuthInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(revokeCustomerTokenMutation);
 
           op.flush({
-            data: response
+            data: response,
           });
         });
       });
@@ -234,7 +241,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
             expect(err).toEqual(jasmine.any(DaffUnauthorizedError));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(revokeCustomerTokenMutation);
@@ -246,7 +253,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
           null,
           null,
           null,
-          {category: 'graphql-authorization'}
+          { category: 'graphql-authorization' },
         )]);
       });
     });

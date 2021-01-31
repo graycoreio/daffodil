@@ -9,7 +9,7 @@ describe('Auth | Testing | Factories | DaffAuthTokenFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffAuthTokenFactory]
+      providers: [DaffAuthTokenFactory],
     });
 
     accountRegistrationFactory = TestBed.inject(DaffAuthTokenFactory);
@@ -40,6 +40,6 @@ describe('Auth | Testing | Factories | DaffAuthTokenFactory', () => {
 
       result = accountRegistrationFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

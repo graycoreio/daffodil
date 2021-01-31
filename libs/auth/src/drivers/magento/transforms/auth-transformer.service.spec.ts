@@ -15,9 +15,9 @@ describe('DaffMagentoAuthTransformerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoAuthTransformerService
-      ]
-    })
+        DaffMagentoAuthTransformerService,
+      ],
+    });
 
     service = TestBed.inject(DaffMagentoAuthTransformerService);
 

@@ -1,8 +1,8 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
+import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 import { MagentoGenerateTokenResponse } from '../queries/public_api';
 import { validateGenerateTokenResponse as validator } from './generate-token';
-import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 
 describe('Driver | Magento | Auth | Validator | GenerateToken', () => {
   let response: ApolloQueryResult<MagentoGenerateTokenResponse>;
@@ -11,8 +11,8 @@ describe('Driver | Magento | Auth | Validator | GenerateToken', () => {
     response = {
       data: {
         generateCustomerToken: {
-          token: 'token'
-        }
+          token: 'token',
+        },
       },
       loading: null,
       networkStatus: null,

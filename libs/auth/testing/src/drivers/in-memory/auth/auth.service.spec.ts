@@ -1,12 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-
 import {
-  DaffAuthToken,
-} from '@daffodil/auth';
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { DaffInMemoryAuthService } from './auth.service';
+import { DaffAuthToken } from '@daffodil/auth';
+
 import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
+import { DaffInMemoryAuthService } from './auth.service';
 
 describe('Driver | InMemory | Auth | AuthService', () => {
   let service;
@@ -19,11 +20,11 @@ describe('Driver | InMemory | Auth | AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryAuthService
-      ]
+        DaffInMemoryAuthService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);

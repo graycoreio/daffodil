@@ -1,22 +1,23 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import {
-  DaffAuthTokenFactory
-} from '@daffodil/auth/testing';
+import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 
 import { DaffAuthLoginSuccess } from '../../actions/auth.actions';
+import { DaffAuthToken } from '../../models/auth-token';
 import {
   DaffAuthFeatureState,
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
-  DaffAuthLoginReducerState
+  DaffAuthLoginReducerState,
 } from '../../reducers/public_api';
-import { DaffAuthToken } from '../../models/auth-token';
-import {
-  getDaffAuthLoginSelectors
-} from './login.selector';
+import { getDaffAuthLoginSelectors } from './login.selector';
 
 describe('Auth | Selector | Login', () => {
   let store: Store<DaffAuthFeatureState<DaffAuthToken>>;
@@ -34,16 +35,16 @@ describe('Auth | Selector | Login', () => {
     selectAuthLoginToken,
     selectAuthLoginTokenValue,
     selectAuthLoginLoading,
-    selectAuthLoginErrors
+    selectAuthLoginErrors,
   } = getDaffAuthLoginSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_AUTH_STORE_FEATURE_KEY]: combineReducers(daffAuthReducers)
-        })
-      ]
+          [DAFF_AUTH_STORE_FEATURE_KEY]: combineReducers(daffAuthReducers),
+        }),
+      ],
     });
 
     store = TestBed.inject(Store);
@@ -56,7 +57,7 @@ describe('Auth | Selector | Login', () => {
     state = {
       loading,
       errors,
-      auth: mockAuthToken
+      auth: mockAuthToken,
     };
 
     // init store to desired state

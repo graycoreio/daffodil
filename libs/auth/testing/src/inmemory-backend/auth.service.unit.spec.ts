@@ -3,9 +3,9 @@ import { STATUS } from 'angular-in-memory-web-api';
 
 import { DaffAuthToken } from '@daffodil/auth';
 
-import { DaffInMemoryBackendAuthService } from './auth.service';
 import { DaffAccountRegistrationFactory } from '../factories/account-registration.factory';
 import { DaffAuthTokenFactory } from '../factories/auth-token.factory';
+import { DaffInMemoryBackendAuthService } from './auth.service';
 
 describe('DaffAuthInMemoryBackend | Unit', () => {
   let authTestingService;
@@ -20,7 +20,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendAuthService,
-      ]
+      ],
     });
 
     authTestingService = TestBed.inject(DaffInMemoryBackendAuthService);
@@ -31,8 +31,8 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       req: {},
       utils: {
         createResponse$: f => f(),
-        getJsonBody: req => req.body
-      }
+        getJsonBody: req => req.body,
+      },
     };
   });
 
@@ -67,7 +67,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       const mockRegistration = registrationFactory.create();
       const mockLoginInfo = {
         email: mockRegistration.customer.email,
-        password: mockRegistration.password
+        password: mockRegistration.password,
       };
       reqInfoStub.id = 'register';
       reqInfoStub.req.body = mockRegistration;
@@ -84,7 +84,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       reqInfoStub.req.body = {};
       const result = authTestingService.post(reqInfoStub);
 
-      expect(result.body).toEqual(jasmine.objectContaining({success: true}));
+      expect(result.body).toEqual(jasmine.objectContaining({ success: true }));
       expect(result.status).toEqual(STATUS.OK);
     });
   });

@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import {
   DaffLoginDriver,
@@ -7,14 +10,14 @@ import {
   DaffAuthDriver,
 } from '@daffodil/auth';
 
+import { DaffTestingAuthService } from './auth/auth.service';
 import { DaffTestingLoginService } from './login/login.service';
 import { DaffTestingRegisterService } from './register/register.service';
-import { DaffTestingAuthService } from './auth/auth.service';
 
 @NgModule({
   imports: [
     CommonModule,
-  ]
+  ],
 })
 export class DaffAuthTestingDriverModule {
   static forRoot(): ModuleWithProviders<DaffAuthTestingDriverModule> {
@@ -23,17 +26,17 @@ export class DaffAuthTestingDriverModule {
       providers: [
         {
           provide: DaffLoginDriver,
-          useExisting: DaffTestingLoginService
+          useExisting: DaffTestingLoginService,
         },
         {
           provide: DaffRegisterDriver,
-          useExisting: DaffTestingRegisterService
+          useExisting: DaffTestingRegisterService,
         },
         {
           provide: DaffAuthDriver,
-          useExisting: DaffTestingAuthService
-        }
-      ]
+          useExisting: DaffTestingAuthService,
+        },
+      ],
     };
   }
 }

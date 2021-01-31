@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
 import {
-  DaffAuthServiceInterface,
-} from '@daffodil/auth';
+  Observable,
+  of,
+} from 'rxjs';
+
+import { DaffAuthServiceInterface } from '@daffodil/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingAuthService implements DaffAuthServiceInterface {
   check(): Observable<void> {

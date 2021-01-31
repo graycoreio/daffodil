@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffAccountRegistration,
-} from '@daffodil/auth';
+import { DaffAccountRegistration } from '@daffodil/auth';
 import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
 import { DaffMagentoLoginInfoTransformerService } from './login-info-transformer.service';
@@ -17,8 +15,8 @@ describe('DaffMagentoLoginInfoTransformerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoLoginInfoTransformerService
-      ]
+        DaffMagentoLoginInfoTransformerService,
+      ],
     });
 
     service = TestBed.inject(DaffMagentoLoginInfoTransformerService);
@@ -35,12 +33,12 @@ describe('DaffMagentoLoginInfoTransformerService', () => {
 
     beforeEach(() => {
       transformedLoginInfo = service.transform(mockRegistration);
-    })
+    });
 
     it('should return a DaffLoginInfo with the correct fields', () => {
       expect(transformedLoginInfo).toEqual(jasmine.objectContaining({
         email: mockRegistration.customer.email,
-        password: mockRegistration.password
+        password: mockRegistration.password,
       }));
     });
   });

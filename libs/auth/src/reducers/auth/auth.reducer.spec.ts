@@ -1,17 +1,17 @@
-import { DaffAuthReducerState } from './auth-reducer-state.interface';
 import {
   DaffAuthCheck,
   DaffAuthCheckSuccess,
   DaffAuthCheckFailure,
 } from '../../actions/auth.actions';
+import { daffAuthInitialState as initialState } from './auth-initial-state';
+import { DaffAuthReducerState } from './auth-reducer-state.interface';
 import { daffAuthReducer as reducer } from './auth.reducer';
-import { daffAuthInitialState as initialState } from './auth-initial-state'
 
 
 describe('Auth | Reducer | Auth', () => {
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -40,8 +40,8 @@ describe('Auth | Reducer | Auth', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       const authCheckSuccess = new DaffAuthCheckSuccess();
       result = reducer(state, authCheckSuccess);
@@ -61,8 +61,8 @@ describe('Auth | Reducer | Auth', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
-      }
+        errors: new Array('firstError'),
+      };
 
       const authCheckFailure = new DaffAuthCheckFailure(error);
 

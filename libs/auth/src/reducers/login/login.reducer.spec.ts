@@ -1,9 +1,8 @@
 import {
   DaffAuthTokenFactory,
-  DaffAccountRegistrationFactory
+  DaffAccountRegistrationFactory,
 } from '@daffodil/auth/testing';
 
-import { DaffAuthLoginReducerState } from './login-reducer-state.interface';
 import {
   DaffAuthLogin,
   DaffAuthLoginSuccess,
@@ -12,11 +11,12 @@ import {
   DaffAuthLogoutSuccess,
   DaffAuthLogoutFailure,
 } from '../../actions/auth.actions';
-import { daffAuthLoginReducer as reducer } from './login.reducer';
-import { daffAuthLoginInitialState as initialState } from './login-initial-state'
 import { DaffAccountRegistration } from '../../models/account-registration';
-import { DaffLoginInfo } from '../../models/login-info';
 import { DaffAuthToken } from '../../models/auth-token';
+import { DaffLoginInfo } from '../../models/login-info';
+import { daffAuthLoginInitialState as initialState } from './login-initial-state';
+import { DaffAuthLoginReducerState } from './login-reducer-state.interface';
+import { daffAuthLoginReducer as reducer } from './login.reducer';
 
 describe('Auth | Reducer | Login', () => {
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
@@ -38,12 +38,12 @@ describe('Auth | Reducer | Login', () => {
     lastName = mockRegistration.customer.lastName;
     email = mockRegistration.customer.email;
     password = mockRegistration.password;
-    mockLoginInfo = {email, password};
+    mockLoginInfo = { email, password };
   });
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -72,8 +72,8 @@ describe('Auth | Reducer | Login', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       const authLoginSuccess = new DaffAuthLoginSuccess(mockAuthToken);
       result = reducer(state, authLoginSuccess);
@@ -97,8 +97,8 @@ describe('Auth | Reducer | Login', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
-      }
+        errors: new Array('firstError'),
+      };
 
       const authLoginFailure = new DaffAuthLoginFailure(error);
 
@@ -136,8 +136,8 @@ describe('Auth | Reducer | Login', () => {
       state = {
         ...initialState,
         loading: true,
-        auth: mockAuthToken
-      }
+        auth: mockAuthToken,
+      };
 
       const authLogoutSuccess = new DaffAuthLogoutSuccess();
       result = reducer(state, authLogoutSuccess);
@@ -161,8 +161,8 @@ describe('Auth | Reducer | Login', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
-      }
+        errors: new Array('firstError'),
+      };
 
       const authLogoutFailure = new DaffAuthLogoutFailure(error);
 

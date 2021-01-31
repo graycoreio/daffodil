@@ -1,3 +1,3 @@
 export interface MagentoAuth {
-  token: string
+  token: string;
 }

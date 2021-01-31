@@ -9,7 +9,7 @@ export class MockAuthToken implements DaffAuthToken {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffAuthTokenFactory extends DaffModelFactory<DaffAuthToken> {
   constructor() {

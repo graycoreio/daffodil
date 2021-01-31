@@ -1,9 +1,15 @@
-import { Injectable, Inject } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 
-import { DaffPersistenceService, DaffPersistenceServiceToken } from '@daffodil/core';
+import {
+  DaffPersistenceService,
+  DaffPersistenceServiceToken,
+} from '@daffodil/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffAuthStorageService {
   private readonly AUTH_STORAGE_TOKEN = 'DAFF_AUTH_TOKEN';

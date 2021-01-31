@@ -1,5 +1,8 @@
+import {
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import {
@@ -22,7 +25,7 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendAuthService)
+        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendAuthService),
       ],
     });
 
@@ -31,7 +34,7 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
     mockRegistration = registrationFactory.create();
     mockLoginInfo = {
       email: mockRegistration.customer.email,
-      password: mockRegistration.password
+      password: mockRegistration.password,
     };
   });
 
@@ -65,7 +68,7 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
   describe('processing a logout request', () => {
     it('should process post requests of the form `/api/auth/logout` and return success', done => {
       httpClient.post('/api/auth/logout', {}).subscribe(result => {
-        expect(result).toEqual(jasmine.objectContaining({success: true}));
+        expect(result).toEqual(jasmine.objectContaining({ success: true }));
         done();
       });
     });

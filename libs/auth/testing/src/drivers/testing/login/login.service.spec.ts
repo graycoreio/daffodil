@@ -7,8 +7,8 @@ import {
   DaffAccountRegistration,
 } from '@daffodil/auth';
 
-import { DaffTestingLoginService } from './login.service';
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
+import { DaffTestingLoginService } from './login.service';
 
 describe('Driver | Testing | Auth | LoginService', () => {
   let loginService: DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken>;
@@ -22,8 +22,8 @@ describe('Driver | Testing | Auth | LoginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingLoginService
-      ]
+        DaffTestingLoginService,
+      ],
     });
 
     loginService = TestBed.inject(DaffTestingLoginService);
@@ -40,7 +40,7 @@ describe('Driver | Testing | Auth | LoginService', () => {
 
   describe('login | obtaining a token', () => {
     it('should return a token', done => {
-      loginService.login({email, password}).subscribe(auth => {
+      loginService.login({ email, password }).subscribe(auth => {
         expect(auth.token).toBeTruthy();
         done();
       });

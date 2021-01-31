@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { DaffLoginInfo } from '../models/login-info';
-import { DaffAuthToken } from '../models/auth-token';
 import { DaffAccountRegistration } from '../models/account-registration';
+import { DaffAuthToken } from '../models/auth-token';
+import { DaffLoginInfo } from '../models/login-info';
 
 export enum DaffAuthActionTypes {
   AuthGuardCheckAction = '[Daff-Auth] Auth Guard Check Action',
@@ -185,4 +185,4 @@ export type DaffAuthActions<
   | DaffAuthCheckFailure
   | DaffAuthRegister<S>
   | DaffAuthRegisterSuccess<T>
-  | DaffAuthRegisterFailure
+  | DaffAuthRegisterFailure;

@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -15,9 +18,12 @@ import {
   DaffAuthCheckFailure,
   DaffAuthLoginFailure,
   DaffAuthRegisterFailure,
-  DaffAuthLoginSuccess
+  DaffAuthLoginSuccess,
 } from '@daffodil/auth';
-import { DaffAuthTokenFactory, DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
+import {
+  DaffAuthTokenFactory,
+  DaffAccountRegistrationFactory,
+} from '@daffodil/auth/testing';
 
 import { DaffAuthFacade } from './auth.facade';
 
@@ -42,11 +48,11 @@ describe('DaffAuthFacade', () => {
       imports: [
         StoreModule.forRoot({
           [DAFF_AUTH_STORE_FEATURE_KEY]: combineReducers(daffAuthReducers),
-        })
+        }),
       ],
       providers: [
         DaffAuthFacade,
-      ]
+      ],
     });
 
     store = TestBed.inject(Store);
@@ -58,7 +64,7 @@ describe('DaffAuthFacade', () => {
     mockRegistration = accountRegistrationFactory.create();
     mockLoginInfo = {
       email: mockRegistration.customer.email,
-      password: mockRegistration.password
+      password: mockRegistration.password,
     };
     authErrors = [];
     authLoading = false;
@@ -164,12 +170,12 @@ describe('DaffAuthFacade', () => {
 
   describe('auth$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null});
+      const expected = cold('a', { a: null });
       expect(facade.auth$).toBeObservable(expected);
     });
 
     it('should be an auth token upon a successful login', () => {
-      const expected = cold('a', { a: mockAuthToken});
+      const expected = cold('a', { a: mockAuthToken });
       store.dispatch(new DaffAuthLoginSuccess(mockAuthToken));
       expect(facade.auth$).toBeObservable(expected);
     });
@@ -177,12 +183,12 @@ describe('DaffAuthFacade', () => {
 
   describe('token$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null});
+      const expected = cold('a', { a: null });
       expect(facade.token$).toBeObservable(expected);
     });
 
     it('should be an auth token value upon a successful login', () => {
-      const expected = cold('a', { a: mockAuthToken.token});
+      const expected = cold('a', { a: mockAuthToken.token });
       store.dispatch(new DaffAuthLoginSuccess(mockAuthToken));
       expect(facade.token$).toBeObservable(expected);
     });

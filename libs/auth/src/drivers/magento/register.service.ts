@@ -1,22 +1,28 @@
-import {Apollo} from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { mapTo, catchError } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  mapTo,
+  catchError,
+} from 'rxjs/operators';
 
-import { DaffRegisterServiceInterface } from '../interfaces/register-service.interface';
-import { DaffLoginInfo } from '../../models/login-info';
 import { DaffAccountRegistration } from '../../models/account-registration';
-import { DaffMagentoLoginInfoTransformerService } from './transforms/login-info-transformer.service';
-import { createCustomerMutation } from './queries/public_api';
+import { DaffLoginInfo } from '../../models/login-info';
+import { DaffRegisterServiceInterface } from '../interfaces/register-service.interface';
 import { transformMagentoAuthError } from './errors/transform';
+import { createCustomerMutation } from './queries/public_api';
+import { DaffMagentoLoginInfoTransformerService } from './transforms/login-info-transformer.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoRegisterService implements DaffRegisterServiceInterface<DaffAccountRegistration, DaffLoginInfo> {
   constructor(
     private apollo: Apollo,
-    private loginInfoTransformer: DaffMagentoLoginInfoTransformerService
+    private loginInfoTransformer: DaffMagentoLoginInfoTransformerService,
   ) {}
 
   register(registration: DaffAccountRegistration): Observable<DaffLoginInfo> {
@@ -26,11 +32,11 @@ export class DaffMagentoRegisterService implements DaffRegisterServiceInterface<
         email: registration.customer.email,
         password: registration.password,
         firstname: registration.customer.firstName,
-        lastname: registration.customer.lastName
-      }
+        lastname: registration.customer.lastName,
+      },
     }).pipe(
       mapTo(this.loginInfoTransformer.transform(registration)),
-      catchError(err => throwError(transformMagentoAuthError(err)))
-    )
+      catchError(err => throwError(transformMagentoAuthError(err))),
+    );
   }
 }

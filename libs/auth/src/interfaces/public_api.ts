@@ -1,1 +1,1 @@
-export { DaffAuthFacadeInterface } from './auth-facade.interface'
+export { DaffAuthFacadeInterface } from './auth-facade.interface';

@@ -1,17 +1,20 @@
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 
 import {
   DaffAuthToken,
   DaffAccountRegistration,
   DaffLoginDriver,
-  DaffLoginInfo
+  DaffLoginInfo,
 } from '@daffodil/auth';
 
-import { DaffInMemoryRegisterService } from './register.service';
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
 import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
+import { DaffInMemoryRegisterService } from './register.service';
 
 describe('Driver | InMemory | Auth | RegisterService', () => {
   let registerService;
@@ -29,11 +32,11 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryRegisterService
-      ]
+        DaffInMemoryRegisterService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -48,7 +51,7 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
 
     mockLoginInfo = {
       email,
-      password
+      password,
     };
   });
 

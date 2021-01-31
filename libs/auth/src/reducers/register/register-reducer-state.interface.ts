@@ -1,4 +1,4 @@
 export interface DaffAuthRegisterReducerState {
-  loading: boolean,
-  errors: string[]
+  loading: boolean;
+  errors: string[];
 }

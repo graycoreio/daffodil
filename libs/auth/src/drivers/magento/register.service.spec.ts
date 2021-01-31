@@ -6,15 +6,13 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import {
-  DaffAccountRegistrationFactory,
-} from '@daffodil/auth/testing';
+import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 import { DaffBadInputError } from '@daffodil/driver';
 
-import { DaffMagentoRegisterService } from './register.service';
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffLoginInfo } from '../../models/login-info';
 import { createCustomerMutation } from './queries/public_api';
+import { DaffMagentoRegisterService } from './register.service';
 
 describe('Driver | Magento | Auth | RegisterService', () => {
   let controller: ApolloTestingController;
@@ -32,11 +30,11 @@ describe('Driver | Magento | Auth | RegisterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoRegisterService,
-      ]
+      ],
     });
 
     service = TestBed.inject(DaffMagentoRegisterService);
@@ -48,7 +46,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
     lastName = mockRegistration.customer.lastName;
     email = mockRegistration.customer.email;
     password = mockRegistration.password;
-    mockLoginInfo = {email, password};
+    mockLoginInfo = { email, password };
   });
 
   it('should be created', () => {
@@ -66,8 +64,8 @@ describe('Driver | Magento | Auth | RegisterService', () => {
       beforeEach(() => {
         response = {
           createCustomer: {
-            customer: mockRegistration.customer
-          }
+            customer: mockRegistration.customer,
+          },
         };
       });
 
@@ -80,7 +78,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
         const op = controller.expectOne(createCustomerMutation);
 
         op.flush({
-          data: response
+          data: response,
         });
       });
     });
@@ -92,7 +90,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
             expect(err).toEqual(jasmine.any(DaffBadInputError));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(createCustomerMutation);
@@ -104,7 +102,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
           null,
           null,
           null,
-          {category: 'graphql-input'}
+          { category: 'graphql-input' },
         )]);
       });
     });
