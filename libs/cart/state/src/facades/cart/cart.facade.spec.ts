@@ -1,46 +1,82 @@
 import { TestBed } from '@angular/core/testing';
-
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
-import { DaffCartOrderResult, DaffCartPaymentMethodIdMap, DaffCart, DaffCartTotalTypeEnum, DaffCartPaymentMethod, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItemInputType } from '@daffodil/cart';
 import {
-	initialState, DaffCartReducersState,
-	DaffCartLoading, DaffCartErrors,
-	daffCartReducers, DaffCartOperationType,
-	DaffCartLoadSuccess,
-	DaffCartLoad, DaffCartClear,
-	DaffCartItemLoad, DaffCartItemDelete,
-	DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate,
-	DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate,
-	DaffCartShippingInformationLoad, DaffCartShippingInformationDelete,
-	DaffCartShippingMethodsLoad, DaffCartPaymentLoad,
-	DaffCartPaymentRemove, DaffCartPaymentMethodsLoad,
-	DaffCartCouponList, DaffCartCouponRemoveAll,
-	DaffCartLoadFailure, DaffCartItemLoadFailure,
-	DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure,
-	DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure,
-	DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure,
-	DaffCartCouponListFailure, DaffCartCreateSuccess,
-	DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess,
-	DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess,
-	DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess,
-	DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder,
-	DaffCartPlaceOrderFailure, DaffCartPlaceOrderSuccess,
-	DaffCartItemLoadingState,
-	DaffCartItemAdd,
-  DaffCartResolveState
+  DaffCartOrderResult,
+  DaffCartPaymentMethodIdMap,
+  DaffCart,
+  DaffCartTotalTypeEnum,
+  DaffCartPaymentMethod,
+  DaffConfigurableCartItem,
+  DaffCompositeCartItem,
+  DaffCartItemInputType,
+} from '@daffodil/cart';
+import {
+  initialState,
+  DaffCartReducersState,
+  DaffCartLoading,
+  DaffCartErrors,
+  daffCartReducers,
+  DaffCartOperationType,
+  DaffCartLoadSuccess,
+  DaffCartLoad,
+  DaffCartClear,
+  DaffCartItemLoad,
+  DaffCartItemDelete,
+  DaffCartBillingAddressLoad,
+  DaffCartBillingAddressUpdate,
+  DaffCartShippingAddressLoad,
+  DaffCartShippingAddressUpdate,
+  DaffCartShippingInformationLoad,
+  DaffCartShippingInformationDelete,
+  DaffCartShippingMethodsLoad,
+  DaffCartPaymentLoad,
+  DaffCartPaymentRemove,
+  DaffCartPaymentMethodsLoad,
+  DaffCartCouponList,
+  DaffCartCouponRemoveAll,
+  DaffCartLoadFailure,
+  DaffCartItemLoadFailure,
+  DaffCartBillingAddressLoadFailure,
+  DaffCartShippingAddressLoadFailure,
+  DaffCartShippingInformationLoadFailure,
+  DaffCartShippingMethodsLoadFailure,
+  DaffCartPaymentLoadFailure,
+  DaffCartPaymentMethodsLoadFailure,
+  DaffCartCouponListFailure,
+  DaffCartCreateSuccess,
+  DaffCartItemListSuccess,
+  DaffCartBillingAddressLoadSuccess,
+  DaffCartShippingAddressLoadSuccess,
+  DaffCartPaymentLoadSuccess,
+  DaffCartShippingInformationLoadSuccess,
+  DaffCartShippingMethodsLoadSuccess,
+  DaffCartPaymentMethodsLoadSuccess,
+  DaffCartPlaceOrder,
+  DaffCartPlaceOrderFailure,
+  DaffCartPlaceOrderSuccess,
+  DaffCartItemLoadingState,
+  DaffCartItemAdd,
+  DaffCartResolveState,
 } from '@daffodil/cart/state';
+import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
   DaffCartFactory,
   DaffCartAddressFactory,
   DaffCartPaymentFactory,
   DaffCartShippingRateFactory,
   DaffConfigurableCartItemFactory,
-  DaffCompositeCartItemFactory
+  DaffCompositeCartItemFactory,
 } from '@daffodil/cart/testing';
-import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
+import {
+  DaffLoadingState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { DaffCartFacade } from './cart.facade';
 
@@ -66,18 +102,18 @@ describe('DaffCartFacade', () => {
       imports: [
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
-        })
+        }),
       ],
       providers: [
         DaffCartFacade,
         {
           provide: DaffCartPaymentMethodIdMap,
           useValue: {
-            [paymentMethod]: paymentId
-          }
-        }
-      ]
-    })
+            [paymentMethod]: paymentId,
+          },
+        },
+      ],
+    });
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffCartFacade);
@@ -170,7 +206,7 @@ describe('DaffCartFacade', () => {
   describe('featureLoading$', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', {a: false});
+        const expected = cold('a', { a: false });
 
         expect(facade.featureLoading$).toBeObservable(expected);
       });
@@ -180,7 +216,7 @@ describe('DaffCartFacade', () => {
   describe('featureResolving$', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', {a: false});
+        const expected = cold('a', { a: false });
 
         expect(facade.featureResolving$).toBeObservable(expected);
       });
@@ -190,7 +226,7 @@ describe('DaffCartFacade', () => {
   describe('featureMutating$', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', {a: false});
+        const expected = cold('a', { a: false });
 
         expect(facade.featureMutating$).toBeObservable(expected);
       });
@@ -208,7 +244,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartLoad())
+        facade.dispatch(new DaffCartLoad());
       });
 
       it('should return true', () => {
@@ -230,7 +266,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartLoad())
+        facade.dispatch(new DaffCartLoad());
       });
 
       it('should return true', () => {
@@ -252,7 +288,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartClear())
+        facade.dispatch(new DaffCartClear());
       });
 
       it('should return true', () => {
@@ -274,7 +310,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart item operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartItemLoad('itemId'))
+        facade.dispatch(new DaffCartItemLoad('itemId'));
       });
 
       it('should return true', () => {
@@ -297,10 +333,10 @@ describe('DaffCartFacade', () => {
     describe('when the cart item add operations have not completed', () => {
       beforeEach(() => {
         facade.dispatch(new DaffCartItemAdd({
-					productId: 'productId',
-					qty: 1,
-					type: DaffCartItemInputType.Simple
-				}))
+          productId: 'productId',
+          qty: 1,
+          type: DaffCartItemInputType.Simple,
+        }));
       });
 
       it('should return true', () => {
@@ -322,7 +358,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart item resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartItemLoad('itemId'))
+        facade.dispatch(new DaffCartItemLoad('itemId'));
       });
 
       it('should return true', () => {
@@ -344,7 +380,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart item mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartItemDelete('itemId'))
+        facade.dispatch(new DaffCartItemDelete('itemId'));
       });
 
       it('should return true', () => {
@@ -366,7 +402,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart billing operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartBillingAddressLoad())
+        facade.dispatch(new DaffCartBillingAddressLoad());
       });
 
       it('should return true state', () => {
@@ -388,7 +424,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart billing resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartBillingAddressLoad())
+        facade.dispatch(new DaffCartBillingAddressLoad());
       });
 
       it('should return true state', () => {
@@ -410,7 +446,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart billing mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartBillingAddressUpdate({}))
+        facade.dispatch(new DaffCartBillingAddressUpdate({}));
       });
 
       it('should return true state', () => {
@@ -432,7 +468,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingAddressLoad())
+        facade.dispatch(new DaffCartShippingAddressLoad());
       });
 
       it('should return true state', () => {
@@ -454,7 +490,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingAddressLoad())
+        facade.dispatch(new DaffCartShippingAddressLoad());
       });
 
       it('should return true state', () => {
@@ -476,7 +512,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingAddressUpdate({}))
+        facade.dispatch(new DaffCartShippingAddressUpdate({}));
       });
 
       it('should return true state', () => {
@@ -498,7 +534,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingInformationLoad())
+        facade.dispatch(new DaffCartShippingInformationLoad());
       });
 
       it('should return true state', () => {
@@ -520,7 +556,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingInformationLoad())
+        facade.dispatch(new DaffCartShippingInformationLoad());
       });
 
       it('should return true state', () => {
@@ -542,7 +578,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingInformationDelete())
+        facade.dispatch(new DaffCartShippingInformationDelete());
       });
 
       it('should return true state', () => {
@@ -564,7 +600,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingMethodsLoad())
+        facade.dispatch(new DaffCartShippingMethodsLoad());
       });
 
       it('should return true state', () => {
@@ -586,7 +622,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart shipping resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartShippingMethodsLoad())
+        facade.dispatch(new DaffCartShippingMethodsLoad());
       });
 
       it('should return true state', () => {
@@ -608,7 +644,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart payment operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartPaymentLoad())
+        facade.dispatch(new DaffCartPaymentLoad());
       });
 
       it('should return true', () => {
@@ -630,7 +666,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart payment resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartPaymentLoad())
+        facade.dispatch(new DaffCartPaymentLoad());
       });
 
       it('should return true', () => {
@@ -652,7 +688,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart payment mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartPaymentRemove())
+        facade.dispatch(new DaffCartPaymentRemove());
       });
 
       it('should return true', () => {
@@ -674,7 +710,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart payment operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartPaymentMethodsLoad())
+        facade.dispatch(new DaffCartPaymentMethodsLoad());
       });
 
       it('should return true state', () => {
@@ -696,7 +732,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart payment resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartPaymentMethodsLoad())
+        facade.dispatch(new DaffCartPaymentMethodsLoad());
       });
 
       it('should return true state', () => {
@@ -718,7 +754,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart coupon operations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartCouponList())
+        facade.dispatch(new DaffCartCouponList());
       });
 
       it('should return true', () => {
@@ -740,7 +776,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart coupon resolutions have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartCouponList())
+        facade.dispatch(new DaffCartCouponList());
       });
 
       it('should return true', () => {
@@ -762,7 +798,7 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart coupon mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartCouponRemoveAll())
+        facade.dispatch(new DaffCartCouponRemoveAll());
       });
 
       it('should return true', () => {
@@ -775,13 +811,13 @@ describe('DaffCartFacade', () => {
 
   describe('cartErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.cartErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed cart load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartLoadFailure(error));
       expect(facade.cartErrors$).toBeObservable(expected);
     });
@@ -789,13 +825,13 @@ describe('DaffCartFacade', () => {
 
   describe('itemErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.itemErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed item load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartItemLoadFailure(error));
       expect(facade.itemErrors$).toBeObservable(expected);
     });
@@ -803,13 +839,13 @@ describe('DaffCartFacade', () => {
 
   describe('billingAddressErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.billingAddressErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed billing address load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartBillingAddressLoadFailure(error));
       expect(facade.billingAddressErrors$).toBeObservable(expected);
     });
@@ -817,13 +853,13 @@ describe('DaffCartFacade', () => {
 
   describe('shippingAddressErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.shippingAddressErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed shipping address load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartShippingAddressLoadFailure(error));
       expect(facade.shippingAddressErrors$).toBeObservable(expected);
     });
@@ -831,13 +867,13 @@ describe('DaffCartFacade', () => {
 
   describe('shippingInformationErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.shippingInformationErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed shipping information load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartShippingInformationLoadFailure(error));
       expect(facade.shippingInformationErrors$).toBeObservable(expected);
     });
@@ -845,13 +881,13 @@ describe('DaffCartFacade', () => {
 
   describe('shippingMethodsErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.shippingMethodsErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed shipping methods load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartShippingMethodsLoadFailure(error));
       expect(facade.shippingMethodsErrors$).toBeObservable(expected);
     });
@@ -859,13 +895,13 @@ describe('DaffCartFacade', () => {
 
   describe('paymentErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.paymentErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed payment load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartPaymentLoadFailure(error));
       expect(facade.paymentErrors$).toBeObservable(expected);
     });
@@ -873,13 +909,13 @@ describe('DaffCartFacade', () => {
 
   describe('paymentMethodsErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.paymentMethodsErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed payment methods load', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartPaymentMethodsLoadFailure(error));
       expect(facade.paymentMethodsErrors$).toBeObservable(expected);
     });
@@ -887,13 +923,13 @@ describe('DaffCartFacade', () => {
 
   describe('couponErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.couponErrors$).toBeObservable(expected);
     });
 
     it('should contain an error upon a failed coupon list', () => {
-      const error: DaffStateError = {code: 'error code', message: 'error message'};
-      const expected = cold('a', { a: [error] });
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
+      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartCouponListFailure(error));
       expect(facade.couponErrors$).toBeObservable(expected);
     });
@@ -1013,7 +1049,7 @@ describe('DaffCartFacade', () => {
 
   describe('coupons$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.coupons$).toBeObservable(expected);
     });
 
@@ -1027,7 +1063,7 @@ describe('DaffCartFacade', () => {
 
   describe('items$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.items$).toBeObservable(expected);
     });
 
@@ -1047,9 +1083,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the total number of cart items upon a successful cart item list', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2);
-      const expected = cold('a', { a: statefulCartItems.reduce((acc, item) => {
-				return acc + item.qty;
-			}, 0) });
+      const expected = cold('a', { a: statefulCartItems.reduce((acc, item) => acc + item.qty, 0) });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.totalItems$).toBeObservable(expected);
     });
@@ -1067,7 +1101,7 @@ describe('DaffCartFacade', () => {
 
   describe('itemDictionary$', () => {
     it('should initially be an empty object', () => {
-      const expected = cold('a', { a: {} });
+      const expected = cold('a', { a: {}});
       expect(facade.itemDictionary$).toBeObservable(expected);
     });
 
@@ -1076,9 +1110,9 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', {
         a:
 					statefulCartItems.reduce((acc, item) => ({
-            ...acc,
-            [item.item_id]: item
-          }), {})
+					  ...acc,
+					  [item.item_id]: item,
+					}), {}),
       });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.itemDictionary$).toBeObservable(expected);
@@ -1129,7 +1163,7 @@ describe('DaffCartFacade', () => {
 
   describe('totals$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.totals$).toBeObservable(expected);
     });
 
@@ -1152,8 +1186,8 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', {
         a: {
           ...cart.shipping_information,
-          address_id: null
-        }
+          address_id: null,
+        },
       });
       facade.dispatch(new DaffCartShippingInformationLoadSuccess(cart.shipping_information));
       expect(facade.shippingInformation$).toBeObservable(expected);
@@ -1162,7 +1196,7 @@ describe('DaffCartFacade', () => {
 
   describe('availableShippingMethods$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.availableShippingMethods$).toBeObservable(expected);
     });
 
@@ -1176,7 +1210,7 @@ describe('DaffCartFacade', () => {
 
   describe('availablePaymentMethods$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.availablePaymentMethods$).toBeObservable(expected);
     });
 
@@ -1201,7 +1235,7 @@ describe('DaffCartFacade', () => {
       beforeEach(() => {
         facade.dispatch(new DaffCartLoadSuccess({
           ...cart,
-          payment: null
+          payment: null,
         }));
       });
 
@@ -1217,8 +1251,8 @@ describe('DaffCartFacade', () => {
           ...cart,
           payment: {
             ...mockPayment,
-            method: null
-          }
+            method: null,
+          },
         }));
       });
 
@@ -1234,8 +1268,8 @@ describe('DaffCartFacade', () => {
           ...cart,
           payment: {
             ...mockPayment,
-            method: 'not in the map'
-          }
+            method: 'not in the map',
+          },
         }));
       });
 
@@ -1251,8 +1285,8 @@ describe('DaffCartFacade', () => {
           ...cart,
           payment: {
             ...mockPayment,
-            method: paymentMethod
-          }
+            method: paymentMethod,
+          },
         }));
       });
 
@@ -1356,7 +1390,7 @@ describe('DaffCartFacade', () => {
 
   describe('orderResultErrors$', () => {
     it('should initially be empty', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.orderResultErrors$).toBeObservable(expected);
     });
 
@@ -1369,7 +1403,7 @@ describe('DaffCartFacade', () => {
       });
 
       it('should contain the error', () => {
-        const expected = cold('a', { a: [error] });
+        const expected = cold('a', { a: [error]});
         expect(facade.orderResultErrors$).toBeObservable(expected);
       });
     });
@@ -1452,7 +1486,7 @@ describe('DaffCartFacade', () => {
     it('should be the configurable cart item\'s configured attributes', () => {
       const cartItems: DaffConfigurableCartItem[] = configurableCartItemFactory.createMany(2);
       const cart = cartFactory.create({
-        items: cartItems
+        items: cartItems,
       });
       const expected = cold('a', { a: cartItems[0].attributes });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1465,7 +1499,7 @@ describe('DaffCartFacade', () => {
     it('should be the composite cart item\'s item options', () => {
       const cartItems: DaffCompositeCartItem[] = compositeCartItemFactory.createMany(2);
       const cart = cartFactory.create({
-        items: cartItems
+        items: cartItems,
       });
       const expected = cold('a', { a: cartItems[0].options });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1477,7 +1511,7 @@ describe('DaffCartFacade', () => {
 
     it('should return whether the cart item is out of stock', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2),
       });
       const expected = cold('a', { a: !cart.items[0].in_stock });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1488,9 +1522,9 @@ describe('DaffCartFacade', () => {
   describe('getCartItemState', () => {
 
     it('should return the cart item state', () => {
-			const statefulCartItem = statefulCartItemFactory.create();
+      const statefulCartItem = statefulCartItemFactory.create();
       const cart = cartFactory.create({
-        items: [statefulCartItem]
+        items: [statefulCartItem],
       });
       const expected = cold('a', { a: statefulCartItem.daffState });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1510,7 +1544,7 @@ describe('DaffCartFacade', () => {
       it('should be true', () => {
         const expected = cold('a', { a: true });
         expect(facade.hasBillingAddress$).toBeObservable(expected);
-      })
+      });
     });
 
     it('should initially be false', () => {
@@ -1531,7 +1565,7 @@ describe('DaffCartFacade', () => {
       it('should be true', () => {
         const expected = cold('a', { a: true });
         expect(facade.hasShippingAddress$).toBeObservable(expected);
-      })
+      });
     });
 
     it('should initially be false', () => {
@@ -1544,7 +1578,7 @@ describe('DaffCartFacade', () => {
     describe('when all the shipping method is present', () => {
       beforeEach(() => {
         const cart: DaffCart = cartFactory.create({
-          shipping_information: shippingMethodFactory.create()
+          shipping_information: shippingMethodFactory.create(),
         });
         facade.dispatch(new DaffCartLoadSuccess(cart));
       });
@@ -1552,7 +1586,7 @@ describe('DaffCartFacade', () => {
       it('should be true', () => {
         const expected = cold('a', { a: true });
         expect(facade.hasShippingMethod$).toBeObservable(expected);
-      })
+      });
     });
 
     it('should initially be false', () => {
@@ -1573,7 +1607,7 @@ describe('DaffCartFacade', () => {
       it('should be true', () => {
         const expected = cold('a', { a: true });
         expect(facade.hasPaymentMethod$).toBeObservable(expected);
-      })
+      });
     });
 
     it('should initially be false', () => {
@@ -1590,7 +1624,7 @@ describe('DaffCartFacade', () => {
           shipping_address: cartAddressFactory.create(),
           billing_address: cartAddressFactory.create(),
           payment: paymentFactory.create(),
-          shipping_information: shippingMethodFactory.create()
+          shipping_information: shippingMethodFactory.create(),
         });
         facade.dispatch(new DaffCartLoadSuccess(cart));
       });
@@ -1598,7 +1632,7 @@ describe('DaffCartFacade', () => {
       it('should be true', () => {
         const expected = cold('a', { a: true });
         expect(facade.canPlaceOrder$).toBeObservable(expected);
-      })
+      });
     });
 
     it('should initially be false', () => {
@@ -1611,7 +1645,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart item\'s price', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2),
       });
       const expected = cold('a', { a: cart.items[0].price });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1623,7 +1657,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart item\'s quantity', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2),
       });
       const expected = cold('a', { a: cart.items[0].qty });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1635,7 +1669,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart item\'s row total', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2),
       });
       const expected = cold('a', { a: cart.items[0].row_total });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1647,7 +1681,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart item\'s array of discounts', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2),
       });
       const expected = cold('a', { a: cart.items[0].discounts });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1659,9 +1693,9 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart item\'s sum of all discounts', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2),
       });
-      const expected = cold('a', { a: cart.items[0].discounts.reduce((acc, {amount}) => acc + amount, 0) });
+      const expected = cold('a', { a: cart.items[0].discounts.reduce((acc, { amount }) => acc + amount, 0) });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.getCartItemTotalDiscount(cart.items[0].item_id)).toBeObservable(expected);
     });

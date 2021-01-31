@@ -1,12 +1,13 @@
+import { TestBed } from '@angular/core/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
-import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { of } from 'rxjs';
 
-import { schema } from '@daffodil/driver/magento';
-import { DaffProduct, DaffConfigurableProduct } from '@daffodil/product';
-import { DaffProductFactory, DaffConfigurableProductFactory } from '@daffodil/product/testing';
 import {
   DaffCart,
   DaffCartItem,
@@ -15,12 +16,43 @@ import {
   DaffConfigurableCartItemInput,
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
-import { DaffMagentoCartTransformer, DaffMagentoCartItemUpdateInputTransformer, MagentoCart, MagentoCartItem, MagentoCartItemInput, MagentoCartItemUpdateInput, MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse, MagentoListCartItemsResponse, MagentoUpdateCartItemResponse, MagentoRemoveCartItemResponse, listCartItems, addBundleCartItem, addSimpleCartItem, addConfigurableCartItem, updateCartItem, removeCartItem } from '@daffodil/cart/driver/magento';
+import {
+  DaffMagentoCartTransformer,
+  DaffMagentoCartItemUpdateInputTransformer,
+  MagentoCart,
+  MagentoCartItem,
+  MagentoCartItemInput,
+  MagentoCartItemUpdateInput,
+  MagentoAddSimpleCartItemResponse,
+  MagentoAddBundleCartItemResponse,
+  MagentoAddConfigurableCartItemResponse,
+  MagentoListCartItemsResponse,
+  MagentoUpdateCartItemResponse,
+  MagentoRemoveCartItemResponse,
+  listCartItems,
+  addBundleCartItem,
+  addSimpleCartItem,
+  addConfigurableCartItem,
+  updateCartItem,
+  removeCartItem,
+} from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
-  MagentoCartItemFactory
+  MagentoCartItemFactory,
 } from '@daffodil/cart/driver/magento/testing';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
+import {
+  DaffProduct,
+  DaffConfigurableProduct,
+} from '@daffodil/product';
+import {
+  DaffProductFactory,
+  DaffConfigurableProductFactory,
+} from '@daffodil/product/testing';
 
 import { DaffMagentoCartItemService } from './cart-item.service';
 
@@ -65,18 +97,18 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartItemService,
-				{
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+        {
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartItemService);
@@ -85,8 +117,8 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     magentoCartTransformer = TestBed.inject(DaffMagentoCartTransformer);
     magentoCartItemUpdateInputTransformer = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
 
-		daffProductFactory = TestBed.inject(DaffProductFactory);
-		daffConfigurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
+    daffProductFactory = TestBed.inject(DaffProductFactory);
+    daffConfigurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
     daffCartFactory = TestBed.inject(DaffCartFactory);
     magentoCartFactory = TestBed.inject(MagentoCartFactory);
     daffCartItemFactory = TestBed.inject(DaffCartItemFactory);
@@ -107,64 +139,64 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     mockMagentoCart.items = [mockMagentoCartItem];
     mockMagentoCartItemInput = {
       quantity: 3,
-      sku
+      sku,
     };
     mockDaffCartItemInput = {
-			type: DaffCartItemInputType.Simple,
+      type: DaffCartItemInputType.Simple,
       productId: mockDaffProduct.id,
-      qty: 3
+      qty: 3,
     };
     mockDaffCompositeCartItemInput = {
-			type: DaffCartItemInputType.Composite,
+      type: DaffCartItemInputType.Composite,
       productId: mockDaffProduct.id,
-			qty: 3,
-			options: []
+      qty: 3,
+      options: [],
     };
     mockDaffConfigurableCartItemInput = {
-			type: DaffCartItemInputType.Configurable,
-			variantId: mockDaffConfigurableProduct.variants[0].id,
-			productId: mockDaffConfigurableProduct.id,
-			qty: 2
+      type: DaffCartItemInputType.Configurable,
+      variantId: mockDaffConfigurableProduct.variants[0].id,
+      productId: mockDaffConfigurableProduct.id,
+      qty: 2,
     };
     mockMagentoCartItemUpdateInput = {
       cart_item_id: itemId,
-      quantity: 3
-    }
+      quantity: 3,
+    };
     mockListCartItemResponse = {
       cart: {
-				__typename: 'Cart',
-        items: [mockMagentoCartItem]
-      }
+        __typename: 'Cart',
+        items: [mockMagentoCartItem],
+      },
     };
     mockAddSimpleCartItemResponse = {
       addSimpleProductsToCart: {
-				__typename: 'AddSimpleProducts',
-        cart: mockMagentoCart
-      }
+        __typename: 'AddSimpleProducts',
+        cart: mockMagentoCart,
+      },
     };
     mockAddBundleCartItemResponse = {
       addBundleProductsToCart: {
-				__typename: 'AddBundleProductsToCart',
-        cart: mockMagentoCart
-      }
+        __typename: 'AddBundleProductsToCart',
+        cart: mockMagentoCart,
+      },
     };
     mockAddConfigurableCartItemResponse = {
       addConfigurableProductsToCart: {
-				__typename: 'AddConfigurableProductsToCart',
-        cart: mockMagentoCart
-      }
+        __typename: 'AddConfigurableProductsToCart',
+        cart: mockMagentoCart,
+      },
     };
     mockUpdateCartItemResponse = {
       updateCartItems: {
-				__typename: 'UpdateCartItems',
-        cart: mockMagentoCart
-      }
+        __typename: 'UpdateCartItems',
+        cart: mockMagentoCart,
+      },
     };
     mockRemoveCartItemResponse = {
       removeItemFromCart: {
-				__typename: 'RemoveItemFromCart',
-        cart: mockMagentoCart
-      }
+        __typename: 'RemoveItemFromCart',
+        cart: mockMagentoCart,
+      },
     };
 
     cartTransformerSpy = spyOn(magentoCartTransformer, 'transform');
@@ -183,27 +215,27 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     it('should return the correct value', done => {
       service.list(cartId).subscribe(result => {
         expect(result).toEqual([jasmine.objectContaining({
-					item_id: mockMagentoCartItem.id,
-					type: DaffCartItemInputType.Simple,
-					image: {
-						id: mockMagentoCartItem.product.thumbnail.label,
-						url: mockMagentoCartItem.product.thumbnail.url,
-						label: mockMagentoCartItem.product.thumbnail.label
-					},
-					product_id: mockMagentoCartItem.product.id.toString(),
-					sku: mockMagentoCartItem.product.sku,
-					name: mockMagentoCartItem.product.name,
-					qty: mockMagentoCartItem.quantity,
-					price: mockMagentoCartItem.prices.price.value,
-					row_total: mockMagentoCartItem.prices.row_total.value,
-				})]);
+          item_id: mockMagentoCartItem.id,
+          type: DaffCartItemInputType.Simple,
+          image: {
+            id: mockMagentoCartItem.product.thumbnail.label,
+            url: mockMagentoCartItem.product.thumbnail.url,
+            label: mockMagentoCartItem.product.thumbnail.label,
+          },
+          product_id: mockMagentoCartItem.product.id.toString(),
+          sku: mockMagentoCartItem.product.sku,
+          name: mockMagentoCartItem.product.name,
+          qty: mockMagentoCartItem.quantity,
+          price: mockMagentoCartItem.prices.price.value,
+          row_total: mockMagentoCartItem.prices.row_total.value,
+        })]);
         done();
       });
 
       const op = controller.expectOne(addTypenameToDocument(listCartItems([])));
 
       op.flush({
-        data: mockListCartItemResponse
+        data: mockListCartItemResponse,
       });
     });
 
@@ -230,50 +262,50 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 
   describe('add | adds a cart item', () => {
 
-		describe('when the given cartItem is a composite product', () => {
-			it('should make a addBundleCartItem query', done => {
-				service.add(cartId, mockDaffCompositeCartItemInput).subscribe(result => {
-					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
-					done();
-				});
+    describe('when the given cartItem is a composite product', () => {
+      it('should make a addBundleCartItem query', done => {
+        service.add(cartId, mockDaffCompositeCartItemInput).subscribe(result => {
+          expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
+          done();
+        });
 
-				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([])));
+        const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([])));
 
-				op.flush({
-					data: mockAddBundleCartItemResponse
-				});
-			});
-		});
+        op.flush({
+          data: mockAddBundleCartItemResponse,
+        });
+      });
+    });
 
     describe('when the given cartItem is a simple product', () => {
-			it('should make a addSimpleCartItem query', done => {
-				service.add(cartId, mockDaffCartItemInput).subscribe(result => {
-					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
-					done();
-				});
+      it('should make a addSimpleCartItem query', done => {
+        service.add(cartId, mockDaffCartItemInput).subscribe(result => {
+          expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
+          done();
+        });
 
-				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([])));
+        const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([])));
 
-				op.flush({
-					data: mockAddSimpleCartItemResponse
-				});
-			});
-		});
+        op.flush({
+          data: mockAddSimpleCartItemResponse,
+        });
+      });
+    });
 
-		describe('when the given cartItem is a configurable product', () => {
-			it('should make a addConfigurableCartItem query', done => {
-				service.add(cartId, mockDaffConfigurableCartItemInput).subscribe(result => {
-					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
-					done();
-				});
+    describe('when the given cartItem is a configurable product', () => {
+      it('should make a addConfigurableCartItem query', done => {
+        service.add(cartId, mockDaffConfigurableCartItemInput).subscribe(result => {
+          expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
+          done();
+        });
 
-				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([])));
+        const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([])));
 
-				op.flush({
-					data: mockAddConfigurableCartItemResponse
-				});
-			});
-		});
+        op.flush({
+          data: mockAddConfigurableCartItemResponse,
+        });
+      });
+    });
 
     afterEach(() => {
       controller.verify();
@@ -300,7 +332,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
 
       op.flush({
-        data: mockUpdateCartItemResponse
+        data: mockUpdateCartItemResponse,
       });
     });
 
@@ -317,8 +349,8 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 
     it('should return the cart without the cart item', done => {
       service.delete(cartId, mockDaffCartItem.item_id).subscribe(result => {
-        expect(result.items.find(({item_id}) =>
-          item_id === mockDaffCartItem.item_id
+        expect(result.items.find(({ item_id }) =>
+          item_id === mockDaffCartItem.item_id,
         )).toBeFalsy();
         done();
       });
@@ -326,7 +358,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       const op = controller.expectOne(addTypenameToDocument(removeCartItem([])));
 
       op.flush({
-        data: mockRemoveCartItemResponse
+        data: mockRemoveCartItemResponse,
       });
     });
 

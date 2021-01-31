@@ -2,9 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffMagentoCartAddressTransformer } from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressFactory } from '@daffodil/cart/driver/magento/testing';
-import {
-  DaffCartAddressFactory
-} from '@daffodil/cart/testing';
+import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoBillingAddressTransformer } from './billing-address.service';
 
@@ -25,9 +23,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoBillingAddress', () => 
         DaffMagentoBillingAddressTransformer,
         {
           provide: DaffMagentoCartAddressTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartAddressTransformer', ['transform'])
-        }
-      ]
+          useValue: jasmine.createSpyObj('DaffMagentoCartAddressTransformer', ['transform']),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoBillingAddressTransformer);

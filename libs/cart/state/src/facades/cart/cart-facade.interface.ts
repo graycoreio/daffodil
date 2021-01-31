@@ -1,14 +1,27 @@
-import { Observable } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { DaffStateError, DaffStoreFacade } from '@daffodil/core/state';
-import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemDiscount } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartOrderResult,
+  DaffCartTotal,
+  DaffConfigurableCartItemAttribute,
+  DaffCompositeCartItemOption,
+  DaffCartItemDiscount,
+} from '@daffodil/cart';
+import {
+  DaffStateError,
+  DaffStoreFacade,
+} from '@daffodil/core/state';
 
-import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
+import {
+  DaffCartItemStateEnum,
+  DaffStatefulCartItem,
+} from '../../models/stateful-cart-item';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
+import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
-import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 import { DaffCartResolveState } from '../../reducers/public_api';
 
 export interface DaffCartFacadeInterface<
@@ -204,14 +217,15 @@ export interface DaffCartFacadeInterface<
   /**
    * The user-defined platform-agnostic payment identifier that corresponds to the cart's current (platform-specific) payment method.
    * Define the mapping with the `DaffCartPaymentMethodIdMap` injection token.
+   *
    * @see DaffCartPaymentMethodIdMap
    */
   paymentId$: Observable<any>;
 
   isCartEmpty$: Observable<boolean>;
   /**
-	 * Whether the cart's shipping address equals the billing address.
-	 * Returns false if either address is null or undefined.
+   * Whether the cart's shipping address equals the billing address.
+   * Returns false if either address is null or undefined.
    */
 	isBillingSameAsShipping$: Observable<boolean>;
 
@@ -232,7 +246,7 @@ export interface DaffCartFacadeInterface<
 	getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
 	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;
 	/**
-   * The state of a cart item.
+	 * The state of a cart item.
 	 */
   getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum>;
   /**

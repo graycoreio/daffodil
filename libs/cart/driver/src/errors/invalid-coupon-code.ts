@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartDriverErrorCodes } from './codes.enum';
 
@@ -7,9 +10,9 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
  * Either the coupon code does not exist or the required conditions are not met.
  */
 export class DaffInvalidCouponCodeError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUPON_CODE
+	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUPON_CODE;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

@@ -5,8 +5,8 @@ export interface MagentoUpdateAddressResponse {
     __typename?: string;
     cart: {
       __typename?: string;
-      id: MagentoGetCartResponse['cart']['id']
-    }
+      id: MagentoGetCartResponse['cart']['id'];
+    };
   };
   setShippingAddressesOnCart: MagentoGetCartResponse;
 }

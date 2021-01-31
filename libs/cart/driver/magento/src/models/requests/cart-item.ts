@@ -4,7 +4,7 @@ export interface MagentoCartItemInput {
 }
 
 export interface MagentoBundledCartItemInput {
-	input: MagentoCartItemInput,
+	input: MagentoCartItemInput;
 	options: MagentoBundledCartItemOption[];
 }
 

@@ -1,8 +1,8 @@
+import { ID } from '@daffodil/core';
 import {
   DaffProductImage,
-  DaffProduct
+  DaffProduct,
 } from '@daffodil/product';
-import { ID } from '@daffodil/core';
 
 import { DaffCartItemInputType } from './cart-item-input';
 

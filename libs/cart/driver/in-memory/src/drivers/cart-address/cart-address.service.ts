@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCart, DaffCartAddress } from '@daffodil/cart';
 import {
-  DaffCartAddressServiceInterface,
-} from '@daffodil/cart/driver';
+  DaffCart,
+  DaffCartAddress,
+} from '@daffodil/cart';
+import { DaffCartAddressServiceInterface } from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryCartAddressService implements DaffCartAddressServiceInterface<DaffCartAddress, DaffCart> {
   url = '/api/cart-address';

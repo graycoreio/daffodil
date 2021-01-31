@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartShippingRate, DaffCart } from '@daffodil/cart';
 import {
-  DaffCartShippingInformationServiceInterface,
-} from '@daffodil/cart/driver';
+  DaffCartShippingRate,
+  DaffCart,
+} from '@daffodil/cart';
+import { DaffCartShippingInformationServiceInterface } from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class DaffInMemoryCartShippingInformationService implements DaffCartShippingInformationServiceInterface<DaffCartShippingRate, DaffCart> {
+export class DaffInMemoryCartShippingInformationService implements DaffCartShippingInformationServiceInterface<
+  DaffCartShippingRate,
+  DaffCart
+> {
   url = '/api/cart-shipping-information';
 
   constructor(private http: HttpClient) {}

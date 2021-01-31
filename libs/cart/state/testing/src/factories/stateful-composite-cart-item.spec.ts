@@ -10,7 +10,7 @@ describe('Cart | State | Testing | Factories | StatefulCompositeCartItemFactory'
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffStatefulCompositeCartItemFactory]
+      providers: [DaffStatefulCompositeCartItemFactory],
     });
 
     statefulCompositeCartItemFactory = TestBed.inject(DaffStatefulCompositeCartItemFactory);

@@ -1,12 +1,12 @@
 import { ID } from '@daffodil/core';
 
-import { DaffCartItem } from './cart-item';
 import { DaffCartAddress } from './cart-address';
+import { DaffCartCoupon } from './cart-coupon';
+import { DaffCartItem } from './cart-item';
 import { DaffCartPaymentMethod } from './cart-payment';
 import { DaffCartShippingInformation } from './cart-shipping-info';
-import { DaffCartCoupon } from './cart-coupon';
-import { DaffCartTotal } from './cart-total';
 import { DaffCartShippingRate } from './cart-shipping-rate';
+import { DaffCartTotal } from './cart-total';
 
 export interface DaffCart {
 	id: ID;

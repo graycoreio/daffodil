@@ -8,5 +8,5 @@ import { InjectionToken } from '@angular/core';
  */
 // TODO: refactor to upper snake case
 export const DaffCartPaymentMethodIdMap = new InjectionToken<{[key: string]: string}>('DaffCartPaymentMethodIdMap', {
-  factory: () => ({})
+  factory: () => ({}),
 });

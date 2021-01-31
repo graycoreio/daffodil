@@ -1,14 +1,17 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import {
   DaffCart,
   DaffCartShippingRate,
-  DaffCartShippingInformation
+  DaffCartShippingInformation,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCartShippingInformationService } from './cart-shipping-information.service';
@@ -26,11 +29,11 @@ describe('Driver | In Memory | Cart | CartShippingInformationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryCartShippingInformationService
-      ]
+        DaffInMemoryCartShippingInformationService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -42,7 +45,7 @@ describe('Driver | In Memory | Cart | CartShippingInformationService', () => {
     mockCart = cartFactory.create();
     mockCartShippingInfo = {
       ...cartShippingRateFactory.create(),
-      address_id: null
+      address_id: null,
     };
     mockCart.shipping_information = mockCartShippingInfo;
     cartId = mockCart.id;
@@ -72,7 +75,7 @@ describe('Driver | In Memory | Cart | CartShippingInformationService', () => {
 
   describe('update', () => {
     const newPrice = 56.34;
-    const info: Partial<DaffCartShippingRate> = {price: newPrice};
+    const info: Partial<DaffCartShippingRate> = { price: newPrice };
 
     it('should send a put request', done => {
       cartShippingInformationService.update(cartId, info).subscribe(res => {

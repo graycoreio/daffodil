@@ -1,6 +1,9 @@
+import {
+  HttpClientModule,
+  HttpClient,
+} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule, } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -9,7 +12,7 @@ import {
   DaffCartAddress,
   DaffCartPaymentMethod,
   DaffCartShippingRate,
-  DaffCartShippingInformation
+  DaffCartShippingInformation,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -17,7 +20,7 @@ import {
   DaffCartCouponFactory,
   DaffCartAddressFactory,
   DaffCartPaymentFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
@@ -47,7 +50,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartRootService, {delay: 0}),
+        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartRootService, { delay: 0 }),
       ],
     });
 
@@ -69,7 +72,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockShippingMethod = cartShippingMethodFactory.create();
     mockShippingInformation = {
       ...cartShippingMethodFactory.create(),
-      address_id: null
+      address_id: null,
     };
     cartId = mockCart.id;
     itemId = mockCartItem.item_id;
@@ -82,7 +85,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockCart.payment = mockPayment;
     mockCart.shipping_information = mockShippingInformation;
 
-    httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
+    httpClient.post<any>('commands/resetDb', { carts: [mockCart]}).subscribe(() => done());
   });
 
   // cart
@@ -117,7 +120,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     it('should return an empty object', done => {
       httpClient.post<any>('/api/cart/addToCart', {
         cartId,
-        productId: 'addToCartTest'
+        productId: 'addToCartTest',
       }).subscribe(result => {
         expect(result).toEqual({});
         done();
@@ -150,7 +153,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       productId = 'productId';
       qty = 4;
       httpClient.get<any>(`/api/cart-items/${cartId}/${itemId}`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -166,8 +169,8 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       qty = mockCartItem.qty + 1;
-      httpClient.put<any>(`/api/cart-items/${cartId}/${itemId}`, {qty}).subscribe(res => {
-        result = res
+      httpClient.put<any>(`/api/cart-items/${cartId}/${itemId}`, { qty }).subscribe(res => {
+        result = res;
         done();
       });
     });
@@ -188,9 +191,9 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
       httpClient.post<any>(`/api/cart-items/${cartId}/`, {
         productId,
-        qty: 2
+        qty: 2,
       }).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -206,7 +209,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.delete<any>(`/api/cart-items/${cartId}/${itemId}`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -222,7 +225,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.post<any>(`/api/cart-order/${cartId}/`, {}).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -238,7 +241,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-coupon/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -256,14 +259,14 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       newCoupon = cartCouponFactory.create();
 
       httpClient.post<any>(`/api/cart-coupon/${cartId}/`, newCoupon).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
 
     it('should return a cart with the added coupon', () => {
       expect(result.coupons).toContain(newCoupon);
-		});
+    });
   });
 
   describe('processing a remove coupon request', () => {
@@ -274,7 +277,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       couponCode = mockCartCoupon.code;
 
       httpClient.delete<any>(`/api/cart-coupon/${cartId}/${couponCode}`, {}).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -289,7 +292,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.delete<any>(`/api/cart-coupon/${cartId}/`, {}).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -309,7 +312,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       mockShippingAddress.street = updatedStreet;
 
       httpClient.put<any>(`/api/cart-address/${cartId}/`, mockShippingAddress).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -317,7 +320,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     it('should return a cart with the updated addresses', () => {
       expect(result.shipping_address.street).toEqual(updatedStreet);
       expect(result.billing_address.street).toEqual(updatedStreet);
-		});
+    });
   });
 
   // cart shipping address
@@ -326,7 +329,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-shipping-address/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -345,14 +348,14 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       mockShippingAddress.street = updatedStreet;
 
       httpClient.put<any>(`/api/cart-shipping-address/${cartId}/`, mockShippingAddress).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
 
     it('should return a cart with the updated shipping address', () => {
       expect(result.shipping_address.street).toEqual(updatedStreet);
-		});
+    });
   });
 
   // cart billing address
@@ -361,7 +364,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-billing-address/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -380,14 +383,14 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       mockBillingAddress.street = updatedStreet;
 
       httpClient.put<any>(`/api/cart-billing-address/${cartId}/`, mockBillingAddress).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
 
     it('should return a cart with the updated billing address', () => {
       expect(result.billing_address.street).toEqual(updatedStreet);
-		});
+    });
   });
 
   // cart payment methods
@@ -396,7 +399,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-payment-methods/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -412,7 +415,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-shipping-methods/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -428,7 +431,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-payment/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -445,15 +448,15 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     beforeEach(done => {
       newPayment = cartPaymentFactory.create();
 
-      httpClient.put<any>(`/api/cart-payment/${cartId}/`, {payment: newPayment}).subscribe(res => {
-        result = res
+      httpClient.put<any>(`/api/cart-payment/${cartId}/`, { payment: newPayment }).subscribe(res => {
+        result = res;
         done();
       });
     });
 
     it('should return a cart with the updated payment', () => {
       expect(result.payment).toEqual(newPayment);
-		});
+    });
   });
 
   describe('processing an update payment with billing request', () => {
@@ -467,9 +470,9 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
       httpClient.put<any>(`/api/cart-payment/${cartId}/`, {
         payment: newPayment,
-        address: newAddress
+        address: newAddress,
       }).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -480,7 +483,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     it('should return a cart with the updated payment', () => {
       expect(result.payment).toEqual(newPayment);
-		});
+    });
   });
 
   describe('processing a remove payment request', () => {
@@ -488,7 +491,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.delete<any>(`/api/cart-payment/${cartId}/`, {}).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -504,7 +507,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.get<any>(`/api/cart-shipping-information/${cartId}/`).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
@@ -521,18 +524,18 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     beforeEach(done => {
       newShippingInformation = {
         ...cartShippingMethodFactory.create(),
-        address_id: null
+        address_id: null,
       };
 
       httpClient.put<any>(`/api/cart-shipping-information/${cartId}/`, newShippingInformation).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });
 
     it('should return a cart with the updated shipping information', () => {
       expect(result.shipping_information).toEqual(newShippingInformation);
-		});
+    });
   });
 
   describe('processing a remove shipping information request', () => {
@@ -540,7 +543,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       httpClient.delete<any>(`/api/cart-shipping-information/${cartId}/`, {}).subscribe(res => {
-        result = res
+        result = res;
         done();
       });
     });

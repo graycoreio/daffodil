@@ -3,11 +3,11 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
-  DaffCartAddress
+  DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffTestingCartBillingAddressService } from './cart-billing-address.service';
@@ -24,8 +24,8 @@ describe('Driver | Testing | Cart | CartBillingAddressService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartBillingAddressService
-      ]
+        DaffTestingCartBillingAddressService,
+      ],
     });
 
     cartFactory = TestBed.inject(DaffCartFactory);
@@ -44,7 +44,7 @@ describe('Driver | Testing | Cart | CartBillingAddressService', () => {
 
   describe('get | getting a cart billing address', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.get(cartId)).toBeObservable(expected);
     });
   });
@@ -58,7 +58,7 @@ describe('Driver | Testing | Cart | CartBillingAddressService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
     });
   });

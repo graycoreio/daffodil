@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { MagentoCartPaymentMethod } from '@daffodil/cart/driver/magento';
-
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartPaymentMethod implements MagentoCartPaymentMethod {
@@ -12,10 +11,10 @@ export class MockMagentoCartPaymentMethod implements MagentoCartPaymentMethod {
 }
 
 @Injectable({
-	providedIn: 'root',
+  providedIn: 'root',
 })
 export class MagentoCartPaymentMethodFactory extends DaffModelFactory<MagentoCartPaymentMethod> {
-	constructor() {
-		super(MockMagentoCartPaymentMethod);
-	}
+  constructor() {
+    super(MockMagentoCartPaymentMethod);
+  }
 }

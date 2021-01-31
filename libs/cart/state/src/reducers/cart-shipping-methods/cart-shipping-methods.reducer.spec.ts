@@ -1,9 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
-import { DaffCart, DaffCartShippingRate } from '@daffodil/cart';
-import { DaffCartShippingMethodsLoad, DaffCartOperationType, DaffCartReducerState, DaffCartShippingMethodsLoadSuccess, DaffCartShippingMethodsLoadFailure, initialState } from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartShippingRate,
+} from '@daffodil/cart';
+import {
+  DaffCartShippingMethodsLoad,
+  DaffCartOperationType,
+  DaffCartReducerState,
+  DaffCartShippingMethodsLoadSuccess,
+  DaffCartShippingMethodsLoadFailure,
+  initialState,
+} from '@daffodil/cart/state';
+import {
+  DaffCartFactory,
+  DaffCartShippingRateFactory,
+} from '@daffodil/cart/testing';
+import {
+  DaffLoadingState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { cartShippingMethodsReducer } from './cart-shipping-methods.reducer';
 
@@ -26,7 +42,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = cartShippingMethodsReducer(initialState, action);
 
@@ -53,9 +69,9 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Resolving,
+        },
+      };
 
       const cartShippingMethodsLoadSuccess = new DaffCartShippingMethodsLoadSuccess(cart.available_shipping_methods);
 
@@ -67,7 +83,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
     });
 
     it('should set available_shipping_methods from action.payload', () => {
-      expect(result.cart.available_shipping_methods).toEqual(cart.available_shipping_methods)
+      expect(result.cart.available_shipping_methods).toEqual(cart.available_shipping_methods);
     });
 
     it('should reset the errors in the shipping methods section of state.errors to an empty array', () => {
@@ -76,7 +92,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
   });
 
   describe('when CartShippingMethodsLoadFailureAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -85,13 +101,13 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Resolving
+          [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.ShippingMethods]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.ShippingMethods]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
       const cartShippingMethodsLoadFailure = new DaffCartShippingMethodsLoadFailure(error);
 

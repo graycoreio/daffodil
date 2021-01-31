@@ -2,9 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffMagentoCartAddressInputTransformer } from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressInputFactory } from '@daffodil/cart/driver/magento/testing';
-import {
-  DaffCartAddressFactory
-} from '@daffodil/cart/testing';
+import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoShippingAddressInputTransformer } from './shipping-address.service';
 
@@ -25,9 +23,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
         DaffMagentoShippingAddressInputTransformer,
         {
           provide: DaffMagentoCartAddressInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
-        }
-      ]
+          useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform']),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoShippingAddressInputTransformer);

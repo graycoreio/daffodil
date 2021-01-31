@@ -24,6 +24,6 @@ export const initializeLoadingSetter = (loadingSpace: DaffCartOperationType) =>
   (loadingObj: DaffCartLoading, loading: DaffLoadingState | DaffCartItemLoadingState) => ({
     loading: {
       ...loadingObj,
-      [loadingSpace]: loading
-    }
-	})
+      [loadingSpace]: loading,
+    },
+  });

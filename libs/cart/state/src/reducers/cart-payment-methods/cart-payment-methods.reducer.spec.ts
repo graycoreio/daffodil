@@ -1,7 +1,17 @@
-import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartPaymentMethodsLoad, DaffCartOperationType, DaffCartReducerState, DaffCartPaymentMethodsLoadSuccess, DaffCartPaymentMethodsLoadFailure, initialState } from '@daffodil/cart/state';
+import {
+  DaffCartPaymentMethodsLoad,
+  DaffCartOperationType,
+  DaffCartReducerState,
+  DaffCartPaymentMethodsLoadSuccess,
+  DaffCartPaymentMethodsLoadFailure,
+  initialState,
+} from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import {
+  DaffLoadingState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { cartPaymentMethodsReducer } from './cart-payment-methods.reducer';
 
@@ -18,7 +28,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = cartPaymentMethodsReducer(initialState, action);
 
@@ -45,9 +55,9 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving
-        }
-      }
+          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving,
+        },
+      };
 
       const cartPaymentMethodsLoadSuccess = new DaffCartPaymentMethodsLoadSuccess(cart.available_payment_methods);
 
@@ -59,7 +69,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     });
 
     it('should set available_payment_methods from action.payload', () => {
-      expect(result.cart.available_payment_methods).toEqual(cart.available_payment_methods)
+      expect(result.cart.available_payment_methods).toEqual(cart.available_payment_methods);
     });
 
     it('should reset the errors in the payment methods section of state.errors to an empty array', () => {
@@ -68,7 +78,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
   });
 
   describe('when CartPaymentMethodsLoadFailureAction is triggered', () => {
-    const error: DaffStateError = {code: 'error code', message: 'error message'};
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -77,13 +87,13 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving
+          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving,
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.PaymentMethods]: [{code: 'first error code', message: 'first error message'}]
-        }
-      }
+          [DaffCartOperationType.PaymentMethods]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
 
       const cartPaymentMethodsLoadFailure = new DaffCartPaymentMethodsLoadFailure(error);
 

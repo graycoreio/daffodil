@@ -3,11 +3,11 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod,
 } from '@daffodil/cart';
 import {
   DaffCartPaymentFactory,
-  DaffCartFactory
+  DaffCartFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffTestingCartPaymentMethodsService } from './cart-payment-methods.service';
@@ -15,7 +15,7 @@ import { DaffTestingCartPaymentMethodsService } from './cart-payment-methods.ser
 describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
   let service: DaffTestingCartPaymentMethodsService;
   let cartFactory: DaffCartFactory;
-  let paymentFactory: DaffCartPaymentFactory
+  let paymentFactory: DaffCartPaymentFactory;
 
   let mockCart: DaffCart;
   let mockCartPaymentMethods: DaffCartPaymentMethod[];
@@ -24,8 +24,8 @@ describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartPaymentMethodsService
-      ]
+        DaffTestingCartPaymentMethodsService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingCartPaymentMethodsService);
@@ -44,7 +44,7 @@ describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
 
   describe('list | list a cart\'s payment methods', () => {
     it('should return an array and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Array)});
+      const expected = cold('(a|)', { a: jasmine.any(Array) });
       expect(service.list(cartId)).toBeObservable(expected);
     });
   });

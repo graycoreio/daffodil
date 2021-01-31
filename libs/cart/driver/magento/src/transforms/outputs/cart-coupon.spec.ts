@@ -6,7 +6,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartCoupon', () => {
 
   beforeEach(() => {
     code = 'code';
-    result = transform({code});
+    result = transform({ code });
   });
 
   it('should return an object with the correct code', () => {

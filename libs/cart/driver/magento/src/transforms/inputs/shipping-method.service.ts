@@ -5,13 +5,13 @@ import { DaffCartShippingRate } from '@daffodil/cart';
 import { MagentoShippingMethodInput } from '../../models/requests/shipping-method';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoShippingMethodInputTransformer {
   transform(method: Partial<DaffCartShippingRate>): MagentoShippingMethodInput {
     return {
       carrier_code: method.carrier,
-      method_code: method.method_code
-    }
+      method_code: method.method_code,
+    };
   }
 }

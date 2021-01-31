@@ -1,24 +1,34 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { DaffStorageServiceError } from '@daffodil/core';
-import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
 import {
-	daffCartReducers,
-	DaffCartReducersState,
-	DaffCartLoadSuccess,
-	DaffCartLoadFailure,
-	DaffCartCreateFailure,
+  daffCartReducers,
+  DaffCartReducersState,
+  DaffCartLoadSuccess,
+  DaffCartLoadFailure,
+  DaffCartCreateFailure,
   DaffCartStorageFailure,
   DaffResolveCart,
-  DaffCartResolverRedirectUrl
+  DaffCartResolverRedirectUrl,
 }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DaffStateError,
+  daffTransformErrorToStateError,
+} from '@daffodil/core/state';
 
 import { DaffCartResolver } from './cart-resolver.service';
 
@@ -28,8 +38,8 @@ describe('DaffCartResolver', () => {
   let store: Store<DaffCartReducersState>;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
-	let router: Router;
-	const stubUrl = '/cart';
+  let router: Router;
+  const stubUrl = '/cart';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -37,12 +47,12 @@ describe('DaffCartResolver', () => {
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
         }),
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
-				provideMockActions(() => actions$),
-				{ provide: DaffCartResolverRedirectUrl, useValue: stubUrl }
-      ]
+        provideMockActions(() => actions$),
+        { provide: DaffCartResolverRedirectUrl, useValue: stubUrl },
+      ],
     });
 
     cartResolver = TestBed.inject(DaffCartResolver);
@@ -69,21 +79,21 @@ describe('DaffCartResolver', () => {
 
     describe('when DaffCartLoadSuccess is dispatched', () => {
 
-			it('should resolve with a DaffCartLoadSuccess action', () => {
-				cartResolver.resolve().subscribe((returnedValue) => {
-					expect(returnedValue).toEqual(new DaffCartLoadSuccess(stubCart));
-				});
+      it('should resolve with a DaffCartLoadSuccess action', () => {
+        cartResolver.resolve().subscribe((returnedValue) => {
+          expect(returnedValue).toEqual(new DaffCartLoadSuccess(stubCart));
+        });
 
-				store.dispatch(new DaffCartLoadSuccess(stubCart));
-			});
+        store.dispatch(new DaffCartLoadSuccess(stubCart));
+      });
 
-			it('should not redirect to the provided DaffCartResolverRedirectUrl', () => {
-				cartResolver.resolve().subscribe(() => {
-					expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
-				});
+      it('should not redirect to the provided DaffCartResolverRedirectUrl', () => {
+        cartResolver.resolve().subscribe(() => {
+          expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
+        });
 
-				store.dispatch(new DaffCartLoadSuccess(stubCart));
-			});
+        store.dispatch(new DaffCartLoadSuccess(stubCart));
+      });
     });
 
     describe('when DaffCartLoadFailure is dispatched', () => {
@@ -125,7 +135,7 @@ describe('DaffCartResolver', () => {
     });
 
     describe('when DaffCartStorageFailure is dispatched', () => {
-      const error: DaffStateError = daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))
+      const error: DaffStateError = daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'));
 
       it('should resolve with a DaffCartStorageFailure action', () => {
         cartResolver.resolve().subscribe((resolvedValue) => {

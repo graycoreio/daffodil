@@ -1,7 +1,11 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartPaymentMethod, DaffCart, DaffCartAddress } from '@daffodil/cart';
+import {
+  DaffCartPaymentMethod,
+  DaffCart,
+  DaffCartAddress,
+} from '@daffodil/cart';
 
 /**
  * The interface responsible for managing the selected payment method of a cart.
@@ -22,8 +26,8 @@ export interface DaffCartPaymentServiceInterface<
   update(cartId: V['id'], payment: Partial<T>): Observable<Partial<V>>;
 
   /**
-	 * Update the billing address and payment method applied to a cart.
-	 */
+   * Update the billing address and payment method applied to a cart.
+   */
 	updateWithBilling(cartId: V['id'], payment: Partial<T>, address: Partial<R>): Observable<Partial<V>>;
 
 	/**

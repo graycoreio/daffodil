@@ -3,11 +3,11 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
-  DaffCartCoupon
+  DaffCartCoupon,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartCouponFactory
+  DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffTestingCartCouponService } from './cart-coupon.service';
@@ -24,8 +24,8 @@ describe('Driver | Testing | Cart | CartCouponService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartCouponService
-      ]
+        DaffTestingCartCouponService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingCartCouponService);
@@ -45,28 +45,28 @@ describe('Driver | Testing | Cart | CartCouponService', () => {
 
   describe('list | getting all the cart coupons', () => {
     it('should return an array and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Array)});
+      const expected = cold('(a|)', { a: jasmine.any(Array) });
       expect(service.list(cartId)).toBeObservable(expected);
     });
   });
 
   describe('apply | applying a coupon to the cart', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.apply(cartId, mockCartCoupon)).toBeObservable(expected);
     });
   });
 
   describe('remove | removing a coupon from the cart', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.remove(cartId, mockCartCoupon)).toBeObservable(expected);
     });
   });
 
   describe('removeAll | removing all coupons from the cart', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.removeAll(cartId)).toBeObservable(expected);
     });
   });

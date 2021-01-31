@@ -3,13 +3,25 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCart,
   DaffCartItemInput,
-	DaffCartItem,
-	DaffCartItemInputType
+  DaffCartItem,
+  DaffCartItemInputType,
 } from '@daffodil/cart';
-import { DaffInMemoryBackendCartService, DaffInMemoryBackendCartItemsService, DaffInMemoryBackendCartOrderService, DaffInMemoryBackendCartCouponService, DaffInMemoryBackendCartAddressService, DaffInMemoryBackendCartShippingAddressService, DaffInMemoryBackendCartBillingAddressService, DaffInMemoryBackendCartPaymentMethodsService, DaffInMemoryBackendCartShippingMethodsService, DaffInMemoryBackendCartPaymentService, DaffInMemoryBackendCartShippingInformationService } from '@daffodil/cart/driver/in-memory';
+import {
+  DaffInMemoryBackendCartService,
+  DaffInMemoryBackendCartItemsService,
+  DaffInMemoryBackendCartOrderService,
+  DaffInMemoryBackendCartCouponService,
+  DaffInMemoryBackendCartAddressService,
+  DaffInMemoryBackendCartShippingAddressService,
+  DaffInMemoryBackendCartBillingAddressService,
+  DaffInMemoryBackendCartPaymentMethodsService,
+  DaffInMemoryBackendCartShippingMethodsService,
+  DaffInMemoryBackendCartPaymentService,
+  DaffInMemoryBackendCartShippingInformationService,
+} from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
-  DaffCartItemFactory
+  DaffCartItemFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
@@ -69,7 +81,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartRootService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartRootService);
 
@@ -91,9 +103,9 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
     mockCartItemInput = {
-			type: DaffCartItemInputType.Simple,
+      type: DaffCartItemInputType.Simple,
       productId: mockCartItem.product_id,
-      qty: mockCartItem.qty
+      qty: mockCartItem.qty,
     };
     cartId = mockCart.id;
     baseUrl = 'api/cart';
@@ -107,13 +119,13 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       collectionName: '',
       method: '',
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
 
     cartGetSpy = spyOn(cartBackendService, 'get');

@@ -10,7 +10,7 @@ export class MockMagentoCartCoupon implements MagentoCartCoupon {
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoCartCouponFactory extends DaffModelFactory<MagentoCartCoupon> {
   constructor() {

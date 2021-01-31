@@ -1,7 +1,8 @@
 import { InjectionToken } from '@angular/core';
+
 import {
-	DaffCartStateResolutionConfiguration,
-	daffCartStateResolutionConfigurationDefault,
+  DaffCartStateResolutionConfiguration,
+  daffCartStateResolutionConfigurationDefault,
 } from './resolution/config';
 
 /**
@@ -15,9 +16,9 @@ export interface DaffCartStateConfiguration {
  * The default values of the `@daffodil/cart/state` state configuration.
  */
 export const daffCartStateConfigurationDefault: DaffCartStateConfiguration = {
-	resolution: {
-		...daffCartStateResolutionConfigurationDefault,
-	},
+  resolution: {
+    ...daffCartStateResolutionConfigurationDefault,
+  },
 };
 
 /**
@@ -27,6 +28,6 @@ export const daffCartStateConfigurationDefault: DaffCartStateConfiguration = {
 export const DAFF_CART_STATE_CONFIG = new InjectionToken<
 	DaffCartStateConfiguration
 >('DAFF_CART_STATE_CONFIG', {
-	providedIn: 'root',
-	factory: () => daffCartStateConfigurationDefault,
+  providedIn: 'root',
+  factory: () => daffCartStateConfigurationDefault,
 });

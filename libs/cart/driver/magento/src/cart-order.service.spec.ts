@@ -1,11 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
-import { catchError } from 'rxjs/operators';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs/operators';
 
-import { DaffCart, DaffCartPaymentMethod } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartPaymentMethod,
+} from '@daffodil/cart';
 import { DaffCartNotFoundError } from '@daffodil/cart/driver';
-import { MagentoPlaceOrderResponse, placeOrder } from '@daffodil/cart/driver/magento';
+import {
+  MagentoPlaceOrderResponse,
+  placeOrder,
+} from '@daffodil/cart/driver/magento';
 import {
   DaffCartFactory,
   DaffCartPaymentFactory,
@@ -30,11 +39,11 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartOrderService,
-      ]
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartOrderService);
@@ -51,9 +60,9 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
     mockPlaceOrderResponse = {
       placeOrder: {
         order: {
-          order_number: orderNumber
-        }
-      }
+          order_number: orderNumber,
+        },
+      },
     };
   });
 
@@ -73,7 +82,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
         const op = controller.expectOne(placeOrder);
 
         op.flush({
-          data: mockPlaceOrderResponse
+          data: mockPlaceOrderResponse,
         });
       });
     });
@@ -86,7 +95,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
               expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(placeOrder);
@@ -98,7 +107,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
             null,
             null,
             null,
-            {category: 'graphql-no-such-entity'}
+            { category: 'graphql-no-such-entity' },
           )]);
         });
       });
@@ -110,7 +119,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
               expect(err).toEqual(jasmine.any(DaffBadInputError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(placeOrder);
@@ -122,7 +131,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
             null,
             null,
             null,
-            {category: 'graphql-input'}
+            { category: 'graphql-input' },
           )]);
         });
       });

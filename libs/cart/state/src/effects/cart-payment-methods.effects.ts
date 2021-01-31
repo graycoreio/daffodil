@@ -1,10 +1,29 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { DaffCartPaymentMethod, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
-import { DaffCartPaymentMethodsDriver, DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
+import {
+  DaffCartPaymentMethod,
+  DaffCartStorageService,
+  DAFF_CART_ERROR_MATCHER,
+} from '@daffodil/cart';
+import {
+  DaffCartPaymentMethodsDriver,
+  DaffCartPaymentMethodsServiceInterface,
+} from '@daffodil/cart/driver';
+import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartPaymentMethodsActionTypes,
@@ -18,10 +37,10 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartPaymentMethodsDriver) private driver: DaffCartPaymentMethodsServiceInterface<T>,
-    private storage: DaffCartStorageService
-    ) {}
+    private storage: DaffCartStorageService,
+  ) {}
 
   @Effect()
   list$ = this.actions$.pipe(
@@ -29,8 +48,8 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
     switchMap((action: DaffCartPaymentMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartPaymentMethodsLoadSuccess(resp)),
-        catchError(error => of(new DaffCartPaymentMethodsLoadFailure(this.errorMatcher(error))))
-      )
-    )
-  )
+        catchError(error => of(new DaffCartPaymentMethodsLoadFailure(this.errorMatcher(error)))),
+      ),
+    ),
+  );
 }

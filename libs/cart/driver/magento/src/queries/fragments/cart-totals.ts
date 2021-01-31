@@ -1,8 +1,8 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { cartAddressFragment } from './cart-address';
-import { selectedShippingMethodFragment } from './selected-shipping-method';
 import { pricesFragment } from './prices';
+import { selectedShippingMethodFragment } from './selected-shipping-method';
 
 export const cartTotalsFragment = gql`
   fragment cartTotals on Cart {

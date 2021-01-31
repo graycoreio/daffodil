@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductStockStatusEnum } from '@daffodil/product';
 import { DaffCartItemInputType } from '@daffodil/cart';
 import { MagentoCartItemFactory } from '@daffodil/cart/driver/magento/testing';
-import {
-  DaffCartItemFactory
-} from '@daffodil/cart/testing';
+import { DaffCartItemFactory } from '@daffodil/cart/testing';
+import { MagentoProductStockStatusEnum } from '@daffodil/product';
 
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 
@@ -29,40 +27,40 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
     let sku;
     let qty;
     let price;
-		let url;
-		let label;
-		let stock_status;
+    let url;
+    let label;
+    let stock_status;
     let discount0;
 
     beforeEach(() => {
       sku = 'sku';
       qty = 3;
       price = 3.34;
-			url = 'url';
-			label = 'label';
-			stock_status = MagentoProductStockStatusEnum.InStock;
+      url = 'url';
+      label = 'label';
+      stock_status = MagentoProductStockStatusEnum.InStock;
       discount0 = price - 1;
 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
-			mockMagentoCartItem.product.thumbnail = {
-				url: url,
-				label: label
-			};
+      mockMagentoCartItem.product.thumbnail = {
+        url,
+        label,
+      };
       mockMagentoCartItem.prices.discounts = [{
         amount: {
           value: discount0,
-          currency: 'USD'
+          currency: 'USD',
         },
-        label: 'Discount'
+        label: 'Discount',
       }];
 
       transformedCartItem = transformMagentoSimpleCartItem(mockMagentoCartItem);
     });
 
     it('should return an object with the correct values', () => {
-			expect(transformedCartItem.type).toEqual(DaffCartItemInputType.Simple);
+      expect(transformedCartItem.type).toEqual(DaffCartItemInputType.Simple);
       expect(transformedCartItem.sku).toEqual(sku);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);

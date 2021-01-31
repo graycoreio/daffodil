@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartServiceInterface } from '@daffodil/cart/driver';
-
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingCartService implements DaffCartServiceInterface {
   constructor(
-    private cartFactory: DaffCartFactory
+    private cartFactory: DaffCartFactory,
   ) {}
 
   get(id: DaffCart['id']): Observable<DaffCart> {
@@ -28,7 +30,7 @@ export class DaffTestingCartService implements DaffCartServiceInterface {
 
   create() {
     return of({
-      id: this.cartFactory.create().id
+      id: this.cartFactory.create().id,
     });
   }
 }

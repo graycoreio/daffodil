@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart } from '@daffodil/cart';
 import {
-  DaffCartItemServiceInterface,
-} from '@daffodil/cart/driver';
+  DaffCartItem,
+  DaffCartItemInput,
+  DaffCart,
+} from '@daffodil/cart';
+import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface<
   DaffCartItem,
@@ -20,7 +22,7 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
   constructor(private http: HttpClient) {}
 
   list(cartId: DaffCart['id']): Observable<DaffCartItem[]> {
-    return this.http.get<DaffCartItem[]>(`${this.url}/${cartId}/`)
+    return this.http.get<DaffCartItem[]>(`${this.url}/${cartId}/`);
   }
 
   get(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<DaffCartItem> {
@@ -34,7 +36,7 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
   update(
     cartId: DaffCart['id'],
     itemId: DaffCartItem['item_id'],
-    item: Partial<DaffCartItem>
+    item: Partial<DaffCartItem>,
   ): Observable<Partial<DaffCart>> {
     return this.http.put<Partial<DaffCart>>(`${this.url}/${cartId}/${itemId}`, item);
   }

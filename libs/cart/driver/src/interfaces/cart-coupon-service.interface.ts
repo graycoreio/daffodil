@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCart, DaffCartCoupon } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartCoupon,
+} from '@daffodil/cart';
 
 /**
  * The interface responsible for applying a coupon to a cart.
@@ -29,5 +32,5 @@ export interface DaffCartCouponServiceInterface<T extends DaffCart = DaffCart, V
 }
 
 export const DaffCartCouponDriver = new InjectionToken<DaffCartCouponServiceInterface>(
-	'DaffCartCouponDriver',
+  'DaffCartCouponDriver',
 );

@@ -3,11 +3,11 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartPaymentFactory
+  DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffTestingCartPaymentService } from './cart-payment.service';
@@ -18,14 +18,14 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
   let cartPaymentFactory: DaffCartPaymentFactory;
 
   let mockCart: DaffCart;
-  let mockPayment: DaffCartPaymentMethod
+  let mockPayment: DaffCartPaymentMethod;
   let cartId;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingCartPaymentService
-      ]
+        DaffTestingCartPaymentService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingCartPaymentService);
@@ -45,7 +45,7 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
 
   describe('get | getting a cart payment method', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.get(cartId)).toBeObservable(expected);
     });
   });
@@ -56,7 +56,7 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.update(cartId, mockPayment)).toBeObservable(expected);
     });
   });
@@ -67,14 +67,14 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
       expect(service.updateWithBilling(cartId, mockPayment, {})).toBeObservable(expected);
     });
   });
 
   describe('remove | removing the payment method from the cart', () => {
     it('should return undefined and not throw an error', () => {
-      const expected = cold('(a|)', {a: undefined});
+      const expected = cold('(a|)', { a: undefined });
       expect(service.remove(cartId)).toBeObservable(expected);
     });
   });

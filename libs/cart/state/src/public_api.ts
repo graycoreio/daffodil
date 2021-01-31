@@ -6,7 +6,7 @@ export * from './resolvers/public_api';
 export * from './models/public_api';
 export * from './injection-tokens/public_api';
 
-export { DaffCartStateModule } from './cart-state.module'
+export { DaffCartStateModule } from './cart-state.module';
 export { DaffCartStateConfiguration } from './config/config';
 export { DAFF_CART_STATE_CONFIG } from './config/config';
 

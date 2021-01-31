@@ -1,19 +1,31 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
-import { catchError } from 'rxjs/operators';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs/operators';
 
-import { DaffBadInputError } from '@daffodil/driver';
 import {
   DaffCart,
   DaffCartCoupon,
 } from '@daffodil/cart';
 import { DaffCartNotFoundError } from '@daffodil/cart/driver';
-import { MagentoCart, MagentoApplyCouponResponse, MagentoListCartCouponsResponse, MagentoRemoveAllCouponsResponse, applyCoupon, listCartCoupons, removeAllCoupons } from '@daffodil/cart/driver/magento';
 import {
-  MagentoCartFactory,
-} from '@daffodil/cart/driver/magento/testing';
-import { DaffCartFactory, DaffCartCouponFactory } from '@daffodil/cart/testing';
+  MagentoCart,
+  MagentoApplyCouponResponse,
+  MagentoListCartCouponsResponse,
+  MagentoRemoveAllCouponsResponse,
+  applyCoupon,
+  listCartCoupons,
+  removeAllCoupons,
+} from '@daffodil/cart/driver/magento';
+import { MagentoCartFactory } from '@daffodil/cart/driver/magento/testing';
+import {
+  DaffCartFactory,
+  DaffCartCouponFactory,
+} from '@daffodil/cart/testing';
+import { DaffBadInputError } from '@daffodil/driver';
 
 import { DaffMagentoCartCouponService } from './cart-coupon.service';
 
@@ -37,11 +49,11 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartCouponService,
-      ]
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartCouponService);
@@ -60,16 +72,16 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
     orderNumber = '28349539482';
     mockApplyCouponResponse = {
       applyCouponToCart: {
-        cart: mockMagentoCart
-      }
+        cart: mockMagentoCart,
+      },
     };
     mockRemoveAllCouponsResponse = {
       removeCouponFromCart: {
-        cart: mockMagentoCart
-      }
+        cart: mockMagentoCart,
+      },
     };
     mockListCouponsResponse = {
-      cart: mockMagentoCart
+      cart: mockMagentoCart,
     };
   });
 
@@ -92,7 +104,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
         const op = controller.expectOne(applyCoupon([]));
 
         op.flush({
-          data: mockApplyCouponResponse
+          data: mockApplyCouponResponse,
         });
       });
     });
@@ -105,7 +117,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(applyCoupon([]));
@@ -117,7 +129,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-no-such-entity'}
+            { category: 'graphql-no-such-entity' },
           )]);
         });
       });
@@ -129,7 +141,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffBadInputError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(applyCoupon([]));
@@ -141,7 +153,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-input'}
+            { category: 'graphql-input' },
           )]);
         });
       });
@@ -167,7 +179,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
         const op = controller.expectOne(listCartCoupons([]));
 
         op.flush({
-          data: mockListCouponsResponse
+          data: mockListCouponsResponse,
         });
       });
     });
@@ -180,7 +192,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(listCartCoupons([]));
@@ -192,7 +204,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-no-such-entity'}
+            { category: 'graphql-no-such-entity' },
           )]);
         });
       });
@@ -204,7 +216,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffBadInputError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(listCartCoupons([]));
@@ -216,7 +228,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-input'}
+            { category: 'graphql-input' },
           )]);
         });
       });
@@ -242,7 +254,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
         const op = controller.expectOne(removeAllCoupons([]));
 
         op.flush({
-          data: mockRemoveAllCouponsResponse
+          data: mockRemoveAllCouponsResponse,
         });
       });
     });
@@ -255,7 +267,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(removeAllCoupons([]));
@@ -267,7 +279,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-no-such-entity'}
+            { category: 'graphql-no-such-entity' },
           )]);
         });
       });
@@ -279,7 +291,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffBadInputError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(removeAllCoupons([]));
@@ -291,7 +303,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-input'}
+            { category: 'graphql-input' },
           )]);
         });
       });
@@ -317,7 +329,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
         const op = controller.expectOne(removeAllCoupons([]));
 
         op.flush({
-          data: mockRemoveAllCouponsResponse
+          data: mockRemoveAllCouponsResponse,
         });
       });
     });
@@ -330,7 +342,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(removeAllCoupons([]));
@@ -342,7 +354,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-no-such-entity'}
+            { category: 'graphql-no-such-entity' },
           )]);
         });
       });
@@ -354,7 +366,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
               expect(err).toEqual(jasmine.any(DaffBadInputError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(removeAllCoupons([]));
@@ -366,7 +378,7 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             null,
-            {category: 'graphql-input'}
+            { category: 'graphql-input' },
           )]);
         });
       });

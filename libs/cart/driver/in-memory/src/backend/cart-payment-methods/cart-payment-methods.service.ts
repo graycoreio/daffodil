@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { STATUS, RequestInfo } from 'angular-in-memory-web-api';
+import {
+  STATUS,
+  RequestInfo,
+} from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -8,18 +11,18 @@ import {
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendCartPaymentMethodsService implements DaffInMemoryDataServiceInterface {
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.listPaymentMethods(reqInfo),
-      status: STATUS.OK
+      status: STATUS.OK,
     }));
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
   }
 
   private listPaymentMethods(reqInfo): DaffCartPaymentMethod[] {

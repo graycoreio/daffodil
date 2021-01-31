@@ -1,18 +1,36 @@
+import { TestBed } from '@angular/core/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
-import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { of } from 'rxjs';
 
-import { schema } from '@daffodil/driver/magento';
-import { DaffCart, DaffCartItem } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartItem,
+} from '@daffodil/cart';
 import { DaffCartItemDriver } from '@daffodil/cart/driver';
-import { MagentoCart, MagentoCartItem, MagentoGetCartResponse, MagentoCreateCartResponse, DaffMagentoCartTransformer, createCart, getCart } from '@daffodil/cart/driver/magento';
+import {
+  MagentoCart,
+  MagentoCartItem,
+  MagentoGetCartResponse,
+  MagentoCreateCartResponse,
+  DaffMagentoCartTransformer,
+  createCart,
+  getCart,
+} from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory,
 } from '@daffodil/cart/driver/magento/testing';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartService } from './cart.service';
 
@@ -39,26 +57,26 @@ describe('Driver | Magento | Cart | CartService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartService,
         {
           provide: DaffMagentoCartTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform']),
         },
         {
           provide: DaffCartItemDriver,
-          useValue: jasmine.createSpyObj('DaffCartItemDriver', ['delete', 'list'])
+          useValue: jasmine.createSpyObj('DaffCartItemDriver', ['delete', 'list']),
         },
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartService);
@@ -82,18 +100,18 @@ describe('Driver | Magento | Cart | CartService', () => {
     mockMagentoCart.items = [mockMagentoCartItem];
     mockDaffCart.items = [mockDaffCartItem];
     mockCreateCartResponse = {
-      createEmptyCart: cartId
+      createEmptyCart: cartId,
     };
     mockCartResponse = {
-			__typename: 'Cart',
-      cart: mockMagentoCart
+      __typename: 'Cart',
+      cart: mockMagentoCart,
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
-    magentoCartItemSpy.list.and.returnValue(of(mockDaffCart.items))
+    magentoCartItemSpy.list.and.returnValue(of(mockDaffCart.items));
     magentoCartItemSpy.delete.and.callFake((_, itemId) => of({
       ...mockDaffCart,
-      items: mockDaffCart.items.filter(({item_id}) => item_id !== itemId)
+      items: mockDaffCart.items.filter(({ item_id }) => item_id !== itemId),
     }));
   });
 
@@ -111,7 +129,7 @@ describe('Driver | Magento | Cart | CartService', () => {
       const op = controller.expectOne(addTypenameToDocument(getCart([])));
 
       op.flush({
-        data: mockCartResponse
+        data: mockCartResponse,
       });
     });
 
@@ -124,7 +142,7 @@ describe('Driver | Magento | Cart | CartService', () => {
       const op = controller.expectOne(addTypenameToDocument(getCart([])));
 
       op.flush({
-        data: mockCartResponse
+        data: mockCartResponse,
       });
     });
 
@@ -135,22 +153,22 @@ describe('Driver | Magento | Cart | CartService', () => {
 
   describe('clear | remove all items from the cart', () => {
     it('should make a delete cart item request for every item in the cart', done => {
-			spyOn(service, 'get').and.returnValue(of(mockDaffCart));
+      spyOn(service, 'get').and.returnValue(of(mockDaffCart));
       service.clear(cartId).subscribe(() => {
         mockDaffCart.items.forEach(item => {
-          expect(magentoCartItemSpy.delete).toHaveBeenCalledWith(cartId, item.item_id)
-        })
+          expect(magentoCartItemSpy.delete).toHaveBeenCalledWith(cartId, item.item_id);
+        });
         done();
       });
     });
 
     it('should return the cart from the get cart call', done => {
-			spyOn(service, 'get').and.returnValue(of(mockDaffCart));
+      spyOn(service, 'get').and.returnValue(of(mockDaffCart));
       service.clear(cartId).subscribe(result => {
         expect(result).toEqual(mockDaffCart);
         done();
       });
-		});
+    });
   });
 
   describe('create | creates the cart', () => {
@@ -163,7 +181,7 @@ describe('Driver | Magento | Cart | CartService', () => {
       const op = controller.expectOne(createCart);
 
       op.flush({
-        data: mockCreateCartResponse
+        data: mockCreateCartResponse,
       });
     });
 

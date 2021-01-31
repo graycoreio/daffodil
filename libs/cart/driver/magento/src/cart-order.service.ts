@@ -1,23 +1,34 @@
-import { Inject, Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import {
+  throwError,
+  Observable,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { throwError, Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-
-import { DaffQueuedApollo } from '@daffodil/core/graphql'
-import { DaffCart, DaffCartOrderResult } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartOrderResult,
+} from '@daffodil/cart';
 import { DaffCartOrderServiceInterface } from '@daffodil/cart/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
-import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
-import { placeOrder } from './queries/public_api';
 import { transformCartMagentoError } from './errors/transform';
-import { MagentoPlaceOrderResponse } from './queries/responses/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
+import { placeOrder } from './queries/public_api';
+import { MagentoPlaceOrderResponse } from './queries/responses/public_api';
+import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterface {
   constructor(
@@ -29,15 +40,15 @@ export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterfac
     return this.mutationQueue.mutate<MagentoPlaceOrderResponse>({
       mutation: placeOrder,
       variables: {
-        cartId
-      }
+        cartId,
+      },
     }).pipe(
       map(result => ({
         id: result.data.placeOrder.order.order_number,
         orderId: result.data.placeOrder.order.order_number,
-        cartId
+        cartId,
       })),
       catchError(err => throwError(transformCartMagentoError(err))),
-    )
+    );
   }
 }

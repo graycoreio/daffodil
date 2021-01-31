@@ -9,7 +9,7 @@ describe('Cart | Testing | Factories | CartCouponFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCartCouponFactory]
+      providers: [DaffCartCouponFactory],
     });
 
     factory = TestBed.inject(DaffCartCouponFactory);

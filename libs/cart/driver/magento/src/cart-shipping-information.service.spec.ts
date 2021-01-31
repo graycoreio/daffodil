@@ -1,20 +1,40 @@
+import { TestBed } from '@angular/core/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
-import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 
-import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartShippingInformation,
 } from '@daffodil/cart';
-import { MagentoCartShippingMethod, MagentoCart, MagentoShippingAddress, MagentoSetSelectedShippingMethodResponse, MagentoGetSelectedShippingMethodResponse, MagentoListShippingMethodsResponse, DaffMagentoCartTransformer, DaffMagentoCartShippingRateTransformer, DaffMagentoShippingMethodInputTransformer, getSelectedShippingMethod, setSelectedShippingMethod, listShippingMethods } from '@daffodil/cart/driver/magento';
+import {
+  MagentoCartShippingMethod,
+  MagentoCart,
+  MagentoShippingAddress,
+  MagentoSetSelectedShippingMethodResponse,
+  MagentoGetSelectedShippingMethodResponse,
+  MagentoListShippingMethodsResponse,
+  DaffMagentoCartTransformer,
+  DaffMagentoCartShippingRateTransformer,
+  DaffMagentoShippingMethodInputTransformer,
+  getSelectedShippingMethod,
+  setSelectedShippingMethod,
+  listShippingMethods,
+} from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartShippingMethodFactory,
-  MagentoShippingAddressFactory
+  MagentoShippingAddressFactory,
 } from '@daffodil/cart/driver/magento/testing';
-import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartFactory,
+  DaffCartShippingRateFactory,
+} from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
 
@@ -49,30 +69,30 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartShippingInformationService,
         {
           provide: DaffMagentoCartTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform']),
         },
         {
           provide: DaffMagentoCartShippingRateTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform']),
         },
         {
           provide: DaffMagentoShippingMethodInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoShippingMethodInputTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoShippingMethodInputTransformer', ['transform']),
         },
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartShippingInformationService);
@@ -90,13 +110,13 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
-		mockMagentoShippingMethod = {
-			__typename: 'SelectedShippingMethod',
-			...magentoShippingMethodFactory.create()
-		}
+    mockMagentoShippingMethod = {
+      __typename: 'SelectedShippingMethod',
+      ...magentoShippingMethodFactory.create(),
+    };
     mockDaffCartShippingInformation = {
       ...daffCartShippingRateFactory.create(),
-      address_id: null
+      address_id: null,
     };
     mockMagentoShippingAddress = magentoShippingAddressFactory.create();
 
@@ -106,32 +126,32 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
     mockMagentoCart.shipping_addresses = [mockMagentoShippingAddress];
     mockGetSelectedShippingMethodResponse = {
       cart: {
-				__typename: 'Cart',
+        __typename: 'Cart',
         shipping_addresses: [{
-					__typename: 'CartShippingAddresses',
-          selected_shipping_method: mockMagentoShippingMethod
-        }]
-      }
+          __typename: 'CartShippingAddresses',
+          selected_shipping_method: mockMagentoShippingMethod,
+        }],
+      },
     };
     mockSetSelectedShippingMethodResponse = {
       setShippingMethodsOnCart: {
-				__typename: 'CartShippingMethods',
-        cart: mockMagentoCart
-      }
+        __typename: 'CartShippingMethods',
+        cart: mockMagentoCart,
+      },
     };
     mockListCartShippingMethodsResponse = {
       cart: {
         __typename: 'Cart',
         id: cartId,
         shipping_addresses: [{
-					__typename: 'AvailableShippingAddresses',
-          available_shipping_methods: [mockMagentoShippingMethod]
-        }]
-      }
+          __typename: 'AvailableShippingAddresses',
+          available_shipping_methods: [mockMagentoShippingMethod],
+        }],
+      },
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
-    magentoShippingRateTransformerSpy.transform.and.returnValue(mockDaffCartShippingInformation)
+    magentoShippingRateTransformerSpy.transform.and.returnValue(mockDaffCartShippingInformation);
   });
 
   it('should be created', () => {
@@ -148,7 +168,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
       const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
 
       op.flush({
-        data: mockGetSelectedShippingMethodResponse
+        data: mockGetSelectedShippingMethodResponse,
       });
     });
 
@@ -161,7 +181,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
       const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
 
       op.flush({
-        data: mockGetSelectedShippingMethodResponse
+        data: mockGetSelectedShippingMethodResponse,
       });
     });
 
@@ -179,7 +199,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
 
         op.flush({
-          data: mockGetSelectedShippingMethodResponse
+          data: mockGetSelectedShippingMethodResponse,
         });
       });
     });
@@ -208,7 +228,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
       const setSelectedShippingMethodOp = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([])));
 
       setSelectedShippingMethodOp.flush({
-        data: mockSetSelectedShippingMethodResponse
+        data: mockSetSelectedShippingMethodResponse,
       });
 
       // set timeout because the requests here are made in series
@@ -216,9 +236,9 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         const listShippingMethodsOp = controller.expectOne(addTypenameToDocument(listShippingMethods([])));
 
         listShippingMethodsOp.flush({
-          data: mockListCartShippingMethodsResponse
+          data: mockListCartShippingMethodsResponse,
         });
-      })
+      });
     });
 
     afterEach(() => {
@@ -241,7 +261,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
       const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([])));
 
       op.flush({
-        data: mockSetSelectedShippingMethodResponse
+        data: mockSetSelectedShippingMethodResponse,
       });
     });
 

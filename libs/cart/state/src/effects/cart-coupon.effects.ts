@@ -1,13 +1,31 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
 import {
-  DaffStorageServiceError
-} from '@daffodil/core'
-import { DaffCart, DaffCartCoupon, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
-import { DaffCartCouponDriver, DaffCartCouponServiceInterface } from '@daffodil/cart/driver';
+  DaffCart,
+  DaffCartCoupon,
+  DaffCartStorageService,
+  DAFF_CART_ERROR_MATCHER,
+} from '@daffodil/cart';
+import {
+  DaffCartCouponDriver,
+  DaffCartCouponServiceInterface,
+} from '@daffodil/cart/driver';
+import { DaffStorageServiceError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartCouponActionTypes,
@@ -23,7 +41,7 @@ import {
   DaffCartCouponApply,
   DaffCartCouponApplySuccess,
   DaffCartCouponApplyFailure,
-  DaffCartStorageFailure
+  DaffCartStorageFailure,
 } from '../actions/public_api';
 
 @Injectable()
@@ -33,7 +51,7 @@ export class DaffCartCouponEffects<
 > {
   constructor(
     private actions$: Actions,
-    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartCouponDriver) private driver: DaffCartCouponServiceInterface<T, V>,
     private storage: DaffCartStorageService,
   ) {}
@@ -47,10 +65,10 @@ export class DaffCartCouponEffects<
       map(resp => new DaffCartCouponApplySuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponApplyFailure(this.errorMatcher(error))
+        : new DaffCartCouponApplyFailure(this.errorMatcher(error)),
       )),
     )),
-  )
+  );
 
   @Effect()
   list$ = this.actions$.pipe(
@@ -61,10 +79,10 @@ export class DaffCartCouponEffects<
       map(resp => new DaffCartCouponListSuccess<V>(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponListFailure(this.errorMatcher(error))
+        : new DaffCartCouponListFailure(this.errorMatcher(error)),
       )),
     )),
-  )
+  );
 
   @Effect()
   remove$ = this.actions$.pipe(
@@ -75,10 +93,10 @@ export class DaffCartCouponEffects<
       map(resp => new DaffCartCouponRemoveSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponRemoveFailure(this.errorMatcher(error))
+        : new DaffCartCouponRemoveFailure(this.errorMatcher(error)),
       )),
     )),
-  )
+  );
 
   @Effect()
   removeAll$ = this.actions$.pipe(
@@ -89,8 +107,8 @@ export class DaffCartCouponEffects<
       map(resp => new DaffCartCouponRemoveAllSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponRemoveAllFailure(this.errorMatcher(error))
+        : new DaffCartCouponRemoveAllFailure(this.errorMatcher(error)),
       )),
     )),
-  )
+  );
 }

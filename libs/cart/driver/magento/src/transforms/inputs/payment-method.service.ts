@@ -5,12 +5,12 @@ import { DaffCartPaymentMethod } from '@daffodil/cart';
 import { MagentoPaymentMethodInput } from '../../models/requests/payment-method';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffMagentoPaymentMethodInputTransformer {
   transform(payment: Partial<DaffCartPaymentMethod>): MagentoPaymentMethodInput {
     return {
-			...payment.payment_info
-    }
+      ...payment.payment_info,
+    };
   }
 }

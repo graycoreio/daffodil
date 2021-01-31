@@ -10,7 +10,7 @@ describe('Cart | Testing | Factories | CartAddressFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCartAddressFactory]
+      providers: [DaffCartAddressFactory],
     });
 
     cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
@@ -29,6 +29,6 @@ describe('Cart | Testing | Factories | CartAddressFactory', () => {
 
       result = cartAddressFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

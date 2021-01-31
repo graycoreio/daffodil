@@ -1,13 +1,16 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import {
   DaffCart,
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod,
 } from '@daffodil/cart';
 import {
   DaffCartPaymentFactory,
-  DaffCartFactory
+  DaffCartFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCartPaymentMethodsService } from './cart-payment-methods.service';
@@ -16,7 +19,7 @@ describe('Driver | In Memory | Cart | CartPaymentMethodsService', () => {
   let cartPaymentMethodsService: DaffInMemoryCartPaymentMethodsService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
-  let paymentFactory: DaffCartPaymentFactory
+  let paymentFactory: DaffCartPaymentFactory;
 
   let mockCart: DaffCart;
   let mockCartPaymentMethods: DaffCartPaymentMethod[];
@@ -25,11 +28,11 @@ describe('Driver | In Memory | Cart | CartPaymentMethodsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryCartPaymentMethodsService
-      ]
+        DaffInMemoryCartPaymentMethodsService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);

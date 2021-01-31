@@ -1,14 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffCart,
   DaffCartShippingInformation,
   DaffCartStorageService,
 } from '@daffodil/cart';
+import {
+  DaffCartShippingInformationServiceInterface,
+  DaffCartShippingInformationDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
   DaffCartShippingInformationLoad,
   DaffCartShippingInformationLoadSuccess,
@@ -18,14 +28,13 @@ import {
   DaffCartShippingInformationDeleteFailure,
   DaffCartShippingInformationUpdate,
   DaffCartShippingInformationUpdateSuccess,
-  DaffCartShippingInformationUpdateFailure
+  DaffCartShippingInformationUpdateFailure,
 } from '@daffodil/cart/state';
-import { DaffCartShippingInformationServiceInterface, DaffCartShippingInformationDriver } from '@daffodil/cart/driver';
 import {
   DaffCartFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartShippingInformationEffects } from './cart-shipping-information.effects';
 
@@ -50,12 +59,12 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartShippingInformationEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffCartShippingInformationEffects);
@@ -69,7 +78,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
     mockCart = cartFactory.create();
     mockCartShippingInformation = {
       ...cartShippingRateFactory.create(),
-      address_id: null
+      address_id: null,
     };
 
     driverGetSpy = spyOn(daffShippingInformationDriver, 'get');
@@ -102,7 +111,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to load cart shipping information'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to load cart shipping information' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartShippingInformationLoadFailureAction = new DaffCartShippingInformationLoadFailure(error);
@@ -141,7 +150,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to update cart shipping information'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to update cart shipping information' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingInformationUpdateFailure(error);
@@ -174,7 +183,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to delete the cart shipping information'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to delete the cart shipping information' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
         const cartShippingInformationDeleteFailureAction = new DaffCartShippingInformationDeleteFailure(error);

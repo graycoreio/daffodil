@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartDriverErrorCodes } from './codes.enum';
 
@@ -10,6 +13,6 @@ export class DaffProductOutOfStockError extends DaffInheritableError implements 
 	public readonly code: string = DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK;
 
 	constructor(message?: string) {
-		super(message);
+	  super(message);
 	}
 }

@@ -1,8 +1,19 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { DaffCart, DaffCartItem, DaffCartItemInputType, DaffCartItemInput } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartItem,
+  DaffCartItemInputType,
+  DaffCartItemInput,
+} from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
 import { DaffInMemoryCartItemService } from './cart-item.service';
 
@@ -20,11 +31,11 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryCartItemService
-      ]
+        DaffInMemoryCartItemService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -75,19 +86,19 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
   });
 
   describe('add | adding an item to the cart', () => {
-		let cartItemInput: DaffCartItemInput;
-		let type;
+    let cartItemInput: DaffCartItemInput;
+    let type;
     let productId;
     let qty;
 
     beforeEach(() => {
-			type = DaffCartItemInputType.Simple;
+      type = DaffCartItemInputType.Simple;
       productId = 4;
       qty = 2;
       cartItemInput = {
-				type,
+        type,
         productId,
-        qty
+        qty,
       };
     });
 

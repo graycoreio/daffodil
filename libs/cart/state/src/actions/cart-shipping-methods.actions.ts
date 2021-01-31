@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartShippingRate } from '@daffodil/cart';
+import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffCartShippingMethodsActionTypes {
   CartShippingMethodsLoadAction = '[DaffCart] Shipping Methods Load Action',
@@ -30,4 +30,4 @@ export class DaffCartShippingMethodsLoadFailure implements Action {
 export type DaffCartShippingMethodsActions<T extends DaffCartShippingRate = DaffCartShippingRate> =
   | DaffCartShippingMethodsLoad
   | DaffCartShippingMethodsLoadSuccess<T>
-  | DaffCartShippingMethodsLoadFailure
+  | DaffCartShippingMethodsLoadFailure;

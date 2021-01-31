@@ -1,21 +1,29 @@
-import { BehaviorSubject } from 'rxjs';
-import { Action } from '@ngrx/store';
-import { Dictionary } from '@ngrx/entity';
 import { Injectable } from '@angular/core';
+import { Dictionary } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffStateError } from '@daffodil/core/state';
-import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemDiscount } from '@daffodil/cart';
 import {
-	DaffCartFacadeInterface,
-	DaffCartErrors,
-	DaffCartOperationType,
-	DaffCartLoading,
-	DaffCartItemStateEnum,
-	DaffStatefulCartItem,
-  DaffCartResolveState
+  DaffCart,
+  DaffCartTotal,
+  DaffCartItem,
+  DaffCartOrderResult,
+  DaffConfigurableCartItemAttribute,
+  DaffCompositeCartItemOption,
+  DaffCartItemDiscount,
+} from '@daffodil/cart';
+import {
+  DaffCartFacadeInterface,
+  DaffCartErrors,
+  DaffCartOperationType,
+  DaffCartLoading,
+  DaffCartItemStateEnum,
+  DaffStatefulCartItem,
+  DaffCartResolveState,
 } from '@daffodil/cart/state';
+import { DaffStateError } from '@daffodil/core/state';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
   cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
 
@@ -99,49 +107,49 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   orderResultLoading$ = new BehaviorSubject<boolean>(false);
 	orderResultErrors$ = new BehaviorSubject<DaffStateError[]>([]);
 	orderResult$ = new BehaviorSubject<DaffCartOrderResult>({
-    id: null,
-    orderId: null,
-    cartId: null,
-  });
+	  id: null,
+	  orderId: null,
+	  cartId: null,
+	});
 	orderResultId$ = new BehaviorSubject<DaffCartOrderResult['orderId']>(null);
 	orderResultCartId$ = new BehaviorSubject<DaffCartOrderResult['cartId']>(null);
 	hasOrderResult$ = new BehaviorSubject<boolean>(false);
 
 	getCartItemPrice(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
-    return new BehaviorSubject(0)
-  }
+	  return new BehaviorSubject(0);
+	}
 
 	getCartItemQuantity(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
-    return new BehaviorSubject(0)
-  }
+	  return new BehaviorSubject(0);
+	}
 
 	getCartItemRowTotal(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
-    return new BehaviorSubject(0)
-  }
+	  return new BehaviorSubject(0);
+	}
 
 	getConfiguredCartItemAttributes(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
-		return new BehaviorSubject([]);
+	  return new BehaviorSubject([]);
 	}
 
 	getCompositeCartItemOptions(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCompositeCartItemOption[]> {
-		return new BehaviorSubject([]);
+	  return new BehaviorSubject([]);
 	}
 
 	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): BehaviorSubject<boolean> {
-		return new BehaviorSubject(false);
+	  return new BehaviorSubject(false);
 	}
 
 	getCartItemState(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemStateEnum> {
-		return new BehaviorSubject(DaffCartItemStateEnum.Default);
+	  return new BehaviorSubject(DaffCartItemStateEnum.Default);
 	}
 
-  getCartItemDiscounts(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemDiscount[]> {
-		return new BehaviorSubject([]);
-  }
+	getCartItemDiscounts(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemDiscount[]> {
+	  return new BehaviorSubject([]);
+	}
 
 	getCartItemTotalDiscount(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
-		return new BehaviorSubject(0);
-  }
+	  return new BehaviorSubject(0);
+	}
 
-  dispatch(action: Action) {};
+	dispatch(action: Action) {};
 }

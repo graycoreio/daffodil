@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCart,
   DaffCartItemInput,
-	DaffCartItem,
-	DaffCartItemInputType
+  DaffCartItem,
+  DaffCartItemInputType,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartItemFactory
+  DaffCartItemFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartItemsService } from './cart-items.service';
@@ -31,7 +31,7 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartItemsService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartItemsService);
 
@@ -43,9 +43,9 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     mockCart.items = mockCartItems;
     collection = [mockCart];
     mockCartItemInput = {
-			type: DaffCartItemInputType.Simple,
+      type: DaffCartItemInputType.Simple,
       productId: mockCartItems[0].product_id,
-      qty: mockCartItems[0].qty
+      qty: mockCartItems[0].qty,
     };
     cartId = mockCart.id;
     baseUrl = 'api/cart-items/';
@@ -55,13 +55,13 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 
@@ -110,18 +110,18 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     });
 
     it('should return a cart with the added item', () => {
-			result = service.post(reqInfoStub);
-      expect(result.body.items).toContain(jasmine.objectContaining({product_id: productId}));
-		});
+      result = service.post(reqInfoStub);
+      expect(result.body.items).toContain(jasmine.objectContaining({ product_id: productId }));
+    });
 
-		it('should add the given qty to an existing cart item qty', () => {
-			productId = reqInfoStub.collection[0].items[0].product_id;
-			const cart_item_qty = reqInfoStub.collection[0].items[0].qty;
-			reqInfoStub.req.body = { productId, qty: 2};
-			result = service.post(reqInfoStub);
+    it('should add the given qty to an existing cart item qty', () => {
+      productId = reqInfoStub.collection[0].items[0].product_id;
+      const cart_item_qty = reqInfoStub.collection[0].items[0].qty;
+      reqInfoStub.req.body = { productId, qty: 2 };
+      result = service.post(reqInfoStub);
 
-			expect(result.body.items[0].qty).toEqual(cart_item_qty + 2);
-		});
+      expect(result.body.items[0].qty).toEqual(cart_item_qty + 2);
+    });
   });
 
   describe('processing an update request', () => {
@@ -133,7 +133,7 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       itemId = mockCartItems[0].item_id;
       reqInfoStub.url = `${cartUrl}${itemId}`;
       qty = mockCartItems[0].qty + 1;
-      reqInfoStub.req.body = {qty};
+      reqInfoStub.req.body = { qty };
 
       result = service.put(reqInfoStub);
     });
@@ -155,7 +155,7 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     });
 
     it('should remove the cart item from the cart', () => {
-      expect(result.body.items.find(({item_id}) => itemId === item_id)).toBeFalsy();
+      expect(result.body.items.find(({ item_id }) => itemId === item_id)).toBeFalsy();
     });
   });
 });

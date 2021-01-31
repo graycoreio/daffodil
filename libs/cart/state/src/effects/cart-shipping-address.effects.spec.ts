@@ -1,28 +1,37 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffCart,
   DaffCartAddress,
   DaffCartStorageService,
 } from '@daffodil/cart';
 import {
+  DaffCartShippingAddressServiceInterface,
+  DaffCartShippingAddressDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
   DaffCartShippingAddressLoad,
   DaffCartShippingAddressLoadSuccess,
   DaffCartShippingAddressLoadFailure,
   DaffCartShippingAddressUpdate,
   DaffCartShippingAddressUpdateSuccess,
-  DaffCartShippingAddressUpdateFailure
+  DaffCartShippingAddressUpdateFailure,
 } from '@daffodil/cart/state';
-import { DaffCartShippingAddressServiceInterface, DaffCartShippingAddressDriver } from '@daffodil/cart/driver';
 import {
   DaffCartFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartShippingAddressEffects } from './cart-shipping-address.effects';
 
@@ -46,12 +55,12 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartShippingAddressEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffCartShippingAddressEffects);
@@ -94,7 +103,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to load cart shipping address'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to load cart shipping address' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartShippingAddressLoadFailureAction = new DaffCartShippingAddressLoadFailure(error);
@@ -133,7 +142,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to update cart shipping address'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to update cart shipping address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingAddressUpdateFailure(error);

@@ -1,4 +1,7 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { DaffCartDriverErrorCodes } from './codes.enum';
 
@@ -9,7 +12,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 export class DaffCartInvalidAPIResponseError extends DaffInheritableError implements DaffError {
   public readonly code: string = DaffCartDriverErrorCodes.INVALID_API_RESPONSE;
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }

@@ -1,7 +1,11 @@
 import { Action } from '@ngrx/store';
 
+import {
+  DaffCartPaymentMethod,
+  DaffCart,
+  DaffCartAddress,
+} from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCartPaymentMethod, DaffCart, DaffCartAddress } from '@daffodil/cart';
 
 export enum DaffCartPaymentActionTypes {
   CartPaymentLoadAction = '[DaffCart] Payment Load Action',

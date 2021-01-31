@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { STATUS, RequestInfo } from 'angular-in-memory-web-api';
+import {
+  STATUS,
+  RequestInfo,
+} from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -8,32 +11,32 @@ import {
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendCartPaymentService implements DaffInMemoryDataServiceInterface {
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.getPayment(reqInfo),
-      status: STATUS.OK
+      status: STATUS.OK,
     }));
   }
 
   put(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.updatePayment(reqInfo),
-      status: STATUS.OK
+      status: STATUS.OK,
     }));
   }
 
   delete(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.removePayment(reqInfo),
-      status: STATUS.OK
+      status: STATUS.OK,
     }));
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
+    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
   }
 
   private getPayment(reqInfo): DaffCartPaymentMethod {
@@ -42,11 +45,13 @@ export class DaffInMemoryBackendCartPaymentService implements DaffInMemoryDataSe
 
   private updatePayment(reqInfo: RequestInfo): DaffCart {
     const cart = this.getCart(reqInfo);
-    const {payment, address} = reqInfo.utils.getJsonBody(reqInfo.req);
+    const { payment, address } = reqInfo.utils.getJsonBody(reqInfo.req);
 
     cart.payment = payment;
 
-    if (address) cart.billing_address = address;
+    if (address) {
+      cart.billing_address = address;
+    }
 
     return cart;
   }
@@ -54,8 +59,8 @@ export class DaffInMemoryBackendCartPaymentService implements DaffInMemoryDataSe
   private removePayment(reqInfo: RequestInfo): DaffCart {
     const cart = this.getCart(reqInfo);
 
-    cart.payment = null
+    cart.payment = null;
 
-    return cart
+    return cart;
   }
 }

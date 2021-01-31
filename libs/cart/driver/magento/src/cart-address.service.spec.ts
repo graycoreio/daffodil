@@ -1,12 +1,14 @@
+import { TestBed } from '@angular/core/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
-import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-
-import { catchError } from 'rxjs/operators';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs/operators';
 
-import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartAddress,
@@ -20,14 +22,18 @@ import {
   DaffMagentoCartTransformer,
   DaffMagentoCartAddressInputTransformer,
   updateAddress,
-  updateAddressWithEmail
+  updateAddressWithEmail,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartAddressInputFactory,
-  MagentoShippingAddressFactory
+  MagentoShippingAddressFactory,
 } from '@daffodil/cart/driver/magento/testing';
-import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartFactory,
+  DaffCartAddressFactory,
+} from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartAddressService } from './cart-address.service';
 
@@ -57,26 +63,26 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoCartAddressService,
         {
           provide: DaffMagentoCartTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform']),
         },
         {
           provide: DaffMagentoCartAddressInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
+          useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform']),
         },
-				{
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+        {
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartAddressService);
@@ -97,8 +103,8 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     magentoShippingAddressFactory = TestBed.inject(MagentoShippingAddressFactory);
     mockDaffCartAddress = daffCartAddressFactory.create();
     mockMagentoShippingAddressInput = {
-      address: magentoCartAddressInputFactory.create()
-    }
+      address: magentoCartAddressInputFactory.create(),
+    };
 
     cartId = mockDaffCart.id;
     email = mockMagentoShippingAddress.email;
@@ -110,36 +116,36 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     mockDaffCart.shipping_address = mockDaffCartAddress;
     mockUpdateAddressResponse = {
       setBillingAddressOnCart: {
-				__typename: 'SetBillingAddressOnCart',
+        __typename: 'SetBillingAddressOnCart',
         cart: {
           __typename: 'Cart',
-          id: cartId
-        }
+          id: cartId,
+        },
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
-        cart: mockMagentoCart
+        cart: mockMagentoCart,
       },
     };
     mockUpdateAddressWithEmailResponse = {
       setBillingAddressOnCart: {
-				__typename: 'SetBillingAddressOnCart',
+        __typename: 'SetBillingAddressOnCart',
         cart: {
           __typename: 'Cart',
-          id: cartId
-        }
+          id: cartId,
+        },
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
         cart: {
           __typename: 'Cart',
-          id: cartId
-        }
+          id: cartId,
+        },
       },
       setGuestEmailOnCart: {
         __typename: 'setGuestEmailOnCart',
-        cart: mockMagentoCart
-      }
+        cart: mockMagentoCart,
+      },
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
@@ -174,7 +180,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
 
           op.flush({
-            data: mockUpdateAddressWithEmailResponse
+            data: mockUpdateAddressWithEmailResponse,
           });
         });
       });
@@ -200,7 +206,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           const op = controller.expectOne(addTypenameToDocument(updateAddress([])));
 
           op.flush({
-            data: mockUpdateAddressResponse
+            data: mockUpdateAddressResponse,
           });
         });
       });
@@ -213,7 +219,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
@@ -225,7 +231,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });

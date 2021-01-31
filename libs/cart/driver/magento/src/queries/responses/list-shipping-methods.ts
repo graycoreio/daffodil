@@ -1,5 +1,5 @@
-import { MagentoCartShippingMethod } from '../../models/responses/cart-shipping-method';
 import { MagentoCart } from '../../models/responses/cart';
+import { MagentoCartShippingMethod } from '../../models/responses/cart-shipping-method';
 
 export interface MagentoListShippingMethodsResponse {
   cart: {

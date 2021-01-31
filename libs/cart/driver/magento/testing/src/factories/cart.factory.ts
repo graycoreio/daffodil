@@ -10,21 +10,21 @@ export class MockMagentoCart implements MagentoCart {
 	__typename = 'Cart';
   id = faker.random.uuid();
   prices = {
-		__typename: 'CartPrices',
+    __typename: 'CartPrices',
     subtotal_excluding_tax: this.money(),
     grand_total: this.money(),
     subtotal_including_tax: this.money(),
     subtotal_with_discount_excluding_tax: this.money(),
     applied_taxes: [{
-			__typename: 'AppliedTax',
-			amount: this.money(),
-			label: 'tax'
-		}],
-		discounts: [{
-			__typename: 'Discount',
-			amount: this.money(),
-			label: 'discount'
-		}]
+      __typename: 'AppliedTax',
+      amount: this.money(),
+      label: 'tax',
+    }],
+    discounts: [{
+      __typename: 'Discount',
+      amount: this.money(),
+      label: 'discount',
+    }],
   };
   applied_coupons = [];
   items = [];
@@ -35,13 +35,13 @@ export class MockMagentoCart implements MagentoCart {
   email = faker.internet.email();
 
   private money(): MagentoMoney {
-    return (new MagentoMoneyFactory()).create()
+    return (new MagentoMoneyFactory()).create();
   }
 };
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoCartFactory extends DaffModelFactory<MagentoCart> {
   constructor() {

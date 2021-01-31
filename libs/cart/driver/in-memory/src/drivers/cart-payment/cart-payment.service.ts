@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCart, DaffCartPaymentMethod, DaffCartAddress } from '@daffodil/cart';
 import {
-  DaffCartPaymentServiceInterface,
-} from '@daffodil/cart/driver';
+  DaffCart,
+  DaffCartPaymentMethod,
+  DaffCartAddress,
+} from '@daffodil/cart';
+import { DaffCartPaymentServiceInterface } from '@daffodil/cart/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryCartPaymentService implements DaffCartPaymentServiceInterface {
   url = '/api/cart-payment';
@@ -20,11 +22,15 @@ export class DaffInMemoryCartPaymentService implements DaffCartPaymentServiceInt
   }
 
   update(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>): Observable<Partial<DaffCart>> {
-    return this.http.put<DaffCart>(`${this.url}/${cartId}`, {payment});
+    return this.http.put<DaffCart>(`${this.url}/${cartId}`, { payment });
   }
 
-  updateWithBilling(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return this.http.put<DaffCart>(`${this.url}/${cartId}`, {payment, address});
+  updateWithBilling(
+    cartId: DaffCart['id'],
+    payment: Partial<DaffCartPaymentMethod>,
+    address: Partial<DaffCartAddress>,
+  ): Observable<Partial<DaffCart>> {
+    return this.http.put<DaffCart>(`${this.url}/${cartId}`, { payment, address });
   }
 
   remove(cartId: DaffCart['id']): Observable<void> {

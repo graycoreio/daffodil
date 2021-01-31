@@ -1,15 +1,18 @@
-import { DaffLoadingState } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
+import { DaffLoadingState } from '@daffodil/core/state';
 
 import {
   DaffCartShippingAddressActionTypes,
   DaffCartAddressActionTypes,
 } from '../../actions/public_api';
-import { initialState } from '../cart-initial-state';
-import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
+import { initialState } from '../cart-initial-state';
 import { DaffCartOperationType } from '../cart-operation-type.enum';
-import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
+import { DaffCartReducerState } from '../cart-state.interface';
+import {
+  initializeErrorAdder,
+  initializeErrorResetter,
+} from '../errors/error-state-helpers';
 import { initializeLoadingSetter } from '../loading/cart-loading.type';
 
 const addError = initializeErrorAdder(DaffCartOperationType.ShippingAddress);
@@ -18,55 +21,55 @@ const setLoading = initializeLoadingSetter(DaffCartOperationType.ShippingAddress
 
 export function cartShippingAddressReducer<T extends DaffCart>(
   state = initialState,
-  action: ActionTypes
+  action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {
-    case DaffCartShippingAddressActionTypes.CartShippingAddressLoadAction:
-      return {
-        ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving)
-      };
+  case DaffCartShippingAddressActionTypes.CartShippingAddressLoadAction:
+    return {
+      ...state,
+      ...setLoading(state.loading, DaffLoadingState.Resolving),
+    };
 
-    case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateAction:
-    case DaffCartAddressActionTypes.CartAddressUpdateAction:
-      return {
-        ...state,
-        ...setLoading(state.loading, DaffLoadingState.Mutating)
-      };
+  case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateAction:
+  case DaffCartAddressActionTypes.CartAddressUpdateAction:
+    return {
+      ...state,
+      ...setLoading(state.loading, DaffLoadingState.Mutating),
+    };
 
-    case DaffCartShippingAddressActionTypes.CartShippingAddressLoadSuccessAction:
-      return {
-        ...state,
-        ...resetErrors(state.errors),
-        cart: {
-          ...state.cart,
-          shipping_address: action.payload
-        },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
-      };
+  case DaffCartShippingAddressActionTypes.CartShippingAddressLoadSuccessAction:
+    return {
+      ...state,
+      ...resetErrors(state.errors),
+      cart: {
+        ...state.cart,
+        shipping_address: action.payload,
+      },
+      ...setLoading(state.loading, DaffLoadingState.Complete),
+    };
 
-    case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateSuccessAction:
-    case DaffCartAddressActionTypes.CartAddressUpdateSuccessAction:
-      return {
-        ...state,
-        ...resetErrors(state.errors),
-        cart: {
-          ...state.cart,
-          ...action.payload
-        },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
-      };
+  case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateSuccessAction:
+  case DaffCartAddressActionTypes.CartAddressUpdateSuccessAction:
+    return {
+      ...state,
+      ...resetErrors(state.errors),
+      cart: {
+        ...state.cart,
+        ...action.payload,
+      },
+      ...setLoading(state.loading, DaffLoadingState.Complete),
+    };
 
-    case DaffCartShippingAddressActionTypes.CartShippingAddressLoadFailureAction:
-    case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateFailureAction:
-    case DaffCartAddressActionTypes.CartAddressUpdateFailureAction:
-      return {
-        ...state,
-        ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
-      };
+  case DaffCartShippingAddressActionTypes.CartShippingAddressLoadFailureAction:
+  case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateFailureAction:
+  case DaffCartAddressActionTypes.CartAddressUpdateFailureAction:
+    return {
+      ...state,
+      ...addError(state.errors, action.payload),
+      ...setLoading(state.loading, DaffLoadingState.Complete),
+    };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }

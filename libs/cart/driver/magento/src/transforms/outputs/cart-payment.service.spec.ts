@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  MagentoCartPaymentMethodFactory
-} from '@daffodil/cart/driver/magento/testing';
+import { MagentoCartPaymentMethodFactory } from '@daffodil/cart/driver/magento/testing';
 
 import { DaffMagentoCartPaymentTransformer } from './cart-payment.service';
 
@@ -17,7 +15,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartPaymentTransformer,
-      ]
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCartPaymentTransformer);

@@ -1,7 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import {
   DaffCart,
@@ -9,17 +15,20 @@ import {
   DaffCartStorageService,
 } from '@daffodil/cart';
 import {
+  DaffCartShippingMethodsServiceInterface,
+  DaffCartShippingMethodsDriver,
+} from '@daffodil/cart/driver';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
   DaffCartShippingMethodsLoad,
   DaffCartShippingMethodsLoadSuccess,
-  DaffCartShippingMethodsLoadFailure
+  DaffCartShippingMethodsLoadFailure,
 } from '@daffodil/cart/state';
-import { DaffCartShippingMethodsServiceInterface, DaffCartShippingMethodsDriver } from '@daffodil/cart/driver';
 import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartShippingMethodsEffects } from './cart-shipping-methods.effects';
 
@@ -42,12 +51,12 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffTestingCartDriverModule.forRoot()
+        DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
         DaffCartShippingMethodsEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffCartShippingMethodsEffects);
@@ -89,7 +98,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = {code: 'code', message: 'Failed to list cart shipping methods'};
+        const error: DaffStateError = { code: 'code', message: 'Failed to list cart shipping methods' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure(error);
