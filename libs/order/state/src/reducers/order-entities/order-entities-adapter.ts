@@ -1,4 +1,7 @@
-import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import {
+  EntityAdapter,
+  createEntityAdapter,
+} from '@ngrx/entity';
 
 import { DaffOrder } from '@daffodil/order';
 

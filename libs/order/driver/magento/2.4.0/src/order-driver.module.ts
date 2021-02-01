@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffOrderDriver } from '@daffodil/order/driver';
 
@@ -8,7 +11,7 @@ import { DaffOrderMagentoService } from './order.service';
 @NgModule({
   imports: [
     CommonModule,
-  ]
+  ],
 })
 export class DaffOrderMagentoDriverModule {
   static forRoot(): ModuleWithProviders<DaffOrderMagentoDriverModule> {
@@ -17,9 +20,9 @@ export class DaffOrderMagentoDriverModule {
       providers: [
         {
           provide: DaffOrderDriver,
-          useExisting: DaffOrderMagentoService
+          useExisting: DaffOrderMagentoService,
         },
-      ]
+      ],
     };
   }
 }

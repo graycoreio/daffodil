@@ -7,7 +7,7 @@ import {
   DaffOrderListSuccess,
   DaffOrderListFailure,
   daffOrderInitialState as initialState,
-  DaffOrderReducerState
+  DaffOrderReducerState,
 } from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
@@ -27,7 +27,7 @@ describe('Order | Reducer | Order', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -53,8 +53,8 @@ describe('Order | Reducer | Order', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['an error']
-      }
+        errors: ['an error'],
+      };
 
       const orderLoadSuccess = new DaffOrderLoadSuccess(mockOrder);
 
@@ -80,8 +80,8 @@ describe('Order | Reducer | Order', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['existing error']
-      }
+        errors: ['existing error'],
+      };
 
       const orderLoadFailureAction = new DaffOrderLoadFailure(stubError);
 
@@ -116,8 +116,8 @@ describe('Order | Reducer | Order', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['an error']
-      }
+        errors: ['an error'],
+      };
 
       const orderListSuccess = new DaffOrderListSuccess([mockOrder]);
 
@@ -143,8 +143,8 @@ describe('Order | Reducer | Order', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['existing error']
-      }
+        errors: ['existing error'],
+      };
 
       const orderListFailureAction = new DaffOrderListFailure(stubError);
 

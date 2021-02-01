@@ -1,4 +1,4 @@
 export interface DaffOrderReducerState {
-  loading: boolean,
-  errors: string[]
+  loading: boolean;
+  errors: string[];
 }

@@ -1,12 +1,16 @@
-import {InMemoryCache} from '@apollo/client/core';
-import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
+import { DaffCart } from '@daffodil/cart';
 import { schema } from '@daffodil/driver/magento';
-
 import {
   DaffOrder,
   DaffOrderAddress,
@@ -19,12 +23,24 @@ import {
   DaffOrderShippingMethod,
   DaffOrderTotal,
   DaffOrderPayment,
-  DaffOrderTotalTypeEnum
+  DaffOrderTotalTypeEnum,
 } from '@daffodil/order';
 import {
   DaffOrderNotFoundError,
   DaffOrderInvalidAPIResponseError,
 } from '@daffodil/order/driver';
+import {
+  MagentoGraycoreOrder,
+  MagentoGraycoreOrderAddress,
+  MagentoGraycoreOrderInvoice,
+  MagentoGraycoreOrderPayment,
+  MagentoGraycoreOrderItem,
+  MagentoGraycoreOrderShipmentItem,
+  MagentoGraycoreOrderShipmentTracking,
+  MagentoGraycoreOrderShipment,
+  getGuestOrders,
+  MagentoGetGuestOrdersResponse,
+} from '@daffodil/order/driver/magento/2.4.0';
 import {
   DaffOrderFactory,
   DaffOrderAddressFactory,
@@ -38,19 +54,6 @@ import {
   DaffOrderTotalFactory,
   DaffOrderPaymentFactory,
 } from '@daffodil/order/testing';
-import {
-  MagentoGraycoreOrder,
-  MagentoGraycoreOrderAddress,
-  MagentoGraycoreOrderInvoice,
-  MagentoGraycoreOrderPayment,
-  MagentoGraycoreOrderItem,
-  MagentoGraycoreOrderShipmentItem,
-  MagentoGraycoreOrderShipmentTracking,
-  MagentoGraycoreOrderShipment,
-  getGuestOrders,
-  MagentoGetGuestOrdersResponse
-} from '@daffodil/order/driver/magento/2.4.0';
-import { DaffCart } from '@daffodil/cart';
 
 import { DaffOrderMagentoService } from './order.service';
 
@@ -102,18 +105,18 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffOrderMagentoService,
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffOrderMagentoService);
@@ -145,19 +148,19 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       image: {
         url: 'url',
         id: null,
-        label: null
+        label: null,
       },
       parent_item_id: null,
       product_id: '4',
       order_id: '2',
-      item_id: null
+      item_id: null,
     });
     mockDaffOrderShipmentItem = daffOrderShipmentItemFactory.create({
-      item: mockDaffOrderItem
+      item: mockDaffOrderItem,
     });
     mockDaffOrderShipmentTracking = daffOrderShipmentTrackingFactory.create({
       tracking_url: null,
-      carrier_logo: null
+      carrier_logo: null,
     });
     mockDaffOrderShipment = daffOrderShipmentFactory.create({
       carrier: null,
@@ -166,33 +169,33 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       method: null,
       method_description: null,
       tracking: [mockDaffOrderShipmentTracking],
-      items: [mockDaffOrderShipmentItem]
+      items: [mockDaffOrderShipmentItem],
     });
     mockDaffOrderShippingMethod = daffOrderShippingMethodFactory.create();
     mockDaffOrderGrandTotal = daffOrderTotalFactory.create({
       label: 'Grand Total',
       type: DaffOrderTotalTypeEnum.GrandTotal,
-      sort_order: 1
+      sort_order: 1,
     });
     mockDaffOrderSubTotal = daffOrderTotalFactory.create({
       label: 'Subtotal',
       type: DaffOrderTotalTypeEnum.Subtotal,
-      sort_order: 0
+      sort_order: 0,
     });
     mockDaffOrderShippingTotal = daffOrderTotalFactory.create({
       label: 'Shipping',
       type: DaffOrderTotalTypeEnum.Shipping,
-      sort_order: 2
+      sort_order: 2,
     });
     mockDaffOrderTax = daffOrderTotalFactory.create({
       label: 'Tax',
       type: DaffOrderTotalTypeEnum.Tax,
-      sort_order: 3
+      sort_order: 3,
     });
     mockDaffOrderDiscount = daffOrderTotalFactory.create({
       label: 'Discount',
       type: DaffOrderTotalTypeEnum.Discount,
-      sort_order: 4
+      sort_order: 4,
     });
     mockDaffOrderInvoice = daffOrderInvoiceFactory.create({
       totals: jasmine.arrayContaining([
@@ -200,13 +203,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
-        mockDaffOrderDiscount
+        mockDaffOrderDiscount,
       ]),
       billing_address: mockDaffOrderAddress,
       shipping_address: mockDaffOrderAddress,
       payment: mockDaffOrderPayment,
       items: [mockDaffOrderShipmentItem],
-      shipping_method: null
+      shipping_method: null,
     });
     mockDaffOrder = daffOrderFactory.create({
       id: '2',
@@ -216,7 +219,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
-        mockDaffOrderDiscount
+        mockDaffOrderDiscount,
       ]),
       applied_codes: [mockDaffOrderCoupon],
       items: [mockDaffOrderItem],
@@ -280,13 +283,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
     mockMagentoOrderShipmentItem = {
       __typename: 'GraycoreOrderShipmentItem',
       item: mockMagentoOrderItem,
-      qty: mockDaffOrderShipmentItem.qty
+      qty: mockDaffOrderShipmentItem.qty,
     };
     mockMagentoOrderShipment = {
       __typename: 'GraycoreOrderShipment',
       tracking: [mockMagentoOrderShipmentTracking],
-      items: [mockMagentoOrderShipmentItem]
-		};
+      items: [mockMagentoOrderShipmentItem],
+    };
     mockMagentoOrderPayment = {
       __typename: 'GraycoreOrderPayment',
       payment_id: Number(mockDaffOrderPayment.payment_id),
@@ -330,14 +333,14 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       shipments: [mockMagentoOrderShipment],
       payment: mockMagentoOrderPayment,
       invoices: [mockMagentoOrderInvoice],
-      credits: [mockMagentoOrderInvoice]
+      credits: [mockMagentoOrderInvoice],
     };
     mockDaffOrder.extra_attributes = mockMagentoOrder;
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
         __typename: 'GraycoreGuestOrders',
-        orders: [mockMagentoOrder]
-      }
+        orders: [mockMagentoOrder],
+      },
     };
   });
 
@@ -349,7 +352,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
-					mockGetOrdersResponse.graycoreGuestOrders.orders = null;
+          mockGetOrdersResponse.graycoreGuestOrders.orders = null;
         });
 
         it('should throw a DaffOrderInvalidAPIResponseError', done => {
@@ -358,13 +361,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
               expect(err).toEqual(jasmine.any(DaffOrderInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
-            data: mockGetOrdersResponse
+            data: mockGetOrdersResponse,
           });
         });
       });
@@ -381,7 +384,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
-              data: mockGetOrdersResponse
+              data: mockGetOrdersResponse,
             });
           });
         });
@@ -407,7 +410,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
-              data: mockGetOrdersResponse
+              data: mockGetOrdersResponse,
             });
           });
         });
@@ -421,7 +424,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
@@ -433,7 +436,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });
@@ -452,14 +455,14 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
-            data: mockGetOrdersResponse
+            data: mockGetOrdersResponse,
           });
         });
       });
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-					mockGetOrdersResponse.graycoreGuestOrders.orders = null;
+          mockGetOrdersResponse.graycoreGuestOrders.orders = null;
         });
 
         it('should throw a DaffOrderInvalidAPIResponseError', done => {
@@ -468,13 +471,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
               expect(err).toEqual(jasmine.any(DaffOrderInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
-            data: mockGetOrdersResponse
+            data: mockGetOrdersResponse,
           });
         });
       });
@@ -487,7 +490,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
             expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
@@ -499,7 +502,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });

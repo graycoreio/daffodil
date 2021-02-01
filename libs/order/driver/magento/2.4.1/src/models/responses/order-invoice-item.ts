@@ -1,4 +1,7 @@
-import { MagentoOrderBundleItemSelectedOption, MagentoOrderItem } from './order-item'
+import {
+  MagentoOrderBundleItemSelectedOption,
+  MagentoOrderItem,
+} from './order-item';
 
 export type MagentoOrderInvoiceItemTypenames =
   'InvoiceItem' |

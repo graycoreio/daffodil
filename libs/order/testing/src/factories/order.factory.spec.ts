@@ -10,7 +10,7 @@ describe('Order | Testing | Factories | DaffOrderFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderFactory]
+      providers: [DaffOrderFactory],
     });
 
     orderFactory = TestBed.inject(DaffOrderFactory);
@@ -22,7 +22,7 @@ describe('Order | Testing | Factories | DaffOrderFactory', () => {
 
   describe('create', () => {
 
-    let result : DaffOrder;
+    let result: DaffOrder;
 
     beforeEach(() => {
       result = orderFactory.create();
@@ -35,7 +35,7 @@ describe('Order | Testing | Factories | DaffOrderFactory', () => {
     describe('Order object', () => {
 
       it('should have no OrderItems', () => {
-        expect(result.items.length).toEqual(0)
+        expect(result.items.length).toEqual(0);
       });
 
       it('should have no billing addresses', () => {

@@ -1,20 +1,35 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  select,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffOrder, DaffOrderItem, DaffOrderTotal, DaffOrderTotalTypeEnum } from '@daffodil/order';
+import {
+  daffCartReducers,
+  DaffCartPlaceOrderSuccess,
+} from '@daffodil/cart/state';
+import {
+  DaffOrder,
+  DaffOrderItem,
+  DaffOrderTotal,
+  DaffOrderTotalTypeEnum,
+} from '@daffodil/order';
 import {
   DaffOrderEntityState,
   daffOrderReducers,
   DAFF_ORDER_STORE_FEATURE_KEY,
-  DaffOrderListSuccess
+  DaffOrderListSuccess,
 } from '@daffodil/order/state';
-import { DaffOrderFactory, DaffOrderItemFactory, DaffOrderTotalFactory } from '@daffodil/order/testing';
-import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart/state';
-
 import {
-  getDaffOrderEntitySelectors,
-} from './order-entities.selector';
+  DaffOrderFactory,
+  DaffOrderItemFactory,
+  DaffOrderTotalFactory,
+} from '@daffodil/order/testing';
+
+import { getDaffOrderEntitySelectors } from './order-entities.selector';
 
 describe('Order | Selector | OrderEntities', () => {
   let store: Store<DaffOrderEntityState>;
@@ -60,9 +75,9 @@ describe('Order | Selector | OrderEntities', () => {
       imports: [
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
-          [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers)
-        })
-      ]
+          [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers),
+        }),
+      ],
     });
 
     store = TestBed.inject(Store);
@@ -74,7 +89,7 @@ describe('Order | Selector | OrderEntities', () => {
     mockOrderTotal = orderTotalFactory.create();
     mockOrder = orderFactory.create({
       items: [mockOrderItem],
-      totals: [mockOrderTotal]
+      totals: [mockOrderTotal],
     });
     orderId = mockOrder.id;
   });
@@ -82,7 +97,7 @@ describe('Order | Selector | OrderEntities', () => {
   describe('selectAllOrders', () => {
     it('should initially be an empty array', () => {
       const selector = store.pipe(select(selectAllOrders));
-      const expected = cold('a', {a: []});
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -94,7 +109,7 @@ describe('Order | Selector | OrderEntities', () => {
 
       it('should select all of the orders', () => {
         const selector = store.pipe(select(selectAllOrders));
-        const expected = cold('a', {a: [mockOrder]});
+        const expected = cold('a', { a: [mockOrder]});
 
         expect(selector).toBeObservable(expected);
       });
@@ -104,7 +119,7 @@ describe('Order | Selector | OrderEntities', () => {
   describe('selectOrderEntities', () => {
     it('should initially be an empty object', () => {
       const selector = store.pipe(select(selectOrderEntities));
-      const expected = cold('a', {a: {}});
+      const expected = cold('a', { a: {}});
 
       expect(selector).toBeObservable(expected);
     });
@@ -116,7 +131,7 @@ describe('Order | Selector | OrderEntities', () => {
 
       it('should select all of the orders', () => {
         const selector = store.pipe(select(selectOrderEntities));
-        const expected = cold('a', {a: {[orderId]: mockOrder}});
+        const expected = cold('a', { a: { [orderId]: mockOrder }});
 
         expect(selector).toBeObservable(expected);
       });
@@ -126,7 +141,7 @@ describe('Order | Selector | OrderEntities', () => {
   describe('selectOrderIds', () => {
     it('should initially be an empty array', () => {
       const selector = store.pipe(select(selectOrderIds));
-      const expected = cold('a', {a: []});
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -138,7 +153,7 @@ describe('Order | Selector | OrderEntities', () => {
 
       it('should select all of the order IDs', () => {
         const selector = store.pipe(select(selectOrderIds));
-        const expected = cold('a', {a: [orderId]});
+        const expected = cold('a', { a: [orderId]});
 
         expect(selector).toBeObservable(expected);
       });
@@ -148,7 +163,7 @@ describe('Order | Selector | OrderEntities', () => {
   describe('selectOrderTotal', () => {
     it('should initially be 0', () => {
       const selector = store.pipe(select(selectOrderTotal));
-      const expected = cold('a', {a: 0});
+      const expected = cold('a', { a: 0 });
 
       expect(selector).toBeObservable(expected);
     });
@@ -160,7 +175,7 @@ describe('Order | Selector | OrderEntities', () => {
 
       it('should select the total number of orders', () => {
         const selector = store.pipe(select(selectOrderTotal));
-        const expected = cold('a', {a: 1});
+        const expected = cold('a', { a: 1 });
 
         expect(selector).toBeObservable(expected);
       });
@@ -170,20 +185,20 @@ describe('Order | Selector | OrderEntities', () => {
   describe('selectPlacedOrder', () => {
     it('should initially be null', () => {
       const selector = store.pipe(select(selectPlacedOrder));
-      const expected = cold('a', {a: null});
+      const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
     });
 
     describe('when an order has been placed and loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffCartPlaceOrderSuccess({orderId: mockOrder.id, cartId: 'cartId'}));
+        store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
         store.dispatch(new DaffOrderListSuccess([mockOrder]));
       });
 
       it('should select the most recently placed order', () => {
         const selector = store.pipe(select(selectPlacedOrder));
-        const expected = cold('a', {a: mockOrder});
+        const expected = cold('a', { a: mockOrder });
 
         expect(selector).toBeObservable(expected);
       });
@@ -193,20 +208,20 @@ describe('Order | Selector | OrderEntities', () => {
   describe('selectHasPlacedOrder', () => {
     it('should initially be false', () => {
       const selector = store.pipe(select(selectHasPlacedOrder));
-      const expected = cold('a', {a: false});
+      const expected = cold('a', { a: false });
 
       expect(selector).toBeObservable(expected);
     });
 
     describe('when an order has been placed and loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffCartPlaceOrderSuccess({orderId: mockOrder.id, cartId: 'cartId'}));
+        store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
         store.dispatch(new DaffOrderListSuccess([mockOrder]));
       });
 
       it('should select if the most recently placed order exists', () => {
         const selector = store.pipe(select(selectHasPlacedOrder));
-        const expected = cold('a', {a: true});
+        const expected = cold('a', { a: true });
 
         expect(selector).toBeObservable(expected);
       });
@@ -215,8 +230,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderTotals', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderTotals, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderTotals, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -227,8 +242,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s totals', () => {
-        const selector = store.pipe(select(selectOrderTotals, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.totals});
+        const selector = store.pipe(select(selectOrderTotals, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.totals });
 
         expect(selector).toBeObservable(expected);
       });
@@ -237,8 +252,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderAppliedCodes', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderAppliedCodes, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderAppliedCodes, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -249,8 +264,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s applied codes', () => {
-        const selector = store.pipe(select(selectOrderAppliedCodes, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.applied_codes});
+        const selector = store.pipe(select(selectOrderAppliedCodes, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.applied_codes });
 
         expect(selector).toBeObservable(expected);
       });
@@ -259,8 +274,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderItems', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderItems, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderItems, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -271,8 +286,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s items', () => {
-        const selector = store.pipe(select(selectOrderItems, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.items});
+        const selector = store.pipe(select(selectOrderItems, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.items });
 
         expect(selector).toBeObservable(expected);
       });
@@ -281,8 +296,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderBillingAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderBillingAddresses, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderBillingAddresses, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -293,8 +308,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderBillingAddresses, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.billing_addresses});
+        const selector = store.pipe(select(selectOrderBillingAddresses, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.billing_addresses });
 
         expect(selector).toBeObservable(expected);
       });
@@ -303,8 +318,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderShippingTotalAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderShippingTotalAddresses, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderShippingTotalAddresses, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -315,8 +330,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderShippingTotalAddresses, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.shipping_addresses});
+        const selector = store.pipe(select(selectOrderShippingTotalAddresses, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.shipping_addresses });
 
         expect(selector).toBeObservable(expected);
       });
@@ -325,8 +340,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderShipments', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderShipments, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderShipments, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -337,8 +352,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s shipments', () => {
-        const selector = store.pipe(select(selectOrderShipments, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.shipments});
+        const selector = store.pipe(select(selectOrderShipments, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.shipments });
 
         expect(selector).toBeObservable(expected);
       });
@@ -347,8 +362,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderPayment', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderPayment, {id: mockOrder.id}));
-      const expected = cold('a', {a: null});
+      const selector = store.pipe(select(selectOrderPayment, { id: mockOrder.id }));
+      const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
     });
@@ -359,8 +374,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s payment', () => {
-        const selector = store.pipe(select(selectOrderPayment, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.payment});
+        const selector = store.pipe(select(selectOrderPayment, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.payment });
 
         expect(selector).toBeObservable(expected);
       });
@@ -369,8 +384,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderInvoices', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderInvoices, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderInvoices, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -381,8 +396,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s invoices', () => {
-        const selector = store.pipe(select(selectOrderInvoices, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.invoices});
+        const selector = store.pipe(select(selectOrderInvoices, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.invoices });
 
         expect(selector).toBeObservable(expected);
       });
@@ -391,8 +406,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderCredits', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderCredits, {id: mockOrder.id}));
-      const expected = cold('a', {a: []});
+      const selector = store.pipe(select(selectOrderCredits, { id: mockOrder.id }));
+      const expected = cold('a', { a: []});
 
       expect(selector).toBeObservable(expected);
     });
@@ -403,8 +418,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s credits', () => {
-        const selector = store.pipe(select(selectOrderCredits, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.credits});
+        const selector = store.pipe(select(selectOrderCredits, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrder.credits });
 
         expect(selector).toBeObservable(expected);
       });
@@ -413,8 +428,8 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderItem', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderItem, {id: mockOrder.id, item_id: mockOrderItem.item_id}));
-      const expected = cold('a', {a: null});
+      const selector = store.pipe(select(selectOrderItem, { id: mockOrder.id, item_id: mockOrderItem.item_id }));
+      const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
     });
@@ -425,8 +440,8 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order item', () => {
-        const selector = store.pipe(select(selectOrderItem, {id: mockOrder.id, item_id: mockOrderItem.item_id}));
-        const expected = cold('a', {a: mockOrderItem});
+        const selector = store.pipe(select(selectOrderItem, { id: mockOrder.id, item_id: mockOrderItem.item_id }));
+        const expected = cold('a', { a: mockOrderItem });
 
         expect(selector).toBeObservable(expected);
       });
@@ -549,8 +564,8 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded without a discount total', () => {
       beforeEach(() => {
-				mockOrderTotal = null;
-				store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        mockOrderTotal = null;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
       });
 
       it('should return false', () => {

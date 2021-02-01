@@ -1,6 +1,9 @@
+import {
+  HttpClientModule,
+  HttpClient,
+} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule, } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
@@ -19,7 +22,7 @@ describe('DaffInMemoryBackendOrderService | Integration', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendOrderService, {delay: 0}),
+        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendOrderService, { delay: 0 }),
       ],
     });
 
@@ -30,7 +33,7 @@ describe('DaffInMemoryBackendOrderService | Integration', () => {
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;
 
-    httpClient.post<any>('commands/resetDb', {orders: [mockOrder]}).subscribe(() => done());
+    httpClient.post<any>('commands/resetDb', { orders: [mockOrder]}).subscribe(() => done());
   });
 
   describe('processing a order load request', () => {

@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCompositeOrderItem, DaffOrderItemType } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffCompositeOrderItem,
+  DaffOrderItemType,
+} from '@daffodil/order';
 
 import { MockOrderItem } from './order-item.factory';
 
 export class MockCompositeOrderItem extends MockOrderItem implements DaffCompositeOrderItem {
 	type = DaffOrderItemType.Composite;
 	options = [
-		{
-			option_label: faker.random.word(),
-			value_label: faker.random.word()
-		},
-		{
-			option_label: faker.random.word(),
-			value_label: faker.random.word()
-		}
+	  {
+	    option_label: faker.random.word(),
+	    value_label: faker.random.word(),
+	  },
+	  {
+	    option_label: faker.random.word(),
+	    value_label: faker.random.word(),
+	  },
 	];
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffCompositeOrderItemFactory extends DaffModelFactory<DaffCompositeOrderItem> {
   constructor() {

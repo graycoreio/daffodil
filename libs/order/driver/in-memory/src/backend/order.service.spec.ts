@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderFactory,
-  isOrder
+  isOrder,
 } from '@daffodil/order/testing';
 
 import { DaffInMemoryBackendOrderService } from './order.service';
@@ -23,7 +23,7 @@ describe('DaffInMemoryBackendOrderService | Unit', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendOrderService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendOrderService);
 
@@ -37,13 +37,13 @@ describe('DaffInMemoryBackendOrderService | Unit', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 

@@ -4,5 +4,5 @@ export interface MagentoGetGuestOrdersResponse {
   graycoreGuestOrders: {
     __typename?: string;
     items: MagentoOrder[] | null;
-  }
+  };
 }

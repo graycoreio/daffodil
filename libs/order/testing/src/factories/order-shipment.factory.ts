@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffOrderShipment } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffOrderShipment } from '@daffodil/order';
 
 export class MockOrderShipment implements DaffOrderShipment {
   tracking = [];
@@ -15,7 +15,7 @@ export class MockOrderShipment implements DaffOrderShipment {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffOrderShipmentFactory extends DaffModelFactory<DaffOrderShipment> {
   constructor() {

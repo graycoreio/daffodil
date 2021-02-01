@@ -1,6 +1,6 @@
-import { MagentoGraycoreOrderShipmentItem } from './order-shipment-item';
 import { MagentoGraycoreOrderAddress } from './order-address';
 import { MagentoGraycoreOrderPayment } from './order-payment';
+import { MagentoGraycoreOrderShipmentItem } from './order-shipment-item';
 
 export interface MagentoGraycoreOrderInvoice {
   __typename?: 'GraycoreOrderInvoice';

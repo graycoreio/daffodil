@@ -1,8 +1,8 @@
-import { MagentoGraycoreOrderItem } from './order-item';
 import { MagentoGraycoreOrderAddress } from './order-address';
-import { MagentoGraycoreOrderShipment } from './order-shipment';
-import { MagentoGraycoreOrderPayment } from './order-payment';
 import { MagentoGraycoreOrderInvoice } from './order-invoice';
+import { MagentoGraycoreOrderItem } from './order-item';
+import { MagentoGraycoreOrderPayment } from './order-payment';
+import { MagentoGraycoreOrderShipment } from './order-shipment';
 
 export interface MagentoGraycoreOrder {
   __typename?: 'GraycoreOrder';
@@ -18,11 +18,11 @@ export interface MagentoGraycoreOrder {
   tax: number;
   status: string;
   applied_codes: string[];
-  items: MagentoGraycoreOrderItem[]
-  billing_address: MagentoGraycoreOrderAddress
-  shipping_address: MagentoGraycoreOrderAddress
-  shipments: MagentoGraycoreOrderShipment[]
-  payment: MagentoGraycoreOrderPayment
-  invoices: MagentoGraycoreOrderInvoice[]
-  credits: MagentoGraycoreOrderInvoice[]
+  items: MagentoGraycoreOrderItem[];
+  billing_address: MagentoGraycoreOrderAddress;
+  shipping_address: MagentoGraycoreOrderAddress;
+  shipments: MagentoGraycoreOrderShipment[];
+  payment: MagentoGraycoreOrderPayment;
+  invoices: MagentoGraycoreOrderInvoice[];
+  credits: MagentoGraycoreOrderInvoice[];
 };

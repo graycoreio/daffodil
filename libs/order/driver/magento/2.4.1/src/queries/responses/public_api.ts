@@ -1,1 +1,1 @@
-export { MagentoGetGuestOrdersResponse } from './get-guest-orders'
+export { MagentoGetGuestOrdersResponse } from './get-guest-orders';

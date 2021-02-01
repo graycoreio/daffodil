@@ -1,10 +1,10 @@
-import { MagentoOrderItem } from './order-item';
 import { MagentoOrderAddress } from './order-address';
-import { MagentoOrderShipment } from './order-shipment';
-import { MagentoOrderPayment } from './order-payment';
-import { MagentoOrderInvoice } from './order-invoice';
-import { MagentoOrderTotal } from './order-total';
 import { MagentoOrderCredit } from './order-credit';
+import { MagentoOrderInvoice } from './order-invoice';
+import { MagentoOrderItem } from './order-item';
+import { MagentoOrderPayment } from './order-payment';
+import { MagentoOrderShipment } from './order-shipment';
+import { MagentoOrderTotal } from './order-total';
 
 export interface MagentoOrder {
   __typename?: 'GraycoreGuestOrder';

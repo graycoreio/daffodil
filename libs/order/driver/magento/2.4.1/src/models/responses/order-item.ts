@@ -1,4 +1,4 @@
-import { MagentoMoney } from '@daffodil/driver/magento'
+import { MagentoMoney } from '@daffodil/driver/magento';
 
 import { MagentoDiscount } from './discount';
 

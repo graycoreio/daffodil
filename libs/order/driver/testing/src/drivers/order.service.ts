@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import {
-  DaffOrder
-} from '@daffodil/order';
-import {
-  DaffOrderServiceInterface,
-} from '@daffodil/order/driver';
+import { DaffOrder } from '@daffodil/order';
+import { DaffOrderServiceInterface } from '@daffodil/order/driver';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingOrderService implements DaffOrderServiceInterface {
 
@@ -19,7 +18,7 @@ export class DaffTestingOrderService implements DaffOrderServiceInterface {
   ) {}
 
   get(orderId: DaffOrder['id']): Observable<DaffOrder> {
-    return of(this.orderFactory.create({id: orderId}));
+    return of(this.orderFactory.create({ id: orderId }));
   }
 
   list(): Observable<DaffOrder[]> {

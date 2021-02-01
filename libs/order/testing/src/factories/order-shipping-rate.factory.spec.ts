@@ -10,7 +10,7 @@ describe('Order | Testing | Factories | OrderShippingRateFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderShippingMethodFactory]
+      providers: [DaffOrderShippingMethodFactory],
     });
 
     orderShippingRateFactory = TestBed.inject(DaffOrderShippingMethodFactory);
@@ -42,6 +42,6 @@ describe('Order | Testing | Factories | OrderShippingRateFactory', () => {
 
       result = orderShippingRateFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

@@ -1,9 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
 import {
-  DaffOrder,
-} from '@daffodil/order';
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+
+import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
 import { DaffInMemoryOrderService } from './order.service';
@@ -19,11 +20,11 @@ describe('Driver | In Memory | Order | OrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryOrderService
-      ]
+        DaffInMemoryOrderService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -53,7 +54,7 @@ describe('Driver | In Memory | Order | OrderService', () => {
 
       expect(req.request.method).toBe('GET');
       req.flush(mockOrder);
-		});
+    });
   });
 
   describe('list | getting all orders', () => {
@@ -67,6 +68,6 @@ describe('Driver | In Memory | Order | OrderService', () => {
 
       expect(req.request.method).toBe('GET');
       req.flush([mockOrder]);
-		});
+    });
   });
 });
