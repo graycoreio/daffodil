@@ -16,7 +16,7 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCar
 
   get(cartId: DaffCart['id']): Observable<DaffCart> {
     return this.http.get<DaffCart>(`${this.url}/${cartId}`).pipe(
-			catchError((error: Error) => throwError(DaffCartNotFoundError)),
+			catchError((error: Error) => throwError(new DaffCartNotFoundError(error.message))),
 			map(result => result)
 		);
   }
