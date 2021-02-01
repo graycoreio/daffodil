@@ -1,6 +1,4 @@
-import { FieldValue } from '../models/hubspot-request'
+import { FieldValue } from '../models/hubspot-request';
 
 
-export const jsonBuilder = (payload: object): FieldValue[] => {
-  return Object.keys(payload).map((key) => ({'name': key, 'value': payload[key]}));
-}
+export const jsonBuilder = (payload: Record<string, any>): FieldValue[] => Object.keys(payload).map((key) => ({ name: key, value: payload[key] }));

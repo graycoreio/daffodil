@@ -9,7 +9,7 @@ describe('Driver | Magento | Testing | Factories | MagentoMoneyFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoMoneyFactory]
+      providers: [MagentoMoneyFactory],
     });
 
     factory = TestBed.inject(MagentoMoneyFactory);

@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { jsonBuilder } from './transformers/json-builder';
 import { DaffHubspotConfig } from './models/config';
 import { DaffHubspotRequest } from './models/hubspot-request';
 import { HubspotResponse } from './models/hubspot-response';
+import { jsonBuilder } from './transformers/json-builder';
 
 export class DaffHubspotFormsService {
 
@@ -17,31 +16,31 @@ export class DaffHubspotFormsService {
     private route: Router,
     private title: Title,
     private config: DaffHubspotConfig) { }
-    
 
-  submit(payload: Object): Observable<HubspotResponse> {
+
+  submit(payload: Record<string, any>): Observable<HubspotResponse> {
     return this.http.post<HubspotResponse>(
-      this.generateUrl(this.config.portalId, this.config.guid, this.config.version), 
-      this.makeRequest(payload)
+      this.generateUrl(this.config.portalId, this.config.guid, this.config.version),
+      this.makeRequest(payload),
     );
   }
 
   private makeRequest(payload): DaffHubspotRequest {
     return {
-      'fields': [
-        ...jsonBuilder(payload)
-      ], 
-      'context': {
-        'hutk': this.getCookie(),
-        'pageUri': this.getPageURI(),
-        'pageName': this.title.getTitle()
-      }
-    }
+      fields: [
+        ...jsonBuilder(payload),
+      ],
+      context: {
+        hutk: this.getCookie(),
+        pageUri: this.getPageURI(),
+        pageName: this.title.getTitle(),
+      },
+    };
   }
 
   private generateUrl(portalId: string, guid: string, version: string): string {
     if (version === undefined) {
-      version = 'v3'
+      version = 'v3';
     }
     return 'https://api.hsforms.com/submissions/' + version + '/integration/submit/'
       + portalId + '/' + guid;

@@ -1,6 +1,10 @@
-import {ApolloError} from '@apollo/client/core';
+import { ApolloError } from '@apollo/client/core';
 
-import { DaffError, DaffErrorCodeMap, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffErrorCodeMap,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 import { daffTransformMagentoError } from './transform';
 
@@ -8,7 +12,7 @@ class MockError extends DaffInheritableError implements DaffError {
 	public readonly code: string = 'MOCK';
 
 	constructor(public message: string) {
-		super(message);
+	  super(message);
 	}
 }
 
@@ -44,47 +48,47 @@ describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
     };
 
     map = {
-      [category]: MockError
+      [category]: MockError,
     };
-  })
+  });
 
-	it('should be able to process graphql errors and return the relevant error if a mapping exists', () => {
-		const error = new ApolloError({
-			graphQLErrors: [handledGraphQlError],
+  it('should be able to process graphql errors and return the relevant error if a mapping exists', () => {
+    const error = new ApolloError({
+      graphQLErrors: [handledGraphQlError],
     });
     const result = daffTransformMagentoError(error, map);
 
-		expect(result).toEqual(jasmine.any(MockError));
-	});
+    expect(result).toEqual(jasmine.any(MockError));
+  });
 
-	it('should not handle a graphql error if the first error is not a handled type', () => {
-		const error = new ApolloError({
-			graphQLErrors: [unhandledGraphQlError, handledGraphQlError],
-		});
-		expect(daffTransformMagentoError(error, map)).toEqual(error);
-	});
+  it('should not handle a graphql error if the first error is not a handled type', () => {
+    const error = new ApolloError({
+      graphQLErrors: [unhandledGraphQlError, handledGraphQlError],
+    });
+    expect(daffTransformMagentoError(error, map)).toEqual(error);
+  });
 
-	it('should not crash if the extension is not defined', () => {
-		const error = new ApolloError({
-			graphQLErrors: [{ ...unhandledGraphQlError, extensions: {} }],
-		});
-		expect(daffTransformMagentoError(error, map)).toEqual(error);
-	});
+  it('should not crash if the extension is not defined', () => {
+    const error = new ApolloError({
+      graphQLErrors: [{ ...unhandledGraphQlError, extensions: {}}],
+    });
+    expect(daffTransformMagentoError(error, map)).toEqual(error);
+  });
 
-	it('should not touch the error if there is no mapping', () => {
-		const error = new ApolloError({
-			graphQLErrors: [
-				{
-					...unhandledGraphQlError,
-					extensions: { category: 'an-unmanaged-error' },
-				},
-			],
-		});
-		expect(daffTransformMagentoError(error, map)).toEqual(error);
-	});
+  it('should not touch the error if there is no mapping', () => {
+    const error = new ApolloError({
+      graphQLErrors: [
+        {
+          ...unhandledGraphQlError,
+          extensions: { category: 'an-unmanaged-error' },
+        },
+      ],
+    });
+    expect(daffTransformMagentoError(error, map)).toEqual(error);
+  });
 
-	it('should not touch errors that are not GraphQl errors', () => {
-		const error = new Error('an error');
-		expect(daffTransformMagentoError(error, map)).toEqual(error);
-	});
+  it('should not touch errors that are not GraphQl errors', () => {
+    const error = new Error('an error');
+    expect(daffTransformMagentoError(error, map)).toEqual(error);
+  });
 });
