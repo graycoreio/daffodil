@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffProductStateModule } from './product-state.module';
 
@@ -11,6 +11,6 @@ import { DaffProductStateModule } from './product-state.module';
      * Ngrx/store
      */
     DaffProductStateModule,
-  ]
+  ],
 })
 export class DaffProductModule { }

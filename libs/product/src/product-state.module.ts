@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { DaffProductGridEffects } from './effects/product-grid.effects';
-import { DaffProductEffects } from './effects/product.effects';
 import { DaffBestSellersEffects } from './effects/best-seller.effects';
-import { daffProductReducers } from './reducers/product-reducers';
+import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductPageEffects } from './effects/product-page.effects';
+import { DaffProductEffects } from './effects/product.effects';
+import { daffProductReducers } from './reducers/product-reducers';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('product', daffProductReducers),
-      EffectsModule.forFeature([
-        DaffProductGridEffects,
-        DaffProductEffects,
-				DaffProductPageEffects,
-        DaffBestSellersEffects
-      ]),
-  ]
+    StoreModule.forFeature('product', daffProductReducers),
+    EffectsModule.forFeature([
+      DaffProductGridEffects,
+      DaffProductEffects,
+      DaffProductPageEffects,
+      DaffBestSellersEffects,
+    ]),
+  ],
 })
 export class DaffProductStateModule { }

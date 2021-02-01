@@ -1,13 +1,16 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffProductDriver } from '../injection-tokens/product-driver.token';
 import { DaffShopifyProductService } from './product.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffProductShopifyDriverModule {
   static forRoot(): ModuleWithProviders<DaffProductShopifyDriverModule> {
@@ -16,9 +19,9 @@ export class DaffProductShopifyDriverModule {
       providers: [
         {
           provide: DaffProductDriver,
-          useExisting: DaffShopifyProductService
-        }
-      ]
+          useExisting: DaffShopifyProductService,
+        },
+      ],
     };
   }
 }

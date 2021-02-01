@@ -23,7 +23,7 @@ export class DaffBestSellersLoad implements Action {
 
 /**
  * An action called when a request for best selling products succeeded.
- * 
+ *
  * @param payload - An array of Products
  */
 export class DaffBestSellersLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
@@ -34,7 +34,7 @@ export class DaffBestSellersLoadSuccess<T extends DaffProduct = DaffProduct> imp
 
 /**
  * An action called when a request for best selling products failed.
- * 
+ *
  * @param payload - An error message
  */
 export class DaffBestSellersLoadFailure implements Action {
@@ -52,9 +52,8 @@ export class DaffBestSellersReset implements Action {
   constructor() {}
 }
 
-export type DaffBestSellersActions<T extends DaffProduct = DaffProduct> = 
-    | DaffBestSellersLoad 
+export type DaffBestSellersActions<T extends DaffProduct = DaffProduct> =
+    | DaffBestSellersLoad
     | DaffBestSellersLoadSuccess<T>
     | DaffBestSellersLoadFailure
     | DaffBestSellersReset;
-    

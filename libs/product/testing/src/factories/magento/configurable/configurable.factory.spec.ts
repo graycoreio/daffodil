@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProduct, MagentoProductTypeEnum } from '@daffodil/product';
+import {
+  MagentoProduct,
+  MagentoProductTypeEnum,
+} from '@daffodil/product';
 
 import { MagentoConfigurableProductFactory } from './configurable.factory';
 
@@ -9,7 +12,7 @@ describe('Product | Testing | Factories | MagentoConfigurableProductFactory', ()
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoConfigurableProductFactory]
+      providers: [MagentoConfigurableProductFactory],
     });
 
     factory = TestBed.inject(MagentoConfigurableProductFactory);
@@ -27,7 +30,7 @@ describe('Product | Testing | Factories | MagentoConfigurableProductFactory', ()
     });
 
     it('should return a MagentoConfigurableProduct with all required fields defined', () => {
-			expect(result.__typename).toEqual(MagentoProductTypeEnum.ConfigurableProduct);
+      expect(result.__typename).toEqual(MagentoProductTypeEnum.ConfigurableProduct);
       expect(result.id).toBeDefined();
       expect(result.image.label).toBeDefined();
       expect(result.image.url).toBeDefined();

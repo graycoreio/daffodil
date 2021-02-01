@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { DaffProduct } from '../models/product';
 
 /**
@@ -47,7 +48,7 @@ export class DaffProductPageLoadFailure implements Action {
 
 /**
  * Update the qty of the selected product.
- * 
+ *
  * @param payload - The qty of the product.
  */
 export class DaffProductPageUpdateQty implements Action {
@@ -56,8 +57,8 @@ export class DaffProductPageUpdateQty implements Action {
     constructor(public payload: number) {}
 }
 
-export type DaffProductPageActions<T extends DaffProduct = DaffProduct> = 
-    | DaffProductPageLoad 
+export type DaffProductPageActions<T extends DaffProduct = DaffProduct> =
+    | DaffProductPageLoad
     | DaffProductPageLoadSuccess<T>
     | DaffProductPageLoadFailure
 		| DaffProductPageUpdateQty;

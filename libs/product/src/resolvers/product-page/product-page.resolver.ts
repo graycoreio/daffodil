@@ -1,12 +1,31 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core'
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router'
+import {
+  Inject,
+  Injectable,
+  PLATFORM_ID,
+} from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+} from '@angular/router';
 import { ofType } from '@ngrx/effects';
-import { ActionsSubject, Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs'
-import { mapTo, take } from 'rxjs/operators';
+import {
+  ActionsSubject,
+  Store,
+} from '@ngrx/store';
+import {
+  Observable,
+  of,
+} from 'rxjs';
+import {
+  mapTo,
+  take,
+} from 'rxjs/operators';
 
-import { DaffProductPageActionTypes, DaffProductPageLoad } from '../../actions/product-page.actions';
+import {
+  DaffProductPageActionTypes,
+  DaffProductPageLoad,
+} from '../../actions/product-page.actions';
 import { DaffProductReducersState } from '../../reducers/public_api';
 
 /**
@@ -14,22 +33,22 @@ import { DaffProductReducersState } from '../../reducers/public_api';
  * of the form `some/url/{id}` where `{id}` is the product id.
  */
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
   constructor(
 		@Inject(PLATFORM_ID) private platformId: string,
 		private store: Store<DaffProductReducersState>,
     private dispatcher: ActionsSubject,
-	) {}
-	
-	resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-		this.store.dispatch(new DaffProductPageLoad(route.paramMap.get('id')));
+  ) {}
 
-		return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-			ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction, DaffProductPageActionTypes.ProductPageLoadFailureAction),
-			mapTo(true),
-			take(1)
-		);
-	}
+  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+    this.store.dispatch(new DaffProductPageLoad(route.paramMap.get('id')));
+
+    return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
+      ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction, DaffProductPageActionTypes.ProductPageLoadFailureAction),
+      mapTo(true),
+      take(1),
+    );
+  }
 }

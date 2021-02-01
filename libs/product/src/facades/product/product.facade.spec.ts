@@ -1,18 +1,25 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import {
-	DaffProductLoad,
-	DaffProductLoadSuccess,
-	daffProductReducers,
-	DaffProductReducersState
-} from '@daffodil/product';
-
-import { DaffProductFacade } from './product.facade';
-import { DaffProductFactory } from '@daffodil/product/testing';
 import { daffSubtract } from '@daffodil/core';
-import { DaffProductPageLoad, DaffProductPageLoadSuccess } from '../../actions/product-page.actions';
+import {
+  DaffProductLoad,
+  DaffProductLoadSuccess,
+  daffProductReducers,
+  DaffProductReducersState,
+} from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
+
+import {
+  DaffProductPageLoad,
+  DaffProductPageLoadSuccess,
+} from '../../actions/product-page.actions';
+import { DaffProductFacade } from './product.facade';
 
 describe('DaffProductFacade', () => {
   let store: Store<Partial<DaffProductReducersState>>;
@@ -23,12 +30,12 @@ describe('DaffProductFacade', () => {
       imports:[
         StoreModule.forRoot({
           product: combineReducers(daffProductReducers),
-        })
+        }),
       ],
       providers: [
         DaffProductFacade,
-      ]
-    })
+      ],
+    });
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffProductFacade);
@@ -40,7 +47,7 @@ describe('DaffProductFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);
@@ -68,80 +75,80 @@ describe('DaffProductFacade', () => {
 
     it('should be an observable of the currently selected product', () => {
       const product = new DaffProductFactory().create();
-      const expected = cold('a', { a: product});
+      const expected = cold('a', { a: product });
       store.dispatch(new DaffProductPageLoad(product.id));
       store.dispatch(new DaffProductPageLoadSuccess(product));
       expect(facade.product$).toBeObservable(expected);
-    })
-	});
+    });
+  });
 
-	describe('getProduct()', () => {
-		it('should be an observable of a product', () => {
-			const product = new DaffProductFactory().create();
-      const expected = cold('a', { a: product});
+  describe('getProduct()', () => {
+    it('should be an observable of a product', () => {
+      const product = new DaffProductFactory().create();
+      const expected = cold('a', { a: product });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getProduct(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 
-	describe('getPrice()', () => {
-		it('should be an observable of a product', () => {
-			const product = new DaffProductFactory().create();
+  describe('getPrice()', () => {
+    it('should be an observable of a product', () => {
+      const product = new DaffProductFactory().create();
       const expected = cold('a', { a: product.price });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getPrice(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 
-	describe('hasDiscount()', () => {
-		it('should be an observable of whether the given product has discount', () => {
-			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
+  describe('hasDiscount()', () => {
+    it('should be an observable of whether the given product has discount', () => {
+      const product = { id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.hasDiscount(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 
-	describe('getDiscountAmount()', () => {
-		it('should be an observable of whether the given product has discount', () => {
-			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
+  describe('getDiscountAmount()', () => {
+    it('should be an observable of whether the given product has discount', () => {
+      const product = { id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
       const expected = cold('a', { a: 20 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 
-	describe('getDiscountedPrice()', () => {
-		it('should be an observable of the discounted price of a product', () => {
-			const product = new DaffProductFactory().create();
+  describe('getDiscountedPrice()', () => {
+    it('should be an observable of the discounted price of a product', () => {
+      const product = new DaffProductFactory().create();
       const expected = cold('a', { a: daffSubtract(product.price, product.discount.amount) });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 
-	describe('getDiscountPercent()', () => {
-		it('should be an observable of whether the given product has discount', () => {
-			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
+  describe('getDiscountPercent()', () => {
+    it('should be an observable of whether the given product has discount', () => {
+      const product = { id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
       const expected = cold('a', { a: 10 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getDiscountPercent(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 
-	describe('isOutOfStock()', () => {
-		it('should be an observable of whether the given product is out of stock', () => {
-			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }, in_stock: false};
+  describe('isOutOfStock()', () => {
+    it('should be an observable of whether the given product is out of stock', () => {
+      const product = { id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }, in_stock: false };
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.isOutOfStock(product.id)).toBeObservable(expected);
-		});
-	});
+    });
+  });
 });

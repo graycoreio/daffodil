@@ -10,7 +10,7 @@ describe('Product | Testing | Factories | DaffProductImageFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffProductImageFactory]
+      providers: [DaffProductImageFactory],
     });
 
     productImageFactory = TestBed.inject(DaffProductImageFactory);
@@ -44,6 +44,6 @@ describe('Product | Testing | Factories | DaffProductImageFactory', () => {
 
       result = productImageFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

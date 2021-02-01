@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store';
 
 import { DaffProduct } from '../models/product';
 
-/** 
+/**
  * Action types for Product Grid Actions.
-*/
+ */
 export enum DaffProductGridActionTypes {
     ProductGridLoadAction = '[ProductGrid] Load Action',
     ProductGridLoadSuccessAction = '[ProductGrid] Load Success Action',
@@ -23,7 +23,7 @@ export class DaffProductGridLoad implements Action {
 
 /**
  * An action called when a request for of an array of products succeeded.
- * 
+ *
  * @param payload - An array of Products
  */
 export class DaffProductGridLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
@@ -34,7 +34,7 @@ export class DaffProductGridLoadSuccess<T extends DaffProduct = DaffProduct> imp
 
 /**
  * An action called when a request for an array of products failed.
- * 
+ *
  * @param payload - An error message
  */
 export class DaffProductGridLoadFailure implements Action {
@@ -52,8 +52,8 @@ export class DaffProductGridReset implements Action {
     constructor() {}
 }
 
-export type DaffProductGridActions<T extends DaffProduct = DaffProduct> = 
-    | DaffProductGridLoad 
+export type DaffProductGridActions<T extends DaffProduct = DaffProduct> =
+    | DaffProductGridLoad
     | DaffProductGridLoadSuccess<T>
     | DaffProductGridLoadFailure
     | DaffProductGridReset;

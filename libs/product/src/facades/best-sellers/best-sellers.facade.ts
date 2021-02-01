@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Store, select, Action } from '@ngrx/store';
+import {
+  Store,
+  select,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
@@ -13,7 +17,7 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
  * A facade for accessing best sellers state from an application component.
  */
 @Injectable({
-  providedIn: DaffProductModule
+  providedIn: DaffProductModule,
 })
 export class DaffBestSellersFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action> {
   /**
@@ -26,10 +30,10 @@ export class DaffBestSellersFacade<T extends DaffProduct = DaffProduct> implemen
   bestSellers$: Observable<DaffProduct[]>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
-		const {
-			selectBestSellersProducts,
-			selectBestSellersLoadingState
-		} = getDaffProductSelectors<T>();
+    const {
+      selectBestSellersProducts,
+      selectBestSellersLoadingState,
+    } = getDaffProductSelectors<T>();
 
     this.loading$ = this.store.pipe(select(selectBestSellersLoadingState));
     this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts));
@@ -37,6 +41,7 @@ export class DaffBestSellersFacade<T extends DaffProduct = DaffProduct> implemen
 
   /**
    * Dispatches an action to the rxjs action stream.
+   *
    * @param action
    */
   dispatch(action: Action) {

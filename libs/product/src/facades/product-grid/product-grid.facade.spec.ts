@@ -1,13 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductGridFacade } from './product-grid.facade';
-import { DaffProductGridLoad, DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import {
+  DaffProductGridLoad,
+  DaffProductGridLoadSuccess,
+} from '../../actions/product-grid.actions';
 import { daffProductReducers } from '../../reducers/product-reducers';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { DaffProductGridFacade } from './product-grid.facade';
 
 describe('DaffProductGridFacade', () => {
   let store: Store<Partial<DaffProductReducersState>>;
@@ -18,12 +25,12 @@ describe('DaffProductGridFacade', () => {
       imports:[
         StoreModule.forRoot({
           product: combineReducers(daffProductReducers),
-        })
+        }),
       ],
       providers: [
         DaffProductGridFacade,
-      ]
-    })
+      ],
+    });
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffProductGridFacade);
@@ -35,7 +42,7 @@ describe('DaffProductGridFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);
@@ -57,16 +64,16 @@ describe('DaffProductGridFacade', () => {
 
   describe('products$', () => {
     it('should initially be an empty array', () => {
-      const initial = cold('a', { a: [] });
+      const initial = cold('a', { a: []});
       expect(facade.products$).toBeObservable(initial);
     });
 
     it('should be an observable of the list of products', () => {
       const products = new DaffProductFactory().createMany(1);
-      const expected = cold('a', { a: products});
+      const expected = cold('a', { a: products });
       store.dispatch(new DaffProductGridLoad());
       store.dispatch(new DaffProductGridLoadSuccess(products));
       expect(facade.products$).toBeObservable(expected);
-    })
+    });
   });
 });

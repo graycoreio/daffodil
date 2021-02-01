@@ -1,14 +1,29 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of} from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from '@daffodil/product/testing';
-import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from '../actions/product-grid.actions';
-import { DaffProductGridEffects } from './product-grid.effects';
-import { DaffProduct } from '../models/product';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import {
+  DaffProductFactory,
+  DaffProductImageFactory,
+  DaffTestingProductService,
+} from '@daffodil/product/testing';
+
+import {
+  DaffProductGridLoad,
+  DaffProductGridLoadSuccess,
+  DaffProductGridLoadFailure,
+} from '../actions/product-grid.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import { DaffProduct } from '../models/product';
+import { DaffProductGridEffects } from './product-grid.effects';
 
 describe('DaffProductGridEffects', () => {
   let actions$: Observable<any>;
@@ -24,9 +39,9 @@ describe('DaffProductGridEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffProductDriver,
-          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory())
+          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory()),
         },
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffProductGridEffects);

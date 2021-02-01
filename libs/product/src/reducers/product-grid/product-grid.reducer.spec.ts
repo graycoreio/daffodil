@@ -1,9 +1,16 @@
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from '../../actions/product-grid.actions';
-import { initialState, daffProductGridReducer } from './product-grid.reducer';
+import {
+  DaffProductGridLoad,
+  DaffProductGridLoadSuccess,
+  DaffProductGridLoadFailure,
+} from '../../actions/product-grid.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductGridReducerState } from './product-grid-reducer-state.interface';
+import {
+  initialState,
+  daffProductGridReducer,
+} from './product-grid.reducer';
 
 describe('Product | Product Grid Reducer', () => {
 
@@ -19,7 +26,7 @@ describe('Product | Product Grid Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffProductGridReducer(initialState, action);
 
@@ -31,7 +38,7 @@ describe('Product | Product Grid Reducer', () => {
 
     it('sets loading state to true', () => {
       const productGridLoadAction: DaffProductGridLoad = new DaffProductGridLoad();
-      
+
       const result = daffProductGridReducer(initialState, productGridLoadAction);
 
       expect(result.loading).toEqual(true);
@@ -48,10 +55,10 @@ describe('Product | Product Grid Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-      }
+      };
       products = new Array(product);
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
-      
+
       result = daffProductGridReducer(state, productGridLoadSuccess);
     });
 
@@ -70,10 +77,10 @@ describe('Product | Product Grid Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
-      }
-      
-      error = 'error';      
+        errors: new Array('firstError'),
+      };
+
+      error = 'error';
       const productGridLoadFailure = new DaffProductGridLoadFailure(error);
       result = daffProductGridReducer(state, productGridLoadFailure);
     });

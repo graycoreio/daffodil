@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { magentoProductFragment } from './fragments/product';
 
@@ -20,4 +20,4 @@ query ${DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME}($sku: String!){
 	}
 }
 ${magentoProductFragment}
-`
+`;

@@ -1,14 +1,29 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable ,  of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable ,
+  of,
+} from 'rxjs';
 
-import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from '@daffodil/product/testing';
-import { DaffProductEffects } from './product.effects';
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure } from '../actions/product.actions';
-import { DaffProduct } from '../models/product';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import {
+  DaffProductFactory,
+  DaffProductImageFactory,
+  DaffTestingProductService,
+} from '@daffodil/product/testing';
+
+import {
+  DaffProductLoad,
+  DaffProductLoadSuccess,
+  DaffProductLoadFailure,
+} from '../actions/product.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import { DaffProduct } from '../models/product';
+import { DaffProductEffects } from './product.effects';
 
 describe('DaffProductEffects', () => {
   let actions$: Observable<any>;
@@ -28,9 +43,9 @@ describe('DaffProductEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffProductDriver,
-          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory())
+          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory()),
         },
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffProductEffects);

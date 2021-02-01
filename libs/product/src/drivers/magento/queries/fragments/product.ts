@@ -1,8 +1,8 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { magentoBundledProductFragment } from './bundled-product';
-import { magentoSimpleProductFragment } from './simple-product';
 import { magentoConfigurableProductFragment } from './configurable-product';
+import { magentoSimpleProductFragment } from './simple-product';
 
 export const magentoProductFragment = gql`
   fragment product on ProductInterface {

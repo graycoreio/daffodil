@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffProductFactory } from './product.factory';
 import { DaffProduct } from '@daffodil/product';
+
+import { DaffProductFactory } from './product.factory';
 
 describe('Product | Testing | Factories | DaffProductFactory', () => {
 
@@ -9,7 +10,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffProductFactory]
+      providers: [DaffProductFactory],
     });
 
     productFactory = TestBed.inject(DaffProductFactory);
@@ -29,7 +30,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 
     it('should return a Product with all required fields defined', () => {
       expect(result.type).toBeDefined();
-			expect(result.id).toBeDefined();
+      expect(result.id).toBeDefined();
       expect(result.url).toBeDefined();
       expect(result.price).toBeDefined();
       expect(result.images).toBeDefined();
@@ -38,11 +39,11 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
       expect(result.brand).toBeDefined();
       expect(result.description).toBeDefined();
       expect(result.in_stock).toBeDefined();
-		});
+    });
 
-		it('should the percentage as a whole number', () => {
-			expect(result.discount.percent % 1).toEqual(0);
-		});
+    it('should the percentage as a whole number', () => {
+      expect(result.discount.percent % 1).toEqual(0);
+    });
   });
 
   describe('createMany', () => {
@@ -54,6 +55,6 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 
       result = productFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

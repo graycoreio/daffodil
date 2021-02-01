@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductServiceInterface,
+} from '@daffodil/product';
 
 /**
  * The product inmemory driver to mock the product backend service.
@@ -10,7 +13,7 @@ import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
  * @Param HttpClient
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryProductService implements DaffProductServiceInterface {
   url = '/api/products/';

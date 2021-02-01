@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductServiceInterface,
+} from '@daffodil/product';
 
-import { DaffProductFactory } from '../../factories/product.factory';
 import { DaffProductImageFactory } from '../../factories/product-image.factory';
+import { DaffProductFactory } from '../../factories/product.factory';
 
 /**
  * The product testing driver to mock the backend product service.
@@ -13,7 +19,7 @@ import { DaffProductImageFactory } from '../../factories/product-image.factory';
  * @param productImageFactory - A DaffProductImageFactory instance
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingProductService implements DaffProductServiceInterface {
 
@@ -28,11 +34,11 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
    */
   getAll(): Observable<DaffProduct[]> {
     return of([
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)})
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
     ]);
   }
 
@@ -43,10 +49,10 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
    */
   getBestSellers(): Observable<DaffProduct[]> {
     return of([
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5)})
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
     ]);
   }
 
@@ -57,6 +63,6 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
    * @returns An Observable of a Product
    */
   get(productId: DaffProduct['id']): Observable<DaffProduct> {
-    return of(this.productFactory.create({ images: this.productImageFactory.createMany(5)}));
+    return of(this.productFactory.create({ images: this.productImageFactory.createMany(5) }));
   }
 }

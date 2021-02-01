@@ -19,32 +19,32 @@ export interface MagentoProduct {
   sku: string;
   url_key: string;
   image: {
-		url: string,
-		label: string
+		url: string;
+		label: string;
   };
   thumbnail: {
-		url: string,
-		label: string
+		url: string;
+		label: string;
 	};
   price_range: {
 		maximum_price: {
 			regular_price: {
-				value: number,
-				currency: any
-			}
+				value: number;
+				currency: any;
+			};
 			discount: {
-				amount_off: number,
-				percent_off: number
-			}
-		}
+				amount_off: number;
+				percent_off: number;
+			};
+		};
 	};
 	stock_status?: MagentoProductStockStatusEnum;
   media_gallery_entries?: {
-		label: string,
-		file: string,
-		position: number,
-		disabled: boolean,
-		id: number
+		label: string;
+		file: string;
+		position: number;
+		disabled: boolean;
+		id: number;
 	}[];
   short_description?: {
 		html: string;

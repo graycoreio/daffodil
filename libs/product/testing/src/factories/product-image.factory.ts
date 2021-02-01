@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffProductImage } from '@daffodil/product';
-
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffProductImage } from '@daffodil/product';
 
 const productImageUrlsList: string[] = [
   '/assets/products/0.jpg',
@@ -106,7 +105,7 @@ const productImageUrlsList: string[] = [
   '/assets/products/97.jpg',
   '/assets/products/98.jpg',
   '/assets/products/99.jpg',
-  '/assets/products/100.jpg'
+  '/assets/products/100.jpg',
 ];
 
 /**
@@ -114,7 +113,7 @@ const productImageUrlsList: string[] = [
  */
 export class MockProductImage implements DaffProductImage {
   id = faker.random.uuid();
-  url = productImageUrlsList[faker.random.number(productImageUrlsList.length-1)]
+  url = productImageUrlsList[faker.random.number(productImageUrlsList.length-1)];
   label = faker.lorem.sentence();
 }
 
@@ -122,7 +121,7 @@ export class MockProductImage implements DaffProductImage {
  * A factory for creating DaffProductImage.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffProductImageFactory extends DaffModelFactory<DaffProductImage> {
   constructor(){
