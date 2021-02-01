@@ -1,4 +1,7 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import {
+  createSelector,
+  createFeatureSelector,
+} from '@ngrx/store';
 
 import { DaffPaymentReducersState } from '../reducers/payment-reducers.interface';
 import { DaffPaymentReducerState } from '../reducers/payment/payment-reducer.interface';
@@ -13,10 +16,10 @@ export const selectPaymentFeatureState = createFeatureSelector<DaffPaymentReduce
  */
 export const selectPaymentState = createSelector(
   selectPaymentFeatureState,
-  (state: DaffPaymentReducersState) => state.payment
-)
+  (state: DaffPaymentReducersState) => state.payment,
+);
 
 export const selectPaymentInfo = createSelector(
   selectPaymentState,
-  (state: DaffPaymentReducerState) => state.paymentInfo
-)
+  (state: DaffPaymentReducerState) => state.paymentInfo,
+);

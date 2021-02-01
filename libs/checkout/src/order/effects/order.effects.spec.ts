@@ -1,17 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCheckoutDriver } from '@daffodil/checkout';
-import { DaffOrderFactory, DaffCheckoutTestingDriverModule } from '@daffodil/checkout/testing';
+import {
+  DaffOrderFactory,
+  DaffCheckoutTestingDriverModule,
+} from '@daffodil/checkout/testing';
 
-import { OrderEffects } from './order.effects';
-import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../actions/order.actions';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
 import { DaffOrder } from '../../models/order/order';
+import {
+  DaffPlaceOrder,
+  DaffPlaceOrderSuccess,
+  DaffPlaceOrderFailure,
+} from '../actions/order.actions';
+import { OrderEffects } from './order.effects';
 
 describe('Daffodil | State | Order | OrderEffects', () => {
   let actions$: Observable<any>;
@@ -25,12 +38,12 @@ describe('Daffodil | State | Order | OrderEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCheckoutTestingDriverModule.forRoot()
+        DaffCheckoutTestingDriverModule.forRoot(),
       ],
       providers: [
         OrderEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(OrderEffects);

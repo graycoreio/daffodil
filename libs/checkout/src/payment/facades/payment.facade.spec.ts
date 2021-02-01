@@ -1,13 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
-import { DaffPaymentFacade } from './payment.facade';
 import { PaymentInfo } from '../../models/payment/payment-info';
-import { daffPaymentReducers } from '../reducers/payment-reducers';
 import { DaffUpdatePaymentInfo } from '../actions/payment.actions';
+import { daffPaymentReducers } from '../reducers/payment-reducers';
+import { DaffPaymentFacade } from './payment.facade';
 
 describe('DaffPaymentFacade', () => {
   let store: Store<any>;
@@ -19,13 +23,13 @@ describe('DaffPaymentFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          payment: combineReducers(daffPaymentReducers)
-        })
+          payment: combineReducers(daffPaymentReducers),
+        }),
       ],
       providers: [
         DaffPaymentFacade,
-      ]
-    })
+      ],
+    });
 
     stubPayment = paymentFactory.create();
     store = TestBed.inject(Store);
@@ -38,7 +42,7 @@ describe('DaffPaymentFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
+import * as faker from 'faker/locale/en_US';
 
 import { DaffOrderShippingRate } from '@daffodil/checkout';
-import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 /**
  * @deprecated
  */
 export class MockOrderShippingRate implements DaffOrderShippingRate {
-  rate_id = faker.random.number({min: 1, max: 1000});
-  address_id = faker.random.number({min: 1, max: 1000});
+  rate_id = faker.random.number({ min: 1, max: 1000 });
+  address_id = faker.random.number({ min: 1, max: 1000 });
   created_at = new Date();
   updated_at = new Date();
   carrier = 'Birds Inc.';
@@ -17,7 +17,7 @@ export class MockOrderShippingRate implements DaffOrderShippingRate {
   code = 'code';
   method = 'swallow';
   method_description = 'efficient';
-  price = faker.random.number({min: 1, max: 1000});
+  price = faker.random.number({ min: 1, max: 1000 });
   error_message = 'error message';
   method_title = 'laden';
 }
@@ -26,7 +26,7 @@ export class MockOrderShippingRate implements DaffOrderShippingRate {
  * @deprecated
  */
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffOrderShippingRateFactory extends DaffModelFactory<DaffOrderShippingRate>{
   constructor(){

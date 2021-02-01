@@ -1,7 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffPaymentFactory, MockPaymentInfo } from './payment.factory';
 import { PaymentInfo } from '@daffodil/checkout';
+
+import {
+  DaffPaymentFactory,
+  MockPaymentInfo,
+} from './payment.factory';
 
 describe('Checkout | Testing | Payment | Factories | BillingFactory', () => {
 
@@ -10,8 +14,8 @@ describe('Checkout | Testing | Payment | Factories | BillingFactory', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffPaymentFactory
-      ]
+        DaffPaymentFactory,
+      ],
     });
 
     paymentFactory = TestBed.inject(DaffPaymentFactory);

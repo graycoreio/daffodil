@@ -1,11 +1,18 @@
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
-import { initialState, daffOrderReducer } from './order.reducer';
-import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../../actions/order.actions';
 import { DaffOrder } from '../../../models/order/order';
+import {
+  DaffPlaceOrder,
+  DaffPlaceOrderSuccess,
+  DaffPlaceOrderFailure,
+} from '../../actions/order.actions';
 import { DaffOrderReducerState } from './order-reducer.interface';
-import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffCart } from '@daffodil/cart';
+import {
+  initialState,
+  daffOrderReducer,
+} from './order.reducer';
 
 describe('Order | Order Reducer', () => {
 
@@ -22,7 +29,7 @@ describe('Order | Order Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffOrderReducer(initialState, action);
 
@@ -49,8 +56,8 @@ describe('Order | Order Reducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       const placeOrderSuccess = new DaffPlaceOrderSuccess(stubOrder);
 
@@ -77,8 +84,8 @@ describe('Order | Order Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['existing error']
-      }
+        errors: ['existing error'],
+      };
 
       const placeOrderFailureAction = new DaffPlaceOrderFailure(stubError);
 

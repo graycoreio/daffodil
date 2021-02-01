@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DaffOrderStateModule } from './order-state.module';
 import { OrderContainer } from './containers/order.component';
+import { DaffOrderStateModule } from './order-state.module';
 
 /**
  * @deprecated
@@ -16,10 +16,10 @@ import { OrderContainer } from './containers/order.component';
     DaffOrderStateModule,
   ],
   declarations: [
-    OrderContainer
+    OrderContainer,
   ],
   exports: [
-    OrderContainer
-  ]
+    OrderContainer,
+  ],
 })
 export class DaffOrderModule { }

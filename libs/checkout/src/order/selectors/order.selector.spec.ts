@@ -1,13 +1,26 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffPlaceOrderSuccess } from '../actions/order.actions';
 import { DaffOrderFactory } from '../../../testing/src';
 import { DaffOrder } from '../../models/order/order';
-import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
+import { DaffPlaceOrderSuccess } from '../actions/order.actions';
 import { daffOrderReducers } from '../reducers/order-reducers';
-import { selectOrderState, selectOrder, selectLoading, selectErrors } from './order.selector';
+import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
+import {
+  selectOrderState,
+  selectOrder,
+  selectLoading,
+  selectErrors,
+} from './order.selector';
 
 describe('selectOrderState', () => {
 
@@ -20,8 +33,8 @@ describe('selectOrderState', () => {
       imports: [
         StoreModule.forRoot({
           order: combineReducers(daffOrderReducers),
-        })
-      ]
+        }),
+      ],
     });
 
     stubOrder = orderFactory.create();
@@ -35,8 +48,8 @@ describe('selectOrderState', () => {
       const expectedOrderState = {
         order: stubOrder,
         loading: false,
-        errors: []
-      }
+        errors: [],
+      };
       const selector = store.pipe(select(selectOrderState));
       const expected = cold('a', { a: expectedOrderState });
       expect(selector).toBeObservable(expected);
@@ -65,7 +78,7 @@ describe('selectOrderState', () => {
 
     it('selects order errors state', () => {
       const selector = store.pipe(select(selectErrors));
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(selector).toBeObservable(expected);
     });
   });

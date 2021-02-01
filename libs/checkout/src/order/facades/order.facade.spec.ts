@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
-import { daffOrderReducers } from '../reducers/order-reducers';
 import { DaffOrder } from '../../models/order/order';
 import { DaffPlaceOrderSuccess } from '../actions/order.actions';
+import { daffOrderReducers } from '../reducers/order-reducers';
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
@@ -19,13 +23,13 @@ describe('DaffOrderFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          order: combineReducers(daffOrderReducers)
-        })
+          order: combineReducers(daffOrderReducers),
+        }),
       ],
       providers: [
         DaffOrderFacade,
-      ]
-    })
+      ],
+    });
 
     stubOrder = orderFactory.create();
     store = TestBed.inject(Store);
@@ -38,7 +42,7 @@ describe('DaffOrderFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);
@@ -66,7 +70,7 @@ describe('DaffOrderFacade', () => {
   describe('errors$', () => {
 
     it('should return errors associated with placing an order', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.errors$).toBeObservable(expected);
     });
   });

@@ -1,10 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
-import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
-import { selectOrder, selectLoading } from '../selectors/order.selector';
 import { DaffOrder } from '../../models/order/order';
+import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
+import {
+  selectOrder,
+  selectLoading,
+} from '../selectors/order.selector';
 
 /**
  * @deprecated
@@ -12,7 +21,7 @@ import { DaffOrder } from '../../models/order/order';
 @Component({
   selector: '[order-container]',
   template: '<ng-content></ng-content>',
-  exportAs: 'OrderContainer'
+  exportAs: 'OrderContainer',
 })
 export class OrderContainer implements OnInit {
 
@@ -20,7 +29,7 @@ export class OrderContainer implements OnInit {
   loading$: Observable<boolean>;
 
   constructor(
-    private store: Store<DaffOrderReducersState>
+    private store: Store<DaffOrderReducersState>,
   ) { }
 
   ngOnInit() {

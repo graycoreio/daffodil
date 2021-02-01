@@ -1,27 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 
-import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../actions/shipping.actions';
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../actions/shipping.actions';
 import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
-import { selectShippingAddress, selectShippingOptionId, selectIsShippingAddressValid } from '../selectors/shipping.selectors';
+import {
+  selectShippingAddress,
+  selectShippingOptionId,
+  selectIsShippingAddressValid,
+} from '../selectors/shipping.selectors';
 
 @Component({
   selector: '[shipping-container]',
   template: '<ng-content></ng-content>',
-  exportAs: 'ShippingContainer'
+  exportAs: 'ShippingContainer',
 })
 export class ShippingContainer implements OnInit {
-  
+
   shippingAddress$: Observable<DaffAddress>;
   selectedShippingOptionId$: Observable<string>;
   isShippingAddressValid$: Observable<boolean>;
   isShippingOptionSelected$: Observable<boolean>;
 
   constructor(
-    private store: Store<DaffShippingReducersState>
+    private store: Store<DaffShippingReducersState>,
   ) { }
 
   ngOnInit() {

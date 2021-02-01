@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffOrder } from '@daffodil/checkout';
 
-import { DaffTestingCheckoutService } from './checkout.service';
 import { DaffOrderFactory } from '../../order/factories/order.factory';
+import { DaffTestingCheckoutService } from './checkout.service';
 
 describe('Driver | Testing | Checkout | CheckoutService', () => {
   let testingCheckoutService: DaffTestingCheckoutService;
@@ -15,8 +15,8 @@ describe('Driver | Testing | Checkout | CheckoutService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffTestingCheckoutService,
-        {provide: DaffOrderFactory, useValue: orderFactorySpy}
-      ]
+        { provide: DaffOrderFactory, useValue: orderFactorySpy },
+      ],
     });
 
     stubOrder = new DaffOrderFactory().create();

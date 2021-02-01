@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
+import {
+  Store,
+  select,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select, Action } from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffStoreFacade } from '@daffodil/core/state';
 
-import { DaffShippingModule } from '../shipping.module';
 import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
-import { selectShippingAddress, selectShippingOptionId, selectIsShippingAddressValid } from '../selectors/shipping.selectors';
+import {
+  selectShippingAddress,
+  selectShippingOptionId,
+  selectIsShippingAddressValid,
+} from '../selectors/shipping.selectors';
+import { DaffShippingModule } from '../shipping.module';
 
 /**
  * A facade for accessing state for shipping information.
  */
 @Injectable({
-  providedIn: DaffShippingModule
+  providedIn: DaffShippingModule,
 })
 export class DaffShippingFacade implements DaffStoreFacade<Action> {
   /**
@@ -37,6 +45,7 @@ export class DaffShippingFacade implements DaffStoreFacade<Action> {
 
   /**
    * Dispatches the given action.
+   *
    * @param action action to dispatch.
    */
   dispatch(action: Action) {

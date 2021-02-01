@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
+import {
+  InMemoryDbService,
+  STATUS,
+} from 'angular-in-memory-web-api';
 
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
-import { DaffOrderFactory } from '../order/factories/order.factory';
 import { DaffOrderItemFactory } from '../order/factories/order-item.factory';
+import { DaffOrderFactory } from '../order/factories/order.factory';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendCheckoutService implements InMemoryDbService {
   private order;
@@ -15,7 +18,7 @@ export class DaffInMemoryBackendCheckoutService implements InMemoryDbService {
   constructor(
     private orderFactory: DaffOrderFactory,
     private orderItemFactory: DaffOrderItemFactory,
-    private productImageFactory: DaffProductImageFactory
+    private productImageFactory: DaffProductImageFactory,
   ) {}
 
   post(reqInfo: any) {
@@ -28,22 +31,22 @@ export class DaffInMemoryBackendCheckoutService implements InMemoryDbService {
 
       return {
         body: this.order,
-        status: STATUS.OK
+        status: STATUS.OK,
       };
     });
   }
 
   createDb() {
     return {
-      order: null
+      order: null,
     };
   }
 
   private populateOrder() {
-    this.order = this.orderFactory.create({ 
+    this.order = this.orderFactory.create({
       items: this.orderItemFactory.createMany(2, {
-        image: this.productImageFactory.create()
-      }) 
+        image: this.productImageFactory.create(),
+      }),
     });
   }
 }

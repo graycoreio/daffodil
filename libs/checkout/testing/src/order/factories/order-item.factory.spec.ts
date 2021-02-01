@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffOrderItemFactory } from './order-item.factory';
 import { DaffOrderItem } from '@daffodil/checkout';
+
+import { DaffOrderItemFactory } from './order-item.factory';
 
 describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
 
@@ -9,7 +10,7 @@ describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderItemFactory]
+      providers: [DaffOrderItemFactory],
     });
 
     orderItemFactory = TestBed.inject(DaffOrderItemFactory);
@@ -68,5 +69,5 @@ describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
       expect(result.length).toEqual(3);
       expect(orderItemFactory.create).toHaveBeenCalledTimes(3);
     });
-  })
+  });
 });

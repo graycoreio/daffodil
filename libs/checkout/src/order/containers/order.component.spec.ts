@@ -1,10 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 
-import { OrderContainer } from './order.component';
 import { DaffOrderFactory } from '../../../testing/src';
 import { DaffOrder } from '../../models/order/order';
-import { selectLoading, selectOrder } from '../selectors/order.selector';
+import {
+  selectLoading,
+  selectOrder,
+} from '../selectors/order.selector';
+import { OrderContainer } from './order.component';
 
 describe('OrderContainer', () => {
   let component: OrderContainer;
@@ -18,10 +28,10 @@ describe('OrderContainer', () => {
     TestBed.configureTestingModule({
       declarations: [ OrderContainer ],
       providers: [
-        provideMockStore({})
-      ]
+        provideMockStore({}),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -43,7 +53,7 @@ describe('OrderContainer', () => {
 
   afterAll(() => {
     store.resetSelectors();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

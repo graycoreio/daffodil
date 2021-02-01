@@ -1,12 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffShippingFacade } from './shipping.facade';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
+
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../actions/shipping.actions';
 import { daffShippingReducers } from '../reducers/shipping-reducers';
-import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../actions/shipping.actions';
+import { DaffShippingFacade } from './shipping.facade';
 
 describe('DaffShippingFacade', () => {
   let store: Store<any>;
@@ -20,13 +28,13 @@ describe('DaffShippingFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          shipping: combineReducers(daffShippingReducers)
-        })
+          shipping: combineReducers(daffShippingReducers),
+        }),
       ],
       providers: [
         DaffShippingFacade,
-      ]
-    })
+      ],
+    });
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffShippingFacade);
@@ -41,7 +49,7 @@ describe('DaffShippingFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffPaymentStateModule } from './payment-state.module';
 
@@ -11,6 +11,6 @@ import { DaffPaymentStateModule } from './payment-state.module';
      * Ngrx/store
      */
     DaffPaymentStateModule,
-  ]
+  ],
 })
 export class DaffPaymentModule { }

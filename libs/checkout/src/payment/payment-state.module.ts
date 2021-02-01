@@ -5,7 +5,7 @@ import { daffPaymentReducers } from './reducers/payment-reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('payment', daffPaymentReducers)
-  ]
+    StoreModule.forFeature('payment', daffPaymentReducers),
+  ],
 })
 export class DaffPaymentStateModule { }

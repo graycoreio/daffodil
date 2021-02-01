@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffOrderAddressFactory } from './order-address.factory';
 import { DaffOrderAddress } from '@daffodil/checkout';
+
+import { DaffOrderAddressFactory } from './order-address.factory';
 
 describe('Checkout | Testing | Order | Factories | OrderAddressFactory', () => {
 
@@ -9,7 +10,7 @@ describe('Checkout | Testing | Order | Factories | OrderAddressFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderAddressFactory]
+      providers: [DaffOrderAddressFactory],
     });
 
     orderAddressFactory = TestBed.inject(DaffOrderAddressFactory);
@@ -41,6 +42,6 @@ describe('Checkout | Testing | Order | Factories | OrderAddressFactory', () => {
 
       result = orderAddressFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

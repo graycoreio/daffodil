@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffOrderFactory } from './order.factory';
 import { DaffOrder } from '@daffodil/checkout';
+
+import { DaffOrderFactory } from './order.factory';
 
 describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
 
@@ -9,7 +10,7 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderFactory]
+      providers: [DaffOrderFactory],
     });
 
     orderFactory = TestBed.inject(DaffOrderFactory);
@@ -21,7 +22,7 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
 
   describe('create', () => {
 
-    let result : DaffOrder;
+    let result: DaffOrder;
 
     beforeEach(() => {
       result = orderFactory.create();
@@ -34,7 +35,7 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
     describe('Order object', () => {
 
       it('should have no OrderItems', () => {
-        expect(result.items.length).toEqual(0)
+        expect(result.items.length).toEqual(0);
       });
 
       it('should have no OrderAddresses', () => {
@@ -57,5 +58,5 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
       result = orderFactory.createMany(3);
       expect(result.length).toEqual(3);
     });
-  })
+  });
 });

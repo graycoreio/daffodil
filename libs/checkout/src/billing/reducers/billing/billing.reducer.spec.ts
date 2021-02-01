@@ -1,10 +1,17 @@
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
 import { PaymentInfo } from '../../../models/payment/payment-info';
-import { initialState, daffBillingReducer } from './billing.reducer';
-import { DaffUpdateBillingAddress, DaffUpdatePaymentInfo, DaffToggleBillingAddressIsShippingAddress } from '../../actions/billing.actions';
+import {
+  DaffUpdateBillingAddress,
+  DaffUpdatePaymentInfo,
+  DaffToggleBillingAddressIsShippingAddress,
+} from '../../actions/billing.actions';
+import {
+  initialState,
+  daffBillingReducer,
+} from './billing.reducer';
 
 describe('Billing | Billing Reducer', () => {
 
@@ -24,7 +31,7 @@ describe('Billing | Billing Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffBillingReducer(initialState, action);
 
@@ -38,12 +45,12 @@ describe('Billing | Billing Reducer', () => {
 
     beforeEach(() => {
       const updateBillingAddressAction = new DaffUpdateBillingAddress(billingAddress);
-      
+
       result = daffBillingReducer(initialState, updateBillingAddressAction);
     });
 
     it('sets billingAddress from action.payload', () => {
-      expect(result.billingAddress).toEqual(billingAddress)
+      expect(result.billingAddress).toEqual(billingAddress);
     });
   });
 
@@ -55,12 +62,12 @@ describe('Billing | Billing Reducer', () => {
     beforeEach(() => {
       initialBillingAddressIsShippingAddress = initialState.billingAddressIsShippingAddress;
       const toggleBillingAddressIsShippingAddress = new DaffToggleBillingAddressIsShippingAddress();
-      
+
       result = daffBillingReducer(initialState, toggleBillingAddressIsShippingAddress);
     });
 
     it('toggles billingAddressIsShippingAddress', () => {
-      expect(result.billingAddressIsShippingAddress).toEqual(!initialBillingAddressIsShippingAddress)
+      expect(result.billingAddressIsShippingAddress).toEqual(!initialBillingAddressIsShippingAddress);
     });
 
     it('sets billingAddress to null', () => {
@@ -74,12 +81,12 @@ describe('Billing | Billing Reducer', () => {
 
     beforeEach(() => {
       const updatePaymentInfoAction = new DaffUpdatePaymentInfo(paymentInfo);
-      
+
       result = daffBillingReducer(initialState, updatePaymentInfoAction);
     });
 
     it('sets paymentInfo from action.payload', () => {
-      expect(result.paymentInfo).toEqual(paymentInfo)
+      expect(result.paymentInfo).toEqual(paymentInfo);
     });
   });
 });
