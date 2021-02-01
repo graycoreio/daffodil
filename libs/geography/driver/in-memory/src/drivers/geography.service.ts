@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-
+import { Injectable } from '@angular/core';
 import {
-  DaffCountry,
-} from '@daffodil/geography';
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
+  map,
+} from 'rxjs/operators';
+
+import { DaffCountry } from '@daffodil/geography';
 import {
   DaffGeographyServiceInterface,
-  DaffCountryNotFoundError
+  DaffCountryNotFoundError,
 } from '@daffodil/geography/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryGeographyService implements DaffGeographyServiceInterface<DaffCountry> {
   url = '/api/countries';
@@ -21,9 +25,9 @@ export class DaffInMemoryGeographyService implements DaffGeographyServiceInterfa
 
   get(countryId: DaffCountry['id']): Observable<DaffCountry> {
     return this.http.get<DaffCountry>(`${this.url}/${countryId}`).pipe(
-			catchError((error: Error) => throwError(DaffCountryNotFoundError)),
-			map(result => result)
-		);
+      catchError((error: Error) => throwError(DaffCountryNotFoundError)),
+      map(result => result),
+    );
   }
 
   list(): Observable<DaffCountry[]> {

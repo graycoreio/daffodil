@@ -17,7 +17,7 @@ export class MockDaffPersonalAddress extends MockDaffAddress implements DaffPers
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffPersonalAddressFactory extends DaffModelFactory<DaffPersonalAddress>{
   constructor() {

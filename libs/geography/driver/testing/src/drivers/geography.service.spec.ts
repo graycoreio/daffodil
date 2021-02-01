@@ -3,9 +3,12 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCountry,
-  DaffSubdivision
+  DaffSubdivision,
 } from '@daffodil/geography';
-import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
+import {
+  DaffCountryFactory,
+  DaffSubdivisionFactory,
+} from '@daffodil/geography/testing';
 
 import { DaffTestingGeographyService } from './geography.service';
 
@@ -29,8 +32,8 @@ describe('Driver | Testing | Geography | GeographyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingGeographyService
-      ]
+        DaffTestingGeographyService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingGeographyService);
@@ -67,7 +70,7 @@ describe('Driver | Testing | Geography | GeographyService', () => {
 
   describe('list', () => {
     it('should return a list of DaffCountries', () => {
-      const expected = cold('(a|)', { a: [mockCountry] });
+      const expected = cold('(a|)', { a: [mockCountry]});
       expect(service.list()).toBeObservable(expected);
     });
   });

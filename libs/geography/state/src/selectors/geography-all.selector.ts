@@ -1,8 +1,17 @@
 import { DaffCountry } from '@daffodil/geography';
 
-import { DaffCountryEntitySelectors, getDaffCountryEntitySelectors } from './country-entities.selector';
-import { DaffGeographySelectors, getGeographySelectors } from './geography.selector';
-import { DaffGeographyFeatureSelector, getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
+import {
+  DaffCountryEntitySelectors,
+  getDaffCountryEntitySelectors,
+} from './country-entities.selector';
+import {
+  DaffGeographyFeatureSelector,
+  getDaffGeographyFeatureStateSelector,
+} from './geography-feature.selector';
+import {
+  DaffGeographySelectors,
+  getGeographySelectors,
+} from './geography.selector';
 
 export interface DaffGeographyAllSelectors<T extends DaffCountry = DaffCountry> extends
   DaffCountryEntitySelectors<T>,
@@ -15,6 +24,6 @@ export const getDaffGeographySelectors = (() => {
     cache = cache || {
       ...getGeographySelectors<T>(),
       ...getDaffCountryEntitySelectors<T>(),
-      ...getDaffGeographyFeatureStateSelector<T>()
-    }
+      ...getDaffGeographyFeatureStateSelector<T>(),
+    };
 })();

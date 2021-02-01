@@ -1,12 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffSubdivision
-} from '@daffodil/geography';
+import { DaffSubdivision } from '@daffodil/geography';
 import { MagentoRegion } from '@daffodil/geography/driver/magento';
-import {
-  DaffSubdivisionFactory,
-} from '@daffodil/geography/testing';
+import { DaffSubdivisionFactory } from '@daffodil/geography/testing';
 
 import { DaffMagentoSubdivisionTransformer } from './subdivision.service';
 
@@ -22,7 +18,7 @@ describe('Driver | Magento | Geography | Transformer | Subdivision', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoSubdivisionTransformer,
-      ]
+      ],
     });
 
     service = TestBed.inject(DaffMagentoSubdivisionTransformer);
@@ -30,12 +26,12 @@ describe('Driver | Magento | Geography | Transformer | Subdivision', () => {
     daffSubdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
 
     mockDaffSubdivision = daffSubdivisionFactory.create({
-      id: '1'
+      id: '1',
     });
     mockMagentoRegion = {
       id: Number(mockDaffSubdivision.id),
       name: mockDaffSubdivision.name,
-      code: mockDaffSubdivision.iso_3166_2
+      code: mockDaffSubdivision.iso_3166_2,
     };
   });
 

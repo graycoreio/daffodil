@@ -1,6 +1,9 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
-import { countryFragment, regionFragment } from './fragments/public_api';
+import {
+  countryFragment,
+  regionFragment,
+} from './fragments/public_api';
 
 export const getCountry = gql`
   query MagentoGetCountry($countryId: String!) {

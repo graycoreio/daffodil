@@ -1,15 +1,21 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 
 import { DaffPersonalAddress } from '@daffodil/geography';
 
-import { DaffPersonalAddressFactory, MockDaffPersonalAddress } from './personal-address.factory';
+import {
+  DaffPersonalAddressFactory,
+  MockDaffPersonalAddress,
+} from './personal-address.factory';
 
 describe('Geography | Interfaces | Factories | DaffPersonalAddressFactory', () => {
   let factory;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      providers: [DaffPersonalAddressFactory]
+      providers: [DaffPersonalAddressFactory],
     });
 
     factory = TestBed.inject(DaffPersonalAddressFactory);
@@ -52,6 +58,6 @@ describe('Geography | Interfaces | Factories | DaffPersonalAddressFactory', () =
 
       result = factory.createMany(3);
       expect(result.length).toEqual(3);
-    })
+    });
   });
 });

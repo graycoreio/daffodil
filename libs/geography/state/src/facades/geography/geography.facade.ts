@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import {
+  Action,
+  Store,
+  select,
+} from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffCountry } from '@daffodil/geography';
 
 import { DaffGeographyFeatureState } from '../../reducers/public_api';
 import {
-  getDaffGeographySelectors, DaffGeographyAllSelectors
+  getDaffGeographySelectors,
+  DaffGeographyAllSelectors,
 } from '../../selectors/public_api';
 import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements DaffGeographyFacadeInterface<T> {
   loading$: Observable<boolean>;
@@ -37,7 +42,7 @@ export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements
       selectGeographyErrors,
       selectCountry,
       selectCountrySubdivisions,
-      selectIsCountryFullyLoaded
+      selectIsCountryFullyLoaded,
     } = getDaffGeographySelectors<T>();
 
     this._selectCountry = selectCountry;
@@ -54,15 +59,15 @@ export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements
   }
 
   getCountry(id: T['id']): Observable<T> {
-    return this.store.pipe(select(this._selectCountry, { id }))
+    return this.store.pipe(select(this._selectCountry, { id }));
   }
 
   getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']> {
-    return this.store.pipe(select(this._selectCountrySubdivisions, { id }))
+    return this.store.pipe(select(this._selectCountrySubdivisions, { id }));
   }
 
   isCountryFullyLoaded(id: T['id']): Observable<boolean> {
-    return this.store.pipe(select(this._selectIsCountryFullyLoaded, { id }))
+    return this.store.pipe(select(this._selectIsCountryFullyLoaded, { id }));
   }
 
   dispatch(action: Action) {

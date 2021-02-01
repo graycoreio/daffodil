@@ -1,10 +1,24 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
 import { DaffCountry } from '@daffodil/geography';
-import { DaffGeographyServiceInterface, DaffGeographyDriver } from '@daffodil/geography/driver';
+import {
+  DaffGeographyServiceInterface,
+  DaffGeographyDriver,
+} from '@daffodil/geography/driver';
 
 import {
   DaffGeographyActionTypes,
@@ -28,16 +42,16 @@ export class DaffGeographyEffects<T extends DaffCountry> {
     ofType(DaffGeographyActionTypes.CountryLoadAction),
     switchMap((action: DaffCountryLoad<T>) => this.driver.get(action.payload).pipe(
       map(resp => new DaffCountryLoadSuccess(resp)),
-      catchError(error => of(new DaffCountryLoadFailure('Failed to load country')))
+      catchError(error => of(new DaffCountryLoadFailure('Failed to load country'))),
     )),
-  )
+  );
 
   @Effect()
   list$ = this.actions$.pipe(
     ofType(DaffGeographyActionTypes.CountryListAction),
     switchMap((action: DaffCountryList) => this.driver.list().pipe(
       map(resp => new DaffCountryListSuccess(resp)),
-      catchError(error => of(new DaffCountryListFailure('Failed to list the countries')))
-    ))
-  )
+      catchError(error => of(new DaffCountryListFailure('Failed to list the countries'))),
+    )),
+  );
 }

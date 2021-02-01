@@ -1,14 +1,17 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
-import { DaffGeographyDriver } from '@daffodil/geography/driver'
+import { DaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffGeographyMagentoService } from './geography.service';
 
 @NgModule({
   imports: [
     CommonModule,
-  ]
+  ],
 })
 export class DaffGeographyMagentoDriverModule {
   static forRoot(): ModuleWithProviders<DaffGeographyMagentoDriverModule> {
@@ -17,8 +20,8 @@ export class DaffGeographyMagentoDriverModule {
       providers: [
         {
           provide: DaffGeographyDriver,
-          useExisting: DaffGeographyMagentoService
-        }
+          useExisting: DaffGeographyMagentoService,
+        },
       ],
     };
   }

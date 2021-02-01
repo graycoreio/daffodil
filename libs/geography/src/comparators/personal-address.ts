@@ -16,5 +16,5 @@ export function daffComparePersonalAddresses(address0: DaffPersonalAddress, addr
     address0.lastname === address1.lastname &&
     address0.telephone === address1.telephone &&
     address0.email === address1.email &&
-    daffCompareAddresses(address0, address1))
+    daffCompareAddresses(address0, address1));
 }

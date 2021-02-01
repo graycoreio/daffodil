@@ -14,5 +14,5 @@ export function daffCompareAddresses(address0: DaffAddress, address1: DaffAddres
     address0.region === address1.region &&
     address0.country === address1.country &&
     address0.country_id === address1.country_id &&
-    address0.postcode === address1.postcode)
+    address0.postcode === address1.postcode);
 }

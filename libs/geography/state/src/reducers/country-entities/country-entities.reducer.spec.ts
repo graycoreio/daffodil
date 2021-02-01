@@ -1,14 +1,18 @@
-import { DaffCountry, DaffSubdivision } from '@daffodil/geography';
-import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
+import {
+  DaffCountry,
+  DaffSubdivision,
+} from '@daffodil/geography';
 import {
   DaffCountryLoadSuccess,
   DaffCountryListSuccess,
-  daffCountryEntitiesInitialState as initialState
+  daffCountryEntitiesInitialState as initialState,
 } from '@daffodil/geography/state';
-
 import {
-  daffCountryEntitiesReducer as reducer,
-} from './country-entities.reducer';
+  DaffCountryFactory,
+  DaffSubdivisionFactory,
+} from '@daffodil/geography/testing';
+
+import { daffCountryEntitiesReducer as reducer } from './country-entities.reducer';
 
 describe('Geography | Reducer | CountryEntities', () => {
   let countryFactory: DaffCountryFactory;
@@ -28,7 +32,7 @@ describe('Geography | Reducer | CountryEntities', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -46,7 +50,7 @@ describe('Geography | Reducer | CountryEntities', () => {
     });
 
     it('should set country from action.payload', () => {
-      expect(result.entities[countryId]).toEqual(jasmine.objectContaining(mockCountry))
+      expect(result.entities[countryId]).toEqual(jasmine.objectContaining(mockCountry));
     });
 
     it('should indicate that the country has been fully loaded', () => {
@@ -64,14 +68,14 @@ describe('Geography | Reducer | CountryEntities', () => {
     });
 
     it('should set countries from action.payload', () => {
-      expect(result.entities).toEqual({[countryId]: jasmine.objectContaining(mockCountry)})
+      expect(result.entities).toEqual({ [countryId]: jasmine.objectContaining(mockCountry) });
     });
 
     describe('when a country has previously been fully loaded', () => {
       beforeEach(() => {
         const countryLoadSuccess = new DaffCountryLoadSuccess({
           ...mockCountry,
-          subdivisions: [mockSubdivision]
+          subdivisions: [mockSubdivision],
         });
         const countryListSuccess = new DaffCountryListSuccess([mockCountry]);
 
@@ -84,7 +88,7 @@ describe('Geography | Reducer | CountryEntities', () => {
         beforeEach(() => {
           const countryLoadSuccess = new DaffCountryLoadSuccess({
             ...mockCountry,
-            subdivisions: [mockSubdivision]
+            subdivisions: [mockSubdivision],
           });
           const countryListSuccess = new DaffCountryListSuccess([mockCountry]);
 
@@ -105,11 +109,11 @@ describe('Geography | Reducer | CountryEntities', () => {
           newSubdivisions = subdivisionFactory.createMany(2);
           const countryLoadSuccess = new DaffCountryLoadSuccess({
             ...mockCountry,
-            subdivisions: [mockSubdivision]
+            subdivisions: [mockSubdivision],
           });
           const countryListSuccess = new DaffCountryListSuccess([{
             ...mockCountry,
-            subdivisions: newSubdivisions
+            subdivisions: newSubdivisions,
           }]);
 
           const inter = reducer(initialState, countryLoadSuccess);

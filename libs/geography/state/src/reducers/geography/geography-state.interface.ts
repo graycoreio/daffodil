@@ -1,4 +1,4 @@
 export interface DaffGeographyReducerState {
-  loading: boolean,
-  errors: string[]
+  loading: boolean;
+  errors: string[];
 }

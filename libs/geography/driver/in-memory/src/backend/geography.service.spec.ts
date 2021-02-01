@@ -20,7 +20,7 @@ describe('DaffInMemoryBackendGeographyService | Unit', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendGeographyService,
-      ]
+      ],
     });
     service = TestBed.inject(DaffInMemoryBackendGeographyService);
 
@@ -34,13 +34,13 @@ describe('DaffInMemoryBackendGeographyService | Unit', () => {
       resourceUrl: baseUrl,
       collection,
       req: {
-        body: {}
+        body: {},
       },
       utils: {
         createResponse$: func => func(),
         getJsonBody: req => req.body,
-        findById: (ary, id) => ary.find(e => e.id === id)
-      }
+        findById: (ary, id) => ary.find(e => e.id === id),
+      },
     };
   });
 

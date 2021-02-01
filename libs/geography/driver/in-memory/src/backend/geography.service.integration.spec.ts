@@ -1,6 +1,9 @@
+import {
+  HttpClientModule,
+  HttpClient,
+} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule, } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { DaffCountry } from '@daffodil/geography';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
@@ -19,7 +22,7 @@ describe('DaffInMemoryBackendGeographyService | Integration', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendGeographyService, {delay: 0}),
+        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendGeographyService, { delay: 0 }),
       ],
     });
 
@@ -30,7 +33,7 @@ describe('DaffInMemoryBackendGeographyService | Integration', () => {
     mockCountry = countryFactory.create();
     countryId = mockCountry.id;
 
-    httpClient.post<any>('commands/resetDb', {countries: [mockCountry]}).subscribe(() => done());
+    httpClient.post<any>('commands/resetDb', { countries: [mockCountry]}).subscribe(() => done());
   });
 
   describe('processing a country load request', () => {

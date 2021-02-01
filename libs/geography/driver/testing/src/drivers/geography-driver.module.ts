@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffGeographyDriver } from '@daffodil/geography/driver';
 
@@ -7,8 +10,8 @@ import { DaffTestingGeographyService } from './geography.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffGeographyTestingDriverModule {
   static forRoot(): ModuleWithProviders<DaffGeographyTestingDriverModule> {
@@ -17,9 +20,9 @@ export class DaffGeographyTestingDriverModule {
       providers: [
         {
           provide: DaffGeographyDriver,
-          useExisting: DaffTestingGeographyService
-        }
-      ]
+          useExisting: DaffTestingGeographyService,
+        },
+      ],
     };
   }
 }

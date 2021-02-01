@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
@@ -15,5 +15,5 @@ export interface DaffGeographyFacadeInterface<T extends DaffCountry = DaffCountr
 
   getCountry(id: T['id']): Observable<T>;
   getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']>;
-  isCountryFullyLoaded(id: T['id']): Observable<boolean>
+  isCountryFullyLoaded(id: T['id']): Observable<boolean>;
 }

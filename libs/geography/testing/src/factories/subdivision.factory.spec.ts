@@ -9,7 +9,7 @@ describe('Geography | Testing | Factories | DaffSubdivisionFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffSubdivisionFactory]
+      providers: [DaffSubdivisionFactory],
     });
 
     factory = TestBed.inject(DaffSubdivisionFactory);

@@ -1,4 +1,4 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
 import { DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
 import { MagentoGetCountriesResponse } from '@daffodil/geography/driver/magento';
@@ -11,7 +11,7 @@ describe('Driver | Magento | Auth | Validator | CheckToken', () => {
   beforeEach(() => {
     response = {
       data: {
-        countries: []
+        countries: [],
       },
       loading: null,
       networkStatus: null,

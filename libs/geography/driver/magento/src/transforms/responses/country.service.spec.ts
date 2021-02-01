@@ -2,9 +2,13 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCountry,
-  DaffSubdivision
+  DaffSubdivision,
 } from '@daffodil/geography';
-import { MagentoCountry, MagentoRegion, DaffMagentoSubdivisionTransformer } from '@daffodil/geography/driver/magento';
+import {
+  MagentoCountry,
+  MagentoRegion,
+  DaffMagentoSubdivisionTransformer,
+} from '@daffodil/geography/driver/magento';
 import {
   DaffCountryFactory,
   DaffSubdivisionFactory,
@@ -31,9 +35,9 @@ describe('Driver | Magento | Geography | Transformer | Country', () => {
         DaffMagentoCountryTransformer,
         {
           provide: DaffMagentoSubdivisionTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoSubdivisionTransformer', ['transform'])
-        }
-      ]
+          useValue: jasmine.createSpyObj('DaffMagentoSubdivisionTransformer', ['transform']),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffMagentoCountryTransformer);
@@ -49,7 +53,7 @@ describe('Driver | Magento | Geography | Transformer | Country', () => {
     mockMagentoRegion = {
       id: Number(mockDaffSubdivision.id),
       name: mockDaffSubdivision.name,
-      code: mockDaffSubdivision.iso_3166_2
+      code: mockDaffSubdivision.iso_3166_2,
     };
     mockMagentoCountry = {
       id: mockDaffCountry.id,
@@ -57,7 +61,7 @@ describe('Driver | Magento | Geography | Transformer | Country', () => {
       three_letter_abbreviation: mockDaffCountry.alpha3,
       full_name_english: mockDaffCountry.name_en,
       full_name_locale: mockDaffCountry.name,
-      available_regions: [mockMagentoRegion]
+      available_regions: [mockMagentoRegion],
     };
     mockDaffCountry.subdivisions = [mockDaffSubdivision];
 
