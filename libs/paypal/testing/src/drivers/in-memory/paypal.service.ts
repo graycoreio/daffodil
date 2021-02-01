@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffPaypalServiceInterface, DaffPaypalTokenRequest, DaffPaypalTokenResponse } from '@daffodil/paypal';
+import {
+  DaffPaypalServiceInterface,
+  DaffPaypalTokenRequest,
+  DaffPaypalTokenResponse,
+} from '@daffodil/paypal';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryPaypalService implements DaffPaypalServiceInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse> {
   url = '/api/paypal/';

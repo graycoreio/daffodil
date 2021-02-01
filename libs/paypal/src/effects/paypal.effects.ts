@@ -1,17 +1,31 @@
-import { Inject, Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
-import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import {
+  Actions,
+  ofType,
+  createEffect,
+} from '@ngrx/effects';
 import { Action } from '@ngrx/store';
+import {
+  of,
+  Observable,
+} from 'rxjs';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import { 
-	DaffPaypalActionTypes, 
-	DaffGeneratePaypalExpressToken, 
-	DaffGeneratePaypalExpressTokenSuccess,
-	DaffGeneratePaypalExpressTokenFailure 
+import {
+  DaffPaypalActionTypes,
+  DaffGeneratePaypalExpressToken,
+  DaffGeneratePaypalExpressTokenSuccess,
+  DaffGeneratePaypalExpressTokenFailure,
 } from '../actions/paypal.actions';
-import { DaffPaypalServiceInterface } from '../drivers/interfaces/paypal-service.interface';
 import { DaffPaypalDriver } from '../drivers/injection-tokens/paypal-driver.token';
+import { DaffPaypalServiceInterface } from '../drivers/interfaces/paypal-service.interface';
 import { DaffPaypalTokenRequest } from '../models/paypal-token-request';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 
@@ -24,15 +38,9 @@ export class DaffPaypalEffects<T extends DaffPaypalTokenRequest, V extends DaffP
 
   generatePaypalExpressToken$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(DaffPaypalActionTypes.GeneratePaypalExpressTokenAction),
-    switchMap((action: DaffGeneratePaypalExpressToken<T>) => {
-			return this.driver.generateToken(action.payload).pipe(
-				map((resp: V) => {
-					return new DaffGeneratePaypalExpressTokenSuccess(resp);
-				}),
-				catchError(error => {
-					return of(new DaffGeneratePaypalExpressTokenFailure('Failed to retrieve token'));
-				})
-			)
-		})
-	));
+    switchMap((action: DaffGeneratePaypalExpressToken<T>) => this.driver.generateToken(action.payload).pipe(
+      map((resp: V) => new DaffGeneratePaypalExpressTokenSuccess(resp)),
+      catchError(error => of(new DaffGeneratePaypalExpressTokenFailure('Failed to retrieve token'))),
+    )),
+  ));
 }

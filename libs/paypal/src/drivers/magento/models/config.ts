@@ -5,5 +5,5 @@ export interface DaffMagentoPaypalConfig {
 	pending_url?: string;
 	success_url?: string;
 	express_button?: boolean;
-	use_paypal_credit?: boolean
+	use_paypal_credit?: boolean;
 }

@@ -1,10 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffPaypalServiceInterface, DaffPaypalTokenRequest, DaffPaypalTokenResponse } from '@daffodil/paypal';
+import {
+  DaffPaypalServiceInterface,
+  DaffPaypalTokenRequest,
+  DaffPaypalTokenResponse,
+} from '@daffodil/paypal';
 
-import { DaffTestingPaypalService } from './paypal.service';
 import { DaffPaypalTokenResponseFactory } from '../../factories/paypal-token-response.factory';
+import { DaffTestingPaypalService } from './paypal.service';
 
 describe('Testing | Drivers | Testing | PaypalService', () => {
   let paypalService: DaffPaypalServiceInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>;
@@ -17,8 +21,8 @@ describe('Testing | Drivers | Testing | PaypalService', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffPaypalTokenResponseFactory, useValue: mockPaypalTokenResponseFactory },
-        DaffTestingPaypalService
-      ]
+        DaffTestingPaypalService,
+      ],
     });
     paypalService = TestBed.inject(DaffTestingPaypalService);
   });
@@ -32,8 +36,8 @@ describe('Testing | Drivers | Testing | PaypalService', () => {
     it('should return a paypal token response', () => {
       const expected = cold('(a|)', { a: paypalTokenResponse });
       expect(paypalService.generateToken({
-				cartId: 'cartId'
-			})).toBeObservable(expected);
+        cartId: 'cartId',
+      })).toBeObservable(expected);
     });
   });
 });

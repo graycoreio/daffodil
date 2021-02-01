@@ -1,10 +1,13 @@
-import { BehaviorSubject } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffPaypalFacadeInterface, DaffPaypalTokenResponse } from '@daffodil/paypal';
+import {
+  DaffPaypalFacadeInterface,
+  DaffPaypalTokenResponse,
+} from '@daffodil/paypal';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class MockDaffPaypalFacade implements DaffPaypalFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	paypalTokenResponse$: BehaviorSubject<DaffPaypalTokenResponse> = new BehaviorSubject(null);

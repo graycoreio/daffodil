@@ -7,13 +7,13 @@ import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 export class MockPaypalTokenResponse implements DaffPaypalTokenResponse {
   token = 'tokenstring';
   urls = {
-		start: faker.internet.url(),
-		edit: faker.internet.url()
-	};
+    start: faker.internet.url(),
+    edit: faker.internet.url(),
+  };
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffPaypalTokenResponseFactory extends DaffModelFactory<DaffPaypalTokenResponse>{
   constructor(){
