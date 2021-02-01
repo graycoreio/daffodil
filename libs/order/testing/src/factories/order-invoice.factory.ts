@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { DaffOrderInvoice } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffOrderInvoice } from '@daffodil/order';
 
 export class MockOrderInvoice implements DaffOrderInvoice {
   items = [];
@@ -14,7 +14,7 @@ export class MockOrderInvoice implements DaffOrderInvoice {
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffOrderInvoiceFactory extends DaffModelFactory<DaffOrderInvoice> {
   constructor() {

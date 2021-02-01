@@ -1,4 +1,7 @@
-import { daffOrderReducer, daffOrderEntitiesReducer } from '@daffodil/order/state';
+import {
+  daffOrderReducer,
+  daffOrderEntitiesReducer,
+} from '@daffodil/order/state';
 
 import { daffOrderReducers } from './order-reducers';
 

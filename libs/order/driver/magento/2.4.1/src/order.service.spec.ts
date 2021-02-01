@@ -1,20 +1,26 @@
-import {InMemoryCache} from '@apollo/client/core';
-import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import {
-  DaffOrder,
-} from '@daffodil/order';
+import { DaffCart } from '@daffodil/cart';
+import { schema } from '@daffodil/driver/magento';
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderInvalidAPIResponseError,
   DaffOrderNotFoundError,
 } from '@daffodil/order/driver';
-import { MagentoOrder, MagentoGetGuestOrdersResponse, getGuestOrders } from '@daffodil/order/driver/magento/2.4.1';
-import { schema } from '@daffodil/driver/magento';
-import { DaffCart } from '@daffodil/cart';
+import {
+  MagentoOrder,
+  MagentoGetGuestOrdersResponse,
+  getGuestOrders,
+} from '@daffodil/order/driver/magento/2.4.1';
 
 import { MagentoOrderTestDataFactory } from './helpers/public_api';
 import { DaffOrderMagentoService } from './order.service';
@@ -33,18 +39,18 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffOrderMagentoService,
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffOrderMagentoService);
@@ -61,8 +67,8 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
         __typename: 'GraycoreGuestOrders',
-        items: [mockMagentoOrder]
-      }
+        items: [mockMagentoOrder],
+      },
     };
   });
 
@@ -83,13 +89,13 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
               expect(err).toEqual(jasmine.any(DaffOrderInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
-            data: mockGetOrdersResponse
+            data: mockGetOrdersResponse,
           });
         });
       });
@@ -100,7 +106,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             service.get(orderId, cartId).subscribe(result => {
               expect(result).toEqual(jasmine.objectContaining({
                 ...mockDaffOrder,
-                extra_attributes: jasmine.anything()
+                extra_attributes: jasmine.anything(),
               }));
               done();
             });
@@ -108,7 +114,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
-              data: mockGetOrdersResponse
+              data: mockGetOrdersResponse,
             });
           });
         });
@@ -134,7 +140,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
             op.flush({
-              data: mockGetOrdersResponse
+              data: mockGetOrdersResponse,
             });
           });
         });
@@ -148,7 +154,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
@@ -160,7 +166,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });
@@ -173,7 +179,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           service.list(cartId).subscribe(result => {
             expect(result).toEqual([jasmine.objectContaining({
               ...mockDaffOrder,
-              extra_attributes: jasmine.anything()
+              extra_attributes: jasmine.anything(),
             })]);
             done();
           });
@@ -181,7 +187,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
-            data: mockGetOrdersResponse
+            data: mockGetOrdersResponse,
           });
         });
       });
@@ -197,13 +203,13 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
               expect(err).toEqual(jasmine.any(DaffOrderInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
 
           op.flush({
-            data: mockGetOrdersResponse
+            data: mockGetOrdersResponse,
           });
         });
       });
@@ -216,7 +222,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
             expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(getGuestOrders([])));
@@ -228,7 +234,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });

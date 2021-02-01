@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import {
+  Action,
+  Store,
+  select,
+} from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { DaffOrder, DaffOrderTotal } from '@daffodil/order';
+import {
+  DaffOrder,
+  DaffOrderTotal,
+} from '@daffodil/order';
 
 import { DaffOrderReducersState } from '../../reducers/public_api';
-import {
-  getDaffOrderSelectors
-} from '../../selectors/public_api';
-import { DaffOrderFacadeInterface } from './order-facade.interface';
 import { DaffOrderEntitySelectors } from '../../selectors/order-entities.selector';
+import { getDaffOrderSelectors } from '../../selectors/public_api';
+import { DaffOrderFacadeInterface } from './order-facade.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrderFacadeInterface<T> {
   loading$: Observable<boolean>;
@@ -105,62 +110,62 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   }
 
   getOrder$(orderId: T['id']): Observable<T> {
-    return this.store.pipe(select(this._order, {id: orderId}))
+    return this.store.pipe(select(this._order, { id: orderId }));
   }
 
   getTotals$(orderId: T['id']): Observable<T['totals']> {
-    return this.store.pipe(select(this._totals, {id: orderId}))
+    return this.store.pipe(select(this._totals, { id: orderId }));
   }
 
   getAppliedCodes$(orderId: T['id']): Observable<T['applied_codes']> {
-    return this.store.pipe(select(this._appliedCodes, {id: orderId}))
+    return this.store.pipe(select(this._appliedCodes, { id: orderId }));
   }
 
   getItems$(orderId: T['id']): Observable<T['items']> {
-    return this.store.pipe(select(this._items, {id: orderId}))
+    return this.store.pipe(select(this._items, { id: orderId }));
   }
 
   getBillingAddresses$(orderId: T['id']): Observable<T['billing_addresses']> {
-    return this.store.pipe(select(this._billingAddresses, {id: orderId}))
+    return this.store.pipe(select(this._billingAddresses, { id: orderId }));
   }
 
   getShippingAddresses$(orderId: T['id']): Observable<T['shipping_addresses']> {
-    return this.store.pipe(select(this._shippingAddresses, {id: orderId}))
+    return this.store.pipe(select(this._shippingAddresses, { id: orderId }));
   }
 
   getShipments$(orderId: T['id']): Observable<T['shipments']> {
-    return this.store.pipe(select(this._shipments, {id: orderId}))
+    return this.store.pipe(select(this._shipments, { id: orderId }));
   }
 
   getPayment$(orderId: T['id']): Observable<T['payment']> {
-    return this.store.pipe(select(this._payment, {id: orderId}))
+    return this.store.pipe(select(this._payment, { id: orderId }));
   }
 
   getInvoices$(orderId: T['id']): Observable<T['invoices']> {
-    return this.store.pipe(select(this._invoices, {id: orderId}))
+    return this.store.pipe(select(this._invoices, { id: orderId }));
   }
 
   getCredits$(orderId: T['id']): Observable<T['credits']> {
-    return this.store.pipe(select(this._credits, {id: orderId}))
+    return this.store.pipe(select(this._credits, { id: orderId }));
   }
 
   getGrandTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._grandTotal, {id: orderId}))
+    return this.store.pipe(select(this._grandTotal, { id: orderId }));
   };
   getSubtotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._subtotal, {id: orderId}))
+    return this.store.pipe(select(this._subtotal, { id: orderId }));
   };
   getShippingTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._shipping, {id: orderId}))
+    return this.store.pipe(select(this._shipping, { id: orderId }));
   };
   getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._discount, {id: orderId}))
+    return this.store.pipe(select(this._discount, { id: orderId }));
   };
   hasDiscount$(orderId: T['id']): Observable<boolean> {
-    return this.store.pipe(select(this._hasDiscount, {id: orderId}))
+    return this.store.pipe(select(this._hasDiscount, { id: orderId }));
   };
   getTaxTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._tax, {id: orderId}))
+    return this.store.pipe(select(this._tax, { id: orderId }));
   };
 
   dispatch(action: Action) {

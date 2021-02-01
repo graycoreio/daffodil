@@ -9,7 +9,7 @@ describe('Order | Testing | Factories | CompositeOrderItemFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCompositeOrderItemFactory]
+      providers: [DaffCompositeOrderItemFactory],
     });
 
     compositeOrderItemFactory = TestBed.inject(DaffCompositeOrderItemFactory);

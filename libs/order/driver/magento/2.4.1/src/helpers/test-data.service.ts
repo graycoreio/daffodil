@@ -14,23 +14,8 @@ import {
   DaffOrderPayment,
   DaffOrderTotalTypeEnum,
   DaffCompositeOrderItem,
-  DaffConfigurableOrderItem
+  DaffConfigurableOrderItem,
 } from '@daffodil/order';
-import {
-  DaffOrderFactory,
-  DaffOrderAddressFactory,
-  DaffOrderCouponFactory,
-  DaffOrderInvoiceFactory,
-  DaffOrderItemFactory,
-  DaffOrderShipmentItemFactory,
-  DaffOrderShipmentTrackingFactory,
-  DaffOrderShipmentFactory,
-  DaffOrderShippingMethodFactory,
-  DaffOrderTotalFactory,
-  DaffOrderPaymentFactory,
-  DaffCompositeOrderItemFactory,
-  DaffConfigurableOrderItemFactory
-} from '@daffodil/order/testing';
 import {
   MagentoOrder,
   MagentoOrderAddress,
@@ -44,13 +29,28 @@ import {
   MagentoOrderCreditItem,
   MagentoOrderInvoiceItem,
   MagentoOrderBundleItem,
-  MagentoOrderItemType
+  MagentoOrderItemType,
 } from '@daffodil/order/driver/magento/2.4.1';
+import {
+  DaffOrderFactory,
+  DaffOrderAddressFactory,
+  DaffOrderCouponFactory,
+  DaffOrderInvoiceFactory,
+  DaffOrderItemFactory,
+  DaffOrderShipmentItemFactory,
+  DaffOrderShipmentTrackingFactory,
+  DaffOrderShipmentFactory,
+  DaffOrderShippingMethodFactory,
+  DaffOrderTotalFactory,
+  DaffOrderPaymentFactory,
+  DaffCompositeOrderItemFactory,
+  DaffConfigurableOrderItemFactory,
+} from '@daffodil/order/testing';
 
 import { MagentoOrderTestData } from './test-data.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoOrderTestDataFactory {
   constructor(
@@ -70,52 +70,20 @@ export class MagentoOrderTestDataFactory {
   ) {}
 
   create(): MagentoOrderTestData {
-    let mockDaffOrder: DaffOrder;
-    let mockDaffOrderAddress: DaffOrderAddress;
-    let mockDaffOrderCoupon: DaffOrderCoupon;
-    let mockDaffOrderInvoice: DaffOrderInvoice;
-    let mockDaffOrderPayment: DaffOrderPayment;
-    let mockDaffOrderItem: DaffOrderItem;
-    let mockDaffOrderCompositeItem: DaffCompositeOrderItem;
-    let mockDaffOrderConfigurableItem: DaffConfigurableOrderItem;
-    let mockDaffOrderShipmentItem: DaffOrderShipmentItem;
-    let mockDaffOrderShipmentTracking: DaffOrderShipmentTracking;
-    let mockDaffOrderShipment: DaffOrderShipment;
-    let mockDaffOrderShippingMethod: DaffOrderShippingMethod;
-    let mockDaffOrderGrandTotal: DaffOrderTotal;
-    let mockDaffOrderSubTotal: DaffOrderTotal;
-    let mockDaffOrderShippingTotal: DaffOrderTotal;
-    let mockDaffOrderTax: DaffOrderTotal;
-    let mockDaffOrderDiscount: DaffOrderTotal;
-
-    let mockMagentoOrder: MagentoOrder;
-    let mockMagentoOrderAddress: MagentoOrderAddress;
-    let mockMagentoOrderInvoice: MagentoOrderInvoice;
-    let mockMagentoOrderInvoiceItem: MagentoOrderInvoiceItem;
-    let mockMagentoOrderPayment: MagentoOrderPayment;
-    let mockMagentoOrderSimpleItem: MagentoOrderItem;
-    let mockMagentoOrderBundleItem: MagentoOrderBundleItem;
-    let mockMagentoOrderConfigurableItem: MagentoOrderItem;
-    let mockMagentoOrderShipmentItem: MagentoOrderShipmentItem;
-    let mockMagentoOrderShipmentTracking: MagentoOrderShipmentTracking;
-    let mockMagentoOrderShipment: MagentoOrderShipment;
-    let mockMagentoOrderCredit: MagentoOrderCredit;
-    let mockMagentoOrderCreditItem: MagentoOrderCreditItem;
-
-    mockDaffOrderAddress = this.daffOrderAddressFactory.create({
-      email: null
+    const mockDaffOrderAddress: DaffOrderAddress = this.daffOrderAddressFactory.create({
+      email: null,
     });
-    mockDaffOrderCoupon = this.daffOrderCouponFactory.create();
-    mockDaffOrderPayment = this.daffOrderPaymentFactory.create({
+    const mockDaffOrderCoupon: DaffOrderCoupon = this.daffOrderCouponFactory.create();
+    const mockDaffOrderPayment: DaffOrderPayment = this.daffOrderPaymentFactory.create({
       created_at: null,
       updated_at: null,
-      payment_id: null
+      payment_id: null,
     });
-    mockDaffOrderItem = this.daffOrderItemFactory.create({
+    const mockDaffOrderItem: DaffOrderItem = this.daffOrderItemFactory.create({
       image: {
         url: 'url',
         id: null,
-        label: null
+        label: null,
       },
       parent_item_id: null,
       item_id: null,
@@ -129,11 +97,11 @@ export class MagentoOrderTestDataFactory {
       weight: null,
     });
     mockDaffOrderItem.qty_ordered = mockDaffOrderItem.qty;
-    mockDaffOrderCompositeItem = this.daffOrderCompositeItemFactory.create({
+    const mockDaffOrderCompositeItem: DaffCompositeOrderItem = this.daffOrderCompositeItemFactory.create({
       image: {
         url: 'url',
         id: null,
-        label: null
+        label: null,
       },
       parent_item_id: null,
       item_id: null,
@@ -147,11 +115,11 @@ export class MagentoOrderTestDataFactory {
       weight: null,
     });
     mockDaffOrderCompositeItem.qty_ordered = mockDaffOrderCompositeItem.qty;
-    mockDaffOrderConfigurableItem = this.daffOrderConfigurableItemFactory.create({
+    const mockDaffOrderConfigurableItem: DaffConfigurableOrderItem = this.daffOrderConfigurableItemFactory.create({
       image: {
         url: 'url',
         id: null,
-        label: null
+        label: null,
       },
       parent_item_id: null,
       item_id: null,
@@ -165,76 +133,76 @@ export class MagentoOrderTestDataFactory {
       weight: null,
     });
     mockDaffOrderConfigurableItem.qty_ordered = mockDaffOrderConfigurableItem.qty;
-    mockDaffOrderShipmentItem = this.daffOrderShipmentItemFactory.create({
-      item: mockDaffOrderItem
+    const mockDaffOrderShipmentItem: DaffOrderShipmentItem = this.daffOrderShipmentItemFactory.create({
+      item: mockDaffOrderItem,
     });
     mockDaffOrderShipmentItem.qty = mockDaffOrderItem.qty;
-    mockDaffOrderShipmentTracking = this.daffOrderShipmentTrackingFactory.create({
+    const mockDaffOrderShipmentTracking: DaffOrderShipmentTracking = this.daffOrderShipmentTrackingFactory.create({
       tracking_url: null,
-      carrier_logo: null
+      carrier_logo: null,
     });
-    mockDaffOrderShipment = this.daffOrderShipmentFactory.create({
+    const mockDaffOrderShipment: DaffOrderShipment = this.daffOrderShipmentFactory.create({
       carrier: null,
       carrier_title: null,
       code: null,
       method: null,
       method_description: null,
       tracking: [mockDaffOrderShipmentTracking],
-      items: [mockDaffOrderShipmentItem]
+      items: [mockDaffOrderShipmentItem],
     });
-    mockDaffOrderShippingMethod = this.daffOrderShippingMethodFactory.create();
-    mockDaffOrderGrandTotal = this.daffOrderTotalFactory.create({
+    const mockDaffOrderShippingMethod: DaffOrderShippingMethod = this.daffOrderShippingMethodFactory.create();
+    const mockDaffOrderGrandTotal: DaffOrderTotal = this.daffOrderTotalFactory.create({
       label: 'Grand Total',
       type: DaffOrderTotalTypeEnum.GrandTotal,
-      sort_order: 1
+      sort_order: 1,
     });
-    mockDaffOrderSubTotal = this.daffOrderTotalFactory.create({
+    const mockDaffOrderSubTotal: DaffOrderTotal = this.daffOrderTotalFactory.create({
       label: 'Subtotal',
       type: DaffOrderTotalTypeEnum.Subtotal,
-      sort_order: 0
+      sort_order: 0,
     });
-    mockDaffOrderShippingTotal = this.daffOrderTotalFactory.create({
+    const mockDaffOrderShippingTotal: DaffOrderTotal = this.daffOrderTotalFactory.create({
       label: 'Shipping',
       type: DaffOrderTotalTypeEnum.Shipping,
-      sort_order: 2
+      sort_order: 2,
     });
-    mockDaffOrderTax = this.daffOrderTotalFactory.create({
+    const mockDaffOrderTax: DaffOrderTotal = this.daffOrderTotalFactory.create({
       label: 'Tax',
       type: DaffOrderTotalTypeEnum.Tax,
-      sort_order: 3
+      sort_order: 3,
     });
-    mockDaffOrderDiscount = this.daffOrderTotalFactory.create({
+    const mockDaffOrderDiscount: DaffOrderTotal = this.daffOrderTotalFactory.create({
       label: 'Discount',
       type: DaffOrderTotalTypeEnum.Discount,
-      sort_order: 4
+      sort_order: 4,
     });
-    mockDaffOrderInvoice = this.daffOrderInvoiceFactory.create({
+    const mockDaffOrderInvoice: DaffOrderInvoice = this.daffOrderInvoiceFactory.create({
       totals: jasmine.arrayContaining([
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
-        mockDaffOrderDiscount
+        mockDaffOrderDiscount,
       ]),
       billing_address: mockDaffOrderAddress,
       shipping_address: mockDaffOrderAddress,
       payment: mockDaffOrderPayment,
       items: [mockDaffOrderShipmentItem],
-      shipping_method: null
+      shipping_method: null,
     });
-    mockDaffOrder = this.daffOrderFactory.create({
+    const mockDaffOrder: DaffOrder = this.daffOrderFactory.create({
       totals: jasmine.arrayContaining([
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
-        mockDaffOrderDiscount
+        mockDaffOrderDiscount,
       ]),
       applied_codes: [mockDaffOrderCoupon],
       items: [
         mockDaffOrderItem,
         mockDaffOrderCompositeItem,
-        mockDaffOrderConfigurableItem
+        mockDaffOrderConfigurableItem,
       ],
       billing_addresses: [mockDaffOrderAddress],
       shipping_addresses: [mockDaffOrderAddress],
@@ -243,7 +211,7 @@ export class MagentoOrderTestDataFactory {
       invoices: [mockDaffOrderInvoice],
       credits: [mockDaffOrderInvoice],
       customer_id: null,
-      updated_at: null
+      updated_at: null,
     });
     mockDaffOrder.id = mockDaffOrder.id;
     mockDaffOrderAddress.order_id = mockDaffOrder.id;
@@ -252,7 +220,7 @@ export class MagentoOrderTestDataFactory {
     mockDaffOrderCompositeItem.order_id = mockDaffOrder.id;
     mockDaffOrderConfigurableItem.order_id = mockDaffOrder.id;
 
-    mockMagentoOrderSimpleItem = {
+    const mockMagentoOrderSimpleItem: MagentoOrderItem = {
       __typename: 'OrderItem',
       selected_options: [],
       entered_options: [],
@@ -270,19 +238,19 @@ export class MagentoOrderTestDataFactory {
       product_sale_price: {
         __typename: 'Money',
         value: mockDaffOrderItem.price,
-        currency: 'USD'
+        currency: 'USD',
       },
       discounts: [{
         __typename: 'Discount',
         amount: {
           __typename: 'Money',
           value: mockDaffOrderItem.discount_amount,
-          currency: 'USD'
+          currency: 'USD',
         },
-        label: 'Discount'
+        label: 'Discount',
       }],
     };
-    mockMagentoOrderBundleItem = {
+    const mockMagentoOrderBundleItem: MagentoOrderBundleItem = {
       __typename: 'BundleOrderItem',
       selected_options: [],
       entered_options: [],
@@ -293,12 +261,12 @@ export class MagentoOrderTestDataFactory {
           __typename: 'ItemSelectedBundleOptionValue',
           price: {
             value: null,
-            currency: 'USD'
+            currency: 'USD',
           },
           product_name: a.value_label,
           product_sku: null,
-          quantity: 1
-        }]
+          quantity: 1,
+        }],
       })),
       status: null,
       product_type: MagentoOrderItemType.Bundle,
@@ -314,24 +282,24 @@ export class MagentoOrderTestDataFactory {
       product_sale_price: {
         __typename: 'Money',
         value: mockDaffOrderCompositeItem.price,
-        currency: 'USD'
+        currency: 'USD',
       },
       discounts: [{
         __typename: 'Discount',
         amount: {
           __typename: 'Money',
           value: mockDaffOrderCompositeItem.discount_amount,
-          currency: 'USD'
+          currency: 'USD',
         },
-        label: 'Discount'
+        label: 'Discount',
       }],
     };
-    mockMagentoOrderConfigurableItem = {
+    const mockMagentoOrderConfigurableItem: MagentoOrderItem = {
       __typename: 'OrderItem',
       selected_options: mockDaffOrderConfigurableItem.attributes.map(a => ({
         __typename: 'OrderItemOption',
         label: a.attribute_label,
-        value: a.value_label
+        value: a.value_label,
       })),
       entered_options: [],
       status: null,
@@ -348,19 +316,19 @@ export class MagentoOrderTestDataFactory {
       product_sale_price: {
         __typename: 'Money',
         value: mockDaffOrderConfigurableItem.price,
-        currency: 'USD'
+        currency: 'USD',
       },
       discounts: [{
         __typename: 'Discount',
         amount: {
           __typename: 'Money',
           value: mockDaffOrderConfigurableItem.discount_amount,
-          currency: 'USD'
+          currency: 'USD',
         },
-        label: 'Discount'
+        label: 'Discount',
       }],
     };
-    mockMagentoOrderAddress = {
+    const mockMagentoOrderAddress: MagentoOrderAddress = {
       __typename: 'OrderAddress',
       prefix: mockDaffOrderAddress.prefix,
       suffix: mockDaffOrderAddress.suffix,
@@ -375,25 +343,25 @@ export class MagentoOrderTestDataFactory {
       country_code: mockDaffOrderAddress.country,
       postcode: mockDaffOrderAddress.postcode,
       company: null,
-      fax: null
+      fax: null,
     };
-    mockMagentoOrderShipmentTracking = {
+    const mockMagentoOrderShipmentTracking: MagentoOrderShipmentTracking = {
       __typename: 'ShipmentTracking',
       number: mockDaffOrderShipmentTracking.tracking_number,
       carrier: mockDaffOrderShipmentTracking.carrier,
       title: mockDaffOrderShipmentTracking.title,
     };
-    mockMagentoOrderShipmentItem = {
+    const mockMagentoOrderShipmentItem: MagentoOrderShipmentItem = {
       __typename: 'ShipmentItem',
       order_item: mockMagentoOrderSimpleItem,
-      quantity_shipped: mockDaffOrderShipmentItem.qty
+      quantity_shipped: mockDaffOrderShipmentItem.qty,
     };
-    mockMagentoOrderShipment = {
+    const mockMagentoOrderShipment: MagentoOrderShipment = {
       __typename: 'OrderShipment',
       tracking: [mockMagentoOrderShipmentTracking],
-      items: [mockMagentoOrderShipmentItem]
+      items: [mockMagentoOrderShipmentItem],
     };
-    mockMagentoOrderPayment = {
+    const mockMagentoOrderPayment: MagentoOrderPayment = {
       __typename: 'OrderPaymentMethod',
       name: mockDaffOrderPayment.payment_id,
       type: mockDaffOrderPayment.method,
@@ -401,36 +369,36 @@ export class MagentoOrderTestDataFactory {
         {
           __typename: 'KeyValue',
           name: 'cc_type',
-          value: mockDaffOrderPayment.cc_type
+          value: mockDaffOrderPayment.cc_type,
         },
         {
           __typename: 'KeyValue',
           name: 'cc_last4',
-          value: mockDaffOrderPayment.cc_last4
+          value: mockDaffOrderPayment.cc_last4,
         },
         {
           __typename: 'KeyValue',
           name: 'cc_owner',
-          value: mockDaffOrderPayment.cc_owner
+          value: mockDaffOrderPayment.cc_owner,
         },
         {
           __typename: 'KeyValue',
           name: 'cc_exp_month',
-          value: mockDaffOrderPayment.cc_exp_month
+          value: mockDaffOrderPayment.cc_exp_month,
         },
         {
           __typename: 'KeyValue',
           name: 'cc_exp_year',
-          value: mockDaffOrderPayment.cc_exp_year
+          value: mockDaffOrderPayment.cc_exp_year,
         },
-      ]
+      ],
     };
-    mockMagentoOrderInvoiceItem = {
+    const mockMagentoOrderInvoiceItem: MagentoOrderInvoiceItem = {
       __typename: 'InvoiceItem',
       order_item: mockMagentoOrderSimpleItem,
-      quantity_invoiced: mockDaffOrderShipmentItem.qty
+      quantity_invoiced: mockDaffOrderShipmentItem.qty,
     };
-    mockMagentoOrderInvoice = {
+    const mockMagentoOrderInvoice: MagentoOrderInvoice = {
       __typename: 'Invoice',
       items: [mockMagentoOrderInvoiceItem],
       total: {
@@ -438,40 +406,40 @@ export class MagentoOrderTestDataFactory {
         grand_total: {
           __typename: 'Money',
           value: mockDaffOrderGrandTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         subtotal: {
           __typename: 'Money',
           value: mockDaffOrderSubTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         total_shipping: {
           __typename: 'Money',
           value: mockDaffOrderShippingTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         total_tax: {
           __typename: 'Money',
           value: mockDaffOrderTax.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         discounts: [{
           __typename: 'Discount',
           amount: {
             __typename: 'Money',
             value: mockDaffOrderDiscount.value,
-            currency: 'USD'
+            currency: 'USD',
           },
-          label: 'Discount'
+          label: 'Discount',
         }],
       },
     };
-    mockMagentoOrderCreditItem = {
+    const mockMagentoOrderCreditItem: MagentoOrderCreditItem = {
       __typename: 'CreditMemoItem',
       order_item: mockMagentoOrderSimpleItem,
-      quantity_refunded: mockDaffOrderShipmentItem.qty
+      quantity_refunded: mockDaffOrderShipmentItem.qty,
     };
-    mockMagentoOrderCredit = {
+    const mockMagentoOrderCredit: MagentoOrderCredit = {
       __typename: 'CreditMemo',
       items: [mockMagentoOrderCreditItem],
       total: {
@@ -479,35 +447,35 @@ export class MagentoOrderTestDataFactory {
         grand_total: {
           __typename: 'Money',
           value: mockDaffOrderGrandTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         subtotal: {
           __typename: 'Money',
           value: mockDaffOrderSubTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         total_shipping: {
           __typename: 'Money',
           value: mockDaffOrderShippingTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         total_tax: {
           __typename: 'Money',
           value: mockDaffOrderTax.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         discounts: [{
           __typename: 'Discount',
           amount: {
             __typename: 'Money',
             value: mockDaffOrderDiscount.value,
-            currency: 'USD'
+            currency: 'USD',
           },
-          label: 'Discount'
+          label: 'Discount',
         }],
-      }
+      },
     };
-    mockMagentoOrder = {
+    const mockMagentoOrder: MagentoOrder = {
       __typename: 'GraycoreGuestOrder',
       id: mockDaffOrder.id,
       number: mockDaffOrder.id,
@@ -519,52 +487,52 @@ export class MagentoOrderTestDataFactory {
         grand_total: {
           __typename: 'Money',
           value: mockDaffOrderGrandTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         subtotal: {
           __typename: 'Money',
           value: mockDaffOrderSubTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         total_shipping: {
           __typename: 'Money',
           value: mockDaffOrderShippingTotal.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         total_tax: {
           __typename: 'Money',
           value: mockDaffOrderTax.value,
-          currency: 'USD'
+          currency: 'USD',
         },
         discounts: [{
           __typename: 'Discount',
           amount: {
             __typename: 'Money',
             value: mockDaffOrderDiscount.value,
-            currency: 'USD'
+            currency: 'USD',
           },
-          label: mockDaffOrderCoupon.code
+          label: mockDaffOrderCoupon.code,
         }],
       },
       status: mockDaffOrder.status,
       items: [
         mockMagentoOrderSimpleItem,
         mockMagentoOrderBundleItem,
-        mockMagentoOrderConfigurableItem
+        mockMagentoOrderConfigurableItem,
       ],
       billing_address: mockMagentoOrderAddress,
       shipping_address: mockMagentoOrderAddress,
       shipments: [mockMagentoOrderShipment],
       payment_methods: [mockMagentoOrderPayment],
       invoices: [mockMagentoOrderInvoice],
-      credit_memos: [mockMagentoOrderCredit]
+      credit_memos: [mockMagentoOrderCredit],
     };
 
     mockDaffOrder.extra_attributes = mockMagentoOrder;
 
     return {
       mockDaffOrder,
-      mockMagentoOrder
-    }
+      mockMagentoOrder,
+    };
   }
 }

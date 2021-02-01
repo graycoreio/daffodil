@@ -10,7 +10,7 @@ describe('Order | Testing | Factories | ConfigurableOrderItemFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffConfigurableOrderItemFactory]
+      providers: [DaffConfigurableOrderItemFactory],
     });
 
     configurableOrderItemFactory = TestBed.inject(DaffConfigurableOrderItemFactory);

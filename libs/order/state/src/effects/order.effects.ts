@@ -1,17 +1,24 @@
-import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
-import {
-  DaffCart
-} from '@daffodil/cart';
-import {
-  DaffOrder,
-} from '@daffodil/order';
+import { DaffCart } from '@daffodil/cart';
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
-  DaffOrderDriver
+  DaffOrderDriver,
 } from '@daffodil/order/driver';
 
 import {
@@ -43,10 +50,10 @@ export class DaffOrderEffects<
     switchMap((action: DaffOrderLoad<T, V>) =>
       this.driver.get(action.orderId, action.cartId).pipe(
         map(resp => new DaffOrderLoadSuccess<T>(resp)),
-        catchError(error => of(new DaffOrderLoadFailure('Failed to load order')))
-      )
+        catchError(error => of(new DaffOrderLoadFailure('Failed to load order'))),
+      ),
     ),
-  )
+  );
 
   /**
    * An effect for the listing of orders.
@@ -57,8 +64,8 @@ export class DaffOrderEffects<
     switchMap((action: DaffOrderList) =>
       this.driver.list(action.payload).pipe(
         map(resp => new DaffOrderListSuccess<T>(resp)),
-        catchError(error => of(new DaffOrderListFailure('Failed to list the orders')))
-      )
+        catchError(error => of(new DaffOrderListFailure('Failed to list the orders'))),
+      ),
     ),
-  )
+  );
 }

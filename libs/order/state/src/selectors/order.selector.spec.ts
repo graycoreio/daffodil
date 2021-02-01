@@ -1,5 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  select,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffOrder } from '@daffodil/order';
@@ -7,18 +12,16 @@ import {
   daffOrderReducers,
   DaffOrderReducersState,
   DAFF_ORDER_STORE_FEATURE_KEY,
-  DaffOrderListSuccess
+  DaffOrderListSuccess,
 } from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
-import {
-  getOrderSelectors,
-} from './order.selector';
+import { getOrderSelectors } from './order.selector';
 
 describe('Order | Selector | Order', () => {
   let store: Store<DaffOrderReducersState>;
 
-  let orderFactory: DaffOrderFactory
+  let orderFactory: DaffOrderFactory;
 
   let loading: boolean;
   let errors: string[];
@@ -33,9 +36,9 @@ describe('Order | Selector | Order', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers)
-        })
-      ]
+          [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers),
+        }),
+      ],
     });
 
     store = TestBed.inject(Store);
@@ -51,7 +54,7 @@ describe('Order | Selector | Order', () => {
   describe('selectOrderLoading', () => {
     it('should select the loading property of the order state', () => {
       const selector = store.pipe(select(selectOrderLoading));
-      const expected = cold('a', {a: loading});
+      const expected = cold('a', { a: loading });
 
       expect(selector).toBeObservable(expected);
     });
@@ -60,7 +63,7 @@ describe('Order | Selector | Order', () => {
   describe('selectOrderErrors', () => {
     it('should select the error property of the order state', () => {
       const selector = store.pipe(select(selectOrderErrors));
-      const expected = cold('a', {a: errors});
+      const expected = cold('a', { a: errors });
 
       expect(selector).toBeObservable(expected);
     });

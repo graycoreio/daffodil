@@ -1,30 +1,39 @@
-import {Apollo} from 'apollo-angular';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { Inject, Injectable } from '@angular/core';
-
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+} from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import {
-  DaffOrder,
-} from '@daffodil/order';
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
-  DaffOrderNotFoundError
+  DaffOrderNotFoundError,
 } from '@daffodil/order/driver';
 
-import { getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
-import { validateGetOrdersResponse } from './validators/public_api';
 import { transformMagentoOrderError } from './errors/transform';
-import { daffMagentoTransformOrder } from './transforms/responses/order';
 import { DaffMagentoExtraOrderFragments } from './injection-tokens/public_api';
+import {
+  getGuestOrders,
+  MagentoGetGuestOrdersResponse,
+} from './queries/public_api';
+import { daffMagentoTransformOrder } from './transforms/responses/order';
+import { validateGetOrdersResponse } from './validators/public_api';
 
 /**
  * A service for making Magento GraphQL queries for orders.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffOrderMagentoService implements DaffOrderServiceInterface {
   constructor(
@@ -36,12 +45,12 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
     return this.apollo.query<MagentoGetGuestOrdersResponse>({
       query: getGuestOrders(this.extraOrderFragments),
       variables: {
-        cartId
-      }
+        cartId,
+      },
     }).pipe(
       map(validateGetOrdersResponse),
       map(result => result.data.graycoreGuestOrders.items.map(daffMagentoTransformOrder)),
-      catchError(err => throwError(transformMagentoOrderError(err)))
+      catchError(err => throwError(transformMagentoOrderError(err))),
     );
   }
 
@@ -50,7 +59,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
       map(orders => {
         for (const order of orders) {
           if (order.id === orderId) {
-            return order
+            return order;
           }
         }
 

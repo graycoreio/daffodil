@@ -1,8 +1,17 @@
 import { DaffOrder } from '@daffodil/order';
 
-import { DaffOrderEntitySelectors, getDaffOrderEntitySelectors } from './order-entities.selector';
-import { DaffOrderSelectors, getOrderSelectors } from './order.selector';
-import { DaffOrderFeatureSelector, getDaffOrderReducersStateSelector } from './order-feature.selector';
+import {
+  DaffOrderEntitySelectors,
+  getDaffOrderEntitySelectors,
+} from './order-entities.selector';
+import {
+  DaffOrderFeatureSelector,
+  getDaffOrderReducersStateSelector,
+} from './order-feature.selector';
+import {
+  DaffOrderSelectors,
+  getOrderSelectors,
+} from './order.selector';
 
 export interface DaffOrderAllSelectors<T extends DaffOrder = DaffOrder> extends
   DaffOrderEntitySelectors<T>,
@@ -15,6 +24,6 @@ export const getDaffOrderSelectors = (() => {
     cache = cache || {
       ...getOrderSelectors<T>(),
       ...getDaffOrderEntitySelectors<T>(),
-      ...getDaffOrderReducersStateSelector<T>()
-    }
+      ...getDaffOrderReducersStateSelector<T>(),
+    };
 })();

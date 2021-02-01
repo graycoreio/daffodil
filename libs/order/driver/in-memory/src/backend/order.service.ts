@@ -2,20 +2,18 @@ import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfo,
-  STATUS
+  STATUS,
 } from 'angular-in-memory-web-api';
 
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 import { DaffOrder } from '@daffodil/order';
-import {
-  DaffOrderFactory,
-} from '@daffodil/order/testing';
+import { DaffOrderFactory } from '@daffodil/order/testing';
 
 /**
  * An in-memory service that stubs out the backend services for getting orders.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
   orders: DaffOrder[];
@@ -40,7 +38,7 @@ export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffI
     }
 
     return {
-      orders: this.orders
+      orders: this.orders,
     };
   }
 
@@ -50,15 +48,15 @@ export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffI
   get(reqInfo: RequestInfo): any {
     return reqInfo.utils.createResponse$(() => ({
       body: reqInfo.id ? this.getOrder(reqInfo) : this.listOrders(reqInfo),
-      status: STATUS.OK
-    }))
+      status: STATUS.OK,
+    }));
   }
 
   private getOrder(reqInfo: RequestInfo) {
-    return reqInfo.collection.find(order => order.id === reqInfo.id)
+    return reqInfo.collection.find(order => order.id === reqInfo.id);
   }
 
   private listOrders(reqInfo: RequestInfo) {
-    return reqInfo.collection
+    return reqInfo.collection;
   }
 }

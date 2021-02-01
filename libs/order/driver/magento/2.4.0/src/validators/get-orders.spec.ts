@@ -1,4 +1,4 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
 import { DaffOrderInvalidAPIResponseError } from '@daffodil/order/driver';
 import { MagentoGetGuestOrdersResponse } from '@daffodil/order/driver/magento/2.4.0';
@@ -12,8 +12,8 @@ describe('Order | Driver | Magento | 2.4.0 | Validator | GetOrders', () => {
     response = {
       data: {
         graycoreGuestOrders: {
-          orders: []
-        }
+          orders: [],
+        },
       },
       loading: null,
       networkStatus: null,
@@ -40,7 +40,7 @@ describe('Order | Driver | Magento | 2.4.0 | Validator | GetOrders', () => {
 
   describe('when the response has an order without a billing address, shipping address, or payment', () => {
     beforeEach(() => {
-      response.data.graycoreGuestOrders.orders = [{} as any];
+      response.data.graycoreGuestOrders.orders = [<any>{}];
     });
 
     it('should throw a DaffOrderInvalidAPIResponseError', () => {

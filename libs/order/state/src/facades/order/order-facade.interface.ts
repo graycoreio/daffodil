@@ -1,9 +1,12 @@
-import { Observable } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { DaffOrder, DaffOrderTotal } from '@daffodil/order';
 import { DaffStoreFacade } from '@daffodil/core/state';
+import {
+  DaffOrder,
+  DaffOrderTotal,
+} from '@daffodil/order';
 
 export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;

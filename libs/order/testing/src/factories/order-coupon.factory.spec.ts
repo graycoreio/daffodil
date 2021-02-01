@@ -9,7 +9,7 @@ describe('Order | Testing | Factories | DaffOrderCouponFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderCouponFactory]
+      providers: [DaffOrderCouponFactory],
     });
 
     orderFactory = TestBed.inject(DaffOrderCouponFactory);
@@ -20,7 +20,7 @@ describe('Order | Testing | Factories | DaffOrderCouponFactory', () => {
   });
 
   describe('create', () => {
-    let result : DaffOrderCoupon;
+    let result: DaffOrderCoupon;
 
     beforeEach(() => {
       result = orderFactory.create();

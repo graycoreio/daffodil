@@ -1,9 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
-import {
-  DaffOrder,
-} from '@daffodil/order';
+import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
 import { DaffTestingOrderService } from './order.service';
@@ -23,8 +21,8 @@ describe('Driver | Testing | Order | OrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffTestingOrderService
-      ]
+        DaffTestingOrderService,
+      ],
     });
 
     service = TestBed.inject(DaffTestingOrderService);
@@ -54,7 +52,7 @@ describe('Driver | Testing | Order | OrderService', () => {
 
   describe('list', () => {
     it('should return a list of DaffOrders', () => {
-      const expected = cold('(a|)', { a: [mockOrder] });
+      const expected = cold('(a|)', { a: [mockOrder]});
       expect(service.list()).toBeObservable(expected);
     });
   });

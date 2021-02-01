@@ -5,4 +5,4 @@ import { DaffOrder } from '@daffodil/order';
 /**
  * Interface for order entity state.
  */
-export interface DaffOrderEntityState<T extends DaffOrder = DaffOrder> extends EntityState<T> {}
+export type DaffOrderEntityState<T extends DaffOrder = DaffOrder> = EntityState<T>;

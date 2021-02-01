@@ -71,4 +71,4 @@ export type DaffOrderActions<
   | DaffOrderLoadFailure
   | DaffOrderList
   | DaffOrderListSuccess<T>
-  | DaffOrderListFailure
+  | DaffOrderListFailure;

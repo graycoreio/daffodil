@@ -2,13 +2,11 @@ import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderLoadSuccess,
   DaffOrderListSuccess,
-  daffOrderEntitiesInitialState as initialState
+  daffOrderEntitiesInitialState as initialState,
 } from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
-import {
-  daffOrderEntitiesReducer as reducer,
-} from './order-entities.reducer';
+import { daffOrderEntitiesReducer as reducer } from './order-entities.reducer';
 
 describe('Order | Reducer | OrderEntities', () => {
   let orderFactory: DaffOrderFactory;
@@ -24,7 +22,7 @@ describe('Order | Reducer | OrderEntities', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -42,7 +40,7 @@ describe('Order | Reducer | OrderEntities', () => {
     });
 
     it('should set order from action.payload', () => {
-      expect(result.entities[orderId]).toEqual(order)
+      expect(result.entities[orderId]).toEqual(order);
     });
   });
 
@@ -56,7 +54,7 @@ describe('Order | Reducer | OrderEntities', () => {
     });
 
     it('should set orders from action.payload', () => {
-      expect(result.entities).toEqual({[orderId]: order})
+      expect(result.entities).toEqual({ [orderId]: order });
     });
   });
 });

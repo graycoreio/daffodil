@@ -1,11 +1,11 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
-import { orderItemFragment } from './order-item';
 import { orderAddressFragment } from './order-address';
-import { orderShipmentFragment } from './order-shipment';
-import { orderPaymentFragment } from './order-payment';
-import { orderInvoiceFragment } from './order-invoice';
 import { orderCreditFragment } from './order-credit';
+import { orderInvoiceFragment } from './order-invoice';
+import { orderItemFragment } from './order-item';
+import { orderPaymentFragment } from './order-payment';
+import { orderShipmentFragment } from './order-shipment';
 import { orderTotalFragment } from './order-total';
 
 export const orderFragment = gql`

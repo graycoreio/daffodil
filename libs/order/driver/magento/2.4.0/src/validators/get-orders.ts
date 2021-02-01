@@ -1,4 +1,4 @@
-import {ApolloQueryResult} from '@apollo/client/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 
 import { DaffOrderInvalidAPIResponseError } from '@daffodil/order/driver';
 
@@ -11,11 +11,11 @@ export const validateGetOrdersResponse = (response: ApolloQueryResult<MagentoGet
         && order.shipping_address
         && order.payment
     ), true)) {
-      return response
+      return response;
     } else {
-      throw new DaffOrderInvalidAPIResponseError('One of the orders does not contain required fields.')
+      throw new DaffOrderInvalidAPIResponseError('One of the orders does not contain required fields.');
     }
   } else {
-    throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
+    throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.');
   }
-}
+};

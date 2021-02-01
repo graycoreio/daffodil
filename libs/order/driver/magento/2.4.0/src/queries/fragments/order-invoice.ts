@@ -1,8 +1,8 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
-import { orderShipmentItemFragment } from './order-shipment-item';
 import { orderAddressFragment } from './order-address';
 import { orderPaymentFragment } from './order-payment';
+import { orderShipmentItemFragment } from './order-shipment-item';
 
 export const orderInvoiceFragment = gql`
   fragment orderInvoice on GraycoreOrderInvoice {

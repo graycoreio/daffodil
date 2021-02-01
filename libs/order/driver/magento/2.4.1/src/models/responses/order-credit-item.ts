@@ -1,4 +1,4 @@
-import { MagentoOrderItem } from './order-item'
+import { MagentoOrderItem } from './order-item';
 
 export interface MagentoOrderCreditItem {
   __typename?: 'CreditMemoItem';

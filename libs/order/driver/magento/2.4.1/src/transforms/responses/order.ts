@@ -1,4 +1,7 @@
-import { daffAdd, daffSubtract } from '@daffodil/core';
+import {
+  daffAdd,
+  daffSubtract,
+} from '@daffodil/core';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -13,9 +16,20 @@ import {
   DaffCompositeOrderItemOption,
   DaffOrderItemType,
   DaffConfigurableOrderItemAttribute,
-  DaffOrderCoupon
+  DaffOrderCoupon,
 } from '@daffodil/order';
 
+import { MagentoDiscount } from '../../models/responses/discount';
+import { MagentoOrderCredit } from '../../models/responses/order-credit';
+import { MagentoOrderCreditItem } from '../../models/responses/order-credit-item';
+import { MagentoOrderInvoiceItem } from '../../models/responses/order-invoice-item';
+import {
+  MagentoOrderBundleItem,
+  MagentoOrderBundleItemSelectedOption,
+  MagentoOrderItemOption,
+  MagentoOrderItemType,
+} from '../../models/responses/order-item';
+import { MagentoOrderTotal } from '../../models/responses/order-total';
 import {
   MagentoOrder,
   MagentoOrderItem,
@@ -24,14 +38,8 @@ import {
   MagentoOrderShipmentItem,
   MagentoOrderShipmentTracking,
   MagentoOrderPayment,
-  MagentoOrderInvoice
+  MagentoOrderInvoice,
 } from '../../models/responses/public_api';
-import { MagentoOrderTotal } from '../../models/responses/order-total';
-import { MagentoOrderCredit } from '../../models/responses/order-credit';
-import { MagentoOrderCreditItem } from '../../models/responses/order-credit-item';
-import { MagentoOrderBundleItem, MagentoOrderBundleItemSelectedOption, MagentoOrderItemOption, MagentoOrderItemType } from '../../models/responses/order-item';
-import { MagentoDiscount } from '../../models/responses/discount';
-import { MagentoOrderInvoiceItem } from '../../models/responses/order-invoice-item';
 
 function transformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {
   return [
@@ -39,73 +47,73 @@ function transformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {
       label: 'Grand Total',
       type: DaffOrderTotalTypeEnum.GrandTotal,
       value: totals.grand_total.value,
-      sort_order: 1
+      sort_order: 1,
     },
     {
       label: 'Subtotal',
       type: DaffOrderTotalTypeEnum.Subtotal,
       value: totals.subtotal.value,
-      sort_order: 0
+      sort_order: 0,
     },
     {
       label: 'Shipping',
       type: DaffOrderTotalTypeEnum.Shipping,
       value: totals.total_shipping.value,
-      sort_order: 2
+      sort_order: 2,
     },
     {
       label: 'Tax',
       type: DaffOrderTotalTypeEnum.Tax,
       value: totals.total_tax.value,
-      sort_order: 3
+      sort_order: 3,
     },
     {
       label: 'Discount',
       type: DaffOrderTotalTypeEnum.Discount,
       value: totals.discounts.reduce((acc, discount) => daffAdd(acc, discount.amount.value), 0),
-      sort_order: 4
-    }
-  ]
+      sort_order: 4,
+    },
+  ];
 }
 
 function transformCouponDiscount(discount: MagentoDiscount): DaffOrderCoupon {
   return {
     code: discount.label,
-  }
+  };
 }
 
 function transformConfigurableOption(option: MagentoOrderItemOption): DaffConfigurableOrderItemAttribute {
   return {
     attribute_label: option.label,
-	  value_label: option.value
-  }
+	  value_label: option.value,
+  };
 }
 
 function transformBundleOption(option: MagentoOrderBundleItemSelectedOption): DaffCompositeOrderItemOption {
   return {
     option_label: option.label,
-	  value_label: option.values && option.values[0] && option.values[0].product_name
-  }
+	  value_label: option.values && option.values[0] && option.values[0].product_name,
+  };
 }
 
 function transformAdditionalItemFields(item: MagentoOrderItem) {
   switch (item.product_type) {
-    case MagentoOrderItemType.Bundle:
-      return {
-        type: DaffOrderItemType.Composite,
-        options: (item as MagentoOrderBundleItem).bundle_options.map(transformBundleOption)
-      }
-    case MagentoOrderItemType.Configurable:
-      return {
-        type: DaffOrderItemType.Configurable,
-        attributes: item.selected_options.map(transformConfigurableOption)
-      }
-    case MagentoOrderItemType.Simple:
-      return {
-        type: DaffOrderItemType.Simple
-      }
-    default:
-      return {}
+  case MagentoOrderItemType.Bundle:
+    return {
+      type: DaffOrderItemType.Composite,
+      options: (<MagentoOrderBundleItem>item).bundle_options.map(transformBundleOption),
+    };
+  case MagentoOrderItemType.Configurable:
+    return {
+      type: DaffOrderItemType.Configurable,
+      attributes: item.selected_options.map(transformConfigurableOption),
+    };
+  case MagentoOrderItemType.Simple:
+    return {
+      type: DaffOrderItemType.Simple,
+    };
+  default:
+    return {};
   }
 }
 
@@ -124,7 +132,7 @@ function transformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number)
     image: {
       url: item.product_url_key,
       id: null,
-      label: null
+      label: null,
     },
     order_id: order.id,
     created_at: null,
@@ -143,8 +151,8 @@ function transformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number)
     row_total_with_discount: rowTotalWithDiscount,
     row_weight: null,
     tax_before_discount: null,
-    ...transformAdditionalItemFields(item)
-  }
+    ...transformAdditionalItemFields(item),
+  };
 }
 
 function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): DaffOrderAddress {
@@ -162,15 +170,15 @@ function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): Da
     city: address.city,
     region: address.region_id,
     country: address.country_code,
-    postcode: address.postcode
-  }
+    postcode: address.postcode,
+  };
 }
 
 function transformShipmentItem(shipmentItem: MagentoOrderShipmentItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
     item: transformItem(shipmentItem.order_item, order, shipmentItem.quantity_shipped),
-    qty: shipmentItem.quantity_shipped
-  }
+    qty: shipmentItem.quantity_shipped,
+  };
 }
 
 function transformShipmentTracking(tracking: MagentoOrderShipmentTracking): DaffOrderShipmentTracking {
@@ -180,7 +188,7 @@ function transformShipmentTracking(tracking: MagentoOrderShipmentTracking): Daff
     carrier: tracking.carrier,
     title: tracking.title,
     carrier_logo: null,
-  }
+  };
 }
 
 function transformShipment(shipment: MagentoOrderShipment, order: MagentoOrder): DaffOrderShipment {
@@ -191,16 +199,16 @@ function transformShipment(shipment: MagentoOrderShipment, order: MagentoOrder):
     method: order.shipping_method,
     method_description: null,
     tracking: shipment.tracking.map(transformShipmentTracking),
-    items: shipment.items.map(item => transformShipmentItem(item, order))
-  }
+    items: shipment.items.map(item => transformShipmentItem(item, order)),
+  };
 }
 
 function transformPayment(payment: MagentoOrderPayment, order: MagentoOrder): DaffOrderPayment {
   const findAdditionalData = key => {
-    const index = payment.additional_data.findIndex(({name}) => name === key);
+    const index = payment.additional_data.findIndex(({ name }) => name === key);
 
-    return index > -1 ? payment.additional_data[index].value : null
-  }
+    return index > -1 ? payment.additional_data[index].value : null;
+  };
   return {
     payment_id: null,
     order_id: order.id,
@@ -211,15 +219,15 @@ function transformPayment(payment: MagentoOrderPayment, order: MagentoOrder): Da
     cc_last4: findAdditionalData('cc_last4'),
     cc_owner: findAdditionalData('cc_owner'),
     cc_exp_month: findAdditionalData('cc_exp_month'),
-    cc_exp_year: findAdditionalData('cc_exp_year')
-  }
+    cc_exp_year: findAdditionalData('cc_exp_year'),
+  };
 }
 
 function transformInvoiceItem(invoiceItem: MagentoOrderInvoiceItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
     item: transformItem(invoiceItem.order_item, order, invoiceItem.quantity_invoiced),
-    qty: invoiceItem.quantity_invoiced
-  }
+    qty: invoiceItem.quantity_invoiced,
+  };
 }
 
 function transformInvoice(invoice: MagentoOrderInvoice, order: MagentoOrder, payment: MagentoOrderPayment): DaffOrderInvoice {
@@ -229,15 +237,15 @@ function transformInvoice(invoice: MagentoOrderInvoice, order: MagentoOrder, pay
     shipping_address: transformAddress(order.shipping_address, order),
     payment: transformPayment(payment, order),
     items: invoice.items.map(item => transformInvoiceItem(item, order)),
-    shipping_method: null
-  }
+    shipping_method: null,
+  };
 }
 
 function transformCreditItem(creditItem: MagentoOrderCreditItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
     item: transformItem(creditItem.order_item, order, creditItem.quantity_refunded),
-    qty: creditItem.quantity_refunded
-  }
+    qty: creditItem.quantity_refunded,
+  };
 }
 
 function transformCredit(credit: MagentoOrderCredit, order: MagentoOrder): DaffOrderInvoice {
@@ -247,8 +255,8 @@ function transformCredit(credit: MagentoOrderCredit, order: MagentoOrder): DaffO
     shipping_address: transformAddress(order.shipping_address, order),
     payment: transformPayment(order.payment_methods[0], order),
     items: credit.items.map(item => transformCreditItem(item, order)),
-    shipping_method: null
-  }
+    shipping_method: null,
+  };
 }
 
 /**
@@ -268,15 +276,15 @@ export function daffMagentoTransformOrder(order: MagentoOrder): DaffOrder {
     applied_codes: order.total.discounts.map(transformCouponDiscount),
     items: order.items.map(item => transformItem(item, order, item.quantity_ordered)),
     billing_addresses: [
-      transformAddress(order.billing_address, order)
+      transformAddress(order.billing_address, order),
     ],
     shipping_addresses: [
-      transformAddress(order.shipping_address, order)
+      transformAddress(order.shipping_address, order),
     ],
     shipments: order.shipments.map(shipment => transformShipment(shipment, order)),
     payment: transformPayment(order.payment_methods[0], order),
     // TODO: find out if the index is the correct payment for invoice
     invoices: order.invoices.map((invoice, index) => transformInvoice(invoice, order, order.payment_methods[index])),
     credits: order.credit_memos.map(credit => transformCredit(credit, order)),
-  }
+  };
 }

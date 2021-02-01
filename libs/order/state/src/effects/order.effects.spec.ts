@@ -1,25 +1,29 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
-
 import {
-  DaffOrder,
-} from '@daffodil/order';
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
+
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
-  DaffOrderDriver
+  DaffOrderDriver,
 } from '@daffodil/order/driver';
+import { DaffOrderTestingDriverModule } from '@daffodil/order/driver/testing';
 import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
   DaffOrderLoadFailure,
   DaffOrderList,
   DaffOrderListSuccess,
-  DaffOrderListFailure
+  DaffOrderListFailure,
 } from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
-import { DaffOrderTestingDriverModule } from '@daffodil/order/driver/testing';
 
 import { DaffOrderEffects } from './order.effects';
 
@@ -39,12 +43,12 @@ describe('Daffodil | Order | OrderEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffOrderTestingDriverModule.forRoot()
+        DaffOrderTestingDriverModule.forRoot(),
       ],
       providers: [
         DaffOrderEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject<DaffOrderEffects<DaffOrder>>(DaffOrderEffects);
