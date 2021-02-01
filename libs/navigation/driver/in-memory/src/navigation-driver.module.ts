@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffNavigationDriver } from '@daffodil/navigation/driver';
 
@@ -7,8 +10,8 @@ import { DaffInMemoryNavigationService } from './navigation.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffNavigationInMemoryDriverModule {
   static forRoot(): ModuleWithProviders<DaffNavigationInMemoryDriverModule> {
@@ -17,9 +20,9 @@ export class DaffNavigationInMemoryDriverModule {
       providers: [
         {
           provide: DaffNavigationDriver,
-          useExisting: DaffInMemoryNavigationService
-        }
-      ]
+          useExisting: DaffInMemoryNavigationService,
+        },
+      ],
     };
   }
 }

@@ -1,5 +1,8 @@
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
@@ -13,11 +16,11 @@ describe('Driver | InMemory | Navigation | NavigationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryNavigationService
-      ]
+        DaffInMemoryNavigationService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);

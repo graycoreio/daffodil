@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
   url = '/api/navigation/';

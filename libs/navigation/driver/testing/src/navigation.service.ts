@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
@@ -7,7 +10,7 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
 

@@ -1,7 +1,17 @@
-import {gql, Apollo} from 'apollo-angular';
-import {InMemoryCache, ApolloQueryResult} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, APOLLO_TESTING_CACHE, ApolloTestingModule } from 'apollo-angular/testing';
+import {
+  InMemoryCache,
+  ApolloQueryResult,
+} from '@apollo/client/core';
+import {
+  gql,
+  Apollo,
+} from 'apollo-angular';
+import {
+  ApolloTestingController,
+  APOLLO_TESTING_CACHE,
+  ApolloTestingModule,
+} from 'apollo-angular/testing';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 
@@ -18,10 +28,10 @@ const generateMagentoCategoryTree = (id): CategoryNode => ({
   level: 0,
   product_count: 10,
   children_count: 0,
-	children: [],
-	position: 1,
-	breadcrumbs: []
-})
+  children: [],
+  position: 1,
+  breadcrumbs: [],
+});
 
 describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
   let apollo: Apollo;
@@ -34,17 +44,17 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
         },
-      ]
+      ],
     });
 
     apollo = TestBed.inject(Apollo);
@@ -56,7 +66,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
     depth1NavigationTree = {
       ...generateMagentoCategoryTree(2),
       children_count: 1,
-      children: [childlessNavigationTree]
+      children: [childlessNavigationTree],
     };
     depth3NavigationTree = {
       ...generateMagentoCategoryTree(3),
@@ -67,9 +77,9 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         children: [{
           ...generateMagentoCategoryTree(5),
           children_count: 1,
-          children: [childlessNavigationTree]
-        }]
-      }]
+          children: [childlessNavigationTree],
+        }],
+      }],
     };
   });
 
@@ -89,7 +99,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         ${fragment}
       `;
 
-      response = apollo.query({query});
+      response = apollo.query({ query });
     });
 
     it('should successfully query a childless response', done => {
@@ -100,7 +110,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
       const op = controller.expectOne('TestQuery');
 
-      op.flushData({categoryList: childlessNavigationTree})
+      op.flushData({ categoryList: childlessNavigationTree });
     });
 
     it('should not successfully query a childful response', done => {
@@ -111,7 +121,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
       const op = controller.expectOne('TestQuery');
 
-      op.flushData({categoryList: depth3NavigationTree})
+      op.flushData({ categoryList: depth3NavigationTree });
     });
   });
 
@@ -131,7 +141,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         ${fragment}
       `;
 
-      response = apollo.query({query});
+      response = apollo.query({ query });
     });
 
     it('should successfully query a 1 child response', done => {
@@ -142,7 +152,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
       const op = controller.expectOne('TestQuery');
 
-      op.flushData({categoryList: depth1NavigationTree})
+      op.flushData({ categoryList: depth1NavigationTree });
     });
 
     it('should not successfully query a depth 3 response', done => {
@@ -153,7 +163,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
       const op = controller.expectOne('TestQuery');
 
-      op.flushData({categoryList: depth3NavigationTree})
+      op.flushData({ categoryList: depth3NavigationTree });
     });
   });
 
@@ -162,7 +172,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
     let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
-			const fragment = getCategoryNodeFragment(3);
+      const fragment = getCategoryNodeFragment(3);
 
       query = gql`
         query TestQuery {
@@ -173,7 +183,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         ${fragment}
       `;
 
-      response = apollo.query({query});
+      response = apollo.query({ query });
     });
 
     it('should successfully query a 3 child response', done => {
@@ -184,29 +194,29 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
       const op = controller.expectOne('TestQuery');
 
-      op.flushData({categoryList: depth3NavigationTree})
+      op.flushData({ categoryList: depth3NavigationTree });
     });
-	});
+  });
 
-	//todo: remove this test when this bug is fixed: https://github.com/magento/magento2/issues/31086
-	//This test only exists to test the workaround.
-	it('should not use nested fragments', () => {
-		const expectedFields = [
-			'id',
-			'level',
-			'name',
-			'include_in_menu',
-			'breadcrumbs',
-			'position',
-			'product_count',
-			'children_count',
-			'children'
-		];
+  //todo: remove this test when this bug is fixed: https://github.com/magento/magento2/issues/31086
+  //This test only exists to test the workaround.
+  it('should not use nested fragments', () => {
+    const expectedFields = [
+      'id',
+      'level',
+      'name',
+      'include_in_menu',
+      'breadcrumbs',
+      'position',
+      'product_count',
+      'children_count',
+      'children',
+    ];
 
-		(<any>getCategoryNodeFragment(3).definitions[0]).selectionSet.selections.forEach((selection, index) => {
-			expect(selection.name.value).toEqual(expectedFields[index]);
-		});
-	});
+    (<any>getCategoryNodeFragment(3).definitions[0]).selectionSet.selections.forEach((selection, index) => {
+      expect(selection.name.value).toEqual(expectedFields[index]);
+    });
+  });
 
   afterEach(() => {
     controller.verify();

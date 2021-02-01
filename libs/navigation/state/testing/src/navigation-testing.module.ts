@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffNavigationFacade } from '@daffodil/navigation/state';
 
@@ -11,10 +11,10 @@ import { MockDaffNavigationFacade } from './mock-navigation.facade';
  */
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   providers: [
-    { provide: DaffNavigationFacade, useExisting: MockDaffNavigationFacade }
-  ]
+    { provide: DaffNavigationFacade, useExisting: MockDaffNavigationFacade },
+  ],
 })
 export class DaffNavigationTestingModule {}

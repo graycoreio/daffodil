@@ -3,14 +3,14 @@ import {
   InMemoryDbService,
   RequestInfoUtilities,
   ParsedRequestUrl,
-  STATUS
+  STATUS,
 } from 'angular-in-memory-web-api';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
   navigationTree: DaffNavigationTree;
@@ -25,16 +25,14 @@ export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
 
   createDb(): any {
     return {
-      navigation: [this.navigationTree]
+      navigation: [this.navigationTree],
     };
   }
 
   get(reqInfo: any) {
-    return reqInfo.utils.createResponse$(() => {
-      return {
-        body: this.navigationTree,
-        status: STATUS.OK
-      };
-    });
+    return reqInfo.utils.createResponse$(() => ({
+      body: this.navigationTree,
+      status: STATUS.OK,
+    }));
   }
 }
