@@ -1,3 +1,3 @@
 export interface DaffContactUnion {
-  [x:string]: any;
+  [x: string]: any;
 }

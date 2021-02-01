@@ -6,7 +6,7 @@ export {
   DaffContactReset,
   DaffContactRetry,
   DaffContactSuccessSubmit,
-  DaffContactSubmit
+  DaffContactSubmit,
 } from './actions/contact.actions';
 
 export { DaffContactEffects } from './effects/contact.effects';
@@ -14,7 +14,7 @@ export { DaffContactFacade } from './facades/contact.facade';
 export { DaffContactFacadeInterface } from './facades/contact-facade.interface';
 export {
   DaffContactState,
-  reducer
+  reducer,
 } from './reducers/contact.reducer';
 
 export {
@@ -22,5 +22,5 @@ export {
   selectDaffContactLoading,
   selectDaffContactSuccess,
   selectContactFeatureState,
-  DaffContactFeatureState
+  DaffContactFeatureState,
 } from './selectors/contact.selector';

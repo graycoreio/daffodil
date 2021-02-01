@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import {
+  Action,
+  Store,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import {
-	DaffContactFeatureState,
-	selectDaffContactLoading,
-	selectDaffContactError,
-	selectDaffContactSuccess,
-} from '../selectors/contact.selector';
 import { DaffContactStateModule } from '../contact.module';
+import {
+  DaffContactFeatureState,
+  selectDaffContactLoading,
+  selectDaffContactError,
+  selectDaffContactSuccess,
+} from '../selectors/contact.selector';
 import { DaffContactFacadeInterface } from './contact-facade.interface';
 
 @Injectable({ providedIn: DaffContactStateModule })
@@ -19,6 +22,6 @@ export class DaffContactFacade implements DaffContactFacadeInterface {
 
 	constructor(private store: Store<DaffContactFeatureState>) { }
 	dispatch(action: Action) {
-		this.store.dispatch(action);
+	  this.store.dispatch(action);
 	}
 }

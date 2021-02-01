@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffContactServiceInterface } from '@daffodil/contact/driver';
 import { DaffContactUnion } from '@daffodil/contact';
+import { DaffContactServiceInterface } from '@daffodil/contact/driver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryContactService implements DaffContactServiceInterface<DaffContactUnion, DaffContactUnion>{
-  
+
   url = '/api/contact';
   constructor(private http: HttpClient) {}
 
