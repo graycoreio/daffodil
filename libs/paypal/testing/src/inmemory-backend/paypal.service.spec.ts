@@ -7,7 +7,7 @@ describe('Testing | Driver | InMemoryBackend | DaffInMemoryBackendPaypalService'
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendPaypalService]
+      providers: [DaffInMemoryBackendPaypalService],
     });
 
     paypalTestingService = TestBed.inject(DaffInMemoryBackendPaypalService);

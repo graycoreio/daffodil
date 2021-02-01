@@ -10,7 +10,7 @@ describe('Paypal | Testing | Factories | DaffPaypalTokenResponseFactory', () => 
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffPaypalTokenResponseFactory]
+      providers: [DaffPaypalTokenResponseFactory],
     });
 
     paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
@@ -44,6 +44,6 @@ describe('Paypal | Testing | Factories | DaffPaypalTokenResponseFactory', () => 
 
       result = paypalTokenResponseFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

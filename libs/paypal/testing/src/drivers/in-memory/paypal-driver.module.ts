@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffPaypalDriver } from '@daffodil/paypal';
 
@@ -7,8 +10,8 @@ import { DaffInMemoryPaypalService } from './paypal.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffPaypalInMemoryDriverModule {
   static forRoot(): ModuleWithProviders<DaffPaypalInMemoryDriverModule> {
@@ -17,9 +20,9 @@ export class DaffPaypalInMemoryDriverModule {
       providers: [
         {
           provide: DaffPaypalDriver,
-          useExisting: DaffInMemoryPaypalService
-        }
-      ]
+          useExisting: DaffInMemoryPaypalService,
+        },
+      ],
     };
   }
 }

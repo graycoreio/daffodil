@@ -1,20 +1,29 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable ,  of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
-
-import { DaffPaypalTokenResponseFactory, DaffPaypalTestingDriverModule } from '@daffodil/paypal/testing';
-
-import { DaffPaypalEffects } from './paypal.effects';
 import {
-	DaffGeneratePaypalExpressToken,
-	DaffGeneratePaypalExpressTokenSuccess,
-	DaffGeneratePaypalExpressTokenFailure
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable ,
+  of,
+} from 'rxjs';
+
+import {
+  DaffPaypalTokenResponseFactory,
+  DaffPaypalTestingDriverModule,
+} from '@daffodil/paypal/testing';
+
+import {
+  DaffGeneratePaypalExpressToken,
+  DaffGeneratePaypalExpressTokenSuccess,
+  DaffGeneratePaypalExpressTokenFailure,
 } from '../actions/paypal.actions';
+import { DaffPaypalDriver } from '../drivers/injection-tokens/paypal-driver.token';
 import { DaffPaypalServiceInterface } from '../drivers/interfaces/paypal-service.interface';
 import { DaffPaypalTokenRequest } from '../models/paypal-token-request';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
-import { DaffPaypalDriver } from '../drivers/injection-tokens/paypal-driver.token';
+import { DaffPaypalEffects } from './paypal.effects';
 
 describe('DaffPaypalEffects', () => {
   let actions$: Observable<any>;
@@ -27,17 +36,17 @@ describe('DaffPaypalEffects', () => {
 
   beforeEach(() => {
     paypalTokenRequest = {
-			cartId: 'cartId'
-		};
+      cartId: 'cartId',
+    };
 
     TestBed.configureTestingModule({
       imports: [
-        DaffPaypalTestingDriverModule.forRoot()
+        DaffPaypalTestingDriverModule.forRoot(),
       ],
       providers: [
         DaffPaypalEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffPaypalEffects);

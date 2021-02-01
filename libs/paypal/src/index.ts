@@ -1,9 +1,9 @@
-export { 
-	DaffGeneratePaypalExpressToken,
-	DaffGeneratePaypalExpressTokenSuccess,
-	DaffGeneratePaypalExpressTokenFailure,
-	DaffPaypalActions,
-	DaffPaypalActionTypes
+export {
+  DaffGeneratePaypalExpressToken,
+  DaffGeneratePaypalExpressTokenSuccess,
+  DaffGeneratePaypalExpressTokenFailure,
+  DaffPaypalActions,
+  DaffPaypalActionTypes,
 } from './actions/paypal.actions';
 export { DaffPaypalServiceInterface } from './drivers/interfaces/paypal-service.interface';
 export { DaffPaypalTransformerInterface } from './drivers/interfaces/paypal-transformer.interface';

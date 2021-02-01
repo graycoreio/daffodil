@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
+import {
+  Store,
+  select,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select, Action } from '@ngrx/store';
 
-import { DaffPaypalModule } from '../paypal.module';
-import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
+import { DaffPaypalModule } from '../paypal.module';
+import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { getDaffPaypalSelectors } from '../selectors/paypal.selector';
 
 @Injectable({
-  providedIn: DaffPaypalModule
+  providedIn: DaffPaypalModule,
 })
 export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> implements DaffPaypalFacadeInterface<T> {
   /**
@@ -38,14 +42,14 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalToke
   error$: Observable<string>;
 
   constructor(private store: Store<DaffPaypalReducersState<T>>) {
-		const {
-			selectPaypalTokenResponse,
-			selectPaypalToken,
-			selectPaypalStartUrl,
-			selectPaypalEditUrl,
-			selectPaypalLoading,
-			selectPaypalError
-		} = getDaffPaypalSelectors<T>();
+    const {
+      selectPaypalTokenResponse,
+      selectPaypalToken,
+      selectPaypalStartUrl,
+      selectPaypalEditUrl,
+      selectPaypalLoading,
+      selectPaypalError,
+    } = getDaffPaypalSelectors<T>();
 
     this.paypalTokenResponse$ = this.store.pipe(select(selectPaypalTokenResponse));
     this.paypalToken$ = this.store.pipe(select(selectPaypalToken));
@@ -57,6 +61,7 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalToke
 
   /**
    * Dispatches the given action.
+   *
    * @param action action to dispatch.
    */
   dispatch(action: Action) {

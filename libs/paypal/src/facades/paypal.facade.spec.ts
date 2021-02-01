@@ -1,35 +1,39 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 
-import { DaffPaypalFacade } from './paypal.facade';
-import { daffPaypalReducers } from '../reducers/paypal-reducers';
-import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import {
-	DaffGeneratePaypalExpressTokenSuccess,
-	DaffGeneratePaypalExpressToken,
-	DaffGeneratePaypalExpressTokenFailure
+  DaffGeneratePaypalExpressTokenSuccess,
+  DaffGeneratePaypalExpressToken,
+  DaffGeneratePaypalExpressTokenFailure,
 } from '../actions/paypal.actions';
+import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
+import { daffPaypalReducers } from '../reducers/paypal-reducers';
+import { DaffPaypalFacade } from './paypal.facade';
 
 describe('DaffPaypalFacade', () => {
   let store: Store<any>;
   let facade: DaffPaypalFacade;
   const paypalTokenResponseFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
-	let stubPaypalTokenResponse: DaffPaypalTokenResponse;
+  let stubPaypalTokenResponse: DaffPaypalTokenResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          paypal: combineReducers(daffPaypalReducers)
-        })
+          paypal: combineReducers(daffPaypalReducers),
+        }),
       ],
       providers: [
-        DaffPaypalFacade
-      ]
-    })
+        DaffPaypalFacade,
+      ],
+    });
 
     stubPaypalTokenResponse = paypalTokenResponseFactory.create();
     store = TestBed.inject(Store);
@@ -42,7 +46,7 @@ describe('DaffPaypalFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);
@@ -83,7 +87,7 @@ describe('DaffPaypalFacade', () => {
       store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
       expect(facade.paypalEditUrl$).toBeObservable(expected);
     });
-	});
+  });
 
   describe('loading$', () => {
     it('should be false if the paypal state is not loading', () => {
@@ -102,8 +106,8 @@ describe('DaffPaypalFacade', () => {
 
     it('should be an observable of an array of the current errors', () => {
       const error = 'error1';
-      const expected = cold('a', { a: error});
-			store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
+      const expected = cold('a', { a: error });
+      store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
       expect(facade.error$).toBeObservable(expected);
     });
   });

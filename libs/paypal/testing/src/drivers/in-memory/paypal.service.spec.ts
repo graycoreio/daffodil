@@ -1,8 +1,11 @@
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { DaffInMemoryPaypalService } from './paypal.service';
 import { DaffPaypalTokenResponseFactory } from '../../factories/paypal-token-response.factory';
+import { DaffInMemoryPaypalService } from './paypal.service';
 
 describe('Testing | Drivers | InMemory | PaypalService', () => {
   let paypalService;
@@ -12,11 +15,11 @@ describe('Testing | Drivers | InMemory | PaypalService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryPaypalService
-      ]
+        DaffInMemoryPaypalService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -37,7 +40,7 @@ describe('Testing | Drivers | InMemory | PaypalService', () => {
     it('should send a generateToken request', () => {
       const stubPaypalTokenResponse = paypalTokenResponseFactory.create();
 
-      paypalService.generateToken({cartId: 'cartId'}).subscribe(paypalTokenResponse => {
+      paypalService.generateToken({ cartId: 'cartId' }).subscribe(paypalTokenResponse => {
         expect(paypalTokenResponse).toEqual(stubPaypalTokenResponse);
       });
 
