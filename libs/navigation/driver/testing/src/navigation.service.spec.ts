@@ -16,8 +16,8 @@ describe('Driver | Testing | Navigation | NavigationService', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffNavigationTreeFactory, useValue: mockNavigationFactory },
-        DaffTestingNavigationService
-      ]
+        DaffTestingNavigationService,
+      ],
     });
     navigationService = TestBed.inject(DaffTestingNavigationService);
   });

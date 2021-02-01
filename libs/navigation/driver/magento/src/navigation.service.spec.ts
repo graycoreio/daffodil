@@ -1,6 +1,6 @@
-import {addTypenameToDocument} from '@apollo/client/utilities';
-import {InMemoryCache} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import {
   ApolloTestingModule,
   ApolloTestingController,
@@ -8,16 +8,13 @@ import {
 } from 'apollo-angular/testing';
 
 import { schema } from '@daffodil/driver/magento';
-
-import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
-import {
-  DaffNavigationTransformer,
-} from '@daffodil/navigation/driver';
+import { DaffNavigationTransformer } from '@daffodil/navigation/driver';
 import {
   DaffMagentoNavigationTransformerService,
   MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-  daffMagentoGetCategoryTree
+  daffMagentoGetCategoryTree,
 } from '@daffodil/navigation/driver/magento';
+import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffMagentoNavigationService } from './navigation.service';
 
@@ -31,23 +28,23 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffMagentoNavigationService,
         { provide: DaffNavigationTransformer, useExisting: DaffMagentoNavigationTransformerService },
         {
           provide: MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-          useValue: queryDepth
+          useValue: queryDepth,
         },
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
+      ],
     });
 
     controller = TestBed.inject(ApolloTestingController);
@@ -74,7 +71,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
 
       const op = controller.expectOne(addTypenameToDocument(daffMagentoGetCategoryTree(queryDepth)));
 
-      expect(op.operation.variables.filters).toEqual({ ids: { eq: navigation.id}});
+      expect(op.operation.variables.filters).toEqual({ ids: { eq: navigation.id }});
 
       op.flush({
         data: {
@@ -83,14 +80,14 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
             id: navigation.id,
             name: navigation.name,
             include_in_menu: true,
-						level: 0,
-						position: 1,
+            level: 0,
+            position: 1,
             product_count: navigation.total_products,
             children_count: navigation.children_count,
-						children: [],
-						breadcrumbs: []
-          }]
-        }
+            children: [],
+            breadcrumbs: [],
+          }],
+        },
       });
     });
 

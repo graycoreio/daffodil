@@ -9,7 +9,7 @@ describe('Driver | InMemory | Navigation | DaffInMemoryBackendNavigationService'
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendNavigationService]
+      providers: [DaffInMemoryBackendNavigationService],
     });
 
     navigationTestingService = TestBed.inject(DaffInMemoryBackendNavigationService);

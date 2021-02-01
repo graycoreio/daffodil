@@ -1,12 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable ,  of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable ,
+  of,
+} from 'rxjs';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffNavigationDriver, DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
+import {
+  DaffNavigationDriver,
+  DaffNavigationServiceInterface,
+} from '@daffodil/navigation/driver';
 import { DaffTestingNavigationService } from '@daffodil/navigation/driver/testing';
-import { DaffNavigationLoad, DaffNavigationLoadSuccess, DaffNavigationLoadFailure } from '@daffodil/navigation/state';
+import {
+  DaffNavigationLoad,
+  DaffNavigationLoadSuccess,
+  DaffNavigationLoadFailure,
+} from '@daffodil/navigation/state';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationEffects } from './navigation.effects';
@@ -29,9 +42,9 @@ describe('DaffNavigationEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffNavigationDriver,
-          useValue: new DaffTestingNavigationService(new DaffNavigationTreeFactory())
+          useValue: new DaffTestingNavigationService(new DaffNavigationTreeFactory()),
         },
-      ]
+      ],
     });
 
     effects = TestBed.inject(DaffNavigationEffects);

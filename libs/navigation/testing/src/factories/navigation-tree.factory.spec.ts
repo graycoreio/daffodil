@@ -10,7 +10,7 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffNavigationTreeFactory]
+      providers: [DaffNavigationTreeFactory],
     });
 
     navigationTreeFactory = TestBed.inject(DaffNavigationTreeFactory);
@@ -33,8 +33,8 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
       expect(result.name).toBeDefined();
       expect(result.path).toBeDefined();
       expect(result.children_count).toBeDefined();
-			expect(result.total_products).toBeDefined();
-			expect(result.breadcrumbs).toBeDefined();
+      expect(result.total_products).toBeDefined();
+      expect(result.breadcrumbs).toBeDefined();
     });
   });
 
@@ -47,6 +47,6 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
 
       result = navigationTreeFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

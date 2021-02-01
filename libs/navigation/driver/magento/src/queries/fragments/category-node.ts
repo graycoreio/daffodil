@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 
@@ -18,10 +18,11 @@ const categoryNodeFragment = `
 	}
 	position
 	product_count
-`
+`;
 
 /**
  * Generates a category tree fragment with the specified number of nested child category trees.
+ *
  * @param depth The maximum depth to which category children should be added to the fragment.
  */
 //todo: use nested fragments when this bug is fixed: https://github.com/magento/magento2/issues/31086
@@ -32,11 +33,11 @@ export function getCategoryNodeFragment(depth: number = 3): DocumentNode {
     children {
       ${acc}
     }
-  `, categoryNodeFragment)
+  `, categoryNodeFragment);
 
   return gql`
     fragment recursiveCategoryNode on CategoryTree {
       ${fragmentBody}
     }
-  `
+  `;
 }

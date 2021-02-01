@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
+import {
+  Store,
+  select,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select, Action } from '@ngrx/store';
 
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
-import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
 import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
 import { DaffNavigationFacadeInterface } from './navigation-facade.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implements DaffNavigationFacadeInterface<T> {
   /**
@@ -26,11 +30,11 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
   errors$: Observable<string[]>;
 
   constructor(private store: Store<DaffNavigationReducersState<T>>) {
-		const {
-			selectNavigationTree,
-			selectNavigationLoading,
-			selectNavigationErrors
-		} = getDaffNavigationSelectors<T>();
+    const {
+      selectNavigationTree,
+      selectNavigationLoading,
+      selectNavigationErrors,
+    } = getDaffNavigationSelectors<T>();
 
     this.tree$ = this.store.pipe(select(selectNavigationTree));
     this.loading$ = this.store.pipe(select(selectNavigationLoading));
@@ -39,6 +43,7 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
 
   /**
    * Dispatches the given action.
+   *
    * @param action action to dispatch.
    */
   dispatch(action: Action) {

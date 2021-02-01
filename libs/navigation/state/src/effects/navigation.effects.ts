@@ -1,16 +1,33 @@
-import { Injectable, Inject } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
+import {
+  of,
+  Observable,
+} from 'rxjs';
+import {
+  switchMap,
+  map,
+  catchError,
+} from 'rxjs/operators';
 
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
-import { DaffNavigationDriver, DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
+import {
+  DaffNavigationDriver,
+  DaffNavigationServiceInterface,
+} from '@daffodil/navigation/driver';
 
 import {
   DaffNavigationActionTypes,
   DaffNavigationLoad,
   DaffNavigationLoadSuccess,
-  DaffNavigationLoadFailure
+  DaffNavigationLoadFailure,
 } from '../actions/navigation.actions';
 
 @Injectable()
@@ -21,18 +38,14 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
     @Inject(DaffNavigationDriver) private driver: DaffNavigationServiceInterface<T>){}
 
   @Effect()
-  loadNavigation$ : Observable<any> = this.actions$.pipe(
+  loadNavigation$: Observable<any> = this.actions$.pipe(
     ofType(DaffNavigationActionTypes.NavigationLoadAction),
     switchMap((action: DaffNavigationLoad) =>
       this.driver.get(action.payload)
         .pipe(
-          map((resp) => {
-            return new DaffNavigationLoadSuccess(resp);
-          }),
-          catchError(error => {
-            return of(new DaffNavigationLoadFailure('Failed to load the navigation tree'));
-          })
-        )
-    )
-  )
+          map((resp) => new DaffNavigationLoadSuccess(resp)),
+          catchError(error => of(new DaffNavigationLoadFailure('Failed to load the navigation tree'))),
+        ),
+    ),
+  );
 }

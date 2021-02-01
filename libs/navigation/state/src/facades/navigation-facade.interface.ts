@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';

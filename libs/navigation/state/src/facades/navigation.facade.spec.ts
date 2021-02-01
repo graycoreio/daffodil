@@ -1,9 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffNavigationLoad, DaffNavigationLoadFailure, DaffNavigationLoadSuccess, daffNavigationReducers, DaffNavigationReducersState, DAFF_NAVIGATION_STORE_FEATURE_KEY } from '@daffodil/navigation/state';
+import {
+  DaffNavigationLoad,
+  DaffNavigationLoadFailure,
+  DaffNavigationLoadSuccess,
+  daffNavigationReducers,
+  DaffNavigationReducersState,
+  DAFF_NAVIGATION_STORE_FEATURE_KEY,
+} from '@daffodil/navigation/state';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationFacade } from './navigation.facade';
@@ -19,12 +30,12 @@ describe('DaffNavigationFacade', () => {
       imports:[
         StoreModule.forRoot({
           [DAFF_NAVIGATION_STORE_FEATURE_KEY]: combineReducers(daffNavigationReducers),
-        })
+        }),
       ],
       providers: [
         DaffNavigationFacade,
-      ]
-    })
+      ],
+    });
 
     navigation = navigationTreeFactory.create();
     store = TestBed.inject(Store);
@@ -37,7 +48,7 @@ describe('DaffNavigationFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);

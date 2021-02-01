@@ -1,6 +1,11 @@
 import { DaffNavigationTree } from '@daffodil/navigation';
+import {
+  DaffNavigationLoad,
+  DaffNavigationLoadSuccess,
+  DaffNavigationLoadFailure,
+  DaffNavigationReducerState,
+} from '@daffodil/navigation/state';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
-import { DaffNavigationLoad, DaffNavigationLoadSuccess, DaffNavigationLoadFailure, DaffNavigationReducerState } from '@daffodil/navigation/state';
 
 import { daffNavigationReducer } from './navigation.reducer';
 
@@ -12,8 +17,8 @@ describe('Navigation | Navigation Reducer', () => {
   const initialState: DaffNavigationReducerState<DaffNavigationTree> = {
     navigationTree: null,
     loading: false,
-    errors: []
-  }
+    errors: [],
+  };
 
   beforeEach(() => {
     navigationTreeFactory = new DaffNavigationTreeFactory();
@@ -25,7 +30,7 @@ describe('Navigation | Navigation Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffNavigationReducer(initialState, action);
 
@@ -55,8 +60,8 @@ describe('Navigation | Navigation Reducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       const navigationLoadSuccess = new DaffNavigationLoadSuccess(navigation);
       result = daffNavigationReducer(state, navigationLoadSuccess);
@@ -81,8 +86,8 @@ describe('Navigation | Navigation Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
-      }
+        errors: new Array('firstError'),
+      };
 
       const navigationLoadFailure = new DaffNavigationLoadFailure(error);
 
