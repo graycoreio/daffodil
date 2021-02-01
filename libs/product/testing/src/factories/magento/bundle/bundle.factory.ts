@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
+import { DaffModelFactory } from '@daffodil/core/testing';
 import {
-  DaffModelFactory,
-} from '@daffodil/core/testing';
-import { MagentoProductTypeEnum, MagentoBundledProduct } from '@daffodil/product';
+  MagentoProductTypeEnum,
+  MagentoBundledProduct,
+} from '@daffodil/product';
+
 import { MockMagentoCoreProduct } from '../core/product.factory';
 
 export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements MagentoBundledProduct {
@@ -12,7 +14,7 @@ export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoBundledProductFactory extends DaffModelFactory<MagentoBundledProduct> {
 

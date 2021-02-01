@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
 import { DaffCompositeProduct } from '../models/composite-product';
-import { DaffCompositeProductItem, DaffCompositeProductItemOption } from '../models/composite-product-item';
+import {
+  DaffCompositeProductItem,
+  DaffCompositeProductItemOption,
+} from '../models/composite-product-item';
 
 /**
  * Action types for Composite Product Actions.
@@ -12,7 +15,7 @@ export enum DaffCompositeProductActionTypes {
 
 /**
  * Applies a product option to a particular composite product.
- * 
+ *
  * @param id - Id of the Composite Product
  * @param itemId - Id of the product item.
  * @param optionId - Id of the option of the product item that is chosen.
@@ -23,5 +26,5 @@ export class DaffCompositeProductApplyOption<T extends DaffCompositeProduct> imp
   constructor(public id: T['id'], public itemId: DaffCompositeProductItem['id'], public optionId: DaffCompositeProductItemOption['id'], public qty?: number) {}
 }
 
-export type DaffCompositeProductActions<T extends DaffCompositeProduct = DaffCompositeProduct> = 
+export type DaffCompositeProductActions<T extends DaffCompositeProduct = DaffCompositeProduct> =
 	| DaffCompositeProductApplyOption<T>;

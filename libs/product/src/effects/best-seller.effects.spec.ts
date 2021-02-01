@@ -1,14 +1,29 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable ,  of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable ,
+  of,
+} from 'rxjs';
 
-import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from '@daffodil/product/testing';
-import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure } from '../actions/best-sellers.actions';
-import { DaffBestSellersEffects } from './best-seller.effects';
-import { DaffProduct } from '../models/product';
+import {
+  DaffProductFactory,
+  DaffProductImageFactory,
+  DaffTestingProductService,
+} from '@daffodil/product/testing';
+
+import {
+  DaffBestSellersLoad,
+  DaffBestSellersLoadSuccess,
+  DaffBestSellersLoadFailure,
+} from '../actions/best-sellers.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import { DaffProduct } from '../models/product';
+import { DaffBestSellersEffects } from './best-seller.effects';
 
 describe('BestSellersEffects', () => {
   let actions$: Observable<any>;
@@ -23,11 +38,11 @@ describe('BestSellersEffects', () => {
       providers: [
         {
           provide: DaffProductDriver,
-          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory())
+          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory()),
         },
         DaffBestSellersEffects,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+      ],
     });
 
     effects = TestBed.inject(DaffBestSellersEffects);

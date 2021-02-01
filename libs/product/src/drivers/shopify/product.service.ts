@@ -1,6 +1,8 @@
-import {Apollo, gql} from 'apollo-angular';
 import { Injectable } from '@angular/core';
-
+import {
+  Apollo,
+  gql,
+} from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -8,23 +10,23 @@ import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
 
 interface GetAllProductsResponse {
-  shop?: ShopGraph
+  shop?: ShopGraph;
 }
 
 interface GetAProductResponse {
-  node: ProductNode
+  node: ProductNode;
 }
 
 interface ShopGraph {
-  products?: ProductGraph
+  products?: ProductGraph;
 }
 
 interface ProductGraph {
-  edges: ProductEdge[]
+  edges: ProductEdge[];
 }
 
 interface ProductEdge {
-  node: ProductNode
+  node: ProductNode;
 }
 
 interface ProductNode {
@@ -35,7 +37,7 @@ interface ProductNode {
 }
 
 interface Variables {
-  first: number
+  first: number;
 };
 
 
@@ -77,13 +79,11 @@ export const GetAProduct = gql`
  * @param node - ProductNode object
  * @returns A Product object
  */
-export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct => {
-  return {
-    id: node.id,
-		name: node.title,
-		images: []
-  }
-}
+export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct => ({
+  id: node.id,
+  name: node.title,
+  images: [],
+});
 
 /**
  * A service for getting DaffProducts from apollo shopify product requests.
@@ -91,7 +91,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct =
  * @Param apollo
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffShopifyProductService implements DaffProductServiceInterface {
 
@@ -108,12 +108,10 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
       variables: {
-        length: this.defaultLength
-      }
+        length: this.defaultLength,
+      },
     }).pipe(
-      map(result => {
-        return result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))
-      })
+      map(result => result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))),
     );
   }
 
@@ -122,12 +120,10 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
       variables: {
-        length: this.defaultLength
-      }
+        length: this.defaultLength,
+      },
     }).pipe(
-      map(result => {
-        return result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))
-      })
+      map(result => result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))),
     );
   }
 
@@ -141,10 +137,10 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,
       variables: {
-        id: productId
-      }
+        id: productId,
+      },
     }).pipe(
-      map(result => DaffShopifyProductTransformer(result.data.node))
+      map(result => DaffShopifyProductTransformer(result.data.node)),
     );
   }
 }

@@ -1,4 +1,4 @@
-import {gql} from 'apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { magentoProductFragment } from './fragments/product';
 
@@ -20,4 +20,4 @@ query ${DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME}($pageSize: Int)
 	}
 }
 ${magentoProductFragment}
-`
+`;

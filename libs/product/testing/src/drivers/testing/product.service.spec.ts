@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { DaffProductImage } from '@daffodil/product';
 
 import { DaffProductImageFactory } from '../../factories/product-image.factory';
-import { DaffTestingProductService } from './product.service';
 import { isProduct } from '../../helpers/product-helper';
+import { DaffTestingProductService } from './product.service';
 
 describe('Driver | Testing | Product | ProductService', () => {
   let productService;

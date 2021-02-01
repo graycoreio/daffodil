@@ -1,6 +1,12 @@
-import { DaffSortable, ID } from '@daffodil/core';
+import {
+  DaffSortable,
+  ID,
+} from '@daffodil/core';
 
-import { DaffProduct, DaffProductDiscount } from './product';
+import {
+  DaffProduct,
+  DaffProductDiscount,
+} from './product';
 import { DaffProductImage } from './product-image';
 
 /**

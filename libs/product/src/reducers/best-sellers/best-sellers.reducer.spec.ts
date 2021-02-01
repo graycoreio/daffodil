@@ -1,9 +1,17 @@
-import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure, DaffBestSellersReset } from '../../actions/best-sellers.actions';
-import { initialState, daffBestSellersReducer } from './best-sellers.reducer';
-import { DaffProduct } from '../../models/product';
-
 import { DaffProductFactory } from '@daffodil/product/testing';
+
+import {
+  DaffBestSellersLoad,
+  DaffBestSellersLoadSuccess,
+  DaffBestSellersLoadFailure,
+  DaffBestSellersReset,
+} from '../../actions/best-sellers.actions';
+import { DaffProduct } from '../../models/product';
 import { DaffBestSellersReducerState } from './best-sellers-reducer-state.interface';
+import {
+  initialState,
+  daffBestSellersReducer,
+} from './best-sellers.reducer';
 
 describe('Product | Best Sellers Reducer', () => {
 
@@ -19,7 +27,7 @@ describe('Product | Best Sellers Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffBestSellersReducer(initialState, action);
 
@@ -47,8 +55,8 @@ describe('Product | Best Sellers Reducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       products = new Array(product);
       const productsLoadSuccess = new DaffBestSellersLoadSuccess(products);
@@ -76,7 +84,7 @@ describe('Product | Best Sellers Reducer', () => {
         ...initialState,
         loading: true,
         errors: new Array('firstError'),
-      }
+      };
       error = 'error';
       const productsLoadFailure = new DaffBestSellersLoadFailure(error);
 
@@ -98,8 +106,8 @@ describe('Product | Best Sellers Reducer', () => {
       const expectedState = {
         loading: false,
         productIds: [],
-        errors: []
-      }
+        errors: [],
+      };
       const bestSellersReset = new DaffBestSellersReset();
       const result = daffBestSellersReducer(initialState, bestSellersReset);
 

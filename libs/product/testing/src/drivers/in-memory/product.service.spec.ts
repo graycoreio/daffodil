@@ -1,8 +1,11 @@
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { DaffInMemoryProductService } from './product.service';
 import { DaffProductFactory } from '../../factories/product.factory';
+import { DaffInMemoryProductService } from './product.service';
 
 describe('Driver | InMemory | Product | ProductService', () => {
   let productService;
@@ -12,11 +15,11 @@ describe('Driver | InMemory | Product | ProductService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryProductService
-      ]
+        DaffInMemoryProductService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);

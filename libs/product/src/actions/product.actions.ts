@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { DaffProduct } from '../models/product';
 
 /**
@@ -12,7 +13,7 @@ export enum DaffProductActionTypes {
 
 /**
  * Triggers a request for a Product.
- * 
+ *
  * @param payload - Id of requested Product
  */
 export class DaffProductLoad implements Action {
@@ -23,7 +24,7 @@ export class DaffProductLoad implements Action {
 
 /**
  * An action called when a request for a Product succeeded.
- * 
+ *
  * @param payload - A Product
  */
 export class DaffProductLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
@@ -34,7 +35,7 @@ export class DaffProductLoadSuccess<T extends DaffProduct = DaffProduct> impleme
 
 /**
  * An action called when a request for a Product failed.
- * 
+ *
  * @param payload - An error message
  */
 export class DaffProductLoadFailure implements Action {
@@ -43,7 +44,7 @@ export class DaffProductLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export type DaffProductActions<T extends DaffProduct = DaffProduct> = 
-    | DaffProductLoad 
+export type DaffProductActions<T extends DaffProduct = DaffProduct> =
+    | DaffProductLoad
     | DaffProductLoadSuccess<T>
     | DaffProductLoadFailure;

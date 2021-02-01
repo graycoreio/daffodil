@@ -1,15 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffInMemoryBackendProductService } from './product.service';
-
 import { isProduct } from '../helpers/product-helper';
+import { DaffInMemoryBackendProductService } from './product.service';
 
 describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () => {
   let productTestingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendProductService]
+      providers: [DaffInMemoryBackendProductService],
     });
 
     productTestingService = TestBed.inject(DaffInMemoryBackendProductService);
@@ -48,11 +47,9 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
         reqInfoStub = {
           id: 'best-sellers',
           utils: {
-            createResponse$: (func) => {
-              return func();
-            }
-          }
-        }
+            createResponse$: (func) => func(),
+          },
+        };
 
         result = productTestingService.get(reqInfoStub);
       });

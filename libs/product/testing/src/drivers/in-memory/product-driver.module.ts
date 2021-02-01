@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffProductDriver } from '@daffodil/product';
 
@@ -10,8 +13,8 @@ import { DaffInMemoryProductService } from './product.service';
  */
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffProductInMemoryDriverModule {
   static forRoot(): ModuleWithProviders<DaffProductInMemoryDriverModule> {
@@ -20,9 +23,9 @@ export class DaffProductInMemoryDriverModule {
       providers: [
         {
           provide: DaffProductDriver,
-          useExisting: DaffInMemoryProductService
-        }
-      ]
+          useExisting: DaffInMemoryProductService,
+        },
+      ],
     };
   }
 }

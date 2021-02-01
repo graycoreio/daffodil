@@ -1,13 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-
-import { DaffProductFactory } from '@daffodil/product/testing';
-
 import {
   ApolloTestingModule,
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
-import { DaffShopifyProductService, GetAllProductsQuery, GetAProduct } from './product.service';
+import { DaffProductFactory } from '@daffodil/product/testing';
+
+
+import {
+  DaffShopifyProductService,
+  GetAllProductsQuery,
+  GetAProduct,
+} from './product.service';
 
 describe('Driver | Shopify | Product | ProductService', () => {
   let productService: DaffShopifyProductService;
@@ -17,11 +21,11 @@ describe('Driver | Shopify | Product | ProductService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
-        DaffShopifyProductService
-      ]
+        DaffShopifyProductService,
+      ],
     });
 
     controller = TestBed.inject(ApolloTestingController);
@@ -52,15 +56,13 @@ describe('Driver | Shopify | Product | ProductService', () => {
         data:{
           shop: {
             products: {
-              edges: products.map(product => {
-                  return { node: {
-                    title: product.name,
-                    id: product.id
-                  }}
-                })
-            }
-          }
-        }
+              edges: products.map(product => ({ node: {
+                title: product.name,
+                id: product.id,
+              }})),
+            },
+          },
+        },
       });
     });
 
@@ -88,9 +90,9 @@ describe('Driver | Shopify | Product | ProductService', () => {
           node: {
             __typename: 'Product',
             id: product.id,
-            title: product.name
-          }
-        }
+            title: product.name,
+          },
+        },
       });
     });
 

@@ -9,7 +9,7 @@ describe('Product | Testing | Factories | MagentoCoreProductFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoCoreProductFactory]
+      providers: [MagentoCoreProductFactory],
     });
 
     factory = TestBed.inject(MagentoCoreProductFactory);
@@ -27,7 +27,7 @@ describe('Product | Testing | Factories | MagentoCoreProductFactory', () => {
     });
 
     it('should return a MagentoProduct with all required fields defined', () => {
-			expect(result.__typename).toBeDefined();
+      expect(result.__typename).toBeDefined();
       expect(result.id).toBeDefined();
       expect(result.image.label).toBeDefined();
       expect(result.image.url).toBeDefined();
