@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 import { DaffInMemoryBackendNewsletterService } from './newsletter.service';
@@ -8,7 +9,7 @@ describe('DaffNewsletterInMemoryBackend', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendNewsletterService]
+      providers: [DaffInMemoryBackendNewsletterService],
     });
 
     newsletterTestingService = TestBed.inject(DaffInMemoryBackendNewsletterService);

@@ -1,10 +1,16 @@
-import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, STATUS } from 'angular-in-memory-web-api';
 import { Injectable } from '@angular/core';
-import { DaffNewsletterUnion } from '@daffodil/newsletter';
+import {
+  InMemoryDbService,
+  RequestInfoUtilities,
+  ParsedRequestUrl,
+  STATUS,
+} from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 
+import { DaffNewsletterUnion } from '@daffodil/newsletter';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
   newsletters: DaffNewsletterUnion[] = [];
@@ -15,7 +21,7 @@ export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
 
   createDb(): any {
     return {
-      newsletters: this.newsletters
+      newsletters: this.newsletters,
     };
   }
   //validate that its not empty
@@ -23,11 +29,9 @@ export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
   post(reqInfo: any) {
     if (reqInfo === undefined) {
       return Error('Payload is undefined');
-    }
-    else if (this.newsletters.indexOf(reqInfo) > -1) {
+    } else if (this.newsletters.indexOf(reqInfo) > -1) {
       return Error('Already contains submission');
-    }
-    else {
+    } else {
       this.newsletters.push(reqInfo);
       return reqInfo;
     }
