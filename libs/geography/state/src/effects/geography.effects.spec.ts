@@ -1,11 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCountry } from '@daffodil/geography';
-import { DaffCountryFactory } from '@daffodil/geography/testing';
-import { DaffGeographyServiceInterface, DaffGeographyDriver } from '@daffodil/geography/driver';
+import {
+  DaffGeographyServiceInterface,
+  DaffGeographyDriver,
+} from '@daffodil/geography/driver';
+import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 import {
   DaffCountryLoad,
   DaffCountryLoadSuccess,
@@ -14,7 +23,7 @@ import {
   DaffCountryListSuccess,
   DaffCountryListFailure,
 } from '@daffodil/geography/state';
-import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
+import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { DaffGeographyEffects } from './geography.effects';
 
@@ -34,12 +43,12 @@ describe('Daffodil | Geography | GeographyEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffGeographyTestingDriverModule.forRoot()
+        DaffGeographyTestingDriverModule.forRoot(),
       ],
       providers: [
         DaffGeographyEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject<DaffGeographyEffects<DaffCountry>>(DaffGeographyEffects);

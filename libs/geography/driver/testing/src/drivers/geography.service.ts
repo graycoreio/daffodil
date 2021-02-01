@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
+import { DaffCountry } from '@daffodil/geography';
+import { DaffGeographyServiceInterface } from '@daffodil/geography/driver';
 import {
-  DaffCountry
-} from '@daffodil/geography';
-import {
-  DaffGeographyServiceInterface,
-} from '@daffodil/geography/driver';
-import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
+  DaffCountryFactory,
+  DaffSubdivisionFactory,
+} from '@daffodil/geography/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffTestingGeographyService implements DaffGeographyServiceInterface<DaffCountry> {
 
@@ -22,7 +24,7 @@ export class DaffTestingGeographyService implements DaffGeographyServiceInterfac
   get(countryId: DaffCountry['id']): Observable<DaffCountry> {
     return of(this.countryFactory.create({
       id: countryId,
-      subdivisions: this.subdivisionFactory.createMany(3)
+      subdivisions: this.subdivisionFactory.createMany(3),
     }));
   }
 

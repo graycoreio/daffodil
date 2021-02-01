@@ -2,31 +2,31 @@ import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfo,
-  STATUS
+  STATUS,
 } from 'angular-in-memory-web-api';
 
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 import { DaffCountry } from '@daffodil/geography';
 import {
   DaffCountryFactory,
-  DaffSubdivisionFactory
+  DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
 
 /**
  * An in-memory service that stubs out the backend services for getting countries.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendGeographyService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
   countries: DaffCountry[];
 
   constructor(
     private countryFactory: DaffCountryFactory,
-    private subdivisionFactory: DaffSubdivisionFactory
+    private subdivisionFactory: DaffSubdivisionFactory,
   ) {
     this.countries = this.countryFactory.createMany(5);
-    this.countries.forEach(country => country.subdivisions = this.subdivisionFactory.createMany(5))
+    this.countries.forEach(country => country.subdivisions = this.subdivisionFactory.createMany(5));
   }
 
   /**
@@ -43,7 +43,7 @@ export class DaffInMemoryBackendGeographyService implements InMemoryDbService, D
     }
 
     return {
-      countries: this.countries
+      countries: this.countries,
     };
   }
 
@@ -53,15 +53,15 @@ export class DaffInMemoryBackendGeographyService implements InMemoryDbService, D
   get(reqInfo: RequestInfo): any {
     return reqInfo.utils.createResponse$(() => ({
       body: reqInfo.id ? this.getCountry(reqInfo) : this.listCountries(reqInfo),
-      status: STATUS.OK
-    }))
+      status: STATUS.OK,
+    }));
   }
 
   private getCountry(reqInfo: RequestInfo) {
-    return reqInfo.collection.find(country => country.id === reqInfo.id)
+    return reqInfo.collection.find(country => country.id === reqInfo.id);
   }
 
   private listCountries(reqInfo: RequestInfo) {
-    return reqInfo.collection
+    return reqInfo.collection;
   }
 }

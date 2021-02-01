@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import {
-  DaffCountry,
-} from '@daffodil/geography';
+import { DaffCountry } from '@daffodil/geography';
 import {
   DaffCountryLoad,
   DaffCountryLoadSuccess,
@@ -12,9 +14,12 @@ import {
   DaffGeographyFeatureState,
   daffGeographyReducers,
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
-  DaffCountryListSuccess
+  DaffCountryListSuccess,
 } from '@daffodil/geography/state';
-import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
+import {
+  DaffCountryFactory,
+  DaffSubdivisionFactory,
+} from '@daffodil/geography/testing';
 
 import { DaffGeographyFacade } from './geography.facade';
 
@@ -33,11 +38,11 @@ describe('DaffGeographyFacade', () => {
       imports: [
         StoreModule.forRoot({
           [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: combineReducers(daffGeographyReducers),
-        })
+        }),
       ],
       providers: [
         DaffGeographyFacade,
-      ]
+      ],
     });
 
     store = TestBed.inject(Store);
@@ -85,20 +90,20 @@ describe('DaffGeographyFacade', () => {
 
     it('should contain an error upon a failed load', () => {
       const error = 'error';
-      const expected = cold('a', { a: [error] });
+      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCountryLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);
-    })
+    });
   });
 
   describe('countries$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.countries$).toBeObservable(expected);
     });
 
     it('should be the countries upon a successful load', () => {
-      const expected = cold('a', { a: [jasmine.objectContaining(mockCountry)] });
+      const expected = cold('a', { a: [jasmine.objectContaining(mockCountry)]});
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
       expect(facade.countries$).toBeObservable(expected);
     });
@@ -106,12 +111,12 @@ describe('DaffGeographyFacade', () => {
 
   describe('countryIds$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.countryIds$).toBeObservable(expected);
     });
 
     it('should contain the country id upon a successful country load', () => {
-      const expected = cold('a', { a: [countryId] });
+      const expected = cold('a', { a: [countryId]});
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
       expect(facade.countryIds$).toBeObservable(expected);
     });
@@ -132,12 +137,12 @@ describe('DaffGeographyFacade', () => {
 
   describe('countryEntities$', () => {
     it('should initially be an empty object', () => {
-      const expected = cold('a', { a: {} });
+      const expected = cold('a', { a: {}});
       expect(facade.countryEntities$).toBeObservable(expected);
     });
 
     it('should contain the country upon a successful country load', () => {
-      const expected = cold('a', { a: {[countryId]: jasmine.objectContaining(mockCountry)} });
+      const expected = cold('a', { a: { [countryId]: jasmine.objectContaining(mockCountry) }});
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
       expect(facade.countryEntities$).toBeObservable(expected);
     });
@@ -158,7 +163,7 @@ describe('DaffGeographyFacade', () => {
 
   describe('getCountrySubdivisions | getting a specific country\'s subdivisions by country ID', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: [] });
+      const expected = cold('a', { a: []});
       expect(facade.getCountrySubdivisions(countryId)).toBeObservable(expected);
     });
 

@@ -1,21 +1,36 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
+import { schema } from '@daffodil/driver/magento';
 import {
   DaffCountry,
-  DaffSubdivision
+  DaffSubdivision,
 } from '@daffodil/geography';
-import { getCountry, MagentoGetCountryResponse, DaffMagentoCountryTransformer, MagentoRegion, MagentoCountry, MagentoGetCountriesResponse, getCountries } from '@daffodil/geography/driver/magento';
+import {
+  DaffCountryNotFoundError,
+  DaffGeographyInvalidAPIResponseError,
+} from '@daffodil/geography/driver';
+import {
+  getCountry,
+  MagentoGetCountryResponse,
+  DaffMagentoCountryTransformer,
+  MagentoRegion,
+  MagentoCountry,
+  MagentoGetCountriesResponse,
+  getCountries,
+} from '@daffodil/geography/driver/magento';
 import {
   DaffCountryFactory,
-  DaffSubdivisionFactory
+  DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
-import { DaffCountryNotFoundError, DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
-import { schema } from '@daffodil/driver/magento';
 
 import { DaffGeographyMagentoService } from './geography.service';
 
@@ -40,18 +55,18 @@ describe('Driver | Magento | Geography | GeographyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
       ],
       providers: [
         DaffGeographyMagentoService,
         {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            addTypename: true,
             possibleTypes: schema.possibleTypes,
-					}),
-				}
-      ]
+          }),
+        },
+      ],
     });
 
     service = TestBed.inject(DaffGeographyMagentoService);
@@ -70,7 +85,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       __typename: 'Region',
       id: Number(mockDaffSubdivision.id),
       name: mockDaffSubdivision.name,
-      code: mockDaffSubdivision.iso_3166_2
+      code: mockDaffSubdivision.iso_3166_2,
     };
     mockMagentoCountry = {
       __typename: 'Country',
@@ -81,10 +96,10 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       full_name_locale: mockDaffCountry.name,
     };
     mockGetCountriesResponse = {
-      countries: [mockMagentoCountry]
+      countries: [mockMagentoCountry],
     };
     mockGetCountryResponse = {
-      country: mockMagentoCountry
+      country: mockMagentoCountry,
     };
 
     countryTransformerSpy = spyOn(countryTransformer, 'transform');
@@ -111,7 +126,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
         const op = controller.expectOne(addTypenameToDocument(getCountry));
 
         op.flush({
-          data: mockGetCountryResponse
+          data: mockGetCountryResponse,
         });
       });
 
@@ -124,7 +139,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
         const op = controller.expectOne(addTypenameToDocument(getCountry));
 
         op.flush({
-          data: mockGetCountryResponse
+          data: mockGetCountryResponse,
         });
       });
     });
@@ -136,7 +151,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
             expect(err).toEqual(jasmine.any(DaffCountryNotFoundError));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(getCountry));
@@ -148,7 +163,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           null,
           null,
           null,
-          {category: 'graphql-no-such-entity'}
+          { category: 'graphql-no-such-entity' },
         )]);
       });
     });
@@ -167,7 +182,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           const op = controller.expectOne(addTypenameToDocument(getCountries));
 
           op.flush({
-            data: mockGetCountriesResponse
+            data: mockGetCountriesResponse,
           });
         });
 
@@ -180,16 +195,16 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           const op = controller.expectOne(addTypenameToDocument(getCountries));
 
           op.flush({
-            data: mockGetCountriesResponse
+            data: mockGetCountriesResponse,
           });
         });
       });
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-					mockGetCountriesResponse = {
-						countries: null
-					};
+          mockGetCountriesResponse = {
+            countries: null,
+          };
         });
 
         it('should throw a DaffGeographyInvalidAPIResponseError', done => {
@@ -198,13 +213,13 @@ describe('Driver | Magento | Geography | GeographyService', () => {
               expect(err).toEqual(jasmine.any(DaffGeographyInvalidAPIResponseError));
               done();
               return [];
-            })
+            }),
           ).subscribe();
 
           const op = controller.expectOne(addTypenameToDocument(getCountries));
 
           op.flush({
-            data: mockGetCountriesResponse
+            data: mockGetCountriesResponse,
           });
         });
       });
@@ -218,7 +233,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
             expect(err.graphQLErrors[0]).toEqual(jasmine.any(GraphQLError));
             done();
             return [];
-          })
+          }),
         ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(getCountries));
@@ -230,7 +245,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
           null,
           null,
           null,
-          {category: 'graphql'}
+          { category: 'graphql' },
         )]);
       });
     });

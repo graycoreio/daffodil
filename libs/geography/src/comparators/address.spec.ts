@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffAddress } from '@daffodil/geography';
-import { DaffAddressFactory } from '@daffodil/geography/testing'
+import { DaffAddressFactory } from '@daffodil/geography/testing';
 
 import { daffCompareAddresses as comparator } from './address';
 

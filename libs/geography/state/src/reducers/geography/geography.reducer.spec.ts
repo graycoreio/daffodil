@@ -1,5 +1,4 @@
 import { DaffCountry } from '@daffodil/geography';
-import { DaffCountryFactory } from '@daffodil/geography/testing';
 import {
   DaffCountryLoad,
   DaffCountryLoadSuccess,
@@ -8,8 +7,9 @@ import {
   DaffCountryListSuccess,
   DaffCountryListFailure,
   daffGeographyInitialState as initialState,
-  DaffGeographyReducerState
+  DaffGeographyReducerState,
 } from '@daffodil/geography/state';
+import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { daffGeographyReducer as reducer } from './geography.reducer';
 
@@ -27,7 +27,7 @@ describe('Geography | Reducer | Geography', () => {
 
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -52,8 +52,8 @@ describe('Geography | Reducer | Geography', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
-      }
+        loading: true,
+      };
 
       const countryLoadSuccess = new DaffCountryLoadSuccess<DaffCountry>(country);
 
@@ -80,9 +80,9 @@ describe('Geography | Reducer | Geography', () => {
         loading: true,
         errors: [
           ...initialState.errors,
-          'firstError'
-        ]
-      }
+          'firstError',
+        ],
+      };
 
       const countryLoadFailure = new DaffCountryLoadFailure(error);
 
@@ -116,8 +116,8 @@ describe('Geography | Reducer | Geography', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['an errorz']
-      }
+        errors: ['an errorz'],
+      };
 
       const countryListSuccess = new DaffCountryListSuccess([country]);
 
@@ -144,9 +144,9 @@ describe('Geography | Reducer | Geography', () => {
         loading: true,
         errors: [
           ...initialState.errors,
-          'firstError'
-        ]
-      }
+          'firstError',
+        ],
+      };
 
       const countryListFailure = new DaffCountryListFailure(error);
 

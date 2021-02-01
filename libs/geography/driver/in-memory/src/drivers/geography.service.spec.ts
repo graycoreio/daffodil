@@ -1,14 +1,13 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import {
-  DaffCountry,
-} from '@daffodil/geography';
-import {
-  DaffCountryNotFoundError
-} from '@daffodil/geography/driver';
+import { DaffCountry } from '@daffodil/geography';
+import { DaffCountryNotFoundError } from '@daffodil/geography/driver';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { DaffInMemoryGeographyService } from './geography.service';
@@ -24,11 +23,11 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryGeographyService
-      ]
+        DaffInMemoryGeographyService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -58,21 +57,21 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCountry);
-		});
+    });
 
     it('should throw a daffodil error when it receives an error', (done) => {
-			service.get(countryId).pipe(
-				catchError((error) => {
-					expect(error).toEqual(DaffCountryNotFoundError);
-					done();
-					return of(null);
-				})
-			).subscribe();
+      service.get(countryId).pipe(
+        catchError((error) => {
+          expect(error).toEqual(DaffCountryNotFoundError);
+          done();
+          return of(null);
+        }),
+      ).subscribe();
 
-			const req = httpMock.expectOne(`${service.url}/${countryId}`);
+      const req = httpMock.expectOne(`${service.url}/${countryId}`);
 
-			expect(req.request.method).toBe('GET');
-			req.error(new ErrorEvent('404'));
+      expect(req.request.method).toBe('GET');
+      req.error(new ErrorEvent('404'));
     });
   });
 
@@ -87,6 +86,6 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
 
       expect(req.request.method).toBe('GET');
       req.flush([mockCountry]);
-		});
+    });
   });
 });

@@ -1,24 +1,32 @@
-import {Apollo} from 'apollo-angular';
 import { Injectable } from '@angular/core';
-
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  map,
+  catchError,
+} from 'rxjs/operators';
 
 import { DaffCountry } from '@daffodil/geography';
 import { DaffGeographyServiceInterface } from '@daffodil/geography/driver';
 
-import { DaffMagentoCountryTransformer } from './transforms/responses/country.service';
-import { getCountries, MagentoGetCountriesResponse } from './queries/public_api';
-import { getCountry } from './queries/get-country';
-import { MagentoGetCountryResponse } from './queries/responses/get-country';
-import { validateGetCountriesResponse } from './validators/public_api';
 import { transformMagentoGeographyError } from './errors/transform';
+import { getCountry } from './queries/get-country';
+import {
+  getCountries,
+  MagentoGetCountriesResponse,
+} from './queries/public_api';
+import { MagentoGetCountryResponse } from './queries/responses/get-country';
+import { DaffMagentoCountryTransformer } from './transforms/responses/country.service';
+import { validateGetCountriesResponse } from './validators/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffGeographyMagentoService implements DaffGeographyServiceInterface<DaffCountry> {
   constructor(
@@ -32,7 +40,7 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
     }).pipe(
       map(validateGetCountriesResponse),
       map(result => result.data.countries.map(country => this.countryTransformer.transform(country))),
-      catchError(err => throwError(transformMagentoGeographyError(err)))
+      catchError(err => throwError(transformMagentoGeographyError(err))),
     );
   }
 
@@ -40,11 +48,11 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
     return this.apollo.query<MagentoGetCountryResponse>({
       query: getCountry,
       variables: {
-        countryId
-      }
+        countryId,
+      },
     }).pipe(
       map(result => this.countryTransformer.transform(result.data.country)),
-      catchError(err => throwError(transformMagentoGeographyError(err)))
+      catchError(err => throwError(transformMagentoGeographyError(err))),
     );
   }
 }

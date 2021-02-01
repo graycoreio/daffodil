@@ -1,9 +1,12 @@
-import { DaffError, DaffInheritableError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 
 export class DaffCountryNotFoundError extends DaffInheritableError implements DaffError {
   public readonly code: string = 'DAFF_GEOGRAPHY_COUNTRY_NOT_FOUND';
 
-	constructor(public message: string) {
-		super(message);
-	}
+  constructor(public message: string) {
+    super(message);
+  }
 }

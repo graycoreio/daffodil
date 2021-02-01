@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCountry } from '@daffodil/geography';
-
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffCountry } from '@daffodil/geography';
 
 export class MockCountry implements DaffCountry {
   id = faker.random.uuid();
@@ -15,7 +14,7 @@ export class MockCountry implements DaffCountry {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffCountryFactory extends DaffModelFactory<DaffCountry> {
   constructor() {
