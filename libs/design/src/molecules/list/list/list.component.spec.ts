@@ -1,14 +1,24 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffListComponent, DaffListMode } from './list.component';
+import {
+  DaffListComponent,
+  DaffListMode,
+} from './list.component';
 
 @Component({
   template: `
     <daff-list [mode]="mode"></daff-list>
     <daff-nav-list></daff-nav-list>
-  `
+  `,
 })
 class WrapperComponent {
   mode: DaffListMode;
@@ -26,10 +36,10 @@ describe('DaffListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffListComponent
-      ]
+        DaffListComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -46,7 +56,7 @@ describe('DaffListComponent', () => {
 
   describe('<daff-list>', () => {
     it('should add a class of "daff-list" to the host element', () => {
-			expect(de.nativeElement.classList.contains('daff-list')).toBeTruthy();
+      expect(de.nativeElement.classList.contains('daff-list')).toBeTruthy();
     });
 
     it('should have a role of list', () => {
@@ -61,7 +71,7 @@ describe('DaffListComponent', () => {
     });
 
     it('should add a class of "daff-nav-list" to the host element', () => {
-			expect(navDE.nativeElement.classList.contains('daff-nav-list')).toBeTruthy();
+      expect(navDE.nativeElement.classList.contains('daff-nav-list')).toBeTruthy();
     });
 
     it('should have a role of navigation', () => {
@@ -71,15 +81,15 @@ describe('DaffListComponent', () => {
 
   describe('setting the mode', () => {
     it('should not set a default mode', () => {
-			expect(component.mode).toBeFalsy();
-			expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeFalsy();
+      expect(component.mode).toBeFalsy();
+      expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeFalsy();
     });
 
     describe('when mode="multi-line"', () => {
       it('should add a class of "daff-list--multi-line" to the host element', () => {
         wrapper.mode = 'multi-line';
         fixture.detectChanges();
-				expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeTruthy();
       });
     });
 
@@ -87,7 +97,7 @@ describe('DaffListComponent', () => {
       it('should add a class of "daff-list--link" to the host element', () => {
         wrapper.mode = 'link';
         fixture.detectChanges();
-				expect(de.nativeElement.classList.contains('daff-list--link')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-list--link')).toBeTruthy();
       });
     });
 
@@ -95,7 +105,7 @@ describe('DaffListComponent', () => {
       it('should add a class of "daff-list--navigation" to the host element', () => {
         wrapper.mode = 'navigation';
         fixture.detectChanges();
-				expect(de.nativeElement.classList.contains('daff-list--navigation')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-list--navigation')).toBeTruthy();
       });
     });
   });
@@ -106,7 +116,7 @@ describe('DaffListComponent', () => {
     });
 
     it('should add a class of "daff-nav-list" to the host element', () => {
-			expect(navDE.nativeElement.classList.contains('daff-nav-list')).toBeTruthy();
+      expect(navDE.nativeElement.classList.contains('daff-nav-list')).toBeTruthy();
     });
   });
 });

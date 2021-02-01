@@ -1,10 +1,14 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffGalleryImageComponent } from './gallery-image.component';
 
-@Component({template: '<daff-gallery-image class="host-component" [selected]="selectedValue"><div class="inner-element"></div></daff-gallery-image>'})
+@Component({ template: '<daff-gallery-image class="host-component" [selected]="selectedValue"><div class="inner-element"></div></daff-gallery-image>' })
 class WrapperComponent {
   selectedValue = true;
 }
@@ -19,10 +23,10 @@ describe('DaffGalleryImageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffGalleryImageComponent
-      ]
+        DaffGalleryImageComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -54,7 +58,7 @@ describe('DaffGalleryImageComponent', () => {
   describe('when selected is true', () => {
 
     it('should add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
-      wrapper.selectedValue = true
+      wrapper.selectedValue = true;
       fixture.detectChanges();
 
       expect(hostElement.nativeElement.classList.contains('daff-image-gallery__daff-gallery-image--selected')).toBeTruthy();

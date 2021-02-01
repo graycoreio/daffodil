@@ -1,24 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
-
-import { DaffCardComponent } from './card/card.component';
-import { DaffCardTitleDirective } from './card-title/card-title.directive';
 import { DaffCardImageDirective } from './card-image/card-image.directive';
+import { DaffCardTitleDirective } from './card-title/card-title.directive';
+import { DaffCardComponent } from './card/card.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     DaffCardComponent,
     DaffCardTitleDirective,
-    DaffCardImageDirective
+    DaffCardImageDirective,
   ],
   exports: [
     DaffCardComponent,
     DaffCardTitleDirective,
-    DaffCardImageDirective
-  ]
+    DaffCardImageDirective,
+  ],
 })
 export class DaffCardModule { }

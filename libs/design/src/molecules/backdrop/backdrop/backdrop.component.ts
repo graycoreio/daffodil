@@ -1,4 +1,12 @@
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, HostListener, HostBinding } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  ChangeDetectionStrategy,
+  HostListener,
+  HostBinding,
+} from '@angular/core';
 
 import { daffBackdropAnimations } from '../animation/backdrop-animation';
 
@@ -7,9 +15,9 @@ import { daffBackdropAnimations } from '../animation/backdrop-animation';
   templateUrl: './backdrop.component.html',
   styleUrls: ['./backdrop.component.scss'],
   animations: [
-    daffBackdropAnimations.fadeBackdrop
+    daffBackdropAnimations.fadeBackdrop,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffBackdropComponent {
 
@@ -20,7 +28,7 @@ export class DaffBackdropComponent {
   @Input() transparent: boolean = false;
 
   /**
-   * Boolean property that determines whether or not the 
+   * Boolean property that determines whether or not the
    * backdrop should fill up its containing window.
    */
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
@@ -32,7 +40,7 @@ export class DaffBackdropComponent {
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
   /**
-   * Animation hook for that controls the backdrops 
+   * Animation hook for that controls the backdrops
    * entrance and fade animations.
    */
   @HostBinding('@fadeBackdrop')
@@ -42,7 +50,7 @@ export class DaffBackdropComponent {
    * Backdrop event that triggers when the backdrop element is clicked.
    */
   @HostListener('click')
-  onBackdropClicked() : void {
+  onBackdropClicked(): void {
     this.backdropClicked.emit();
   }
 }

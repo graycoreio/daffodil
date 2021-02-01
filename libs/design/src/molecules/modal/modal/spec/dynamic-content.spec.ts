@@ -1,20 +1,34 @@
-import { Component, Input, Output, EventEmitter, DebugElement, NgModule } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentPortal,
+  PortalModule,
+} from '@angular/cdk/portal';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  DebugElement,
+  NgModule,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffModalComponent } from '../modal.component';
-import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
 
-@Component({template: `<daff-modal></daff-modal>`})
+@Component({ template: `<daff-modal></daff-modal>` })
 class WrapperComponent {}
 
-@Component({template: `<p>It works!</p>`})
+@Component({ template: `<p>It works!</p>` })
 class DynamicComponent {}
 
 @NgModule({
   declarations: [DynamicComponent],
-  entryComponents: [DynamicComponent]
+  entryComponents: [DynamicComponent],
 })
 class DynamicModule{}
 
@@ -29,14 +43,14 @@ describe('DaffModalComponent', () => {
       imports: [
         NoopAnimationsModule,
         PortalModule,
-        DynamicModule
+        DynamicModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffModalComponent
-      ]
+        DaffModalComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -51,6 +65,6 @@ describe('DaffModalComponent', () => {
   it('should allow a user to attach dynamic content into the body of the modal', () => {
     modal.attachContent(new ComponentPortal(DynamicComponent));
     fixture.detectChanges();
-    expect((modalDe.nativeElement as HTMLElement).innerHTML).toContain('<p>It works!</p>');
+    expect((<HTMLElement>modalDe.nativeElement).innerHTML).toContain('<p>It works!</p>');
   });
 });

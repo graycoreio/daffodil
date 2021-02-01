@@ -1,10 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffLinkSetSubheadingDirective } from './link-set-subheading.directive';
 
 @Component({
-  template: `<div daffLinkSetSubheading>Subheading</div>`
+  template: `<div daffLinkSetSubheading>Subheading</div>`,
 })
 
 class WrapperComponent {}
@@ -18,10 +26,10 @@ describe('DaffLinkSetSubheadingDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffLinkSetSubheadingDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

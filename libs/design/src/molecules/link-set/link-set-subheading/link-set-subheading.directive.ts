@@ -1,15 +1,18 @@
-import { Directive, HostBinding } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 /**
  * A directive for adding a subheading to a daff-link-set.
  */
 @Directive({
-  selector: '[daffLinkSetSubheading]'
+  selector: '[daffLinkSetSubheading]',
 })
 export class DaffLinkSetSubheadingDirective {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-link-set__subheading') class = true;
 }

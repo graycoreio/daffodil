@@ -1,5 +1,17 @@
-import { Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, HostBinding } from '@angular/core';
-import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  ElementRef,
+  Renderer2,
+  HostBinding,
+} from '@angular/core';
+
+import {
+  daffColorMixin,
+  DaffColorable,
+  DaffPalette,
+} from '../../core/colorable/colorable';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
@@ -8,13 +20,13 @@ class DaffLoadingIconBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary') 
+const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary');
 
 @Component({
   selector: 'daff-loading-icon',
   templateUrl: './loading-icon.component.html',
   styleUrls: ['./loading-icon.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffLoadingIconComponent extends _daffLoadingIconBase implements DaffColorable {
 
@@ -33,8 +45,8 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
 	 * @docs-private
 	 */
   @HostBinding('style.max-width') get maxWidth() {
-    return this.diameter + 'px';
-  }
+	  return this.diameter + 'px';
+	}
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

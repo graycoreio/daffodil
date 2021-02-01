@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'loading-icon-color',
-  templateUrl: './loading-icon-color.component.html'
+  templateUrl: './loading-icon-color.component.html',
 })
 export class LoadingIconColorComponent {
   colorGroup = new FormGroup({
-    color: new FormControl('primary')
+    color: new FormControl('primary'),
   });
 }

@@ -1,5 +1,12 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffAccordionItemContentDirective } from './accordion-item-content.directive';
@@ -7,7 +14,7 @@ import { DaffAccordionItemContentDirective } from './accordion-item-content.dire
 @Component({
   template: `
     <div daffAccordionItemContent>Content</div>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -20,10 +27,10 @@ describe('DaffAccordionItemContentDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffAccordionItemContentDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

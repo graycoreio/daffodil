@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { DaffContainerComponent } from './container.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    DaffContainerComponent
+    DaffContainerComponent,
   ],
   exports: [
-    DaffContainerComponent
-  ]
+    DaffContainerComponent,
+  ],
 })
 export class DaffContainerModule { }

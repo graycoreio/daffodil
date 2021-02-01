@@ -1,4 +1,13 @@
-import { Component, ViewEncapsulation, Optional, Self, Input, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Optional,
+  Self,
+  Input,
+  ElementRef,
+  HostListener,
+  HostBinding,
+} from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 import { DaffFormFieldControl } from '../../form-field/form-field-control';
@@ -8,21 +17,23 @@ import { DaffFormFieldControl } from '../../form-field/form-field-control';
   selector: 'select[daff-native-select]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./select.component.scss'],
-  host: {
-    'class': 'daff-native-select'
-  },
   encapsulation: ViewEncapsulation.None,
-  providers: [{provide: DaffFormFieldControl, useExisting: DaffNativeSelectComponent}],
+  providers: [
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    { provide: DaffFormFieldControl, useExisting: DaffNativeSelectComponent },
+  ],
 })
 
 export class DaffNativeSelectComponent implements DaffFormFieldControl {
-	/**
-	 * @docs-private
-	 */
-  controlType = 'native-select';
-	
   /**
-	 * Has the form been submitted.
+   * @docs-private
+   */
+  controlType = 'native-select';
+
+  @HostBinding('class.daff-native-select') class = true;
+
+  /**
+   * Has the form been submitted.
    */
 	@Input() formSubmitted: boolean;
 	focused = false;
@@ -31,12 +42,12 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
 	 * @docs-private
 	 */
   @HostListener('focus') focus() {
-    this.focused = true;
-  }
+	  this.focused = true;
+	}
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostListener('blur') blur() {
     this.focused = false;
   }
@@ -45,9 +56,9 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
 		/**
 		 * @docs-private
 		 */
-		@Optional() @Self() public ngControl: NgControl, 
-		private _elementRef: ElementRef<HTMLInputElement>
-	) {}
+		@Optional() @Self() public ngControl: NgControl,
+		private _elementRef: ElementRef<HTMLInputElement>,
+  ) {}
 
   onFocus() {
     this._elementRef.nativeElement.focus();

@@ -1,5 +1,17 @@
-import { Directive, Input, OnInit, Self, Optional, forwardRef } from '@angular/core';
-import { NgControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  Directive,
+  Input,
+  OnInit,
+  Self,
+  Optional,
+  forwardRef,
+} from '@angular/core';
+import {
+  NgControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+
 import { DaffCheckboxComponent } from '../checkbox.component';
 
 /**
@@ -10,8 +22,8 @@ import { DaffCheckboxComponent } from '../checkbox.component';
   selector: 'daff-checkbox[ngModel], daff-checkbox[formControl], daff-checkbox[formControlName]',
 })
 export class DaffCheckboxControlValueAccessorDirective implements OnInit, ControlValueAccessor {
-  _onChange : (val: any) => void;
-  _onTouched : () => void;
+  _onChange: (val: any) => void;
+  _onTouched: () => void;
 
   /**
    * The value of the ControlValueAccessor
@@ -25,7 +37,7 @@ export class DaffCheckboxControlValueAccessorDirective implements OnInit, Contro
 
   constructor(
     @Optional() @Self() public _control: NgControl,
-    private _checkbox: DaffCheckboxComponent
+    private _checkbox: DaffCheckboxComponent,
   ) {
     if (this._control != null) {
       this._control.valueAccessor = this;
@@ -44,12 +56,12 @@ export class DaffCheckboxControlValueAccessorDirective implements OnInit, Contro
     this._checkbox.becameChecked.subscribe(
       () => {
         this._onChange(true);
-      }
+      },
     );
     this._checkbox.becameUnchecked.subscribe(
       () => {
         this._onChange(false);
-      }
+      },
     );
   }
 
@@ -58,7 +70,11 @@ export class DaffCheckboxControlValueAccessorDirective implements OnInit, Contro
    */
   writeValue(value: any): void {
     value = !!value;
-    value === true ? this.fireSelect() : this.fireDeselect();
+    if (value === true) {
+      this.fireSelect();
+    } else {
+      this.fireDeselect();
+    }
   }
 
   /**
@@ -78,7 +94,6 @@ export class DaffCheckboxControlValueAccessorDirective implements OnInit, Contro
   }
 
   /**
- 
    * Sets the disabled state.
    */
   setDisabledState?(isDisabled: boolean): void {

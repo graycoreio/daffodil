@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+  DaffLoadingIconModule,
+  DaffRadioModule,
+} from '@daffodil/design';
 
 import { LoadingIconColorComponent } from './loading-icon-color.component';
 
-import { DaffLoadingIconModule, DaffRadioModule } from '@daffodil/design';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    LoadingIconColorComponent
+    LoadingIconColorComponent,
   ],
   exports: [
-    LoadingIconColorComponent
+    LoadingIconColorComponent,
   ],
   imports: [
     DaffLoadingIconModule,
     DaffRadioModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class LoadingIconColorModule { }

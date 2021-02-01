@@ -1,11 +1,21 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffFeatureComponent, DaffFeatureMode } from './feature.component';
+import {
+  DaffFeatureComponent,
+  DaffFeatureMode,
+} from './feature.component';
 
 @Component({
-  template: `<daff-feature [mode]="mode"></daff-feature>`
+  template: `<daff-feature [mode]="mode"></daff-feature>`,
 })
 
 class WrapperComponent {
@@ -22,10 +32,10 @@ describe('DaffFeatureComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffFeatureComponent
-      ]
+        DaffFeatureComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -54,7 +64,7 @@ describe('DaffFeatureComponent', () => {
       fixture.detectChanges();
 
       expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-feature--normal': true
+        'daff-feature--normal': true,
       }));
     });
 
@@ -64,7 +74,7 @@ describe('DaffFeatureComponent', () => {
         fixture.detectChanges();
 
         expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-feature--compact': true
+          'daff-feature--compact': true,
         }));
       });
     });
@@ -75,7 +85,7 @@ describe('DaffFeatureComponent', () => {
         fixture.detectChanges();
 
         expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-feature--normal': true
+          'daff-feature--normal': true,
         }));
       });
     });

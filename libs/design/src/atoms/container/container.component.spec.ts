@@ -1,12 +1,19 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffContainerComponent } from './container.component';
 import { DaffSizeAllType } from '../../core/sizeable/sizeable';
+import { DaffContainerComponent } from './container.component';
 
 @Component({
-  template: `<daff-container [size]="size"></daff-container>`
+  template: `<daff-container [size]="size"></daff-container>`,
 })
 class WrapperComponent {
   size: DaffSizeAllType;
@@ -22,10 +29,10 @@ describe('DaffContainerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffContainerComponent
-      ]
+        DaffContainerComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,12 +1,19 @@
-import { Component, OnInit, Input, Renderer2, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Renderer2,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'daff-qty-dropdown',
   styleUrls: ['./qty-dropdown.component.scss'],
-  templateUrl: './qty-dropdown.component.html'
+  templateUrl: './qty-dropdown.component.html',
 })
 export class DaffQtyDropdownComponent implements OnInit {
-  
+
   private readonly dropdownRange = 9;
 
   @Input() qty: number;
@@ -32,9 +39,9 @@ export class DaffQtyDropdownComponent implements OnInit {
 
   constructor(private renderer: Renderer2) { }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   ngOnInit() {
     this.dropdownItemCounter = Array.from(Array(this.dropdownRange),(x,i)=>i);
 
@@ -43,31 +50,31 @@ export class DaffQtyDropdownComponent implements OnInit {
     }
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   writeValue(qty: number): void {
     this.qty = qty;
     this.onChange(this.qty);
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   registerOnChange(fn: (qty: number) => void): void {
     this.onChange = fn;
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   setDisabledState(isDisabled: boolean): void {
     if (this.inputHasBeenShown) {
       this.renderer.setProperty(document.getElementById('input_' + this.id), 'disabled', isDisabled);
@@ -76,21 +83,21 @@ export class DaffQtyDropdownComponent implements OnInit {
     }
   }
 
-	/**
-	 * @docs-private
-	 */
-  get showQtyInputField() : boolean {
+  /**
+   * @docs-private
+   */
+  get showQtyInputField(): boolean {
     if (!this.isQtyOutsideDropdownRange() && !this.inputHasBeenShown) {
-      return false
+      return false;
     } else {
       this.inputHasBeenShown = true;
       return true;
     }
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   onChangedWrapper(value: any) {
     value = parseInt(value, 10);
     if (value === 10) {
@@ -100,14 +107,14 @@ export class DaffQtyDropdownComponent implements OnInit {
     this.onChange(value);
   }
 
-  private isQtyOutsideDropdownRange() {    
+  private isQtyOutsideDropdownRange() {
     return this.qty > this.dropdownRange;
   }
 
   private selectInput() {
     const that = this;
-    setTimeout(function() {
-      const input = document.getElementById('input_' + that.id) as HTMLInputElement;
+    setTimeout(() => {
+      const input = <HTMLInputElement>document.getElementById('input_' + that.id);
       input.select();
     });
   }

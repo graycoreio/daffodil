@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [`
     daff-card {
       max-width: 400px;
-    } 
-  `]
+    }
+  `],
 })
 export class CardWithImageComponent {}

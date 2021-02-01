@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { DaffPalette } from '@daffodil/design';
-import { FormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -10,8 +10,8 @@ import { FormControl } from '@angular/forms';
   styles: [`
     daff-card {
       max-width: 400px;
-    } 
-  `]
+    }
+  `],
 })
 export class CardWithColorComponent {
   color: DaffPalette = 'primary';

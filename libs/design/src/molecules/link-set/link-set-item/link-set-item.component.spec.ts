@@ -1,11 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffLinkSetItemComponent } from './link-set-item.component';
 
 @Component ({
-  template: `<a daff-link-set-item href="#"></a>`
+  template: `<a daff-link-set-item href="#"></a>`,
 })
 
 class WrapperComponent {}
@@ -19,10 +26,10 @@ describe('DaffLinkSetItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffLinkSetItemComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

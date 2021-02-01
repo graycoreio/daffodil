@@ -1,17 +1,25 @@
-import { Component, DebugElement } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+  flush,
+  fakeAsync,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffPalette } from '../../core/colorable/colorable';
-
 import { DaffProgressIndicatorComponent } from './progress-indicator.component';
 
 @Component({
   template: `
   <daff-progress-indicator [color]="color" [percentage]="percentage" (finished)="onComplete()">
   </daff-progress-indicator>
-  `
+  `,
 })
 class WrapperComponent {
   color: DaffPalette;
@@ -28,14 +36,14 @@ describe('DaffProgressIndicatorComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffProgressIndicatorComponent
-      ]
+        DaffProgressIndicatorComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

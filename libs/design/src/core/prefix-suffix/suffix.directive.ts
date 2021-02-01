@@ -1,4 +1,7 @@
-import { Directive, HostBinding } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 /**
  *

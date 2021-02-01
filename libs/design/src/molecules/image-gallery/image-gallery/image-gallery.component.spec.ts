@@ -1,16 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffImageGalleryComponent } from './image-gallery.component';
-import { Component } from '@angular/core';
 import { DaffImageListComponent } from '../../image-list/public_api';
 import { DaffGalleryImageComponent } from '../gallery-image/gallery-image.component';
+import { DaffImageGalleryComponent } from './image-gallery.component';
 
 @Component({ template:
   `<daff-image-gallery>
     <div daff-active-image class="test-active-image"></div>
     <daff-gallery-image class="test-gallery-image"></daff-gallery-image>
-   </daff-image-gallery>`})
+   </daff-image-gallery>` })
 class WrapperComponent {}
 
 describe('DaffImageGalleryComponent', () => {
@@ -23,10 +27,10 @@ describe('DaffImageGalleryComponent', () => {
         WrapperComponent,
         DaffImageListComponent,
         DaffImageGalleryComponent,
-        DaffGalleryImageComponent
-      ]
+        DaffGalleryImageComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

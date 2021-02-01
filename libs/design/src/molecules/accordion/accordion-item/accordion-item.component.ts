@@ -1,6 +1,14 @@
-import { Component, Input, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
-
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+  HostBinding,
+} from '@angular/core';
+import {
+  faChevronDown,
+  faChevronUp,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { daffAccordionAnimations } from '../animation/accordion-animation';
 import { getAnimationState } from '../animation/accordion-animation-state';
@@ -11,8 +19,8 @@ import { getAnimationState } from '../animation/accordion-animation-state';
   styleUrls: ['./accordion-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    daffAccordionAnimations.openAccordion
-  ]
+    daffAccordionAnimations.openAccordion,
+  ],
 })
 export class DaffAccordionItemComponent implements OnInit {
 	/**
@@ -24,9 +32,9 @@ export class DaffAccordionItemComponent implements OnInit {
 	 */
   faChevronUp = faChevronUp;
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-accordion-item') class = true;
 
 	@Input() initiallyActive: boolean;
@@ -39,16 +47,16 @@ export class DaffAccordionItemComponent implements OnInit {
 	 */
   _animationState: string;
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   ngOnInit() {
     this._open = this.initiallyActive ? this.initiallyActive : this._open;
     this._animationState = getAnimationState(this._open);
   }
 
   toggleActive() {
-    this._open = !this._open;  
+    this._open = !this._open;
     this._animationState = getAnimationState(this._open);
   }
 }

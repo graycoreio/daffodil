@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffRadioRegistry } from './radio-registry';
 import { DaffRadioModule } from '../radio.module';
+import { DaffRadioRegistry } from './radio-registry';
 
 describe('DaffRadioRegistry', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
-      DaffRadioModule
-    ]
+      DaffRadioModule,
+    ],
   }));
 
   it('should be created', () => {

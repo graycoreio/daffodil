@@ -1,10 +1,14 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 import { DaffImageComponent } from '../image.component';
 
 @Component({
-  template: `<daff-image></daff-image>`
+  template: `<daff-image></daff-image>`,
 })
 
 class WrapperComponent {
@@ -21,10 +25,10 @@ describe('DaffImageComponent | Props Validation', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffImageComponent,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

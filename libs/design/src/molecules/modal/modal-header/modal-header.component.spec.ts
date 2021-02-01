@@ -1,11 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-
-import { DaffModalHeaderComponent } from './modal-header.component';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffModalHeaderComponent } from './modal-header.component';
+
 @Component ({
-  template: `<daff-modal-header></daff-modal-header>`
+  template: `<daff-modal-header></daff-modal-header>`,
 })
 
 class WrapperComponent {}
@@ -20,10 +27,10 @@ describe('DaffModalHeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffModalHeaderComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

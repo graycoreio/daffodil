@@ -1,6 +1,14 @@
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffRadioComponent } from '../radio.component';
@@ -14,11 +22,11 @@ import { DaffRadioModule } from '../radio.module';
   <daff-radio formControlName='fruit' value='grape'>Grape</daff-radio>
   <daff-radio formControlName='fruit' value='peach'>Peach</daff-radio>
 </daff-radio-set>
-  `
+  `,
 })
 class RadioEmbeddedComponent {
   radioGroup = new FormGroup({
-    fruit: new FormControl('apple')
+    fruit: new FormControl('apple'),
   });
   disable() {
     this.radioGroup.disable();
@@ -42,8 +50,8 @@ describe('DaffRadioComponent', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DaffRadioModule
-      ]
+        DaffRadioModule,
+      ],
     })
       .compileComponents();
   }));
@@ -57,12 +65,12 @@ describe('DaffRadioComponent', () => {
     });
     it('should let the value be set from a form control', () => {
       radioEmbedded.setValue();
-      expect(radioEmbedded.radioGroup.value).toEqual({'fruit': 'pear'});
+      expect(radioEmbedded.radioGroup.value).toEqual({ fruit: 'pear' });
     });
     it('should let the radio be disabled from a form control', () => {
       radioEmbedded.disable();
       expect(embeddedComponent.disabled).toEqual(true);
     });
 
-  })
+  });
 });

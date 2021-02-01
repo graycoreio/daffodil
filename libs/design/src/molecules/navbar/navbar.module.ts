@@ -4,10 +4,10 @@ import { DaffNavbarComponent } from './navbar.component';
 
 @NgModule({
   declarations: [
-    DaffNavbarComponent
+    DaffNavbarComponent,
   ],
   exports: [
-    DaffNavbarComponent
-  ]
+    DaffNavbarComponent,
+  ],
 })
 export class DaffNavbarModule { }

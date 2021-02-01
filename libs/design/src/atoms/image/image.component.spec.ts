@@ -1,11 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffImageComponent } from './image.component';
 
 @Component({
-  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height"></daff-image>`
+  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height"></daff-image>`,
 })
 
 class WrapperComponent {
@@ -26,10 +33,10 @@ describe('DaffImageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffImageComponent,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -100,7 +107,7 @@ describe('DaffImageComponent', () => {
 
     fixture.detectChanges();
 
-    expect(wrapperDE.styles['paddingTop']).toEqual('');
+    expect(wrapperDE.styles['paddingTop']).toBeFalsy();
   });
 
   it('calculates and sets `padding-top` on `.daff-image__wrapper` based on height and width', () => {

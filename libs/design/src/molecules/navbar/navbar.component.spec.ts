@@ -1,9 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffNavbarComponent } from './navbar.component';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffPalette } from '../../core/colorable/colorable';
+import { DaffNavbarComponent } from './navbar.component';
 
 
 @Component({ template: '<daff-navbar [color]="color" [shadowed]="shadowed"></ daff-navbar>' })
@@ -21,8 +28,8 @@ describe('DaffNavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffNavbarComponent
-      ]
+        DaffNavbarComponent,
+      ],
     })
       .compileComponents();
   }));
@@ -59,6 +66,6 @@ describe('DaffNavbarComponent', () => {
       wrapper.shadowed = true;
       fixture.detectChanges();
       expect(de.componentInstance.shadowClass).toEqual(true);
-    })
-  })
+    });
+  });
 });

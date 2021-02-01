@@ -1,12 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffListSubheaderDirective } from './list-subheader.directive';
 
 @Component({
   template: `
     <div daffListSubheader>Lorem Ipsum</div>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -19,10 +27,10 @@ describe('DaffListSubheaderDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffListSubheaderDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

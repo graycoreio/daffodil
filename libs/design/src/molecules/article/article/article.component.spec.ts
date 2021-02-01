@@ -1,11 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-
-import { DaffArticleComponent } from './article.component';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffArticleComponent } from './article.component';
+
 @Component ({
-  template: `<daff-article></daff-article>`
+  template: `<daff-article></daff-article>`,
 })
 
 class WrapperComponent {}
@@ -20,10 +27,10 @@ describe('DaffArticleComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffArticleComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

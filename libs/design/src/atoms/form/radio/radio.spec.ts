@@ -1,15 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DaffRadioModule } from './radio.module';
+import { By } from '@angular/platform-browser';
+
 import { DaffRadioComponent } from './radio.component';
+import { DaffRadioModule } from './radio.module';
 
 
 @Component({
   template: `
     <daff-radio name="test" value="testValue"></daff-radio>
-  `
+  `,
 })
 class RadioWrapperComponent { }
 
@@ -27,8 +32,8 @@ describe('DaffRadioComponent', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DaffRadioModule
-      ]
+        DaffRadioModule,
+      ],
     })
       .compileComponents();
   }));
@@ -52,8 +57,8 @@ describe('DaffRadioComponent', () => {
         expect(component.value).toEqual('testValue');
       });
       it('should have a generated id', () => {
-        expect(component.id).toMatch('daff-radio-[0-9]*')
+        expect(component.id).toMatch('daff-radio-[0-9]*');
       });
     });
-  })
+  });
 });

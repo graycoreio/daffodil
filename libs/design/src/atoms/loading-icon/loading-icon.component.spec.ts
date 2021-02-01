@@ -1,9 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffLoadingIconComponent } from './loading-icon.component';
 import { DaffPalette } from '../../core/colorable/colorable';
+import { DaffLoadingIconComponent } from './loading-icon.component';
 
 @Component({ template: '<daff-loading-icon [color]="color" [diameter]="diameter"></daff-loading-icon>' })
 class WrapperComponent {
@@ -21,10 +28,10 @@ describe('DaffLoadingIconComponent | Usage', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffLoadingIconComponent
-      ]
+        DaffLoadingIconComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -74,10 +81,10 @@ describe('DaffLoadingIconComponent | Defaults', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffLoadingIconComponent
-      ]
+        DaffLoadingIconComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

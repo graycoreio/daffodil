@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 
+import { DaffLoadingIconModule } from '@daffodil/design';
+
 import { LoadingIconDiameterComponent } from './loading-icon-diameter.component';
 
-import { DaffLoadingIconModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    LoadingIconDiameterComponent
+    LoadingIconDiameterComponent,
   ],
   exports: [
-    LoadingIconDiameterComponent
+    LoadingIconDiameterComponent,
   ],
   imports: [
-    DaffLoadingIconModule
-  ]
+    DaffLoadingIconModule,
+  ],
 })
 export class LoadingIconDiameterModule { }

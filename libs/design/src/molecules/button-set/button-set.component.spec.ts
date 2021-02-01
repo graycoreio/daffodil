@@ -1,11 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-
-import { DaffButtonSetComponent } from './button-set.component';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffButtonSetComponent } from './button-set.component';
+
 @Component ({
-  template: `<daff-button-set></daff-button-set>`
+  template: `<daff-button-set></daff-button-set>`,
 })
 
 class WrapperComponent {}
@@ -20,10 +27,10 @@ describe('DaffButtonSetComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffButtonSetComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

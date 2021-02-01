@@ -1,4 +1,11 @@
-import { Component, Input, Optional, Self, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  Input,
+  Optional,
+  Self,
+  ElementRef,
+  HostListener,
+} from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 import { DaffFormFieldControl } from '../form-field/form-field-control';
@@ -12,7 +19,8 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   template: '<ng-content></ng-content>',
   styleUrls: ['./input.component.scss'],
   providers: [
-    {provide: DaffFormFieldControl, useExisting: DaffInputComponent}
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
   ],
 })
 export class DaffInputComponent implements DaffFormFieldControl {
@@ -23,17 +31,17 @@ export class DaffInputComponent implements DaffFormFieldControl {
 	@Input() formSubmitted: boolean;
 
   focused = false;
-	
-	/**
-	 * @docs-private
-	 */
+
+  /**
+   * @docs-private
+   */
   @HostListener('focus') focus() {
     this.focused = true;
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostListener('blur') blur() {
     this.focused = false;
   }
@@ -42,9 +50,9 @@ export class DaffInputComponent implements DaffFormFieldControl {
 		/**
 		 * @docs-private
 		 */
-		@Optional() @Self() public ngControl: NgControl, 
-		private _elementRef: ElementRef<HTMLInputElement>
-	) {}
+		@Optional() @Self() public ngControl: NgControl,
+		private _elementRef: ElementRef<HTMLInputElement>,
+  ) {}
 
   onFocus() {
     this._elementRef.nativeElement.focus();

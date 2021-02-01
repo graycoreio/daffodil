@@ -1,8 +1,7 @@
-export const getAnimationState = (open : boolean) => {
+export const getAnimationState = (open: boolean) => {
   if(open){
     return 'open';
-  }
-  else {
+  } else {
     return 'void';
   }
-}
+};

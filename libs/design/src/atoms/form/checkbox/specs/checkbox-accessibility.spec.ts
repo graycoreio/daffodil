@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
+import {
+  TestBed,
+  waitForAsync,
+  ComponentFixture,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -9,7 +13,7 @@ import { DaffCheckboxModule } from '../checkbox.module';
 @Component({
   template: `
     <daff-checkbox aria-label='testLabel' aria-labelledby='testParent'></daff-checkbox>
-  `
+  `,
 })
 class CheckboxWrapperComponent { }
 
@@ -27,8 +31,8 @@ describe('DaffCheckbox Accessibility', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DaffCheckboxModule
-      ]
+        DaffCheckboxModule,
+      ],
     })
       .compileComponents();
     fixture = TestBed.createComponent(CheckboxWrapperComponent);
@@ -50,4 +54,4 @@ describe('DaffCheckbox Accessibility', () => {
     expect(component.labeledBy).toBe('testParent');
   });
 
-})
+});

@@ -1,4 +1,10 @@
-import { Component, HostBinding, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  ViewEncapsulation,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 /**
  * DaffLinkSetComponent is a component for displaying a two or more links.
@@ -8,12 +14,12 @@ import { Component, HostBinding, ViewEncapsulation, Input, ChangeDetectionStrate
   template: '<ng-content></ng-content>',
   styleUrls: ['./link-set.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffLinkSetComponent {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-link-set') class = true;
 }

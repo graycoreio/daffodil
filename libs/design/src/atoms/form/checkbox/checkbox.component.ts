@@ -7,7 +7,7 @@ import {
   Output,
   ChangeDetectorRef,
   ViewChild,
-  ElementRef
+  ElementRef,
 } from '@angular/core';
 
 let checkboxIdNum = 0;
@@ -20,10 +20,10 @@ let checkboxIdNum = 0;
 
 })
 export class DaffCheckboxComponent {
-	/**
-	 * @docs-private
-	 */
-  @ViewChild('inputElement', {static: true, read: ElementRef}) nativeCheckbox: ElementRef<HTMLInputElement>;
+  /**
+   * @docs-private
+   */
+  @ViewChild('inputElement', { static: true, read: ElementRef }) nativeCheckbox: ElementRef<HTMLInputElement>;
   /**
    * The name of the checkbox.
    */
@@ -38,9 +38,9 @@ export class DaffCheckboxComponent {
 	private _checked = false;
 
   @Input()
-  get checked() {
-    return this._checked;
-  }
+	get checked() {
+	  return this._checked;
+	}
   set checked(value: boolean) {
     if (this._checked === value) {
       return;
@@ -48,8 +48,7 @@ export class DaffCheckboxComponent {
     if (value === true) {
       this.nativeCheckbox.nativeElement.checked = true;
       this.becameChecked.emit(this._checked);
-    }
-    else {
+    } else {
       this.nativeCheckbox.nativeElement.checked = false;
       this.becameUnchecked.emit();
     }
@@ -83,31 +82,36 @@ export class DaffCheckboxComponent {
   focused: boolean;
   /**
    * Whether the checkbox is disabled.
-  */
+   */
   disabled: boolean;
 
   /**
    * The role of the component. Set to "checkbox".
-	 * @docs-private
+   *
+   * @docs-private
    */
   @HostBinding('attr.role') role = 'checkbox';
 
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   _onChange(val: Event) {
-    (val.target as HTMLInputElement).checked ? this.select() : this.deselect();
-	};
-	/**
-	 * @docs-private
-	 */
+    if ((<HTMLInputElement>val.target).checked) {
+      this.select();
+    } else {
+      this.deselect();
+    }
+  };
+  /**
+   * @docs-private
+   */
   @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
-	};
-	/**
-	 * @docs-private
-	 */
+  };
+  /**
+   * @docs-private
+   */
   @HostBinding('class.disabled') get disabledClass() {
     return this.disabled === true;
   };
@@ -132,14 +136,14 @@ export class DaffCheckboxComponent {
   }
   /**
    * Sets checked to true.
-  */
+   */
   select() {
     this.checked = true;
     this._cdRef.markForCheck();
   }
   /**
    * Sets checked to false
-  */
+   */
   deselect() {
     this.checked = false;
     this._cdRef.markForCheck();

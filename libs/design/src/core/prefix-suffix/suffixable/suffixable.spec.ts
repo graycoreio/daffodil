@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { daffSuffixableMixin } from './suffixable';
 import { DaffPrefixSuffixModule } from '../prefix-suffix.module';
 import { DaffSuffixDirective } from '../suffix.directive';
+import { daffSuffixableMixin } from './suffixable';
 
 class SuffixableComponentBase {}
 
@@ -13,16 +17,16 @@ const _suffixableComponentBase = daffSuffixableMixin(SuffixableComponentBase);
 
 @Component({
   selector: 'daff-suffixable',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
 })
 class SuffixableComponent extends _suffixableComponentBase {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 }
 
 @Component({
-  template: '<daff-suffixable><div daffSuffix></div></daff-suffixable>'
+  template: '<daff-suffixable><div daffSuffix></div></daff-suffixable>',
 })
 class WrapperComponent {}
 
@@ -36,12 +40,12 @@ describe('daffSuffixableMixin', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        DaffPrefixSuffixModule
+        DaffPrefixSuffixModule,
       ],
       declarations: [
         WrapperComponent,
-        SuffixableComponent
-      ]
+        SuffixableComponent,
+      ],
     })
       .compileComponents();
   }));

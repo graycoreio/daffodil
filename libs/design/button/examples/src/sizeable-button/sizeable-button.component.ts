@@ -8,8 +8,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styles: [`
     button {
       margin-right: 8px;
-    } 
-  `]
+    }
+  `],
 })
 export class SizeableButtonComponent {
   faPlus = faPlus;

@@ -1,35 +1,46 @@
-import { Component, ChangeDetectionStrategy, HostBinding, ContentChild, ElementRef } from '@angular/core';
-import { DaffPrefixDirective, DaffSuffixDirective } from '../../../core/prefix-suffix/public_api';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  HostBinding,
+  ContentChild,
+  ElementRef,
+} from '@angular/core';
+
+import {
+  DaffPrefixDirective,
+  DaffSuffixDirective,
+} from '../../../core/prefix-suffix/public_api';
 
 @Component({
   selector:
     'daff-list-item' + ',' +
     'a[daff-list-item]',
   templateUrl: './list-item.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffListItemComponent {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-list-item') class = true;
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
 
   constructor(private elementRef: ElementRef) {}
 
   /**
    * Sets the role for a regular `<daff-list-item>` to listitem.
-	 * @docs-private
+   *
+   * @docs-private
    */
   @HostBinding('attr.role') get role() {
     return this._isAnchor() ? null : 'listitem';

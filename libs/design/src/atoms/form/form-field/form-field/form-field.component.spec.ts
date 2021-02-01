@@ -1,25 +1,32 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  ReactiveFormsModule,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
-
-import { DaffFormFieldComponent } from './form-field.component';
-import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
-import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
-import { DaffFormFieldControl } from '../form-field-control';
-import { DaffInputModule } from '../../input/public_api';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-@Component({template: `
+import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
+import { DaffInputModule } from '../../input/public_api';
+import { DaffFormFieldControl } from '../form-field-control';
+import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
+import { DaffFormFieldComponent } from './form-field.component';
+
+
+@Component({ template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <input daff-input [formControl]="formControl">
     <daff-error-message></daff-error-message>
-  </daff-form-field>`
-})
+  </daff-form-field>` })
 class WrapperComponent {
   formSubmittedValue: boolean;
-  formControl = new FormControl('', Validators.required)
+  formControl = new FormControl('', Validators.required);
 }
 
 describe('DaffFormFieldComponent | Usage', () => {
@@ -34,15 +41,15 @@ describe('DaffFormFieldComponent | Usage', () => {
       imports: [
         ReactiveFormsModule,
         DaffInputModule,
-        FontAwesomeModule
+        FontAwesomeModule,
       ],
       declarations: [
         WrapperComponent,
         DaffFormFieldComponent,
-        DaffErrorMessageComponent
-      ]
+        DaffErrorMessageComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -111,11 +118,10 @@ describe('DaffFormFieldComponent | Usage', () => {
 
 });
 
-@Component({template: `
+@Component({ template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <daff-error-message></daff-error-message>
-  </daff-form-field>`
-})
+  </daff-form-field>` })
 
 class WrapperWithoutControlComponent {
   formSubmittedValue: boolean;
@@ -126,15 +132,15 @@ describe('DaffFormFieldComponent | Usage Without Control', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FontAwesomeModule
+        FontAwesomeModule,
       ],
       declarations: [
         WrapperWithoutControlComponent,
         DaffFormFieldComponent,
-        DaffErrorMessageComponent
-      ]
+        DaffErrorMessageComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -144,4 +150,4 @@ describe('DaffFormFieldComponent | Usage Without Control', () => {
   it('should throw an error when there is no control present', () => {
     expect(() => fixture.detectChanges()).toThrowError(DaffFormFieldMissingControlMessage);
   });
-})
+});

@@ -1,23 +1,23 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffFormFieldComponent } from './form-field/form-field.component';
-
+import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { DaffErrorMessageModule } from '../error-message/error-message.module';
+import { DaffFormFieldComponent } from './form-field/form-field.component';
 
 @NgModule({
   imports: [
     CommonModule,
 
     FontAwesomeModule,
-    DaffErrorMessageModule
+    DaffErrorMessageModule,
   ],
   exports: [
     DaffFormFieldComponent,
-    DaffErrorMessageModule
+    DaffErrorMessageModule,
   ],
   declarations: [
-    DaffFormFieldComponent
-  ]
+    DaffFormFieldComponent,
+  ],
 })
 export class DaffFormFieldModule { }

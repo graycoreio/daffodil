@@ -1,16 +1,29 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  FormArray,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { DaffCheckboxModule } from './checkbox.module';
+
 import { DaffCheckboxComponent } from './checkbox.component';
+import { DaffCheckboxModule } from './checkbox.module';
 
 
 
 @Component({
   template: `
     <daff-checkbox value="testValue"></daff-checkbox>
-  `
+  `,
 })
 class CheckboxWrapperComponent { }
 
@@ -22,7 +35,7 @@ class CheckboxWrapperComponent { }
   <daff-checkbox value="tomato">Grape</daff-checkbox>
   <daff-checkbox value="pickle">Peach</daff-checkbox>
 </daff-checkbox-set>
-  `
+  `,
 })
 class CheckboxEmbeddedComponent {}
 
@@ -46,8 +59,8 @@ describe('DaffCheckboxComponent', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DaffCheckboxModule
-      ]
+        DaffCheckboxModule,
+      ],
     })
       .compileComponents();
   }));
@@ -69,10 +82,10 @@ describe('DaffCheckboxComponent', () => {
         expect(embeddedComponent.value).not.toBeUndefined();
       });
       it('should have a generated id', () => {
-        expect(embeddedComponent.id).toMatch('daff-checkbox-[0-9]*')
+        expect(embeddedComponent.id).toMatch('daff-checkbox-[0-9]*');
       });
       it('should have a role of checkbox', () => {
-        expect(embeddedComponent.role).toBe('checkbox')
+        expect(embeddedComponent.role).toBe('checkbox');
       });
     });
     describe('without a daff-checkbox-set', () => {
@@ -90,8 +103,8 @@ describe('DaffCheckboxComponent', () => {
         expect(component.value).toEqual('testValue');
       });
       it('should have a generated id', () => {
-        expect(component.id).toMatch('daff-checkbox-[0-9]*')
+        expect(component.id).toMatch('daff-checkbox-[0-9]*');
       });
     });
-  })
+  });
 });

@@ -1,10 +1,15 @@
-import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'daff-radio-set',
   templateUrl: './radio-set.component.html',
   styleUrls: ['./radio-set.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
 export class DaffRadioSetComponent {
@@ -13,9 +18,9 @@ export class DaffRadioSetComponent {
 
   constructor() { }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('attr.role') role = 'radiogroup';
 
 }

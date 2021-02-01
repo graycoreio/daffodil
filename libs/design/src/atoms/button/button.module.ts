@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffButtonComponent } from './button.component';
+import { NgModule } from '@angular/core';
+
 import { DaffPrefixSuffixModule } from '../../core/prefix-suffix/prefix-suffix.module';
+import { DaffButtonComponent } from './button.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffPrefixSuffixModule
+    DaffPrefixSuffixModule,
   ],
   declarations: [
-    DaffButtonComponent
+    DaffButtonComponent,
   ],
   exports: [
     DaffButtonComponent,
-    DaffPrefixSuffixModule
-  ]
+    DaffPrefixSuffixModule,
+  ],
 })
 export class DaffButtonModule { }

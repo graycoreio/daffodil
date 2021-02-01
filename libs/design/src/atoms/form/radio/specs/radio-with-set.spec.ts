@@ -1,10 +1,18 @@
+import { Component } from '@angular/core';
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
-import { DaffRadioModule } from '../radio.module';
 import { DaffRadioComponent } from '../radio.component';
+import { DaffRadioModule } from '../radio.module';
 
 
 @Component({
@@ -15,11 +23,11 @@ import { DaffRadioComponent } from '../radio.component';
   <daff-radio formControlName='fruit' value='grape'>Grape</daff-radio>
   <daff-radio formControlName='fruit' value='peach'>Peach</daff-radio>
 </daff-radio-set>
-  `
+  `,
 })
 class RadioEmbeddedComponent {
   radioGroup = new FormGroup({
-    fruit: new FormControl()
+    fruit: new FormControl(),
   });
 
 }
@@ -38,8 +46,8 @@ describe('DaffRadioComponent within a daff-radio-set', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DaffRadioModule
-      ]
+        DaffRadioModule,
+      ],
     })
       .compileComponents();
   }));
@@ -61,8 +69,8 @@ describe('DaffRadioComponent within a daff-radio-set', () => {
       expect(embeddedComponent.value).not.toBeUndefined();
     });
     it('should have a generated id', () => {
-      expect(embeddedComponent.id).toMatch('daff-radio-[0-9]*')
+      expect(embeddedComponent.id).toMatch('daff-radio-[0-9]*');
     });
 
-  })
+  });
 });

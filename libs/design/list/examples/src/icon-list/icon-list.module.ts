@@ -1,23 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { DaffListModule } from '@daffodil/design';
 
 import { IconListComponent } from './icon-list.component';
 
-import { DaffListModule } from '@daffodil/design';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    IconListComponent
+    IconListComponent,
   ],
   imports: [
     CommonModule,
-    
+
     DaffListModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   exports: [
-    IconListComponent
-  ]
+    IconListComponent,
+  ],
 })
 export class IconListModule { }
