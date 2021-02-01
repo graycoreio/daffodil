@@ -1,14 +1,19 @@
-import { createSelector, MemoizedSelector, createFeatureSelector } from '@ngrx/store';
+import {
+  createSelector,
+  MemoizedSelector,
+  createFeatureSelector,
+} from '@ngrx/store';
+
 import { DaffNewsletterState } from '../reducers/newsletter.reducer';
 
 export interface State {
-  newsletter: DaffNewsletterState
+  newsletter: DaffNewsletterState;
 }
 
 /**
  * Feature State Selector
  */
-const selectNewsletterFeatureState: 
+const selectNewsletterFeatureState:
   MemoizedSelector<State, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>('newsletter');
 
 
@@ -17,15 +22,15 @@ const selectNewsletterFeatureState:
  */
 export const selectDaffNewsletterLoading = createSelector(
   selectNewsletterFeatureState,
-  (state: DaffNewsletterState) => state.loading
+  (state: DaffNewsletterState) => state.loading,
 );
 
 export const selectDaffNewsletterError = createSelector(
   selectNewsletterFeatureState,
-  (state: DaffNewsletterState) => state.error
+  (state: DaffNewsletterState) => state.error,
 );
 
 export const selectDaffNewsletterSuccess = createSelector(
   selectNewsletterFeatureState,
-  (state: DaffNewsletterState) => state.success
+  (state: DaffNewsletterState) => state.success,
 );

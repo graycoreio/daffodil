@@ -1,12 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-
-import { DaffNewsletterFacade } from './newsletter.facade';
-import { State } from '../selectors/newsletter.selector';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { reducer } from '../reducers/newsletter.reducer';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { DaffNewsletterSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterSuccessSubscribe } from '../actions/newsletter.actions';
+
+import {
+  DaffNewsletterSubscribe,
+  DaffNewsletterFailedSubscribe,
+  DaffNewsletterSuccessSubscribe,
+} from '../actions/newsletter.actions';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
+import { reducer } from '../reducers/newsletter.reducer';
+import { State } from '../selectors/newsletter.selector';
+import { DaffNewsletterFacade } from './newsletter.facade';
 
 describe('DaffNewsletterFacade', () => {
 
@@ -18,12 +26,12 @@ describe('DaffNewsletterFacade', () => {
       imports:[
         StoreModule.forRoot({
           newsletter: reducer,
-        })
+        }),
       ],
       providers: [
-        DaffNewsletterFacade
-      ]
-    })
+        DaffNewsletterFacade,
+      ],
+    });
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffNewsletterFacade);
   });
@@ -31,12 +39,12 @@ describe('DaffNewsletterFacade', () => {
     expect(facade).toBeTruthy();
   });
   it('should be able to dispatch an action to the store', () => {
-      spyOn(store, 'dispatch');
-      const action = {type: 'Type'};
+    spyOn(store, 'dispatch');
+    const action = { type: 'Type' };
 
-      facade.dispatch(action);
-      expect(store.dispatch).toHaveBeenCalledWith(action);
-      expect(store.dispatch).toHaveBeenCalledTimes(1);
+    facade.dispatch(action);
+    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
   describe('success$', () => {
     it('should intially be false', () => {
@@ -68,8 +76,8 @@ describe('DaffNewsletterFacade', () => {
     });
     it('it should be true if the newsletter is loading', () => {
       const expected = cold('a', { a: true });
-      const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com'}
-      store.dispatch(new DaffNewsletterSubscribe(payload))
+      const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com' };
+      store.dispatch(new DaffNewsletterSubscribe(payload));
       expect(facade.loading$).toBeObservable(expected);
     });
   });

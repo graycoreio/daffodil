@@ -8,10 +8,10 @@ import { DaffNewsletterServiceInterface } from '../interfaces/newsletter-service
 
 @Injectable()
 export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, any> {
-  
+
   constructor(private hubspotService: DaffHubspotFormsService) {}
-  
+
   send(payload: DaffNewsletterUnion): Observable<any> {
-    return this.hubspotService.submit(payload)
-  }  
+    return this.hubspotService.submit(payload);
+  }
 }

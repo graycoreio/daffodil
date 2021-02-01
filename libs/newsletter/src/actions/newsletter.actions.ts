@@ -38,7 +38,7 @@ export class DaffNewsletterReset implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterReset;
 }
 
-export type DaffNewsletterActions<T extends DaffNewsletterSubmission> = 
+export type DaffNewsletterActions<T extends DaffNewsletterSubmission> =
   DaffNewsletterSubscribe<T> |
   DaffNewsletterSuccessSubscribe |
   DaffNewsletterFailedSubscribe |

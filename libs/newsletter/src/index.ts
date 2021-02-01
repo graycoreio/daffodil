@@ -4,13 +4,13 @@ export { DaffNewsletterUnion } from './models/newsletter-union';
 export * from './actions/newsletter.actions';
 export {
   DaffNewsletterState,
-  reducer
+  reducer,
 } from './reducers/newsletter.reducer';
 export {
   State,
   selectDaffNewsletterError,
   selectDaffNewsletterLoading,
-  selectDaffNewsletterSuccess
+  selectDaffNewsletterSuccess,
 } from './selectors/newsletter.selector';
 
 export { DaffNewsletterFacade } from './facades/newsletter.facade';
@@ -18,4 +18,4 @@ export { DaffNewsletterFacadeInterface } from './facades/newsletter-facade.inter
 
 export * from './driver/public_api';
 
-export { DaffNewsletterModule } from './newsletter.module'
+export { DaffNewsletterModule } from './newsletter.module';

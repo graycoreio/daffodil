@@ -1,8 +1,12 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { DaffInMemoryNewsletterService } from './newsletter.service';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { DaffInMemoryNewsletterService } from './newsletter.service';
 
 
 describe('Driver | InMemory | Newsletter | NewsletterService', () => {
@@ -13,11 +17,11 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryNewsletterService
-      ]
+        DaffInMemoryNewsletterService,
+      ],
     });
     httpMock = TestBed.inject(HttpTestingController);
     newsletterService = TestBed.inject<DaffInMemoryNewsletterService>(DaffInMemoryNewsletterService);
