@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoDiscount, MagentoMoney } from '@daffodil/driver/magento';
+import {
+  MagentoDiscount,
+  MagentoMoney,
+} from '@daffodil/driver/magento';
 
 import { MagentoMoneyFactory } from './money.factory';
 
@@ -12,12 +15,12 @@ export class MockMagentoDiscount implements MagentoDiscount {
   label = faker.random.word();
 
   private money(): MagentoMoney {
-    return (new MagentoMoneyFactory()).create()
+    return (new MagentoMoneyFactory()).create();
   }
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MagentoDiscountFactory extends DaffModelFactory<MagentoDiscount> {
   constructor() {

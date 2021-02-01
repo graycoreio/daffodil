@@ -9,7 +9,7 @@ describe('Driver | Magento | Testing | Factories | MagentoDiscountFactory', () =
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoDiscountFactory]
+      providers: [MagentoDiscountFactory],
     });
 
     factory = TestBed.inject(MagentoDiscountFactory);

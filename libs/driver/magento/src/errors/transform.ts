@@ -1,14 +1,16 @@
-import {ApolloError} from '@apollo/client/core';
+import { ApolloError } from '@apollo/client/core';
 
 import { DaffErrorCodeMap } from '@daffodil/core';
 
 function transformGraphQlError<T extends DaffErrorCodeMap>(
-	error: ApolloError,
-	map: T,
+  error: ApolloError,
+  map: T,
 ): Error {
-	if (!error.graphQLErrors.length) return error;
-	const lookup = map[error.graphQLErrors[0].extensions.category];
-	return lookup ? new lookup(error.message) : error;
+  if (!error.graphQLErrors.length) {
+    return error;
+  }
+  const lookup = map[error.graphQLErrors[0].extensions.category];
+  return lookup ? new lookup(error.message) : error;
 };
 
 /**
@@ -16,9 +18,9 @@ function transformGraphQlError<T extends DaffErrorCodeMap>(
  */
 export function daffTransformMagentoError<T extends DaffErrorCodeMap>(error: any, map: T): Error {
   // TODO: handle network errors
-	if (error.graphQLErrors) {
-		return transformGraphQlError<T>(error, map);
-	} else {
-		return error;
-	}
+  if (error.graphQLErrors) {
+    return transformGraphQlError<T>(error, map);
+  } else {
+    return error;
+  }
 };
