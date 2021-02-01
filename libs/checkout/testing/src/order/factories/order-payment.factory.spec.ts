@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffOrderPayment } from '@daffodil/checkout';
+
 import { DaffOrderPaymentFactory } from './order-payment.factory';
 
 describe('Checkout | Testing | Order | Factories | OrderPaymentFactory', () => {
@@ -9,7 +10,7 @@ describe('Checkout | Testing | Order | Factories | OrderPaymentFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderPaymentFactory]
+      providers: [DaffOrderPaymentFactory],
     });
 
     orderPaymentFactory = TestBed.inject(DaffOrderPaymentFactory);
@@ -41,6 +42,6 @@ describe('Checkout | Testing | Order | Factories | OrderPaymentFactory', () => {
 
       result = orderPaymentFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });

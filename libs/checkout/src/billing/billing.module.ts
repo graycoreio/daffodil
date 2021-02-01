@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffBillingStateModule } from './billing-state.module';
 import { BillingContainer } from './containers/billing.component';
@@ -14,10 +14,10 @@ import { BillingContainer } from './containers/billing.component';
     DaffBillingStateModule,
   ],
   declarations: [
-    BillingContainer
+    BillingContainer,
   ],
   exports: [
-    BillingContainer
-  ]
+    BillingContainer,
+  ],
 })
 export class DaffBillingModule { }

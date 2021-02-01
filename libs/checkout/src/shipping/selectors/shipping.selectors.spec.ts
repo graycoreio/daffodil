@@ -1,18 +1,29 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../actions/shipping.actions';
-import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../actions/shipping.actions';
 import { daffShippingReducers } from '../reducers/shipping-reducers';
+import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
 import {
   selectShippingAddress,
   selectShippingOptionId,
   selectIsShippingAddressValid,
-  selectShippingState
+  selectShippingState,
 } from './shipping.selectors';
 
 describe('Shipping Selectors', () => {
@@ -26,8 +37,8 @@ describe('Shipping Selectors', () => {
       imports: [
         StoreModule.forRoot({
           shipping: combineReducers(daffShippingReducers),
-        })
-      ]
+        }),
+      ],
     });
 
     addressFactory = TestBed.inject(DaffAddressFactory);
@@ -44,8 +55,8 @@ describe('Shipping Selectors', () => {
     it('selects shipping state', () => {
       const expectedShippingState = {
         shippingAddress: stubShippingAddress,
-        selectedShippingOptionId: stubSelectedShippingOptionId
-      }
+        selectedShippingOptionId: stubSelectedShippingOptionId,
+      };
 
       const selector = store.pipe(select(selectShippingState));
       const expected = cold('a', { a: expectedShippingState });

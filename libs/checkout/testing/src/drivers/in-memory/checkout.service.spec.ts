@@ -1,10 +1,14 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+
+import { DaffOrder } from '@daffodil/checkout';
+import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
 import { DaffInMemoryCheckoutService } from './checkout.service';
-import { DaffOrderFactory } from '@daffodil/checkout/testing';
-import { DaffOrder } from '@daffodil/checkout';
 
 describe('Driver | In Memory | Checkout | CheckoutService', () => {
   let checkoutService: DaffInMemoryCheckoutService;
@@ -15,11 +19,11 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryCheckoutService
-      ]
+        DaffInMemoryCheckoutService,
+      ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -54,7 +58,7 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
 
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
-          'cartId': cartId
+          cartId,
         });
 
         req.flush(stubOrder);

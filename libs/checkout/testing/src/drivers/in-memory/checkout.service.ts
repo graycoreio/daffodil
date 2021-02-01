@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCheckoutServiceInterface, DaffOrder } from '@daffodil/checkout';
+import {
+  DaffCheckoutServiceInterface,
+  DaffOrder,
+} from '@daffodil/checkout';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryCheckoutService implements DaffCheckoutServiceInterface {
   url = '/api/checkout';

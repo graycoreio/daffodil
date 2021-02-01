@@ -17,16 +17,19 @@ export { DaffPaymentModule } from './payment/payment.module';
 export {
   DaffPaymentActionTypes,
   DaffPaymentActions,
-  DaffUpdatePaymentInfo
+  DaffUpdatePaymentInfo,
 } from './payment/actions/payment.actions';
 export { daffPaymentReducers } from './payment/reducers/payment-reducers';
 export {
   selectPaymentFeatureState,
   selectPaymentState,
-  selectPaymentInfo
+  selectPaymentInfo,
 } from './payment/selectors/payment.selector';
 export { DaffPaymentDriver } from './drivers/injection-tokens/payment-driver.token';
-export { DaffOrderDriver, DaffOrderServiceInterface } from './drivers/interfaces/order-service.interface';
+export {
+  DaffOrderDriver,
+  DaffOrderServiceInterface,
+} from './drivers/interfaces/order-service.interface';
 export { DaffPaymentTransformer } from './drivers/injection-tokens/payment-transformer.token';
 export { DaffCartProcessRequest } from './models/cart-process-request';
 
@@ -34,13 +37,13 @@ export {
   DaffBillingActionTypes,
   DaffUpdateBillingAddress,
   DaffToggleBillingAddressIsShippingAddress,
-  DaffBillingActions
+  DaffBillingActions,
 } from './billing/actions/billing.actions';
 export {
   selectBillingFeatureState,
   selectBillingState,
   selectBillingAddress,
-  selectBillingAddressIsShippingAddress
+  selectBillingAddressIsShippingAddress,
 } from './billing/selectors/billing.selector';
 export { DaffBillingFacade } from './billing/facades/billing.facade';
 export { DaffBillingReducersState } from './billing/reducers/billing-reducers.interface';
@@ -51,38 +54,38 @@ export { BillingContainer } from './billing/containers/billing.component';
 
 export { DaffShippingFacade } from './shipping/facades/shipping.facade';
 export {
-	DaffShippingActionTypes,
+  DaffShippingActionTypes,
   DaffUpdateShippingAddress,
   DaffSelectShippingOption,
-  DaffShippingActions
+  DaffShippingActions,
 } from './shipping/actions/shipping.actions';
 export { daffShippingReducer } from './shipping/reducers/shipping/shipping.reducer';
 export { DaffShippingReducerState } from './shipping/reducers/shipping/shipping-reducer.interface';
 export { daffShippingReducers } from './shipping/reducers/shipping-reducers';
 export { DaffShippingReducersState } from './shipping/reducers/shipping-reducers.interface';
 export {
-	selectShippingFeatureState,
+  selectShippingFeatureState,
   selectShippingState,
   selectShippingAddress,
   selectShippingOptionId,
-  selectIsShippingAddressValid
+  selectIsShippingAddressValid,
 } from './shipping/selectors/shipping.selectors';
 
 export {
-	PlaceOrder,
+  PlaceOrder,
   OrderActionTypes,
   DaffOrderActionTypes,
   DaffOrderActions,
   DaffPlaceOrder,
   DaffPlaceOrderFailure,
-  DaffPlaceOrderSuccess
+  DaffPlaceOrderSuccess,
 } from './order/actions/order.actions';
 export {
-	selectErrors,
+  selectErrors,
   selectLoading,
   selectOrder,
   selectOrderState,
-  selectOrderFeatureState
+  selectOrderFeatureState,
 } from './order/selectors/order.selector';
 export { DaffOrderReducersState } from './order/reducers/order-reducers.interface';
 export { DaffOrderReducerState } from './order/reducers/order/order-reducer.interface';

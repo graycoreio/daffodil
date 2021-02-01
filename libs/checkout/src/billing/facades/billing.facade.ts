@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
+import {
+  Store,
+  select,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select, Action } from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffStoreFacade } from '@daffodil/core/state';
 
+import { PaymentInfo } from '../../models/payment/payment-info';
 import { DaffBillingModule } from '../billing.module';
 import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
 import {
   selectBillingAddress,
   selectBillingAddressIsShippingAddress,
-  selectPaymentInfo
+  selectPaymentInfo,
 } from '../selectors/billing.selector';
-import { PaymentInfo } from '../../models/payment/payment-info';
 
 /**
  * A facade for accessing state for the billing information of a customer
  */
 @Injectable({
-  providedIn: DaffBillingModule
+  providedIn: DaffBillingModule,
 })
 export class DaffBillingFacade implements DaffStoreFacade<Action> {
   /**
@@ -42,6 +46,7 @@ export class DaffBillingFacade implements DaffStoreFacade<Action> {
 
   /**
    * Dispatches the given action.
+   *
    * @param action action to dispatch.
    */
   dispatch(action: Action) {

@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DaffShippingStateModule } from './shipping-state.module';
 import { ShippingContainer } from './containers/shipping.component';
+import { DaffShippingStateModule } from './shipping-state.module';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { ShippingContainer } from './containers/shipping.component';
     DaffShippingStateModule,
   ],
   declarations: [
-    ShippingContainer
+    ShippingContainer,
   ],
   exports: [
-    ShippingContainer
-  ]
+    ShippingContainer,
+  ],
 })
 export class DaffShippingModule { }

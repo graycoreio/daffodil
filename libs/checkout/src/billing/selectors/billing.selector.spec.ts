@@ -1,20 +1,31 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
-import { DaffUpdateBillingAddress, DaffUpdatePaymentInfo } from '../actions/billing.actions';
 import { PaymentInfo } from '../../models/payment/payment-info';
-import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
+import {
+  DaffUpdateBillingAddress,
+  DaffUpdatePaymentInfo,
+} from '../actions/billing.actions';
 import { daffBillingReducers } from '../reducers/billing-reducers';
+import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
 import {
   selectBillingState,
   selectBillingAddress,
   selectBillingAddressIsShippingAddress,
-  selectPaymentInfo
+  selectPaymentInfo,
 } from './billing.selector';
 
 describe('selectBillingFeatureState', () => {
@@ -33,8 +44,8 @@ describe('selectBillingFeatureState', () => {
       imports: [
         StoreModule.forRoot({
           billing: combineReducers(daffBillingReducers),
-        })
-      ]
+        }),
+      ],
     });
 
     stubPaymentInfo = paymentFactory.create();
@@ -51,8 +62,8 @@ describe('selectBillingFeatureState', () => {
       const expectedBillingState = {
         billingAddress: stubBillingAddress,
         billingAddressIsShippingAddress: stubBillingAddressIsShippingAddress,
-        paymentInfo: stubPaymentInfo
-      }
+        paymentInfo: stubPaymentInfo,
+      };
 
       const selector = store.pipe(select(selectBillingState));
       const expected = cold('a', { a: expectedBillingState });

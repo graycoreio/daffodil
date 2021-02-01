@@ -1,5 +1,5 @@
-import { DaffOrderItem } from './order-item';
 import { DaffOrderAddress } from './order-address';
+import { DaffOrderItem } from './order-item';
 import { DaffOrderPayment } from './order-payment';
 
 /**

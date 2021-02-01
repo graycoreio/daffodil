@@ -1,14 +1,29 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
-import { BillingContainer } from './billing.component';
-import { DaffUpdateBillingAddress, DaffUpdatePaymentInfo, DaffToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
 import { PaymentInfo } from '../../models/payment/payment-info';
-import { selectPaymentInfo, selectBillingAddress, selectBillingAddressIsShippingAddress } from '../selectors/billing.selector';
+import {
+  DaffUpdateBillingAddress,
+  DaffUpdatePaymentInfo,
+  DaffToggleBillingAddressIsShippingAddress,
+} from '../actions/billing.actions';
+import {
+  selectPaymentInfo,
+  selectBillingAddress,
+  selectBillingAddressIsShippingAddress,
+} from '../selectors/billing.selector';
+import { BillingContainer } from './billing.component';
 
 describe('BillingContainer', () => {
   let component: BillingContainer;
@@ -24,10 +39,10 @@ describe('BillingContainer', () => {
     TestBed.configureTestingModule({
       declarations: [ BillingContainer ],
       providers: [
-        provideMockStore({})
-      ]
+        provideMockStore({}),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -53,7 +68,7 @@ describe('BillingContainer', () => {
 
   afterAll(() => {
     store.resetSelectors();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

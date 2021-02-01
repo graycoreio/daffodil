@@ -5,7 +5,7 @@ import { daffShippingReducers } from './reducers/shipping-reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('shipping', daffShippingReducers)
-  ]
+    StoreModule.forFeature('shipping', daffShippingReducers),
+  ],
 })
 export class DaffShippingStateModule { }

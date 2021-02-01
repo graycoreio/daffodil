@@ -5,7 +5,7 @@ import { daffBillingReducers } from './reducers/billing-reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('billing', daffBillingReducers)
-  ]
+    StoreModule.forFeature('billing', daffBillingReducers),
+  ],
 })
 export class DaffBillingStateModule { }

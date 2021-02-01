@@ -1,4 +1,8 @@
-import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
+import {
+  createSelector,
+  createFeatureSelector,
+  MemoizedSelector,
+} from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 
@@ -9,27 +13,27 @@ import { DaffBillingReducerState } from '../reducers/billing/billing-reducer.int
 /**
  * Billing Feature State
  */
-export const selectBillingFeatureState: MemoizedSelector<object, DaffBillingReducersState> = createFeatureSelector<DaffBillingReducersState>('billing');
+export const selectBillingFeatureState: MemoizedSelector<Record<string, any>, DaffBillingReducersState> = createFeatureSelector<DaffBillingReducersState>('billing');
 
 /**
  * Billing State
  */
 export const selectBillingState = createSelector(
   selectBillingFeatureState,
-  (state: DaffBillingReducersState) => state.billing
-)
+  (state: DaffBillingReducersState) => state.billing,
+);
 
-export const selectBillingAddress: MemoizedSelector<object, DaffAddress> = createSelector(
+export const selectBillingAddress: MemoizedSelector<Record<string, any>, DaffAddress> = createSelector(
   selectBillingState,
-  (state: DaffBillingReducerState) => state.billingAddress
-)
+  (state: DaffBillingReducerState) => state.billingAddress,
+);
 
-export const selectBillingAddressIsShippingAddress: MemoizedSelector<object, boolean> = createSelector(
+export const selectBillingAddressIsShippingAddress: MemoizedSelector<Record<string, any>, boolean> = createSelector(
   selectBillingState,
-  (state: DaffBillingReducerState) => state.billingAddressIsShippingAddress
-)
+  (state: DaffBillingReducerState) => state.billingAddressIsShippingAddress,
+);
 
-export const selectPaymentInfo: MemoizedSelector<object, PaymentInfo> = createSelector(
+export const selectPaymentInfo: MemoizedSelector<Record<string, any>, PaymentInfo> = createSelector(
   selectBillingState,
-  (state: DaffBillingReducerState) => state.paymentInfo
-)
+  (state: DaffBillingReducerState) => state.paymentInfo,
+);

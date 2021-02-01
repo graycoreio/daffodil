@@ -1,27 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 
-import { DaffUpdateBillingAddress, DaffUpdatePaymentInfo, DaffToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
 import { PaymentInfo } from '../../models/payment/payment-info';
-import { selectBillingAddress, selectBillingAddressIsShippingAddress, selectPaymentInfo } from '../selectors/billing.selector';
+import {
+  DaffUpdateBillingAddress,
+  DaffUpdatePaymentInfo,
+  DaffToggleBillingAddressIsShippingAddress,
+} from '../actions/billing.actions';
 import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
+import {
+  selectBillingAddress,
+  selectBillingAddressIsShippingAddress,
+  selectPaymentInfo,
+} from '../selectors/billing.selector';
 
 @Component({
   selector: '[billing-container]',
   template: '<ng-content></ng-content>',
-  exportAs: 'BillingContainer'
+  exportAs: 'BillingContainer',
 })
 export class BillingContainer implements OnInit {
-  
+
   billingAddress$: Observable<DaffAddress>;
   billingAddressIsShippingAddress$: Observable<boolean>;
   paymentInfo$: Observable<PaymentInfo>;
 
   constructor(
-    private store: Store<DaffBillingReducersState>
+    private store: Store<DaffBillingReducersState>,
   ) { }
 
   ngOnInit() {

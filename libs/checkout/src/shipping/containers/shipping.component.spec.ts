@@ -1,13 +1,27 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../actions/shipping.actions';
+import {
+  selectShippingAddress,
+  selectShippingOptionId,
+  selectIsShippingAddressValid,
+} from '../selectors/shipping.selectors';
 import { ShippingContainer } from './shipping.component';
-import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../actions/shipping.actions';
-import { selectShippingAddress, selectShippingOptionId, selectIsShippingAddressValid } from '../selectors/shipping.selectors';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;
@@ -22,10 +36,10 @@ describe('ShippingContainer', () => {
     TestBed.configureTestingModule({
       declarations: [ ShippingContainer ],
       providers:[
-        provideMockStore({})
-      ]
+        provideMockStore({}),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -50,7 +64,7 @@ describe('ShippingContainer', () => {
 
   afterAll(() => {
     store.resetSelectors();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -67,13 +81,13 @@ describe('ShippingContainer', () => {
     it('initializes selectedShippingOptionId$', () => {
       component.selectedShippingOptionId$.subscribe((shippingOption) => {
         expect(shippingOption).toEqual(stubSelectedShippingOptionId);
-      })
+      });
     });
 
     it('initializes isShippingAddressValid$', () => {
       component.isShippingAddressValid$.subscribe((isShippingAddressValid) => {
         expect(isShippingAddressValid).toEqual(stubIsShippingAddressValid);
-      })
+      });
     });
   });
 

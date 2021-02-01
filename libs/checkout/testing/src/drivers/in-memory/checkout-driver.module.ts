@@ -1,5 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  NgModule,
+  ModuleWithProviders,
+} from '@angular/core';
 
 import { DaffCheckoutDriver } from '@daffodil/checkout';
 
@@ -7,8 +10,8 @@ import { DaffInMemoryCheckoutService } from './checkout.service';
 
 @NgModule({
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffCheckoutInMemoryDriverModule {
   static forRoot(): ModuleWithProviders<DaffCheckoutInMemoryDriverModule> {
@@ -17,9 +20,9 @@ export class DaffCheckoutInMemoryDriverModule {
       providers: [
         {
           provide: DaffCheckoutDriver,
-          useExisting: DaffInMemoryCheckoutService
-        }
-      ]
+          useExisting: DaffInMemoryCheckoutService,
+        },
+      ],
     };
   }
 }

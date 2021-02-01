@@ -1,5 +1,6 @@
-import { DaffOrderShippingRate } from './order-shipping-rate';
 import { DaffAddress } from '@daffodil/geography';
+
+import { DaffOrderShippingRate } from './order-shipping-rate';
 
 /**
  * @deprecated

@@ -1,15 +1,23 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
-import { DaffBillingFacade } from './billing.facade';
 import { PaymentInfo } from '../../models/payment/payment-info';
+import {
+  DaffUpdateBillingAddress,
+  DaffToggleBillingAddressIsShippingAddress,
+  DaffUpdatePaymentInfo,
+} from '../actions/billing.actions';
 import { daffBillingReducers } from '../reducers/billing-reducers';
-import { DaffUpdateBillingAddress, DaffToggleBillingAddressIsShippingAddress, DaffUpdatePaymentInfo } from '../actions/billing.actions';
+import { DaffBillingFacade } from './billing.facade';
 
 describe('DaffBillingFacade', () => {
   let store: Store<any>;
@@ -24,13 +32,13 @@ describe('DaffBillingFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          billing: combineReducers(daffBillingReducers)
-        })
+          billing: combineReducers(daffBillingReducers),
+        }),
       ],
       providers: [
         DaffBillingFacade,
-      ]
-    })
+      ],
+    });
 
     stubBillingAddress = addressFactory.create();
     stubBillingAddressIsShippingAddress = false;
@@ -45,7 +53,7 @@ describe('DaffBillingFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    const action = {type: 'SOME_TYPE'};
+    const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);

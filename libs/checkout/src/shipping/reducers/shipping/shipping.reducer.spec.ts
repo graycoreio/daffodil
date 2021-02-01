@@ -1,10 +1,19 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../../actions/shipping.actions';
-import { initialState, daffShippingReducer } from './shipping.reducer';
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../../actions/shipping.actions';
+import {
+  initialState,
+  daffShippingReducer,
+} from './shipping.reducer';
 
 describe('Shipping | Shipping Reducer', () => {
 
@@ -23,7 +32,7 @@ describe('Shipping | Shipping Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = daffShippingReducer(initialState, action);
 
@@ -42,7 +51,7 @@ describe('Shipping | Shipping Reducer', () => {
     });
 
     it('sets shippingAddress from action.payload', () => {
-      expect(result.shippingAddress).toEqual(shippingAddress)
+      expect(result.shippingAddress).toEqual(shippingAddress);
     });
   });
 
@@ -57,7 +66,7 @@ describe('Shipping | Shipping Reducer', () => {
     });
 
     it('sets selectedShippingOptionId from action.payload', () => {
-      expect(result.selectedShippingOptionId).toEqual(selectedShippingOptionId)
+      expect(result.selectedShippingOptionId).toEqual(selectedShippingOptionId);
     });
   });
 });

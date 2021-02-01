@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
+import {
+  Store,
+  select,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
-import { DaffOrderModule } from '../order.module';
+
 import { DaffOrder } from '../../models/order/order';
+import { DaffOrderModule } from '../order.module';
 import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
-import { selectOrder, selectLoading, selectErrors } from '../selectors/order.selector';
+import {
+  selectOrder,
+  selectLoading,
+  selectErrors,
+} from '../selectors/order.selector';
 
 /**
  * A facade for accessing state for the currently selected category.
@@ -15,7 +24,7 @@ import { selectOrder, selectLoading, selectErrors } from '../selectors/order.sel
  * @deprecated
  */
 @Injectable({
-  providedIn: DaffOrderModule
+  providedIn: DaffOrderModule,
 })
 export class DaffOrderFacade implements DaffStoreFacade<Action> {
   /**
@@ -39,6 +48,7 @@ export class DaffOrderFacade implements DaffStoreFacade<Action> {
 
   /**
    * Dispatches the given action.
+   *
    * @param action action to dispatch.
    */
   dispatch(action: Action) {

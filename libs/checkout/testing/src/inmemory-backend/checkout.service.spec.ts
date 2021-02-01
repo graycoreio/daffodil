@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryBackendCheckoutService } from './checkout.service';
 
@@ -9,11 +9,11 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
-        DaffInMemoryBackendCheckoutService
-      ]
+        DaffInMemoryBackendCheckoutService,
+      ],
     });
 
     checkoutTestingService = TestBed.inject(DaffInMemoryBackendCheckoutService);
@@ -43,13 +43,11 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
     beforeEach(() => {
       reqInfoStub = {
         req: {
-          body: 'body'
+          body: 'body',
         },
         utils: {
-          createResponse$: func => {
-            return func();
-          }
-        }
+          createResponse$: func => func(),
+        },
       };
       result = checkoutTestingService.post(reqInfoStub);
     });
@@ -61,14 +59,12 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
           id: 'placeOrder',
           req: {
             body: {
-              cartId: 'cartId'
-            }
+              cartId: 'cartId',
+            },
           },
           utils: {
-            createResponse$: func => {
-              return func();
-            }
-          }
+            createResponse$: func => func(),
+          },
         };
       });
 

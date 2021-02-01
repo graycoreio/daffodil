@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffShippingOptionFactory } from './shipping-option.factory';
 import { ShippingOption } from '@daffodil/checkout';
+
+import { DaffShippingOptionFactory } from './shipping-option.factory';
 
 describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', () => {
 
@@ -9,7 +10,7 @@ describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', ()
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffShippingOptionFactory]
+      providers: [DaffShippingOptionFactory],
     });
 
     shippingOptionFactory = TestBed.inject(DaffShippingOptionFactory);
@@ -41,6 +42,6 @@ describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', ()
 
       result = shippingOptionFactory.createMany(3);
       expect(result.length).toEqual(3);
-    })
-  })
+    });
+  });
 });
