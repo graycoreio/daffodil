@@ -2,11 +2,11 @@ export interface DaffSizeable<T extends DaffSizeAllType> {
 	size: T;
 }
 
-export type DaffSizeXSmallType = 'xs'
-export type DaffSizeSmallType = 'sm'
-export type DaffSizeMediumType = 'md'
-export type DaffSizeLargeType = 'lg'
-export type DaffSizeXLargeType = 'xl'
+export type DaffSizeXSmallType = 'xs';
+export type DaffSizeSmallType = 'sm';
+export type DaffSizeMediumType = 'md';
+export type DaffSizeLargeType = 'lg';
+export type DaffSizeXLargeType = 'xl';
 
 export type DaffSizeAllType = DaffSizeXSmallType | DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType | DaffSizeXLargeType;
 

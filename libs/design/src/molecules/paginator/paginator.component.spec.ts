@@ -1,12 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement } from '@angular/core';
 
+import {
+  DaffPaginatorNumberOfPagesErrorMessage,
+  DaffPaginatorPageOutOfRangeErrorMessage,
+} from './paginator-errors';
 import { DaffPaginatorComponent } from './paginator.component';
 import { DaffPaginatorModule } from './paginator.module';
-import { DaffPaginatorNumberOfPagesErrorMessage, DaffPaginatorPageOutOfRangeErrorMessage } from './paginator-errors';
 
-@Component({template: '<daff-paginator aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></daff-paginator>'})
+@Component({ template: '<daff-paginator aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></daff-paginator>' })
 
 class WrapperComponent {
   numberOfPagesValue = 20;
@@ -22,13 +32,13 @@ describe('DaffPaginatorComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffPaginatorModule
+        DaffPaginatorModule,
       ],
       declarations: [
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

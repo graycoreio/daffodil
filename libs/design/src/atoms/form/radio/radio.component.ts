@@ -1,5 +1,16 @@
-import { Component, OnInit, Input, HostBinding, ChangeDetectionStrategy, forwardRef, Optional, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  HostBinding,
+  ChangeDetectionStrategy,
+  forwardRef,
+  Optional,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { DaffRadioSetComponent } from '../radio-set/radio-set.component';
 
 let radioUniqueId = 0;
@@ -8,38 +19,31 @@ let radioUniqueId = 0;
   selector: 'daff-radio',
   templateUrl: './radio.html',
   styleUrls: ['./radio.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DaffRadioComponent),
-      multi: true
-    }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffRadioComponent implements OnInit {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('attr.role') role = 'radio';
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
-	};
-	/**
-	 * @docs-private
-	 */
+  };
+  /**
+   * @docs-private
+   */
   @HostBinding('class.disabled') get disabledClass() {
     return this.disabled === true;
   };
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   _checked = false;
   /**
    * Output event of selection being changed
@@ -51,35 +55,35 @@ export class DaffRadioComponent implements OnInit {
    * The checked property of the radio
    */
 	@Input()
-	get checked() {
-		return this._checked;
-	}
+  get checked() {
+    return this._checked;
+  }
 	set checked(value: boolean) {
-		if (this._checked !== value) {
-			this._checked = value;
-			this.selectionChange.emit(this.value);
-		}
+	  if (this._checked !== value) {
+	    this._checked = value;
+	    this.selectionChange.emit(this.value);
+	  }
 	}
-  /**
+	/**
 	 * The value of the radio
-   */
+	 */
 	@Input() value: any;
-  /**
+	/**
 	 * The id of the radio. It is uniquely generated but can be overwritten by the user. Must be unique.
-   */
+	 */
 	@Input() id: string = 'daff-radio-' + radioUniqueId;
-  /**
+	/**
 	 * Name of the Radio
-   */
+	 */
 	@Input() name: string;
 
   /**
-	 * Used for aria-label. Default to name if user does not input a label.
+   * Used for aria-label. Default to name if user does not input a label.
    */
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('aria-label') label: string = name;
   /**
-	 * Used for aria-labelledby.
+   * Used for aria-labelledby.
    */
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('aria-labelledby') labelledby: string;
@@ -90,13 +94,13 @@ export class DaffRadioComponent implements OnInit {
 
   constructor(@Optional() private radioset: DaffRadioSetComponent) {
     radioUniqueId++;
-	}
+  }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   ngOnInit() {
-    this.name = this.radioset ? this.radioset.name : this.name
+    this.name = this.radioset ? this.radioset.name : this.name;
   }
 
   /**

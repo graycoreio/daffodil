@@ -1,16 +1,29 @@
-import { Component, Input, Output, EventEmitter, DebugElement } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import {
+  DaffBackdropComponent,
+  DaffBackdropModule,
+} from '../../backdrop/public_api';
 import { DaffModalComponent } from './modal.component';
-import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public_api';
 
-@Component({template: `
+@Component({ template: `
   <div class="daff-modal-wrapper">
     <daff-modal></daff-modal>
   </div>
-`})
+` })
 class WrapperComponent {}
 
 describe('DaffModalComponent', () => {
@@ -23,14 +36,14 @@ describe('DaffModalComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffBackdropModule
+        DaffBackdropModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffModalComponent
-      ]
+        DaffModalComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

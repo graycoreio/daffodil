@@ -1,10 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule, FormArray } from '@angular/forms';
+import {
+  Component,
+  ViewChild,
+  OnInit,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormControl,
+  ReactiveFormsModule,
+  FormArray,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffCheckboxSetComponent } from './checkbox-set.component';
 import { DaffCheckboxModule } from '../checkbox/checkbox.module';
+import { DaffCheckboxSetComponent } from './checkbox-set.component';
 
 @Component({
   template: `
@@ -14,7 +26,7 @@ import { DaffCheckboxModule } from '../checkbox/checkbox.module';
   <daff-checkbox [formControl]="checkboxArray.at(1)" value="option2">Option 2 </daff-checkbox>
   <daff-checkbox [formControl]="checkboxArray.at(2)" value="option3">Option 3 </daff-checkbox>
 </daff-checkbox-set>
-  `
+  `,
 })
 class CheckboxEmbeddedComponent implements OnInit {
   @ViewChild(DaffCheckboxSetComponent)
@@ -28,7 +40,7 @@ class CheckboxEmbeddedComponent implements OnInit {
     this.checkboxArray.setValue([false, true, true]);
   }
   displayList() {
-    this.selectedValues = this.checkboxSet.getValues()
+    this.selectedValues = this.checkboxSet.getValues();
   }
 }
 
@@ -41,12 +53,12 @@ describe('DaffCheckboxSetComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CheckboxEmbeddedComponent
+        CheckboxEmbeddedComponent,
       ],
       imports: [
         ReactiveFormsModule,
         DaffCheckboxModule,
-      ]
+      ],
     })
       .compileComponents();
   }));
@@ -65,7 +77,7 @@ describe('DaffCheckboxSetComponent', () => {
   });
   describe('and the getValues function', () => {
     it('should return a list of selected values', () => {
-      expect(embeddedComponent.getValues()).toEqual(['option2', 'option3'])
+      expect(embeddedComponent.getValues()).toEqual(['option2', 'option3']);
     });
-  })
+  });
 });

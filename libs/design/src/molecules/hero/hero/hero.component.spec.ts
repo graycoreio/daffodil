@@ -1,17 +1,23 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffPalette } from '../../../core/colorable/colorable';
 import {
   DaffHeroComponent,
   DaffHeroLayout,
-  DaffHeroSize
+  DaffHeroSize,
 } from './hero.component';
 
-import { DaffPalette } from '../../../core/colorable/colorable';
-
 @Component({
-  template: `<daff-hero [layout]="layout" [size]="size" [color]="color"></daff-hero>`
+  template: `<daff-hero [layout]="layout" [size]="size" [color]="color"></daff-hero>`,
 })
 class WrapperComponent {
   layout: DaffHeroLayout;
@@ -29,10 +35,10 @@ describe('DaffHeroComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffHeroComponent
-      ]
+        DaffHeroComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -49,21 +55,21 @@ describe('DaffHeroComponent', () => {
 
   describe('<daff-hero>', () => {
     it('should add a class of "daff-hero" to the host element', () => {
-			expect(de.nativeElement.classList.contains('daff-hero')).toBeTruthy();
+      expect(de.nativeElement.classList.contains('daff-hero')).toBeTruthy();
     });
   });
 
   describe('setting the layout', () => {
     it('should not set a default layout', () => {
-			expect(component.layout).toBeFalsy();
-			expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeFalsy();
+      expect(component.layout).toBeFalsy();
+      expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeFalsy();
     });
 
     describe('when layout="centered"', () => {
       it('should add a class of "daff-hero--centered" to the host element', () => {
         wrapper.layout = 'centered';
         fixture.detectChanges();
-				expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeTruthy();
       });
     });
   });
@@ -71,15 +77,15 @@ describe('DaffHeroComponent', () => {
   describe('setting the size', () => {
     it('should not set a default size', () => {
       expect(component.layout).toBeFalsy();
-			expect(de.nativeElement.classList.contains('daff-hero--small')).toBeFalsy();
-			expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeFalsy();
+      expect(de.nativeElement.classList.contains('daff-hero--small')).toBeFalsy();
+      expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeFalsy();
     });
 
     describe('when size="small"', () => {
       it('should add a class of "daff-hero--small" to the host element', () => {
         wrapper.size = 'small';
         fixture.detectChanges();
-				expect(de.nativeElement.classList.contains('daff-hero--small')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-hero--small')).toBeTruthy();
       });
     });
 
@@ -87,7 +93,7 @@ describe('DaffHeroComponent', () => {
       it('should add a class of "daff-hero--compact" to the host element', () => {
         wrapper.size = 'compact';
         fixture.detectChanges();
-				expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeTruthy();
       });
     });
   });

@@ -1,11 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffImageListComponent } from './image-list.component';
 
 @Component ({
-  template: `<daff-image-list></daff-image-list>`
+  template: `<daff-image-list></daff-image-list>`,
 })
 
 class WrapperComponent {}
@@ -20,10 +27,10 @@ describe('DaffImageListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffImageListComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

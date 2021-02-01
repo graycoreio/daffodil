@@ -1,10 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffFeatureIconDirective } from './feature-icon.directive';
 
 @Component({
-  template: `<div daffFeatureIcon></div>`
+  template: `<div daffFeatureIcon></div>`,
 })
 
 class WrapperComponent {}
@@ -18,10 +26,10 @@ describe('DaffFeatureIconDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffFeatureIconDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

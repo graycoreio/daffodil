@@ -1,12 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffCalloutTitleDirective } from './callout-title.directive';
 
 @Component({
   template: `
     <h3 daffCalloutTitle>Lorem Ipsum</h3>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -19,10 +27,10 @@ describe('DaffCalloutTitleDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffCalloutTitleDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

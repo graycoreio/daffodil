@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
-
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { DaffRadioModule } from '../radio.module';
+
 import { DaffRadioComponent } from '../radio.component';
+import { DaffRadioModule } from '../radio.module';
 
 
 @Component({
   template: `
     <daff-radio name='test' value='testValue' aria-labelledby="user" aria-label="test"></daff-radio>
-  `
+  `,
 })
 class RadioWrapperComponent { }
 describe('DaffRadio Accessibility', () => {
@@ -26,8 +30,8 @@ describe('DaffRadio Accessibility', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DaffRadioModule
-      ]
+        DaffRadioModule,
+      ],
     })
       .compileComponents();
   }));

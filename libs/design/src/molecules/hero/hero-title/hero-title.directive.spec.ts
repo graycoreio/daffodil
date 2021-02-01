@@ -1,12 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffHeroTitleDirective } from './hero-title.directive';
 
 @Component({
   template: `
     <h1 daffHeroTitle>Lorem Ipsum</h1>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -19,10 +27,10 @@ describe('DaffHeroTitleDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffHeroTitleDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

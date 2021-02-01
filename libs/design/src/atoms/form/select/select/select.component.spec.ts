@@ -1,6 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffNativeSelectComponent } from './select.component';
@@ -12,7 +22,7 @@ import { DaffNativeSelectComponent } from './select.component';
       <option value="2">Option 2</option>
       <option value="3">Option 3</option>
     </select>
-  `
+  `,
 })
 
 class WrapperComponent {
@@ -31,14 +41,14 @@ describe('DaffNativeSelectComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
       declarations: [
         DaffNativeSelectComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

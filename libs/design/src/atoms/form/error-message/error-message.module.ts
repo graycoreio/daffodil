@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { DaffErrorMessageComponent } from './error-message.component';
 
 @NgModule({
   exports: [
-    DaffErrorMessageComponent
+    DaffErrorMessageComponent,
   ],
   declarations: [
-    DaffErrorMessageComponent
-  ]
+    DaffErrorMessageComponent,
+  ],
 })
 export class DaffErrorMessageModule { }

@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { daffPrefixableMixin } from './prefixable';
 import { DaffPrefixSuffixModule } from '../prefix-suffix.module';
 import { DaffPrefixDirective } from '../prefix.directive';
+import { daffPrefixableMixin } from './prefixable';
 
 class PrefixableComponentBase {}
 
@@ -13,16 +17,16 @@ const _prefixableComponentBase = daffPrefixableMixin(PrefixableComponentBase);
 
 @Component({
   selector: 'daff-prefixable',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
 })
 class PrefixableComponent extends _prefixableComponentBase {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 }
 
 @Component({
-  template: '<daff-prefixable><div daffPrefix></div></daff-prefixable>'
+  template: '<daff-prefixable><div daffPrefix></div></daff-prefixable>',
 })
 class WrapperComponent {}
 
@@ -36,12 +40,12 @@ describe('daffPrefixableMixin', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        DaffPrefixSuffixModule
+        DaffPrefixSuffixModule,
       ],
       declarations: [
         WrapperComponent,
-        PrefixableComponent
-      ]
+        PrefixableComponent,
+      ],
     })
       .compileComponents();
   }));

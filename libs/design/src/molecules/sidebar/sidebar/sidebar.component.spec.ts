@@ -1,8 +1,12 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DaffSidebarComponent } from './sidebar.component';
-import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 describe('DaffSidebarComponent', () => {
   let component: DaffSidebarComponent;
@@ -11,17 +15,17 @@ describe('DaffSidebarComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffSidebarComponent
-      ]
+        DaffSidebarComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -32,7 +36,7 @@ describe('DaffSidebarComponent', () => {
       spyOn(component.escapePressed, 'emit');
 
       fixture.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {
-          key: 'Escape'
+        key: 'Escape',
       }));
 
       fixture.detectChanges();
@@ -44,7 +48,7 @@ describe('DaffSidebarComponent', () => {
       spyOn(component.escapePressed, 'emit');
 
       document.dispatchEvent(new KeyboardEvent('keydown', {
-        key: 'Escape'
+        key: 'Escape',
       }));
 
       fixture.detectChanges();
@@ -54,11 +58,11 @@ describe('DaffSidebarComponent', () => {
   });
 });
 
-@Component({template: `
+@Component({ template: `
   <div class="host-element">
     <daff-sidebar (escapePressed)="pressed()"></daff-sidebar>
   </div>
-`})
+` })
 class WrapperComponent {
   escapePressedCount = 0;
 
@@ -76,10 +80,10 @@ describe('DaffSidebarComponent | usage', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffSidebarComponent
-      ]
+        DaffSidebarComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -11,5 +11,5 @@ export const BUTTON_EXAMPLES = [
   RaisedButtonComponent,
   SizeableButtonComponent,
   StrokedButtonComponent,
-  UnderlineButtonComponent
+  UnderlineButtonComponent,
 ];

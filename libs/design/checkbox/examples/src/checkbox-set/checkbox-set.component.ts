@@ -1,11 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormArray,
+  FormControl,
+} from '@angular/forms';
+
 import { DaffCheckboxSetComponent } from '@daffodil/design';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'checkbox-set',
-    templateUrl: './checkbox-set.component.html'
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'checkbox-set',
+  templateUrl: './checkbox-set.component.html',
 })
 export class CheckboxSetComponent implements OnInit {
 
@@ -15,9 +23,9 @@ export class CheckboxSetComponent implements OnInit {
     selectedValues = [];
 
     ngOnInit() {
-        this.checkboxArray.setValue([false, false, false]);
+      this.checkboxArray.setValue([false, false, false]);
     }
     displayList() {
-        this.selectedValues = this.checkboxSet.getValues()
+      this.selectedValues = this.checkboxSet.getValues();
     }
 }

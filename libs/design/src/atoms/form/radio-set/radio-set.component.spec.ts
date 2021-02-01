@@ -1,10 +1,21 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffRadioSetComponent } from './radio-set.component';
-import { Component, DebugElement } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { DaffRadioModule } from '../radio/radio.module';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
+
+import { DaffRadioModule } from '../radio/radio.module';
+import { DaffRadioSetComponent } from './radio-set.component';
 
 @Component({
   template: `
@@ -14,11 +25,11 @@ import { By } from '@angular/platform-browser';
   <daff-radio formControlName="fruit" value="grape">Grape</daff-radio>
   <daff-radio formControlName="fruit" value="peach">Peach</daff-radio>
 </daff-radio-set>
-  `
+  `,
 })
 class RadioEmbeddedComponent {
   radioGroup = new FormGroup({
-    fruit: new FormControl()
+    fruit: new FormControl(),
   });
 }
 
@@ -32,12 +43,12 @@ describe('DaffRadioSetComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        RadioEmbeddedComponent
+        RadioEmbeddedComponent,
       ],
       imports: [
         ReactiveFormsModule,
-        DaffRadioModule
-      ]
+        DaffRadioModule,
+      ],
     })
       .compileComponents();
   }));

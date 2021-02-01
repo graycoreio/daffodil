@@ -1,12 +1,19 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { DaffInputComponent } from './input.component';
-import { By } from '@angular/platform-browser';
-import { Component, DebugElement } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
-  template: `<input daff-input [formSubmitted]="formSubmittedValue">`
+  template: `<input daff-input [formSubmitted]="formSubmittedValue">`,
 })
 class WrapperComponent {
   formSubmittedValue: boolean;
@@ -24,10 +31,10 @@ describe('DaffInputComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffInputComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

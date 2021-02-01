@@ -1,15 +1,20 @@
-import { Component, ViewEncapsulation, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  HostBinding,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'daff-modal-header',
   template: '<ng-content></ng-content>',
   styleUrls: ['./modal-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffModalHeaderComponent {
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-modal-header') class = true;
 }

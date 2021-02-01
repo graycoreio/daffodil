@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgControl } from '@angular/forms';
+
 import { DaffRadioControlValueAccessorDirective } from '../cva/radio-cva.directive';
 
 export interface ControlAccessorPair {
@@ -7,7 +8,7 @@ export interface ControlAccessorPair {
   accessor: DaffRadioControlValueAccessorDirective;
 }
 
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DaffRadioRegistry {
   private _accessors: ControlAccessorPair[] = [];
 
@@ -17,8 +18,8 @@ export class DaffRadioRegistry {
    */
   add(control: NgControl, accessor: DaffRadioControlValueAccessorDirective) {
     this._accessors.push({
-      control: control,
-      accessor: accessor
+      control,
+      accessor,
     });
   }
 
@@ -47,9 +48,9 @@ export class DaffRadioRegistry {
     });
   }
 
-  private _isSameGroup (
-      controlPair: ControlAccessorPair,
-      accessor: DaffRadioControlValueAccessorDirective): boolean {
+  private _isSameGroup(
+    controlPair: ControlAccessorPair,
+    accessor: DaffRadioControlValueAccessorDirective): boolean {
     if (!controlPair['control'].control) {
       return false;
     }

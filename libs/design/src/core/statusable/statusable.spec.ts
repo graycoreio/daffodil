@@ -1,18 +1,19 @@
-import { daffStatusMixin } from './statusable-mixin';
 import { ElementRef } from '@angular/core';
+
+import { daffStatusMixin } from './statusable-mixin';
 
 class TestingClass {
   element: HTMLElement = document.createElement('div');
 
   _elementRef = new ElementRef<HTMLElement>(this.element);
-  _renderer : any = { 
-    addClass(el: HTMLElement, className: string) {
+  _renderer: any = {
+    addClass: (el: HTMLElement, className: string) => {
       el.classList.add(className);
     },
-    removeClass(el: HTMLElement, className: string) {
+    removeClass: (el: HTMLElement, className: string) => {
       el.classList.remove(className);
-    }
-  } 
+    },
+  };
 }
 
 describe('daffStatusMixin', () => {
@@ -25,7 +26,7 @@ describe('daffStatusMixin', () => {
   });
 
   it('should add a status property to an existing class', () => {
-      expect('status' in instance).toBeTruthy();
+    expect('status' in instance).toBeTruthy();
   });
 
   it('should allow the consuming class to optionally define a default status', () => {
@@ -37,7 +38,7 @@ describe('daffStatusMixin', () => {
   });
 
   describe('when a status is specified', () => {
-    
+
     it('should set a namespaced status class', () => {
       instance.status = 'warn';
 
@@ -46,7 +47,7 @@ describe('daffStatusMixin', () => {
   });
 
   describe('when a status is not specified', () => {
-    
+
     it('should default to no status class', () => {
       instance.status = undefined;
       expect(instance.element.classList.length).toEqual(0);
@@ -61,7 +62,7 @@ describe('daffStatusMixin', () => {
 
       instance.status = 'error';
     });
-    
+
     it('should add the new status class', () => {
       expect(instance.element.classList).toContain('daff-error');
     });
@@ -102,6 +103,6 @@ describe('daffStatusMixin', () => {
         expect(instance.status).toEqual('warn');
         expect(instance.element.classList).toContain('daff-warn');
       });
-    })
-  })
+    });
+  });
 });

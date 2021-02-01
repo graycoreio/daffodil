@@ -4,4 +4,4 @@
  * for a really good explanation of why mixins are useful.
  */
 
-export type Constructor<T = {}> = new (...args: any[]) => T;
+export type Constructor<T = Record<string, any>> = new (...args: any[]) => T;

@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  ReactiveFormsModule,
+  FormControl,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffCheckboxComponent } from '../checkbox.component';
@@ -9,10 +16,10 @@ import { DaffCheckboxModule } from '../checkbox.module';
 @Component({
   template: `
     <daff-checkbox name='test' value='testValue' [formControl]='checkbox'></daff-checkbox>
-  `
+  `,
 })
 class CheckboxWrapperComponent {
-  checkbox = new FormControl()
+  checkbox = new FormControl();
 }
 
 describe('DaffCheckboxControlValueAccessorDirective', () => {
@@ -31,8 +38,8 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
         ],
         imports: [
           ReactiveFormsModule,
-          DaffCheckboxModule
-        ]
+          DaffCheckboxModule,
+        ],
       })
         .compileComponents();
     }));
@@ -71,11 +78,11 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
       TestBed.configureTestingModule({
         declarations: [
           CheckboxWrapperComponent,
-          DaffCheckboxComponent
+          DaffCheckboxComponent,
         ],
         imports: [
           ReactiveFormsModule,
-        ]
+        ],
       })
         .compileComponents();
     }));
@@ -87,7 +94,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
         expect(() => {
           component = fixture.debugElement.query(By.css('daff-checkbox')).componentInstance;
           fixture.detectChanges();
-        }).toThrowError()
+        }).toThrowError();
       });
 
     });

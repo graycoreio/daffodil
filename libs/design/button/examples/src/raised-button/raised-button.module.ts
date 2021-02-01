@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { DaffButtonModule } from '@daffodil/design';
 
 import { RaisedButtonComponent } from './raised-button.component';
 
-import { DaffButtonModule } from '@daffodil/design';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    RaisedButtonComponent
+    RaisedButtonComponent,
   ],
   exports: [
-    RaisedButtonComponent
+    RaisedButtonComponent,
   ],
   imports: [
     DaffButtonModule,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+  ],
 })
 export class RaisedButtonModule { }

@@ -1,7 +1,10 @@
-import { Directive, HostBinding } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 @Directive({
-  selector: '[daffFormLabel]'
+  selector: '[daffFormLabel]',
 })
 
 export class DaffFormLabelDirective {

@@ -1,18 +1,29 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { A11yModule } from '@angular/cdk/a11y';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { A11yModule } from '@angular/cdk/a11y';
 
 
 
-import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import {
+  DaffBackdropComponent,
+  DaffBackdropModule,
+} from '../../backdrop/public_api';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public_api';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 
-@Component({
-  template: `
+@Component({ template: `
   <div class="sidebar-content-wrapper">
     <daff-sidebar-viewport
       [backdropIsVisible]="backdropIsVisible"
@@ -20,7 +31,7 @@ import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public
       [opened]="open"
       (backdropClicked)="incrementBackdropClicked()"></daff-sidebar-viewport>
   </div>
-`})
+` })
 class WrapperComponent {
   open = false;
 
@@ -50,13 +61,13 @@ describe('DaffSidebarViewportComponent | Usage', () => {
       imports: [
         NoopAnimationsModule,
         DaffBackdropModule,
-        A11yModule
+        A11yModule,
       ],
       declarations: [
         WrapperComponent,
         DaffSidebarViewportComponent,
         DaffSidebarComponent,
-      ]
+      ],
     })
       .compileComponents();
   }));
@@ -206,12 +217,12 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
       imports: [
         NoopAnimationsModule,
         DaffBackdropModule,
-        A11yModule
+        A11yModule,
       ],
       declarations: [
         DaffSidebarViewportComponent,
         DaffSidebarComponent,
-      ]
+      ],
     })
       .compileComponents();
   }));

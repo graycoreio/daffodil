@@ -1,13 +1,19 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffPalette } from '../../../core/colorable/colorable';
 import { DaffCardComponent } from './card.component';
 
-import { DaffPalette } from '../../../core/colorable/colorable';
-
 @Component ({
-  template: `<daff-card [color]="color"></daff-card>`
+  template: `<daff-card [color]="color"></daff-card>`,
 })
 
 class WrapperComponent {
@@ -24,10 +30,10 @@ describe('DaffCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffCardComponent,
-        WrapperComponent
-       ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

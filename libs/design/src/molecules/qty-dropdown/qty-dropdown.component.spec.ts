@@ -1,14 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffQtyDropdownComponent } from './qty-dropdown.component';
-import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
-import { DaffInputModule } from '../../atoms/form/input/input.module';
 import { DaffFormFieldModule } from '../../atoms/form/form-field/public_api';
+import { DaffInputModule } from '../../atoms/form/input/input.module';
+import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
+import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 
-@Component({template: '<daff-qty-dropdown [qty]="qtyValue" [id]="idValue"></daff-qty-dropdown>'})
+@Component({ template: '<daff-qty-dropdown [qty]="qtyValue" [id]="idValue"></daff-qty-dropdown>' })
 class WrapperComponent {
   qtyValue: string;
   idValue: string;
@@ -27,14 +31,14 @@ describe('DaffQtyDropdownComponent', () => {
         FormsModule,
         DaffFormFieldModule,
         DaffNativeSelectModule,
-        DaffInputModule
+        DaffInputModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffQtyDropdownComponent
-      ]
+        DaffQtyDropdownComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -103,7 +107,7 @@ describe('DaffQtyDropdownComponent', () => {
 
   describe('registerOnChange', () => {
 
-    const givenFunction: Function= () => {};
+    const givenFunction = () => {};
 
     beforeEach(() => {
       qtyDropdownComponent.componentInstance.registerOnChange(givenFunction);
@@ -116,7 +120,7 @@ describe('DaffQtyDropdownComponent', () => {
 
   describe('registerOnTouched', () => {
 
-    const givenFunction: Function= () => {};
+    const givenFunction = () => {};
 
     beforeEach(() => {
       qtyDropdownComponent.componentInstance.registerOnTouched(givenFunction);

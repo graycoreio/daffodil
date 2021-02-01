@@ -1,18 +1,25 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffAccordionItemComponent } from './accordion-item.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-@Component({template: `
+@Component({ template: `
 <daff-accordion-item [initiallyActive]="initiallyActiveValue">
   <h3 daffAccordionItemTitle>Size and Fit</h3>
   <div daffAccordionItemContent>no content</div>
 </daff-accordion-item>
-`})
+` })
 class WrapperComponent {
   initiallyActiveValue: boolean;
 }
@@ -27,14 +34,14 @@ describe('DaffAccordionItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FontAwesomeModule
+        FontAwesomeModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffAccordionItemComponent
-      ]
+        DaffAccordionItemComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -80,7 +87,7 @@ describe('DaffAccordionItemComponent', () => {
       beforeEach(() => {
         wrapper.initiallyActiveValue = true;
         fixture.detectChanges();
-      })
+      });
 
       it('should set _open to true', () => {
         daffAccordionItem.ngOnInit();
@@ -93,7 +100,7 @@ describe('DaffAccordionItemComponent', () => {
       beforeEach(() => {
         wrapper.initiallyActiveValue = undefined;
         fixture.detectChanges();
-      })
+      });
 
       it('should set open to false', () => {
         daffAccordionItem.ngOnInit();

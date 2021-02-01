@@ -1,4 +1,7 @@
-import { Directive, HostBinding } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 /**
  * @deprecated
@@ -8,8 +11,8 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffListSubheaderDirective {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-list__subheader') class = true;
 }

@@ -7,11 +7,11 @@ import { DaffSuffixDirective } from './suffix.directive';
   imports: [],
   exports: [
     DaffPrefixDirective,
-    DaffSuffixDirective
+    DaffSuffixDirective,
   ],
   declarations: [
     DaffPrefixDirective,
-    DaffSuffixDirective
-  ]
+    DaffSuffixDirective,
+  ],
 })
 export class DaffPrefixSuffixModule {}

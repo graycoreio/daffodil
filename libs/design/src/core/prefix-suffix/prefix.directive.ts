@@ -1,4 +1,7 @@
-import { Directive, HostBinding } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 /**
  *
@@ -6,7 +9,7 @@ import { Directive, HostBinding } from '@angular/core';
  * `daff-form-field`, `daff-solo-field`, and `daff-list`.
  */
 @Directive({
-  selector: '[daffPrefix]'
+  selector: '[daffPrefix]',
 })
 
 export class DaffPrefixDirective {

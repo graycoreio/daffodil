@@ -1,6 +1,10 @@
-import { DaffStatus } from './statusable';
+import {
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
+
 import { Constructor } from '../constructor/constructor';
-import { ElementRef, Renderer2 } from '@angular/core';
+import { DaffStatus } from './statusable';
 
 interface HasElementRef {
   _elementRef: ElementRef;
@@ -8,7 +12,7 @@ interface HasElementRef {
 }
 
 export function
-  daffStatusMixin<T extends Constructor<HasElementRef>>(Base: T, defaultStatus?: DaffStatus) {
+daffStatusMixin<T extends Constructor<HasElementRef>>(Base: T, defaultStatus?: DaffStatus) {
   return class extends Base {
     // TODO move this back to private in Typescript 3.1
     _status: DaffStatus;

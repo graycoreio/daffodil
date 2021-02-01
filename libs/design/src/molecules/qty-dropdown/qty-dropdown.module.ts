@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 import { DaffFormFieldModule } from '../../atoms/form/form-field/form-field.module';
-import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
 import { DaffInputModule } from '../../atoms/form/input/input.module';
+import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
+import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 
 @NgModule({
   imports: [
@@ -13,13 +13,13 @@ import { DaffInputModule } from '../../atoms/form/input/input.module';
     FormsModule,
     DaffFormFieldModule,
     DaffNativeSelectModule,
-    DaffInputModule
+    DaffInputModule,
   ],
   declarations: [
-    DaffQtyDropdownComponent
+    DaffQtyDropdownComponent,
   ],
   exports: [
-    DaffQtyDropdownComponent
-  ]
+    DaffQtyDropdownComponent,
+  ],
 })
 export class DaffQtyDropdownModule { }

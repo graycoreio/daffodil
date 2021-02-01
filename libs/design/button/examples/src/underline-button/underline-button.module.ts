@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { DaffButtonModule } from '@daffodil/design';
 
 import { UnderlineButtonComponent } from './underline-button.component';
 
-import { DaffButtonModule } from '@daffodil/design';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    UnderlineButtonComponent
+    UnderlineButtonComponent,
   ],
   exports: [
-    UnderlineButtonComponent
+    UnderlineButtonComponent,
   ],
   imports: [
     DaffButtonModule,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+  ],
 })
 export class UnderlineButtonModule { }

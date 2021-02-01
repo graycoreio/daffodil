@@ -1,5 +1,17 @@
-import { Directive, Input, OnInit, Self, Optional, forwardRef } from '@angular/core';
-import { NgControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  Directive,
+  Input,
+  OnInit,
+  Self,
+  Optional,
+  forwardRef,
+} from '@angular/core';
+import {
+  NgControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+
 import { DaffRadioComponent } from '../radio.component';
 import { DaffRadioRegistry } from '../registry/radio-registry';
 
@@ -8,7 +20,7 @@ import { DaffRadioRegistry } from '../registry/radio-registry';
  */
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'daff-radio[ngModel], daff-radio[formControl], daff-radio[formControlName]'
+  selector: 'daff-radio[ngModel], daff-radio[formControl], daff-radio[formControlName]',
 })
 export class DaffRadioControlValueAccessorDirective implements OnInit, ControlValueAccessor {
   _onChange: () => void;
@@ -27,7 +39,7 @@ export class DaffRadioControlValueAccessorDirective implements OnInit, ControlVa
   constructor(
     @Optional() @Self() public _control: NgControl,
     private _registry: DaffRadioRegistry,
-    private _radio: DaffRadioComponent
+    private _radio: DaffRadioComponent,
   ) {
     if (this._control != null) {
       this._control.valueAccessor = this;
@@ -39,16 +51,16 @@ export class DaffRadioControlValueAccessorDirective implements OnInit, ControlVa
     this._registry.add(this._control, this);
 
     this._radio.selectionChange.subscribe(
-      value => value ? this._onChange() : null
+      value => value ? this._onChange() : null,
     );
   }
   /**
-   * 
+   *
    * writeValue function from the CVA interface
    */
   writeValue(value: any): void {
-		// the this._onChange null check here is necessary because of an ongoing bug in angular forms
-		// where writeValue can be called before the component initializes: https://github.com/angular/angular/issues/29218
+    // the this._onChange null check here is necessary because of an ongoing bug in angular forms
+    // where writeValue can be called before the component initializes: https://github.com/angular/angular/issues/29218
     if (this.value === value && this._onChange) {
       this._onChange();
       this.fireSelect();
@@ -81,7 +93,7 @@ export class DaffRadioControlValueAccessorDirective implements OnInit, ControlVa
 
   /**
     calls select function for the radio
-  */
+   */
   fireSelect() {
     this._radio.select();
   }

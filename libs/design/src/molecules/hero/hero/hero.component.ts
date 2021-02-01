@@ -1,6 +1,18 @@
-import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy, HostBinding, Renderer2 } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Input,
+  ElementRef,
+  ChangeDetectionStrategy,
+  HostBinding,
+  Renderer2,
+} from '@angular/core';
 
-import { DaffPalette, daffColorMixin, DaffColorable } from '../../../core/colorable/colorable';
+import {
+  DaffPalette,
+  daffColorMixin,
+  DaffColorable,
+} from '../../../core/colorable/colorable';
 
 // DaffHeroLayout will be deprecated in v1.0.0
 export type DaffHeroLayout = 'centered' | undefined;
@@ -22,17 +34,17 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(DaffHeroBase)
+const _daffHeroBase = daffColorMixin(DaffHeroBase);
 
 @Component({
   selector: 'daff-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
-  
+
   @Input() layout: DaffHeroLayout; // Will be deprecated in v1.0.0
   @Input() size: DaffHeroSize; // Will be deprecated in v1.0.0
   @Input() color: DaffPalette;
@@ -42,31 +54,34 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
   }
 
   /**
-	 * @docs-private
-	 */
+   * @docs-private
+   */
 	@HostBinding('class.daff-hero') class = true;
 
-  /**
+	/**
 	 * Will be deprecated in v1.0.0
+	 *
 	 * @docs-private
 	 */
 	@HostBinding('class.daff-hero--centered') get centered() {
-    return this.layout === DaffHeroLayoutEnum.Centered;
-  }
+	  return this.layout === DaffHeroLayoutEnum.Centered;
+	}
 
-  /**
+	/**
 	 * Will be deprecated in v1.0.0
+	 *
 	 * @docs-private
 	 */
 	@HostBinding('class.daff-hero--small') get small() {
-    return this.size === DaffHeroSizeEnum.Small;
-  }
+	  return this.size === DaffHeroSizeEnum.Small;
+	}
 
-  /**
+	/**
 	 * Will be deprecated in v1.0.0
+	 *
 	 * @docs-private
 	 */
 	@HostBinding('class.daff-hero--compact') get compact() {
-    return this.size === DaffHeroSizeEnum.Compact;
-  }
+	  return this.size === DaffHeroSizeEnum.Compact;
+	}
 }

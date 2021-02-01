@@ -1,26 +1,29 @@
+import { AnimationEvent } from '@angular/animations';
 import {
-	Component,
-	Output,
-	EventEmitter,
-	Input,
-	HostBinding,
-	ChangeDetectionStrategy,
-	ViewChild,
-	HostListener,
+  CdkPortalOutlet,
+  ComponentPortal,
+} from '@angular/cdk/portal';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  HostBinding,
+  ChangeDetectionStrategy,
+  ViewChild,
+  HostListener,
 } from '@angular/core';
 
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';
-import { CdkPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
-import { AnimationEvent } from '@angular/animations';
 
 @Component({
-	selector: 'daff-modal',
-	templateUrl: './modal.component.html',
-	styleUrls: ['./modal.component.scss'],
-	animations: [daffFadeAnimations.fade],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'daff-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss'],
+  animations: [daffFadeAnimations.fade],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffModalComponent {
 	/**
@@ -53,6 +56,7 @@ export class DaffModalComponent {
 
 	/**
 	 * Hostbinding to set the default modal class on the host element
+	 *
 	 * @docs-private
 	 */
 	@HostBinding('class.daff-modal') modalClass = true;
@@ -61,7 +65,7 @@ export class DaffModalComponent {
 	 * Helper method to attach portable content to modal
 	 */
 	attachContent(portal: ComponentPortal<any>): any {
-		this._portalOutlet.attachComponentPortal(portal);
+	  this._portalOutlet.attachComponentPortal(portal);
 	}
 
 	/**
@@ -69,7 +73,7 @@ export class DaffModalComponent {
 	 * of the modal
 	 */
 	@HostBinding('@fade') get fadeState(): string {
-		return getAnimationState(this.open);
+	  return getAnimationState(this.open);
 	}
 
 	/**
@@ -80,9 +84,9 @@ export class DaffModalComponent {
 	 */
 	@HostListener('@fade.done', ['$event'])
 	animationDone(e: AnimationEvent) {
-		this.animationCompleted.emit(e);
-		if (e.toState === 'closed') {
-			this.closedAnimationCompleted.emit(e);
-		}
+	  this.animationCompleted.emit(e);
+	  if (e.toState === 'closed') {
+	    this.closedAnimationCompleted.emit(e);
+	  }
 	}
 }

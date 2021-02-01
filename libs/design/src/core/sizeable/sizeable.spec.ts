@@ -1,19 +1,23 @@
-import { daffSizeMixin } from './sizeable-mixin';
-import { ElementRef, Renderer2 } from '@angular/core';
+import {
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+
+import { daffSizeMixin } from './sizeable-mixin';
 
 class TestingClass {
   element: HTMLElement = document.createElement('div');
 
   _elementRef = new ElementRef<HTMLElement>(this.element);
-  _renderer : any = { 
-    addClass(el: HTMLElement, className: string) {
+  _renderer: any = {
+    addClass: (el: HTMLElement, className: string) => {
       el.classList.add(className);
     },
-    removeClass(el: HTMLElement, className: string) {
+    removeClass: (el: HTMLElement, className: string) => {
       el.classList.remove(className);
-    }
-  } 
+    },
+  };
 }
 
 describe('daffSizeMixin', () => {
@@ -26,7 +30,7 @@ describe('daffSizeMixin', () => {
   });
 
   it('should add a size property to an existing class', () => {
-      expect('size' in instance).toBeTruthy();
+    expect('size' in instance).toBeTruthy();
   });
 
   it('should allow the consuming class to optionally define a default size', () => {
@@ -38,7 +42,7 @@ describe('daffSizeMixin', () => {
   });
 
   describe('when a size is specified', () => {
-    
+
     it('should set a namespaced size class', () => {
       instance.size = 'sm';
 
@@ -47,7 +51,7 @@ describe('daffSizeMixin', () => {
   });
 
   describe('when a size is not specified', () => {
-    
+
     it('should default to no size class', () => {
       instance.size = undefined;
       expect(instance.element.classList.length).toEqual(0);
@@ -62,7 +66,7 @@ describe('daffSizeMixin', () => {
 
       instance.size = 'md';
     });
-    
+
     it('should add the new size class', () => {
       expect(instance.element.classList).toContain('daff-md');
     });
@@ -103,6 +107,6 @@ describe('daffSizeMixin', () => {
         expect(instance.size).toEqual('sm');
         expect(instance.element.classList).toContain('daff-sm');
       });
-    })
-  })
+    });
+  });
 });

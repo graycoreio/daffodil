@@ -1,7 +1,20 @@
-import { Component, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter, Renderer2, HostBinding } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ElementRef,
+  Output,
+  EventEmitter,
+  Renderer2,
+  HostBinding,
+} from '@angular/core';
 
-import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+import {
+  daffColorMixin,
+  DaffColorable,
+  DaffPalette,
+} from '../../core/colorable/colorable';
 import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
 
 /**
@@ -11,7 +24,7 @@ class DaffProgressIndicatorBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'primary') 
+const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'primary');
 
 @Component({
   selector: 'daff-progress-indicator',
@@ -19,14 +32,14 @@ const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'pr
   styleUrls: ['./progress-indicator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    daffProgressIndicatorAnimation.fill
-  ]
+    daffProgressIndicatorAnimation.fill,
+  ],
 })
 export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase implements DaffColorable {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-progress-indicator') class = true;
 
   /**
@@ -36,15 +49,15 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
   @Input() color: DaffPalette;
 
   /**
-   * The percentage completion of the progression, 
+   * The percentage completion of the progression,
    * expressed as a whole number between 0 and 100.
-   * 
+   *
    */
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() percentage: number = 0;
 
   /**
-   * An event that emits each time the progression reaches 100% 
+   * An event that emits each time the progression reaches 100%
    * and the animation is finished
    */
   @Output() finished: EventEmitter<void> = new EventEmitter();
@@ -52,9 +65,10 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
 
   /**
    * Calculates when the progress animation is fully completed
+   *
    * @param event: AnimationEvent
    */
-  onAnimationComplete(event: AnimationEvent) : void {
+  onAnimationComplete(event: AnimationEvent): void {
     // @ts-ignore: @angular/animations typing error on event.toState as string
     // See: https://github.com/angular/angular/issues/26507
     if(event.toState === '100' || event.toState === 100) {
@@ -62,15 +76,15 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
     }
   }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   get fillState(): any {
     return {
       value: this.percentage,
       params: {
-        percentage: this.percentage 
-      }
+        percentage: this.percentage,
+      },
     };
   }
 

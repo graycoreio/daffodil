@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { BasicListComponent } from './basic-list.component';
+import { NgModule } from '@angular/core';
 
 import { DaffListModule } from '@daffodil/design';
 
+import { BasicListComponent } from './basic-list.component';
+
+
 @NgModule({
   declarations: [
-    BasicListComponent
+    BasicListComponent,
   ],
   imports: [
     CommonModule,
-    DaffListModule
+    DaffListModule,
   ],
   exports: [
-    BasicListComponent
-  ]
+    BasicListComponent,
+  ],
 })
 export class BasicListModule { }

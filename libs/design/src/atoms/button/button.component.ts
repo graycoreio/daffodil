@@ -1,29 +1,42 @@
 import {
-  Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-  ElementRef, Input, HostBinding, Renderer2
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ElementRef,
+  Input,
+  HostBinding,
+  Renderer2,
 } from '@angular/core';
 
-import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
-
-import { 
-  DaffPrefixable, 
-  DaffSuffixable, 
+import {
+  daffColorMixin,
+  DaffColorable,
+  DaffPalette,
+} from '../../core/colorable/colorable';
+import {
+  DaffPrefixable,
+  DaffSuffixable,
   daffPrefixableMixin,
-  daffSuffixableMixin
+  daffSuffixableMixin,
 } from '../../core/prefix-suffix/public_api';
-
+import {
+  DaffSizeable,
+  DaffSizeSmallType,
+  DaffSizeMediumType,
+  DaffSizeLargeType,
+} from '../../core/sizeable/sizeable';
 import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
-import { DaffSizeable, DaffSizeSmallType, DaffSizeMediumType, DaffSizeLargeType } from '../../core/sizeable/sizeable';
 
 /**
-* List of classes to add to DaffButtonComponent instances based on host attributes to style as different variants.
-*/
+ * List of classes to add to DaffButtonComponent instances based on host attributes to style as different variants.
+ */
 const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
   'daff-button',
   'daff-stroked-button',
   'daff-raised-button',
   'daff-icon-button',
-  'daff-underline-button'
+  'daff-underline-button',
 ];
 
 /**
@@ -74,7 +87,7 @@ export class DaffButtonComponent
   implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize> {
     @Input() color: DaffPalette;
 		@Input() size: DaffButtonSize;
-		
+
     private buttonType: DaffButtonType;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {
@@ -82,15 +95,15 @@ export class DaffButtonComponent
 
       for (const attr of BUTTON_HOST_ATTRIBUTES) {
         if (this._hasHostAttributes(attr)) {
-          (elementRef.nativeElement as HTMLElement).classList.add(attr);
+          (<HTMLElement>elementRef.nativeElement).classList.add(attr);
         }
       }
     }
 
 
-		/**
-		 * @docs-private
-		 */
+    /**
+     * @docs-private
+     */
     ngOnInit() {
       for (const attr of BUTTON_HOST_ATTRIBUTES) {
         if (this._hasHostAttributes(attr)) {
@@ -99,37 +112,37 @@ export class DaffButtonComponent
       }
     }
 
-		/**
-		 * @docs-private
-		 */
+    /**
+     * @docs-private
+     */
     @HostBinding('class.daff-button') get button() {
       return this.buttonType === DaffButtonTypeEnum.Default || this.buttonType === undefined;
     }
-  
-		/**
-		 * @docs-private
-		 */
+
+    /**
+     * @docs-private
+     */
     @HostBinding('class.daff-stroked-button') get stroked() {
       return this.buttonType === DaffButtonTypeEnum.Stroked;
     }
 
-		/**
-		 * @docs-private
-		 */
+    /**
+     * @docs-private
+     */
     @HostBinding('class.daff-raised-button') get raised() {
       return this.buttonType === DaffButtonTypeEnum.Raised;
     }
-  
-		/**
-		 * @docs-private
-		 */
+
+    /**
+     * @docs-private
+     */
     @HostBinding('class.daff-icon-button') get icon() {
       return this.buttonType === DaffButtonTypeEnum.Icon;
     }
 
-		/**
-		 * @docs-private
-		 */
+    /**
+     * @docs-private
+     */
     @HostBinding('class.daff-underline-button') get underline() {
       return this.buttonType === DaffButtonTypeEnum.Underline;
     }
@@ -137,10 +150,10 @@ export class DaffButtonComponent
     private _getHostElement() {
       return this.elementRef.nativeElement;
     }
-  
-    /** 
-		 * Gets whether the button has one of the given attributes. 
-		 * */
+
+    /**
+     * Gets whether the button has one of the given attributes.
+     * */
     private _hasHostAttributes(...attributes: string[]) {
       return attributes.some(attribute => this._getHostElement().hasAttribute(attribute));
     }

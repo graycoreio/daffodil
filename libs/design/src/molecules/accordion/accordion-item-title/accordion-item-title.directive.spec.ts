@@ -1,5 +1,12 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffAccordionItemTitleDirective } from './accordion-item-title.directive';
@@ -7,7 +14,7 @@ import { DaffAccordionItemTitleDirective } from './accordion-item-title.directiv
 @Component({
   template: `
     <div daffAccordionItemTitle>Title</div>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -20,10 +27,10 @@ describe('DaffAccordionItemTitleDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffAccordionItemTitleDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

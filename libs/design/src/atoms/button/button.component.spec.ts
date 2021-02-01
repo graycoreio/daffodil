@@ -1,9 +1,19 @@
-import { Component, DebugElement } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffButtonComponent, DaffButtonSize } from './button.component';
 import { DaffPalette } from '../../core/colorable/colorable';
+import {
+  DaffButtonComponent,
+  DaffButtonSize,
+} from './button.component';
 
 @Component({
   template: `
@@ -17,7 +27,7 @@ import { DaffPalette } from '../../core/colorable/colorable';
     <button daff-raised-button [color]="color" [size]="size">Button Daff Raised Button</button>
     <button daff-icon-button [color]="color" [size]="size">Button Daff Icon Button</button>
     <button daff-underline-button [color]="color" [size]="size">Button Daff Underline Button</button>
-  `
+  `,
 })
 
 class WrapperComponent {
@@ -36,10 +46,10 @@ describe('DaffButtonComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffButtonComponent,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -68,13 +78,13 @@ describe('DaffButtonComponent', () => {
         'daff-button': true,
       }));
     });
-    });
+  });
 
   describe('<daff-stroked-button>', () => {
     beforeEach(() => {
       buttonDE = fixture.debugElement.query(By.css('button[daff-stroked-button]'));
       anchorDE = fixture.debugElement.query(By.css('a[daff-stroked-button]'));
-  });
+    });
 
     it('should add a class of `daff-stroked-button` to its host element', () => {
       expect(buttonDE.classes).toEqual(jasmine.objectContaining({
@@ -85,13 +95,13 @@ describe('DaffButtonComponent', () => {
         'daff-stroked-button': true,
       }));
     });
-    });
+  });
 
   describe('<daff-raised-button>', () => {
     beforeEach(() => {
       buttonDE = fixture.debugElement.query(By.css('button[daff-raised-button]'));
       anchorDE = fixture.debugElement.query(By.css('a[daff-raised-button]'));
-  });
+    });
 
     it('should add a class of `daff-raised-button` to its host element', () => {
       expect(buttonDE.classes).toEqual(jasmine.objectContaining({
@@ -165,5 +175,5 @@ describe('DaffButtonComponent', () => {
     it('should set the default size to md', () => {
       expect(de.nativeElement.classList.contains('daff-md')).toEqual(true);
     });
-  })
+  });
 });

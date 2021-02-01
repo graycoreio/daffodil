@@ -1,12 +1,15 @@
-import { Directive, HostBinding } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 @Directive({
-  selector: '[daffArticleLead]'
+  selector: '[daffArticleLead]',
 })
 export class DaffArticleLeadDirective {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-article__lead') class = true;
 }

@@ -4,10 +4,10 @@ import { DaffButtonSetComponent } from './button-set.component';
 
 @NgModule({
   declarations: [
-    DaffButtonSetComponent
+    DaffButtonSetComponent,
   ],
   exports: [
-    DaffButtonSetComponent
-  ]
+    DaffButtonSetComponent,
+  ],
 })
 export class DaffButtonSetModule { }

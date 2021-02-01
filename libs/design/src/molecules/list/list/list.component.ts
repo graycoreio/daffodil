@@ -1,4 +1,11 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Input,
+  HostBinding,
+  ElementRef,
+} from '@angular/core';
 
 /**
  * @deprecated
@@ -25,7 +32,7 @@ enum DaffListTypeEnum {
   template: '<ng-content></ng-content>',
   styleUrls: ['./list.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffListComponent {
@@ -34,15 +41,15 @@ export class DaffListComponent {
    * */
   @Input() mode: DaffListMode;
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-list') get list() {
     return this.listType === DaffListTypeEnum.Default;
   }
 
   /**
-	 * @docs-private
+   * @docs-private
    * @deprecated
    * */
   @HostBinding('class.daff-list--multi-line') get multiline() {
@@ -50,7 +57,7 @@ export class DaffListComponent {
   }
 
   /**
-	 * @docs-private
+   * @docs-private
    * @deprecated
    * */
   @HostBinding('class.daff-list--link') get link() {
@@ -58,32 +65,33 @@ export class DaffListComponent {
   }
 
   /**
-	 * @docs-private
+   * @docs-private
    * @deprecated
    * */
   @HostBinding('class.daff-list--navigation') get navigation() {
     return this.mode === DaffListModeEnum.Navigation;
   }
-	
-	/**
-	 * @docs-private
-	 */
+
+  /**
+   * @docs-private
+   */
   get listType(): DaffListType {
     return this._getHostElement().localName;
-   }
+  }
 
   constructor(private elementRef: ElementRef) {}
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-nav-list') get nav() {
     return this.listType === DaffListTypeEnum.Nav;
   }
 
   /**
    * Sets the role for a `<daff-nav-list>` to navigation.
-	 * @docs-private
+   *
+   * @docs-private
    */
   @HostBinding('attr.role') get role() {
     return this.listType === DaffListTypeEnum.Nav ? 'navigation' : 'list';

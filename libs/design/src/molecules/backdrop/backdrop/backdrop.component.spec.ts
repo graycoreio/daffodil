@@ -1,21 +1,28 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffBackdropComponent } from './backdrop.component';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DaffBackdropComponent } from './backdrop.component';
 
 @Component({ template: `
 <daff-backdrop
   [fullscreen]="fullscreen"
   [transparent]="transparentValue"
   (backdropClicked)="backdropFunction()"></daff-backdrop>
-`})
+` })
 class WrapperComponent {
   fullscreen = true;
   showValue = true;
   transparentValue = true;
-  backdropFunction: Function = () => {};
+  backdropFunction = () => {};
 }
 
 describe('DaffBackdropComponent | Usage', () => {
@@ -28,14 +35,14 @@ describe('DaffBackdropComponent | Usage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffBackdropComponent
-      ]
+        DaffBackdropComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -82,11 +89,11 @@ describe('DaffBackdropComponent | Usage', () => {
 
   describe('when fullscreen is set to true on the backdrop', () => {
     it('should add the class `daff-backdrop--fullscreen to the host element', () => {
-        expect(backdrop.fullscreen).toEqual(true);
-				expect(backdropEl.nativeElement.classList).toContain('daff-backdrop--fullscreen');
-        wrapper.fullscreen = false;
-        fixture.detectChanges();
-				expect(backdropEl.nativeElement.classList).not.toContain('daff-backdrop--fullscreen');
+      expect(backdrop.fullscreen).toEqual(true);
+      expect(backdropEl.nativeElement.classList).toContain('daff-backdrop--fullscreen');
+      wrapper.fullscreen = false;
+      fixture.detectChanges();
+      expect(backdropEl.nativeElement.classList).not.toContain('daff-backdrop--fullscreen');
     });
   });
 });
@@ -99,13 +106,13 @@ describe('DaffBackdropComponent | Defaults', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       declarations: [
-        DaffBackdropComponent
-      ]
+        DaffBackdropComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

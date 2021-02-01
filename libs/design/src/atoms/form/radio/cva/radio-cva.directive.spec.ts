@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import {
+  ComponentFixture,
+  waitForAsync,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  ReactiveFormsModule,
+  FormControl,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffRadioComponent } from '../radio.component';
@@ -11,10 +18,10 @@ import { DaffRadioModule } from '../radio.module';
 @Component({
   template: `
     <daff-radio name='test' value='testValue' [formControl]='radio'></daff-radio>
-  `
+  `,
 })
 class RadioWrapperComponent {
-  radio = new FormControl()
+  radio = new FormControl();
 }
 
 describe('DaffRadioControlValueAccessorDirective', () => {
@@ -33,8 +40,8 @@ describe('DaffRadioControlValueAccessorDirective', () => {
         ],
         imports: [
           ReactiveFormsModule,
-          DaffRadioModule
-        ]
+          DaffRadioModule,
+        ],
       })
         .compileComponents();
     }));
@@ -69,11 +76,11 @@ describe('DaffRadioControlValueAccessorDirective', () => {
       TestBed.configureTestingModule({
         declarations: [
           RadioWrapperComponent,
-          DaffRadioComponent
+          DaffRadioComponent,
         ],
         imports: [
           ReactiveFormsModule,
-        ]
+        ],
       })
         .compileComponents();
     }));
@@ -85,7 +92,7 @@ describe('DaffRadioControlValueAccessorDirective', () => {
         expect(() => {
           component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
           fixture.detectChanges();
-        }).toThrowError()
+        }).toThrowError();
       });
 
     });

@@ -1,26 +1,26 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DaffArticleComponent } from './article/article.component';
-import { DaffArticleTitleDirective } from './article-title/article-title.directive';
 import { DaffArticleLeadDirective } from './article-lead/article-lead.directive';
 import { DaffArticleMetaDirective } from './article-meta/article-meta.directive';
+import { DaffArticleTitleDirective } from './article-title/article-title.directive';
+import { DaffArticleComponent } from './article/article.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-		DaffArticleComponent,
-		DaffArticleTitleDirective,
+    DaffArticleComponent,
+    DaffArticleTitleDirective,
     DaffArticleLeadDirective,
     DaffArticleMetaDirective,
   ],
   exports: [
-		DaffArticleComponent,
-		DaffArticleTitleDirective,
+    DaffArticleComponent,
+    DaffArticleTitleDirective,
     DaffArticleLeadDirective,
-    DaffArticleMetaDirective
-  ]
+    DaffArticleMetaDirective,
+  ],
 })
 export class DaffArticleModule { }

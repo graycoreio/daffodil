@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
+
 import { Image } from '../../interfaces/image';
 
 export class MockImage implements Image {
@@ -9,8 +10,8 @@ export class MockImage implements Image {
 
 @Injectable()
 export class ImageFactory {
-  
-  create() : Image {
-    return {...new MockImage()};
+
+  create(): Image {
+    return { ...new MockImage() };
   }
 }

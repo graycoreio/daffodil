@@ -1,10 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffCardImageDirective } from './card-image.directive';
 
 @Component({
-  template: `<img src="#" daffCardImage />`
+  template: `<img src="#" daffCardImage />`,
 })
 
 class WrapperComponent {}
@@ -18,10 +26,10 @@ describe('DaffCardImageDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffCardImageDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

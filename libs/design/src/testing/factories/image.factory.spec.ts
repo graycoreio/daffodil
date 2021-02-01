@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ImageFactory } from './image.factory';
 import { Image } from '../../interfaces/image';
+import { ImageFactory } from './image.factory';
 
 describe('ImageFactory', () => {
 
@@ -9,7 +9,7 @@ describe('ImageFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ImageFactory]
+      providers: [ImageFactory],
     });
 
     imageFactory = TestBed.inject(ImageFactory);
@@ -21,7 +21,7 @@ describe('ImageFactory', () => {
 
   describe('create', () => {
 
-    let result:Image;
+    let result: Image;
 
     beforeEach(() => {
       result = imageFactory.create();

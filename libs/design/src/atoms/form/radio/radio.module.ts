@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffRadioComponent } from './radio.component';
+import { NgModule } from '@angular/core';
+
 import { DaffRadioSetComponent } from '../radio-set/radio-set.component';
 import { DaffRadioControlValueAccessorDirective } from './cva/radio-cva.directive';
-import { DaffRadioRegistry } from './registry/radio-registry';
+import { DaffRadioComponent } from './radio.component';
 
 
 
@@ -17,10 +17,10 @@ import { DaffRadioRegistry } from './registry/radio-registry';
   declarations: [
     DaffRadioControlValueAccessorDirective,
     DaffRadioComponent,
-    DaffRadioSetComponent
+    DaffRadioSetComponent,
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class DaffRadioModule { }
