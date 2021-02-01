@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import { DaffCartItemInput, DaffCartItemInputType } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-add-to-cart',
@@ -12,13 +13,13 @@ import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angu
 export class AddToCartComponent {
   @Input() additive: any;
   @Input() qty: number;
-  @Output() addToCart: EventEmitter<any> = new EventEmitter();
+  @Output() addToCart: EventEmitter<DaffCartItemInput> = new EventEmitter();
 
   onAddToCart() {
     this.emitAddToCart();
   }
 
   emitAddToCart() {
-    this.addToCart.emit({productId: this.additive.id, qty: this.qty});
+    this.addToCart.emit({productId: this.additive.id, qty: this.qty, type: DaffCartItemInputType.Simple});
   }
 }

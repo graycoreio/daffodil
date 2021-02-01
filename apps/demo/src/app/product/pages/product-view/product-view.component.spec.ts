@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffAddToCart } from '@daffodil/cart/state';
+import { DaffCartItemAdd } from '@daffodil/cart/state';
 import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffProduct, DaffProductLoad } from '@daffodil/product';
 import { DaffProductFactory, DaffProductTestingModule, MockDaffProductFacade } from '@daffodil/product/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffCartItemInputType } from '@daffodil/cart';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
@@ -131,12 +132,13 @@ describe('ProductViewComponent', () => {
       spyOn(cartFacade, 'dispatch');
       const payload = {
 				productId: 'id',
-				qty: 1
+				qty: 1,
+				type: DaffCartItemInputType.Simple
 			};
 
       addToCartComponent.addToCart.emit(payload);
 
-      expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffAddToCart(payload));
+      expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffCartItemAdd(payload));
     });
   });
 

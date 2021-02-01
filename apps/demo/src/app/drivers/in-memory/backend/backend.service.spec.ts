@@ -32,7 +32,7 @@ describe('Driver | In Memory | InMemoryService', () => {
   });
 
   describe('post', () => {
-    describe('when collectionName is cart', () => {
+    describe('when collectionName includes "cart"', () => {
       let reqInfo;
       let result;
       let returnedValue;
@@ -43,7 +43,7 @@ describe('Driver | In Memory | InMemoryService', () => {
           returnedValue
         );
         reqInfo = {
-          collectionName: 'cart'
+          collectionName: 'cart-item'
         };
 
         result = service.post(reqInfo);
@@ -119,10 +119,107 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
     });
 
+    describe('when collectionName is cart', () => {
+
+      let reqInfo;
+      let result;
+      let returnedValue;
+
+      beforeEach(() => {
+        returnedValue = 'returnedValue';
+        spyOn(service.cartTestingService, 'get').and.returnValue(returnedValue);
+        reqInfo = {
+          collectionName: 'cart'
+        }
+
+        result = service.get(reqInfo);
+      });
+
+      it('should call cartTestingService.get', () => {
+        expect(service.cartTestingService.get).toHaveBeenCalledWith(reqInfo);
+      });
+
+      it('should return the returned value of cartTestingService.get', () => {
+        expect(result).toEqual(returnedValue);
+      });
+    });
+
     describe('when collectionName is none of the above', () => {
 
       it('should return undefined', () => {
         expect(service.get({collectionName: 'noneOfTheAbove'})).toEqual(undefined);
+      });
+    });
+  });
+
+  describe('put', () => {
+    describe('when collectionName is cart-items', () => {
+      let reqInfo;
+      let result;
+      let returnedValue;
+
+      beforeEach(() => {
+        returnedValue = 'returnedValue';
+        spyOn(service.cartTestingService, 'put').and.returnValue(
+          returnedValue
+        );
+        reqInfo = {
+          collectionName: 'cart-items'
+        };
+
+        result = service.put(reqInfo);
+      });
+
+      it('should call cartTestingService.put', () => {
+        expect(service.cartTestingService.put).toHaveBeenCalledWith(reqInfo);
+      });
+
+      it('should return the returned value of cartTestingService.put', () => {
+        expect(result).toEqual(returnedValue);
+      });
+    });
+
+    describe('when collectionName is none of the above', () => {
+      it('should return undefined', () => {
+        expect(service.put({ collectionName: 'noneOfTheAbove' })).toEqual(
+          undefined
+        );
+      });
+    });
+  });
+
+  describe('delete', () => {
+    describe('when collectionName is cart-items', () => {
+      let reqInfo;
+      let result;
+      let returnedValue;
+
+      beforeEach(() => {
+        returnedValue = 'returnedValue';
+        spyOn(service.cartTestingService, 'delete').and.returnValue(
+          returnedValue
+        );
+        reqInfo = {
+          collectionName: 'cart-items'
+        };
+
+        result = service.delete(reqInfo);
+      });
+
+      it('should call cartTestingService.delete', () => {
+        expect(service.cartTestingService.delete).toHaveBeenCalledWith(reqInfo);
+      });
+
+      it('should return the returned value of cartTestingService.delete', () => {
+        expect(result).toEqual(returnedValue);
+      });
+    });
+
+    describe('when collectionName is none of the above', () => {
+      it('should return undefined', () => {
+        expect(service.delete({ collectionName: 'noneOfTheAbove' })).toEqual(
+          undefined
+        );
       });
     });
   });
