@@ -1,10 +1,15 @@
-import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl} from 'angular-in-memory-web-api';
 import { Injectable } from '@angular/core';
-import { DaffContactUnion } from '@daffodil/contact';
+import {
+  InMemoryDbService,
+  RequestInfoUtilities,
+  ParsedRequestUrl,
+} from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 
+import { DaffContactUnion } from '@daffodil/contact';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffInMemoryBackendContactService implements InMemoryDbService {
   forums: DaffContactUnion[] = [];
@@ -15,7 +20,7 @@ export class DaffInMemoryBackendContactService implements InMemoryDbService {
 
   createDb(): any {
     return {
-      forums: this.forums
+      forums: this.forums,
     };
   }
   //validate that its not empty
@@ -23,11 +28,9 @@ export class DaffInMemoryBackendContactService implements InMemoryDbService {
   post(reqInfo: any): any {
     if(reqInfo === undefined){
       return Error('Payload is undefined');
-    }
-    else if(this.forums.indexOf(reqInfo.body) !== -1){
+    } else if(this.forums.indexOf(reqInfo.body) !== -1){
       return Error('Already contains submission');
-    }
-    else{
+    } else{
       this.forums.push(reqInfo.body);
       return of(reqInfo);
     }

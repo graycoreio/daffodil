@@ -1,13 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffContactUnion } from '@daffodil/contact';
-import { DaffInMemoryBackendContactService } from './contact-in-memory-backend.service';
 import { of } from 'rxjs';
+
+import { DaffContactUnion } from '@daffodil/contact';
+
+import { DaffInMemoryBackendContactService } from './contact-in-memory-backend.service';
 
 describe('DaffContactInMemoryBackend', () => {
   let contactTestingService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendContactService]
+      providers: [DaffInMemoryBackendContactService],
     });
     contactTestingService = TestBed.inject(DaffInMemoryBackendContactService);
   });
@@ -41,7 +43,7 @@ describe('DaffContactInMemoryBackend', () => {
     it('should be able to submit a valid form', () => {
       const forumSubmission: DaffContactUnion = { email: 'new@test.com' };
       contactTestingService.post(forumSubmission).subscribe((resp) => {
-        expect(resp).toEqual(forumSubmission)
+        expect(resp).toEqual(forumSubmission);
       });
     });
   });
