@@ -6,11 +6,11 @@ describe('Checkout | Payment Reducer', () => {
   describe('initialState', () => {
     
     it('should set showPaymentView to false', () => {
-      expect(initialState.showPaymentView).toBeFalsy();
+      expect(initialState.showPaymentView).toBeFalse();
     });
 
-    it('should set showPaymentForm to null', () => {
-      expect(initialState.showPaymentForm).toBeNull();
+    it('should set showPaymentForm to false', () => {
+      expect(initialState.showPaymentForm).toBeFalse();
     });
   });
 

@@ -7,7 +7,7 @@ export interface State {
 
 export const initialState: State = {
   showPaymentView: false,
-  showPaymentForm: null
+  showPaymentForm: false,
 };
 
 export function reducer(state = initialState, action: PaymentActions): State {

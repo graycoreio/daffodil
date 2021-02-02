@@ -5,7 +5,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  showShippingForm: null
+  showShippingForm: false,
 };
 
 export function reducer(state = initialState, action: ShippingActions): State {
