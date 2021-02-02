@@ -1,65 +1,34 @@
-<h1>Hero</h1>
-<p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used as the first container on any given page. It supports transcluding any content and optionally including a predefined <code>title</code> and <code>subtitle</code>.</p>
+<daff-article>
+  <h1>Hero</h1>
+  <p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transcluding any content and optionally including a predefined <code>title</code> and <code>subtitle</code>.</p>
 
-<h2>Supported Content Types</h2>
-A <code>&lt;daff-hero&gt;</code> transcludes:
-<ul>
-  <li><code>[daffHeroTitle]</code></li>
-  <li><code>[daffHeroSubtitle]</code></li>
-  <li>Any additional components</li>
-</ul>
+  <h2>Supported Content Types</h2>
+  A <code>&lt;daff-hero&gt;</code> transcludes:
+  <ul>
+    <li><code>[daffHeroTagline]</code></li>
+    <li><code>[daffHeroTitle]</code></li>
+    <li><code>[daffHeroSubtitle]</code></li>
+    <li>Any additional components</li>
+  </ul>
 
-<h3>Title</h3>
-<p>Hero title is used by adding <code>&lt;daffHeroTitle&gt;</code> to a <code>&lt;h1&gt;</code> tag.</p>
+  <h3>Tagline</h3>
+  <p>Hero tagline is used by adding <code>daffHeroTagline</code> to a <code>&lt;p&gt;</code> or <code>&lt;div&gt;</code> tag.</p>
 
-<h3>Subtitle</h3>
-<p>Hero subtitle is used by adding <code>&lt;daffHeroSubtitle&gt;</code> to a <code>&lt;h2&gt;</code> tag.</p>
+  <h3>Title</h3>
+  <p>Hero title is used by adding <code>daffHeroTitle</code> to a <code>&lt;h1&gt;</code> tag.</p>
 
-<h2>Colors</h2>
-<p>To define a hero background color, add <code>color="[value]"</code> to the hero tag.</p>
-<p>Values: <code>primary | secondary | tertiary | black | white</code></p>
+  <h3>Subtitle</h3>
+  <p>Hero subtitle is used by adding <code>daffHeroSubtitle</code> to a <code>&lt;h2&gt;</code> tag.</p>
 
-<h2>Size</h2>
-<p>The <code>size</code> property will be deprecated in v1.0.0</p>
+  <h3>Theming</h3>
+  <p>The hero's background color is defined by using the <code>color</code> property. By default, the color is set to <code>theme-contrast</code>. This can be changed to one of the supported colors.</p>
+  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
 
-<h2>Layout</h2>
-<p>The <code>layout</code> property will be deprecated in v1.0.0</p>
+  <design-land-example-viewer example="hero-theming"></design-land-example-viewer>
 
-<h2>Examples</h2>
-<daff-hero color="primary">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-  <div>Random Content</div>
-</daff-hero>
+  <h2>Size</h2>
+  <p>The <code>size</code> property will be deprecated in v1.0.0. The <code>compact</code> value will be replaced by the <code>DaffCompactable</code> interface.</p>
 
-<daff-hero color="secondary">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
-
-<daff-hero color="tertiary">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
-
-<daff-hero color="black">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
-
-<daff-hero color="white">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
-
-<h3>Compact Hero</h3>
-<daff-hero size="compact">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
-
-<h3>Center Hero - Deprecated</h3>
-<daff-hero alignment="center">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
+  <h2>Layout</h2>
+  <p>The <code>layout</code> property will be deprecated in v1.0.0</p>
+</daff-article>
