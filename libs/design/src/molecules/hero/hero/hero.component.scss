@@ -10,7 +10,7 @@
 	}
 
 	&__title {
-		@include heading-xl();
+		@include headline-xl();
 		margin: 0;
 		max-width: 1040px;
 		overflow-wrap: break-word;

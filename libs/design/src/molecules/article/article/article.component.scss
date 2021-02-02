@@ -4,7 +4,7 @@
 	display: block;
 
 	&__title {
-		@include heading-lg();
+		@include headline-lg();
 	}
 
 	&__lead {
@@ -39,19 +39,19 @@
 		}
 
 		h1 {
-			@include heading-lg();
+			@include headline-xl();
 		}
 
 		h2 {
-			@include heading-md();
+			@include headline-lg();
 		}
 
 		h3 {
-			@include heading-sm();
+			@include headline-md();
 		}
 
 		h4 {
-			@include heading-xs();
+			@include headline-sm();
 		}
 
 		h5 {
