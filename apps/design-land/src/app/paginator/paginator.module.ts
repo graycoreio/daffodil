@@ -8,12 +8,12 @@ import { DesignLandPaginatorRoutingModule } from './paginator-routing.module';
 
 @NgModule({
   declarations: [
-    PaginatorComponent
+    PaginatorComponent,
   ],
   imports: [
     CommonModule,
     DaffPaginatorModule,
-    DesignLandPaginatorRoutingModule
-  ]
+    DesignLandPaginatorRoutingModule,
+  ],
 })
 export class PaginatorModule { }

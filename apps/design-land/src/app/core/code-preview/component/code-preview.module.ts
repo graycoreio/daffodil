@@ -11,10 +11,10 @@ import { CodePreviewComponent } from './code-preview.component';
   declarations: [CodePreviewComponent],
   imports: [
     CommonModule,
-    DaffNavbarModule
+    DaffNavbarModule,
   ],
   exports: [
-    CodePreviewComponent
-  ]
+    CodePreviewComponent,
+  ],
 })
 export class DesignLandCodePreviewModule { }

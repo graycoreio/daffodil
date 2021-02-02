@@ -1,4 +1,8 @@
-import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
+import {
+  NgModule,
+  Injector,
+  ComponentFactoryResolver,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { createCustomElement } from '@angular/elements';
 
@@ -10,17 +14,17 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
 
 import {
   DaffArticleModule,
-  DaffListModule
+  DaffListModule,
 } from '@daffodil/design';
 
 import {
   ListExamplesModule,
-  LIST_EXAMPLES
+  LIST_EXAMPLES,
 } from '@daffodil/design/list/examples';
 
 @NgModule({
   declarations: [
-    DesignLandListComponent
+    DesignLandListComponent,
   ],
   imports: [
     CommonModule,
@@ -29,26 +33,24 @@ import {
     DaffListModule,
 
     DesignLandExampleViewerModule,
-    ListExamplesModule
-  ]
+    ListExamplesModule,
+  ],
 })
 export class DesignLandListModule {
   constructor(
-    injector: Injector, 
-    private componentFactoryResolver: ComponentFactoryResolver
+    injector: Injector,
+    private componentFactoryResolver: ComponentFactoryResolver,
   ) {
     LIST_EXAMPLES
-      .map((classConstructor) => {
-        return {
-          element: createCustomElement(classConstructor, {injector}),
-          class: classConstructor
-        }
-      })
+      .map((classConstructor) => ({
+        element: createCustomElement(classConstructor, { injector }),
+        class: classConstructor,
+      }))
       .map((customElement) => {
         // Register the custom element with the browser.
         customElements.define(
-          this.componentFactoryResolver.resolveComponentFactory(customElement.class).selector + '-example', 
-          customElement.element
+          this.componentFactoryResolver.resolveComponentFactory(customElement.class).selector + '-example',
+          customElement.element,
         );
       });
   }

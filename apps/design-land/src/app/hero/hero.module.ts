@@ -9,13 +9,13 @@ import { DaffHeroModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    HeroComponent
+    HeroComponent,
   ],
   imports: [
     CommonModule,
     DesignLandHeroRoutingModule,
 
-    DaffHeroModule
-  ]
+    DaffHeroModule,
+  ],
 })
 export class HeroModule { }

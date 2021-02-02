@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DesignLandExampleViewer } from './example-viewer.component';
+import { DesignLandExampleViewerContainer } from './example-viewer.component';
 import { DesignLandCodePreviewModule } from '../component/code-preview.module';
 
 @NgModule({
   declarations: [
-    DesignLandExampleViewer
+    DesignLandExampleViewerContainer,
   ],
   imports: [
     CommonModule,
-    DesignLandCodePreviewModule
+    DesignLandCodePreviewModule,
   ],
   exports: [
-    DesignLandExampleViewer
-  ]
+    DesignLandExampleViewerContainer,
+  ],
 })
 export class DesignLandExampleViewerModule { }

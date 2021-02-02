@@ -9,14 +9,14 @@ import { DaffQtyDropdownModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    QtyDropdownComponent
+    QtyDropdownComponent,
   ],
   imports: [
     CommonModule,
     DesignLandQtyDropdownRoutingModule,
-    DaffQtyDropdownModule
-  ]
+    DaffQtyDropdownModule,
+  ],
 })
-export class QtyDropdownModule { 
-  
+export class QtyDropdownModule {
+
 }

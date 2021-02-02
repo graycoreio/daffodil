@@ -1,24 +1,28 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { DesignLandExampleViewer } from './example-viewer.component';
+import { DesignLandExampleViewerContainer } from './example-viewer.component';
 
-describe('DesignLandExampleViewer', () => {
-  let component: DesignLandExampleViewer;
-  let fixture: ComponentFixture<DesignLandExampleViewer>;
+describe('DesignLandExampleViewerContainer', () => {
+  let component: DesignLandExampleViewerContainer;
+  let fixture: ComponentFixture<DesignLandExampleViewerContainer>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DesignLandExampleViewer ],
+      declarations: [ DesignLandExampleViewerContainer ],
       imports: [
-        HttpClientTestingModule
-      ]
+        HttpClientTestingModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DesignLandExampleViewer);
+    fixture = TestBed.createComponent(DesignLandExampleViewerContainer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

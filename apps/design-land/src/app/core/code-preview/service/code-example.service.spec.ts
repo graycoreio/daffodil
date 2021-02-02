@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 import { CodeExampleService } from './code-example.service';
 
@@ -9,11 +12,11 @@ describe('CodeExampleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
         CodeExampleService,
-      ]
+      ],
     });
     service = TestBed.inject(CodeExampleService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -28,12 +31,12 @@ describe('CodeExampleService', () => {
       service.get('test').subscribe(resp => {
         expect(resp).toEqual(jasmine.objectContaining({
           name: undefined,
-          element: 'undefined-example'
+          element: 'undefined-example',
         }));
-      })
+      });
       const req = httpMock.expectOne('/assets/design-examples/test.json');
       req.flush('test');
       httpMock.verify();
     });
-  })
+  });
 });

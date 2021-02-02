@@ -6,19 +6,19 @@ import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
 
 import {
   DaffNavbarModule,
-  DaffButtonModule
+  DaffButtonModule,
 } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     CommonModule,
     DesignLandNavbarRoutingModule,
 
     DaffNavbarModule,
-    DaffButtonModule
-  ]
+    DaffButtonModule,
+  ],
 })
 export class NavbarModule { }

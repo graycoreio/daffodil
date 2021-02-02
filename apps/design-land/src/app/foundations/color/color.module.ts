@@ -8,13 +8,13 @@ import { DaffArticleModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    DesignLandColorComponent
+    DesignLandColorComponent,
   ],
   imports: [
     CommonModule,
     DesignLandColorRoutingModule,
 
-    DaffArticleModule
-  ]
+    DaffArticleModule,
+  ],
 })
 export class DesignLandColorModule { }

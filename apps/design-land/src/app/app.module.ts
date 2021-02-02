@@ -9,8 +9,8 @@ import { DesignLandAppComponent } from './app.component';
 import {
   DaffSidebarModule,
   DaffLinkSetModule,
-  DaffArticleModule
- } from '@daffodil/design';
+  DaffArticleModule,
+} from '@daffodil/design';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,13 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     DaffSidebarModule,
     DaffLinkSetModule,
-    DaffArticleModule
+    DaffArticleModule,
   ],
   declarations: [
     DesignLandAppComponent,
   ],
   bootstrap: [
-    DesignLandAppComponent
-  ]
+    DesignLandAppComponent,
+  ],
 })
 export class AppModule { }

@@ -1,23 +1,33 @@
-import { Component, ViewChild, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
-import { DesignLandCodeExample, DesignLandCodeExampleFile } from '../model/code-example';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  Input,
+  ChangeDetectionStrategy,
+  OnChanges,
+} from '@angular/core';
+import {
+  DesignLandCodeExample,
+  DesignLandCodeExampleFile,
+} from '../model/code-example';
 
 @Component({
   selector: 'design-land-code-preview',
   templateUrl: './code-preview.component.html',
   styleUrls: ['./code-preview.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CodePreviewComponent {
+export class CodePreviewComponent implements OnChanges {
   /**
    * The ref for the slot of the custom element for the example
    */
   @ViewChild('content', { static: true }) content: ElementRef;
-  
+
   /**
    * The title of the preview
    */
   @Input() title: string;
-  
+
   /**
    * The example code
    */

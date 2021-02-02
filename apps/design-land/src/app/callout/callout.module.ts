@@ -9,13 +9,13 @@ import { DaffCalloutModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    CalloutComponent
+    CalloutComponent,
   ],
   imports: [
     CommonModule,
     DesignLandCalloutRoutingModule,
 
-    DaffCalloutModule
-  ]
+    DaffCalloutModule,
+  ],
 })
 export class CalloutModule { }

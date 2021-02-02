@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { selectDemoImageGalleryState } from 'apps/demo/src/app/core/image-gallery/reducers';
 import { Image } from 'libs/design/src/interfaces/image';
 
 @Component({
   selector: 'design-land-image-gallery',
   templateUrl: './image-gallery.component.html',
-  styleUrls: ['./image-gallery.component.scss']
+  styleUrls: ['./image-gallery.component.scss'],
 })
 export class ImageGalleryComponent implements OnInit {
 
@@ -49,7 +52,7 @@ export class ImageGalleryComponent implements OnInit {
     {
       url: 'https://cdn.pixabay.com/photo/2016/02/23/20/19/osterglocken-1218446__340.jpg',
       label: 'daffodil7',
-    }
+    },
   ];
 
   constructor() { }

@@ -1,7 +1,7 @@
 /**
-   * Interface representing a file of a component.
-   * 
-   * */
+ * Interface representing a file of a component.
+ *
+ * */
 export interface DesignLandCodeExampleFile {
   /**
    * Name of the file

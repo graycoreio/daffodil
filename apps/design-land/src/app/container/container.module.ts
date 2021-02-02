@@ -9,13 +9,13 @@ import { DaffContainerModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    DesignLandContainerComponent
+    DesignLandContainerComponent,
   ],
   imports: [
     CommonModule,
     DesignLandContainerRoutingModule,
 
-    DaffContainerModule
-  ]
+    DaffContainerModule,
+  ],
 })
 export class DesignLandContainerModule { }
