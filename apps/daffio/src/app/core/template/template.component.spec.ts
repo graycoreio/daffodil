@@ -1,28 +1,36 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  DebugElement,
+} from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { TemplateComponent } from './template.component';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
 
 describe('TemplateComponent', () => {
   let component: TemplateComponent;
   let fixture: ComponentFixture<TemplateComponent>;
-  let sidebarViewport:DebugElement;
+  let sidebarViewport: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
+        CUSTOM_ELEMENTS_SCHEMA,
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [ 
-        TemplateComponent
-      ]
+      declarations: [
+        TemplateComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -38,10 +46,10 @@ describe('TemplateComponent', () => {
   });
 
   it('should render a <daffio-header-container>', () => {
-    expect(fixture.debugElement.query(By.css('daffio-header-container'))).not.toBeNull()
+    expect(fixture.debugElement.query(By.css('daffio-header-container'))).not.toBeNull();
   });
 
   it('should render a <router-outlet> inside a <daffio-sidebar-viewport-container>', () => {
-    expect(sidebarViewport.query(By.css('router-outlet'))).not.toBeNull()
+    expect(sidebarViewport.query(By.css('router-outlet'))).not.toBeNull();
   });
 });

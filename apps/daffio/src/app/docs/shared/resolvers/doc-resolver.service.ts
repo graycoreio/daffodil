@@ -1,13 +1,28 @@
 import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Resolve,
+  Router,
+} from '@angular/router';
+import {
+  Observable,
+  of,
+  EMPTY,
+} from 'rxjs';
+import {
+  take,
+  mergeMap,
+  catchError,
+  tap,
+} from 'rxjs/operators';
+
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocService } from '../services/docs.service';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, Router } from '@angular/router';
-import { Observable, of, EMPTY } from 'rxjs';
-import { take, mergeMap, catchError, tap } from 'rxjs/operators';
 import { DaffioGuideList } from '../models/guide-list';
+import { DaffioDocService } from '../services/docs.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DocResolver<T extends DaffioDoc, V extends DaffioGuideList> implements Resolve<T> {
 
@@ -21,7 +36,7 @@ export class DocResolver<T extends DaffioDoc, V extends DaffioGuideList> impleme
         catchError(() => {
           this.router.navigate(['/404']);
           return EMPTY;
-        })
+        }),
       );
   }
 }

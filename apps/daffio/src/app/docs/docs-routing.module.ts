@@ -1,26 +1,29 @@
-import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import {
+  Routes,
+  RouterModule,
+} from '@angular/router';
+
+import { DaffioDocsTemplateComponent } from './shared/components/docs-template/docs-template.component';
 import { DocResolver } from './shared/resolvers/doc-resolver.service';
 import { DaffioDocViewComponent } from './shared/views/doc/doc-view.component';
-import { DaffioDocsTemplateComponent } from './shared/components/docs-template/docs-template.component';
 
 export const docsRoutes: Routes = [
-  {
-    path: '',
+  { path: '',
     component: DaffioDocsTemplateComponent,
     data: {
-      sidebarMode: 'side'
+      sidebarMode: 'side',
     },
     children: [
-    { path: 'api', loadChildren: () => import('./api-docs/api.module').then(m => m.DaffioDocsApiModule) },
-    {
-      path: '**', 
-      component: DaffioDocViewComponent, 
-      resolve: {
-        doc: DocResolver
-      }
-    }
-  ]}
+      { path: 'api', loadChildren: () => import('./api-docs/api.module').then(m => m.DaffioDocsApiModule) },
+      {
+        path: '**',
+        component: DaffioDocViewComponent,
+        resolve: {
+          doc: DocResolver,
+        },
+      },
+    ]},
 ];
 
 @NgModule({
@@ -28,7 +31,7 @@ export const docsRoutes: Routes = [
     RouterModule.forChild(docsRoutes),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class DaffioDocsRoutingModule { }

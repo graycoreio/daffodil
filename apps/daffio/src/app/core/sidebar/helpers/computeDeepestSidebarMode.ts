@@ -1,11 +1,14 @@
+import { ActivatedRouteSnapshot } from '@angular/router';
+
 import { DaffSidebarMode } from '@daffodil/design';
 
-import { ActivatedRouteSnapshot } from '@angular/router';
 
 export const computeDeepestSidebarMode = (snapshot: ActivatedRouteSnapshot): DaffSidebarMode => {
   if(snapshot.firstChild){
-    const mode = computeDeepestSidebarMode(snapshot.firstChild)
-    if(mode) return mode;
+    const mode = computeDeepestSidebarMode(snapshot.firstChild);
+    if(mode) {
+      return mode;
+    }
   }
 
   if(snapshot.data){
@@ -13,4 +16,4 @@ export const computeDeepestSidebarMode = (snapshot: ActivatedRouteSnapshot): Daf
   }
 
   return undefined;
-}
+};

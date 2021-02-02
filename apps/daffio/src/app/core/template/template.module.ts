@@ -1,12 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 
-import { TemplateComponent } from './template.component';
+import { DaffioFooterModule } from '../footer/footer.module';
 import { DaffioHeaderModule } from '../header/header.module';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
-import { DaffioFooterModule } from '../footer/footer.module';
+import { TemplateComponent } from './template.component';
 
 @NgModule({
   imports: [
@@ -14,13 +14,13 @@ import { DaffioFooterModule } from '../footer/footer.module';
     CommonModule,
     DaffioHeaderModule,
     DaffioSidebarModule,
-    DaffioFooterModule
+    DaffioFooterModule,
   ],
   declarations: [
-    TemplateComponent
+    TemplateComponent,
   ],
   exports: [
-    TemplateComponent
-  ]
+    TemplateComponent,
+  ],
 })
 export class TemplateModule { }

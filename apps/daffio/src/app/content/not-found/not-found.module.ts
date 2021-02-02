@@ -1,35 +1,39 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import {
+  DaffHeroModule,
+  DaffContainerModule,
+  DaffButtonModule,
+} from '@daffodil/design';
 
 import { TemplateModule } from '../../core/template/template.module';
-
 import { DaffioNotFoundComponent } from './component/not-found.component';
 import { DaffioNotFoundRoutingModule } from './not-found-routing.module';
 
-import { DaffHeroModule, DaffContainerModule, DaffButtonModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    
+
     TemplateModule,
 
     DaffioNotFoundRoutingModule,
 
     DaffHeroModule,
     DaffContainerModule,
-    DaffButtonModule
+    DaffButtonModule,
   ],
   declarations: [
-    DaffioNotFoundComponent
+    DaffioNotFoundComponent,
   ],
   exports: [
-    DaffioNotFoundComponent
-  ]
+    DaffioNotFoundComponent,
+  ],
 })
 
 export class DaffioNotFoundModule { }

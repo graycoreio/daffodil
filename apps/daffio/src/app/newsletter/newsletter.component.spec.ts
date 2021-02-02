@@ -1,4 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 import { DaffioNewsletterComponent } from './newsletter.component';
 
@@ -9,10 +13,10 @@ describe('DaffioNewsletterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioNewsletterComponent
-      ]
+        DaffioNewsletterComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,4 +1,8 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { DaffioApiDocReference } from '../../models/api-doc-reference';
 
@@ -6,7 +10,7 @@ import { DaffioApiDocReference } from '../../models/api-doc-reference';
   selector: 'daffio-api-docs-list',
   templateUrl: './api-docs-list.component.html',
   styleUrls: ['./api-docs-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioApiDocsListComponent {
 

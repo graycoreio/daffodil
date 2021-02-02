@@ -1,17 +1,25 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+} from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { StoreModule, Store } from '@ngrx/store';
-
-import * as fromSidebar from '../../sidebar/reducers/index';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-
-import { DaffioHeaderContainer } from './header.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  StoreModule,
+  Store,
+} from '@ngrx/store';
 
-@Component({template: '<daffio-header-container></daffio-header-container>'})
+import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
+import * as fromSidebar from '../../sidebar/reducers/index';
+import { DaffioHeaderContainer } from './header.component';
+
+@Component({ template: '<daffio-header-container></daffio-header-container>' })
 class WrapperComponent {}
 
 describe('DaffioHeaderContainer', () => {
@@ -26,17 +34,17 @@ describe('DaffioHeaderContainer', () => {
       imports: [
         StoreModule.forRoot({}),
         RouterTestingModule,
-        FontAwesomeModule
+        FontAwesomeModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffioHeaderContainer
+        DaffioHeaderContainer,
       ],
       schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ]
+        CUSTOM_ELEMENTS_SCHEMA,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

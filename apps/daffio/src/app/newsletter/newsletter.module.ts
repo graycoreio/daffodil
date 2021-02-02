@@ -1,22 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import {
+  DaffInputModule,
+  DaffButtonModule,
+  DaffContainerModule,
+} from '@daffodil/design';
 
 import { DaffioNewsletterComponent } from './newsletter.component';
 
-import { DaffInputModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
     CommonModule,
     DaffInputModule,
     DaffButtonModule,
-    DaffContainerModule
+    DaffContainerModule,
   ],
   declarations: [
-    DaffioNewsletterComponent
+    DaffioNewsletterComponent,
   ],
   exports: [
-    DaffioNewsletterComponent
-  ]
+    DaffioNewsletterComponent,
+  ],
 })
 export class DaffioNewsletterModule { }

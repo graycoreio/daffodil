@@ -1,15 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
-import { By } from '@angular/platform-browser';
 
-import { DaffioApiDocViewComponent } from './doc-view.component';
 import { DaffioDocFactory } from '../../../testing/factories/doc.factory';
-import { DaffioApiDoc } from '../../models/api-doc';
-import { DaffioApiDocModule } from '../../components/api-doc/api-doc.module';
 import { DaffioApiDocComponent } from '../../components/api-doc/api-doc.component';
+import { DaffioApiDocModule } from '../../components/api-doc/api-doc.module';
+import { DaffioApiDoc } from '../../models/api-doc';
+import { DaffioApiDocViewComponent } from './doc-view.component';
 
 describe('DaffioApiDocViewComponent', () => {
   let component: DaffioApiDocViewComponent;
@@ -17,21 +20,21 @@ describe('DaffioApiDocViewComponent', () => {
   const doc: DaffioApiDoc = {
     ...new DaffioDocFactory().create(),
     docType: 'type',
-    docTypeShorthand: 't'
+    docTypeShorthand: 't',
   };
   const stubActivatedRoute = {
-    data: new BehaviorSubject({})
+    data: new BehaviorSubject({}),
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DaffioApiDocViewComponent],
       imports: [
-        DaffioApiDocModule
+        DaffioApiDocModule,
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: stubActivatedRoute }
-      ]
+        { provide: ActivatedRoute, useValue: stubActivatedRoute },
+      ],
     })
       .compileComponents();
   }));
@@ -39,7 +42,7 @@ describe('DaffioApiDocViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioApiDocViewComponent);
     component = fixture.componentInstance;
-    stubActivatedRoute.data.next({ doc: doc });
+    stubActivatedRoute.data.next({ doc });
     fixture.detectChanges();
   });
 

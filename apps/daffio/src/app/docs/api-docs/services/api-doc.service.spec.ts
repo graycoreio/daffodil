@@ -1,5 +1,8 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { DaffioApiDocService } from './api-doc.service';
 
@@ -11,8 +14,8 @@ describe('DaffioApiDocService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        DaffioApiDocService
-      ]
+        DaffioApiDocService,
+      ],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);

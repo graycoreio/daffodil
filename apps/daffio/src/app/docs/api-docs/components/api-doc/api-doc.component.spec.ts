@@ -1,19 +1,23 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffioApiDoc } from '../../models/api-doc';
 import { DaffioApiDocComponent } from './api-doc.component';
 import { DaffioApiDocModule } from './api-doc.module';
-import { DaffioApiDoc } from '../../models/api-doc';
 
-@Component({template: '<daffio-api-doc [doc]="docValue"></daffio-api-doc>'})
+@Component({ template: '<daffio-api-doc [doc]="docValue"></daffio-api-doc>' })
 class WrapperComponent {
   docValue: DaffioApiDoc = {
     id: 'id',
     title: 'title',
     contents: 'content',
     docType: 'mytype',
-    docTypeShorthand: 'mt'
+    docTypeShorthand: 'mt',
   };
 }
 
@@ -25,13 +29,13 @@ describe('DaffioApiDocComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioApiDocModule
+        DaffioApiDocModule,
       ],
       declarations: [
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

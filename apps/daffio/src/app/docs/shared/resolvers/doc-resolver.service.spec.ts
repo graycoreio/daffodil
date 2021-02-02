@@ -1,15 +1,22 @@
 import { TestBed } from '@angular/core/testing';
+import {
+  RouterStateSnapshot,
+  Router,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouterStateSnapshot, Router } from '@angular/router';
-import { of, Observable, throwError } from 'rxjs';
 import { cold } from 'jasmine-marbles';
+import {
+  of,
+  Observable,
+  throwError,
+} from 'rxjs';
 
-import { DocResolver } from './doc-resolver.service';
-import { DaffioDocService } from '../services/docs.service';
 import { DaffioDocFactory } from '../../testing/factories/doc.factory';
-import { DaffioDocServiceInterface } from '../services/docs-service.interface';
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
+import { DaffioDocServiceInterface } from '../services/docs-service.interface';
+import { DaffioDocService } from '../services/docs.service';
+import { DocResolver } from './doc-resolver.service';
 
 describe('DocResolver', () => {
   let resolver: DocResolver<DaffioDoc, DaffioGuideList>;
@@ -18,22 +25,18 @@ describe('DocResolver', () => {
 
   const doc = new DaffioDocFactory().create();
   const stubDocService: DaffioDocServiceInterface<DaffioDoc, DaffioGuideList> = {
-    get(path: string): Observable<DaffioDoc> {
-      return of(doc);
-    },
-    getGuideList(){
-      return of();
-    }
-  }
+    get: (path: string): Observable<DaffioDoc> => of(doc),
+    getGuideList: () => of(),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
-        { provide: DaffioDocService, useValue: stubDocService }
-      ]
+        { provide: DaffioDocService, useValue: stubDocService },
+      ],
     });
 
     router = TestBed.inject(Router);
@@ -47,7 +50,7 @@ describe('DocResolver', () => {
 
   it('should complete with a doc', () => {
     const expected = cold('(a|)', { a: doc });
-    expect(resolver.resolve(null, { url: 'my/path' } as RouterStateSnapshot)).toBeObservable(expected);
+    expect(resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' })).toBeObservable(expected);
   });
 
   describe('if the doc doesn\'t exist (the doc service errors)', () => {
@@ -58,11 +61,11 @@ describe('DocResolver', () => {
 
     it('should resolve with an empty observable', () => {
       const expected = cold('(|)');
-      expect(resolver.resolve(null, { url: 'my/path' } as RouterStateSnapshot)).toBeObservable(expected);
+      expect(resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' })).toBeObservable(expected);
     });
 
     it('should redirect to the 404 page', () => {
-      resolver.resolve(null, { url: 'my/path' } as RouterStateSnapshot).subscribe();
+      resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' }).subscribe();
       expect(router.navigate).toHaveBeenCalledWith(['/404']);
     });
   });

@@ -1,10 +1,16 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+
 import { DaffioDoc } from '../../models/doc';
 
 @Component({
   selector: 'daffio-doc-viewer',
   templateUrl: './doc-viewer.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioDocViewerComponent {
 

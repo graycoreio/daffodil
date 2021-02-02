@@ -1,19 +1,38 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  Component,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-
-import { DaffSidebarModule, DaffSidebarViewportComponent, DaffSidebarComponent } from '@daffodil/design';
-
-import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
-import * as fromSidebar from '../../reducers/index';
 import { RouterTestingModule } from '@angular/router/testing';
-import { OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import {
+  DaffSidebarModule,
+  DaffSidebarViewportComponent,
+  DaffSidebarComponent,
+} from '@daffodil/design';
+
 import { DaffioGuidesViewerModule } from '../../../../docs/shared/components/guides-viewer/guides-viewer.module';
+import {
+  OpenSidebar,
+  CloseSidebar,
+  SetSidebarState,
+} from '../../actions/sidebar.actions';
+import * as fromSidebar from '../../reducers/index';
+import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;
@@ -34,13 +53,13 @@ describe('DaffioSidebarViewportContainer', () => {
         NoopAnimationsModule,
         DaffSidebarModule,
         DaffioGuidesViewerModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       declarations: [
-        DaffioSidebarViewportContainer
-      ]
+        DaffioSidebarViewportContainer,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -66,7 +85,7 @@ describe('DaffioSidebarViewportContainer', () => {
     it('should call close', () => {
       spyOn(component, 'close');
 
-      daffSidebarViewport.backdropClicked.emit()
+      daffSidebarViewport.backdropClicked.emit();
 
       expect(component.close).toHaveBeenCalledWith();
     });
@@ -87,7 +106,7 @@ describe('DaffioSidebarViewportContainer', () => {
     daffSidebar.escapePressed.emit();
 
     expect(component.close).toHaveBeenCalled();
-  })
+  });
 
   describe('methods', () => {
     describe('close', () => {

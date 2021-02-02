@@ -1,12 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffSidebarModule, DaffButtonModule, DaffLinkSetModule } from '@daffodil/design';
+import {
+  DaffSidebarModule,
+  DaffButtonModule,
+  DaffLinkSetModule,
+} from '@daffodil/design';
 
-import { DaffioSidebarStateModule } from './sidebar.state.module';
-import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioGuidesViewerModule } from '../../docs/shared/components/guides-viewer/guides-viewer.module';
+import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
+import { DaffioSidebarStateModule } from './sidebar.state.module';
 
 @NgModule({
   imports: [
@@ -15,13 +19,13 @@ import { DaffioGuidesViewerModule } from '../../docs/shared/components/guides-vi
     DaffioSidebarStateModule,
     DaffSidebarModule,
     DaffButtonModule,
-    DaffioGuidesViewerModule
+    DaffioGuidesViewerModule,
   ],
   declarations: [
-    DaffioSidebarViewportContainer
+    DaffioSidebarViewportContainer,
   ],
   exports: [
-    DaffioSidebarViewportContainer
-  ]
+    DaffioSidebarViewportContainer,
+  ],
 })
 export class DaffioSidebarModule {}

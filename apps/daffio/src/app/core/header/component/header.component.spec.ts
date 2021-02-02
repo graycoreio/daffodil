@@ -1,11 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffioHeaderComponent } from './header.component';
 import {
   DaffContainerModule,
-  DaffNavbarModule
+  DaffNavbarModule,
 } from '@daffodil/design';
+
+import { DaffioHeaderComponent } from './header.component';
 
 describe('DaffioHeaderComponent', () => {
   let component: DaffioHeaderComponent;
@@ -15,13 +20,13 @@ describe('DaffioHeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffContainerModule,
-        DaffNavbarModule
+        DaffNavbarModule,
       ],
-      declarations: [ 
-        DaffioHeaderComponent
-      ]
+      declarations: [
+        DaffioHeaderComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

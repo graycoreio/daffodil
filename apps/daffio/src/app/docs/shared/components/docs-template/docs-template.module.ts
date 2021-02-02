@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffioDocsTemplateComponent } from './docs-template.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { DaffioDocsTemplateComponent } from './docs-template.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   declarations: [
-    DaffioDocsTemplateComponent
+    DaffioDocsTemplateComponent,
   ],
   exports: [
-    DaffioDocsTemplateComponent 
-  ]
+    DaffioDocsTemplateComponent,
+  ],
 })
 export class DaffioDocsTemplateModule {}

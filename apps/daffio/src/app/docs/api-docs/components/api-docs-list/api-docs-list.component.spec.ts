@@ -1,14 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { DaffContainerModule } from '@daffodil/design';
 
 import { DaffioApiDocReference } from '../../models/api-doc-reference';
 import { DaffioApiDocsListComponent } from './api-docs-list.component';
 
-import { DaffContainerModule } from '@daffodil/design';
 
-@Component({template: '<daffio-api-docs-list [docsList]="docsListValue"></daffio-api-docs-list>'})
+@Component({ template: '<daffio-api-docs-list [docsList]="docsListValue"></daffio-api-docs-list>' })
 class WrapperComponent {
   docsListValue: DaffioApiDocReference[] = [
     {
@@ -16,15 +21,15 @@ class WrapperComponent {
       title: 'title1',
       path: 'path1',
       docType: 'docType1',
-      docTypeShorthand: 'doc'
+      docTypeShorthand: 'doc',
     },
     {
       id: 'name2',
       title: 'title2',
       path: 'path2',
       docType: 'docType2',
-      docTypeShorthand: 'doc'
-    }
+      docTypeShorthand: 'doc',
+    },
   ];
 }
 
@@ -38,14 +43,14 @@ describe('ApiDocsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffContainerModule
+        DaffContainerModule,
       ],
       declarations: [
         WrapperComponent,
-        DaffioApiDocsListComponent
-      ]
+        DaffioApiDocsListComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

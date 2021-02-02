@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { DaffioApiDocReference } from '../models/api-doc-reference';
 import { DaffioApiDocServiceInterface } from './api-doc-service.interface';
 
 
 const DOCS_BASE_URL = '/assets/daffio/docs/';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DaffioApiDocService implements DaffioApiDocServiceInterface {
 
   constructor(private http: HttpClient) {}

@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocServiceInterface } from './docs-service.interface';
 import { DaffioGuideList } from '../models/guide-list';
+import { DaffioDocServiceInterface } from './docs-service.interface';
 
 const DOCS_BASE_URL = '/assets/daffio/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffioDocService<T extends DaffioDoc, V extends DaffioGuideList> implements DaffioDocServiceInterface<DaffioDoc, DaffioGuideList> {
 

@@ -1,12 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import {
+  DaffLogoModule,
+  DaffCopyrightModule,
+} from '@daffodil/branding';
+import { DaffContainerModule } from '@daffodil/design';
 
 import { DaffioSimpleFooterComponent } from './simple-footer.component';
 
-import { DaffContainerModule } from '@daffodil/design';
-import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 describe('DaffioSimpleFooterComponent', () => {
   let component: DaffioSimpleFooterComponent;
@@ -15,17 +24,17 @@ describe('DaffioSimpleFooterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioSimpleFooterComponent
+        DaffioSimpleFooterComponent,
       ],
       imports: [
         RouterTestingModule,
         DaffContainerModule,
         DaffLogoModule,
         DaffCopyrightModule,
-        FontAwesomeModule
-      ]
+        FontAwesomeModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -38,8 +47,8 @@ describe('DaffioSimpleFooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of `simple-footer` to its host', () => {
-    expect(fixture.nativeElement.classList.contains('simple-footer')).toBeTruthy();
+  it('should add a class of `daffio-simple-footer` to its host', () => {
+    expect(fixture.nativeElement.classList.contains('daffio-simple-footer')).toBeTruthy();
   });
 
 
@@ -56,7 +65,7 @@ describe('DaffioSimpleFooterComponent', () => {
   });
 
   it('renders a .simple-footer__link for every links defined', () => {
-    const footerLinks = fixture.debugElement.queryAll(By.css('.simple-footer__link'));
+    const footerLinks = fixture.debugElement.queryAll(By.css('.daffio-simple-footer__link'));
 
     expect(footerLinks.length).toEqual(component.links.length);
   });

@@ -1,4 +1,9 @@
-import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { DaffioApiDoc } from '../../models/api-doc';
 
@@ -7,7 +12,7 @@ import { DaffioApiDoc } from '../../models/api-doc';
   templateUrl: './api-doc.component.html',
   styleUrls: ['./api-doc.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioApiDocComponent {
 

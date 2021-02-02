@@ -1,13 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioDoc } from '../../models/doc';
 import { DaffioDocFactory } from '../../../testing/factories/doc.factory';
+import { DaffioDoc } from '../../models/doc';
+import { DaffioDocViewerComponent } from './doc-viewer.component';
 
 @Component({
-  template: `<daffio-doc-viewer [doc]="doc"></daffio-doc-viewer>`
+  template: `<daffio-doc-viewer [doc]="doc"></daffio-doc-viewer>`,
 })
 class WrapperComponent {
   doc: DaffioDoc;
@@ -37,16 +41,16 @@ describe('DaffioDocViewerComponent', () => {
   });
 
   it('should render the contents of the doc as innerhtml', () => {
-    wrapper.doc = docFactory.create({ contents: 'Some Content' })
+    wrapper.doc = docFactory.create({ contents: 'Some Content' });
     fixture.detectChanges();
-    const componentEl = fixture.debugElement.query(By.css('.doc-viewer')).nativeElement as HTMLElement;
+    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
     expect(componentEl.innerHTML).toEqual(wrapper.doc.contents);
   });
 
   it('should rely on Angular mechanisms to prevent rendering of malicious code', () => {
-    wrapper.doc = docFactory.create({ contents: '<script>alert("Malicious")</script>' })
+    wrapper.doc = docFactory.create({ contents: '<script>alert("Malicious")</script>' });
     fixture.detectChanges();
-    const componentEl = fixture.debugElement.query(By.css('.doc-viewer')).nativeElement as HTMLElement;
+    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
     expect(componentEl.innerHTML).toEqual('');
-  })
+  });
 });

@@ -1,39 +1,38 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { DaffLogoModule } from '@daffodil/branding';
 import {
   DaffNavbarModule,
   DaffButtonModule,
-  DaffContainerModule
+  DaffContainerModule,
 } from '@daffodil/design';
-
-import { DaffLogoModule } from '@daffodil/branding';
 
 import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioHeaderContainer } from './containers/header.component';
 import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    
+
     DaffNavbarModule,
     DaffLogoModule,
     DaffButtonModule,
     DaffContainerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
     DaffioHeaderComponent,
     DaffioHeaderContainer,
-    DaffioHeaderItemDirective
+    DaffioHeaderItemDirective,
   ],
   exports: [
-    DaffioHeaderContainer
-  ]
+    DaffioHeaderContainer,
+  ],
 })
 export class DaffioHeaderModule {}

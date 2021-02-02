@@ -1,12 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, Router } from '@angular/router';
-import { Observable, EMPTY } from 'rxjs';
-import { take, catchError } from 'rxjs/operators';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Resolve,
+  Router,
+} from '@angular/router';
+import {
+  Observable,
+  EMPTY,
+} from 'rxjs';
+import {
+  take,
+  catchError,
+} from 'rxjs/operators';
+
 import { DaffioApiDocReference } from '../models/api-doc-reference';
 import { DaffioApiDocService } from '../services/api-doc.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaffioApiListResolver implements Resolve<DaffioApiDocReference> {
 
@@ -20,7 +32,7 @@ export class DaffioApiListResolver implements Resolve<DaffioApiDocReference> {
         catchError(() => {
           this.router.navigate(['/404']);
           return EMPTY;
-        })
+        }),
       );
   }
 }

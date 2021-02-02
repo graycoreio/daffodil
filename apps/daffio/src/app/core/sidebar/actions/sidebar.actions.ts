@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { DaffSidebarMode } from '@daffodil/design';
 
 export enum SidebarActionTypes {
@@ -24,20 +25,20 @@ export class CloseSidebar implements Action {
 
 export class SetSidebarState implements Action {
   readonly type = SidebarActionTypes.SetSidebarStateAction;
-  
+
   constructor(public payload: boolean){}
 }
 
 export class SetSidebarMode implements Action {
   readonly type = SidebarActionTypes.SetSidebarModeAction;
-  
+
   constructor(public payload: DaffSidebarMode){}
 }
 
 
 export class ResetMode implements Action {
   readonly type = SidebarActionTypes.ResetModeAction;
-  }
+}
 
 export type SidebarActions =
     | ToggleSidebar
