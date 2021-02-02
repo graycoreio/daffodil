@@ -8,13 +8,13 @@ import { DaffFeatureModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    FeatureComponent
+    FeatureComponent,
   ],
   imports: [
     CommonModule,
     DesignLandFeatureRoutingModule,
 
-    DaffFeatureModule
-  ]
+    DaffFeatureModule,
+  ],
 })
 export class FeatureModule { }

@@ -12,7 +12,7 @@ import { DesignLandProgressIndicatorRoutingModule } from './progress-indicator-r
   imports: [
     CommonModule,
     DaffProgressIndicatorModule,
-    DesignLandProgressIndicatorRoutingModule
-  ]
+    DesignLandProgressIndicatorRoutingModule,
+  ],
 })
 export class ProgressIndicatorModule { }

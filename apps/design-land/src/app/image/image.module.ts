@@ -6,13 +6,13 @@ import { DesignLandImageRoutingModule } from './image-routing-module';
 
 @NgModule({
   declarations: [
-    DesignLandImageComponent
+    DesignLandImageComponent,
   ],
   imports: [
     CommonModule,
 
     DaffImageModule,
-    DesignLandImageRoutingModule
-  ]
+    DesignLandImageRoutingModule,
+  ],
 })
 export class DesignLandImageModule { }

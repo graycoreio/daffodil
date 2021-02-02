@@ -9,14 +9,14 @@ import { DesignLandImageGalleryRoutingModule } from './image-gallery-routing-mod
 
 @NgModule({
   declarations: [
-    ImageGalleryComponent
+    ImageGalleryComponent,
   ],
   imports: [
     CommonModule,
     DesignLandImageGalleryRoutingModule,
 
-    DaffImageGalleryModule
+    DaffImageGalleryModule,
 
-  ]
+  ],
 })
 export class ImageGalleryModule { }

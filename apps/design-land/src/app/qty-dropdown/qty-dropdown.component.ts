@@ -1,18 +1,22 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'design-land-qty-dropdown',
   templateUrl: './qty-dropdown.component.html',
-  styleUrls: ['./qty-dropdown.component.scss']
+  styleUrls: ['./qty-dropdown.component.scss'],
 })
 export class QtyDropdownComponent{
   selectedValue = 1;
 
-  updateValue(qty:number){
-    if(qty % 1 != 0){
+  updateValue(qty: number){
+    if(qty % 1 !== 0){
       this.selectedValue = 1;
-    }
-    else{
+    } else{
       this.selectedValue = qty;
     }
   }

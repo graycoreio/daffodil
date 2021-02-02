@@ -9,13 +9,13 @@ import { DaffAccordionModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    AccordionComponent
+    AccordionComponent,
   ],
   imports: [
     CommonModule,
     DesignLandAccordionRoutingModule,
 
-    DaffAccordionModule
-  ]
+    DaffAccordionModule,
+  ],
 })
 export class AccordionModule { }

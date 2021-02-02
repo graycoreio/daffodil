@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { 
+import {
   DaffModalModule,
   DaffArticleModule,
-  DaffButtonModule
+  DaffButtonModule,
 } from '@daffodil/design';
 
 import { DesignLandModalComponent } from './modal.component';
@@ -21,8 +21,8 @@ import { DesignLandModalRoutingModule } from './modal-routing.module';
     DesignLandModalRoutingModule,
     DaffModalModule,
     DaffArticleModule,
-    DaffButtonModule
-  ]
+    DaffButtonModule,
+  ],
 })
-export class ModalModule { 
+export class ModalModule {
 }

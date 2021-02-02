@@ -1,17 +1,20 @@
-import { Routes, RouterModule } from '@angular/router';
+import {
+  Routes,
+  RouterModule,
+} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HeroComponent } from './hero.component';
 
 export const heroRoutes: Routes = [
-  {path: '', component: HeroComponent}
-]
+  { path: '', component: HeroComponent },
+];
 
 @NgModule({
   imports: [
     RouterModule.forChild(heroRoutes),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class DesignLandHeroRoutingModule {}

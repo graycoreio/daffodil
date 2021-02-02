@@ -7,11 +7,11 @@ import { DesignLandModalContentComponent } from './modal-content/modal-content.c
 @Component({
   selector: 'design-land-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
 })
 export class DesignLandModalComponent {
   modal: any;
-  
+
   constructor(private modalService: DaffModalService) {}
 
   showModal() {

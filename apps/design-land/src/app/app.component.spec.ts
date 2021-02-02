@@ -1,11 +1,14 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { DesignLandAppComponent } from './app.component';
 
 describe('DesignLandAppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DesignLandAppComponent
+        DesignLandAppComponent,
       ],
     }).compileComponents();
   }));

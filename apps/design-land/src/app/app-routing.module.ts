@@ -1,11 +1,14 @@
-import { Routes, RouterModule } from '@angular/router';
+import {
+  Routes,
+  RouterModule,
+} from '@angular/router';
 import { NgModule } from '@angular/core';
 
 export const appRoutes: Routes = [
   {
     path: '',
     redirectTo: '/button',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   { path: 'accordion', loadChildren: () => import('./accordion/accordion.module').then(m => m.AccordionModule) },
   { path: 'article', loadChildren: () => import('./article/article.module').then(m => m.DesignLandArticleModule) },
@@ -30,8 +33,12 @@ export const appRoutes: Routes = [
   { path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.SidebarModule) },
   { path: 'checkbox', loadChildren: () => import('./checkbox/checkbox.module').then(m => m.CheckboxModule) },
   { path: 'radio', loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule) },
+<<<<<<< HEAD
   { path: 'typography', loadChildren: () => import('./typography/typography.module').then(m => m.DesignLandTypographyModule) }
 ]
+=======
+];
+>>>>>>> a742e4090... fix design land
 
 @NgModule({
   imports: [
@@ -40,7 +47,7 @@ export const appRoutes: Routes = [
     }),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class DesignLandAppRoutingModule { }

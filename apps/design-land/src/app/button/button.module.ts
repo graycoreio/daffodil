@@ -1,4 +1,8 @@
-import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
+import {
+  NgModule,
+  Injector,
+  ComponentFactoryResolver,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { createCustomElement } from '@angular/elements';
 
@@ -8,16 +12,19 @@ import { DesignLandButtonRoutingModule } from './button-routing.module';
 import {
   DaffButtonSetModule,
   DaffButtonModule,
-  DaffArticleModule
+  DaffArticleModule,
 } from '@daffodil/design';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
-import { BUTTON_EXAMPLES, ButtonExamplesModule } from '@daffodil/design/button/examples';
+import {
+  BUTTON_EXAMPLES,
+  ButtonExamplesModule,
+} from '@daffodil/design/button/examples';
 
 @NgModule({
   declarations: [
-    ButtonComponent
+    ButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -27,26 +34,24 @@ import { BUTTON_EXAMPLES, ButtonExamplesModule } from '@daffodil/design/button/e
     DaffButtonSetModule,
     DaffButtonModule,
     DaffArticleModule,
-    ButtonExamplesModule
-  ]
+    ButtonExamplesModule,
+  ],
 })
 export class ButtonModule {
   constructor(
-    injector: Injector, 
-    private componentFactoryResolver: ComponentFactoryResolver
+    injector: Injector,
+    private componentFactoryResolver: ComponentFactoryResolver,
   ) {
     BUTTON_EXAMPLES
-      .map((classConstructor) => {
-        return {
-          element: createCustomElement(classConstructor, {injector}),
-          class: classConstructor
-        }
-      })
+      .map((classConstructor) => ({
+        element: createCustomElement(classConstructor, { injector }),
+        class: classConstructor,
+      }))
       .map((customElement) => {
         // Register the custom element with the browser.
         customElements.define(
           this.componentFactoryResolver.resolveComponentFactory<unknown>(customElement.class).selector + '-example',
-          customElement.element
+          customElement.element,
         );
       });
   }

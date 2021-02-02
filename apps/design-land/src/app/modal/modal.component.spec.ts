@@ -1,4 +1,8 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 import { DaffModalModule } from '@daffodil/design';
 
@@ -12,10 +16,10 @@ describe('ModalComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DesignLandModalComponent ],
       imports: [
-        DaffModalModule
-      ]
+        DaffModalModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

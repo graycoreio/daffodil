@@ -8,8 +8,8 @@ import * as WebFont from 'webfontloader';
 
 WebFont.load({
   typekit: {
-    id: 'bvl8ycj'
-  }
+    id: 'bvl8ycj',
+  },
 });
 
 if (environment.production) {

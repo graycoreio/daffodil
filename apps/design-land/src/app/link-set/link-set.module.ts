@@ -8,13 +8,13 @@ import { DaffLinkSetModule } from '@daffodil/design';
 
 @NgModule({
   declarations: [
-    LinkSetComponent
+    LinkSetComponent,
   ],
   imports: [
     CommonModule,
     DesignLandLinkSetRoutingModule,
 
-    DaffLinkSetModule
-  ]
+    DaffLinkSetModule,
+  ],
 })
 export class LinkSetModule { }

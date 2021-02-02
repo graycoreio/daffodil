@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'design-land-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.scss']
+  styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent {
   numberOfPages = 20;
@@ -34,7 +34,7 @@ export class PaginatorComponent {
   onPageChange4(pageNumber: number) {
     this.themeContrastCurrentPage = pageNumber;
   }
-  
+
   onPageChange5(pageNumber: number) {
     this.blackCurrentPage = pageNumber;
   }
