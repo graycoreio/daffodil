@@ -1,30 +1,31 @@
-import {
-	Router,
-	UrlSegment,
-} from '@angular/router';
 import { TestBed } from '@angular/core/testing';
+import {
+  Router,
+  UrlSegment,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { daffConvertToPath } from './convert-to-path';
 
 describe('@daffodil/external-router | daffConvertToPath', () => {
-	let router: Router;
+  let router: Router;
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			imports: [RouterTestingModule],
-		});
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+    });
 
-		router = TestBed.inject<Router>(Router);
-	});
+    router = TestBed.inject<Router>(Router);
+  });
 
-	it('convert a segments array to a path', () => {
-		const segments: UrlSegment[] = [
-			{ path: 'some-path' } as UrlSegment,
-			{ path: 'to' } as UrlSegment,
-			{ path: 'a' } as UrlSegment,
-			{ path: 'item' } as UrlSegment
-		];
+  it('convert a segments array to a path', () => {
+    const segments: UrlSegment[] = [
+			<UrlSegment>{ path: 'some-path' },
+			<UrlSegment>{ path: 'to' },
+			<UrlSegment>{ path: 'a' },
+			<UrlSegment>{ path: 'item' },
+    ];
 
-		expect(daffConvertToPath(segments)).toEqual('some-path/to/a/item');
-	});
+    expect(daffConvertToPath(segments)).toEqual('some-path/to/a/item');
+  });
 });

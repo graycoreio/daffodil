@@ -1,5 +1,5 @@
-import { RouteWithoutPath } from './route-without-path';
 import { DaffExternalRouteType } from './route-type';
+import { RouteWithoutPath } from './route-without-path';
 
 /**
  * A model used to describe the relationship between a {@link DaffExternalRouterType}
