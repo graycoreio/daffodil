@@ -1,17 +1,21 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
+import { DaffProductImageFactory } from '@daffodil/product/testing';
 
-import { MiniCartItemComponent } from './minicart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';
+import { MiniCartItemComponent } from './minicart-item.component';
 
-@Component({template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>'})
+@Component({ template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>' })
 class WrapperComponent {
   cartItemValue: DaffCartItem;
 }
@@ -28,14 +32,14 @@ describe('MiniCartItemComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         MiniCartItemComponent,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -45,7 +49,7 @@ describe('MiniCartItemComponent', () => {
     spyOn(router, 'navigateByUrl');
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
     productImageFactory = TestBed.inject(DaffProductImageFactory);
-    mockCartItem = cartItemFactory.create({image: productImageFactory.create()});
+    mockCartItem = cartItemFactory.create({ image: productImageFactory.create() });
 
     wrapper.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-minicart-item')).componentInstance;

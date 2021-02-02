@@ -1,16 +1,31 @@
 import { Component } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 
-import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
+import {
+  DaffSidebarModule,
+  DaffSidebarViewportComponent,
+} from '@daffodil/design';
 
-import { SidebarViewportContainer } from './sidebar-viewport.component';
+import {
+  ToggleSidebar,
+  OpenSidebar,
+  CloseSidebar,
+  SetSidebarState,
+} from '../../actions/sidebar.actions';
 import * as fromDemoSidebar from '../../reducers';
-import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
+import { SidebarViewportContainer } from './sidebar-viewport.component';
 
-@Component({selector: 'demo-sidebar', template: ''})
+@Component({ selector: 'demo-sidebar', template: '' })
 class MockSidebarContainer {}
 
 describe('SidebarViewportContainer', () => {
@@ -27,17 +42,17 @@ describe('SidebarViewportContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffSidebarModule
+        DaffSidebarModule,
       ],
       declarations: [
         SidebarViewportContainer,
-        MockSidebarContainer
+        MockSidebarContainer,
       ],
       providers: [
         provideMockStore({}),
-      ]
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -53,7 +68,7 @@ describe('SidebarViewportContainer', () => {
 
   afterAll(() => {
     store.resetSelectors();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -66,7 +81,7 @@ describe('SidebarViewportContainer', () => {
   it('should call close when the `daff-sidebar-viewport` emits `backdropClicked`', () => {
     spyOn(component, 'close');
 
-    sidebarViewport.backdropClicked.emit()
+    sidebarViewport.backdropClicked.emit();
 
     expect(component.close).toHaveBeenCalledWith();
   });

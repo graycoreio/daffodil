@@ -1,5 +1,13 @@
-import { Component, Input, OnInit, DoCheck } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  Component,
+  Input,
+  OnInit,
+  DoCheck,
+} from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 
 import { ShippingOption } from '@daffodil/checkout';
 import { DaffErrorStateMatcher } from '@daffodil/design';
@@ -9,18 +17,18 @@ import { ShippingOptionsService } from '../services/shipping-options.service';
 @Component({
   selector: 'demo-shipping-options',
   templateUrl: './shipping-options.component.html',
-  styleUrls: ['./shipping-options.component.scss']
+  styleUrls: ['./shipping-options.component.scss'],
 })
 export class ShippingOptionsComponent implements OnInit, DoCheck {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
-  
+
   shippingOptions: ShippingOption[];
   errorState: boolean;
   private errorStateMatcher: DaffErrorStateMatcher;
 
   constructor(
-    private shippingOptionsService: ShippingOptionsService
+    private shippingOptionsService: ShippingOptionsService,
   ) {
     this.shippingOptions = shippingOptionsService.getShippingOptions();
   }

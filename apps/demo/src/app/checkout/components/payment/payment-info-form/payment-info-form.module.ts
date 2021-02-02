@@ -1,9 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {
+  DaffInputModule,
+  DaffNativeSelectModule,
+  DaffFormFieldModule,
+} from '@daffodil/design';
+
 import { PaymentInfoFormComponent } from './components/payment-info-form/payment-info-form.component';
-import { DaffInputModule, DaffNativeSelectModule, DaffFormFieldModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
@@ -11,13 +16,13 @@ import { DaffInputModule, DaffNativeSelectModule, DaffFormFieldModule } from '@d
     ReactiveFormsModule,
     DaffInputModule,
     DaffNativeSelectModule,
-    DaffFormFieldModule
+    DaffFormFieldModule,
   ],
   declarations: [
-    PaymentInfoFormComponent
+    PaymentInfoFormComponent,
   ],
   exports: [
-    PaymentInfoFormComponent
-  ]
+    PaymentInfoFormComponent,
+  ],
 })
 export class PaymentInfoFormModule { }

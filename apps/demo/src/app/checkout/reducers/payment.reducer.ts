@@ -1,8 +1,11 @@
-import { PaymentActionTypes, PaymentActions } from '../actions/payment.actions';
+import {
+  PaymentActionTypes,
+  PaymentActions,
+} from '../actions/payment.actions';
 
 export interface State {
-  showPaymentView: boolean,
-  showPaymentForm: boolean
+  showPaymentView: boolean;
+  showPaymentForm: boolean;
 }
 
 export const initialState: State = {
@@ -12,16 +15,16 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: PaymentActions): State {
   switch (action.type) {
-    case PaymentActionTypes.ShowPaymentViewAction:
-      return {...state, showPaymentView: true};
-    case PaymentActionTypes.ShowPaymentFormAction:
-      return {...state, showPaymentForm: true};
-    case PaymentActionTypes.HidePaymentFormAction:
-      return {...state, showPaymentForm: false};
-    case PaymentActionTypes.ToggleShowPaymentFormAction:
-      return {...state, showPaymentForm: !state.showPaymentForm};
-    default:
-      return state;
+  case PaymentActionTypes.ShowPaymentViewAction:
+    return { ...state, showPaymentView: true };
+  case PaymentActionTypes.ShowPaymentFormAction:
+    return { ...state, showPaymentForm: true };
+  case PaymentActionTypes.HidePaymentFormAction:
+    return { ...state, showPaymentForm: false };
+  case PaymentActionTypes.ToggleShowPaymentFormAction:
+    return { ...state, showPaymentForm: !state.showPaymentForm };
+  default:
+    return state;
   }
 }
 

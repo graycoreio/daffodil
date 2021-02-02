@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffButtonModule } from '@daffodil/design';
 
@@ -8,13 +8,13 @@ import { AddToCartComponent } from './add-to-cart.component';
 @NgModule({
   imports: [
     CommonModule,
-    DaffButtonModule
+    DaffButtonModule,
   ],
   declarations: [
-    AddToCartComponent
+    AddToCartComponent,
   ],
   exports: [
-    AddToCartComponent
-  ]
+    AddToCartComponent,
+  ],
 })
 export class AddToCartModule { }

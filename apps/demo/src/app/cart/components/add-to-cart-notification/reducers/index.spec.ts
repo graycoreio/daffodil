@@ -1,12 +1,27 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartClear, DaffCartLoadSuccess, daffCartReducers } from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartClear,
+  DaffCartLoadSuccess,
+  daffCartReducers,
+} from '@daffodil/cart/state';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
-import * as fromAddToCartNotification from './index';
 import { CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
+import * as fromAddToCartNotification from './index';
 
 describe('selectDemoAddToCartNotificationState', () => {
 
@@ -23,9 +38,9 @@ describe('selectDemoAddToCartNotificationState', () => {
       imports: [
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
-          cart: combineReducers(daffCartReducers)
-        })
-      ]
+          cart: combineReducers(daffCartReducers),
+        }),
+      ],
     });
 
     expectedOpen = false;
@@ -35,7 +50,7 @@ describe('selectDemoAddToCartNotificationState', () => {
     store = TestBed.inject(Store);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
-    store.dispatch(new CloseAddToCartNotification);
+    store.dispatch(new CloseAddToCartNotification());
   }));
 
   describe('addToCartNotificationStateSelector', () => {
@@ -45,8 +60,8 @@ describe('selectDemoAddToCartNotificationState', () => {
         open: expectedOpen,
         productQty: expectedProductQty,
         productId: expectedProductId,
-        loading: expectedLoading
-      }
+        loading: expectedLoading,
+      };
 
       store.pipe(select(fromAddToCartNotification.addToCartNotificationStateSelector)).subscribe((addToCartNotificationState) => {
         expect(addToCartNotificationState).toEqual(expectedAddToCartNotificationState);
@@ -88,8 +103,8 @@ describe('selectDemoAddToCartNotificationState', () => {
     beforeEach(() => {
       stubCart = cartFactory.create({
         items: cartItemFactory.createMany(2, {
-          qty: 2
-        })
+          qty: 2,
+        }),
       });
 
       store.dispatch(new DaffCartClear());

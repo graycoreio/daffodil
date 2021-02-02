@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'demo-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class DemoHeaderComponent { 
+export class DemoHeaderComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
   ) {}
 
   navigateToCart() {

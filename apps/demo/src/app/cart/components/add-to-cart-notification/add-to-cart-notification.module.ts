@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { DaffModalModule } from '@daffodil/design';
+
 import { DemoAddToCartNotificationStateModule } from './add-to-cart-notification-state.module';
 import { AddToCartNotificationComponentModule } from './components/add-to-cart-notification/add-to-cart-notification.module';
-import { DaffModalModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
@@ -12,7 +14,7 @@ import { DaffModalModule } from '@daffodil/design';
     AddToCartNotificationComponentModule,
   ],
   exports: [
-    AddToCartNotificationComponentModule
-  ]
+    AddToCartNotificationComponentModule,
+  ],
 })
 export class DemoAddToCartNotificationModule { }

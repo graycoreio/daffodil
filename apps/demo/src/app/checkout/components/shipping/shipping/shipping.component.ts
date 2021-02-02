@@ -1,16 +1,29 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 
-import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
+import {
+  SetShowShippingForm,
+  ToggleShowShippingForm,
+} from '../../../actions/shipping.actions';
 import * as fromDemoCheckout from '../../../reducers';
 
 @Component({
   selector: 'demo-shipping',
   templateUrl: './shipping.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ShippingComponent implements OnInit {
 
@@ -24,12 +37,12 @@ export class ShippingComponent implements OnInit {
   showShippingForm$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromDemoCheckout.State>
+    private store: Store<fromDemoCheckout.State>,
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.store.dispatch(
-      new SetShowShippingForm(!this.isShippingAddressValid)
+      new SetShowShippingForm(!this.isShippingAddressValid),
     );
 
     this.showShippingForm$ = this.store.pipe(select(fromDemoCheckout.selectShowShippingForm));
@@ -37,7 +50,7 @@ export class ShippingComponent implements OnInit {
 
   toggleShippingView() {
     this.store.dispatch(
-      new ToggleShowShippingForm()
+      new ToggleShowShippingForm(),
     );
   }
 

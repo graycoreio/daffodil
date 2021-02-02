@@ -1,9 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { DaffContainerModule } from '@daffodil/design';
-import { DaffNewsletterTestingModule, MockDaffNewsletterFacade } from '@daffodil/newsletter/testing';
+import {
+  DaffNewsletterTestingModule,
+  MockDaffNewsletterFacade,
+} from '@daffodil/newsletter/testing';
 
 
 import { NewsletterComponent } from './newsletter.component';
@@ -16,13 +23,13 @@ describe('NewsletterComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        NewsletterComponent
+        NewsletterComponent,
       ],
       imports: [
         DaffContainerModule,
         ReactiveFormsModule,
-        DaffNewsletterTestingModule
-      ]
+        DaffNewsletterTestingModule,
+      ],
     })
       .compileComponents();
   }));
@@ -87,7 +94,7 @@ describe('NewsletterComponent', () => {
       newsletterElement.click();
       expect(component.onNewsletterCancel).toHaveBeenCalled();
     });
-  })
+  });
   describe('when success$ is true', () => {
     let newsletterElement;
 

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffContainerModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffProductModule } from '@daffodil/product';
 
-import { DaffLoadingIconModule } from '@daffodil/design';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
 import { ProductGridViewComponent } from './product-grid-view.component';
 
@@ -14,13 +14,13 @@ import { ProductGridViewComponent } from './product-grid-view.component';
     DaffLoadingIconModule,
     ProductGridModule,
     DaffContainerModule,
-    DaffProductModule
+    DaffProductModule,
   ],
   declarations: [
-    ProductGridViewComponent
+    ProductGridViewComponent,
   ],
   exports: [
-    ProductGridViewComponent
-  ]
+    ProductGridViewComponent,
+  ],
 })
 export class ProductGridViewModule { }

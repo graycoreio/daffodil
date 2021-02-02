@@ -5,7 +5,7 @@ import { reducers } from './reducers/index';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('demoSidebar', reducers)
-  ]
+    StoreModule.forFeature('demoSidebar', reducers),
+  ],
 })
 export class DemoSidebarStateModule { }

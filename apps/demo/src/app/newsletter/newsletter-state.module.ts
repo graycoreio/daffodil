@@ -5,8 +5,8 @@ import { DaffNewsletterEffects } from 'libs/newsletter/src/effects/newsletter.ef
 @NgModule({
   imports: [
     EffectsModule.forFeature([
-      DaffNewsletterEffects
-    ])
-  ]
+      DaffNewsletterEffects,
+    ]),
+  ],
 })
 export class DemoNewslettterStateModule {}

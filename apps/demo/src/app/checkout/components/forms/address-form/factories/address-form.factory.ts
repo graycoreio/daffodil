@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AddressFormFactory {
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {}
-  
-  create(address) : FormGroup {
+
+  create(address): FormGroup {
     return this.fb.group({
       firstname: [address ? address.firstname : '', Validators.required],
       lastname: [address ? address.lastname : '', Validators.required],
@@ -18,7 +22,7 @@ export class AddressFormFactory {
       city: [address ? address.city : '', Validators.required],
       state: [address ? address.state : '', Validators.required],
       postcode: [address ? address.postcode : '', Validators.required],
-      telephone: [address ? address.telephone : '']
+      telephone: [address ? address.telephone : ''],
     });
   }
 }

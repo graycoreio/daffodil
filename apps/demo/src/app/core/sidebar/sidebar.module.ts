@@ -1,16 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffSidebarModule, DaffLoadingIconModule, DaffLinkSetModule } from '@daffodil/design';
+import {
+  DaffSidebarModule,
+  DaffLoadingIconModule,
+  DaffLinkSetModule,
+} from '@daffodil/design';
 import { DaffNavigationStateModule } from '@daffodil/navigation/state';
 
-import { DemoSidebarStateModule } from './sidebar.state.module';
+import { SidebarListComponent } from './components/sidebar-list/sidebar-list.component';
 import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { SidebarContainer } from './containers/sidebar/sidebar.component';
-import { SidebarListComponent } from './components/sidebar-list/sidebar-list.component';
+import { DemoSidebarStateModule } from './sidebar.state.module';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -21,16 +25,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     DaffNavigationStateModule,
     DaffLinkSetModule,
-    DaffLoadingIconModule
+    DaffLoadingIconModule,
   ],
   declarations: [
     SidebarViewportContainer,
     SidebarContainer,
-    SidebarListComponent
+    SidebarListComponent,
   ],
   exports: [
-    SidebarViewportContainer
-  ]
+    SidebarViewportContainer,
+  ],
 })
 
 export class SidebarModule {}

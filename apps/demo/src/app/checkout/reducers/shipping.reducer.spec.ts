@@ -1,5 +1,12 @@
-import { initialState, reducer, getShowShippingForm } from '../reducers/shipping.reducer';
-import { ToggleShowShippingForm, SetShowShippingForm } from '../actions/shipping.actions';
+import {
+  ToggleShowShippingForm,
+  SetShowShippingForm,
+} from '../actions/shipping.actions';
+import {
+  initialState,
+  reducer,
+  getShowShippingForm,
+} from '../reducers/shipping.reducer';
 
 
 describe('Checkout | Shipping Reducer', () => {
@@ -13,7 +20,7 @@ describe('Checkout | Shipping Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -27,7 +34,7 @@ describe('Checkout | Shipping Reducer', () => {
 
     beforeEach(() => {
       const setShowShippingFormAction = new SetShowShippingForm(stubShowShippingForm);
-      
+
       result = reducer(initialState, setShowShippingFormAction);
     });
 
@@ -43,9 +50,9 @@ describe('Checkout | Shipping Reducer', () => {
     beforeEach(() => {
       const setShowShippingFormAction = new SetShowShippingForm(false);
       reducer(initialState, setShowShippingFormAction);
-      
+
       const toggleShippingFormAction = new ToggleShowShippingForm();
-      
+
       result = reducer(initialState, toggleShippingFormAction);
     });
 
@@ -55,7 +62,7 @@ describe('Checkout | Shipping Reducer', () => {
   });
 
   describe('getShowShippingForm', () => {
-    
+
     it('returns showShippingForm state', () => {
       expect(getShowShippingForm(initialState)).toEqual(initialState.showShippingForm);
     });

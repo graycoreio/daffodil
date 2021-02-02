@@ -1,24 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DaffProductModule } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffProductModule } from '@daffodil/product';
 
-import { BestSellersComponent } from './best-sellers.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
+import { BestSellersComponent } from './best-sellers.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DaffLoadingIconModule,
     ProductGridModule,
-    DaffProductModule
+    DaffProductModule,
   ],
   declarations: [
-    BestSellersComponent
+    BestSellersComponent,
   ],
   exports: [
-    BestSellersComponent
-  ]
+    BestSellersComponent,
+  ],
 })
 export class BestSellersModule { }

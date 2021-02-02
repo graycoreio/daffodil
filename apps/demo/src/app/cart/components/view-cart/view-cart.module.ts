@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { DaffButtonModule } from '@daffodil/design';
 
 import { ViewCartDirective } from './view-cart.directive';
-import { DaffButtonModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffButtonModule
+    DaffButtonModule,
   ],
   declarations: [
-    ViewCartDirective
+    ViewCartDirective,
   ],
   exports: [
-    ViewCartDirective
-  ]
+    ViewCartDirective,
+  ],
 })
 export class ViewCartModule { }

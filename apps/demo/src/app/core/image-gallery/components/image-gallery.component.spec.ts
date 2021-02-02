@@ -1,23 +1,31 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { DaffImageGalleryModule } from '@daffodil/design';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-
-import { ImageGalleryComponent } from './image-gallery.component';
-import { SetSelectedImageState } from '../actions/image-gallery.actions';
-import * as fromDemoImageGallery from '../reducers';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-const stubImages = [
-  { url: '/assets/mh01-black_main.jpg', label: 'testlabel'},
-  { url: '/assets/mh01-gray_alt1.jpg', label: 'testlabel1'}
-]
+import { DaffImageGalleryModule } from '@daffodil/design';
 
-@Component({template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>'})
+import { SetSelectedImageState } from '../actions/image-gallery.actions';
+import * as fromDemoImageGallery from '../reducers';
+import { ImageGalleryComponent } from './image-gallery.component';
+
+
+const stubImages = [
+  { url: '/assets/mh01-black_main.jpg', label: 'testlabel' },
+  { url: '/assets/mh01-gray_alt1.jpg', label: 'testlabel1' },
+];
+
+@Component({ template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>' })
 class WrapperComponent {
-  imagesValue: Object[] = stubImages;
+  imagesValue: Record<string, any>[] = stubImages;
 }
 
 describe('ImageGalleryComponent', () => {
@@ -31,17 +39,17 @@ describe('ImageGalleryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffImageGalleryModule
+        DaffImageGalleryModule,
       ],
       declarations: [
         WrapperComponent,
-        ImageGalleryComponent
+        ImageGalleryComponent,
       ],
       providers: [
-        provideMockStore({})
-      ]
+        provideMockStore({}),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,23 +1,34 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ShippingOptionsComponent } from './shipping-options.component';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormGroup,
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
-import { ShippingOptionsService } from '../services/shipping-options.service';
+
 import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
+import { ShippingOptionsService } from '../services/shipping-options.service';
+import { ShippingOptionsComponent } from './shipping-options.component';
 
 const formBuilder: FormBuilder = new FormBuilder();
 
 const stubFormGroupValue = formBuilder.group({
-  id: ['', Validators.required]
+  id: ['', Validators.required],
 });
 const stubSubmitted = false;
 
 @Component({
   template: '<demo-shipping-options ' +
               '[formGroup]="formGroupValue" ' +
-              '[submitted]="submittedValue"></demo-shipping-options>'
+              '[submitted]="submittedValue"></demo-shipping-options>',
 })
 class WrapperComponent {
   formGroupValue: FormGroup = stubFormGroupValue;
@@ -34,18 +45,18 @@ describe('ShippingOptionsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
       declarations: [
         WrapperComponent,
-        ShippingOptionsComponent
+        ShippingOptionsComponent,
       ],
       providers: [
         ShippingOptionsService,
-        ShippingOptionsFactory
-      ]
+        ShippingOptionsFactory,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

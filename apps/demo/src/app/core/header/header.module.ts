@@ -1,14 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffNavbarModule, DaffButtonModule } from '@daffodil/design';
+import {
+  DaffNavbarModule,
+  DaffButtonModule,
+} from '@daffodil/design';
+
+import { LogoModule } from '../logo/logo.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { DemoHeaderComponent } from './components/header/header.component';
 import { DemoHeaderContainer } from './containers/header/header.component';
-import { LogoModule } from '../logo/logo.module';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -18,15 +22,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SidebarModule,
     RouterModule,
     DaffButtonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
     DemoHeaderComponent,
-    DemoHeaderContainer
+    DemoHeaderContainer,
   ],
   exports: [
     DemoHeaderComponent,
-    DemoHeaderContainer
-  ]
+    DemoHeaderContainer,
+  ],
 })
 export class HeaderModule {}

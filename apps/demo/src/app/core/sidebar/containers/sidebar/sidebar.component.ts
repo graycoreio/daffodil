@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation/state';
+import {
+  DaffNavigationFacade,
+  DaffNavigationLoad,
+} from '@daffodil/navigation/state';
 
-import * as fromDemoSidebar from '../../reducers/index';
 import { CloseSidebar } from '../../actions/sidebar.actions';
+import * as fromDemoSidebar from '../../reducers/index';
 
 @Component({
   selector: 'demo-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarContainer implements OnInit {
   faTimes = faTimes;
@@ -22,8 +28,8 @@ export class SidebarContainer implements OnInit {
 
   constructor(
     private store: Store<fromDemoSidebar.State>,
-    private navigationFacade: DaffNavigationFacade<DaffNavigationTree>
-    ) {}
+    private navigationFacade: DaffNavigationFacade<DaffNavigationTree>,
+  ) {}
 
   ngOnInit() {
     this.tree$ = this.navigationFacade.tree$;
@@ -33,6 +39,6 @@ export class SidebarContainer implements OnInit {
   }
 
   onClose() {
-    this.store.dispatch(new CloseSidebar);
+    this.store.dispatch(new CloseSidebar());
   }
 }

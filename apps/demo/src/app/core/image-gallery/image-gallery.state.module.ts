@@ -5,7 +5,7 @@ import { reducers } from './reducers/index';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('demoImageGallery', reducers)
-  ]
+    StoreModule.forFeature('demoImageGallery', reducers),
+  ],
 })
 export class DemoImageGalleryStateModule { }

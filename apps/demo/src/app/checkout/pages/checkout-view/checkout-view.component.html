@@ -9,7 +9,7 @@
 
 		<div>
 			<div class="demo-checkout__shipping" shipping-container #ShippingContainer="ShippingContainer">
-				<demo-shipping 
+				<demo-shipping
 					[isShippingAddressValid]="ShippingContainer.isShippingAddressValid$ | async"
 					[shippingAddress]="ShippingContainer.shippingAddress$ | async"
 					[selectedShippingOptionId]="ShippingContainer.selectedShippingOptionId$ | async"
@@ -19,7 +19,7 @@
 			</div>
 			<div class="demo-checkout__payment" *ngIf="(showPaymentView$ | async)" billing-container #BillingContainer="BillingContainer">
 				<demo-payment
-					[paymentInfo]="BillingContainer.paymentInfo$ | async" 
+					[paymentInfo]="BillingContainer.paymentInfo$ | async"
 					[billingAddress]="BillingContainer.billingAddress$ | async"
 					[billingAddressIsShippingAddress]="BillingContainer.billingAddressIsShippingAddress$ | async"
 					(updatePaymentInfo)="BillingContainer.updatePaymentInfo($event)"
@@ -32,7 +32,7 @@
 				</demo-cart-summary-wrapper>
 			</div>
 		</div>
-		
+
 		<div class="demo-checkout__cart">
 			<div class="demo-checkout__desktop-cart">
 				<demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="cart$ | async" [loading]="loading$ | async">

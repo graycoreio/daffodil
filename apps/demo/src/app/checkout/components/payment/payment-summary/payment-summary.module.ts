@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { PaymentSummaryComponent } from './payment-summary.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    PaymentSummaryComponent
+    PaymentSummaryComponent,
   ],
   exports: [
-    PaymentSummaryComponent
-  ]
+    PaymentSummaryComponent,
+  ],
 })
 export class PaymentSummaryModule { }

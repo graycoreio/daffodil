@@ -1,17 +1,33 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
 
-import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '@daffodil/checkout';
+import { DaffAddress } from '@daffodil/core';
 
-import { PaymentFormComponent } from './payment-form.component';
-import * as fromDemoCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
+import * as fromDemoCheckout from '../../../reducers';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
+import { PaymentFormComponent } from './payment-form.component';
 
 @Component({
   template: `
@@ -22,7 +38,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
       (updatePaymentInfo)="updatePaymentInfoFunction($event)"
       (updateBillingAddress)="updatePaymentInfoFunction($event)"
       (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></demo-payment-form>
-  `
+  `,
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo;
@@ -33,13 +49,13 @@ class WrapperComponent {
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
-@Component({selector: 'demo-address-form', template: ''})
+@Component({ selector: 'demo-address-form', template: '' })
 class MockAddressFormComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 }
 
-@Component({selector: 'demo-payment-info-form', template: ''})
+@Component({ selector: 'demo-payment-info-form', template: '' })
 class MockPaymentInfoFormComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
@@ -67,20 +83,20 @@ describe('PaymentFormComponent', () => {
         ReactiveFormsModule,
         StoreModule.forRoot({
           shippings: combineReducers(fromDemoCheckout.reducers),
-        })
+        }),
       ],
       declarations: [
         WrapperComponent,
         MockAddressFormComponent,
         MockPaymentInfoFormComponent,
-        PaymentFormComponent
+        PaymentFormComponent,
       ],
       providers: [
-        {provide: AddressFormFactory, useValue: addressFormFactorySpy},
-        {provide: PaymentInfoFormFactory, useValue: paymentInfoFormFactorySpy}
-      ]
+        { provide: AddressFormFactory, useValue: addressFormFactorySpy },
+        { provide: PaymentInfoFormFactory, useValue: paymentInfoFormFactorySpy },
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -207,7 +223,7 @@ describe('PaymentFormComponent', () => {
         const formBuilder = new FormBuilder();
         paymentFormComponent.form = formBuilder.group({
           address: stubAddressFormGroup,
-          paymentInfo: stubPaymentInfoFormGroup
+          paymentInfo: stubPaymentInfoFormGroup,
         });
       });
 
@@ -266,8 +282,8 @@ describe('PaymentFormComponent', () => {
             cardnumber: 2,
             month: 2,
             year: 2,
-            securitycode: 2
-          }
+            securitycode: 2,
+          };
 
           beforeEach(() => {
             paymentFormComponent.form.controls.paymentInfo.setValue(expectedPaymentInfo);
@@ -299,7 +315,7 @@ describe('PaymentFormComponent', () => {
           cardnumber: 'valid',
           month: '01',
           year: 'valid',
-          securitycode: 'valid'
+          securitycode: 'valid',
         });
         stubAddressFormGroup.setValue({
           firstname: 'valid',
@@ -308,12 +324,12 @@ describe('PaymentFormComponent', () => {
           city: 'valid',
           state: 'California',
           postcode: 'valid',
-          telephone: 'valid'
+          telephone: 'valid',
         });
         const formBuilder = new FormBuilder();
         paymentFormComponent.form = formBuilder.group({
           address: stubAddressFormGroup,
-          paymentInfo: stubPaymentInfoFormGroup
+          paymentInfo: stubPaymentInfoFormGroup,
         });
         fixture.detectChanges();
       });

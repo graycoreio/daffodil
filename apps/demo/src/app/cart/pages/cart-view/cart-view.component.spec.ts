@@ -1,12 +1,25 @@
-import { Component, Input } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
+import {
+  DaffContainerModule,
+  DaffLoadingIconModule,
+} from '@daffodil/design';
 
 import { DemoCartViewComponent } from './cart-view.component';
 
@@ -15,7 +28,7 @@ const cart = cartFactory.create();
 
 @Component({
   selector: 'demo-cart',
-  template: ''
+  template: '',
 })
 class MockCartWrapperComponent {
   @Input() cart: DaffCart;
@@ -23,8 +36,8 @@ class MockCartWrapperComponent {
 
 describe('DemoCartViewComponent', () => {
   let component: DemoCartViewComponent;
-	let fixture: ComponentFixture<DemoCartViewComponent>;
-	let cartFacade: MockDaffCartFacade;
+  let fixture: ComponentFixture<DemoCartViewComponent>;
+  let cartFacade: MockDaffCartFacade;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -35,19 +48,19 @@ describe('DemoCartViewComponent', () => {
       imports: [
         DaffContainerModule,
         DaffLoadingIconModule,
-        DaffCartTestingModule
-			]
+        DaffCartTestingModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoCartViewComponent);
-		component = fixture.componentInstance;
-		cartFacade = TestBed.inject(MockDaffCartFacade);
+    component = fixture.componentInstance;
+    cartFacade = TestBed.inject(MockDaffCartFacade);
 
-		cartFacade.cart$ = new BehaviorSubject(cart);
-		cartFacade.loading$ = new BehaviorSubject(false);
+    cartFacade.cart$ = new BehaviorSubject(cart);
+    cartFacade.loading$ = new BehaviorSubject(false);
 
     fixture.detectChanges();
   });

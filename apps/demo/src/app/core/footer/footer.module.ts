@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { 
-  DaffListModule, 
-  DaffButtonSetModule, 
-  DaffButtonModule, 
-  DaffContainerModule
+import {
+  DaffListModule,
+  DaffButtonSetModule,
+  DaffButtonModule,
+  DaffContainerModule,
 } from '@daffodil/design';
 
 import { FooterComponent } from './footer.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -22,13 +22,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DaffButtonModule,
     DaffButtonSetModule,
     DaffContainerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
-    FooterComponent
+    FooterComponent,
   ],
   exports: [
-    FooterComponent
-  ]
+    FooterComponent,
+  ],
 })
 export class FooterModule {}

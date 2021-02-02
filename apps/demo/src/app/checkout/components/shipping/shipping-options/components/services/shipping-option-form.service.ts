@@ -4,18 +4,18 @@ import { FormGroup } from '@angular/forms';
 import { ShippingOptionFormFactory } from '../factories/shipping-option-form.factory';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShippingOptionFormService {
 
   private shippingOptionFormGroup: FormGroup;
 
   constructor(
-    shippingOptionFormFactory: ShippingOptionFormFactory
+    shippingOptionFormFactory: ShippingOptionFormFactory,
   ) {
     this.shippingOptionFormGroup = shippingOptionFormFactory.create();
   }
-  
+
   getShippingOptionFormGroup(): FormGroup {
     return this.shippingOptionFormGroup;
   }

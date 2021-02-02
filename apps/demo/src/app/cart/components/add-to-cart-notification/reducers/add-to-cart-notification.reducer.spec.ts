@@ -1,16 +1,22 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffAddToCart, DaffAddToCartSuccess } from '@daffodil/cart/state';
+import {
+  DaffAddToCart,
+  DaffAddToCartSuccess,
+} from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
+import {
+  OpenAddToCartNotification,
+  CloseAddToCartNotification,
+} from '../actions/add-to-cart-notification.actions';
 import {
   initialState,
   reducer,
   getOpen,
   getProductQty,
   getLoading,
-  getProductId
+  getProductId,
 } from '../reducers/add-to-cart-notification.reducer';
-import { OpenAddToCartNotification, CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('Add To Cart Notification | Reducer', () => {
 
@@ -24,7 +30,7 @@ describe('Add To Cart Notification | Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -43,7 +49,7 @@ describe('Add To Cart Notification | Reducer', () => {
     });
 
     it('sets open to true', () => {
-      expect(result.open).toEqual(true)
+      expect(result.open).toEqual(true);
     });
   });
 
@@ -71,7 +77,7 @@ describe('Add To Cart Notification | Reducer', () => {
     beforeEach(() => {
       stubQty = 1;
       stubId = 'id';
-      const addToCartAction = new DaffAddToCart({productId: stubId, qty: stubQty});
+      const addToCartAction = new DaffAddToCart({ productId: stubId, qty: stubQty });
 
       result = reducer(initialState, addToCartAction);
     });

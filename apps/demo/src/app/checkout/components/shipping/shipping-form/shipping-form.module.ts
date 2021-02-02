@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { ShippingFormComponent } from './shipping-form.component';
+import { DaffButtonModule } from '@daffodil/design';
+
 import { AddressFormModule } from '../../forms/address-form/address-form.module';
 import { ShippingOptionsModule } from '../shipping-options/shipping-options.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DaffButtonModule } from '@daffodil/design';
+import { ShippingFormComponent } from './shipping-form.component';
 
 @NgModule({
   imports: [
@@ -13,13 +14,13 @@ import { DaffButtonModule } from '@daffodil/design';
     AddressFormModule,
     ShippingOptionsModule,
     ReactiveFormsModule,
-    DaffButtonModule
+    DaffButtonModule,
   ],
   declarations: [
-    ShippingFormComponent
+    ShippingFormComponent,
   ],
   exports: [
-    ShippingFormComponent
-  ]
+    ShippingFormComponent,
+  ],
 })
 export class ShippingFormModule { }

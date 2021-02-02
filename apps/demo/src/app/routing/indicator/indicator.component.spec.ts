@@ -1,8 +1,17 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  Event,
+  Router,
+  NavigationStart,
+  NavigationEnd,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Subject } from 'rxjs';
 
@@ -10,7 +19,7 @@ import { DaffProgressIndicatorModule } from '@daffodil/design';
 
 import { DemoIndicatorComponent } from './indicator.component';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 class MockRouter {
   events = new Subject<Event>();
 }
@@ -25,16 +34,16 @@ describe('DemoIndicatorComponent', () => {
       imports:[
         NoopAnimationsModule,
         RouterTestingModule,
-        DaffProgressIndicatorModule
+        DaffProgressIndicatorModule,
       ],
       declarations: [
-        DemoIndicatorComponent
+        DemoIndicatorComponent,
       ],
       providers: [
-        {provide: Router, useExisting: MockRouter}
-      ]
+        { provide: Router, useExisting: MockRouter },
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

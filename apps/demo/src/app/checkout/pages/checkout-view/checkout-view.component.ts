@@ -1,16 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
 
-import * as fromDemoCheckout from '../../reducers';
 import { ShowPaymentView } from '../../actions/payment.actions';
+import * as fromDemoCheckout from '../../reducers';
 
 @Component({
   templateUrl: './checkout-view.component.html',
-  styleUrls: ['./checkout-view.component.scss']
+  styleUrls: ['./checkout-view.component.scss'],
 })
 export class CheckoutViewComponent implements OnInit {
 
@@ -21,19 +27,19 @@ export class CheckoutViewComponent implements OnInit {
 
   constructor(
 		private store: Store<fromDemoCheckout.State>,
-		private cartFacade: DaffCartFacade
+		private cartFacade: DaffCartFacade,
   ) { }
 
   ngOnInit() {
-		this.cart$ = this.cartFacade.cart$;
-		this.loading$ = this.cartFacade.loading$;
+    this.cart$ = this.cartFacade.cart$;
+    this.loading$ = this.cartFacade.loading$;
     this.showPaymentView$ = this.store.pipe(select(fromDemoCheckout.selectShowPaymentView));
     this.showReviewView$ = this.store.pipe(select(fromDemoCheckout.selectShowReviewView));
   }
 
   onUpdateShippingAddress() {
     this.store.dispatch(
-      new ShowPaymentView()
+      new ShowPaymentView(),
     );
   }
 }

@@ -1,16 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import * as fromSidebar from '../../../sidebar/reducers/index';
-import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  StoreModule,
+  Store,
+} from '@ngrx/store';
 
 import { LogoModule } from '../../../logo/logo.module';
-import { DemoHeaderContainer } from './header.component';
+import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
+import * as fromSidebar from '../../../sidebar/reducers/index';
 import { DemoHeaderComponent } from '../../components/header/header.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DemoHeaderContainer } from './header.component';
 
 describe('DemoHeaderContainer', () => {
   let component: DemoHeaderContainer;
@@ -24,17 +30,17 @@ describe('DemoHeaderContainer', () => {
         StoreModule.forRoot({}),
         RouterTestingModule,
         LogoModule,
-        FontAwesomeModule
+        FontAwesomeModule,
       ],
       declarations: [
         DemoHeaderContainer,
-        DemoHeaderComponent
+        DemoHeaderComponent,
       ],
       schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ]
+        CUSTOM_ELEMENTS_SCHEMA,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

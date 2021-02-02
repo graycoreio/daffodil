@@ -1,16 +1,19 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { CartTotalsItemComponent } from './cart-totals-item.component';
 
-@Component({template: `
+@Component({ template: `
   <demo-cart-totals-item emphasize="true">
     <ng-container cart-total-label>{{label}}</ng-container>
     <ng-container cart-total-value>{{value}}</ng-container>
   </demo-cart-totals-item>
-`})
+` })
 class WrapperComponent {
   label: string;
   value: string;
@@ -26,10 +29,10 @@ describe('CartTotalsItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsItemComponent,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

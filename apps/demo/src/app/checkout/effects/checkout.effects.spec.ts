@@ -2,16 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 
-import { CheckoutEffects } from './checkout.effects';
-import { ToggleShowPaymentForm } from '../actions/payment.actions';
 import { ShowReviewView } from '../actions/checkout.actions';
+import { ToggleShowPaymentForm } from '../actions/payment.actions';
+import { CheckoutEffects } from './checkout.effects';
 
 describe('CheckoutEffects', () => {
   let actions$: Observable<any>;
@@ -23,12 +26,12 @@ describe('CheckoutEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         CheckoutEffects,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+      ],
     });
 
     stubCart = cartFactory.create();

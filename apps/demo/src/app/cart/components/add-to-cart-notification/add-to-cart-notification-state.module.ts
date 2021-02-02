@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './reducers/index';
-import { EffectsModule } from '@ngrx/effects';
 import { AddToCartNotificationEffects } from './effects/add-to-cart-notification.effects';
+import { reducers } from './reducers/index';
 
 @NgModule({
   imports: [
     EffectsModule.forFeature([
-      AddToCartNotificationEffects
+      AddToCartNotificationEffects,
     ]),
-    StoreModule.forFeature('demoAddToCartNotification', reducers)
-  ]
+    StoreModule.forFeature('demoAddToCartNotification', reducers),
+  ],
 })
 export class DemoAddToCartNotificationStateModule { }

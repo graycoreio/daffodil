@@ -1,16 +1,32 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartReducersState, daffCartReducers }  from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartReducersState,
+  daffCartReducers,
+}  from '@daffodil/cart/state';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
-import { EmptyCartResolver } from './empty-cart-resolver.service';
 import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
+import { EmptyCartResolver } from './empty-cart-resolver.service';
 
 describe('EmptyCartResolver', () => {
   const actions$: Observable<any> = null;
@@ -28,13 +44,13 @@ describe('EmptyCartResolver', () => {
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
         }),
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         EmptyCartResolver,
-        {provide: 'CartResolver', useValue: cartResolverSpy},
-        provideMockActions(() => actions$)
-      ]
+        { provide: 'CartResolver', useValue: cartResolverSpy },
+        provideMockActions(() => actions$),
+      ],
     });
 
     cartResolverSpy.resolve.and.returnValue(of(new ResolveCartSuccess(stubCart)));
@@ -76,7 +92,7 @@ describe('EmptyCartResolver', () => {
       describe('and cart is not empty', () => {
 
         beforeEach(() => {
-          stubCart = cartFactory.create({items: cartItemFactory.create()})
+          stubCart = cartFactory.create({ items: cartItemFactory.create() });
         });
 
         it('should not redirect to the cart page', () => {

@@ -10,5 +10,5 @@ export class RedirectToCartSuccess implements Action {
   constructor(public payload: string) {}
 }
 
-export type ProductActions = 
+export type ProductActions =
     | RedirectToCartSuccess;

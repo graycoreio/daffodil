@@ -1,5 +1,9 @@
-import { initialState, reducer, getSelectedImage } from '../reducers/image-gallery.reducer';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
+import {
+  initialState,
+  reducer,
+  getSelectedImage,
+} from '../reducers/image-gallery.reducer';
 
 describe('Image Gallery | Image Gallery Reducer', () => {
 
@@ -12,7 +16,7 @@ describe('Image Gallery | Image Gallery Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -35,7 +39,7 @@ describe('Image Gallery | Image Gallery Reducer', () => {
   });
 
   describe('getSelectedImage', () => {
-    
+
     it('returns selectedImage', () => {
       expect(getSelectedImage(initialState)).toEqual(initialState.selectedImage);
     });

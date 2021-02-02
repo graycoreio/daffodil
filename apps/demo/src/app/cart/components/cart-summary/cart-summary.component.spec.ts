@@ -1,21 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffCart, DaffCartItem } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartItem,
+} from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
 import { CartSummaryComponent } from './cart-summary.component';
 
-@Component({template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>'})
+@Component({ template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>' })
 class WrapperComponent {
   cartValue: DaffCart;
   titleValue: string;
 }
 
-@Component({selector: 'demo-minicart-item', template: ''})
+@Component({ selector: 'demo-minicart-item', template: '' })
 class MockMiniCartItemComponent {
   @Input() item: DaffCartItem;
 }
@@ -34,15 +46,15 @@ describe('CartSummaryComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         CartSummaryComponent,
         WrapperComponent,
-        MockMiniCartItemComponent
-      ]
+        MockMiniCartItemComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
@@ -53,7 +65,7 @@ describe('CartSummaryComponent', () => {
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockCart = cartFactory.create({
-      items: cartItemFactory.createMany(2)
+      items: cartItemFactory.createMany(2),
     });
 
     wrapper.cartValue = mockCart;

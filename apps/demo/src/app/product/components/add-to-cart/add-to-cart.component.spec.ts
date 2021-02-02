@@ -1,12 +1,17 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { DaffCartItemInputType } from '@daffodil/cart';
 
 import { AddToCartComponent } from './add-to-cart.component';
 
-@Component({template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>'})
+@Component({ template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>' })
 class WrapperComponent {
   additiveValue = 'additiveValue';
   qtyValue = 1;
@@ -21,14 +26,14 @@ describe('AddToCartComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         WrapperComponent,
-        AddToCartComponent
-      ]
+        AddToCartComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -74,10 +79,10 @@ describe('AddToCartComponent', () => {
       addToCartComponent.emitAddToCart();
 
       expect(addToCartComponent.addToCart.emit).toHaveBeenCalledWith({
-				productId: addToCartComponent.additive.id, 
-				qty: addToCartComponent.qty, 
-				type: DaffCartItemInputType.Simple
-			});
+        productId: addToCartComponent.additive.id,
+        qty: addToCartComponent.qty,
+        type: DaffCartItemInputType.Simple,
+      });
     });
   });
 });

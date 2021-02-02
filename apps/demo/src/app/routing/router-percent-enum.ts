@@ -11,4 +11,3 @@ export enum RouterPercentEnum {
     NavigationCancel = 100,
     NavigationError = 100
   }
-  

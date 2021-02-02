@@ -1,12 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, tap } from 'rxjs/operators';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import {
+  map,
+  tap,
+} from 'rxjs/operators';
 
 import { DaffCartActionTypes } from '@daffodil/cart/state';
+import {
+  DaffModalService,
+  DaffModal,
+} from '@daffodil/design';
 
-import { OpenAddToCartNotification, AddToCartNotificationActionTypes, CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
-import { DaffModalService, DaffModal } from '@daffodil/design';
+import {
+  OpenAddToCartNotification,
+  AddToCartNotificationActionTypes,
+  CloseAddToCartNotification,
+} from '../actions/add-to-cart-notification.actions';
 import { AddToCartNotificationComponent } from '../components/add-to-cart-notification/add-to-cart-notification.component';
 
 @Injectable()
@@ -16,31 +30,31 @@ export class AddToCartNotificationEffects {
   constructor(
     private actions$: Actions,
     private daffModalService: DaffModalService,
-    private store$: Store<any>
+    private store$: Store<any>,
   ) {}
 
   @Effect()
   addToCart$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.AddToCartAction),
-    map(() => new OpenAddToCartNotification())
-  )
+    map(() => new OpenAddToCartNotification()),
+  );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   openModal$ = this.actions$.pipe(
-		ofType(AddToCartNotificationActionTypes.OpenAddToCartNotificationAction),
+    ofType(AddToCartNotificationActionTypes.OpenAddToCartNotificationAction),
     tap(() => this.notification = this.daffModalService.open(AddToCartNotificationComponent, {
       onBackdropClicked: () => {
         this.store$.dispatch(new CloseAddToCartNotification());
-      }
-    })
-    )
-  )
+      },
+    }),
+    ),
+  );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   closeModal$ = this.actions$.pipe(
-		ofType(AddToCartNotificationActionTypes.CloseAddToCartNotificationAction),
+    ofType(AddToCartNotificationActionTypes.CloseAddToCartNotificationAction),
     map((action) => {
-      this.daffModalService.close(this.notification)
-    })
-  )
+      this.daffModalService.close(this.notification);
+    }),
+  );
 }

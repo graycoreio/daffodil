@@ -6,7 +6,7 @@ export enum ImageGalleryActionTypes {
 
 export class SetSelectedImageState implements Action {
   readonly type = ImageGalleryActionTypes.SetSelectedImageStateAction;
-  
+
   constructor(public payload: string){}
 }
 

@@ -1,11 +1,12 @@
-import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { DemoInMemoryBackendService } from './backend.service';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
-import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+
+import { DemoInMemoryBackendService } from './backend.service';
 
 describe('Driver | In Memory | InMemoryService', () => {
   let service;
@@ -13,15 +14,15 @@ describe('Driver | In Memory | InMemoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       providers: [
         DaffInMemoryBackendCartRootService,
         DaffInMemoryBackendProductService,
         DaffInMemoryBackendCheckoutService,
         DaffInMemoryBackendNavigationService,
-        DemoInMemoryBackendService
-      ]
+        DemoInMemoryBackendService,
+      ],
     });
 
     service = TestBed.inject(DemoInMemoryBackendService);
@@ -40,10 +41,10 @@ describe('Driver | In Memory | InMemoryService', () => {
       beforeEach(() => {
         returnedValue = 'returnedValue';
         spyOn(service.cartTestingService, 'post').and.returnValue(
-          returnedValue
+          returnedValue,
         );
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
         };
 
         result = service.post(reqInfo);
@@ -61,7 +62,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     describe('when collectionName is none of the above', () => {
       it('should return undefined', () => {
         expect(service.post({ collectionName: 'noneOfTheAbove' })).toEqual(
-          undefined
+          undefined,
         );
       });
     });
@@ -79,8 +80,8 @@ describe('Driver | In Memory | InMemoryService', () => {
         returnedValue = 'returnedValue';
         spyOn(service.productTestingService, 'get').and.returnValue(returnedValue);
         reqInfo = {
-          collectionName: 'products'
-        }
+          collectionName: 'products',
+        };
 
         result = service.get(reqInfo);
       });
@@ -104,8 +105,8 @@ describe('Driver | In Memory | InMemoryService', () => {
         returnedValue = 'returnedValue';
         spyOn(service.navigationTestingService, 'get').and.returnValue(returnedValue);
         reqInfo = {
-          collectionName: 'navigation'
-        }
+          collectionName: 'navigation',
+        };
 
         result = service.get(reqInfo);
       });
@@ -129,8 +130,8 @@ describe('Driver | In Memory | InMemoryService', () => {
         returnedValue = 'returnedValue';
         spyOn(service.cartTestingService, 'get').and.returnValue(returnedValue);
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
-        }
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
+        };
 
         result = service.get(reqInfo);
       });
@@ -147,7 +148,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     describe('when collectionName is none of the above', () => {
 
       it('should return undefined', () => {
-        expect(service.get({collectionName: 'noneOfTheAbove'})).toEqual(undefined);
+        expect(service.get({ collectionName: 'noneOfTheAbove' })).toEqual(undefined);
       });
     });
   });
@@ -161,10 +162,10 @@ describe('Driver | In Memory | InMemoryService', () => {
       beforeEach(() => {
         returnedValue = 'returnedValue';
         spyOn(service.cartTestingService, 'put').and.returnValue(
-          returnedValue
+          returnedValue,
         );
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
         };
 
         result = service.put(reqInfo);
@@ -182,7 +183,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     describe('when collectionName is none of the above', () => {
       it('should return undefined', () => {
         expect(service.put({ collectionName: 'noneOfTheAbove' })).toEqual(
-          undefined
+          undefined,
         );
       });
     });
@@ -197,10 +198,10 @@ describe('Driver | In Memory | InMemoryService', () => {
       beforeEach(() => {
         returnedValue = 'returnedValue';
         spyOn(service.cartTestingService, 'delete').and.returnValue(
-          returnedValue
+          returnedValue,
         );
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
         };
 
         result = service.delete(reqInfo);
@@ -218,7 +219,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     describe('when collectionName is none of the above', () => {
       it('should return undefined', () => {
         expect(service.delete({ collectionName: 'noneOfTheAbove' })).toEqual(
-          undefined
+          undefined,
         );
       });
     });
@@ -237,7 +238,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       orderReturn = 'orderReturn';
       navigationReturn = 'navigationReturn';
       spyOn(service.productTestingService, 'createDb').and.returnValue(
-        productReturn
+        productReturn,
       );
       spyOn(service.cartTestingService, 'createDb').and.returnValue(cartReturn);
       spyOn(service.checkoutTestingService, 'createDb').and.returnValue(orderReturn);
@@ -267,7 +268,7 @@ describe('Driver | In Memory | InMemoryService', () => {
         ...productReturn,
         ...cartReturn,
         ...orderReturn,
-        ...navigationReturn
+        ...navigationReturn,
       };
 
       expect(result).toEqual(expectedObject);

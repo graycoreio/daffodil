@@ -16,7 +16,7 @@ import { DemoShopifyDriverModule } from './shopify/shopify.module';
  * You can see the corresponding usage of this code in the DemoAppModule.
  */
 export const DemoDriverMap = [
-	DemoInMemoryDriverModule,
-	DemoMagentoDriverModule,
-	DemoShopifyDriverModule,
+  DemoInMemoryDriverModule,
+  DemoMagentoDriverModule,
+  DemoShopifyDriverModule,
 ];

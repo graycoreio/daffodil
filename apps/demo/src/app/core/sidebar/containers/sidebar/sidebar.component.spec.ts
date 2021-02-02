@@ -1,22 +1,40 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
-import { provideMockStore } from '@ngrx/store/testing';
-
-import { DaffSidebarModule, DaffSidebarComponent, DaffLoadingIconModule, DaffLinkSetModule } from '@daffodil/design';
-import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation/state';
-import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
-import { DaffNavigationTestingModule, MockDaffNavigationFacade } from '@daffodil/navigation/state/testing';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideMockStore } from '@ngrx/store/testing';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
+import { of } from 'rxjs';
 
-import { SidebarContainer } from './sidebar.component';
+import {
+  DaffSidebarModule,
+  DaffSidebarComponent,
+  DaffLoadingIconModule,
+  DaffLinkSetModule,
+} from '@daffodil/design';
+import { DaffNavigationTree } from '@daffodil/navigation';
+import {
+  DaffNavigationFacade,
+  DaffNavigationLoad,
+} from '@daffodil/navigation/state';
+import {
+  DaffNavigationTestingModule,
+  MockDaffNavigationFacade,
+} from '@daffodil/navigation/state/testing';
+import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
+
+
 import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list.component';
+import { SidebarContainer } from './sidebar.component';
 
-@Component({template: '<demo-sidebar></demo-sidebar>'})
+@Component({ template: '<demo-sidebar></demo-sidebar>' })
 class WrapperComponent {}
 
 describe('SidebarContainer', () => {
@@ -35,26 +53,26 @@ describe('SidebarContainer', () => {
         FontAwesomeModule,
         DaffLoadingIconModule,
         DaffLinkSetModule,
-        DaffNavigationTestingModule
+        DaffNavigationTestingModule,
       ],
       declarations: [
         WrapperComponent,
         SidebarContainer,
-        SidebarListComponent
+        SidebarListComponent,
       ],
       providers: [
         provideMockStore(),
-      ]
+      ],
     })
-    .overrideComponent(SidebarListComponent, {
-      remove: {
-        templateUrl: ''
-      },
-      add: {
-        template: ''
-      }
-    })
-    .compileComponents();
+      .overrideComponent(SidebarListComponent, {
+        remove: {
+          templateUrl: '',
+        },
+        add: {
+          template: '',
+        },
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -78,7 +96,7 @@ describe('SidebarContainer', () => {
       component.ngOnInit();
       expect(navFacade.dispatch).toHaveBeenCalledWith(new DaffNavigationLoad('2'));
     });
-  })
+  });
 
   it('should call `close` when the daff-sidebar emits `escapePressed`', () => {
     spyOn(component, 'onClose');

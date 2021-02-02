@@ -1,15 +1,31 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import {
+  Store,
+  StoreModule,
+  combineReducers,
+} from '@ngrx/store';
+import { cold } from 'jasmine-marbles';
+import { of } from 'rxjs';
 
 import { DaffAddress } from '@daffodil/core';
 
+import {
+  SetShowShippingForm,
+  ToggleShowShippingForm,
+} from '../../../actions/shipping.actions';
 import * as fromDemoCheckout from '../../../reducers';
-import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
-import { cold } from 'jasmine-marbles';
 
 const stubIsShippingAddressValidValue = true;
 const stubDaffodilAddress: DaffAddress = {
@@ -19,8 +35,8 @@ const stubDaffodilAddress: DaffAddress = {
   city: '',
   state: '',
   postcode: '',
-  telephone: ''
-}
+  telephone: '',
+};
 const stubSelectedShippingOptionId = '0';
 const stubShowPaymentView = false;
 
@@ -34,7 +50,7 @@ const stubShowPaymentView = false;
       (updateShippingAddress)="updateShippingAddressFunction($event)"
       (selectShippingOption)="selectShippingOptionFunction($event)"
     ></demo-shipping>
-  `
+  `,
 })
 class WrapperComponent {
   isShippingAddressValidValue = stubIsShippingAddressValidValue;
@@ -45,14 +61,14 @@ class WrapperComponent {
   selectShippingOptionFunction(e) {};
 }
 
-@Component({selector: 'demo-shipping-form', template: '<ng-content></ng-content>'})
+@Component({ selector: 'demo-shipping-form', template: '<ng-content></ng-content>' })
 class MockShippingFormComponent {
   @Input() shippingAddress: DaffAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-shipping-summary', template: ''})
+@Component({ selector: 'demo-shipping-summary', template: '' })
 class MockShippingSummaryComponent {
   @Input() shippingAddress: DaffAddress;
   @Input() selectedShippingOptionId: string;
@@ -72,16 +88,16 @@ describe('ShippingComponent', () => {
       imports: [
         StoreModule.forRoot({
           demoCheckout: combineReducers(fromDemoCheckout.reducers),
-        })
+        }),
       ],
       declarations: [
         WrapperComponent,
         MockShippingFormComponent,
         MockShippingSummaryComponent,
-        ShippingComponent
-      ]
+        ShippingComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -158,8 +174,8 @@ describe('ShippingComponent', () => {
         emittedValue = {
           address: 'address',
           shippingOption: {
-            id: 'id'
-          }
+            id: 'id',
+          },
         };
 
         spyOn(wrapper, 'updateShippingAddressFunction');

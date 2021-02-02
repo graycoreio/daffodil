@@ -1,22 +1,32 @@
-import { Component, Input } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable ,  of } from 'rxjs';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import {
+  Observable ,
+  of,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
-import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
+import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 
 const cartFactory = new DaffCartFactory();
 const cart = cartFactory.create();
 const stubCartTitle = 'cartTitle';
 
-@Component({template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>'})
+@Component({ template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>' })
 class WrapperComponent {
   cartValue$: Observable<DaffCart>;
   loadingValue$: Observable<boolean>;
@@ -25,7 +35,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-summary',
-  template: ''
+  template: '',
 })
 class MockCartSummaryComponent {
   @Input() cart: DaffCart;
@@ -34,7 +44,7 @@ class MockCartSummaryComponent {
 
 @Component({
   selector: 'demo-cart-totals',
-  template: ''
+  template: '',
 })
 class MockCartTotalsComponent {
   @Input() cart: DaffCart;
@@ -42,7 +52,7 @@ class MockCartTotalsComponent {
 
 @Component({
   selector: 'demo-help-box',
-  template: ''
+  template: '',
 })
 class MockHelpBoxComponent {}
 
@@ -59,17 +69,17 @@ describe('CartSummaryWrapper', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffLoadingIconModule
+        DaffLoadingIconModule,
       ],
       declarations: [
         WrapperComponent,
         CartSummaryWrapperComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
-        MockCartSummaryComponent
-      ]
+        MockCartSummaryComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -135,7 +145,7 @@ describe('CartSummaryWrapper', () => {
     });
 
     it('should render <demo-cart-totals>', () => {
-      const cartTotalsComponentElement = fixture.debugElement.query(By.css('demo-cart-totals'))
+      const cartTotalsComponentElement = fixture.debugElement.query(By.css('demo-cart-totals'));
       expect(cartTotalsComponentElement).not.toBeNull();
     });
 

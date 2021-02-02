@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffImageGalleryModule } from '@daffodil/design';
 
-import { DemoImageGalleryStateModule } from './image-gallery.state.module';
 import { ImageGalleryComponent } from './components/image-gallery.component';
+import { DemoImageGalleryStateModule } from './image-gallery.state.module';
 
 @NgModule({
   imports: [
@@ -13,10 +13,10 @@ import { ImageGalleryComponent } from './components/image-gallery.component';
     DaffImageGalleryModule,
   ],
   declarations: [
-    ImageGalleryComponent
+    ImageGalleryComponent,
   ],
   exports: [
-    ImageGalleryComponent
-  ]
+    ImageGalleryComponent,
+  ],
 })
 export class ImageGalleryModule { }

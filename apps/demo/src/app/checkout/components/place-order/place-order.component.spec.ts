@@ -1,11 +1,21 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
+import { of } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 
@@ -18,22 +28,22 @@ describe('PlaceOrderComponent', () => {
   const stubEnablePlaceOrderButton = true;
   let store: MockStore<any>;
   let cartFactory: DaffCartFactory;
-	let stubCart: DaffCart;
-	let cartFacade: MockDaffCartFacade;
+  let stubCart: DaffCart;
+  let cartFacade: MockDaffCartFacade;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        PlaceOrderComponent
+        PlaceOrderComponent,
       ],
       providers: [
-				provideMockStore({}),
+        provideMockStore({}),
       ],
       imports: [
-        DaffCartTestingModule
-      ]
+        DaffCartTestingModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -41,9 +51,9 @@ describe('PlaceOrderComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.inject(MockStore);
     cartFactory = TestBed.inject(DaffCartFactory);
-		stubCart = cartFactory.create();
-		cartFacade = TestBed.inject(MockDaffCartFacade);
-		cartFacade.cart$.next(stubCart);
+    stubCart = cartFactory.create();
+    cartFacade = TestBed.inject(MockDaffCartFacade);
+    cartFacade.cart$.next(stubCart);
 
     spyOn(cartFacade, 'dispatch');
 

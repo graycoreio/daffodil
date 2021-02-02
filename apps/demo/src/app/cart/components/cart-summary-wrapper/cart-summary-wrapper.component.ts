@@ -1,4 +1,8 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
 
@@ -6,7 +10,7 @@ import { DaffCart } from '@daffodil/cart';
   selector: 'demo-cart-summary-wrapper',
   templateUrl: './cart-summary-wrapper.component.html',
   styleUrls: ['./cart-summary-wrapper.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class CartSummaryWrapperComponent {
 

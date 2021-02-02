@@ -1,35 +1,50 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
-import { DaffAccordionModule,
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
+import {
+  DaffAccordionModule,
   DaffAccordionItemComponent,
   DaffLoadingIconModule,
   DaffContainerModule,
-  DaffContainerComponent
+  DaffContainerComponent,
 } from '@daffodil/design';
 
 import { ThankYouViewComponent } from './thank-you-view.component';
 
 const cartFactory = new DaffCartFactory();
 const cartItemFactory = new DaffCartItemFactory();
-const stubCart: DaffCart = cartFactory.create({items: [cartItemFactory.create()]})
+const stubCart: DaffCart = cartFactory.create({ items: [cartItemFactory.create()]});
 
-@Component({selector: 'demo-thank-you', template: ''})
+@Component({ selector: 'demo-thank-you', template: '' })
 class MockThankYouComponent {}
 
 // eslint-disable-next-line @angular-eslint/component-selector
-@Component({selector: '[order-container]', template: '<ng-content></ng-content>', exportAs: 'OrderContainer'})
+@Component({ selector: '[order-container]', template: '<ng-content></ng-content>', exportAs: 'OrderContainer' })
 class MockOrderContainer {
   order$: Observable<DaffCart> = of(stubCart);
   loading$: Observable<boolean> = of(false);
 }
 
-@Component({selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
+@Component({ selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None })
 class MockCartSummaryWrapperComponent {
   @Input() cart: DaffCart;
   @Input() loading: boolean;
@@ -50,16 +65,16 @@ describe('ThankYouViewComponent', () => {
         DaffContainerModule,
         DaffAccordionModule,
         DaffLoadingIconModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       declarations: [
         ThankYouViewComponent,
         MockThankYouComponent,
         MockOrderContainer,
-        MockCartSummaryWrapperComponent
-      ]
+        MockCartSummaryWrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

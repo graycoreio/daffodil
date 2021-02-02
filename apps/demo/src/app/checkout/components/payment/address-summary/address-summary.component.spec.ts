@@ -1,5 +1,9 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffAddress } from '@daffodil/core';
@@ -10,7 +14,7 @@ import { AddressSummaryComponent } from './address-summary.component';
 const daffodilAddressFactory = new DaffAddressFactory();
 const stubDaffodilAddress = daffodilAddressFactory.create();
 
-@Component({template: '<demo-address-summary [address]="addressValue"></demo-address-summary>'})
+@Component({ template: '<demo-address-summary [address]="addressValue"></demo-address-summary>' })
 class WrapperComponent {
   addressValue: DaffAddress = stubDaffodilAddress;
 }
@@ -24,10 +28,10 @@ describe('AddressSummaryComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        AddressSummaryComponent
-      ]
+        AddressSummaryComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

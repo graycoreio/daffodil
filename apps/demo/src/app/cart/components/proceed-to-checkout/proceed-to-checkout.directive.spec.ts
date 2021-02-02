@@ -1,12 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
-import { Component } from '@angular/core';
 
-@Component({template: '<div demoProceedToCheckout></div>'})
+@Component({ template: '<div demoProceedToCheckout></div>' })
 class WrapperComponent {}
 
 describe('ProceedToCheckoutDirective', () => {
@@ -17,12 +21,12 @@ describe('ProceedToCheckoutDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         WrapperComponent,
-        ProceedToCheckoutDirective
-      ]
+        ProceedToCheckoutDirective,
+      ],
     });
   }));
 

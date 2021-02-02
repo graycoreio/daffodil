@@ -1,8 +1,11 @@
-import { HostListener, Directive } from '@angular/core';
+import {
+  HostListener,
+  Directive,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Directive({
-  selector: '[demoViewCart]'
+  selector: '[demoViewCart]',
 })
 export class ViewCartDirective {
 
@@ -11,6 +14,6 @@ export class ViewCartDirective {
   }
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 }

@@ -1,17 +1,33 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
-import { DaffAddress } from '@daffodil/core';
-import { DaffAddressFactory } from '@daffodil/core/testing';
 import { PaymentInfo } from '@daffodil/checkout';
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
+import { DaffAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
+import {
+  ShowPaymentForm,
+  ToggleShowPaymentForm,
+  HidePaymentForm,
+} from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 const paymentFactory = new DaffPaymentFactory();
 const daffodilAddressFactory = new DaffAddressFactory();
@@ -29,7 +45,7 @@ const stubBillingAddressIsShippingAddress = false;
       (updatePaymentInfo)="updatePaymentInfoFunction($event)"
       (updateBillingAddress)="updateBillingAddressFunction($event)"
       (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></demo-payment>
-  `
+  `,
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
@@ -40,7 +56,7 @@ class WrapperComponent {
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
-@Component({selector: 'demo-payment-form', template: ''})
+@Component({ selector: 'demo-payment-form', template: '' })
 class MockPaymentFormComponent {
   @Input() paymentInfo: PaymentInfo;
   @Input() billingAddress: DaffAddress;
@@ -50,13 +66,13 @@ class MockPaymentFormComponent {
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-payment-summary', template: ''})
+@Component({ selector: 'demo-payment-summary', template: '' })
 class MockPaymentSummaryComponent {
   @Input() paymentInfo: PaymentInfo;
   @Output() editPaymentInfo: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-billing-summary', template: ''})
+@Component({ selector: 'demo-billing-summary', template: '' })
 class MockBillingSummaryComponent {
   @Input() billingAddress: DaffAddress;
   @Input() billingAddressIsShippingAddress: boolean;
@@ -78,20 +94,20 @@ describe('PaymentComponent', () => {
         MockPaymentFormComponent,
         MockPaymentSummaryComponent,
         MockBillingSummaryComponent,
-        PaymentComponent
+        PaymentComponent,
       ],
       providers: [
-        provideMockStore({})
-      ]
+        provideMockStore({}),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     store = TestBed.inject(MockStore);
-    store.overrideSelector(fromDemoCheckout.selectShowPaymentForm, stubShowPaymentForm)
+    store.overrideSelector(fromDemoCheckout.selectShowPaymentForm, stubShowPaymentForm);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -104,7 +120,7 @@ describe('PaymentComponent', () => {
 
   afterAll(() => {
     store.resetSelectors();
-  })
+  });
 
   it('should create', () => {
     expect(payment).toBeTruthy();

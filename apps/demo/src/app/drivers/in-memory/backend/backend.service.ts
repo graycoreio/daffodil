@@ -3,21 +3,21 @@ import {
   InMemoryDbService,
   RequestInfoUtilities,
   ParsedRequestUrl,
-	RequestInfo
+  RequestInfo,
 } from 'angular-in-memory-web-api';
 
-import { DaffProduct } from '@daffodil/product';
-import { DaffCart } from '@daffodil/cart';
-import { DaffOrder } from '@daffodil/checkout';
-import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
-import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
-import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
-import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 import { DaffInMemoryBackendAuthService } from '@daffodil/auth/testing';
+import { DaffCart } from '@daffodil/cart';
+import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
+import { DaffOrder } from '@daffodil/checkout';
+import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
+import { DaffNavigationTree } from '@daffodil/navigation';
+import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
+import { DaffProduct } from '@daffodil/product';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DemoInMemoryBackendService implements InMemoryDbService {
   constructor(
@@ -25,7 +25,7 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
     private cartTestingService: DaffInMemoryBackendCartRootService,
     private checkoutTestingService: DaffInMemoryBackendCheckoutService,
     private navigationTestingService: DaffInMemoryBackendNavigationService,
-    private authTestingService: DaffInMemoryBackendAuthService
+    private authTestingService: DaffInMemoryBackendAuthService,
   ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
@@ -75,7 +75,7 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
       ...this.productTestingService.createDb(),
       ...this.cartTestingService.createDb(reqInfo),
       ...this.checkoutTestingService.createDb(),
-      ...this.navigationTestingService.createDb()
+      ...this.navigationTestingService.createDb(),
     };
   }
 }

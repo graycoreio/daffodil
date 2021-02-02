@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffLoadingIconModule } from '@daffodil/design';
+
 import { ProductCardModule } from '../product-card/product-card.module';
 import { ProductGridComponent } from './product-grid.component';
 
@@ -9,13 +10,13 @@ import { ProductGridComponent } from './product-grid.component';
   imports: [
     CommonModule,
     DaffLoadingIconModule,
-    ProductCardModule
+    ProductCardModule,
   ],
   declarations: [
-    ProductGridComponent
+    ProductGridComponent,
   ],
   exports: [
-    ProductGridComponent
-  ]
+    ProductGridComponent,
+  ],
 })
 export class ProductGridModule { }

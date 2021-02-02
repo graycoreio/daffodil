@@ -1,11 +1,20 @@
-import { Component, Input, Directive, DebugElement } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  Directive,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
-import { CartSidebarComponent } from './cart-sidebar.component'
+import { CartSidebarComponent } from './cart-sidebar.component';
 
 @Component({ template: '<demo-cart-sidebar [cart]="cartValue" [isCartEmpty]="isCartEmptyValue"></demo-cart-sidebar>' })
 class WrapperComponent {
@@ -15,7 +24,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-totals',
-  template: ''
+  template: '',
 })
 class MockCartTotalsComponent {
   @Input() cart: DaffCart;
@@ -23,12 +32,12 @@ class MockCartTotalsComponent {
 
 @Component({
   selector: 'demo-help-box',
-  template: ''
+  template: '',
 })
 class MockHelpBoxComponent { }
 
 @Directive({
-  selector: '[demoProceedToCheckout]'
+  selector: '[demoProceedToCheckout]',
 })
 class MockProceedToCheckoutDirective { }
 
@@ -52,7 +61,7 @@ describe('CartSidebar', () => {
         MockCartTotalsComponent,
         MockHelpBoxComponent,
         MockProceedToCheckoutDirective,
-        CartSidebarComponent
+        CartSidebarComponent,
       ],
     })
       .compileComponents();
@@ -77,37 +86,37 @@ describe('CartSidebar', () => {
   });
 
   describe('when cart is empty', () => {
-      beforeEach(() => {
-        wrapper.isCartEmptyValue = true
-        fixture.detectChanges();
+    beforeEach(() => {
+      wrapper.isCartEmptyValue = true;
+      fixture.detectChanges();
 
-        summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
-      });
+      summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
+    });
 
-      it('should not render .cart-sidebar__summary', () => {
-        expect(summaryElement).toBeNull();
+    it('should not render .cart-sidebar__summary', () => {
+      expect(summaryElement).toBeNull();
+    });
+  });
+
+  describe('when cart is not empty', () => {
+    beforeEach(() => {
+      wrapper.isCartEmptyValue = false;
+      fixture.detectChanges();
+
+      summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
+
+      cartTotalsElement = fixture.debugElement.query(By.css('demo-cart-totals'));
+      cartTotalsComponent = cartTotalsElement.componentInstance;
+    });
+
+    describe('on <demo-cart-totals>', () => {
+      it('should pass down the cart', () => {
+        expect(cartTotalsComponent.cart).toEqual(cart);
       });
     });
 
-    describe('when cart is not empty', () => {
-      beforeEach(() => {
-        wrapper.isCartEmptyValue = false
-        fixture.detectChanges();
-
-        summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
-
-        cartTotalsElement = fixture.debugElement.query(By.css('demo-cart-totals'));
-        cartTotalsComponent = cartTotalsElement.componentInstance;
-      });
-
-      describe('on <demo-cart-totals>', () => {
-        it('should pass down the cart', () => {
-          expect(cartTotalsComponent.cart).toEqual(cart);
-        });
-      });
-
-      it('should render .cart-sidebar__summary', () => {
-        expect(summaryElement).not.toBeNull();
-      });
+    it('should render .cart-sidebar__summary', () => {
+      expect(summaryElement).not.toBeNull();
     });
+  });
 });

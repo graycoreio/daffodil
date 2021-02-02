@@ -1,10 +1,18 @@
-import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView } from '../reducers/checkout.reducer';
-import { EnablePlaceOrderButton, ShowReviewView } from '../actions/checkout.actions';
+import {
+  EnablePlaceOrderButton,
+  ShowReviewView,
+} from '../actions/checkout.actions';
+import {
+  initialState,
+  reducer,
+  getEnablePlaceOrderButton,
+  getShowReviewView,
+} from '../reducers/checkout.reducer';
 
 describe('Checkout | Checkout Reducer', () => {
-  
+
   describe('initialState', () => {
-    
+
     it('should set enablePlaceOrderButton to false', () => {
       expect(initialState.enablePlaceOrderButton).toBeFalsy();
     });
@@ -13,7 +21,7 @@ describe('Checkout | Checkout Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -27,7 +35,7 @@ describe('Checkout | Checkout Reducer', () => {
 
     beforeEach(() => {
       const enablePlaceOrderButtonAction = new EnablePlaceOrderButton();
-      
+
       result = reducer(initialState, enablePlaceOrderButtonAction);
     });
 
@@ -42,7 +50,7 @@ describe('Checkout | Checkout Reducer', () => {
 
     beforeEach(() => {
       const showReviewViewAction = new ShowReviewView();
-      
+
       result = reducer(initialState, showReviewViewAction);
     });
 
@@ -52,14 +60,14 @@ describe('Checkout | Checkout Reducer', () => {
   });
 
   describe('getEnablePlaceOrderButton', () => {
-    
+
     it('returns enablePlaceOrderButton state', () => {
       expect(getEnablePlaceOrderButton(initialState)).toEqual(initialState.enablePlaceOrderButton);
     });
   });
 
   describe('getShowReviewView', () => {
-    
+
     it('returns showReviewView state', () => {
       expect(getShowReviewView(initialState)).toEqual(initialState.showReviewView);
     });
