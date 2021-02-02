@@ -1,14 +1,32 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  AbstractControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffInputModule, DaffNativeSelectComponent, DaffFormFieldModule, DaffNativeSelectModule, DaffInputComponent  } from '@daffodil/design';
+import {
+  DaffInputModule,
+  DaffNativeSelectComponent,
+  DaffFormFieldModule,
+  DaffNativeSelectModule,
+  DaffInputComponent,
+} from '@daffodil/design';
+
 import { AddressFormComponent } from './address-form.component';
 
 @Component({
   template: '<demo-address-form [formGroup]="formGroupValue" ' +
-                '[submitted]="submittedValue"></demo-address-form>'
+                '[submitted]="submittedValue"></demo-address-form>',
 })
 class WrapperComponent {
   formGroupValue: FormGroup;
@@ -27,20 +45,20 @@ describe('AddressFormComponent', () => {
         ReactiveFormsModule,
         DaffInputModule,
         DaffNativeSelectModule,
-        DaffFormFieldModule
+        DaffFormFieldModule,
       ],
       declarations: [
         WrapperComponent,
-        AddressFormComponent
-      ]
+        AddressFormComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    const formBuilder = new FormBuilder
+    const formBuilder = new FormBuilder();
     wrapper.formGroupValue = formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -48,7 +66,7 @@ describe('AddressFormComponent', () => {
       city: ['', Validators.required],
       state: ['State', Validators.required],
       postcode: ['', Validators.required],
-      telephone: ['', Validators.required]
+      telephone: ['', Validators.required],
     });
 
     wrapper.submittedValue = false;

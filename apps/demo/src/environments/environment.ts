@@ -1,6 +1,6 @@
 import {
-	EnvironmentConfiguration,
-	DemoDriverVariantEnum,
+  EnvironmentConfiguration,
+  DemoDriverVariantEnum,
 } from './environment.interface';
 
 // The file contents for the current environment will overwrite these during build.
@@ -9,8 +9,8 @@ import {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment: EnvironmentConfiguration = {
-	production: false,
-	driver: {
-		variant: DemoDriverVariantEnum.IN_MEMORY,
-	},
+  production: false,
+  driver: {
+    variant: DemoDriverVariantEnum.IN_MEMORY,
+  },
 };

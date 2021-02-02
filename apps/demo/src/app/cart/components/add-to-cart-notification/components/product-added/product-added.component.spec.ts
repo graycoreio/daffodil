@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductImageFactory,
+} from '@daffodil/product/testing';
 
 import { ProductAddedComponent } from './product-added.component';
 
 const stubQty = 1;
 
 @Component({
-  template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>'
+  template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>',
 })
 class WrapperComponent {
   qtyValue: number = stubQty;
@@ -30,10 +37,10 @@ describe('ProductAddedComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        ProductAddedComponent
-      ]
+        ProductAddedComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -42,7 +49,7 @@ describe('ProductAddedComponent', () => {
 
     productFactory = TestBed.inject(DaffProductFactory);
     productImageFactory = TestBed.inject(DaffProductImageFactory);
-    stubProduct = productFactory.create({images:productImageFactory.createMany(5)});
+    stubProduct = productFactory.create({ images:productImageFactory.createMany(5) });
     wrapper.productValue = stubProduct;
 
     fixture.detectChanges();

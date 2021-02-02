@@ -1,18 +1,21 @@
-import { Directive, HostListener } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Directive({
-  selector: '[demoProceedToCheckout]'
+  selector: '[demoProceedToCheckout]',
 })
 
 export class ProceedToCheckoutDirective {
 
   @HostListener('click') onClick() {
-    this.navigateToCheckout()
+    this.navigateToCheckout();
   }
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   private navigateToCheckout() {

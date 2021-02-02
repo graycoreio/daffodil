@@ -1,15 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
-import { DaffLinkSetModule } from '@daffodil/design';
-
-import { SidebarListComponent } from './sidebar-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-@Component({template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>'})
+import { DaffLinkSetModule } from '@daffodil/design';
+import { DaffNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
+
+import { SidebarListComponent } from './sidebar-list.component';
+
+@Component({ template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>' })
 class WrapperComponent {
   tree: DaffNavigationTree;
   closeFunction() {};
@@ -26,14 +33,14 @@ describe('SidebarListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffLinkSetModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         WrapperComponent,
-        SidebarListComponent
-      ]
+        SidebarListComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

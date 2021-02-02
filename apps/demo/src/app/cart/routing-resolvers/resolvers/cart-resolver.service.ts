@@ -1,21 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Store, ActionsSubject, Action } from '@ngrx/store';
-import { Resolve, Router } from '@angular/router';
-import { map, filter, take } from 'rxjs/operators';
+import {
+  Resolve,
+  Router,
+} from '@angular/router';
+import {
+  Store,
+  ActionsSubject,
+  Action,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
+import {
+  map,
+  filter,
+  take,
+} from 'rxjs/operators';
 
 import { DaffCartReducersState } from '@daffodil/cart/state';
 
-import { ResolveCart, ResolveCartSuccess, ResolveCartFailure, CartResolverActionTypes } from '../actions/cart-resolver.actions';
+import {
+  ResolveCart,
+  ResolveCartSuccess,
+  ResolveCartFailure,
+  CartResolverActionTypes,
+} from '../actions/cart-resolver.actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartResolver implements Resolve<Observable<Action>> {
   constructor(
     private store: Store<DaffCartReducersState>,
     private dispatcher: ActionsSubject,
-    private router: Router
+    private router: Router,
   ) {}
 
   resolve(): Observable<Action> {
@@ -31,7 +47,7 @@ export class CartResolver implements Resolve<Observable<Action>> {
         }
         return action;
       }),
-      take(1)
+      take(1),
     );
   }
 }

@@ -1,20 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  faCheck,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { DaffProduct, getDaffProductSelectors } from '@daffodil/product';
 import { DaffCartItem } from '@daffodil/cart';
+import {
+  DaffProduct,
+  getDaffProductSelectors,
+} from '@daffodil/product';
 
-import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
+import * as fromDemoAddToCartNotification from '../../reducers/index';
 
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'demo-add-to-cart-notification',
   templateUrl: './add-to-cart-notification.component.html',
-  styleUrls: ['./add-to-cart-notification.component.scss']
+  styleUrls: ['./add-to-cart-notification.component.scss'],
 })
 export class AddToCartNotificationComponent implements OnInit {
   faCheck = faCheck;
@@ -30,29 +42,29 @@ export class AddToCartNotificationComponent implements OnInit {
   constructor(private store: Store<fromDemoAddToCartNotification.State>) { }
 
   ngOnInit() {
-		const { selectProduct } = getDaffProductSelectors<DaffProduct>();
+    const { selectProduct } = getDaffProductSelectors<DaffProduct>();
 
     this.open$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectOpen)
+      select(fromDemoAddToCartNotification.selectOpen),
     );
 
     this.productQty$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectProductQty)
+      select(fromDemoAddToCartNotification.selectProductQty),
     );
 
     this.loading$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectLoading)
+      select(fromDemoAddToCartNotification.selectLoading),
     );
 
     this.productId$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectProductId)
+      select(fromDemoAddToCartNotification.selectProductId),
     );
 
     this.product$ = this.productId$.pipe(switchMap((id) => this.store.pipe(
-      select(selectProduct, { id: id })
+      select(selectProduct, { id }),
     )));
 
-    this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount))
+    this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount));
   }
 
   onHide() {

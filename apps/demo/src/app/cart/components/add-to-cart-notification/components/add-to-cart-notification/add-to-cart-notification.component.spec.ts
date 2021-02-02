@@ -1,20 +1,45 @@
-import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { cold } from 'jasmine-marbles';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
+import { cold } from 'jasmine-marbles';
 
-import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProduct, DaffProductLoadSuccess, DaffProductReducersState, daffProductReducers } from '@daffodil/product';
-import { DaffLoadingIconModule } from '@daffodil/design';
-import { DaffAddToCart, DaffAddToCartSuccess, DaffCartReducersState, daffCartReducers } from '@daffodil/cart/state';
+import {
+  DaffAddToCart,
+  DaffAddToCartSuccess,
+  DaffCartReducersState,
+  daffCartReducers,
+} from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import {
+  DaffProduct,
+  DaffProductLoadSuccess,
+  DaffProductReducersState,
+  daffProductReducers,
+} from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
+import {
+  CloseAddToCartNotification,
+  OpenAddToCartNotification,
+} from '../../actions/add-to-cart-notification.actions';
 import * as fromAddToCartNotification from '../../reducers/index';
-import { CloseAddToCartNotification, OpenAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
+import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 
 @Component({ template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>' })
 class WrapperComponent {}
@@ -29,9 +54,9 @@ describe('AddToCartNotificationComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let store: Store<{
-    demoAddToCartNotification: fromAddToCartNotification.State,
-    cart: DaffCartReducersState,
-    product: DaffProductReducersState<DaffProduct>
+    demoAddToCartNotification: fromAddToCartNotification.State;
+    cart: DaffCartReducersState;
+    product: DaffProductReducersState<DaffProduct>;
   }>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const cartFactory: DaffCartFactory = new DaffCartFactory();
@@ -45,11 +70,11 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
           cart: combineReducers(daffCartReducers),
-          product: combineReducers(daffProductReducers)
+          product: combineReducers(daffProductReducers),
         }),
         NoopAnimationsModule,
         DaffLoadingIconModule,
-        FontAwesomeModule
+        FontAwesomeModule,
       ],
       declarations: [
         WrapperComponent,
@@ -57,8 +82,8 @@ describe('AddToCartNotificationComponent', () => {
         MockProductAddedComponent,
       ],
       schemas: [
-        NO_ERRORS_SCHEMA
-      ]
+        NO_ERRORS_SCHEMA,
+      ],
     })
       .compileComponents();
   }));
@@ -84,7 +109,7 @@ describe('AddToCartNotificationComponent', () => {
     const stubCart = cartFactory.create();
 
     beforeEach(() => {
-      store.dispatch(new DaffProductLoadSuccess(stubProduct))
+      store.dispatch(new DaffProductLoadSuccess(stubProduct));
       store.dispatch(new OpenAddToCartNotification());
       store.dispatch(new DaffAddToCart(productAddPayload));
       store.dispatch(new DaffAddToCartSuccess(stubCart));

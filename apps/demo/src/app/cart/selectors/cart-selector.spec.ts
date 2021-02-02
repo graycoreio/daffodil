@@ -1,11 +1,30 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartClear, DaffCartLoadSuccess, DaffCartReducersState, daffCartReducers } from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartClear,
+  DaffCartLoadSuccess,
+  DaffCartReducersState,
+  daffCartReducers,
+} from '@daffodil/cart/state';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
-import { isCartEmpty, selectCartItemCount } from './cart-selector';
+import {
+  isCartEmpty,
+  selectCartItemCount,
+} from './cart-selector';
 
 describe('selectCartState', () => {
 
@@ -19,8 +38,8 @@ describe('selectCartState', () => {
       imports: [
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
-        })
-      ]
+        }),
+      ],
     });
 
     cartFactory = TestBed.inject(DaffCartFactory);
@@ -32,7 +51,7 @@ describe('selectCartState', () => {
 
     beforeEach(() => {
       mockCart = cartFactory.create({
-        items: cartItemFactory.createMany(2)
+        items: cartItemFactory.createMany(2),
       });
 
       mockCart.items[0].qty = 2;
@@ -70,7 +89,7 @@ describe('selectCartState', () => {
 
       beforeEach(() => {
         mockCart = cartFactory.create({
-          items: cartItemFactory.createMany(2)
+          items: cartItemFactory.createMany(2),
         });
         store.dispatch(new DaffCartClear());
         store.dispatch(new DaffCartLoadSuccess(mockCart));

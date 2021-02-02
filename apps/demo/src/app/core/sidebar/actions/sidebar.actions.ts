@@ -21,7 +21,7 @@ export class CloseSidebar implements Action {
 
 export class SetSidebarState implements Action {
   readonly type = SidebarActionTypes.SetSidebarStateAction;
-  
+
   constructor(public payload: boolean){}
 }
 

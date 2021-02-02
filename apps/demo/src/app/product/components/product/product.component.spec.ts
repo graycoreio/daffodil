@@ -1,30 +1,37 @@
-import { Component, Input } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { DaffProduct } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/product/testing';
-
-import { ProductComponent } from './product.component';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import {
   DaffAccordionModule,
   DaffQtyDropdownModule,
   DaffContainerModule,
-  DaffQtyDropdownComponent
+  DaffQtyDropdownComponent,
 } from '@daffodil/design';
+import { DaffProduct } from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-@Component({template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>'})
+import { ProductComponent } from './product.component';
+
+
+@Component({ template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>' })
 class WrapperComponent {
   productValue: DaffProduct;
   qtyValue: number;
   updateQtyFunction(e) {};
 }
 
-@Component({selector: 'demo-image-gallery-container', template: ''})
+@Component({ selector: 'demo-image-gallery-container', template: '' })
 class MockImageGalleryContainer {
   @Input() images;
 }
@@ -45,15 +52,15 @@ describe('ProductComponent', () => {
         DaffContainerModule,
         DaffAccordionModule,
         DaffQtyDropdownModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       declarations: [
         ProductComponent,
         WrapperComponent,
-        MockImageGalleryContainer
-      ]
+        MockImageGalleryContainer,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,25 +1,45 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewEncapsulation,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
 
-import { DaffCartItemAdd } from '@daffodil/cart/state';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
-import { DaffProduct, DaffProductLoad } from '@daffodil/product';
-import { DaffProductFactory, DaffProductTestingModule, MockDaffProductFacade } from '@daffodil/product/testing';
-import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffCartItemInputType } from '@daffodil/cart';
+import { DaffCartItemAdd } from '@daffodil/cart/state';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import {
+  DaffProduct,
+  DaffProductLoad,
+} from '@daffodil/product';
+import {
+  DaffProductFactory,
+  DaffProductTestingModule,
+  MockDaffProductFacade,
+} from '@daffodil/product/testing';
 
-import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 import { ProductComponent } from '../../components/product/product.component';
+import { ProductViewComponent } from './product-view.component';
 
 @Component({
   selector: 'demo-product',
   template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 class MockProductComponent {
   @Input() product: DaffProduct;
@@ -53,16 +73,16 @@ describe('ProductViewComponent', () => {
         RouterTestingModule,
         DaffLoadingIconModule,
         DaffCartTestingModule,
-        DaffProductTestingModule
+        DaffProductTestingModule,
       ],
       declarations: [
         ProductViewComponent,
         MockProductComponent,
-        MockAddToCartComponent
+        MockAddToCartComponent,
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
-      ]
+      ],
     })
       .compileComponents();
   }));
@@ -71,8 +91,8 @@ describe('ProductViewComponent', () => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-		facade = TestBed.inject(MockDaffProductFacade);
-		cartFacade = TestBed.inject(MockDaffCartFacade);
+    facade = TestBed.inject(MockDaffProductFacade);
+    cartFacade = TestBed.inject(MockDaffCartFacade);
 
     fixture.detectChanges();
 
@@ -88,7 +108,7 @@ describe('ProductViewComponent', () => {
     it('should dispatch a DaffProductLoad with an `id`', () => {
       spyOn(facade, 'dispatch');
       component.ngOnInit();
-      expect(facade.dispatch).toHaveBeenCalledWith(new DaffProductLoad(idParam))
+      expect(facade.dispatch).toHaveBeenCalledWith(new DaffProductLoad(idParam));
     });
 
     it('should only ever dispatch a DaffProductLoad once per initialization', () => {
@@ -98,7 +118,7 @@ describe('ProductViewComponent', () => {
       activatedRoute.setParamMap({ id: '12311' });
       expect(facade.dispatch).toHaveBeenCalledTimes(1);
     });
-  })
+  });
 
   describe('on <demo-product>', () => {
     it('should set product to current value of product$', () => {
@@ -131,10 +151,10 @@ describe('ProductViewComponent', () => {
     it('should set addToCart to call function passed by cart-container directive', () => {
       spyOn(cartFacade, 'dispatch');
       const payload = {
-				productId: 'id',
-				qty: 1,
-				type: DaffCartItemInputType.Simple
-			};
+        productId: 'id',
+        qty: 1,
+        type: DaffCartItemInputType.Simple,
+      };
 
       addToCartComponent.addToCart.emit(payload);
 

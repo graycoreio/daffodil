@@ -10,7 +10,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ShippingOptionsFactory]
+      providers: [ShippingOptionsFactory],
     });
 
     shippingOptionsFactory = TestBed.inject(ShippingOptionsFactory);
@@ -22,7 +22,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
 
   describe('create', () => {
 
-    let result:ShippingOption[];
+    let result: ShippingOption[];
     let expectedResult;
 
     beforeEach(() => {
@@ -32,8 +32,8 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
         { id: '1',
           text: 'Two Day' },
         { id: '2',
-          text: 'One Day' }
-      ]
+          text: 'One Day' },
+      ];
       result = shippingOptionsFactory.create();
     });
 

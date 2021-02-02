@@ -1,5 +1,12 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffAddress } from '@daffodil/core';
@@ -11,13 +18,13 @@ const daffodilAddressFactory = new DaffAddressFactory();
 const stubBillingAddress = daffodilAddressFactory.create();
 const stubBillingAddressIsShippingAddress = false;
 
-@Component({template: '<demo-billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></demo-billing-summary>'})
+@Component({ template: '<demo-billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></demo-billing-summary>' })
 class WrapperComponent {
   billingAddressValue: DaffAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
 }
 
-@Component({selector: 'demo-address-summary', template: ''})
+@Component({ selector: 'demo-address-summary', template: '' })
 class MockAddressSummaryComponent {
   @Input() address: DaffAddress;
 }
@@ -35,10 +42,10 @@ describe('BillingSummaryComponent', () => {
       declarations: [
         WrapperComponent,
         BillingSummaryComponent,
-        MockAddressSummaryComponent
-      ]
+        MockAddressSummaryComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

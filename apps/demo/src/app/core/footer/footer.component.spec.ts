@@ -1,11 +1,19 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import {
+  DaffContainerModule,
+  DaffListModule,
+  DaffButtonSetModule,
+} from '@daffodil/design';
 
 import { FooterComponent } from './footer.component';
-import { By } from '@angular/platform-browser';
-
-import { DaffContainerModule, DaffListModule, DaffButtonSetModule } from '@daffodil/design';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -14,17 +22,17 @@ describe('FooterComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        FooterComponent
+        FooterComponent,
       ],
       imports: [
         RouterTestingModule,
         DaffContainerModule,
         DaffListModule,
         DaffButtonSetModule,
-        FontAwesomeModule
-      ]
+        FontAwesomeModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

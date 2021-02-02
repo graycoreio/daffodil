@@ -1,15 +1,25 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartItemFactory,
+  DaffCartFactory,
+} from '@daffodil/cart/testing';
 import { DaffMockCurrencyPipe } from '@daffodil/core/testing';
 
-import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
+import { CartTotalsComponent } from './cart-totals.component';
 
-@Component({template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>'})
+@Component({ template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>' })
 class WrapperComponent {
   @Input() cartValue: DaffCart;
 }
@@ -27,8 +37,8 @@ describe('CartTotalsComponent', () => {
 
   const mockCart = cartFactory.create({
     items: cartItemFactory.createMany(2, {
-      tax_amount: itemTaxValue
-    })
+      tax_amount: itemTaxValue,
+    }),
   });
 
   beforeEach(waitForAsync(() => {
@@ -36,13 +46,13 @@ describe('CartTotalsComponent', () => {
       declarations: [
         WrapperComponent,
         CartTotalsComponent,
-        DaffMockCurrencyPipe
+        DaffMockCurrencyPipe,
       ],
       imports: [
-        CartTotalsItemModule
-      ]
+        CartTotalsItemModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

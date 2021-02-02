@@ -1,8 +1,16 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 
-import * as fromDemoImageGallery from './index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
+import * as fromDemoImageGallery from './index';
 
 describe('selectImageGalleryState', () => {
 
@@ -13,8 +21,8 @@ describe('selectImageGalleryState', () => {
       imports: [
         StoreModule.forRoot({
           demoImageGallery: combineReducers(fromDemoImageGallery.reducers),
-        })
-      ]
+        }),
+      ],
     });
 
     store = TestBed.inject(Store);
@@ -26,8 +34,8 @@ describe('selectImageGalleryState', () => {
 
     beforeEach(() => {
       expectedImageGalleryState = {
-        selectedImage: ''
-      }
+        selectedImage: '',
+      };
     });
 
     it('returns the image gallery state', () => {

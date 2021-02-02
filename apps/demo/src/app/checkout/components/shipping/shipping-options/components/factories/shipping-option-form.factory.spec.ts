@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { ShippingOptionFormFactory } from './shipping-option-form.factory';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionFormFactory', () => {
 
@@ -10,9 +13,9 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
-      providers: [ShippingOptionFormFactory]
+      providers: [ShippingOptionFormFactory],
     });
 
     shippingOptionFormFactory = TestBed.inject(ShippingOptionFormFactory);

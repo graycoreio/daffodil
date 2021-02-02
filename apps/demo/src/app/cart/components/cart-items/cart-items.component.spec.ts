@@ -1,18 +1,31 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
 
-import { DaffCart, DaffCartItem } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartItem,
+} from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
 
 import { CartItemsComponent } from './cart-items.component';
 
-@Component({template: '<demo-cart-items [cart]="cartValue"></demo-cart-items>'})
+@Component({ template: '<demo-cart-items [cart]="cartValue"></demo-cart-items>' })
 class WrapperComponent {
   cartValue: DaffCart;
 }
 
-@Component({selector: 'demo-cart-item', template: ''})
+@Component({ selector: 'demo-cart-item', template: '' })
 class MockCartItemComponent {
   @Input() item: DaffCartItem;
 }
@@ -25,7 +38,7 @@ describe('CartItemsComponent', () => {
 
   const cartFactory = new DaffCartFactory();
   const mockCart = cartFactory.create({
-    items: new DaffCartItemFactory().createMany(2)
+    items: new DaffCartItemFactory().createMany(2),
   });
 
   beforeEach(waitForAsync(() => {
@@ -33,10 +46,10 @@ describe('CartItemsComponent', () => {
       declarations: [
         CartItemsComponent,
         WrapperComponent,
-        MockCartItemComponent
-      ]
+        MockCartItemComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -67,7 +80,7 @@ describe('CartItemsComponent', () => {
     it('should set item', () => {
       mockCart.items.forEach((item, index) => {
         expect(cartItems[index].componentInstance.item).toEqual(item);
-      })
+      });
     });
   });
 });

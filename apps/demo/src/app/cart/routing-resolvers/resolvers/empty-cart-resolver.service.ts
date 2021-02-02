@@ -1,20 +1,34 @@
 import { Injectable } from '@angular/core';
-import { ActionsSubject, Action } from '@ngrx/store';
+import {
+  Resolve,
+  Router,
+} from '@angular/router';
+import {
+  ActionsSubject,
+  Action,
+} from '@ngrx/store';
+import {
+  Observable,
+  of,
+} from 'rxjs';
+import {
+  filter,
+  switchMap,
+} from 'rxjs/operators';
 
-
-import { Resolve, Router } from '@angular/router';
-import { ResolveCartSuccess, CartResolverActionTypes } from '../actions/cart-resolver.actions';
-import { filter, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import {
+  ResolveCartSuccess,
+  CartResolverActionTypes,
+} from '../actions/cart-resolver.actions';
 import { CartResolver } from './cart-resolver.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmptyCartResolver implements Resolve<Observable<Action>> {
   constructor(
     private router: Router,
-    private cartResolver: CartResolver
+    private cartResolver: CartResolver,
   ) {}
 
   resolve(): Observable<Action> {
@@ -25,7 +39,7 @@ export class EmptyCartResolver implements Resolve<Observable<Action>> {
           this.router.navigateByUrl('/cart');
         }
         return of(action);
-      })
+      }),
     );
   }
 }

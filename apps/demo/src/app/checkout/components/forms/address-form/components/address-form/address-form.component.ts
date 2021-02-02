@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 interface RegionOption {
@@ -9,7 +12,7 @@ interface RegionOption {
 @Component({
   selector: 'demo-address-form',
   templateUrl: './address-form.component.html',
-  styleUrls: ['./address-form.component.scss']
+  styleUrls: ['./address-form.component.scss'],
 })
 export class AddressFormComponent {
 
@@ -19,8 +22,8 @@ export class AddressFormComponent {
   constructor() { }
 
   stateSelectValues: RegionOption[] = [
-    {label:'State', value: ''},
-    {label: 'Alabama', value: 'AL'},
-    {label: 'Alaska', value: 'AK'}
+    { label:'State', value: '' },
+    { label: 'Alabama', value: 'AL' },
+    { label: 'Alaska', value: 'AK' },
   ];
 }

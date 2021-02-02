@@ -1,12 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ViewCartDirective } from './view-cart.directive';
-import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { Component } from '@angular/core';
 
-@Component({template: '<div demoViewCart></div>'})
+@Component({ template: '<div demoViewCart></div>' })
 class WrapperComponent {}
 
 describe('ViewCartDirective', () => {
@@ -17,14 +21,14 @@ describe('ViewCartDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         ViewCartDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

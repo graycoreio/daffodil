@@ -6,8 +6,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import {
   DaffNewsletterFacade,

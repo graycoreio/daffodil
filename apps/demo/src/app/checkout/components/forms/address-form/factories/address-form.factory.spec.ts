@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { AddressFormFactory } from './address-form.factory';
 
@@ -10,9 +13,9 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
-      providers: [AddressFormFactory]
+      providers: [AddressFormFactory],
     });
 
     addressFormFactory = TestBed.inject(AddressFormFactory);
@@ -39,7 +42,7 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           city: '',
           state: '',
           postcode: '',
-          telephone: ''
+          telephone: '',
         };
 
         result = addressFormFactory.create(address);
@@ -60,7 +63,7 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           city: 'city',
           state: 'another state',
           postcode: 'postcode',
-          telephone: 'telephone'
+          telephone: 'telephone',
         };
 
         result = addressFormFactory.create(address);

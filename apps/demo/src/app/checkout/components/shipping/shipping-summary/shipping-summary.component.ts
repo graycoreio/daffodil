@@ -1,14 +1,19 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+} from '@angular/core';
 
-import { DaffAddress } from '@daffodil/core';
 import { ShippingOption } from '@daffodil/checkout';
+import { DaffAddress } from '@daffodil/core';
 
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
 
 @Component({
   selector: 'demo-shipping-summary',
   templateUrl: './shipping-summary.component.html',
-  styleUrls: ['./shipping-summary.component.scss']
+  styleUrls: ['./shipping-summary.component.scss'],
 })
 export class ShippingSummaryComponent {
 
@@ -19,15 +24,15 @@ export class ShippingSummaryComponent {
   shippingOptions: ShippingOption[];
 
   constructor(
-    private shippingOptionsService: ShippingOptionsService
+    private shippingOptionsService: ShippingOptionsService,
   ) {
     this.shippingOptions = shippingOptionsService.getShippingOptions();
   }
 
   getSelectedShippingOption() {
-    for(let i=0;i<this.shippingOptions.length; i++) {
-      if(this.shippingOptions[i].id === this.selectedShippingOptionId) {
-        return this.shippingOptions[i].text;
+    for(const option of this.shippingOptions) {
+      if(option.id === this.selectedShippingOptionId) {
+        return option.text;
       }
     }
   }

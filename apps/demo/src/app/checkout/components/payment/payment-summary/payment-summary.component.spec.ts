@@ -1,5 +1,9 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { PaymentInfo } from '@daffodil/checkout';
@@ -11,13 +15,13 @@ const stubPaymentInfo: PaymentInfo = {
   cardnumber: 123,
   month: 123,
   year: 123,
-  securitycode: 123
+  securitycode: 123,
 };
 
 @Component({
   template: '<demo-payment-summary ' +
               '[paymentInfo]="paymentInfoValue" '+
-              '(editPaymentInfo)="editPaymentInfoFunction()"></demo-payment-summary>'
+              '(editPaymentInfo)="editPaymentInfoFunction()"></demo-payment-summary>',
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
@@ -33,10 +37,10 @@ describe('PaymentSummaryComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        PaymentSummaryComponent
-      ]
+        PaymentSummaryComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

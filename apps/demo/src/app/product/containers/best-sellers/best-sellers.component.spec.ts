@@ -1,16 +1,27 @@
-import { Component, Input } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffProduct } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { DaffProductFactory, DaffProductTestingModule, MockDaffBestSellersFacade } from '@daffodil/product/testing';
+import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProductFactory,
+  DaffProductTestingModule,
+  MockDaffBestSellersFacade,
+} from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
 
 @Component({
   selector: 'demo-product-grid',
-  template: ''
+  template: '',
 })
 class MockProductGridComponent {
   @Input() products: DaffProduct[];
@@ -20,27 +31,27 @@ describe('BestSellersComponent', () => {
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
   let bestSellersFacade: MockDaffBestSellersFacade;
-	let productGridComponent: MockProductGridComponent;
-	const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
+  let productGridComponent: MockProductGridComponent;
+  const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffLoadingIconModule,
-        DaffProductTestingModule
+        DaffProductTestingModule,
       ],
       declarations: [
         BestSellersComponent,
-        MockProductGridComponent
-			]
+        MockProductGridComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BestSellersComponent);
-		bestSellersFacade = TestBed.inject(MockDaffBestSellersFacade);
-		bestSellersFacade.bestSellers$.next(stubProducts)
+    bestSellersFacade = TestBed.inject(MockDaffBestSellersFacade);
+    bestSellersFacade.bestSellers$.next(stubProducts);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -61,7 +72,7 @@ describe('BestSellersComponent', () => {
   describe('when bestSellersContainer.loading$ is false', () => {
 
     beforeEach(() => {
-			bestSellersFacade.loading$.next(false)
+      bestSellersFacade.loading$.next(false);
 
       fixture.detectChanges();
     });
@@ -82,7 +93,7 @@ describe('BestSellersComponent', () => {
   describe('when bestSellersContainer.loading$ is true', () => {
 
     beforeEach(() => {
-			bestSellersFacade.loading$.next(true)
+      bestSellersFacade.loading$.next(true);
 
       fixture.detectChanges();
     });

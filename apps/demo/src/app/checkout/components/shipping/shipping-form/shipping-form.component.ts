@@ -1,15 +1,24 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+} from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+} from '@angular/forms';
 
 import { DaffAddress } from '@daffodil/core';
 
-import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
+import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 
 @Component({
   selector: 'demo-shipping-form',
   templateUrl: './shipping-form.component.html',
-  styleUrls: ['./shipping-form.component.scss']
+  styleUrls: ['./shipping-form.component.scss'],
 })
 export class ShippingFormComponent implements OnInit {
 
@@ -22,13 +31,13 @@ export class ShippingFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private addressFormFactory: AddressFormFactory,
-    private shippingOptionFormService: ShippingOptionFormService
+    private shippingOptionFormService: ShippingOptionFormService,
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       address: this.addressFormFactory.create(this.shippingAddress),
-      shippingOption: this.shippingOptionFormService.getShippingOptionFormGroup()
+      shippingOption: this.shippingOptionFormService.getShippingOptionFormGroup(),
     });
   }
 

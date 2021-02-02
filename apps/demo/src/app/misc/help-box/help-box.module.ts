@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { HelpBoxComponent } from './help-box.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    HelpBoxComponent
+    HelpBoxComponent,
   ],
   exports: [
-    HelpBoxComponent
-  ]
+    HelpBoxComponent,
+  ],
 })
 export class HelpBoxModule { }

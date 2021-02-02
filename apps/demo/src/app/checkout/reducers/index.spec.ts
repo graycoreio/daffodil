@@ -1,8 +1,16 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 
-import * as fromCheckout from './index';
 import { SetShowShippingForm } from '../actions/shipping.actions';
+import * as fromCheckout from './index';
 
 describe('selectDemoCheckoutState', () => {
 
@@ -16,8 +24,8 @@ describe('selectDemoCheckoutState', () => {
       imports: [
         StoreModule.forRoot({
           demoCheckout: combineReducers(fromCheckout.reducers),
-        })
-      ]
+        }),
+      ],
     });
 
     stubShowShippingForm = true;
@@ -31,8 +39,8 @@ describe('selectDemoCheckoutState', () => {
 
     it('selects shipping state', () => {
       const expectedShippingState = {
-        showShippingForm: stubShowShippingForm
-      }
+        showShippingForm: stubShowShippingForm,
+      };
 
       store.pipe(select(fromCheckout.demoShippingStateSelector)).subscribe((shippingState) => {
         expect(shippingState).toEqual(expectedShippingState);
@@ -54,8 +62,8 @@ describe('selectDemoCheckoutState', () => {
     it('selects payment state', () => {
       const expectedPaymentState = {
         showPaymentView: expectedShowPaymentView,
-        showPaymentForm: expectedShowPaymentForm
-      }
+        showPaymentForm: expectedShowPaymentForm,
+      };
 
       store.pipe(select(fromCheckout.demoPaymentStateSelector)).subscribe((paymentState) => {
         expect(paymentState).toEqual(expectedPaymentState);
@@ -86,8 +94,8 @@ describe('selectDemoCheckoutState', () => {
     it('selects checkout state', () => {
       const expectedCheckoutState = {
         enablePlaceOrderButton: false,
-        showReviewView: false
-      }
+        showReviewView: false,
+      };
 
       store.pipe(select(fromCheckout.demoCheckoutStateSelector)).subscribe((checkoutState) => {
         expect(checkoutState).toEqual(expectedCheckoutState);

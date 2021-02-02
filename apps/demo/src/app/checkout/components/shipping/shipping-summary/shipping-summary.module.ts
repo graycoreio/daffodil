@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { ShippingSummaryComponent } from './shipping-summary.component';
 import { AddressSummaryModule } from '../../payment/address-summary/address-summary.module';
+import { ShippingSummaryComponent } from './shipping-summary.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    AddressSummaryModule
+    AddressSummaryModule,
   ],
   declarations: [
-    ShippingSummaryComponent
+    ShippingSummaryComponent,
   ],
   exports: [
-    ShippingSummaryComponent
-  ]
+    ShippingSummaryComponent,
+  ],
 })
 export class ShippingSummaryModule { }

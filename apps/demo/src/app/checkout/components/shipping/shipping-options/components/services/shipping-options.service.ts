@@ -5,7 +5,7 @@ import { ShippingOption } from '@daffodil/checkout';
 import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShippingOptionsService {
 
@@ -14,7 +14,7 @@ export class ShippingOptionsService {
   constructor(shippingOptionsFactory: ShippingOptionsFactory) {
     this.shippingOptions = shippingOptionsFactory.create();
   }
-  
+
   getShippingOptions(): ShippingOption[] {
     return this.shippingOptions;
   }

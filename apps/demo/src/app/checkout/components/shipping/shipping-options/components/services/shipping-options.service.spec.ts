@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShippingOptionsService } from './shipping-options.service';
 import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
+import { ShippingOptionsService } from './shipping-options.service';
 
 describe('Daffodil Demo | Checkout | Shipping | Shipping Options | ShippingOptionsService', () => {
   let shippingOptionsService: ShippingOptionsService;
@@ -11,8 +11,8 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | ShippingOptio
     TestBed.configureTestingModule({
       providers: [
         ShippingOptionsService,
-        ShippingOptionsFactory
-      ]
+        ShippingOptionsFactory,
+      ],
     });
     shippingOptionsService = TestBed.inject(ShippingOptionsService);
     shippingOptionsFactory = TestBed.inject(ShippingOptionsFactory);

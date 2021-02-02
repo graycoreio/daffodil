@@ -1,19 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DemoIndicatorComponent } from './indicator/indicator.component';
+import { NgModule } from '@angular/core';
 
 import { DaffProgressIndicatorModule } from '@daffodil/design';
+
+import { DemoIndicatorComponent } from './indicator/indicator.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffProgressIndicatorModule
+    DaffProgressIndicatorModule,
   ],
   declarations: [
-    DemoIndicatorComponent
+    DemoIndicatorComponent,
   ],
   exports: [
-    DemoIndicatorComponent
-  ]
+    DemoIndicatorComponent,
+  ],
 })
 export class DemoRoutingComponentModule { }

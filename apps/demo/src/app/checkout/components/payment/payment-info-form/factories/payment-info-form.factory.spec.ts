@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
@@ -13,9 +16,9 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
-      providers: [PaymentInfoFormFactory]
+      providers: [PaymentInfoFormFactory],
     });
 
     paymentInfoFormFactory = TestBed.inject(PaymentInfoFormFactory);
@@ -41,7 +44,7 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
           cardnumber: '',
           month: '',
           year: '',
-          securitycode: ''
+          securitycode: '',
         });
 
         result = paymentInfoFormFactory.create(paymentInfo);

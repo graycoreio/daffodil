@@ -1,13 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { ShippingSummaryComponent } from './shipping-summary.component';
-import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
 import { ShippingOptionsFactory } from '../shipping-options/components/factories/shipping-options.factory';
+import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
+import { ShippingSummaryComponent } from './shipping-summary.component';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const stubDaffodilAddress = daffodilAddressFactory.create();
@@ -18,7 +25,7 @@ const stubDaffodilAddress = daffodilAddressFactory.create();
       [selectedShippingOptionId]="selectedShippingOptionIdValue"
       [shippingAddress]="shippingAddressValue"
       (editShippingInfo)="editShippingInfoFunction()"></demo-shipping-summary>
-  `
+  `,
 })
 class WrapperComponent {
   shippingAddressValue: DaffAddress = stubDaffodilAddress;
@@ -26,7 +33,7 @@ class WrapperComponent {
   editShippingInfoFunction() {};
 }
 
-@Component({selector: 'demo-address-summary', template: ''})
+@Component({ selector: 'demo-address-summary', template: '' })
 class MockAddressSummaryComponent {
   @Input() address: DaffAddress;
 }
@@ -43,14 +50,14 @@ describe('ShippingSummaryComponent', () => {
       declarations: [
         WrapperComponent,
         ShippingSummaryComponent,
-        MockAddressSummaryComponent
+        MockAddressSummaryComponent,
       ],
       providers: [
         ShippingOptionsService,
-        ShippingOptionsFactory
-      ]
+        ShippingOptionsFactory,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

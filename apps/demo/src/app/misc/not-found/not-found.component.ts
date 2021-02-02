@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-not-found',
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss']
+  styleUrls: ['./not-found.component.scss'],
 })
-export class NotFoundComponent { 
+export class NotFoundComponent {
   NOT_FOUND_TEXT = 'this page cannot be found: 404 error';
 }

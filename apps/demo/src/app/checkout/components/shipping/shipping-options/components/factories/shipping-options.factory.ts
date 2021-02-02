@@ -3,20 +3,20 @@ import { Injectable } from '@angular/core';
 import { ShippingOption } from '@daffodil/checkout';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShippingOptionsFactory {
 
   constructor() {}
-  
-  create() : ShippingOption[] {
+
+  create(): ShippingOption[] {
     return [
       { id: '0',
         text: 'Standard' },
       { id: '1',
         text: 'Two Day' },
       { id: '2',
-        text: 'One Day' }
+        text: 'One Day' },
     ];
   }
 }

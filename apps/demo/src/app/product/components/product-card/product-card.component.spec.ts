@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductImageFactory,
+} from '@daffodil/product/testing';
 
 import { ProductCardComponent } from './product-card.component';
 
-@Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
+@Component({ template: '<demo-product-card [product]="productValue"></demo-product-card>' })
 class WrapperComponent {
   productValue: DaffProduct;
 }
@@ -26,14 +33,14 @@ describe('ProductCardComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         ProductCardComponent,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -43,7 +50,7 @@ describe('ProductCardComponent', () => {
     productFactory = TestBed.inject(DaffProductFactory);
 
     const stubProductImages = productImageFactory.createMany(5);
-    stubProduct = productFactory.create({images: stubProductImages});
+    stubProduct = productFactory.create({ images: stubProductImages });
 
     wrapper.productValue = stubProduct;
     router = TestBed.inject(Router);

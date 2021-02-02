@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DemoCartViewComponent } from './pages/cart-view/cart-view.component';
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { CartModule } from './components/cart/cart.module';
 import { DaffContainerModule } from '@daffodil/design';
+
 import { DemoCartRoutingModule } from './cart-routing.module';
+import { CartModule } from './components/cart/cart.module';
+import { DemoCartViewComponent } from './pages/cart-view/cart-view.component';
 
 @NgModule({
   imports: [
@@ -16,10 +17,10 @@ import { DemoCartRoutingModule } from './cart-routing.module';
     DemoCartRoutingModule,
   ],
   declarations: [
-    DemoCartViewComponent
+    DemoCartViewComponent,
   ],
   exports: [
-    DemoCartViewComponent
-  ]
+    DemoCartViewComponent,
+  ],
 })
 export class DemoCartModule { }

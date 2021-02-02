@@ -1,10 +1,14 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppComponent } from './app.component';
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 
-@Component({selector: 'demo-product-grid-view', template: ''})
+@Component({ selector: 'demo-product-grid-view', template: '' })
 class MockProductGridContainer {}
 
 describe('AppComponent', () => {
@@ -12,11 +16,11 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DemoRoutingComponentModule
+        DemoRoutingComponentModule,
       ],
       declarations: [
         AppComponent,
-        MockProductGridContainer
+        MockProductGridContainer,
       ],
     }).compileComponents();
   }));

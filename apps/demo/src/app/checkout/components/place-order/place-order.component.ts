@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
@@ -12,7 +18,7 @@ import * as fromDemoCheckout from '../../reducers';
 @Component({
   selector: 'demo-place-order',
   templateUrl: './place-order.component.html',
-  styleUrls: ['./place-order.component.scss']
+  styleUrls: ['./place-order.component.scss'],
 })
 export class PlaceOrderComponent implements OnInit {
 
@@ -21,8 +27,8 @@ export class PlaceOrderComponent implements OnInit {
 
   constructor(
 		private store: Store<any>,
-		private cartFacade: DaffCartFacade
-	) { }
+		private cartFacade: DaffCartFacade,
+  ) { }
 
   ngOnInit() {
     this.enablePlaceOrderButton$ = this.store.pipe(select(fromDemoCheckout.selectEnablePlaceOrderButton));

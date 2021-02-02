@@ -3,10 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const DemoDriverVariantEnum = {
-	IN_MEMORY: 0,
-	MAGENTO: 1,
-	SHOPIFY: 2
-}
+  IN_MEMORY: 0,
+  MAGENTO: 1,
+  SHOPIFY: 2,
+};
 
 export interface InMemoryEnviromentDriverConfiguration {
 	variant: typeof DemoDriverVariantEnum.IN_MEMORY;

@@ -1,4 +1,8 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
 
 export enum LogoSize {
   ICON = 0,
@@ -11,7 +15,7 @@ export enum LogoSize {
   selector: 'demo-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogoComponent{
   @Input() size: LogoSize = LogoSize.ICON;

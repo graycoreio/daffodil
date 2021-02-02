@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import {
-  DaffButtonModule
-} from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design';
 
-import { CartSidebarComponent } from './cart-sidebar.component'
+import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
 import { CartTotalsModule } from '../cart-totals/cart-totals.module';
 import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
-import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
+import { CartSidebarComponent } from './cart-sidebar.component';
 
 @NgModule({
   imports: [
@@ -16,13 +14,13 @@ import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
     CartTotalsModule,
     ProceedToCheckoutModule,
     DaffButtonModule,
-    HelpBoxModule
+    HelpBoxModule,
   ],
   declarations: [
-    CartSidebarComponent
+    CartSidebarComponent,
   ],
   exports: [
-    CartSidebarComponent
-  ]
+    CartSidebarComponent,
+  ],
 })
 export class CartSidebarModule { }

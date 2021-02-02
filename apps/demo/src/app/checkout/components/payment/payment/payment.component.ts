@@ -1,16 +1,29 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '@daffodil/checkout';
+import { DaffAddress } from '@daffodil/core';
 
+import {
+  ToggleShowPaymentForm,
+  HidePaymentForm,
+  ShowPaymentForm,
+} from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';
-import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../../actions/payment.actions';
 
 @Component({
   selector: 'demo-payment',
-  templateUrl: './payment.component.html'
+  templateUrl: './payment.component.html',
 })
 export class PaymentComponent implements OnInit {
 
@@ -23,18 +36,18 @@ export class PaymentComponent implements OnInit {
   showPaymentForm$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromDemoCheckout.State>
+    private store: Store<fromDemoCheckout.State>,
   ) { }
 
   ngOnInit() {
     if(this.paymentInfo) {
       this.store.dispatch(
-        new HidePaymentForm()
-      )
+        new HidePaymentForm(),
+      );
     } else {
       this.store.dispatch(
-        new ShowPaymentForm()
-      )
+        new ShowPaymentForm(),
+      );
     }
 
     this.showPaymentForm$ = this.store.pipe(select(fromDemoCheckout.selectShowPaymentForm));
@@ -42,7 +55,7 @@ export class PaymentComponent implements OnInit {
 
   togglePaymentView() {
     this.store.dispatch(
-      new ToggleShowPaymentForm()
+      new ToggleShowPaymentForm(),
     );
   }
 

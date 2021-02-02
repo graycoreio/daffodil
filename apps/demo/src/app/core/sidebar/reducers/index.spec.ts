@@ -1,5 +1,13 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+  select,
+} from '@ngrx/store';
 
 import * as fromSidebar from './index';
 
@@ -13,8 +21,8 @@ describe('selectDemoSidebarState', () => {
       imports: [
         StoreModule.forRoot({
           demoSidebar: combineReducers(fromSidebar.reducers),
-        })
-      ]
+        }),
+      ],
     });
 
     expectedShowSidebar = false;
@@ -25,8 +33,8 @@ describe('selectDemoSidebarState', () => {
 
     it('selects sidebar state', () => {
       const expectedSidebarState = {
-        showSidebar: expectedShowSidebar
-      }
+        showSidebar: expectedShowSidebar,
+      };
 
       store.pipe(select(fromSidebar.demoSidebarStateSelector)).subscribe((sidebarState) => {
         expect(sidebarState).toEqual(expectedSidebarState);

@@ -1,10 +1,20 @@
-import { initialState, reducer, getShowPaymentView, getShowPaymentForm } from '../reducers/payment.reducer';
-import { ShowPaymentView, ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../actions/payment.actions';
+import {
+  ShowPaymentView,
+  ShowPaymentForm,
+  ToggleShowPaymentForm,
+  HidePaymentForm,
+} from '../actions/payment.actions';
+import {
+  initialState,
+  reducer,
+  getShowPaymentView,
+  getShowPaymentForm,
+} from '../reducers/payment.reducer';
 
 describe('Checkout | Payment Reducer', () => {
-  
+
   describe('initialState', () => {
-    
+
     it('should set showPaymentView to false', () => {
       expect(initialState.showPaymentView).toBeFalse();
     });
@@ -17,7 +27,7 @@ describe('Checkout | Payment Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      const action = <any>{};
 
       const result = reducer(initialState, action);
 
@@ -31,7 +41,7 @@ describe('Checkout | Payment Reducer', () => {
 
     beforeEach(() => {
       const showPaymentViewAction = new ShowPaymentView();
-      
+
       result = reducer(initialState, showPaymentViewAction);
     });
 
@@ -46,7 +56,7 @@ describe('Checkout | Payment Reducer', () => {
 
     beforeEach(() => {
       const showPaymentFormAction = new ShowPaymentForm();
-      
+
       result = reducer(initialState, showPaymentFormAction);
     });
 
@@ -61,7 +71,7 @@ describe('Checkout | Payment Reducer', () => {
 
     beforeEach(() => {
       const hidePaymentFormAction = new HidePaymentForm();
-      
+
       result = reducer(initialState, hidePaymentFormAction);
     });
 
@@ -78,9 +88,9 @@ describe('Checkout | Payment Reducer', () => {
     beforeEach(() => {
       showPaymentFormValue = true;
       const showPaymentFormAction = new ShowPaymentForm();
-      result = reducer(initialState, showPaymentFormAction)
+      result = reducer(initialState, showPaymentFormAction);
       const togglePaymentFormAction = new ToggleShowPaymentForm();
-      
+
       result = reducer(result, togglePaymentFormAction);
     });
 
@@ -90,14 +100,14 @@ describe('Checkout | Payment Reducer', () => {
   });
 
   describe('getShowPaymentView', () => {
-    
+
     it('returns showPaymentView state', () => {
       expect(getShowPaymentView(initialState)).toEqual(initialState.showPaymentView);
     });
   });
 
   describe('getShowPaymentForm', () => {
-    
+
     it('returns showPaymentForm state', () => {
       expect(getShowPaymentForm(initialState)).toEqual(initialState.showPaymentForm);
     });

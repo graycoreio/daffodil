@@ -1,12 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffProductTestingModule, MockDaffProductGridFacade } from '@daffodil/product/testing';
-import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
+import {
+  DaffContainerModule,
+  DaffLoadingIconModule,
+} from '@daffodil/design';
+import {
+  DaffProductTestingModule,
+  MockDaffProductGridFacade,
+} from '@daffodil/product/testing';
 
-import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
+import { ProductGridViewComponent } from './product-grid-view.component';
 
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
@@ -24,7 +34,7 @@ describe('ProductGridViewComponent', () => {
         DaffLoadingIconModule,
         ProductGridModule,
         DaffProductTestingModule,
-      ]
+      ],
     })
       .compileComponents();
   }));

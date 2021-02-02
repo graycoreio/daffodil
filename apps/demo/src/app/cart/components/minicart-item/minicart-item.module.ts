@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { MiniCartItemComponent } from './minicart-item.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    MiniCartItemComponent
+    MiniCartItemComponent,
   ],
   exports: [
-    MiniCartItemComponent
-  ]
+    MiniCartItemComponent,
+  ],
 })
 export class MiniCartItemModule { }

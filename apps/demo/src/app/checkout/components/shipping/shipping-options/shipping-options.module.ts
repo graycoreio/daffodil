@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShippingOptionsComponent } from './components/shipping-options/shipping-options.component';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { ShippingOptionsComponent } from './components/shipping-options/shipping-options.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
-    ShippingOptionsComponent
+    ShippingOptionsComponent,
   ],
   exports: [
-    ShippingOptionsComponent
-  ]
+    ShippingOptionsComponent,
+  ],
 })
 export class ShippingOptionsModule { }

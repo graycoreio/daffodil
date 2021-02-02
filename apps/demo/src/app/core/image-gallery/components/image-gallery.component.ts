@@ -1,14 +1,22 @@
-import { Component, Input, ViewEncapsulation, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnInit,
+} from '@angular/core';
+import {
+  Store,
+  select,
+} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
-import * as fromDemoImageGallery from '../reducers/index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
+import * as fromDemoImageGallery from '../reducers/index';
 
 @Component({
   selector: 'demo-image-gallery-container',
   templateUrl: './image-gallery.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ImageGalleryComponent implements OnInit {
 
@@ -16,7 +24,7 @@ export class ImageGalleryComponent implements OnInit {
   selectedImage$: Observable<string>;
 
   constructor(
-    private store: Store<fromDemoImageGallery.State>
+    private store: Store<fromDemoImageGallery.State>,
   ) {}
 
   ngOnInit() {

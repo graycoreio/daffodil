@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DaffProductModule } from '@daffodil/product';
 import { DaffCartStateModule } from '@daffodil/cart/state';
 import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffProductModule } from '@daffodil/product';
 
-import { ProductComponentModule } from '../../components/product/product.module';
 import { AddToCartModule } from '../../components/add-to-cart/add-to-cart.module';
+import { ProductComponentModule } from '../../components/product/product.module';
 import { ProductViewComponent } from './product-view.component';
 
 @NgModule({
@@ -16,13 +16,13 @@ import { ProductViewComponent } from './product-view.component';
     ProductComponentModule,
     AddToCartModule,
     DaffProductModule,
-    DaffCartStateModule
+    DaffCartStateModule,
   ],
   declarations: [
-    ProductViewComponent
+    ProductViewComponent,
   ],
   exports: [
-    ProductViewComponent
-  ]
+    ProductViewComponent,
+  ],
 })
 export class ProductViewModule { }

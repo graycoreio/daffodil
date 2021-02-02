@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { DaffProductGridFacade, DaffProductGridLoad, DaffProduct } from '@daffodil/product';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { Observable } from 'rxjs';
+
+import {
+  DaffProductGridFacade,
+  DaffProductGridLoad,
+  DaffProduct,
+} from '@daffodil/product';
 
 @Component({
   selector: 'demo-product-grid-view',
-  templateUrl: './product-grid-view.component.html'
+  templateUrl: './product-grid-view.component.html',
 })
 export class ProductGridViewComponent implements OnInit {
 

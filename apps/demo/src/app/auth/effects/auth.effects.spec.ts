@@ -1,18 +1,22 @@
 import { Location } from '@angular/common';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
 
 import {
   DaffAuthLoginSuccess,
   DaffAuthToken,
 } from '@daffodil/auth';
-import {
-  DaffAuthTokenFactory
-} from '@daffodil/auth/testing';
+import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 
 import { DemoAuthEffects } from './auth.effects';
 
@@ -31,12 +35,12 @@ describe('DemoAuthEffects', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         DemoAuthEffects,
         provideMockActions(() => actions$),
-      ]
+      ],
     });
 
     effects = TestBed.inject(DemoAuthEffects);

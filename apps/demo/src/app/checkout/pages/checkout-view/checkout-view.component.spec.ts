@@ -1,26 +1,52 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewEncapsulation,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import {
+  provideMockStore,
+  MockStore,
+} from '@ngrx/store/testing';
+import {
+  Observable,
+  of,
+  BehaviorSubject,
+} from 'rxjs';
 
+import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+} from '@daffodil/cart/testing';
+import {
+  ShippingContainer,
+  PaymentInfo,
+} from '@daffodil/checkout';
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffCart } from '@daffodil/cart';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
-import { ShippingContainer, PaymentInfo } from '@daffodil/checkout';
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
   DaffContainerModule,
-  DaffLoadingIconModule
+  DaffLoadingIconModule,
 } from '@daffodil/design';
 
-import * as fromDemoCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
+import * as fromDemoCheckout from '../../reducers/index';
 import { CheckoutViewComponent } from './checkout-view.component';
 
 const daffodilAddressFactory = new DaffAddressFactory();
@@ -39,7 +65,7 @@ const stubShowPaymentView = true;
 const stubShowReviewView = true;
 const stubBillingAddressIsShippingAddress = false;
 
-@Component({selector: 'demo-shipping', template: ''})
+@Component({ selector: 'demo-shipping', template: '' })
 class MockShippingComponent {
   @Input() isShippingAddressValid: boolean;
   @Input() shippingAddress: DaffAddress;
@@ -49,7 +75,7 @@ class MockShippingComponent {
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-payment', template: ''})
+@Component({ selector: 'demo-payment', template: '' })
 class MockPaymentComponent {
   @Input() paymentInfo: PaymentInfo;
   @Input() billingAddress: DaffAddress;
@@ -59,20 +85,20 @@ class MockPaymentComponent {
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
+@Component({ selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None })
 class MockCartSummaryWrapperComponent {
   @Input() cart: DaffCart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
 }
 
-@Component({selector: 'demo-place-order', template: ''})
+@Component({ selector: 'demo-place-order', template: '' })
 class MockPlaceOrderComponent {
   @Input() cart: DaffCart;
 }
 
 // eslint-disable-next-line @angular-eslint/component-selector
-@Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
+@Component({ selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer' })
 class MockShippingContainer {
   isShippingAddressValid$: Observable<boolean> = of(stubIsShippingAddressValid);
   shippingAddress$: Observable<DaffAddress> = of(stubShippingAddress);
@@ -82,7 +108,7 @@ class MockShippingContainer {
 }
 
 // eslint-disable-next-line @angular-eslint/component-selector
-@Component({selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer'})
+@Component({ selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer' })
 class MockBillingContainer {
   paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
   billingAddress$: Observable<DaffAddress> = of(stubBillingAddress);
@@ -96,7 +122,7 @@ describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
   let shipping: MockShippingComponent;
-  let payment: MockPaymentComponent
+  let payment: MockPaymentComponent;
   let cartSummaryWrappers;
   let shippingContainer: ShippingContainer;
   let billingContainer: MockBillingContainer;
@@ -104,7 +130,7 @@ describe('CheckoutViewComponent', () => {
   let placeOrders;
   let store: MockStore<any>;
   stubCart = cartFactory.create();
-	let cartFacade: MockDaffCartFacade;
+  let cartFacade: MockDaffCartFacade;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -113,7 +139,7 @@ describe('CheckoutViewComponent', () => {
         NoopAnimationsModule,
         DaffContainerModule,
         DaffLoadingIconModule,
-        DaffCartTestingModule
+        DaffCartTestingModule,
       ],
       declarations: [
         CheckoutViewComponent,
@@ -125,10 +151,10 @@ describe('CheckoutViewComponent', () => {
         MockBillingContainer,
       ],
       providers: [
-				provideMockStore({}),
-      ]
+        provideMockStore({}),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -137,10 +163,10 @@ describe('CheckoutViewComponent', () => {
     store = TestBed.inject(MockStore);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
     store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
-		spyOn(store, 'dispatch');
-		cartFacade = TestBed.inject(MockDaffCartFacade);
-		cartFacade.cart$ = new BehaviorSubject(stubCart);
-		cartFacade.loading$ = new BehaviorSubject(false);
+    spyOn(store, 'dispatch');
+    cartFacade = TestBed.inject(MockDaffCartFacade);
+    cartFacade.cart$ = new BehaviorSubject(stubCart);
+    cartFacade.loading$ = new BehaviorSubject(false);
 
     fixture.detectChanges();
 
@@ -336,8 +362,8 @@ describe('CheckoutViewComponent', () => {
           ...stubCart,
           items: [
             ...stubCart.items,
-            cartItemFactory.create()
-          ]
+            cartItemFactory.create(),
+          ],
         });
         fixture.detectChanges();
       });

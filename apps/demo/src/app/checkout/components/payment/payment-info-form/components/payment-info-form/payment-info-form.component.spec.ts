@@ -1,6 +1,16 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  AbstractControl,
+  FormBuilder,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import {
@@ -8,17 +18,18 @@ import {
   DaffNativeSelectComponent,
   DaffInputModule,
   DaffInputComponent,
-  DaffFormFieldModule
+  DaffFormFieldModule,
 } from '@daffodil/design';
-import { PaymentInfoFormComponent } from './payment-info-form.component';
+
 import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
+import { PaymentInfoFormComponent } from './payment-info-form.component';
 
 @Component({
   template: `
     <demo-payment-info-form
       [formGroup]="formGroupValue"
       [submitted]="submittedValue"></demo-payment-info-form>
-  `
+  `,
 })
 class WrapperComponent {
   formGroupValue: FormGroup;
@@ -39,14 +50,14 @@ describe('PaymentInfoFormComponent', () => {
         ReactiveFormsModule,
         DaffNativeSelectModule,
         DaffInputModule,
-        DaffFormFieldModule
+        DaffFormFieldModule,
       ],
       declarations: [
         WrapperComponent,
-        PaymentInfoFormComponent
-      ]
+        PaymentInfoFormComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

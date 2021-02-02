@@ -1,19 +1,22 @@
-import { ImageGalleryActionTypes, ImageGalleryActions } from '../actions/image-gallery.actions';
+import {
+  ImageGalleryActionTypes,
+  ImageGalleryActions,
+} from '../actions/image-gallery.actions';
 
 export interface State {
-  selectedImage: string
+  selectedImage: string;
 }
 
 export const initialState: State = {
-  selectedImage: ''
+  selectedImage: '',
 };
 
 export function reducer(state = initialState, action: ImageGalleryActions): State {
   switch (action.type) {
-    case ImageGalleryActionTypes.SetSelectedImageStateAction: 
-      return { ...state, selectedImage: action.payload}
-    default:
-      return state;
+  case ImageGalleryActionTypes.SetSelectedImageStateAction:
+    return { ...state, selectedImage: action.payload };
+  default:
+    return state;
   }
 }
 

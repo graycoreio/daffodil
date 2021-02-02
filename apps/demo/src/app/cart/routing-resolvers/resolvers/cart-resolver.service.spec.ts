@@ -1,16 +1,30 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  StoreModule,
+  combineReducers,
+  Store,
+} from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { daffCartReducers, DaffCartReducersState }  from '@daffodil/cart/state';
+import {
+  daffCartReducers,
+  DaffCartReducersState,
+}  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
+import {
+  ResolveCart,
+  ResolveCartSuccess,
+  ResolveCartFailure,
+} from '../actions/cart-resolver.actions';
 import { CartResolver } from './cart-resolver.service';
-import { ResolveCart, ResolveCartSuccess, ResolveCartFailure } from '../actions/cart-resolver.actions';
 
 describe('CartResolver', () => {
   const actions$: Observable<any> = null;
@@ -26,12 +40,12 @@ describe('CartResolver', () => {
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
         }),
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         CartResolver,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+      ],
     });
 
     cartResolver = TestBed.inject(CartResolver);

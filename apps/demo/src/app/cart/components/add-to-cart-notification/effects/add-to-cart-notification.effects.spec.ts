@@ -1,14 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import {
+  hot,
+  cold,
+} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
-import { hot, cold } from 'jasmine-marbles';
+
 import { DaffAddToCart } from '@daffodil/cart/state';
 import { DaffModalModule } from '@daffodil/design';
 
-import { provideMockActions } from '@ngrx/effects/testing';
-import { provideMockStore } from '@ngrx/store/testing';
 
-import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
+import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 
 
 describe('AddToCartNotificationEffects', () => {
@@ -18,13 +22,13 @@ describe('AddToCartNotificationEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffModalModule
+        DaffModalModule,
       ],
       providers: [
         AddToCartNotificationEffects,
         provideMockStore(),
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+      ],
     });
 
     effects = TestBed.inject(AddToCartNotificationEffects);
@@ -37,7 +41,7 @@ describe('AddToCartNotificationEffects', () => {
   describe('addToCart$', () => {
 
     let expected;
-    const addToCartAction = new DaffAddToCart({productId: 'id', qty: 1});
+    const addToCartAction = new DaffAddToCart({ productId: 'id', qty: 1 });
 
     beforeEach(() => {
       const openAddToCartNotificationAction = new OpenAddToCartNotification();

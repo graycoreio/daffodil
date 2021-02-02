@@ -1,15 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+
+import {
+  DaffQtyDropdownModule,
+  DaffAccordionModule,
+  DaffContainerModule,
+  DaffLoadingIconModule,
+} from '@daffodil/design';
 
 import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 import { ProductComponent } from './product.component';
 
-import {
-  DaffQtyDropdownModule, 
-  DaffAccordionModule, 
-  DaffContainerModule, 
-  DaffLoadingIconModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
@@ -18,13 +20,13 @@ import {
     DaffLoadingIconModule,
     DaffQtyDropdownModule,
     DaffAccordionModule,
-    DaffContainerModule
+    DaffContainerModule,
   ],
   declarations: [
-    ProductComponent
+    ProductComponent,
   ],
   exports: [
-    ProductComponent
-  ]
+    ProductComponent,
+  ],
 })
 export class ProductComponentModule { }

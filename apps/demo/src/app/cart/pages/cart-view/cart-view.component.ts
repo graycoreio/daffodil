@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
@@ -6,7 +9,7 @@ import { DaffCartFacade } from '@daffodil/cart/state';
 
 @Component({
   templateUrl: './cart-view.component.html',
-  styleUrls: ['./cart-view.component.scss']
+  styleUrls: ['./cart-view.component.scss'],
 })
 export class DemoCartViewComponent implements OnInit {
 
@@ -16,7 +19,7 @@ export class DemoCartViewComponent implements OnInit {
 	constructor(private cartFacade: DaffCartFacade) {}
 
 	ngOnInit() {
-		this.cart$ = this.cartFacade.cart$;
-		this.loading$ = this.cartFacade.loading$;
+	  this.cart$ = this.cartFacade.cart$;
+	  this.loading$ = this.cartFacade.loading$;
 	}
 }

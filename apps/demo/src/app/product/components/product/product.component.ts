@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DaffProduct } from '@daffodil/product';
@@ -7,7 +14,7 @@ import { DaffProduct } from '@daffodil/product';
   selector: 'demo-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductComponent implements OnInit {
   @Input() product: DaffProduct;
@@ -15,7 +22,7 @@ export class ProductComponent implements OnInit {
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {

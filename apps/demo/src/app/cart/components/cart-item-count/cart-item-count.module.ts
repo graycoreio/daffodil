@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { CartItemCountComponent } from './cart-item-count.component';
 
 @NgModule({
@@ -7,10 +8,10 @@ import { CartItemCountComponent } from './cart-item-count.component';
     CommonModule,
   ],
   declarations: [
-    CartItemCountComponent
+    CartItemCountComponent,
   ],
   exports: [
-    CartItemCountComponent
-  ]
+    CartItemCountComponent,
+  ],
 })
 export class CartItemCountModule { }

@@ -1,11 +1,22 @@
-import { Component, Input, DebugElement } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Component,
+  Input,
+  DebugElement,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BehaviorSubject } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
+import { BehaviorSubject } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartComponent } from './cart.component';
@@ -17,7 +28,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-items',
-  template: ''
+  template: '',
 })
 class MockCartItemsComponent {
   @Input() cart: DaffCart;
@@ -25,7 +36,7 @@ class MockCartItemsComponent {
 
 @Component({
   selector: 'demo-cart-sidebar',
-  template: ''
+  template: '',
 })
 class MockCartSidebarComponent {
   @Input() cart: DaffCart;
@@ -34,7 +45,7 @@ class MockCartSidebarComponent {
 
 @Component({
   selector: 'demo-cart-item-count',
-  template: ''
+  template: '',
 })
 class MockCartItemCountComponent {
   @Input() itemCount: number;
@@ -43,11 +54,11 @@ class MockCartItemCountComponent {
 describe('Cart', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-	let component: CartComponent;
-	let daffCartFacade: MockDaffCartFacade;
+  let component: CartComponent;
+  let daffCartFacade: MockDaffCartFacade;
 
   let cartItemsElement: DebugElement;
-  let cartItemsComponent: MockCartItemsComponent
+  let cartItemsComponent: MockCartItemsComponent;
 
   let cartSidebarElement: DebugElement;
   let cartSidebarComponent: MockCartSidebarComponent;
@@ -61,18 +72,18 @@ describe('Cart', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCartTestingModule
+        DaffCartTestingModule,
       ],
       declarations: [
         WrapperComponent,
         MockCartItemsComponent,
         MockCartSidebarComponent,
         MockCartItemCountComponent,
-        CartComponent
+        CartComponent,
       ],
       providers: [
-				provideMockStore({}),
-      ]
+        provideMockStore({}),
+      ],
     })
       .compileComponents();
   }));
@@ -80,9 +91,9 @@ describe('Cart', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-		daffCartFacade = TestBed.inject(MockDaffCartFacade);
-		daffCartFacade.items$ = new BehaviorSubject(cart.items);
-		daffCartFacade.isCartEmpty$ = new BehaviorSubject(true);
+    daffCartFacade = TestBed.inject(MockDaffCartFacade);
+    daffCartFacade.items$ = new BehaviorSubject(cart.items);
+    daffCartFacade.isCartEmpty$ = new BehaviorSubject(true);
     wrapper.cartValue = cart;
     component = fixture.debugElement.query(By.css('demo-cart')).componentInstance;
 

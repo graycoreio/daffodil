@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffCartStateModule } from '@daffodil/cart/state';
 import { StateCheckoutModule } from '@daffodil/checkout';
 import {
   DaffAccordionModule,
   DaffLoadingIconModule,
-  DaffContainerModule
+  DaffContainerModule,
 } from '@daffodil/design';
 
-import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
-import { DemoCheckoutStateModule } from './checkout-state.module';
 import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
-import { ShippingModule } from './components/shipping/shipping/shipping.module';
+import { DemoCheckoutStateModule } from './checkout-state.module';
 import { PaymentModule } from './components/payment/payment/payment.module';
 import { PlaceOrderModule } from './components/place-order/place-order.module';
+import { ShippingModule } from './components/shipping/shipping/shipping.module';
+import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 
 @NgModule({
   imports: [
@@ -29,13 +29,13 @@ import { PlaceOrderModule } from './components/place-order/place-order.module';
     PlaceOrderModule,
 
     DaffAccordionModule,
-    DaffContainerModule
+    DaffContainerModule,
   ],
   declarations: [
-    CheckoutViewComponent
+    CheckoutViewComponent,
   ],
   exports: [
-    CheckoutViewComponent
-  ]
+    CheckoutViewComponent,
+  ],
 })
 export class CheckoutModule { }

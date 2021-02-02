@@ -1,13 +1,25 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffAddress } from '@daffodil/core';
 
-import { ShippingFormComponent } from './shipping-form.component';
-import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
+import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
+import { ShippingFormComponent } from './shipping-form.component';
 
 @Component({
   template: `
@@ -15,7 +27,7 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
       [shippingAddress]="shippingAddressValue"
       [editMode]="editModeValue"
       (submitted)="submittedFunction($event)"></demo-shipping-form>
-  `
+  `,
 
 })
 class WrapperComponent {
@@ -24,13 +36,13 @@ class WrapperComponent {
   submittedFunction(e) {};
 }
 
-@Component({selector: 'demo-address-form', template: ''})
+@Component({ selector: 'demo-address-form', template: '' })
 class MockAddressFormComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 }
 
-@Component({selector: 'demo-shipping-options', template: ''})
+@Component({ selector: 'demo-shipping-options', template: '' })
 class MockShippingOptionsComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
@@ -51,20 +63,20 @@ describe('ShippingFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
       declarations: [
         WrapperComponent,
         ShippingFormComponent,
         MockAddressFormComponent,
-        MockShippingOptionsComponent
+        MockShippingOptionsComponent,
       ],
       providers: [
-        {provide: AddressFormFactory, useValue: addressFormFactorySpy},
-        ShippingOptionFormService
-      ]
+        { provide: AddressFormFactory, useValue: addressFormFactorySpy },
+        ShippingOptionFormService,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -77,7 +89,7 @@ describe('ShippingFormComponent', () => {
       city: '',
       state: '',
       postcode: '',
-      telephone: ''
+      telephone: '',
     };
     wrapper = fixture.componentInstance;
     wrapper.editModeValue = false;
@@ -134,7 +146,7 @@ describe('ShippingFormComponent', () => {
     });
 
     it('should call addressFormFactory.create with shippingAddress', () => {
-      expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress)
+      expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress);
     });
 
     it('sets form.value.address to addressFormFactory.create()', () => {
@@ -154,7 +166,7 @@ describe('ShippingFormComponent', () => {
         const formBuilder = new FormBuilder();
         shippingFormComponent.form = formBuilder.group({
           address: formBuilder.group({}),
-          shippingOption: formBuilder.group({id: 'id'})
+          shippingOption: formBuilder.group({ id: 'id' }),
         });
         fixture.detectChanges();
 
@@ -200,7 +212,7 @@ describe('ShippingFormComponent', () => {
 
     it('should set button text to Continue to Payment', () => {
       const buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
-      expect(buttonText).toEqual('Continue to Payment')
+      expect(buttonText).toEqual('Continue to Payment');
     });
   });
 
