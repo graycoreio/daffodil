@@ -1,30 +1,33 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import {
+  DaffLogoModule,
+  DaffCopyrightModule,
+} from '@daffodil/branding';
+import {
+  DaffCalloutModule,
+  DaffListModule,
+  DaffButtonSetModule,
+  DaffButtonModule,
+  DaffContainerModule,
+  DaffInputModule,
+} from '@daffodil/design';
+
+import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
 import { DaffioSimpleFooterComponent } from './simple-footer/simple-footer.component';
 import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';
 
-import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
 
-import { 
-  DaffCalloutModule,
-  DaffListModule, 
-  DaffButtonSetModule, 
-  DaffButtonModule, 
-  DaffContainerModule,
-  DaffInputModule
-} from '@daffodil/design';
 
-import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
-
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    
+
     DaffCalloutModule,
     DaffListModule,
     DaffButtonModule,
@@ -34,15 +37,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DaffLogoModule,
     DaffCopyrightModule,
     DaffioNewsletterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
     DaffioSimpleFooterComponent,
-    DaffioSubFooterComponent
+    DaffioSubFooterComponent,
   ],
   exports: [
     DaffioSimpleFooterComponent,
-    DaffioSubFooterComponent
-  ]
+    DaffioSubFooterComponent,
+  ],
 })
 export class DaffioFooterModule {}

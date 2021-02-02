@@ -1,7 +1,10 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  TestBed,
+  async,
+  ComponentFixture,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffioAppComponent } from './app.component';
@@ -13,14 +16,14 @@ describe('DaffioAppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
+        CUSTOM_ELEMENTS_SCHEMA,
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
-        DaffioAppComponent
-      ]
+        DaffioAppComponent,
+      ],
     }).compileComponents();
   }));
 
@@ -35,6 +38,6 @@ describe('DaffioAppComponent', () => {
   }));
 
   it('should render a <router-outlet>', () => {
-    expect(fixture.debugElement.query(By.css('router-outlet'))).not.toBeNull()
+    expect(fixture.debugElement.query(By.css('router-outlet'))).not.toBeNull();
   });
 });

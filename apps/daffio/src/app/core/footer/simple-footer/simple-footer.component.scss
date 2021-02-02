@@ -1,6 +1,6 @@
 @import 'utilities';
 
-:host { 
+:host {
   display: block;
   padding: 50px 10px;
   font-size: $small-font-size;
@@ -14,7 +14,7 @@
   }
 }
 
-.simple-footer {
+.daffio-simple-footer {
   &__grid {
     display: grid;
     align-items: center;
@@ -77,7 +77,7 @@
 
   &__copyright {
     display: block;
-    
+
     text-align: center;
     margin-top: 25px;
   }

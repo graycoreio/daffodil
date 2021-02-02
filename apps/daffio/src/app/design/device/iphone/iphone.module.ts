@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { IphoneComponent } from './iphone.component';
 
 @NgModule({
   declarations: [
-    IphoneComponent
+    IphoneComponent,
   ],
   exports: [
-      IphoneComponent
+    IphoneComponent,
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
 export class IphoneModule { }

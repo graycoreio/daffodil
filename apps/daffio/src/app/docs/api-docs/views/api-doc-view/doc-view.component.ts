@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { DaffioApiDoc } from '../../models/api-doc';
 
 interface ApiDocResolverData {
-  doc: DaffioApiDoc
+  doc: DaffioApiDoc;
 }
 
 @Component({
-  templateUrl: './doc-view.component.html'
+  templateUrl: './doc-view.component.html',
 })
 export class DaffioApiDocViewComponent implements OnInit {
 

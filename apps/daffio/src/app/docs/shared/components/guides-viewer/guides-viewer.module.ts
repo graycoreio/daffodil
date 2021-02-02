@@ -1,21 +1,26 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffioGuidesViewerComponent } from './guides-viewer.component';
-import { DaffListModule, DaffLinkSetModule } from '@daffodil/design'
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import {
+  DaffListModule,
+  DaffLinkSetModule,
+} from '@daffodil/design';
+
+import { DaffioGuidesViewerComponent } from './guides-viewer.component';
 
 
 @NgModule({
   declarations: [
-    DaffioGuidesViewerComponent
+    DaffioGuidesViewerComponent,
   ],
   exports: [
-    DaffioGuidesViewerComponent
+    DaffioGuidesViewerComponent,
   ],
   imports: [
     CommonModule,
     DaffLinkSetModule,
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class DaffioGuidesViewerModule { }

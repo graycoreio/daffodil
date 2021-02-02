@@ -1,33 +1,36 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-
+import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffioDocViewComponent } from './doc-view.component';
-import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.module';
 import { DaffioDocFactory } from '../../../testing/factories/doc.factory';
-import { DaffioDoc } from '../../models/doc';
-import { cold } from 'jasmine-marbles';
-import { By } from '@angular/platform-browser';
 import { DaffioDocViewerComponent } from '../../components/doc-viewer/doc-viewer.component';
+import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.module';
+import { DaffioDoc } from '../../models/doc';
+import { DaffioDocViewComponent } from './doc-view.component';
 
 describe('DaffioDocViewComponent', () => {
   let component: DaffioDocViewComponent;
   let fixture: ComponentFixture<DaffioDocViewComponent>;
   const doc: DaffioDoc = new DaffioDocFactory().create();
   const stubActivatedRoute = {
-    data: new BehaviorSubject({})
+    data: new BehaviorSubject({}),
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DaffioDocViewComponent],
       imports: [
-        DaffioDocViewerModule
+        DaffioDocViewerModule,
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: stubActivatedRoute }
-      ]
+        { provide: ActivatedRoute, useValue: stubActivatedRoute },
+      ],
     })
       .compileComponents();
   }));
@@ -35,7 +38,7 @@ describe('DaffioDocViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioDocViewComponent);
     component = fixture.componentInstance;
-    stubActivatedRoute.data.next({ doc: doc });
+    stubActivatedRoute.data.next({ doc });
     fixture.detectChanges();
   });
 

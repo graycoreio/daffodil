@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+}  from '@angular/router';
+
 import { DaffioPwaComponent } from './pages/pwa/pwa.component';
 
 const pwa: Routes = [
-  { 
+  {
     path: '',
-    pathMatch: 'full', 
-    component: DaffioPwaComponent
-  }
+    pathMatch: 'full',
+    component: DaffioPwaComponent,
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(pwa)
+    RouterModule.forChild(pwa),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class DaffioPwaRoutingModule {}

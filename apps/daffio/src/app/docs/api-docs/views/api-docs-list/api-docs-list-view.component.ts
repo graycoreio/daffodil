@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DaffioApiDocReference } from '../../models/api-doc-reference';
-import { map } from 'rxjs/operators';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { DaffioApiDocReference } from '../../models/api-doc-reference';
 
 @Component({
-  templateUrl: './api-docs-list-view.component.html'
+  templateUrl: './api-docs-list-view.component.html',
 })
 export class DaffioApiDocsListViewComponent implements OnInit {
   /**
@@ -17,7 +21,7 @@ export class DaffioApiDocsListViewComponent implements OnInit {
 
   ngOnInit() {
     this.docsList$ = this.route.data.pipe(
-      map((data: { reference: DaffioApiDocReference[] }) => data.reference)
+      map((data: { reference: DaffioApiDocReference[] }) => data.reference),
     );
   }
 }

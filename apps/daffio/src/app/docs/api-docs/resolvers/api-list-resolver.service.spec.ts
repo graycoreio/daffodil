@@ -1,13 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-
-import { DaffioApiListResolver } from './api-list-resolver.service';
-import { Observable, of, throwError } from 'rxjs';
-import { DaffioApiDocReference } from '../models/api-doc-reference';
-import { DaffioApiDocServiceInterface } from '../services/api-doc-service.interface';
-import { cold } from 'jasmine-marbles';
-import { DaffioApiDocService } from '../services/api-doc.service';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { cold } from 'jasmine-marbles';
+import {
+  Observable,
+  of,
+  throwError,
+} from 'rxjs';
+
+import { DaffioApiDocReference } from '../models/api-doc-reference';
+import { DaffioApiDocServiceInterface } from '../services/api-doc-service.interface';
+import { DaffioApiDocService } from '../services/api-doc.service';
+import { DaffioApiListResolver } from './api-list-resolver.service';
+
 
 describe('DaffioApiListResolver', () => {
   let resolver: DaffioApiListResolver;
@@ -15,19 +20,17 @@ describe('DaffioApiListResolver', () => {
   let router: Router;
 
   const stubApiDocService: DaffioApiDocServiceInterface = {
-    list(): Observable<DaffioApiDocReference[]> {
-      return of([]);
-    }
-  }
+    list: (): Observable<DaffioApiDocReference[]> => of([]),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
-        { provide: DaffioApiDocService, useValue: stubApiDocService }
-      ]
+        { provide: DaffioApiDocService, useValue: stubApiDocService },
+      ],
     });
 
     router = TestBed.inject(Router);
@@ -41,7 +44,7 @@ describe('DaffioApiListResolver', () => {
   });
 
   it('should complete with a doc', () => {
-    const expected = cold('(a|)', { a: [] });
+    const expected = cold('(a|)', { a: []});
     expect(resolver.resolve()).toBeObservable(expected);
   });
 

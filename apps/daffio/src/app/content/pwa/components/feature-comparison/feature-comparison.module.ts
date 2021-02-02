@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { DaffioFeatureComparisonComponent } from './feature-comparison.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
-    DaffioFeatureComparisonComponent
+    DaffioFeatureComparisonComponent,
   ],
   exports: [
-    DaffioFeatureComparisonComponent
-  ]
+    DaffioFeatureComparisonComponent,
+  ],
 })
 export class DaffioFeatureComparisonModule {}

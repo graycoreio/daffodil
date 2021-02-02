@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DaffioApiDocComponent } from './api-doc.component';
 import { DaffioDocViewerModule } from '../../../shared/components/doc-viewer/doc-viewer.module';
+import { DaffioApiDocComponent } from './api-doc.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffioDocViewerModule
+    DaffioDocViewerModule,
   ],
   declarations: [
-    DaffioApiDocComponent
+    DaffioApiDocComponent,
   ],
   exports: [
-    DaffioApiDocComponent
-  ]
+    DaffioApiDocComponent,
+  ],
 })
 export class DaffioApiDocModule {}

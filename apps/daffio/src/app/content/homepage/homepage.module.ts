@@ -1,12 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { TemplateModule } from '../../core/template/template.module';
-
-import { DaffioHomepageComponent } from './component/homepage.component';
-import { DaffioHomepageRoutingModule } from './homepage-routing.module';
+import { RouterModule } from '@angular/router';
 
 import {
   DaffHeroModule,
@@ -16,17 +11,20 @@ import {
   DaffListModule,
   DaffContainerModule,
   DaffAccordionModule,
-  DaffFeatureModule
+  DaffFeatureModule,
 } from '@daffodil/design';
 
+import { TemplateModule } from '../../core/template/template.module';
 import { IphoneModule } from '../../design/device/iphone/iphone.module';
+import { DaffioHomepageComponent } from './component/homepage.component';
+import { DaffioHomepageRoutingModule } from './homepage-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    
+
     TemplateModule,
     IphoneModule,
 
@@ -39,13 +37,13 @@ import { IphoneModule } from '../../design/device/iphone/iphone.module';
     DaffListModule,
     DaffContainerModule,
     DaffAccordionModule,
-    DaffFeatureModule
+    DaffFeatureModule,
   ],
   declarations: [
-    DaffioHomepageComponent
+    DaffioHomepageComponent,
   ],
   exports: [
-    DaffioHomepageComponent
-  ]
+    DaffioHomepageComponent,
+  ],
 })
 export class DaffioHomepageModule { }

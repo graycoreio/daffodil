@@ -3,9 +3,9 @@
     $secondary: map-get($theme, secondary);
     $tertiary: map-get($theme, tertiary);
     $base: daff-map-deep-get($theme, "core.base");
-    
- 
-    .sub-footer {
+
+
+    .daffio-sub-footer {
         background: linear-gradient(to bottom right, daff-color($secondary), daff-color($secondary, 30));
         color: daff-text-contrast(daff-color($secondary));
 

@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-
+import { Actions } from '@ngrx/effects';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { ROUTER_NAVIGATION } from '@ngrx/router-store';
+import { Action } from '@ngrx/store';
+import {
+  hot,
+  cold,
+  getTestScheduler,
+} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import { Action } from '@ngrx/store';
-import { ROUTER_NAVIGATION } from '@ngrx/router-store';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { Actions } from '@ngrx/effects';
-
-import { hot, cold, getTestScheduler } from 'jasmine-marbles';
-
-import { DaffioSidebarEffects } from './sidebar.effects';
 import * as SidebarActions from '../actions/sidebar.actions';
+import { DaffioSidebarEffects } from './sidebar.effects';
 
 describe('Daffio | DaffioSidebarEffects', () => {
   let effects: DaffioSidebarEffects;
@@ -20,8 +21,8 @@ describe('Daffio | DaffioSidebarEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffioSidebarEffects,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+      ],
     });
 
     effects = TestBed.inject(DaffioSidebarEffects);
@@ -32,16 +33,15 @@ describe('Daffio | DaffioSidebarEffects', () => {
   });
 
   describe('when a ROUTER_NAVIGATION occurs', () => {
-    const action: Action = { type: ROUTER_NAVIGATION};
+    const action: Action = { type: ROUTER_NAVIGATION };
     const completion = new SidebarActions.CloseSidebar();
 
     it('should dispatch CloseSidebar with some delay', () => {
-        let expected;
+      const expected = cold('---b', { b: completion });
 
-        actions$ = hot( '--a', { a: action });
-        expected = cold('---b', { b: completion });
+      actions$ = hot( '--a', { a: action });
 
-        expect(effects.closeOnPageChange$(10, getTestScheduler())).toBeObservable(expected);
+      expect(effects.closeOnPageChange$(10, getTestScheduler())).toBeObservable(expected);
     });
   });
 });

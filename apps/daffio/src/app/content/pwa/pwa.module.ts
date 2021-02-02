@@ -1,12 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { TemplateModule } from '../../core/template/template.module';
-
-import { DaffioPwaComponent } from './pages/pwa/pwa.component';
-import { DaffioPwaRoutingModule } from './pwa-routing.module';
+import { RouterModule } from '@angular/router';
 
 import {
   DaffContainerModule,
@@ -14,17 +9,20 @@ import {
   DaffFeatureModule,
   DaffCalloutModule,
   DaffListModule,
-  DaffCardModule
+  DaffCardModule,
 } from '@daffodil/design';
 
+import { TemplateModule } from '../../core/template/template.module';
 import { DaffioFeatureComparisonModule } from './components/feature-comparison/feature-comparison.module';
+import { DaffioPwaComponent } from './pages/pwa/pwa.component';
+import { DaffioPwaRoutingModule } from './pwa-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    
+
     TemplateModule,
     DaffioFeatureComparisonModule,
 
@@ -35,13 +33,13 @@ import { DaffioFeatureComparisonModule } from './components/feature-comparison/f
     DaffFeatureModule,
     DaffCalloutModule,
     DaffListModule,
-    DaffCardModule
+    DaffCardModule,
   ],
   declarations: [
-    DaffioPwaComponent
+    DaffioPwaComponent,
   ],
   exports: [
-    DaffioPwaComponent
-  ]
+    DaffioPwaComponent,
+  ],
 })
 export class DaffioPwaModule { }
