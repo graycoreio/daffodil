@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "ng build paypal --prod",
-    "lint": "ng lint paypal",
+    "lint": "cd ../.. && ng lint paypal",
     "test": "ng test paypal --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/paypal; npm publish --access=public)"
   },

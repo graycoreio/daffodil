@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ng build external-router --prod",
-    "lint": "ng lint external-router",
+    "lint": "cd ../.. && ng lint external-router",
     "test": "ng test external-router --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",

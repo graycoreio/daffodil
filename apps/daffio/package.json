@@ -15,7 +15,7 @@
     "build:serverless:compile": "webpack-cli --config serverless/webpack.serverless.config.js",
     "build:serverless:vercel": "cp -r ./serverless/vercel/. ../../dist/apps/daffio/",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
-    "lint": "ng lint daffio",
+    "lint": "cd ../.. && ng lint daffio",
     "dev:ssr": "ng run daffio:serve-ssr",
     "serve:ssr": "node ../../dist/apps/daffio/server/main.js"
   },

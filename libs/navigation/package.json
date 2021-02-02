@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "ng build navigation --prod",
-    "lint": "ng lint navigation",
+    "lint": "cd ../.. && ng lint navigation",
     "test": "ng test navigation --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/navigation; npm publish --access=public)"
   },

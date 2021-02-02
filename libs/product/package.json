@@ -17,7 +17,7 @@
   "scripts": {
     "build": "ng build product --prod && npm run build:assets",
     "build:assets": "cp -R assets/ ../../dist/product/assets/",
-    "lint": "ng lint product",
+    "lint": "cd ../.. && ng lint product",
     "test": "ng test product --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/product; npm publish --access=public)"
   },

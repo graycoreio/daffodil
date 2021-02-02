@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "ng build category --prod",
-    "lint": "ng lint category",
+    "lint": "cd ../.. && ng lint category",
     "test": "ng test category --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/category; npm publish --access=public)"
   },

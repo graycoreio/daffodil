@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ng build core --prod",
-    "lint": "ng lint core",
+    "lint": "cd ../.. && ng lint core",
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
     "reportcoverage":
       "(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.core.json ../../coverage/libs/core/lcov.info)",

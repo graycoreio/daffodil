@@ -10,7 +10,7 @@
   "homepage": "https://github.com/graycoreio/daffodil",
   "scripts": {
     "build": "ng build contact --prod",
-    "lint": "ng lint contact",
+    "lint": "cd ../.. && ng lint contact",
     "test": "ng test contact --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/contact; npm publish --access=public)"
   },

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "ng build demo --prod",
-    "lint": "ng lint demo && npm run lint:scss",
+    "lint": "npm run lint:scss && cd ../.. && ng lint demo",
     "lint:scss": "stylelint **/*.scss",
     "test": "ng test demo --watch=false --browsers=ChromeHeadless"
   },

@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "ng build newsletter --prod",
-    "lint": "ng lint newsletter",
+    "lint": "cd ../.. && ng lint newsletter",
     "test": "ng test newsletter --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/newsletter; npm publish --access=public)"
   }

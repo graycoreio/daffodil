@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ng build order --prod",
-    "lint": "ng lint order",
+    "lint": "cd ../.. && ng lint order",
     "test": "ng test order --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/order; npm publish --access=public)"
   },

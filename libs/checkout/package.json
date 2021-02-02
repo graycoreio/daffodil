@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ng build checkout --prod",
-    "lint": "ng lint checkout",
+    "lint": "cd ../.. && ng lint checkout",
     "test": "ng test checkout --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/checkout; npm publish --access=public)"
   },
