@@ -29,7 +29,7 @@
 	}
 
 	&__title {
-		@include heading-xs();
+		@include headline-sm();
 		margin-bottom: 8px;
 	}
 }

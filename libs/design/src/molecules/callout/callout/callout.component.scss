@@ -10,7 +10,7 @@
 	}
 
 	&__title {
-		@include heading-lg();
+		@include headline-lg();
 		margin: 0;
 		max-width: 1040px;
 		width: 100%;
