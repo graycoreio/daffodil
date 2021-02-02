@@ -65,3 +65,9 @@
 	line-height: 1rem;
 	letter-spacing: 1px;
 }
+
+@mixin caption() {
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: normal;
+}
