@@ -128,7 +128,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
 			}
 		}
 
-    return reqInfo.collection[0];
+    return reqInfo.collection[cartIndex];
   }
 
   private deleteItem(reqInfo: RequestInfo, itemId: DaffCartItem['item_id']): DaffCart {
