@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "ng build design",
-    "lint": "ng lint design && npm run lint:scss",
+    "lint": "npm run lint:scss && cd ../.. && ng lint design",
     "lint:scss": "stylelint **/*.scss",
     "postbuild": "npm run postbuild:scss:util && npm run postbuild:scss:theme && npm run postbuild:scss:typography && npm run postbuild:scss:global",
     "postbuild:scss:util": "scss-bundle -c build/util.json",
