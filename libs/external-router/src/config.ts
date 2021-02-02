@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 const daffExternalRouterConfigurationDefault: DaffExternalRouterConfiguration = {
-	failedResolutionPath: '/',
+  failedResolutionPath: '/',
 };
 
 /**
@@ -11,8 +11,8 @@ const daffExternalRouterConfigurationDefault: DaffExternalRouterConfiguration = 
 export const DAFF_EXTERNAL_ROUTER_CONFIG = new InjectionToken<
 	DaffExternalRouterConfiguration
 >('DAFF_EXTERNAL_ROUTER_CONFIG', {
-	providedIn: 'root',
-	factory: () => daffExternalRouterConfigurationDefault,
+  providedIn: 'root',
+  factory: () => daffExternalRouterConfigurationDefault,
 });
 
 /**

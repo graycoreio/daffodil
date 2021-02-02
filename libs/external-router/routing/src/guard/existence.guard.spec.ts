@@ -1,96 +1,96 @@
 import { TestBed } from '@angular/core/testing';
+import {
+  RouterStateSnapshot,
+  ActivatedRouteSnapshot,
+  Router,
+  PRIMARY_OUTLET,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
-	DAFF_EXTERNAL_ROUTER_CONFIG,
-	provideRouteResolvableByType,
+  DAFF_EXTERNAL_ROUTER_CONFIG,
+  provideRouteResolvableByType,
 } from '@daffodil/external-router';
 import { DaffExternalRouterDriverTestingModule } from '@daffodil/external-router/driver/testing';
 
 import { DaffExternalRouterExistenceGuard } from './existence.guard';
-import {
-	RouterStateSnapshot,
-	ActivatedRouteSnapshot,
-	Router,
-	PRIMARY_OUTLET,
-} from '@angular/router';
-import { TestScheduler } from 'rxjs/testing';
 
 describe('@daffodil/external-router/routing | DaffExternalRouterTestingDriver', () => {
-	let guard: DaffExternalRouterExistenceGuard;
-	let scheduler: TestScheduler;
-	let router: Router;
-	const stubFailedRoutePath = '/error-path';
+  let guard: DaffExternalRouterExistenceGuard;
+  let scheduler: TestScheduler;
+  let router: Router;
+  const stubFailedRoutePath = '/error-path';
 
-	const STUB_RESOLVABLE_TYPE = 'A_RESOLVABLE_TYPE';
+  const STUB_RESOLVABLE_TYPE = 'A_RESOLVABLE_TYPE';
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			imports: [
-				RouterTestingModule.withRoutes([{ path: '**', redirectTo: '/' }]),
-				DaffExternalRouterDriverTestingModule.forRoot({
-					'some-resolved/path/with/file-endings.html': STUB_RESOLVABLE_TYPE,
-				}),
-			],
-			providers: [
-				provideRouteResolvableByType(STUB_RESOLVABLE_TYPE, { redirectTo: '/' }),
-				{
-					provide: DAFF_EXTERNAL_ROUTER_CONFIG,
-					useValue: {
-						failedResolutionPath: stubFailedRoutePath,
-					},
-				},
-			],
-		});
-		router = TestBed.inject<Router>(Router);
-		guard = TestBed.inject<DaffExternalRouterExistenceGuard>(DaffExternalRouterExistenceGuard);
-	});
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([{ path: '**', redirectTo: '/' }]),
+        DaffExternalRouterDriverTestingModule.forRoot({
+          'some-resolved/path/with/file-endings.html': STUB_RESOLVABLE_TYPE,
+        }),
+      ],
+      providers: [
+        provideRouteResolvableByType(STUB_RESOLVABLE_TYPE, { redirectTo: '/' }),
+        {
+          provide: DAFF_EXTERNAL_ROUTER_CONFIG,
+          useValue: {
+            failedResolutionPath: stubFailedRoutePath,
+          },
+        },
+      ],
+    });
+    router = TestBed.inject<Router>(Router);
+    guard = TestBed.inject<DaffExternalRouterExistenceGuard>(DaffExternalRouterExistenceGuard);
+  });
 
-	it('should be created', () => {
-		expect(guard).toBeTruthy();
-	});
+  it('should be created', () => {
+    expect(guard).toBeTruthy();
+  });
 
-	it('should return a UrlTree to the configured failedResolutionPath if resolution fails', () => {
-		scheduler = new TestScheduler((actual, expected) => {
-			expect(actual).toEqual(expected);
-		});
+  it('should return a UrlTree to the configured failedResolutionPath if resolution fails', () => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
 
-		const errorTree = router.parseUrl(stubFailedRoutePath);
+    const errorTree = router.parseUrl(stubFailedRoutePath);
 
-		scheduler.run(helpers => {
-			const { expectObservable } = helpers;
-			const expected = '(a|)';
+    scheduler.run(helpers => {
+      const { expectObservable } = helpers;
+      const expected = '(a|)';
 
-			expectObservable(
-				guard.canActivate(
-					{ url: [{ path: 'some-path' }] } as ActivatedRouteSnapshot,
-					{ url: 'test' } as RouterStateSnapshot,
-				),
-			).toBe(expected, { a: errorTree });
-		});
-	});
+      expectObservable(
+        guard.canActivate(
+					<ActivatedRouteSnapshot>{ url: [{ path: 'some-path' }]},
+					<RouterStateSnapshot>{ url: 'test' },
+        ),
+      ).toBe(expected, { a: errorTree });
+    });
+  });
 
-	it('should return a UrlTree to the route (with fragments and queryStrings) if a known type is resolved for the route', () => {
-		scheduler = new TestScheduler((actual, expected) => {
-			expect(actual).toEqual(expected);
-		});
+  it('should return a UrlTree to the route (with fragments and queryStrings) if a known type is resolved for the route', () => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
 
-		const url =
+    const url =
 			'/some-resolved/path/with/file-endings.html?query=1&two=2#fragment';
-		const urlTree = router.parseUrl(url);
+    const urlTree = router.parseUrl(url);
 
-		scheduler.run(helpers => {
-			const { expectObservable } = helpers;
-			const expected = '(a|)';
+    scheduler.run(helpers => {
+      const { expectObservable } = helpers;
+      const expected = '(a|)';
 
-			expectObservable(
-				guard.canActivate(
-					{
-						url: urlTree.root.children[PRIMARY_OUTLET].segments,
-					} as ActivatedRouteSnapshot,
-					{ url: url } as RouterStateSnapshot,
-				),
-			).toBe(expected, { a: urlTree });
-		});
-	});
+      expectObservable(
+        guard.canActivate(
+					<ActivatedRouteSnapshot>{
+					  url: urlTree.root.children[PRIMARY_OUTLET].segments,
+					},
+					<RouterStateSnapshot>{ url },
+        ),
+      ).toBe(expected, { a: urlTree });
+    });
+  });
 });

@@ -5,13 +5,11 @@
 export { DaffExternalRouterModule } from './external-router.module';
 
 export {
-	DAFF_EXTERNAL_ROUTER_CONFIG,
-	DaffExternalRouterConfiguration,
+  DAFF_EXTERNAL_ROUTER_CONFIG,
+  DaffExternalRouterConfiguration,
 } from './config';
 
-export {
-	provideRouteResolvableByType,
-} from './token/type-resolvable-routes.token';
+export { provideRouteResolvableByType } from './token/type-resolvable-routes.token';
 
 export { DaffExternalRouteType } from './model/route-type';
 export { DaffExternallyResolvableUrl } from './model/resolvable-route';
