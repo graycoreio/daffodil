@@ -106,8 +106,12 @@ describe('DaffHeroComponent', () => {
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
+    it('should set the default color to `theme`', () => {
+      wrapper.color = 'theme';
+      fixture.detectChanges();
+      
+      expect(wrapper.color).toEqual('theme')
+      expect(de.nativeElement.classList.contains('daff-theme')).toEqual(true);
     });
   });
 });
