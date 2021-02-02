@@ -34,7 +34,7 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
 
   post(reqInfo: any) {
 		const collectionName = reqInfo.collectionName;
-    if (collectionName.includes('cart')) {
+    if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
       return this.cartTestingService.post(reqInfo);
     } else if (collectionName === 'checkout') {
       return this.checkoutTestingService.post(reqInfo);
@@ -51,21 +51,21 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
       return this.productTestingService.get(reqInfo);
     } else if (collectionName === 'navigation') {
       return this.navigationTestingService.get(reqInfo);
-    } else if (collectionName === 'cart') {
+    } else if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
 			return this.cartTestingService.get(reqInfo);
 		}
 	}
 	
 	put(reqInfo: any) {
 		const collectionName = reqInfo.collectionName;
-		if(collectionName === 'cart-items') {
+		if(DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
 			return this.cartTestingService.put(reqInfo);
 		}
 	}
 	
 	delete(reqInfo: any) {
 		const collectionName = reqInfo.collectionName;
-		if(collectionName === 'cart-items') {
+		if(DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
 			return this.cartTestingService.delete(reqInfo);
 		}
 	}

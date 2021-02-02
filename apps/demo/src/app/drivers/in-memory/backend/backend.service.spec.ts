@@ -32,7 +32,7 @@ describe('Driver | In Memory | InMemoryService', () => {
   });
 
   describe('post', () => {
-    describe('when collectionName includes "cart"', () => {
+    describe('when collectionName is a DaffInMemoryBackendCartRootService collection name', () => {
       let reqInfo;
       let result;
       let returnedValue;
@@ -43,7 +43,7 @@ describe('Driver | In Memory | InMemoryService', () => {
           returnedValue
         );
         reqInfo = {
-          collectionName: 'cart-item'
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
         };
 
         result = service.post(reqInfo);
@@ -119,7 +119,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
     });
 
-    describe('when collectionName is cart', () => {
+    describe('when collectionName is a DaffInMemoryBackendCartRootService collection name', () => {
 
       let reqInfo;
       let result;
@@ -129,7 +129,7 @@ describe('Driver | In Memory | InMemoryService', () => {
         returnedValue = 'returnedValue';
         spyOn(service.cartTestingService, 'get').and.returnValue(returnedValue);
         reqInfo = {
-          collectionName: 'cart'
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
         }
 
         result = service.get(reqInfo);
@@ -153,7 +153,7 @@ describe('Driver | In Memory | InMemoryService', () => {
   });
 
   describe('put', () => {
-    describe('when collectionName is cart-items', () => {
+    describe('when collectionName is a DaffInMemoryBackendCartRootService collection name', () => {
       let reqInfo;
       let result;
       let returnedValue;
@@ -164,7 +164,7 @@ describe('Driver | In Memory | InMemoryService', () => {
           returnedValue
         );
         reqInfo = {
-          collectionName: 'cart-items'
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
         };
 
         result = service.put(reqInfo);
@@ -189,7 +189,7 @@ describe('Driver | In Memory | InMemoryService', () => {
   });
 
   describe('delete', () => {
-    describe('when collectionName is cart-items', () => {
+    describe('when collectionName is a DaffInMemoryBackendCartRootService collection name', () => {
       let reqInfo;
       let result;
       let returnedValue;
@@ -200,7 +200,7 @@ describe('Driver | In Memory | InMemoryService', () => {
           returnedValue
         );
         reqInfo = {
-          collectionName: 'cart-items'
+          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0]
         };
 
         result = service.delete(reqInfo);
