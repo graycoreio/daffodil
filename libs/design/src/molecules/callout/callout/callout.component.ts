@@ -21,7 +21,7 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
+const _daffCalloutBase = daffColorMixin(DaffCalloutBase, 'theme')
 
  @Component({
   selector: 'daff-callout',
