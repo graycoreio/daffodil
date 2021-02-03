@@ -1,13 +1,8 @@
-import {addTypenameToDocument} from '@apollo/client/utilities';
-import {InMemoryCache} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
-  APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
-
-import { schema } from '@daffodil/driver/magento';
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 import {
@@ -15,18 +10,16 @@ import {
 } from '@daffodil/navigation/driver';
 import {
   DaffMagentoNavigationTransformerService,
-  MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-  daffMagentoGetCategoryTree
 } from '@daffodil/navigation/driver/magento';
 
 import { DaffMagentoNavigationService } from './navigation.service';
+import { DaffMagentoGetCategoryTreeQueryService } from './queries/get-category-tree';
 
 describe('Driver | Magento | Navigation | NavigationService', () => {
   let navigationService: DaffMagentoNavigationService;
   let navigationTreeFactory: DaffNavigationTreeFactory;
-  let controller: ApolloTestingController;
-
-  const queryDepth = 1;
+	let controller: ApolloTestingController;
+	let queryService: DaffMagentoGetCategoryTreeQueryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,22 +28,13 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
       ],
       providers: [
         DaffMagentoNavigationService,
-        { provide: DaffNavigationTransformer, useExisting: DaffMagentoNavigationTransformerService },
-        {
-          provide: MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-          useValue: queryDepth
-        },
-        {
-					provide: APOLLO_TESTING_CACHE,
-					useValue: new InMemoryCache({
-						addTypename: true,
-						possibleTypes: schema.possibleTypes,
-					}),
-				}
+				{ provide: DaffNavigationTransformer, useExisting: DaffMagentoNavigationTransformerService },
+				DaffMagentoGetCategoryTreeQueryService
       ]
     });
 
-    controller = TestBed.inject(ApolloTestingController);
+		controller = TestBed.inject(ApolloTestingController);
+		queryService = TestBed.inject(DaffMagentoGetCategoryTreeQueryService);
 
     navigationService = TestBed.inject(DaffMagentoNavigationService);
     navigationTreeFactory = TestBed.inject(DaffNavigationTreeFactory);
@@ -72,7 +56,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(daffMagentoGetCategoryTree(queryDepth)));
+      const op = controller.expectOne(queryService.document);
 
       expect(op.operation.variables.filters).toEqual({ ids: { eq: navigation.id}});
 
