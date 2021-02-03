@@ -1,4 +1,4 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 /**
  * A multi-provider injection token of the operation names of apollo queries that should 
