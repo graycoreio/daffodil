@@ -63,7 +63,6 @@ export class DaffQueuedApollo {
 
     // process queue
     this.queue.shift();
-    // TODO: optional chaining
-    if (this.queue[0]) this.queue[0]();
+    this.queue[0]?.();
   }
 }

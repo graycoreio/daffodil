@@ -236,8 +236,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     (orders, props) => {
       const discountTotal = selectOrderDiscountTotal.projector(orders, { id: props.id });
 
-			//todo: use optional chaining when possible
-      return !!discountTotal && discountTotal.value > 0;
+      return discountTotal?.value > 0;
     }
   );
   const selectOrderTaxTotal = createSelector(
