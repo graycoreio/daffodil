@@ -59,7 +59,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
     it('should throw a daffodil error when it receives an error', (done) => {
 			cartService.get(cartId).pipe(
 				catchError((error) => {
-					expect(error).toEqual(DaffCartNotFoundError);
+					expect(error).toEqual(new DaffCartNotFoundError(error.message));
 					done();
 					return of(null);
 				})

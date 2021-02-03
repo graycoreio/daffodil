@@ -85,40 +85,61 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
   }
 
   private updateItem(reqInfo: RequestInfo, itemId: DaffCartItem['item_id']): DaffCart {
-    const cart = this.getCart(reqInfo);
-    const item = reqInfo.utils.getJsonBody(reqInfo.req);
-    const itemIndex = cart.items.findIndex(({item_id}) => itemId === item_id)
+		const cart = this.getCart(reqInfo);
+		const cartIndex = reqInfo.collection.findIndex(c => c.id === reqInfo.id);
+		const itemChanges = reqInfo.utils.getJsonBody(reqInfo.req);
+		const itemIndex = cart.items.findIndex((item) => itemId === item.item_id);
+		reqInfo.collection[cartIndex] = {
+			...cart,
+			items: cart.items.map(
+				(item, index) => index === itemIndex ? {
+					...cart.items[itemIndex],
+					...itemChanges
+				} : item
+			)
+		}
 
-    cart.items[itemIndex] = {
-      ...cart.items[itemIndex],
-      ...item
-    };
-		cart.items = Object.assign([], cart.items);
-
-    return cart
+    return reqInfo.collection[cartIndex]
   }
 
   private addItem(reqInfo: RequestInfo): DaffCart {
-    const cart = this.getCart(reqInfo);
+		const cart = this.getCart(reqInfo);
+		const cartIndex = reqInfo.collection.findIndex(c => c.id === reqInfo.id);
 		const itemInput = reqInfo.utils.getJsonBody(reqInfo.req);
 		const existingCartItemIndex = cart.items.findIndex(item => item.product_id === itemInput.productId);
 		if(existingCartItemIndex > -1) {
-			cart.items[existingCartItemIndex].qty = cart.items[existingCartItemIndex].qty + itemInput.qty;
+			const updatedCartItem = {
+				...cart.items[existingCartItemIndex],
+				qty: cart.items[existingCartItemIndex].qty + itemInput.qty
+			}
+			reqInfo.collection[cartIndex] = {
+				...cart,
+				items: cart.items.map(
+					(item, index) => index === existingCartItemIndex ? updatedCartItem : item
+				)
+			}
 		} else {
-			cart.items.push(this.transformItemInput(itemInput));
+			reqInfo.collection[cartIndex] = {
+				...cart,
+				items: [
+					...cart.items,
+					this.transformItemInput(itemInput)
+				]
+			}
 		}
-		cart.items = Object.assign([], cart.items);
 
-    return cart;
+    return reqInfo.collection[cartIndex];
   }
 
   private deleteItem(reqInfo: RequestInfo, itemId: DaffCartItem['item_id']): DaffCart {
-    const cart = this.getCart(reqInfo);
+		const cart = this.getCart(reqInfo);
     const itemIndex = cart.items.findIndex(({item_id}) => itemId === item_id);
+		const cartIndex = reqInfo.collection.findIndex(c => c.id === reqInfo.id);
+		reqInfo.collection[cartIndex] = {
+			...cart,
+			items: cart.items.filter((item, index) => index !== itemIndex)
+		};
 
-		cart.items.splice(itemIndex, 1);
-		cart.items = Object.assign([], cart.items);
-
-    return cart;
+    return reqInfo.collection[cartIndex];
   }
 }

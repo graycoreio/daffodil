@@ -10,6 +10,8 @@ import { DaffCartItem } from '@daffodil/cart';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffQtyDropdownModule, DaffQtyDropdownComponent } from '@daffodil/design';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
+import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
+import { DaffCartItemDelete, DaffCartItemUpdate } from '@daffodil/cart/state';
 
 @Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
 class WrapperComponent {
@@ -24,13 +26,15 @@ describe('CartItemComponent', () => {
   let router: Router;
   let cartItemFactory: DaffCartItemFactory;
   let productImageFactory: DaffProductImageFactory;
-  let mockCartItem: DaffCartItem;
+	let mockCartItem: DaffCartItem;
+	let facade: MockDaffCartFacade;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffQtyDropdownModule
+				DaffQtyDropdownModule,
+				DaffCartTestingModule
       ],
       declarations: [
         CartItemComponent,
@@ -43,7 +47,9 @@ describe('CartItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    router = TestBed.inject(Router);
+		router = TestBed.inject(Router);
+		facade = TestBed.inject(MockDaffCartFacade);
+		spyOn(facade, 'dispatch');
     spyOn(router, 'navigateByUrl');
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
     productImageFactory = TestBed.inject(DaffProductImageFactory);
@@ -106,5 +112,25 @@ describe('CartItemComponent', () => {
 
       expect(cartItemComponent.componentInstance.redirectToProduct).toHaveBeenCalled();
     });
-  });
+	});
+	
+	describe('when the user changes the quantity of the item', () => {
+		
+		it('should notify state of the quantity change', () => {
+			const newQuantity = 3;
+			qtyDropdownComponent.qtyChanged.emit(newQuantity);
+
+			expect(facade.dispatch).toHaveBeenCalledWith(new DaffCartItemUpdate(mockCartItem.item_id, { qty: newQuantity }));
+		});
+	});
+	
+	describe('when the user clicks the remove button', () => {
+		
+		it('should remove the item from the cart', () => {
+			const removeButton = fixture.debugElement.query(By.css('.demo-cart-item__remove')).nativeElement;
+			removeButton.click();
+
+			expect(facade.dispatch).toHaveBeenCalledOnceWith(new DaffCartItemDelete(mockCartItem.item_id));
+		});
+	});
 });

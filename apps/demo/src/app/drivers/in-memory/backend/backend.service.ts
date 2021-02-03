@@ -33,8 +33,8 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
   }
 
   post(reqInfo: any) {
-    const collectionName = reqInfo.collectionName;
-    if (collectionName === 'cart') {
+		const collectionName = reqInfo.collectionName;
+    if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
       return this.cartTestingService.post(reqInfo);
     } else if (collectionName === 'checkout') {
       return this.checkoutTestingService.post(reqInfo);
@@ -51,8 +51,24 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
       return this.productTestingService.get(reqInfo);
     } else if (collectionName === 'navigation') {
       return this.navigationTestingService.get(reqInfo);
-    }
-  }
+    } else if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+			return this.cartTestingService.get(reqInfo);
+		}
+	}
+	
+	put(reqInfo: any) {
+		const collectionName = reqInfo.collectionName;
+		if(DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+			return this.cartTestingService.put(reqInfo);
+		}
+	}
+	
+	delete(reqInfo: any) {
+		const collectionName = reqInfo.collectionName;
+		if(DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+			return this.cartTestingService.delete(reqInfo);
+		}
+	}
 
   createDb(reqInfo: RequestInfo): MockDaffDatabase {
     return {
