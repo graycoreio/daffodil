@@ -1,5 +1,5 @@
 <div class="demo-add-to-cart-notification">
-  <div class="demo-add-to-cart-notification__header"  *ngIf="!(loading$ | async)">
+  <div class="demo-add-to-cart-notification__header"  *ngIf="(loading$ | async) === false">
     <span class="demo-add-to-cart-notification__check-icon">
       <fa-icon [icon]="faCheck" aria-hidden="true"></fa-icon>
     </span>
@@ -8,9 +8,9 @@
       <fa-icon [icon]="faTimes" aria-hidden="true"></fa-icon>
     </button>
   </div>
-  <demo-product-added *ngIf="!(loading$ | async)" class="demo-add-to-cart-notification__product-added"
+  <demo-product-added *ngIf="(loading$ | async) === false" class="demo-add-to-cart-notification__product-added"
     [product]="product$ | async" [qty]="productQty$ | async"></demo-product-added>
-  <div *ngIf="!(loading$ | async)" daff-button-set class="demo-add-to-cart-notification__button-set">
+  <div *ngIf="(loading$ | async) === false" daff-button-set class="demo-add-to-cart-notification__button-set">
     <button type="button" daff-stroked-button demoViewCart>
       View Cart ({{(cartItemCount$ | async)}})
     </button>

@@ -1,6 +1,6 @@
 <div class="shipping">
   <demo-shipping-form 
-    [hidden]="!(showShippingForm$ | async)"
+    [hidden]="(showShippingForm$ | async) === false"
     [shippingAddress]="shippingAddress"
     [editMode]="showPaymentView"
     (submitted)="onUpdateShippingInfo($event)">
