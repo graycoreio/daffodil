@@ -7,6 +7,6 @@ import { InjectionToken } from '@angular/core';
  * that should be GETs when its driver package is loaded into the app. Simply filter on these provided
  * request names for each outgoing request.
  */
-export const DAFF_APOLLO_GET_REQUESTS = new InjectionToken<string>('DAFF_APOLLO_GET_REQUESTS', {
-	factory: () => ''
+export const DAFF_APOLLO_GET_REQUESTS = new InjectionToken<string[]>('DAFF_APOLLO_GET_REQUESTS', {
+	factory: () => []
 });
