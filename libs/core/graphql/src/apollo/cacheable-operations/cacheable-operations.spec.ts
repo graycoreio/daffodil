@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { gql, NextLink } from '@apollo/client/core';
 
-import { DaffApolloCacheableOperationsLinkGenerator, DAFF_APOLLO_CACHEABLE_OPERATIONS, DAFF_APOLLO_CACHEABLE_OPERATIONS_CONVERTER } from './cacheable-operations';
+import { DAFF_APOLLO_CACHEABLE_OPERATIONS_CONVERTER } from './cacheable-operations-converter';
+import { DaffApolloCacheableOperationsLinkGenerator } from './cacheable-operations-link-generator';
+import { DAFF_APOLLO_CACHEABLE_OPERATIONS } from './cacheable-operations-token';
 
 describe('Core | GraphQL | DaffApolloCacheableOperationsLinkGenerator', () => {
 	let service: DaffApolloCacheableOperationsLinkGenerator;
