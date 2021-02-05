@@ -2,7 +2,7 @@ import {gql} from 'apollo-angular';
 
 
 export const createCustomerMutation = gql`
-  mutation CreateCustomer(
+  mutation MagentoCreateCustomer(
     $email: String!,
     $password: String!,
     $firstname: String!,

@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { selectedShippingMethodFragment } from './fragments/public_api';
 
 export const getSelectedShippingMethod = (extraCartFragments: DocumentNode[] = []) => gql`
-  query GetSelectedShippingMethod($cartId: String!) {
+  query MagentoGetSelectedShippingMethod($cartId: String!) {
     cart(cart_id: $cartId) {
       shipping_addresses {
         selected_shipping_method {

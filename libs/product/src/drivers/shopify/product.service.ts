@@ -43,7 +43,7 @@ interface Variables {
  * GraphQL query object for getting all products.
  */
 export const GetAllProductsQuery = gql`
-  query GetAllProducts($length: Int) {
+  query ShopifyGetAllProducts($length: Int) {
     shop {
       products(first: $length)  {
         edges {
@@ -61,7 +61,7 @@ export const GetAllProductsQuery = gql`
  * GraphQL query object for getting a product by ID.
  */
 export const GetAProduct = gql`
-  query GetAProduct($id: ID!){
+  query ShopifyGetAProduct($id: ID!){
     node(id: $id) {
       id
       ... on Product {

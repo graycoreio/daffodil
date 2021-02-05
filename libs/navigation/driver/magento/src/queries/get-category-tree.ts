@@ -8,7 +8,7 @@ import { getCategoryNodeFragment } from './fragments/category-node';
  */
 export function daffMagentoGetCategoryTree(depth: number = 3) {
   return gql`
-    query GetCategoryTree($filters: CategoryFilterInput!){
+    query MagentoGetCategoryTree($filters: CategoryFilterInput!){
       categoryList(filters: $filters) {
         ...recursiveCategoryNode
       }

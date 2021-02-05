@@ -3,7 +3,7 @@ import {gql} from 'apollo-angular';
 import { magentoProductFragment } from './fragments/product';
 
 export const GetProductQuery = gql`
-query GetAProduct($sku: String!){
+query MagentoGetAProduct($sku: String!){
 	storeConfig {
 		secure_base_media_url
 	}

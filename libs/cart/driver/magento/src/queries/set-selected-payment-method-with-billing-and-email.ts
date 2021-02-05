@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const setSelectedPaymentMethodWithBillingAndEmail = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation SetSelectedPaymentMethodWithBillingAndEmail(
+  mutation MagentoSetSelectedPaymentMethodWithBillingAndEmail(
     $cartId: String!,
     $payment: PaymentMethodInput!,
     $address: BillingAddressInput!,

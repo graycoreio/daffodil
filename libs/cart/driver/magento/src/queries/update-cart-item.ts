@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const updateCartItem = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation UpdateCartItem($cartId: String!, $input: CartItemUpdateInput!) {
+  mutation MagentoUpdateCartItem($cartId: String!, $input: CartItemUpdateInput!) {
     updateCartItems(input: {
       cart_id: $cartId
       cart_items: [$input]

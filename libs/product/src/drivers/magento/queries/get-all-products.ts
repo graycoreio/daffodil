@@ -3,7 +3,7 @@ import {gql} from 'apollo-angular';
 import { magentoProductFragment } from './fragments/product';
 
 export const GetAllProductsQuery = gql`
-query GetAllProducts($pageSize: Int)
+query MagentoGetAllProducts($pageSize: Int)
 {
 	products(search: "Shirt", pageSize: $pageSize)
 	{

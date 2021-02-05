@@ -2,7 +2,7 @@ import {gql} from 'apollo-angular';
 
 
 export const placeOrder = gql`
-  mutation PlaceOrder($cartId: String!) {
+  mutation MagentoPlaceOrder($cartId: String!) {
     placeOrder(
       input: {
         cart_id: $cartId

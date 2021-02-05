@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const addSimpleCartItem = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation AddSimpleCartItem($cartId: String!, $input: CartItemInput!) {
+  mutation MagentoAddSimpleCartItem($cartId: String!, $input: CartItemInput!) {
     addSimpleProductsToCart(input: {
       cart_id: $cartId,
       cart_items: [{
@@ -24,7 +24,7 @@ export const addSimpleCartItem = (extraCartFragments: DocumentNode[] = []) => gq
 `;
 
 export const addBundleCartItem = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation AddBundleCartItem($cartId: String!, $input: CartItemInput!, $options: [BundleOptionInput]!) {
+  mutation MagentoAddBundleCartItem($cartId: String!, $input: CartItemInput!, $options: [BundleOptionInput]!) {
     addBundleProductsToCart(input: {
       cart_id: $cartId,
       cart_items: [{
@@ -43,7 +43,7 @@ export const addBundleCartItem = (extraCartFragments: DocumentNode[] = []) => gq
 `;
 
 export const addConfigurableCartItem = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation AddConfigurableCartItem($cartId: String!, $parentSku: String, $data: CartItemInput!) {
+  mutation MagentoAddConfigurableCartItem($cartId: String!, $parentSku: String, $data: CartItemInput!) {
     addConfigurableProductsToCart(input: {
       cart_id: $cartId,
       cart_items: [{

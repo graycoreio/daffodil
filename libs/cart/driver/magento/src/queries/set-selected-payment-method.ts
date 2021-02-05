@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const setSelectedPaymentMethod = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation SetSelectedPaymentMethod($cartId: String!, $payment: PaymentMethodInput!) {
+  mutation MagentoSetSelectedPaymentMethod($cartId: String!, $payment: PaymentMethodInput!) {
     setPaymentMethodOnCart(input: {
       cart_id: $cartId
       payment_method: $payment
