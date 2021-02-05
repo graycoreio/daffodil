@@ -5,9 +5,10 @@ import { DaffApolloCacheableOperationsLinkGenerator, DAFF_APOLLO_CACHEABLE_OPERA
 
 describe('Core | GraphQL | DaffApolloCacheableOperationsLinkGenerator', () => {
 	let service: DaffApolloCacheableOperationsLinkGenerator;
-	const mockOperationConverterFunction = jasmine.createSpy();
+	let mockOperationConverterFunction;
 
   beforeEach(() => {
+		mockOperationConverterFunction = jasmine.createSpy();
     TestBed.configureTestingModule({
 			providers: [
 				{ provide: DAFF_APOLLO_CACHEABLE_OPERATIONS, useValue: 'TestOperationName' },
