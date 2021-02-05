@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { selectedPaymentMethodFragment } from './fragments/public_api';
 
 export const getSelectedPaymentMethod = (extraCartFragments: DocumentNode[] = []) => gql`
-  query GetSelectedPaymentMethod($cartId: String!) {
+  query MagentoGetSelectedPaymentMethod($cartId: String!) {
     cart(cart_id: $cartId) {
       selected_payment_method {
         ...selectedPaymentMethod

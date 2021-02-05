@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartAddressFragment } from './fragments/public_api';
 
 export const getShippingAddress = (extraCartFragments: DocumentNode[] = []) => gql`
-  query GetShippingAddress($cartId: String!) {
+  query MagentoGetShippingAddress($cartId: String!) {
     cart(cart_id: $cartId) {
       shipping_addresses {
         ...cartAddress

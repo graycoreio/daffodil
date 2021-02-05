@@ -8,7 +8,7 @@ import { cartCouponFragment } from './fragments/public_api';
 import { cartTotalsFragment } from './fragments/cart-totals';
 
 export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation ApplyCoupon($cartId: String!, $couponCode: String!) {
+  mutation MagentoApplyCoupon($cartId: String!, $couponCode: String!) {
     applyCouponToCart(
       input: {
         cart_id: $cartId,

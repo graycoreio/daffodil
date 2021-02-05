@@ -8,7 +8,7 @@ import { cartCouponFragment } from './fragments/public_api';
 import { cartTotalsFragment } from './fragments/cart-totals';
 
 export const removeAllCoupons = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation RemoveAllCoupons($cartId: String!) {
+  mutation MagentoRemoveAllCoupons($cartId: String!) {
     removeCouponFromCart(
       input: {
         cart_id: $cartId

@@ -13,7 +13,7 @@ import { cartFragment } from './fragments/public_api';
  * Driver behavior is not guaranteed if Magento no longer processes compound queries in the order they are defined.
  */
 export const updateAddress = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation UpdateAddress($cartId: String!, $address: CartAddressInput!) {
+  mutation MagentoUpdateAddress($cartId: String!, $address: CartAddressInput!) {
     setBillingAddressOnCart(input: {
       cart_id: $cartId
       billing_address: {

@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const updateBillingAddress = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation UpdateBillingAddress(
+  mutation MagentoUpdateBillingAddress(
     $cartId: String!,
     $address: BillingAddressInput!
   ) {

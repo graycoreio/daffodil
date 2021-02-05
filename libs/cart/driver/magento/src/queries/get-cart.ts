@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const getCart = (extraCartFragments: DocumentNode[] = []) => gql`
-  query GetCart($cartId: String!) {
+  query MagentoGetCart($cartId: String!) {
     cart(cart_id: $cartId) {
       ...cart
       ${daffBuildFragmentNameSpread(...extraCartFragments)}

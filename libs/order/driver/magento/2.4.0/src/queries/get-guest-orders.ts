@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { orderFragment } from './fragments/public_api';
 
 export const getGuestOrders = (extraOrderFragments: DocumentNode[] = []) => gql`
-  query GetGuestOrders($cartId: String!) {
+  query MagentoGetGuestOrders($cartId: String!) {
     graycoreGuestOrders(cartId: $cartId) {
       orders {
         ...order

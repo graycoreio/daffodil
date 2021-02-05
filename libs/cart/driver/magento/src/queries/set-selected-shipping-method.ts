@@ -6,7 +6,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 import { cartFragment } from './fragments/public_api';
 
 export const setSelectedShippingMethod = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation SetSelectedShippingMethod($cartId: String!, $method: ShippingMethodInput!) {
+  mutation MagentoSetSelectedShippingMethod($cartId: String!, $method: ShippingMethodInput!) {
     setShippingMethodsOnCart(input: {
       cart_id: $cartId
       shipping_methods: [$method]
