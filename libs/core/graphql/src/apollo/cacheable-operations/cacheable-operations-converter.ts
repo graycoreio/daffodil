@@ -11,4 +11,6 @@ export type DaffApolloCachedOperationConverter = (o: Operation) => Operation;
  * determined by the platform used. These converter functions are defined by daffodil in the respective `@daffodil/driver/{platform}`
  * packages, but need to be provided by the app.
  */
-export const DAFF_APOLLO_CACHEABLE_OPERATIONS_CONVERTER = new InjectionToken<DaffApolloCachedOperationConverter>('DAFF_APOLLO_CACHEABLE_OPERATIONS_CONVERTER');
+export const DAFF_APOLLO_CACHEABLE_OPERATIONS_CONVERTER = new InjectionToken<DaffApolloCachedOperationConverter>('DAFF_APOLLO_CACHEABLE_OPERATIONS_CONVERTER', { 
+	factory: () => ((o) => o)
+});
