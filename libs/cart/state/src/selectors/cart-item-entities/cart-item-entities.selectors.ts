@@ -127,10 +127,9 @@ const createCartItemEntitiesSelectors = <
 		}
 	);
 
-	//todo optional chaining
 	const selectCartItemMutating = createSelector(
 		selectAllCartItems,
-		(cartItems: U[]) => cartItems && cartItems.reduce((acc, item) =>
+		(cartItems: U[]) => cartItems?.reduce((acc, item) =>
 			acc || item.daffState === DaffCartItemStateEnum.Mutating, false)
 	);
 
@@ -139,12 +138,11 @@ const createCartItemEntitiesSelectors = <
 		(cartItems, props) => {
 			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
 
-			//todo use optional chaining when possible
-			return cartItem ? cartItem.daffState : null;
+			return cartItem?.daffState || null;
 		}
 	)
 
-	return { 
+	return {
 		selectCartItemEntitiesState,
 		selectCartItemIds,
 		selectCartItemEntities,

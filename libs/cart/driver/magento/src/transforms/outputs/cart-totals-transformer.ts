@@ -58,7 +58,5 @@ function transformDiscounts(discounts): DaffCartTotal[] {
 }
 
 function validateSelectedShippingAddress(cart: Partial<MagentoCart>): boolean {
-  // TODO: optional chaining
-	return !!cart.shipping_addresses && !!cart.shipping_addresses[0] && !!cart.shipping_addresses[0].selected_shipping_method &&
-		!!cart.shipping_addresses[0].selected_shipping_method.amount;
+	return !!cart.shipping_addresses?.[0]?.selected_shipping_method?.amount;
 }

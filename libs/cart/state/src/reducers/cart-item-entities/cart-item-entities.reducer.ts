@@ -66,9 +66,8 @@ export function daffCartItemEntitiesReducer<
   }
 }
 
-//todo: use optional chaining when possible
 function getDaffState<T extends DaffStatefulCartItem>(item: T): DaffCartItemStateEnum {
-	return item && item.daffState;
+	return item?.daffState;
 }
 
 function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: Dictionary<T>, newCartItems: T[]): T[] {
@@ -77,8 +76,7 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
 		switch(true) {
 			case !oldItem:
 				return { ...newItem, daffState: DaffCartItemStateEnum.New };
-			//todo: add optional chaining when possible
-			case oldItem && oldItem.qty !== newItem.qty:
+			case oldItem?.qty !== newItem.qty:
 				return { ...newItem, daffState: DaffCartItemStateEnum.Updated };
 			default:
 				return newItem;
@@ -88,6 +86,6 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
 
 function updateMutatedCartItemState<T extends DaffStatefulCartItem>(responseItems: T[], stateItems: Dictionary<T>, itemId: T['item_id']): T[] {
 	return responseItems.map(item => item.item_id === itemId ?
-		{ ...item, daffState: DaffCartItemStateEnum.Updated} : 
+		{ ...item, daffState: DaffCartItemStateEnum.Updated} :
 		{ ...item, daffState: getDaffState(stateItems[item.item_id]) || DaffCartItemStateEnum.Default })
 }

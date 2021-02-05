@@ -18,12 +18,10 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       name: node.name,
 			total_products: node.product_count,
       children_count: node.children_count,
-			//todo: use optional chaining when possible
-			breadcrumbs: node.breadcrumbs ?
-				node.breadcrumbs
-					.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
-					.sort((a, b) => a.categoryLevel - b.categoryLevel) :
-				[],
+			breadcrumbs: node.breadcrumbs
+        ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
+        .sort((a, b) => a.categoryLevel - b.categoryLevel) ||
+      [],
 			children: node.children?.filter(child => child.include_in_menu)
 				.sort((a, b) => a.position - b.position)
 				.map(child => this.transform(child))

@@ -21,8 +21,7 @@ function transformMagentoCartGraphQlError(error: ApolloError): Error {
 };
 
 export function transformCartMagentoError(error) {
-  // TODO: optional chaining
-  if (error.graphQLErrors && error.graphQLErrors.length) {
+  if (error.graphQLErrors?.length) {
 		return transformMagentoCartGraphQlError(error);
 	} else {
 		return daffTransformMagentoError(error, DaffCartMagentoErrorMap);

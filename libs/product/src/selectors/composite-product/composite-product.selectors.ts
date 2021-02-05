@@ -73,10 +73,9 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 	const selectCompositeProductPricesAsCurrentlyConfigured = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
-		//todo use optional chaining when possible
 		(products, appliedOptionsEntities, props) => selectCompositeProductRequiredItemPricesForConfiguration.projector(products, {
 			id: props.id,
-			configuration: appliedOptionsEntities.entities[props.id] ? appliedOptionsEntities.entities[props.id].items : null
+			configuration: appliedOptionsEntities.entities[props.id]?.items || null
 		})
 	);
 
@@ -114,7 +113,6 @@ function getMaximumRequiredCompositeItemPrice(item: DaffCompositeProductItem, qt
  * The minimum discounted price of an item is zero if the item is optional.
  * @param item DaffCompositeProductItem
  */
-//todo use optional chaining when possible
 function getMinimumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem, qty: number): number {
 	return item.required ? daffMultiply(Math.min(...item.options.map(getDiscountedPrice)), qty) : 0;
 }
@@ -122,7 +120,6 @@ function getMinimumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProdu
  * The maximum discounted price of an item is zero if the item is optional.
  * @param item DaffCompositeProductItem
  */
-//todo use optional chaining when possible
 function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem, qty: number): number {
 	return item.required ? daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), qty) : 0;
 }
@@ -218,16 +215,14 @@ function getAppliedOptionsForConfiguration(product: DaffCompositeProduct, config
 }), {})
 }
 
-//todo: use optional chaining when possible
 function appliedOptionHasId(appliedOption: DaffCompositeProductItemOption): boolean {
-	return appliedOption && !!appliedOption.id;
+	return !!appliedOption?.id;
 }
 
 function getOptionQty(appliedOption: DaffCompositeProductItemOption): number {
 	return appliedOptionHasQty(appliedOption) ? appliedOption.quantity : 1;
 }
 
-//todo: use optional chaining when possible
 function appliedOptionHasQty(appliedOption: DaffCompositeProductItemOption): boolean {
-	return appliedOption && appliedOption.quantity !== null;
+	return appliedOption?.quantity !== null && appliedOption?.quantity !== undefined;
 }
