@@ -22,7 +22,7 @@ describe('selectDemoCheckoutState', () => {
 
     stubShowShippingForm = true;
     expectedShowPaymentView = false;
-    expectedShowPaymentForm = null;
+    expectedShowPaymentForm = false;
     store = TestBed.inject(Store);
     store.dispatch(new SetShowShippingForm(stubShowShippingForm));
   }));
