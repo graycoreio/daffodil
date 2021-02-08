@@ -6,6 +6,7 @@
     "build": "ng build branding --prod && npm run build:assets",
     "build:assets": "cp -R src/assets/ ../../dist/branding/assets/",
     "lint": "cd ../.. && ng lint branding",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ng test branding --watch=false --browsers=ChromeHeadless"
   },
   "peerDependencies": {

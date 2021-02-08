@@ -14,6 +14,7 @@
   "scripts": {
     "build": "ng build order --prod",
     "lint": "cd ../.. && ng lint order",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ng test order --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/order; npm publish --access=public)"
   },

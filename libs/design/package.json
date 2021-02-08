@@ -10,6 +10,7 @@
     "build": "ng build design",
     "lint": "npm run lint:scss && cd ../.. && ng lint design",
     "lint:scss": "stylelint **/*.scss",
+    "lint:fix": "npm run lint -- --fix",
     "postbuild": "npm run postbuild:scss:util && npm run postbuild:scss:theme && npm run postbuild:scss:typography && npm run postbuild:scss:global",
     "postbuild:scss:util": "scss-bundle -c build/util.json",
     "postbuild:scss:theme": "scss-bundle -c build/theme.json",

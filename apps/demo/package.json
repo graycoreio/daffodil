@@ -10,6 +10,7 @@
   "scripts": {
     "build": "ng build demo --prod",
     "lint": "npm run lint:scss && cd ../.. && ng lint demo",
+    "lint:fix": "npm run lint -- --fix",
     "lint:scss": "stylelint **/*.scss",
     "test": "ng test demo --watch=false --browsers=ChromeHeadless"
   },

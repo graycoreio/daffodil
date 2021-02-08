@@ -31,6 +31,7 @@
   "scripts": {
     "build": "ng build newsletter --prod",
     "lint": "cd ../.. && ng lint newsletter",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ng test newsletter --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/newsletter; npm publish --access=public)"
   }
