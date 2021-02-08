@@ -14,6 +14,7 @@
   "scripts": {
     "build": "ng build core --prod",
     "lint": "cd ../.. && ng lint core",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
     "reportcoverage":
       "(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.core.json ../../coverage/libs/core/lcov.info)",

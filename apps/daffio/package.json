@@ -16,6 +16,7 @@
     "build:serverless:vercel": "cp -r ./serverless/vercel/. ../../dist/apps/daffio/",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
     "lint": "cd ../.. && ng lint daffio",
+    "lint:fix": "npm run lint -- --fix",
     "dev:ssr": "ng run daffio:serve-ssr",
     "serve:ssr": "node ../../dist/apps/daffio/server/main.js"
   },

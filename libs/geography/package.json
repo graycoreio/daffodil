@@ -14,6 +14,7 @@
   "scripts": {
     "build": "ng build geography --prod",
     "lint": "cd ../.. && ng lint geography",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ng test geography --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/geography; npm publish --access=public)"
   },

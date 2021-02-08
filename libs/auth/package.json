@@ -18,6 +18,7 @@
   "scripts": {
     "build": "ng build auth --prod",
     "lint": "cd ../.. && ng lint auth",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ng test auth --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
