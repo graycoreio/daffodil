@@ -1330,7 +1330,6 @@
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
-    },
-    "analytics": "853a4c87-95ff-4225-a73e-d782b970fc52"
+    }
   }
 }
