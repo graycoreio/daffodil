@@ -98,22 +98,22 @@ function transformBundleOption(option: MagentoOrderBundleItemSelectedOption): Da
 
 function transformAdditionalItemFields(item: MagentoOrderItem) {
   switch (item.product_type) {
-  case MagentoOrderItemType.Bundle:
-    return {
-      type: DaffOrderItemType.Composite,
-      options: (<MagentoOrderBundleItem>item).bundle_options.map(transformBundleOption),
-    };
-  case MagentoOrderItemType.Configurable:
-    return {
-      type: DaffOrderItemType.Configurable,
-      attributes: item.selected_options.map(transformConfigurableOption),
-    };
-  case MagentoOrderItemType.Simple:
-    return {
-      type: DaffOrderItemType.Simple,
-    };
-  default:
-    return {};
+    case MagentoOrderItemType.Bundle:
+      return {
+        type: DaffOrderItemType.Composite,
+        options: (<MagentoOrderBundleItem>item).bundle_options.map(transformBundleOption),
+      };
+    case MagentoOrderItemType.Configurable:
+      return {
+        type: DaffOrderItemType.Configurable,
+        attributes: item.selected_options.map(transformConfigurableOption),
+      };
+    case MagentoOrderItemType.Simple:
+      return {
+        type: DaffOrderItemType.Simple,
+      };
+    default:
+      return {};
   }
 }
 

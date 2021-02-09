@@ -17,11 +17,11 @@ import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
  */
 export function transformMagentoCartItem(cartItem: MagentoCartItem): DaffCartItem {
   switch(cartItem.__typename) {
-  case MagentoCartItemTypeEnum.Bundle:
-    return transformMagentoBundleCartItem(<MagentoBundleCartItem>cartItem);
-  case MagentoCartItemTypeEnum.Configurable:
-    return transformMagentoConfigurableCartItem(<MagentoConfigurableCartItem>cartItem);
-  default:
-    return transformMagentoSimpleCartItem(cartItem);
+    case MagentoCartItemTypeEnum.Bundle:
+      return transformMagentoBundleCartItem(<MagentoBundleCartItem>cartItem);
+    case MagentoCartItemTypeEnum.Configurable:
+      return transformMagentoConfigurableCartItem(<MagentoConfigurableCartItem>cartItem);
+    default:
+      return transformMagentoSimpleCartItem(cartItem);
   }
 }

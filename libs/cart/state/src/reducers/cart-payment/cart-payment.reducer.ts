@@ -21,63 +21,63 @@ export function cartPaymentReducer<T extends DaffCart>(
   action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {
-  case DaffCartPaymentActionTypes.CartPaymentLoadAction:
-    return {
-      ...state,
-      ...setLoading(state.loading, DaffLoadingState.Resolving),
-    };
+    case DaffCartPaymentActionTypes.CartPaymentLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving),
+      };
 
-  case DaffCartPaymentActionTypes.CartPaymentUpdateAction:
-  case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction:
-  case DaffCartPaymentActionTypes.CartPaymentRemoveAction:
-    return {
-      ...state,
-      ...setLoading(state.loading, DaffLoadingState.Mutating),
-    };
+    case DaffCartPaymentActionTypes.CartPaymentUpdateAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction:
+    case DaffCartPaymentActionTypes.CartPaymentRemoveAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Mutating),
+      };
 
-  case DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction:
-    return {
-      ...state,
-      ...resetErrors(state.errors),
-      cart: {
-        ...state.cart,
-        payment: action.payload,
-      },
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          payment: action.payload,
+        },
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
-  case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
-    return {
-      ...state,
-      ...resetErrors(state.errors),
-      cart: {
-        ...state.cart,
-        payment: null,
-      },
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          payment: null,
+        },
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
-  case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
-  case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction:
-    return {
-      ...state,
-      ...resetErrors(state.errors),
-      cart: {
-        ...state.cart,
-        ...action.payload,
-      },
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          ...action.payload,
+        },
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
-  case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
-  case DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction:
-  case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction:
-  case DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction:
-    return {
-      ...state,
-      ...addError(state.errors, action.payload),
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction:
+    case DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction:
+      return {
+        ...state,
+        ...addError(state.errors, action.payload),
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
 
     /**
@@ -86,19 +86,19 @@ export function cartPaymentReducer<T extends DaffCart>(
      *
      * todo: remove when possible.
      */
-  case DaffCartPaymentActionTypes.CartPaymentMethodAddAction:
-    return {
-      ...state,
-      cart: {
-        ...state.cart,
-        payment: {
-          ...action.payload,
+    case DaffCartPaymentActionTypes.CartPaymentMethodAddAction:
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          payment: {
+            ...action.payload,
+          },
         },
-      },
-    };
+      };
 
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

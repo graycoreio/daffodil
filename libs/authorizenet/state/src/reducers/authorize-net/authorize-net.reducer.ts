@@ -18,36 +18,36 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
   action: DaffAuthorizeNetActions<T>,
 ): DaffAuthorizeNetReducerState {
   switch (action.type) {
-  case DaffAuthorizeNetActionTypes.UpdatePaymentAction:
-    return {
-      ...state,
-      loading: true,
-    };
-  case DaffAuthorizeNetActionTypes.UpdatePaymentSuccessAction:
-    return {
-      ...state,
-      loading: false,
-      paymentError: null,
-    };
-  case DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction:
-    return {
-      ...state,
-      loading: false,
-      paymentError: action.payload,
-    };
-  case DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction:
-    return {
-      ...state,
-      isAcceptLoaded: true,
-      acceptJsLoadError: null,
-    };
-  case DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction:
-    return {
-      ...state,
-      loading: false,
-      acceptJsLoadError: action.payload,
-    };
-  default:
-    return state;
+    case DaffAuthorizeNetActionTypes.UpdatePaymentAction:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DaffAuthorizeNetActionTypes.UpdatePaymentSuccessAction:
+      return {
+        ...state,
+        loading: false,
+        paymentError: null,
+      };
+    case DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction:
+      return {
+        ...state,
+        loading: false,
+        paymentError: action.payload,
+      };
+    case DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction:
+      return {
+        ...state,
+        isAcceptLoaded: true,
+        acceptJsLoadError: null,
+      };
+    case DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction:
+      return {
+        ...state,
+        loading: false,
+        acceptJsLoadError: action.payload,
+      };
+    default:
+      return state;
   }
 }

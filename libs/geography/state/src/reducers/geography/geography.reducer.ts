@@ -12,30 +12,30 @@ export function daffGeographyReducer<T extends DaffCountry>(
   action: DaffGeographyActions<T>,
 ): DaffGeographyReducerState {
   switch (action.type) {
-  case DaffGeographyActionTypes.CountryLoadAction:
-  case DaffGeographyActionTypes.CountryListAction:
-    return { ...state, loading: true };
+    case DaffGeographyActionTypes.CountryLoadAction:
+    case DaffGeographyActionTypes.CountryListAction:
+      return { ...state, loading: true };
 
-  case DaffGeographyActionTypes.CountryLoadSuccessAction:
-  case DaffGeographyActionTypes.CountryListSuccessAction:
-    return {
-      ...state,
-      errors: [],
-      loading: false,
-    };
+    case DaffGeographyActionTypes.CountryLoadSuccessAction:
+    case DaffGeographyActionTypes.CountryListSuccessAction:
+      return {
+        ...state,
+        errors: [],
+        loading: false,
+      };
 
-  case DaffGeographyActionTypes.CountryLoadFailureAction:
-  case DaffGeographyActionTypes.CountryListFailureAction:
-    return {
-      ...state,
-      errors: [
-        ...state.errors,
-        action.payload,
-      ],
-      loading: false,
-    };
+    case DaffGeographyActionTypes.CountryLoadFailureAction:
+    case DaffGeographyActionTypes.CountryListFailureAction:
+      return {
+        ...state,
+        errors: [
+          ...state.errors,
+          action.payload,
+        ],
+        loading: false,
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

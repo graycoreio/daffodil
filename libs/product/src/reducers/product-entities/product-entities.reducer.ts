@@ -31,22 +31,22 @@ export function daffProductEntitiesReducer<T extends DaffProduct>(
   action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T>): EntityState<T> {
   const adapter = daffProductEntitiesAdapter<T>();
   switch (action.type) {
-  case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-    return adapter.upsertMany(action.payload, state);
-  case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-    return adapter.upsertMany(action.payload, state);
-  case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-  case DaffProductActionTypes.ProductLoadSuccessAction:
-    return adapter.upsertOne(
-      {
-        id: action.payload.id,
-        ...action.payload,
-      },
-      state,
-    );
-  case DaffProductGridActionTypes.ProductGridResetAction:
-    return adapter.removeAll(state);
-  default:
-    return state;
+    case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+      return adapter.upsertMany(action.payload, state);
+    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+      return adapter.upsertMany(action.payload, state);
+    case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
+    case DaffProductActionTypes.ProductLoadSuccessAction:
+      return adapter.upsertOne(
+        {
+          id: action.payload.id,
+          ...action.payload,
+        },
+        state,
+      );
+    case DaffProductGridActionTypes.ProductGridResetAction:
+      return adapter.removeAll(state);
+    default:
+      return state;
   }
 }

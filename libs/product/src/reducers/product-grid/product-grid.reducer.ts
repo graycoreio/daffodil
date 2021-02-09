@@ -23,15 +23,15 @@ export const initialState: DaffProductGridReducerState<any> = {
  */
 export function daffProductGridReducer<T extends DaffProduct>(state = initialState, action: DaffProductGridActions<T>): DaffProductGridReducerState<T> {
   switch (action.type) {
-  case DaffProductGridActionTypes.ProductGridLoadAction:
-    return { ...state, loading: true };
-  case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-    return { ...state, loading: false };
-  case DaffProductGridActionTypes.ProductGridLoadFailureAction:
-    return { ...state,
-      loading: false,
-      errors: state.errors.concat(new Array(action.payload)) };
-  default:
-    return state;
+    case DaffProductGridActionTypes.ProductGridLoadAction:
+      return { ...state, loading: true };
+    case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+      return { ...state, loading: false };
+    case DaffProductGridActionTypes.ProductGridLoadFailureAction:
+      return { ...state,
+        loading: false,
+        errors: state.errors.concat(new Array(action.payload)) };
+    default:
+      return state;
   }
 }

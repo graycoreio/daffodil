@@ -13,31 +13,31 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
   action: DaffCartOrderActions<T>,
 ): DaffCartOrderReducerState<T> {
   switch (action.type) {
-  case DaffCartOrderActionTypes.CartPlaceOrderAction:
-    return {
-      ...state,
-      loading: DaffLoadingState.Mutating,
-    };
+    case DaffCartOrderActionTypes.CartPlaceOrderAction:
+      return {
+        ...state,
+        loading: DaffLoadingState.Mutating,
+      };
 
-  case DaffCartOrderActionTypes.CartPlaceOrderSuccessAction:
-    return {
-      ...state,
-      errors: [],
-      loading: DaffLoadingState.Complete,
-      cartOrderResult: action.payload,
-    };
+    case DaffCartOrderActionTypes.CartPlaceOrderSuccessAction:
+      return {
+        ...state,
+        errors: [],
+        loading: DaffLoadingState.Complete,
+        cartOrderResult: action.payload,
+      };
 
-  case DaffCartOrderActionTypes.CartPlaceOrderFailureAction:
-    return {
-      ...state,
-      loading: DaffLoadingState.Complete,
-      errors: [
-        ...state.errors,
-        action.payload,
-      ],
-    };
+    case DaffCartOrderActionTypes.CartPlaceOrderFailureAction:
+      return {
+        ...state,
+        loading: DaffLoadingState.Complete,
+        errors: [
+          ...state.errors,
+          action.payload,
+        ],
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

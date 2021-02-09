@@ -78,12 +78,12 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 
   add(cartId: DaffCart['id'], cartItemInput: DaffCartItemInput): Observable<Partial<DaffCart>> {
     switch(cartItemInput.type) {
-    case (DaffCartItemInputType.Composite):
-      return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
-    case (DaffCartItemInputType.Configurable):
-      return this.addConfigurableProduct(cartId, <DaffConfigurableCartItemInput>cartItemInput);
-    default:
-      return this.addSimpleProduct(cartId, cartItemInput);
+      case (DaffCartItemInputType.Composite):
+        return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
+      case (DaffCartItemInputType.Configurable):
+        return this.addConfigurableProduct(cartId, <DaffConfigurableCartItemInput>cartItemInput);
+      default:
+        return this.addSimpleProduct(cartId, cartItemInput);
     }
   }
 

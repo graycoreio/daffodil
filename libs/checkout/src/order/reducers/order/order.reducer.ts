@@ -18,13 +18,13 @@ export const initialState: DaffOrderReducerState = {
  */
 export function daffOrderReducer(state = initialState, action: DaffOrderActions): DaffOrderReducerState {
   switch (action.type) {
-  case DaffOrderActionTypes.PlaceOrderAction:
-    return { ...state, loading: true };
-  case DaffOrderActionTypes.PlaceOrderSuccessAction:
-    return { ...state, order: action.payload, loading: false };
-  case DaffOrderActionTypes.PlaceOrderFailureAction:
-    return { ...state, errors: [action.payload], loading: false };
-  default:
-    return state;
+    case DaffOrderActionTypes.PlaceOrderAction:
+      return { ...state, loading: true };
+    case DaffOrderActionTypes.PlaceOrderSuccessAction:
+      return { ...state, order: action.payload, loading: false };
+    case DaffOrderActionTypes.PlaceOrderFailureAction:
+      return { ...state, errors: [action.payload], loading: false };
+    default:
+      return state;
   }
 }

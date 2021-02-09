@@ -95,44 +95,44 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     reqInfo.collection = this.carts;
 
     switch (reqInfo.collectionName) {
-    case 'cart':
-      return this.cartService[reqInfo.method](reqInfo);
+      case 'cart':
+        return this.cartService[reqInfo.method](reqInfo);
 
-    case 'cart-items':
-      return this.cartItemsService[reqInfo.method](reqInfo);
+      case 'cart-items':
+        return this.cartItemsService[reqInfo.method](reqInfo);
 
-    case 'cart-order':
-      return this.cartOrderService[reqInfo.method](reqInfo);
+      case 'cart-order':
+        return this.cartOrderService[reqInfo.method](reqInfo);
 
-    case 'cart-coupon':
-      return this.cartCouponService[reqInfo.method](reqInfo);
+      case 'cart-coupon':
+        return this.cartCouponService[reqInfo.method](reqInfo);
 
-    case 'cart-address':
-      return this.cartAddressService[reqInfo.method](reqInfo);
+      case 'cart-address':
+        return this.cartAddressService[reqInfo.method](reqInfo);
 
-    case 'cart-shipping-address':
-      return this.cartShippingAddressService[reqInfo.method](reqInfo);
+      case 'cart-shipping-address':
+        return this.cartShippingAddressService[reqInfo.method](reqInfo);
 
-    case 'cart-billing-address':
-      return this.cartBillingAddressService[reqInfo.method](reqInfo);
+      case 'cart-billing-address':
+        return this.cartBillingAddressService[reqInfo.method](reqInfo);
 
-    case 'cart-payment-methods':
-      return this.cartPaymentMethodsService[reqInfo.method](reqInfo);
+      case 'cart-payment-methods':
+        return this.cartPaymentMethodsService[reqInfo.method](reqInfo);
 
-    case 'cart-shipping-methods':
-      return this.cartShippingMethodsService[reqInfo.method](reqInfo);
+      case 'cart-shipping-methods':
+        return this.cartShippingMethodsService[reqInfo.method](reqInfo);
 
-    case 'cart-payment':
-      return this.cartPaymentService[reqInfo.method](reqInfo);
+      case 'cart-payment':
+        return this.cartPaymentService[reqInfo.method](reqInfo);
 
-    case 'cart-shipping-information':
-      return this.cartShippingInformationService[reqInfo.method](reqInfo);
+      case 'cart-shipping-information':
+        return this.cartShippingInformationService[reqInfo.method](reqInfo);
 
-    default:
-      return reqInfo.utils.createResponse$(() => ({
-        body: {},
-        status: STATUS.OK,
-      }));
+      default:
+        return reqInfo.utils.createResponse$(() => ({
+          body: {},
+          status: STATUS.OK,
+        }));
     }
   }
 }

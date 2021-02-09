@@ -21,35 +21,35 @@ export function cartReducer<T extends DaffCart>(
   action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {
-  case DaffCartActionTypes.ResolveCartAction:
-  case DaffCartActionTypes.CartLoadAction:
-    return {
-      ...state,
-      ...setLoading(state.loading, DaffLoadingState.Resolving),
-    };
+    case DaffCartActionTypes.ResolveCartAction:
+    case DaffCartActionTypes.CartLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving),
+      };
 
-  case DaffCartActionTypes.CartClearAction:
-  case DaffCartActionTypes.AddToCartAction:
-  case DaffCartActionTypes.CartCreateAction:
-    return {
-      ...state,
-      ...setLoading(state.loading, DaffLoadingState.Mutating),
-    };
+    case DaffCartActionTypes.CartClearAction:
+    case DaffCartActionTypes.AddToCartAction:
+    case DaffCartActionTypes.CartCreateAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Mutating),
+      };
 
-  case DaffCartActionTypes.CartLoadSuccessAction:
-  case DaffCartActionTypes.CartClearSuccessAction:
-  case DaffCartActionTypes.AddToCartSuccessAction:
-  case DaffCartActionTypes.CartCreateSuccessAction:
-  case DaffCartActionTypes.ResolveCartSuccessAction:
-    return {
-      ...state,
-      ...resetErrors(state.errors),
-      cart: {
-        ...state.cart,
-        ...action.payload,
-      },
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartActionTypes.CartLoadSuccessAction:
+    case DaffCartActionTypes.CartClearSuccessAction:
+    case DaffCartActionTypes.AddToCartSuccessAction:
+    case DaffCartActionTypes.CartCreateSuccessAction:
+    case DaffCartActionTypes.ResolveCartSuccessAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          ...action.payload,
+        },
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
     case DaffCartActionTypes.CartCreateSuccessAction:
       return {
@@ -74,7 +74,7 @@ export function cartReducer<T extends DaffCart>(
         ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

@@ -37,6 +37,7 @@ module.exports = {
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
         '@typescript-eslint/member-ordering': 'off',
+        'import/no-unassigned-import': 'warn',
         'import/order': [
           'error',
           {
@@ -60,7 +61,13 @@ module.exports = {
         ],
         'modules-newline/import-declaration-newline': 'warn',
         'modules-newline/export-declaration-newline': 'warn',
-        indent: ['error', 2],
+        indent: [
+          'error',
+          2,
+          {
+            SwitchCase: 1
+          }
+        ],
         'object-curly-newline': [
           'error',
           {

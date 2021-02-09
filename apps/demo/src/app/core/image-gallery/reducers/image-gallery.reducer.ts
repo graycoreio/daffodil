@@ -13,10 +13,10 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: ImageGalleryActions): State {
   switch (action.type) {
-  case ImageGalleryActionTypes.SetSelectedImageStateAction:
-    return { ...state, selectedImage: action.payload };
-  default:
-    return state;
+    case ImageGalleryActionTypes.SetSelectedImageStateAction:
+      return { ...state, selectedImage: action.payload };
+    default:
+      return state;
   }
 }
 

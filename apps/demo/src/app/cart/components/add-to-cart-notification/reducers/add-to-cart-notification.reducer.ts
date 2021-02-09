@@ -33,16 +33,16 @@ const handleAddToCartAction = (state: State, action: DaffAddToCart) => ({
 
 export function reducer(state = initialState, action: AddToCartNotificationActions | DaffCartActions): State {
   switch (action.type) {
-  case AddToCartNotificationActionTypes.OpenAddToCartNotificationAction:
-    return { ...state, open: true };
-  case AddToCartNotificationActionTypes.CloseAddToCartNotificationAction:
-    return { ...state, open: false };
-  case DaffCartActionTypes.AddToCartAction:
-    return handleAddToCartAction(state, action);
-  case DaffCartActionTypes.AddToCartSuccessAction:
-    return { ...state, loading: false };
-  default:
-    return state;
+    case AddToCartNotificationActionTypes.OpenAddToCartNotificationAction:
+      return { ...state, open: true };
+    case AddToCartNotificationActionTypes.CloseAddToCartNotificationAction:
+      return { ...state, open: false };
+    case DaffCartActionTypes.AddToCartAction:
+      return handleAddToCartAction(state, action);
+    case DaffCartActionTypes.AddToCartSuccessAction:
+      return { ...state, loading: false };
+    default:
+      return state;
   }
 }
 

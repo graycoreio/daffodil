@@ -11,29 +11,29 @@ export function cartResolveReducer<T extends DaffCart = DaffCart>(
   action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {
-  case DaffCartActionTypes.ResolveCartAction:
-    return {
-      ...state,
-      resolved: DaffCartResolveState.Resolving,
-    };
-  case DaffCartActionTypes.ResolveCartServerSideAction:
-    return {
-      ...state,
-      resolved: DaffCartResolveState.ServerSide,
-    };
-  case DaffCartActionTypes.ResolveCartSuccessAction:
-    return {
-      ...state,
-      resolved: DaffCartResolveState.Succeeded,
-    };
+    case DaffCartActionTypes.ResolveCartAction:
+      return {
+        ...state,
+        resolved: DaffCartResolveState.Resolving,
+      };
+    case DaffCartActionTypes.ResolveCartServerSideAction:
+      return {
+        ...state,
+        resolved: DaffCartResolveState.ServerSide,
+      };
+    case DaffCartActionTypes.ResolveCartSuccessAction:
+      return {
+        ...state,
+        resolved: DaffCartResolveState.Succeeded,
+      };
 
-  case DaffCartActionTypes.ResolveCartFailureAction:
-    return {
-      ...state,
-      resolved: DaffCartResolveState.Failed,
-    };
+    case DaffCartActionTypes.ResolveCartFailureAction:
+      return {
+        ...state,
+        resolved: DaffCartResolveState.Failed,
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

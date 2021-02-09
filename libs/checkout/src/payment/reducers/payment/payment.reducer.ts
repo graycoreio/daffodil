@@ -10,9 +10,9 @@ export const initialState: DaffPaymentReducerState = {
 
 export function daffPaymentReducer(state = initialState, action: DaffPaymentActions): DaffPaymentReducerState {
   switch (action.type) {
-  case DaffPaymentActionTypes.UpdatePaymentInfoAction:
-    return { ...state, paymentInfo: action.payload };
-  default:
-    return state;
+    case DaffPaymentActionTypes.UpdatePaymentInfoAction:
+      return { ...state, paymentInfo: action.payload };
+    default:
+      return state;
   }
 }

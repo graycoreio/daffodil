@@ -12,33 +12,33 @@ export function daffOrderReducer<T extends DaffOrder = DaffOrder>(
   action: DaffOrderActions<T>,
 ): DaffOrderReducerState {
   switch (action.type) {
-  case DaffOrderActionTypes.OrderListAction:
-  case DaffOrderActionTypes.OrderLoadAction:
-    return {
-      ...state,
-      loading: true,
-    };
+    case DaffOrderActionTypes.OrderListAction:
+    case DaffOrderActionTypes.OrderLoadAction:
+      return {
+        ...state,
+        loading: true,
+      };
 
-  case DaffOrderActionTypes.OrderListSuccessAction:
-  case DaffOrderActionTypes.OrderLoadSuccessAction:
-    return {
-      ...state,
-      loading: false,
-      errors: [],
-    };
+    case DaffOrderActionTypes.OrderListSuccessAction:
+    case DaffOrderActionTypes.OrderLoadSuccessAction:
+      return {
+        ...state,
+        loading: false,
+        errors: [],
+      };
 
-  case DaffOrderActionTypes.OrderListFailureAction:
-  case DaffOrderActionTypes.OrderLoadFailureAction:
-    return {
-      ...state,
-      errors: [
-        ...state.errors,
-        action.payload,
-      ],
-      loading: false,
-    };
+    case DaffOrderActionTypes.OrderListFailureAction:
+    case DaffOrderActionTypes.OrderLoadFailureAction:
+      return {
+        ...state,
+        errors: [
+          ...state.errors,
+          action.payload,
+        ],
+        loading: false,
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }
