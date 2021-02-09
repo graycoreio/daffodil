@@ -12,8 +12,10 @@ export { MagentoGetProductsByCategoriesRequest } from './models/requests/get-pro
 export { MagentoCategoryFilters, MagentoFilterAction } from './models/requests/filters';
 export { MagentoSortFieldAction } from './models/requests/sort';
 
-export { MagentoGetCategoryQuery } from './queries/get-category';
-export { MagentoGetProductsQuery } from './queries/get-products';
+export * from './queries/custom-attribute-metadata';
+export * from './queries/get-category-aggregations';
+export * from './queries/get-category';
+export * from './queries/get-products';
 
 export { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 export { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';

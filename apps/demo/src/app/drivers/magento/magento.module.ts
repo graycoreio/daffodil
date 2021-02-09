@@ -14,6 +14,7 @@ import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
 import { possibleTypes } from './fragmentTypes.json';
+import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
 
 const cache = new InMemoryCache({ possibleTypes });
 
@@ -26,11 +27,16 @@ const cache = new InMemoryCache({ possibleTypes });
     DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationMagentoDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot()
-  ]
+	]
 })
 export class DemoMagentoDriverModule {
   // Magento
-  constructor(apollo: Apollo, httpLink: HttpLink) {
+  constructor(
+		apollo: Apollo, 
+		httpLink: HttpLink,
+		private apolloCacheableOperationsLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator
+	) {
+
     apollo.create({
       link: ApolloLink.from([
         onError(({graphQLErrors, networkError}) => {
@@ -39,12 +45,13 @@ export class DemoMagentoDriverModule {
               console.log(
                 `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
               ),
-            );
+						);
           if (networkError) console.log(`[Network error]: ${networkError}`);
-        }),
+				}),
+				this.apolloCacheableOperationsLinkGenerator.getLink(),
         httpLink.create({
           uri: (<MagentoEnvironmentDriverConfiguration>environment.driver).domain + '/graphql',
-          withCredentials: false,
+					withCredentials: false,
         }),
       ]),
       cache,
