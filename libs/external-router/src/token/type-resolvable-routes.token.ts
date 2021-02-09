@@ -17,13 +17,13 @@ export const DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES = new InjectionToken<
 /**
  * A provider used to connect a type to a route to enable dynamic route resolution at runtime.
  */
-export const provideRouteResolvableByType = (
+export function provideRouteResolvableByType(
 	type: string,
 	route: RouteWithoutPath,
-): Provider => {
+): Provider {
 	return {
 		provide: DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES,
 		multi: true,
 		useValue: { type: type, route: route },
 	};
-};
+}

@@ -20,16 +20,18 @@ describe('@daffodil/external-router/routing | DaffExternalRouterTestingDriver', 
 	let router: Router;
 	const stubFailedRoutePath = '/error-path';
 
+	const STUB_RESOLVABLE_TYPE = 'A_RESOLVABLE_TYPE';
+
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule.withRoutes([{ path: '**', redirectTo: '/' }]),
 				DaffExternalRouterDriverTestingModule.forRoot({
-					'some-resolved/path/with/file-endings.html': 'A_RESOLVABLE_TYPE',
+					'some-resolved/path/with/file-endings.html': STUB_RESOLVABLE_TYPE,
 				}),
 			],
 			providers: [
-				provideRouteResolvableByType('A_RESOLVABLE_TYPE', { redirectTo: '/' }),
+				provideRouteResolvableByType(STUB_RESOLVABLE_TYPE, { redirectTo: '/' }),
 				{
 					provide: DAFF_EXTERNAL_ROUTER_CONFIG,
 					useValue: {

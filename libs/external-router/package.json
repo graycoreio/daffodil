@@ -14,8 +14,7 @@
   "scripts": {
     "build": "ng build external-router --prod",
     "lint": "ng lint external-router",
-    "test": "ng test external-router --watch=false --browsers=ChromeHeadless",
-    "reportcoverage": "(cd ../../ && ./cc-test-reporter format-coverage -t lcov -o coverage/cc.external-router.json coverage/libs/core/lcov.info)"
+    "test": "ng test external-router --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
