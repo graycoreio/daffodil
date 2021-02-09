@@ -26,7 +26,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
 		});
 	});
 
-	it('throws an error it is unable to map the route to a known type', () => {
+	it('throws an error if it is unable to map the route to a known type', () => {
 		expect(() =>
 			daffTransformResolvedRouteToRoute({ url: '', type: 'some-type' }, []),
 		).toThrow();
