@@ -1,9 +1,9 @@
 import { Route, Routes } from '@angular/router';
-import { DaffExternalRouterNoWildcard } from '../../errors/no-wildcard';
+import { DaffExternalRouterNoWildcardError } from '../../errors/no-wildcard';
 
 /**
  * Inserts a route into a Routes array right before the wildcard route.
- * If no wildcard is found, it fails fast with a `DaffExternalRouterNoWildcard`.
+ * If no wildcard is found, it fails fast with a `DaffExternalRouterNoWildcardError`.
  */
 export const insertRouteBeforeWildCard = (
 	route: Route,
@@ -11,7 +11,7 @@ export const insertRouteBeforeWildCard = (
 ): Routes => {
 	const index = config.findIndex((r: Route) => r.path === '**');
 	if (index === -1) {
-		throw new DaffExternalRouterNoWildcard(
+		throw new DaffExternalRouterNoWildcardError(
 			'No wildcard (**) route was found during route resolution.',
 		);
 	}

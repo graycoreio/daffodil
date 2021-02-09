@@ -7,8 +7,8 @@ import { Router, Routes } from '@angular/router';
 import { DaffExternalRouter } from './router.service';
 import { DaffResolvableRoute } from '../model/resolvable-route';
 import { TypeRoutePair } from '../model/type-route-pair';
-import { DaffExternalRouterUnknownRouteType } from '../errors/unknown-type';
-import { DaffExternalRouterNoWildcard } from '../errors/no-wildcard';
+import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
+import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
 import { DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES } from '../token/type-resolvable-routes.token';
 
 describe('@daffodil/external-router | DaffExternalRouter', () => {
@@ -63,7 +63,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
 
 		expect(() =>
 			service.add({ url: 'some-path', type: 'type-b' }),
-		).toThrowError(DaffExternalRouterUnknownRouteType);
+		).toThrowError(DaffExternalRouterUnknownRouteTypeError);
 		expect(router.config).toEqual([
 			{ path: '**', redirectTo: 'somewhere-else' },
 		]);
@@ -74,7 +74,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
 
 		expect(() =>
 			service.add({ url: 'some-path', type: 'type-a' }),
-		).toThrowError(DaffExternalRouterNoWildcard, /misconfigured/);
+		).toThrowError(DaffExternalRouterNoWildcardError, /misconfigured/);
 		expect(router.config).toEqual([]);
 	});
 });
