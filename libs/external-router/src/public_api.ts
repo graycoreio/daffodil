@@ -15,3 +15,4 @@ export { DaffResolvableRoute } from './model/resolvable-route';
 export { DaffExternalRouter } from './router/router.service';
 
 export { DaffExternalRouterNoWildcard } from './errors/no-wildcard';
+export { DaffExternalRouterUnknownRouteType } from './errors/unknown-type';
