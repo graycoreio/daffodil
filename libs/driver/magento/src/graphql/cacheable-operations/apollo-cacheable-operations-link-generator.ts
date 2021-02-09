@@ -17,7 +17,7 @@ export class DaffMagentoApolloCacheableOperationsLinkGenerator implements DaffAp
 
 	getLink(): ApolloLink {
 		return new ApolloLink((operation, forward) => {
-			if(this.apolloGetRequests.includes(operation.operationName)) {
+			if(this.apolloGetRequests.indexOf(operation.operationName) > -1) {
 				operation.setContext({ method: 'GET' });
 			}
 			return forward(operation);
