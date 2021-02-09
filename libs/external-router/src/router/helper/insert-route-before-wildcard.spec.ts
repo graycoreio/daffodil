@@ -1,19 +1,20 @@
 import { Route } from '@angular/router';
 import { insertRouteBeforeWildCard } from './insert-route-before-wildcard';
+import { DaffExternalRouterNoWildcardError } from '../../errors/no-wildcard';
 
 describe('@daffodil/external-router | insertRouteBeforeWildCard', () => {
 	
 	it('should throw an exception on an empty array', () => {
 		const newRoute: Route = { path: '' };
 
-		expect(() => insertRouteBeforeWildCard(newRoute, [])).toThrow();
+		expect(() => insertRouteBeforeWildCard(newRoute, [])).toThrowError(DaffExternalRouterNoWildcardError);
 	});
 
 	it('should throw an exception if there is no wildcard in the existing routes', () => {
 		const newRoute: Route = { path: '' };
 		const routes = [{ path: 'some-path' }];
 
-		expect(() => insertRouteBeforeWildCard(newRoute, routes)).toThrow();
+		expect(() => insertRouteBeforeWildCard(newRoute, routes)).toThrowError(DaffExternalRouterNoWildcardError);
 	});
 
 	it('should insert a route before the wildcard', () => {
