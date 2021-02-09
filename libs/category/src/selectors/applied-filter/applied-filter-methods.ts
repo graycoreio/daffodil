@@ -25,12 +25,12 @@ export function buildAppliedFilter(filter: DaffCategoryFilter, request: DaffCate
 
 function buildAppliedFilterOptions(filterOptions: DaffCategoryFilterOption[], filterRequest: DaffCategoryFilterRequest): DaffCategoryAppliedFilterOption[] {
   switch(filterRequest.type) {
-  case(DaffCategoryFilterType.Equal) :
-    return buildAppliedFilterOptionsFromEqualRequest(filterOptions, filterRequest);
-  case(DaffCategoryFilterType.Range) :
-    return buildAppliedFilterOptionsFromRangeRequest(filterOptions, filterRequest);
-  case(DaffCategoryFilterType.Match) :
-    return buildAppliedFilterOptionsFromMatchRequest(filterOptions, filterRequest);
+    case(DaffCategoryFilterType.Equal) :
+      return buildAppliedFilterOptionsFromEqualRequest(filterOptions, filterRequest);
+    case(DaffCategoryFilterType.Range) :
+      return buildAppliedFilterOptionsFromRangeRequest(filterOptions, filterRequest);
+    case(DaffCategoryFilterType.Match) :
+      return buildAppliedFilterOptionsFromMatchRequest(filterOptions, filterRequest);
   }
 }
 

@@ -16,12 +16,12 @@ import { transformMagentoSimpleProduct } from './simple-product-transformers';
  */
 export function transformMagentoProduct(product: MagentoProduct, mediaUrl?: string): DaffProduct {
   switch(product.__typename) {
-  case MagentoProductTypeEnum.BundledProduct:
-    return transformMagentoBundledProduct(<MagentoBundledProduct>product, mediaUrl);
-  case MagentoProductTypeEnum.ConfigurableProduct:
-    return transformMagentoConfigurableProduct(<MagentoConfigurableProduct>product, mediaUrl);
-  default:
-    return transformMagentoSimpleProduct(product, mediaUrl);
+    case MagentoProductTypeEnum.BundledProduct:
+      return transformMagentoBundledProduct(<MagentoBundledProduct>product, mediaUrl);
+    case MagentoProductTypeEnum.ConfigurableProduct:
+      return transformMagentoConfigurableProduct(<MagentoConfigurableProduct>product, mediaUrl);
+    default:
+      return transformMagentoSimpleProduct(product, mediaUrl);
   }
 }
 

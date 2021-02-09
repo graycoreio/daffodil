@@ -21,26 +21,26 @@ export function daffAuthRegisterReducer<
   >,
 ): DaffAuthRegisterReducerState {
   switch (action.type) {
-  case DaffAuthActionTypes.AuthRegisterAction:
-    return {
-      ...state,
-      loading: true,
-    };
+    case DaffAuthActionTypes.AuthRegisterAction:
+      return {
+        ...state,
+        loading: true,
+      };
 
-  case DaffAuthActionTypes.AuthRegisterSuccessAction:
-    return {
-      ...state,
-      loading: false,
-    };
+    case DaffAuthActionTypes.AuthRegisterSuccessAction:
+      return {
+        ...state,
+        loading: false,
+      };
 
-  case DaffAuthActionTypes.AuthRegisterFailureAction:
-    return {
-      ...state,
-      loading: false,
-      errors: [action.errorMessage],
-    };
+    case DaffAuthActionTypes.AuthRegisterFailureAction:
+      return {
+        ...state,
+        loading: false,
+        errors: [action.errorMessage],
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

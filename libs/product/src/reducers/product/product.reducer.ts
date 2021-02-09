@@ -24,17 +24,17 @@ export const initialState: DaffProductReducerState = {
  */
 export function daffProductReducer<T extends DaffProduct>(state = initialState, action: DaffProductPageActions<T>): DaffProductReducerState {
   switch (action.type) {
-  case DaffProductPageActionTypes.ProductPageLoadAction:
-    return { ...state, loading: true, selectedProductId: action.payload };
-  case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-    return { ...state, loading: false };
-  case DaffProductPageActionTypes.ProductPageLoadFailureAction:
-    return { ...state,
-      loading: false,
-      errors: state.errors.concat(new Array(action.payload)) };
-  case DaffProductPageActionTypes.UpdateQtyAction:
-    return { ...state, qty: action.payload };
-  default:
-    return state;
+    case DaffProductPageActionTypes.ProductPageLoadAction:
+      return { ...state, loading: true, selectedProductId: action.payload };
+    case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
+      return { ...state, loading: false };
+    case DaffProductPageActionTypes.ProductPageLoadFailureAction:
+      return { ...state,
+        loading: false,
+        errors: state.errors.concat(new Array(action.payload)) };
+    case DaffProductPageActionTypes.UpdateQtyAction:
+      return { ...state, qty: action.payload };
+    default:
+      return state;
   }
 }

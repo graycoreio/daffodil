@@ -38,38 +38,38 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
   action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffCompositeProductActions<V>): EntityState<DaffCompositeProductEntity> {
   const adapter = daffCompositeProductAppliedOptionsEntitiesAdapter();
   switch (action.type) {
-  case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-  case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-    return adapter.upsertMany(
-      action.payload
-        .filter(product => product.type === DaffProductTypeEnum.Composite)
-        .map(product => buildCompositeProductAppliedOptionsEntity(<V><unknown>product)),
-      state,
-    );
-  case DaffProductActionTypes.ProductLoadSuccessAction:
-    if(action.payload.type === DaffProductTypeEnum.Composite) {
-      return adapter.upsertOne(
-        buildCompositeProductAppliedOptionsEntity(<V><unknown>action.payload),
+    case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+      return adapter.upsertMany(
+        action.payload
+          .filter(product => product.type === DaffProductTypeEnum.Composite)
+          .map(product => buildCompositeProductAppliedOptionsEntity(<V><unknown>product)),
         state,
       );
-    };
-    return state;
-  case DaffCompositeProductActionTypes.CompositeProductApplyOptionAction:
-    return adapter.upsertOne(
-      {
-        id: action.id,
-        items: {
-          ...state.entities[action.id].items,
-          [action.itemId]: {
-            value: action.optionId,
-            qty: action.qty ? action.qty : 1,
+    case DaffProductActionTypes.ProductLoadSuccessAction:
+      if(action.payload.type === DaffProductTypeEnum.Composite) {
+        return adapter.upsertOne(
+          buildCompositeProductAppliedOptionsEntity(<V><unknown>action.payload),
+          state,
+        );
+      };
+      return state;
+    case DaffCompositeProductActionTypes.CompositeProductApplyOptionAction:
+      return adapter.upsertOne(
+        {
+          id: action.id,
+          items: {
+            ...state.entities[action.id].items,
+            [action.itemId]: {
+              value: action.optionId,
+              qty: action.qty ? action.qty : 1,
+            },
           },
         },
-      },
-      state,
-    );
-  default:
-    return state;
+        state,
+      );
+    default:
+      return state;
   }
 }
 

@@ -15,20 +15,20 @@ export const resetState: DaffBestSellersReducerState = Object.assign({}, initial
 
 export function daffBestSellersReducer<T extends DaffProduct>(state = initialState, action: DaffBestSellersActions<T>): DaffBestSellersReducerState {
   switch (action.type) {
-  case DaffBestSellersActionTypes.BestSellersLoadAction:
-    return { ...state, loading: true };
-  case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-    return { ...state, loading: false, productIds: getIds<T>(action.payload) };
-  case DaffBestSellersActionTypes.BestSellersLoadFailureAction:
-    return { ...state,
-      loading: false,
-      errors: state.errors.concat(new Array(action.payload)) };
-  case DaffBestSellersActionTypes.BestSellersResetAction:
-    return {
-      ...resetState,
-    };
-  default:
-    return state;
+    case DaffBestSellersActionTypes.BestSellersLoadAction:
+      return { ...state, loading: true };
+    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+      return { ...state, loading: false, productIds: getIds<T>(action.payload) };
+    case DaffBestSellersActionTypes.BestSellersLoadFailureAction:
+      return { ...state,
+        loading: false,
+        errors: state.errors.concat(new Array(action.payload)) };
+    case DaffBestSellersActionTypes.BestSellersResetAction:
+      return {
+        ...resetState,
+      };
+    default:
+      return state;
   }
 }
 

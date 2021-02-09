@@ -18,13 +18,13 @@ export function daffOrderEntitiesReducer<T extends DaffOrder = DaffOrder>(
   const adapter = daffGetOrderAdapter<T>();
 
   switch (action.type) {
-  case DaffOrderActionTypes.OrderLoadSuccessAction:
-    return adapter.upsertOne(action.payload, state);
+    case DaffOrderActionTypes.OrderLoadSuccessAction:
+      return adapter.upsertOne(action.payload, state);
 
-  case DaffOrderActionTypes.OrderListSuccessAction:
-    return adapter.upsertMany(action.payload, state);
+    case DaffOrderActionTypes.OrderListSuccessAction:
+      return adapter.upsertMany(action.payload, state);
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

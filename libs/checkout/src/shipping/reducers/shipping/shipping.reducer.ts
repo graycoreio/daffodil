@@ -11,11 +11,11 @@ export const initialState: DaffShippingReducerState = {
 
 export function daffShippingReducer(state = initialState, action: DaffShippingActions): DaffShippingReducerState {
   switch (action.type) {
-  case DaffShippingActionTypes.UpdateShippingAddressAction:
-    return { ...state, shippingAddress: action.payload };
-  case DaffShippingActionTypes.SelectShippingOptionAction:
-    return { ...state, selectedShippingOptionId: action.payload };
-  default:
-    return state;
+    case DaffShippingActionTypes.UpdateShippingAddressAction:
+      return { ...state, shippingAddress: action.payload };
+    case DaffShippingActionTypes.SelectShippingOptionAction:
+      return { ...state, selectedShippingOptionId: action.payload };
+    default:
+      return state;
   }
 }

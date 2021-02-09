@@ -39,50 +39,50 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
   action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffConfigurableProductEntity> {
   const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
   switch (action.type) {
-  case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-  case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-    return adapter.upsertMany(
-      action.payload
-        .filter(product => product.type === DaffProductTypeEnum.Configurable)
-        .map(buildConfigurableProductAppliedAttributesEntity),
-      state,
-    );
-  case DaffProductActionTypes.ProductLoadSuccessAction:
-    if(action.payload.type === DaffProductTypeEnum.Configurable) {
-      return adapter.upsertOne(
-        buildConfigurableProductAppliedAttributesEntity(action.payload),
+    case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+      return adapter.upsertMany(
+        action.payload
+          .filter(product => product.type === DaffProductTypeEnum.Configurable)
+          .map(buildConfigurableProductAppliedAttributesEntity),
         state,
       );
-    };
-    return state;
-  case DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction:
-    return adapter.upsertOne(
-      {
-        id: action.id,
-        attributes: applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
-      },
-      state,
-    );
-  case DaffConfigurableProductActionTypes.ConfigurableProductRemoveAttributeAction:
-    return adapter.upsertOne(
-      {
-        id: action.id,
-        attributes: removeAttribute(state.entities[action.id].attributes, action.attributeId),
-      },
-      state,
-    );
-  case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
-    return adapter.upsertOne(
-      {
-        id: action.id,
-        attributes: isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue) ?
-          removeAttribute(state.entities[action.id].attributes, action.attributeId) :
-          applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
-      },
-      state,
-    );
-  default:
-    return state;
+    case DaffProductActionTypes.ProductLoadSuccessAction:
+      if(action.payload.type === DaffProductTypeEnum.Configurable) {
+        return adapter.upsertOne(
+          buildConfigurableProductAppliedAttributesEntity(action.payload),
+          state,
+        );
+      };
+      return state;
+    case DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction:
+      return adapter.upsertOne(
+        {
+          id: action.id,
+          attributes: applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
+        },
+        state,
+      );
+    case DaffConfigurableProductActionTypes.ConfigurableProductRemoveAttributeAction:
+      return adapter.upsertOne(
+        {
+          id: action.id,
+          attributes: removeAttribute(state.entities[action.id].attributes, action.attributeId),
+        },
+        state,
+      );
+    case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
+      return adapter.upsertOne(
+        {
+          id: action.id,
+          attributes: isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue) ?
+            removeAttribute(state.entities[action.id].attributes, action.attributeId) :
+            applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
+        },
+        state,
+      );
+    default:
+      return state;
   }
 }
 

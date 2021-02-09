@@ -21,31 +21,31 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
   action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {
-  case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction:
-    return {
-      ...state,
-      ...setLoading(state.loading, DaffLoadingState.Resolving),
-    };
+    case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving),
+      };
 
-  case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadSuccessAction:
-    return {
-      ...state,
-      ...resetErrors(state.errors),
-      cart: {
-        ...state.cart,
-        available_payment_methods: action.payload,
-      },
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadSuccessAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          available_payment_methods: action.payload,
+        },
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
-  case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction:
-    return {
-      ...state,
-      ...addError(state.errors, action.payload),
-      ...setLoading(state.loading, DaffLoadingState.Complete),
-    };
+    case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction:
+      return {
+        ...state,
+        ...addError(state.errors, action.payload),
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

@@ -15,12 +15,12 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: CheckoutActions): State {
   switch (action.type) {
-  case CheckoutActionTypes.EnablePlaceOrderButtonAction:
-    return { ...state, enablePlaceOrderButton: true };
-  case CheckoutActionTypes.ShowReviewViewAction:
-    return { ...state, showReviewView: true };
-  default:
-    return state;
+    case CheckoutActionTypes.EnablePlaceOrderButtonAction:
+      return { ...state, enablePlaceOrderButton: true };
+    case CheckoutActionTypes.ShowReviewViewAction:
+      return { ...state, showReviewView: true };
+    default:
+      return state;
   }
 }
 

@@ -36,47 +36,47 @@ export function daffCartItemEntitiesReducer<
   action: DaffCartItemActions<T, U, V> | DaffCartActions<V>): EntityState<T> {
   const adapter = daffCartItemEntitiesAdapter<T>();
   switch (action.type) {
-  case DaffCartItemActionTypes.CartItemListSuccessAction:
-    return adapter.addAll(action.payload.map(item => ({
-      ...item,
-      daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default,
-    })), state);
-  case DaffCartItemActionTypes.CartItemLoadSuccessAction:
-    return adapter.upsertOne({
-      ...action.payload,
-      daffState: getDaffState(state.entities[action.payload.item_id]) || DaffCartItemStateEnum.Default,
-    }, state);
-  case DaffCartItemActionTypes.CartItemAddSuccessAction:
-    return adapter.addAll(
-      updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items),
-      state,
-    );
-  case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
-    return adapter.addAll(
-      updateMutatedCartItemState<T>(<T[]>action.payload.items, state.entities, action.itemId),
-      state,
-    );
-  case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
-  case DaffCartActionTypes.CartLoadSuccessAction:
-  case DaffCartActionTypes.ResolveCartSuccessAction:
-  case DaffCartActionTypes.CartClearSuccessAction:
-    return adapter.addAll(<T[]><unknown>action.payload.items.map(item => ({
-      ...item,
-      daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default,
-    })), state);
-  case DaffCartItemActionTypes.CartItemStateResetAction:
-    return adapter.addAll(Object.keys(state.entities).map(key => ({
-      ...state.entities[key],
-      daffState: DaffCartItemStateEnum.Default,
-    })), state);
-  case DaffCartItemActionTypes.CartItemUpdateAction:
-  case DaffCartItemActionTypes.CartItemDeleteAction:
-    return adapter.upsertOne({
-      ...state.entities[action.itemId],
-      daffState: DaffCartItemStateEnum.Mutating,
-    }, state);
-  default:
-    return state;
+    case DaffCartItemActionTypes.CartItemListSuccessAction:
+      return adapter.addAll(action.payload.map(item => ({
+        ...item,
+        daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default,
+      })), state);
+    case DaffCartItemActionTypes.CartItemLoadSuccessAction:
+      return adapter.upsertOne({
+        ...action.payload,
+        daffState: getDaffState(state.entities[action.payload.item_id]) || DaffCartItemStateEnum.Default,
+      }, state);
+    case DaffCartItemActionTypes.CartItemAddSuccessAction:
+      return adapter.addAll(
+        updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items),
+        state,
+      );
+    case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
+      return adapter.addAll(
+        updateMutatedCartItemState<T>(<T[]>action.payload.items, state.entities, action.itemId),
+        state,
+      );
+    case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
+    case DaffCartActionTypes.CartLoadSuccessAction:
+    case DaffCartActionTypes.ResolveCartSuccessAction:
+    case DaffCartActionTypes.CartClearSuccessAction:
+      return adapter.addAll(<T[]><unknown>action.payload.items.map(item => ({
+        ...item,
+        daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default,
+      })), state);
+    case DaffCartItemActionTypes.CartItemStateResetAction:
+      return adapter.addAll(Object.keys(state.entities).map(key => ({
+        ...state.entities[key],
+        daffState: DaffCartItemStateEnum.Default,
+      })), state);
+    case DaffCartItemActionTypes.CartItemUpdateAction:
+    case DaffCartItemActionTypes.CartItemDeleteAction:
+      return adapter.upsertOne({
+        ...state.entities[action.itemId],
+        daffState: DaffCartItemStateEnum.Mutating,
+      }, state);
+    default:
+      return state;
   }
 }
 
@@ -88,12 +88,12 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
   return newCartItems.map(newItem => {
     const oldItem = oldCartItems[newItem.item_id];
     switch(true) {
-    case !oldItem:
-      return { ...newItem, daffState: DaffCartItemStateEnum.New };
-    case oldItem?.qty !== newItem.qty:
-      return { ...newItem, daffState: DaffCartItemStateEnum.Updated };
-    default:
-      return newItem;
+      case !oldItem:
+        return { ...newItem, daffState: DaffCartItemStateEnum.New };
+      case oldItem?.qty !== newItem.qty:
+        return { ...newItem, daffState: DaffCartItemStateEnum.Updated };
+      default:
+        return newItem;
     }
   });
 }

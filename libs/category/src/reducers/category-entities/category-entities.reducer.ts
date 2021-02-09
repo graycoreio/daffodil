@@ -22,16 +22,16 @@ export function daffCategoryEntitiesReducer<
   action: DaffCategoryActions<T, V, U, W>,
 ): EntityState<V> {
   switch (action.type) {
-  case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-  case DaffCategoryActionTypes.CategoryPageLoadSuccessAction:
-    return daffCategoryEntitiesAdapter<V>().upsertOne(
-      {
-        id: action.response.category.id,
-        ...action.response.category,
-      },
-      state,
-    );
-  default:
-    return state;
+    case DaffCategoryActionTypes.CategoryLoadSuccessAction:
+    case DaffCategoryActionTypes.CategoryPageLoadSuccessAction:
+      return daffCategoryEntitiesAdapter<V>().upsertOne(
+        {
+          id: action.response.category.id,
+          ...action.response.category,
+        },
+        state,
+      );
+    default:
+      return state;
   }
 }

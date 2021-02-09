@@ -30,33 +30,33 @@ export function toggleCategoryFilter(
 
 export function isFilterApplied(toggledFilter: DaffToggleCategoryFilterRequest, appliedFilters: DaffCategoryFilterRequest[]): boolean {
   switch(toggledFilter.type) {
-  case(DaffCategoryFilterType.Equal) :
-    return isEqualFilterApplied(toggledFilter, appliedFilters);
-  case(DaffCategoryFilterType.Range) :
-    return isRangeFilterApplied(toggledFilter, appliedFilters);
-  default :
-    return isMatchFilterApplied(toggledFilter, appliedFilters);
+    case(DaffCategoryFilterType.Equal) :
+      return isEqualFilterApplied(toggledFilter, appliedFilters);
+    case(DaffCategoryFilterType.Range) :
+      return isRangeFilterApplied(toggledFilter, appliedFilters);
+    default :
+      return isMatchFilterApplied(toggledFilter, appliedFilters);
   }
 }
 
 export function removeFilter(toggledFilter: DaffToggleCategoryFilterRequest, appliedFilters: DaffCategoryFilterRequest[]): DaffCategoryFilterRequest[] {
   switch(toggledFilter.type) {
-  case(DaffCategoryFilterType.Equal) :
-    return removeEqualFilter(toggledFilter, appliedFilters);
-  case(DaffCategoryFilterType.Range) :
-    return removeRangeFilter(toggledFilter, appliedFilters);
-  default :
-    return removeMatchFilter(toggledFilter, appliedFilters);
+    case(DaffCategoryFilterType.Equal) :
+      return removeEqualFilter(toggledFilter, appliedFilters);
+    case(DaffCategoryFilterType.Range) :
+      return removeRangeFilter(toggledFilter, appliedFilters);
+    default :
+      return removeMatchFilter(toggledFilter, appliedFilters);
   }
 }
 
 export function addFilter(toggledFilter: DaffToggleCategoryFilterRequest, appliedFilters: DaffCategoryFilterRequest[]): DaffCategoryFilterRequest[] {
   switch(toggledFilter.type) {
-  case(DaffCategoryFilterType.Equal) :
-    return addEqualFilter(toggledFilter, appliedFilters);
-  case(DaffCategoryFilterType.Range) :
-    return addRangeFilter(toggledFilter, appliedFilters);
-  default :
-    return addMatchFilter(toggledFilter, appliedFilters);
+    case(DaffCategoryFilterType.Equal) :
+      return addEqualFilter(toggledFilter, appliedFilters);
+    case(DaffCategoryFilterType.Range) :
+      return addRangeFilter(toggledFilter, appliedFilters);
+    default :
+      return addMatchFilter(toggledFilter, appliedFilters);
   }
 }
