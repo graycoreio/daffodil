@@ -12,7 +12,7 @@ export { MagentoGetProductsByCategoriesRequest } from './models/requests/get-pro
 export { MagentoCategoryFilters, MagentoFilterAction } from './models/requests/filters';
 export { MagentoSortFieldAction } from './models/requests/sort';
 
-export * from './queries/custom-attribute-metadata';
+export { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';
 export * from './queries/get-category-aggregations';
 export * from './queries/get-category';
 export * from './queries/get-products';

@@ -1,12 +1,10 @@
 import {gql} from 'apollo-angular';
 
-export const DAFF_MAGENTO_GET_CUSTOM_ATTRIBUTE_METADATA_QUERY_NAME = 'MagentoGetCustomAttributeMetadata';
-
 /**
  * A query for getting aggregation types.
  */
 export const MagentoGetCustomAttributeMetadata = gql`
-query ${DAFF_MAGENTO_GET_CUSTOM_ATTRIBUTE_METADATA_QUERY_NAME}($attributes: [AttributeInput!]!)
+query MagentoGetCustomAttributeMetadata($attributes: [AttributeInput!]!)
 {
 	customAttributeMetadata(attributes: $attributes)
 	{

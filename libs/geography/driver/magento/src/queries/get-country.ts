@@ -2,10 +2,8 @@ import {gql} from 'apollo-angular';
 
 import { countryFragment, regionFragment } from './fragments/public_api';
 
-export const DAFF_MAGENTO_GET_COUNTRY_QUERY_NAME = 'MagentoGetCountry';
-
 export const getCountry = gql`
-  query ${DAFF_MAGENTO_GET_COUNTRY_QUERY_NAME}($countryId: String!) {
+  query MagentoGetCountry($countryId: String!) {
     country(id: $countryId) {
       ...country
       available_regions {

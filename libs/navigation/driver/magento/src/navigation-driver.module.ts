@@ -5,11 +5,11 @@ import {
   DaffNavigationDriver,
   DaffNavigationTransformer,
 } from '@daffodil/navigation/driver';
+import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 
 import { DaffMagentoNavigationService } from './navigation.service';
 import { DaffMagentoNavigationTransformerService } from './transformers/navigation-transformer';
 import { MagentoNavigationDriverConfiguration, MAGENTO_NAVIGATION_TREE_QUERY_DEPTH } from './interfaces/navigation-config.interface';
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 import { DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME } from './queries/get-category-tree';
 
 export const MAGENTO_NAVIGATION_DEFAULT_CONFIGURATION: MagentoNavigationDriverConfiguration = {
@@ -38,7 +38,11 @@ export class DaffNavigationMagentoDriverModule {
           provide: MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
           useValue: config.navigationTreeQueryDepth
 				},
-				provideDaffMagentoCacheableOperation(DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME)
+				{
+					provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
+					useValue: DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME,
+					multi: true
+				}
       ]
     };
   }

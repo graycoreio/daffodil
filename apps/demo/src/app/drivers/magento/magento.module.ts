@@ -34,7 +34,7 @@ export class DemoMagentoDriverModule {
   constructor(
 		apollo: Apollo, 
 		httpLink: HttpLink,
-		private apolloCacheableOperationsLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator
+		private magentoLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator
 	) {
 
     apollo.create({
@@ -48,7 +48,7 @@ export class DemoMagentoDriverModule {
 						);
           if (networkError) console.log(`[Network error]: ${networkError}`);
 				}),
-				this.apolloCacheableOperationsLinkGenerator.getLink(),
+				this.magentoLinkGenerator.getLink(),
         httpLink.create({
           uri: (<MagentoEnvironmentDriverConfiguration>environment.driver).domain + '/graphql',
 					withCredentials: false,
