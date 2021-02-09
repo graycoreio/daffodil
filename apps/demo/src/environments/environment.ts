@@ -11,6 +11,6 @@ import {
 export const environment: EnvironmentConfiguration = {
 	production: false,
 	driver: {
-		variant: DemoDriverVariantEnum.IN_MEMORY
+		variant: DemoDriverVariantEnum.IN_MEMORY,
 	},
 };
