@@ -11,7 +11,6 @@ import {
 export const environment: EnvironmentConfiguration = {
 	production: false,
 	driver: {
-		variant: DemoDriverVariantEnum.MAGENTO,
-		domain: 'https://dev-beta-api.lostgolfballs.com'
+		variant: DemoDriverVariantEnum.IN_MEMORY
 	},
 };

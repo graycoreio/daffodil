@@ -10,11 +10,11 @@ import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/m
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
+import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
 
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
 import { possibleTypes } from './fragmentTypes.json';
-import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
 
 const cache = new InMemoryCache({ possibleTypes });
 
