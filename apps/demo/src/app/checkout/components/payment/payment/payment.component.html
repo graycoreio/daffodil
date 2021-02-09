@@ -1,7 +1,7 @@
 <div class="payment">
   <demo-payment-form 
-    [hidden]="!(showPaymentForm$ | async)"
-    [paymentInfo]="paymentInfo" 
+    [hidden]="(showPaymentForm$ | async) === false"
+    [paymentInfo]="paymentInfo"
     [billingAddress]="billingAddress"
     [billingAddressIsShippingAddress]="billingAddressIsShippingAddress"
     (updatePaymentInfo)="onUpdatePaymentInfo($event)"

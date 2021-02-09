@@ -9,14 +9,14 @@
       </div>
     </div>
     <div>
-      <div class="demo-newsletter__right" *ngIf="!(success$ | async) && !(error$ | async) && !(loading$ | async)">
+      <div class="demo-newsletter__right" *ngIf="(success$ | async) === false && (hasError$ | async) === false && (loading$ | async) === false">
         <ng-container *ngIf="email.invalid && email.dirty">Please enter a valid email</ng-container>
         <input daff-input type="text" class="demo-newsletter__input" placeholder="Email" name="email" [formControl]="email"
           required email />
         <button type="submit" daff-button color="secondary" class="demo-newsletter__button"
           (click)='onNewsletterSubmit()'>Sign Up</button>
       </div>
-      <div class="demo-newsletter__retry" *ngIf="(error$ | async) && !(loading$| async) && !(success$ | async)">
+      <div class="demo-newsletter__retry" *ngIf="(hasError$ | async) && (loading$| async) === false && (success$ | async) === false">
         Error
         <button type="submit" daff-button color="secondary" class="demo-newsletter__button"
           (click)='onNewsletterRetry()'>Retry</button>

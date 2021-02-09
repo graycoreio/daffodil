@@ -1,4 +1,4 @@
-<div class="demo-best-sellers" *ngIf="!(loading$ | async)">
+<div class="demo-best-sellers" *ngIf="(loading$ | async) === false">
 	<div class="demo-best-sellers__title">best sellers</div>
 	<demo-product-grid [products]="bestSellers$ | async"></demo-product-grid>
 </div>
