@@ -15,7 +15,7 @@ import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 describe('DaffNewsletterFacade', () => {
 
-  let store: MockStore<Partial<DaffNewsletterFeatureState>>;
+  let store: Store<{newsletter: DaffNewsletterFeatureState}>
   let facade: DaffNewsletterFacade;
 
   beforeEach(() => {
