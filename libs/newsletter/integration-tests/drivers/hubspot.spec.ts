@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { DaffNewsletterServiceInterface, DaffNewsletterDriver } from '@daffodil/newsletter/driver';
 import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 
 describe('DaffNewsletterHubspotDriver', () => {

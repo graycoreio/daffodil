@@ -18,7 +18,7 @@ import {
 	DaffNewsletterDriver
 } from '@daffodil/newsletter/driver';
 
-import { DaffTestingNewsletterService } from '@daffodil/newsletter/testing';
+import { DaffTestingNewsletterService } from '@daffodil/newsletter/driver/testing';
 
 describe('NewsletterEffects', () => {
 	let actions$: Observable<any>;
