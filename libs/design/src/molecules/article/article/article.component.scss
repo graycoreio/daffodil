@@ -8,11 +8,12 @@
 	}
 
 	&__lead {
-		font-size: $medium-font-size;
+		@include body-md();
 		font-weight: normal;
+		margin: 0;
 
 		code {
-			font-size: $medium-font-size;
+			@include body-md();
 		}
 	}
 
@@ -27,7 +28,7 @@
 		h4,
 		h5,
 		h6 {
-			margin-bottom: 1rem;
+			margin-bottom: 0.5rem;
 		}
 
 		h2,
@@ -39,35 +40,35 @@
 		}
 
 		h1 {
-			@include headline-xl();
-		}
-
-		h2 {
 			@include headline-lg();
 		}
 
-		h3 {
+		h2 {
 			@include headline-md();
 		}
 
-		h4 {
+		h3 {
 			@include headline-sm();
+		}
+
+		h4 {
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+
+			@include breakpoint(tablet) {
+				font-size: 1.5rem;
+				line-height: 2rem;
+			}
 		}
 
 		h5 {
 			font-size: 1.125rem;
-
-			@include breakpoint(tablet) {
-				font-size: 1.25rem;
-			}
+			line-height: 1.5rem;
 		}
 
 		h6 {
 			font-size: 1rem;
-
-			@include breakpoint(tablet) {
-				font-size: 1.125rem;
-			}
+			line-height: 1.5rem;
 		}
 
 		ul,
@@ -78,47 +79,49 @@
 		strong {
 			@include embolden();
 		}
+	}
 
-		pre {
-			display: block;
-			border-radius: 4px;
-			font-size: $small-font-size;
-			line-height: 1.5em;
-			margin: 0;
-			padding: 1.5rem;
-			overflow: auto;
-
-			code {
-				display: block;
-				padding: 0;
-			}
-		}
+	pre {
+		display: block;
+		border-radius: 4px;
+		font-size: $small-font-size;
+		line-height: 1.5rem;
+		margin: 0;
+		padding: 1.5rem;
+		overflow: auto;
+		white-space: pre-wrap;
 
 		code {
-			border-radius: 4px;
+			display: block;
+			padding: 0;
+		}
+	}
+
+	code {
+		display: inline-block;
+		border-radius: 4px;
+		font-size: $small-font-size;
+		line-height: 1rem;
+		padding: 4px;
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		margin: 2rem 0;
+	}
+
+	blockquote {
+		font-size: $medium-font-size;
+		margin: 0;
+		padding: 1rem 1.5rem;
+
+		cite {
+			@include uppercase();
+			@include embolden();
+			display: block;
 			font-size: $small-font-size;
-			line-height: 1.5em;
-			padding: 4px;
-		}
-
-		hr {
-			border: 0;
-			height: 1px;
-			margin: 2rem 0;
-		}
-
-		blockquote {
-			font-size: $medium-font-size;
-			margin: 0;
-			padding: 1rem 1.5rem;
-
-			cite {
-				@include uppercase();
-				@include embolden();
-				display: block;
-				font-size: $small-font-size;
-				margin-top: 16px;
-			}
+			margin-top: 1rem;
 		}
 	}
 }
