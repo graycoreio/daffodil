@@ -3,7 +3,7 @@ import { apiDocs } from './src/transforms/daffodil-api-package';
 import { guideDocPackage } from './src/transforms/daffodil-guides-package';
 import { designExamplePackage } from './src/transforms/daffodil-design-examples-package';
 
-import * as rimraf from 'rimraf';
+import rimraf from 'rimraf';
 
 rimraf('../../dist/docs/**/*', function() {
 	new Dgeni([guideDocPackage]).generate().catch(() => process.exit(1));
