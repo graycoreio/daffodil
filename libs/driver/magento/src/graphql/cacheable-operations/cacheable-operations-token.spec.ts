@@ -34,7 +34,7 @@ describe('Driver | Magento | GraphQL | DAFF_MAGENTO_CACHEABLE_OPERATIONS', () =>
 				}
 			]
 
-			expect(provideManyDaffMagentoCacheableOperations([OPERATION_NAME1, OPERATION_NAME2])).toEqual(expected);
+			expect(provideManyDaffMagentoCacheableOperations(OPERATION_NAME1, OPERATION_NAME2)).toEqual(expected);
 		});
 	});
 });

@@ -22,7 +22,7 @@ export function provideDaffMagentoCacheableOperation(operationName: string) {
 /**
  * Adds many operation names to the list of cacheable Magento operations. Use only with Angular 9+.
  */
-export function provideManyDaffMagentoCacheableOperations(operationNames: string[]) {
+export function provideManyDaffMagentoCacheableOperations(...operationNames: string[]) {
 	return operationNames.map(name => ({
 		provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
 		useValue: name,
