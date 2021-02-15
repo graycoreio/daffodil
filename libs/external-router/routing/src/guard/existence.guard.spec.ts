@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DAFF_EXTERNAL_ROUTER_CONFIG } from '@daffodil/external-router';
+import {
+	DAFF_EXTERNAL_ROUTER_CONFIG,
+	provideRouteResolvableByType,
+} from '@daffodil/external-router';
 import { DaffExternalRouterDriverTestingModule } from '@daffodil/external-router/driver/testing';
 
 import { DaffExternalRouterExistenceGuard } from './existence.guard';
@@ -12,7 +15,6 @@ import {
 	PRIMARY_OUTLET,
 } from '@angular/router';
 import { TestScheduler } from 'rxjs/testing';
-import { provideRouteResolvableByType } from 'libs/external-router/src/token/type-resolvable-routes.token';
 
 describe('@daffodil/external-router/routing | DaffExternalRouterTestingDriver', () => {
 	let guard: DaffExternalRouterExistenceGuard;
