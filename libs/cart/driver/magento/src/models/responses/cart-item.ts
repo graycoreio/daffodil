@@ -17,7 +17,6 @@ export interface MagentoCartItem {
     price: MagentoMoney;
     row_total: MagentoMoney;
     row_total_including_tax: MagentoMoney;
-    total_item_discount: MagentoMoney;
   };
   product: MagentoProduct;
   quantity: number;

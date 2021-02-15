@@ -196,7 +196,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					qty: mockMagentoCartItem.quantity,
 					price: mockMagentoCartItem.prices.price.value,
 					row_total: mockMagentoCartItem.prices.row_total.value,
-					total_discount: mockMagentoCartItem.prices.total_item_discount.value
 				})]);
         done();
       });

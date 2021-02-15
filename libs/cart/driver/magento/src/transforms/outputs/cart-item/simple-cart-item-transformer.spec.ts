@@ -29,7 +29,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
     let sku;
     let qty;
     let price;
-    let discount;
 		let url;
 		let label;
 		let stock_status;
@@ -38,7 +37,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       sku = 'sku';
       qty = 3;
       price = 3.34;
-      discount = 1;
 			url = 'url';
 			label = 'label';
 			stock_status = MagentoProductStockStatusEnum.InStock;
@@ -46,7 +44,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
-			mockMagentoCartItem.prices.total_item_discount.value = discount;
 			mockMagentoCartItem.product.thumbnail = {
 				url: url,
 				label: label
@@ -61,7 +58,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);
       expect(transformedCartItem.in_stock).toEqual(true);
-      expect(transformedCartItem.total_discount).toEqual(discount);
       expect(transformedCartItem.image.id).toEqual(label);
       expect(transformedCartItem.image.url).toEqual(url);
       expect(transformedCartItem.image.label).toEqual(label);

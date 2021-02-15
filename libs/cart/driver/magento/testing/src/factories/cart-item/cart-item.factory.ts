@@ -19,7 +19,6 @@ export class MockMagentoCartItem implements MagentoCartItem {
     price: this.money(),
     row_total: this.money(),
     row_total_including_tax: this.money(),
-    total_item_discount: this.money()
   };
   product = this.createProduct();
   quantity = faker.random.number({min: 1, max: 20});
