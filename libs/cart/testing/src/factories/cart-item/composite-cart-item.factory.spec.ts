@@ -38,14 +38,9 @@ describe('Cart | Testing | Factories | CompositeCartItemFactory', () => {
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
-      expect(result.total_discount).not.toBeNull();
       expect(result.options[0].option_id).not.toBeNull();
       expect(result.options[0].option_label).not.toBeNull();
       expect(result.options[0].value_label).not.toBeNull();
-    });
-
-    it('should set total_discount to be less than price', () => {
-      expect(result.total_discount).toBeLessThan(result.price);
     });
   });
 });
