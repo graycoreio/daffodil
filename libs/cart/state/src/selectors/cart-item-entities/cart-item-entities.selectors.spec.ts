@@ -33,7 +33,12 @@ describe('selectCartItemEntitiesState', () => {
 		selectCartItemCompositeOptions,
 		selectIsCartItemOutOfStock,
 		selectCartItemMutating,
-		selectCartItemState
+		selectCartItemState,
+    selectCartItemPrice,
+    selectCartItemRowTotal,
+    selectCartItemQuantity,
+    selectCartItemDiscounts,
+    selectCartItemTotalDiscount,
 	} = getDaffCartItemEntitiesSelectors();
 
   beforeEach(() => {
@@ -210,6 +215,96 @@ describe('selectCartItemEntitiesState', () => {
     it('should return null if the cart item is not in state', () => {
 			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id + 'notId' }));
 			const expected = cold('a', { a: null });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemPrice', () => {
+
+		it('should return the price of the cart item', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemPrice, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].price });
+
+			expect(selector).toBeObservable(expected);
+		});
+
+    it('should return 0 if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemPrice, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: 0 });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemQuantity', () => {
+
+		it('should return the quantity of the cart item', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemQuantity, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].qty });
+
+			expect(selector).toBeObservable(expected);
+		});
+
+    it('should return 0 if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemQuantity, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: 0 });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemRowTotal', () => {
+
+		it('should return the row total of the cart item', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemRowTotal, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].row_total });
+
+			expect(selector).toBeObservable(expected);
+		});
+
+    it('should return 0 if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemRowTotal, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: 0 });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemDiscounts', () => {
+
+		it('should return the discounts of the cart item', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemDiscounts, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].discounts });
+
+			expect(selector).toBeObservable(expected);
+		});
+
+    it('should return an empty array if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemDiscounts, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: [] });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemTotalDiscount', () => {
+
+		it('should return the sum of all discounts of the cart item', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemTotalDiscount, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].discounts.reduce((acc, {amount}) => acc + amount, 0) });
+
+			expect(selector).toBeObservable(expected);
+		});
+
+    it('should return 0 if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemTotalDiscount, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: 0 });
 
 			expect(selector).toBeObservable(expected);
     });
