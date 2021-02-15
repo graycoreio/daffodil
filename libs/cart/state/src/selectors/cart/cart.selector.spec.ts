@@ -127,7 +127,6 @@ describe('Cart | Selector | Cart', () => {
     selectCartAvailablePaymentMethods,
 
 		selectIsCartEmpty,
-    selectCartItemDiscountedRowTotal,
     selectIsBillingSameAsShipping,
 
     selectHasBillingAddress,
@@ -1514,26 +1513,6 @@ describe('Cart | Selector | Cart', () => {
     it('selects whether the cart is empty', () => {
       const selector = store.pipe(select(selectIsCartEmpty));
       const expected = cold('a', {a: cart.items.length === 0});
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartItemDiscountedRowTotal', () => {
-    it('selects the discounted total of the given cart item id', () => {
-      const rowTotal = 118.54;
-      const discount = 15.10000034;
-      const cartItemId = cart.items[0].item_id;
-      store.dispatch(new DaffCartLoadSuccess({
-        ...cart,
-        items: [{
-          ...cart.items[0],
-          row_total: rowTotal,
-          total_discount: discount
-        }]
-      }));
-			const selector = store.pipe(select(selectCartItemDiscountedRowTotal, { id: cartItemId }));
-      const expected = cold('a', {a: 103.43999966});
 
       expect(selector).toBeObservable(expected);
     });

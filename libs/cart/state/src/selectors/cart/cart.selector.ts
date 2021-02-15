@@ -204,7 +204,6 @@ export interface DaffCartStateMemoizedSelectors<
   selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
 
   selectIsCartEmpty: MemoizedSelector<object, boolean>;
-  selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
   /**
    * Selects whether the cart's shipping address equals the billing address.
    * Returns false if either address is null or undefined.
@@ -547,13 +546,6 @@ const createCartSelectors = <
 		selectCartValue,
 		cart => !cart || !cart.items || cart.items.length === 0
   );
-	const selectCartItemDiscountedRowTotal = createSelector(
-		selectCartItems,
-		(cartItems: DaffStatefulCartItem[], props) => {
-			const cartItem = cartItems.find(item => item.item_id === props.id)
-			return daffSubtract(cartItem.row_total, cartItem.total_discount);
-		}
-  );
   const selectIsBillingSameAsShipping = createSelector(
     selectCartShippingAddress,
     selectCartBillingAddress,
@@ -668,7 +660,6 @@ const createCartSelectors = <
     selectCartAvailablePaymentMethods,
 
 		selectIsCartEmpty,
-    selectCartItemDiscountedRowTotal,
     selectIsBillingSameAsShipping,
 
     selectHasBillingAddress,
