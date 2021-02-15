@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { daffTransformResolvedRouteToRoute } from './resolved-route-to-route';
+import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 
 describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => {
 	let router: Router;
@@ -29,6 +30,6 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
 	it('throws an error if it is unable to map the route to a known type', () => {
 		expect(() =>
 			daffTransformResolvedRouteToRoute({ url: '', type: 'some-type' }, []),
-		).toThrow();
+		).toThrowError(DaffExternalRouterUnknownRouteTypeError);
 	});
 });
