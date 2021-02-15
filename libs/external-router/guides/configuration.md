@@ -4,13 +4,10 @@ The External Router exposes a configuration token that you can provide in order 
 
 ```ts
 @NgModule({
-	providers: [
-		{
-			provide: DAFF_EXTERNAL_ROUTER_CONFIG,
-			useValue: {
-				failedResolutionPath: 'your-custom-error-path',
-			},
-		},
+	imports: [
+		DaffExternalRouterModule.forRoot({
+			failedResolutionPath: 'your-custom-error-path',
+		}),
 	],
 })
 class AppModule {}
