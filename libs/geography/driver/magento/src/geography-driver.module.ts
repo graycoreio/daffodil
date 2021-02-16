@@ -19,7 +19,7 @@ export class DaffGeographyMagentoDriverModule {
           provide: DaffGeographyDriver,
           useExisting: DaffGeographyMagentoService
         }
-      ]
+      ],
     };
   }
 }

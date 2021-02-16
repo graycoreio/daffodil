@@ -9,9 +9,9 @@ import { InjectionToken } from '@angular/core';
 export const DAFF_MAGENTO_CACHEABLE_OPERATIONS = new InjectionToken<string[]>('DAFF_MAGENTO_CACHEABLE_OPERATIONS', { factory: () => []});
 
 /**
- * Adds an operation name to the list of cacheable Magento operations.
+ * Adds an operation name to the list of cacheable Magento operations. Use only with Angular 9+.
  */
-export const provideDaffMagentoCacheableOperation = (operationName: string) => {
+export function provideDaffMagentoCacheableOperation(operationName: string) {
 	return {
 		provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
 		useValue: operationName,
@@ -20,9 +20,9 @@ export const provideDaffMagentoCacheableOperation = (operationName: string) => {
 }
 
 /**
- * Adds many operation names to the list of cacheable Magento operations.
+ * Adds many operation names to the list of cacheable Magento operations. Use only with Angular 9+.
  */
-export const provideManyDaffMagentoCacheableOperations = (operationNames: string[]) => {
+export function provideManyDaffMagentoCacheableOperations(...operationNames: string[]) {
 	return operationNames.map(name => ({
 		provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
 		useValue: name,

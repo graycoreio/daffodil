@@ -2,12 +2,13 @@ import {gql} from 'apollo-angular';
 
 import { magentoProductFragment } from '@daffodil/product';
 
+export const DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME = 'MagentoGetProducts';
 /**
  * This query only exists because products and their associated aggregations/filter cannot
  * be retrieved through a category call.
  */
 export const MagentoGetProductsQuery = gql`
-query MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)
+query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)
 {
 	products(filter: $filter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)
 	{

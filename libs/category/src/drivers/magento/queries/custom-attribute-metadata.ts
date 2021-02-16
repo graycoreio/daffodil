@@ -1,6 +1,5 @@
 import {gql} from 'apollo-angular';
 
-
 /**
  * A query for getting aggregation types.
  */

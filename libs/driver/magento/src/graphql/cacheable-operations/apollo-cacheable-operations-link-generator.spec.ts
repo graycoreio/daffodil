@@ -4,7 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from './apollo-cacheable-operations-link-generator';
-import { provideDaffMagentoCacheableOperation } from './cacheable-operations-token';
+import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token';
 
 describe('Driver | Magento | GraphQL | DaffMagentoApolloCacheableOperationsLinkGenerator', () => {
 	let service: DaffMagentoApolloCacheableOperationsLinkGenerator;
@@ -22,7 +22,11 @@ describe('Driver | Magento | GraphQL | DaffMagentoApolloCacheableOperationsLinkG
 				ApolloTestingModule
 			],
 			providers: [
-				provideDaffMagentoCacheableOperation('CacheableOperationName')
+				{
+					provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
+					useValue: 'CacheableOperationName',
+					multi: true
+				}
 			]
     });
 

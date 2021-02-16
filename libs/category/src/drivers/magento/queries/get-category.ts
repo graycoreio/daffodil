@@ -1,8 +1,9 @@
 import {gql} from 'apollo-angular';
 
+export const DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME = 'MagentoGetCategoryQuery';
 
 export const MagentoGetCategoryQuery = gql`
-query MagentoGetCategoryQuery($filters: CategoryFilterInput){
+query ${DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME}($filters: CategoryFilterInput){
 	categoryList(filters: $filters) {
 		id
 		name
