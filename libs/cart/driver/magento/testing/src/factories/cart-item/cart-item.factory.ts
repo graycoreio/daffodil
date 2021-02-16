@@ -19,7 +19,7 @@ export class MockMagentoCartItem implements MagentoCartItem {
     price: this.money(),
     row_total: this.money(),
     row_total_including_tax: this.money(),
-    discounts: this.discounts(faker.random.number({min: 1, max: 5})),
+    discounts: this.discounts(faker.random.number({min: 0, max: 2})),
   };
   product = this.createProduct();
   quantity = faker.random.number({min: 1, max: 20});
@@ -32,8 +32,8 @@ export class MockMagentoCartItem implements MagentoCartItem {
     return (new MagentoMoneyFactory()).create()
   }
 
-  private discounts(amount = 5): MagentoDiscount[] {
-    return (new MagentoDiscountFactory()).createMany(amount)
+  private discounts(number = 2): MagentoDiscount[] {
+    return (new MagentoDiscountFactory()).createMany(number)
   }
 }
 

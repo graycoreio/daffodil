@@ -50,6 +50,13 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
 				url: url,
 				label: label
 			};
+      mockMagentoCartItem.prices.discounts = [{
+        amount: {
+          value: discount0,
+          currency: 'USD'
+        },
+        label: 'Discount'
+      }];
 
       transformedCartItem = transformMagentoSimpleCartItem(mockMagentoCartItem);
     });
@@ -63,7 +70,7 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       expect(transformedCartItem.image.id).toEqual(label);
       expect(transformedCartItem.image.url).toEqual(url);
       expect(transformedCartItem.image.label).toEqual(label);
-      expect(transformedCartItem.discounts[0].amount).toEqual(mockMagentoCartItem.prices.discounts[0].amount.value);
+      expect(transformedCartItem.discounts[0].amount).toEqual(discount0);
     });
 
     it('should set magento_cart_item', () => {

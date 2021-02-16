@@ -18,10 +18,10 @@ export class DaffMockCartItem implements DaffCartItem {
   price = faker.random.number({min: 1, max: 1500});
   row_total = this.qty * this.price
 	in_stock = true;
-  _numberOfDiscounts = faker.random.number({min: 1, max: 5});
+  _numberOfDiscounts = faker.random.number({min: 0, max: 2});
   discounts = this._discounts(this._numberOfDiscounts, Math.floor(this.price / this._numberOfDiscounts));
 
-  private _discounts(number = 5, max = 100): DaffCartItemDiscount[] {
+  private _discounts(number = 2, max = 100): DaffCartItemDiscount[] {
     return new Array(faker.random.number(number)).fill(null).map(() => ({
       amount: faker.random.number({min: 1, max}),
       label: faker.random.word()
