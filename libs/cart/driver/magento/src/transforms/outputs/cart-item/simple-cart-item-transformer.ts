@@ -27,7 +27,7 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 		},
 		in_stock: cartItem.product.stock_status === MagentoProductStockStatusEnum.InStock,
     discounts: cartItem.prices.discounts.map(discount => ({
-      amount: discount.amount.value,
+      amount: discount.amount?.value,
       label: discount.label
     })),
 
