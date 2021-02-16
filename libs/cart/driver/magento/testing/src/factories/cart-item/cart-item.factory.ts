@@ -8,8 +8,8 @@ import {
 import { MagentoProduct } from '@daffodil/product';
 import { MagentoProductFactory } from '@daffodil/product/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoMoney } from '@daffodil/driver/magento';
-import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
+import { MagentoMoney, MagentoDiscount } from '@daffodil/driver/magento';
+import { MagentoMoneyFactory, MagentoDiscountFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCartItem implements MagentoCartItem {
 	__typename = MagentoCartItemTypeEnum.Simple;
@@ -19,6 +19,7 @@ export class MockMagentoCartItem implements MagentoCartItem {
     price: this.money(),
     row_total: this.money(),
     row_total_including_tax: this.money(),
+    discounts: this.discounts(faker.random.number({min: 0, max: 2})),
   };
   product = this.createProduct();
   quantity = faker.random.number({min: 1, max: 20});
@@ -29,6 +30,10 @@ export class MockMagentoCartItem implements MagentoCartItem {
 
   private money(): MagentoMoney {
     return (new MagentoMoneyFactory()).create()
+  }
+
+  private discounts(number = 2): MagentoDiscount[] {
+    return (new MagentoDiscountFactory()).createMany(number)
   }
 }
 

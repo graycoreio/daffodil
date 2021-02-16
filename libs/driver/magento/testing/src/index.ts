@@ -1,1 +1,1 @@
-export * from './factories';
+export * from './factories/public_api.ts';

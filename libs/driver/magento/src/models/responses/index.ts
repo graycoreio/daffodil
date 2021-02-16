@@ -1,1 +1,0 @@
-export { MagentoMoney } from './money';

@@ -22,6 +22,12 @@ export const cartItemFragment = gql`
       row_total_including_tax {
         ...money
       }
+      discounts {
+        amount {
+          ...money
+        }
+        label
+      }
 		}
 		...on ConfigurableCartItem {
 			configurable_options {

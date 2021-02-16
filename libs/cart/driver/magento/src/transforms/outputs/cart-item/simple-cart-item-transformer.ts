@@ -26,6 +26,10 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 			label: cartItem.product.thumbnail.label
 		},
 		in_stock: cartItem.product.stock_status === MagentoProductStockStatusEnum.InStock,
+    discounts: cartItem.prices.discounts.map(discount => ({
+      amount: discount.amount?.value,
+      label: discount.label
+    })),
 
 		// TODO: implement
 		parent_item_id: null
