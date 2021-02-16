@@ -42,7 +42,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.discounts).not.toBeNull();
     });
 
-    it('should set the sum of discounts to be less or equal to than price', () => {
+    it('should set the sum of discounts to be less than or equal to price', () => {
       expect(result.discounts.reduce((acc, discount) => acc + discount.amount, 0)).toBeLessThanOrEqual(result.price);
     });
   });
