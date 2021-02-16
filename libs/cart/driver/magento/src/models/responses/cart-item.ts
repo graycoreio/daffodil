@@ -1,5 +1,5 @@
 import { MagentoProduct } from '@daffodil/product';
-import { MagentoMoney } from '@daffodil/driver/magento'
+import { MagentoMoney, MagentoDiscount } from '@daffodil/driver/magento'
 
 export enum MagentoCartItemTypeEnum {
 	Simple = 'SimpleCartItem',
@@ -17,6 +17,7 @@ export interface MagentoCartItem {
     price: MagentoMoney;
     row_total: MagentoMoney;
     row_total_including_tax: MagentoMoney;
+    discounts: MagentoDiscount[];
   };
   product: MagentoProduct;
   quantity: number;
