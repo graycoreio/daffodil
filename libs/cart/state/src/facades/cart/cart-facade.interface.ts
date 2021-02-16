@@ -228,7 +228,6 @@ export interface DaffCartFacadeInterface<
 	orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	getCartItemDiscountedTotal(itemId: U['item_id']): Observable<number>;
 	getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]>;
 	getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
 	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;

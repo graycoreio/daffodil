@@ -1473,18 +1473,6 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('getCartItemDiscountedTotal', () => {
-
-    it('should be the cart item\'s discounted total', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2)
-      });
-      const expected = cold('a', { a: cart.items[0].row_total - cart.items[0].total_discount });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemDiscountedTotal(cart.items[0].item_id)).toBeObservable(expected);
-    });
-  });
-
   describe('isCartItemOutOfStock', () => {
 
     it('should return whether the cart item is out of stock', () => {

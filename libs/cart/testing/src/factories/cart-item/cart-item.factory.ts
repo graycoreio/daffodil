@@ -17,7 +17,6 @@ export class DaffMockCartItem implements DaffCartItem {
   qty = faker.random.number({min:1, max:100});
   price = faker.random.number({min: 1, max: 1500});
   row_total = this.qty * this.price
-	total_discount = faker.random.number({min: 0, max: this.price - 1});
 	in_stock = true;
 }
 

@@ -25,7 +25,6 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 			url: cartItem.product.thumbnail.url,
 			label: cartItem.product.thumbnail.label
 		},
-		total_discount: cartItem.prices.total_item_discount.value,
 		in_stock: cartItem.product.stock_status === MagentoProductStockStatusEnum.InStock,
 
 		// TODO: implement

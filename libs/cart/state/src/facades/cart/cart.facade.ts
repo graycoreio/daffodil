@@ -109,7 +109,6 @@ export class DaffCartFacade<
 	orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	private _selectCartItemDiscountedRowTotal;
 	private _selectCartItemConfiguredAttributes;
 	private _selectCartItemCompositeOptions;
 	private _selectIsCartItemOutOfStock;
@@ -200,7 +199,6 @@ export class DaffCartFacade<
 			selectCartOrderId,
 			selectCartOrderCartId,
       selectHasOrderResult,
-      selectCartItemDiscountedRowTotal,
 			selectIsCartItemOutOfStock,
 			selectCartItemState,
 
@@ -210,7 +208,6 @@ export class DaffCartFacade<
       selectHasPaymentMethod,
       selectCanPlaceOrder
 		} = getDaffCartSelectors<T, V, U>();
-		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
 		this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
 		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
 		this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
@@ -316,10 +313,6 @@ export class DaffCartFacade<
   getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]> {
 		return this.store.pipe(select(this._selectCartItemCompositeOptions, { id: itemId }));
 	};
-
-	getCartItemDiscountedTotal(itemId: U['item_id']): Observable<number> {
-		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
-	}
 
 	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean> {
 		return this.store.pipe(select(this._selectIsCartItemOutOfStock, { id: itemId }));

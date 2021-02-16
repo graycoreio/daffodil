@@ -38,13 +38,8 @@ describe('Cart | State | Testing | Factories | StatefulCartItemFactory', () => {
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
-      expect(result.total_discount).not.toBeNull();
       expect(result.in_stock).not.toBeNull();
       expect(result.daffState).not.toBeNull();
-    });
-
-    it('should set total_discount to be less than price', () => {
-      expect(result.total_discount).toBeLessThan(result.price);
     });
   });
 });
