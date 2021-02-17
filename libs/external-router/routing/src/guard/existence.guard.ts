@@ -22,9 +22,9 @@ import {
 import { daffConvertToPath } from '../helper/convert-to-path';
 
 /**
- * The DaffExternalRouterExistenceGuard is responsible for guarding the wildcard
- * of Angular App and navigating either to a resolved route upon successful resolution
- * or to the configured route upon a failed resolution.
+ * The DaffExternalRouterExistenceGuard is responsible for guarding the wildcard route
+ * of an Angular App and either navigating to a resolved route upon successful resolution
+ * or navigating to the configured route upon a failed resolution.
  */
 @Injectable({
 	providedIn: 'root',
