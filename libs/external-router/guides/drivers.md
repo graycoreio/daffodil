@@ -1,6 +1,6 @@
 # `@daffodil/external-router` Drivers
 
-The External Router package provides an interface along with a few pre-fabricated drivers for you to simply drop-in your app and get started with external route resolution.
+The External Router package provides an interface along with a few pre-fabricated drivers for you to simply drop into your app and get started with external route resolution.
 
 ## Available Drivers
 
