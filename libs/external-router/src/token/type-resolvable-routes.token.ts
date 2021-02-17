@@ -3,6 +3,7 @@ import { TypeRoutePair } from '../model/type-route-pair';
 import { RouteWithoutPath } from '../model/route-without-path';
 
 import { Provider } from '@angular/core';
+import { DaffExternalRouterType } from '../model/route-type';
 
 /**
  * A multi-token that allows you to register route "types" that correspond to routes.
@@ -18,7 +19,7 @@ export const DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES = new InjectionToken<
  * A provider used to connect a type to a route to enable dynamic route resolution at runtime.
  */
 export function provideRouteResolvableByType(
-	type: string,
+	type: DaffExternalRouterType,
 	route: RouteWithoutPath,
 ): Provider {
 	return {

@@ -4,4 +4,4 @@
 npm install @daffodil/external-router --save
 ```
 
-Refer to the usage guide for information on how to use `@daffodil/external-router`.
+Refer to the usage guides (TODO) for information on how to use `@daffodil/external-router`.

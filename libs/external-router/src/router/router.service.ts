@@ -16,7 +16,7 @@ export class DaffExternalRouter {
 	constructor(
 		private router: Router,
 		@Inject(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES)
-		private runtimeLoadableModules: TypeRoutePair[],
+		private runtimeRoutes: TypeRoutePair[],
 	) {}
 
 	/**
@@ -26,7 +26,7 @@ export class DaffExternalRouter {
 		try {
 			const route = daffTransformResolvedRouteToRoute(
 				resolvedRoute,
-				this.runtimeLoadableModules,
+				this.runtimeRoutes,
 			);
 			this.router.resetConfig(
 				insertRouteBeforeWildCard(route, this.router.config),

@@ -4,3 +4,5 @@
 
 export { DaffExternalRouterTestingDriver } from './testing.service';
 export { DaffExternalRouterDriverTestingModule } from './testing.module';
+
+export { DaffExternalRouterDriverTestingConfig } from './config';

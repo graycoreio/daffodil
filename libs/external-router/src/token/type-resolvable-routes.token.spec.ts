@@ -10,7 +10,7 @@ describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTE
 
 	it('should be an empty array by default', () => {
 		TestBed.configureTestingModule({});
-		token = TestBed.get(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES);
+		token = TestBed.inject<TypeRoutePair[]>(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES);
 		expect(token).toEqual([]);
 	});
 
@@ -23,7 +23,7 @@ describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTE
 			],
 		});
 
-		token = TestBed.get(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES);
+		token = TestBed.inject<TypeRoutePair[]>(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES);
 		expect(token).toEqual([
 			{
 				type: 'some-type',

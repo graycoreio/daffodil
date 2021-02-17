@@ -11,6 +11,8 @@ import {
 /**
  * The DaffExternalRouterTestingDriver is responsible for translating an
  * arbitrary URI into a DaffResolvableRoute in testing environments.
+ *
+ * @see {@link DaffExternalRouterTestingDriver}
  */
 @Injectable({
 	providedIn: 'root',
@@ -26,7 +28,7 @@ export class DaffExternalRouterTestingDriver
 		if (!this.testingConfiguration[url]) {
 			return throwError(`\
 The route '${url}' wasn't provided with a matching type by the testing driver. \
-Did you configure the available route types in DaffExternalRouterDriverTestingModule.forRoot()`);
+Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot()`);
 		}
 
 		return of({

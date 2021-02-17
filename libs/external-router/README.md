@@ -2,12 +2,12 @@
 
 ## Purpose
 
-This package extends `@angular/router` and allows you to add external systems that resolve routes, and then use the [Router](https://angular.io/guide/router) to navigate between them.
+This package extends `@angular/router` and allows you to seamlessly add external systems that resolve routes alongside the Angular [Router](https://angular.io/guide/router).
 
 For example, this package allows you to:
 
-1. Define routes in an external service
-2. Make calls to that service
+1. Define pages in an external service like Wordpress
+2. Make calls to the Wordpress instance's URL Resolver
 3. Use the Angular Router to render the appropriate component or lazy-loaded module as determined by that service.
 
 ## Features

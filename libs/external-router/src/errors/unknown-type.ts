@@ -1,8 +1,8 @@
 import { DaffError, DaffInheritableError } from '@daffodil/core';
 
 /**
- * An error thrown when there is a failure matching a route type to a configured
- * route. 
+ * An error thrown when there is a failure matching a configured route to a 
+ * route type.  
  */
 export class DaffExternalRouterUnknownRouteTypeError extends DaffInheritableError
 	implements DaffError {

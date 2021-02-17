@@ -1,6 +1,6 @@
 # `@daffodil/external-router` Configuration
 
-The External Router exposes a configuration token that you can provide in order to configure your the behavior of the package.
+The External Router exposes configuration via a configuration object passed to the `forRoot` of the `DaffExternalRouterModule`.
 
 ```ts
 @NgModule({

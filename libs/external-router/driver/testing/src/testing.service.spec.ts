@@ -15,7 +15,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
 		TestBed.configureTestingModule({
 			imports: [DaffExternalRouterDriverTestingModule.forRoot(configuration)],
 		});
-		service = TestBed.get(DaffExternalRouterTestingDriver);
+		service = TestBed.inject<DaffExternalRouterTestingDriver>(DaffExternalRouterTestingDriver);
 
 		scheduler = new TestScheduler((actual, expected) => {
 			expect(actual).toEqual(expected);
@@ -53,7 +53,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
 				null,
 				`\
 The route 'test' wasn't provided with a matching type by the testing driver. \
-Did you configure the available route types in DaffExternalRouterDriverTestingModule.forRoot()`,
+Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot()`,
 			);
 		});
 	});

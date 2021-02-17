@@ -23,8 +23,8 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
 		TestBed.overrideProvider(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES, {
 			useValue: types,
 		});
-		service = TestBed.get(DaffExternalRouter);
-		router = TestBed.get(Router);
+		service = TestBed.inject<DaffExternalRouter>(DaffExternalRouter);
+		router = TestBed.inject<Router>(Router);
 	}
 
 	it('should be created', () => {

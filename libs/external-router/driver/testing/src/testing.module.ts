@@ -9,6 +9,10 @@ import {
 	DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG,
 } from './config';
 
+/**
+ * The `DaffExternalRouterDriverTestingModule` is an importable NgModule that can 
+ * be used to confgure the {@link DaffExternalRouterTestingDriver}. 
+ */
 @NgModule({
 	declarations: [],
 	imports: [CommonModule],

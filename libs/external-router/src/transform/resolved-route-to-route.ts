@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { DaffResolvableRoute } from '../model/resolvable-route';
 import { TypeRoutePair } from '../model/type-route-pair';
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
+
 /**
  * Transforms a DaffResolvableRoute into an Angular Route.
  */

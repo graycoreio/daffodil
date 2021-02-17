@@ -12,6 +12,8 @@ export {
 export { provideRouteResolvableByType } from './token/type-resolvable-routes.token';
 
 export { DaffResolvableRoute } from './model/resolvable-route';
+export { RouteWithoutPath } from './model/route-without-path';
+
 export { DaffExternalRouter } from './router/router.service';
 
 export { DaffExternalRouterNoWildcardError } from './errors/no-wildcard';
