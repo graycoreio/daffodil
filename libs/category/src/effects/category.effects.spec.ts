@@ -129,12 +129,50 @@ describe('DaffCategoryEffects', () => {
 				category: stubCategory,
 				categoryPageConfigurationState: stubCategoryPageConfigurationState,
 				products: stubProducts
-			}));
+      }));
 
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       expect(effects.loadCategory$).toBeObservable(expected);
 
       expect(daffCategoryDriver.get).toHaveBeenCalledWith(categoryRequest);
+    });
+
+    describe('multiple times in quick succession', () => {
+      let otherCategoryLoadAction: DaffCategoryLoad;
+      let otherCategoryRequest: DaffCategoryRequest;
+
+      beforeEach(() => {
+        otherCategoryRequest = {id: 'someOtherCategory'};
+        otherCategoryLoadAction = new DaffCategoryLoad(otherCategoryRequest);
+        actions$ = hot('--(ab)', { a: categoryLoadAction, b: otherCategoryLoadAction });
+      });
+
+      it('should call get category with the category request from the action payload twice', () => {
+        const resp = {
+          category: null,
+          categoryPageConfigurationState: null,
+          products: []
+        };
+        driverGetSpy.withArgs(categoryRequest).and.returnValue(cold('--a', {a: {
+          category: stubCategory,
+          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          products: stubProducts
+        }}));
+        driverGetSpy.withArgs(otherCategoryRequest).and.returnValue(cold('--a', {a: resp}));
+        const otherCategoryLoadSuccessAction = new DaffCategoryLoadSuccess(resp);
+        const otherProductGridLoadSuccess = new DaffProductGridLoadSuccess(resp.products)
+
+        expected = cold('----(abdc)', {
+          a: productGridLoadSuccessAction,
+          b: categoryLoadSuccessAction,
+          c: otherCategoryLoadSuccessAction,
+          d: otherProductGridLoadSuccess,
+        });
+        expect(effects.loadCategory$).toBeObservable(expected);
+
+        expect(daffCategoryDriver.get).toHaveBeenCalledWith(categoryRequest);
+        expect(daffCategoryDriver.get).toHaveBeenCalledWith(otherCategoryRequest);
+      });
     });
   });
 });

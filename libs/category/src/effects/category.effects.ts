@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 
 import { DaffProductGridLoadSuccess, DaffProduct } from '@daffodil/product';
@@ -35,7 +35,7 @@ export class DaffCategoryEffects<
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad<T>) => {
+    mergeMap((action: DaffCategoryLoad<T>) => {
 			daffCategoryValidateFilters(action.request.filter_requests);
       return this.driver.get(action.request).pipe(
         switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => of(
