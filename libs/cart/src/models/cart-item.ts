@@ -20,7 +20,14 @@ export interface DaffCartItem {
   sku: string;
   name: string;
   qty: number;
+  /**
+   * The price per item, excluding cart discounts.
+   * This includes any discounts and sales that applies to the product or category.
+   */
   price: number;
+  /**
+   * The total for the entire row, not including cart discounts.
+   */
   row_total: number;
 	in_stock: boolean;
   /**
