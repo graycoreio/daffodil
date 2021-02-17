@@ -106,7 +106,7 @@
     "sass-true": "^5.0.0",
     "scss-bundle": "^2.5.1",
     "simple-git": "^1.126.0",
-    "standard-version": "conventional-changelog/standard-version.git#feat-bump-files",
+    "standard-version": "^7.1.0",
     "stylelint": "^11.0.0",
     "stylelint-scss": "^3.11.0",
     "stylelint-selector-bem-pattern": "^2.1.0",
