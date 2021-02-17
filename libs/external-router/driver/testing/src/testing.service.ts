@@ -28,7 +28,7 @@ export class DaffExternalRouterTestingDriver
 		if (!this.testingConfiguration[url]) {
 			return throwError(`\
 The route '${url}' wasn't provided with a matching type by the testing driver. \
-Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot()`);
+Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot(config)`);
 		}
 
 		return of({
