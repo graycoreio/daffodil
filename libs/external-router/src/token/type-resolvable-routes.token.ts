@@ -8,7 +8,7 @@ import { DaffExternalRouterType } from '../model/route-type';
 /**
  * A multi-token that allows you to register route "types" that correspond to routes.
  */
-export const DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES = new InjectionToken<
+export const DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE = new InjectionToken<
 	TypeRoutePair[]
 >('DAFF_EXTERNAL_ROUTER_RESOLVABLE_TYPE_ROUTES', {
 	providedIn: 'root',
@@ -23,7 +23,7 @@ export function provideRouteResolvableByType(
 	route: RouteWithoutPath,
 ): Provider {
 	return {
-		provide: DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES,
+		provide: DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
 		multi: true,
 		useValue: { type: type, route: route },
 	};

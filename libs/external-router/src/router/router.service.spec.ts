@@ -9,7 +9,7 @@ import { DaffResolvableRoute } from '../model/resolvable-route';
 import { TypeRoutePair } from '../model/type-route-pair';
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
-import { DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES } from '../token/type-resolvable-routes.token';
+import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 
 describe('@daffodil/external-router | DaffExternalRouter', () => {
 	let service: DaffExternalRouter;
@@ -20,7 +20,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
 			imports: [RouterTestingModule.withRoutes(config)],
 		});
 
-		TestBed.overrideProvider(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES, {
+		TestBed.overrideProvider(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE, {
 			useValue: types,
 		});
 		service = TestBed.inject<DaffExternalRouter>(DaffExternalRouter);

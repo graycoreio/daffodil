@@ -7,7 +7,7 @@ import { TypeRoutePair } from '../model/type-route-pair';
 import { daffTransformResolvedRouteToRoute } from '../transform/resolved-route-to-route';
 import { DaffResolvableRoute } from '../model/resolvable-route';
 import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
-import { DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES } from '../token/type-resolvable-routes.token';
+import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 
 @Injectable({
 	providedIn: 'root',
@@ -15,7 +15,7 @@ import { DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES } from '../token/type-resol
 export class DaffExternalRouter {
 	constructor(
 		private router: Router,
-		@Inject(DAFF_EXTERNAL_ROUTER_TYPE_RESOLVABLE_ROUTES)
+		@Inject(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE)
 		private runtimeRoutes: TypeRoutePair[],
 	) {}
 
