@@ -10,8 +10,10 @@ export const DaffExternalRouterDriver = new InjectionToken<
 >('DaffExternalRouterDriver');
 
 /**
- * The DaffExternalRouterDriverInterface describes the interface that a service must
- * meet to be considered a driver for `@daffodil/external-router`.
+ * The interface for a @daffodil/external-router driver.
+ * 
+ * This driver is responsible for translating a URL into a Route consumable by 
+ * Daffodil.
  */
 export interface DaffExternalRouterDriverInterface {
 	resolve(url: string): Observable<DaffResolvableRoute>;
