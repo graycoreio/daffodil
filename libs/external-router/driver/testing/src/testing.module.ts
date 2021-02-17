@@ -11,7 +11,7 @@ import {
 
 /**
  * The `DaffExternalRouterDriverTestingModule` is an importable NgModule that can 
- * be used to confgure the {@link DaffExternalRouterTestingDriver}. 
+ * be used to configure the {@link DaffExternalRouterTestingDriver}. 
  */
 @NgModule({
 	declarations: [],
