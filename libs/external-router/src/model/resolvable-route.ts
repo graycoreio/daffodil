@@ -1,4 +1,4 @@
-import { DaffExternalRouterType } from './route-type';
+import { DaffExternalRouteType } from './route-type';
 
 /**
  * A `DaffResolvableRoute` describes the relationship between a "type" of route
@@ -13,5 +13,5 @@ import { DaffExternalRouterType } from './route-type';
  */
 export interface DaffResolvableRoute {
 	url: string;
-	type: DaffExternalRouterType;
+	type: DaffExternalRouteType;
 }

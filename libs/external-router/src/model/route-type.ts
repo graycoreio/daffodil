@@ -3,4 +3,4 @@
  * called "Sweatshirts" with an externally resolved URL of "/sweatshirts"
  * Then, this type could be something like "CATEGORY".
  */
-export type DaffExternalRouterType = string;
+export type DaffExternalRouteType = string;

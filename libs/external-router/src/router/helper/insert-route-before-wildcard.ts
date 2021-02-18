@@ -15,7 +15,9 @@ export const insertRouteBeforeWildCard = (
 			'No wildcard (**) route was found during route resolution.',
 		);
 	}
-
-	routes.splice(index, 0, route);
-	return [...routes];
+	return [
+		...routes.slice(0, index),
+		route,
+		...routes.slice(index),
+	];
 };

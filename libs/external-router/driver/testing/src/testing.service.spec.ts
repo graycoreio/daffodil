@@ -53,7 +53,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
 				null,
 				`\
 The route 'test' wasn't provided with a matching type by the testing driver. \
-Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot()`,
+Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot(config)`,
 			);
 		});
 	});

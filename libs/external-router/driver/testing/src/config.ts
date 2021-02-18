@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import { DaffExternalRouterType } from '@daffodil/external-router';
+import { DaffExternalRouteType } from '@daffodil/external-router';
 
 /**
  * The configuration for the testing driver. It is a dictionary of "url": "type",
@@ -8,7 +8,7 @@ import { DaffExternalRouterType } from '@daffodil/external-router';
  * and the type is a known type to your application, e.g. "CATEGORY".
  */
 export interface DaffExternalRouterDriverTestingConfig {
-	[url: string]: DaffExternalRouterType;
+	[url: string]: DaffExternalRouteType;
 }
 
 /**

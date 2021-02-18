@@ -1,5 +1,5 @@
 import { RouteWithoutPath } from './route-without-path';
-import { DaffExternalRouterType } from './route-type';
+import { DaffExternalRouteType } from './route-type';
 
 /**
  * A model used to describe the relationship between a {@link DaffExternalRouterType}
@@ -12,6 +12,6 @@ import { DaffExternalRouterType } from './route-type';
  * @docs-private
  */
 export interface TypeRoutePair {
-	type: DaffExternalRouterType;
+	type: DaffExternalRouteType;
 	route: RouteWithoutPath;
 }

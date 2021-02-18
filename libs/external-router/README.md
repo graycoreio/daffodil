@@ -2,13 +2,13 @@
 
 ## Purpose
 
-This package extends `@angular/router` and allows you to seamlessly add external systems that resolve routes alongside the Angular [Router](https://angular.io/guide/router).
+This package extends `@angular/router` and allows you to render routes as determined by external systems like Wordpress, Magento, Contentful, etc, as if you had defined the route statically in your Angular `Routes`. This is useful when you are trying to generate "user-friendly" routes in external applications and want to resolve them by their "user-friendly" uri, e.g. `sweatshirts` instead of something like `category/6` or `category/sweatshirts`.
 
-For example, this package allows you to:
+As an example scenario, you could:
 
-1. Define pages in an external service like Wordpress
-2. Make calls to the Wordpress instance's URL Resolver
-3. Use the Angular Router to render the appropriate component or lazy-loaded module as determined by that service.
+1. Define a page with a "user-friendly" url, e.g. `sweatshirts` in an external service like Magento
+2. Use the `@daffodil/external-router/driver` to make calls to the Magento instance's URL Resolver
+3. Navigate to `www.your-domain.com/sweatshirts` and render the appropriate components for the blog post.
 
 ## Features
 
