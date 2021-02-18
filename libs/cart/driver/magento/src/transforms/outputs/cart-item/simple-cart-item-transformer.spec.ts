@@ -86,5 +86,17 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
         expect(transformedCartItem).toBeNull();
       });
     });
+
+    describe('when the discounts are null', () => {
+      beforeEach(() => {
+        mockMagentoCartItem.prices.discounts = null;
+
+        transformedCartItem = transformMagentoSimpleCartItem(mockMagentoCartItem);
+      });
+
+      it('should set discounts to an empty array and not crash', () => {
+        expect(transformedCartItem.discounts).toEqual([]);
+      });
+    });
   });
 });
