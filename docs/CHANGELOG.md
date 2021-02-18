@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.25.0](https://github.com/graycoreio/daffodil/compare/v0.24.0...v0.25.0) (2021-02-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** this drops support for the old heading-* verions and additionally drops the support for the -xs variant. We've determined that attempting to make text smaller tends to lead to illeginle text, and as such we've shifted all the text flavors up from xs -> sm ... and added a new -xl variant.
+
+### Features
+
+* **all:** add cacheable queries to the magento cacheable queries list ([#1270](https://github.com/graycoreio/daffodil/issues/1270)) ([f86eb48](https://github.com/graycoreio/daffodil/commit/f86eb48752fbcc06d33269fc96ad86e92bfe0f30))
+* **all:** use optional chaining ([#1263](https://github.com/graycoreio/daffodil/issues/1263)) ([b92039f](https://github.com/graycoreio/daffodil/commit/b92039f8d8a00c528995d3722965939c3bb7d73f))
+* **cart:** add cart item price selectors ([#1283](https://github.com/graycoreio/daffodil/issues/1283)) ([45739b6](https://github.com/graycoreio/daffodil/commit/45739b63fd64014c4ab6651bd432017b7ff33fa3))
+* **cart:** remove cart item discount fields ([#1280](https://github.com/graycoreio/daffodil/issues/1280)) ([c343680](https://github.com/graycoreio/daffodil/commit/c3436809ebd4ebd9aa0e7e5a88082c88c98fc659))
+* **core, driver:** add infrastructure for making cacheable apollo queries per platform ([#1264](https://github.com/graycoreio/daffodil/issues/1264)) ([233f42b](https://github.com/graycoreio/daffodil/commit/233f42bdf414defc164c6ad3c77df7b27c4376c3))
+* **demo:** init ngrx booleans to false ([#1261](https://github.com/graycoreio/daffodil/issues/1261)) ([3846ff3](https://github.com/graycoreio/daffodil/commit/3846ff3b50c943c1f75160c78983eaaaba5a099f))
+* **design:** add caption mixin from daff-typography ([#1186](https://github.com/graycoreio/daffodil/issues/1186)) ([3237df1](https://github.com/graycoreio/daffodil/commit/3237df1fd8f13649a60c0001f8c02a2c3b3d33f4))
+* **design:** add new body mixin to daff-typography ([#1186](https://github.com/graycoreio/daffodil/issues/1186)) ([bc5d9b1](https://github.com/graycoreio/daffodil/commit/bc5d9b160f41a5562e4e43426fb6a2483dfb6513))
+* **design:** create compactable interface ([#1258](https://github.com/graycoreio/daffodil/issues/1258)) ([db6b0bc](https://github.com/graycoreio/daffodil/commit/db6b0bc6963ed90f31193d5d678bd4e7315d276a))
+* **design:** create DaffSkeletonable interface ([#1285](https://github.com/graycoreio/daffodil/issues/1285)) ([eccd790](https://github.com/graycoreio/daffodil/commit/eccd790cf5ea0952eb580c5492c512f6cd7bdcf2))
+* **design:** provide Radio Registry at the root ([#1252](https://github.com/graycoreio/daffodil/issues/1252)) ([740ea7d](https://github.com/graycoreio/daffodil/commit/740ea7dc0b390bcd429008cd0da4a0add66c51e7))
+* **design:** rename heading-* mixins to headline-* ([#1186](https://github.com/graycoreio/daffodil/issues/1186)) ([aa003b8](https://github.com/graycoreio/daffodil/commit/aa003b8629cb649023ce8219e390fe3cbf0c08c6))
+* **design:** updates the font sizes on typography mixins ([#1186](https://github.com/graycoreio/daffodil/issues/1186)) ([2daf9c9](https://github.com/graycoreio/daffodil/commit/2daf9c9b2f6b30fd84f0d7d02fc6584e730fa734))
+* **navigation:** sort magento navigation categories by position ([#1254](https://github.com/graycoreio/daffodil/issues/1254)) ([441fbca](https://github.com/graycoreio/daffodil/commit/441fbca49d025a9e57a02a8d38e6e9d916294ad0))
+
+
+### Bug Fixes
+
+* **cart:** in-memory api does not update collection of carts as expected ([#1255](https://github.com/graycoreio/daffodil/issues/1255)) ([6ac660e](https://github.com/graycoreio/daffodil/commit/6ac660e3a25e92675f83e2ee9f5a64eb336db203))
+* **category:** multiple category load requests are no longer canceled ([#1287](https://github.com/graycoreio/daffodil/issues/1287)) ([d7aceef](https://github.com/graycoreio/daffodil/commit/d7aceef703e3e2f50c0e0d00006d9e563e07557a))
+
 ## [0.24.0](https://github.com/graycoreio/daffodil/compare/v0.23.1...v0.24.0) (2021-01-26)
 
 
