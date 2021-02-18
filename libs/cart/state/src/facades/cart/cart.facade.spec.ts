@@ -1606,4 +1606,64 @@ describe('DaffCartFacade', () => {
       expect(facade.canPlaceOrder$).toBeObservable(expected);
     });
   });
+
+  describe('getCartItemPrice', () => {
+
+    it('should be the cart item\'s price', () => {
+      const cart = cartFactory.create({
+        items: statefulCartItemFactory.createMany(2)
+      });
+      const expected = cold('a', { a: cart.items[0].price });
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.getCartItemPrice(cart.items[0].item_id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getCartItemQuantity', () => {
+
+    it('should be the cart item\'s quantity', () => {
+      const cart = cartFactory.create({
+        items: statefulCartItemFactory.createMany(2)
+      });
+      const expected = cold('a', { a: cart.items[0].qty });
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.getCartItemQuantity(cart.items[0].item_id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getCartItemRowTotal', () => {
+
+    it('should be the cart item\'s row total', () => {
+      const cart = cartFactory.create({
+        items: statefulCartItemFactory.createMany(2)
+      });
+      const expected = cold('a', { a: cart.items[0].row_total });
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.getCartItemRowTotal(cart.items[0].item_id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getCartItemDiscounts', () => {
+
+    it('should be the cart item\'s array of discounts', () => {
+      const cart = cartFactory.create({
+        items: statefulCartItemFactory.createMany(2)
+      });
+      const expected = cold('a', { a: cart.items[0].discounts });
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.getCartItemDiscounts(cart.items[0].item_id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getCartItemTotalDiscount', () => {
+
+    it('should be the cart item\'s sum of all discounts', () => {
+      const cart = cartFactory.create({
+        items: statefulCartItemFactory.createMany(2)
+      });
+      const expected = cold('a', { a: cart.items[0].discounts.reduce((acc, {amount}) => acc + amount, 0) });
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.getCartItemTotalDiscount(cart.items[0].item_id)).toBeObservable(expected);
+    });
+  });
 });

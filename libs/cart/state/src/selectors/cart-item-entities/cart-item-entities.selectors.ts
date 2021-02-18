@@ -1,12 +1,13 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity';
 
-import { DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCart, DaffCartOrderResult, DaffCartItemInputType, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
+import { DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCart, DaffCartOrderResult, DaffCartItemInputType, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItem, DaffCartItemDiscount } from '@daffodil/cart';
 
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
+import { daffAdd } from '@daffodil/core';
 
 export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCartItem = DaffStatefulCartItem> {
 	selectCartItemEntitiesState: MemoizedSelector<object, EntityState<T>>;
@@ -21,6 +22,34 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCar
 	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
 	selectCartItemMutating: MemoizedSelector<object, boolean>;
 	selectCartItemState: MemoizedSelectorWithProps<object, object, DaffCartItemStateEnum>;
+  /**
+   * Selects the specified item's price.
+   * Zero by default.
+   * This includes any discounts and sales that apply to the product or category.
+   * This excludes cart discounts.
+   */
+	selectCartItemPrice: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, number>;
+  /**
+   * Selects the specified item's quantity.
+   * Zero by default.
+   */
+	selectCartItemQuantity: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, number>;
+  /**
+   * Selects the specified item's row total.
+   * Zero by default.
+   * This includes any discounts and sales that apply to the product or category.
+   * This excludes cart discounts.
+   */
+	selectCartItemRowTotal: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, number>;
+  /**
+   * Selects the specified item's array of cart (not product) discounts for the entire row.
+   */
+	selectCartItemDiscounts: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, DaffCartItemDiscount[]>;
+  /**
+   * Selects the specified item's sum of all cart (not product) discounts for the entire row.
+   * Zero by default.
+   */
+	selectCartItemTotalDiscount: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, number>;
 }
 
 const createCartItemEntitiesSelectors = <
@@ -135,12 +164,33 @@ const createCartItemEntitiesSelectors = <
 
 	const selectCartItemState = createSelector(
 		selectCartItemEntities,
-		(cartItems, props) => {
-			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
-
-			return cartItem?.daffState || null;
-		}
+		(cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.daffState || null
 	)
+
+  const selectCartItemQuantity = createSelector(
+    selectCartItemEntities,
+    (cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.qty || 0
+  );
+
+  const selectCartItemRowTotal = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.row_total || 0
+	);
+
+  const selectCartItemPrice = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.price || 0
+	);
+
+  const selectCartItemDiscounts = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.discounts || []
+	);
+
+  const selectCartItemTotalDiscount = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => selectCartItemDiscounts.projector(cartItems, { id: props.id })?.reduce((acc, {amount}) => daffAdd(acc, amount), 0) || 0
+	);
 
 	return {
 		selectCartItemEntitiesState,
@@ -154,7 +204,12 @@ const createCartItemEntitiesSelectors = <
 		selectCartItemCompositeOptions,
 		selectIsCartItemOutOfStock,
 		selectCartItemMutating,
-		selectCartItemState
+		selectCartItemState,
+    selectCartItemPrice,
+    selectCartItemRowTotal,
+    selectCartItemQuantity,
+    selectCartItemDiscounts,
+    selectCartItemTotalDiscount,
 	}
 }
 

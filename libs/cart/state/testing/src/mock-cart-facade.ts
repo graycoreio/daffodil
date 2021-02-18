@@ -4,7 +4,7 @@ import { Dictionary } from '@ngrx/entity';
 import { Injectable } from '@angular/core';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
+import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemDiscount } from '@daffodil/cart';
 import {
 	DaffCartFacadeInterface,
 	DaffCartErrors,
@@ -107,6 +107,18 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 	orderResultCartId$ = new BehaviorSubject<DaffCartOrderResult['cartId']>(null);
 	hasOrderResult$ = new BehaviorSubject<boolean>(false);
 
+	getCartItemPrice(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+    return new BehaviorSubject(0)
+  }
+
+	getCartItemQuantity(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+    return new BehaviorSubject(0)
+  }
+
+	getCartItemRowTotal(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+    return new BehaviorSubject(0)
+  }
+
 	getConfiguredCartItemAttributes(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
 		return new BehaviorSubject([]);
 	}
@@ -122,6 +134,14 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 	getCartItemState(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemStateEnum> {
 		return new BehaviorSubject(DaffCartItemStateEnum.Default);
 	}
+
+  getCartItemDiscounts(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemDiscount[]> {
+		return new BehaviorSubject([]);
+  }
+
+	getCartItemTotalDiscount(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+		return new BehaviorSubject(0);
+  }
 
   dispatch(action: Action) {};
 }

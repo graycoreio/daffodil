@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffStateError, DaffStoreFacade } from '@daffodil/core/state';
-import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
+import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemDiscount } from '@daffodil/cart';
 
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
@@ -232,7 +232,35 @@ export interface DaffCartFacadeInterface<
 	getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
 	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;
 	/**
-	 * The state of a cart item.
+   * The state of a cart item.
 	 */
   getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum>;
+  /**
+   * Selects the specified item's price.
+   * Zero by default.
+   * This includes any discounts and sales that apply to the product or category.
+   * This excludes cart discounts.
+   */
+	getCartItemPrice(itemId: U['item_id']): Observable<number>;
+  /**
+   * Selects the specified item's quantity.
+   * Zero by default.
+   */
+	getCartItemQuantity(itemId: U['item_id']): Observable<number>;
+  /**
+   * Selects the specified item's row total.
+   * Zero by default.
+   * This includes any discounts and sales that apply to the product or category.
+   * This excludes cart discounts.
+   */
+	getCartItemRowTotal(itemId: U['item_id']): Observable<number>;
+  /**
+   * Selects the specified item's array of cart (not product) discounts.
+   */
+	getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]>;
+  /**
+   * Selects the specified item's sum of all cart (not product) discounts for the entire row.
+   * Zero by default.
+   */
+	getCartItemTotalDiscount(itemId: U['item_id']): Observable<number>;
 }
