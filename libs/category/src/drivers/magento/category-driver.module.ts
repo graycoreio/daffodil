@@ -34,23 +34,17 @@ export class DaffCategoryMagentoDriverModule {
 				DaffMagentoAppliedSortOptionTransformService,
 				{
 					provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-					useValue: [
-						DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME
-					],
+					useValue: DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME,
 					multi: true
 				},
 				{
 					provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-					useValue: [
-						DAFF_MAGENTO_GET_CATEGORY_AGGREGATIONS_QUERY_NAME
-					],
+					useValue: DAFF_MAGENTO_GET_CATEGORY_AGGREGATIONS_QUERY_NAME,
 					multi: true
 				},
 				{
 					provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-					useValue: [
-						DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME
-					],
+					useValue: DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME,
 					multi: true
 				}
       ]
