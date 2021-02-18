@@ -22,11 +22,12 @@ export interface DaffCartItem {
   qty: number;
   /**
    * The price per item, excluding cart discounts.
-   * This includes any discounts and sales that applies to the product or category.
+   * This includes any discounts and sales that apply to the product or category.
    */
   price: number;
   /**
    * The total for the entire row, not including cart discounts.
+   * This includes any discounts and sales that apply to the product or category.
    */
   row_total: number;
 	in_stock: boolean;

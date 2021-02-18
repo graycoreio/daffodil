@@ -238,7 +238,7 @@ export interface DaffCartFacadeInterface<
   /**
    * Selects the specified item's price.
    * Zero by default.
-   * This includes any discounts and sales that applies to the product or category.
+   * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
 	getCartItemPrice(itemId: U['item_id']): Observable<number>;
@@ -250,7 +250,7 @@ export interface DaffCartFacadeInterface<
   /**
    * Selects the specified item's row total.
    * Zero by default.
-   * This includes any discounts and sales that applies to the product or category.
+   * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
 	getCartItemRowTotal(itemId: U['item_id']): Observable<number>;

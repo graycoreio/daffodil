@@ -25,7 +25,7 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCar
   /**
    * Selects the specified item's price.
    * Zero by default.
-   * This includes any discounts and sales that applies to the product or category.
+   * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
 	selectCartItemPrice: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, number>;
@@ -37,7 +37,7 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCar
   /**
    * Selects the specified item's row total.
    * Zero by default.
-   * This includes any discounts and sales that applies to the product or category.
+   * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
 	selectCartItemRowTotal: MemoizedSelectorWithProps<object, {id: DaffCartItem['item_id']}, number>;
