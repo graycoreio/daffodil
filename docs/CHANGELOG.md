@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.25.1](https://github.com/graycoreio/daffodil/compare/v0.25.0...v0.25.1) (2021-02-18)
+
+
+### Bug Fixes
+
+* **cart:** magento cart item transformer crashes when discounts is null ([#1297](https://github.com/graycoreio/daffodil/issues/1297)) ([5976e5e](https://github.com/graycoreio/daffodil/commit/5976e5ec66129af718d3499ff317bd30dc813fe1))
+* **category:** magento cacheable queries are not being added to the list of cacheable queries ([#1296](https://github.com/graycoreio/daffodil/issues/1296)) ([5e3a3cd](https://github.com/graycoreio/daffodil/commit/5e3a3cd53fbe3e39a2c770451504c42039a98260))
+
 ## [0.25.0](https://github.com/graycoreio/daffodil/compare/v0.24.0...v0.25.0) (2021-02-18)
 
 
