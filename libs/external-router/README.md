@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This package extends `@angular/router` and allows you to render routes as determined by external systems like Wordpress, Magento, Contentful, etc, as if you had defined the route statically in your Angular `Routes`. This is useful when you are trying to generate "user-friendly" routes in external applications and want to resolve them by their "user-friendly" uri, e.g. `sweatshirts` instead of something like `category/6` or `category/sweatshirts`.
+This package extends `@angular/router` and allows you to render routes defined in external systems like Wordpress, Magento, Contentful, etc, as if you had defined the routes statically in your Angular `Routes`. This is useful when you are trying to generate "user-friendly" routes in external applications and want to resolve them by their "user-friendly" uri, e.g. `sweatshirts` instead of something like `category/6` or `category/sweatshirts`.
 
 As an example scenario, you could:
 
