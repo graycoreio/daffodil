@@ -5,7 +5,7 @@ import {
 import { Router, Routes } from '@angular/router';
 
 import { DaffExternalRouter } from './router.service';
-import { DaffResolvableRoute } from '../model/resolvable-route';
+import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
 import { TypeRoutePair } from '../model/type-route-pair';
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
@@ -46,7 +46,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
 	});
 
 	it('should throw if an uncaught error occurs', () => {
-		expect(() => service.add(undefined as DaffResolvableRoute)).toThrow();
+		expect(() => service.add(undefined as DaffExternallyResolvableUrl)).toThrow();
 	});
 
 	it('should not add a route if it does not match a known type', () => {

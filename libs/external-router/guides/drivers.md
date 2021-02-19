@@ -16,7 +16,7 @@ If you would like to provide your own driver, simply write a service that meets 
 })
 class MyCustomExternalRouterService
 	implements DaffExternalRouterDriverInterface {
-	resolve(url: string): Observable<DaffResolvableRoute> {
+	resolve(url: string): Observable<DaffExternallyResolvableUrl> {
 		//Your Logic would go here
 		return;
 	}

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 
-import { DaffResolvableRoute } from '@daffodil/external-router';
+import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 import {
 	DaffExternalRouterDriverTestingConfig,
@@ -10,7 +10,7 @@ import {
 
 /**
  * The DaffExternalRouterTestingDriver is responsible for translating an
- * arbitrary URI into a DaffResolvableRoute in testing environments.
+ * arbitrary URI into a DaffExternallyResolvableUrl in testing environments.
  *
  * @see {@link DaffExternalRouterTestingDriver}
  */
@@ -24,7 +24,7 @@ export class DaffExternalRouterTestingDriver
 		private testingConfiguration: DaffExternalRouterDriverTestingConfig = {},
 	) {}
 
-	resolve(url: string): Observable<DaffResolvableRoute> {
+	resolve(url: string): Observable<DaffExternallyResolvableUrl> {
 		if (!this.testingConfiguration[url]) {
 			return throwError(`\
 The route '${url}' wasn't provided with a matching type by the testing driver. \

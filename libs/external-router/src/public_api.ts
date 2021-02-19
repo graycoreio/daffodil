@@ -14,7 +14,7 @@ export {
 } from './token/type-resolvable-routes.token';
 
 export { DaffExternalRouteType } from './model/route-type';
-export { DaffResolvableRoute } from './model/resolvable-route';
+export { DaffExternallyResolvableUrl } from './model/resolvable-route';
 export { RouteWithoutPath } from './model/route-without-path';
 
 export { DaffExternalRouter } from './router/router.service';

@@ -5,7 +5,7 @@ import { insertRouteBeforeWildCard } from './helper/insert-route-before-wildcard
 
 import { TypeRoutePair } from '../model/type-route-pair';
 import { daffTransformResolvedRouteToRoute } from '../transform/resolved-route-to-route';
-import { DaffResolvableRoute } from '../model/resolvable-route';
+import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
 import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 
@@ -22,7 +22,7 @@ export class DaffExternalRouter {
 	/**
 	 * Adds a route to the existing router configuration.
 	 */
-	add(resolvedRoute: DaffResolvableRoute): void {
+	add(resolvedRoute: DaffExternallyResolvableUrl): void {
 		try {
 			const route = daffTransformResolvedRouteToRoute(
 				resolvedRoute,

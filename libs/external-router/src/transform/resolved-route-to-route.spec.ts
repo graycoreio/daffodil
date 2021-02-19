@@ -15,7 +15,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
 		router = TestBed.inject<Router>(Router);
 	});
 
-	it('transforms a DaffResolvableRoute into an Angular route.', () => {
+	it('transforms a DaffExternallyResolvableUrl into an Angular route.', () => {
 		expect(
 			daffTransformResolvedRouteToRoute(
 				{ url: 'some-url', type: 'some-type' },
