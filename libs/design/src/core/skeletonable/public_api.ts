@@ -1,0 +1,1 @@
+export { DaffSkeletonable } from './skeletonable';
