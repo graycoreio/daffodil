@@ -1,3 +1,23 @@
 {
-  "extends": "../../tsconfig.json"
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/external-router": [
+        "libs/external-router/src"
+      ],
+      "@daffodil/external-router/driver": [
+        "libs/external-router/driver/src"
+      ],
+      "@daffodil/external-router/driver/testing": [
+        "libs/external-router/driver/testing/src"
+      ],
+      "@daffodil/external-router/routing": [
+        "libs/external-router/routing/src"
+      ],
+    }
+  }
 }
