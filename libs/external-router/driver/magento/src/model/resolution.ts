@@ -2,5 +2,12 @@ export interface MagentoResolution {
 	relative_url: string;
 	type: string;
 	redirectCode: number;
-	entity_uid: string;
+	/**
+	 * In v2.4.2 this became the standard id field
+	 */
+	entity_uid?: string;
+	/**
+	 * The original id field from Magento
+	 */
+	id?: number;
 }

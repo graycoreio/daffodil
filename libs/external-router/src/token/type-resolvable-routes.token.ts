@@ -1,5 +1,7 @@
-import { InjectionToken } from '@angular/core';
-import { Provider } from '@angular/core';
+import {
+  InjectionToken,
+  Provider,
+} from '@angular/core';
 
 import { DaffExternalRouteType } from '../model/route-type';
 import { RouteWithoutPath } from '../model/route-without-path';
@@ -27,4 +29,12 @@ export function provideRouteResolvableByType(
     multi: true,
     useValue: { type, route },
   };
+}
+
+export function provideRoutesResolvableByType(routes: TypeRoutePair[]): Provider[] {
+  return routes.map((route: TypeRoutePair) => ({
+    provide: DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
+    multi: true,
+    useValue: { type: route.type, route: route.route },
+  }));
 }
