@@ -33,14 +33,14 @@ export const enum DaffState {
    *
    * Disambiguation: This has nothing to do with immutability.
    */
-	Mutating = 'Mutating',
+  Mutating = 'Mutating',
 
   /**
    * The 'Mutated' state describes when an object has recently been modified in
    * state. This state is typically associated with a subsequent decay into a
    * 'Stable' state.
    */
-	Mutated = 'Mutated',
+  Mutated = 'Mutated',
 
   /**
    * The 'Deleting' state occurs when an object is in the process of being
