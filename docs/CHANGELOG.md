@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.26.0](https://github.com/graycoreio/daffodil/compare/v0.25.2...v0.26.0) (2021-02-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** the actions for product pages have changed type. They are now held on the DaffProductPageActionTypes.
+
+### Bug Fixes
+
+* **product:** add DaffProductPageEffects in the DaffProductStateModule ([#1305](https://github.com/graycoreio/daffodil/issues/1305)) ([a766c8e](https://github.com/graycoreio/daffodil/commit/a766c8e6889313ac6fdcfd9e24112c2f1d87f2f2))
+
 ### [0.25.2](https://github.com/graycoreio/daffodil/compare/v0.25.1...v0.25.2) (2021-02-25)
 
 
