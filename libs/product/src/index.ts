@@ -1,6 +1,7 @@
 export * from './models/product';
 export { DaffCompositeProduct } from './models/composite-product';
 export * from './actions/product.actions';
+export * from './actions/product-page.actions';
 export * from './actions/product-grid.actions';
 export * from './actions/best-sellers.actions';
 export * from './actions/configurable-product.actions';

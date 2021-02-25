@@ -1,6 +1,6 @@
 import { DaffProductReducerState } from './product-reducer-state.interface';
-import { DaffProductActionTypes, DaffProductActions } from '../../actions/product.actions';
 import { DaffProduct } from '../../models/product';
+import { DaffProductPageActions, DaffProductPageActionTypes } from '../../actions/product-page.actions';
 
 /**
  * Initial values of the product state.
@@ -19,18 +19,18 @@ export const initialState: DaffProductReducerState = {
  * @param action a product action
  * @returns product state
  */
-export function daffProductReducer<T extends DaffProduct>(state = initialState, action: DaffProductActions<T>): DaffProductReducerState {
+export function daffProductReducer<T extends DaffProduct>(state = initialState, action: DaffProductPageActions<T>): DaffProductReducerState {
   switch (action.type) {
-    case DaffProductActionTypes.ProductLoadAction:
+    case DaffProductPageActionTypes.ProductPageLoadAction:
       return {...state, loading: true, selectedProductId: action.payload};
-    case DaffProductActionTypes.ProductLoadSuccessAction:
+    case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
       return {...state, loading: false};
-    case DaffProductActionTypes.ProductLoadFailureAction:
+    case DaffProductPageActionTypes.ProductPageLoadFailureAction:
       return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
       };
-    case DaffProductActionTypes.UpdateQtyAction:
+    case DaffProductPageActionTypes.UpdateQtyAction:
       return {...state, qty: action.payload}
     default:
       return state;

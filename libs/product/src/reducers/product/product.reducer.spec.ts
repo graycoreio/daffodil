@@ -1,5 +1,5 @@
 import { initialState, daffProductReducer } from './product.reducer';
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure, DaffProductUpdateQty } from '../../actions/product.actions';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure, DaffProductPageUpdateQty } from '../../actions/product-page.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductReducerState } from './product-reducer-state.interface';
@@ -32,7 +32,7 @@ describe('Product | Product Reducer', () => {
     let result;
 
     beforeEach(() => {
-      const productLoadAction: DaffProductLoad = new DaffProductLoad(productId);
+      const productLoadAction: DaffProductPageLoad = new DaffProductPageLoad(productId);
 
       result = daffProductReducer(initialState, productLoadAction);
     });
@@ -57,7 +57,7 @@ describe('Product | Product Reducer', () => {
         loading: true
       }
 
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
+      const productLoadSuccess = new DaffProductPageLoadSuccess(product);
       result = daffProductReducer(state, productLoadSuccess);
     });
 
@@ -79,7 +79,7 @@ describe('Product | Product Reducer', () => {
         errors: new Array('firstError')
       }
 
-      const productLoadFailure = new DaffProductLoadFailure(error);
+      const productLoadFailure = new DaffProductPageLoadFailure(error);
 
       result = daffProductReducer(state, productLoadFailure);
     });
@@ -100,7 +100,7 @@ describe('Product | Product Reducer', () => {
 
     beforeEach(() => {
       givenQty = 3;
-      const productLoadFailure = new DaffProductUpdateQty(givenQty);
+      const productLoadFailure = new DaffProductPageUpdateQty(givenQty);
 
       result = daffProductReducer(initialState, productLoadFailure);
     });

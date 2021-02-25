@@ -6,6 +6,7 @@ import { daffProductEntitiesReducer } from './product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProduct } from '../../models/product';
 import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
+import { DaffProductPageLoadSuccess } from '../../actions/product-page.actions';
 
 describe('Product | Product Entities Reducer', () => {
 
@@ -67,6 +68,26 @@ describe('Product | Product Entities Reducer', () => {
 
     it('sets expected product on state', () => {
       expect(result.entities[products[0].id]).toEqual(products[0]);
+    });
+  });
+
+  describe('when ProductPageLoadSuccessAction is triggered', () => {
+    
+    let product: DaffProduct;
+    let result;
+    let productId;
+
+    beforeEach(() => {
+      product = productFactory.create();
+      productId = product.id;
+      
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      
+      result = daffProductEntitiesReducer(initialState, productPageLoadSuccess);
+    });
+
+    it('sets expected product on state', () => {
+      expect(result.entities[productId]).toEqual(product);
     });
   });
 

@@ -8,8 +8,6 @@ export enum DaffProductActionTypes {
     ProductLoadAction = '[Product] Load Action',
     ProductLoadSuccessAction = '[Product] Load Success Action',
     ProductLoadFailureAction = '[Product] Load Failure Action',
-    UpdateQtyAction = '[Product] Update Qty Action',
-    ProductModifyAction = '[Product] Product Modify Action'
 }
 
 /**
@@ -45,19 +43,7 @@ export class DaffProductLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-/**
- * Update the qty of a product in an redux store.
- * 
- * @param payload - The qty of the product.
- */
-export class DaffProductUpdateQty implements Action {
-    readonly type = DaffProductActionTypes.UpdateQtyAction;
-
-    constructor(public payload: number) {}
-}
-
 export type DaffProductActions<T extends DaffProduct = DaffProduct> = 
     | DaffProductLoad 
     | DaffProductLoadSuccess<T>
-    | DaffProductLoadFailure
-    | DaffProductUpdateQty;
+    | DaffProductLoadFailure;

@@ -12,6 +12,7 @@ import {
 import { DaffProductFacade } from './product.facade';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { daffSubtract } from '@daffodil/core';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess } from '../../actions/product-page.actions';
 
 describe('DaffProductFacade', () => {
   let store: Store<Partial<DaffProductReducersState>>;
@@ -54,7 +55,7 @@ describe('DaffProductFacade', () => {
 
     it('should be true if the product state is loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffProductLoad('1'));
+      store.dispatch(new DaffProductPageLoad('1'));
       expect(facade.loading$).toBeObservable(expected);
     });
   });
@@ -68,8 +69,8 @@ describe('DaffProductFacade', () => {
     it('should be an observable of the currently selected product', () => {
       const product = new DaffProductFactory().create();
       const expected = cold('a', { a: product});
-      store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductPageLoad(product.id));
+      store.dispatch(new DaffProductPageLoadSuccess(product));
       expect(facade.product$).toBeObservable(expected);
     })
 	});

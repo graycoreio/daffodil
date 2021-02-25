@@ -1,10 +1,11 @@
 import { EntityState } from '@ngrx/entity';
 
 import { DaffProductGridActionTypes, DaffProductGridActions } from '../../actions/product-grid.actions';
-import { DaffProductActionTypes, DaffProductActions } from '../../actions/product.actions';
+import { DaffProductActions, DaffProductActionTypes } from '../../actions/product.actions';
 import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../../actions/best-sellers.actions';
 import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 import { DaffProduct } from '../../models/product';
+import { DaffProductPageActions, DaffProductPageActionTypes } from '../../actions/product-page.actions';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
@@ -15,13 +16,14 @@ import { DaffProduct } from '../../models/product';
  */
 export function daffProductEntitiesReducer<T extends DaffProduct>(
   state = daffProductEntitiesAdapter<T>().getInitialState(), 
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T>): EntityState<T> {
+  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T>): EntityState<T> {
 	const adapter = daffProductEntitiesAdapter<T>();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
       return adapter.upsertMany(action.payload, state);
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertMany(action.payload, state);
+		case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
     case DaffProductActionTypes.ProductLoadSuccessAction:
       return adapter.upsertOne(
         { 

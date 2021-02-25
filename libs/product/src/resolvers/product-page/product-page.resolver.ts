@@ -6,11 +6,11 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs'
 import { mapTo, take } from 'rxjs/operators';
 
-import { DaffProductActionTypes, DaffProductLoad } from '../../actions/product.actions';
+import { DaffProductPageActionTypes, DaffProductPageLoad } from '../../actions/product-page.actions';
 import { DaffProductReducersState } from '../../reducers/public_api';
 
 /**
- * Resolves product data for product pages, and will only resolve the url after a product request succeeds or fails. This resolver expects a url
+ * Resolves product data for product pages, and will only resolve the url after a product page request succeeds or fails. This resolver expects a url
  * of the form `some/url/{id}` where `{id}` is the product id.
  */
 @Injectable({
@@ -24,10 +24,10 @@ export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
 	) {}
 	
 	resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-		this.store.dispatch(new DaffProductLoad(route.paramMap.get('id')));
+		this.store.dispatch(new DaffProductPageLoad(route.paramMap.get('id')));
 
 		return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-			ofType(DaffProductActionTypes.ProductLoadSuccessAction, DaffProductActionTypes.ProductLoadFailureAction),
+			ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction, DaffProductPageActionTypes.ProductPageLoadFailureAction),
 			mapTo(true),
 			take(1)
 		);
