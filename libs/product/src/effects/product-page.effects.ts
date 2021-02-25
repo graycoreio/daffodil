@@ -3,16 +3,12 @@ import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { of ,  Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
-import { 
-  DaffProductActionTypes,
-  DaffProductLoad,
-	DaffProductPageLoadFailure,
-	DaffProductPageLoadSuccess} from '../actions/product.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 import { DaffProduct } from '../models/product';
+import { DaffProductPageActionTypes, DaffProductPageLoad, DaffProductPageLoadFailure, DaffProductPageLoadSuccess } from '../actions/product-page.actions';
 
 /**
  * Effects for handling product actions and for triggering corresponding service requests.
@@ -35,8 +31,8 @@ export class DaffProductPageEffects<T extends DaffProduct> {
   */
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(
-    ofType(DaffProductActionTypes.ProductPageLoadAction),
-    switchMap((action: DaffProductLoad) =>
+    ofType(DaffProductPageActionTypes.ProductPageLoadAction),
+    switchMap((action: DaffProductPageLoad) =>
       this.driver.get(action.payload)
         .pipe(
           map((resp) => {

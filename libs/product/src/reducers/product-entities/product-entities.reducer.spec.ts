@@ -1,11 +1,12 @@
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoadSuccess, DaffProductPageLoadSuccess } from '../../actions/product.actions';
+import { DaffProductLoadSuccess } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../../actions/product-grid.actions';
 import { daffProductEntitiesReducer } from './product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProduct } from '../../models/product';
 import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
+import { DaffProductPageLoadSuccess } from '../../actions/product-page.actions';
 
 describe('Product | Product Entities Reducer', () => {
 

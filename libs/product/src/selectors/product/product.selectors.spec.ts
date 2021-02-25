@@ -4,7 +4,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageLoad } from '../../actions/product.actions';
+import { DaffProductPageLoad } from '../../actions/product-page.actions';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';

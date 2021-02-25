@@ -12,7 +12,7 @@ import {
 import { DaffProductFacade } from './product.facade';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { daffSubtract } from '@daffodil/core';
-import { DaffProductPageLoad, DaffProductPageLoadSuccess } from '../../actions/product.actions';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess } from '../../actions/product-page.actions';
 
 describe('DaffProductFacade', () => {
   let store: Store<Partial<DaffProductReducersState>>;

@@ -5,7 +5,7 @@ import { hot, cold } from 'jasmine-marbles';
 
 import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from '@daffodil/product/testing';
 import { DaffProductPageEffects } from './product-page.effects';
-import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure } from '../actions/product.actions';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure } from '../actions/product-page.actions';
 import { DaffProduct } from '../models/product';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';

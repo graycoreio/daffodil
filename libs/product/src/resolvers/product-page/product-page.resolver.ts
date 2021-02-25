@@ -6,7 +6,7 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs'
 import { mapTo, take } from 'rxjs/operators';
 
-import { DaffProductActionTypes, DaffProductPageLoad } from '../../actions/product.actions';
+import { DaffProductPageActionTypes, DaffProductPageLoad } from '../../actions/product-page.actions';
 import { DaffProductReducersState } from '../../reducers/public_api';
 
 /**
@@ -27,7 +27,7 @@ export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
 		this.store.dispatch(new DaffProductPageLoad(route.paramMap.get('id')));
 
 		return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-			ofType(DaffProductActionTypes.ProductPageLoadSuccessAction, DaffProductActionTypes.ProductPageLoadFailureAction),
+			ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction, DaffProductPageActionTypes.ProductPageLoadFailureAction),
 			mapTo(true),
 			take(1)
 		);

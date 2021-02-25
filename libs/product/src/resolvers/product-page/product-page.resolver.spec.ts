@@ -12,7 +12,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductPageResolver } from './product-page.resolver';
 import { DaffProduct } from '../../models/product';
 import { daffProductReducers } from '../../reducers/product-reducers';
-import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure } from '../../actions/product.actions';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure } from '../../actions/product-page.actions';
 import { DaffProductReducersState } from '../../reducers/public_api';
 
 describe('DaffProductPageResolver', () => {

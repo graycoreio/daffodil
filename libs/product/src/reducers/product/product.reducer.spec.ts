@@ -1,5 +1,5 @@
 import { initialState, daffProductReducer } from './product.reducer';
-import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure, DaffProductUpdateQty } from '../../actions/product.actions';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure, DaffProductPageUpdateQty } from '../../actions/product-page.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductReducerState } from './product-reducer-state.interface';
@@ -100,7 +100,7 @@ describe('Product | Product Reducer', () => {
 
     beforeEach(() => {
       givenQty = 3;
-      const productLoadFailure = new DaffProductUpdateQty(givenQty);
+      const productLoadFailure = new DaffProductPageUpdateQty(givenQty);
 
       result = daffProductReducer(initialState, productLoadFailure);
     });
