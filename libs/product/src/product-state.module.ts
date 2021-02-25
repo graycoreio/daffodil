@@ -6,6 +6,7 @@ import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductEffects } from './effects/product.effects';
 import { DaffBestSellersEffects } from './effects/best-seller.effects';
 import { daffProductReducers } from './reducers/product-reducers';
+import { DaffProductPageEffects } from './effects/product-page.effects';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { daffProductReducers } from './reducers/product-reducers';
       EffectsModule.forFeature([
         DaffProductGridEffects,
         DaffProductEffects,
+				DaffProductPageEffects,
         DaffBestSellersEffects
       ]),
   ]
