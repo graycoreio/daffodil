@@ -12,7 +12,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductPageResolver } from './product-page.resolver';
 import { DaffProduct } from '../../models/product';
 import { daffProductReducers } from '../../reducers/product-reducers';
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure } from '../../actions/product.actions';
+import { DaffProductPageLoad, DaffProductPageLoadSuccess, DaffProductPageLoadFailure } from '../../actions/product.actions';
 import { DaffProductReducersState } from '../../reducers/public_api';
 
 describe('DaffProductPageResolver', () => {
@@ -49,20 +49,20 @@ describe('DaffProductPageResolver', () => {
 			route = TestBed.inject(ActivatedRoute);
 		}));
 
-		it('should dispatch a DaffProductLoad action with the correct product id', () => {
+		it('should dispatch a DaffProductPageLoad action with the correct product id', () => {
 			spyOn(store, 'dispatch');
 			resolver.resolve( route.snapshot );
 			expect(store.dispatch).toHaveBeenCalledWith(
-				new DaffProductLoad('123')
+				new DaffProductPageLoad('123')
 			);
 		});
 
-		it('should resolve when DaffProductLoadSuccess is dispatched', () => {
+		it('should resolve when DaffProductPageLoadSuccess is dispatched', () => {
 			resolver.resolve(route.snapshot).subscribe(value => {
 				expect(value).toEqual(true);
 			});
 
-			store.dispatch(new DaffProductLoadSuccess(stubProduct));
+			store.dispatch(new DaffProductPageLoadSuccess(stubProduct));
 		});
 
 		it('should resolve when DaffCartLoadFailure is dispatched', () => {
@@ -70,7 +70,7 @@ describe('DaffProductPageResolver', () => {
 				expect(value).toEqual(true);
 			});
 
-			store.dispatch(new DaffProductLoadFailure(null));
+			store.dispatch(new DaffProductPageLoadFailure(null));
 		});
 
 		it('should not resolve without a product load success or failure', () => {
@@ -107,11 +107,11 @@ describe('DaffProductPageResolver', () => {
 			route = TestBed.inject(ActivatedRoute);
 		}));
 
-		it('should dispatch a DaffProductLoad action with the correct product id', () => {
+		it('should dispatch a DaffProductPageLoad action with the correct product id', () => {
 			spyOn(store, 'dispatch');
 			resolver.resolve( route.snapshot );
 			expect(store.dispatch).toHaveBeenCalledWith(
-				new DaffProductLoad('123')
+				new DaffProductPageLoad('123')
 			);
 		});
 

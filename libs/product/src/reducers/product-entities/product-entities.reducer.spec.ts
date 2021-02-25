@@ -1,6 +1,6 @@
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoadSuccess } from '../../actions/product.actions';
+import { DaffProductLoadSuccess, DaffProductPageLoadSuccess } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../../actions/product-grid.actions';
 import { daffProductEntitiesReducer } from './product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
@@ -67,6 +67,26 @@ describe('Product | Product Entities Reducer', () => {
 
     it('sets expected product on state', () => {
       expect(result.entities[products[0].id]).toEqual(products[0]);
+    });
+  });
+
+  describe('when ProductPageLoadSuccessAction is triggered', () => {
+    
+    let product: DaffProduct;
+    let result;
+    let productId;
+
+    beforeEach(() => {
+      product = productFactory.create();
+      productId = product.id;
+      
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      
+      result = daffProductEntitiesReducer(initialState, productPageLoadSuccess);
+    });
+
+    it('sets expected product on state', () => {
+      expect(result.entities[productId]).toEqual(product);
     });
   });
 

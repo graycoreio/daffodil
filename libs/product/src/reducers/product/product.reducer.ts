@@ -21,11 +21,11 @@ export const initialState: DaffProductReducerState = {
  */
 export function daffProductReducer<T extends DaffProduct>(state = initialState, action: DaffProductActions<T>): DaffProductReducerState {
   switch (action.type) {
-    case DaffProductActionTypes.ProductLoadAction:
+    case DaffProductActionTypes.ProductPageLoadAction:
       return {...state, loading: true, selectedProductId: action.payload};
-    case DaffProductActionTypes.ProductLoadSuccessAction:
+    case DaffProductActionTypes.ProductPageLoadSuccessAction:
       return {...state, loading: false};
-    case DaffProductActionTypes.ProductLoadFailureAction:
+    case DaffProductActionTypes.ProductPageLoadFailureAction:
       return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))

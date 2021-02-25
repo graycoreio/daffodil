@@ -22,6 +22,7 @@ export function daffProductEntitiesReducer<T extends DaffProduct>(
       return adapter.upsertMany(action.payload, state);
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertMany(action.payload, state);
+		case DaffProductActionTypes.ProductPageLoadSuccessAction:
     case DaffProductActionTypes.ProductLoadSuccessAction:
       return adapter.upsertOne(
         { 

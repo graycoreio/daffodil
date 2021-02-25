@@ -4,7 +4,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoad } from '../../actions/product.actions';
+import { DaffProductPageLoad } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
@@ -37,7 +37,7 @@ describe('selectProductState', () => {
     store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
-    store.dispatch(new DaffProductLoad(mockProduct.id));
+    store.dispatch(new DaffProductPageLoad(mockProduct.id));
   });
 
   describe('SelectedProductState', () => {
