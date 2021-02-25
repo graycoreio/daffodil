@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.25.2](https://github.com/graycoreio/daffodil/compare/v0.25.1...v0.25.2) (2021-02-25)
+
+
+### Features
+
+* **design:** create DaffMutatable interface ([#1301](https://github.com/graycoreio/daffodil/issues/1301)) ([2bbe805](https://github.com/graycoreio/daffodil/commit/2bbe8055f566e14bd274e67d2f0f06d119c99f09))
+* **design:** make DaffSkeletonable interface public ([#1300](https://github.com/graycoreio/daffodil/issues/1300)) ([6e2cfa2](https://github.com/graycoreio/daffodil/commit/6e2cfa29fa5304ce874594bccecb11ee2605fac0))
+* **design:** update mutable interface name ([#1304](https://github.com/graycoreio/daffodil/issues/1304)) ([6eb4ed4](https://github.com/graycoreio/daffodil/commit/6eb4ed4b64dd13fbe560d097d8978af54d3c3870))
+* **external-router:** add external-router ([#1240](https://github.com/graycoreio/daffodil/issues/1240)) ([afa92fd](https://github.com/graycoreio/daffodil/commit/afa92fd8f399dd3b6fa99506924de814b654e162))
+* **product:** add product page actions and effects ([#1303](https://github.com/graycoreio/daffodil/issues/1303)) ([0d1c0ff](https://github.com/graycoreio/daffodil/commit/0d1c0ffca43d1bc562227f679deb2179e4a6af11))
+
 ### [0.25.1](https://github.com/graycoreio/daffodil/compare/v0.25.0...v0.25.1) (2021-02-18)
 
 
