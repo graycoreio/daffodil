@@ -127,6 +127,8 @@ export class DaffResolveCartFailure implements Action {
  */
 export class DaffResolveCartServerSide implements Action {
   readonly type = DaffCartActionTypes.ResolveCartServerSideAction;
+
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffCartActions<T extends DaffCart = DaffCart> =

@@ -66,6 +66,7 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartCreateFailureAction:
     case DaffCartActionTypes.CartStorageFailureAction:
     case DaffCartActionTypes.ResolveCartFailureAction:
+    case DaffCartActionTypes.ResolveCartServerSideAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),

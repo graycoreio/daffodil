@@ -13,6 +13,10 @@ import {
 	DaffCart,
 	DaffCartStorageService,
 	DAFF_CART_ERROR_MATCHER,
+  DaffCartServerSideResolutionError,
+  DaffCartStorageResolutionError,
+  DaffCartNotFoundOrCreatedResolutionError,
+  DaffCartResolutionError,
 } from '@daffodil/cart';
 import {
 	DaffCartDriver,
@@ -60,29 +64,32 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart>
 				),
 				switchMap(({ id }) => this.driver.get(id)),
 				map(resp => new DaffResolveCartSuccess(resp)),
-				catchError(error => {
+				catchError((error: Error) => {
 					switch (true) {
 						case error instanceof DaffServerSideStorageError:
-							return of(new DaffResolveCartServerSide());
+							return of(new DaffResolveCartServerSide(this.errorMatcher(
+                new DaffCartServerSideResolutionError(error.message)
+              )));
 						case error instanceof DaffStorageServiceError:
-							error.message =
-								'Cart resolution failed while attempting to retrieve the cart ID from storage.';
-							return of(new DaffResolveCartFailure(this.errorMatcher(error)));
+							return of(new DaffResolveCartFailure(this.errorMatcher(
+                new DaffCartStorageResolutionError(error.message)
+              )));
 						case error instanceof DaffCartNotFoundError:
 							return this.driver.create().pipe(
 								switchMap(({ id }) => this.driver.get(id)),
 								map(resp => new DaffResolveCartSuccess(resp)),
 								catchError((innerError: DaffError) => {
-									innerError.message =
-										'Cart resolution failed after attempting to generate and load a new cart.';
 									return of(
-										new DaffResolveCartFailure(this.errorMatcher(innerError)),
+										new DaffResolveCartFailure(this.errorMatcher(
+                      new DaffCartNotFoundOrCreatedResolutionError(innerError.message)
+                    )),
 									);
 								}),
 							);
 						default:
-							error.message = 'Cart resolution has failed.';
-							return of(new DaffResolveCartFailure(this.errorMatcher(error)));
+							return of(new DaffResolveCartFailure(this.errorMatcher(
+                new DaffCartResolutionError(error.message)
+              )));
 					}
 				}),
 			),

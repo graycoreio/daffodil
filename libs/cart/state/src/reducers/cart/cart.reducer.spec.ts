@@ -1,7 +1,7 @@
 import { DaffStorageServiceError } from '@daffodil/core';
 import { DaffLoadingState, DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartLoad, DaffCartOperationType, DaffResolveCart, DaffCartReducerState, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartStorageFailure, DaffCartCreate, DaffCartCreateSuccess, DaffCartCreateFailure, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure, DaffCartClear, DaffCartClearSuccess, DaffCartClearFailure, initialState, DaffResolveCartSuccess, DaffResolveCartFailure } from '@daffodil/cart/state';
+import { DaffCartLoad, DaffCartOperationType, DaffResolveCart, DaffCartReducerState, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartStorageFailure, DaffCartCreate, DaffCartCreateSuccess, DaffCartCreateFailure, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure, DaffCartClear, DaffCartClearSuccess, DaffCartClearFailure, initialState, DaffResolveCartSuccess, DaffResolveCartFailure, DaffResolveCartServerSide } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { cartReducer } from './cart.reducer';
@@ -162,6 +162,37 @@ describe('Cart | Reducer | Cart', () => {
       }
 
       const cartListLoadFailure = new DaffResolveCartFailure(error);
+
+      result = cartReducer(state, cartListLoadFailure);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Complete);
+    });
+
+    it('should add an error to the cart section of state.errors', () => {
+      expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
+    });
+  });
+
+  describe('when ResolveCartServerSideAction is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Cart]: DaffLoadingState.Resolving
+        },
+        errors: {
+          ...initialState.errors,
+          [DaffCartOperationType.Cart]: [{code: 'first error code', message: 'first error message'}]
+        }
+      }
+
+      const cartListLoadFailure = new DaffResolveCartServerSide(error);
 
       result = cartReducer(state, cartListLoadFailure);
     });

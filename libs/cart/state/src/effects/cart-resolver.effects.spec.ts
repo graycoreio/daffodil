@@ -8,7 +8,7 @@ import {
 	DaffServerSideStorageError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
-import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCart, DaffCartStorageService, DaffCartNotFoundOrCreatedResolutionError } from '@daffodil/cart';
 import {
 	DaffResolveCart,
 	DaffResolveCartFailure,
@@ -25,6 +25,9 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartResolverEffects } from './cart-resolver.effects';
+import { DaffCartResolutionError } from '@daffodil/cart';
+import { DaffCartStorageResolutionError } from '@daffodil/cart';
+import { DaffCartServerSideResolutionError } from '@daffodil/cart';
 
 describe('DaffCartResolverEffects', () => {
 	let actions$: Observable<any>;
@@ -40,7 +43,7 @@ describe('DaffCartResolverEffects', () => {
   let driverCreateSpy: jasmine.Spy;
   let getCartIdSpy: jasmine.Spy;
 
-  const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
+  const throwStorageError = message => { throw new DaffStorageServiceError(message) };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -82,7 +85,10 @@ describe('DaffCartResolverEffects', () => {
 		});
 
 		describe('when cart resolution is attempted on the server', () => {
+      let errorMessage: string;
+
 			beforeEach(() => {
+        errorMessage = 'Resolution failed server side.'
 				getCartIdSpy.and.callFake(() => {
 					throw new DaffServerSideStorageError(
 						'Resolution failed server side.',
@@ -91,7 +97,8 @@ describe('DaffCartResolverEffects', () => {
 			});
 
 			it('should emit a an action indicating that server side resolution occurred', () => {
-				const resolveCartServerSide = new DaffResolveCartServerSide();
+				const error = new DaffCartServerSideResolutionError(errorMessage);
+				const resolveCartServerSide = new DaffResolveCartServerSide(daffTransformErrorToStateError(error));
 				const expected = cold('--a', {
 					a: resolveCartServerSide,
 				});
@@ -101,14 +108,15 @@ describe('DaffCartResolverEffects', () => {
 		});
 
 		describe('when the storage service throws an error while fetching the cart ID', () => {
-			beforeEach(() => {
-				getCartIdSpy.and.callFake(throwStorageError);
+      let errorMessage: string;
+
+      beforeEach(() => {
+        errorMessage = 'An error occurred during storage.'
+				getCartIdSpy.and.callFake(() => throwStorageError(errorMessage));
 			});
 
 			it('should indicate cart resolution failure due to cart ID retrieval', () => {
-				const error = new DaffStorageServiceError(
-					'Cart resolution failed while attempting to retrieve the cart ID from storage.',
-				);
+				const error = new DaffCartStorageResolutionError(errorMessage);
 				const resolveCartFailureAction = new DaffResolveCartFailure(
 					daffTransformErrorToStateError(error),
 				);
@@ -127,20 +135,21 @@ describe('DaffCartResolverEffects', () => {
 				driverGetSpy.and.returnValue(of(stubCart));
 			});
 
-			describe('and when creating a cart fails', () => {
-				beforeEach(() => {
-					const response = cold(
+      describe('and when creating a cart fails', () => {
+        let errorMessage: string;
+
+        beforeEach(() => {
+          errorMessage = 'error';
+          const response = cold(
 						'#',
 						{},
-						new DaffCartInvalidAPIResponseError('error'),
+						new DaffCartInvalidAPIResponseError(errorMessage),
 					);
 					driverCreateSpy.and.returnValue(response);
 				});
 
 				it('should dispatch DaffResolveCartFailure action', () => {
-					const error = new DaffCartInvalidAPIResponseError(
-						'Cart resolution has failed.',
-					);
+					const error = new DaffCartResolutionError(errorMessage);
 					const resolveCartFailureAction = new DaffResolveCartFailure(
 						daffTransformErrorToStateError(error),
 					);
@@ -172,19 +181,20 @@ describe('DaffCartResolverEffects', () => {
 			});
 
 			describe('and the get call fails', () => {
+        let errorMessage: string;
+
 				beforeEach(() => {
+          errorMessage = 'error';
 					const response = cold(
 						'#',
 						{},
-						new DaffCartInvalidAPIResponseError('error'),
+						new DaffCartInvalidAPIResponseError(errorMessage),
 					);
 					driverGetSpy.and.returnValue(response);
 				});
 
 				it('should indicate failed cart resolution', () => {
-					const error = new DaffCartInvalidAPIResponseError(
-						'Cart resolution has failed.',
-					);
+					const error = new DaffCartResolutionError(errorMessage);
 					const resolveCartFailureAction = new DaffResolveCartFailure(
 						daffTransformErrorToStateError(error),
 					);
@@ -232,19 +242,20 @@ describe('DaffCartResolverEffects', () => {
 				});
 
 				describe('and the create call fails', () => {
+          let errorMessage: string;
+
 					beforeEach(() => {
+            errorMessage = 'error';
 						const response = cold(
 							'#',
 							{},
-							new DaffCartInvalidAPIResponseError('error'),
+							new DaffCartInvalidAPIResponseError(errorMessage),
 						);
 						driverCreateSpy.and.returnValue(response);
 					});
 
-					it('should indicate failed cart resolution', () => {
-						const error = new DaffCartInvalidAPIResponseError(
-							'Cart resolution failed after attempting to generate and load a new cart.',
-						);
+					it('should indicate failed cart resolution after attempting to load and create a cart', () => {
+						const error = new DaffCartNotFoundOrCreatedResolutionError(errorMessage);
 						const resolveCartFailureAction = new DaffResolveCartFailure(
 							daffTransformErrorToStateError(error),
 						);
@@ -256,17 +267,18 @@ describe('DaffCartResolverEffects', () => {
 					});
 				});
 
-				describe('and the get call fails', () => {
+				describe('should indicate failed cart resolution after attempting to load and create a cart', () => {
+          let errorMessage: string;
+
 					beforeEach(() => {
-						const response = cold('#', {}, new DaffCartNotFoundError('error'));
+            errorMessage = 'error';
+						const response = cold('#', {}, new DaffCartNotFoundError(errorMessage));
 						driverCreateSpy.and.returnValue(of({ id: newCartId }));
 						driverGetSpy.withArgs(newCartId).and.returnValue(response);
 					});
 
 					it('should indicate failed cart resolution', () => {
-						const error = new DaffCartNotFoundError(
-							'Cart resolution failed after attempting to generate and load a new cart.',
-						);
+						const error = new DaffCartNotFoundOrCreatedResolutionError(errorMessage);
 						const resolveCartFailureAction = new DaffResolveCartFailure(
 							daffTransformErrorToStateError(error),
 						);
