@@ -1,0 +1,20 @@
+<daff-article>
+  <h1>Quantity Field</h1>
+  <p>DaffQuantityFieldComponent is a form control element that switches between a native select and input element. The maximum number accepted in a quantity select is 10. It will switch to a quantity input if 10+ is selected.</p>
+
+  <h2>Usage</h2>
+  <h3>Default</h3>
+  <daff-form-field>
+    <daff-quantity-field></daff-quantity-field>
+  </daff-form-field>
+
+  <h3>Disabled</h3>
+  <daff-form-field>
+    <daff-quantity-field [formControl]="disabled"></daff-quantity-field>
+  </daff-form-field>
+
+  <h3>With Form Control</h3>
+  <daff-form-field>
+    <daff-quantity-field [formControl]="control"></daff-quantity-field>
+  </daff-form-field>
+</daff-article>
