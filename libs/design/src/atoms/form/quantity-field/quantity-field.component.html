@@ -1,0 +1,10 @@
+<daff-quantity-select [disabled]="disabled"
+  *ngIf="showSelectField" 
+  [ngModel]="quantity" (ngModelChange)="onChangedWrapper($event)"
+  [min]="min" [max]="selectMax" [extendable]="true">
+</daff-quantity-select>
+<daff-quantity-input [disabled]="disabled"
+  *ngIf="showInputField"
+  [ngModel]="quantity" (ngModelChange)="onChangedWrapper($event)"
+  [min]="min" [max]="max">
+</daff-quantity-input>
