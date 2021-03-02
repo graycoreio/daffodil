@@ -47,7 +47,7 @@ export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFo
   private increment = 1;
 
   _value = 1;
-  private disabled = false;
+  disabled = false;
   private onChange(quantity: number): void { };
   private onTouched(quantity: number): void { };
 

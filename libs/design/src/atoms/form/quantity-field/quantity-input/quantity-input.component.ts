@@ -1,5 +1,5 @@
-import { Component, Input, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { Component, Input, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, Optional, Self } from '@angular/core';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { DaffInputComponent } from '../../input/public_api';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { DaffFormFieldControl } from '../../form-field/public_api';
@@ -31,10 +31,10 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
   @Input() max = 10;
 
   focused = false;
-  private disabled = false;
+  disabled = false;
+  value = 1;
   private regex: RegExp = new RegExp(/^[0-9]+$/g);
   private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'];
-  private _value = 1;
   private onChange(quantity: number): void {};
   private onTouched(obj: any): void {};
 
@@ -77,8 +77,8 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
   }
 
   onBlur() {
-    if(this._value === null || this._value === undefined){
-      this._value = 1;
+    if(this.value === null || this.value === undefined){
+      this.value = 1;
       this.changeDetectorRef.markForCheck();
     }
   }
@@ -102,7 +102,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
    * Implemented as part of ControlValueAccessor.
    */
   writeValue(value: number): void {
-    this._value = coerceNumberProperty(value);
+    this.value = coerceNumberProperty(value);
     this.changeDetectorRef.markForCheck();
   }
   
