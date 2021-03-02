@@ -96,7 +96,7 @@ describe('DaffCartResolverEffects', () => {
 				});
 			});
 
-			it('should emit a an action indicating that server side resolution occurred', () => {
+			it('should emit an action indicating that server side resolution occurred', () => {
 				const error = new DaffCartServerSideResolutionError(errorMessage);
 				const resolveCartServerSide = new DaffResolveCartServerSide(daffTransformErrorToStateError(error));
 				const expected = cold('--a', {
