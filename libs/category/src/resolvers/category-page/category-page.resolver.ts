@@ -22,10 +22,7 @@ import {
   take,
 } from 'rxjs/operators';
 
-import {
-  DaffCategoryActionTypes,
-  DaffCategoryPageLoad,
-} from '../../actions/category.actions';
+import { DaffCategoryPageLoad, DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
@@ -38,11 +35,11 @@ import { DaffDefaultCategoryPageSize } from './default-category-page-size.token'
 })
 export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
   constructor(
-		@Inject(PLATFORM_ID) private platformId: string,
-		@Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
+    @Inject(PLATFORM_ID) private platformId: string,
+    @Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
     private store: Store<DaffCategoryReducersState>,
     private dispatcher: ActionsSubject,
-  ) {}
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     this.store.dispatch(new DaffCategoryPageLoad({
@@ -50,9 +47,9 @@ export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
     }));
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-      ofType(DaffCategoryActionTypes.CategoryPageLoadSuccessAction, DaffCategoryActionTypes.CategoryPageLoadFailureAction),
+      ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),
       mapTo(true),
-      take(1),
+      take(1)
     );
   }
 }

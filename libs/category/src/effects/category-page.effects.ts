@@ -28,7 +28,6 @@ import {
 } from '@daffodil/product';
 
 import {
-  DaffCategoryActionTypes,
   DaffChangeCategoryPageSize,
   DaffChangeCategoryCurrentPage,
   DaffChangeCategoryFilters,
@@ -37,7 +36,8 @@ import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
-} from '../actions/category.actions';
+  DaffCategoryPageActionTypes
+} from '../actions/category-page.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
 import { daffCategoryValidateFilters } from '../helpers/public_api';
@@ -64,8 +64,8 @@ export class DaffCategoryPageEffects<
 	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 
   @Effect()
-  loadCategoryPage$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryActionTypes.CategoryPageLoadAction),
+  loadCategoryPage$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.CategoryPageLoadAction),
     switchMap((action: DaffCategoryPageLoad<T>) => {
       daffCategoryValidateFilters(action.request.filter_requests);
       return this.processCategoryGetRequest(action.request);
@@ -73,8 +73,8 @@ export class DaffCategoryPageEffects<
   );
 
   @Effect()
-  changeCategoryPageSize$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryActionTypes.ChangeCategoryPageSizeAction),
+  changeCategoryPageSize$ : Observable<any> = this.actions$.pipe(
+		ofType(DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
@@ -88,8 +88,8 @@ export class DaffCategoryPageEffects<
   );
 
   @Effect()
-  changeCategoryCurrentPage$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryActionTypes.ChangeCategoryCurrentPageAction),
+  changeCategoryCurrentPage$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.ChangeCategoryCurrentPageAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
@@ -103,8 +103,8 @@ export class DaffCategoryPageEffects<
   );
 
   @Effect()
-  changeCategoryFilters$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryActionTypes.ChangeCategoryFiltersAction),
+  changeCategoryFilters$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.ChangeCategoryFiltersAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
@@ -121,8 +121,8 @@ export class DaffCategoryPageEffects<
   );
 
   @Effect()
-  toggleCategoryFilter$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryActionTypes.ToggleCategoryFilterAction),
+  toggleCategoryFilter$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.ToggleCategoryFilterAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
@@ -138,8 +138,8 @@ export class DaffCategoryPageEffects<
   );
 
   @Effect()
-  changeCategorySort$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryActionTypes.ChangeCategorySortingOptionAction),
+  changeCategorySort$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.ChangeCategorySortingOptionAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
