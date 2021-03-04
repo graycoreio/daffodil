@@ -14,10 +14,8 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { DaffCartItem } from '@daffodil/cart';
-import {
-  DaffProduct,
-  getDaffProductSelectors,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
+import { getDaffProductSelectors } from '@daffodil/product/state';
 
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import * as fromDemoAddToCartNotification from '../../reducers/index';

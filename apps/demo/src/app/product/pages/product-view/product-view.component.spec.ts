@@ -21,15 +21,13 @@ import {
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffProduct } from '@daffodil/product';
+import { DaffProductLoad } from '@daffodil/product/state';
 import {
-  DaffProduct,
-  DaffProductLoad,
-} from '@daffodil/product';
-import {
-  DaffProductFactory,
-  DaffProductTestingModule,
+  DaffProductStateTestingModule,
   MockDaffProductFacade,
-} from '@daffodil/product/testing';
+} from '@daffodil/product/state/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
@@ -73,7 +71,7 @@ describe('ProductViewComponent', () => {
         RouterTestingModule,
         DaffLoadingIconModule,
         DaffCartTestingModule,
-        DaffProductTestingModule,
+        DaffProductStateTestingModule,
       ],
       declarations: [
         ProductViewComponent,

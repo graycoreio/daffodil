@@ -26,12 +26,12 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProduct,
   DaffProductLoadSuccess,
   DaffProductReducersState,
   daffProductReducers,
-} from '@daffodil/product';
+} from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import {

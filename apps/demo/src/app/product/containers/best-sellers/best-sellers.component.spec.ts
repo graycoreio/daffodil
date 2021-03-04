@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProductFactory,
-  DaffProductTestingModule,
+  DaffProductStateTestingModule,
   MockDaffBestSellersFacade,
-} from '@daffodil/product/testing';
+} from '@daffodil/product/state/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
 
@@ -38,7 +38,7 @@ describe('BestSellersComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffLoadingIconModule,
-        DaffProductTestingModule,
+        DaffProductStateTestingModule,
       ],
       declarations: [
         BestSellersComponent,

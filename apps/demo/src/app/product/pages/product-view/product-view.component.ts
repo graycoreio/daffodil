@@ -18,11 +18,11 @@ import {
   DaffCartFacade,
   DaffCartItemAdd,
 } from '@daffodil/cart/state';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductFacade,
   DaffProductLoad,
-  DaffProduct,
-} from '@daffodil/product';
+} from '@daffodil/product/state';
 
 @Component({
   selector: 'demo-product-view',

@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
-import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
 import { DemoInMemoryBackendService } from './backend.service';
 

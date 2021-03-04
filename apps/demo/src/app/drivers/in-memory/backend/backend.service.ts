@@ -14,7 +14,7 @@ import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 import { DaffProduct } from '@daffodil/product';
-import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
 @Injectable({
   providedIn: 'root',

@@ -4,10 +4,8 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import {
-  DaffBestSellersFacade,
-  DaffProduct,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
+import { DaffBestSellersFacade } from '@daffodil/product/state';
 
 @Component({
   selector: 'demo-best-sellers',

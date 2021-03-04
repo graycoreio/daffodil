@@ -10,9 +10,9 @@ import {
   DaffLoadingIconModule,
 } from '@daffodil/design';
 import {
-  DaffProductTestingModule,
+  DaffProductStateTestingModule,
   MockDaffProductGridFacade,
-} from '@daffodil/product/testing';
+} from '@daffodil/product/state/testing';
 
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
@@ -33,7 +33,7 @@ describe('ProductGridViewComponent', () => {
         DaffContainerModule,
         DaffLoadingIconModule,
         ProductGridModule,
-        DaffProductTestingModule,
+        DaffProductStateTestingModule,
       ],
     })
       .compileComponents();

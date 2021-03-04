@@ -11,7 +11,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
-import { DaffProductShopifyDriverModule } from '@daffodil/product';
+import { DaffProductShopifyDriverModule } from '@daffodil/product/driver/shopify';
 
 import { environment } from '../../../environments/environment';
 import { ShopifyEnviromentDriverConfiguration } from '../../../environments/environment.interface';
