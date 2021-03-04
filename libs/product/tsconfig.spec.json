@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/product",
     "resolveJsonModule": true,
@@ -7,30 +7,7 @@
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "@daffodil/core": [
-        "dist/core"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
-      ],
-      "@daffodil/core/graphql": [
-        "dist/core/graphql"
-      ],
-      "@daffodil/core/state": [
-        "dist/core/state"
-      ],
-      "@daffodil/driver/magento": [
-        "dist/driver/magento"
-      ],
-      "@daffodil/product": [
-        "libs/product/src/index.ts"
-      ],
-      "@daffodil/product/testing": [
-        "libs/product/testing/src/index.ts"
-      ],
-    }
+    ]
   },
   "files": [
     "test.ts"
