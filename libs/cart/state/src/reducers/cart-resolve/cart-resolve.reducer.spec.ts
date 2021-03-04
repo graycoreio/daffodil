@@ -90,6 +90,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
   });
 
   describe('when ResolveCartServerSideAction is triggered', () => {
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -99,7 +100,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
         resolved: DaffCartResolveState.Resolving,
       }
 
-      const serverSideResolve = new DaffResolveCartServerSide();
+      const serverSideResolve = new DaffResolveCartServerSide(error);
 
       result = reducer(state, serverSideResolve);
     });
