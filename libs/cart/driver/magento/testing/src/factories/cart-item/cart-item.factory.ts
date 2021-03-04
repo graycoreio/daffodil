@@ -14,8 +14,8 @@ import {
   MagentoMoneyFactory,
   MagentoDiscountFactory,
 } from '@daffodil/driver/magento/testing';
-import { MagentoProduct } from '@daffodil/product';
-import { MagentoProductFactory } from '@daffodil/product/testing';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 export class MockMagentoCartItem implements MagentoCartItem {
 	__typename = MagentoCartItemTypeEnum.Simple;

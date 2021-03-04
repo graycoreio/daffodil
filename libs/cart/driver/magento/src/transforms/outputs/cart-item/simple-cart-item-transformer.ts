@@ -2,7 +2,7 @@ import {
   DaffCartItem,
   DaffCartItemInputType,
 } from '@daffodil/cart';
-import { MagentoProductStockStatusEnum } from '@daffodil/product';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 import { MagentoCartItem } from '../../../models/public_api';
 

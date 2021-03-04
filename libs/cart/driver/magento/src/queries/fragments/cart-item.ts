@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { magentoProductFragment } from '@daffodil/product';
+import { magentoProductFragment } from '@daffodil/product/driver/magento';
 
 import { moneyFragment } from './money';
 
