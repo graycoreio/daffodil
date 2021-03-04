@@ -5,8 +5,8 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
-import { MagentoProduct } from '@daffodil/product';
-import { MagentoProductFactory } from '@daffodil/product/testing';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { DaffCategory } from '../../../models/category';
 import { DaffCategoryFilterType } from '../../../models/category-filter-base';

@@ -11,11 +11,11 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
-  DaffProduct,
-} from '@daffodil/product';
+} from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryPageLoadSuccess } from '../actions/category.actions';

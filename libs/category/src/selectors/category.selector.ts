@@ -5,10 +5,8 @@ import {
   MemoizedSelectorWithProps,
 } from '@ngrx/store';
 
-import {
-  getDaffProductSelectors,
-  DaffProduct,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
+import { getDaffProductSelectors } from '@daffodil/product/state';
 
 import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';

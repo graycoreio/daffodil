@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
 import { DaffInMemoryBackendCategoryService } from './category.service';
 

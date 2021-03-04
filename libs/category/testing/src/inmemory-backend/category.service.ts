@@ -13,7 +13,7 @@ import {
 } from '@daffodil/category';
 import { randomSubset } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
-import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
 import { DaffCategoryPageConfigurationStateFactory } from '../factories/category-page-configuration-state.factory';
 import { DaffCategoryFactory } from '../factories/category.factory';

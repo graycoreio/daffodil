@@ -4,15 +4,13 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
+import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProduct,
   MagentoProduct,
   transformManyMagentoProducts,
-} from '@daffodil/product';
-import {
-  DaffProductFactory,
-  MagentoProductFactory,
-} from '@daffodil/product/testing';
+} from '@daffodil/product/driver/magento';
+import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategory } from '../../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';

@@ -1,4 +1,4 @@
-import { MagentoProduct } from '@daffodil/product';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import { MagentoAggregation } from './aggregation';
 import { MagentoCategory } from './category';

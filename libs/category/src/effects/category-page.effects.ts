@@ -22,10 +22,8 @@ import {
   map,
 } from 'rxjs/operators';
 
-import {
-  DaffProductGridLoadSuccess,
-  DaffProduct,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
+import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
   DaffCategoryActionTypes,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { transformManyMagentoProducts } from '@daffodil/product';
+import { transformManyMagentoProducts } from '@daffodil/product/driver/magento';
 
 import { DaffGetCategoryResponse } from '../../../models/get-category-response';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';

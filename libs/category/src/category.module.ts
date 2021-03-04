@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffProductModule } from '@daffodil/product';
-
 import { DaffCategoryStateModule } from './category-state.module';
 
 @NgModule({
@@ -13,7 +11,6 @@ import { DaffCategoryStateModule } from './category-state.module';
      * Ngrx/store
      */
     DaffCategoryStateModule,
-    DaffProductModule,
   ],
 })
 export class DaffCategoryModule { }

@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { magentoProductFragment } from '@daffodil/product';
+import { magentoProductFragment } from '@daffodil/product/driver/magento';
 
 export const DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME = 'MagentoGetProducts';
 /**
