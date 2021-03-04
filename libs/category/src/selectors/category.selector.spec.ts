@@ -18,7 +18,7 @@ import {
 } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffCategoryPageLoadSuccess } from '../actions/category.actions';
+import { DaffCategoryPageLoadSuccess } from '../actions/category-page.actions';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';

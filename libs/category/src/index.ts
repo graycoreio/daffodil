@@ -1,4 +1,5 @@
 export * from './actions/category.actions';
+export * from './actions/category-page.actions';
 
 export { daffCategoryReducers } from './reducers/category-reducers';
 export { DaffCategoryFacade } from './facades/category.facade';

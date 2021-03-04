@@ -12,10 +12,11 @@ import {
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
 
+
 import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoad,
-} from '../../actions/category.actions';
+} from '../../actions/category-page.actions';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryAppliedFilter } from '../../models/category-applied-filter';
 import { DaffCategoryFilterType } from '../../models/category-filter-base';

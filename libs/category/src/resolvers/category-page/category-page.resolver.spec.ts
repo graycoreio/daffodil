@@ -27,7 +27,7 @@ import {
   DaffCategoryPageLoad,
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
-} from '../../actions/category.actions';
+} from '../../actions/category-page.actions';
 import { DaffCategory } from '../../models/category';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';

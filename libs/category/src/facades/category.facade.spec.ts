@@ -21,7 +21,7 @@ import {
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
   DaffCategoryPageLoadSuccess,
-} from '../actions/category.actions';
+} from '../actions/category-page.actions';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -41,7 +41,7 @@ describe('DaffCategoryFacade', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[
+      imports: [
         StoreModule.forRoot({
           category: combineReducers(daffCategoryReducers),
           product: combineReducers(daffProductReducers),
@@ -190,20 +190,24 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the selected category', () => {
-      store.dispatch(new DaffCategoryPageLoad({ id: categoryPageConfigurationState.id, filter_requests: [{
-        name: 'name',
-        value: ['value'],
-        type: DaffCategoryFilterType.Equal,
-      }]}));
-      const expected = cold('a', { a: [{
-        name: 'name',
-        label: 'label',
-        type: DaffCategoryFilterType.Equal,
-        options: [{
-          value: 'value',
-          label: 'option_label',
+      store.dispatch(new DaffCategoryPageLoad({
+        id: categoryPageConfigurationState.id, filter_requests: [{
+          name: 'name',
+          value: ['value'],
+          type: DaffCategoryFilterType.Equal,
         }],
-      }]});
+      }));
+      const expected = cold('a', {
+        a: [{
+          name: 'name',
+          label: 'label',
+          type: DaffCategoryFilterType.Equal,
+          options: [{
+            value: 'value',
+            label: 'option_label',
+          }],
+        }],
+      });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.appliedFilters$).toBeObservable(expected);
     });

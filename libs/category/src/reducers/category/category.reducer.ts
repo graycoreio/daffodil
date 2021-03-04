@@ -1,5 +1,7 @@
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffCategoryPageActions } from '../../actions/category-page.actions';
+import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
 import {
   DaffCategoryActionTypes,
   DaffCategoryActions,
@@ -29,7 +31,7 @@ const initialState: DaffCategoryReducerState<any, any> = {
   errors: [],
 };
 
-export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>(state = initialState, action: DaffCategoryActions<T, U, V, W>): DaffCategoryReducerState<T, V> {
+export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>(state = initialState, action: DaffCategoryActions<T, U, V, W> | DaffCategoryPageActions<T, U, V, W>): DaffCategoryReducerState<T, V> {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
       return {
@@ -42,7 +44,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
     // GetCategory magento call doesn't return currently applied filters. If there is a bug where the wrong filters are somehow
     // applied by Magento, then this will result in a bug. Until Magento returns applied filters with a category call, this is
     // unavoidable.
-    case DaffCategoryActionTypes.CategoryPageLoadAction:
+    case DaffCategoryPageActionTypes.CategoryPageLoadAction:
       return {
         ...state,
         categoryLoading: true,
@@ -52,7 +54,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           ...action.request,
         },
       };
-    case DaffCategoryActionTypes.ChangeCategoryPageSizeAction:
+    case DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction:
       return {
         ...state,
         productsLoading: true,
@@ -61,7 +63,16 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           page_size: action.pageSize,
         },
       };
-    case DaffCategoryActionTypes.ChangeCategoryCurrentPageAction:
+    case DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction:
+      return {
+        ...state,
+        productsLoading: true,
+        categoryPageConfigurationState: {
+          ...state.categoryPageConfigurationState,
+          page_size: action.pageSize,
+        },
+      };
+    case DaffCategoryPageActionTypes.ChangeCategoryCurrentPageAction:
       return {
         ...state,
         productsLoading: true,
@@ -70,7 +81,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           current_page: action.currentPage,
         },
       };
-    case DaffCategoryActionTypes.ChangeCategorySortingOptionAction:
+    case DaffCategoryPageActionTypes.ChangeCategorySortingOptionAction:
       return {
         ...state,
         productsLoading: true,
@@ -80,7 +91,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           applied_sort_direction: action.sort.direction,
         },
       };
-    case DaffCategoryActionTypes.ChangeCategoryFiltersAction:
+    case DaffCategoryPageActionTypes.ChangeCategoryFiltersAction:
       return {
         ...state,
         productsLoading: true,
@@ -89,7 +100,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           filter_requests: action.filters,
         },
       };
-    case DaffCategoryActionTypes.ToggleCategoryFilterAction:
+    case DaffCategoryPageActionTypes.ToggleCategoryFilterAction:
       return {
         ...state,
         productsLoading: true,
@@ -101,7 +112,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
     // set here for reasons stated above.
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-    case DaffCategoryActionTypes.CategoryPageLoadSuccessAction:
+    case DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction:
       return {
         ...state,
         categoryLoading: false,
@@ -119,7 +130,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         },
       };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
-    case DaffCategoryActionTypes.CategoryPageLoadFailureAction:
+    case DaffCategoryPageActionTypes.CategoryPageLoadFailureAction:
       return {
         ...state,
         categoryLoading: false,

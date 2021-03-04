@@ -4,9 +4,6 @@ import {
 } from '@daffodil/category/testing';
 
 import {
-  DaffCategoryLoad,
-  DaffCategoryLoadSuccess,
-  DaffCategoryLoadFailure,
   DaffChangeCategoryPageSize,
   DaffChangeCategoryCurrentPage,
   DaffChangeCategorySortingOption,
@@ -15,6 +12,11 @@ import {
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
   DaffCategoryPageLoadSuccess,
+} from '../../actions/category-page.actions';
+import {
+  DaffCategoryLoad,
+  DaffCategoryLoadSuccess,
+  DaffCategoryLoadFailure,
 } from '../../actions/category.actions';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryFilterType } from '../../models/category-filter-base';

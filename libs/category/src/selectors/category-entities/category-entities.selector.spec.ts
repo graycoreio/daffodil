@@ -12,7 +12,7 @@ import {
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
 
-import { DaffCategoryPageLoadSuccess } from '../../actions/category.actions';
+import { DaffCategoryPageLoadSuccess } from '../../actions/category-page.actions';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
