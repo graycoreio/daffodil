@@ -138,4 +138,11 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     const breadcrumbsResult = service.transform(categoryNode).children[1].breadcrumbs;
     expect(breadcrumbsResult[0].categoryLevel).toBeLessThan(breadcrumbsResult[1].categoryLevel);
   });
+
+  it('should set children to an empty array when magento returns a null children array', () => {
+    categoryNode.children = null;
+    const categoryResult = service.transform(categoryNode);
+
+    expect(categoryResult.children).toEqual([]);
+  });
 });

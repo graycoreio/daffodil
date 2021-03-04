@@ -30,7 +30,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       [],
       children: node.children?.filter(child => child.include_in_menu)
         .sort((a, b) => a.position - b.position)
-        .map(child => this.transform(child)),
+        .map(child => this.transform(child)) || [],
     };
   }
 
