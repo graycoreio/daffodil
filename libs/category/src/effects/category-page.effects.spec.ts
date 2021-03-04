@@ -34,7 +34,7 @@ import {
   DaffToggleCategoryFilter,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
-  DaffCategoryPageLoadSuccess
+  DaffCategoryPageLoadSuccess,
 } from '../actions/category-page.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';

@@ -12,13 +12,13 @@ import {
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
 
+import { DaffCategoryPageLoadSuccess } from '../../actions/category-page.actions';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
-import { DaffCategoryPageLoadSuccess } from '../../actions/category-page.actions';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 

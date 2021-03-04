@@ -2,12 +2,15 @@ import { Action } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffGetCategoryResponse } from '../models/get-category-response';
-import { DaffCategoryRequest } from '../models/requests/category-request';
-import { DaffCategoryFilterRequest, DaffToggleCategoryFilterRequest } from '../models/requests/filter-request';
+import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../models/generic-category';
-import { DaffCategory } from '../models/category';
+import { DaffGetCategoryResponse } from '../models/get-category-response';
+import { DaffCategoryRequest } from '../models/requests/category-request';
+import {
+  DaffCategoryFilterRequest,
+  DaffToggleCategoryFilterRequest,
+} from '../models/requests/filter-request';
 
 export enum DaffCategoryPageActionTypes {
   CategoryPageLoadAction = '[Daff-Category] Category Page Load Action',
@@ -91,9 +94,9 @@ export class DaffChangeCategorySortingOption implements Action {
 
   constructor(
     public sort: {
-      option: DaffCategoryRequest['applied_sort_option'],
-      direction: DaffCategoryRequest['applied_sort_direction']
-    }
+      option: DaffCategoryRequest['applied_sort_option'];
+      direction: DaffCategoryRequest['applied_sort_direction'];
+    },
   ) { }
 }
 

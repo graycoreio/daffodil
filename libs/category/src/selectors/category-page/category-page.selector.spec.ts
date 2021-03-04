@@ -13,16 +13,19 @@ import {
 } from '@daffodil/category/testing';
 
 
+import {
+  DaffCategoryPageLoadSuccess,
+  DaffCategoryPageLoad,
+} from '../../actions/category-page.actions';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryAppliedFilter } from '../../models/category-applied-filter';
 import { DaffCategoryFilterType } from '../../models/category-filter-base';
-import { DaffCategoryPageLoadSuccess, DaffCategoryPageLoad } from '../../actions/category-page.actions';
+import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
+import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { DaffCategoryFilterRequest } from '../../models/requests/filter-request';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { getDaffCategoryPageSelectors } from './category-page.selector';
-import { DaffCategoryRequest } from '../../models/requests/category-request';
-import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 
 describe('DaffCategoryPageSelectors', () => {
 

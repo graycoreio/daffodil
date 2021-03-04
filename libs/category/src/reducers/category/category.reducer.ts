@@ -1,13 +1,16 @@
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryPageActions } from '../../actions/category-page.actions';
+import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
+import {
+  DaffCategoryActionTypes,
+  DaffCategoryActions,
+} from '../../actions/category.actions';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../../models/generic-category';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
 import { toggleCategoryFilter } from './toggle-filter/core';
-import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
 
 const initialState: DaffCategoryReducerState<any, any> = {
   categoryPageConfigurationState: {
@@ -28,8 +31,7 @@ const initialState: DaffCategoryReducerState<any, any> = {
   errors: [],
 };
 
-export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>
-  (state = initialState, action: DaffCategoryActions<T, U, V, W> | DaffCategoryPageActions<T, U, V, W>): DaffCategoryReducerState<T, V> {
+export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>(state = initialState, action: DaffCategoryActions<T, U, V, W> | DaffCategoryPageActions<T, U, V, W>): DaffCategoryReducerState<T, V> {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
       return {
@@ -67,8 +69,8 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         productsLoading: true,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
-          page_size: action.pageSize
-        }
+          page_size: action.pageSize,
+        },
       };
     case DaffCategoryPageActionTypes.ChangeCategoryCurrentPageAction:
       return {
@@ -76,8 +78,8 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         productsLoading: true,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
-          current_page: action.currentPage
-        }
+          current_page: action.currentPage,
+        },
       };
     case DaffCategoryPageActionTypes.ChangeCategorySortingOptionAction:
       return {
@@ -86,8 +88,8 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           applied_sort_option: action.sort.option,
-          applied_sort_direction: action.sort.direction
-        }
+          applied_sort_direction: action.sort.direction,
+        },
       };
     case DaffCategoryPageActionTypes.ChangeCategoryFiltersAction:
       return {
@@ -95,8 +97,8 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         productsLoading: true,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
-          filter_requests: action.filters
-        }
+          filter_requests: action.filters,
+        },
       };
     case DaffCategoryPageActionTypes.ToggleCategoryFilterAction:
       return {
@@ -104,9 +106,9 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         productsLoading: true,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
-          filter_requests: toggleCategoryFilter(action.filter, state.categoryPageConfigurationState.filter_requests)
-        }
-      }
+          filter_requests: toggleCategoryFilter(action.filter, state.categoryPageConfigurationState.filter_requests),
+        },
+      };
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
     // set here for reasons stated above.
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:

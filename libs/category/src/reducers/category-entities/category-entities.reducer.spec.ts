@@ -1,7 +1,7 @@
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
-import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
 import { DaffCategoryPageLoadSuccess } from '../../actions/category-page.actions';
+import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
 import { DaffCategory } from '../../models/category';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 import { daffCategoryEntitiesReducer } from './category-entities.reducer';

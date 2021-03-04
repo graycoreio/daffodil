@@ -23,12 +23,16 @@ import {
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
+import {
+  DaffCategoryPageLoad,
+  DaffCategoryPageLoadSuccess,
+  DaffCategoryPageLoadFailure,
+} from '../../actions/category-page.actions';
 import { DaffCategory } from '../../models/category';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { DaffCategoryPageResolver } from './category-page.resolver';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
-import { DaffCategoryPageLoad, DaffCategoryPageLoadSuccess, DaffCategoryPageLoadFailure } from '../../actions/category-page.actions';
 
 describe('DaffCategoryPageResolver', () => {
   const actions$: Observable<any> = null;

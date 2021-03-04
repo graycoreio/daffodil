@@ -22,7 +22,10 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { DaffCategoryPageLoad, DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
+import {
+  DaffCategoryPageLoad,
+  DaffCategoryPageActionTypes,
+} from '../../actions/category-page.actions';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
@@ -49,7 +52,7 @@ export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
       ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),
       mapTo(true),
-      take(1)
+      take(1),
     );
   }
 }

@@ -2,13 +2,19 @@ import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/category.actions';
+import {
+  DaffCategoryPageActionTypes,
+  DaffCategoryPageActions,
+} from '../../actions/category-page.actions';
+import {
+  DaffCategoryActionTypes,
+  DaffCategoryActions,
+} from '../../actions/category.actions';
+import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../../models/generic-category';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
-import { DaffCategoryPageActionTypes, DaffCategoryPageActions } from '../../actions/category-page.actions';
-import { DaffCategory } from '../../models/category';
 
 export function daffCategoryEntitiesReducer<
   T extends DaffCategoryRequest = DaffCategoryRequest,
@@ -17,7 +23,7 @@ export function daffCategoryEntitiesReducer<
   W extends DaffProduct = DaffProduct
 >(
   state = daffCategoryEntitiesAdapter<V>().getInitialState(),
-  action: DaffCategoryActions<T, V, U, W> | DaffCategoryPageActions<T, V, U, W>
+  action: DaffCategoryActions<T, V, U, W> | DaffCategoryPageActions<T, V, U, W>,
 ): EntityState<V> {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
