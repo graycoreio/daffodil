@@ -4,11 +4,11 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridFacade,
   DaffProductGridLoad,
-  DaffProduct,
-} from '@daffodil/product';
+} from '@daffodil/product/state';
 
 @Component({
   selector: 'demo-product-grid-view',
