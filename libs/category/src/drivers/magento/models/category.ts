@@ -1,4 +1,4 @@
-import { MagentoProduct } from '@daffodil/product';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 export interface MagentoCategory {
   id: number;

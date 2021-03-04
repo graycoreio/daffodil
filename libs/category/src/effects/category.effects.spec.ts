@@ -19,11 +19,11 @@ import {
   DaffCategoryPageConfigurationStateFactory,
   DaffCategoryTestingDriverModule,
 } from '@daffodil/category/testing';
+import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProduct,
   DaffProductGridLoadSuccess,
   daffProductReducers,
-} from '@daffodil/product';
+} from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import {

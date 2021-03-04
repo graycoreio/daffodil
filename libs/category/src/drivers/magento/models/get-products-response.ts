@@ -1,4 +1,4 @@
-import { MagentoProduct } from '@daffodil/product';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import { MagentoPageInfo } from './page-info';
 
