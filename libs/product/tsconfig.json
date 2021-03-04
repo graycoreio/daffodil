@@ -1,0 +1,38 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/product": [
+        "libs/product/src"
+      ],
+      "@daffodil/product/state": [
+        "libs/product/state/src"
+      ],
+      "@daffodil/product/state/testing": [
+        "libs/product/state/testing/src"
+      ],
+      "@daffodil/product/driver": [
+        "libs/product/driver/src"
+      ],
+      "@daffodil/product/driver/testing": [
+        "libs/product/driver/testing/src"
+      ],
+      "@daffodil/product/driver/in-memory": [
+        "libs/product/driver/in-memory/src"
+      ],
+      "@daffodil/product/driver/magento": [
+        "libs/product/driver/magento/src"
+      ],
+      "@daffodil/product/driver/shopify": [
+        "libs/product/driver/shopify/src"
+      ],
+      "@daffodil/product/testing": [
+        "libs/product/testing/src"
+      ],
+    }
+  }
+}
