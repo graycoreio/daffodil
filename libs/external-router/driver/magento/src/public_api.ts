@@ -4,3 +4,5 @@
 
 export { DaffExternalRouterMagentoDriver } from './magento.service';
 export { DaffExternalRouterDriverMagentoModule } from './magento.module';
+
+export * from './model/public_api';
