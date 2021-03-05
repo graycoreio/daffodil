@@ -22,7 +22,7 @@ import { DaffResolvedCartGuard } from './resolved-cart.guard';
 @Component({ template: '' })
 class TestComponent {}
 
-fdescribe('Cart | State | Guards | DaffResolvedCartGuard | Integration', () => {
+describe('Cart | State | Guards | DaffResolvedCartGuard | Integration', () => {
   let facade: MockDaffCartFacade;
   let router: Router;
   let location: Location;
