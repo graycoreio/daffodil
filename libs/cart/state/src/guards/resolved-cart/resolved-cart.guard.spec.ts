@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCartResolveState } from '@daffodil/cart/state';
+import {
+  DaffCartResolveState,
+  DaffCartFacade,
+} from '@daffodil/cart/state';
 import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 
 import { daffCartStateConfigurationDefault } from '../../config/config';
 import { daffCartStateResolutionConfigurationDefault } from '../../config/resolution/config';
-import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
 describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
