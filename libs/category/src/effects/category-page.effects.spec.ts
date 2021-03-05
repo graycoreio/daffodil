@@ -27,14 +27,14 @@ import {
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import {
-  DaffChangeCategoryPageSize,
-  DaffChangeCategoryCurrentPage,
-  DaffChangeCategoryFilters,
-  DaffChangeCategorySortingOption,
-  DaffToggleCategoryFilter,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
   DaffCategoryPageLoadSuccess,
+  DaffCategoryPageChangePageSize,
+  DaffCategoryPageChangeCurrentPage,
+  DaffCategoryPageChangeFilters,
+  DaffCategoryPageToggleFilter,
+  DaffCategoryPageChangeSortingOption,
 } from '../actions/category-page.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -229,7 +229,7 @@ describe('DaffCategoryPageEffects', () => {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
         products: stubProducts,
       }));
-      const changeCategoryPageSizeAction = new DaffChangeCategoryPageSize(3);
+      const changeCategoryPageSizeAction = new DaffCategoryPageChangePageSize(3);
       actions$ = hot('--a', { a: changeCategoryPageSizeAction });
 
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
@@ -251,7 +251,7 @@ describe('DaffCategoryPageEffects', () => {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
         products: stubProducts,
       }));
-      const changeCategoryCurrentPageAction = new DaffChangeCategoryCurrentPage(3);
+      const changeCategoryCurrentPageAction = new DaffCategoryPageChangeCurrentPage(3);
       actions$ = hot('--a', { a: changeCategoryCurrentPageAction });
 
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
@@ -273,7 +273,7 @@ describe('DaffCategoryPageEffects', () => {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
         products: stubProducts,
       }));
-      const changeCategoryFiltersAction = new DaffChangeCategoryFilters([{
+      const changeCategoryFiltersAction = new DaffCategoryPageChangeFilters([{
         name: 'name',
         type: DaffCategoryFilterType.Equal,
         value: ['value'],
@@ -308,7 +308,7 @@ describe('DaffCategoryPageEffects', () => {
         type: DaffCategoryFilterType.Equal,
         value: ['value'],
       };
-      const toggleCategoryFilterAction = new DaffToggleCategoryFilter({
+      const toggleCategoryFilterAction = new DaffCategoryPageToggleFilter({
         name: 'name',
         type: DaffCategoryFilterType.Equal,
         value: 'value',
@@ -335,7 +335,7 @@ describe('DaffCategoryPageEffects', () => {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
         products: stubProducts,
       }));
-      const changeCategorySortingOption = new DaffChangeCategorySortingOption({
+      const changeCategorySortingOption = new DaffCategoryPageChangeSortingOption({
         option: 'option',
         direction: DaffSortDirectionEnum.Ascending,
       });
