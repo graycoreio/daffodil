@@ -56,6 +56,13 @@ export function daffCartItemEntitiesReducer<
         updateMutatedCartItemState<T>(<T[]>action.payload.items, state.entities, action.itemId),
         state,
       );
+    case DaffCartItemActionTypes.CartItemDeleteFailureAction:
+    case DaffCartItemActionTypes.CartItemLoadFailureAction:
+    case DaffCartItemActionTypes.CartItemUpdateFailureAction:
+      return adapter.upsertOne({
+        ...state.entities[action.itemId],
+        daffState: DaffCartItemStateEnum.Default,
+      }, state);
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.ResolveCartSuccessAction:

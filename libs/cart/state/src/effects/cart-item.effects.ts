@@ -81,7 +81,7 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemLoad<T>) =>
       this.driver.get(this.storage.getCartId(), action.itemId).pipe(
         map((resp: T) => new DaffCartItemLoadSuccess(resp)),
-        catchError(error => of(new DaffCartItemLoadFailure(this.errorMatcher(error)))),
+        catchError(error => of(new DaffCartItemLoadFailure(this.errorMatcher(error), action.itemId))),
       ),
     ),
   );
@@ -110,7 +110,7 @@ export class DaffCartItemEffects<
         action.changes,
       ).pipe(
         map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
-        catchError(error => of(new DaffCartItemUpdateFailure(this.errorMatcher(error)))),
+        catchError(error => of(new DaffCartItemUpdateFailure(this.errorMatcher(error), action.itemId))),
       ),
     ),
   );
@@ -128,7 +128,7 @@ export class DaffCartItemEffects<
     mergeMap((action: DaffCartItemDelete<T>) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
         map((resp: V) => new DaffCartItemDeleteSuccess(resp)),
-        catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error)))),
+        catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error), action.itemId))),
       ),
     ),
   );
