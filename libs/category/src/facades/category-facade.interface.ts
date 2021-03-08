@@ -10,8 +10,9 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffGenericCategory } from '../models/generic-category';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
+
 import {
-  DaffSortDirectionEnum,
   DaffCategoryRequest,
 } from '../models/requests/category-request';
 

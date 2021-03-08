@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryModule } from '../category.module';
@@ -15,8 +16,8 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffGenericCategory } from '../models/generic-category';
+
 import {
-  DaffSortDirectionEnum,
   DaffCategoryRequest,
 } from '../models/requests/category-request';
 import { DaffCategoryReducersState } from '../reducers/category-reducers.interface';

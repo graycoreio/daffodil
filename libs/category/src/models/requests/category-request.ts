@@ -1,11 +1,7 @@
 import { ID } from '@daffodil/core';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
 
 import { DaffCategoryFilterRequest } from './filter-request';
-
-export enum DaffSortDirectionEnum {
-	Ascending = 'ASC',
-	Decending = 'DSC'
-}
 
 export interface DaffCategoryRequest {
   id: ID;

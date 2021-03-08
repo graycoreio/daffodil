@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
+
 import {
   DaffCategoryFacadeInterface,
   DaffCategory,
@@ -9,7 +11,6 @@ import {
   DaffCategoryFilter,
   DaffCategorySortOption,
   DaffCategoryAppliedFilter,
-  DaffSortDirectionEnum,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
 

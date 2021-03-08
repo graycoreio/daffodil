@@ -42,9 +42,10 @@ import { DaffCategory } from '../models/category';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import {
-  DaffSortDirectionEnum,
   DaffCategoryRequest,
 } from '../models/requests/category-request';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
+
 import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
 import { daffCategoryReducers } from '../reducers/category-reducers';
 import { DaffCategoryPageEffects } from './category-page.effects';

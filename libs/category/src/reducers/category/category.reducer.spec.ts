@@ -2,6 +2,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageConfigurationStateFactory,
 } from '@daffodil/category/testing';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
 
 import {
   DaffCategoryPageLoad,
@@ -23,7 +24,6 @@ import { DaffCategoryFilterType } from '../../models/category-filter-base';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import {
   DaffCategoryRequest,
-  DaffSortDirectionEnum,
 } from '../../models/requests/category-request';
 import {
   DaffCategoryFilterRequest,

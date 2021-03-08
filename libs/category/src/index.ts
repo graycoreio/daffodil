@@ -26,7 +26,6 @@ export { DaffCategory } from './models/category';
 export { DaffGenericCategory } from './models/generic-category';
 export {
   DaffCategoryRequest,
-  DaffSortDirectionEnum,
 } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
 export * from './models/requests/filter-request';
