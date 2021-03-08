@@ -443,7 +443,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset daffState on the cart item', () => {
-      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Default);
+      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Error);
     });
   });
 
@@ -465,7 +465,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset daffState on the cart item', () => {
-      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Default);
+      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Error);
     });
   });
 
@@ -487,7 +487,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset daffState on the cart item', () => {
-      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Default);
+      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Error);
     });
   });
 });

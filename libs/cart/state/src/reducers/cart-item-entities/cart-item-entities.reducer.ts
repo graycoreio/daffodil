@@ -61,7 +61,7 @@ export function daffCartItemEntitiesReducer<
     case DaffCartItemActionTypes.CartItemUpdateFailureAction:
       return adapter.upsertOne({
         ...state.entities[action.itemId],
-        daffState: DaffCartItemStateEnum.Default,
+        daffState: DaffCartItemStateEnum.Error,
       }, state);
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
     case DaffCartActionTypes.CartLoadSuccessAction:
