@@ -1267,6 +1267,7 @@
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
-    }
+    },
+    "analytics": "9aa4e2b6-eeb2-4505-a992-92a57813f5ea"
   }
 }
