@@ -13,14 +13,14 @@ import {
 } from '../models/requests/filter-request';
 
 export enum DaffCategoryPageActionTypes {
-  CategoryPageLoadAction = '[Daff-Category] Category Page Load Action',
-  CategoryPageLoadSuccessAction = '[Daff-Category] Category Page Load Success Action',
-  CategoryPageLoadFailureAction = '[Daff-Category] Category Page Load Failure Action',
-  CategoryPageChangeSizeAction = '[Daff-Category] Change Category Page Size Action',
-  CategoryPageChangeCurrentPageAction = '[Daff-Category] Category Page Change Current Page Action',
-  CategoryPageChangeSortingOptionAction = '[Daff-Category] Category Page Change Sorting Option Action',
-  CategoryPageChangeFiltersAction = '[Daff-Category] Category Page Change Filters Action',
-  CategoryPageToggleFilterAction = '[Daff-Category] Category Page Toggle Filter Action'
+  CategoryPageLoadAction = '[@daffodil/category] Category Page Load Action',
+  CategoryPageLoadSuccessAction = '[@daffodil/category] Category Page Load Success Action',
+  CategoryPageLoadFailureAction = '[@daffodil/category] Category Page Load Failure Action',
+  CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
+  CategoryPageChangeCurrentPageAction = '[@daffodil/category] Category Page Change Current Page Action',
+  CategoryPageChangeSortingOptionAction = '[@daffodil/category] Category Page Change Sorting Option Action',
+  CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
+  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action'
 }
 
 /**
