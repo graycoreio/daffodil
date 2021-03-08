@@ -27,6 +27,6 @@ We've provided a few examples to illustrate the concepts above.
 
 #### Bad Convention
 ```
-[@daffodil] Category Page Load Action
+[Daffodil Category] Category Page Load Action
 ```
 
