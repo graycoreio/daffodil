@@ -1,5 +1,5 @@
 import {
-  DaffSortable,
+  DaffOrderable,
   ID,
 } from '@daffodil/core';
 
@@ -22,7 +22,7 @@ export interface DaffConfigurableProduct extends DaffProduct {
  * An attribute of the configurable product that the customer must choose to add the configurable product to the cart.
  * An example of an attribute would be size for clothing.
  */
-export interface DaffConfigurableProductAttribute extends DaffSortable {
+export interface DaffConfigurableProductAttribute extends DaffOrderable {
 	code:	string;
 	label: string;
 	values:	DaffConfigurableProductOptionValue[];
