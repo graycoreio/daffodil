@@ -13,12 +13,16 @@ import {
   DaffCartItemUpdate,
   DaffResolveCartSuccess,
   DaffStatefulCartItem,
+  DaffCartItemLoadFailure,
+  DaffCartItemDeleteFailure,
+  DaffCartItemUpdateFailure,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
@@ -418,6 +422,72 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     it('sets the cart item state to mutating', () => {
       expect(result.entities[stubCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Mutating);
+    });
+  });
+
+  describe('when CartItemLoadFailureAction is triggered', () => {
+    let error: DaffStateError;
+    let statefulCartItem: DaffStatefulCartItem;
+    let result;
+
+    beforeEach(() => {
+      error = {
+        code: 'code',
+        message: 'message',
+      };
+      statefulCartItem = statefulCartItemFactory.create();
+      const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
+      const cartItemLoadFailure = new DaffCartItemLoadFailure(error, statefulCartItem.item_id);
+
+      result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemLoadFailure);
+    });
+
+    it('should reset daffState on the cart item', () => {
+      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Error);
+    });
+  });
+
+  describe('when CartItemDeleteFailureAction is triggered', () => {
+    let error: DaffStateError;
+    let statefulCartItem: DaffStatefulCartItem;
+    let result;
+
+    beforeEach(() => {
+      error = {
+        code: 'code',
+        message: 'message',
+      };
+      statefulCartItem = statefulCartItemFactory.create();
+      const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
+      const cartItemDeleteFailure = new DaffCartItemDeleteFailure(error, statefulCartItem.item_id);
+
+      result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemDeleteFailure);
+    });
+
+    it('should reset daffState on the cart item', () => {
+      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Error);
+    });
+  });
+
+  describe('when CartItemUpdateFailureAction is triggered', () => {
+    let error: DaffStateError;
+    let statefulCartItem: DaffStatefulCartItem;
+    let result;
+
+    beforeEach(() => {
+      error = {
+        code: 'code',
+        message: 'message',
+      };
+      statefulCartItem = statefulCartItemFactory.create();
+      const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
+      const cartItemUpdateFailure = new DaffCartItemUpdateFailure(error, statefulCartItem.item_id);
+
+      result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemUpdateFailure);
+    });
+
+    it('should reset daffState on the cart item', () => {
+      expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Error);
     });
   });
 });

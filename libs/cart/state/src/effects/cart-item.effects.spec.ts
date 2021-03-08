@@ -182,7 +182,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const error: DaffStateError = { code: 'code', message: 'Failed to load cart item' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error);
+        const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error, mockCartItem.item_id);
         actions$ = hot('--a', { a: cartItemLoadAction });
         expected = cold('--b', { b: cartItemLoadFailureAction });
       });
@@ -276,7 +276,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const error: DaffStateError = { code: 'code', message: 'Failed to update cart item' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error);
+        const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error, mockCartItem.item_id);
         actions$ = hot('--a', { a: cartItemUpdateAction });
         expected = cold('--b', { b: cartItemUpdateFailureAction });
       });
@@ -367,7 +367,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
-        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error);
+        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error, mockCartItem.item_id);
         actions$ = hot('--a', { a: cartItemDeleteAction });
         expected = cold('--b', { b: cartItemRemoveCartFailureAction });
       });

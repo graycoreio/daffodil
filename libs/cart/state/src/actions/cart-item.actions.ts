@@ -55,10 +55,10 @@ export class DaffCartItemLoadSuccess<T extends DaffStatefulCartItem = DaffStatef
   constructor(public payload: T) {}
 }
 
-export class DaffCartItemLoadFailure implements Action {
+export class DaffCartItemLoadFailure<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemLoadFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError, public itemId: T['item_id']) {}
 }
 
 export class DaffCartItemUpdate<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
@@ -76,10 +76,10 @@ export class DaffCartItemUpdateSuccess<
   constructor(public payload: Partial<T>, public itemId: V['item_id']) {}
 }
 
-export class DaffCartItemUpdateFailure implements Action {
+export class DaffCartItemUpdateFailure<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError, public itemId: T['item_id']) {}
 }
 
 export class DaffCartItemAdd<T extends DaffCartItemInput = DaffCartItemInput> implements Action {
@@ -112,10 +112,10 @@ export class DaffCartItemDeleteSuccess<T extends DaffCart = DaffCart> implements
   constructor(public payload: Partial<T>) {}
 }
 
-export class DaffCartItemDeleteFailure implements Action {
+export class DaffCartItemDeleteFailure<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemDeleteFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError, public itemId: T['item_id']) {}
 }
 
 export class DaffCartItemStateReset implements Action {
@@ -132,14 +132,14 @@ export type DaffCartItemActions<
   | DaffCartItemListFailure
   | DaffCartItemLoad<T>
   | DaffCartItemLoadSuccess<T>
-  | DaffCartItemLoadFailure
+  | DaffCartItemLoadFailure<T>
   | DaffCartItemUpdate<T>
   | DaffCartItemUpdateSuccess<V, T>
-  | DaffCartItemUpdateFailure
+  | DaffCartItemUpdateFailure<T>
   | DaffCartItemAdd<U>
   | DaffCartItemAddSuccess<V>
   | DaffCartItemAddFailure
   | DaffCartItemDelete<T>
   | DaffCartItemDeleteSuccess<V>
-  | DaffCartItemDeleteFailure
+  | DaffCartItemDeleteFailure<T>
   | DaffCartItemStateReset;

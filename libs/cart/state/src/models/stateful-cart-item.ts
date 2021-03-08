@@ -14,5 +14,6 @@ export enum DaffCartItemStateEnum {
 	New = 'new',
 	Updated = 'updated',
 	Mutating = 'mutating',
+	Error = 'error',
 	Default = 'default'
 }

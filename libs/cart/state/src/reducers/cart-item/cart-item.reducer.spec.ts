@@ -104,7 +104,7 @@ describe('Cart | Reducer | Cart Item', () => {
         },
       };
 
-      const cartItemUpdateFailure = new DaffCartItemUpdateFailure(error);
+      const cartItemUpdateFailure = new DaffCartItemUpdateFailure(error, cartItem.item_id);
 
       result = cartItemReducer(state, cartItemUpdateFailure);
     });
@@ -167,7 +167,7 @@ describe('Cart | Reducer | Cart Item', () => {
         },
       };
 
-      const cartItemRemoveFailure = new DaffCartItemDeleteFailure(error);
+      const cartItemRemoveFailure = new DaffCartItemDeleteFailure(error, cartItem.item_id);
 
       result = cartItemReducer(state, cartItemRemoveFailure);
     });
@@ -331,7 +331,7 @@ describe('Cart | Reducer | Cart Item', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartItemLoadFailure = new DaffCartItemLoadFailure(error);
+      const cartItemLoadFailure = new DaffCartItemLoadFailure(error, cartItem.item_id);
 
       result = cartItemReducer(state, cartItemLoadFailure);
     });
