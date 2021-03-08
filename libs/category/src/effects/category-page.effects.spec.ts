@@ -19,6 +19,7 @@ import {
   DaffCategoryPageConfigurationStateFactory,
   DaffCategoryTestingDriverModule,
 } from '@daffodil/category/testing';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -41,11 +42,7 @@ import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-ser
 import { DaffCategory } from '../models/category';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
-import {
-  DaffCategoryRequest,
-} from '../models/requests/category-request';
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
-
+import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
 import { daffCategoryReducers } from '../reducers/category-reducers';
 import { DaffCategoryPageEffects } from './category-page.effects';

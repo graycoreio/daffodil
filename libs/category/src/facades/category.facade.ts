@@ -16,10 +16,7 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffGenericCategory } from '../models/generic-category';
-
-import {
-  DaffCategoryRequest,
-} from '../models/requests/category-request';
+import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryReducersState } from '../reducers/category-reducers.interface';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 import { DaffCategoryFacadeInterface } from './category-facade.interface';
