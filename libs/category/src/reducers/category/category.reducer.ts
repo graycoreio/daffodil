@@ -54,7 +54,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           ...action.request,
         },
       };
-    case DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction:
+    case DaffCategoryPageActionTypes.CategoryPageChangeSizeAction:
       return {
         ...state,
         productsLoading: true,
@@ -63,16 +63,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           page_size: action.pageSize,
         },
       };
-    case DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction:
-      return {
-        ...state,
-        productsLoading: true,
-        categoryPageConfigurationState: {
-          ...state.categoryPageConfigurationState,
-          page_size: action.pageSize,
-        },
-      };
-    case DaffCategoryPageActionTypes.ChangeCategoryCurrentPageAction:
+    case DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction:
       return {
         ...state,
         productsLoading: true,
@@ -81,7 +72,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           current_page: action.currentPage,
         },
       };
-    case DaffCategoryPageActionTypes.ChangeCategorySortingOptionAction:
+    case DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction:
       return {
         ...state,
         productsLoading: true,
@@ -91,7 +82,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           applied_sort_direction: action.sort.direction,
         },
       };
-    case DaffCategoryPageActionTypes.ChangeCategoryFiltersAction:
+    case DaffCategoryPageActionTypes.CategoryPageChangeFiltersAction:
       return {
         ...state,
         productsLoading: true,
@@ -100,7 +91,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
           filter_requests: action.filters,
         },
       };
-    case DaffCategoryPageActionTypes.ToggleCategoryFilterAction:
+    case DaffCategoryPageActionTypes.CategoryPageToggleFilterAction:
       return {
         ...state,
         productsLoading: true,

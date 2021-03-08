@@ -26,15 +26,15 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
-  DaffChangeCategoryPageSize,
-  DaffChangeCategoryCurrentPage,
-  DaffChangeCategoryFilters,
-  DaffChangeCategorySortingOption,
-  DaffToggleCategoryFilter,
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
   DaffCategoryPageActionTypes,
+  DaffCategoryPageChangePageSize,
+  DaffCategoryPageChangeCurrentPage,
+  DaffCategoryPageChangeFilters,
+  DaffCategoryPageToggleFilter,
+  DaffCategoryPageChangeSortingOption,
 } from '../actions/category-page.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -72,13 +72,13 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   changeCategoryPageSize$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSizeAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffChangeCategoryPageSize, T],
+			[DaffCategoryPageChangePageSize, T],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       page_size: action.pageSize,
@@ -87,13 +87,13 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   changeCategoryCurrentPage$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.ChangeCategoryCurrentPageAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffChangeCategoryCurrentPage, T],
+			[DaffCategoryPageChangeCurrentPage, T],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       current_page: action.currentPage,
@@ -102,13 +102,13 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   changeCategoryFilters$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.ChangeCategoryFiltersAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeFiltersAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffChangeCategoryFilters, T],
+			[DaffCategoryPageChangeFilters, T],
     ) => {
       daffCategoryValidateFilters(action.filters);
       return this.processCategoryGetRequest({
@@ -120,13 +120,13 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   toggleCategoryFilter$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.ToggleCategoryFilterAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageToggleFilterAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
     switchMap((
       [action, categoryPageConfigurationState]:
-			[DaffToggleCategoryFilter, U],
+			[DaffCategoryPageToggleFilter, U],
     ) => {
       daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
       return this.processCategoryGetRequest({
@@ -137,13 +137,13 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   changeCategorySort$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.ChangeCategorySortingOptionAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffChangeCategorySortingOption, T],
+			[DaffCategoryPageChangeSortingOption, T],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       applied_sort_option: action.sort.option,

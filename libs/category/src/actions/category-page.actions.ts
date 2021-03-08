@@ -13,14 +13,14 @@ import {
 } from '../models/requests/filter-request';
 
 export enum DaffCategoryPageActionTypes {
-  CategoryPageLoadAction = '[Daff-Category] Category Page Load Action',
-  CategoryPageLoadSuccessAction = '[Daff-Category] Category Page Load Success Action',
-  CategoryPageLoadFailureAction = '[Daff-Category] Category Page Load Failure Action',
-  ChangeCategoryPageSizeAction = '[Daff-Category] Change Category Page Size Action',
-  ChangeCategoryCurrentPageAction = '[Daff-Category] Change Category Current Page Action',
-  ChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
-  ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action',
-  ToggleCategoryFilterAction = '[Daff-Category] Toggle Category Filter Action'
+  CategoryPageLoadAction = '[@daffodil/category] Category Page Load Action',
+  CategoryPageLoadSuccessAction = '[@daffodil/category] Category Page Load Success Action',
+  CategoryPageLoadFailureAction = '[@daffodil/category] Category Page Load Failure Action',
+  CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
+  CategoryPageChangeCurrentPageAction = '[@daffodil/category] Category Page Change Current Page Action',
+  CategoryPageChangeSortingOptionAction = '[@daffodil/category] Category Page Change Sorting Option Action',
+  CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
+  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action'
 }
 
 /**
@@ -67,8 +67,8 @@ export class DaffCategoryPageLoadFailure implements Action {
  *
  * @param pageSize - The number of products per page.
  */
-export class DaffChangeCategoryPageSize implements Action {
-  readonly type = DaffCategoryPageActionTypes.ChangeCategoryPageSizeAction;
+export class DaffCategoryPageChangePageSize implements Action {
+  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeSizeAction;
 
   constructor(public pageSize: number) { }
 }
@@ -78,8 +78,8 @@ export class DaffChangeCategoryPageSize implements Action {
  *
  * @param currentPage - The current page of products for the selected category.
  */
-export class DaffChangeCategoryCurrentPage implements Action {
-  readonly type = DaffCategoryPageActionTypes.ChangeCategoryCurrentPageAction;
+export class DaffCategoryPageChangeCurrentPage implements Action {
+  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction;
 
   constructor(public currentPage: number) { }
 }
@@ -89,8 +89,8 @@ export class DaffChangeCategoryCurrentPage implements Action {
  *
  * @param sort - The sort option to be applied.
  */
-export class DaffChangeCategorySortingOption implements Action {
-  readonly type = DaffCategoryPageActionTypes.ChangeCategorySortingOptionAction;
+export class DaffCategoryPageChangeSortingOption implements Action {
+  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction;
 
   constructor(
     public sort: {
@@ -105,8 +105,8 @@ export class DaffChangeCategorySortingOption implements Action {
  *
  * @param filters - Filters to be applied to the selected category.
  */
-export class DaffChangeCategoryFilters implements Action {
-  readonly type = DaffCategoryPageActionTypes.ChangeCategoryFiltersAction;
+export class DaffCategoryPageChangeFilters implements Action {
+  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeFiltersAction;
 
   constructor(public filters: DaffCategoryFilterRequest[]) { }
 }
@@ -116,8 +116,8 @@ export class DaffChangeCategoryFilters implements Action {
  *
  * @param filter - Filter to be toggle on the selected category.
  */
-export class DaffToggleCategoryFilter implements Action {
-  readonly type = DaffCategoryPageActionTypes.ToggleCategoryFilterAction;
+export class DaffCategoryPageToggleFilter implements Action {
+  readonly type = DaffCategoryPageActionTypes.CategoryPageToggleFilterAction;
 
   constructor(public filter: DaffToggleCategoryFilterRequest) { }
 }
@@ -131,8 +131,8 @@ export type DaffCategoryPageActions<
   | DaffCategoryPageLoad<T>
   | DaffCategoryPageLoadSuccess<T, U, V, W>
   | DaffCategoryPageLoadFailure
-  | DaffChangeCategoryPageSize
-  | DaffChangeCategoryCurrentPage
-  | DaffChangeCategorySortingOption
-  | DaffChangeCategoryFilters
-  | DaffToggleCategoryFilter;
+  | DaffCategoryPageChangePageSize
+  | DaffCategoryPageChangeCurrentPage
+  | DaffCategoryPageChangeSortingOption
+  | DaffCategoryPageChangeFilters
+  | DaffCategoryPageToggleFilter;
