@@ -7,17 +7,21 @@ import { DaffAuthorizeNetInvalidCCCVVError } from './invalid-cc-cvv';
 import { DaffAuthorizeNetInvalidCCExpMonthError } from './invalid-cc-exp-month';
 import { DaffAuthorizeNetInvalidCCExpYearError } from './invalid-cc-exp-year';
 import { DaffAuthorizeNetInvalidCCNameError } from './invalid-cc-name';
+import { DaffAuthorizeNetInvalidCCNumberError } from './invalid-cc-number';
 import { DaffAuthorizeNetInvalidClientKeyError } from './invalid-client-key';
 import { DaffAuthorizeNetInvalidLoginIdError } from './invalid-login-id';
 import { DaffAuthorizeNetInvalidPostalCodeError } from './invalid-postal-code';
 import { DaffAuthorizeNetPastCCExpirationError } from './past-cc-expiration';
 
+/**
+ * A mapping from the Authorize.net platform error codes to Daffodil driver error classes.
+ */
 export const DAFF_AUTHORIZE_NET_ERROR_CODE_MAP = {
   E_WC_01: DaffAuthorizeNetAcceptjsMissingError,
   E_WC_02: DaffAuthorizeNetInsecureConnectionError,
   E_WC_03: DaffAuthorizeNetAcceptjsInvalidError,
   E_WC_04: DaffAuthorizeNetInputMissingError,
-  E_WC_05: DaffAuthorizeNetInvalidCCNameError,
+  E_WC_05: DaffAuthorizeNetInvalidCCNumberError,
   E_WC_06: DaffAuthorizeNetInvalidCCExpMonthError,
   E_WC_07: DaffAuthorizeNetInvalidCCExpYearError,
   E_WC_08: DaffAuthorizeNetPastCCExpirationError,
