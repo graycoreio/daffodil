@@ -22,6 +22,6 @@ export enum DaffSortDirectionEnum {
  */
 export interface DaffSortable {
   sort_options: DaffSortOption[];
-  applied_sort_option: string;
+  applied_sort_option: DaffSortOption['value'];
   applied_sort_direction: DaffSortDirectionEnum;
 }
