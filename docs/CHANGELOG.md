@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.27.0](https://github.com/graycoreio/daffodil/compare/v0.26.0...v0.27.0) (2021-03-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core, product:** the interface name changed, the above swap is sufficient to breakfix.
+* **category:** In an attempt to improve legibility, we've migrated the action names to begin with the prefix "CategoryPage". Users will need to update their types.
+* **product:** many references to @daffodil/product have changed to various subpackages
+* **category:** The types related to category page actions have been moved to "DaffCategoryPageActions" and "DaffCategoryPageActionTypes"
+* **cart:** The DaffResolveCartServerSide action now requires an argument to its constructor
+
+### Features
+
+* **authorizenet:** add driver error code enum ([#1190](https://github.com/graycoreio/daffodil/issues/1190)) ([740be99](https://github.com/graycoreio/daffodil/commit/740be99f04298dddeb948eb6cfb9338f98ce85a2))
+* **cart:** set an error cart-item daffState on failure ([#1321](https://github.com/graycoreio/daffodil/issues/1321)) ([903f803](https://github.com/graycoreio/daffodil/commit/903f803779382ca37dd47627dd7f9e39e3f48f15))
+* **cart:** use cart resolution specific error in resolve effect ([#1306](https://github.com/graycoreio/daffodil/issues/1306)) ([b1d8695](https://github.com/graycoreio/daffodil/commit/b1d86953138f745f808c588b892a62c0f93a6ec5))
+* **category:** move page actions to "DaffCategoryPageActions" and "DaffCategoryPageActionTypes" ([#1310](https://github.com/graycoreio/daffodil/issues/1310)) ([32fcb7c](https://github.com/graycoreio/daffodil/commit/32fcb7cb93397e2af8aadebf97530b173a760261))
+* **category:** rename category actions ([#1315](https://github.com/graycoreio/daffodil/issues/1315)) ([5504fcc](https://github.com/graycoreio/daffodil/commit/5504fccd526a9a421d9a4550ac1f869576ddade3))
+* **core:** introduce DaffNumericallyPaginable for collections ([#1324](https://github.com/graycoreio/daffodil/issues/1324)) ([91e0af2](https://github.com/graycoreio/daffodil/commit/91e0af2905df0ef94fca9e062f7af36f34d0c95b))
+* **core, product:** rename DaffSortable to DaffOrderable ([#1323](https://github.com/graycoreio/daffodil/issues/1323)) ([d2afe9a](https://github.com/graycoreio/daffodil/commit/d2afe9ae625263b749daa7719a57dc3a0ad218ae))
+* **product:** split package into more specific subpackages ([#1145](https://github.com/graycoreio/daffodil/issues/1145)) ([b7e353f](https://github.com/graycoreio/daffodil/commit/b7e353f5324a5fe88a8be0bae69f5494b3c994ba))
+
+
+### Bug Fixes
+
+* **design:** fix article directive file names ([#1265](https://github.com/graycoreio/daffodil/issues/1265)) ([facf7cc](https://github.com/graycoreio/daffodil/commit/facf7cc55458caf91edd432dbec2424f03800586))
+* **navigation:** magento sometimes returns null in place of arrays ([#1312](https://github.com/graycoreio/daffodil/issues/1312)) ([7df43c5](https://github.com/graycoreio/daffodil/commit/7df43c58bb94f7bbb2c89bcd2f88e1dbf176eee8))
+
 ## [0.26.0](https://github.com/graycoreio/daffodil/compare/v0.25.2...v0.26.0) (2021-02-25)
 
 
