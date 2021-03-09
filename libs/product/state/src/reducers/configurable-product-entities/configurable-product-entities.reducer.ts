@@ -9,6 +9,12 @@ import {
 import {
   DaffProductGridActionTypes,
   DaffProductGridActions,
+} from '../../actions/product-grid.actions';
+import {
+  DaffProductPageActions,
+  DaffProductPageActionTypes,
+} from '../../actions/product-page.actions';
+import {
   DaffProductActionTypes,
   DaffProductActions,
   DaffBestSellersActionTypes,
@@ -31,7 +37,7 @@ import {
  */
 export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V extends DaffConfigurableProduct>(
   state = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState(),
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffConfigurableProductEntity> {
+  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffConfigurableProductEntity> {
   const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
@@ -43,6 +49,7 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
         state,
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
+    case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
       if(action.payload.type === DaffProductTypeEnum.Configurable) {
         return adapter.upsertOne(
           buildConfigurableProductAppliedAttributesEntity(action.payload),

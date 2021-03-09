@@ -7,6 +7,7 @@ import {
   DaffProductGridLoadSuccess,
   DaffBestSellersLoadSuccess,
   DaffCompositeProductApplyOption,
+  DaffProductPageLoadSuccess,
 } from '@daffodil/product/state';
 import {
   DaffProductFactory,
@@ -119,6 +120,40 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('does not set a composite product entity when the given product is not composite', () => {
       const productLoadSuccess = new DaffProductLoadSuccess(product);
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
+      expect(result.entities[product.id]).toBeUndefined();
+    });
+  });
+
+  describe('when ProductPageLoadSuccessAction is triggered', () => {
+
+    let product: DaffProduct;
+    let result;
+
+    beforeEach(() => {
+      product = productFactory.create();
+    });
+
+    it('sets a composite product entity when the given product is composite', () => {
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess(compositeProduct);
+      result = daffCompositeProductEntitiesReducer(initialState, productPageLoadSuccess);
+      expect(result.entities[compositeProduct.id]).toEqual({
+        id: compositeProduct.id,
+        items: {
+          [compositeProduct.items[0].id]: {
+            value: compositeProduct.items[0].options[0].id,
+            qty: compositeProduct.items[0].options[0].quantity,
+          },
+          [compositeProduct.items[1].id]: {
+            value: compositeProduct.items[1].options[0].id,
+            qty: compositeProduct.items[1].options[0].quantity,
+          },
+        },
+      });
+    });
+
+    it('does not set a composite product entity when the given product is not composite', () => {
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      result = daffCompositeProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
     });
   });

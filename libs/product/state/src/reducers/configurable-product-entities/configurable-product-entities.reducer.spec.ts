@@ -10,6 +10,7 @@ import {
   DaffConfigurableProductApplyAttribute,
   DaffConfigurableProductRemoveAttribute,
   DaffConfigurableProductToggleAttribute,
+  DaffProductPageLoadSuccess,
 } from '@daffodil/product/state';
 import {
   DaffProductFactory,
@@ -110,6 +111,28 @@ describe('Product | Product Entities Reducer', () => {
     it('does not set a configurable product entity when the given product is not configurable', () => {
       const productLoadSuccess = new DaffProductLoadSuccess(product);
       result = daffConfigurableProductEntitiesReducer(initialState, productLoadSuccess);
+      expect(result.entities[product.id]).toBeUndefined();
+    });
+  });
+
+  describe('when ProductPageLoadSuccessAction is triggered', () => {
+
+    let product: DaffProduct;
+    let result;
+
+    beforeEach(() => {
+      product = productFactory.create();
+    });
+
+    it('sets a configurable product entity when the given product is configurable', () => {
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess(configurableProduct);
+      result = daffConfigurableProductEntitiesReducer(initialState, productPageLoadSuccess);
+      expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id, attributes: []});
+    });
+
+    it('does not set a configurable product entity when the given product is not configurable', () => {
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      result = daffConfigurableProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
     });
   });
