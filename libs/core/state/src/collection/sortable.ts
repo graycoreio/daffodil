@@ -23,7 +23,7 @@ export enum DaffSortDirectionEnum {
 export interface DaffSortable {
 
   /**
-   * The options available to sort the collection.
+   * The available options by which to sort the collection.
    */
   sort_options: DaffSortOption[];
 
