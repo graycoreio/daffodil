@@ -16,8 +16,8 @@ export const enum DaffState {
   Resolving = 'Resolving',
 
   /**
-   * The 'Adding' state represents a temporary period while an item is currently
-   * in the process of being added to state.
+   * The 'Adding' state represents a temporary period while an item is being
+   * added to state.
    */
   Adding = 'Adding',
 
@@ -43,7 +43,7 @@ export const enum DaffState {
   Mutated = 'Mutated',
 
   /**
-   * The 'Deleting' state occurs when an object is in the process of being
+   * The "Deleting" state occurs when an object is in the process of being
    * removed from state.
    */
   Deleting = 'Deleting',
