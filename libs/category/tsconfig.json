@@ -9,8 +9,29 @@
       "@daffodil/category": [
         "libs/category/src"
       ],
+      "@daffodil/category/state": [
+        "libs/category/state/src"
+      ],
+      "@daffodil/category/state/testing": [
+        "libs/category/state/testing/src"
+      ],
+      "@daffodil/category/driver": [
+        "libs/category/driver/src"
+      ],
+      "@daffodil/category/driver/testing": [
+        "libs/category/driver/testing/src"
+      ],
+      "@daffodil/category/driver/in-memory": [
+        "libs/category/driver/in-memory/src"
+      ],
+      "@daffodil/category/driver/magento": [
+        "libs/category/driver/magento/src"
+      ],
       "@daffodil/category/testing": [
         "libs/category/testing/src"
+      ],
+      "@daffodil/category/routing": [
+        "libs/category/routing/src"
       ],
     }
   }
