@@ -1,1 +1,1 @@
-export * from './paginateable';
+export * from './paginable';
