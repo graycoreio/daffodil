@@ -24,10 +24,7 @@ export { DaffCategoryPageConfigurationState } from './models/category-page-confi
 export { DaffCategoryBreadcrumb } from './models/category-breadcrumb';
 export { DaffCategory } from './models/category';
 export { DaffGenericCategory } from './models/generic-category';
-export {
-  DaffCategoryRequest,
-  DaffSortDirectionEnum,
-} from './models/requests/category-request';
+export { DaffCategoryRequest } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
 export * from './models/requests/filter-request';
 export * from './models/category-filter-base';

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { DaffSortDirectionEnum } from '../../../models/requests/category-request';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
+
 import {
   MagentoSortFieldAction,
   MagentoSortDirectionEnum,
@@ -20,7 +21,7 @@ export class DaffMagentoAppliedSortOptionTransformService {
   private transformDirection(direction: DaffSortDirectionEnum): MagentoSortDirectionEnum {
     if(direction === DaffSortDirectionEnum.Ascending) {
       return MagentoSortDirectionEnum.Ascending;
-    } else if(direction === DaffSortDirectionEnum.Decending) {
+    } else if(direction === DaffSortDirectionEnum.Descending) {
       return MagentoSortDirectionEnum.Decending;
     }
   }

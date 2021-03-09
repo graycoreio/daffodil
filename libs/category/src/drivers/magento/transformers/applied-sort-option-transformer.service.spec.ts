@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffSortDirectionEnum } from '../../../models/requests/category-request';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
+
 import {
   MagentoSortFieldAction,
   MagentoSortDirectionEnum,

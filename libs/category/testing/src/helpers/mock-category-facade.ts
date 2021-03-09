@@ -9,8 +9,8 @@ import {
   DaffCategoryFilter,
   DaffCategorySortOption,
   DaffCategoryAppliedFilter,
-  DaffSortDirectionEnum,
 } from '@daffodil/category';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 @Injectable({ providedIn: 'root' })
