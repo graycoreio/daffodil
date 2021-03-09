@@ -21,7 +21,18 @@ export enum DaffSortDirectionEnum {
  * sorted by Daffodil.
  */
 export interface DaffSortable {
+  /**
+   * The available options to sort the collection by.
+   */
   sort_options: DaffSortOption[];
+
+  /**
+   * The currently applied sorting option.
+   */
   applied_sort_option: DaffSortOption['value'];
+
+  /**
+   * The currently applied sort direction.
+   */
   applied_sort_direction: DaffSortDirectionEnum;
 }
