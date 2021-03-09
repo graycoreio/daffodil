@@ -6,6 +6,7 @@
         "ms-vsliveshare.vsliveshare",
         "bierner.markdown-preview-github-styles",
         "mrmlnc.vscode-scss",
-        "tehnix.vscode-tidymarkdown"
+        "tehnix.vscode-tidymarkdown",
+        "dbaeumer.vscode-eslint"
     ]
 }
