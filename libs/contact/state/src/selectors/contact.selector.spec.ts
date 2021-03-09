@@ -9,6 +9,7 @@ import { cold } from 'jasmine-marbles';
 import {
   reducer,
   DaffContactState,
+  DAFF_CONTACT_STORE_FEATURE_KEY,
 } from '@daffodil/contact/state';
 
 import {
@@ -26,7 +27,7 @@ describe('the contact selectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          contact: reducer,
+          [DAFF_CONTACT_STORE_FEATURE_KEY]: reducer,
         }),
       ],
     });

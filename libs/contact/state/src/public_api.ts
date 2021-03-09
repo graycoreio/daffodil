@@ -16,6 +16,7 @@ export {
   DaffContactState,
   reducer,
 } from './reducers/contact.reducer';
+export { DAFF_CONTACT_STORE_FEATURE_KEY } from './reducers/contact-store-feature-key';
 
 export {
   selectDaffContactError,

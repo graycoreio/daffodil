@@ -11,6 +11,7 @@ import {
   DaffContactSubmit,
   DaffContactFailedSubmit,
   DaffContactFeatureState,
+  DAFF_CONTACT_STORE_FEATURE_KEY,
 } from '@daffodil/contact/state';
 
 import { DaffContactFacade } from './contact.facade';
@@ -23,7 +24,7 @@ describe('the DaffContactFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          contact: reducer,
+          [DAFF_CONTACT_STORE_FEATURE_KEY]: reducer,
         }),
       ],
       providers: [DaffContactFacade],
