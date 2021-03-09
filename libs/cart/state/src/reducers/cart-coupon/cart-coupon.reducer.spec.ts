@@ -27,9 +27,7 @@ import {
   DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 import { DaffState } from '@daffodil/core/state';
-import {
-  DaffStateError,
-} from '@daffodil/core/state';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { cartCouponReducer as reducer } from './cart-coupon.reducer';
 
