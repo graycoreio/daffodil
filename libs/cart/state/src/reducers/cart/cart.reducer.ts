@@ -1,5 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
@@ -25,7 +25,7 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartLoadAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartActionTypes.CartClearAction:
@@ -33,7 +33,7 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartCreateAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Mutating),
+        ...setLoading(state.loading, DaffState.Mutating),
       };
 
     case DaffCartActionTypes.CartLoadSuccessAction:
@@ -48,7 +48,7 @@ export function cartReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartActionTypes.CartCreateSuccessAction:
@@ -59,7 +59,7 @@ export function cartReducer<T extends DaffCart>(
           ...initialState.cart,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
     case DaffCartActionTypes.CartLoadFailureAction:
     case DaffCartActionTypes.CartClearFailureAction:
@@ -71,7 +71,7 @@ export function cartReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     default:

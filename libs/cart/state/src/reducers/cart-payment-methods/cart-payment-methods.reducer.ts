@@ -1,5 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartPaymentMethodsActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
@@ -24,7 +24,7 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadSuccessAction:
@@ -35,14 +35,14 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
           ...state.cart,
           available_payment_methods: action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     default:

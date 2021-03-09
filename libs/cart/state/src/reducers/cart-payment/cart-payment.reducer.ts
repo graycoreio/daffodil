@@ -1,4 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
+import { DaffState } from '@daffodil/core/state';
 import { DaffLoadingState } from '@daffodil/core/state';
 
 import { DaffCartPaymentActionTypes } from '../../actions/public_api';
@@ -24,7 +25,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentLoadAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateAction:
@@ -32,7 +33,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentRemoveAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Mutating),
+        ...setLoading(state.loading, DaffState.Mutating),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction:
@@ -43,7 +44,7 @@ export function cartPaymentReducer<T extends DaffCart>(
           ...state.cart,
           payment: action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
@@ -54,7 +55,7 @@ export function cartPaymentReducer<T extends DaffCart>(
           ...state.cart,
           payment: null,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
@@ -66,7 +67,7 @@ export function cartPaymentReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
@@ -76,7 +77,7 @@ export function cartPaymentReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
 

@@ -1,27 +1,27 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import {
+  DaffLoadingState,
+  DaffMutableLoadingState,
+  DaffState,
+} from '@daffodil/core/state';
 
 import { DaffCartOperationType } from '../cart-operation-type.enum';
 
 export interface DaffCartLoading {
-	[DaffCartOperationType.Cart]: DaffLoadingState;
+	[DaffCartOperationType.Cart]: DaffMutableLoadingState;
 	[DaffCartOperationType.Item]: DaffCartItemLoadingState;
-	[DaffCartOperationType.BillingAddress]: DaffLoadingState;
-	[DaffCartOperationType.ShippingAddress]: DaffLoadingState;
-	[DaffCartOperationType.Payment]: DaffLoadingState;
+	[DaffCartOperationType.BillingAddress]: DaffMutableLoadingState;
+	[DaffCartOperationType.ShippingAddress]: DaffMutableLoadingState;
+	[DaffCartOperationType.Payment]: DaffMutableLoadingState;
 	[DaffCartOperationType.PaymentMethods]: DaffLoadingState;
-	[DaffCartOperationType.ShippingInformation]: DaffLoadingState;
+	[DaffCartOperationType.ShippingInformation]: DaffMutableLoadingState;
 	[DaffCartOperationType.ShippingMethods]: DaffLoadingState;
-	[DaffCartOperationType.Coupon]: DaffLoadingState;
+	[DaffCartOperationType.Coupon]: DaffMutableLoadingState;
 }
 
-export enum DaffCartItemLoadingState {
-  Resolving = 'Resolving',
-	Adding = 'Adding',
-  Complete = 'Complete',
-}
+export type DaffCartItemLoadingState = DaffMutableLoadingState | DaffState.Adding;
 
 export const initializeLoadingSetter = (loadingSpace: DaffCartOperationType) =>
-  (loadingObj: DaffCartLoading, loading: DaffLoadingState | DaffCartItemLoadingState) => ({
+  (loadingObj: DaffCartLoading, loading: DaffLoadingState | DaffMutableLoadingState | DaffCartItemLoadingState) => ({
     loading: {
       ...loadingObj,
       [loadingSpace]: loading,

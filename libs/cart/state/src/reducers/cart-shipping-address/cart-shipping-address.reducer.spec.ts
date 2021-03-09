@@ -15,7 +15,7 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
-  DaffLoadingState,
+  DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
 
@@ -47,7 +47,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
       const result = cartShippingAddressReducer(initialState, cartListLoadAction);
 
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Resolving);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Resolving);
     });
   });
 
@@ -60,7 +60,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
       };
 
@@ -70,7 +70,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should set shipping_address from action.payload', () => {
@@ -92,7 +92,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -106,7 +106,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the shipping address section of state.errors', () => {
@@ -120,7 +120,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
       const result = cartShippingAddressReducer(initialState, cartShippingAddressUpdateAction);
 
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Mutating);
     });
   });
 
@@ -134,7 +134,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
       };
 
@@ -146,7 +146,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the shipping address section of state.errors to an empty array', () => {
@@ -164,7 +164,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -180,7 +180,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the shipping address section of state.errors', () => {
@@ -194,7 +194,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
       const result = cartShippingAddressReducer(initialState, cartAddressUpdateAction);
 
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Mutating);
     });
   });
 
@@ -208,7 +208,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
       };
 
@@ -220,7 +220,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the shipping address section of state.errors to an empty array', () => {
@@ -238,7 +238,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -254,7 +254,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the shipping address section of state.errors', () => {

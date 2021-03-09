@@ -60,7 +60,6 @@ import {
   DaffCartPlaceOrder,
   DaffCartPlaceOrderFailure,
   DaffCartPlaceOrderSuccess,
-  DaffCartItemLoadingState,
   DaffCartItemAdd,
   DaffCartResolveState,
 } from '@daffodil/cart/state';
@@ -73,6 +72,7 @@ import {
   DaffConfigurableCartItemFactory,
   DaffCompositeCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffState } from '@daffodil/core/state';
 import {
   DaffLoadingState,
   DaffStateError,
@@ -126,15 +126,15 @@ describe('DaffCartFacade', () => {
     shippingMethodFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     loading = {
-      [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
-      [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
-      [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
-      [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
-      [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Payment]: DaffLoadingState.Complete,
-      [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Coupon]: DaffLoadingState.Complete,
+      [DaffCartOperationType.Cart]: DaffState.Complete,
+      [DaffCartOperationType.Item]: DaffState.Complete,
+      [DaffCartOperationType.ShippingAddress]: DaffState.Complete,
+      [DaffCartOperationType.BillingAddress]: DaffState.Complete,
+      [DaffCartOperationType.ShippingInformation]: DaffState.Complete,
+      [DaffCartOperationType.ShippingMethods]: DaffState.Complete,
+      [DaffCartOperationType.Payment]: DaffState.Complete,
+      [DaffCartOperationType.PaymentMethods]: DaffState.Complete,
+      [DaffCartOperationType.Coupon]: DaffState.Complete,
     };
     errors = {
       [DaffCartOperationType.Cart]: [],
@@ -1109,10 +1109,10 @@ describe('DaffCartFacade', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2);
       const expected = cold('a', {
         a:
-					statefulCartItems.reduce((acc, item) => ({
-					  ...acc,
-					  [item.item_id]: item,
-					}), {}),
+          statefulCartItems.reduce((acc, item) => ({
+            ...acc,
+            [item.item_id]: item,
+          }), {}),
       });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.itemDictionary$).toBeObservable(expected);

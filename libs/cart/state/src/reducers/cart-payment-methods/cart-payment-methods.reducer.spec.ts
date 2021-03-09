@@ -9,7 +9,7 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
-  DaffLoadingState,
+  DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
 
@@ -42,7 +42,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
       const cartPaymentMethodsLoadAction = new DaffCartPaymentMethodsLoad();
       const result = cartPaymentMethodsReducer(initialState, cartPaymentMethodsLoadAction);
 
-      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffLoadingState.Resolving);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Resolving);
     });
   });
 
@@ -55,7 +55,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.PaymentMethods]: DaffState.Resolving,
         },
       };
 
@@ -65,7 +65,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Complete);
     });
 
     it('should set available_payment_methods from action.payload', () => {
@@ -87,7 +87,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.PaymentMethods]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -101,7 +101,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the payment methods section of state.errors', () => {

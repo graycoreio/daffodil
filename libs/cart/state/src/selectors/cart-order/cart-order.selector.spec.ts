@@ -17,6 +17,7 @@ import {
   DaffCartPlaceOrder,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffState } from '@daffodil/core/state';
 import { DaffLoadingState } from '@daffodil/core/state';
 
 import { getCartOrderSelectors } from './cart-order.selector';
@@ -71,7 +72,7 @@ describe('Cart | Selector | CartOrder', () => {
           orderId,
           cartId: cart.id,
         },
-        loading: DaffLoadingState.Complete,
+        loading: DaffState.Complete,
         errors: [],
       };
       const selector = store.pipe(select(selectCartOrderState));
