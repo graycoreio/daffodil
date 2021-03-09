@@ -5,11 +5,12 @@ import { StoreModule } from '@ngrx/store';
 
 import { DaffNewsletterEffects } from './effects/newsletter.effects';
 import { reducer } from './reducers/newsletter.reducer';
+import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './reducers/newsletter-store-feature-key';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('newsletter', reducer),
+    StoreModule.forFeature(DAFF_NEWSLETTER_STORE_FEATURE_KEY, reducer),
     EffectsModule.forFeature([
       DaffNewsletterEffects,
     ]),

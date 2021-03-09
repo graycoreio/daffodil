@@ -5,16 +5,17 @@ import {
 } from '@ngrx/store';
 
 import { DaffNewsletterState } from '../reducers/newsletter.reducer';
+import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from '../reducers/newsletter-store-feature-key';
 
 export interface State {
-  newsletter: DaffNewsletterState;
+  [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: DaffNewsletterState;
 }
 
 /**
  * Feature State Selector
  */
 const selectNewsletterFeatureState:
-  MemoizedSelector<State, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>('newsletter');
+  MemoizedSelector<State, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>(DAFF_NEWSLETTER_STORE_FEATURE_KEY);
 
 
 /**

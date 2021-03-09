@@ -15,6 +15,7 @@ import { DaffNewsletterSubmission } from '../models/newsletter.model';
 import { reducer } from '../reducers/newsletter.reducer';
 import { State } from '../selectors/newsletter.selector';
 import { DaffNewsletterFacade } from './newsletter.facade';
+import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from '../reducers/newsletter-store-feature-key';
 
 describe('DaffNewsletterFacade', () => {
 
@@ -25,7 +26,7 @@ describe('DaffNewsletterFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          newsletter: reducer,
+          [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: reducer,
         }),
       ],
       providers: [
