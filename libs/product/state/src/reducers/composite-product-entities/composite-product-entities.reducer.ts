@@ -11,6 +11,12 @@ import {
 import {
   DaffProductGridActionTypes,
   DaffProductGridActions,
+} from '../../actions/product-grid.actions';
+import {
+  DaffProductPageActions,
+  DaffProductPageActionTypes,
+} from '../../actions/product-page.actions';
+import {
   DaffProductActionTypes,
   DaffProductActions,
   DaffBestSellersActionTypes,
@@ -30,7 +36,7 @@ import { DaffCompositeProductEntity } from './composite-product-entity';
  */
 export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V extends DaffCompositeProduct>(
   state = daffCompositeProductAppliedOptionsEntitiesAdapter().getInitialState(),
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffCompositeProductActions<V>): EntityState<DaffCompositeProductEntity> {
+  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T> | DaffCompositeProductActions<V>): EntityState<DaffCompositeProductEntity> {
   const adapter = daffCompositeProductAppliedOptionsEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
@@ -42,6 +48,7 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
         state,
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
+    case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
       if(action.payload.type === DaffProductTypeEnum.Composite) {
         return adapter.upsertOne(
           buildCompositeProductAppliedOptionsEntity(<V><unknown>action.payload),
