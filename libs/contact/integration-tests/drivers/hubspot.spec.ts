@@ -26,6 +26,7 @@ describe('DaffContactHubspotDriver', () => {
     httpMock = TestBed.inject(HttpTestingController);
     contactService = TestBed.inject(DaffContactDriver);
   });
+
   afterEach(() => {
     httpMock.verify();
   });

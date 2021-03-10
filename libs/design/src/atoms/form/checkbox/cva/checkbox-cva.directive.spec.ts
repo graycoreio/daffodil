@@ -43,6 +43,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
       })
         .compileComponents();
     }));
+
     describe('the DaffCheckboxComponent', () => {
 
       beforeEach(() => {
@@ -52,6 +53,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
         component = fixture.debugElement.query(By.css('daff-Checkbox')).componentInstance;
         fixture.detectChanges();
       });
+
       it('should let the value be set from a form control', async () => {
 
         expect(component.checked).toEqual(false);
@@ -60,6 +62,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
 
         expect(component.checked).toEqual(true);
       });
+
       it('can be disabled from the form control', async () => {
         CheckboxWrapper.checkbox.disable();
         expect(component.disabled).toBe(true);
@@ -67,6 +70,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
     });
 
   });
+
   describe('without the directive', () => {
     let CheckboxWrapper: CheckboxWrapperComponent;
 
@@ -86,6 +90,7 @@ describe('DaffCheckboxControlValueAccessorDirective', () => {
       })
         .compileComponents();
     }));
+
     describe('the DaffCheckboxComponent', () => {
 
       it('throws an error without the directive to give the itself the CVA interface', async () => {

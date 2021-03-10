@@ -72,9 +72,11 @@ describe('DaffCheckboxSetComponent', () => {
   it('should create', () => {
     expect(embeddedComponent).toBeTruthy();
   });
+
   it('should take a name as an input', () => {
     expect(embeddedComponent.name).toBe('example');
   });
+
   describe('and the getValues function', () => {
     it('should return a list of selected values', () => {
       expect(embeddedComponent.getValues()).toEqual(['option2', 'option3']);

@@ -44,6 +44,7 @@ describe('DaffioDocService', () => {
 
     req.flush(doc);
   });
+
   it('should be able to retrieve a guide list', () => {
     service.getGuideList().subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);

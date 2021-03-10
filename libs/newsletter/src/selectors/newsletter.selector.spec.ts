@@ -35,6 +35,7 @@ describe('DaffNewsletterSelectors', () => {
     store = TestBed.inject(Store);
 
   });
+
   describe('selectDaffNewsletterLoading', () =>{
     it('selects the loading property of newsletter state', () => {
       const selector = store.pipe(select(selectDaffNewsletterLoading));
@@ -42,6 +43,7 @@ describe('DaffNewsletterSelectors', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
   describe('selectDaffNewsletterSuccess', () =>{
     it('selects the success property of newsletter state', () => {
       const selector = store.pipe(select(selectDaffNewsletterSuccess));
@@ -49,6 +51,7 @@ describe('DaffNewsletterSelectors', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
   describe('selectDaffNewsletterError', () =>{
     it('selects the error property of newsletter state', () => {
       const selector = store.pipe(select(selectDaffNewsletterError));

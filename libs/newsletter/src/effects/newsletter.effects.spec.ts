@@ -68,6 +68,7 @@ describe('NewsletterEffects', () => {
         expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
+
     describe('and the call to NewsletterService fails', () => {
       it('it should dispatch a NewsletterFailedSubscribe', () => {
         const error = 'Failed to subscribe to newsletter';
@@ -81,6 +82,7 @@ describe('NewsletterEffects', () => {
       });
     });
   });
+
   describe('when NewsletterRetry is triggered', () => {
     let expected;
     const newsletterRetry = new DaffNewsletterRetry(mockNewsletter);
@@ -95,6 +97,7 @@ describe('NewsletterEffects', () => {
         expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
+
     describe('and the call to NewsletterService fails', () => {
       it('it should dispatch a NewsletterFailedSubscribe', () => {
         const error = 'Failed to subscribe to newsletter';
@@ -108,6 +111,7 @@ describe('NewsletterEffects', () => {
       });
     });
   });
+
   describe('when Newsletter cancel is triggered', () => {
     let expected;
     const newsletterSubscribe = new DaffNewsletterSubscribe(mockNewsletter);
@@ -122,6 +126,7 @@ describe('NewsletterEffects', () => {
 
       expect(effects.trySubmission$).toBeObservable(expected);
     });
+
     it('it should cancel a newsletter subscribe action', () => {
       actions$ = hot('--(ad)----', {
         a: newsletterSubscribe,

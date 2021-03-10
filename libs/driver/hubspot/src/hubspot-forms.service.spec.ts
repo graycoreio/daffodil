@@ -47,6 +47,7 @@ describe('DaffHubspotFormsService', () => {
       config,
     );
   });
+
   it('should be created', () => {
     expect(formsService).toBeTruthy();
   });
@@ -65,6 +66,7 @@ describe('DaffHubspotFormsService', () => {
 
       req.flush('');
     });
+
     it('should include the hubspot UTK in the request, if it hubspot cookie exists', () => {
       doc.cookie = 'hubspotutk=mycookie;';
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
@@ -79,6 +81,7 @@ describe('DaffHubspotFormsService', () => {
       document.cookie = 'hubspotutk=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
       req.flush('');
     });
+
     it('should not include the hubspot UTK in the request, if the hubspot does not cookie exists', () => {
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       formsService.submit(submission).subscribe();
@@ -90,6 +93,7 @@ describe('DaffHubspotFormsService', () => {
       });
       req.flush('');
     });
+
     it('should include the pageUri in the request', () => {
 
       spyOn(httpClient, 'post').and.callThrough();
@@ -107,6 +111,7 @@ describe('DaffHubspotFormsService', () => {
 
       req.flush('');
     });
+
     it('should include the pageName in the request', () => {
       spyOn(httpClient, 'post').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };

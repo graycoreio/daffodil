@@ -130,6 +130,7 @@ describe('Configurable Product Selectors | unit tests', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
   describe('selectConfigurableProductHasDiscount', () => {
 
     it('should return true when a variant has a discount', () => {

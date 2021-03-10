@@ -53,6 +53,7 @@ describe('NewsletterComponent', () => {
       expect(container.componentInstance.size).toEqual('md');
     });
   });
+
   describe('when intialized', () => {
     let newsletterElement;
 
@@ -63,9 +64,11 @@ describe('NewsletterComponent', () => {
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__right');
     });
+
     it('should render class .demo-newsletter__right', () => {
       expect(newsletterElement).not.toBeNull();
     });
+
     it('should call onNewsletterSubmit on click', () => {
       spyOn(component, 'onNewsletterSubmit');
 
@@ -74,6 +77,7 @@ describe('NewsletterComponent', () => {
       expect(component.onNewsletterSubmit).toHaveBeenCalled();
     });
   });
+
   describe('when loading$ is true', () => {
     let newsletterElement;
 
@@ -84,9 +88,11 @@ describe('NewsletterComponent', () => {
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__loading');
     });
+
     it('should render .demo-newsletter__loading', () => {
       expect(newsletterElement).not.toBeNull();
     });
+
     it('should call onNewsletterCancel on click', () => {
       spyOn(component, 'onNewsletterCancel');
 
@@ -95,6 +101,7 @@ describe('NewsletterComponent', () => {
       expect(component.onNewsletterCancel).toHaveBeenCalled();
     });
   });
+
   describe('when success$ is true', () => {
     let newsletterElement;
 
@@ -105,10 +112,12 @@ describe('NewsletterComponent', () => {
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__success');
     });
+
     it('should render .demo-newsletter__success', () => {
       expect(newsletterElement).not.toBeNull();
     });
   });
+
   describe('when an error is thrown', () => {
     let newsletterElement;
 
@@ -120,9 +129,11 @@ describe('NewsletterComponent', () => {
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__retry');
     });
+
     it('should render .demo-newsletter__retry', () => {
       expect(newsletterElement).not.toBeNull();
     });
+
     it('should call onNewsletterRetry on click', () => {
       spyOn(component, 'onNewsletterRetry');
 
