@@ -36,9 +36,11 @@ describe('DaffNewsletterFacade', () => {
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffNewsletterFacade);
   });
+
   it('should be created', () => {
     expect(facade).toBeTruthy();
   });
+
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
     const action = { type: 'Type' };
@@ -47,22 +49,26 @@ describe('DaffNewsletterFacade', () => {
     expect(store.dispatch).toHaveBeenCalledWith(action);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
+
   describe('success$', () => {
     it('should intially be false', () => {
       const expected = cold('a', { a: false });
       expect(facade.success$).toBeObservable(expected);
     });
+
     it('should return true after a successful subscription', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffNewsletterSuccessSubscribe());
       expect(facade.success$).toBeObservable(expected);
     });
   });
+
   describe('error$', () => {
     it('should intially be null', () => {
       const expected = cold('a', { a: null });
       expect(facade.error$).toBeObservable(expected);
     });
+
     it('should return an error message when it fails to subscribe', () => {
       const msg = 'Failed to subscribe';
       const expected = cold('a', { a: msg });
@@ -70,11 +76,13 @@ describe('DaffNewsletterFacade', () => {
       expect(facade.error$).toBeObservable(expected);
     });
   });
+
   describe('loading$', () => {
     it('should be false if the newsletter is not loading', () => {
       const expected = cold('a', { a: false });
       expect(facade.loading$).toBeObservable(expected);
     });
+
     it('it should be true if the newsletter is loading', () => {
       const expected = cold('a', { a: true });
       const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com' };

@@ -35,21 +35,26 @@ describe('DaffRadio Accessibility', () => {
     })
       .compileComponents();
   }));
+
   beforeEach(() => {
     fixture = TestBed.createComponent(RadioWrapperComponent);
     radioWrapper = fixture.componentInstance;
     component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(radioWrapper).toBeTruthy();
   });
+
   it('should have a role of radio', () => {
     expect(component.role).toBe('radio');
   });
+
   it('should have an aria-label of test', () => {
     expect(component.label).toBe('test');
   });
+
   it('should have a role of radio', () => {
     expect(component.labelledby).toBe('user');
   });

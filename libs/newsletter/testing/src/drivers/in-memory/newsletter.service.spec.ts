@@ -26,6 +26,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
     httpMock = TestBed.inject(HttpTestingController);
     newsletterService = TestBed.inject<DaffInMemoryNewsletterService>(DaffInMemoryNewsletterService);
   });
+
   afterEach(() => {
     httpMock.verify();
   });
@@ -33,6 +34,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
   it('should be created', () => {
     expect(newsletterService).toBeTruthy();
   });
+
   describe('when sending', () => {
     it('should send a POST request', () => {
       const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@email.com' };

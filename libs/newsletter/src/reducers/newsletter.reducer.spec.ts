@@ -37,6 +37,7 @@ describe('the newsletter reducer', () => {
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should start loading when a retry occurs', () =>{
     const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com' };
     const action = new DaffNewsletterRetry(payload);
@@ -47,6 +48,7 @@ describe('the newsletter reducer', () => {
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should cancel loading the newsletter', () => {
     const action = new DaffNewsletterCancel();
     const loadingState = {
@@ -61,6 +63,7 @@ describe('the newsletter reducer', () => {
     };
     expect(reducer(loadingState, action)).toEqual(expectedState);
   });
+
   it('should cancel loading and have an error message if the subscribe fails', () =>{
     const payload = 'Failed to Subscribe';
     const action = new DaffNewsletterFailedSubscribe(payload);
@@ -91,6 +94,7 @@ describe('the newsletter reducer', () => {
     };
     expect(reducer(preSuccessState, action)).toEqual(expectedState);
   });
+
   it('should return to the intialState when reset', () => {
     const action = new DaffNewsletterReset();
     const successState = {

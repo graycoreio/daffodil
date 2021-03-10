@@ -23,6 +23,7 @@ describe('the contact reducer', () => {
     const action = <any>{};
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should start loading when a submit action occurs', () => {
     const expectedState: DaffContactState = {
       errors: null,
@@ -34,6 +35,7 @@ describe('the contact reducer', () => {
 
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should start loading when a retry action occurs', () => {
     const expectedState: DaffContactState = {
       errors: null,
@@ -45,6 +47,7 @@ describe('the contact reducer', () => {
 
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should stop loading when a cancel action occurs', () => {
     const expectedState: DaffContactState = {
       errors: null,
@@ -55,6 +58,7 @@ describe('the contact reducer', () => {
 
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should return an error and stop loading if a failure action occurs', () => {
     const error_message = ['Failed to submit contact forum'];
     const expectedState: DaffContactState = {
@@ -66,6 +70,7 @@ describe('the contact reducer', () => {
 
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('should set success to equal true and stop loading after a success action occurs', () => {
     const expectedState: DaffContactState = {
       errors: null,
@@ -76,6 +81,7 @@ describe('the contact reducer', () => {
 
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
+
   it('it should reset to the intialState when a reset action occurs', () => {
     const expectedState: DaffContactState = {
       errors: null,

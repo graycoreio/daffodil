@@ -59,15 +59,19 @@ describe('DaffRadioComponent within a daff-radio-set', () => {
       embeddedComponent = embeddedFixture.debugElement.query(By.css('daff-radio')).componentInstance;
       embeddedFixture.detectChanges();
     });
+
     it('should create', () => {
       expect(radioEmbedded).toBeTruthy();
     });
+
     it('should get its name from the parent daff-radioset', () => {
       expect(embeddedComponent.name).toEqual('fruit');
     });
+
     it('should take a value as an input', () => {
       expect(embeddedComponent.value).not.toBeUndefined();
     });
+
     it('should have a generated id', () => {
       expect(embeddedComponent.id).toMatch('daff-radio-[0-9]*');
     });

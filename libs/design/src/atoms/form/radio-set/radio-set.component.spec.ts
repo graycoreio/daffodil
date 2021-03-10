@@ -64,9 +64,11 @@ describe('DaffRadioSetComponent', () => {
   it('should create', () => {
     expect(embeddedComponent).toBeTruthy();
   });
+
   it('should take a name as an input', () => {
     expect(embeddedComponent.name).toBe('fruit');
   });
+
   it('should have a role of radiogroup', () => {
     expect(embeddedComponent.role).toBe('radiogroup');
   });

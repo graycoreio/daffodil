@@ -226,6 +226,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
       const cartShippingInformationRemoveSuccess = new DaffCartShippingInformationDeleteSuccess(cart);
       result = cartShippingInformationReducer(initialState, cartShippingInformationRemoveSuccess);
     });
+
     it('should remove the shipping information from the cart', () => {
 
       const expectedState = {

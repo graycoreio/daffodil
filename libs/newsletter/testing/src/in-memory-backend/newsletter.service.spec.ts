@@ -42,6 +42,7 @@ describe('DaffNewsletterInMemoryBackend', () => {
     newsletterTestingService.post(newsletterSubmission);
     expect(newsletterTestingService.post(newsletterSubmission)).toEqual(Error('Already contains submission'));
   });
+
   it('should not throw an error if it is in the 0th position', () => {
     const newsletterSubmission: DaffNewsletterSubmission = { email: 'test2@test.com' };
     expect(newsletterTestingService.post(newsletterSubmission)).toEqual(newsletterSubmission);

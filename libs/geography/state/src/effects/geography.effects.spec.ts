@@ -110,6 +110,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
         actions$ = hot('--a', { a: countryListAction });
         expected = cold('--b', { b: countryListSuccessAction });
       });
+
       it('should return a DaffCountryListSucess action', () => {
         expect(effects.list$).toBeObservable(expected);
       });
@@ -124,6 +125,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
         actions$ = hot('--a', { a: countryListAction });
         expected = cold('--b', { b: countryListFailureAction });
       });
+
       it('should return a DaffCountryListFailure action', () => {
         expect(effects.list$).toBeObservable(expected);
       });

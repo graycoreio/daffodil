@@ -284,6 +284,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         actions$ = hot('--a', { a: cartClearAction });
         expected = cold('--b', { b: cartClearSuccessAction });
       });
+
       it('should return a DaffCartClearSucess action', () => {
         expect(effects.clear$).toBeObservable(expected);
       });
@@ -298,6 +299,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         actions$ = hot('--a', { a: cartClearAction });
         expected = cold('--b', { b: cartClearFailureAction });
       });
+
       it('should return a DaffCartClearFailure action', () => {
         expect(effects.clear$).toBeObservable(expected);
       });

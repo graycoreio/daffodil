@@ -63,10 +63,12 @@ describe('DaffRadioComponent', () => {
       embeddedComponent = embeddedFixture.debugElement.query(By.css('daff-radio')).componentInstance;
       embeddedFixture.detectChanges();
     });
+
     it('should let the value be set from a form control', () => {
       radioEmbedded.setValue();
       expect(radioEmbedded.radioGroup.value).toEqual({ fruit: 'pear' });
     });
+
     it('should let the radio be disabled from a form control', () => {
       radioEmbedded.disable();
       expect(embeddedComponent.disabled).toEqual(true);

@@ -34,6 +34,7 @@ describe('the contact selectors', () => {
     mockContactState= { loading: false, success: false, errors: null };
     store = TestBed.inject(Store);
   });
+
   describe('the selectDaffContactLoading', () => {
     it('should select the loading property of the contact state', () =>{
       const selector = store.pipe(select(selectDaffContactLoading));
@@ -42,6 +43,7 @@ describe('the contact selectors', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
   describe('the selectDaffContactSuccess', () => {
     it('should select the success property of the contact state', () =>{
       const selector = store.pipe(select(selectDaffContactSuccess));
@@ -50,6 +52,7 @@ describe('the contact selectors', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
   describe('the selectDaffContactError', () => {
     it('should select the error property of the contact state', () =>{
       const selector = store.pipe(select(selectDaffContactError));

@@ -40,6 +40,7 @@ describe('DaffContactInMemoryBackend', () => {
       contactTestingService.post(forumSubmission);
       expect(contactTestingService.post(forumSubmission)).toEqual(Error('Already contains submission'));
     });
+
     it('should be able to submit a valid form', () => {
       const forumSubmission: DaffContactUnion = { email: 'new@test.com' };
       contactTestingService.post(forumSubmission).subscribe((resp) => {

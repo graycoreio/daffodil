@@ -40,9 +40,11 @@ describe('DaffCheckbox Accessibility', () => {
     component = fixture.debugElement.query(By.css('daff-checkbox')).componentInstance;
     fixture.detectChanges();
   }));
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   it('should have a role of checkbox', () => {
     expect(component.role).toBe('checkbox');
   });
@@ -50,6 +52,7 @@ describe('DaffCheckbox Accessibility', () => {
   it('should have a aria-label', () => {
     expect(component.label).toBe('testLabel');
   });
+
   it('should have a aria-labeledby', () => {
     expect(component.labeledBy).toBe('testParent');
   });

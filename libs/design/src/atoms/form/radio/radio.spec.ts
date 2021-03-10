@@ -47,15 +47,19 @@ describe('DaffRadioComponent', () => {
         component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
         fixture.detectChanges();
       });
+
       it('should take a name as an input', () => {
         expect(component.name).toEqual('test');
       });
+
       it('should create', () => {
         expect(radioWrapper).toBeTruthy();
       });
+
       it('should take a value as an input', () => {
         expect(component.value).toEqual('testValue');
       });
+
       it('should have a generated id', () => {
         expect(component.id).toMatch('daff-radio-[0-9]*');
       });

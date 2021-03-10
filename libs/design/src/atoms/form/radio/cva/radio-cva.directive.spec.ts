@@ -45,6 +45,7 @@ describe('DaffRadioControlValueAccessorDirective', () => {
       })
         .compileComponents();
     }));
+
     describe('the DaffRadioComponent', () => {
 
       beforeEach(() => {
@@ -54,6 +55,7 @@ describe('DaffRadioControlValueAccessorDirective', () => {
         component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
         fixture.detectChanges();
       });
+
       it('has the writeValue function for formControls', async () => {
 
         expect(component.checked).toEqual(false);
@@ -65,6 +67,7 @@ describe('DaffRadioControlValueAccessorDirective', () => {
     });
 
   });
+
   describe('without the directive', () => {
     let radioWrapper: RadioWrapperComponent;
 
@@ -84,6 +87,7 @@ describe('DaffRadioControlValueAccessorDirective', () => {
       })
         .compileComponents();
     }));
+
     describe('the DaffRadioComponent', () => {
 
       it('throws an error without the directive to give the itself the CVA interface', async () => {

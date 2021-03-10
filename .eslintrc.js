@@ -6,7 +6,8 @@ module.exports = {
         '*.ts'
       ],
       plugins: [
-        'modules-newline'
+        'modules-newline',
+        'jasmine'
       ],
       parserOptions: {
         project: [
@@ -19,6 +20,7 @@ module.exports = {
         'plugin:@angular-eslint/ng-cli-compat--formatting-add-on',
         'plugin:@angular-eslint/template/process-inline-templates',
         'plugin:import/typescript',
+        'plugin:jasmine/recommended',
       ],
       rules: {
         'prefer-arrow/prefer-arrow-functions': [
@@ -124,7 +126,10 @@ module.exports = {
         'id-blacklist': 'off',
         'id-match': 'off',
         'no-underscore-dangle': 'off',
-        'max-len': 'off'
+        'max-len': 'off',
+        'jasmine/no-suite-dupes': ['warn', 'branch'],
+        'jasmine/no-spec-dupes': ['warn', 'branch'],
+        'jasmine/new-line-before-expect': 'off',
       }
     },
     {
