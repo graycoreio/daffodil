@@ -31,7 +31,10 @@ import {
   DaffCartItemsGuardRedirectUrl,
 } from './guards/public_api';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
-import { daffCartReducers } from './reducers/public_api';
+import {
+  daffCartReducers,
+  DAFF_CART_STORE_FEATURE_KEY,
+} from './reducers/public_api';
 import {
   DaffEmptyCartResolverRedirectUrl,
   DaffCartResolverRedirectUrl,
@@ -39,7 +42,7 @@ import {
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('cart', daffCartReducers),
+    StoreModule.forFeature(DAFF_CART_STORE_FEATURE_KEY, daffCartReducers),
     EffectsModule.forFeature([
       DaffCartEffects,
       DaffCartItemEffects,

@@ -13,6 +13,7 @@ import {
   daffCartReducers,
   DaffCartLoadSuccess,
   DaffCartPaymentMethodGuardRedirectUrl,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -35,7 +36,7 @@ describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
       ],
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
         RouterTestingModule,
       ],
