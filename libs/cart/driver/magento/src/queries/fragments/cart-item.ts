@@ -1,15 +1,26 @@
 import { gql } from 'apollo-angular';
 
-import { magentoProductFragment } from '@daffodil/product/driver/magento';
-
 import { moneyFragment } from './money';
+
+export const cartItemProductFragment = gql`
+  fragment cartItemProduct on ProductInterface {
+    id
+		name
+    sku
+    thumbnail {
+      label
+      url
+    }
+    stock_status
+  }
+`;
 
 export const cartItemFragment = gql`
   fragment cartItem on CartItemInterface {
 		__typename
     id
     product {
-      ...product
+      ...cartItemProduct
     }
     quantity
     prices {
@@ -17,9 +28,6 @@ export const cartItemFragment = gql`
         ...money
       }
       row_total {
-        ...money
-      }
-      row_total_including_tax {
         ...money
       }
       discounts {
@@ -49,6 +57,6 @@ export const cartItemFragment = gql`
 			}
 		}
   }
-  ${magentoProductFragment}
+  ${cartItemProductFragment}
   ${moneyFragment}
 `;

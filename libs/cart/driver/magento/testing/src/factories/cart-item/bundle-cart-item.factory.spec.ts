@@ -30,7 +30,6 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.id).toBeDefined();
       expect(result.prices.price).toBeDefined();
       expect(result.prices.row_total).toBeDefined();
-      expect(result.prices.row_total_including_tax).toBeDefined();
       expect(result.product).toBeDefined();
       expect(result.quantity).toBeDefined();
       expect(result.bundle_options[0].label).toBeDefined();

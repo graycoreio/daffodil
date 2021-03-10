@@ -4,6 +4,7 @@ import * as faker from 'faker/locale/en_US';
 import {
   MagentoCartItem,
   MagentoCartItemTypeEnum,
+  MagentoCartItemProduct,
 } from '@daffodil/cart/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
@@ -14,8 +15,7 @@ import {
   MagentoMoneyFactory,
   MagentoDiscountFactory,
 } from '@daffodil/driver/magento/testing';
-import { MagentoProduct } from '@daffodil/product/driver/magento';
-import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 export class MockMagentoCartItem implements MagentoCartItem {
 	__typename = MagentoCartItemTypeEnum.Simple;
@@ -24,14 +24,24 @@ export class MockMagentoCartItem implements MagentoCartItem {
     __typename: 'CartItemPrices',
     price: this.money(),
     row_total: this.money(),
-    row_total_including_tax: this.money(),
     discounts: this.discounts(faker.random.number({ min: 0, max: 2 })),
   };
   product = this.createProduct();
   quantity = faker.random.number({ min: 1, max: 20 });
 
-  private createProduct(): MagentoProduct {
-    return (new MagentoProductFactory()).create();
+  private createProduct(): MagentoCartItemProduct {
+    return {
+      __typename: 'SimpleProduct',
+      id: faker.random.number({ min: 1, max: 1500 }),
+      name: faker.random.word(),
+      sku: faker.commerce.product(),
+      thumbnail: {
+        __typename: 'Thumbnail',
+        label: faker.random.word(),
+        url: faker.random.image(),
+      },
+      stock_status: MagentoProductStockStatusEnum.InStock,
+    };
   }
 
   private money(): MagentoMoney {
