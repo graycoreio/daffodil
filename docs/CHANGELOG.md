@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.28.0](https://github.com/graycoreio/daffodil/compare/v0.27.0...v0.28.0) (2021-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** many imports have moved and DaffCategoryModule has been removed.
+Use DaffCategoryRoutingModule and DaffCategoryStateModule for the previous behavior.
+
+### Features
+
+* **category:** shard category package ([#1333](https://github.com/graycoreio/daffodil/issues/1333)) ([1643d18](https://github.com/graycoreio/daffodil/commit/1643d1824553fd65883985f8ac77ac85b2b9470b))
+* **category,demo,product:** add product store feature key ([#1338](https://github.com/graycoreio/daffodil/issues/1338)) ([3e8571c](https://github.com/graycoreio/daffodil/commit/3e8571c89f5862b231594d8c25bda9873f3471f5))
+* **contact:** add store feature key ([#1335](https://github.com/graycoreio/daffodil/issues/1335)) ([18ebe25](https://github.com/graycoreio/daffodil/commit/18ebe25775e436c768587700d287a01dfff6cfd9))
+* **core, category:** introduce DaffSortable for collections of elements ([#1325](https://github.com/graycoreio/daffodil/issues/1325)) ([accf735](https://github.com/graycoreio/daffodil/commit/accf7352e818bb370cae0b2e029ccbe812f51a2f))
+* **newsletter:** add store feature key ([#1336](https://github.com/graycoreio/daffodil/issues/1336)) ([c79a611](https://github.com/graycoreio/daffodil/commit/c79a6115d75a3dfdd32f87611ced91f52328ecda))
+* **paypal:** add store feature key ([#1337](https://github.com/graycoreio/daffodil/issues/1337)) ([0dded9e](https://github.com/graycoreio/daffodil/commit/0dded9e181dddc81468be3e4f4109d9ba7371e2f))
+
+
+### Bug Fixes
+
+* **product:** product page actions do not initialize composite and configurable product state ([#1330](https://github.com/graycoreio/daffodil/issues/1330)) ([4d0bed4](https://github.com/graycoreio/daffodil/commit/4d0bed4475f1816a7b5d1484164e3abb5df5f30b))
+
 ## [0.27.0](https://github.com/graycoreio/daffodil/compare/v0.26.0...v0.27.0) (2021-03-09)
 
 
