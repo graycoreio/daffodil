@@ -6,8 +6,8 @@ import {
 
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
-import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-key';
+import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 
 export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> {
 	selectPaypalFeatureState: MemoizedSelector<Record<string, any>, DaffPaypalReducersState<T>>;
