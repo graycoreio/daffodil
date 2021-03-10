@@ -20,6 +20,7 @@ export { DaffPaypalReducersState } from './reducers/paypal-reducers.interface';
 export { daffPaypalReducers } from './reducers/paypal-reducers';
 export { DaffPaypalReducerState } from './reducers/paypal/paypal-reducer.interface';
 export { daffPaypalReducer } from './reducers/paypal/paypal.reducer';
+export { DAFF_PAYPAL_STORE_FEATURE_KEY } from './reducers/paypal-store-feature-key';
 export { DaffPaypalStateModule } from './paypal-state.module';
 export { DaffPaypalModule } from './paypal.module';
 export * from './selectors/paypal.selector';
