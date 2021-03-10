@@ -23,5 +23,19 @@
     },
     "cSpell.words": [
         "Daffio"
+    ],
+    "eslint.options": {
+        "extensions": [
+            ".ts",
+            ".js",
+            ".html"
+        ]
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html"
     ]
 }
