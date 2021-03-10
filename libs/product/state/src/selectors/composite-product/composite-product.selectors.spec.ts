@@ -18,6 +18,7 @@ import {
   daffProductReducers,
   DaffProductReducersState,
   DaffCompositeProductApplyOption,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import {
   DaffCompositeProductFactory,
@@ -53,7 +54,7 @@ describe('Composite Product Selectors | integration tests', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers),
+          [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
       ],
     });

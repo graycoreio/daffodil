@@ -14,6 +14,7 @@ import {
   DaffProductReducersState,
   DaffConfigurableProductApplyAttribute,
   getDaffConfigurableProductEntitiesSelectors,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
 
@@ -36,7 +37,7 @@ describe('Configurable Product Selectors | integration tests', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers),
+          [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
       ],
     });
