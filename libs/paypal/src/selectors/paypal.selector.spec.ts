@@ -17,6 +17,7 @@ import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { daffPaypalReducers } from '../reducers/paypal-reducers';
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { getDaffPaypalSelectors } from './paypal.selector';
+import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-key';
 
 describe('Daff Paypal Selectors', () => {
 
@@ -37,7 +38,7 @@ describe('Daff Paypal Selectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          paypal: combineReducers(daffPaypalReducers),
+          [DAFF_PAYPAL_STORE_FEATURE_KEY]: combineReducers(daffPaypalReducers),
         }),
       ],
     });
