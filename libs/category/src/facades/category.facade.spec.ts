@@ -14,6 +14,7 @@ import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -44,7 +45,7 @@ describe('DaffCategoryFacade', () => {
       imports: [
         StoreModule.forRoot({
           category: combineReducers(daffCategoryReducers),
-          product: combineReducers(daffProductReducers),
+          [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
       ],
       providers: [

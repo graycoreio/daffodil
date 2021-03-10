@@ -8,4 +8,5 @@ export { DaffProductReducerState } from './product/product-reducer-state.interfa
 export { daffProductReducer } from './product/product.reducer';
 export { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer-state.interface';
 export { daffBestSellersReducer } from './best-sellers/best-sellers.reducer';
+export { DAFF_PRODUCT_STORE_FEATURE_KEY } from './product-store-feature-key'
 export * from './composite-product-entities/composite-product-entity';

@@ -31,6 +31,7 @@ import {
   DaffProductLoadSuccess,
   DaffProductReducersState,
   daffProductReducers,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -56,7 +57,7 @@ describe('AddToCartNotificationComponent', () => {
   let store: Store<{
     demoAddToCartNotification: fromAddToCartNotification.State;
     cart: DaffCartReducersState;
-    product: DaffProductReducersState<DaffProduct>;
+    [DAFF_PRODUCT_STORE_FEATURE_KEY]: DaffProductReducersState<DaffProduct>;
   }>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const cartFactory: DaffCartFactory = new DaffCartFactory();
@@ -70,7 +71,7 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
           cart: combineReducers(daffCartReducers),
-          product: combineReducers(daffProductReducers),
+          [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
         NoopAnimationsModule,
         DaffLoadingIconModule,

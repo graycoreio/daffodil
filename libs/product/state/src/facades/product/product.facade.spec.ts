@@ -12,6 +12,7 @@ import {
   DaffProductLoadSuccess,
   daffProductReducers,
   DaffProductReducersState,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -29,7 +30,7 @@ describe('DaffProductFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers),
+          [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
       ],
       providers: [
