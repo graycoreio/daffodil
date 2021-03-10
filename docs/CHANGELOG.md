@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.28.1](https://github.com/graycoreio/daffodil/compare/v0.28.0...v0.28.1) (2021-03-10)
+
+
+### Bug Fixes
+
+* **category:** export DaffCategoryStateModule ([#1345](https://github.com/graycoreio/daffodil/issues/1345)) ([f4b786e](https://github.com/graycoreio/daffodil/commit/f4b786eb4cbb03d7a805ac172b6eed356c10f26e))
+
 ## [0.28.0](https://github.com/graycoreio/daffodil/compare/v0.27.0...v0.28.0) (2021-03-10)
 
 
