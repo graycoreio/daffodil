@@ -6,6 +6,7 @@ import {
 
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
+import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-key';
 import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 
 export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> {
@@ -24,7 +25,7 @@ const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalM
   /**
    * Paypal Feature State
    */
-  const selectPaypalFeatureState = createFeatureSelector<DaffPaypalReducersState<T>>('paypal');
+  const selectPaypalFeatureState = createFeatureSelector<DaffPaypalReducersState<T>>(DAFF_PAYPAL_STORE_FEATURE_KEY);
 
   /**
    * Paypal State
