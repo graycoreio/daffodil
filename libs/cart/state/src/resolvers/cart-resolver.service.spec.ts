@@ -22,6 +22,7 @@ import {
   DaffCartStorageFailure,
   DaffResolveCart,
   DaffCartResolverRedirectUrl,
+  DAFF_CART_STORE_FEATURE_KEY,
 }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
@@ -45,7 +46,7 @@ describe('DaffCartResolver', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
         RouterTestingModule,
       ],

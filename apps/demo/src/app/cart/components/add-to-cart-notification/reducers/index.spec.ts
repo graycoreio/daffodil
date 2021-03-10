@@ -14,6 +14,7 @@ import {
   DaffCartClear,
   DaffCartLoadSuccess,
   daffCartReducers,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -38,7 +39,7 @@ describe('selectDemoAddToCartNotificationState', () => {
       imports: [
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
       ],
     });

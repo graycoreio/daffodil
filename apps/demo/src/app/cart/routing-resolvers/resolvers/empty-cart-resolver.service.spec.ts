@@ -19,6 +19,7 @@ import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartReducersState,
   daffCartReducers,
+  DAFF_CART_STORE_FEATURE_KEY,
 }  from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -42,7 +43,7 @@ describe('EmptyCartResolver', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
         RouterTestingModule,
       ],

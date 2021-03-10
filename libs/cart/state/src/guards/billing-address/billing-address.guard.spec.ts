@@ -9,7 +9,10 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartLoadSuccess } from '@daffodil/cart/state';
+import {
+  DaffCartLoadSuccess,
+  DAFF_CART_STORE_FEATURE_KEY,
+} from '@daffodil/cart/state';
 import {
   daffCartReducers,
   DaffCartBillingAddressGuardRedirectUrl,
@@ -35,7 +38,7 @@ describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
       ],
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
         RouterTestingModule,
       ],

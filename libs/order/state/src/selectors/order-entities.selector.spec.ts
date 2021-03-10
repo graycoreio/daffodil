@@ -10,6 +10,7 @@ import { cold } from 'jasmine-marbles';
 import {
   daffCartReducers,
   DaffCartPlaceOrderSuccess,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import {
   DaffOrder,
@@ -74,7 +75,7 @@ describe('Order | Selector | OrderEntities', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
           [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers),
         }),
       ],

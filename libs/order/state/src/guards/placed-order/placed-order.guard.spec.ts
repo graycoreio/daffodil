@@ -11,6 +11,7 @@ import { cold } from 'jasmine-marbles';
 import {
   daffCartReducers,
   DaffCartPlaceOrderSuccess,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import { DaffOrder } from '@daffodil/order';
 import {
@@ -44,7 +45,7 @@ describe('DaffPlacedOrderGuard', () => {
       imports: [
         StoreModule.forRoot({
           [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers),
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
         RouterTestingModule,
       ],

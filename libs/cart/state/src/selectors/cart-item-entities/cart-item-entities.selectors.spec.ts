@@ -12,6 +12,7 @@ import {
   DaffCartReducersState,
   daffCartReducers,
   DaffCartItemListSuccess,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import {
   DaffStatefulCartItemFactory,
@@ -62,7 +63,7 @@ describe('selectCartItemEntitiesState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
         }),
       ],
     });

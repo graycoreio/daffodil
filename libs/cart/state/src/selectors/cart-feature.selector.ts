@@ -9,7 +9,10 @@ import {
 } from '@daffodil/cart';
 
 import { DaffStatefulCartItem } from '../models/stateful-cart-item';
-import { DaffCartReducersState } from '../reducers/public_api';
+import {
+  DaffCartReducersState,
+  DAFF_CART_STORE_FEATURE_KEY,
+} from '../reducers/public_api';
 
 export interface DaffCartFeatureMemoizedSelectors<
   T extends DaffCart = DaffCart,
@@ -27,5 +30,5 @@ export const getDaffCartFeatureSelector = (() => {
 		U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartFeatureMemoizedSelectors<T, V, U> => cache = cache
     ? cache
-    : { selectCartFeatureState: createFeatureSelector<DaffCartReducersState<T, V, U>>('cart') };
+    : { selectCartFeatureState: createFeatureSelector<DaffCartReducersState<T, V, U>>(DAFF_CART_STORE_FEATURE_KEY) };
 })();

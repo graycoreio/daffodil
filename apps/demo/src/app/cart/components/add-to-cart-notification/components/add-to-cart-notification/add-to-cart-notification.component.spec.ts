@@ -23,6 +23,7 @@ import {
   DaffAddToCartSuccess,
   DaffCartReducersState,
   daffCartReducers,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
@@ -70,7 +71,7 @@ describe('AddToCartNotificationComponent', () => {
       imports: [
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
-          cart: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
         NoopAnimationsModule,
