@@ -1,8 +1,8 @@
-import { DaffCategoryFilterType } from '../models/category-filter-base';
 import {
   DaffCategoryFilterRequest,
+  DaffCategoryFilterType,
   DaffCategoryFromToFilterSeparator,
-} from '../models/requests/filter-request';
+} from '../models/public_api';
 
 export function daffCategoryValidateFilters(filters: DaffCategoryFilterRequest[]): void {
   if(!filters) {
