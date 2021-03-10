@@ -24,7 +24,6 @@
     "cSpell.words": [
         "Daffio"
     ],
-    "editor.codeActionsOnSave": {
     "eslint.options": {
         "extensions": [
             ".ts",
