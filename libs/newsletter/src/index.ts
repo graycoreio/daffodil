@@ -6,7 +6,7 @@ export {
   DaffNewsletterState,
   reducer,
 } from './reducers/newsletter.reducer';
-export { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './reducers/newsletter-store-feature-key'
+export { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './reducers/newsletter-store-feature-key';
 export {
   State,
   selectDaffNewsletterError,

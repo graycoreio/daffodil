@@ -12,10 +12,10 @@ import {
   DaffNewsletterSuccessSubscribe,
 } from '../actions/newsletter.actions';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
+import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from '../reducers/newsletter-store-feature-key';
 import { reducer } from '../reducers/newsletter.reducer';
 import { State } from '../selectors/newsletter.selector';
 import { DaffNewsletterFacade } from './newsletter.facade';
-import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from '../reducers/newsletter-store-feature-key';
 
 describe('DaffNewsletterFacade', () => {
 

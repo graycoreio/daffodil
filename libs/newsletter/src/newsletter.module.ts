@@ -4,8 +4,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { DaffNewsletterEffects } from './effects/newsletter.effects';
-import { reducer } from './reducers/newsletter.reducer';
 import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './reducers/newsletter-store-feature-key';
+import { reducer } from './reducers/newsletter.reducer';
 
 @NgModule({
   imports: [
