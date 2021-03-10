@@ -10,7 +10,10 @@ import {
   DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 
-import { DaffCategoryReducersState } from '../reducers/public_api';
+import {
+  DaffCategoryReducersState,
+  DAFF_CATEGORY_STORE_FEATURE_KEY,
+} from '../reducers/public_api';
 
 
 export interface DaffCategoryFeatureMemoizedSelectors<
@@ -25,5 +28,5 @@ export const getDaffCategoryFeatureSelector = (() => {
   let cache;
   return <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryFeatureMemoizedSelectors<T, V, U> => cache = cache
     ? cache
-    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryReducersState<T, V, U>>('category') };
+    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryReducersState<T, V, U>>(DAFF_CATEGORY_STORE_FEATURE_KEY) };
 })();

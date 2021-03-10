@@ -24,6 +24,7 @@ import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
   DaffCategoryReducersState,
+  DAFF_CATEGORY_STORE_FEATURE_KEY,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -48,7 +49,7 @@ describe('DaffCategoryPageResolver', () => {
       TestBed.configureTestingModule({
         imports: [
           StoreModule.forRoot({
-            category: combineReducers(daffCategoryReducers),
+            [DAFF_CATEGORY_STORE_FEATURE_KEY]: combineReducers(daffCategoryReducers),
           }),
         ],
         providers: [
@@ -111,7 +112,7 @@ describe('DaffCategoryPageResolver', () => {
       TestBed.configureTestingModule({
         imports: [
           StoreModule.forRoot({
-            category: combineReducers(daffCategoryReducers),
+            [DAFF_CATEGORY_STORE_FEATURE_KEY]: combineReducers(daffCategoryReducers),
           }),
         ],
         providers: [
