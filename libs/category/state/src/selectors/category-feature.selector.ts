@@ -17,16 +17,14 @@ import {
 
 
 export interface DaffCategoryFeatureMemoizedSelectors<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
 	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
 > {
-	selectCategoryFeatureState: MemoizedSelector<Record<string, any>, DaffCategoryReducersState<T, V, U>>;
+	selectCategoryFeatureState: MemoizedSelector<Record<string, any>, DaffCategoryReducersState<V>>;
 }
 
 export const getDaffCategoryFeatureSelector = (() => {
   let cache;
-  return <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryFeatureMemoizedSelectors<T, V, U> => cache = cache
+  return <V extends DaffGenericCategory<V>>(): DaffCategoryFeatureMemoizedSelectors<V> => cache = cache
     ? cache
-    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryReducersState<T, V, U>>(DAFF_CATEGORY_STORE_FEATURE_KEY) };
+    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryReducersState<V>>(DAFF_CATEGORY_STORE_FEATURE_KEY) };
 })();

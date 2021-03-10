@@ -49,7 +49,7 @@ import { DaffCategoryEffects } from './category.effects';
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCategoryEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
+  let effects: DaffCategoryEffects<DaffCategory, DaffProduct>;
   let stubCategory: DaffCategory;
   let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
   let stubProducts: DaffProduct[];

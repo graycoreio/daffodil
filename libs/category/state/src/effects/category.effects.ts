@@ -40,24 +40,22 @@ import {
 
 @Injectable()
 export class DaffCategoryEffects<
-	T extends DaffCategoryRequest,
 	V extends DaffGenericCategory<V>,
-	U extends DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct
 > {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, V, U, W>,
+    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V,W>,
   ) {}
 
   @Effect()
   loadCategory$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    mergeMap((action: DaffCategoryLoad<T>) => {
+    mergeMap((action: DaffCategoryLoad) => {
       daffCategoryValidateFilters(action.request.filter_requests);
       return this.driver.get(action.request).pipe(
-        switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => of(
+        switchMap((resp: DaffGetCategoryResponse<V,W>) => of(
           new DaffProductGridLoadSuccess(resp.products),
           new DaffCategoryLoadSuccess(resp),
         )),

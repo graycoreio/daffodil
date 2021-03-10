@@ -25,7 +25,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
 
   describe('create', () => {
 
-    let result: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
+    let result: DaffCategoryPageConfigurationState;
 
     beforeEach(() => {
       result = categoryPageConfigurationStateFactory.create();
@@ -44,7 +44,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
   });
 
   describe('createMany', () => {
-    let result: DaffCategoryPageConfigurationState<DaffCategoryRequest>[];
+    let result: DaffCategoryPageConfigurationState[];
 
     it('should create as many categories as desired', () => {
       result = categoryPageConfigurationStateFactory.createMany(2);

@@ -35,12 +35,12 @@ import { getDaffCategorySelectors } from './category.selector';
 
 describe('DaffCategorySelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>>;
+  let store: Store<DaffCategoryReducersState<DaffCategory>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
   let product: DaffProduct;
   const categorySelectors = getDaffCategorySelectors();
 

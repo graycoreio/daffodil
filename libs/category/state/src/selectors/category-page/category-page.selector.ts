@@ -21,39 +21,37 @@ import { buildAppliedFilter } from '../applied-filter/applied-filter-methods';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
 export interface DaffCategoryPageMemoizedSelectors<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
+	V extends DaffGenericCategory<V> = DaffCategory
 > {
-	selectCategoryState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState<T, U>>;
-	selectCategoryPageConfigurationState: MemoizedSelector<Record<string, any>, U>;
-	selectCategoryCurrentPage: MemoizedSelector<Record<string, any>, U['current_page']>;
-	selectCategoryTotalPages: MemoizedSelector<Record<string, any>, U['total_pages']>;
-	selectCategoryPageSize: MemoizedSelector<Record<string, any>, U['page_size']>;
-	selectCategoryFilters: MemoizedSelector<Record<string, any>, U['filters']>;
-	selectCategorySortOptions: MemoizedSelector<Record<string, any>, U['sort_options']>;
-	selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, U['product_ids']>;
+	selectCategoryState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState>;
+	selectCategoryPageConfigurationState: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState>;
+	selectCategoryCurrentPage: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['current_page']>;
+	selectCategoryTotalPages: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['total_pages']>;
+	selectCategoryPageSize: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['page_size']>;
+	selectCategoryFilters: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['filters']>;
+	selectCategorySortOptions: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['sort_options']>;
+	selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['product_ids']>;
 	selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, U['total_products']>;
-	selectCategoryPageFilterRequests: MemoizedSelector<Record<string, any>, U['filter_requests']>;
+	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['total_products']>;
+	selectCategoryPageFilterRequests: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['filter_requests']>;
 	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, DaffCategoryAppliedFilter[]>;
-	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, U['applied_sort_option']>;
-	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, U['applied_sort_direction']>;
-	selectSelectedCategoryId: MemoizedSelector<Record<string, any>, U['id']>;
+	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['applied_sort_option']>;
+	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['applied_sort_direction']>;
+	selectSelectedCategoryId: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['id']>;
 	selectCategoryLoading: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
 }
 
-const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryPageMemoizedSelectors<T, V, U> => {
-  const selectCategoryFeatureState = getDaffCategoryFeatureSelector<T, V, U>().selectCategoryFeatureState;
+const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => {
+  const selectCategoryFeatureState = getDaffCategoryFeatureSelector<V>().selectCategoryFeatureState;
 
   /**
    * Category State
    */
   const selectCategoryState = createSelector(
     selectCategoryFeatureState,
-    (state: DaffCategoryReducersState<T, V, U>) => state.category,
+    (state: DaffCategoryReducersState<V>) => state.category,
   );
 
   /**
@@ -61,37 +59,37 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
    */
   const selectCategoryPageConfigurationState = createSelector(
     selectCategoryState,
-    (state: DaffCategoryReducerState<T, U>) => state.categoryPageConfigurationState,
+    (state: DaffCategoryReducerState) => state.categoryPageConfigurationState,
   );
 
   const selectCategoryCurrentPage = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.current_page,
+    (state: DaffCategoryPageConfigurationState) => state.current_page,
   );
 
   const selectCategoryTotalPages = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.total_pages,
+    (state: DaffCategoryPageConfigurationState) => state.total_pages,
   );
 
   const selectCategoryPageSize = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.page_size,
+    (state: DaffCategoryPageConfigurationState) => state.page_size,
   );
 
   const selectCategoryFilters = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.filters,
+    (state: DaffCategoryPageConfigurationState) => state.filters,
   );
 
   const selectCategorySortOptions = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.sort_options,
+    (state: DaffCategoryPageConfigurationState) => state.sort_options,
   );
 
   const selectCategoryPageProductIds = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.product_ids,
+    (state: DaffCategoryPageConfigurationState) => state.product_ids,
   );
 
   const selectIsCategoryPageEmpty = createSelector(
@@ -101,12 +99,12 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
 
   const selectCategoryPageTotalProducts = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.total_products,
+    (state: DaffCategoryPageConfigurationState) => state.total_products,
   );
 
   const selectCategoryPageFilterRequests = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.filter_requests,
+    (state: DaffCategoryPageConfigurationState) => state.filter_requests,
   );
 
   const selectCategoryPageAppliedFilters = createSelector(
@@ -126,12 +124,12 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
 
   const selectCategoryPageAppliedSortOption = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.applied_sort_option,
+    (state: DaffCategoryPageConfigurationState) => state.applied_sort_option,
   );
 
   const selectCategoryPageAppliedSortDirection = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.applied_sort_direction,
+    (state: DaffCategoryPageConfigurationState) => state.applied_sort_direction,
   );
 
   /**
@@ -139,7 +137,7 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
    */
   const selectSelectedCategoryId = createSelector(
     selectCategoryPageConfigurationState,
-    (state: U) => state.id,
+    (state: DaffCategoryPageConfigurationState) => state.id,
   );
 
   /**
@@ -147,7 +145,7 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
    */
   const selectCategoryLoading = createSelector(
     selectCategoryState,
-    (state: DaffCategoryReducerState<T, U>) => state.categoryLoading,
+    (state: DaffCategoryReducerState) => state.categoryLoading,
   );
 
   /**
@@ -155,7 +153,7 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
    */
   const selectCategoryProductsLoading = createSelector(
     selectCategoryState,
-    (state: DaffCategoryReducerState<T, U>) => state.productsLoading,
+    (state: DaffCategoryReducerState) => state.productsLoading,
   );
 
   /**
@@ -163,7 +161,7 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
    */
   const selectCategoryErrors = createSelector(
     selectCategoryState,
-    (state: DaffCategoryReducerState<T, U>) => state.errors,
+    (state: DaffCategoryReducerState) => state.errors,
   );
 
   return {
@@ -190,7 +188,7 @@ const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends Da
 
 export const getDaffCategoryPageSelectors = (() => {
   let cache;
-  return <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryPageMemoizedSelectors<T, V, U> => cache = cache
+  return <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => cache = cache
     ? cache
-    : createCategoryPageSelectors<T, V, U>();
+    : createCategoryPageSelectors<V>();
 })();

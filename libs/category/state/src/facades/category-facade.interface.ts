@@ -2,13 +2,12 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffCategoryFilter,
   DaffCategorySortOption,
   DaffCategoryAppliedFilter,
+  DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 import {
   DaffStoreFacade,
@@ -17,9 +16,7 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 export interface DaffCategoryFacadeInterface<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
 	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
 > extends DaffStoreFacade<Action> {
 	/**
@@ -29,7 +26,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<U>;
+  pageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
   /**
    * The current page of products for the selected category.
    */

@@ -35,12 +35,12 @@ import { DaffCategoryFacade } from './category.facade';
 
 describe('DaffCategoryFacade', () => {
   let store: Store<any>;
-  let facade: DaffCategoryFacade<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
+  let facade: DaffCategoryFacade<DaffCategory, DaffProduct>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
-  let categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
+  let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
   let product: DaffProduct;
 
   beforeEach(() => {

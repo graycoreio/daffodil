@@ -24,7 +24,7 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   category: DaffCategory;
-  categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
+  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
