@@ -1,0 +1,17 @@
+<daff-callout [color]="colorControl.value">
+	<p daffCalloutTagline>Callout Tagline</p>
+	<h3 daffCalloutTitle>Callout Title</h3>
+	<p daffCalloutSubtitle>Callout subtitle</p>
+	<p>Additional content can be placed here.</p>
+</daff-callout>
+
+<select [formControl]="colorControl">
+	<option value="theme">Default</option>
+	<option value="primary">Primary</option>
+	<option value="secondary">Secondary</option>
+	<option value="tertiary">Tertiary</option>
+	<option value="white">White</option>
+	<option value="black">Black</option>
+	<option value="theme">Theme</option>
+	<option value="theme-contrast">Theme Contrast</option>
+</select>
