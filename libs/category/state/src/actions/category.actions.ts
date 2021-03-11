@@ -20,10 +20,10 @@ export enum DaffCategoryActionTypes {
  *
  * @param request - DaffCategoryRequest object
  */
-export class DaffCategoryLoad<T extends DaffCategoryRequest = DaffCategoryRequest> implements Action {
+export class DaffCategoryLoad implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public request: T) { }
+  constructor(public request: DaffCategoryRequest) { }
 }
 
 /**
