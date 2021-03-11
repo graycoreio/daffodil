@@ -35,12 +35,12 @@ export class DaffCheckboxComponent {
   /**
    * Boolean value to determine whether or not the checkbox is checked.
    */
-	private _checked = false;
+  private _checked = false;
 
   @Input()
-	get checked() {
+  get checked() {
 	  return this._checked;
-	}
+  }
   set checked(value: boolean) {
     if (this._checked === value) {
       return;

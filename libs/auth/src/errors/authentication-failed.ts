@@ -4,9 +4,9 @@ import {
 } from '@daffodil/core';
 
 export class DaffAuthenticationFailedError extends DaffInheritableError implements DaffError {
-	public readonly code: string = 'DAFF_AUTH_AUTHENTICATION_FAILED';
+  public readonly code: string = 'DAFF_AUTH_AUTHENTICATION_FAILED';
 
-	constructor(public message: string) {
+  constructor(public message: string) {
 	  super(message);
-	}
+  }
 }

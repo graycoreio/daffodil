@@ -6,8 +6,8 @@ import { DaffProduct } from './product';
  * An enum for whether a composite product item should be displayed as a radio or select input.
  */
 export enum DaffCompositeProductItemInputEnum {
-	select = 'select',
-	radio = 'radio'
+  select = 'select',
+  radio = 'radio'
 }
 
 /**
@@ -19,20 +19,20 @@ export enum DaffCompositeProductItemInputEnum {
  * composite product, or neither if the item is optional.
  */
 export interface DaffCompositeProductItem {
-	id: ID;
-	required: boolean;
-	title: string;
-	input_type: DaffCompositeProductItemInputEnum;
-	options: DaffCompositeProductItemOption[];
+  id: ID;
+  required: boolean;
+  title: string;
+  input_type: DaffCompositeProductItemInputEnum;
+  options: DaffCompositeProductItemOption[];
 }
 
 /**
  * The composite product item option is a DaffProduct that can be added to a composite product.
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
-	id: ID;
-	name: string;
-	price: number;
-	is_default: boolean;
-	quantity: number;
+  id: ID;
+  name: string;
+  price: number;
+  is_default: boolean;
+  quantity: number;
 }

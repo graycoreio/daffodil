@@ -9,12 +9,12 @@ import {
 } from '@daffodil/product/driver/magento';
 
 export class MockMagentoCoreProduct implements MagentoProduct {
-	__typename = MagentoProductTypeEnum.SimpleProduct;
+  __typename = MagentoProductTypeEnum.SimpleProduct;
   id = faker.random.uuid();
   url_key = faker.random.alphaNumeric(16);
   name = faker.random.word();
-	sku = faker.random.alphaNumeric(16);
-	stock_status = MagentoProductStockStatusEnum.InStock;
+  sku = faker.random.alphaNumeric(16);
+  stock_status = MagentoProductStockStatusEnum.InStock;
   image = {
     __typename: 'ProductImage',
     label: faker.random.words(3),
@@ -49,7 +49,7 @@ export class MockMagentoCoreProduct implements MagentoProduct {
     __typename: 'ComplexTextValue',
     html: faker.random.words(3),
   };
-	media_gallery_entries = [];
+  media_gallery_entries = [];
 }
 
 @Injectable({

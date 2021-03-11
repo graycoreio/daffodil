@@ -10,8 +10,8 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 export interface DaffProductGridMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	selectProductGridState: MemoizedSelector<Record<string, any>, DaffProductGridReducerState<T>>;
-	selectProductGridLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+  selectProductGridState: MemoizedSelector<Record<string, any>, DaffProductGridReducerState<T>>;
+  selectProductGridLoadingState: MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createProductGridSelectors = <T extends DaffProduct>(): DaffProductGridMemoizedSelectors<T> => {

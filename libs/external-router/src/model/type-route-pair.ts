@@ -12,6 +12,6 @@ import { RouteWithoutPath } from './route-without-path';
  * @docs-private
  */
 export interface TypeRoutePair {
-	type: DaffExternalRouteType;
-	route: RouteWithoutPath;
+  type: DaffExternalRouteType;
+  route: RouteWithoutPath;
 }

@@ -6,9 +6,9 @@ import { DaffProduct } from '@daffodil/product';
  * Action types for Product Actions.
  */
 export enum DaffProductActionTypes {
-    ProductLoadAction = '[Product] Load Action',
-    ProductLoadSuccessAction = '[Product] Load Success Action',
-    ProductLoadFailureAction = '[Product] Load Failure Action',
+  ProductLoadAction = '[Product] Load Action',
+  ProductLoadSuccessAction = '[Product] Load Success Action',
+  ProductLoadFailureAction = '[Product] Load Failure Action',
 }
 
 /**
@@ -28,9 +28,9 @@ export class DaffProductLoad implements Action {
  * @param payload - A Product
  */
 export class DaffProductLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
-    readonly type = DaffProductActionTypes.ProductLoadSuccessAction;
+  readonly type = DaffProductActionTypes.ProductLoadSuccessAction;
 
-    constructor(public payload: T) {}
+  constructor(public payload: T) {}
 }
 
 /**

@@ -20,9 +20,9 @@ import { insertRouteBeforeWildCard } from './helper/insert-route-before-wildcard
 })
 export class DaffExternalRouter {
   constructor(
-		private router: Router,
-		@Inject(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE)
-		private runtimeRoutes: TypeRoutePair[],
+    private router: Router,
+    @Inject(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE)
+    private runtimeRoutes: TypeRoutePair[],
   ) {}
 
   /**

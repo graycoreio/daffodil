@@ -11,10 +11,10 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 export interface DaffCategoryServiceInterface<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct = DaffProduct
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffGenericCategory<V> = DaffCategory,
+  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
+  W extends DaffProduct = DaffProduct
 > {
   get(categoryRequest: T): Observable<DaffGetCategoryResponse<T, V, U, W>>;
 }

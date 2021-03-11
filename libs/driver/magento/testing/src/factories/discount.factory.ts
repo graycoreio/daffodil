@@ -10,7 +10,7 @@ import {
 import { MagentoMoneyFactory } from './money.factory';
 
 export class MockMagentoDiscount implements MagentoDiscount {
-	__typename = 'Discount';
+  __typename = 'Discount';
   amount = this.money();
   label = faker.random.word();
 

@@ -10,10 +10,10 @@ export class MockNavigationTree implements DaffNavigationTree {
   path = faker.commerce.department().toString().toLowerCase();
   total_products = faker.random.number({ min: 1, max: 10 });
   children = [...Array(faker.random.number({ min:1, max:3 }))].map(() => this.fakeTree(3));
-	children_count = 0;
-	breadcrumbs = [];
+  children_count = 0;
+  breadcrumbs = [];
 
-	private fakeTree(depth: number = 0): DaffNavigationTree {
+  private fakeTree(depth: number = 0): DaffNavigationTree {
 	  const children = depth !== 0
 	    ? [...Array(faker.random.number({ min:1, max:3 }))].map(() => this.fakeTree(depth - 1))
 	    : [];
@@ -53,7 +53,7 @@ export class MockNavigationTree implements DaffNavigationTree {
 	      }],
 	    };
 	  }
-	}
+  }
 }
 
 @Injectable({

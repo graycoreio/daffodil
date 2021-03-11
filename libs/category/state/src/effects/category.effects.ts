@@ -40,10 +40,10 @@ import {
 
 @Injectable()
 export class DaffCategoryEffects<
-	T extends DaffCategoryRequest,
-	V extends DaffGenericCategory<V>,
-	U extends DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct
+  T extends DaffCategoryRequest,
+  V extends DaffGenericCategory<V>,
+  U extends DaffCategoryPageConfigurationState<T>,
+  W extends DaffProduct
 > {
 
   constructor(

@@ -8,7 +8,7 @@ import { DaffMockConfigurableCartItem } from '@daffodil/cart/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class DaffMockStatefulConfigurableCartItem extends DaffMockConfigurableCartItem implements DaffStatefulConfigurableCartItem {
-	daffState: DaffCartItemStateEnum.Default;
+  daffState: DaffCartItemStateEnum.Default;
 }
 
 @Injectable({

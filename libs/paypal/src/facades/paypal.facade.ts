@@ -19,19 +19,19 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalToke
   /**
    * The entire DaffPaypalTokenResponse object.
    */
-	paypalTokenResponse$: Observable<T>;
-	/**
-	 * The paypal token nonce.
-	 */
-	paypalToken$: Observable<string>;
-	/**
-	 * A URL for the PayPal login page.
-	 */
-	paypalStartUrl$: Observable<string>;
-	/**
-	 * A PayPal URL that allows a customer to edit their checkout details.
-	 */
-	paypalEditUrl$: Observable<string>;
+  paypalTokenResponse$: Observable<T>;
+  /**
+   * The paypal token nonce.
+   */
+  paypalToken$: Observable<string>;
+  /**
+   * A URL for the PayPal login page.
+   */
+  paypalStartUrl$: Observable<string>;
+  /**
+   * A PayPal URL that allows a customer to edit their checkout details.
+   */
+  paypalEditUrl$: Observable<string>;
   /**
    * The loading state for retrieving a single paypal.
    */

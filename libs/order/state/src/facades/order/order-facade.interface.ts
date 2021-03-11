@@ -45,10 +45,10 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   /**
    * The specified order's discount total.
    */
-	getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal>;
-	/**
-	 * Whether the specified order has a discount.
-	 */
+  getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal>;
+  /**
+   * Whether the specified order has a discount.
+   */
   hasDiscount$(orderId: T['id']): Observable<boolean>;
   /**
    * The specified order's tax total.

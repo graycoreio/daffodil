@@ -1,5 +1,5 @@
 export interface DaffStatusable {
-	status: DaffStatus;
+  status: DaffStatus;
 }
 
 export type DaffStatus = 'warn' | 'error' | 'success';

@@ -20,7 +20,7 @@ export enum DaffCartPaymentActionTypes {
   CartPaymentRemoveAction = '[DaffCart] Payment Remove Action',
   CartPaymentRemoveSuccessAction = '[DaffCart] Payment Remove Success Action',
   CartPaymentRemoveFailureAction = '[DaffCart] Payment Remove Failure Action',
-	CartPaymentMethodAddAction = '[DaffCart] Payment Method Add Action'
+  CartPaymentMethodAddAction = '[DaffCart] Payment Method Add Action'
 }
 
 export class DaffCartPaymentLoad implements Action {
@@ -115,9 +115,9 @@ export class DaffCartPaymentRemoveFailure implements Action {
  * todo: remove when possible.
  */
 export class DaffCartPaymentMethodAdd<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
-	readonly type = DaffCartPaymentActionTypes.CartPaymentMethodAddAction;
+  readonly type = DaffCartPaymentActionTypes.CartPaymentMethodAddAction;
 
-	constructor(public payload: T) {}
+  constructor(public payload: T) {}
 }
 
 export type DaffCartPaymentActions<
@@ -137,4 +137,4 @@ export type DaffCartPaymentActions<
   | DaffCartPaymentRemove
   | DaffCartPaymentRemoveSuccess
   | DaffCartPaymentRemoveFailure
-	| DaffCartPaymentMethodAdd<T>;
+  | DaffCartPaymentMethodAdd<T>;

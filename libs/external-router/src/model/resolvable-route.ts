@@ -12,6 +12,6 @@ import { DaffExternalRouteType } from './route-type';
  * ```
  */
 export interface DaffExternallyResolvableUrl {
-	url: string;
-	type: DaffExternalRouteType;
+  url: string;
+  type: DaffExternalRouteType;
 }

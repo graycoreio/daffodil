@@ -18,7 +18,7 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 export class MockMagentoCartItem implements MagentoCartItem {
-	__typename = MagentoCartItemTypeEnum.Simple;
+  __typename = MagentoCartItemTypeEnum.Simple;
   id = faker.random.uuid();
   prices = {
     __typename: 'CartItemPrices',

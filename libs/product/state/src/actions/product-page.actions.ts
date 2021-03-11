@@ -6,10 +6,10 @@ import { DaffProduct } from '@daffodil/product';
  * Action types for Product Page Actions.
  */
 export enum DaffProductPageActionTypes {
-    ProductPageLoadAction = '[Product Page] Load Action',
-    ProductPageLoadSuccessAction = '[Product Page] Load Success Action',
-    ProductPageLoadFailureAction = '[Product Page] Load Failure Action',
-		UpdateQtyAction = '[Product Page] Update Qty Action'
+  ProductPageLoadAction = '[Product Page] Load Action',
+  ProductPageLoadSuccessAction = '[Product Page] Load Success Action',
+  ProductPageLoadFailureAction = '[Product Page] Load Failure Action',
+  UpdateQtyAction = '[Product Page] Update Qty Action'
 }
 
 /**
@@ -52,13 +52,13 @@ export class DaffProductPageLoadFailure implements Action {
  * @param payload - The qty of the product.
  */
 export class DaffProductPageUpdateQty implements Action {
-    readonly type = DaffProductPageActionTypes.UpdateQtyAction;
+  readonly type = DaffProductPageActionTypes.UpdateQtyAction;
 
-    constructor(public payload: number) {}
+  constructor(public payload: number) {}
 }
 
 export type DaffProductPageActions<T extends DaffProduct = DaffProduct> =
     | DaffProductPageLoad
     | DaffProductPageLoadSuccess<T>
     | DaffProductPageLoadFailure
-		| DaffProductPageUpdateQty;
+    | DaffProductPageUpdateQty;

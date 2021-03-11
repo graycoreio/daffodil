@@ -6,10 +6,10 @@ import { DaffProduct } from '@daffodil/product';
  * Action types for Product Grid Actions.
  */
 export enum DaffProductGridActionTypes {
-    ProductGridLoadAction = '[ProductGrid] Load Action',
-    ProductGridLoadSuccessAction = '[ProductGrid] Load Success Action',
-    ProductGridLoadFailureAction = '[ProductGrid] Load Failure Action',
-    ProductGridResetAction = '[ProductGrid] Reset Action'
+  ProductGridLoadAction = '[ProductGrid] Load Action',
+  ProductGridLoadSuccessAction = '[ProductGrid] Load Success Action',
+  ProductGridLoadFailureAction = '[ProductGrid] Load Failure Action',
+  ProductGridResetAction = '[ProductGrid] Reset Action'
 }
 
 /**
@@ -27,9 +27,9 @@ export class DaffProductGridLoad implements Action {
  * @param payload - An array of Products
  */
 export class DaffProductGridLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
-    readonly type = DaffProductGridActionTypes.ProductGridLoadSuccessAction;
+  readonly type = DaffProductGridActionTypes.ProductGridLoadSuccessAction;
 
-    constructor(public payload: T[]) {}
+  constructor(public payload: T[]) {}
 }
 
 /**
@@ -47,9 +47,9 @@ export class DaffProductGridLoadFailure implements Action {
  * Resets the state of the product grid redux store to its initial state.
  */
 export class DaffProductGridReset implements Action {
-    readonly type = DaffProductGridActionTypes.ProductGridResetAction;
+  readonly type = DaffProductGridActionTypes.ProductGridResetAction;
 
-    constructor() {}
+  constructor() {}
 }
 
 export type DaffProductGridActions<T extends DaffProduct = DaffProduct> =

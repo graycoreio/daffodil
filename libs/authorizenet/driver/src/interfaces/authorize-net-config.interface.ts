@@ -7,6 +7,6 @@ export const DaffAuthorizeNetConfigToken = new InjectionToken<DaffAuthorizeNetCo
  * endpoint.
  */
 export interface DaffAuthorizeNetConfig {
-	clientKey: string;
-	apiLoginID: string;
+  clientKey: string;
+  apiLoginID: string;
 }

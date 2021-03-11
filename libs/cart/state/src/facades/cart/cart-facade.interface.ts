@@ -26,8 +26,8 @@ import { DaffCartResolveState } from '../../reducers/public_api';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
-	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffStatefulCartItem = DaffStatefulCartItem
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > extends DaffStoreFacade<Action> {
   cart$: Observable<T>;
 
@@ -176,7 +176,7 @@ export interface DaffCartFacadeInterface<
    * Whether there is a cart item mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-	itemMutating$: Observable<boolean>;
+  itemMutating$: Observable<boolean>;
 
   errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartOperationType.Cart]>;
@@ -200,10 +200,10 @@ export interface DaffCartFacadeInterface<
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<T['coupons']>;
-	items$: Observable<T['items']>;
-	/**
-	 * The total number of cart items, taking into account the quantity of each cart item.
-	 */
+  items$: Observable<T['items']>;
+  /**
+   * The total number of cart items, taking into account the quantity of each cart item.
+   */
   totalItems$: Observable<number>;
   hasOutOfStockItems$: Observable<boolean>;
   itemDictionary$: Observable<Dictionary<U>>;
@@ -227,7 +227,7 @@ export interface DaffCartFacadeInterface<
    * Whether the cart's shipping address equals the billing address.
    * Returns false if either address is null or undefined.
    */
-	isBillingSameAsShipping$: Observable<boolean>;
+  isBillingSameAsShipping$: Observable<boolean>;
 
   hasBillingAddress$: Observable<boolean>;
   hasShippingAddress$: Observable<boolean>;
@@ -236,18 +236,18 @@ export interface DaffCartFacadeInterface<
   canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
-	orderResultErrors$: Observable<DaffStateError[]>;
-	orderResult$: Observable<V>;
-	orderResultId$: Observable<V['orderId']>;
-	orderResultCartId$: Observable<V['cartId']>;
+  orderResultErrors$: Observable<DaffStateError[]>;
+  orderResult$: Observable<V>;
+  orderResultId$: Observable<V['orderId']>;
+  orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]>;
-	getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
-	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;
-	/**
-	 * The state of a cart item.
-	 */
+  getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]>;
+  getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
+  isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;
+  /**
+   * The state of a cart item.
+   */
   getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum>;
   /**
    * Selects the specified item's price.
@@ -255,26 +255,26 @@ export interface DaffCartFacadeInterface<
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	getCartItemPrice(itemId: U['item_id']): Observable<number>;
+  getCartItemPrice(itemId: U['item_id']): Observable<number>;
   /**
    * Selects the specified item's quantity.
    * Zero by default.
    */
-	getCartItemQuantity(itemId: U['item_id']): Observable<number>;
+  getCartItemQuantity(itemId: U['item_id']): Observable<number>;
   /**
    * Selects the specified item's row total.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	getCartItemRowTotal(itemId: U['item_id']): Observable<number>;
+  getCartItemRowTotal(itemId: U['item_id']): Observable<number>;
   /**
    * Selects the specified item's array of cart (not product) discounts.
    */
-	getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]>;
+  getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]>;
   /**
    * Selects the specified item's sum of all cart (not product) discounts for the entire row.
    * Zero by default.
    */
-	getCartItemTotalDiscount(itemId: U['item_id']): Observable<number>;
+  getCartItemTotalDiscount(itemId: U['item_id']): Observable<number>;
 }

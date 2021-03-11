@@ -7,11 +7,11 @@ import { DaffSubdivision } from './subdivision';
  * See: ISO-3166
  */
 export interface DaffCountry {
-	id: ID;
-	name: string;
-	name_en: string;
-	alpha2: string;
-	alpha3: string;
+  id: ID;
+  name: string;
+  name_en: string;
+  alpha2: string;
+  alpha3: string;
   subdivisions: DaffSubdivision[];
   /**
    * Whether or not the country has been fully loaded.

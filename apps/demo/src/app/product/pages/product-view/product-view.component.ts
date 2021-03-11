@@ -36,8 +36,8 @@ export class ProductViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-		private productViewFacade: DaffProductFacade<DaffProduct>,
-		private cartFacade: DaffCartFacade,
+    private productViewFacade: DaffProductFacade<DaffProduct>,
+    private cartFacade: DaffCartFacade,
   ) { }
 
   updateQty(qty: number) {}

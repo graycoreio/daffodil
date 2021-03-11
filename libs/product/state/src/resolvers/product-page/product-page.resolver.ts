@@ -37,8 +37,8 @@ import { DaffProductReducersState } from '../../reducers/public_api';
 })
 export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
   constructor(
-		@Inject(PLATFORM_ID) private platformId: string,
-		private store: Store<DaffProductReducersState>,
+    @Inject(PLATFORM_ID) private platformId: string,
+    private store: Store<DaffProductReducersState>,
     private dispatcher: ActionsSubject,
   ) {}
 

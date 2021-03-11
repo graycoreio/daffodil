@@ -44,7 +44,7 @@ export class DaffCategoryPageLoadSuccess<
   V extends DaffGenericCategory<V> = DaffCategory,
   U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
-  > implements Action {
+> implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction;
 
   constructor(public response: DaffGetCategoryResponse<T, V, U, W>) { }
@@ -126,7 +126,7 @@ export type DaffCategoryPageActions<
   U extends DaffGenericCategory<U> = DaffCategory,
   V extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
-  > =
+> =
   | DaffCategoryPageLoad<T>
   | DaffCategoryPageLoadSuccess<T, U, V, W>
   | DaffCategoryPageLoadFailure

@@ -21,8 +21,8 @@ export class CartItemComponent {
   @Input() item: DaffCartItem;
 
   constructor(
-		private router: Router,
-		private facade: DaffCartFacade,
+    private router: Router,
+    private facade: DaffCartFacade,
   ) { }
 
   redirectToProduct() {

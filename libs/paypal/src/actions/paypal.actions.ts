@@ -22,14 +22,14 @@ export class DaffGeneratePaypalExpressTokenSuccess<T extends DaffPaypalTokenResp
 }
 
 export class DaffGeneratePaypalExpressTokenFailure implements Action {
-	readonly type = DaffPaypalActionTypes.GeneratePaypalExpressTokenFailureAction;
+  readonly type = DaffPaypalActionTypes.GeneratePaypalExpressTokenFailureAction;
 
-	constructor(public payload: string) {}
+  constructor(public payload: string) {}
 }
 
 export type DaffPaypalActions<
-	T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
-	V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
+  T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
+  V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
 > =
     | DaffGeneratePaypalExpressToken<T>
     | DaffGeneratePaypalExpressTokenSuccess<V>

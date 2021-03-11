@@ -9,7 +9,7 @@ import {
  * An object that describes the configuration of the`@daffodil/cart/state` package.
  */
 export interface DaffCartStateConfiguration {
-	resolution: DaffCartStateResolutionConfiguration;
+  resolution: DaffCartStateResolutionConfiguration;
 }
 
 /**

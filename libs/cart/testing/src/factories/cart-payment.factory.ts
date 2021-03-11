@@ -4,7 +4,7 @@ import { DaffCartPaymentMethod } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartPayment implements DaffCartPaymentMethod {
-	method = 'credit-card';
+  method = 'credit-card';
 }
 
 @Injectable({

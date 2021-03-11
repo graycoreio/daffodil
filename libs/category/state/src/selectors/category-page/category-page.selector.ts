@@ -21,28 +21,28 @@ import { buildAppliedFilter } from '../applied-filter/applied-filter-methods';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
 export interface DaffCategoryPageMemoizedSelectors<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffGenericCategory<V> = DaffCategory,
+  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
 > {
-	selectCategoryState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState<T, U>>;
-	selectCategoryPageConfigurationState: MemoizedSelector<Record<string, any>, U>;
-	selectCategoryCurrentPage: MemoizedSelector<Record<string, any>, U['current_page']>;
-	selectCategoryTotalPages: MemoizedSelector<Record<string, any>, U['total_pages']>;
-	selectCategoryPageSize: MemoizedSelector<Record<string, any>, U['page_size']>;
-	selectCategoryFilters: MemoizedSelector<Record<string, any>, U['filters']>;
-	selectCategorySortOptions: MemoizedSelector<Record<string, any>, U['sort_options']>;
-	selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, U['product_ids']>;
-	selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, U['total_products']>;
-	selectCategoryPageFilterRequests: MemoizedSelector<Record<string, any>, U['filter_requests']>;
-	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, DaffCategoryAppliedFilter[]>;
-	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, U['applied_sort_option']>;
-	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, U['applied_sort_direction']>;
-	selectSelectedCategoryId: MemoizedSelector<Record<string, any>, U['id']>;
-	selectCategoryLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
+  selectCategoryState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState<T, U>>;
+  selectCategoryPageConfigurationState: MemoizedSelector<Record<string, any>, U>;
+  selectCategoryCurrentPage: MemoizedSelector<Record<string, any>, U['current_page']>;
+  selectCategoryTotalPages: MemoizedSelector<Record<string, any>, U['total_pages']>;
+  selectCategoryPageSize: MemoizedSelector<Record<string, any>, U['page_size']>;
+  selectCategoryFilters: MemoizedSelector<Record<string, any>, U['filters']>;
+  selectCategorySortOptions: MemoizedSelector<Record<string, any>, U['sort_options']>;
+  selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, U['product_ids']>;
+  selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
+  selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, U['total_products']>;
+  selectCategoryPageFilterRequests: MemoizedSelector<Record<string, any>, U['filter_requests']>;
+  selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, DaffCategoryAppliedFilter[]>;
+  selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, U['applied_sort_option']>;
+  selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, U['applied_sort_direction']>;
+  selectSelectedCategoryId: MemoizedSelector<Record<string, any>, U['id']>;
+  selectCategoryLoading: MemoizedSelector<Record<string, any>, boolean>;
+  selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
+  selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
 }
 
 const createCategoryPageSelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryPageMemoizedSelectors<T, V, U> => {

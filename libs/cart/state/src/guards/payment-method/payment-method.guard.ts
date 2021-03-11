@@ -26,9 +26,9 @@ import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-re
 })
 export class DaffPaymentMethodGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DaffCartPaymentMethodGuardRedirectUrl) private redirectUrl: string,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DaffCartPaymentMethodGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

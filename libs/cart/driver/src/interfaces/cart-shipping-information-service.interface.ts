@@ -14,20 +14,20 @@ export interface DaffCartShippingInformationServiceInterface<
   T extends DaffCartShippingRate = DaffCartShippingRate,
   V extends DaffCart = DaffCart
 >{
-	/**
-	 * Get the currently selected shipping method of a cart.
-	 */
-	get(cartId: V['id']): Observable<T>;
+  /**
+   * Get the currently selected shipping method of a cart.
+   */
+  get(cartId: V['id']): Observable<T>;
 
-	/**
-	 * Update the currently selected shipping method of a cart.
-	 */
-	update(cartId: V['id'], shippingInfo: Partial<T>): Observable<Partial<V>>;
+  /**
+   * Update the currently selected shipping method of a cart.
+   */
+  update(cartId: V['id'], shippingInfo: Partial<T>): Observable<Partial<V>>;
 
-	/**
-	 * Remove the currently selected shipping method from a cart.
-	 */
-	delete(cartId: V['id'], id?: T['id']): Observable<Partial<V>>;
+  /**
+   * Remove the currently selected shipping method from a cart.
+   */
+  delete(cartId: V['id'], id?: T['id']): Observable<Partial<V>>;
 }
 
 export const DaffCartShippingInformationDriver = new InjectionToken<

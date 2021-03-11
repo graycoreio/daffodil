@@ -29,16 +29,16 @@ import { DaffCategoryFacadeInterface } from './category-facade.interface';
   providedIn: 'root',
 })
 export class DaffCategoryFacade<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct = DaffProduct
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffGenericCategory<V> = DaffCategory,
+  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
+  W extends DaffProduct = DaffProduct
 > implements DaffCategoryFacadeInterface<T, V, U, W> {
-	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
+  private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 
-	/**
-	 * The currently selected category.
-	 */
+  /**
+   * The currently selected category.
+   */
   category$: Observable<V>;
   /**
    * The page configuration state for the selected category.
@@ -51,11 +51,11 @@ export class DaffCategoryFacade<
   /**
    * The number of pages of product for the selected category.
    */
-	totalPages$: Observable<number>;
-	/**
-	 * The total number of products for the filters applied.
-	 */
-	totalProducts$: Observable<number>;
+  totalPages$: Observable<number>;
+  /**
+   * The total number of products for the filters applied.
+   */
+  totalProducts$: Observable<number>;
   /**
    * The number of products per page for the selected category.
    */
@@ -95,40 +95,40 @@ export class DaffCategoryFacade<
   /**
    * Errors associated with retrieving a single category.
    */
-	errors$: Observable<string[]>;
-	/**
-	 * Is the category page empty of products.
-	 */
-	isCategoryEmpty$: Observable<boolean>;
+  errors$: Observable<string[]>;
+  /**
+   * Is the category page empty of products.
+   */
+  isCategoryEmpty$: Observable<boolean>;
 
-	/**
-	 * Get a category by the provided Id.
-	 *
-	 * @param id
-	 */
-	getCategoryById(id: V['id']): Observable<V> {
+  /**
+   * Get a category by the provided Id.
+   *
+   * @param id
+   */
+  getCategoryById(id: V['id']): Observable<V> {
 	  return this.store.pipe(select(this.categorySelectors.selectCategory, { id }));
-	}
+  }
 
-	/**
-	 * Get products by a category Id.
-	 *
-	 * @param categoryId
-	 */
-	getProductsByCategory(categoryId: V['id']): Observable<W[]> {
+  /**
+   * Get products by a category Id.
+   *
+   * @param categoryId
+   */
+  getProductsByCategory(categoryId: V['id']): Observable<W[]> {
 	  return this.store.pipe(select(this.categorySelectors.selectProductsByCategory, { id: categoryId }));
-	}
+  }
 
-	/**
-	 * Get products by a category Id.
-	 *
-	 * @param categoryId
-	 */
-	getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
+  /**
+   * Get products by a category Id.
+   *
+   * @param categoryId
+   */
+  getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
 	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory, { id: categoryId }));
-	}
+  }
 
-	constructor(private store: Store<DaffCategoryReducersState<T, V, U>>) {
+  constructor(private store: Store<DaffCategoryReducersState<T, V, U>>) {
 	  this.category$ = this.store.pipe(select(this.categorySelectors.selectSelectedCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));
@@ -145,14 +145,14 @@ export class DaffCategoryFacade<
 	  this.productsLoading$ = this.store.pipe(select(this.categorySelectors.selectCategoryProductsLoading));
 	  this.errors$ = this.store.pipe(select(this.categorySelectors.selectCategoryErrors));
 	  this.isCategoryEmpty$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageEmpty));
-	}
+  }
 
-	/**
-	 * Dispatches the given action.
-	 *
-	 * @param action action to dispatch.
-	 */
-	dispatch(action: Action) {
+  /**
+   * Dispatches the given action.
+   *
+   * @param action action to dispatch.
+   */
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

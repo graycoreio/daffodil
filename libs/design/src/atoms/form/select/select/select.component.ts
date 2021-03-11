@@ -35,15 +35,15 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
   /**
    * Has the form been submitted.
    */
-	@Input() formSubmitted: boolean;
-	focused = false;
+  @Input() formSubmitted: boolean;
+  focused = false;
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostListener('focus') focus() {
 	  this.focused = true;
-	}
+  }
 
   /**
    * @docs-private
@@ -53,11 +53,11 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
   }
 
   constructor(
-		/**
-		 * @docs-private
-		 */
-		@Optional() @Self() public ngControl: NgControl,
-		private _elementRef: ElementRef<HTMLInputElement>,
+    /**
+     * @docs-private
+     */
+    @Optional() @Self() public ngControl: NgControl,
+    private _elementRef: ElementRef<HTMLInputElement>,
   ) {}
 
   onFocus() {

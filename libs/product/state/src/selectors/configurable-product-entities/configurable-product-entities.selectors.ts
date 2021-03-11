@@ -19,12 +19,12 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 export interface DaffConfigurableProductEntitiesMemoizedSelectors {
-	selectConfigurableProductAppliedAttributesEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>>;
-	selectConfigurableProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['ids']>;
-	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['entities']>;
-	selectConfigurableProductTotal: MemoizedSelector<Record<string, any>, number>;
-	selectConfigurableProductAppliedAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductEntityAttribute[]>;
-	selectConfigurableProductAppliedAttributesAsDictionary: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string>>;
+  selectConfigurableProductAppliedAttributesEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>>;
+  selectConfigurableProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['ids']>;
+  selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['entities']>;
+  selectConfigurableProductTotal: MemoizedSelector<Record<string, any>, number>;
+  selectConfigurableProductAppliedAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductEntityAttribute[]>;
+  selectConfigurableProductAppliedAttributesAsDictionary: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string>>;
 }
 
 const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends DaffProduct>(): DaffConfigurableProductEntitiesMemoizedSelectors => {

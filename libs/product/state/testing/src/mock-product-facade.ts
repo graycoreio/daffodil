@@ -6,31 +6,31 @@ import { DaffProductFacadeInterface } from '@daffodil/product/state';
 
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductFacade implements DaffProductFacadeInterface {
-	loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	/**
-	 * @deprecated use getProduct instead.
-	 */
-	product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
-	getProduct(id: DaffProduct['id']): BehaviorSubject<DaffProduct> {
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  /**
+   * @deprecated use getProduct instead.
+   */
+  product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
+  getProduct(id: DaffProduct['id']): BehaviorSubject<DaffProduct> {
 	  return new BehaviorSubject(null);
-	}
-	getPrice(id: DaffProduct['id']): BehaviorSubject<number> {
+  }
+  getPrice(id: DaffProduct['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(null);
-	}
-	hasDiscount(id: DaffProduct['id']): BehaviorSubject<boolean> {
+  }
+  hasDiscount(id: DaffProduct['id']): BehaviorSubject<boolean> {
 	  return new BehaviorSubject(false);
-	}
-	getDiscountAmount(id: DaffProduct['id']): BehaviorSubject<number> {
+  }
+  getDiscountAmount(id: DaffProduct['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(null);
-	}
-	getDiscountedPrice(id: DaffProduct['id']): BehaviorSubject<number> {
+  }
+  getDiscountedPrice(id: DaffProduct['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(null);
-	}
-	getDiscountPercent(id: DaffProduct['id']): BehaviorSubject<number> {
+  }
+  getDiscountPercent(id: DaffProduct['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(null);
-	}
-	isOutOfStock(id: DaffProduct['id']): BehaviorSubject<boolean> {
+  }
+  isOutOfStock(id: DaffProduct['id']): BehaviorSubject<boolean> {
 	  return new BehaviorSubject(false);
-	}
-	dispatch(action) {};
+  }
+  dispatch(action) {};
 }

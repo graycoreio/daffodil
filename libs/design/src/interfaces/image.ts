@@ -1,4 +1,4 @@
 export interface Image {
-    url: string;
-    label: string;
+  url: string;
+  label: string;
 }

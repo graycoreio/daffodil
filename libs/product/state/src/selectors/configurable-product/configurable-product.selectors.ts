@@ -17,21 +17,21 @@ import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-pro
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 
 export interface DaffConfigurableProductMemoizedSelectors {
-	selectAllConfigurableProductAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string[]>>;
-	selectAllConfigurableProductVariants: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductVariant[]>;
-	selectMatchingConfigurableProductVariants: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductVariant[]>;
-	selectConfigurableProductPrices: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number[]>;
-	selectConfigurableProductDiscountedPrices: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number[]>;
-	selectConfigurableProductPercentDiscounts: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number[]>;
-	selectConfigurableProductHasDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
-	selectConfigurableProductMinimumPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectConfigurableProductMaximumPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectConfigurableProductMinimumDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectConfigurableProductMaximumDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectConfigurableProductMinimumPercentDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectConfigurableProductMaximumPercentDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	isConfigurablePriceRanged: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
-	selectSelectableConfigurableProductAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string[]>>;
+  selectAllConfigurableProductAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string[]>>;
+  selectAllConfigurableProductVariants: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductVariant[]>;
+  selectMatchingConfigurableProductVariants: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductVariant[]>;
+  selectConfigurableProductPrices: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number[]>;
+  selectConfigurableProductDiscountedPrices: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number[]>;
+  selectConfigurableProductPercentDiscounts: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number[]>;
+  selectConfigurableProductHasDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
+  selectConfigurableProductMinimumPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectConfigurableProductMaximumPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectConfigurableProductMinimumDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectConfigurableProductMaximumDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectConfigurableProductMinimumPercentDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectConfigurableProductMaximumPercentDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  isConfigurablePriceRanged: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
+  selectSelectableConfigurableProductAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string[]>>;
 }
 
 const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSelectors => {

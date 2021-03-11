@@ -17,7 +17,7 @@ import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interfac
 })
 export class DaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
 
-	isAcceptJsLoaded$: Observable<boolean>;
+  isAcceptJsLoaded$: Observable<boolean>;
   loading$: Observable<boolean>;
   paymentError$: Observable<DaffStateError>;
   acceptJsLoadError$: Observable<DaffStateError>;

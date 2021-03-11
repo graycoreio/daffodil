@@ -5,6 +5,6 @@ export interface DaffPaypalTransformerInterface<
   T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
   V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
 > {
-	transformOut(tokenRequest: T, config?: any): any;
-	transformIn(tokenResponse: any): V;
+  transformOut(tokenRequest: T, config?: any): any;
+  transformIn(tokenResponse: any): V;
 }

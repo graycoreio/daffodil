@@ -23,8 +23,8 @@ export class DaffMagentoPaypalService implements DaffPaypalServiceInterface {
 
   constructor(
     private apollo: Apollo,
-		@Inject(DaffPaypalTransformer) private transformer: DaffPaypalTransformerInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>,
-		@Inject(DaffPaypalConfig) private config: DaffMagentoPaypalConfig,
+    @Inject(DaffPaypalTransformer) private transformer: DaffPaypalTransformerInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>,
+    @Inject(DaffPaypalConfig) private config: DaffMagentoPaypalConfig,
   ) {}
 
   generateToken(tokenRequest: DaffPaypalTokenRequest): Observable<DaffPaypalTokenResponse> {

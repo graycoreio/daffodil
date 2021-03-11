@@ -3,20 +3,20 @@ import { DaffLoadingState } from '@daffodil/core/state';
 import { DaffCartOperationType } from '../cart-operation-type.enum';
 
 export interface DaffCartLoading {
-	[DaffCartOperationType.Cart]: DaffLoadingState;
-	[DaffCartOperationType.Item]: DaffCartItemLoadingState;
-	[DaffCartOperationType.BillingAddress]: DaffLoadingState;
-	[DaffCartOperationType.ShippingAddress]: DaffLoadingState;
-	[DaffCartOperationType.Payment]: DaffLoadingState;
-	[DaffCartOperationType.PaymentMethods]: DaffLoadingState;
-	[DaffCartOperationType.ShippingInformation]: DaffLoadingState;
-	[DaffCartOperationType.ShippingMethods]: DaffLoadingState;
-	[DaffCartOperationType.Coupon]: DaffLoadingState;
+  [DaffCartOperationType.Cart]: DaffLoadingState;
+  [DaffCartOperationType.Item]: DaffCartItemLoadingState;
+  [DaffCartOperationType.BillingAddress]: DaffLoadingState;
+  [DaffCartOperationType.ShippingAddress]: DaffLoadingState;
+  [DaffCartOperationType.Payment]: DaffLoadingState;
+  [DaffCartOperationType.PaymentMethods]: DaffLoadingState;
+  [DaffCartOperationType.ShippingInformation]: DaffLoadingState;
+  [DaffCartOperationType.ShippingMethods]: DaffLoadingState;
+  [DaffCartOperationType.Coupon]: DaffLoadingState;
 }
 
 export enum DaffCartItemLoadingState {
   Resolving = 'Resolving',
-	Adding = 'Adding',
+  Adding = 'Adding',
   Complete = 'Complete',
 }
 

@@ -7,39 +7,39 @@ import { DaffCategoryFilterType } from '../category-filter-base';
 export const DaffCategoryFromToFilterSeparator = '-';
 
 export interface DaffToggleCategoryFilterMatchRequest {
-	type: DaffCategoryFilterType.Match;
-	name: string;
-	value: string;
+  type: DaffCategoryFilterType.Match;
+  name: string;
+  value: string;
 }
 
 export interface DaffToggleCategoryFilterEqualRequest {
-	type: DaffCategoryFilterType.Equal;
-	name: string;
-	value: string;
+  type: DaffCategoryFilterType.Equal;
+  name: string;
+  value: string;
 }
 
 export interface DaffToggleCategoryFilterRangeRequest {
-	type: DaffCategoryFilterType.Range;
-	name: string;
-	value: string;
+  type: DaffCategoryFilterType.Range;
+  name: string;
+  value: string;
 }
 
 export interface DaffCategoryFilterEqualRequest {
-	type: DaffCategoryFilterType.Equal;
-	name: string;
-	value: string[];
+  type: DaffCategoryFilterType.Equal;
+  name: string;
+  value: string[];
 }
 
 export interface DaffCategoryFilterMatchRequest {
-	type: DaffCategoryFilterType.Match;
-	name: string;
-	value: string;
+  type: DaffCategoryFilterType.Match;
+  name: string;
+  value: string;
 }
 
 export interface DaffCategoryFilterRangeRequest {
-	type: DaffCategoryFilterType.Range;
-	name: string;
-	value: string[];
+  type: DaffCategoryFilterType.Range;
+  name: string;
+  value: string[];
 }
 
 export type DaffToggleCategoryFilterRequest =

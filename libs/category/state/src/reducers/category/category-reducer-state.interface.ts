@@ -4,10 +4,10 @@ import {
 } from '@daffodil/category';
 
 export interface DaffCategoryReducerState<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
 > {
-	categoryPageConfigurationState: V;
+  categoryPageConfigurationState: V;
   categoryLoading: boolean;
   productsLoading: boolean;
   errors: string[];

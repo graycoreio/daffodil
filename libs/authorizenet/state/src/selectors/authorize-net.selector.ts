@@ -11,12 +11,12 @@ import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authoriz
 import { DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '../reducers/authorizenet-store-feature-key';
 
 export interface DaffAuthorizeNetMemoizedSelectors {
-	selectAuthorizeNetFeatureState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducersState>;
-	selectAuthorizeNetState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducerState> ;
-	selectLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectPaymentError: MemoizedSelector<Record<string, any>, DaffStateError>;
-	selectAcceptJsLoadError: MemoizedSelector<Record<string, any>, DaffStateError>;
-	selectIsAcceptJsLoaded: MemoizedSelector<Record<string, any>, boolean>;
+  selectAuthorizeNetFeatureState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducersState>;
+  selectAuthorizeNetState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducerState> ;
+  selectLoading: MemoizedSelector<Record<string, any>, boolean>;
+  selectPaymentError: MemoizedSelector<Record<string, any>, DaffStateError>;
+  selectAcceptJsLoadError: MemoizedSelector<Record<string, any>, DaffStateError>;
+  selectIsAcceptJsLoaded: MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {

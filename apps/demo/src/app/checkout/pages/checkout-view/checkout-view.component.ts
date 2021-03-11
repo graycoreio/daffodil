@@ -20,14 +20,14 @@ import * as fromDemoCheckout from '../../reducers';
 })
 export class CheckoutViewComponent implements OnInit {
 
-	cart$: Observable<DaffCart>;
-	loading$: Observable<boolean>;
+  cart$: Observable<DaffCart>;
+  loading$: Observable<boolean>;
   showPaymentView$: Observable<boolean>;
   showReviewView$: Observable<boolean>;
 
   constructor(
-		private store: Store<fromDemoCheckout.State>,
-		private cartFacade: DaffCartFacade,
+    private store: Store<fromDemoCheckout.State>,
+    private cartFacade: DaffCartFacade,
   ) { }
 
   ngOnInit() {

@@ -2,33 +2,33 @@ import { ID } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCartItemInputType {
-	Simple = 'simple',
-	Composite = 'composite',
-	Configurable = 'configurable'
+  Simple = 'simple',
+  Composite = 'composite',
+  Configurable = 'configurable'
 }
 
 export interface DaffCartItemInput {
-	type: DaffCartItemInputType;
+  type: DaffCartItemInputType;
   productId: DaffProduct['id'];
-	qty: number;
+  qty: number;
 }
 
 export interface DaffSimpleCartItemInput extends DaffCartItemInput {
-	type: DaffCartItemInputType.Simple;
+  type: DaffCartItemInputType.Simple;
 }
 
 export interface DaffCompositeCartItemInput extends DaffCartItemInput {
-	type: DaffCartItemInputType.Composite;
-	options: DaffCompositeCartItemInputOption[];
+  type: DaffCartItemInputType.Composite;
+  options: DaffCompositeCartItemInputOption[];
 }
 
 export interface DaffCompositeCartItemInputOption {
-	code: string | number;
-	quantity: number;
-	value: string;
+  code: string | number;
+  quantity: number;
+  value: string;
 }
 
 export interface DaffConfigurableCartItemInput extends DaffCartItemInput {
-	type: DaffCartItemInputType.Configurable;
-	variantId: ID;
+  type: DaffCartItemInputType.Configurable;
+  variantId: ID;
 }

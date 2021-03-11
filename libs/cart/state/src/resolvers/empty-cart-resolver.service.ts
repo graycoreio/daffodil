@@ -31,9 +31,9 @@ import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-r
 })
 export class DaffEmptyCartResolver implements Resolve<Observable<Action>> {
   constructor(
-		private cartResolver: DaffCartResolver,
-		private router: Router,
-		@Inject(DaffEmptyCartResolverRedirectUrl) private redirectUrl: string,
+    private cartResolver: DaffCartResolver,
+    private router: Router,
+    @Inject(DaffEmptyCartResolverRedirectUrl) private redirectUrl: string,
   ) {}
 
   resolve(): Observable<Action> {

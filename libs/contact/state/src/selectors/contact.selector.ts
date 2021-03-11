@@ -12,7 +12,7 @@ export interface DaffContactFeatureState {
 }
 
 export const selectContactFeatureState:
-  MemoizedSelector<DaffContactFeatureState, DaffContactState> = createFeatureSelector<DaffContactState>(DAFF_CONTACT_STORE_FEATURE_KEY);
+MemoizedSelector<DaffContactFeatureState, DaffContactState> = createFeatureSelector<DaffContactState>(DAFF_CONTACT_STORE_FEATURE_KEY);
 
 export const selectDaffContactLoading = createSelector(
   selectContactFeatureState, (state: DaffContactState) => state.loading,

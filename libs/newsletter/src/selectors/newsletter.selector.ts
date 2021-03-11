@@ -15,7 +15,7 @@ export interface State {
  * Feature State Selector
  */
 const selectNewsletterFeatureState:
-  MemoizedSelector<State, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>(DAFF_NEWSLETTER_STORE_FEATURE_KEY);
+MemoizedSelector<State, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>(DAFF_NEWSLETTER_STORE_FEATURE_KEY);
 
 
 /**

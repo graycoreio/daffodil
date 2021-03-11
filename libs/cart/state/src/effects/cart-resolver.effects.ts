@@ -59,18 +59,18 @@ import {
 export class DaffCartResolverEffects<T extends DaffCart = DaffCart>
 implements OnInitEffects {
   constructor(
-		private actions$: Actions,
-		@Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-		private cartStorage: DaffCartStorageService,
-		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
+    private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    private cartStorage: DaffCartStorageService,
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
   ) {}
 
   ngrxOnInitEffects(): Action {
     return new DaffResolveCart();
   }
 
-	@Effect()
-	onResolveCart = (): Observable<Action> => this.actions$.pipe(
+  @Effect()
+  onResolveCart = (): Observable<Action> => this.actions$.pipe(
 	  ofType(DaffCartActionTypes.ResolveCartAction),
 	  switchMap(() =>
 	    of(null).pipe(
@@ -108,5 +108,5 @@ implements OnInitEffects {
 	      }),
 	    ),
 	  ),
-	);
+  );
 }

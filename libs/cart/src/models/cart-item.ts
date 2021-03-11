@@ -12,8 +12,8 @@ export interface DaffCartItemDiscount {
 }
 
 export interface DaffCartItem {
-	item_id: ID;
-	type: DaffCartItemInputType;
+  item_id: ID;
+  type: DaffCartItemInputType;
   image?: DaffProductImage;
   product_id: DaffProduct['id'];
   parent_item_id: ID;
@@ -30,7 +30,7 @@ export interface DaffCartItem {
    * This includes any discounts and sales that apply to the product or category.
    */
   row_total: number;
-	in_stock: boolean;
+  in_stock: boolean;
   /**
    * A list of discounts applied to the cart item row.
    */

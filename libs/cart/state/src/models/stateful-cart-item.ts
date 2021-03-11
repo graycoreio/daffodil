@@ -7,13 +7,13 @@ import { DaffCartItem } from '@daffodil/cart';
  * added to the cart, the state of that item will be "New" for a designated time then will revert to the default state.
  */
 export interface DaffStatefulCartItem extends DaffCartItem {
-	daffState: DaffCartItemStateEnum;
+  daffState: DaffCartItemStateEnum;
 }
 
 export enum DaffCartItemStateEnum {
-	New = 'new',
-	Updated = 'updated',
-	Mutating = 'mutating',
-	Error = 'error',
-	Default = 'default'
+  New = 'new',
+  Updated = 'updated',
+  Mutating = 'mutating',
+  Error = 'error',
+  Default = 'default'
 }

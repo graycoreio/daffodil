@@ -11,10 +11,10 @@ import { getDaffProductEntitiesSelectors } from '../product-entities/product-ent
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	selectBestSellersState: MemoizedSelector<Record<string, any>, DaffBestSellersReducerState>;
-	selectBestSellersLoadingState: MemoizedSelector<Record<string, any>, boolean>;
-	selectBestSellersIdsState: MemoizedSelector<Record<string, any>, T['id'][]>;
-	selectBestSellersProducts: MemoizedSelector<Record<string, any>, T[]>;
+  selectBestSellersState: MemoizedSelector<Record<string, any>, DaffBestSellersReducerState>;
+  selectBestSellersLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+  selectBestSellersIdsState: MemoizedSelector<Record<string, any>, T['id'][]>;
+  selectBestSellersProducts: MemoizedSelector<Record<string, any>, T[]>;
 }
 
 const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => {

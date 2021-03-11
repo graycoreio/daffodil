@@ -9,11 +9,11 @@ import {
 import { daffTransformMagentoError } from './transform';
 
 class MockError extends DaffInheritableError implements DaffError {
-	public readonly code: string = 'MOCK';
+  public readonly code: string = 'MOCK';
 
-	constructor(public message: string) {
+  constructor(public message: string) {
 	  super(message);
-	}
+  }
 }
 
 describe('Driver | Magento | Errors | daffTransformMagentoError', () => {

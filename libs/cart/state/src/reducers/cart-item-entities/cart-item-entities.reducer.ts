@@ -28,9 +28,9 @@ import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapte
  * @returns CartItem entities state
  */
 export function daffCartItemEntitiesReducer<
-	T extends DaffStatefulCartItem = DaffStatefulCartItem,
-	U extends DaffCartItemInput = DaffCartItemInput,
-	V extends DaffCart = DaffCart,
+  T extends DaffStatefulCartItem = DaffStatefulCartItem,
+  U extends DaffCartItemInput = DaffCartItemInput,
+  V extends DaffCart = DaffCart,
 >(
   state = daffCartItemEntitiesAdapter<T>().getInitialState(),
   action: DaffCartItemActions<T, U, V> | DaffCartActions<V>): EntityState<T> {

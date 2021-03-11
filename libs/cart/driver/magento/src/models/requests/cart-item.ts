@@ -4,17 +4,17 @@ export interface MagentoCartItemInput {
 }
 
 export interface MagentoBundledCartItemInput {
-	input: MagentoCartItemInput;
-	options: MagentoBundledCartItemOption[];
+  input: MagentoCartItemInput;
+  options: MagentoBundledCartItemOption[];
 }
 
 export interface MagentoBundledCartItemOption {
-	id: number;
-	quantity: number;
-	value: string[];
+  id: number;
+  quantity: number;
+  value: string[];
 }
 
 export interface MagentoConfigurableCartItemInput {
-	parentSku: string;
-	data: MagentoCartItemInput;
+  parentSku: string;
+  data: MagentoCartItemInput;
 }

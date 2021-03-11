@@ -26,67 +26,67 @@ import { getAnimationState } from '../animations/modal-animation-state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffModalComponent {
-	/**
-	 * Dictates whether or not a modal is open or closed.
-	 */
-	@Input() open = false;
+  /**
+   * Dictates whether or not a modal is open or closed.
+   */
+  @Input() open = false;
 
-	/**
-	 * The CDK Portal outlet used to portal content into the modal.
-	 */
-	@ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
+  /**
+   * The CDK Portal outlet used to portal content into the modal.
+   */
+  @ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
 
-	/**
-	 * Event fired when the close animation is completed.
-	 */
-	animationCompleted: EventEmitter<any> = new EventEmitter<any>();
+  /**
+   * Event fired when the close animation is completed.
+   */
+  animationCompleted: EventEmitter<any> = new EventEmitter<any>();
 
-	/**
-	 * Event fired when the close animation is completed.
-	 */
-	closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
+  /**
+   * Event fired when the close animation is completed.
+   */
+  closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
 		any
 	>();
 
-	/**
-	 * Event fired when the backdrop is clicked
-	 * This is often used to close the modal
-	 */
-	hide: EventEmitter<void> = new EventEmitter<void>();
+  /**
+   * Event fired when the backdrop is clicked
+   * This is often used to close the modal
+   */
+  hide: EventEmitter<void> = new EventEmitter<void>();
 
-	/**
-	 * Hostbinding to set the default modal class on the host element
-	 *
-	 * @docs-private
-	 */
-	@HostBinding('class.daff-modal') modalClass = true;
+  /**
+   * Hostbinding to set the default modal class on the host element
+   *
+   * @docs-private
+   */
+  @HostBinding('class.daff-modal') modalClass = true;
 
-	/**
-	 * Helper method to attach portable content to modal
-	 */
-	attachContent(portal: ComponentPortal<any>): any {
+  /**
+   * Helper method to attach portable content to modal
+   */
+  attachContent(portal: ComponentPortal<any>): any {
 	  this._portalOutlet.attachComponentPortal(portal);
-	}
+  }
 
-	/**
-	 * Animation hook that controls the entrance and exit animations
-	 * of the modal
-	 */
-	@HostBinding('@fade') get fadeState(): string {
+  /**
+   * Animation hook that controls the entrance and exit animations
+   * of the modal
+   */
+  @HostBinding('@fade') get fadeState(): string {
 	  return getAnimationState(this.open);
-	}
+  }
 
-	/**
-	 * Animation event that can used to hook into when
-	 * animations are fully completed. We use this in the DaffModalService
-	 * to determine when to actually remove the dynamically rendered element from the DOM
-	 * so that the animation does not clip as the element is removed.
-	 */
-	@HostListener('@fade.done', ['$event'])
-	animationDone(e: AnimationEvent) {
+  /**
+   * Animation event that can used to hook into when
+   * animations are fully completed. We use this in the DaffModalService
+   * to determine when to actually remove the dynamically rendered element from the DOM
+   * so that the animation does not clip as the element is removed.
+   */
+  @HostListener('@fade.done', ['$event'])
+  animationDone(e: AnimationEvent) {
 	  this.animationCompleted.emit(e);
 	  if (e.toState === 'closed') {
 	    this.closedAnimationCompleted.emit(e);
 	  }
-	}
+  }
 }

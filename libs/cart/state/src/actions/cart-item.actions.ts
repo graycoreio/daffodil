@@ -119,7 +119,7 @@ export class DaffCartItemDeleteFailure<T extends DaffStatefulCartItem = DaffStat
 }
 
 export class DaffCartItemStateReset implements Action {
-	readonly type = DaffCartItemActionTypes.CartItemStateResetAction;
+  readonly type = DaffCartItemActionTypes.CartItemStateResetAction;
 }
 
 export type DaffCartItemActions<

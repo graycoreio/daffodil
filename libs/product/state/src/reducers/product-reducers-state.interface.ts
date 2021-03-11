@@ -15,7 +15,7 @@ export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   products: EntityState<T>;
   productGrid: DaffProductGridReducerState<T>;
   product: DaffProductReducerState;
-	bestSellers: DaffBestSellersReducerState;
-	configurableProductAttributes: EntityState<DaffConfigurableProductEntity>;
-	compositeProductOptions: EntityState<DaffCompositeProductEntity>;
+  bestSellers: DaffBestSellersReducerState;
+  configurableProductAttributes: EntityState<DaffConfigurableProductEntity>;
+  compositeProductOptions: EntityState<DaffCompositeProductEntity>;
 }

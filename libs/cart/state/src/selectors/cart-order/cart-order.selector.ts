@@ -28,17 +28,17 @@ export interface DaffCartOrderMemoizedSelectors<
    * Selects whether there is a place order operation in progress.
    */
   selectCartOrderMutating: MemoizedSelector<Record<string, any>, boolean>;
-	selectCartOrderErrors: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['errors']>;
-	selectCartOrderValue: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']>;
-	selectCartOrderId: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']['orderId']>;
-	selectCartOrderCartId: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']['cartId']>;
+  selectCartOrderErrors: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['errors']>;
+  selectCartOrderValue: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']>;
+  selectCartOrderId: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']['orderId']>;
+  selectCartOrderCartId: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']['cartId']>;
   selectHasOrderResult: MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createCartOrderSelectors = <
   T extends DaffCart = DaffCart,
-	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffStatefulCartItem = DaffStatefulCartItem
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(): DaffCartOrderMemoizedSelectors<V> => {
   const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
 
@@ -93,8 +93,8 @@ export const getCartOrderSelectors = (() => {
   let cache;
   return <
     T extends DaffCart = DaffCart,
-		V extends DaffCartOrderResult = DaffCartOrderResult,
-		U extends DaffStatefulCartItem = DaffStatefulCartItem
+    V extends DaffCartOrderResult = DaffCartOrderResult,
+    U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartOrderMemoizedSelectors<V> => cache = cache
     ? cache
     : createCartOrderSelectors<T, V, U>();

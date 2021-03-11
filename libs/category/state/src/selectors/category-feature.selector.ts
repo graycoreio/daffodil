@@ -14,11 +14,11 @@ import { DaffCategoryReducersState } from '../reducers/public_api';
 
 
 export interface DaffCategoryFeatureMemoizedSelectors<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffGenericCategory<V> = DaffCategory,
+  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
 > {
-	selectCategoryFeatureState: MemoizedSelector<Record<string, any>, DaffCategoryReducersState<T, V, U>>;
+  selectCategoryFeatureState: MemoizedSelector<Record<string, any>, DaffCategoryReducersState<T, V, U>>;
 }
 
 export const getDaffCategoryFeatureSelector = (() => {

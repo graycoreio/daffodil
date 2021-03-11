@@ -11,6 +11,6 @@ export interface DaffGenericNavigationTree<T extends DaffGenericNavigationTree<T
   path: ID;
   children_count?: number;
   total_products?: number;
-	children?: T[];
-	breadcrumbs: DaffNavigationBreadcrumb[];
+  children?: T[];
+  breadcrumbs: DaffNavigationBreadcrumb[];
 }

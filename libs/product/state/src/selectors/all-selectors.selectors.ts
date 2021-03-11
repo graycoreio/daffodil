@@ -38,15 +38,15 @@ import {
 } from './product/product.selectors';
 
 export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> extends
-	DaffProductPageMemoizedSelectors<T>,
-	DaffBestSellersMemoizedSelectors<T>,
-	DaffProductEntitiesMemoizedSelectors<T>,
-	DaffProductGridMemoizedSelectors<T>,
-	DaffProductFeatureMemoizedSelector<T>,
-	DaffConfigurableProductEntitiesMemoizedSelectors,
-	DaffConfigurableProductMemoizedSelectors,
-	DaffCompositeProductEntitiesMemoizedSelectors,
-	DaffCompositeProductMemoizedSelectors { }
+  DaffProductPageMemoizedSelectors<T>,
+  DaffBestSellersMemoizedSelectors<T>,
+  DaffProductEntitiesMemoizedSelectors<T>,
+  DaffProductGridMemoizedSelectors<T>,
+  DaffProductFeatureMemoizedSelector<T>,
+  DaffConfigurableProductEntitiesMemoizedSelectors,
+  DaffConfigurableProductMemoizedSelectors,
+  DaffCompositeProductEntitiesMemoizedSelectors,
+  DaffCompositeProductMemoizedSelectors { }
 
 export const getDaffProductSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductAllSelectors<T> => ({
   ...getDaffBestSellersSelectors<T>(),

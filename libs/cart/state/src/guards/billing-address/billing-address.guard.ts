@@ -26,9 +26,9 @@ import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-
 })
 export class DaffBillingAddressGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DaffCartBillingAddressGuardRedirectUrl) private redirectUrl: string,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DaffCartBillingAddressGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

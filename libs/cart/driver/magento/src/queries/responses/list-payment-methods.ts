@@ -2,7 +2,7 @@ import { MagentoCartPaymentMethod } from '../../models/responses/cart-payment-me
 
 export interface MagentoListPaymentMethodsResponse {
   cart: {
-		__typename: string;
+    __typename: string;
     available_payment_methods: MagentoCartPaymentMethod[];
   };
 }

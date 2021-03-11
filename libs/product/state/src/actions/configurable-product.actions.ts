@@ -6,9 +6,9 @@ import { DaffConfigurableProduct } from '@daffodil/product';
  * Action types for Configurable Product Actions.
  */
 export enum DaffConfigurableProductActionTypes {
-	ConfigurableProductApplyAttributeAction = '[Configurable Product] Configurable Product Apply Attribute Action',
-	ConfigurableProductRemoveAttributeAction = '[Configurable Product] Configurable Product Remove Attribute Action',
-	ConfigurableProductToggleAttributeAction = '[Configurable Product] Configurable Product Toggle Attribute Action',
+  ConfigurableProductApplyAttributeAction = '[Configurable Product] Configurable Product Apply Attribute Action',
+  ConfigurableProductRemoveAttributeAction = '[Configurable Product] Configurable Product Remove Attribute Action',
+  ConfigurableProductToggleAttributeAction = '[Configurable Product] Configurable Product Toggle Attribute Action',
 }
 
 /**

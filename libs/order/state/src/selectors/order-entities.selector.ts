@@ -104,11 +104,11 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selects the specified order's discount total.
    */
-	selectOrderDiscountTotal: MemoizedSelector<Record<string, any>, DaffOrderTotal>;
-	/**
-	 * Selects whether the specified order has a discount.
-	 */
-	selectOrderHasDiscount: MemoizedSelector<Record<string, any>, boolean>;
+  selectOrderDiscountTotal: MemoizedSelector<Record<string, any>, DaffOrderTotal>;
+  /**
+   * Selects whether the specified order has a discount.
+   */
+  selectOrderHasDiscount: MemoizedSelector<Record<string, any>, boolean>;
   /**
    * Selects the specified order's tax total.
    */

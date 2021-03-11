@@ -1,3 +1,3 @@
 export interface DaffCompactable {
-	compact: boolean;
+  compact: boolean;
 }

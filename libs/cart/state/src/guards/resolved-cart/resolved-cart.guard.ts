@@ -34,9 +34,9 @@ import { DaffCartResolveState } from '../../reducers/public_api';
 })
 export class DaffResolvedCartGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DAFF_CART_STATE_CONFIG) private config: DaffCartStateConfiguration,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DAFF_CART_STATE_CONFIG) private config: DaffCartStateConfiguration,
   ) {}
 
   canActivate(): Observable<boolean | UrlTree> {

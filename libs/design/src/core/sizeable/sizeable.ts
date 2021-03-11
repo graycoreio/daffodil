@@ -1,5 +1,5 @@
 export interface DaffSizeable<T extends DaffSizeAllType> {
-	size: T;
+  size: T;
 }
 
 export type DaffSizeXSmallType = 'xs';

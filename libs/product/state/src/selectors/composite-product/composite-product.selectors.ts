@@ -24,19 +24,19 @@ import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-e
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 
 export interface DaffCompositeProductMemoizedSelectors {
-	/**
-	 * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
-	 */
-	selectCompositeProductRequiredItemPricesForConfiguration: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
-	/**
-	 * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
-	 */
-	selectCompositeProductOptionalItemPricesForConfiguration: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
-	/**
-	 * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state and
-	 * excluding unselected, optional item prices.
-	 */
-	selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id'] }, DaffPriceRange>;
+  /**
+   * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
+   */
+  selectCompositeProductRequiredItemPricesForConfiguration: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
+  /**
+   * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
+   */
+  selectCompositeProductOptionalItemPricesForConfiguration: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
+  /**
+   * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state and
+   * excluding unselected, optional item prices.
+   */
+  selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id'] }, DaffPriceRange>;
 }
 
 const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelectors => {

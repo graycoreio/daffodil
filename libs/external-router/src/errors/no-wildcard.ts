@@ -9,9 +9,9 @@ import {
  */
 export class DaffExternalRouterNoWildcardError extends DaffInheritableError
   implements DaffError {
-	public readonly code: string = 'NO_WILDCARD_ROUTE';
+  public readonly code: string = 'NO_WILDCARD_ROUTE';
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

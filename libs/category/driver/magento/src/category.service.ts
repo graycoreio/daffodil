@@ -45,9 +45,9 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
   constructor(
     private apollo: Apollo,
-		private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
-		private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
-		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
+    private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
+    private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
+    private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.

@@ -10,11 +10,11 @@ import { DaffProductReducerState } from '../../reducers/product/product-reducer-
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	selectSelectedProductState: MemoizedSelector<Record<string, any>, DaffProductReducerState>;
-	selectSelectedProductId: MemoizedSelector<Record<string, any>, T['id']>;
-	selectSelectedProductQty: MemoizedSelector<Record<string, any>, number>;
-	selectSelectedProductLoadingState: MemoizedSelector<Record<string, any>, boolean>;
-	selectSelectedProduct: MemoizedSelector<Record<string, any>, T>;
+  selectSelectedProductState: MemoizedSelector<Record<string, any>, DaffProductReducerState>;
+  selectSelectedProductId: MemoizedSelector<Record<string, any>, T['id']>;
+  selectSelectedProductQty: MemoizedSelector<Record<string, any>, number>;
+  selectSelectedProductLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+  selectSelectedProduct: MemoizedSelector<Record<string, any>, T>;
 }
 
 const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {

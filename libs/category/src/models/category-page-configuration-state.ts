@@ -3,9 +3,9 @@ import { DaffCategorySortOption } from './category-sort-option';
 import { DaffCategoryRequest } from './requests/category-request';
 
 export type DaffCategoryPageConfigurationState<T extends DaffCategoryRequest = DaffCategoryRequest> = T & {
-	filters: DaffCategoryFilter[];
+  filters: DaffCategoryFilter[];
   sort_options: DaffCategorySortOption[];
-	total_pages: number;
-	total_products: number;
-	product_ids: string[];
+  total_pages: number;
+  total_products: number;
+  product_ids: string[];
 };

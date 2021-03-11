@@ -9,7 +9,7 @@ import { DaffProductReducersState } from '../reducers/product-reducers-state.int
 import { DAFF_PRODUCT_STORE_FEATURE_KEY } from '../reducers/product-store-feature-key';
 
 export interface DaffProductFeatureMemoizedSelector<T extends DaffProduct = DaffProduct> {
-	selectProductState: MemoizedSelector<Record<string, any>, DaffProductReducersState<T>>;
+  selectProductState: MemoizedSelector<Record<string, any>, DaffProductReducersState<T>>;
 }
 
 export const getDaffProductFeatureSelector = (() => {

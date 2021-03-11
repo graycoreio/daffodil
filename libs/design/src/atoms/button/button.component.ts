@@ -85,76 +85,76 @@ enum DaffButtonTypeEnum {
 export class DaffButtonComponent
   extends _daffButtonBase
   implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize> {
-    @Input() color: DaffPalette;
-		@Input() size: DaffButtonSize;
+  @Input() color: DaffPalette;
+  @Input() size: DaffButtonSize;
 
-    private buttonType: DaffButtonType;
+  private buttonType: DaffButtonType;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-      super(elementRef, renderer);
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
 
-      for (const attr of BUTTON_HOST_ATTRIBUTES) {
-        if (this._hasHostAttributes(attr)) {
-          (<HTMLElement>elementRef.nativeElement).classList.add(attr);
-        }
+    for (const attr of BUTTON_HOST_ATTRIBUTES) {
+      if (this._hasHostAttributes(attr)) {
+        (<HTMLElement>elementRef.nativeElement).classList.add(attr);
       }
     }
+  }
 
 
-    /**
-     * @docs-private
-     */
-    ngOnInit() {
-      for (const attr of BUTTON_HOST_ATTRIBUTES) {
-        if (this._hasHostAttributes(attr)) {
-          this.buttonType = attr;
-        }
+  /**
+   * @docs-private
+   */
+  ngOnInit() {
+    for (const attr of BUTTON_HOST_ATTRIBUTES) {
+      if (this._hasHostAttributes(attr)) {
+        this.buttonType = attr;
       }
     }
+  }
 
-    /**
-     * @docs-private
-     */
-    @HostBinding('class.daff-button') get button() {
-      return this.buttonType === DaffButtonTypeEnum.Default || this.buttonType === undefined;
-    }
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-button') get button() {
+    return this.buttonType === DaffButtonTypeEnum.Default || this.buttonType === undefined;
+  }
 
-    /**
-     * @docs-private
-     */
-    @HostBinding('class.daff-stroked-button') get stroked() {
-      return this.buttonType === DaffButtonTypeEnum.Stroked;
-    }
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-stroked-button') get stroked() {
+    return this.buttonType === DaffButtonTypeEnum.Stroked;
+  }
 
-    /**
-     * @docs-private
-     */
-    @HostBinding('class.daff-raised-button') get raised() {
-      return this.buttonType === DaffButtonTypeEnum.Raised;
-    }
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-raised-button') get raised() {
+    return this.buttonType === DaffButtonTypeEnum.Raised;
+  }
 
-    /**
-     * @docs-private
-     */
-    @HostBinding('class.daff-icon-button') get icon() {
-      return this.buttonType === DaffButtonTypeEnum.Icon;
-    }
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-icon-button') get icon() {
+    return this.buttonType === DaffButtonTypeEnum.Icon;
+  }
 
-    /**
-     * @docs-private
-     */
-    @HostBinding('class.daff-underline-button') get underline() {
-      return this.buttonType === DaffButtonTypeEnum.Underline;
-    }
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-underline-button') get underline() {
+    return this.buttonType === DaffButtonTypeEnum.Underline;
+  }
 
-    private _getHostElement() {
-      return this.elementRef.nativeElement;
-    }
+  private _getHostElement() {
+    return this.elementRef.nativeElement;
+  }
 
-    /**
-     * Gets whether the button has one of the given attributes.
-     * */
-    private _hasHostAttributes(...attributes: string[]) {
-      return attributes.some(attribute => this._getHostElement().hasAttribute(attribute));
-    }
+  /**
+   * Gets whether the button has one of the given attributes.
+   * */
+  private _hasHostAttributes(...attributes: string[]) {
+    return attributes.some(attribute => this._getHostElement().hasAttribute(attribute));
+  }
 }

@@ -39,9 +39,9 @@ export class DaffioSidebarEffects {
 
   @Effect()
   closeOnPageChange$ =
-    (delayTime = 10, scheduler = asyncScheduler): Observable<Action> => this.actions$.pipe(
-      ofType(ROUTER_NAVIGATION),
-      delay(delayTime, scheduler),
-      switchMap(() => of(new SidebarActions.CloseSidebar())),
-    );
+  (delayTime = 10, scheduler = asyncScheduler): Observable<Action> => this.actions$.pipe(
+    ofType(ROUTER_NAVIGATION),
+    delay(delayTime, scheduler),
+    switchMap(() => of(new SidebarActions.CloseSidebar())),
+  );
 }

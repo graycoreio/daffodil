@@ -46,9 +46,9 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
   total_pages = faker.random.number({ min: 1, max: 4 });
   filter_requests = [];
   applied_sort_option = null;
-	applied_sort_direction = null;
-	total_products = faker.random.number({ min: 1, max: 3 });
-	product_ids = [faker.random.number({ min: 1, max: 100 }).toString()];
+  applied_sort_direction = null;
+  total_products = faker.random.number({ min: 1, max: 3 });
+  product_ids = [faker.random.number({ min: 1, max: 100 }).toString()];
 }
 
 @Injectable({

@@ -17,14 +17,14 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 export interface DaffCategoryFacadeInterface<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct = DaffProduct
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffGenericCategory<V> = DaffCategory,
+  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
+  W extends DaffProduct = DaffProduct
 > extends DaffStoreFacade<Action> {
-	/**
-	 * The currently selected category.
-	 */
+  /**
+   * The currently selected category.
+   */
   category$: Observable<V>;
   /**
    * The page configuration state for the selected category.
@@ -37,11 +37,11 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The number of pages of product for the selected category.
    */
-	totalPages$: Observable<number>;
-	/**
-	 * The total number of products for the filters applied.
-	 */
-	totalProducts$: Observable<number>;
+  totalPages$: Observable<number>;
+  /**
+   * The total number of products for the filters applied.
+   */
+  totalProducts$: Observable<number>;
   /**
    * The number of products per page for the selected category.
    */
@@ -81,30 +81,30 @@ export interface DaffCategoryFacadeInterface<
   /**
    * Errors associated with retrieving a single category.
    */
-	errors$: Observable<string[]>;
-	/**
-	 * Is the category page empty of products.
-	 */
-	isCategoryEmpty$: Observable<boolean>;
+  errors$: Observable<string[]>;
+  /**
+   * Is the category page empty of products.
+   */
+  isCategoryEmpty$: Observable<boolean>;
 
-	/**
-	 * Get a category by the provided Id.
-	 *
-	 * @param id
-	 */
-	getCategoryById(id: V['id']): Observable<V>;
+  /**
+   * Get a category by the provided Id.
+   *
+   * @param id
+   */
+  getCategoryById(id: V['id']): Observable<V>;
 
-	/**
-	 * Get products by a category Id.
-	 *
-	 * @param categoryId
-	 */
-	getProductsByCategory(categoryId: V['id']): Observable<W[]>;
+  /**
+   * Get products by a category Id.
+   *
+   * @param categoryId
+   */
+  getProductsByCategory(categoryId: V['id']): Observable<W[]>;
 
-	/**
-	 * Get products by a category Id.
-	 *
-	 * @param categoryId
-	 */
-	getTotalProductsByCategory(categoryId: V['id']): Observable<number>;
+  /**
+   * Get products by a category Id.
+   *
+   * @param categoryId
+   */
+  getTotalProductsByCategory(categoryId: V['id']): Observable<number>;
 }

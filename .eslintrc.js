@@ -63,11 +63,15 @@ module.exports = {
         ],
         'modules-newline/import-declaration-newline': 'warn',
         'modules-newline/export-declaration-newline': 'warn',
-        indent: [
+        'indent': 'off',
+        '@typescript-eslint/indent': [
           'error',
           2,
           {
-            SwitchCase: 1
+            SwitchCase: 1,
+            ignoredNodes: [
+              'TSTypeParameterInstantiation',
+            ],
           }
         ],
         'object-curly-newline': [

@@ -38,12 +38,12 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
 })
 export class DaffImageComponent implements OnInit {
 
-	private _src: string;
+  private _src: string;
 
   @Input()
-	get src(): string {
+  get src(): string {
 	  return this._src;
-	}
+  }
   set src(value: string) {
     this._src = value;
     validateProperty(this, 'src');
@@ -84,32 +84,32 @@ export class DaffImageComponent implements OnInit {
 
   // TODO: rename event to not collide with native event (unless that's intentional)
   // eslint-disable-next-line @angular-eslint/no-output-native
-	@Output() load: EventEmitter<void> = new EventEmitter();
+  @Output() load: EventEmitter<void> = new EventEmitter();
 
-	/**
-	 * @docs-private
-	 */
-	ngOnInit(): void {
+  /**
+   * @docs-private
+   */
+  ngOnInit(): void {
 	  validateProperties(this, ['src', 'alt', 'width', 'height']);
-	}
+  }
 
-	constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) {}
 
-	/**
-	 * @docs-private
-	 */
-	get paddingTop(): any {
+  /**
+   * @docs-private
+   */
+  get paddingTop(): any {
 	  if (!this.height || !this.width ) {
 	    return undefined;
 	  }
 
 	  return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
-	}
+  }
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('style.max-width') get maxWidth(): string {
 	  return this.width + 'px';
-	}
+  }
 }

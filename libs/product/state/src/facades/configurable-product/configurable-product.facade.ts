@@ -27,66 +27,66 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
 })
 export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> implements DaffConfigurableProductFacadeInterface {
 
-	selectors = getDaffProductSelectors<T>();
+  selectors = getDaffProductSelectors<T>();
 
-	constructor(private store: Store<DaffProductReducersState<T>>) {}
+  constructor(private store: Store<DaffProductReducersState<T>>) {}
 
-	getAllAttributes(id: T['id']): Observable<Dictionary<string[]>> {
+  getAllAttributes(id: T['id']): Observable<Dictionary<string[]>> {
 	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes, { id }));
-	}
+  }
 
-	getAllVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
+  getAllVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
 	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductVariants, { id }));
-	}
+  }
 
-	getAppliedAttributes(id: T['id']): Observable<Dictionary<string>> {
+  getAppliedAttributes(id: T['id']): Observable<Dictionary<string>> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributesAsDictionary, { id }));
-	}
+  }
 
-	getMinimumPrice(id: T['id']): Observable<number> {
+  getMinimumPrice(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPrice, { id }));
-	}
+  }
 
-	getMaximumPrice(id: T['id']): Observable<number> {
+  getMaximumPrice(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPrice, { id }));
-	}
+  }
 
-	getMinimumDiscountedPrice(id: T['id']): Observable<number> {
+  getMinimumDiscountedPrice(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumDiscountedPrice, { id }));
-	}
+  }
 
-	getMaximumDiscountedPrice(id: T['id']): Observable<number> {
+  getMaximumDiscountedPrice(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumDiscountedPrice, { id }));
-	}
+  }
 
-	getMinimumPercentDiscount(id: T['id']): Observable<number> {
+  getMinimumPercentDiscount(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPercentDiscount, { id }));
-	}
+  }
 
-	getMaximumPercentDiscount(id: T['id']): Observable<number> {
+  getMaximumPercentDiscount(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPercentDiscount, { id }));
-	}
+  }
 
-	isPriceRanged(id: T['id']): Observable<boolean> {
+  isPriceRanged(id: T['id']): Observable<boolean> {
 	  return this.store.pipe(select(this.selectors.isConfigurablePriceRanged, { id }));
-	}
+  }
 
-	hasDiscount(id: T['id']): Observable<boolean> {
+  hasDiscount(id: T['id']): Observable<boolean> {
 	  return this.store.pipe(select(this.selectors.selectConfigurableProductHasDiscount, { id }));
-	}
+  }
 
-	getSelectableAttributes(id: T['id']): Observable<Dictionary<string[]>> {
+  getSelectableAttributes(id: T['id']): Observable<Dictionary<string[]>> {
 	  return this.store.pipe(select(this.selectors.selectSelectableConfigurableProductAttributes, { id }));
-	}
+  }
 
-	getMatchingVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
+  getMatchingVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
 	  return this.store.pipe(select(this.selectors.selectMatchingConfigurableProductVariants, { id }));
-	}
+  }
 
-	/**
-	 * Dispatches an action to the rxjs action stream.
-	 */
-	dispatch(action: Action) {
+  /**
+   * Dispatches an action to the rxjs action stream.
+   */
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

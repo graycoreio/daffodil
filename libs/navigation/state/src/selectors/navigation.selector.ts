@@ -13,11 +13,11 @@ import {
 } from '../reducers/public_api';
 
 export interface DaffNavigationMemoizedSelectors<T extends DaffGenericNavigationTree<T>> {
-	selectNavigationFeatureState: MemoizedSelector<Record<string, any>, DaffNavigationReducersState<T>>;
-	selectNavigationState: MemoizedSelector<Record<string, any>, DaffNavigationReducerState<T>>;
-	selectNavigationTree: MemoizedSelector<Record<string, any>, T>;
-	selectNavigationLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectNavigationErrors: MemoizedSelector<Record<string, any>, string[]>;
+  selectNavigationFeatureState: MemoizedSelector<Record<string, any>, DaffNavigationReducersState<T>>;
+  selectNavigationState: MemoizedSelector<Record<string, any>, DaffNavigationReducerState<T>>;
+  selectNavigationTree: MemoizedSelector<Record<string, any>, T>;
+  selectNavigationLoading: MemoizedSelector<Record<string, any>, boolean>;
+  selectNavigationErrors: MemoizedSelector<Record<string, any>, string[]>;
 }
 
 const createNavigationFeatureSelectors = <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => {

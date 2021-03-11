@@ -11,17 +11,17 @@ import { DaffProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 export class DaffMockCartItem implements DaffCartItem {
-	item_id = faker.random.uuid();
-	type = DaffCartItemInputType.Simple;
+  item_id = faker.random.uuid();
+  type = DaffCartItemInputType.Simple;
   product_id = faker.random.uuid();
-	parent_item_id = faker.random.uuid();
-	image = <DaffProductImage>new DaffProductImageFactory().create();
+  parent_item_id = faker.random.uuid();
+  image = <DaffProductImage>new DaffProductImageFactory().create();
   sku = 'sku';
   name = 'Product Name';
   qty = faker.random.number({ min: 1, max: 100 });
   price = faker.random.number({ min: 1, max: 1500 });
   row_total = this.qty * this.price;
-	in_stock = true;
+  in_stock = true;
   _numberOfDiscounts = faker.random.number({ min: 0, max: 2 });
   discounts = this._discounts(this._numberOfDiscounts, Math.floor(this.price / this._numberOfDiscounts));
 

@@ -1,4 +1,4 @@
 export interface DaffPaypalUrlsResponse {
-	start: string;
-	edit: string;
+  start: string;
+  edit: string;
 }

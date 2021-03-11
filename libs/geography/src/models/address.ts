@@ -4,8 +4,8 @@ import { ID } from '@daffodil/core';
  * A basic model of an address
  */
 export interface DaffAddress {
-	street: string;
-	street2?: string;
+  street: string;
+  street2?: string;
   city: string;
   region: ID;
   /**

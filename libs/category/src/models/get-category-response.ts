@@ -6,10 +6,10 @@ import { DaffGenericCategory } from './generic-category';
 import { DaffCategoryRequest } from './requests/category-request';
 
 export interface DaffGetCategoryResponse<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
-	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct = DaffProduct
+  T extends DaffCategoryRequest = DaffCategoryRequest,
+  V extends DaffGenericCategory<V> = DaffCategory,
+  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
+  W extends DaffProduct = DaffProduct
 > {
   products: W[];
   category: V;

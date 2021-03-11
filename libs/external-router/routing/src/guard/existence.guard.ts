@@ -41,12 +41,12 @@ import { daffConvertToPath } from '../helper/convert-to-path';
 })
 export class DaffExternalRouterExistenceGuard implements CanActivate {
   constructor(
-		@Inject(DaffExternalRouterDriver)
-		private driver: DaffExternalRouterDriverInterface,
-		private externalRouter: DaffExternalRouter,
-		private router: Router,
-		@Inject(DAFF_EXTERNAL_ROUTER_CONFIG)
-		private config: DaffExternalRouterConfiguration,
+    @Inject(DaffExternalRouterDriver)
+    private driver: DaffExternalRouterDriverInterface,
+    private externalRouter: DaffExternalRouter,
+    private router: Router,
+    @Inject(DAFF_EXTERNAL_ROUTER_CONFIG)
+    private config: DaffExternalRouterConfiguration,
   ) {}
 
   canActivate(

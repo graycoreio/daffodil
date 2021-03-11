@@ -23,12 +23,12 @@ import { getDaffProductEntitiesSelectors } from '../product-entities/product-ent
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 export interface DaffCompositeProductEntitiesMemoizedSelectors {
-	selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>>;
-	selectCompositeProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['ids']>;
-	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['entities']>;
-	selectCompositeProductTotal: MemoizedSelector<Record<string, any>, number>;
-	selectCompositeProductAppliedOptions: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<DaffCompositeProductItemOption>>;
-	selectIsCompositeProductItemRequired: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; item_id: DaffCompositeProductItem['id']}, boolean>;
+  selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>>;
+  selectCompositeProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['ids']>;
+  selectCompositeProductAppliedOptionsEntities: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['entities']>;
+  selectCompositeProductTotal: MemoizedSelector<Record<string, any>, number>;
+  selectCompositeProductAppliedOptions: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<DaffCompositeProductItemOption>>;
+  selectIsCompositeProductItemRequired: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; item_id: DaffCompositeProductItem['id']}, boolean>;
 }
 
 const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors => {

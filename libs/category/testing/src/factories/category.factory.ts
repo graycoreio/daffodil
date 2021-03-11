@@ -6,8 +6,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategory implements DaffCategory {
   id = faker.random.uuid();
-	name = faker.commerce.productMaterial();
-	description = faker.random.words(Math.floor(Math.random() * 20));
+  name = faker.commerce.productMaterial();
+  description = faker.random.words(Math.floor(Math.random() * 20));
   breadcrumbs = [{
     categoryId: String(faker.random.number({ min: 1, max: 100 })),
     categoryName: faker.commerce.productMaterial(),

@@ -13,13 +13,13 @@ import { DaffCartFacade } from '@daffodil/cart/state';
 })
 export class DemoCartViewComponent implements OnInit {
 
-	cart$: Observable<DaffCart>;
-	loading$: Observable<boolean>;
+  cart$: Observable<DaffCart>;
+  loading$: Observable<boolean>;
 
-	constructor(private cartFacade: DaffCartFacade) {}
+  constructor(private cartFacade: DaffCartFacade) {}
 
-	ngOnInit() {
+  ngOnInit() {
 	  this.cart$ = this.cartFacade.cart$;
 	  this.loading$ = this.cartFacade.loading$;
-	}
+  }
 }

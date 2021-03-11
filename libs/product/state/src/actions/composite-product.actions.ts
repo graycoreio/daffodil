@@ -10,7 +10,7 @@ import {
  * Action types for Composite Product Actions.
  */
 export enum DaffCompositeProductActionTypes {
-	CompositeProductApplyOptionAction = '[Composite Product] Composite Product Apply Option Action'
+  CompositeProductApplyOptionAction = '[Composite Product] Composite Product Apply Option Action'
 }
 
 /**

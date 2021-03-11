@@ -6,6 +6,6 @@ import {
 } from '@daffodil/product';
 
 export interface DaffCompositeProductEntity {
-	id: DaffProduct['id'];
-	items: Dictionary<DaffCompositeConfigurationItem>;
+  id: DaffProduct['id'];
+  items: Dictionary<DaffCompositeConfigurationItem>;
 }

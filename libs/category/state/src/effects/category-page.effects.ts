@@ -51,10 +51,10 @@ import { getDaffCategorySelectors } from '../selectors/category.selector';
 
 @Injectable()
 export class DaffCategoryPageEffects<
-	T extends DaffCategoryRequest,
-	V extends DaffGenericCategory<V>,
-	U extends DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct
+  T extends DaffCategoryRequest,
+  V extends DaffGenericCategory<V>,
+  U extends DaffCategoryPageConfigurationState<T>,
+  W extends DaffProduct
 > {
 
   constructor(
@@ -63,7 +63,7 @@ export class DaffCategoryPageEffects<
     private store: Store<any>,
   ){}
 
-	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
+  private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 
   @Effect()
   loadCategoryPage$: Observable<any> = this.actions$.pipe(
@@ -82,7 +82,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangePageSize, T],
+      [DaffCategoryPageChangePageSize, T],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       page_size: action.pageSize,
@@ -97,7 +97,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangeCurrentPage, T],
+      [DaffCategoryPageChangeCurrentPage, T],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       current_page: action.currentPage,
@@ -112,7 +112,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangeFilters, T],
+      [DaffCategoryPageChangeFilters, T],
     ) => {
       daffCategoryValidateFilters(action.filters);
       return this.processCategoryGetRequest({
@@ -130,7 +130,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryPageConfigurationState]:
-			[DaffCategoryPageToggleFilter, U],
+      [DaffCategoryPageToggleFilter, U],
     ) => {
       daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
       return this.processCategoryGetRequest({
@@ -147,7 +147,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangeSortingOption, T],
+      [DaffCategoryPageChangeSortingOption, T],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       applied_sort_option: action.sort.option,

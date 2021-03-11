@@ -2,14 +2,14 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 export interface MagentoCategory {
   id: number;
-	name?: string;
-	description?: string;
+  name?: string;
+  description?: string;
   breadcrumbs?: MagentoBreadcrumb[];
   level?: number;
-	children_count?: number;
-	products?: {
-		items?: MagentoProduct[];
-	};
+  children_count?: number;
+  products?: {
+    items?: MagentoProduct[];
+  };
   children?: MagentoCategory[];
 }
 

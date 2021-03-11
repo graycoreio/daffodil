@@ -20,21 +20,21 @@ export class DaffQtyDropdownComponent implements OnInit {
   @Input() id: number | string;
   @Output() qtyChanged: EventEmitter<number> = new EventEmitter<number>();
 
-	/**
-	 * @docs-private
-	 */
-	dropdownItemCounter: number[];
-	/**
-	 * @docs-private
-	 */
-	inputHasBeenShown: boolean;
-	/**
-	 * @docs-private
-	 */
-	onChange = (qty: number) => {};
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
+  dropdownItemCounter: number[];
+  /**
+   * @docs-private
+   */
+  inputHasBeenShown: boolean;
+  /**
+   * @docs-private
+   */
+  onChange = (qty: number) => {};
+  /**
+   * @docs-private
+   */
   onTouched = () => {};
 
   constructor(private renderer: Renderer2) { }

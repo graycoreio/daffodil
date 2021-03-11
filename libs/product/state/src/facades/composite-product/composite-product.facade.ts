@@ -34,46 +34,46 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 
   constructor(private store: Store<DaffProductReducersState<T>>) {}
 
-	selectors = getDaffProductSelectors<T>();
+  selectors = getDaffProductSelectors<T>();
 
-	/**
-	 * Returns whether a DaffPriceRange has a discount.
-	 *
-	 * @param priceRange a DaffPriceRange
-	 */
-	hasDiscount = productPriceRangeHasDiscount;
+  /**
+   * Returns whether a DaffPriceRange has a discount.
+   *
+   * @param priceRange a DaffPriceRange
+   */
+  hasDiscount = productPriceRangeHasDiscount;
 
-	/**
-	 * Returns whether the min and max prices of a DaffPriceRange are different.
-	 *
-	 * @param priceRange a DaffPriceRange
-	 */
-	hasPriceRange = productPriceRangeHasPriceRange;
+  /**
+   * Returns whether the min and max prices of a DaffPriceRange are different.
+   *
+   * @param priceRange a DaffPriceRange
+   */
+  hasPriceRange = productPriceRangeHasPriceRange;
 
-	getRequiredItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
+  getRequiredItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
 	  return this.store.pipe(select(this.selectors.selectCompositeProductRequiredItemPricesForConfiguration, { id, configuration }));
-	}
+  }
 
-	getOptionalItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
+  getOptionalItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
 	  return this.store.pipe(select(this.selectors.selectCompositeProductOptionalItemPricesForConfiguration, { id, configuration }));
-	}
+  }
 
-	getPricesAsCurrentlyConfigured(id: T['id']): Observable<DaffPriceRange> {
+  getPricesAsCurrentlyConfigured(id: T['id']): Observable<DaffPriceRange> {
 	  return this.store.pipe(select(this.selectors.selectCompositeProductPricesAsCurrentlyConfigured, { id }));
-	}
+  }
 
-	getAppliedOptions(id: T['id']): Observable<Dictionary<DaffCompositeProductItemOption>> {
+  getAppliedOptions(id: T['id']): Observable<Dictionary<DaffCompositeProductItemOption>> {
 	  return this.store.pipe(select(this.selectors.selectCompositeProductAppliedOptions, { id }));
-	}
+  }
 
-	isItemRequired(id: T['id'], item_id: DaffCompositeProductItem['id']) {
+  isItemRequired(id: T['id'], item_id: DaffCompositeProductItem['id']) {
 	  return this.store.pipe(select(this.selectors.selectIsCompositeProductItemRequired, { id, item_id }));
-	}
+  }
 
-	/**
-	 * Dispatches an action to the rxjs action stream.
-	 */
-	dispatch(action: Action) {
+  /**
+   * Dispatches an action to the rxjs action stream.
+   */
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

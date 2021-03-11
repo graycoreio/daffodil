@@ -32,7 +32,7 @@ import { getDaffCartItemEntitiesSelectors } from '../cart-item-entities/cart-ite
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
 > {
-	selectCartState: MemoizedSelector<Record<string, any>, DaffCartReducerState<T>>;
+  selectCartState: MemoizedSelector<Record<string, any>, DaffCartReducerState<T>>;
   selectCartValue: MemoizedSelector<Record<string, any>, T>;
 
   selectCartResolved: MemoizedSelector<Record<string, any>, DaffCartResolveState>;
@@ -166,10 +166,10 @@ export interface DaffCartStateMemoizedSelectors<
   /**
    * Selects whether there is a cart item operation in progress.
    */
-	selectItemLoading: MemoizedSelector<Record<string, any>, boolean>;
-	/**
-	 * Selects whether there is a cart item add operation in progress.
-	 */
+  selectItemLoading: MemoizedSelector<Record<string, any>, boolean>;
+  /**
+   * Selects whether there is a cart item add operation in progress.
+   */
   selectItemAdding: MemoizedSelector<Record<string, any>, boolean>;
   /**
    * Selects whether there is a cart item resolve operation in progress.
@@ -177,42 +177,42 @@ export interface DaffCartStateMemoizedSelectors<
    */
   selectItemResolving: MemoizedSelector<Record<string, any>, boolean>;
 
-	selectCartErrorsObject: MemoizedSelector<Record<string, any>, DaffCartReducerState<T>['errors']>;
-	selectCartErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectBillingAddressErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectShippingAddressErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectShippingInformationErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectShippingMethodsErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectPaymentErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectPaymentMethodsErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectCartErrorsObject: MemoizedSelector<Record<string, any>, DaffCartReducerState<T>['errors']>;
+  selectCartErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectBillingAddressErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectShippingAddressErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectShippingInformationErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectShippingMethodsErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectPaymentErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectPaymentMethodsErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
   selectCouponErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-	selectItemErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectItemErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
 
-	selectCartId: MemoizedSelector<Record<string, any>, T['id']>;
-	selectCartSubtotal: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartGrandTotal: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartSubtotalExcludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartSubtotalIncludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartSubtotalWithDiscountExcludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartSubtotalWithDiscountIncludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartTotalTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	/**
-	 * Selects the DaffCartTotals for cart discounts. These are discounts associated with coupon codes.
-	 */
-	selectCartDiscountTotals: MemoizedSelector<Record<string, any>, DaffCartTotal[]>;
-	selectCartShippingTotal: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
-	selectCartCoupons: MemoizedSelector<Record<string, any>, T['coupons']>;
-	/**
-	 * @deprecated use getDaffCartItemEntitiesSelectors().selectAllCartItems instead.
-	 */
-	selectCartItems: MemoizedSelector<Record<string, any>, T['items']>;
-	selectCartHasOutOfStockItems: MemoizedSelector<Record<string, any>, boolean>;
-	selectCartBillingAddress: MemoizedSelector<Record<string, any>, T['billing_address']>;
-	selectCartShippingAddress: MemoizedSelector<Record<string, any>, T['shipping_address']>;
-	selectCartPayment: MemoizedSelector<Record<string, any>, T['payment']>;
-	selectCartTotals: MemoizedSelector<Record<string, any>, T['totals']>;
-	selectCartShippingInformation: MemoizedSelector<Record<string, any>, T['shipping_information']>;
-	selectCartAvailableShippingMethods: MemoizedSelector<Record<string, any>, T['available_shipping_methods']>;
+  selectCartId: MemoizedSelector<Record<string, any>, T['id']>;
+  selectCartSubtotal: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartGrandTotal: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartSubtotalExcludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartSubtotalIncludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartSubtotalWithDiscountExcludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartSubtotalWithDiscountIncludingTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartTotalTax: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  /**
+   * Selects the DaffCartTotals for cart discounts. These are discounts associated with coupon codes.
+   */
+  selectCartDiscountTotals: MemoizedSelector<Record<string, any>, DaffCartTotal[]>;
+  selectCartShippingTotal: MemoizedSelector<Record<string, any>, DaffCartTotal['value']>;
+  selectCartCoupons: MemoizedSelector<Record<string, any>, T['coupons']>;
+  /**
+   * @deprecated use getDaffCartItemEntitiesSelectors().selectAllCartItems instead.
+   */
+  selectCartItems: MemoizedSelector<Record<string, any>, T['items']>;
+  selectCartHasOutOfStockItems: MemoizedSelector<Record<string, any>, boolean>;
+  selectCartBillingAddress: MemoizedSelector<Record<string, any>, T['billing_address']>;
+  selectCartShippingAddress: MemoizedSelector<Record<string, any>, T['shipping_address']>;
+  selectCartPayment: MemoizedSelector<Record<string, any>, T['payment']>;
+  selectCartTotals: MemoizedSelector<Record<string, any>, T['totals']>;
+  selectCartShippingInformation: MemoizedSelector<Record<string, any>, T['shipping_information']>;
+  selectCartAvailableShippingMethods: MemoizedSelector<Record<string, any>, T['available_shipping_methods']>;
   selectCartAvailablePaymentMethods: MemoizedSelector<Record<string, any>, T['available_payment_methods']>;
 
   selectIsCartEmpty: MemoizedSelector<Record<string, any>, boolean>;
@@ -220,7 +220,7 @@ export interface DaffCartStateMemoizedSelectors<
    * Selects whether the cart's shipping address equals the billing address.
    * Returns false if either address is null or undefined.
    */
-	selectIsBillingSameAsShipping: MemoizedSelector<Record<string, any>, boolean>;
+  selectIsBillingSameAsShipping: MemoizedSelector<Record<string, any>, boolean>;
 
   selectHasBillingAddress: MemoizedSelector<Record<string, any>, boolean>;
   selectHasShippingAddress: MemoizedSelector<Record<string, any>, boolean>;
@@ -231,8 +231,8 @@ export interface DaffCartStateMemoizedSelectors<
 
 const createCartSelectors = <
   T extends DaffCart = DaffCart,
-	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffStatefulCartItem = DaffStatefulCartItem
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(): DaffCartStateMemoizedSelectors<T> => {
   const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
   const { selectCartItemMutating } = getDaffCartItemEntitiesSelectors<T, V, U>();
@@ -686,8 +686,8 @@ export const getCartSelectors = (() => {
   let cache;
   return <
     T extends DaffCart = DaffCart,
-		V extends DaffCartOrderResult = DaffCartOrderResult,
-		U extends DaffStatefulCartItem = DaffStatefulCartItem
+    V extends DaffCartOrderResult = DaffCartOrderResult,
+    U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartStateMemoizedSelectors<T> => cache = cache
     ? cache
     : createCartSelectors<T, V, U>();

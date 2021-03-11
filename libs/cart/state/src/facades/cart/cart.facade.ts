@@ -130,10 +130,10 @@ export class DaffCartFacade<
   orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	private _selectCartItemConfiguredAttributes;
-	private _selectCartItemCompositeOptions;
-	private _selectIsCartItemOutOfStock;
-	private _selectCartItemState;
+  private _selectCartItemConfiguredAttributes;
+  private _selectCartItemCompositeOptions;
+  private _selectIsCartItemOutOfStock;
+  private _selectCartItemState;
   private _selectCartItemPrice;
   private _selectCartItemQuantity;
   private _selectCartItemRowTotal;

@@ -9,14 +9,14 @@ import { DaffCartShippingRate } from './cart-shipping-rate';
 import { DaffCartTotal } from './cart-total';
 
 export interface DaffCart {
-	id: ID;
-	/**
-	 * @deprecated use totals instead
-	 */
-	subtotal: number;
-	/**
-	 * @deprecated use totals instead
-	 */
+  id: ID;
+  /**
+   * @deprecated use totals instead
+   */
+  subtotal: number;
+  /**
+   * @deprecated use totals instead
+   */
   grand_total: number;
   coupons: DaffCartCoupon[];
   items?: DaffCartItem[];

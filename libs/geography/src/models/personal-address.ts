@@ -5,11 +5,11 @@ import { DaffAddress } from './address';
  * with a particular individual.
  */
 export interface DaffPersonalAddress extends DaffAddress {
-	prefix?: string;
-	suffix?: string;
-	firstname: string;
-	middlename?: string;
-	lastname: string;
-	telephone: string;
-	email?: string;
+  prefix?: string;
+  suffix?: string;
+  firstname: string;
+  middlename?: string;
+  lastname: string;
+  telephone: string;
+  email?: string;
 }

@@ -16,12 +16,12 @@
  * https://github.com/microsoft/TypeScript/issues/13965
  */
 export class DaffInheritableError extends Error {
-	__proto__: Error;
+  __proto__: Error;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  const trueProto = new.target.prototype;
 	  super(message);
 
 	  Object.setPrototypeOf(this, trueProto);
-	}
+  }
 }

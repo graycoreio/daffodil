@@ -19,11 +19,11 @@ import { DaffCategoryReducersState } from '../../reducers/category-reducers.inte
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
 export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCategory<V> = DaffCategory> {
-	selectCategoryEntitiesState: MemoizedSelector<Record<string, any>, EntityState<V>>;
-	selectCategoryIds: MemoizedSelector<Record<string, any>, EntityState<V>['ids']>;
-	selectCategoryEntities: MemoizedSelector<Record<string, any>, Dictionary<V>>;
-	selectAllCategories: MemoizedSelector<Record<string, any>, V[]>;
-	selectCategoryTotal: MemoizedSelector<Record<string, any>, number>;
+  selectCategoryEntitiesState: MemoizedSelector<Record<string, any>, EntityState<V>>;
+  selectCategoryIds: MemoizedSelector<Record<string, any>, EntityState<V>['ids']>;
+  selectCategoryEntities: MemoizedSelector<Record<string, any>, Dictionary<V>>;
+  selectAllCategories: MemoizedSelector<Record<string, any>, V[]>;
+  selectCategoryTotal: MemoizedSelector<Record<string, any>, number>;
 }
 
 const createCategoryFeatureSelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryEntitiesMemoizedSelectors<V> => {

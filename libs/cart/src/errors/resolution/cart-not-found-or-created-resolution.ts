@@ -10,9 +10,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * This happens when the cart cannot be found and a new cart cannot be created.
  */
 export class DaffCartNotFoundOrCreatedResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION;
+  public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

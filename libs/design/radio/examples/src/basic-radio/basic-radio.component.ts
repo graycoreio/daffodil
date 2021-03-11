@@ -14,12 +14,12 @@ import {
 })
 export class BasicRadioComponent implements OnInit {
 
-    radioGroup = new FormGroup({
-      race: new FormControl('Zerg'),
-    });
-    constructor() {
-    }
+  radioGroup = new FormGroup({
+    race: new FormControl('Zerg'),
+  });
+  constructor() {
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 }

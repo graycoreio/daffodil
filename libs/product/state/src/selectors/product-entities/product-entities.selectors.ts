@@ -13,18 +13,18 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	selectProductEntitiesState: MemoizedSelector<Record<string, any>, EntityState<T>>;
-	selectProductIds: MemoizedSelector<Record<string, any>, EntityState<T>['ids']>;
-	selectProductEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
-	selectAllProducts: MemoizedSelector<Record<string, any>, T[]>;
-	selectProductTotal: MemoizedSelector<Record<string, any>, number>;
-	selectProduct: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, T>;
-	selectProductPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductDiscountAmount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductDiscountPercent: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductHasDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
-	selectIsProductOutOfStock: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
+  selectProductEntitiesState: MemoizedSelector<Record<string, any>, EntityState<T>>;
+  selectProductIds: MemoizedSelector<Record<string, any>, EntityState<T>['ids']>;
+  selectProductEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
+  selectAllProducts: MemoizedSelector<Record<string, any>, T[]>;
+  selectProductTotal: MemoizedSelector<Record<string, any>, number>;
+  selectProduct: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, T>;
+  selectProductPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectProductDiscountAmount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectProductDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectProductDiscountPercent: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
+  selectProductHasDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
+  selectIsProductOutOfStock: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {

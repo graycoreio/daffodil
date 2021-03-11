@@ -7,8 +7,8 @@ import { DaffCategoryBreadcrumb } from './category-breadcrumb';
  */
 export interface DaffGenericCategory<T extends DaffGenericCategory<T>> {
   id: ID;
-	name: string;
-	description?: string;
+  name: string;
+  description?: string;
   children_count?: number;
   total_products?: number;
   children?: T[];

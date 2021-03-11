@@ -9,7 +9,7 @@ import { Constructor } from '../constructor/constructor';
  * In order to be colorable, our class must implement this property
  */
 export interface DaffColorable {
-    color: DaffPalette;
+  color: DaffPalette;
 }
 
 /**
@@ -21,18 +21,18 @@ export type DaffPalette =
     'theme' | 'theme-contrast' | undefined;
 
 enum DaffPaletteEnum {
-    PRIMARY = 'primary',
-    SECONDARY = 'secondary',
-    ACCENT = 'accent', //TODO: damienwebdev Deprecate accent
-    TERTIARY = 'tertiary',
-    BLACK = 'black',
-    WHITE = 'white',
-    THEME = 'theme',
-    THEMECONTRAST = 'theme-contrast'
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  ACCENT = 'accent', //TODO: damienwebdev Deprecate accent
+  TERTIARY = 'tertiary',
+  BLACK = 'black',
+  WHITE = 'white',
+  THEME = 'theme',
+  THEMECONTRAST = 'theme-contrast'
 }
 interface HasElementRef {
-    _elementRef: ElementRef;
-    _renderer: Renderer2;
+  _elementRef: ElementRef;
+  _renderer: Renderer2;
 }
 
 /**
@@ -45,38 +45,38 @@ interface HasElementRef {
 export function
 daffColorMixin<T extends Constructor<HasElementRef>>(Base: T, defaultColor?: DaffPalette) {
   return class extends Base {
-        //TODO move this back to private in Typescript 3.1
-        _color: DaffPalette;
+    //TODO move this back to private in Typescript 3.1
+    _color: DaffPalette;
 
-        get color(): DaffPalette{
-          return this._color;
-        }
-        set color(value: DaffPalette) {
-          //Handle the default color
-          const incomingColor = value || defaultColor;
+    get color(): DaffPalette{
+      return this._color;
+    }
+    set color(value: DaffPalette) {
+      //Handle the default color
+      const incomingColor = value || defaultColor;
 
-          if(incomingColor !== undefined && !colorInPalette(incomingColor)){
-            throw new TypeError(incomingColor + ' is not a valid color for the DaffPalette');
-          }
+      if(incomingColor !== undefined && !colorInPalette(incomingColor)){
+        throw new TypeError(incomingColor + ' is not a valid color for the DaffPalette');
+      }
 
-          if(incomingColor !== this._color){ //Only run the dom-render if a change occurs
-            //Remove the old color
-            if(this._color){
-              this._renderer.removeClass(this._elementRef.nativeElement, `daff-${this._color}`);
-            }
-
-            if(incomingColor){
-              this._renderer.addClass(this._elementRef.nativeElement, `daff-${incomingColor}`);
-            }
-
-            this._color = incomingColor;
-          }
+      if(incomingColor !== this._color){ //Only run the dom-render if a change occurs
+        //Remove the old color
+        if(this._color){
+          this._renderer.removeClass(this._elementRef.nativeElement, `daff-${this._color}`);
         }
 
-        constructor(...args: any[]) {
-          super(...args);
-          this.color = defaultColor;
+        if(incomingColor){
+          this._renderer.addClass(this._elementRef.nativeElement, `daff-${incomingColor}`);
         }
+
+        this._color = incomingColor;
+      }
+    }
+
+    constructor(...args: any[]) {
+      super(...args);
+      this.color = defaultColor;
+    }
   };
 }
 

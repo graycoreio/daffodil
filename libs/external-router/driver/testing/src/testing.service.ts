@@ -28,8 +28,8 @@ import {
 export class DaffExternalRouterTestingDriver
 implements DaffExternalRouterDriverInterface {
   constructor(
-		@Inject(DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG)
-		private testingConfiguration: DaffExternalRouterDriverTestingConfig = {},
+    @Inject(DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG)
+    private testingConfiguration: DaffExternalRouterDriverTestingConfig = {},
   ) {}
 
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {

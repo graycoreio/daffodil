@@ -8,7 +8,7 @@ import { DaffExternalRouteType } from '@daffodil/external-router';
  * and the type is a known type to your application, e.g. "CATEGORY".
  */
 export interface DaffExternalRouterDriverTestingConfig {
-	[url: string]: DaffExternalRouteType;
+  [url: string]: DaffExternalRouteType;
 }
 
 /**

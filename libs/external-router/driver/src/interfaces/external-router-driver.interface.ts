@@ -17,5 +17,5 @@ export const DaffExternalRouterDriver = new InjectionToken<
  * Daffodil.
  */
 export interface DaffExternalRouterDriverInterface {
-	resolve(url: string): Observable<DaffExternallyResolvableUrl>;
+  resolve(url: string): Observable<DaffExternallyResolvableUrl>;
 }
