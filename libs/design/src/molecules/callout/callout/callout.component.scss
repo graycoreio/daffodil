@@ -3,22 +3,29 @@
 .daff-callout {
 	$root: &;
 	display: block;
-	padding: 75px 25px;
+	padding: 72px 24px;
 
 	@include breakpoint(mobile) {
-		padding: 100px 50px;
+		padding: 96px 48px;
+	}
+
+	&__tagline {
+		@include subheading();
+		margin: 0 0 8px;
+		padding: 0;
 	}
 
 	&__title {
 		@include headline-lg();
 		margin: 0;
 		max-width: 1040px;
+		padding: 0;
 		width: 100%;
 	}
 
 	&__subtitle {
 		font-size: $medium-font-size;
-		margin: 15px 0 0;
+		margin: 16px 0 0;
 		max-width: 600px;
 		padding: 0;
 		width: 100%;
