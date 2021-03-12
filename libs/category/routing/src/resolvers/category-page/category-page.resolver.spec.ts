@@ -25,6 +25,7 @@ import {
   DaffCategoryPageLoadFailure,
   DaffCategoryReducersState,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffDefaultCategoryPageSize,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -33,7 +34,6 @@ import {
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryPageResolver } from './category-page.resolver';
-import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
 describe('DaffCategoryPageResolver', () => {
   const actions$: Observable<any> = null;
