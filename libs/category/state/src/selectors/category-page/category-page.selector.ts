@@ -29,7 +29,7 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectCategoryTotalPages: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['total_pages']>;
 	selectCategoryPageSize: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['page_size']>;
 	selectCategoryFilters: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['filters']>;
-	selectCategorySortOptions: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['sort_options']>;
+	selectCategorySortOptions: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['sort_options']['options']>;
 	selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['product_ids']>;
 	selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, DaffCategoryPageConfigurationState['total_products']>;
@@ -84,7 +84,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategorySortOptions = createSelector(
     selectCategoryPageConfigurationState,
-    (state: DaffCategoryPageConfigurationState) => state.sort_options,
+    (state: DaffCategoryPageConfigurationState) => state.sort_options.options,
   );
 
   const selectCategoryPageProductIds = createSelector(

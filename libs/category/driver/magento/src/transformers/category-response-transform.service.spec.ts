@@ -91,8 +91,8 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       };
 
       const sort_fields: MagentoSortFields = {
-        default: stubCategoryPageConfigurationState.sort_options[0].value,
-        options: stubCategoryPageConfigurationState.sort_options,
+        default: stubCategoryPageConfigurationState.sort_options.options[0].value,
+        options: stubCategoryPageConfigurationState.sort_options.options,
       };
 
       const products: MagentoProduct[] = new MagentoProductFactory().createMany(1);

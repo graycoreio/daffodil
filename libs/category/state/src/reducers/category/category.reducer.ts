@@ -24,7 +24,10 @@ const initialState: DaffCategoryReducerState = {
     page_size: null,
     total_pages: null,
     filters: [],
-    sort_options: [],
+    sort_options: {
+      default: null,
+      options: [],
+    },
     total_products: null,
     product_ids: [],
   },
@@ -120,6 +123,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
           total_pages: action.response.categoryPageConfigurationState.total_pages,
           total_products: action.response.categoryPageConfigurationState.total_products,
           product_ids: action.response.categoryPageConfigurationState.product_ids,
+          applied_sort_option: state.categoryPageConfigurationState.applied_sort_option || action.response.categoryPageConfigurationState.sort_options.default,
         },
       };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:

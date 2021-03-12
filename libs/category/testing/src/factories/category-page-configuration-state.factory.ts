@@ -29,23 +29,26 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
       },
     ],
   }];
-  sort_options = [
-    {
-      label: 'Position',
-      value: 'position',
-    },
-    {
-      label: 'Name',
-      value: 'name',
-    },
-    {
-      label: 'Price',
-      value: 'price',
-    },
-  ];
+  sort_options = {
+    default: 'position',
+    options: [
+      {
+        label: 'Position',
+        value: 'position',
+      },
+      {
+        label: 'Name',
+        value: 'name',
+      },
+      {
+        label: 'Price',
+        value: 'price',
+      },
+  	],
+  };
   total_pages = faker.random.number({ min: 1, max: 4 });
   filter_requests = [];
-  applied_sort_option = null;
+  applied_sort_option = 'position';
 	applied_sort_direction = null;
 	total_products = faker.random.number({ min: 1, max: 3 });
 	product_ids = [faker.random.number({ min: 1, max: 100 }).toString()];

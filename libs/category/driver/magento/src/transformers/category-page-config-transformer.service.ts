@@ -27,7 +27,10 @@ export class DaffMagentoCategoryPageConfigTransformerService {
       total_pages: categoryResponse.page_info.total_pages,
       total_products: categoryResponse.total_count,
       filters: categoryResponse.aggregates.map(this.transformAggregate.bind(this)),
-      sort_options: coerceDefaultSortOptionFirst(categoryResponse.sort_fields).options,
+      sort_options: {
+        default: categoryResponse.sort_fields.default,
+        options: coerceDefaultSortOptionFirst(categoryResponse.sort_fields).options,
+      },
       product_ids: categoryResponse.products.map(product => product.sku),
     };
   }
