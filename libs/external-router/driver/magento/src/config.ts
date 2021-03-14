@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export const daffExternalRouterDriverMagentoConfigurationDefault: DaffExternalRouterMagentoDriverConfig = {
-	version: '2.4.2',
+  version: '2.4.2',
 };
 
 /**
@@ -11,8 +11,8 @@ export const daffExternalRouterDriverMagentoConfigurationDefault: DaffExternalRo
 export const DAFF_EXTERNAL_ROUTER_DRIVER_MAGENTO_CONFIG = new InjectionToken<
 	DaffExternalRouterMagentoDriverConfig
 >('DAFF_EXTERNAL_ROUTER_DRIVER_MAGENTO_CONFIG', {
-	providedIn: 'root',
-	factory: () => daffExternalRouterDriverMagentoConfigurationDefault,
+  providedIn: 'root',
+  factory: () => daffExternalRouterDriverMagentoConfigurationDefault,
 });
 
 export interface DaffExternalRouterMagentoDriverConfig {

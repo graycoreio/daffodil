@@ -1,5 +1,8 @@
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
-import { MagentoResolution, MagentoUrlRewriteEntityTypeEnum } from '@daffodil/external-router/driver/magento';
+import {
+  MagentoResolution,
+  MagentoUrlRewriteEntityTypeEnum,
+} from '@daffodil/external-router/driver/magento';
 
 import { transformResolutionToResolvableUrl } from './resolution-to-resolvable-url';
 
@@ -18,7 +21,7 @@ describe('@daffodil/external-router/driver/magento | transformResolutionToResolv
     };
     resolvableUrl = {
       url,
-      type: MagentoUrlRewriteEntityTypeEnum.PRODUCT
+      type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
     };
   });
 
@@ -26,5 +29,5 @@ describe('@daffodil/external-router/driver/magento | transformResolutionToResolv
     const result = transformResolutionToResolvableUrl(resolution);
     expect(result.type).toEqual(MagentoUrlRewriteEntityTypeEnum.PRODUCT);
     expect(result.url).toEqual(url);
-  })
+  });
 });
