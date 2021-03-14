@@ -4,6 +4,7 @@ export { DaffCategoryStateModule } from './category-state.module';
 export {
   DaffCategoryStateConfiguration,
   DaffCategoryStateConfigurationToken,
+  defaultDaffCategoryStateConfiguration,
 } from './config/config';
 export { DaffDefaultCategoryPageSize } from './config/default-category-page-size.token';
 
