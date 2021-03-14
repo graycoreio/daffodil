@@ -19,13 +19,11 @@ import {
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 
 export function daffCategoryEntitiesReducer<
-  T extends DaffCategoryRequest = DaffCategoryRequest,
   V extends DaffGenericCategory<V> = DaffCategory,
-  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
 >(
   state = daffCategoryEntitiesAdapter<V>().getInitialState(),
-  action: DaffCategoryActions<T, V, U, W> | DaffCategoryPageActions<T, V, U, W>,
+  action: DaffCategoryActions<V,W> | DaffCategoryPageActions<V,W>,
 ): EntityState<V> {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:

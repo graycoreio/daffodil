@@ -36,9 +36,9 @@ describe('Category | Category Reducer', () => {
   let categoryFactory: DaffCategoryFactory;
   let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
   let category: DaffCategory;
-  let categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
+  let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
   let categoryId: string;
-  const initialState: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>> = {
+  const initialState: DaffCategoryReducerState = {
     categoryPageConfigurationState: {
       id: null,
       filter_requests: [],
@@ -470,7 +470,7 @@ describe('Category | Category Reducer', () => {
 
     const error = 'error message';
     let result;
-    let state: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+    let state: DaffCategoryReducerState;
 
     beforeEach(() => {
       state = {
@@ -515,7 +515,7 @@ describe('Category | Category Reducer', () => {
         applied_sort_direction: categoryPageConfigurationState.applied_sort_direction,
         current_page: categoryPageConfigurationState.current_page,
       };
-      const categoryLoadAction: DaffCategoryPageLoad<DaffCategoryRequest> = new DaffCategoryPageLoad(categoryRequest);
+      const categoryLoadAction: DaffCategoryPageLoad = new DaffCategoryPageLoad(categoryRequest);
 
       result = daffCategoryReducer(initialState, categoryLoadAction);
     });
@@ -540,8 +540,8 @@ describe('Category | Category Reducer', () => {
 
   describe('when CategoryLoadSuccessAction is triggered', () => {
 
-    let result: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
-    let state: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+    let result: DaffCategoryReducerState;
+    let state: DaffCategoryReducerState;
 
     beforeEach(() => {
       state = {
@@ -569,8 +569,8 @@ describe('Category | Category Reducer', () => {
 
   describe('when CategoryPageLoadSuccessAction is triggered', () => {
 
-    let result: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
-    let state: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+    let result: DaffCategoryReducerState;
+    let state: DaffCategoryReducerState;
 
     beforeEach(() => {
       state = {
@@ -600,7 +600,7 @@ describe('Category | Category Reducer', () => {
 
     const error = 'error message';
     let result;
-    let state: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+    let state: DaffCategoryReducerState;
 
     beforeEach(() => {
       state = {

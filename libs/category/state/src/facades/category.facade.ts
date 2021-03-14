@@ -29,12 +29,10 @@ import { DaffCategoryFacadeInterface } from './category-facade.interface';
   providedIn: 'root',
 })
 export class DaffCategoryFacade<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
 	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
-> implements DaffCategoryFacadeInterface<T, V, U, W> {
-	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
+> implements DaffCategoryFacadeInterface<V,W> {
+	private categorySelectors = getDaffCategorySelectors<V,W>();
 
 	/**
 	 * The currently selected category.
@@ -43,7 +41,7 @@ export class DaffCategoryFacade<
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<U>;
+  pageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
   /**
    * The current page of products for the selected category.
    */
@@ -128,7 +126,7 @@ export class DaffCategoryFacade<
 	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory, { id: categoryId }));
 	}
 
-	constructor(private store: Store<DaffCategoryReducersState<T, V, U>>) {
+	constructor(private store: Store<DaffCategoryReducersState<V>>) {
 	  this.category$ = this.store.pipe(select(this.categorySelectors.selectSelectedCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));

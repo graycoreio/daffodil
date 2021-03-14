@@ -28,10 +28,10 @@ export enum DaffCategoryPageActionTypes {
  *
  * @param request - DaffCategoryRequest object
  */
-export class DaffCategoryPageLoad<T extends DaffCategoryRequest = DaffCategoryRequest> implements Action {
+export class DaffCategoryPageLoad implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadAction;
 
-  constructor(public request: T) { }
+  constructor(public request: DaffCategoryRequest) { }
 }
 
 /**
@@ -40,14 +40,12 @@ export class DaffCategoryPageLoad<T extends DaffCategoryRequest = DaffCategoryRe
  * @param response - DaffGetCategoryResponse object
  */
 export class DaffCategoryPageLoadSuccess<
-  T extends DaffCategoryRequest = DaffCategoryRequest,
   V extends DaffGenericCategory<V> = DaffCategory,
-  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
   > implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse<T, V, U, W>) { }
+  constructor(public response: DaffGetCategoryResponse<V, W>) { }
 }
 
 /**
@@ -122,13 +120,11 @@ export class DaffCategoryPageToggleFilter implements Action {
 }
 
 export type DaffCategoryPageActions<
-  T extends DaffCategoryRequest = DaffCategoryRequest,
   U extends DaffGenericCategory<U> = DaffCategory,
-  V extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
   > =
-  | DaffCategoryPageLoad<T>
-  | DaffCategoryPageLoadSuccess<T, U, V, W>
+  | DaffCategoryPageLoad
+  | DaffCategoryPageLoadSuccess<U, W>
   | DaffCategoryPageLoadFailure
   | DaffCategoryPageChangePageSize
   | DaffCategoryPageChangeCurrentPage

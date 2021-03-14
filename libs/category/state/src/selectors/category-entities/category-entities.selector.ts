@@ -26,16 +26,16 @@ export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCate
 	selectCategoryTotal: MemoizedSelector<Record<string, any>, number>;
 }
 
-const createCategoryFeatureSelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryEntitiesMemoizedSelectors<V> => {
+const createCategoryFeatureSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryEntitiesMemoizedSelectors<V> => {
 
   const entitiesSelectors = daffCategoryEntitiesAdapter<V>().getSelectors();
-  const categoryFeatureState = getDaffCategoryFeatureSelector<T, V, U>().selectCategoryFeatureState;
+  const categoryFeatureState = getDaffCategoryFeatureSelector<V>().selectCategoryFeatureState;
   /**
    * Category Entities State
    */
   const selectCategoryEntitiesState = createSelector(
     categoryFeatureState,
-    (state: DaffCategoryReducersState<T, V, U>) => state.categoryEntities,
+    (state: DaffCategoryReducersState<V>) => state.categoryEntities,
   );
 
   const selectCategoryIds = createSelector(
@@ -69,7 +69,7 @@ const createCategoryFeatureSelectors = <T extends DaffCategoryRequest, V extends
 
 export const getDaffCategoryEntitiesSelectors = (() => {
   let cache;
-  return <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryEntitiesMemoizedSelectors<V> => cache = cache
+  return <V extends DaffGenericCategory<V>>(): DaffCategoryEntitiesMemoizedSelectors<V> => cache = cache
     ? cache
-    : createCategoryFeatureSelectors<T, V, U>();
+    : createCategoryFeatureSelectors<V>();
 })();

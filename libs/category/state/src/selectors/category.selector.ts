@@ -26,13 +26,11 @@ import {
 } from './category-page/category-page.selector';
 
 export interface DaffCategoryMemoizedSelectors<
-	T extends DaffCategoryRequest = DaffCategoryRequest,
 	V extends DaffGenericCategory<V> = DaffCategory,
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
 > extends
-	DaffCategoryFeatureMemoizedSelectors<T, V, U>,
-	DaffCategoryPageMemoizedSelectors<T, V, U>,
+	DaffCategoryFeatureMemoizedSelectors<V>,
+	DaffCategoryPageMemoizedSelectors<V>,
 	DaffCategoryEntitiesMemoizedSelectors<V> {
 	selectSelectedCategory: MemoizedSelector<Record<string, any>, V>;
 	selectCategoryPageProducts: MemoizedSelector<Record<string, any>, W[]>;
@@ -41,16 +39,16 @@ export interface DaffCategoryMemoizedSelectors<
 	selectTotalProductsByCategory: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
 }
 
-const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>(): DaffCategoryMemoizedSelectors<T, V, U, W> => {
+const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends DaffProduct>(): DaffCategoryMemoizedSelectors<V, W> => {
   const { selectProductEntities, selectAllProducts } = getDaffProductSelectors<W>();
 
   const {
     selectCategoryEntities,
-  } = getDaffCategoryEntitiesSelectors<T, V, U>();
+  } = getDaffCategoryEntitiesSelectors<V>();
   const {
     selectSelectedCategoryId,
     selectCategoryPageProductIds,
-  } = getDaffCategoryPageSelectors<T, V, U>();
+  } = getDaffCategoryPageSelectors<V>();
   /**
    * Combinatoric Category Selectors
    */
@@ -88,9 +86,9 @@ const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGe
   );
 
   return {
-    ...getDaffCategoryFeatureSelector<T, V, U>(),
-    ...getDaffCategoryEntitiesSelectors<T, V, U>(),
-    ...getDaffCategoryPageSelectors<T, V, U>(),
+    ...getDaffCategoryFeatureSelector<V>(),
+    ...getDaffCategoryEntitiesSelectors<V>(),
+    ...getDaffCategoryPageSelectors<V>(),
     selectSelectedCategory,
     selectCategoryPageProducts,
     selectCategory,
@@ -102,11 +100,9 @@ const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGe
 export const getDaffCategorySelectors = (() => {
   let cache;
   return <
-		T extends DaffCategoryRequest = DaffCategoryRequest,
 		V extends DaffGenericCategory<V> = DaffCategory,
-		U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 		W extends DaffProduct = DaffProduct
-	>(): DaffCategoryMemoizedSelectors<T, V, U, W> => cache = cache
+	>(): DaffCategoryMemoizedSelectors<V, W> => cache = cache
     ? cache
-    : createCategorySelectors<T, V, U, W>();
+    : createCategorySelectors<V,W>();
 })();

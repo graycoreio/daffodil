@@ -20,10 +20,10 @@ export enum DaffCategoryActionTypes {
  *
  * @param request - DaffCategoryRequest object
  */
-export class DaffCategoryLoad<T extends DaffCategoryRequest = DaffCategoryRequest> implements Action {
+export class DaffCategoryLoad implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public request: T) { }
+  constructor(public request: DaffCategoryRequest) { }
 }
 
 /**
@@ -32,14 +32,12 @@ export class DaffCategoryLoad<T extends DaffCategoryRequest = DaffCategoryReques
  * @param response - DaffGetCategoryResponse object
  */
 export class DaffCategoryLoadSuccess<
-  T extends DaffCategoryRequest = DaffCategoryRequest,
   V extends DaffGenericCategory<V> = DaffCategory,
-  U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
   > implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse<T, V, U, W>) { }
+  constructor(public response: DaffGetCategoryResponse<V, W>) { }
 }
 
 /**
@@ -54,11 +52,9 @@ export class DaffCategoryLoadFailure implements Action {
 }
 
 export type DaffCategoryActions<
-  T extends DaffCategoryRequest = DaffCategoryRequest,
   U extends DaffGenericCategory<U> = DaffCategory,
-  V extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
   W extends DaffProduct = DaffProduct
   > =
-  | DaffCategoryLoad<T>
-  | DaffCategoryLoadSuccess<T, U, V, W>
+  | DaffCategoryLoad
+  | DaffCategoryLoadSuccess<U, W>
   | DaffCategoryLoadFailure;

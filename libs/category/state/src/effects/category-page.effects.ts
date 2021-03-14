@@ -51,24 +51,22 @@ import { getDaffCategorySelectors } from '../selectors/category.selector';
 
 @Injectable()
 export class DaffCategoryPageEffects<
-	T extends DaffCategoryRequest,
 	V extends DaffGenericCategory<V>,
-	U extends DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct
 > {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, V, U, W>,
+    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V, W>,
     private store: Store<any>,
   ){}
 
-	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
+	private categorySelectors = getDaffCategorySelectors<V, W>();
 
   @Effect()
   loadCategoryPage$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageLoadAction),
-    switchMap((action: DaffCategoryPageLoad<T>) => {
+    switchMap((action: DaffCategoryPageLoad) => {
       daffCategoryValidateFilters(action.request.filter_requests);
       return this.processCategoryGetRequest(action.request);
     }),
@@ -82,7 +80,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangePageSize, T],
+			[DaffCategoryPageChangePageSize, DaffCategoryRequest],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       page_size: action.pageSize,
@@ -97,7 +95,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangeCurrentPage, T],
+			[DaffCategoryPageChangeCurrentPage, DaffCategoryRequest],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       current_page: action.currentPage,
@@ -112,7 +110,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangeFilters, T],
+			[DaffCategoryPageChangeFilters, DaffCategoryRequest],
     ) => {
       daffCategoryValidateFilters(action.filters);
       return this.processCategoryGetRequest({
@@ -130,7 +128,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryPageConfigurationState]:
-			[DaffCategoryPageToggleFilter, U],
+			[DaffCategoryPageToggleFilter, DaffCategoryPageConfigurationState],
     ) => {
       daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
       return this.processCategoryGetRequest({
@@ -147,7 +145,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryRequest]:
-			[DaffCategoryPageChangeSortingOption, T],
+			[DaffCategoryPageChangeSortingOption, DaffCategoryRequest],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       applied_sort_option: action.sort.option,
@@ -155,9 +153,9 @@ export class DaffCategoryPageEffects<
     })),
   );
 
-  private processCategoryGetRequest(payload: T) {
+  private processCategoryGetRequest(payload: DaffCategoryRequest) {
     return this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => [
+      switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),
       ]),

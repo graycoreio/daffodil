@@ -55,9 +55,9 @@ import { DaffCategoryPageEffects } from './category-page.effects';
 
 describe('DaffCategoryPageEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCategoryPageEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
+  let effects: DaffCategoryPageEffects<DaffCategory, DaffProduct>;
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
   let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let store: Store<any>;
@@ -66,7 +66,7 @@ describe('DaffCategoryPageEffects', () => {
   let categoryFactory: DaffCategoryFactory;
   let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
   let productFactory: DaffProductFactory;
-  let categoryLoadSuccessAction: DaffCategoryPageLoadSuccess<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
+  let categoryLoadSuccessAction: DaffCategoryPageLoadSuccess<DaffCategory, DaffProduct>;
   let productGridLoadSuccessAction: DaffProductGridLoadSuccess<DaffProduct>;
 
   beforeEach(() => {

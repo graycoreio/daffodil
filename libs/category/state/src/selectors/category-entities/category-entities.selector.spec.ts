@@ -27,12 +27,12 @@ import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>>;
+  let store: Store<DaffCategoryReducersState<DaffCategory>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
-  const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
+  const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategory>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

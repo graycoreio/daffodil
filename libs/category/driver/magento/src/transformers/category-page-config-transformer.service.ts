@@ -19,7 +19,7 @@ import { coerceDefaultSortOptionFirst } from './pure/sort-default-option-first';
 })
 export class DaffMagentoCategoryPageConfigTransformerService {
 
-  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageConfigurationState<DaffCategoryRequest> {
+  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageConfigurationState {
     return {
       id: String(categoryResponse.category.id),
       page_size: categoryResponse.page_info.page_size,

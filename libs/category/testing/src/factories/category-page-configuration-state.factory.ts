@@ -8,7 +8,7 @@ import {
 } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState<DaffCategoryRequest> {
+export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
   id = faker.random.uuid();
   page_size = 20;
   current_page = 1;
@@ -54,7 +54,7 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCategoryPageConfigurationStateFactory extends DaffModelFactory<DaffCategoryPageConfigurationState<DaffCategoryRequest>>{
+export class DaffCategoryPageConfigurationStateFactory extends DaffModelFactory<DaffCategoryPageConfigurationState>{
   constructor(){
     super(MockCategoryPageConfigurationState);
   }

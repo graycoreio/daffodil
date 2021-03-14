@@ -14,7 +14,7 @@ import {
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
 import { toggleCategoryFilter } from './toggle-filter/core';
 
-const initialState: DaffCategoryReducerState<any, any> = {
+const initialState: DaffCategoryReducerState = {
   categoryPageConfigurationState: {
     id: null,
     filter_requests: [],
@@ -33,7 +33,7 @@ const initialState: DaffCategoryReducerState<any, any> = {
   errors: [],
 };
 
-export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>(state = initialState, action: DaffCategoryActions<T, U, V, W> | DaffCategoryPageActions<T, U, V, W>): DaffCategoryReducerState<T, V> {
+export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(state = initialState, action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W>): DaffCategoryReducerState {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
       return {

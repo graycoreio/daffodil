@@ -31,12 +31,12 @@ import { getDaffCategoryPageSelectors } from './category-page.selector';
 
 describe('DaffCategoryPageSelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>>;
+  let store: Store<DaffCategoryReducersState<DaffCategory>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
-  const categorySelectors = getDaffCategoryPageSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  const categorySelectors = getDaffCategoryPageSelectors<DaffCategory>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -36,7 +36,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     id: '1',
   });
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationStateFactory.create();
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const stubProducts: DaffProduct[] = productFactory.createMany(4);
 
