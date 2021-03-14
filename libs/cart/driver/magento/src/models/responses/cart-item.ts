@@ -2,12 +2,25 @@ import {
   MagentoMoney,
   MagentoDiscount,
 } from '@daffodil/driver/magento';
-import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 export enum MagentoCartItemTypeEnum {
 	Simple = 'SimpleCartItem',
 	Bundle = 'BundleCartItem',
 	Configurable = 'ConfigurableCartItem'
+}
+
+export interface MagentoCartItemProduct {
+	__typename: string;
+  id: number;
+  name: string;
+  sku: string;
+  thumbnail: {
+    __typename: string;
+    label: string;
+    url: string;
+  };
+  stock_status: MagentoProductStockStatusEnum;
 }
 
 /**
@@ -19,10 +32,9 @@ export interface MagentoCartItem {
   prices: {
     price: MagentoMoney;
     row_total: MagentoMoney;
-    row_total_including_tax: MagentoMoney;
     discounts?: MagentoDiscount[];
   };
-  product: MagentoProduct;
+  product: MagentoCartItemProduct;
   quantity: number;
 }
 
