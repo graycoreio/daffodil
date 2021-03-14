@@ -9,14 +9,7 @@ import {
   DAFF_EXTERNAL_ROUTER_CONFIG,
 } from './config';
 import { TypeRoutePair } from './model/type-route-pair';
-import {
-  provideRouteResolvableByType,
-  provideRoutesResolvableByType,
-} from './token/type-resolvable-routes.token';
-
-export function mapRoutesToProvider(route: TypeRoutePair) {
-  return provideRouteResolvableByType(route.type, route.route);
-}
+import { provideRoutesResolvableByType } from './token/type-resolvable-routes.token';
 
 /**
  * The external `DaffExternalRouterModule` allows you to configure the
