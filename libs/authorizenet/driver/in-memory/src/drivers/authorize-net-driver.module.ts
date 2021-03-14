@@ -4,7 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffAuthorizeNetDriver } from '@daffodil/authorizenet/driver';
+import {
+  DaffAuthorizeNetDriver,
+  DaffAuthorizeNetPaymentId,
+} from '@daffodil/authorizenet/driver';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 
 import { DaffInMemoryAuthorizeNetService } from './authorize-net.service';
 
@@ -22,6 +26,10 @@ export class DaffAuthorizeNetInMemoryDriverModule {
         {
           provide: DaffAuthorizeNetDriver,
           useExisting: DaffInMemoryAuthorizeNetService,
+        },
+        {
+          provide: DaffAuthorizeNetPaymentId,
+          useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
         },
       ],
     };
