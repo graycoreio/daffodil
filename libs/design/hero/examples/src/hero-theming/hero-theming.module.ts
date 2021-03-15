@@ -1,22 +1,23 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { HeroThemingComponent } from './hero-theming.component';
 
 import { DaffHeroModule } from '@daffodil/design';
 
+import { HeroThemingComponent } from './hero-theming.component';
+
+
 @NgModule({
   declarations: [
-    HeroThemingComponent
+    HeroThemingComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffHeroModule
+    DaffHeroModule,
   ],
   exports: [
-    HeroThemingComponent
-  ]
+    HeroThemingComponent,
+  ],
 })
 export class HeroThemingModule { }

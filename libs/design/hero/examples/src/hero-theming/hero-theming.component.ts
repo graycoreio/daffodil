@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-
-import { DaffPalette } from '@daffodil/design';
 import { FormControl } from '@angular/forms';
 
+import { DaffPalette } from '@daffodil/design';
+
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'hero-theming',
-  templateUrl: './hero-theming.component.html'
+  templateUrl: './hero-theming.component.html',
 })
 export class HeroThemingComponent {
   color: DaffPalette = 'theme';

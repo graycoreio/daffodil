@@ -34,7 +34,7 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(DaffHeroBase, 'theme')
+const _daffHeroBase = daffColorMixin(DaffHeroBase, 'theme');
 
 @Component({
   selector: 'daff-hero',
