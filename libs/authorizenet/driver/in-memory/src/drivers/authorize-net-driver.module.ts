@@ -8,8 +8,8 @@ import {
   DaffAuthorizeNetDriver,
   DaffAuthorizeNetPaymentId,
 } from '@daffodil/authorizenet/driver';
-import { DAFF_IN_MEMORY_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 
+import { DAFF_IN_MEMORY_AUTHORIZE_NET_PAYMENT_ID } from './authorize-net-payment-id';
 import { DaffInMemoryAuthorizeNetService } from './authorize-net.service';
 
 
