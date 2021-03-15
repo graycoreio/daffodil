@@ -65,8 +65,6 @@ describe('daffColorMixin', () => {
 
     beforeEach(() => {
       instance.color = 'primary';
-      expect(instance.element.classList).toContain('daff-primary');
-
       instance.color = 'accent';
     });
 

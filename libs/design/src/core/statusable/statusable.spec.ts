@@ -58,8 +58,6 @@ describe('daffStatusMixin', () => {
 
     beforeEach(() => {
       instance.status = 'warn';
-      expect(instance.element.classList).toContain('daff-warn');
-
       instance.status = 'error';
     });
 

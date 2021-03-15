@@ -64,7 +64,7 @@ describe('DaffInputComponent', () => {
 
       component.onFocus();
 
-      expect(componentDE.nativeElement.focus).toHaveBeenCalled();
+      expect(componentDE.nativeElement.focus).toHaveBeenCalledWith();
     });
   });
 

@@ -41,7 +41,7 @@ describe('DaffSidebarComponent', () => {
 
       fixture.detectChanges();
 
-      expect(component.escapePressed.emit).toHaveBeenCalled();
+      expect(component.escapePressed.emit).toHaveBeenCalledWith();
     });
 
     it('should not emit `escapedPressed` if the event is not triggered ON the `daff-sidebar`', () => {
@@ -53,7 +53,7 @@ describe('DaffSidebarComponent', () => {
 
       fixture.detectChanges();
 
-      expect(component.escapePressed.emit).not.toHaveBeenCalled();
+      expect(component.escapePressed.emit).not.toHaveBeenCalledWith();
     });
   });
 });

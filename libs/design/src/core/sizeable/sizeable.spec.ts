@@ -1,8 +1,4 @@
-import {
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { ElementRef } from '@angular/core';
 
 import { daffSizeMixin } from './sizeable-mixin';
 
@@ -62,8 +58,6 @@ describe('daffSizeMixin', () => {
 
     beforeEach(() => {
       instance.size = 'sm';
-      expect(instance.element.classList).toContain('daff-sm');
-
       instance.size = 'md';
     });
 

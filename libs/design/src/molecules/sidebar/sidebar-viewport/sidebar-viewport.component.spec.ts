@@ -113,7 +113,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     });
 
     it('should call component.backdropClicked.emit', () => {
-      expect(component.backdropClicked.emit).toHaveBeenCalled();
+      expect(component.backdropClicked.emit).toHaveBeenCalledWith();
     });
   });
 

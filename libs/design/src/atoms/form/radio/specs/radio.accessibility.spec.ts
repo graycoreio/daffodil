@@ -13,7 +13,7 @@ import { DaffRadioModule } from '../radio.module';
 
 @Component({
   template: `
-    <daff-radio name='test' value='testValue' aria-labelledby="user" aria-label="test"></daff-radio>
+    <daff-radio name="test" value="testValue" aria-labelledby="user" aria-label="test"></daff-radio>
   `,
 })
 class RadioWrapperComponent { }
@@ -51,11 +51,11 @@ describe('DaffRadio Accessibility', () => {
     expect(component.role).toBe('radio');
   });
 
-  it('should have an aria-label of test', () => {
+  it('should take `label` as an input', () => {
     expect(component.label).toBe('test');
   });
 
-  it('should have a role of radio', () => {
+  it('should take `aria-labelledby` as an input', () => {
     expect(component.labelledby).toBe('user');
   });
 });
