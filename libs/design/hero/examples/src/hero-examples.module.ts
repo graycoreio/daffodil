@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { HeroThemingModule } from './hero-theming/hero-theming.module';
+import { NgModule } from '@angular/core';
 
 import { HERO_EXAMPLES } from './examples';
+import { HeroThemingModule } from './hero-theming/hero-theming.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    HeroThemingModule
+    HeroThemingModule,
   ],
   entryComponents: [
-    ...HERO_EXAMPLES
-  ]
+    ...HERO_EXAMPLES,
+  ],
 })
 export class HeroExamplesModule { }

@@ -1,12 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { DaffHeroTaglineDirective } from './hero-tagline.directive';
 
 @Component({
   template: `
     <h1 daffHeroTagline>Lorem Ipsum</h1>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -19,10 +27,10 @@ describe('DaffHeroTaglineDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         DaffHeroTaglineDirective,
-        WrapperComponent
-      ]
+        WrapperComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -41,4 +49,4 @@ describe('DaffHeroTaglineDirective', () => {
       expect(de.nativeElement.classList.contains('daff-hero__tagline')).toEqual(true);
     });
   });
-}); 
+});
