@@ -44,9 +44,6 @@ implements DaffExternalRouterDriverInterface {
           url,
         },
       })
-      .pipe(map(response => {
-        console.log(response);
-        return transformResolutionToResolvableUrl(response.data.urlResolver);
-      }));
+      .pipe(map(response => transformResolutionToResolvableUrl(response.data.urlResolver)));
   }
 }

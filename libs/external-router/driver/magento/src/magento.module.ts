@@ -13,11 +13,33 @@ import {
 } from './config';
 import { DaffExternalRouterMagentoDriver } from './magento.service';
 
+/**
+ * The module used to configure the {@link DaffExternalRouterDriver} for usage with Magento.
+ *
+ * ```ts
+ * @NgModule({
+ *   declarations: [],
+ *   imports: [
+ *     ...
+ *     DaffExternalRouterDriverMagentoModule.forRoot({
+ *       version: "2.4.1"
+ *     })
+ *   ],
+ * })
+ * export class AppModule{}
+ * ```
+ *
+ * Note that this package depends upon ApolloClient, as the Magento driver uses GraphQl to make it's API calls.
+ */
 @NgModule({
   declarations: [],
   imports: [CommonModule],
 })
 export class DaffExternalRouterDriverMagentoModule {
+
+  /**
+   * Configures the package for the root injector. `forRoot` optionally takes a {@link DaffExternalRouterMagentoDriverConfig}.
+   */
   static forRoot(config: DaffExternalRouterMagentoDriverConfig = daffExternalRouterDriverMagentoConfigurationDefault): ModuleWithProviders<DaffExternalRouterDriverMagentoModule> {
     return {
       ngModule: DaffExternalRouterDriverMagentoModule,
