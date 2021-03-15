@@ -1,6 +1,6 @@
 import {
-	Directive,
-	HostBinding,
+  Directive,
+  HostBinding,
 } from '@angular/core';
 
 @Directive({
@@ -9,8 +9,8 @@ import {
 
 export class DaffCalloutTaglineDirective {
 
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-callout__tagline') class = true;
 }
