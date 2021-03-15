@@ -26,9 +26,9 @@ import {
   DaffCategoryReducersState,
   DaffCategoryPageLoad,
   DaffCategoryPageActionTypes,
+  DaffDefaultCategoryPageSize,
 } from '@daffodil/category/state';
 
-import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
 /**
  * Resolves category data for category pages, and will only resolve the url after a category request succeeds or fails. This resolver expects a url
