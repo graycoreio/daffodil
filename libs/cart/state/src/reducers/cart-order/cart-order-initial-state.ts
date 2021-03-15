@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
 
@@ -8,6 +8,6 @@ export const daffCartOrderInitialState: DaffCartOrderReducerState<any> = {
     orderId: null,
     cartId: null,
   },
-  loading: DaffLoadingState.Complete,
+  loading: DaffState.Complete,
   errors: [],
 };

@@ -7,7 +7,7 @@ import {
   DaffCartOrderResult,
   DaffCart,
 } from '@daffodil/cart';
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 import {
@@ -60,11 +60,11 @@ const createCartOrderSelectors = <
   );
   const selectCartOrderLoading = createSelector(
     selectCartOrderState,
-    (state: DaffCartOrderReducerState<V>) => state.loading !== DaffLoadingState.Complete,
+    (state: DaffCartOrderReducerState<V>) => state.loading !== DaffState.Complete,
   );
   const selectCartOrderMutating = createSelector(
     selectCartOrderState,
-    (state: DaffCartOrderReducerState<V>) => state.loading === DaffLoadingState.Mutating,
+    (state: DaffCartOrderReducerState<V>) => state.loading === DaffState.Mutating,
   );
   const selectCartOrderErrors = createSelector(
     selectCartOrderState,

@@ -19,12 +19,14 @@ import {
   DaffCartItemListSuccess,
   DaffCartItemListFailure,
   initialState,
-  DaffCartItemLoadingState,
   DaffStatefulCartItem,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffStateError,
+  DaffState,
+} from '@daffodil/core/state';
 
 import { cartItemReducer } from './cart-item.reducer';
 
@@ -64,7 +66,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
 
@@ -78,7 +80,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the item section of state.errors to an empty array', () => {
@@ -96,7 +98,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -110,7 +112,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the item section of state.errors', () => {
@@ -127,7 +129,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
 
@@ -141,7 +143,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the item section of state.errors to an empty array', () => {
@@ -159,7 +161,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -173,7 +175,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the item section of state.errors', () => {
@@ -191,7 +193,7 @@ describe('Cart | Reducer | Cart Item', () => {
 
       const result = cartItemReducer(initialState, cartItemAddAction);
 
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Adding);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Adding);
     });
   });
 
@@ -205,7 +207,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
 
@@ -217,7 +219,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the item section of state.errors to an empty array', () => {
@@ -235,7 +237,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -251,7 +253,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the item section of state.errors', () => {
@@ -261,11 +263,11 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemLoadAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
-      const expectedState = {
+      const expectedState: DaffCartReducerState<DaffCart> = {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
       const cartItemLoad = new DaffCartItemLoad('itemId');
@@ -291,7 +293,7 @@ describe('Cart | Reducer | Cart Item', () => {
         cart,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
 
@@ -299,7 +301,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should set item from action.payload', () => {
@@ -321,7 +323,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -337,7 +339,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the item section of state.errors', () => {
@@ -347,11 +349,11 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemListAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
-      const expectedState = {
+      const expectedState: DaffCartReducerState<any> = {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
       const cartItemList = new DaffCartItemList();
@@ -371,7 +373,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
 
@@ -379,7 +381,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should set items from action.payload', () => {
@@ -401,7 +403,7 @@ describe('Cart | Reducer | Cart Item', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffCartItemLoadingState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -417,7 +419,7 @@ describe('Cart | Reducer | Cart Item', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the item section of state.errors', () => {

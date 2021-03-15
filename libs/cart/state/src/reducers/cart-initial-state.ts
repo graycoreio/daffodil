@@ -1,9 +1,8 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartOperationType } from './cart-operation-type.enum';
 import { DaffCartResolveState } from './cart-resolve/cart-resolve-state.enum';
 import { DaffCartReducerState } from './cart-state.interface';
-import { DaffCartItemLoadingState } from './loading/cart-loading.type';
 
 export const initialState: DaffCartReducerState<any> = Object.freeze({
   cart: {
@@ -21,15 +20,15 @@ export const initialState: DaffCartReducerState<any> = Object.freeze({
     available_payment_methods: [],
   },
   loading: {
-    [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-    [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
-    [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
-    [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
-    [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
-    [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Complete,
-    [DaffCartOperationType.Payment]: DaffLoadingState.Complete,
-    [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Complete,
-    [DaffCartOperationType.Coupon]: DaffLoadingState.Complete,
+    [DaffCartOperationType.Cart]: DaffState.Complete,
+    [DaffCartOperationType.Item]: DaffState.Complete,
+    [DaffCartOperationType.ShippingAddress]: DaffState.Complete,
+    [DaffCartOperationType.BillingAddress]: DaffState.Complete,
+    [DaffCartOperationType.ShippingInformation]: DaffState.Complete,
+    [DaffCartOperationType.ShippingMethods]: DaffState.Complete,
+    [DaffCartOperationType.Payment]: DaffState.Complete,
+    [DaffCartOperationType.PaymentMethods]: DaffState.Complete,
+    [DaffCartOperationType.Coupon]: DaffState.Complete,
   },
   errors: {
     [DaffCartOperationType.Cart]: [],

@@ -6,7 +6,7 @@ import {
   daffCartOrderInitialState as initialState,
 } from '@daffodil/cart/state';
 import {
-  DaffLoadingState,
+  DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
 
@@ -28,7 +28,7 @@ describe('Cart | Reducer | CartOrder', () => {
 
       const result = reducer(initialState, cartPlaceOrderAction);
 
-      expect(result.loading).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading).toEqual(DaffState.Mutating);
     });
   });
 
@@ -43,7 +43,7 @@ describe('Cart | Reducer | CartOrder', () => {
       cartId = 'cartId';
       state = {
         ...initialState,
-        loading: DaffLoadingState.Resolving,
+        loading: DaffState.Resolving,
       };
 
       const cartPlaceOrderSuccess = new DaffCartPlaceOrderSuccess({
@@ -60,7 +60,7 @@ describe('Cart | Reducer | CartOrder', () => {
     });
 
     it('should indicate that the place order operation is not in progress', () => {
-      expect(result.loading).toEqual(DaffLoadingState.Complete);
+      expect(result.loading).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in state', () => {
@@ -76,7 +76,7 @@ describe('Cart | Reducer | CartOrder', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: DaffLoadingState.Resolving,
+        loading: DaffState.Resolving,
         errors: [
           ...initialState.errors,
           error,
@@ -89,7 +89,7 @@ describe('Cart | Reducer | CartOrder', () => {
     });
 
     it('should indicate that the place order operation is not in progress', () => {
-      expect(result.loading).toEqual(DaffLoadingState.Complete);
+      expect(result.loading).toEqual(DaffState.Complete);
     });
 
     it('should add an error to state', () => {

@@ -1,5 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartShippingMethodsActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
@@ -24,7 +24,7 @@ export function cartShippingMethodsReducer<T extends DaffCart>(
     case DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadSuccessAction:
@@ -35,14 +35,14 @@ export function cartShippingMethodsReducer<T extends DaffCart>(
           ...state.cart,
           available_shipping_methods: action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     default:

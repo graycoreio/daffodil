@@ -1,4 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
+import { DaffState } from '@daffodil/core/state';
 import { DaffLoadingState } from '@daffodil/core/state';
 
 import { DaffCartCouponActionTypes } from '../../actions/public_api';
@@ -24,7 +25,7 @@ export function cartCouponReducer<T extends DaffCart>(
     case DaffCartCouponActionTypes.CartCouponListAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartCouponActionTypes.CartCouponApplyAction:
@@ -32,7 +33,7 @@ export function cartCouponReducer<T extends DaffCart>(
     case DaffCartCouponActionTypes.CartCouponRemoveAllAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Mutating),
+        ...setLoading(state.loading, DaffState.Mutating),
       };
 
     case DaffCartCouponActionTypes.CartCouponApplySuccessAction:
@@ -45,7 +46,7 @@ export function cartCouponReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartCouponActionTypes.CartCouponListSuccessAction:
@@ -56,7 +57,7 @@ export function cartCouponReducer<T extends DaffCart>(
           ...state.cart,
           coupons: action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartCouponActionTypes.CartCouponApplyFailureAction:
@@ -66,7 +67,7 @@ export function cartCouponReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     default:

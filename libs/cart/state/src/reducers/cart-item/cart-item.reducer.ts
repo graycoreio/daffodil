@@ -1,4 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartItemActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
@@ -9,10 +10,7 @@ import {
   initializeErrorAdder,
   initializeErrorResetter,
 } from '../errors/error-state-helpers';
-import {
-  DaffCartItemLoadingState,
-  initializeLoadingSetter,
-} from '../loading/cart-loading.type';
+import { initializeLoadingSetter } from '../loading/cart-loading.type';
 
 const addError = initializeErrorAdder(DaffCartOperationType.Item);
 const resetErrors = initializeErrorResetter(DaffCartOperationType.Item);
@@ -27,13 +25,13 @@ export function cartItemReducer<T extends DaffCart>(
     case DaffCartItemActionTypes.CartItemLoadAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffCartItemLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartItemActionTypes.CartItemAddAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffCartItemLoadingState.Adding),
+        ...setLoading(state.loading, DaffState.Adding),
       };
 
     case DaffCartItemActionTypes.CartItemListSuccessAction:
@@ -44,7 +42,7 @@ export function cartItemReducer<T extends DaffCart>(
           ...state.cart,
           items: action.payload,
         },
-        ...setLoading(state.loading, DaffCartItemLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
@@ -59,7 +57,7 @@ export function cartItemReducer<T extends DaffCart>(
               : item,
           ),
         },
-        ...setLoading(state.loading, DaffCartItemLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
@@ -72,7 +70,7 @@ export function cartItemReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffCartItemLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartItemActionTypes.CartItemListFailureAction:
@@ -83,7 +81,7 @@ export function cartItemReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffCartItemLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     default:

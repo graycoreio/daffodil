@@ -1,5 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartShippingInformationActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
@@ -24,14 +24,14 @@ export function cartShippingInformationReducer<T extends DaffCart>(
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Resolving),
+        ...setLoading(state.loading, DaffState.Resolving),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction:
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffLoadingState.Mutating),
+        ...setLoading(state.loading, DaffState.Mutating),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction:
@@ -43,7 +43,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
           // TODO: remove workaround
           shipping_information: { ...action.payload, address_id: null },
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction:
@@ -57,7 +57,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
           shipping_information: null,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction:
@@ -66,7 +66,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffLoadingState.Complete),
+        ...setLoading(state.loading, DaffState.Complete),
       };
 
     default:

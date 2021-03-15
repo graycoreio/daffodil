@@ -15,7 +15,7 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
-  DaffLoadingState,
+  DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
 
@@ -47,7 +47,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
       const result = cartBillingAddressReducer(initialState, cartListLoadAction);
 
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Resolving);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Resolving);
     });
   });
 
@@ -60,7 +60,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.BillingAddress]: DaffState.Resolving,
         },
       };
 
@@ -70,7 +70,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should set billing_address from action.payload', () => {
@@ -92,7 +92,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.BillingAddress]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -106,7 +106,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the billing address section of state.errors', () => {
@@ -120,7 +120,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
       const result = cartBillingAddressReducer(initialState, cartBillingAddressUpdateAction);
 
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Mutating);
     });
   });
 
@@ -134,7 +134,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.BillingAddress]: DaffState.Resolving,
         },
       };
 
@@ -146,7 +146,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the billing address section of state.errors to an empty array', () => {
@@ -164,7 +164,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.BillingAddress]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -180,7 +180,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the billing address section of state.errors', () => {
@@ -194,7 +194,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
       const result = cartBillingAddressReducer(initialState, cartAddressUpdateAction);
 
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Mutating);
     });
   });
 
@@ -208,7 +208,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.BillingAddress]: DaffState.Resolving,
         },
       };
 
@@ -220,7 +220,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should reset the errors in the billing address section of state.errors to an empty array', () => {
@@ -238,7 +238,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.BillingAddress]: DaffLoadingState.Resolving,
+          [DaffCartOperationType.BillingAddress]: DaffState.Resolving,
         },
         errors: {
           ...initialState.errors,
@@ -254,7 +254,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffLoadingState.Complete);
+      expect(result.loading[DaffCartOperationType.BillingAddress]).toEqual(DaffState.Complete);
     });
 
     it('should add an error to the billing address section of state.errors', () => {

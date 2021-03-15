@@ -52,7 +52,7 @@ import {
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 import {
-  DaffLoadingState,
+  DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
 
@@ -179,15 +179,15 @@ describe('Cart | Selector | Cart', () => {
       shipping_information: shippingMethodFactory.create(),
     });
     loading = {
-      [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
-      [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
-      [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
-      [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
-      [DaffCartOperationType.ShippingMethods]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Payment]: DaffLoadingState.Complete,
-      [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Coupon]: DaffLoadingState.Complete,
+      [DaffCartOperationType.Cart]: DaffState.Complete,
+      [DaffCartOperationType.Item]: DaffState.Complete,
+      [DaffCartOperationType.ShippingAddress]: DaffState.Complete,
+      [DaffCartOperationType.BillingAddress]: DaffState.Complete,
+      [DaffCartOperationType.ShippingInformation]: DaffState.Complete,
+      [DaffCartOperationType.ShippingMethods]: DaffState.Complete,
+      [DaffCartOperationType.Payment]: DaffState.Complete,
+      [DaffCartOperationType.PaymentMethods]: DaffState.Complete,
+      [DaffCartOperationType.Coupon]: DaffState.Complete,
     };
     errors = {
       [DaffCartOperationType.Cart]: [],
