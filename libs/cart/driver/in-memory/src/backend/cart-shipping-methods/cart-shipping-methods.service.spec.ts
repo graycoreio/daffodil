@@ -76,7 +76,7 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
         mockCart.shipping_address = cartAddressFactory.create();
       });
 
-      describe('and when the cart already has available shipping methods', () => {
+      describe('and the cart already has available shipping methods', () => {
         beforeEach(() => {
           mockCart.available_shipping_methods = [mockCartShippingMethod];
 
@@ -88,7 +88,7 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
         });
       });
 
-      describe('and when the cart has no available shipping methods', () => {
+      describe('and the cart has no available shipping methods', () => {
         beforeEach(() => {
           mockCart.available_shipping_methods = [];
 
