@@ -1,8 +1,8 @@
 import { gql } from 'apollo-angular';
 
 /**
- * This query only exists because products and their associated aggregations/filter cannot
- * be retrieved through a category call.
+ * This query retrieves a URL resolution from Magento and informs you about
+ * what type of route the URL is.
  */
 export const MagentoResolveUrlv242 = gql`
 	query MagentoResolveUrlv242($url: String!) {
