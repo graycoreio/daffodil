@@ -11,7 +11,7 @@ import {
   MagentoUrlRewriteEntityTypeEnum,
 } from '@daffodil/external-router/driver/magento';
 
-import { MagentoResolveUrl } from './graphql/queries/resolve-url';
+import { MagentoResolveUrlv241 } from './graphql/queries/resolve-url-v2.4.1';
 import { DaffExternalRouterDriverMagentoModule } from './magento.module';
 import { DaffExternalRouterMagentoDriver } from './magento.service';
 
@@ -66,7 +66,7 @@ describe('@daffodil/external-router/driver/magento | DaffExternalRouterMagentoDr
         done();
       });
 
-      const op = controller.expectOne(MagentoResolveUrl);
+      const op = controller.expectOne(MagentoResolveUrlv241);
 
       op.flush({
         data: resolution,
