@@ -1,5 +1,5 @@
-import { CalloutThemingComponent } from "./callout-theming/callout-theming.component";
+import { CalloutThemingComponent } from './callout-theming/callout-theming.component';
 
 export const CALLOUT_EXAMPLES = [
-  CalloutThemingComponent
+  CalloutThemingComponent,
 ];

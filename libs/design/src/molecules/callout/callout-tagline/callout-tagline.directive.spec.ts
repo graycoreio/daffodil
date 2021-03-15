@@ -14,7 +14,7 @@ import { DaffCalloutTaglineDirective } from './callout-tagline.directive';
 @Component({
   template: `
     <h3 daffCalloutTagline>Lorem Ipsum</h3>
-  `
+  `,
 })
 class WrapperComponent {}
 
@@ -30,7 +30,7 @@ describe('DaffCalloutTaglineDirective', () => {
         WrapperComponent,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -40,7 +40,7 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase, 'theme');
   templateUrl: './callout.component.html',
   styleUrls: ['./callout.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {
   @Input() color: DaffPalette;
@@ -52,23 +52,25 @@ export class DaffCalloutComponent extends _daffCalloutBase implements DaffColora
   }
 
   /**
-	 * @docs-private
-	 */
+   * @docs-private
+   */
 	@HostBinding('class.daff-callout') class = true;
 
-  /**
+	/**
 	 * Will be deprecated in v1.0.0
+	 *
 	 * @docs-private
 	 */
 	@HostBinding('class.daff-callout--centered') get centered() {
-    return this.layout === DaffCalloutLayoutEnum.Centered;
-  }
+	  return this.layout === DaffCalloutLayoutEnum.Centered;
+	}
 
-  /**
+	/**
 	 * Will be deprecated in v1.0.0
+	 *
 	 * @docs-private
 	 */
 	@HostBinding('class.daff-callout--compact') get compact() {
-    return this.size === DaffCalloutSizeEnum.Compact;
-  }
+	  return this.size === DaffCalloutSizeEnum.Compact;
+	}
 }
