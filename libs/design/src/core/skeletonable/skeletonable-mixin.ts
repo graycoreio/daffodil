@@ -11,9 +11,9 @@ interface HasElementRef {
 }
 
 export function
-	daffSkeletonableMixin<T extends Constructor<HasElementRef>>(Base: T, defaultSkeleton: boolean = false) {
+daffSkeletonableMixin<T extends Constructor<HasElementRef>>(Base: T, defaultSkeleton: boolean = false) {
   return class extends Base {
-		// TODO move this back to private in Typescript 3.1
+    // TODO move this back to private in Typescript 3.1
     _skeleton: boolean;
 
     get skeleton(): boolean {
@@ -28,9 +28,11 @@ export function
         return;
       }
 
-      incomingSkeleton
-        ? this._renderer.addClass(this._elementRef.nativeElement, `daff-skeleton`)
-        : this._renderer.removeClass(this._elementRef.nativeElement, `daff-skeleton`);
+      if (incomingSkeleton) {
+        this._renderer.addClass(this._elementRef.nativeElement, `daff-skeleton`);
+      } else {
+        this._renderer.removeClass(this._elementRef.nativeElement, `daff-skeleton`);
+      }
 
       this._skeleton = incomingSkeleton;
     }

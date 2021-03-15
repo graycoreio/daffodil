@@ -7,10 +7,10 @@ class TestingClass {
 
   _elementRef = new ElementRef<HTMLElement>(this.element);
   _renderer: any = {
-    addClass(el: HTMLElement, className: string) {
+    addClass: (el: HTMLElement, className: string) => {
       el.classList.add(className);
     },
-    removeClass(el: HTMLElement, className: string) {
+    removeClass: (el: HTMLElement, className: string) => {
       el.classList.remove(className);
     },
   };
