@@ -5,6 +5,7 @@ import {
   DaffCartPaymentMethod,
   DaffCartAddress,
 } from '@daffodil/cart';
+import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartPaymentFactory,
@@ -27,11 +28,16 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
   let baseUrl;
   let cartUrl;
   let collection: DaffCart[];
+  let extraAttributes;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartPaymentService,
+        {
+          provide: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+          useValue: () => extraAttributes,
+        },
       ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartPaymentService);
@@ -43,6 +49,9 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();
     mockCartAddress = cartAddressFactory.create();
+    extraAttributes = {
+      extraField: 'extraField',
+    };
     mockCart.billing_address = mockCartAddress;
     mockCart.payment = mockCartPayment;
     collection = [mockCart];
@@ -96,6 +105,10 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
     it('should return a cart with the updated payment', () => {
       expect(result.body.payment).toEqual(newPayment);
     });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
+    });
   });
 
   describe('processing an update payment with billing request', () => {
@@ -116,6 +129,10 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
       expect(result.body.payment).toEqual(newPayment);
       expect(result.body.billing_address).toEqual(mockCartAddress);
     });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
+    });
   });
 
   describe('processing a remove payment request', () => {
@@ -129,6 +146,10 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
 
     it('should return a cart with no payment', () => {
       expect(result.body.payment).toBeFalsy();
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 });

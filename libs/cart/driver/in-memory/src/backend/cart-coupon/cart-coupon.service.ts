@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import {
   STATUS,
   RequestInfo,
@@ -10,10 +13,19 @@ import {
 } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+import {
+  DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+  DaffCartInMemoryExtraAttributesHook,
+} from '../../injection-tokens/public_api';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCartCouponService implements DaffInMemoryDataServiceInterface {
+  constructor(
+    @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
+  ) {}
+
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.listCoupons(reqInfo),
@@ -67,7 +79,10 @@ export class DaffInMemoryBackendCartCouponService implements DaffInMemoryDataSer
 
     cart.coupons.push(coupon);
 
-    return cart;
+    return {
+      ...cart,
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
+    };
   }
 
   private removeCoupon(reqInfo: RequestInfo, couponCode: DaffCartCoupon['code']): DaffCart {
@@ -75,7 +90,10 @@ export class DaffInMemoryBackendCartCouponService implements DaffInMemoryDataSer
 
     cart.coupons = cart.coupons.filter(({ code }) => code !== couponCode);
 
-    return cart;
+    return {
+      ...cart,
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
+    };
   }
 
   private removeAllCoupons(reqInfo: RequestInfo): DaffCart {
@@ -83,6 +101,9 @@ export class DaffInMemoryBackendCartCouponService implements DaffInMemoryDataSer
 
     cart.coupons = [];
 
-    return cart;
+    return {
+      ...cart,
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
+    };
   }
 }

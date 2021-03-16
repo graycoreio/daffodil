@@ -4,6 +4,7 @@ import {
   DaffCart,
   DaffCartCoupon,
 } from '@daffodil/cart';
+import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartCouponFactory,
@@ -23,11 +24,16 @@ describe('DaffInMemoryBackendCartCouponService', () => {
   let baseUrl;
   let cartUrl;
   let collection: DaffCart[];
+  let extraAttributes;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartCouponService,
+        {
+          provide: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+          useValue: () => extraAttributes,
+        },
       ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartCouponService);
@@ -37,6 +43,9 @@ describe('DaffInMemoryBackendCartCouponService', () => {
 
     mockCart = cartFactory.create();
     mockCartCoupon = cartCouponFactory.create();
+    extraAttributes = {
+      extraField: 'extraField',
+    };
     mockCart.coupons = [mockCartCoupon];
     collection = [mockCart];
     cartId = mockCart.id;
@@ -82,11 +91,15 @@ describe('DaffInMemoryBackendCartCouponService', () => {
       mockCart.coupons = [];
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = mockCartCoupon;
+      result = service.post(reqInfoStub);
     });
 
     it('should return a cart with the added item', () => {
-      result = service.post(reqInfoStub);
       expect(result.body.coupons).toContain(mockCartCoupon);
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 
@@ -104,6 +117,10 @@ describe('DaffInMemoryBackendCartCouponService', () => {
     it('should remove the coupon from the cart', () => {
       expect(result.body.coupons.find(({ code }) => couponCode === code)).toBeFalsy();
     });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
+    });
   });
 
   describe('processing a remove all coupons request', () => {
@@ -117,6 +134,10 @@ describe('DaffInMemoryBackendCartCouponService', () => {
 
     it('should return a cart with no coupons', () => {
       expect(result.body.coupons).toEqual([]);
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 });

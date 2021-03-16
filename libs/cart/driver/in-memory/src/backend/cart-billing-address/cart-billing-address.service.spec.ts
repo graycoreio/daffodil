@@ -4,6 +4,7 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
+import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartAddressFactory,
@@ -23,11 +24,16 @@ describe('DaffInMemoryBackendCartBillingAddressService', () => {
   let baseUrl;
   let cartUrl;
   let collection: DaffCart[];
+  let extraAttributes;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartBillingAddressService,
+        {
+          provide: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+          useValue: () => extraAttributes,
+        },
       ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartBillingAddressService);
@@ -37,6 +43,9 @@ describe('DaffInMemoryBackendCartBillingAddressService', () => {
 
     mockCart = cartFactory.create();
     mockCartAddress = cartAddressFactory.create();
+    extraAttributes = {
+      extraField: 'extraField',
+    };
     mockCart.billing_address = mockCartAddress;
     collection = [mockCart];
     cartId = mockCart.id;
@@ -90,6 +99,10 @@ describe('DaffInMemoryBackendCartBillingAddressService', () => {
 
     it('should return a cart with the updated street', () => {
       expect(result.body.billing_address.street).toEqual(updatedStreet);
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 });

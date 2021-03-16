@@ -4,6 +4,7 @@ import {
   DaffCart,
   DaffCartShippingInformation,
 } from '@daffodil/cart';
+import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
@@ -23,11 +24,16 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
   let baseUrl;
   let cartUrl;
   let collection: DaffCart[];
+  let extraAttributes;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartShippingInformationService,
+        {
+          provide: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+          useValue: () => extraAttributes,
+        },
       ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartShippingInformationService);
@@ -39,6 +45,9 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     mockCartShippingInformation = {
       ...cartShippingInformationFactory.create(),
       address_id: null,
+    };
+    extraAttributes = {
+      extraField: 'extraField',
     };
     mockCart.shipping_information = mockCartShippingInformation;
     collection = [mockCart];
@@ -95,6 +104,10 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     it('should return a cart with the updated shipping information', () => {
       expect(result.body.shipping_information).toEqual(newShippingInformation);
     });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
+    });
   });
 
   describe('processing a remove shipping information request', () => {
@@ -108,6 +121,10 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
 
     it('should return a cart with no shipping information', () => {
       expect(result.body.shipping_information).toBeFalsy();
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 });
