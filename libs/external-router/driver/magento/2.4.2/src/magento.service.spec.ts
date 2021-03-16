@@ -7,15 +7,13 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import {
-  MagentoResolution,
   MagentoUrlRewriteEntityTypeEnum,
+  MagentoUrlResolver,
 } from '@daffodil/external-router/driver/magento';
 
-import { MagentoResolveUrlv241 } from './graphql/queries/resolve-url-v2.4.1';
 import { MagentoResolveUrlv242 } from './graphql/queries/resolve-url-v2.4.2';
 import { DaffExternalRouterDriverMagentoModule } from './magento.module';
 import { DaffExternalRouterMagentoDriver } from './magento.service';
-import { MagentoUrlResolver } from './model/magento-url-resolver';
 
 describe('@daffodil/external-router/driver/magento | DaffExternalRouterMagentoDriver', () => {
   let service: DaffExternalRouterMagentoDriver;
@@ -25,12 +23,10 @@ describe('@daffodil/external-router/driver/magento | DaffExternalRouterMagentoDr
   let resolution: MagentoUrlResolver;
   let resolvableUrl: DaffExternallyResolvableUrl;
 
-  const setupTest = (version: string) => {
+  const setupTest = () => {
     TestBed.configureTestingModule({
       imports: [
-        DaffExternalRouterDriverMagentoModule.forRoot({
-          version,
-        }),
+        DaffExternalRouterDriverMagentoModule.forRoot(),
         ApolloTestingModule,
       ],
     });
@@ -58,29 +54,13 @@ describe('@daffodil/external-router/driver/magento | DaffExternalRouterMagentoDr
   };
 
   it('should be created', () => {
-    setupTest('2.4.2');
+    setupTest();
     expect(service).toBeTruthy();
   });
 
   describe('resolve', () => {
-    it('should return a resolvable url when using v2.4.1', done => {
-      setupTest('2.4.1');
-
-      service.resolve(url).subscribe(result => {
-        expect(result.url).toEqual(url);
-        expect(result.type).toEqual(MagentoUrlRewriteEntityTypeEnum.PRODUCT);
-        done();
-      });
-
-      const op = controller.expectOne(MagentoResolveUrlv241);
-
-      op.flush({
-        data: resolution,
-      });
-    });
-
     it('should return a resolvable url when using the v2.4.2', done => {
-      setupTest('2.4.2');
+      setupTest();
 
       service.resolve(url).subscribe(result => {
         console.log(result);
