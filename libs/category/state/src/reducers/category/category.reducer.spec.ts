@@ -615,12 +615,15 @@ describe('Category | Category Reducer', () => {
 
     describe('when an applied_sort_option is set in state', () => {
 
+      afterEach(() => {
+        state.categoryPageConfigurationState.applied_sort_option = null;
+      });
+
       it('sets the categoryPageConfigurationState with the applied_sort_option', () => {
         const selectedOption = 'selectedOption';
         state.categoryPageConfigurationState.applied_sort_option = selectedOption;
         const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: null });
         result = daffCategoryReducer(state, categoryLoadSuccess);
-
         expect(result.categoryPageConfigurationState).toEqual({
           ...categoryPageConfigurationState,
           applied_sort_option: selectedOption,
