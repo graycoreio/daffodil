@@ -8,12 +8,17 @@ import {
   DaffCart,
   DaffCartShippingRate,
 } from '@daffodil/cart';
+import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCartShippingMethodsService implements DaffInMemoryDataServiceInterface {
+  constructor(
+    private shippingMethodFactory: DaffCartShippingRateFactory,
+  ) {}
+
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.listShippingMethods(reqInfo),
@@ -26,6 +31,16 @@ export class DaffInMemoryBackendCartShippingMethodsService implements DaffInMemo
   }
 
   private listShippingMethods(reqInfo): DaffCartShippingRate[] {
-    return this.getCart(reqInfo).available_shipping_methods;
+    const cart  = this.getCart(reqInfo);
+
+    if (cart.shipping_address) {
+      if (cart.available_shipping_methods?.length === 0) {
+        cart.available_shipping_methods = this.shippingMethodFactory.createMany(3);
+      }
+    } else {
+      cart.available_shipping_methods = [];
+    }
+
+    return cart.available_shipping_methods;
   }
 }

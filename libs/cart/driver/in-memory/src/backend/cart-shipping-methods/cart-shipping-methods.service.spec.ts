@@ -7,6 +7,7 @@ import {
 import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
+  DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods.service';
@@ -15,6 +16,7 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
   let service: DaffInMemoryBackendCartShippingMethodsService;
   let cartFactory: DaffCartFactory;
   let cartShippingFactory: DaffCartShippingRateFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
 
   let mockCart: DaffCart;
   let mockCartShippingMethod: DaffCartShippingRate;
@@ -34,6 +36,7 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
 
     cartFactory = TestBed.inject(DaffCartFactory);
     cartShippingFactory = TestBed.inject(DaffCartShippingRateFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartShippingMethod = cartShippingFactory.create();
@@ -66,12 +69,49 @@ describe('DaffInMemoryBackendCartShippingMethodsService', () => {
 
     beforeEach(() => {
       reqInfoStub.url = cartUrl;
-
-      result = service.get(reqInfoStub);
     });
 
-    it('should return the cart\'s available shipping methods', () => {
-      expect(result.body).toEqual([mockCartShippingMethod]);
+    describe('when the cart has a shipping address', () => {
+      beforeEach(() => {
+        mockCart.shipping_address = cartAddressFactory.create();
+      });
+
+      describe('and the cart already has available shipping methods', () => {
+        beforeEach(() => {
+          mockCart.available_shipping_methods = [mockCartShippingMethod];
+
+          result = service.get(reqInfoStub);
+        });
+
+        it('should return the cart\'s available shipping methods', () => {
+          expect(result.body).toEqual([mockCartShippingMethod]);
+        });
+      });
+
+      describe('and the cart has no available shipping methods', () => {
+        beforeEach(() => {
+          mockCart.available_shipping_methods = [];
+
+          result = service.get(reqInfoStub);
+        });
+
+        it('should initialize and return the cart\'s available shipping methods', () => {
+          expect(result.body.length).toBeGreaterThan(0);
+          expect(mockCart.available_shipping_methods.length).toBeGreaterThan(0);
+        });
+      });
+    });
+
+    describe('when the cart does not have a shipping address', () => {
+      beforeEach(() => {
+        mockCart.shipping_address = null;
+
+        result = service.get(reqInfoStub);
+      });
+
+      it('should return an empty array', () => {
+        expect(result.body).toEqual([]);
+      });
     });
   });
 });
