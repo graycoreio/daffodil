@@ -12,7 +12,7 @@ module.exports = {
         createDefaultProgram: true
       },
       extends: [
-        './tools/eslint/config',
+        './tools/eslint/config/index.js',
       ],
       rules: {
         'import/order': [
