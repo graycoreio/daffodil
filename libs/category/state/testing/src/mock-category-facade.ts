@@ -6,11 +6,13 @@ import {
   DaffCategory,
   DaffCategoryPageConfigurationState,
   DaffCategoryFilter,
-  DaffCategorySortOption,
   DaffCategoryAppliedFilter,
 } from '@daffodil/category';
 import { DaffCategoryFacadeInterface } from '@daffodil/category/state';
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
+import {
+  DaffSortDirectionEnum,
+  DaffSortOption,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 @Injectable({ providedIn: 'root' })
@@ -23,7 +25,7 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 	totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
   pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
   filters$: BehaviorSubject<DaffCategoryFilter[]> = new BehaviorSubject([]);
-  sortOptions$: BehaviorSubject<DaffCategorySortOption[]> = new BehaviorSubject([]);
+  sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
   appliedFilters$: BehaviorSubject<DaffCategoryAppliedFilter[]> = new BehaviorSubject([]);
   appliedSortOption$: BehaviorSubject<string> = new BehaviorSubject(null);
   appliedSortDirection$: BehaviorSubject<DaffSortDirectionEnum> = new BehaviorSubject(null);
