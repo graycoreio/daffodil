@@ -7,13 +7,14 @@ import {
   DaffCategoryFilter,
   DaffCategorySortOption,
   DaffCategoryAppliedFilter,
-  DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 import {
   DaffStoreFacade,
   DaffSortDirectionEnum,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
+
+import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
 
 export interface DaffCategoryFacadeInterface<
 	V extends DaffGenericCategory<V> = DaffCategory,
@@ -26,7 +27,20 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
+  pageConfigurationState$: Observable<DaffStatefulCategoryPageConfigurationState>;
+  /**
+   * The current loading state of the selected category page.
+   */
+  // TODO: fix this horrible overuse of "state"
+  pageLoadingState$: Observable<DaffStatefulCategoryPageConfigurationState['daffState']>;
+  /**
+   * Whether the selected category is in a mutating state.
+   */
+  isPageMutating$: Observable<boolean>;
+  /**
+   * Whether the selected category is in a resolving state.
+   */
+  isPageResolving$: Observable<boolean>;
   /**
    * The current page of products for the selected category.
    */
@@ -69,10 +83,14 @@ export interface DaffCategoryFacadeInterface<
   products$: Observable<W[]>;
   /**
    * The loading state for retrieving a single category.
+   *
+   * @deprecated Use isPageResolving$ instead
    */
   categoryLoading$: Observable<boolean>;
   /**
    * The loading state for retrieving only the products of the category.
+   *
+   * @deprecated Use isPageResolving$ and isPageMutating$ instead
    */
   productsLoading$: Observable<boolean>;
   /**

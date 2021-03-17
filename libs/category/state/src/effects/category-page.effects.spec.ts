@@ -17,7 +17,6 @@ import {
 import {
   DaffCategoryRequest,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffCategoryFilterType,
   DaffCategoryFilterEqualRequest,
 } from '@daffodil/category';
@@ -37,12 +36,14 @@ import {
   DaffCategoryPageToggleFilter,
   DaffCategoryPageChangeSortingOption,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffStatefulCategoryPageConfigurationState,
 } from '@daffodil/category/state';
+import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
+import { DaffCategoryFactory } from '@daffodil/category/testing';
 import {
-  DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
-} from '@daffodil/category/testing';
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
+  DaffSortDirectionEnum,
+  DaffState,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -57,14 +58,14 @@ describe('DaffCategoryPageEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageEffects<DaffCategory, DaffProduct>;
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  let stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
   let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let store: Store<any>;
   let driverGetSpy: jasmine.Spy;
 
   let categoryFactory: DaffCategoryFactory;
-  let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
+  let categoryPageConfigurationStateFactory: DaffStatefulCategoryPageConfigurationStateFactory;
   let productFactory: DaffProductFactory;
   let categoryLoadSuccessAction: DaffCategoryPageLoadSuccess<DaffCategory, DaffProduct>;
   let productGridLoadSuccessAction: DaffProductGridLoadSuccess<DaffProduct>;
@@ -88,7 +89,7 @@ describe('DaffCategoryPageEffects', () => {
     effects = TestBed.inject(DaffCategoryPageEffects);
     store = TestBed.inject(Store);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
-    categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageConfigurationStateFactory);
+    categoryPageConfigurationStateFactory = TestBed.inject(DaffStatefulCategoryPageConfigurationStateFactory);
     productFactory = new DaffProductFactory();
 
     stubCategory = categoryFactory.create();
@@ -323,7 +324,10 @@ describe('DaffCategoryPageEffects', () => {
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       expect(effects.toggleCategoryFilter$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-        ...stubCategoryPageConfigurationState,
+        ...{
+          ...stubCategoryPageConfigurationState,
+          daffState: DaffState.Mutating,
+        },
         filter_requests: [appliedFilter],
       });
     });

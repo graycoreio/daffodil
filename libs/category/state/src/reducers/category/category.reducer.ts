@@ -1,8 +1,5 @@
-import {
-  DaffCategoryRequest,
-  DaffGenericCategory,
-  DaffCategoryPageConfigurationState,
-} from '@daffodil/category';
+import { DaffGenericCategory } from '@daffodil/category';
+import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryPageActions } from '../../actions/category-page.actions';
@@ -30,6 +27,7 @@ const initialState: DaffCategoryReducerState = {
     },
     total_products: null,
     product_ids: [],
+    daffState: DaffState.Stable,
   },
   categoryLoading: false,
   productsLoading: false,
@@ -43,6 +41,10 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         ...state,
         categoryLoading: true,
         productsLoading: true,
+        categoryPageConfigurationState: {
+          ...state.categoryPageConfigurationState,
+          daffState: DaffState.Resolving,
+        },
       };
 
     // This reducer must assume the call will be successful, and immediately set the applied filters to state, because the
@@ -57,6 +59,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           ...action.request,
+          daffState: DaffState.Resolving,
         },
       };
     case DaffCategoryPageActionTypes.CategoryPageChangeSizeAction:
@@ -66,6 +69,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           page_size: action.pageSize,
+          daffState: DaffState.Mutating,
         },
       };
     case DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction:
@@ -75,6 +79,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           current_page: action.currentPage,
+          daffState: DaffState.Mutating,
         },
       };
     case DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction:
@@ -85,6 +90,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
           ...state.categoryPageConfigurationState,
           applied_sort_option: action.sort.option,
           applied_sort_direction: action.sort.direction,
+          daffState: DaffState.Mutating,
         },
       };
     case DaffCategoryPageActionTypes.CategoryPageChangeFiltersAction:
@@ -94,6 +100,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           filter_requests: action.filters,
+          daffState: DaffState.Mutating,
         },
       };
     case DaffCategoryPageActionTypes.CategoryPageToggleFilterAction:
@@ -103,6 +110,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           filter_requests: toggleCategoryFilter(action.filter, state.categoryPageConfigurationState.filter_requests),
+          daffState: DaffState.Mutating,
         },
       };
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
@@ -124,6 +132,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
           total_products: action.response.categoryPageConfigurationState.total_products,
           product_ids: action.response.categoryPageConfigurationState.product_ids,
           applied_sort_option: state.categoryPageConfigurationState.applied_sort_option || action.response.categoryPageConfigurationState.sort_options.default,
+          daffState: DaffState.Stable,
         },
       };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
@@ -133,6 +142,10 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryLoading: false,
         productsLoading: false,
         errors: [action.errorMessage],
+        categoryPageConfigurationState: {
+          ...state.categoryPageConfigurationState,
+          daffState: DaffState.Stable,
+        },
       };
     default:
       return state;

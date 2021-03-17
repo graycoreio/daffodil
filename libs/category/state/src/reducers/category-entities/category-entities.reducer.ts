@@ -1,10 +1,8 @@
 import { EntityState } from '@ngrx/entity';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
 

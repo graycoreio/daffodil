@@ -8,12 +8,11 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
-  DaffCategoryRequest,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffCategoryFilterType,
   DaffCategoryFilterRequest,
   DaffCategoryAppliedFilter,
+  DaffCategoryRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
@@ -21,11 +20,11 @@ import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoad,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffStatefulCategoryPageConfigurationState,
+  DaffCategoryPageChangePageSize,
 } from '@daffodil/category/state';
-import {
-  DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
-} from '@daffodil/category/testing';
+import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
+import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { getDaffCategoryPageSelectors } from './category-page.selector';
 
@@ -33,9 +32,9 @@ describe('DaffCategoryPageSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategory>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const categoryPageConfigurationFactory: DaffStatefulCategoryPageConfigurationStateFactory = new DaffStatefulCategoryPageConfigurationStateFactory();
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  let stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
   const categorySelectors = getDaffCategoryPageSelectors<DaffCategory>();
 
   beforeEach(() => {
@@ -255,6 +254,15 @@ describe('DaffCategoryPageSelectors', () => {
     });
   });
 
+  describe('selectCategoryPageState', () => {
+
+    it('selects the daffState of the current category page', () => {
+      const selector = store.pipe(select(categorySelectors.selectCategoryPageState));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.daffState });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
   describe('selectSelectedCategoryId', () => {
 
     it('selects the id of the selected category', () => {
@@ -288,6 +296,50 @@ describe('DaffCategoryPageSelectors', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryErrors));
       const expected = cold('a', { a: []});
       expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsCategoryPageMutating', () => {
+    describe('when the category page is mutating', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCategoryPageChangePageSize(10));
+      });
+
+      it('returns true', () => {
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageMutating));
+        const expected = cold('a', { a: true });
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the category page is not mutating', () => {
+      it('returns false', () => {
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageMutating));
+        const expected = cold('a', { a: false });
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectIsCategoryPageResolving', () => {
+    describe('when the category page is resolving', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCategoryPageLoad(<DaffCategoryRequest>{}));
+      });
+
+      it('returns true', () => {
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageResolving));
+        const expected = cold('a', { a: true });
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the category page is not resolving', () => {
+      it('returns false', () => {
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageResolving));
+        const expected = cold('a', { a: false });
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 });

@@ -4,7 +4,6 @@ import {
   DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffGetCategoryResponse,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';

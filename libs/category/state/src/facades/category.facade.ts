@@ -7,10 +7,8 @@ import {
 import { Observable } from 'rxjs';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffCategoryFilter,
   DaffCategorySortOption,
   DaffCategoryAppliedFilter,
@@ -18,6 +16,7 @@ import {
 import { DaffSortDirectionEnum } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
 import { DaffCategoryReducersState } from '../reducers/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 import { DaffCategoryFacadeInterface } from './category-facade.interface';
@@ -41,7 +40,10 @@ export class DaffCategoryFacade<
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
+  pageConfigurationState$: Observable<DaffStatefulCategoryPageConfigurationState>;
+  pageLoadingState$: Observable<DaffStatefulCategoryPageConfigurationState['daffState']>;
+  isPageMutating$: Observable<boolean>;
+  isPageResolving$: Observable<boolean>;
   /**
    * The current page of products for the selected category.
    */
@@ -131,6 +133,9 @@ export class DaffCategoryFacade<
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));
 	  this.pageConfigurationState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState));
+	  this.pageLoadingState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageState));
+	  this.isPageMutating$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageMutating));
+	  this.isPageResolving$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageResolving));
 	  this.currentPage$ = this.store.pipe(select(this.categorySelectors.selectCategoryCurrentPage));
 	  this.totalPages$ = this.store.pipe(select(this.categorySelectors.selectCategoryTotalPages));
 	  this.pageSize$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageSize));

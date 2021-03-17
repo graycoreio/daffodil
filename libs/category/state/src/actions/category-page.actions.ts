@@ -4,7 +4,6 @@ import {
   DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffGetCategoryResponse,
   DaffCategoryFilterRequest,
   DaffToggleCategoryFilterRequest,

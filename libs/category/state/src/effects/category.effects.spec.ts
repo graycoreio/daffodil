@@ -17,7 +17,6 @@ import {
 import {
   DaffCategoryRequest,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -30,11 +29,10 @@ import {
   DaffCategoryLoad,
   DaffCategoryLoadFailure,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffStatefulCategoryPageConfigurationState,
 } from '@daffodil/category/state';
-import {
-  DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
-} from '@daffodil/category/testing';
+import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
+import { DaffCategoryFactory } from '@daffodil/category/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -51,14 +49,14 @@ describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryEffects<DaffCategory, DaffProduct>;
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  let stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
   let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let store: Store<any>;
   let driverGetSpy: jasmine.Spy;
 
   let categoryFactory: DaffCategoryFactory;
-  let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
+  let categoryPageConfigurationStateFactory: DaffStatefulCategoryPageConfigurationStateFactory;
   let productFactory: DaffProductFactory;
   let productGridLoadSuccessAction: DaffProductGridLoadSuccess;
   let categoryLoadSuccessAction: DaffCategoryLoadSuccess;
@@ -85,7 +83,7 @@ describe('DaffCategoryEffects', () => {
     effects = TestBed.inject(DaffCategoryEffects);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
-    categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageConfigurationStateFactory);
+    categoryPageConfigurationStateFactory = TestBed.inject(DaffStatefulCategoryPageConfigurationStateFactory);
     productFactory = TestBed.inject(DaffProductFactory);
 
     stubCategory = categoryFactory.create();

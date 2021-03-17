@@ -10,8 +10,6 @@ import {
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryRequest,
-  DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 
 import { daffCategoryEntitiesAdapter } from '../../reducers/category-entities/category-entities-adapter';

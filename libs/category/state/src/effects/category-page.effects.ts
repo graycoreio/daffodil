@@ -25,7 +25,6 @@ import {
 import {
   DaffCategoryRequest,
   DaffGenericCategory,
-  DaffCategoryPageConfigurationState,
   daffCategoryValidateFilters,
   DaffGetCategoryResponse,
 } from '@daffodil/category';
@@ -47,6 +46,7 @@ import {
   DaffCategoryPageToggleFilter,
   DaffCategoryPageChangeSortingOption,
 } from '../actions/category-page.actions';
+import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 
 @Injectable()
@@ -128,7 +128,7 @@ export class DaffCategoryPageEffects<
     ),
     switchMap((
       [action, categoryPageConfigurationState]:
-			[DaffCategoryPageToggleFilter, DaffCategoryPageConfigurationState],
+			[DaffCategoryPageToggleFilter, DaffStatefulCategoryPageConfigurationState],
     ) => {
       daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
       return this.processCategoryGetRequest({
