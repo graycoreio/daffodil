@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.0](https://github.com/graycoreio/daffodil/compare/v0.28.1...v0.29.0) (2021-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** The DaffCategoryPageConfigurationState.sort_options model has changed to include a default option field.
+
+### Features
+
+* **authorizenet:** add in-memory backend ([#1358](https://github.com/graycoreio/daffodil/issues/1358)) ([1cb377b](https://github.com/graycoreio/daffodil/commit/1cb377b83becd508f3196dbc4f385ae22796fcc0))
+* **cart:** add in-memory extra_attributes hook token ([#1360](https://github.com/graycoreio/daffodil/issues/1360)) ([a8a3859](https://github.com/graycoreio/daffodil/commit/a8a3859c172b6ac39c26bbc6e20758deb8e5f4a9))
+* **cart:** init available shipping methods in in-memory driver ([#1356](https://github.com/graycoreio/daffodil/issues/1356)) ([98079ff](https://github.com/graycoreio/daffodil/commit/98079ff6b30ed2644e808a617021a0ea2a6c2ee4))
+* **cart,demo,order:** add cart store feature key ([#1334](https://github.com/graycoreio/daffodil/issues/1334)) ([3f72365](https://github.com/graycoreio/daffodil/commit/3f723651b3f752730197d3a25ced03e228147d4f))
+* **category:** add stateful category page configuration state model ([#1362](https://github.com/graycoreio/daffodil/issues/1362)) ([c4e346d](https://github.com/graycoreio/daffodil/commit/c4e346d987c96410123c2acc52ac770077081d8c))
+* **category:** add store feature key ([#1346](https://github.com/graycoreio/daffodil/issues/1346)) ([f34da80](https://github.com/graycoreio/daffodil/commit/f34da80cbe9aaa5996fe3cd2054a601e76149e55))
+* **category:** expose a configuration object for `@daffodil/category/state` ([#1353](https://github.com/graycoreio/daffodil/issues/1353)) ([1adcc16](https://github.com/graycoreio/daffodil/commit/1adcc16dc87c3a2af6a5682524c2ad8380f46aaa))
+* **category:** remove generics on PageConfiguration and Request ([#1347](https://github.com/graycoreio/daffodil/issues/1347)) ([0639052](https://github.com/graycoreio/daffodil/commit/06390525919ab12b3ca77b64401b0f641ba0874f))
+* **core,cart:** extend and clarify DaffStates and DaffStateable ([#1302](https://github.com/graycoreio/daffodil/issues/1302)) ([a1567c0](https://github.com/graycoreio/daffodil/commit/a1567c0618d92ec072bbfaa6290876f392ae7a01))
+* **design:** create skeleton mixin ([#1354](https://github.com/graycoreio/daffodil/issues/1354)) ([11ad6ab](https://github.com/graycoreio/daffodil/commit/11ad6aba24e63c0f269eb4b7ecedff1f22b10bfe))
+* **tools:** add eslint shareable config ([#1359](https://github.com/graycoreio/daffodil/issues/1359)) ([843827e](https://github.com/graycoreio/daffodil/commit/843827eeadde7e7c1d20fa6ead6cadba2c79244b))
+
+
+### Bug Fixes
+
+* **authorizenet:** null injector error when using in-memory api ([#1355](https://github.com/graycoreio/daffodil/issues/1355)) ([140eb22](https://github.com/graycoreio/daffodil/commit/140eb223b74000360e4f486c3857094ebf3b2ee1))
+* **category:** the applied_sort_option is not being set to the defaul… ([#1352](https://github.com/graycoreio/daffodil/issues/1352)) ([0cef523](https://github.com/graycoreio/daffodil/commit/0cef523d3d12d067a76c46bbec8c9d2ce6ef7abe))
+* **design-land:** fix example viewers not using the container ([#1350](https://github.com/graycoreio/daffodil/issues/1350)) ([f701100](https://github.com/graycoreio/daffodil/commit/f701100e0831f1cc3bca58c99af8b3b0832d5a94))
+* **design-land:** fix merge conflict in design-land app routing ([#1348](https://github.com/graycoreio/daffodil/issues/1348)) ([c9612db](https://github.com/graycoreio/daffodil/commit/c9612db29c4e4240c2a1fbf9f9cb708ec097267d))
+
 ### [0.28.1](https://github.com/graycoreio/daffodil/compare/v0.28.0...v0.28.1) (2021-03-10)
 
 
