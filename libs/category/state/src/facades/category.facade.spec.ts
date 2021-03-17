@@ -185,7 +185,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the sort options for the selected category', () => {
-      const expected = cold('a', { a: categoryPageConfigurationState.sort_options });
+      const expected = cold('a', { a: categoryPageConfigurationState.sort_options.options });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.sortOptions$).toBeObservable(expected);
     });

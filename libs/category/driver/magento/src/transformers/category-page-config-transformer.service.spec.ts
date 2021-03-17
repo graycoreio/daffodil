@@ -96,8 +96,8 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       };
 
       sort_fields = {
-        default: stubCategoryPageConfigurationState.sort_options[0].value,
-        options: stubCategoryPageConfigurationState.sort_options,
+        default: stubCategoryPageConfigurationState.sort_options.options[0].value,
+        options: stubCategoryPageConfigurationState.sort_options.options,
       };
 
       products = [new MagentoProductFactory().create({ sku: stubCategoryPageConfigurationState.product_ids[0] })];

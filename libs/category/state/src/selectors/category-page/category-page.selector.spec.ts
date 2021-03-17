@@ -196,7 +196,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the category sort options of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategorySortOptions));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.sort_options });
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.sort_options.options });
       expect(selector).toBeObservable(expected);
     });
   });
