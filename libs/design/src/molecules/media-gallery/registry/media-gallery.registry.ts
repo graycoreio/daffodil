@@ -1,48 +1,48 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface DaffMediaGalleryDict {
-	[galleryName: string]: {
-		gallery: DaffMediaGalleryComponent;
-		thumbnail: DaffThumbnailDirective[];
-	}
+	[galleryName: string]: BehaviorSubject<DaffMediaGallery>;
+}
+
+export interface DaffMediaGallery {
+	gallery: DaffMediaGalleryComponent;
+	thumbnails: DaffThumbnailDirective[];
 }
 
 @Injectable()
 export class DaffMediaGalleryRegistry {
-	private _galleries$: BehaviorSubject<DaffMediaGalleryDict> = new BehaviorSubject({});
-
-	galleries$: Observable<DaffMediaGalleryDict>;
-
-	constructor() {
-		this.galleries$ = this._galleries$.asObservable();
-	}
+	galleries: DaffMediaGalleryDict = {};
 
 	/**
 	 * @description
 	 * Adds a media element to the internal registry.
 	 */
 	add(gallery: DaffMediaGalleryComponent, thumbnail: DaffThumbnailDirective) {
-		let galleries = this._galleries$.getValue();
-
-		galleries = {
-			...galleries,
-			[gallery.name]: {
-				gallery: gallery,
-			thumbnail: galleries[gallery.name] ? [
-					...galleries[gallery.name].thumbnail,
+		if(this.galleries[gallery.name]) {
+			let newGallery = this.galleries[gallery.name].getValue();
+			
+			newGallery = {
+				...newGallery,
+				thumbnails: [
+					...newGallery.thumbnails,
 					thumbnail
-				] : [thumbnail]
+				]
 			}
-		};
-
-		if(galleries[gallery.name].thumbnail.length === 1) {
-			thumbnail.select();
+			this.galleries[gallery.name].next(newGallery);
+		} else {
+			this.galleries[gallery.name] = new BehaviorSubject({
+				gallery,
+				thumbnails: [thumbnail]
+			});
 		}
 
-		this._galleries$.next(galleries);
+		if(this.galleries[gallery.name].getValue().thumbnails.length === 1) {
+			thumbnail.select();
+		}
 	}
 
 	/**
@@ -50,23 +50,19 @@ export class DaffMediaGalleryRegistry {
 	 * Removes a media element from the internal registry.
 	 */
 	remove(thumbnail: DaffThumbnailDirective) {
-		const galleries = this._galleries$.getValue();
-		const index = this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.indexOf(thumbnail);
+		if(!this.galleries[thumbnail.gallery.name]) return;
+		const gallery = this.galleries[thumbnail.gallery.name].getValue();
+		const index = gallery.thumbnails.indexOf(thumbnail);
 
 		//This should never happen, but we don't need to remove it if it doesn't exist.
-		if(index === -1){
-			return;	
-		} 
+		if(index === -1) return;
 
-		this._galleries$.next({
-			...this._galleries$.getValue(),
-			[thumbnail.gallery.name]: {
-				...this._galleries$.getValue()[thumbnail.gallery.name],
-				thumbnail: [
-					...galleries[thumbnail.gallery.name].thumbnail.slice(0, index),
-					...galleries[thumbnail.gallery.name].thumbnail.slice(index + 1)
-				]
-			}
+		this.galleries[thumbnail.gallery.name].next({
+			...gallery,
+			thumbnails: [
+				...gallery.thumbnails.slice(0, index),
+				...gallery.thumbnails.slice(index + 1)
+			]
 		});
 	}
 
@@ -75,28 +71,26 @@ export class DaffMediaGalleryRegistry {
 	 * Selects a media element for a given gallery.
 	 */
 	select(thumbnail: DaffThumbnailDirective) {
-		const galleries = this._galleries$.getValue();
-		const index = this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.indexOf(thumbnail);
+		if(!this.galleries[thumbnail.gallery.name]) return;
+		
+		const gallery = this.galleries[thumbnail.gallery.name].getValue();
+		const index = gallery.thumbnails.indexOf(thumbnail);
 
 		if(thumbnail.selected){
 			return;
 		}
 
-		//This should never happen, but we don't need to remove it if it doesn't exist.
+		//This should never happen, but we don't need to select it if it doesn't exist.
 		if(index === -1){
 			return;	
 		} 
 
-
-		this._galleries$.next({
-			...this._galleries$.getValue(),
-			[thumbnail.gallery.name]: {
-				...this._galleries$.getValue()[thumbnail.gallery.name],
-				thumbnail: [
-					...this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.filter(m => m !== thumbnail).map(m => m.deselect()),
-					thumbnail.select()
-				]
-			}
+		this.galleries[thumbnail.gallery.name].next({
+			...gallery,
+			thumbnails: [
+				...gallery.thumbnails.filter(m => m !== thumbnail).map(m => m.deselect()),
+				thumbnail.select()
+			]
 		});
 	}
 }

@@ -19,11 +19,7 @@ export class DaffMediaGalleryComponent {
 	/**
 	 * The name of the gallery
 	 */
-	@Input('name') _name = '';
-
-	get name() {
-		return this._name ? this._name : uniqueGalleryId.toString();
-	}
+	@Input() name = uniqueGalleryId;
 	
 	constructor() {
 		uniqueGalleryId++;

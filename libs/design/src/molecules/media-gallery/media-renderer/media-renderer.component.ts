@@ -30,14 +30,14 @@ export class DaffMediaRendererComponent implements OnInit {
 	slot: ViewContainerRef;
 
 	ngOnInit() {
-		this.registry.galleries$.subscribe((galleries) => {
+		this.registry.galleries[this.gallery.name].subscribe((gallery) => {
 
 			/**
 			 * We first clear out the slot
 			 */
 			this.slot.clear();
 
-			const _selectedThumbnail = galleries[this.gallery.name].thumbnail.filter(media => media.selected).shift();
+			const _selectedThumbnail = gallery.thumbnails.filter(media => media.selected).shift();
 
 			/**
 			 * If there's no selected media, render nothing.
@@ -64,7 +64,7 @@ export class DaffMediaRendererComponent implements OnInit {
 			});
 
 			/**
-			 * We trigger a change detection on the component tree, outside the cycle to addresse
+			 * We trigger a change detection on the component tree, outside the cycle to address
 			 * the fact that the component was created outside a typical CD loop.
 			 */
 			componentRef.changeDetectorRef.detectChanges();
