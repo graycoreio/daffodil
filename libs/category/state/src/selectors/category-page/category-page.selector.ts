@@ -40,16 +40,16 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectCategoryPageState: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['daffState']>;
 	selectSelectedCategoryId: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['id']>;
   /**
-   * @deprecated Use selectCategoryPageResolving instead
+   * @deprecated Use selectIsCategoryPageResolving instead
    */
 	selectCategoryLoading: MemoizedSelector<Record<string, any>, boolean>;
   /**
-   * @deprecated Use selectCategoryPageResolving and selectCategoryPageMutating instead
+   * @deprecated Use selectIsCategoryPageResolving and selectIsCategoryPageMutating instead
    */
 	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
-  selectCategoryPageMutating: MemoizedSelector<Record<string, any>, boolean>;
-  selectCategoryPageResolving: MemoizedSelector<Record<string, any>, boolean>;
+  selectIsCategoryPageMutating: MemoizedSelector<Record<string, any>, boolean>;
+  selectIsCategoryPageResolving: MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => {
@@ -178,12 +178,12 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (state: DaffCategoryReducerState) => state.errors,
   );
 
-  const selectCategoryPageMutating = createSelector(
+  const selectIsCategoryPageMutating = createSelector(
     selectCategoryPageState,
     (daffState: DaffStatefulCategoryPageConfigurationState['daffState']) => daffState === DaffState.Mutating,
   );
 
-  const selectCategoryPageResolving = createSelector(
+  const selectIsCategoryPageResolving = createSelector(
     selectCategoryPageState,
     (daffState: DaffStatefulCategoryPageConfigurationState['daffState']) => daffState === DaffState.Resolving,
   );
@@ -208,8 +208,8 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     selectCategoryLoading,
     selectCategoryProductsLoading,
     selectCategoryErrors,
-    selectCategoryPageMutating,
-    selectCategoryPageResolving,
+    selectIsCategoryPageMutating,
+    selectIsCategoryPageResolving,
   };
 };
 

@@ -299,14 +299,14 @@ describe('DaffCategoryPageSelectors', () => {
     });
   });
 
-  describe('selectCategoryPageMutating', () => {
+  describe('selectIsCategoryPageMutating', () => {
     describe('when the category page is mutating', () => {
       beforeEach(() => {
         store.dispatch(new DaffCategoryPageChangePageSize(10));
       });
 
       it('returns true', () => {
-        const selector = store.pipe(select(categorySelectors.selectCategoryPageMutating));
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageMutating));
         const expected = cold('a', { a: true });
         expect(selector).toBeObservable(expected);
       });
@@ -314,21 +314,21 @@ describe('DaffCategoryPageSelectors', () => {
 
     describe('when the category page is not mutating', () => {
       it('returns false', () => {
-        const selector = store.pipe(select(categorySelectors.selectCategoryPageMutating));
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageMutating));
         const expected = cold('a', { a: false });
         expect(selector).toBeObservable(expected);
       });
     });
   });
 
-  describe('selectCategoryPageResolving', () => {
+  describe('selectIsCategoryPageResolving', () => {
     describe('when the category page is resolving', () => {
       beforeEach(() => {
         store.dispatch(new DaffCategoryPageLoad(<DaffCategoryRequest>{}));
       });
 
       it('returns true', () => {
-        const selector = store.pipe(select(categorySelectors.selectCategoryPageResolving));
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageResolving));
         const expected = cold('a', { a: true });
         expect(selector).toBeObservable(expected);
       });
@@ -336,7 +336,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     describe('when the category page is not resolving', () => {
       it('returns false', () => {
-        const selector = store.pipe(select(categorySelectors.selectCategoryPageResolving));
+        const selector = store.pipe(select(categorySelectors.selectIsCategoryPageResolving));
         const expected = cold('a', { a: false });
         expect(selector).toBeObservable(expected);
       });

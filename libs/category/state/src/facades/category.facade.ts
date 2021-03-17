@@ -134,8 +134,8 @@ export class DaffCategoryFacade<
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));
 	  this.pageConfigurationState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState));
 	  this.pageLoadingState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageState));
-	  this.isPageMutating$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageMutating));
-	  this.isPageResolving$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageResolving));
+	  this.isPageMutating$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageMutating));
+	  this.isPageResolving$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageResolving));
 	  this.currentPage$ = this.store.pipe(select(this.categorySelectors.selectCategoryCurrentPage));
 	  this.totalPages$ = this.store.pipe(select(this.categorySelectors.selectCategoryTotalPages));
 	  this.pageSize$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageSize));
