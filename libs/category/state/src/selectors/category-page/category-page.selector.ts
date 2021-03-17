@@ -43,6 +43,7 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
   selectCategoryPageMutating: MemoizedSelector<Record<string, any>, boolean>;
+  selectCategoryPageResolving: MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => {
@@ -176,6 +177,11 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (daffState: DaffStatefulCategoryPageConfigurationState['daffState']) => daffState === DaffState.Mutating,
   );
 
+  const selectCategoryPageResolving = createSelector(
+    selectCategoryPageState,
+    (daffState: DaffStatefulCategoryPageConfigurationState['daffState']) => daffState === DaffState.Resolving,
+  );
+
   return {
     selectCategoryState,
     selectCategoryPageConfigurationState,
@@ -197,6 +203,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     selectCategoryProductsLoading,
     selectCategoryErrors,
     selectCategoryPageMutating,
+    selectCategoryPageResolving,
   };
 };
 

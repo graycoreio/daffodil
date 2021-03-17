@@ -38,6 +38,10 @@ export interface DaffCategoryFacadeInterface<
    */
   isPageMutating$: Observable<boolean>;
   /**
+   * Whether the selected category is in a resolving state.
+   */
+  isPageResolving$: Observable<boolean>;
+  /**
    * The current page of products for the selected category.
    */
   currentPage$: Observable<number>;

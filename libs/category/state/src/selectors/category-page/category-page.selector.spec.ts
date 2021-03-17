@@ -12,6 +12,7 @@ import {
   DaffCategoryFilterType,
   DaffCategoryFilterRequest,
   DaffCategoryAppliedFilter,
+  DaffCategoryRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
@@ -314,6 +315,28 @@ describe('DaffCategoryPageSelectors', () => {
     describe('when the category page is not mutating', () => {
       it('returns false', () => {
         const selector = store.pipe(select(categorySelectors.selectCategoryPageMutating));
+        const expected = cold('a', { a: false });
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectCategoryPageResolving', () => {
+    describe('when the category page is resolving', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCategoryPageLoad(<DaffCategoryRequest>{}));
+      });
+
+      it('returns true', () => {
+        const selector = store.pipe(select(categorySelectors.selectCategoryPageResolving));
+        const expected = cold('a', { a: true });
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the category page is not resolving', () => {
+      it('returns false', () => {
+        const selector = store.pipe(select(categorySelectors.selectCategoryPageResolving));
         const expected = cold('a', { a: false });
         expect(selector).toBeObservable(expected);
       });

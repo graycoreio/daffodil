@@ -20,6 +20,7 @@ import {
 } from '@daffodil/category/state';
 import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
+import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -354,9 +355,17 @@ describe('DaffCategoryFacade', () => {
 
   describe('isPageMutating$', () => {
 
-    it('should be false', () => {
-      const expected = cold('a', { a: false });
+    it('should return whether the category page is mutating', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.daffState === DaffState.Mutating });
       expect(facade.isPageMutating$).toBeObservable(expected);
+    });
+  });
+
+  describe('isPageResolving$', () => {
+
+    it('should return whether the category page is resolving', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.daffState === DaffState.Resolving });
+      expect(facade.isPageResolving$).toBeObservable(expected);
     });
   });
 });

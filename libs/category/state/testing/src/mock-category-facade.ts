@@ -22,6 +22,7 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   pageConfigurationState$: BehaviorSubject<DaffStatefulCategoryPageConfigurationState> = new BehaviorSubject(null);
   pageLoadingState$: BehaviorSubject<DaffStatefulCategoryPageConfigurationState['daffState']> = new BehaviorSubject(null);
   isPageMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isPageResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   currentPage$: BehaviorSubject<number> = new BehaviorSubject(null);
 	totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
 	totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);

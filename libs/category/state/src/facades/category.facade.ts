@@ -43,6 +43,7 @@ export class DaffCategoryFacade<
   pageConfigurationState$: Observable<DaffStatefulCategoryPageConfigurationState>;
   pageLoadingState$: Observable<DaffStatefulCategoryPageConfigurationState['daffState']>;
   isPageMutating$: Observable<boolean>;
+  isPageResolving$: Observable<boolean>;
   /**
    * The current page of products for the selected category.
    */
@@ -134,6 +135,7 @@ export class DaffCategoryFacade<
 	  this.pageConfigurationState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState));
 	  this.pageLoadingState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageState));
 	  this.isPageMutating$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageMutating));
+	  this.isPageResolving$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageResolving));
 	  this.currentPage$ = this.store.pipe(select(this.categorySelectors.selectCategoryCurrentPage));
 	  this.totalPages$ = this.store.pipe(select(this.categorySelectors.selectCategoryTotalPages));
 	  this.pageSize$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageSize));
