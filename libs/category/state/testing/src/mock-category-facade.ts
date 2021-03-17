@@ -4,12 +4,14 @@ import { BehaviorSubject } from 'rxjs';
 
 import {
   DaffCategory,
-  DaffCategoryPageConfigurationState,
   DaffCategoryFilter,
   DaffCategorySortOption,
   DaffCategoryAppliedFilter,
 } from '@daffodil/category';
-import { DaffCategoryFacadeInterface } from '@daffodil/category/state';
+import {
+  DaffCategoryFacadeInterface,
+  DaffStatefulCategoryPageConfigurationState,
+} from '@daffodil/category/state';
 import { DaffSortDirectionEnum } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
@@ -17,7 +19,9 @@ import { DaffProduct } from '@daffodil/product';
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);
-  pageConfigurationState$: BehaviorSubject<DaffCategoryPageConfigurationState> = new BehaviorSubject(null);
+  pageConfigurationState$: BehaviorSubject<DaffStatefulCategoryPageConfigurationState> = new BehaviorSubject(null);
+  pageLoadingState$: BehaviorSubject<DaffStatefulCategoryPageConfigurationState['daffState']> = new BehaviorSubject(null);
+  isPageMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   currentPage$: BehaviorSubject<number> = new BehaviorSubject(null);
 	totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
 	totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
