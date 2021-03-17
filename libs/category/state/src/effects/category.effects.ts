@@ -18,9 +18,7 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
-  DaffCategoryPageConfigurationState,
   daffCategoryValidateFilters,
   DaffGetCategoryResponse,
 } from '@daffodil/category';

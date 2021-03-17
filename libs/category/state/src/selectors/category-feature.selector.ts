@@ -4,10 +4,8 @@ import {
 } from '@ngrx/store';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageConfigurationState,
 } from '@daffodil/category';
 
 import {

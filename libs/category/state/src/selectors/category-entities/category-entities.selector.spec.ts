@@ -7,21 +7,16 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import {
-  DaffCategoryRequest,
-  DaffCategory,
-  DaffCategoryPageConfigurationState,
-} from '@daffodil/category';
+import { DaffCategory } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffStatefulCategoryPageConfigurationState,
 } from '@daffodil/category/state';
-import {
-  DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
-} from '@daffodil/category/testing';
+import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
+import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
 
@@ -29,9 +24,9 @@ describe('DaffCategoryEntitiesSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategory>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const categoryPageConfigurationFactory: DaffStatefulCategoryPageConfigurationStateFactory = new DaffStatefulCategoryPageConfigurationStateFactory();
   let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
+  const stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
   const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategory>();
 
   beforeEach(() => {
