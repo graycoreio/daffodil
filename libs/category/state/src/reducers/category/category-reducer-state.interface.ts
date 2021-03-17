@@ -2,7 +2,13 @@ import { DaffStatefulCategoryPageConfigurationState } from '../../models/statefu
 
 export interface DaffCategoryReducerState {
 	categoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
+  /**
+   * @deprecated
+   */
   categoryLoading: boolean;
+  /**
+   * @deprecated
+   */
   productsLoading: boolean;
   errors: string[];
 }

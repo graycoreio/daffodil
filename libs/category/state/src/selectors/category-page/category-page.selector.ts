@@ -39,7 +39,13 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['applied_sort_direction']>;
 	selectCategoryPageState: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['daffState']>;
 	selectSelectedCategoryId: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['id']>;
+  /**
+   * @deprecated Use selectCategoryPageResolving instead
+   */
 	selectCategoryLoading: MemoizedSelector<Record<string, any>, boolean>;
+  /**
+   * @deprecated Use selectCategoryPageResolving and selectCategoryPageMutating instead
+   */
 	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
   selectCategoryPageMutating: MemoizedSelector<Record<string, any>, boolean>;

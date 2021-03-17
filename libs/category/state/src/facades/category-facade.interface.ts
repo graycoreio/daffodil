@@ -83,10 +83,14 @@ export interface DaffCategoryFacadeInterface<
   products$: Observable<W[]>;
   /**
    * The loading state for retrieving a single category.
+   *
+   * @deprecated Use isPageResolving$ instead
    */
   categoryLoading$: Observable<boolean>;
   /**
    * The loading state for retrieving only the products of the category.
+   *
+   * @deprecated Use isPageResolving$ and isPageMutating$ instead
    */
   productsLoading$: Observable<boolean>;
   /**
