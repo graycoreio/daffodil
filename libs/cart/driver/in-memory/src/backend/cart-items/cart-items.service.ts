@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import {
   STATUS,
   RequestInfo,
@@ -12,11 +15,19 @@ import {
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+import {
+  DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+  DaffCartInMemoryExtraAttributesHook,
+} from '../../injection-tokens/public_api';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServiceInterface {
-  constructor(private cartItemFactory: DaffCartItemFactory) {}
+  constructor(
+    private cartItemFactory: DaffCartItemFactory,
+    @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
+  ) {}
 
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => {
@@ -99,6 +110,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
           ...itemChanges,
         } : item,
       ),
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
     };
 
     return reqInfo.collection[cartIndex];
@@ -119,6 +131,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
         items: cart.items.map(
           (item, index) => index === existingCartItemIndex ? updatedCartItem : item,
         ),
+        extra_attributes: this.extraFieldsHook(reqInfo, cart),
       };
     } else {
       reqInfo.collection[cartIndex] = {
@@ -127,6 +140,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
           ...cart.items,
           this.transformItemInput(itemInput),
         ],
+        extra_attributes: this.extraFieldsHook(reqInfo, cart),
       };
     }
 
@@ -140,6 +154,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
     reqInfo.collection[cartIndex] = {
       ...cart,
       items: cart.items.filter((item, index) => index !== itemIndex),
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
     };
 
     return reqInfo.collection[cartIndex];

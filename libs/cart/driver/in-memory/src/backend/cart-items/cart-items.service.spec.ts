@@ -6,6 +6,7 @@ import {
   DaffCartItem,
   DaffCartItemInputType,
 } from '@daffodil/cart';
+import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
@@ -26,11 +27,16 @@ describe('DaffInMemoryBackendCartItemsService', () => {
   let baseUrl;
   let cartUrl;
   let collection: DaffCart[];
+  let extraAttributes;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartItemsService,
+        {
+          provide: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+          useValue: () => extraAttributes,
+        },
       ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartItemsService);
@@ -40,6 +46,9 @@ describe('DaffInMemoryBackendCartItemsService', () => {
 
     mockCart = cartFactory.create();
     mockCartItems = cartItemFactory.createMany(3);
+    extraAttributes = {
+      extraField: 'extraField',
+    };
     mockCart.items = mockCartItems;
     collection = [mockCart];
     mockCartItemInput = {
@@ -107,10 +116,10 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = mockCartItemInput;
       productId = mockCartItemInput.productId;
+      result = service.post(reqInfoStub);
     });
 
     it('should return a cart with the added item', () => {
-      result = service.post(reqInfoStub);
       expect(result.body.items).toContain(jasmine.objectContaining({ product_id: productId }));
     });
 
@@ -121,6 +130,10 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       result = service.post(reqInfoStub);
 
       expect(result.body.items[0].qty).toEqual(cart_item_qty + 2);
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 
@@ -141,6 +154,10 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     it('should update the cart item', () => {
       expect(result.body.items[0].qty).toEqual(qty);
     });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
+    });
   });
 
   describe('processing an delete request', () => {
@@ -156,6 +173,10 @@ describe('DaffInMemoryBackendCartItemsService', () => {
 
     it('should remove the cart item from the cart', () => {
       expect(result.body.items.find(({ item_id }) => itemId === item_id)).toBeFalsy();
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 });

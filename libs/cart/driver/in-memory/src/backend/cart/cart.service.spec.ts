@@ -7,6 +7,7 @@ import {
   DaffCartItem,
   DaffCartItemInputType,
 } from '@daffodil/cart';
+import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
@@ -27,11 +28,16 @@ describe('DaffInMemoryBackendCartService', () => {
   let baseUrl;
   let cartUrl;
   let collection: DaffCart[];
+  let extraAttributes;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartService,
+        {
+          provide: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+          useValue: () => extraAttributes,
+        },
       ],
     });
     service = TestBed.inject(DaffInMemoryBackendCartService);
@@ -41,6 +47,9 @@ describe('DaffInMemoryBackendCartService', () => {
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
+    extraAttributes = {
+      extraField: 'extraField',
+    };
     collection = [mockCart];
     mockCartItemInput = {
       type: DaffCartItemInputType.Simple,
@@ -74,20 +83,30 @@ describe('DaffInMemoryBackendCartService', () => {
 
     beforeEach(() => {
       reqInfoStub.url = baseUrl;
-
+      result = service.get(reqInfoStub);
     });
 
     it('should return the cart', () => {
-      result = service.get(reqInfoStub);
-      expect(result.body).toEqual(mockCart);
+      expect(result.body).toEqual({
+        ...mockCart,
+        extra_attributes: extraAttributes,
+      });
       expect(result.status).toEqual(STATUS.OK);
     });
 
-    it('should return an error response when the cart does not exist', () => {
-      reqInfoStub.id = null;
-      result = service.get(reqInfoStub);
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
+    });
 
-      expect(result.status).toEqual(STATUS.NOT_FOUND);
+    describe('when the cart does not exist', () => {
+      beforeEach(() => {
+        reqInfoStub.id = null;
+        result = service.get(reqInfoStub);
+      });
+
+      it('should return an error response', () => {
+        expect(result.status).toEqual(STATUS.NOT_FOUND);
+      });
     });
   });
 
@@ -117,6 +136,10 @@ describe('DaffInMemoryBackendCartService', () => {
 
     it('should remove the items in the cart', () => {
       expect(result.body.items.length).toEqual(0);
+    });
+
+    it('should set extra_attributes to the value returned by the provided hook function', () => {
+      expect(result.body.extra_attributes).toEqual(extraAttributes);
     });
   });
 

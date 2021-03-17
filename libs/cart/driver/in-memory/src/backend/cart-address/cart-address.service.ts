@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import {
   STATUS,
   RequestInfo,
@@ -7,10 +10,19 @@ import {
 import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+import {
+  DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+  DaffCartInMemoryExtraAttributesHook,
+} from '../../injection-tokens/public_api';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCartAddressService implements DaffInMemoryDataServiceInterface {
+  constructor(
+    @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
+  ) {}
+
   put(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.updateAddress(reqInfo),
@@ -29,6 +41,9 @@ export class DaffInMemoryBackendCartAddressService implements DaffInMemoryDataSe
     cart.billing_address = address;
     cart.shipping_address = address;
 
-    return cart;
+    return {
+      ...cart,
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
+    };
   }
 }

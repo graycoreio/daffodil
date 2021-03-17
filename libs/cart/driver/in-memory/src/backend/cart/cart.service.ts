@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import {
   STATUS,
   RequestInfo,
@@ -8,18 +11,27 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+import {
+  DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+  DaffCartInMemoryExtraAttributesHook,
+} from '../../injection-tokens/public_api';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceInterface {
   constructor(
     private cartFactory: DaffCartFactory,
+    @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
   ) {}
 
   get(reqInfo: RequestInfo) {
     const cart = this.getCart(reqInfo);
     return reqInfo.utils.createResponse$(() => ({
-      body: cart,
+      body: cart ? {
+        ...cart,
+        extra_attributes: this.extraFieldsHook(reqInfo, cart),
+      } : cart,
       status: cart ? STATUS.OK : STATUS.NOT_FOUND,
     }));
   }
@@ -57,7 +69,10 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
 
     cart.items = [];
 
-    return cart;
+    return {
+      ...cart,
+      extra_attributes: this.extraFieldsHook(reqInfo, cart),
+    };
   }
 
   private create(reqInfo: RequestInfo): Partial<{id: DaffCart['id']}> {
