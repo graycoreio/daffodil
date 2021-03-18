@@ -1,4 +1,13 @@
 /**
+ * The metadata that describes the sorting behavior of a collection of elements.
+ */
+export interface DaffSortOptions {
+  default: DaffSortOption['value'];
+  options: DaffSortOption[];
+}
+
+
+/**
  * One particular option used to sort a collection of elements;
  */
 export interface DaffSortOption {
