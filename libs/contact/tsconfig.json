@@ -17,6 +17,9 @@
       "@daffodil/contact/driver/hubspot": [
         "libs/contact/driver/hubspot/src"
       ],
+      "@daffodil/contact/driver/zendesk": [
+        "libs/contact/driver/zendesk/src"
+      ],
       "@daffodil/contact/driver/testing": [
         "libs/contact/driver/testing/src"
       ],

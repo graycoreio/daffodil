@@ -3,26 +3,24 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { DaffContactDriver } from '@daffodil/contact/driver';
-import { DaffContactHubSpotDriverModule } from '@daffodil/contact/driver/hubspot';
+import { DaffContactDriver } from '@daffodil/contact';
+import { DaffContactZendeskDriverModule } from '@daffodil/contact/driver/zendesk';
 
-describe('Integration | DaffContactHubspotDriver', () => {
+describe('Integration | DaffContactZendeskDriver', () => {
   let contactService;
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule,
-        DaffContactHubSpotDriverModule.forRoot({
-          portalId: '123123',
-          guid: '123123',
+        DaffContactZendeskDriverModule.forRoot({
+          domain: 'https://test.zendesk.com',
         }),
       ],
     });
+
     httpMock = TestBed.get(HttpTestingController);
     contactService = TestBed.get(DaffContactDriver);
   });
@@ -37,15 +35,22 @@ describe('Integration | DaffContactHubspotDriver', () => {
 
   describe('when sending', () => {
     it('should send a submission', () => {
-      const forumSubmission = { email: 'test@email.com' };
-      const mockReq = of(forumSubmission);
-      contactService.send(forumSubmission).subscribe();
+      const formSubmission = {
+        email: 'test@email.com',
+        name: 'name',
+        message: 'My message!',
+      };
+      const mockReq = of(formSubmission);
+      contactService.send(formSubmission).subscribe();
       const req = httpMock.expectOne(
-        `${'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123'}`,
+        `${'https://test.zendesk.com/api/v2/requests.json'}`,
       );
       expect(req.request.body).toEqual({
-        fields: [Object({ name: 'email', value: 'test@email.com' })],
-        context: Object({ hutk: null, pageUri: '/', pageName: '' }),
+        request: {
+          requester: { name: formSubmission.name, email: formSubmission.email },
+          subject: 'Contact Form Request',
+          comment: { body: formSubmission.message },
+        },
       });
       req.flush(mockReq);
       httpMock.verify();
