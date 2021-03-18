@@ -10,10 +10,12 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffCategoryFilter,
-  DaffCategorySortOption,
   DaffCategoryAppliedFilter,
 } from '@daffodil/category';
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
+import {
+  DaffSortDirectionEnum,
+  DaffSortOption,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
@@ -67,7 +69,7 @@ export class DaffCategoryFacade<
   /**
    * The sort options available for the products of the selected category.
    */
-  sortOptions$: Observable<DaffCategorySortOption[]>;
+  sortOptions$: Observable<DaffSortOption[]>;
   /**
    * The sort options available for the products of the selected category.
    */
