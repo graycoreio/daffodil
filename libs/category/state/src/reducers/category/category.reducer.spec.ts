@@ -683,6 +683,8 @@ describe('Category | Category Reducer', () => {
     });
 
     it('sets daffState of categoryPageConfigurationState state to stable', () => {
+      const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: null });
+      result = daffCategoryReducer(state, categoryLoadSuccess);
       expect(result.categoryPageConfigurationState.daffState).toEqual(DaffState.Stable);
     });
   });
