@@ -20,6 +20,9 @@ import {
   catchError,
 } from 'rxjs/operators';
 
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+
 import {
   DaffNewsletterActionTypes,
   DaffNewsletterSubscribe,
@@ -32,6 +35,7 @@ import {
   DaffNewsletterDriver,
   DaffNewsletterServiceInterface,
 } from '../driver/public_api';
+import { DAFF_NEWSLETTER_ERROR_MATCHER } from '../injection-tokens/public_api';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
 
 @Injectable()
@@ -39,7 +43,9 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface<T, V>) { }
+    @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface<T, V>,
+		@Inject(DAFF_NEWSLETTER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+  ) { }
 
   trySubmission$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction,
@@ -51,7 +57,7 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
       } else if (action instanceof DaffNewsletterSubscribe || action instanceof DaffNewsletterRetry){
         return this.driver.send(action.payload).pipe(
           map((resp: V) => new DaffNewsletterSuccessSubscribe()),
-          catchError(error => of(new DaffNewsletterFailedSubscribe('Failed to subscribe to newsletter'))),
+          catchError((error: DaffError) => of(new DaffNewsletterFailedSubscribe(this.errorMatcher(error)))),
         );
       }
     }),

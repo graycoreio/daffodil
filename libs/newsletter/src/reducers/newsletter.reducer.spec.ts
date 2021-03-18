@@ -65,15 +65,15 @@ describe('the newsletter reducer', () => {
   });
 
   it('should cancel loading and have an error message if the subscribe fails', () =>{
-    const payload = 'Failed to Subscribe';
-    const action = new DaffNewsletterFailedSubscribe(payload);
+    const error = { code: 'code', message: 'Failed to subscribe to newsletter' };
+    const action = new DaffNewsletterFailedSubscribe(error);
     const failedState = {
       error: null,
       loading: true,
       success: false,
     };
     const expectedState = {
-      error: 'Failed to Subscribe',
+      error,
       loading: false,
       success: false,
     };

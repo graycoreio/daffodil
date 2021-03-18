@@ -5,6 +5,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffNewsletterModule } from '../newsletter.module';
 import {
   State,
@@ -17,7 +19,7 @@ import { DaffNewsletterFacadeInterface } from './newsletter-facade.interface';
 @Injectable( { providedIn: DaffNewsletterModule } )
 export class DaffNewsletterFacade implements DaffNewsletterFacadeInterface {
   success$: Observable<boolean> = this.store.select(selectDaffNewsletterSuccess);
-  error$: Observable<string> = this.store.select(selectDaffNewsletterError);
+  error$: Observable<DaffStateError> = this.store.select(selectDaffNewsletterError);
   loading$: Observable<boolean> = this.store.select(selectDaffNewsletterLoading);
 
   constructor(private store: Store<State>){

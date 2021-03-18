@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
 
 export enum DaffNewsletterActionTypes {
@@ -29,7 +31,7 @@ export class DaffNewsletterCancel implements Action {
 export class DaffNewsletterFailedSubscribe implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterFailedSubscribeAction;
 
-  constructor(public payload: string) { }
+  constructor(public payload: DaffStateError) { }
 }
 export class DaffNewsletterSuccessSubscribe implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterSuccessSubscribeAction;
