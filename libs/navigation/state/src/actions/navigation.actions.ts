@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
 export enum DaffNavigationActionTypes {
@@ -23,7 +24,7 @@ export class DaffNavigationLoadSuccess<T extends DaffGenericNavigationTree<T>> i
 export class DaffNavigationLoadFailure implements Action {
   readonly type = DaffNavigationActionTypes.NavigationLoadFailureAction;
 
-  constructor(public payload: string) { }
+  constructor(public payload: DaffStateError) { }
 }
 
 export type DaffNavigationActions<T extends DaffGenericNavigationTree<T>> =

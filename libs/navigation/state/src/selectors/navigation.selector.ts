@@ -4,6 +4,7 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
 import {
@@ -17,7 +18,7 @@ export interface DaffNavigationMemoizedSelectors<T extends DaffGenericNavigation
 	selectNavigationState: MemoizedSelector<Record<string, any>, DaffNavigationReducerState<T>>;
 	selectNavigationTree: MemoizedSelector<Record<string, any>, T>;
 	selectNavigationLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectNavigationErrors: MemoizedSelector<Record<string, any>, string[]>;
+	selectNavigationErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
 }
 
 const createNavigationFeatureSelectors = <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => {

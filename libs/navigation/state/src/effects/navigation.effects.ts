@@ -17,7 +17,12 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffGenericNavigationTree } from '@daffodil/navigation';
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DaffGenericNavigationTree,
+  DAFF_NAVIGATION_ERROR_MATCHER,
+} from '@daffodil/navigation';
 import {
   DaffNavigationDriver,
   DaffNavigationServiceInterface,
@@ -35,7 +40,9 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffNavigationDriver) private driver: DaffNavigationServiceInterface<T>){}
+    @Inject(DaffNavigationDriver) private driver: DaffNavigationServiceInterface<T>,
+		@Inject(DAFF_NAVIGATION_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+  ) {}
 
   @Effect()
   loadNavigation$: Observable<any> = this.actions$.pipe(
@@ -44,7 +51,7 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
       this.driver.get(action.payload)
         .pipe(
           map((resp) => new DaffNavigationLoadSuccess(resp)),
-          catchError(error => of(new DaffNavigationLoadFailure('Failed to load the navigation tree'))),
+          catchError((error: DaffError) => of(new DaffNavigationLoadFailure(this.errorMatcher(error)))),
         ),
     ),
   );

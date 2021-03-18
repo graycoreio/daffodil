@@ -81,7 +81,7 @@ describe('DaffNavigationEffects', () => {
     describe('and the call to NavigationService fails', () => {
 
       beforeEach(() => {
-        const error = 'Failed to load the navigation tree';
+        const error = { code: 'code', message: 'error message' };
         const response = cold('#', {}, error);
         spyOn(daffNavigationDriver, 'get').and.returnValue(response);
         const navigationLoadFailureAction = new DaffNavigationLoadFailure(error);
