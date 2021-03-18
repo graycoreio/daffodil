@@ -15,7 +15,7 @@ import { MagentoResolveUrlv241 } from './graphql/queries/resolve-url-v2.4.1';
 import { DaffExternalRouterDriverMagentoModule } from './magento.module';
 import { DaffExternalRouterMagentoDriver } from './magento.service';
 
-describe('@daffodil/external-router/driver/magento | DaffExternalRouterMagentoDriver', () => {
+describe('@daffodil/external-router/driver/magento/2.4.1 | DaffExternalRouterMagentoDriver', () => {
   let service: DaffExternalRouterMagentoDriver;
   let controller: ApolloTestingController;
   let scheduler: TestScheduler;
