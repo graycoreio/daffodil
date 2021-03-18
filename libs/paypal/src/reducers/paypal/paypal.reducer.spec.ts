@@ -9,6 +9,7 @@ import { DaffPaypalTokenRequest } from '../../models/paypal-token-request';
 import { DaffPaypalTokenResponse } from '../../models/paypal-token-response';
 import { DaffPaypalReducerState } from './paypal-reducer.interface';
 import { daffPaypalReducer } from './paypal.reducer';
+import { DaffStateError } from '@daffodil/core/state';
 
 describe('Paypal | Paypal Reducer', () => {
 
@@ -85,7 +86,7 @@ describe('Paypal | Paypal Reducer', () => {
 
   describe('when GeneratePaypalExpressTokenFailureAction is triggered', () => {
 
-    const error = 'error message';
+    const error: DaffStateError = {code: 'code', message: 'error message'};
     let result: DaffPaypalReducerState<DaffPaypalTokenResponse>;
     let state: DaffPaypalReducerState<DaffPaypalTokenResponse>;
 
@@ -93,7 +94,7 @@ describe('Paypal | Paypal Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        error: 'firstError',
+        error: {code: 'firstErrorCode', message: 'firstErrorMessage'},
       };
 
       const generatePaypalExpressTokenFailureAction = new DaffGeneratePaypalExpressTokenFailure(error);

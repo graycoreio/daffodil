@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffPaypalTokenRequest } from '../models/paypal-token-request';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
+import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffPaypalActionTypes {
   GeneratePaypalExpressTokenAction = '[Daff Paypal] Generate Express Token Action',
@@ -24,7 +25,7 @@ export class DaffGeneratePaypalExpressTokenSuccess<T extends DaffPaypalTokenResp
 export class DaffGeneratePaypalExpressTokenFailure implements Action {
 	readonly type = DaffPaypalActionTypes.GeneratePaypalExpressTokenFailureAction;
 
-	constructor(public payload: string) {}
+	constructor(public payload: DaffStateError) {}
 }
 
 export type DaffPaypalActions<

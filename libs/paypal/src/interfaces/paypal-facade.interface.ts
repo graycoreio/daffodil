@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
+import {
+  DaffStoreFacade,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 
@@ -11,5 +14,5 @@ export interface DaffPaypalFacadeInterface<T extends DaffPaypalTokenResponse = D
 	paypalToken$: Observable<string>;
 	paypalStartUrl$: Observable<string>;
 	paypalEditUrl$: Observable<string>;
-  error$: Observable<string>;
+  error$: Observable<DaffStateError>;
 }

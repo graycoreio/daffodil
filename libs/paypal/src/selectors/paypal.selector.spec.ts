@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 
 import {
@@ -84,10 +85,10 @@ describe('Daff Paypal Selectors', () => {
   describe('selectPaypalError', () => {
 
     it('returns any current errors', () => {
-      const errorMessage = 'there has been an error';
-      store.dispatch(new DaffGeneratePaypalExpressTokenFailure(errorMessage));
+      const error: DaffStateError = { code: 'code', message: 'error message' };
+      store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
       const selector = store.pipe(select(selectPaypalError));
-      const expected = cold('a', { a: errorMessage });
+      const expected = cold('a', { a: error });
       expect(selector).toBeObservable(expected);
     });
   });
