@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @daffodil/external-router/driver/testing
+ * Public API Surface of @daffodil/external-router/driver/magento/2.4.2
  */
 
 export { DaffExternalRouterMagentoDriver } from './magento.service';

@@ -1,6 +1,6 @@
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import {
-  MagentoResolution,
+  MagentoUrlResolution,
   MagentoUrlRewriteEntityTypeEnum,
 } from '@daffodil/external-router/driver/magento';
 
@@ -8,7 +8,7 @@ import { transformResolutionToResolvableUrl } from './resolution-to-resolvable-u
 
 describe('@daffodil/external-router/driver/magento | transformResolutionToResolvableUrl', () => {
   let url: string;
-  let resolution: MagentoResolution;
+  let resolution: MagentoUrlResolution;
   let resolvableUrl: DaffExternallyResolvableUrl;
 
   beforeEach(() => {

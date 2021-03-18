@@ -8,7 +8,7 @@ import { TestScheduler } from 'rxjs/testing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import {
   MagentoUrlRewriteEntityTypeEnum,
-  MagentoUrlResolver,
+  MagentoUrlResolutionResponse,
 } from '@daffodil/external-router/driver/magento';
 
 import { MagentoResolveUrlv241 } from './graphql/queries/resolve-url-v2.4.1';
@@ -20,7 +20,7 @@ describe('@daffodil/external-router/driver/magento | DaffExternalRouterMagentoDr
   let controller: ApolloTestingController;
   let scheduler: TestScheduler;
   let url: string;
-  let resolution: MagentoUrlResolver;
+  let resolution: MagentoUrlResolutionResponse;
   let resolvableUrl: DaffExternallyResolvableUrl;
 
   const setupTest = () => {

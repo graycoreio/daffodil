@@ -1,9 +1,9 @@
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 
-import { MagentoResolution } from '../model/resolution';
+import { MagentoUrlResolution } from '../model/resolution';
 
 export const transformResolutionToResolvableUrl = (
-  resolution: MagentoResolution,
+  resolution: MagentoUrlResolution,
 ): DaffExternallyResolvableUrl => ({
   url: resolution.relative_url,
   type: resolution.type,

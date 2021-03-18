@@ -1,5 +1,5 @@
-import { MagentoResolution } from './resolution';
+import { MagentoUrlResolution } from './resolution';
 
-export interface MagentoUrlResolver {
-  urlResolver: MagentoResolution;
+export interface MagentoUrlResolutionResponse {
+  urlResolver: MagentoUrlResolution;
 }

@@ -1,5 +1,3 @@
-import { from } from 'rxjs';
-
-export { MagentoResolution } from './resolution';
+export { MagentoUrlResolution } from './resolution';
 export { MagentoUrlRewriteEntityTypeEnum } from './resolution-types';
-export { MagentoUrlResolver } from './magento-url-resolver';
+export { MagentoUrlResolutionResponse } from './magento-url-resolver';
