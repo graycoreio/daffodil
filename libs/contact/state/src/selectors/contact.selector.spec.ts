@@ -31,7 +31,7 @@ describe('the contact selectors', () => {
         }),
       ],
     });
-    mockContactState= { loading: false, success: false, errors: null };
+    mockContactState = { loading: false, success: false, errors: []};
     store = TestBed.inject(Store);
   });
 

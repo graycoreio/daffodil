@@ -15,7 +15,7 @@ import {
 describe('the contact reducer', () => {
   it('should create an initial state', () => {
     const expectedState: DaffContactState = {
-      errors: null,
+      errors: [],
       loading: false,
       success: false,
     };
@@ -26,7 +26,7 @@ describe('the contact reducer', () => {
 
   it('should start loading when a submit action occurs', () => {
     const expectedState: DaffContactState = {
-      errors: null,
+      errors: [],
       loading: true,
       success: false,
     };
@@ -38,7 +38,7 @@ describe('the contact reducer', () => {
 
   it('should start loading when a retry action occurs', () => {
     const expectedState: DaffContactState = {
-      errors: null,
+      errors: [],
       loading: true,
       success: false,
     };
@@ -50,7 +50,7 @@ describe('the contact reducer', () => {
 
   it('should stop loading when a cancel action occurs', () => {
     const expectedState: DaffContactState = {
-      errors: null,
+      errors: [],
       loading: false,
       success: false,
     };
@@ -60,20 +60,20 @@ describe('the contact reducer', () => {
   });
 
   it('should return an error and stop loading if a failure action occurs', () => {
-    const error_message = ['Failed to submit contact forum'];
+    const error = [{ code: 'code', message: 'Failed to submit' }];
     const expectedState: DaffContactState = {
-      errors: error_message,
+      errors: error,
       loading: false,
       success: false,
     };
-    const action = new DaffContactFailedSubmit(error_message);
+    const action = new DaffContactFailedSubmit(error);
 
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should set success to equal true and stop loading after a success action occurs', () => {
     const expectedState: DaffContactState = {
-      errors: null,
+      errors: [],
       loading: false,
       success: true,
     };
@@ -84,7 +84,7 @@ describe('the contact reducer', () => {
 
   it('it should reset to the intialState when a reset action occurs', () => {
     const expectedState: DaffContactState = {
-      errors: null,
+      errors: [],
       loading: false,
       success: false,
     };

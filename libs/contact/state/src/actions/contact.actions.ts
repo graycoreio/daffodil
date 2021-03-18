@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 export enum DaffContactActionTypes {
 	ContactSubmitAction = '[Daff-Contact] Contact Submit Action',
 	ContactCancelAction = '[Daff-Contact] Contact Cancel Action',
@@ -23,7 +25,7 @@ export class DaffContactRetry<T> implements Action {
 export class DaffContactFailedSubmit implements Action {
 	readonly type = DaffContactActionTypes.ContactFailedSubmitAction;
 
-	constructor(public payload: string[]) {}
+	constructor(public payload: DaffStateError[]) {}
 }
 export class DaffContactCancel implements Action {
 	readonly type = DaffContactActionTypes.ContactCancelAction;

@@ -1,3 +1,5 @@
+import { DaffStateError } from '@daffodil/core/state';
+
 import {
   DaffContactActions,
   DaffContactActionTypes,
@@ -6,13 +8,13 @@ import {
 export interface DaffContactState {
   success: boolean;
   loading: boolean;
-  errors: string[] | null;
+  errors: DaffStateError[];
 }
 
 const initialState: DaffContactState = {
   success: false,
   loading: false,
-  errors: null,
+  errors: [],
 };
 
 export function reducer<T>(state: DaffContactState = initialState,
