@@ -18,5 +18,6 @@ export { DaffNewsletterFacade } from './facades/newsletter.facade';
 export { DaffNewsletterFacadeInterface } from './facades/newsletter-facade.interface';
 
 export * from './driver/public_api';
+export * from './injection-tokens/public_api';
 
 export { DaffNewsletterModule } from './newsletter.module';

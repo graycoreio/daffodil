@@ -1,3 +1,5 @@
+import { DaffStateError } from '@daffodil/core/state';
+
 import {
   DaffNewsletterActions,
   DaffNewsletterActionTypes,
@@ -7,7 +9,7 @@ import { DaffNewsletterSubmission } from './../models/newsletter.model';
 export interface DaffNewsletterState {
   success: boolean;
   loading: boolean;
-  error: string | null;
+  error: DaffStateError;
 }
 
 const initialState: DaffNewsletterState = {

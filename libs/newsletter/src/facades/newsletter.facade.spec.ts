@@ -70,9 +70,9 @@ describe('DaffNewsletterFacade', () => {
     });
 
     it('should return an error message when it fails to subscribe', () => {
-      const msg = 'Failed to subscribe';
-      const expected = cold('a', { a: msg });
-      store.dispatch(new DaffNewsletterFailedSubscribe(msg));
+      const error = { code: 'code', message: 'Failed to subscribe to newsletter' };
+      const expected = cold('a', { a: error });
+      store.dispatch(new DaffNewsletterFailedSubscribe(error));
       expect(facade.error$).toBeObservable(expected);
     });
   });
