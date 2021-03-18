@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
 import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
@@ -27,7 +28,7 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
   /**
    * Errors associated with retrieving a single navigation.
    */
-  errors$: Observable<string[]>;
+  errors$: Observable<DaffStateError[]>;
 
   constructor(private store: Store<DaffNavigationReducersState<T>>) {
     const {

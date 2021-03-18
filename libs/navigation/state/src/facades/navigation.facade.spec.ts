@@ -89,7 +89,7 @@ describe('DaffNavigationFacade', () => {
     });
 
     it('should be an observable of an array of the current errors', () => {
-      const error = 'error1';
+      const error = { code: 'code', message: 'error message' };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffNavigationLoad('1'));
       store.dispatch(new DaffNavigationLoadFailure(error));

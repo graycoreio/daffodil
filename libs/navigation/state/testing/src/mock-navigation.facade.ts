@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationFacadeInterface } from '@daffodil/navigation/state';
 
@@ -12,6 +13,6 @@ import { DaffNavigationFacadeInterface } from '@daffodil/navigation/state';
 export class MockDaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implements DaffNavigationFacadeInterface<T> {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   tree$: BehaviorSubject<T> = new BehaviorSubject(null);
-  errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
   dispatch(action) { }
 }

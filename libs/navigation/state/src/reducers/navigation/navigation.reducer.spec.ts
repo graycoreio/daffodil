@@ -77,8 +77,7 @@ describe('Navigation | Navigation Reducer', () => {
   });
 
   describe('when NavigationLoadFailureAction is triggered', () => {
-
-    const error = 'error message';
+    const error = { code: 'code', message: 'error message' };
     let result;
     let state: DaffNavigationReducerState<DaffNavigationTree>;
 
@@ -86,7 +85,9 @@ describe('Navigation | Navigation Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [
+          { code: 'firstErrorCode', message: 'firstErrorMessage' },
+        ],
       };
 
       const navigationLoadFailure = new DaffNavigationLoadFailure(error);

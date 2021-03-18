@@ -6,6 +6,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationFacade,
@@ -24,7 +25,7 @@ export class SidebarContainer implements OnInit {
   faTimes = faTimes;
   tree$: Observable<DaffNavigationTree>;
   treeLoading$: Observable<boolean>;
-  treeErrors$: Observable<string[]>;
+  treeErrors$: Observable<DaffStateError[]>;
 
   constructor(
     private store: Store<fromDemoSidebar.State>,
