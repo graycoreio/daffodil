@@ -1,3 +1,4 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderLoad,
@@ -46,14 +47,19 @@ describe('Order | Reducer | Order', () => {
   });
 
   describe('when OrderLoadSuccessAction is triggered', () => {
+    let mockError: DaffStateError;
     let result;
     let state: DaffOrderReducerState;
 
     beforeEach(() => {
+      mockError = {
+        code: 'error code',
+        message: 'error message',
+      };
       state = {
         ...initialState,
         loading: true,
-        errors: ['an error'],
+        errors: [mockError],
       };
 
       const orderLoadSuccess = new DaffOrderLoadSuccess(mockOrder);
@@ -73,23 +79,28 @@ describe('Order | Reducer | Order', () => {
   describe('when OrderLoadFailureAction is triggered', () => {
     let result;
     let state: DaffOrderReducerState;
-    let stubError: string;
+    let mockError: DaffStateError;
 
     beforeEach(() => {
-      stubError = 'error message';
+      mockError = {
+        code: 'error code',
+        message: 'error message',
+      };
       state = {
         ...initialState,
         loading: true,
-        errors: ['existing error'],
+        errors: [
+          { code: 'firstErrorCode', message: 'firstErrorMessage' },
+        ],
       };
 
-      const orderLoadFailureAction = new DaffOrderLoadFailure(stubError);
+      const orderLoadFailureAction = new DaffOrderLoadFailure(mockError);
 
       result = reducer(state, orderLoadFailureAction);
     });
 
     it('adds the error in action.payload to state.errors', () => {
-      expect(result.errors).toContain(stubError);
+      expect(result.errors).toContain(mockError);
       expect(result.errors.length).toEqual(2);
     });
 
@@ -110,13 +121,18 @@ describe('Order | Reducer | Order', () => {
 
   describe('when OrderListSuccessAction is triggered', () => {
     let result;
+    let mockError: DaffStateError;
     let state: DaffOrderReducerState;
 
     beforeEach(() => {
+      mockError = {
+        code: 'error code',
+        message: 'error message',
+      };
       state = {
         ...initialState,
         loading: true,
-        errors: ['an error'],
+        errors: [mockError],
       };
 
       const orderListSuccess = new DaffOrderListSuccess([mockOrder]);
@@ -136,23 +152,28 @@ describe('Order | Reducer | Order', () => {
   describe('when OrderListFailureAction is triggered', () => {
     let result;
     let state: DaffOrderReducerState;
-    let stubError: string;
+    let mockError: DaffStateError;
 
     beforeEach(() => {
-      stubError = 'error message';
+      mockError = {
+        code: 'error code',
+        message: 'error message',
+      };
       state = {
         ...initialState,
         loading: true,
-        errors: ['existing error'],
+        errors: [
+          { code: 'firstErrorCode', message: 'firstErrorMessage' },
+        ],
       };
 
-      const orderListFailureAction = new DaffOrderListFailure(stubError);
+      const orderListFailureAction = new DaffOrderListFailure(mockError);
 
       result = reducer(state, orderListFailureAction);
     });
 
     it('adds the error in action.payload to state.errors', () => {
-      expect(result.errors).toContain(stubError);
+      expect(result.errors).toContain(mockError);
       expect(result.errors.length).toEqual(2);
     });
 

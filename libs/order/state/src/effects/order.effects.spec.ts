@@ -9,10 +9,12 @@ import {
   of,
 } from 'rxjs';
 
+import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
   DaffOrderDriver,
+  DaffOrderNotFoundError,
 } from '@daffodil/order/driver';
 import { DaffOrderTestingDriverModule } from '@daffodil/order/driver/testing';
 import {
@@ -85,10 +87,10 @@ describe('Daffodil | Order | OrderEffects', () => {
 
     describe('and the call to OrderService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load order';
+        const error = new DaffOrderNotFoundError('Failed to load order');
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const orderLoadFailureAction = new DaffOrderLoadFailure(error);
+        const orderLoadFailureAction = new DaffOrderLoadFailure(daffTransformErrorToStateError(error));
         actions$ = hot('--a', { a: orderLoadAction });
         expected = cold('--b', { b: orderLoadFailureAction });
       });
@@ -118,10 +120,10 @@ describe('Daffodil | Order | OrderEffects', () => {
 
     describe('and the call to OrderService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to list the orders';
+        const error = new DaffOrderNotFoundError('Failed to list the orders');
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
-        const orderListFailureAction = new DaffOrderListFailure(error);
+        const orderListFailureAction = new DaffOrderListFailure(daffTransformErrorToStateError(error));
         actions$ = hot('--a', { a: orderListAction });
         expected = cold('--b', { b: orderListFailureAction });
       });

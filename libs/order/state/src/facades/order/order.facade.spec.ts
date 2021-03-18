@@ -11,6 +11,7 @@ import {
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
+import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -102,7 +103,7 @@ describe('DaffOrderFacade', () => {
     });
 
     it('should contain an error upon a failed load', () => {
-      const error = 'error';
+      const error: DaffStateError = { code: 'code', message: 'message' };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffOrderLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);

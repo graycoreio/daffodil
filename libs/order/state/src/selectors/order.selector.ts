@@ -3,6 +3,7 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 
 import { DaffOrderReducerState } from '../reducers/public_api';
@@ -11,7 +12,7 @@ import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 export interface DaffOrderSelectors {
   selectOrderState: MemoizedSelector<Record<string, any>, DaffOrderReducerState>;
   selectOrderLoading: MemoizedSelector<Record<string, any>, boolean>;
-  selectOrderErrors: MemoizedSelector<Record<string, any>, string[]>;
+  selectOrderErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
 }
 
 const createOrderSelectors = <T extends DaffOrder = DaffOrder>() => {

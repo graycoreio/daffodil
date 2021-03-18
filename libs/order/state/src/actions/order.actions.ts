@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 
 export enum DaffOrderActionTypes {
@@ -36,7 +37,7 @@ export class DaffOrderLoadSuccess<T extends DaffOrder = DaffOrder> implements Ac
 export class DaffOrderLoadFailure implements Action {
   readonly type = DaffOrderActionTypes.OrderLoadFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 /**
@@ -59,7 +60,7 @@ export class DaffOrderListSuccess<T extends DaffOrder = DaffOrder> implements Ac
 export class DaffOrderListFailure implements Action {
   readonly type = DaffOrderActionTypes.OrderListFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffOrderActions<
