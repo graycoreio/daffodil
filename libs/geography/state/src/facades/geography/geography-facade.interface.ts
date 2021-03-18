@@ -2,12 +2,15 @@ import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
+import {
+  DaffStoreFacade,
+  DaffStateError,
+} from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
 export interface DaffGeographyFacadeInterface<T extends DaffCountry = DaffCountry> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  errors$: Observable<string[]>;
+  errors$: Observable<DaffStateError[]>;
   countries$: Observable<T[]>;
   countryIds$: Observable<T['id'][]>;
   countryCount$: Observable<number>;
