@@ -1,4 +1,4 @@
-export interface MagentoUrlResolution {
+export interface MagentoUrlResolver {
 	relative_url: string;
 	type: string;
 	redirectCode: number;
