@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffPaypalTokenResponseFactory,
   DaffPaypalTestingDriverModule,
@@ -83,7 +84,7 @@ describe('DaffPaypalEffects', () => {
     describe('and the call to PaypalService fails', () => {
 
       beforeEach(() => {
-        const error = 'Failed to retrieve token';
+        const error: DaffStateError = { code: 'code', message: 'Failed to retrieve token' };
         const response = cold('#', {}, error);
         spyOn(daffPaypalDriver, 'generateToken').and.returnValue(response);
         const paypalLoadFailureAction = new DaffGeneratePaypalExpressTokenFailure(error);

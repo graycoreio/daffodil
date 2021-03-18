@@ -26,3 +26,4 @@ export { DaffPaypalModule } from './paypal.module';
 export * from './selectors/paypal.selector';
 export { DaffPaypalFacade } from './facades/paypal.facade';
 export { DaffPaypalFacadeInterface } from './interfaces/paypal-facade.interface';
+export * from './injection-tokens/public_api';

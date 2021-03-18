@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffPaypalTokenRequest } from '../models/paypal-token-request';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 
@@ -24,7 +26,7 @@ export class DaffGeneratePaypalExpressTokenSuccess<T extends DaffPaypalTokenResp
 export class DaffGeneratePaypalExpressTokenFailure implements Action {
 	readonly type = DaffPaypalActionTypes.GeneratePaypalExpressTokenFailureAction;
 
-	constructor(public payload: string) {}
+	constructor(public payload: DaffStateError) {}
 }
 
 export type DaffPaypalActions<

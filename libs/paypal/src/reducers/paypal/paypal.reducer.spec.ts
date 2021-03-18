@@ -1,3 +1,4 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 
 import {
@@ -85,7 +86,7 @@ describe('Paypal | Paypal Reducer', () => {
 
   describe('when GeneratePaypalExpressTokenFailureAction is triggered', () => {
 
-    const error = 'error message';
+    const error: DaffStateError = { code: 'code', message: 'error message' };
     let result: DaffPaypalReducerState<DaffPaypalTokenResponse>;
     let state: DaffPaypalReducerState<DaffPaypalTokenResponse>;
 
@@ -93,7 +94,7 @@ describe('Paypal | Paypal Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        error: 'firstError',
+        error: { code: 'firstErrorCode', message: 'firstErrorMessage' },
       };
 
       const generatePaypalExpressTokenFailureAction = new DaffGeneratePaypalExpressTokenFailure(error);

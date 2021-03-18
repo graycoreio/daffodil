@@ -6,6 +6,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { DaffPaypalModule } from '../paypal.module';
@@ -39,7 +41,7 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalToke
   /**
    * Errors associated with retrieving a single paypal.
    */
-  error$: Observable<string>;
+  error$: Observable<DaffStateError>;
 
   constructor(private store: Store<DaffPaypalReducersState<T>>) {
     const {

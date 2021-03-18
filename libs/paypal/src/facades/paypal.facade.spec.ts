@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 
 import {
@@ -106,7 +107,7 @@ describe('DaffPaypalFacade', () => {
   describe('error$', () => {
 
     it('should be an observable of an array of the current errors', () => {
-      const error = 'error1';
+      const error: DaffStateError = { code: 'code', message: 'Failed to retrieve token' };
       const expected = cold('a', { a: error });
       store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
       expect(facade.error$).toBeObservable(expected);

@@ -4,6 +4,8 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-key';
@@ -14,7 +16,7 @@ export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse =
 	selectPaypalState: MemoizedSelector<Record<string, any>, DaffPaypalReducerState<T>>;
 	selectPaypalTokenResponse: MemoizedSelector<Record<string, any>, T>;
 	selectPaypalLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectPaypalError: MemoizedSelector<Record<string, any>, string>;
+	selectPaypalError: MemoizedSelector<Record<string, any>, DaffStateError>;
 	selectPaypalToken: MemoizedSelector<Record<string, any>, string>;
 	selectPaypalStartUrl: MemoizedSelector<Record<string, any>, string>;
 	selectPaypalEditUrl: MemoizedSelector<Record<string, any>, string>;
