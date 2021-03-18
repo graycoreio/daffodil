@@ -2,7 +2,10 @@ import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
+import {
+  DaffStoreFacade,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -10,7 +13,7 @@ import {
 
 export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  errors$: Observable<string[]>;
+  errors$: Observable<DaffStateError[]>;
   orders$: Observable<T[]>;
   orderIds$: Observable<T['id'][]>;
   orderCount$: Observable<number>;

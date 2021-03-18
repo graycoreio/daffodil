@@ -15,7 +15,12 @@ import {
 } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffOrder } from '@daffodil/order';
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DaffOrder,
+  DAFF_ORDER_ERROR_MATCHER,
+} from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
   DaffOrderDriver,
@@ -39,6 +44,7 @@ export class DaffOrderEffects<
   constructor(
     private actions$: Actions,
     @Inject(DaffOrderDriver) private driver: DaffOrderServiceInterface<T>,
+		@Inject(DAFF_ORDER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
   /**
@@ -50,7 +56,7 @@ export class DaffOrderEffects<
     switchMap((action: DaffOrderLoad<T, V>) =>
       this.driver.get(action.orderId, action.cartId).pipe(
         map(resp => new DaffOrderLoadSuccess<T>(resp)),
-        catchError(error => of(new DaffOrderLoadFailure('Failed to load order'))),
+        catchError((error: DaffError) => of(new DaffOrderLoadFailure(this.errorMatcher(error)))),
       ),
     ),
   );
@@ -64,7 +70,7 @@ export class DaffOrderEffects<
     switchMap((action: DaffOrderList) =>
       this.driver.list(action.payload).pipe(
         map(resp => new DaffOrderListSuccess<T>(resp)),
-        catchError(error => of(new DaffOrderListFailure('Failed to list the orders'))),
+        catchError((error: DaffError) => of(new DaffOrderListFailure(this.errorMatcher(error)))),
       ),
     ),
   );

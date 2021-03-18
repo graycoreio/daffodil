@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -22,7 +23,7 @@ import { DaffOrderFacadeInterface } from './order-facade.interface';
 })
 export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrderFacadeInterface<T> {
   loading$: Observable<boolean>;
-  errors$: Observable<string[]>;
+  errors$: Observable<DaffStateError[]>;
 
   orders$: Observable<T[]>;
   orderIds$: Observable<T['id'][]>;
