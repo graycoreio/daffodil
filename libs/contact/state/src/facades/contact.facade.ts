@@ -5,6 +5,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffContactStateModule } from '../contact.module';
 import {
   DaffContactFeatureState,
@@ -17,7 +19,7 @@ import { DaffContactFacadeInterface } from './contact-facade.interface';
 @Injectable({ providedIn: DaffContactStateModule })
 export class DaffContactFacade implements DaffContactFacadeInterface {
 	success$: Observable<boolean> = this.store.select(selectDaffContactSuccess);
-	error$: Observable<string[]> = this.store.select(selectDaffContactError);
+	error$: Observable<DaffStateError[]> = this.store.select(selectDaffContactError);
 	loading$: Observable<boolean> = this.store.select(selectDaffContactLoading);
 
 	constructor(private store: Store<DaffContactFeatureState>) { }

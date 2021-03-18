@@ -1,1 +1,1 @@
-export { DaffContactUnion } from './models/contact-union';
+export * from './public_api';

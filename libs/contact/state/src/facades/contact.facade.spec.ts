@@ -74,15 +74,15 @@ describe('the DaffContactFacade', () => {
   });
 
   describe('error$ observable', () => {
-    it('should intially be null', () => {
-      const expected = cold('a', { a: null });
+    it('should intially be an empty array', () => {
+      const expected = cold('a', { a: []});
       expect(facade.error$).toBeObservable(expected);
     });
 
     it('should return an error when it fails', () => {
-      const error_messages = ['failed to submit'];
-      const expected = cold('a', { a: error_messages });
-      store.dispatch(new DaffContactFailedSubmit(error_messages));
+      const error = [{ code: 'code', message: 'Failed to submit' }];
+      const expected = cold('a', { a: error });
+      store.dispatch(new DaffContactFailedSubmit(error));
       expect(facade.error$).toBeObservable(expected);
     });
   });

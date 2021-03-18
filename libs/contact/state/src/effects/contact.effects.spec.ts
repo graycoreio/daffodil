@@ -55,8 +55,8 @@ describe('DaffContactEffects', () => {
     });
 
     it('and if the call fails, it should dispatch a ContactFailedSubmit', () => {
-      const error = ['Failed to submit'];
-      const response = cold('#', {}, error);
+      const error = [{ code: 'code', message: 'Failed to submit' }];
+      const response = cold('#', {}, error[0]);
       spyOn(daffContactDriver, 'send').and.returnValue(response);
       const failedAction = new DaffContactFailedSubmit(error);
 
@@ -80,8 +80,8 @@ describe('DaffContactEffects', () => {
     });
 
     it('and if the call fails, it should dispatch a ContactFailedSubmit', () => {
-      const error = ['Failed to submit'];
-      const response = cold('#', {}, error);
+      const error = [{ code: 'code', message: 'Failed to submit' }];
+      const response = cold('#', {}, error[0]);
       spyOn(daffContactDriver, 'send').and.returnValue(response);
       const failedAction = new DaffContactFailedSubmit(error);
 
