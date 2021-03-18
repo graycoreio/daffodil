@@ -1,3 +1,4 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 import {
   DaffCountryLoad,
@@ -70,7 +71,7 @@ describe('Geography | Reducer | Geography', () => {
   });
 
   describe('when CountryLoadFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffGeographyReducerState;
 
@@ -80,7 +81,7 @@ describe('Geography | Reducer | Geography', () => {
         loading: true,
         errors: [
           ...initialState.errors,
-          'firstError',
+          { code: 'firstError', message: 'firstErrorMessage' },
         ],
       };
 
@@ -116,7 +117,9 @@ describe('Geography | Reducer | Geography', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: ['an errorz'],
+        errors: [
+          { code: 'firstError', message: 'firstErrorMessage' },
+        ],
       };
 
       const countryListSuccess = new DaffCountryListSuccess([country]);
@@ -134,7 +137,7 @@ describe('Geography | Reducer | Geography', () => {
   });
 
   describe('when CountryListFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
     let result;
     let state: DaffGeographyReducerState;
 
@@ -144,7 +147,7 @@ describe('Geography | Reducer | Geography', () => {
         loading: true,
         errors: [
           ...initialState.errors,
-          'firstError',
+          { code: 'firstError', message: 'firstErrorMessage' },
         ],
       };
 

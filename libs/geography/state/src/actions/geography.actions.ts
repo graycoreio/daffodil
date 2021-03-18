@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
 export enum DaffGeographyActionTypes {
@@ -26,7 +27,7 @@ export class DaffCountryLoadSuccess<T extends DaffCountry> implements Action {
 export class DaffCountryLoadFailure implements Action {
   readonly type = DaffGeographyActionTypes.CountryLoadFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCountryList implements Action {
@@ -42,7 +43,7 @@ export class DaffCountryListSuccess<T extends DaffCountry> implements Action {
 export class DaffCountryListFailure implements Action {
   readonly type = DaffGeographyActionTypes.CountryListFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffGeographyActions<T extends DaffCountry> =

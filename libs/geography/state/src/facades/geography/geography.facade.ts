@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
 import { DaffGeographyFeatureState } from '../../reducers/public_api';
@@ -21,7 +22,7 @@ import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 })
 export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements DaffGeographyFacadeInterface<T> {
   loading$: Observable<boolean>;
-  errors$: Observable<string[]>;
+  errors$: Observable<DaffStateError[]>;
 
   countries$: Observable<T[]>;
   countryIds$: Observable<T['id'][]>;

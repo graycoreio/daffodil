@@ -3,6 +3,7 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
 import { DaffGeographyReducerState } from '../reducers/public_api';
@@ -11,7 +12,7 @@ import { getDaffGeographyFeatureStateSelector } from './geography-feature.select
 export interface DaffGeographySelectors {
   selectGeographyState: MemoizedSelector<Record<string, any>, DaffGeographyReducerState>;
   selectGeographyLoading: MemoizedSelector<Record<string, any>, boolean>;
-  selectGeographyErrors: MemoizedSelector<Record<string, any>, string[]>;
+  selectGeographyErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
 }
 
 const createGeographySelectors = <T extends DaffCountry = DaffCountry>() => {

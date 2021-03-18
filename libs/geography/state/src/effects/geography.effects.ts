@@ -14,7 +14,12 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffCountry } from '@daffodil/geography';
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DaffCountry,
+  DAFF_GEOGRAPHY_ERROR_MATCHER,
+} from '@daffodil/geography';
 import {
   DaffGeographyServiceInterface,
   DaffGeographyDriver,
@@ -35,6 +40,7 @@ export class DaffGeographyEffects<T extends DaffCountry> {
   constructor(
     private actions$: Actions,
     @Inject(DaffGeographyDriver) private driver: DaffGeographyServiceInterface<T>,
+    @Inject(DAFF_GEOGRAPHY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
   @Effect()
@@ -42,7 +48,7 @@ export class DaffGeographyEffects<T extends DaffCountry> {
     ofType(DaffGeographyActionTypes.CountryLoadAction),
     switchMap((action: DaffCountryLoad<T>) => this.driver.get(action.payload).pipe(
       map(resp => new DaffCountryLoadSuccess(resp)),
-      catchError(error => of(new DaffCountryLoadFailure('Failed to load country'))),
+      catchError((error: DaffError) => of(new DaffCountryLoadFailure(this.errorMatcher(error)))),
     )),
   );
 
@@ -51,7 +57,7 @@ export class DaffGeographyEffects<T extends DaffCountry> {
     ofType(DaffGeographyActionTypes.CountryListAction),
     switchMap((action: DaffCountryList) => this.driver.list().pipe(
       map(resp => new DaffCountryListSuccess(resp)),
-      catchError(error => of(new DaffCountryListFailure('Failed to list the countries'))),
+      catchError((error: DaffError) => of(new DaffCountryListFailure(this.errorMatcher(error)))),
     )),
   );
 }

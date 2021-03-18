@@ -3,13 +3,14 @@ import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 import { DaffGeographyFacadeInterface } from '@daffodil/geography/state';
 
 @Injectable({ providedIn: 'root' })
 export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
-  errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
   countries$: BehaviorSubject<DaffCountry[]> = new BehaviorSubject([]);
   countryIds$: BehaviorSubject<DaffCountry['id'][]> = new BehaviorSubject([]);
   countryCount$: BehaviorSubject<number> = new BehaviorSubject(null);

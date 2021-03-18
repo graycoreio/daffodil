@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 import {
   DaffCountryLoad,
@@ -89,7 +90,7 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should contain an error upon a failed load', () => {
-      const error = 'error';
+      const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCountryLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);

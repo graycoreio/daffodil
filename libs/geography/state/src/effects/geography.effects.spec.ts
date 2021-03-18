@@ -9,10 +9,12 @@ import {
   of,
 } from 'rxjs';
 
+import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 import {
   DaffGeographyServiceInterface,
   DaffGeographyDriver,
+  DaffCountryNotFoundError,
 } from '@daffodil/geography/driver';
 import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 import {
@@ -85,10 +87,10 @@ describe('Daffodil | Geography | GeographyEffects', () => {
 
     describe('and the call to GeographyService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load country';
+        const error = new DaffCountryNotFoundError('Failed to load country');
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const countryLoadFailureAction = new DaffCountryLoadFailure(error);
+        const countryLoadFailureAction = new DaffCountryLoadFailure(daffTransformErrorToStateError(error));
         actions$ = hot('--a', { a: countryLoadAction });
         expected = cold('--b', { b: countryLoadFailureAction });
       });
@@ -118,10 +120,10 @@ describe('Daffodil | Geography | GeographyEffects', () => {
 
     describe('and the call to GeographyService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to list the countries';
+        const error = new DaffCountryNotFoundError('Failed to list the countries');
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
-        const countryListFailureAction = new DaffCountryListFailure(error);
+        const countryListFailureAction = new DaffCountryListFailure(daffTransformErrorToStateError(error));
         actions$ = hot('--a', { a: countryListAction });
         expected = cold('--b', { b: countryListFailureAction });
       });
