@@ -1,8 +1,9 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffPaypalTokenRequest } from '../models/paypal-token-request';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
-import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffPaypalActionTypes {
   GeneratePaypalExpressTokenAction = '[Daff Paypal] Generate Express Token Action',
