@@ -17,7 +17,12 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DaffProduct,
+  DAFF_PRODUCT_ERROR_MATCHER,
+} from '@daffodil/product';
 import {
   DaffProductDriver,
   DaffProductServiceInterface,
@@ -41,7 +46,9 @@ export class DaffProductPageEffects<T extends DaffProduct> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>,
+		@Inject(DAFF_PRODUCT_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+  ) {}
 
   /**
    * Handles ProductPageLoadAction by making a service call for a product and returning a success or
@@ -56,7 +63,7 @@ export class DaffProductPageEffects<T extends DaffProduct> {
       this.driver.get(action.payload)
         .pipe(
           map((resp) => new DaffProductPageLoadSuccess(resp)),
-          catchError(error => of(new DaffProductPageLoadFailure('Failed to load product'))),
+          catchError((error: DaffError) => of(new DaffProductPageLoadFailure(this.errorMatcher(error)))),
         ),
     ),
   );
