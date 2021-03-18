@@ -1,3 +1,5 @@
+import { DaffStateError } from '@daffodil/core/state';
+
 import {
   DaffAuthCheck,
   DaffAuthCheckSuccess,
@@ -53,7 +55,10 @@ describe('Auth | Reducer | Auth', () => {
   });
 
   describe('when AuthCheckFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffAuthReducerState;
 
@@ -61,7 +66,7 @@ describe('Auth | Reducer | Auth', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authCheckFailure = new DaffAuthCheckFailure(error);

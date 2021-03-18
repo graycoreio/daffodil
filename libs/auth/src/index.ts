@@ -29,3 +29,4 @@ export { DaffAuthStorageService } from './storage/auth-storage.service';
 export * from './drivers/magento/public_api';
 export * from './errors/public_api';
 export * from './guards/public_api';
+export * from './injection-tokens/public_api';

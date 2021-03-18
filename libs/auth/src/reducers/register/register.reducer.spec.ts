@@ -1,4 +1,5 @@
 import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import {
   DaffAuthRegister,
@@ -75,7 +76,10 @@ describe('Auth | Reducer | Register', () => {
   });
 
   describe('when AuthRegisterFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffAuthRegisterReducerState;
 
@@ -83,7 +87,7 @@ describe('Auth | Reducer | Register', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authRegisterFailure = new DaffAuthRegisterFailure(error);

@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
+import {
+  DaffStoreFacade,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { DaffAuthToken } from '../models/auth-token';
 
@@ -10,13 +13,13 @@ export interface DaffAuthFacadeInterface<T extends DaffAuthToken = DaffAuthToken
   token$: Observable<T['token']>;
 
   authLoading$: Observable<boolean>;
-  authErrors$: Observable<string[]>;
+  authErrors$: Observable<DaffStateError[]>;
 
   loginLoading$: Observable<boolean>;
-  loginErrors$: Observable<string[]>;
+  loginErrors$: Observable<DaffStateError[]>;
 
   registerLoading$: Observable<boolean>;
-  registerErrors$: Observable<string[]>;
+  registerErrors$: Observable<DaffStateError[]>;
 
   dispatch(action: Action): void;
 }
