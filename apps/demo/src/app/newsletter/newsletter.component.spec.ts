@@ -124,7 +124,7 @@ describe('NewsletterComponent', () => {
     beforeEach(() => {
       facade.loading$.next(false);
       facade.success$.next(false);
-      facade.error$.next('Error');
+      facade.error$.next({ code: 'code', message: 'message' });
       fixture.detectChanges();
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__retry');
