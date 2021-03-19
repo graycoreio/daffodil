@@ -1,6 +1,10 @@
 import { ApolloError } from '@apollo/client/core';
 
-import { DaffCartDriverErrorMap } from '@daffodil/cart/driver';
+import { DaffCartCoupon } from '@daffodil/cart';
+import {
+  DaffCartDriverErrorMap,
+  DaffInvalidCouponCodeError,
+} from '@daffodil/cart/driver';
 import { daffTransformMagentoError } from '@daffodil/driver/magento';
 
 import {
@@ -9,23 +13,29 @@ import {
 } from './map';
 
 
-function transformMagentoCartGraphQlError(error: ApolloError): Error {
+function transformMagentoCartGraphQlError(error: ApolloError, requestPayload?: any): Error {
   // TODO: readdress this when we move to eslint
   // eslint-disable-next-line
   for (const code in DaffCartMagentoErrorMessageRegexMap) {
     const matchIndex = error.graphQLErrors[0].message.search(DaffCartMagentoErrorMessageRegexMap[code]);
 
     if (matchIndex > -1 && DaffCartDriverErrorMap[code]) {
-      return new DaffCartDriverErrorMap[code](error.message);
+      const errObj = new DaffCartDriverErrorMap[code](error.message);
+
+      if (errObj instanceof DaffInvalidCouponCodeError) {
+        (<DaffInvalidCouponCodeError>errObj).coupon = (<DaffCartCoupon>requestPayload)?.code;
+      }
+
+      return errObj;
     }
   }
 
   return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
 };
 
-export function transformCartMagentoError(error) {
+export function transformCartMagentoError(error, requestPayload?: any) {
   if (error.graphQLErrors?.length) {
-    return transformMagentoCartGraphQlError(error);
+    return transformMagentoCartGraphQlError(error, requestPayload);
   } else {
     return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
   }
