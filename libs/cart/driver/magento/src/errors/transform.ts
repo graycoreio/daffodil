@@ -13,7 +13,7 @@ import {
 } from './map';
 
 
-function transformMagentoCartGraphQlError(error: ApolloError, requestPayload?: any): Error {
+function transformMagentoCartGraphQlError(error: ApolloError, requestPayload?): Error {
   // TODO: readdress this when we move to eslint
   // eslint-disable-next-line
   for (const code in DaffCartMagentoErrorMessageRegexMap) {
@@ -33,7 +33,7 @@ function transformMagentoCartGraphQlError(error: ApolloError, requestPayload?: a
   return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
 };
 
-export function transformCartMagentoError(error, requestPayload?: any) {
+export function transformCartMagentoError(error, requestPayload?) {
   if (error.graphQLErrors?.length) {
     return transformMagentoCartGraphQlError(error, requestPayload);
   } else {
