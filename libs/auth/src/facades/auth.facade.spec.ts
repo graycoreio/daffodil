@@ -24,6 +24,7 @@ import {
   DaffAuthTokenFactory,
   DaffAccountRegistrationFactory,
 } from '@daffodil/auth/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthFacade } from './auth.facade';
 
@@ -107,7 +108,10 @@ describe('DaffAuthFacade', () => {
     });
 
     it('should contain an error upon a failed auth check', () => {
-      const error = 'error';
+      const error: DaffStateError = {
+        code: 'error code',
+        message: 'error message',
+      };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthCheckFailure(error));
       expect(facade.authErrors$).toBeObservable(expected);
@@ -134,7 +138,10 @@ describe('DaffAuthFacade', () => {
     });
 
     it('should contain an error upon a failed auth login', () => {
-      const error = 'error';
+      const error: DaffStateError = {
+        code: 'error code',
+        message: 'error message',
+      };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthLoginFailure(error));
       expect(facade.loginErrors$).toBeObservable(expected);
@@ -161,7 +168,10 @@ describe('DaffAuthFacade', () => {
     });
 
     it('should contain an error upon a failed auth registration', () => {
-      const error = 'error';
+      const error: DaffStateError = {
+        code: 'error code',
+        message: 'error message',
+      };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthRegisterFailure(error));
       expect(facade.registerErrors$).toBeObservable(expected);

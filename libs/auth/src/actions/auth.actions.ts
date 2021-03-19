@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffAccountRegistration } from '../models/account-registration';
 import { DaffAuthToken } from '../models/auth-token';
 import { DaffLoginInfo } from '../models/login-info';
@@ -44,7 +46,7 @@ export class DaffAuthGuardCheckCompletion implements Action {
 export class DaffAuthStorageFailure implements Action {
   readonly type = DaffAuthActionTypes.AuthStorageFailureAction;
 
-  constructor(public errorMessage: string) {}
+  constructor(public errorMessage: DaffStateError) {}
 }
 
 /**
@@ -75,7 +77,7 @@ export class DaffAuthLoginSuccess<T extends DaffAuthToken> implements Action {
 export class DaffAuthLoginFailure implements Action {
   readonly type = DaffAuthActionTypes.AuthLoginFailureAction;
 
-  constructor(public errorMessage: string) {}
+  constructor(public errorMessage: DaffStateError) {}
 }
 
 /**
@@ -102,7 +104,7 @@ export class DaffAuthLogoutSuccess implements Action {
 export class DaffAuthLogoutFailure implements Action {
   readonly type = DaffAuthActionTypes.AuthLogoutFailureAction;
 
-  constructor(public errorMessage: string) {}
+  constructor(public errorMessage: DaffStateError) {}
 }
 
 
@@ -130,7 +132,7 @@ export class DaffAuthCheckSuccess implements Action {
 export class DaffAuthCheckFailure implements Action {
   readonly type = DaffAuthActionTypes.AuthCheckFailureAction;
 
-  constructor(public errorMessage: string) {}
+  constructor(public errorMessage: DaffStateError) {}
 }
 
 /**
@@ -163,7 +165,7 @@ export class DaffAuthRegisterSuccess<T extends DaffLoginInfo> implements Action 
 export class DaffAuthRegisterFailure implements Action {
   readonly type = DaffAuthActionTypes.AuthRegisterFailureAction;
 
-  constructor(public errorMessage: string) {}
+  constructor(public errorMessage: DaffStateError) {}
 }
 
 export type DaffAuthActions<

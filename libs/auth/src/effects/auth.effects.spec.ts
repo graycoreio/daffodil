@@ -38,7 +38,12 @@ import {
   DaffAuthTokenFactory,
 } from '@daffodil/auth/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
+import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
+import {
+  DaffAuthenticationFailedError,
+  DaffAuthInvalidAPIResponseError,
+} from '../errors/public_api';
 import { DaffAuthEffects } from './auth.effects';
 
 describe('DaffAuthEffects', () => {
@@ -58,9 +63,11 @@ describe('DaffAuthEffects', () => {
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
-  const authStorageFailureAction = new DaffAuthStorageFailure('Storage of auth token has failed.');
+  const authStorageFailureAction = new DaffAuthStorageFailure(daffTransformErrorToStateError(
+    new DaffStorageServiceError('Storage of auth token has failed.')),
+  );
   const throwStorageError = () => {
-    throw new DaffStorageServiceError('An error occurred during storage.');
+    throw new DaffStorageServiceError('Storage of auth token has failed.');
   };
 
   let mockAuth: DaffAuthToken;
@@ -171,10 +178,10 @@ describe('DaffAuthEffects', () => {
 
     describe('and the login fails', () => {
       beforeEach(() => {
-        const error = 'Failed to log in';
+        const error = new DaffAuthenticationFailedError('Failed to log in');
         const response = cold('#', {}, error);
         daffLoginDriver.login.and.returnValue(response);
-        const mockAuthLoginFailureAction = new DaffAuthLoginFailure(error);
+        const mockAuthLoginFailureAction = new DaffAuthLoginFailure(daffTransformErrorToStateError(error));
 
         actions$ = hot('--a', { a: mockAuthLoginAction });
         expected = cold('--b', { b: mockAuthLoginFailureAction });
@@ -236,10 +243,10 @@ describe('DaffAuthEffects', () => {
 
     describe('and the check fails', () => {
       beforeEach(() => {
-        const error = 'Auth token is not valid';
+        const error = new DaffAuthenticationFailedError('Auth token is not valid');
         const response = cold('#', {}, error);
         daffAuthDriver.check.and.returnValue(response);
-        const mockAuthCheckFailureAction = new DaffAuthCheckFailure(error);
+        const mockAuthCheckFailureAction = new DaffAuthCheckFailure(daffTransformErrorToStateError(error));
 
         actions$ = hot('--a', { a: mockAuthCheckAction });
         expected = cold('--b', { b: mockAuthCheckFailureAction });
@@ -272,10 +279,10 @@ describe('DaffAuthEffects', () => {
 
     describe('and the logout fails', () => {
       beforeEach(() => {
-        const error = 'Failed to log out';
+        const error = new DaffAuthInvalidAPIResponseError('Failed to log out');
         const response = cold('#', {}, error);
         daffLoginDriver.logout.and.returnValue(response);
-        const mockAuthLogoutFailureAction = new DaffAuthLogoutFailure(error);
+        const mockAuthLogoutFailureAction = new DaffAuthLogoutFailure(daffTransformErrorToStateError(error));
 
         actions$ = hot('--a', { a: mockAuthLogoutAction });
         expected = cold('--b', { b: mockAuthLogoutFailureAction });
@@ -308,10 +315,10 @@ describe('DaffAuthEffects', () => {
 
     describe('and the registration fails', () => {
       beforeEach(() => {
-        const error = 'Failed to register a new user';
+        const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
         const response = cold('#', {}, error);
         daffRegisterDriver.register.and.returnValue(response);
-        const mockAuthLoginFailureAction = new DaffAuthRegisterFailure(error);
+        const mockAuthLoginFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
 
         actions$ = hot('--a', { a: mockAuthRegisterAction });
         expected = cold('--b', { b: mockAuthLoginFailureAction });

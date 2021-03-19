@@ -3,6 +3,8 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffAuthToken } from '../../models/auth-token';
 import { DaffAuthFeatureState } from '../../reducers/auth-feature-state.interface';
 import { DaffAuthLoginReducerState } from '../../reducers/public_api';
@@ -11,7 +13,7 @@ import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
 export interface DaffAuthLoginSelectors<T extends DaffAuthToken> {
   selectAuthLoginState: MemoizedSelector<Record<string, any>, DaffAuthLoginReducerState<T>>;
   selectAuthLoginLoading: MemoizedSelector<Record<string, any>, boolean>;
-  selectAuthLoginErrors: MemoizedSelector<Record<string, any>, string[]>;
+  selectAuthLoginErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
   selectAuthLoginToken: MemoizedSelector<Record<string, any>, T>;
   selectAuthLoginTokenValue: MemoizedSelector<Record<string, any>, T['token']>;
 }

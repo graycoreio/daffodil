@@ -2,6 +2,7 @@ import {
   DaffAuthTokenFactory,
   DaffAccountRegistrationFactory,
 } from '@daffodil/auth/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import {
   DaffAuthLogin,
@@ -89,7 +90,10 @@ describe('Auth | Reducer | Login', () => {
   });
 
   describe('when AuthLoginFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffAuthLoginReducerState<DaffAuthToken>;
 
@@ -97,7 +101,7 @@ describe('Auth | Reducer | Login', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLoginFailure = new DaffAuthLoginFailure(error);
@@ -153,7 +157,10 @@ describe('Auth | Reducer | Login', () => {
   });
 
   describe('when AuthLogoutFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffAuthLoginReducerState<DaffAuthToken>;
 
@@ -161,7 +168,7 @@ describe('Auth | Reducer | Login', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLogoutFailure = new DaffAuthLogoutFailure(error);

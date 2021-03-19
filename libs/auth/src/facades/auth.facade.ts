@@ -6,6 +6,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffAuthFacadeInterface } from '../interfaces/auth-facade.interface';
 import { DaffAuthToken } from '../models/auth-token';
 import { DaffAuthFeatureState } from '../reducers/public_api';
@@ -19,13 +21,13 @@ export class DaffAuthFacade<T extends DaffAuthToken = DaffAuthToken> implements 
   token$: Observable<T['token']>;
 
   authLoading$: Observable<boolean>;
-  authErrors$: Observable<string[]>;
+  authErrors$: Observable<DaffStateError[]>;
 
   loginLoading$: Observable<boolean>;
-  loginErrors$: Observable<string[]>;
+  loginErrors$: Observable<DaffStateError[]>;
 
   registerLoading$: Observable<boolean>;
-  registerErrors$: Observable<string[]>;
+  registerErrors$: Observable<DaffStateError[]>;
 
   constructor(private store: Store<DaffAuthFeatureState<T>>) {
     const {

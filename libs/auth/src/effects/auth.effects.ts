@@ -21,6 +21,9 @@ import {
   switchMapTo,
 } from 'rxjs/operators';
 
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+
 import {
   DaffAuthActionTypes,
   DaffAuthLogin,
@@ -51,6 +54,7 @@ import {
   DaffRegisterDriver,
   DaffRegisterServiceInterface,
 } from '../drivers/interfaces/register-service.interface';
+import { DAFF_AUTH_ERROR_MATCHER } from '../injection-tokens/public_api';
 import { DaffAccountRegistration } from '../models/account-registration';
 import { DaffAuthToken } from '../models/auth-token';
 import { DaffLoginInfo } from '../models/login-info';
@@ -67,6 +71,7 @@ export class DaffAuthEffects<
     @Inject(DaffRegisterDriver) private registerDriver: DaffRegisterServiceInterface<S, T>,
     @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<T, U>,
     @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface,
+		@Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
   ) {}
 
@@ -76,8 +81,8 @@ export class DaffAuthEffects<
     switchMap((action: DaffAuthCheck) =>
       this.checkToken().pipe(
         mapTo(new DaffAuthCheckSuccess()),
-        catchError(error =>
-          of(new DaffAuthCheckFailure('Auth token is not valid')),
+        catchError((error: DaffError) =>
+          of(new DaffAuthCheckFailure(this.errorMatcher(error))),
         ),
       ),
     ),
@@ -91,8 +96,8 @@ export class DaffAuthEffects<
         map((resp) =>
           new DaffAuthLoginSuccess<U>(resp),
         ),
-        catchError(error =>
-          of(new DaffAuthLoginFailure('Failed to log in')),
+        catchError((error: DaffError) =>
+          of(new DaffAuthLoginFailure(this.errorMatcher(error))),
         ),
       ),
     ),
@@ -107,7 +112,7 @@ export class DaffAuthEffects<
       this.storage.setAuthToken(action.auth.token);
     }),
     switchMapTo(EMPTY),
-    catchError(error => of(new DaffAuthStorageFailure('Storage of auth token has failed.'))),
+    catchError((error: DaffError) => of(new DaffAuthStorageFailure(this.errorMatcher(error)))),
   );
 
   @Effect()
@@ -116,8 +121,8 @@ export class DaffAuthEffects<
     switchMap((action: DaffAuthLogout) =>
       this.loginDriver.logout().pipe(
         mapTo(new DaffAuthLogoutSuccess()),
-        catchError(error =>
-          of(new DaffAuthLogoutFailure('Failed to log out')),
+        catchError((error: DaffError) =>
+          of(new DaffAuthLogoutFailure(this.errorMatcher(error))),
         ),
       ),
     ),
@@ -137,8 +142,8 @@ export class DaffAuthEffects<
         map((resp) =>
           new DaffAuthRegisterSuccess<T>(resp),
         ),
-        catchError(error =>
-          of(new DaffAuthRegisterFailure('Failed to register a new user')),
+        catchError((error: DaffError) =>
+          of(new DaffAuthRegisterFailure(this.errorMatcher(error))),
         ),
       ),
     ),
@@ -150,7 +155,7 @@ export class DaffAuthEffects<
     switchMap((action: DaffAuthGuardCheck) =>
       this.checkToken().pipe(
         mapTo(new DaffAuthGuardCheckCompletion(true)),
-        catchError(error =>
+        catchError((error: DaffError) =>
           of(new DaffAuthGuardCheckCompletion(false)),
         ),
       ),

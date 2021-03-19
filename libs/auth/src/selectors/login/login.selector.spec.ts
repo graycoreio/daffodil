@@ -8,6 +8,7 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthLoginSuccess } from '../../actions/auth.actions';
 import { DaffAuthToken } from '../../models/auth-token';
@@ -26,7 +27,7 @@ describe('Auth | Selector | Login', () => {
 
   let state: DaffAuthLoginReducerState<DaffAuthToken>;
   let loading: boolean;
-  let errors: string[];
+  let errors: DaffStateError[];
   let token: string;
   let mockAuthToken: DaffAuthToken;
 
