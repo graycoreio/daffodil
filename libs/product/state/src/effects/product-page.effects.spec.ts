@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriver,
@@ -84,7 +85,7 @@ describe('DaffProductPageEffects', () => {
     describe('and the call to ProductService fails', () => {
 
       beforeEach(() => {
-        const error = 'Failed to load product';
+        const error: DaffStateError = { code: 'code', message: 'Failed to load product' };
         const response = cold('#', {}, error);
         spyOn(daffProductDriver, 'get').and.returnValue(response);
         const productLoadFailureAction = new DaffProductPageLoadFailure(error);

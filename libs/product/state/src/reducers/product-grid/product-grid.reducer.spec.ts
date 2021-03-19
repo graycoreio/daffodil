@@ -1,3 +1,4 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoad,
@@ -69,7 +70,7 @@ describe('Product | Product Grid Reducer', () => {
 
   describe('when ProductGridLoadFailureAction is triggered', () => {
 
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffProductGridReducerState;
 
@@ -77,10 +78,13 @@ describe('Product | Product Grid Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
-      error = 'error';
+      error = {
+        code: 'error code',
+        message: 'error message',
+      };
       const productGridLoadFailure = new DaffProductGridLoadFailure(error);
       result = daffProductGridReducer(state, productGridLoadFailure);
     });

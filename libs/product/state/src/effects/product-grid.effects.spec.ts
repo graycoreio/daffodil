@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriver,
@@ -79,7 +80,7 @@ describe('DaffProductGridEffects', () => {
     describe('and the call to ProductService fails', () => {
 
       beforeEach(() => {
-        const error = 'Failed to load product grid';
+        const error: DaffStateError = { code: 'code', message: 'Failed to load product grid' };
         const response = cold('#', {}, error);
         spyOn(daffProductDriver, 'getAll').and.returnValue(response);
         const productGridLoadFailureAction = new DaffProductGridLoadFailure(error);

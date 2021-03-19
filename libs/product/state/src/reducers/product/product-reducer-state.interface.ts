@@ -1,3 +1,4 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 /**
@@ -7,5 +8,5 @@ export interface DaffProductReducerState {
   selectedProductId: DaffProduct['id'];
   qty: number;
   loading: boolean;
-  errors: string[];
+  errors: DaffStateError[];
 }

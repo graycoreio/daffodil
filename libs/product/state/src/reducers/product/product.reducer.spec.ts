@@ -77,7 +77,10 @@ describe('Product | Product Reducer', () => {
 
   describe('when ProductLoadFailureAction is triggered', () => {
 
-    const error = 'error message';
+    const error = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffProductReducerState;
 
@@ -85,7 +88,7 @@ describe('Product | Product Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const productLoadFailure = new DaffProductPageLoadFailure(error);

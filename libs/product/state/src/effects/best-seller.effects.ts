@@ -17,7 +17,12 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DaffProduct,
+  DAFF_PRODUCT_ERROR_MATCHER,
+} from '@daffodil/product';
 import {
   DaffProductDriver,
   DaffProductServiceInterface,
@@ -41,7 +46,9 @@ export class DaffBestSellersEffects<T extends DaffProduct> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>,
+		@Inject(DAFF_PRODUCT_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+  ) {}
 
   /**
    * Handles BestSellersLoadAction by making a service call for best selling products and returning a success or failure action
@@ -56,7 +63,7 @@ export class DaffBestSellersEffects<T extends DaffProduct> {
       this.driver.getBestSellers()
         .pipe(
           map((resp) => new DaffBestSellersLoadSuccess(resp)),
-          catchError(error => of(new DaffBestSellersLoadFailure('Failed to load best selling products'))),
+          catchError((error: DaffError) => of(new DaffBestSellersLoadFailure(this.errorMatcher(error)))),
         ),
     ),
   );

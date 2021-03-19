@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 /**
@@ -40,7 +41,7 @@ export class DaffProductGridLoadSuccess<T extends DaffProduct = DaffProduct> imp
 export class DaffProductGridLoadFailure implements Action {
   readonly type = DaffProductGridActionTypes.ProductGridLoadFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 /**

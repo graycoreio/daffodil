@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriver,
@@ -80,7 +81,7 @@ describe('BestSellersEffects', () => {
     describe('and the call to ProductService fails', () => {
 
       beforeEach(() => {
-        const error = 'Failed to load best selling products';
+        const error: DaffStateError = { code: 'code', message: 'Failed to load best selling products' };
         const response = cold('#', {}, error);
         spyOn(daffProductDriver, 'getBestSellers').and.returnValue(response);
         const bestSellersLoadFailureAction = new DaffBestSellersLoadFailure(error);

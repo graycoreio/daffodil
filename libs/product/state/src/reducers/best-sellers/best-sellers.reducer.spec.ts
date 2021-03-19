@@ -1,3 +1,4 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffBestSellersLoad,
@@ -75,7 +76,7 @@ describe('Product | Best Sellers Reducer', () => {
 
   describe('when BestSellersLoadFailureAction is triggered', () => {
 
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffBestSellersReducerState;
 
@@ -83,9 +84,12 @@ describe('Product | Best Sellers Reducer', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
-      error = 'error';
+      error = {
+        code: 'error code',
+        message: 'error message',
+      };
       const productsLoadFailure = new DaffBestSellersLoadFailure(error);
 
       result = daffBestSellersReducer(state, productsLoadFailure);
