@@ -1,5 +1,5 @@
 import { MagentoUrlResolver } from './url-resolver';
 
-export interface MagentoUrlResolutionResponse {
+export interface MagentoUrlResolverResponse {
   urlResolver: MagentoUrlResolver;
 }

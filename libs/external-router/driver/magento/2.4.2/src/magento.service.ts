@@ -11,7 +11,7 @@ import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 import {
   transformResolutionToResolvableUrl,
-  MagentoUrlResolutionResponse,
+  MagentoUrlResolverResponse,
 } from '@daffodil/external-router/driver/magento';
 
 import { MagentoResolveUrlv242 } from './graphql/queries/resolve-url-v2.4.2';
@@ -32,7 +32,7 @@ implements DaffExternalRouterDriverInterface {
 
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {
     return this.apollo
-      .query<MagentoUrlResolutionResponse>({
+      .query<MagentoUrlResolverResponse>({
         query: MagentoResolveUrlv242,
         variables: {
           url,
