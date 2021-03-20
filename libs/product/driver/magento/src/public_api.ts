@@ -18,3 +18,5 @@ export {
   transformMagentoProduct,
   transformManyMagentoProducts,
 } from './transforms/product-transformers';
+
+export * from './interfaces/public_api';

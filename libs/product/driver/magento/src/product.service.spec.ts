@@ -14,6 +14,7 @@ import {
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
+import { MAGENTO_PRODUCT_CONFIG_TOKEN } from './interfaces/public_api';
 import { DaffMagentoProductService } from './product.service';
 
 describe('Product | Magento | ProductService', () => {
@@ -33,6 +34,10 @@ describe('Product | Magento | ProductService', () => {
             addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
+        },
+        {
+          provide: MAGENTO_PRODUCT_CONFIG_TOKEN,
+          useValue: 'http://testwebsite.com',
         },
       ],
     });
@@ -64,10 +69,6 @@ describe('Product | Magento | ProductService', () => {
 
       op.flush({
         data: {
-          storeConfig: {
-            __typename: 'StoreConfig',
-            secure_base_media_url: 'http://testwebsite.com',
-          },
           products: {
             __typename: 'Products',
             items: [stubSimpleProduct],
@@ -88,10 +89,6 @@ describe('Product | Magento | ProductService', () => {
 
         op.flush({
           data: {
-            storeConfig: {
-              __typename: 'StoreConfig',
-              secure_base_media_url: 'http://testwebsite.com',
-            },
             products: {
               __typename: 'Products',
               items: [stubSimpleProduct],
