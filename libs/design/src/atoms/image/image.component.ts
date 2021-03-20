@@ -8,6 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+
 import { daffThumbnailCompatToken } from '../../molecules/media-gallery/public_api';
 
 const validateProperty = (object: Record<string, any>, prop: string) => {
@@ -38,9 +39,10 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
-      provide: daffThumbnailCompatToken, useExisting: DaffImageComponent
-    }
-  ]
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+			 provide: daffThumbnailCompatToken, useExisting: DaffImageComponent,
+    },
+  ],
 })
 export class DaffImageComponent implements OnInit {
 
@@ -104,13 +106,13 @@ export class DaffImageComponent implements OnInit {
 	/**
 	 * @docs-private
 	 */
-  get _paddingTop(): any {
-    if (!this.height || !this.width ) {
-      return undefined;
-    }
-    
-    return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
-  }
+	get _paddingTop(): any {
+	  if (!this.height || !this.width ) {
+	    return undefined;
+	  }
+
+	  return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
+	}
 
 	/**
 	 * @docs-private

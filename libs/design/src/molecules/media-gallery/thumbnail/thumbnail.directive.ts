@@ -1,23 +1,23 @@
 import {
-	Directive,
-	Input,
-	Inject,
-	Type,
-	HostBinding,
-	HostListener,
-	Output,
-	EventEmitter,
-	ChangeDetectorRef,
-	OnInit,
-	OnDestroy
+  Directive,
+  Input,
+  Inject,
+  Type,
+  HostBinding,
+  HostListener,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 
+import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
 
 @Directive({
-	selector: '[daffThumbnail]',
+  selector: '[daffThumbnail]',
 })
 export class DaffThumbnailDirective implements OnInit, OnDestroy {
 
@@ -25,8 +25,8 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 	 * Adds a class for styling a gallery item
 	 */
 	@HostBinding('class.daff-thumbnail--selected') get selectedClass() {
-		return this.selected;
-	};
+    return this.selected;
+  };
 
 	constructor(
 		@Inject(daffThumbnailCompatToken) public component: Type<unknown>,
@@ -38,7 +38,7 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 	 * Adds a class for styling a gallery item
 	 */
 	@HostBinding('class.daff-thumbnail') class = true;
-	
+
 	/**
 	 * A prop for determining whether or not the media element is selected.
 	 */
@@ -51,30 +51,31 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 
 	/**
 	 * Adds a click event to trigger selection of the media element.
-	 * @param $event 
+	 *
+	 * @param $event
 	 */
 	@HostListener('click', ['$event']) onClick($event: MouseEvent) {
-		this.registry.select(this);
+	  this.registry.select(this);
 	}
-	
+
 	ngOnInit(): void {
-		this.registry.add(this.gallery, this);
+	  this.registry.add(this.gallery, this);
 	}
 
 	ngOnDestroy(): void {
-		this.registry.remove(this);
+	  this.registry.remove(this);
 	}
 
 	select() {
-		this.selected = true;
-		this.becameSelected.emit();
-		this.cd.markForCheck();
-		return this;
+	  this.selected = true;
+	  this.becameSelected.emit();
+	  this.cd.markForCheck();
+	  return this;
 	}
 
 	deselect() {
-		this.selected = false;
-		this.cd.markForCheck();
-		return this;
+	  this.selected = false;
+	  this.cd.markForCheck();
+	  return this;
 	}
 }

@@ -1,17 +1,17 @@
 import {
-	Component,
-	HostBinding,
-	ChangeDetectionStrategy,
-	Input
+  Component,
+  HostBinding,
+  ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 
 let uniqueGalleryId = 0;
 
 @Component({
-	selector: 'daff-media-gallery',
-	templateUrl: './media-gallery.component.html',
-	styleUrls: ['./media-gallery.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'daff-media-gallery',
+  templateUrl: './media-gallery.component.html',
+  styleUrls: ['./media-gallery.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffMediaGalleryComponent {
 	@HostBinding('class.daff-media-gallery') class = true;
@@ -20,8 +20,8 @@ export class DaffMediaGalleryComponent {
 	 * The name of the gallery
 	 */
 	@Input() name = uniqueGalleryId;
-	
+
 	constructor() {
-		uniqueGalleryId++;
+	  uniqueGalleryId++;
 	}
 }
