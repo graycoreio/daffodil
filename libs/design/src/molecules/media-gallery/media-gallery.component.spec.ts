@@ -1,24 +1,106 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DaffMediaGalleryComponent } from './media-gallery.component';
+import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
+import { daffThumbnailCompatToken } from './thumbnail/thumbnail-compat.token';
+import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
+
+@Component({
+	template: `<daff-media-gallery [name]="nameValue">
+		<div daffThumbnail></div>
+	</daff-media-gallery>`
+})
+class WrapperComponent {
+	nameValue: number;
+}
+
+@Component({
+	template: '',
+	selector: 'daff-media-renderer'
+})
+class MockMediaRendererComponent {}
 
 describe('DaffMediaGalleryComponent', () => {
+	let wrapper: WrapperComponent;
+	let fixture: ComponentFixture<WrapperComponent>;
+	let de: DebugElement;
 	let component: DaffMediaGalleryComponent;
-	let fixture: ComponentFixture<DaffMediaGalleryComponent>;
+	const stubName = 3;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [DaffMediaGalleryComponent],
+			declarations: [
+				WrapperComponent,
+				MockMediaRendererComponent,
+				DaffMediaGalleryComponent,
+				DaffThumbnailDirective,
+			],
+			providers: [
+				{ provide: daffThumbnailCompatToken, useValue: DaffThumbnailDirective },
+				DaffMediaGalleryRegistry
+			]
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(DaffMediaGalleryComponent);
-		component = fixture.componentInstance;
+		fixture = TestBed.createComponent(WrapperComponent);
+		wrapper = fixture.componentInstance;
+		wrapper.nameValue = stubName;
 		fixture.detectChanges();
+
+		de = fixture.debugElement.query(By.css('daff-media-gallery'));
+		component = de.componentInstance;
 	});
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should add a daff-media-gallery class to the host element', () => {
+		expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-media-gallery': true,
+    }));
+	});
+
+	it('should take a name as input', () => {
+		expect(component.name).toEqual(stubName);
+	});
+});
+
+@Component({
+	template: '<daff-media-gallery></daff-media-gallery>'
+})
+class DefaultWrapperComponent {}
+
+describe('DaffMediaGalleryComponent - default', () => {
+	let wrapper: DefaultWrapperComponent;
+	let fixture: ComponentFixture<DefaultWrapperComponent>;
+	let de: DebugElement;
+	let component: DaffMediaGalleryComponent;
+
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [
+				DaffMediaGalleryComponent,
+				MockMediaRendererComponent,
+				DaffThumbnailDirective,
+				DefaultWrapperComponent
+			],
+		}).compileComponents();
+	}));
+
+	beforeEach(() => {
+		fixture = TestBed.createComponent(DefaultWrapperComponent);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+
+		de = fixture.debugElement.query(By.css('daff-media-gallery'));
+		component = de.componentInstance;
+	});
+
+	it('should set the name to a unique id if a name is not provided', () => {
+		expect(component.name).toEqual(jasmine.any(Number));
 	});
 });

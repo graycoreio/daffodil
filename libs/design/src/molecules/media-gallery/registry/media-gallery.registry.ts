@@ -28,7 +28,7 @@ export class DaffMediaGalleryRegistry {
 			newGallery = {
 				...newGallery,
 				thumbnails: [
-					...newGallery.thumbnails,
+					...newGallery.thumbnails.filter(t => t !== thumbnail),
 					thumbnail
 				]
 			}
@@ -54,7 +54,6 @@ export class DaffMediaGalleryRegistry {
 		const gallery = this.galleries[thumbnail.gallery.name].getValue();
 		const index = gallery.thumbnails.indexOf(thumbnail);
 
-		//This should never happen, but we don't need to remove it if it doesn't exist.
 		if(index === -1) return;
 
 		this.galleries[thumbnail.gallery.name].next({
@@ -76,14 +75,9 @@ export class DaffMediaGalleryRegistry {
 		const gallery = this.galleries[thumbnail.gallery.name].getValue();
 		const index = gallery.thumbnails.indexOf(thumbnail);
 
-		if(thumbnail.selected){
+		if(thumbnail.selected || index === -1){
 			return;
 		}
-
-		//This should never happen, but we don't need to select it if it doesn't exist.
-		if(index === -1){
-			return;	
-		} 
 
 		this.galleries[thumbnail.gallery.name].next({
 			...gallery,

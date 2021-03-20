@@ -42,7 +42,7 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 	/**
 	 * A prop for determining whether or not the media element is selected.
 	 */
-	@Input() selected = false;
+	selected = false;
 
 	/**
 	 * An event that fires after the media element becomes selected.
@@ -62,7 +62,7 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.registry.select(this);
+		this.registry.remove(this);
 	}
 
 	select() {
