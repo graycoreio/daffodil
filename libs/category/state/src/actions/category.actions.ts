@@ -6,6 +6,7 @@ import {
   DaffCategory,
   DaffGetCategoryResponse,
 } from '@daffodil/category';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCategoryActionTypes {
@@ -47,7 +48,7 @@ export class DaffCategoryLoadSuccess<
 export class DaffCategoryLoadFailure implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadFailureAction;
 
-  constructor(public errorMessage: string) { }
+  constructor(public errorMessage: DaffStateError) { }
 }
 
 export type DaffCategoryActions<

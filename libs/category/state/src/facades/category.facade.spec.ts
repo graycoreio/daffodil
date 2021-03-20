@@ -20,7 +20,10 @@ import {
 } from '@daffodil/category/state';
 import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
-import { DaffState } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -298,7 +301,10 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should be an observable of an array of the current errors', () => {
-      const error = 'error1';
+      const error: DaffStateError = {
+        code: 'error code',
+        message: 'Failed to load the category',
+      };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCategoryPageLoad({ id: 'id' }));
       store.dispatch(new DaffCategoryPageLoadFailure(error));

@@ -10,7 +10,10 @@ import {
   DaffCategoryFilterRequest,
   DaffCategoryFilter,
 } from '@daffodil/category';
-import { DaffState } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { DaffStatefulCategoryPageConfigurationState } from '../../models/public_api';
 import {
@@ -47,7 +50,7 @@ export interface DaffCategoryPageMemoizedSelectors<
    * @deprecated Use selectIsCategoryPageResolving and selectIsCategoryPageMutating instead
    */
 	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryErrors: MemoizedSelector<Record<string, any>, string[]>;
+	selectCategoryErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
   selectIsCategoryPageMutating: MemoizedSelector<Record<string, any>, boolean>;
   selectIsCategoryPageResolving: MemoizedSelector<Record<string, any>, boolean>;
 }

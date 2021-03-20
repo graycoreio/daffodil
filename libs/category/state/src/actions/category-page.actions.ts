@@ -8,6 +8,7 @@ import {
   DaffCategoryFilterRequest,
   DaffToggleCategoryFilterRequest,
 } from '@daffodil/category';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCategoryPageActionTypes {
@@ -55,7 +56,7 @@ export class DaffCategoryPageLoadSuccess<
 export class DaffCategoryPageLoadFailure implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadFailureAction;
 
-  constructor(public errorMessage: string) { }
+  constructor(public errorMessage: DaffStateError) { }
 }
 
 /**

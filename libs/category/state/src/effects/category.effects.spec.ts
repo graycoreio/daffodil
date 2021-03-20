@@ -33,6 +33,7 @@ import {
 } from '@daffodil/category/state';
 import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -136,7 +137,10 @@ describe('DaffCategoryEffects', () => {
     describe('when the call to CategoryService fails', () => {
 
       beforeEach(() => {
-        const error = 'Failed to load the category';
+        const error: DaffStateError = {
+          code: 'error code',
+          message: 'Failed to load the category',
+        };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const categoryLoadFailureAction = new DaffCategoryLoadFailure(error);

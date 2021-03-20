@@ -15,6 +15,7 @@ import {
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
+  DaffStateError,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
@@ -97,7 +98,7 @@ export class DaffCategoryFacade<
   /**
    * Errors associated with retrieving a single category.
    */
-	errors$: Observable<string[]>;
+	errors$: Observable<DaffStateError[]>;
 	/**
 	 * Is the category page empty of products.
 	 */

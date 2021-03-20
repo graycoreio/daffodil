@@ -27,11 +27,14 @@ import {
   DaffGenericCategory,
   daffCategoryValidateFilters,
   DaffGetCategoryResponse,
+  DAFF_CATEGORY_ERROR_MATCHER,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,
 } from '@daffodil/category/driver';
+import { DaffError } from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
@@ -58,6 +61,7 @@ export class DaffCategoryPageEffects<
   constructor(
     private actions$: Actions,
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V, W>,
+		@Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private store: Store<any>,
   ){}
 
@@ -159,7 +163,7 @@ export class DaffCategoryPageEffects<
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),
       ]),
-      catchError(error => of(new DaffCategoryPageLoadFailure('Failed to load the category'))),
+      catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
     );
   }
 }
