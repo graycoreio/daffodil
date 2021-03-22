@@ -14,6 +14,7 @@ import {
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
+  DaffStateError,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
@@ -37,7 +38,7 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
   categoryLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   productsLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
+	errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
 	isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
 	getCategoryById(id: DaffCategory['id']): BehaviorSubject<DaffCategory> {

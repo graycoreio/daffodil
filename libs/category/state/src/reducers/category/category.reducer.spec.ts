@@ -28,6 +28,7 @@ import { DaffCategoryFactory } from '@daffodil/category/testing';
 import {
   DaffSortDirectionEnum,
   DaffState,
+  DaffStateError,
 } from '@daffodil/core/state';
 
 import { daffCategoryReducer } from './category.reducer';
@@ -513,7 +514,10 @@ describe('Category | Category Reducer', () => {
 
   describe('when CategoryLoadFailureAction is triggered', () => {
 
-    const error = 'error message';
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffCategoryReducerState;
 
@@ -522,7 +526,7 @@ describe('Category | Category Reducer', () => {
         ...initialState,
         categoryLoading: true,
         productsLoading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const categoryLoadFailure = new DaffCategoryLoadFailure(error);
@@ -691,7 +695,10 @@ describe('Category | Category Reducer', () => {
 
   describe('when CategoryPageLoadFailureAction is triggered', () => {
 
-    const error = 'error message';
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
     let result;
     let state: DaffCategoryReducerState;
 
@@ -700,7 +707,7 @@ describe('Category | Category Reducer', () => {
         ...initialState,
         categoryLoading: true,
         productsLoading: true,
-        errors: new Array('firstError'),
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const categoryLoadFailure = new DaffCategoryPageLoadFailure(error);

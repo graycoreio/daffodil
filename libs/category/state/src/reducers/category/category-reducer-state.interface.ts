@@ -1,3 +1,5 @@
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffStatefulCategoryPageConfigurationState } from '../../models/stateful-category-page-configuration-state.interface';
 
 export interface DaffCategoryReducerState {
@@ -10,5 +12,5 @@ export interface DaffCategoryReducerState {
    * @deprecated
    */
   productsLoading: boolean;
-  errors: string[];
+  errors: DaffStateError[];
 }
