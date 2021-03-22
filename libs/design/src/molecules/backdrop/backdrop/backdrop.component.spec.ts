@@ -83,7 +83,7 @@ describe('DaffBackdropComponent | Usage', () => {
 
       backdropHost.nativeElement.click();
 
-      expect(backdrop.backdropClicked.emit).toHaveBeenCalled();
+      expect(backdrop.backdropClicked.emit).toHaveBeenCalledWith();
     });
   });
 

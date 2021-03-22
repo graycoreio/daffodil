@@ -267,7 +267,7 @@ describe('DaffQtyDropdownComponent', () => {
       });
 
       it('should calls selectInput', () => {
-        expect(qtyDropdownComponent.componentInstance.selectInput).toHaveBeenCalled();
+        expect(qtyDropdownComponent.componentInstance.selectInput).toHaveBeenCalledWith();
       });
     });
 

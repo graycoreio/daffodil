@@ -118,7 +118,7 @@ describe('DaffAccordionItemComponent', () => {
     });
 
     it('should call toggleActive', () => {
-      expect(daffAccordionItem.toggleActive).toHaveBeenCalled();
+      expect(daffAccordionItem.toggleActive).toHaveBeenCalledWith();
     });
   });
 
