@@ -19,7 +19,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
   it('transforms a DaffExternallyResolvableUrl into an Angular route.', () => {
     expect(
       daffTransformResolvedRouteToRoute(
-        { url: 'some-url', type: 'some-type' },
+        { url: 'some-url', type: 'some-type', id: 'id' },
         [{ type: 'some-type', route: { redirectTo: '/' }}],
       ),
     ).toEqual({
@@ -30,7 +30,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
 
   it('throws an error if it is unable to map the route to a known type', () => {
     expect(() =>
-      daffTransformResolvedRouteToRoute({ url: '', type: 'some-type' }, []),
+      daffTransformResolvedRouteToRoute({ url: '', type: 'some-type', id: 'id' }, []),
     ).toThrowError(DaffExternalRouterUnknownRouteTypeError);
   });
 });

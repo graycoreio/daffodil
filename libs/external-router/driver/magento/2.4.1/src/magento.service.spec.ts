@@ -5,6 +5,7 @@ import {
 } from 'apollo-angular/testing';
 import { TestScheduler } from 'rxjs/testing';
 
+import { ID } from '@daffodil/core';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import {
   MagentoUrlRewriteEntityTypeEnum,
@@ -20,6 +21,7 @@ describe('@daffodil/external-router/driver/magento/2.4.1 | DaffExternalRouterMag
   let controller: ApolloTestingController;
   let scheduler: TestScheduler;
   let url: string;
+  let id: ID;
   let resolution: MagentoUrlResolverResponse;
   let resolvableUrl: DaffExternallyResolvableUrl;
 
@@ -38,16 +40,18 @@ describe('@daffodil/external-router/driver/magento/2.4.1 | DaffExternalRouterMag
     });
 
     url = 'url';
+    id = 'id';
     resolution = {
       urlResolver: {
         relative_url: url,
         type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
         redirectCode: 0,
-        entity_uid: '',
+        entity_uid: id,
       },
     };
 
     resolvableUrl = {
+      id,
       url,
       type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
     };

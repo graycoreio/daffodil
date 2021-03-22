@@ -37,7 +37,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
       const expected = '(a|)';
 
       expectObservable(service.resolve('test')).toBe(expected, {
-        a: { url: 'test', type: 'PRODUCT' },
+        a: { url: 'test', type: 'PRODUCT', id: jasmine.any(String) },
       });
     });
   });

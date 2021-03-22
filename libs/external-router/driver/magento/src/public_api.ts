@@ -3,4 +3,3 @@
  */
 
 export * from './model/public_api';
-export { transformResolutionToResolvableUrl } from './transforms/resolution-to-resolvable-url';
