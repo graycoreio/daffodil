@@ -8,12 +8,10 @@ import { map } from 'rxjs/operators';
 
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
-import {
-  transformResolutionToResolvableUrl,
-  MagentoUrlResolverResponse,
-} from '@daffodil/external-router/driver/magento';
+import { MagentoUrlResolverResponse } from '@daffodil/external-router/driver/magento';
 
 import { MagentoResolveUrlv241 } from './graphql/queries/resolve-url-v2.4.1';
+import { transformResolutionToResolvableUrlv241 } from './transforms/resolution-to-resolvable-url';
 
 /**
  * The DaffExternalRouterMagentoDriver is responsible for translating an
@@ -34,6 +32,6 @@ implements DaffExternalRouterDriverInterface {
           url,
         },
       })
-      .pipe(map(response => transformResolutionToResolvableUrl(response.data.urlResolver)));
+      .pipe(map(response => transformResolutionToResolvableUrlv241(response.data.urlResolver)));
   }
 }
