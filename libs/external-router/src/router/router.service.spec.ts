@@ -39,7 +39,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
       [{ path: '**', redirectTo: 'somewhere-else' }],
     );
 
-    service.add({ url: 'some-path', type: 'type-a' });
+    service.add({ url: 'some-path', type: 'type-a', id: 'id' });
     expect(router.config).toEqual([
       { path: 'some-path', redirectTo: '/' },
       { path: '**', redirectTo: 'somewhere-else' },
@@ -52,7 +52,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
 
   it('should not add a route if it does not match a known type', () => {
     setupTest([], []);
-    expect(() => service.add({ url: 'some-path', type: 'type-a' })).toThrow();
+    expect(() => service.add({ url: 'some-path', type: 'type-a', id: 'id' })).toThrow();
     expect(router.config).toEqual([]);
   });
 
@@ -63,7 +63,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     );
 
     expect(() =>
-      service.add({ url: 'some-path', type: 'type-b' }),
+      service.add({ url: 'some-path', type: 'type-b', id: 'id' }),
     ).toThrowError(DaffExternalRouterUnknownRouteTypeError);
     expect(router.config).toEqual([
       { path: '**', redirectTo: 'somewhere-else' },
@@ -74,7 +74,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     setupTest([{ type: 'type-a', route: { redirectTo: '/' }}], []);
 
     expect(() =>
-      service.add({ url: 'some-path', type: 'type-a' }),
+      service.add({ url: 'some-path', type: 'type-a', id: 'id' }),
     ).toThrowError(DaffExternalRouterNoWildcardError, /misconfigured/);
     expect(router.config).toEqual([]);
   });

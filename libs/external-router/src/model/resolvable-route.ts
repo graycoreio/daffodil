@@ -1,3 +1,5 @@
+import { ID } from '@daffodil/core';
+
 import { DaffExternalRouteType } from './route-type';
 
 /**
@@ -12,6 +14,7 @@ import { DaffExternalRouteType } from './route-type';
  * ```
  */
 export interface DaffExternallyResolvableUrl {
+  id: ID;
 	url: string;
 	type: DaffExternalRouteType;
 }

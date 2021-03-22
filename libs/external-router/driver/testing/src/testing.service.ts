@@ -2,6 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
+import * as faker from 'faker/locale/en_US';
 import {
   Observable,
   of,
@@ -40,6 +41,7 @@ Did you configure the available route types with DaffExternalRouterDriverTesting
     }
 
     return of({
+      id: faker.random.uuid(),
       url,
       type: this.testingConfiguration[url],
     });
