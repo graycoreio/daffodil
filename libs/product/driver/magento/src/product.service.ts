@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import {
   Observable,
@@ -9,6 +12,10 @@ import { map } from 'rxjs/operators';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
+import {
+  MAGENTO_PRODUCT_CONFIG_TOKEN,
+  DaffProductMagentoDriverConfig,
+} from './interfaces/public_api';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
 import {
@@ -23,7 +30,10 @@ import {
   providedIn: 'root',
 })
 export class DaffMagentoProductService implements DaffProductServiceInterface {
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
+  ) {}
 
   /**
    * Get an Observable of a DaffProduct by id.
@@ -37,7 +47,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
         sku: productId,
       },
     }).pipe(
-      map(result => transformMagentoProduct(result.data.products.items[0], result.data.storeConfig.secure_base_media_url)),
+      map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
     );
   }
 
@@ -48,7 +58,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     return this.apollo.query<any>({
       query: GetAllProductsQuery,
     }).pipe(
-      map(result => transformManyMagentoProducts(result.data.products.items, result.data.storeConfig.secure_base_media_url)),
+      map(result => transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
   }
 

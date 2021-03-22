@@ -25,7 +25,9 @@ const cache = new InMemoryCache({ possibleTypes });
   imports: [
     //Magento
     DaffAuthMagentoDriverModule.forRoot(),
-    DaffProductMagentoDriverModule.forRoot(),
+    DaffProductMagentoDriverModule.forRoot({
+      baseMediaUrl: 'https://magento2.test/media/',
+    }),
     DaffCartMagentoDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationMagentoDriverModule.forRoot(),
