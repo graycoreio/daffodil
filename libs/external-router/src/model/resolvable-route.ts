@@ -8,7 +8,8 @@ import { DaffExternalRouteType } from './route-type';
  *
  * ```ts
  * export const resolvableRoute: DaffExternallyResolvableUrl = {
- * 	url: "some/path/to-a-resource"
+ *  id: "id-of-resource",
+ * 	url: "some/path/to-a-resource",
  * 	type: "RESOURCE_TYPE"
  * }
  * ```
