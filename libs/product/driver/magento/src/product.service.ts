@@ -14,7 +14,7 @@ import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
 import {
   MAGENTO_PRODUCT_CONFIG_TOKEN,
-  MagentoProductConfig,
+  DaffProductMagentoDriverConfig,
 } from './interfaces/public_api';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
@@ -32,7 +32,7 @@ import {
 export class DaffMagentoProductService implements DaffProductServiceInterface {
   constructor(
     private apollo: Apollo,
-    @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: MagentoProductConfig,
+    @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
   ) {}
 
   /**
