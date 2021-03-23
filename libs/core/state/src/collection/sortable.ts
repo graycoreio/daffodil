@@ -34,7 +34,7 @@ export interface DaffSortable {
   /**
    * The available options by which to sort the collection.
    */
-  sort_options: DaffSortOption[];
+  sort_options: DaffSortOptions;
 
   /**
    * The currently applied sorting option.
