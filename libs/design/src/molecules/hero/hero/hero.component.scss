@@ -3,10 +3,16 @@
 .daff-hero {
 	$root: &;
 	display: block;
-	padding: 75px 25px;
+	padding: 72px 24px;
 
 	@include breakpoint(mobile) {
-		padding: 100px 50px;
+		padding: 96px 48px;
+	}
+
+	&__tagline {
+		@include subheading();
+		margin: 0 0 8px;
+		padding: 0;
 	}
 
 	&__title {
@@ -18,15 +24,11 @@
 	}
 
 	&__subtitle {
-		font-size: $large-font-size;
-		font-weight: normal;
-		margin: 15px 0 0;
-		max-width: 700px;
+		@include body-lg();
+		font-weight: 400;
+		margin: 16px 0 0;
+		max-width: 720px;
 		width: 100%;
-
-		+ * {
-			margin-top: 50px;
-		}
 	}
 
 	// centered will be deprecated in v1.0.0
@@ -37,7 +39,7 @@
 		}
 
 		#{$root}__subtitle {
-			margin: 25px auto 0;
+			margin: 24px auto 0;
 			text-align: center;
 		}
 	}

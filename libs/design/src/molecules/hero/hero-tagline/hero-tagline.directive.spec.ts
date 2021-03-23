@@ -1,0 +1,52 @@
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+
+import { DaffHeroTaglineDirective } from './hero-tagline.directive';
+
+@Component({
+  template: `
+    <h1 daffHeroTagline>Lorem Ipsum</h1>
+  `,
+})
+class WrapperComponent {}
+
+describe('DaffHeroTaglineDirective', () => {
+  let wrapper: WrapperComponent;
+  let de: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        DaffHeroTaglineDirective,
+        WrapperComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WrapperComponent);
+    de = fixture.debugElement.query(By.css('[daffHeroTagline]'));
+    wrapper = de.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  describe('[daffHeroTagline]',() => {
+    it('should add a class of `daff-hero__tagline` to its host element', () => {
+      expect(de.nativeElement.classList.contains('daff-hero__tagline')).toEqual(true);
+    });
+  });
+});
