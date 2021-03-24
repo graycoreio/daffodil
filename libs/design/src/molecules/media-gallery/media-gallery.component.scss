@@ -10,7 +10,7 @@
 		flex-direction: row;
 	}
 
-	::ng-deep {
+	::ng-deep { /* stylelint-disable-line scss/selector-pseudo-element-no-unknown */
 		.daff-thumbnail {
 			@include clickable();
 			display: inline-block;
@@ -56,5 +56,5 @@
 		@include breakpoint(big-tablet) {
 			order: 2;
 		}
-	}	
+	}
 }

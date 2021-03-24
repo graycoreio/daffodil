@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'basic-media-gallery',
   templateUrl: './basic-media-gallery.component.html',
 })
-export class BasicMediaGalleryComponentComponent {
+export class BasicMediaGalleryComponent {
 
 
 }

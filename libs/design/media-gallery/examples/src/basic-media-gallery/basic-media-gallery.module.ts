@@ -5,14 +5,14 @@ import {
   DaffImageModule,
 } from '@daffodil/design';
 
-import { BasicMediaGalleryComponentComponent } from './basic-media-gallery.component';
+import { BasicMediaGalleryComponent } from './basic-media-gallery.component';
 
 @NgModule({
   declarations: [
-    BasicMediaGalleryComponentComponent,
+    BasicMediaGalleryComponent,
   ],
   exports: [
-    BasicMediaGalleryComponentComponent,
+    BasicMediaGalleryComponent,
   ],
   imports: [
     DaffImageModule,
