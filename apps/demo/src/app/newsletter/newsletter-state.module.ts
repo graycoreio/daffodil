@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import { DaffNewsletterEffects } from 'libs/newsletter/src/effects/newsletter.effects';
+
+import { DaffNewsletterEffects } from '@daffodil/newsletter/state';
 
 @NgModule({
   imports: [

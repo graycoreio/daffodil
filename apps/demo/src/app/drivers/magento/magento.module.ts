@@ -12,7 +12,7 @@ import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
-import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
+import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
 import { environment } from '../../../environments/environment';

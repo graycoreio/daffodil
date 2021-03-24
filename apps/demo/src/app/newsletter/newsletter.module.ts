@@ -7,7 +7,7 @@ import {
   DaffButtonModule,
   DaffContainerModule,
 } from '@daffodil/design';
-import { DaffNewsletterModule } from '@daffodil/newsletter';
+import { DaffNewsletterStateModule } from '@daffodil/newsletter/state';
 
 import { NewsletterComponent } from './newsletter.component';
 
@@ -19,7 +19,7 @@ import { NewsletterComponent } from './newsletter.component';
     DaffInputModule,
     DaffButtonModule,
     DaffContainerModule,
-    DaffNewsletterModule,
+    DaffNewsletterStateModule,
     ReactiveFormsModule,
   ],
   declarations: [

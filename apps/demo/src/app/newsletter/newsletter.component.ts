@@ -9,13 +9,13 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterFacade,
   DaffNewsletterSubscribe,
-  DaffNewsletterSubmission,
   DaffNewsletterCancel,
   DaffNewsletterRetry,
-} from '@daffodil/newsletter';
+} from '@daffodil/newsletter/state';
 
 @Component({
   selector: 'demo-newsletter',
