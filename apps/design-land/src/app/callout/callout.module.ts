@@ -1,22 +1,25 @@
-import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DesignLandCalloutComponent } from './callout.component';
-import { DesignLandCalloutRoutingModule } from './callout-routing.module';
+import {
+  NgModule,
+  Injector,
+  ComponentFactoryResolver,
+} from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 
 import {
   DaffCalloutModule,
-  DaffArticleModule
+  DaffArticleModule,
 } from '@daffodil/design';
+import { CALLOUT_EXAMPLES } from '@daffodil/design/callout/examples';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
-import { createCustomElement } from '@angular/elements';
-import { CalloutExamplesModule, CALLOUT_EXAMPLES } from 'libs/design/callout/examples/src';
+import { DesignLandCalloutRoutingModule } from './callout-routing.module';
+import { DesignLandCalloutComponent } from './callout.component';
 
 
 @NgModule({
   declarations: [
-    DesignLandCalloutComponent
+    DesignLandCalloutComponent,
   ],
   imports: [
     CommonModule,
@@ -25,8 +28,7 @@ import { CalloutExamplesModule, CALLOUT_EXAMPLES } from 'libs/design/callout/exa
     DaffCalloutModule,
     DaffArticleModule,
     DesignLandExampleViewerModule,
-    CalloutExamplesModule
-  ]
+  ],
 })
 export class DesignLandCalloutModule {
   constructor(

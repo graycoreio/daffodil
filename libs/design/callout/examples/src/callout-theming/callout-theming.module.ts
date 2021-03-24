@@ -4,19 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffCalloutModule } from '@daffodil/design';
 
-import { CALLOUT_EXAMPLES } from './examples';
+import { CalloutThemingComponent } from './callout-theming.component';
 
 @NgModule({
   declarations: [
-    ...CALLOUT_EXAMPLES,
+    CalloutThemingComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     DaffCalloutModule,
   ],
-  entryComponents: [
-    ...CALLOUT_EXAMPLES,
-  ],
 })
-export class CalloutExamplesModule { }
+export class CalloutThemingModule { }

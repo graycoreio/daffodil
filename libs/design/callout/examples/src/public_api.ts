@@ -1,5 +1,3 @@
 export { CalloutThemingComponent } from './callout-theming/callout-theming.component';
-
-export { CalloutExamplesModule } from './callout-examples.module';
-
+export { CalloutThemingModule } from './callout-theming/callout-theming.module';
 export { CALLOUT_EXAMPLES } from './examples';

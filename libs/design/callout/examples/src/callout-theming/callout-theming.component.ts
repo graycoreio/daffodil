@@ -9,7 +9,16 @@ import { DaffPalette } from '@daffodil/design';
   templateUrl: './callout-theming.component.html',
 })
 export class CalloutThemingComponent {
-  color: DaffPalette = 'theme';
+  colorControl: FormControl = new FormControl('');
 
-  colorControl: FormControl = new FormControl('theme');
+  options = [
+    { value: '', label: 'Default' },
+    { value: 'primary', label: 'Primary' },
+    { value: 'secondary', label: 'Secondary' },
+    { value: 'tertiary', label: 'Tertiary' },
+    { value: 'white', label: 'White' },
+    { value: 'black', label: 'Black' },
+    { value: 'theme', label: 'Theme' },
+    { value: 'theme-contrast', label: 'Theme Contrast' },
+  ];
 }
