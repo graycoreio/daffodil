@@ -1,21 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffAuthModule,
-  DaffAuthFacade,
-} from '@daffodil/auth';
+import { DaffAuthStateModule } from '@daffodil/auth/state';
 
 import { DemoAuthStateModule } from './auth-state.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffAuthModule,
+    DaffAuthStateModule,
     DemoAuthStateModule,
-  ],
-  providers: [
-    DaffAuthFacade,
   ],
 })
 export class AuthModule { }

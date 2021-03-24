@@ -12,10 +12,8 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import {
-  DaffAuthLoginSuccess,
-  DaffAuthToken,
-} from '@daffodil/auth';
+import { DaffAuthToken } from '@daffodil/auth';
+import { DaffAuthLoginSuccess } from '@daffodil/auth/state';
 import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 
 import { DemoAuthEffects } from './auth.effects';

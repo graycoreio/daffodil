@@ -6,7 +6,7 @@ import {
   RequestInfo,
 } from 'angular-in-memory-web-api';
 
-import { DaffInMemoryBackendAuthService } from '@daffodil/auth/testing';
+import { DaffInMemoryBackendAuthService } from '@daffodil/auth/driver/in-memory';
 import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffOrder } from '@daffodil/checkout';
