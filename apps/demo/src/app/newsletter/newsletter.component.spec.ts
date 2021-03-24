@@ -10,7 +10,7 @@ import { DaffContainerModule } from '@daffodil/design';
 import {
   DaffNewsletterTestingModule,
   MockDaffNewsletterFacade,
-} from '@daffodil/newsletter/testing';
+} from '@daffodil/newsletter/state/testing';
 
 
 import { NewsletterComponent } from './newsletter.component';
