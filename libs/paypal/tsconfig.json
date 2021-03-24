@@ -9,8 +9,29 @@
       "@daffodil/paypal": [
         "libs/paypal/src"
       ],
+      "@daffodil/paypal/state": [
+        "libs/paypal/state/src"
+      ],
+      "@daffodil/paypal/state/testing": [
+        "libs/paypal/state/testing/src"
+      ],
+      "@daffodil/paypal/driver": [
+        "libs/paypal/driver/src"
+      ],
+      "@daffodil/paypal/driver/testing": [
+        "libs/paypal/driver/testing/src"
+      ],
+      "@daffodil/paypal/driver/in-memory": [
+        "libs/paypal/driver/in-memory/src"
+      ],
+      "@daffodil/paypal/driver/magento": [
+        "libs/paypal/driver/magento/src"
+      ],
       "@daffodil/paypal/testing": [
         "libs/paypal/testing/src"
+      ],
+      "@daffodil/paypal/routing": [
+        "libs/paypal/routing/src"
       ],
     }
   }
