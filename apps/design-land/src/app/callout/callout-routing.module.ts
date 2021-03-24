@@ -3,10 +3,10 @@ import {
   RouterModule,
 } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CalloutComponent } from './callout.component';
+import { DesignLandCalloutComponent } from './callout.component';
 
 export const calloutRoutes: Routes = [
-  { path: '', component: CalloutComponent },
+  { path: '', component: DesignLandCalloutComponent },
 ];
 
 @NgModule({

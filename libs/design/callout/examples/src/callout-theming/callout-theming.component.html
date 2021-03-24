@@ -1,0 +1,10 @@
+<daff-callout [color]="colorControl.value">
+	<p daffCalloutTagline>Callout Tagline</p>
+	<h3 daffCalloutTitle>Callout Title</h3>
+	<p daffCalloutSubtitle>Callout subtitle</p>
+	<p>Additional content can be placed here.</p>
+</daff-callout>
+
+<select [formControl]="colorControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>

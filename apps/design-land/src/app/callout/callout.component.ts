@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './callout.component.html',
   styleUrls: ['./callout.component.scss'],
 })
-export class CalloutComponent {}
+export class DesignLandCalloutComponent {}

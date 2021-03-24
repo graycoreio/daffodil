@@ -33,15 +33,15 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(DaffCalloutBase);
+const _daffCalloutBase = daffColorMixin(DaffCalloutBase, 'theme');
 
- @Component({
-   selector: 'daff-callout',
-   templateUrl: './callout.component.html',
-   styleUrls: ['./callout.component.scss'],
-   encapsulation: ViewEncapsulation.None,
-   changeDetection: ChangeDetectionStrategy.OnPush,
- })
+@Component({
+  selector: 'daff-callout',
+  templateUrl: './callout.component.html',
+  styleUrls: ['./callout.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {
   @Input() color: DaffPalette;
   @Input() layout: DaffCalloutLayout; // Will be deprecated in v1.0.0
