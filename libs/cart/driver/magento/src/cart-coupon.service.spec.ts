@@ -10,7 +10,10 @@ import {
   DaffCart,
   DaffCartCoupon,
 } from '@daffodil/cart';
-import { DaffCartNotFoundError } from '@daffodil/cart/driver';
+import {
+  DaffCartNotFoundError,
+  DaffInvalidCouponCodeError,
+} from '@daffodil/cart/driver';
 import {
   MagentoCart,
   MagentoApplyCouponResponse,
@@ -154,6 +157,31 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
             null,
             null,
             { category: 'graphql-input' },
+          )]);
+        });
+      });
+
+      describe('because the coupon code is invalid', () => {
+        it('should throw a DaffInvalidCouponCodeError with the coupon code', done => {
+          service.apply(cartId, mockDaffCartCoupon).pipe(
+            catchError((err: DaffInvalidCouponCodeError) => {
+              expect(err).toEqual(jasmine.any(DaffInvalidCouponCodeError));
+              expect(err.coupon).toEqual(mockDaffCartCoupon.code);
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(applyCoupon([]));
+
+          op.graphqlErrors([new GraphQLError(
+            'The coupon code isn\'t valid',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
           )]);
         });
       });

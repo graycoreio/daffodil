@@ -1,3 +1,4 @@
+import { DaffCartCoupon } from '@daffodil/cart';
 import {
   DaffError,
   DaffInheritableError,
@@ -12,7 +13,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 export class DaffInvalidCouponCodeError extends DaffInheritableError implements DaffError {
 	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUPON_CODE;
 
-	constructor(message?: string) {
+	constructor(message?: string, public coupon?: DaffCartCoupon['code']) {
 	  super(message);
 	}
 }

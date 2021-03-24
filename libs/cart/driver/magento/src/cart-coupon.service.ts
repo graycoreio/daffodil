@@ -57,7 +57,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.applyCouponToCart.cart)),
-      catchError(err => throwError(transformCartMagentoError(err))),
+      catchError(err => throwError(transformCartMagentoError(err, coupon))),
     );
   }
 
