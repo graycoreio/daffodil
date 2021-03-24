@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.30.0](https://github.com/graycoreio/daffodil/compare/v0.29.0...v0.30.0) (2021-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **paypal:** Many imports have moved to various subpackages.
+* **geography:** Errors in state have changed type from `string[]` to `DaffStateError[]`
+* **category:** The error type in state has changed from `string` to `DaffStateError`
+* **auth:** error types in state have changed from `string` to `DaffStateError`
+* **product:** Errors in state have changed type from `string` to `DaffStateError`
+* **demo,newsletter:** Many imports have moved to various subpackages. The DaffNewsletterModule has been renamed to DaffNewsletterStateModule
+* **contact:** Errors in state have changed type from `string[]` to `DaffStateError[]`
+* **navigation:** Errors in state have changed type from `string[]` to `DaffStateError[]`
+* **newsletter:** The error type in state has changed from `string` to `DaffStateError`
+* **order:** Errors in state have changed type from `string[]` to `DaffStateError[]`
+* **paypal:** An error in state has changed type from `string` to `DaffStateError`
+
+### Features
+
+* **auth:** use daff state error ([#1374](https://github.com/graycoreio/daffodil/issues/1374)) ([baa1985](https://github.com/graycoreio/daffodil/commit/baa1985b4d5757b0bb38c80b1220c685f98cbea7))
+* **cart:** set coupon code on invalid coupon error ([#1364](https://github.com/graycoreio/daffodil/issues/1364)) ([608374a](https://github.com/graycoreio/daffodil/commit/608374a8b0978638d5aca787a3b46f4433e4987d))
+* **category:** introduce DaffCategoryPageMetadata ([#1372](https://github.com/graycoreio/daffodil/issues/1372)) ([6e23c66](https://github.com/graycoreio/daffodil/commit/6e23c661f83e1362e7a304b7e67fffc7e7403ecb))
+* **category:** replace DaffCategorySortOption with DaffSortOption from core. ([#1363](https://github.com/graycoreio/daffodil/issues/1363)) ([e74b3d6](https://github.com/graycoreio/daffodil/commit/e74b3d682345db9baaf3d15555092e7483cbf42a))
+* **category:** use daff state error ([#1378](https://github.com/graycoreio/daffodil/issues/1378)) ([95489b0](https://github.com/graycoreio/daffodil/commit/95489b08092007b0c64392470e55b39eb7fc6c6d))
+* **contact:** use daff state error ([#1369](https://github.com/graycoreio/daffodil/issues/1369)) ([07d08da](https://github.com/graycoreio/daffodil/commit/07d08da64aaef5aec302d7fa016b54f9e55b4af7))
+* **core:** use DaffSortOptions in DaffSortable ([#1384](https://github.com/graycoreio/daffodil/issues/1384)) ([a57f4a1](https://github.com/graycoreio/daffodil/commit/a57f4a12736567d6aceb88aa12e0b251710c3184))
+* **demo,newsletter:** shard newsletter package ([#1385](https://github.com/graycoreio/daffodil/issues/1385)) ([93c0669](https://github.com/graycoreio/daffodil/commit/93c06697ef8f7cb28ecc83bef1381554965f6d4a))
+* **design:** add support for `daffHeroTagline` in Hero ([#1256](https://github.com/graycoreio/daffodil/issues/1256)) ([6628584](https://github.com/graycoreio/daffodil/commit/6628584f7b5e8794df9c2d28c5bd80cbb3c6da11))
+* **external-router:** add a magento driver ([#1278](https://github.com/graycoreio/daffodil/issues/1278)) ([6a782ec](https://github.com/graycoreio/daffodil/commit/6a782ec2e70711f29dc948453432b5c156e14664))
+* **external-router:** add id to resolvable route ([#1379](https://github.com/graycoreio/daffodil/issues/1379)) ([d0a8bc5](https://github.com/graycoreio/daffodil/commit/d0a8bc50987594e7555ae0e3cf47eebfa4640acb))
+* **geography:** use daff state errors from failure actions ([#1365](https://github.com/graycoreio/daffodil/issues/1365)) ([8144a39](https://github.com/graycoreio/daffodil/commit/8144a39ed8b4ab2366e831a867cce29667bc0d92))
+* **navigation:** use daff state error ([#1368](https://github.com/graycoreio/daffodil/issues/1368)) ([805a90f](https://github.com/graycoreio/daffodil/commit/805a90f36e1f36ebfb36a2f4085726912a37df6d))
+* **newsletter:** use daff state error ([#1367](https://github.com/graycoreio/daffodil/issues/1367)) ([945167c](https://github.com/graycoreio/daffodil/commit/945167c4b6d4fd9c5aa6e837c73ebf776f985d14))
+* **order:** use daff state error ([#1366](https://github.com/graycoreio/daffodil/issues/1366)) ([cc87e4b](https://github.com/graycoreio/daffodil/commit/cc87e4bdb3f296d63d47931dce2892ac4264aab5))
+* **paypal:** shard package ([#1386](https://github.com/graycoreio/daffodil/issues/1386)) ([f2d6bcb](https://github.com/graycoreio/daffodil/commit/f2d6bcbfdde41bf9d46cbe5c611972aff0fcbf61))
+* **paypal:** use daff state error ([#1370](https://github.com/graycoreio/daffodil/issues/1370)) ([f15eb24](https://github.com/graycoreio/daffodil/commit/f15eb2422e5b29f3554df556794695070bd4efa0))
+* **product:** move base media URL to driver config ([#1377](https://github.com/graycoreio/daffodil/issues/1377)) ([982fb86](https://github.com/graycoreio/daffodil/commit/982fb86322f0ad069f009276360e558224a1fc8a))
+* **product:** use daff state error ([#1373](https://github.com/graycoreio/daffodil/issues/1373)) ([4a9e48b](https://github.com/graycoreio/daffodil/commit/4a9e48b070dc5271badbcc2c380539104b240113))
+
+
+### Bug Fixes
+
+* **design:** fix linting warnings in design package ([#1357](https://github.com/graycoreio/daffodil/issues/1357)) ([5ecf903](https://github.com/graycoreio/daffodil/commit/5ecf9032bc0ad993530a0d8d12a0c8c3a0d5731a))
+
 ## [0.29.0](https://github.com/graycoreio/daffodil/compare/v0.28.1...v0.29.0) (2021-03-17)
 
 
