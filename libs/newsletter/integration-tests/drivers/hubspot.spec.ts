@@ -5,12 +5,12 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
-  DaffNewsletterHubSpotDriverModule,
   DaffNewsletterDriver,
   DaffNewsletterServiceInterface,
-  DaffNewsletterSubmission,
-} from '@daffodil/newsletter';
+} from '@daffodil/newsletter/driver';
+import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
 
 describe('DaffNewsletterHubspotDriver', () => {
   let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
