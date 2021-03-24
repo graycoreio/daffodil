@@ -10,7 +10,7 @@
 		flex-direction: row;
 	}
 
-	::ng-deep { /* stylelint-disable-line scss/selector-pseudo-element-no-unknown */
+	::ng-deep {
 		.daff-thumbnail {
 			@include clickable();
 			display: inline-block;
