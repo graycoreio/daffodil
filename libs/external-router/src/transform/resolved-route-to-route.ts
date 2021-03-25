@@ -2,14 +2,14 @@ import { Route } from '@angular/router';
 
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
-import { TypeRoutePair } from '../model/type-route-pair';
+import { DaffTypeRoutePair } from '../model/type-route-pair';
 
 /**
  * Transforms a DaffExternallyResolvableUrl into an Angular Route.
  */
 export const daffTransformResolvedRouteToRoute = (
   resolvedRoute: DaffExternallyResolvableUrl,
-  availableTypes: TypeRoutePair[],
+  availableTypes: DaffTypeRoutePair[],
 ): Route => {
   const routeType = availableTypes
     .filter(t => t.type === resolvedRoute.type)

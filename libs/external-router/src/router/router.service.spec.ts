@@ -5,10 +5,14 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
-import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
-import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
-import { TypeRoutePair } from '../model/type-route-pair';
+import {
+  DaffExternalRouterInsertionStrategy,
+  DaffExternallyResolvableUrl,
+  DaffExternalRouterUnknownRouteTypeError,
+  DaffExternalRouterNoWildcardError,
+} from '@daffodil/external-router';
+
+import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 import { DaffExternalRouter } from './router.service';
 
@@ -16,7 +20,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
   let service: DaffExternalRouter;
   let router: Router;
 
-  const setupTest = (types: TypeRoutePair[] = [], config: Routes = []) => {
+  const setupTest = (types: DaffTypeRoutePair[] = [], config: Routes = []) => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(config)],
     });
@@ -31,6 +35,10 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
   it('should be created', () => {
     setupTest();
     expect(service).toBeTruthy();
+  });
+
+  describe('when there is a specified router inserter', () => {
+    let inserter: jasmine.Spy<DaffExternalRouterInsertionStrategy>;
   });
 
   it('should add a route to configuration from known type of resolvable route when configured correctly', () => {

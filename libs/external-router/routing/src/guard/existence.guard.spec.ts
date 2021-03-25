@@ -10,7 +10,7 @@ import { TestScheduler } from 'rxjs/testing';
 
 import {
   DAFF_EXTERNAL_ROUTER_CONFIG,
-  provideRouteResolvableByType,
+  daffProvideRouteResolvableByType,
 } from '@daffodil/external-router';
 import { DaffExternalRouterDriverTestingModule } from '@daffodil/external-router/driver/testing';
 
@@ -33,7 +33,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterTestingDriver', 
         }),
       ],
       providers: [
-        provideRouteResolvableByType(STUB_RESOLVABLE_TYPE, { redirectTo: '/' }),
+        daffProvideRouteResolvableByType(STUB_RESOLVABLE_TYPE, { redirectTo: '/' }),
         {
           provide: DAFF_EXTERNAL_ROUTER_CONFIG,
           useValue: {
