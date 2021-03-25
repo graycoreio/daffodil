@@ -37,8 +37,42 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('when there is a specified router inserter', () => {
-    let inserter: jasmine.Spy<DaffExternalRouterInsertionStrategy>;
+  fdescribe('when there is a specified route insertion strategy', () => {
+    let insertionStrategy: jasmine.Spy<DaffExternalRouterInsertionStrategy>;
+    let routes: Routes;
+    let redirectionPath: string;
+
+    beforeEach(() => {
+      routes = [{ path: '**', redirectTo: 'somewhere-else' }];
+      redirectionPath = '/';
+      insertionStrategy = jasmine.createSpy();
+      insertionStrategy.and.returnValue([]);
+      setupTest(
+        [
+          { type: 'type-a', route: { redirectTo: redirectionPath }, insertionStrategy },
+          { type: 'type-b', route: { redirectTo: redirectionPath }},
+        ],
+        routes,
+      );
+    });
+
+    describe('and the router is invoked with the specified route type', () => {
+      let path: string;
+      beforeEach(() => {
+        path = 'some-path';
+        service.add({ url: path, type: 'type-a', id: 'id' });
+      });
+
+      it('should invoke the specified insertion strategy', () => {
+        expect(insertionStrategy).toHaveBeenCalledWith(
+          jasmine.objectContaining({
+            redirectTo: redirectionPath,
+            path,
+          }),
+          routes,
+        );
+      });
+    });
   });
 
   it('should add a route to configuration from known type of resolvable route when configured correctly', () => {
