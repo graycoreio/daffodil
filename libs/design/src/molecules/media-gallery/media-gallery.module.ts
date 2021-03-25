@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { DaffMediaGalleryComponent } from './media-gallery.component';
 import { DaffMediaRendererComponent } from './media-renderer/media-renderer.component';
-import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
 import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
 
 @NgModule({
@@ -18,9 +17,6 @@ import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
   exports: [
     DaffThumbnailDirective,
     DaffMediaGalleryComponent,
-  ],
-  providers: [
-    DaffMediaGalleryRegistry,
   ],
 })
 export class DaffMediaGalleryModule {}

@@ -13,6 +13,10 @@ import {
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
+/**
+ * Dynamically renders the selected `DaffThumbnailDirective` in a `daff-media-gallery` any time the selected thumbnail
+ * changes.
+ */
 @Component({
   selector: 'daff-media-renderer',
   templateUrl: './media-renderer.component.html',

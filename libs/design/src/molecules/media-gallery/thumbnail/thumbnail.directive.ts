@@ -16,6 +16,10 @@ import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 
+/**
+ * A directive marking thumbnails for the `DaffMediaRendererComponent`. Needs to be wrapped in a `daff-media-gallery` component
+ * and needs to be placed on a component that is provided as a `daffThumbnailCompatToken`.
+ */
 @Directive({
   selector: '[daffThumbnail]',
 })

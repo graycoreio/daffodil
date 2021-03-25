@@ -1,3 +1,3 @@
 export { MEDIA_GALLERY_EXAMPLES } from './examples';
 
-export { MEDIA_GALLERY_EXAMPLES_MODULES } from './examples';
+export { BasicMediaGalleryModule } from './basic-media-gallery/basic-media-gallery.module';

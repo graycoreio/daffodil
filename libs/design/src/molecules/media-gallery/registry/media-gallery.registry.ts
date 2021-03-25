@@ -13,7 +13,7 @@ export interface DaffMediaGallery {
 	thumbnails: DaffThumbnailDirective[];
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DaffMediaGalleryRegistry {
 	galleries: DaffMediaGalleryDict = {};
 
