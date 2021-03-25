@@ -18,8 +18,6 @@ export enum DaffCategoryPageActionTypes {
   CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
   CategoryPageChangeCurrentPageAction = '[@daffodil/category] Category Page Change Current Page Action',
   CategoryPageChangeSortingOptionAction = '[@daffodil/category] Category Page Change Sorting Option Action',
-  CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
-  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action'
 }
 
 /**
@@ -97,28 +95,6 @@ export class DaffCategoryPageChangeSortingOption implements Action {
   ) { }
 }
 
-/**
- * An action for changing the filters for the selected category.
- *
- * @param filters - Filters to be applied to the selected category.
- */
-export class DaffCategoryPageChangeFilters implements Action {
-  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeFiltersAction;
-
-  constructor(public filters: DaffCategoryFilterRequest[]) { }
-}
-
-/**
- * An action for toggling a filters for the selected category.
- *
- * @param filter - Filter to be toggle on the selected category.
- */
-export class DaffCategoryPageToggleFilter implements Action {
-  readonly type = DaffCategoryPageActionTypes.CategoryPageToggleFilterAction;
-
-  constructor(public filter: DaffToggleCategoryFilterRequest) { }
-}
-
 export type DaffCategoryPageActions<
   U extends DaffGenericCategory<U> = DaffCategory,
   W extends DaffProduct = DaffProduct
@@ -128,6 +104,4 @@ export type DaffCategoryPageActions<
   | DaffCategoryPageLoadFailure
   | DaffCategoryPageChangePageSize
   | DaffCategoryPageChangeCurrentPage
-  | DaffCategoryPageChangeSortingOption
-  | DaffCategoryPageChangeFilters
-  | DaffCategoryPageToggleFilter;
+  | DaffCategoryPageChangeSortingOption;

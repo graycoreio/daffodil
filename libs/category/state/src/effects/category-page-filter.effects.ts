@@ -39,18 +39,19 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
+  DaffCategoryPageChangeFilters,
+  DaffCategoryPageToggleFilter,
+  DaffCategoryPageFilterActionTypes,
+} from '../actions/category-page-filter.actions';
+import {
   DaffCategoryPageLoadSuccess,
-  DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
-  DaffCategoryPageActionTypes,
-  DaffCategoryPageChangePageSize,
-  DaffCategoryPageChangeCurrentPage,
-  DaffCategoryPageChangeSortingOption,
 } from '../actions/category-page.actions';
+import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 
 @Injectable()
-export class DaffCategoryPageEffects<
+export class DaffCategoryPageFilterEffects<
 	V extends DaffGenericCategory<V>,
 	W extends DaffProduct
 > {
@@ -65,58 +66,38 @@ export class DaffCategoryPageEffects<
 	private categorySelectors = getDaffCategorySelectors<V, W>();
 
   @Effect()
-  loadCategoryPage$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.CategoryPageLoadAction),
-    switchMap((action: DaffCategoryPageLoad) => {
-      daffCategoryValidateFilters(action.request.filter_requests);
-      return this.processCategoryGetRequest(action.request);
+  changeCategoryFilters$: Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction),
+    withLatestFrom(
+      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
+    ),
+    switchMap((
+      [action, categoryRequest]:
+			[DaffCategoryPageChangeFilters, DaffCategoryRequest],
+    ) => {
+      daffCategoryValidateFilters(action.filters);
+      return this.processCategoryGetRequest({
+        ...categoryRequest,
+        filter_requests: action.filters,
+      });
     }),
   );
 
   @Effect()
-  changeCategoryPageSize$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSizeAction),
+  toggleCategoryFilter$: Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
     ),
     switchMap((
-      [action, categoryRequest]:
-			[DaffCategoryPageChangePageSize, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
-      ...categoryRequest,
-      page_size: action.pageSize,
-    })),
-  );
-
-  @Effect()
-  changeCategoryCurrentPage$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction),
-    withLatestFrom(
-      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
-    ),
-    switchMap((
-      [action, categoryRequest]:
-			[DaffCategoryPageChangeCurrentPage, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
-      ...categoryRequest,
-      current_page: action.currentPage,
-    })),
-  );
-
-  @Effect()
-  changeCategorySort$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
-    withLatestFrom(
-      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
-    ),
-    switchMap((
-      [action, categoryRequest]:
-			[DaffCategoryPageChangeSortingOption, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
-      ...categoryRequest,
-      applied_sort_option: action.sort.option,
-      applied_sort_direction: action.sort.direction,
-    })),
+      [action, categoryPageConfigurationState]:
+			[DaffCategoryPageToggleFilter, DaffStatefulCategoryPageConfigurationState],
+    ) => {
+      daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
+      return this.processCategoryGetRequest({
+        ...categoryPageConfigurationState,
+      });
+    }),
   );
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {
