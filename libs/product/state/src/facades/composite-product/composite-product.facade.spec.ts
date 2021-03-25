@@ -8,6 +8,12 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
+  daffAdd,
+  daffDivide,
+  daffMultiply,
+  daffSubtract,
+} from '@daffodil/core';
+import {
   DaffCompositeProduct,
   DaffCompositeConfigurationItem,
 } from '@daffodil/product';
@@ -193,6 +199,41 @@ describe('DaffCompositeProductFacade', () => {
       }});
 
       expect(facade.getAppliedOptions(stubCompositeProduct.id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getDiscountPercent', () => {
+
+    it('should return the discount percent for a composite product', () => {
+      store.dispatch(new DaffProductLoadSuccess({
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            required: true,
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                quantity: 1,
+                is_default: true,
+              },
+              {
+                ...stubCompositeProduct.items[0].options[1],
+                is_default: false,
+              },
+            ],
+          },
+        ],
+      }));
+
+      const totalOriginalPrice = daffAdd(stubCompositeProduct.price, stubCompositeProduct.items[0].options[0].price);
+      const primaryProductDiscountedPrice = daffSubtract(stubCompositeProduct.price, stubCompositeProduct.discount.amount);
+      const selectedOptionDiscountedPrice = daffSubtract(stubCompositeProduct.items[0].options[0].price, stubCompositeProduct.items[0].options[0].discount.amount);
+      const totalDiscountedPrice = daffAdd(primaryProductDiscountedPrice, selectedOptionDiscountedPrice);
+      const expectedDiscountPercent = daffMultiply(daffDivide(daffSubtract(totalOriginalPrice, totalDiscountedPrice), totalOriginalPrice), 100);
+      const expected = cold('a', { a: expectedDiscountPercent });
+
+      expect(facade.getDiscountPercent(stubCompositeProduct.id)).toBeObservable(expected);
     });
   });
 

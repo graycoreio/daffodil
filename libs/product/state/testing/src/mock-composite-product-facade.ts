@@ -25,6 +25,9 @@ export class MockDaffCompositeProductFacade implements DaffCompositeProductFacad
   getAppliedOptions(id: DaffCompositeProduct['id']): BehaviorSubject<Dictionary<DaffCompositeProductItemOption>> {
     return new BehaviorSubject({});
   }
+  getDiscountPercent(id: DaffCompositeProduct['id']): BehaviorSubject<number> {
+    return new BehaviorSubject(null);
+  }
   isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']): BehaviorSubject<boolean> {
     return new BehaviorSubject(false);
   }

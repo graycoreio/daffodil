@@ -9,6 +9,12 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
+  daffAdd,
+  daffDivide,
+  daffMultiply,
+  daffSubtract,
+} from '@daffodil/core';
+import {
   DaffCompositeProduct,
   DaffProduct,
   DaffCompositeConfigurationItem,
@@ -38,6 +44,7 @@ describe('Composite Product Selectors | integration tests', () => {
     selectCompositeProductRequiredItemPricesForConfiguration,
     selectCompositeProductOptionalItemPricesForConfiguration,
     selectCompositeProductPricesAsCurrentlyConfigured,
+    selectCompositeProductDiscountPercent,
   } = getDaffCompositeProductSelectors();
   const stubPrice00 = 10;
   const stubDiscountAmount00 = 2;
@@ -535,6 +542,76 @@ describe('Composite Product Selectors | integration tests', () => {
           originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0),
         },
       }});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCompositeProductDiscountPercent', () => {
+
+    it('should return undefined when the product is not a composite product', () => {
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent, { id: stubProduct.id }));
+      const expected = cold('a', { a: undefined });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should return undefined when required options are not chosen', () => {
+      store.dispatch(new DaffProductLoadSuccess({
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            required: true,
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                is_default: false,
+              },
+              {
+                ...stubCompositeProduct.items[0].options[1],
+                is_default: false,
+              },
+            ],
+          },
+          ...stubCompositeProduct.items.slice(1),
+        ],
+      }));
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent, { id: stubCompositeProduct.id }));
+      const expected = cold('a', { a: undefined });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should return a percent discount when all required options are chosen', () => {
+      store.dispatch(new DaffProductLoadSuccess({
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            required: true,
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                quantity: 1,
+                is_default: true,
+              },
+              {
+                ...stubCompositeProduct.items[0].options[1],
+                is_default: false,
+              },
+            ],
+          },
+        ],
+      }));
+
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent, { id: stubCompositeProduct.id }));
+      const totalOriginalPrice = daffAdd(stubCompositeProduct.price, stubCompositeProduct.items[0].options[0].price);
+      const primaryProductDiscountedPrice = daffSubtract(stubCompositeProduct.price, stubCompositeProduct.discount.amount);
+      const selectedOptionDiscountedPrice = daffSubtract(stubCompositeProduct.items[0].options[0].price, stubCompositeProduct.items[0].options[0].discount.amount);
+      const totalDiscountedPrice = daffAdd(primaryProductDiscountedPrice, selectedOptionDiscountedPrice);
+      const expectedDiscountPercent = daffMultiply(daffDivide(daffSubtract(totalOriginalPrice, totalDiscountedPrice), totalOriginalPrice), 100);
+      const expected = cold('a', { a: expectedDiscountPercent });
 
       expect(selector).toBeObservable(expected);
     });
