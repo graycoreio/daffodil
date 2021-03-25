@@ -40,7 +40,7 @@ const initialState: DaffCategoryReducerState = {
 
 export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
   state = initialState,
-  action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageFilterActions<U>,
+  action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageFilterActions,
 ): DaffCategoryReducerState {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
