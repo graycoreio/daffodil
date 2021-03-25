@@ -1,8 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffGenericCategory,
-  DaffCategory,
   DaffCategoryFilterRequest,
   DaffToggleCategoryFilterRequest,
 } from '@daffodil/category';
@@ -34,8 +32,6 @@ export class DaffCategoryPageToggleFilter implements Action {
   constructor(public filter: DaffToggleCategoryFilterRequest) { }
 }
 
-export type DaffCategoryPageFilterActions<
-  U extends DaffGenericCategory<U> = DaffCategory,
-  > =
+export type DaffCategoryPageFilterActions =
   | DaffCategoryPageChangeFilters
   | DaffCategoryPageToggleFilter;
