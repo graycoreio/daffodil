@@ -37,7 +37,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     expect(service).toBeTruthy();
   });
 
-  fdescribe('when there is a specified route insertion strategy', () => {
+  describe('when there is a specified route insertion strategy', () => {
     let insertionStrategy: jasmine.Spy<DaffExternalRouterInsertionStrategy>;
     let routes: Routes;
     let redirectionPath: string;
