@@ -73,6 +73,16 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
         );
       });
     });
+
+    describe('and the router is invoked with a different route type', () => {
+      beforeEach(() => {
+        service.add({ url: 'path', type: 'type-b', id: 'id' });
+      });
+
+      it('should not invoke the specified insertion strategy', () => {
+        expect(insertionStrategy).not.toHaveBeenCalled();
+      });
+    });
   });
 
   it('should add a route to configuration from known type of resolvable route when configured correctly', () => {
