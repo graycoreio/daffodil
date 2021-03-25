@@ -15,7 +15,7 @@ import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 import { daffTransformResolvedRouteToInsertionStrategy } from '../transform/resolved-route-to-insertion-strategy';
 import { daffTransformResolvedRouteToRoute } from '../transform/resolved-route-to-route';
-import { daffExternalRouterInsertRouteBeforeWildCard } from './helper/insert-route-before-wildcard';
+import { daffInsertRouteBeforeWildCardStrategy } from './helper/insert-route-before-wildcard';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +39,7 @@ export class DaffExternalRouter {
       const insertionStrategy: DaffExternalRouterInsertionStrategy = daffTransformResolvedRouteToInsertionStrategy(
         resolvedRoute,
         this.runtimeRoutes,
-      ) || daffExternalRouterInsertRouteBeforeWildCard;
+      ) || daffInsertRouteBeforeWildCardStrategy;
 
       this.router.resetConfig(
         insertionStrategy(route, this.router.config),

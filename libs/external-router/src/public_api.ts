@@ -17,7 +17,7 @@ export { DaffRouteWithoutPath } from './model/route-without-path';
 export { DaffExternalRouterInsertionStrategy } from './model/insertion-strategy.type';
 
 export { DaffExternalRouter } from './router/router.service';
-export { daffExternalRouterInsertRouteBeforeWildCard } from './router/helper/insert-route-before-wildcard';
+export { daffInsertRouteBeforeWildCardStrategy } from './router/helper/insert-route-before-wildcard';
 
 export { DaffExternalRouterNoWildcardError } from './errors/no-wildcard';
 export { DaffExternalRouterUnknownRouteTypeError } from './errors/unknown-type';

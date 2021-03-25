@@ -10,7 +10,7 @@ import { DaffExternalRouterInsertionStrategy } from '../../model/insertion-strat
  * Inserts a Route into Routes right before the wildcard route.
  * If no wildcard is found, it fails fast with a `DaffExternalRouterNoWildcardError`.
  */
-export const daffExternalRouterInsertRouteBeforeWildCard: DaffExternalRouterInsertionStrategy = (
+export const daffInsertRouteBeforeWildCardStrategy: DaffExternalRouterInsertionStrategy = (
   route: Route,
   routes: Routes,
 ): Routes => {
