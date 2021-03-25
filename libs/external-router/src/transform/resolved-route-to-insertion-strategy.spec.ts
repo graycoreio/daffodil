@@ -2,15 +2,12 @@ import { daffTransformResolvedRouteToInsertionStrategy } from './resolved-route-
 
 describe('@daffodil/external-router | daffTransformResolvedRouteToInsertionStrategy', () => {
   it('transforms a DaffExternallyResolvableUrl into an inserter.', () => {
+    const insertionStrategy = () => [];
     expect(
       daffTransformResolvedRouteToInsertionStrategy(
         { url: 'some-url', type: 'some-type', id: 'id' },
-        [{ type: 'some-type', route: { redirectTo: '/' }, insertionStrategy: () => []}],
+        [{ type: 'some-type', route: { redirectTo: '/' }, insertionStrategy }],
       ),
-    ).toEqual({
-      path: 'some-url',
-      redirectTo: '/',
-      insertionStrategy: () => [],
-    });
+    ).toEqual(insertionStrategy);
   });
 });
