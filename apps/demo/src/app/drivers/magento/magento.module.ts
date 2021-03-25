@@ -7,7 +7,7 @@ import { onError } from '@apollo/client/link/error';
 import { Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
-import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
+import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';

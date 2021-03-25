@@ -9,8 +9,29 @@
       "@daffodil/auth": [
         "libs/auth/src"
       ],
+      "@daffodil/auth/state": [
+        "libs/auth/state/src"
+      ],
+      "@daffodil/auth/state/testing": [
+        "libs/auth/state/testing/src"
+      ],
+      "@daffodil/auth/driver": [
+        "libs/auth/driver/src"
+      ],
+      "@daffodil/auth/driver/testing": [
+        "libs/auth/driver/testing/src"
+      ],
+      "@daffodil/auth/driver/in-memory": [
+        "libs/auth/driver/in-memory/src"
+      ],
+      "@daffodil/auth/driver/magento": [
+        "libs/auth/driver/magento/src"
+      ],
       "@daffodil/auth/testing": [
         "libs/auth/testing/src"
+      ],
+      "@daffodil/auth/routing": [
+        "libs/auth/routing/src"
       ],
     }
   }

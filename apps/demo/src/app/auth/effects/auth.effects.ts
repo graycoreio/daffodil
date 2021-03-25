@@ -14,7 +14,7 @@ import {
   switchMapTo,
 } from 'rxjs/operators';
 
-import { DaffAuthActionTypes } from '@daffodil/auth';
+import { DaffAuthActionTypes } from '@daffodil/auth/state';
 
 @Injectable()
 export class DemoAuthEffects {
