@@ -2,6 +2,10 @@ import { DaffGenericCategory } from '@daffodil/category';
 import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import {
+  DaffCategoryPageFilterActionTypes,
+  DaffCategoryPageFilterActions,
+} from '../../actions/category-page-filter.actions';
 import { DaffCategoryPageActions } from '../../actions/category-page.actions';
 import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
 import {
@@ -34,7 +38,10 @@ const initialState: DaffCategoryReducerState = {
   errors: [],
 };
 
-export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(state = initialState, action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W>): DaffCategoryReducerState {
+export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
+  state = initialState,
+  action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageFilterActions,
+): DaffCategoryReducerState {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
       return {
@@ -93,7 +100,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
           daffState: DaffState.Mutating,
         },
       };
-    case DaffCategoryPageActionTypes.CategoryPageChangeFiltersAction:
+    case DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction:
       return {
         ...state,
         productsLoading: true,
@@ -103,7 +110,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
           daffState: DaffState.Mutating,
         },
       };
-    case DaffCategoryPageActionTypes.CategoryPageToggleFilterAction:
+    case DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction:
       return {
         ...state,
         productsLoading: true,
