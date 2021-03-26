@@ -39,7 +39,7 @@ export class DaffCategoryPageReplaceFilters implements Action {
 }
 
 /**
- * An action for applying the filters for the selected category.
+ * An action for applying the specified filters for the selected category.
  *
  * @param filters - Filters to be applied to the selected category.
  */
@@ -50,7 +50,7 @@ export class DaffCategoryPageApplyFilters implements Action {
 }
 
 /**
- * An action for removing all the filters for the selected category.
+ * An action for removing the specified filters for the selected category.
  *
  * @param filters - Filters to be removed from the selected category.
  */
