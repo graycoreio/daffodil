@@ -12,6 +12,8 @@ import { DaffRouteWithoutPath } from './route-without-path';
  *
  * An insertion strategy can be specified if the route needs to be inserted somewhere
  * other than the root of the route config.
+ * Omitting the insertion strategy will default to inserting the route to the root level,
+ * immediately before the wildcard route.
  *
  * @docs-private
  */
