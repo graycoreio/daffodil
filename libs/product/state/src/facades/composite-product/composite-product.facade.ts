@@ -66,6 +66,10 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	  return this.store.pipe(select(this.selectors.selectCompositeProductAppliedOptions, { id }));
 	}
 
+	getDiscountPercent(id: T['id']): Observable<number> {
+	  return this.store.pipe(select(this.selectors.selectCompositeProductDiscountPercent, { id }));
+	}
+
 	isItemRequired(id: T['id'], item_id: DaffCompositeProductItem['id']) {
 	  return this.store.pipe(select(this.selectors.selectIsCompositeProductItemRequired, { id, item_id }));
 	}

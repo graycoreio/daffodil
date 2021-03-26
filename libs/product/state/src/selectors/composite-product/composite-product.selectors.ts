@@ -6,6 +6,7 @@ import {
 
 import {
   daffAdd,
+  daffDivide,
   daffMultiply,
   daffSubtract,
 } from '@daffodil/core';
@@ -37,6 +38,11 @@ export interface DaffCompositeProductMemoizedSelectors {
 	 * excluding unselected, optional item prices.
 	 */
 	selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id'] }, DaffPriceRange>;
+	/**
+	 * Get the discount percent for a composite product. This value will be undefined if all required options are not chosen.
+	 * Note: this percent is computed client-side and should be treated as an estimate rather than an exact value.
+	 */
+	selectCompositeProductDiscountPercent: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id'] }, number>;
 }
 
 const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelectors => {
@@ -48,6 +54,8 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
   const {
     selectCompositeProductAppliedOptionsEntitiesState,
+    selectCompositeProductAppliedOptionsEntities,
+    selectCompositeProductAppliedOptions,
   } = getDaffCompositeProductEntitiesSelectors();
 
   const selectCompositeProductRequiredItemPricesForConfiguration = createSelector(
@@ -91,10 +99,40 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
     }),
   );
 
+  const selectCompositeProductDiscountPercent = createSelector(
+    selectProductEntities,
+    selectCompositeProductAppliedOptionsEntities,
+    (products, appliedOptionsEntities, props) => {
+      const product = selectProduct.projector(products, { id: props.id });
+      if(product.type !== DaffProductTypeEnum.Composite) {
+        return undefined;
+      }
+
+      const appliedOptions = appliedOptionsEntities[product.id].items;
+      if((<DaffCompositeProduct>product).items.filter(item => item.required && appliedOptions[item.id].value === null).length > 0) {
+        return undefined;
+      }
+
+      const prices = getMinPricesForConfiguration(
+				<DaffCompositeProduct>product,
+				getAppliedOptionsForConfiguration(<DaffCompositeProduct>product, appliedOptions),
+      );
+
+      return daffMultiply(
+        daffDivide(
+          daffSubtract(prices.originalPrice, prices.discountedPrice),
+          prices.originalPrice,
+        ),
+        100,
+      );
+    },
+  );
+
   return {
     selectCompositeProductRequiredItemPricesForConfiguration,
     selectCompositeProductOptionalItemPricesForConfiguration,
     selectCompositeProductPricesAsCurrentlyConfigured,
+    selectCompositeProductDiscountPercent,
   };
 };
 
