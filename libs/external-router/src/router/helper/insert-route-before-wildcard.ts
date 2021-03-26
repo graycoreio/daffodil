@@ -4,12 +4,13 @@ import {
 } from '@angular/router';
 
 import { DaffExternalRouterNoWildcardError } from '../../errors/no-wildcard';
+import { DaffExternalRouterInsertionStrategy } from '../../model/insertion-strategy.type';
 
 /**
  * Inserts a Route into Routes right before the wildcard route.
  * If no wildcard is found, it fails fast with a `DaffExternalRouterNoWildcardError`.
  */
-export const insertRouteBeforeWildCard = (
+export const daffInsertRouteBeforeWildCardStrategy: DaffExternalRouterInsertionStrategy = (
   route: Route,
   routes: Routes,
 ): Routes => {

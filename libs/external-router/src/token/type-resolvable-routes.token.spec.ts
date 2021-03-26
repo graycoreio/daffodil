@@ -1,30 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TypeRoutePair } from '../model/type-route-pair';
+import { DaffTypeRoutePair } from '../model/type-route-pair';
 import {
   DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
-  provideRouteResolvableByType,
+  daffProvideRouteResolvableByType,
 } from './type-resolvable-routes.token';
 
 describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE', () => {
-  let token: TypeRoutePair[];
+  let token: DaffTypeRoutePair[];
 
   it('should be an empty array by default', () => {
     TestBed.configureTestingModule({});
-    token = TestBed.inject<TypeRoutePair[]>(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE);
+    token = TestBed.inject<DaffTypeRoutePair[]>(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE);
     expect(token).toEqual([]);
   });
 
   it('allow you to provide a resolvable route type', () => {
     TestBed.configureTestingModule({
       providers: [
-        provideRouteResolvableByType('some-type', {
+        daffProvideRouteResolvableByType('some-type', {
           redirectTo: 'somewhere',
         }),
       ],
     });
 
-    token = TestBed.inject<TypeRoutePair[]>(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE);
+    token = TestBed.inject<DaffTypeRoutePair[]>(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE);
     expect(token).toEqual([
       {
         type: 'some-type',

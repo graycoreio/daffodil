@@ -5,10 +5,14 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
-import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
-import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
-import { TypeRoutePair } from '../model/type-route-pair';
+import {
+  DaffExternalRouterInsertionStrategy,
+  DaffExternallyResolvableUrl,
+  DaffExternalRouterUnknownRouteTypeError,
+  DaffExternalRouterNoWildcardError,
+} from '@daffodil/external-router';
+
+import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 import { DaffExternalRouter } from './router.service';
 
@@ -16,7 +20,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
   let service: DaffExternalRouter;
   let router: Router;
 
-  const setupTest = (types: TypeRoutePair[] = [], config: Routes = []) => {
+  const setupTest = (types: DaffTypeRoutePair[] = [], config: Routes = []) => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(config)],
     });
@@ -31,6 +35,54 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
   it('should be created', () => {
     setupTest();
     expect(service).toBeTruthy();
+  });
+
+  describe('when there is a specified route insertion strategy', () => {
+    let insertionStrategy: jasmine.Spy<DaffExternalRouterInsertionStrategy>;
+    let routes: Routes;
+    let redirectionPath: string;
+
+    beforeEach(() => {
+      routes = [{ path: '**', redirectTo: 'somewhere-else' }];
+      redirectionPath = '/';
+      insertionStrategy = jasmine.createSpy();
+      insertionStrategy.and.returnValue([]);
+      setupTest(
+        [
+          { type: 'type-a', route: { redirectTo: redirectionPath }, insertionStrategy },
+          { type: 'type-b', route: { redirectTo: redirectionPath }},
+        ],
+        routes,
+      );
+    });
+
+    describe('and the router is invoked with the specified route type', () => {
+      let path: string;
+      beforeEach(() => {
+        path = 'some-path';
+        service.add({ url: path, type: 'type-a', id: 'id' });
+      });
+
+      it('should invoke the specified insertion strategy', () => {
+        expect(insertionStrategy).toHaveBeenCalledWith(
+          jasmine.objectContaining({
+            redirectTo: redirectionPath,
+            path,
+          }),
+          routes,
+        );
+      });
+    });
+
+    describe('and the router is invoked with a different route type', () => {
+      beforeEach(() => {
+        service.add({ url: 'path', type: 'type-b', id: 'id' });
+      });
+
+      it('should not invoke the specified insertion strategy', () => {
+        expect(insertionStrategy).not.toHaveBeenCalled();
+      });
+    });
   });
 
   it('should add a route to configuration from known type of resolvable route when configured correctly', () => {
