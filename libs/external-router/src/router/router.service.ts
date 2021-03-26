@@ -2,18 +2,13 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import {
-  Router,
-  Route,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 
 import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
-import { DaffExternalRouterInsertionStrategy } from '../model/insertion-strategy.type';
 import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
-import { daffTransformResolvedRouteToInsertionStrategy } from '../transform/resolved-route-to-insertion-strategy';
 import { daffTransformResolvedRouteToRoute } from '../transform/resolved-route-to-route';
 import { daffInsertRouteBeforeWildCardStrategy } from './helper/insert-route-before-wildcard';
 
@@ -32,17 +27,16 @@ export class DaffExternalRouter {
    */
   add(resolvedRoute: DaffExternallyResolvableUrl): void {
     try {
-      const route = daffTransformResolvedRouteToRoute(
+      const {
+        route,
+        insertionStrategy,
+      } = daffTransformResolvedRouteToRoute(
         resolvedRoute,
         this.runtimeRoutes,
       );
-      const insertionStrategy: DaffExternalRouterInsertionStrategy = daffTransformResolvedRouteToInsertionStrategy(
-        resolvedRoute,
-        this.runtimeRoutes,
-      ) || daffInsertRouteBeforeWildCardStrategy;
 
       this.router.resetConfig(
-        insertionStrategy(route, this.router.config),
+        (insertionStrategy || daffInsertRouteBeforeWildCardStrategy)(route, this.router.config),
       );
     } catch (e) {
       if (e instanceof DaffExternalRouterNoWildcardError) {

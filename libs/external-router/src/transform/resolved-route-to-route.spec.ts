@@ -17,14 +17,18 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
   });
 
   it('transforms a DaffExternallyResolvableUrl into an Angular route.', () => {
+    const insertionStrategy = () => [];
     expect(
       daffTransformResolvedRouteToRoute(
         { url: 'some-url', type: 'some-type', id: 'id' },
-        [{ type: 'some-type', route: { redirectTo: '/' }}],
+        [{ type: 'some-type', route: { redirectTo: '/' }, insertionStrategy }],
       ),
     ).toEqual({
-      path: 'some-url',
-      redirectTo: '/',
+      route: {
+        path: 'some-url',
+        redirectTo: '/',
+      },
+      insertionStrategy,
     });
   });
 

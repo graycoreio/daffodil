@@ -1,7 +1,6 @@
-import { Route } from '@angular/router';
-
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
+import { DaffRouteInfo } from '../model/route-info';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
 
 /**
@@ -10,7 +9,7 @@ import { DaffTypeRoutePair } from '../model/type-route-pair';
 export const daffTransformResolvedRouteToRoute = (
   resolvedRoute: DaffExternallyResolvableUrl,
   availableTypes: DaffTypeRoutePair[],
-): Route => {
+): DaffRouteInfo => {
   const routeType = availableTypes
     .filter(t => t.type === resolvedRoute.type)
     .shift();
@@ -21,7 +20,10 @@ export const daffTransformResolvedRouteToRoute = (
   }
 
   return {
-    path: resolvedRoute.url,
-    ...routeType.route,
+    route: {
+      path: resolvedRoute.url,
+      ...routeType.route,
+    },
+    insertionStrategy: routeType.insertionStrategy,
   };
 };
