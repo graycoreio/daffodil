@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.31.0](https://github.com/graycoreio/daffodil/compare/v0.30.0...v0.31.0) (2021-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** Category filter action types are now contained in the DaffCategoryPageFilterActionTypes object.
+* **auth,demo:** Many imports have moved to various subpackages.
+
+### Features
+
+* **auth,demo:** shard auth package ([#1387](https://github.com/graycoreio/daffodil/issues/1387)) ([f604158](https://github.com/graycoreio/daffodil/commit/f6041582fc73311734f21c9032e1aabdfaa67eca))
+* **category:** add additional filter actions ([#1393](https://github.com/graycoreio/daffodil/issues/1393)) ([8eeb4cd](https://github.com/graycoreio/daffodil/commit/8eeb4cdc02cacab23c2b49012831d423ff5f120f))
+* **category:** separate filter actions and effects ([#1389](https://github.com/graycoreio/daffodil/issues/1389)) ([c49033f](https://github.com/graycoreio/daffodil/commit/c49033ffd749475ae8378366f0516ec2deee2fe5))
+* **design:** add support for `daffCalloutTagline` in Callout ([#1351](https://github.com/graycoreio/daffodil/issues/1351)) ([184eb0e](https://github.com/graycoreio/daffodil/commit/184eb0e1d2f6a0605b72af5025e8221ae26ffcab))
+* **design:** create disableable and focusable interfaces for form field behaviors ([#1308](https://github.com/graycoreio/daffodil/issues/1308)) ([4d0e4e6](https://github.com/graycoreio/daffodil/commit/4d0e4e695a925228a69180e41891295ce0622c88))
+* **external-router:** add route insertionStrategy ([#1390](https://github.com/graycoreio/daffodil/issues/1390)) ([50db98d](https://github.com/graycoreio/daffodil/commit/50db98d783919cd9b860135ef1df169afb1d88ce))
+* **product:** add a selector and facade field for composite product … ([#1392](https://github.com/graycoreio/daffodil/issues/1392)) ([18b8a88](https://github.com/graycoreio/daffodil/commit/18b8a884dff5eb4582a11daf39b27b7dbc9a1df1))
+
+
+### Bug Fixes
+
+* **design:** fix linting errors ([#1391](https://github.com/graycoreio/daffodil/issues/1391)) ([6a8f10e](https://github.com/graycoreio/daffodil/commit/6a8f10eafd8dd98b2ec52ca851d5c5d2e3d80aca))
+
 ## [0.30.0](https://github.com/graycoreio/daffodil/compare/v0.29.0...v0.30.0) (2021-03-24)
 
 
