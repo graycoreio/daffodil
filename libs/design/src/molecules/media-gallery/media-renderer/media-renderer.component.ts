@@ -38,7 +38,7 @@ export class DaffMediaRendererComponent implements OnInit {
 	  this.registry.galleries[this.gallery.name].subscribe((gallery) => {
 
 	    /**
-					 * We first clear out the slot
+					 * Clear out the slot for the dynamically rendered thumbnail
 					 */
 	    this.slot.clear();
 
@@ -54,7 +54,7 @@ export class DaffMediaRendererComponent implements OnInit {
 	    const _selectedThumbnailComponent = _selectedThumbnail.component;
 
 	    /**
-					 * Then we create the component to insert.
+					 * Create the component to insert.
 					 */
 	    const component = this.componentFactoryResolver.resolveComponentFactory(
 				<Type<unknown>>_selectedThumbnailComponent.constructor,
@@ -62,14 +62,14 @@ export class DaffMediaRendererComponent implements OnInit {
 	    const componentRef = this.slot.createComponent(component);
 
 	    /**
-					 * We fill the component with it's values from the original component
+					 * Fill the component with it's values from the original component
 					 */
 	    component.inputs.forEach(input => {
 	      componentRef.instance[input.propName] = _selectedThumbnailComponent[input.propName];
 	    });
 
 	    /**
-					 * We trigger a change detection on the component tree, outside the cycle to address
+					 * Trigger a change detection on the component tree, outside the cycle to address
 					 * the fact that the component was created outside a typical CD loop.
 					 */
 	    componentRef.changeDetectorRef.detectChanges();
