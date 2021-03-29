@@ -63,6 +63,7 @@ describe('DaffCategorySelectors', () => {
         type: DaffCategoryFilterType.Equal,
         label: 'label',
         options: [{
+          applied: false,
           label: 'option_label',
           value: 'value',
           count: 2,
@@ -73,6 +74,7 @@ describe('DaffCategorySelectors', () => {
         type: DaffCategoryFilterType.Equal,
         label: 'label2',
         options: [{
+          applied: false,
           label: 'option_label2',
           value: 'value2',
           count: 2,

@@ -5,7 +5,6 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffCategoryFilter,
-  DaffCategoryAppliedFilter,
 } from '@daffodil/category';
 import {
   DaffStoreFacade,
@@ -69,7 +68,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<DaffCategoryAppliedFilter[]>;
+  appliedFilters$: Observable<DaffCategoryFilter[]>;
   /**
    * The sort options available for the products of the selected category.
    */

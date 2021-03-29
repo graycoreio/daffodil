@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
 import {
   DaffCategory,
   DaffCategoryFilter,
-  DaffCategoryAppliedFilter,
 } from '@daffodil/category';
 import {
   DaffCategoryFacadeInterface,
@@ -32,7 +31,7 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
   filters$: BehaviorSubject<DaffCategoryFilter[]> = new BehaviorSubject([]);
   sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
-  appliedFilters$: BehaviorSubject<DaffCategoryAppliedFilter[]> = new BehaviorSubject([]);
+  appliedFilters$: BehaviorSubject<DaffCategoryFilter[]> = new BehaviorSubject([]);
   appliedSortOption$: BehaviorSubject<string> = new BehaviorSubject(null);
   appliedSortDirection$: BehaviorSubject<DaffSortDirectionEnum> = new BehaviorSubject(null);
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);

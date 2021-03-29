@@ -12,6 +12,7 @@ import {
 import {
   DaffCategoryRequest,
   DaffGetCategoryResponse,
+  daffApplyRequestsToFilters,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
@@ -85,7 +86,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       }),
     ]).pipe(
       map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1], result[2].data)),
-      map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult)),
+      map((result: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result)),
+      map((result) => ({
+        ...result,
+        categoryPageConfigurationState: {
+          ...result.categoryPageConfigurationState,
+          filters: daffApplyRequestsToFilters(categoryRequest.filter_requests, result.categoryPageConfigurationState.filters),
+        },
+      })),
     );
   }
 

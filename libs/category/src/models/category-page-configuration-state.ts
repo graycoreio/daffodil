@@ -1,7 +1,7 @@
 import { DaffSortOptions } from '@daffodil/core/state';
 
-import { DaffCategoryFilter } from './category-filter';
-import { DaffCategoryRequest } from './requests/category-request';
+import { DaffCategoryRequest } from './category-request';
+import { DaffCategoryFilter } from './filters/public_api';
 
 export type DaffCategoryPageConfigurationState = DaffCategoryRequest & {
 	filters: DaffCategoryFilter[];

@@ -4,31 +4,19 @@ import * as faker from 'faker/locale/en_US';
 import {
   DaffCategoryPageConfigurationState,
   DaffCategoryFilterType,
-  DaffCategoryRequest,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
+
+  constructor() {
+  }
+
   id = faker.random.uuid();
   page_size = 20;
   current_page = 1;
-  filters = [{
-    label: 'Category',
-    name: 'cat',
-    type: DaffCategoryFilterType.Equal,
-    options: [
-      {
-        label: 'Gear',
-        value: '3',
-        count: 34,
-      },
-      {
-        label: 'Training',
-        value: '9',
-        count: 6,
-      },
-    ],
-  }];
+  filters: DaffCategoryFilter[] = [];
   sort_options = {
     default: 'position',
     options: [

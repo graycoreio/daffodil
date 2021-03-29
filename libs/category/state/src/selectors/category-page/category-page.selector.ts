@@ -6,7 +6,6 @@ import {
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryAppliedFilter,
   DaffCategoryFilterRequest,
   DaffCategoryFilter,
 } from '@daffodil/category';
@@ -20,7 +19,7 @@ import {
   DaffCategoryReducerState,
   DaffCategoryReducersState,
 } from '../../reducers/public_api';
-import { buildAppliedFilter } from '../applied-filter/applied-filter-methods';
+import { computeAppliedFilters } from '../applied-filter/compute-applied-filters';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
 export interface DaffCategoryPageMemoizedSelectors<
@@ -37,7 +36,7 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['total_products']>;
 	selectCategoryPageFilterRequests: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['filter_requests']>;
-	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, DaffCategoryAppliedFilter[]>;
+	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, DaffCategoryFilter[]>;
 	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['applied_sort_option']>;
 	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['applied_sort_direction']>;
 	selectCategoryPageState: MemoizedSelector<Record<string, any>, DaffStatefulCategoryPageConfigurationState['daffState']>;
@@ -119,19 +118,12 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (state: DaffStatefulCategoryPageConfigurationState) => state.filter_requests,
   );
 
+  /**
+   * Selects the applied filters for the current category page.
+   */
   const selectCategoryPageAppliedFilters = createSelector(
-    selectCategoryPageFilterRequests,
     selectCategoryFilters,
-    (filterRequests: DaffCategoryFilterRequest[], availableFilters: DaffCategoryFilter[]): DaffCategoryAppliedFilter[] => {
-      if(!availableFilters.length) {
-        return [];
-      }
-      return filterRequests.map(request =>
-        availableFilters
-          .filter(availableFilter => availableFilter.name === request.name)
-          .map(filter => buildAppliedFilter(filter, request)).shift(),
-      );
-    },
+    (filters: DaffCategoryFilter[]): DaffCategoryFilter[] => computeAppliedFilters(filters),
   );
 
   const selectCategoryPageAppliedSortOption = createSelector(

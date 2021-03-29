@@ -1,4 +1,7 @@
-import { DaffGenericCategory } from '@daffodil/category';
+import {
+  DaffGenericCategory,
+  toggleCategoryFilter,
+} from '@daffodil/category';
 import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
@@ -13,7 +16,6 @@ import {
   DaffCategoryActions,
 } from '../../actions/category.actions';
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
-import { toggleCategoryFilter } from './toggle-filter/core';
 
 const initialState: DaffCategoryReducerState = {
   categoryPageConfigurationState: {

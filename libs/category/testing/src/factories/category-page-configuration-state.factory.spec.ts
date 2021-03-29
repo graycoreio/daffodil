@@ -1,9 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffCategoryPageConfigurationState,
-  DaffCategoryRequest,
-} from '@daffodil/category';
+import { DaffCategoryPageConfigurationState } from '@daffodil/category';
 
 import { DaffCategoryPageConfigurationStateFactory } from './category-page-configuration-state.factory';
 

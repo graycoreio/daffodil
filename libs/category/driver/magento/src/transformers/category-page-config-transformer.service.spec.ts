@@ -173,9 +173,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
     describe('when the filter type is anything else', () => {
 
-      it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
+      it('should return a DaffCategoryPageConfigurationState with a Equal filter type', () => {
         aggregates[0].type = 'textfield';
-        stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
+        stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
 
         expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
       });
