@@ -39,5 +39,9 @@ describe('@daffodil/category/testing | Factories | DaffCategoryRangeFilterFactor
       expect(result.max).toBeDefined();
       expect(result.options).toBeDefined();
     });
+
+    it('should set max to be greater than min', () => {
+      expect(Number(result.max)).toBeGreaterThan(Number(result.min));
+    });
   });
 });

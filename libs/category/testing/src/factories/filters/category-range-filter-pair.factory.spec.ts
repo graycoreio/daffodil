@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryFilterRangePair } from '@daffodil/category';
-import { DAFF_CATEGORY_TESTING_MINIMUM_RANGE_SIZE } from '@daffodil/category/testing';
 
 import { DaffCategoryFilterRangePairFactory } from './category-range-filter-pair.factory';
 
@@ -33,6 +32,10 @@ describe('@daffodil/category/testing | Factories | DaffCategoryFilterRangePairFa
       expect(result.min).toBeDefined();
       expect(result.max).toBeDefined();
       expect(result.applied).toBeDefined();
+    });
+
+    it('should set max to be greater than min', () => {
+      expect(Number(result.max)).toBeGreaterThan(Number(result.min));
     });
   });
 });

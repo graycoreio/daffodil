@@ -32,16 +32,4 @@ fdescribe('Category | Testing | Factories | DaffCategoryFilterFactory', () => {
       expect(result.type).toBeDefined();
     });
   });
-
-  describe('createMany', () => {
-    let result: DaffCategoryFilter[];
-
-    it('should create as many category filters as desired', () => {
-      result = categoryFilterFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = categoryFilterFactory.createMany(3);
-      expect(result.length).toEqual(3);
-    });
-  });
 });
