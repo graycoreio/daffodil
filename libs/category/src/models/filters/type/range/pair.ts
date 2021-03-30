@@ -1,5 +1,5 @@
 export interface DaffCategoryFilterRangePair {
-	applied: true;
+	applied: boolean;
 	min: string;
 	max: string;
 }

@@ -3,6 +3,7 @@ import { DaffCategoryFilterType } from './type/category-filter-type';
 /**
  * The base type of a category filter.
  */
+// TODO(griest024): make generic on option type? T extends DaffAppliable
 export interface DaffCategoryFilterBase {
 	/**
 	 * The end-user facing string that explains the filter e.g. "Color".
