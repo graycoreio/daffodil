@@ -8,3 +8,6 @@ export { daffApplyRequestsToFilters } from './apply/apply-requests-to-filters';
 export { isFilterApplied } from './is-applied/is-applied';
 export { removeFilter } from './remove/remove';
 export { toggleCategoryFilter } from './toggle/toggle';
+
+export * from './build/request/public_api';
+export * from './find-applied/public_api';
