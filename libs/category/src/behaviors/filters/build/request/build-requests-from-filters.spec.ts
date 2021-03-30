@@ -118,7 +118,7 @@ describe('@daffodil/category | daffCategoryBuildRequestsFromFilters', () => {
       expect(result).toContain(jasmine.objectContaining(appliedEqualFilter));
     });
 
-    it('should not return requests from unapplied options', () => {
+    it('should not return requests with unapplied options', () => {
       expect(result).not.toContain(jasmine.objectContaining(unappliedRangeFilter));
       expect(result).not.toContain(jasmine.objectContaining(unappliedEqualFilter));
     });
