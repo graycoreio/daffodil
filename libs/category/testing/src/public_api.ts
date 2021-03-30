@@ -1,6 +1,2 @@
-export { DaffCategoryFactory } from './factories/category.factory';
-export {
-  DaffCategoryPageConfigurationStateFactory,
-  MockCategoryPageConfigurationState,
-} from './factories/category-page-configuration-state.factory';
+export * from './factories/public_api';
 export { isCategory } from './helpers/category-helper';
