@@ -16,8 +16,8 @@ export class MockCategoryRangeFilter implements DaffCategoryRangeFilter {
   _min = faker.random.number(20);
   min = this._min.toString();
   max = faker.random.number({
-    min: this._min + DAFF_CATEGORY_TESTING_MINIMUM_RANGE_SIZE,
-    max: this._min + faker.random.number({ min: DAFF_CATEGORY_TESTING_MINIMUM_RANGE_SIZE + 1, max: 1000 }),
+    min: this._min,
+    max: this._min + faker.random.number({ min: 1, max: 1000 }),
   }).toString();
   options = [];
 }
