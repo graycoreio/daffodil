@@ -114,13 +114,13 @@ describe('@daffodil/category | daffCategoryBuildRequestsFromFilters', () => {
     });
 
     it('should return requests built from applied options', () => {
-      expect(result).toContain(jasmine.objectContaining(appliedRangeFilter));
-      expect(result).toContain(jasmine.objectContaining(appliedEqualFilter));
+      expect(result).toContain(jasmine.objectContaining(appliedEqualFilterRequest));
+      expect(result).toContain(jasmine.objectContaining(appliedRangeFilterRequest));
     });
 
     it('should not return requests with unapplied options', () => {
-      expect(result).not.toContain(jasmine.objectContaining(unappliedRangeFilter));
-      expect(result).not.toContain(jasmine.objectContaining(unappliedEqualFilter));
+      expect(result).not.toContain(jasmine.objectContaining(unappliedEqualFilterRequest));
+      expect(result).not.toContain(jasmine.objectContaining(unappliedRangeFilterRequest));
     });
   });
 });
