@@ -87,7 +87,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
     it('should send a get request', () => {
       const mockProduct = productFactory.create();
 
-      productService.getByUrl(mockProduct.id).subscribe(product => {
+      productService.getByUrl(mockProduct.url).subscribe(product => {
         expect(product).toEqual(mockProduct);
       });
 
