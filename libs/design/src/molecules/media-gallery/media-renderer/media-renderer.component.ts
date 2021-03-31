@@ -8,7 +8,13 @@ import {
   ViewContainerRef,
   TemplateRef,
   ChangeDetectionStrategy,
+  OnDestroy,
 } from '@angular/core';
+import {
+  Subscription,
+  Subject,
+} from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
@@ -22,8 +28,19 @@ import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
   templateUrl: './media-renderer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffMediaRendererComponent implements OnInit {
+export class DaffMediaRendererComponent implements OnInit, OnDestroy {
+
+  /**
+   * Private tracker for indicating when the component is destroyed.
+   */
+	 private _destroy$ = new Subject();
+
+	/**
+	 * The constructor function of the component to render.
+	 */
 	@Input() component: Type<unknown>;
+
+	sub$: Subscription;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
@@ -31,11 +48,16 @@ export class DaffMediaRendererComponent implements OnInit {
 		private gallery: DaffMediaGalleryComponent,
 	) {}
 
+	/**
+	 * The slot that we render the "component" into.
+	 */
 	@ViewChild(TemplateRef, { static: true, read: ViewContainerRef })
 	slot: ViewContainerRef;
 
 	ngOnInit() {
-	  this.registry.galleries[this.gallery.name].subscribe((gallery) => {
+	  this.registry.galleries[this.gallery.name]
+	    .pipe(takeUntil(this._destroy$))
+	    .subscribe((gallery) => {
 
 	    /**
 					 * Clear out the slot for the dynamically rendered thumbnail
@@ -68,11 +90,19 @@ export class DaffMediaRendererComponent implements OnInit {
 	      componentRef.instance[input.propName] = _selectedThumbnailComponent[input.propName];
 	    });
 
-	    /**
-					 * Trigger a change detection on the component tree, outside the cycle to address
-					 * the fact that the component was created outside a typical CD loop.
-					 */
+	      /**
+							 * Trigger a change detection on the component tree, outside the cycle to address
+							 * the fact that the component was created outside a typical CD loop.
+							 */
 	    componentRef.changeDetectorRef.detectChanges();
 	  });
+	}
+
+	/**
+	 * Used to unsubscribe from the dynamic component.
+	 */
+	 ngOnDestroy() {
+	  this._destroy$.next(true);
+	  this._destroy$.unsubscribe();
 	}
 }
