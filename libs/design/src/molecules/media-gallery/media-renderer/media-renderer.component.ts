@@ -40,8 +40,6 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
 	 */
 	@Input() component: Type<unknown>;
 
-	sub$: Subscription;
-
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
 		private registry: DaffMediaGalleryRegistry,
