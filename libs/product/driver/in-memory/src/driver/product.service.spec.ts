@@ -81,4 +81,20 @@ describe('Driver | InMemory | Product | ProductService', () => {
       req.flush(mockProduct);
     });
   });
+
+  describe('getByUrl | getting a single product', () => {
+
+    it('should send a get request', () => {
+      const mockProduct = productFactory.create();
+
+      productService.getByUrl(mockProduct.id).subscribe(product => {
+        expect(product).toEqual(mockProduct);
+      });
+
+      const req = httpMock.expectOne(`${productService.url}${mockProduct.url}`);
+      expect(req.request.method).toBe('GET');
+
+      req.flush(mockProduct);
+    });
+  });
 });
