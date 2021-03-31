@@ -102,13 +102,13 @@ describe('Product | Magento | ProductService', () => {
 
   describe('getByUrl | getting a single product by url', () => {
     it('should return a DaffProduct', done => {
-      service.get('TESTING_URL').subscribe(r => {
+      service.getByUrl('TESTING_URL').subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
         expect(r.name).toBeDefined();
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(GetProductQuery));
+      const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
 
       op.flush({
         data: {
@@ -117,27 +117,6 @@ describe('Product | Magento | ProductService', () => {
             items: [stubSimpleProduct],
           },
         },
-      });
-    });
-
-    describe('handling different product types', () => {
-      it('should be able to retrieve a DaffProduct for a simple', done => {
-        service.getByUrl('TESTING_URL').subscribe(r => {
-          expect(r.id).toEqual(stubSimpleProduct.sku);
-          expect(r.name).toBeDefined();
-          done();
-        });
-
-        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
-
-        op.flush({
-          data: {
-            products: {
-              __typename: 'Products',
-              items: [stubSimpleProduct],
-            },
-          },
-        });
       });
     });
   });
