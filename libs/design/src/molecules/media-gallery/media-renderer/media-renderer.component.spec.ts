@@ -1,4 +1,7 @@
-import { Type } from '@angular/core';
+import {
+  Component,
+  Type,
+} from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -15,6 +18,30 @@ import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 import { DaffMediaRendererComponent } from './media-renderer.component';
 
+@Component({
+  selector: 'daff-mock-thumbnail1',
+  template: '<ng-content></ng-content>',
+  providers: [
+    {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+			 provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail1Component,
+    },
+  ],
+})
+export class DaffMockThumbnail1Component {}
+
+@Component({
+  selector: 'daff-mock-thumbnail2',
+  template: '<ng-content></ng-content>',
+  providers: [
+    {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+			 provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail2Component,
+    },
+  ],
+})
+export class DaffMockThumbnail2Component {}
+
 describe('DaffMediaRendererComponent', () => {
   let component: DaffMediaRendererComponent;
   let fixture: ComponentFixture<DaffMediaRendererComponent>;
@@ -30,6 +57,8 @@ describe('DaffMediaRendererComponent', () => {
         DaffMediaRendererComponent,
         DaffArticleComponent,
         DaffCardComponent,
+        DaffMockThumbnail1Component,
+        DaffMockThumbnail2Component,
       ],
       providers: [
         {
@@ -40,8 +69,6 @@ describe('DaffMediaRendererComponent', () => {
           provide: DaffMediaGalleryComponent,
           useValue: mockGallery,
         },
-        { provide: daffThumbnailCompatToken, useExisting: DaffArticleComponent, multi: true },
-        { provide: daffThumbnailCompatToken, useExisting: DaffCardComponent, multi: true },
       ],
     })
       .compileComponents();
@@ -71,10 +98,9 @@ describe('DaffMediaRendererComponent', () => {
   });
 
   it('should render the selected thumbnail', () => {
-    const articleComponent = fixture.debugElement.query(By.css('daff-article'));
-    const cardComponent = fixture.debugElement.query(By.css('daff-card'));
-
-    expect(articleComponent).toBeDefined();
-    expect(cardComponent).toBeNull();
+    const mockThumbnail1Element = fixture.debugElement.query(By.css('daff-mock-thumbnail1'));
+    const mockThumbnail2Element = fixture.debugElement.query(By.css('daff-mock-thumbnail2'));
+    expect(mockThumbnail1Element).toBeDefined();
+    expect(mockThumbnail2Element).toBeNull();
   });
 });
