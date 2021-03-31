@@ -3,7 +3,10 @@ import {
   Apollo,
   gql,
 } from 'apollo-angular';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { DaffProduct } from '@daffodil/product';
@@ -98,6 +101,11 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
   defaultLength = 20;
 
   constructor(private apollo: Apollo) {}
+
+  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
+    // TODO: implement
+    return of();
+  }
 
   /**
    * A query for retrieving all Products as an Observable<DaffProduct[]>.
