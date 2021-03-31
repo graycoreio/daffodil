@@ -18,6 +18,7 @@ import {
 } from './interfaces/public_api';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
+import { GetProductByUrlQuery } from './queries/get-product-by-url';
 import {
   transformMagentoProduct,
   transformManyMagentoProducts,
@@ -45,6 +46,17 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
       query: GetProductQuery,
       variables: {
         sku: productId,
+      },
+    }).pipe(
+      map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
+    );
+  }
+
+  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
+    return this.apollo.query<any>({
+      query: GetProductByUrlQuery,
+      variables: {
+        url,
       },
     }).pipe(
       map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
