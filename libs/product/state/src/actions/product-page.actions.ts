@@ -7,10 +7,23 @@ import { DaffProduct } from '@daffodil/product';
  * Action types for Product Page Actions.
  */
 export enum DaffProductPageActionTypes {
+    ProductPageLoadByUrlAction = '[Product Page] Load By URL Action',
     ProductPageLoadAction = '[Product Page] Load Action',
     ProductPageLoadSuccessAction = '[Product Page] Load Success Action',
     ProductPageLoadFailureAction = '[Product Page] Load Failure Action',
 		UpdateQtyAction = '[Product Page] Update Qty Action'
+}
+
+/**
+ * An action triggered to initialize a product page load.
+ * This is intended to be used for loading a product page rather than only a product.
+ *
+ * @param payload - URL of the requested product
+ */
+export class DaffProductPageLoadByUrl<T extends DaffProduct = DaffProduct> implements Action {
+  readonly type = DaffProductPageActionTypes.ProductPageLoadByUrlAction;
+
+  constructor(public payload: T['url']) { }
 }
 
 /**
@@ -59,6 +72,7 @@ export class DaffProductPageUpdateQty implements Action {
 }
 
 export type DaffProductPageActions<T extends DaffProduct = DaffProduct> =
+    | DaffProductPageLoadByUrl<T>
     | DaffProductPageLoad
     | DaffProductPageLoadSuccess<T>
     | DaffProductPageLoadFailure

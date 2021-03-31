@@ -26,6 +26,7 @@ import {
   DaffProductImageFactory,
 } from '@daffodil/product/testing';
 
+import { DaffProductPageLoadByUrl } from '../actions/public_api';
 import { DaffProductPageEffects } from './product-page.effects';
 
 describe('DaffProductPageEffects', () => {
@@ -95,6 +96,46 @@ describe('DaffProductPageEffects', () => {
 
       it('should dispatch a ProductLoadFailure action', () => {
         expect(effects.load$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('when ProductPageLoadByUrlAction is triggered', () => {
+
+    let expected;
+    let productPageLoadAction: DaffProductPageLoadByUrl;
+
+    beforeEach(() => {
+      productPageLoadAction = new DaffProductPageLoadByUrl(mockProduct.url);
+    });
+
+    describe('and the call to ProductService is successful', () => {
+
+      beforeEach(() => {
+        spyOn(daffProductDriver, 'getByUrl').and.returnValue(of(mockProduct));
+        const productLoadSuccessAction = new DaffProductPageLoadSuccess(mockProduct);
+        actions$ = hot('--a', { a: productPageLoadAction });
+        expected = cold('--b', { b: productLoadSuccessAction });
+      });
+
+      it('should dispatch a ProductLoadSuccess action', () => {
+        expect(effects.loadByUrl$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the call to ProductService fails', () => {
+
+      beforeEach(() => {
+        const error: DaffStateError = { code: 'code', message: 'Failed to load product' };
+        const response = cold('#', {}, error);
+        spyOn(daffProductDriver, 'getByUrl').and.returnValue(response);
+        const productLoadFailureAction = new DaffProductPageLoadFailure(error);
+        actions$ = hot('--a', { a: productPageLoadAction });
+        expected = cold('--b', { b: productLoadFailureAction });
+      });
+
+      it('should dispatch a ProductLoadFailure action', () => {
+        expect(effects.loadByUrl$).toBeObservable(expected);
       });
     });
   });
