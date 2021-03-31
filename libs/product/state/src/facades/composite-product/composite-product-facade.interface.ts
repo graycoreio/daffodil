@@ -63,6 +63,14 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	hasDiscount(priceRange: DaffPriceRange): boolean;
 
 	/**
+	 * Returns the discount amount of a composite product based on the current configuration of the selected item options in redux
+	 * state and excluding unselected, optional item prices. Will return undefined if all required options are not chosen.
+	 *
+	 * @param id the id of the composite product.
+	 */
+	getDiscountAmount(id: DaffCompositeProduct['id']): Observable<number>;
+
+	/**
 	 * Returns the discount percent of a composite product based on the current configuration of the selected item options in redux
 	 * state and excluding unselected, optional item prices. Will return undefined if all required options are not chosen.
 	 * Note: This percent is computed client-side and should be treated as an estimate rather than an exact value.
