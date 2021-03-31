@@ -14,6 +14,9 @@ let uniqueGalleryId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffMediaGalleryComponent {
+	/**
+	 * Adds a class for styling the media gallery
+	 */
 	@HostBinding('class.daff-media-gallery') class = true;
 
 	/**

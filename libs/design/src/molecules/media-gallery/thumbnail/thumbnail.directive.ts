@@ -26,7 +26,7 @@ import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 export class DaffThumbnailDirective implements OnInit, OnDestroy {
 
 	/**
-	 * Adds a class for styling a gallery item
+	 * Adds a class for styling a selected thumbnail
 	 */
 	@HostBinding('class.daff-thumbnail--selected') get selectedClass() {
     return this.selected;
@@ -38,8 +38,9 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 		private registry: DaffMediaGalleryRegistry,
 		public gallery: DaffMediaGalleryComponent,
 	) {}
+
 	/**
-	 * Adds a class for styling a gallery item
+	 * Adds a class for styling a thumbnail
 	 */
 	@HostBinding('class.daff-thumbnail') class = true;
 

@@ -1,1 +1,19 @@
-<design-land-example-viewer-container example="basic-media-gallery"></design-land-example-viewer-container>
+<daff-article>
+	<h1 daffArticleTitle>Media Gallery</h1>
+	<p daffArticleLead><code>&lt;daff-media-gallery&gt;</code> is used to display a group of <code>[daffThumbnail]</code>s in a gallery format. Media galleries are useful to showcase multiple images related to a single product or topic.</p>
+
+	<h2>Thumbnail</h2>
+	<p><code>[daffThumbnail]</code>should be used as a directive with <code>&lt;daff-image&gt;</code>. (View <a href="/image">Image Documentation</a>)</p>
+	<p>It should never be used as a standalone component. The first thumbnail is selected by default and dynamically rendered as the primary image by utilizing the <code>&lt;daff-media-renderer&gt;</code> component. The selected thumbnail can be controlled by the enduser, and the position of the list of thumbnails is dependent on the screen size.</p>
+
+	<design-land-example-viewer-container example="basic-media-gallery"></design-land-example-viewer-container>
+
+	<h2>Image Aspect Ratio</h2>
+	<p>It's recommended to utilize the same aspect ratio for all images in the same media gallery. Otherwise, the height and width of the media gallery may change with every different aspect ratio presented by the selected thumbnail as show in the example.</p>
+
+	<p>The thumbnail dimension is set to <code>80x80</code> pixels, so the recommended aspect ratio is <code>1:1</code>. However, it is not required since the thumbnail will horizontally and vertically center align images within a thumbnail.</p>
+	<design-land-example-viewer-container example="mismatched-sizes-media-gallery"></design-land-example-viewer-container>
+
+	<h2>Accessibility</h2>
+	<p>Accessibility considerations for media gallery is handled by the <code>DaffImageComponent</code>. The <code>alt</code> attribute must be defined in <code>&lt;daff-image&gt;</code>. It specifies an alternate text for an image. An error will appear if it's not defined. This is important because it allows screen readers to describe what's in the image for visually impaired people. (View <a href="/image">Image Documentation</a>)</p>
+</daff-article>

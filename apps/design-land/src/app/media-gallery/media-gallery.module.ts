@@ -8,6 +8,7 @@ import { createCustomElement } from '@angular/elements';
 
 
 import {
+  DaffArticleModule,
   DaffMediaGalleryModule,
   DaffImageModule,
 } from '@daffodil/design';
@@ -27,6 +28,7 @@ import { MediaGalleryComponent } from './media-gallery.component';
     DesignLandMediaGalleryRoutingModule,
     DesignLandExampleViewerModule,
 
+    DaffArticleModule,
     DaffMediaGalleryModule,
     DaffImageModule,
   ],

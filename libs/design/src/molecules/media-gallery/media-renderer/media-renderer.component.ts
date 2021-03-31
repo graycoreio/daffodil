@@ -47,7 +47,7 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
 	) {}
 
 	/**
-	 * The slot that we render the "component" into.
+	 * The slot that the "component" is rendered into.
 	 */
 	@ViewChild(TemplateRef, { static: true, read: ViewContainerRef })
 	slot: ViewContainerRef;
@@ -58,15 +58,15 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
 	    .subscribe((gallery) => {
 
 	    /**
-					 * Clear out the slot for the dynamically rendered thumbnail
-					 */
+			 * Clear out the slot for the dynamically rendered thumbnail
+			 */
 	    this.slot.clear();
 
 	    const _selectedThumbnail = gallery.thumbnails.filter(media => media.selected).shift();
 
 	    /**
-					 * If there's no selected media, render nothing.
-					 */
+			 * If there's no selected media, render nothing.
+			 */
 	    if(!_selectedThumbnail) {
 	      return;
 	    }
@@ -74,24 +74,24 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
 	    const _selectedThumbnailComponent = _selectedThumbnail.component;
 
 	    /**
-					 * Create the component to insert.
-					 */
+			 * Create the component to insert.
+			 */
 	    const component = this.componentFactoryResolver.resolveComponentFactory(
 				<Type<unknown>>_selectedThumbnailComponent.constructor,
 	    );
 	    const componentRef = this.slot.createComponent(component);
 
 	    /**
-					 * Fill the component with it's values from the original component
-					 */
+			 * Fill the component with it's values from the original component
+			 */
 	    component.inputs.forEach(input => {
 	      componentRef.instance[input.propName] = _selectedThumbnailComponent[input.propName];
 	    });
 
-	      /**
-							 * Trigger a change detection on the component tree, outside the cycle to address
-							 * the fact that the component was created outside a typical CD loop.
-							 */
+			/**
+			 * Trigger a change detection on the component tree, outside the cycle to address
+			 * the fact that the component was created outside a typical CD loop.
+			 */
 	    componentRef.changeDetectorRef.detectChanges();
 	  });
 	}
@@ -99,7 +99,7 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
 	/**
 	 * Used to unsubscribe from the dynamic component.
 	 */
-	 ngOnDestroy() {
+	ngOnDestroy() {
 	  this._destroy$.next(true);
 	  this._destroy$.unsubscribe();
 	}
