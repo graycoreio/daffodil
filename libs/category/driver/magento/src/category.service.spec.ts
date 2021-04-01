@@ -18,12 +18,12 @@ import { DaffMagentoCategoryService } from './category.service';
 xdescribe('Driver | Magento | Category | CategoryService', () => {
   let categoryService: DaffMagentoCategoryService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const categoryPageMetadataFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let controller: ApolloTestingController;
 
   const transformedCategory = categoryFactory.create();
-  const transformedCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+  const transformedCategoryPageConfigurationState = categoryPageMetadataFactory.create();
   const transformedProducts = productFactory.createMany(3);
   const productTransformService = jasmine.createSpyObj('DaffMagentoProductTransformerService', ['transformMany']);
   productTransformService.transformMany.and.returnValue(transformedProducts);

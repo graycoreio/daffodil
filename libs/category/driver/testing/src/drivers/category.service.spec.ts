@@ -17,10 +17,10 @@ describe('Driver | Testing | Category | CategoryService', () => {
   const mockCategoryFactory = jasmine.createSpyObj('DaffCategoryFactory', ['create']);
   mockCategoryFactory.create.and.returnValue(category);
 
-  const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const categoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+  const categoryPageMetadataFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const categoryPageMetadata = categoryPageMetadataFactory.create();
   const mockCategoryPageConfigurationStateFactory = jasmine.createSpyObj('DaffCategoryPageConfigurationStateFactory', ['create']);
-  mockCategoryPageConfigurationStateFactory.create.and.returnValue(categoryPageConfigurationState);
+  mockCategoryPageConfigurationStateFactory.create.and.returnValue(categoryPageMetadata);
 
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const products = productFactory.createMany(3);
@@ -46,7 +46,7 @@ describe('Driver | Testing | Category | CategoryService', () => {
   describe('get', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
-      const expected = cold('(a|)', { a: { category, categoryPageConfigurationState, products }});
+      const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
       expect(categoryService.get('id')).toBeObservable(expected);
     });
   });

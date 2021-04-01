@@ -28,6 +28,9 @@ import {
   daffCategoryValidateFilters,
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
+  daffCategoryBuildRequestsFromFilters,
+  daffToggleRequestOnFilters,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
@@ -47,7 +50,6 @@ import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
 } from '../actions/category-page.actions';
-import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 
 @Injectable()
@@ -69,7 +71,7 @@ export class DaffCategoryPageFilterEffects<
   changeCategoryFilters$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction),
     withLatestFrom(
-      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
+      this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
       [action, categoryRequest]:
@@ -87,17 +89,16 @@ export class DaffCategoryPageFilterEffects<
   toggleCategoryFilter$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction),
     withLatestFrom(
-      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
+      this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryPageConfigurationState]:
-			[DaffCategoryPageToggleFilter, DaffStatefulCategoryPageConfigurationState],
-    ) => {
-      daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
-      return this.processCategoryGetRequest({
-        ...categoryPageConfigurationState,
-      });
-    }),
+      [action, categoryPageMetadata]:
+			[DaffCategoryPageToggleFilter, DaffCategoryPageMetadata],
+    ) => this.processCategoryGetRequest({
+      ...categoryPageMetadata,
+      // TODO: should we do this in the reducer and pull it from categoryPageMetadata.filters?
+      filter_requests: daffCategoryBuildRequestsFromFilters(daffToggleRequestOnFilters(action.filter, categoryPageMetadata.filters)),
+    })),
   );
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {

@@ -24,7 +24,7 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   category: DaffCategory;
-  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  categoryPageMetadata: DaffCategoryPageConfigurationState;
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
@@ -43,7 +43,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   get(reqInfo: any) {
     const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 
-    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
+    this.categoryPageMetadata = this.categoryPageConfigurationFactory.create({
       id: reqInfo.id,
       page_size: this.generatePageSize(reqInfo),
       current_page: this.getCurrentPageParam(reqInfo),
@@ -59,7 +59,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     return reqInfo.utils.createResponse$(() => ({
       body: {
         category: this.category,
-        categoryPageConfigurationState: this.categoryPageConfigurationState,
+        categoryPageMetadata: this.categoryPageMetadata,
         products: this.productInMemoryBackendService.products,
       },
       status: STATUS.OK,
