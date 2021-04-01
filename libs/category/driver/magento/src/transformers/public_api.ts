@@ -3,7 +3,3 @@ export { DaffMagentoAppliedSortOptionTransformService } from './applied-sort-opt
 export { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 export { DaffMagentoCategoryResponseTransformService } from './category-response-transform.service';
 export { DaffMagentoCategoryTransformerService } from './category-transformer.service';
-export {
-  buildCustomMetadataAttribute,
-  addMetadataTypesToAggregates,
-} from './custom-metadata-attributes-methods';

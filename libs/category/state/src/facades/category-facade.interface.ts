@@ -5,17 +5,18 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffCategoryFilter,
-  DaffCategoryAppliedFilter,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffStoreFacade,
   DaffSortDirectionEnum,
   DaffSortOption,
   DaffStateError,
+  DaffState,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
+import { DaffCategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 
 export interface DaffCategoryFacadeInterface<
 	V extends DaffGenericCategory<V> = DaffCategory,
@@ -28,12 +29,11 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<DaffStatefulCategoryPageConfigurationState>;
+  metadata$: Observable<DaffCategoryPageMetadata>;
   /**
    * The current loading state of the selected category page.
    */
-  // TODO: fix this horrible overuse of "state"
-  pageLoadingState$: Observable<DaffStatefulCategoryPageConfigurationState['daffState']>;
+  pageLoadingState$: Observable<DaffCategoryReducerState['daffState']>;
   /**
    * Whether the selected category is in a mutating state.
    */
@@ -69,7 +69,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<DaffCategoryAppliedFilter[]>;
+  appliedFilters$: Observable<DaffCategoryFilter[]>;
   /**
    * The sort options available for the products of the selected category.
    */

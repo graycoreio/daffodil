@@ -54,7 +54,6 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     this.category = this.categoryFactory.create({
       id: reqInfo.id,
       total_products: allCategoryProductIds.length,
-      page_size: this.generatePageSize(reqInfo),
     });
 
     return reqInfo.utils.createResponse$(() => ({

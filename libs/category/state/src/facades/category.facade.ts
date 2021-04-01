@@ -10,7 +10,7 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffCategoryFilter,
-  DaffCategoryAppliedFilter,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffSortDirectionEnum,
@@ -19,7 +19,6 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
 import { DaffCategoryReducersState } from '../reducers/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 import { DaffCategoryFacadeInterface } from './category-facade.interface';
@@ -43,7 +42,7 @@ export class DaffCategoryFacade<
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<DaffStatefulCategoryPageConfigurationState>;
+  metadata$: Observable<DaffCategoryPageMetadata>;
   pageLoadingState$: Observable<DaffStatefulCategoryPageConfigurationState['daffState']>;
   isPageMutating$: Observable<boolean>;
   isPageResolving$: Observable<boolean>;
@@ -74,7 +73,7 @@ export class DaffCategoryFacade<
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<DaffCategoryAppliedFilter[]>;
+  appliedFilters$: Observable<DaffCategoryFilter[]>;
   /**
    * The sort options available for the products of the selected category.
    */

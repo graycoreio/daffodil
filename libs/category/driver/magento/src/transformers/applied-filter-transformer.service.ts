@@ -32,11 +32,10 @@ export class DaffMagentoAppliedFiltersTransformService {
       // The FromTo filter needs special treatment, because Magento accepts the "from" and "to" filters
       // separately (it also outputs FromTo filter pairs together)
       if(filter.type === DaffCategoryFilterType.Range) {
-        const fromToValues = filter.value[0].split(DaffCategoryFromToFilterSeparator);
         magentoFilters[filter.name] = {
           ...magentoFilters[filter.name],
-          ...this.getRangeFromValue(fromToValues[0]),
-          ...this.getRangeToValue(fromToValues[1]),
+          ...this.getRangeFromValue(filter.value.min),
+          ...this.getRangeToValue(filter.value.max),
         };
       } else {
         magentoFilters[filter.name] = {

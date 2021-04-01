@@ -9,6 +9,7 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffCategory,
   DaffCategoryFilterType,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import {
   daffCategoryReducers,
@@ -65,6 +66,7 @@ describe('DaffCategoryFacade', () => {
         label: 'label',
         type: DaffCategoryFilterType.Equal,
         options: [{
+          applied: false,
           value: 'value',
           label: 'option_label',
           count: 2,
@@ -204,24 +206,9 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the selected category', () => {
-      store.dispatch(new DaffCategoryPageLoad({
-        id: categoryPageConfigurationState.id, filter_requests: [{
-          name: 'name',
-          value: ['value'],
-          type: DaffCategoryFilterType.Equal,
-        }],
-      }));
-      const expected = cold('a', {
-        a: [{
-          name: 'name',
-          label: 'label',
-          type: DaffCategoryFilterType.Equal,
-          options: [{
-            value: 'value',
-            label: 'option_label',
-          }],
-        }],
-      });
+      const expectedFilters: DaffCategoryFilter[] = [];
+
+      const expected = cold('a', { a: expectedFilters });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState, products: [product]}));
       expect(facade.appliedFilters$).toBeObservable(expected);
     });

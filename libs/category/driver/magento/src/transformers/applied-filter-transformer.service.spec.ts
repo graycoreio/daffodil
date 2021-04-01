@@ -48,7 +48,10 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
           {
             type: DaffCategoryFilterType.Range,
             name: 'any',
-            value: ['30-40'],
+            value: {
+              min: '30',
+              max: '40',
+            },
           },
         ];
         const expectedReturn: MagentoCategoryFilters = {
@@ -69,7 +72,10 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
           {
             type: DaffCategoryFilterType.Range,
             name: 'any',
-            value: ['*-30'],
+            value: {
+              min: '*',
+              max: '40',
+            },
           },
         ];
         const expectedReturn: MagentoCategoryFilters = {
@@ -89,7 +95,10 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
           {
             type: DaffCategoryFilterType.Range,
             name: 'any',
-            value: ['30-*'],
+            value: {
+              min: '30',
+              max: '*',
+            },
           },
         ];
         const expectedReturn: MagentoCategoryFilters = {

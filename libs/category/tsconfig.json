@@ -27,6 +27,9 @@
       "@daffodil/category/driver/magento": [
         "libs/category/driver/magento/src"
       ],
+      "@daffodil/category/driver/magento/testing": [
+        "libs/category/driver/magento/testing/src"
+      ],
       "@daffodil/category/testing": [
         "libs/category/testing/src"
       ],
