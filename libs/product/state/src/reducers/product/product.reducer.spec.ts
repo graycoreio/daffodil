@@ -50,10 +50,6 @@ describe('Product | Product Reducer', () => {
     it('sets loading state to true', () => {
       expect(result.loading).toEqual(true);
     });
-
-    it('sets selectedProductId to the product url', () => {
-      expect(result.selectedProductId).toEqual(product.url);
-    });
   });
 
   describe('when ProductLoadAction is triggered', () => {
