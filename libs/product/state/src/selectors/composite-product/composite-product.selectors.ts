@@ -113,13 +113,13 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
       }
 
       const appliedConfigurationItem = appliedOptionsEntities[product.id].items;
-      if((<DaffCompositeProduct>product).items.filter(item => item.required && appliedConfigurationItem[item.id].value === null).length > 0) {
+      if((<DaffCompositeProduct>product).items.findIndex(item => item.required && appliedConfigurationItem[item.id].value === null) > -1) {
         return undefined;
       }
       const appliedOptions = getAppliedOptionsForConfiguration(<DaffCompositeProduct>product, appliedConfigurationItem);
 
       return (<DaffCompositeProduct>product).items.reduce((acc, item) =>
-        daffAdd(acc, daffMultiply(appliedOptions[item.id]?.discount?.amount || null, appliedOptions[item.id].quantity)),
+        appliedOptions[item.id]?.discount?.amount ? daffAdd(acc, daffMultiply(appliedOptions[item.id].discount.amount, appliedOptions[item.id].quantity)) : acc,
       product.discount.amount);
     },
   );
@@ -134,7 +134,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
       }
 
       const appliedOptions = appliedOptionsEntities[product.id].items;
-      if((<DaffCompositeProduct>product).items.filter(item => item.required && appliedOptions[item.id].value === null).length > 0) {
+      if((<DaffCompositeProduct>product).items.findIndex(item => item.required && appliedOptions[item.id].value === null) > -1) {
         return undefined;
       }
 
