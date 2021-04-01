@@ -5,7 +5,7 @@ import { transformAggregateEqual } from './type/equal';
 import { transformAggregateRange } from './type/range';
 
 export const transformAggregate = (aggregate: MagentoAggregation): DaffCategoryFilter => {
-  switch(aggregate.type){
+  switch (aggregate.type){
     case 'price':
       return transformAggregateRange(aggregate);
     default:

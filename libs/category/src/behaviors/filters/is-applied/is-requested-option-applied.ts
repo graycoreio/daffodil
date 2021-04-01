@@ -1,8 +1,6 @@
-import { Dict } from '@daffodil/core';
-
+import { DaffCategoryUnknownFilterType } from '../../../errors/public_api';
 import {
   DaffCategoryFilter,
-  DaffCategoryFilterRequest,
   DaffToggleCategoryFilterRequest,
   DaffCategoryFilterType,
   DaffToggleCategoryFilterRangeNumericRequest,
@@ -15,12 +13,12 @@ import { daffIsRequestedFilterRangeOptionApplied } from '../type/range/public_ap
  * Determines whether or not the requested filter option is applied.
  */
 export const daffIsRequestedFilterOptionApplied = (request: DaffToggleCategoryFilterRequest, filter: DaffCategoryFilter): boolean => {
-  switch(filter.type) {
+  switch (filter.type) {
     case DaffCategoryFilterType.RangeNumeric:
       return daffIsRequestedFilterRangeOptionApplied(<DaffToggleCategoryFilterRangeNumericRequest>request, filter);
     case DaffCategoryFilterType.Equal:
       return daffIsRequestedFilterEqualOptionApplied(<DaffToggleCategoryFilterEqualRequest>request, filter);
     default:
-      throw new Error('bad type');
+      throw new DaffCategoryUnknownFilterType('Unknown filter type');
   }
 };

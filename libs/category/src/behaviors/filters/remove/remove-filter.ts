@@ -1,12 +1,15 @@
+import { DaffCategoryUnknownFilterType } from '../../../errors/public_api';
 import {
   DaffCategoryFilterRequest,
   DaffCategoryFilter,
   DaffCategoryFilterType,
-  DaffToggleCategoryFilterRequest,
   DaffCategoryEqualFilter,
-  DaffCategoryFilterRangeBase,
   DaffCategoryFilterRangeNumeric,
 } from '../../../models/public_api';
+import {
+  daffCategoryValidateFilterRequestNameMatch,
+  daffCategoryValidateFilterRequestTypeMatch,
+} from '../../../validators/filters/public_api';
 import { daffRemoveFilterEqual } from '../type/equal/remove/remove';
 import { daffRemoveFilterRange } from '../type/range/remove/remove';
 
@@ -16,20 +19,15 @@ import { daffRemoveFilterRange } from '../type/range/remove/remove';
  * Note that this assumes that you
  */
 export const daffRemoveFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {
-  if(request.type !== filter.type) {
-    throw new Error('filter types aren\'t equal');
-  }
+  daffCategoryValidateFilterRequestNameMatch(request, filter);
+  daffCategoryValidateFilterRequestTypeMatch(request, filter);
 
-  if(request.name !== filter.name) {
-    throw new Error('filter names aren\'t equal');
-  }
-
-  switch(request.type) {
-    case(DaffCategoryFilterType.Equal):
+  switch (request.type) {
+    case DaffCategoryFilterType.Equal:
       return daffRemoveFilterEqual(request, <DaffCategoryEqualFilter>filter);
     case(DaffCategoryFilterType.RangeNumeric):
-      if(filter.type === DaffCategoryFilterType.RangeNumeric) {
-        return daffRemoveFilterRange(request, <DaffCategoryFilterRangeNumeric>filter);
-      }
+      return daffRemoveFilterRange(request, <DaffCategoryFilterRangeNumeric>filter);
+    default:
+      throw new DaffCategoryUnknownFilterType('Unknown filter type');
   }
 };

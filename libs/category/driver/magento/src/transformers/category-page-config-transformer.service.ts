@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import {
-  DaffCategoryPageConfigurationState,
-  DaffCategoryRequest,
-  DaffCategoryFilter,
-  DaffCategoryFilterType,
-  DaffCategoryFromToFilterSeparator,
-} from '@daffodil/category';
+import { DaffCategoryPageMetadata } from '@daffodil/category';
 
-import {
-  MagentoCompleteCategoryResponse,
-  MagentoAggregation,
-} from '../models/public_api';
+import { MagentoCompleteCategoryResponse } from '../models/public_api';
 import { transformAggregate } from './pure/aggregate/transform';
 import { coerceDefaultSortOptionFirst } from './pure/sort-default-option-first';
 
@@ -20,7 +11,7 @@ import { coerceDefaultSortOptionFirst } from './pure/sort-default-option-first';
 })
 export class DaffMagentoCategoryPageConfigTransformerService {
 
-  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageConfigurationState {
+  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageMetadata {
     return {
       id: String(categoryResponse.category.id),
       page_size: categoryResponse.page_info.page_size,
