@@ -119,7 +119,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
       const appliedOptions = getAppliedOptionsForConfiguration(<DaffCompositeProduct>product, appliedConfigurationItem);
 
       return (<DaffCompositeProduct>product).items.reduce((acc, item) =>
-        daffAdd(acc, daffMultiply(appliedOptions[item.id].discount.amount, appliedOptions[item.id].quantity)),
+        daffAdd(acc, daffMultiply(appliedOptions[item.id]?.discount?.amount || null, appliedOptions[item.id].quantity)),
       product.discount.amount);
     },
   );

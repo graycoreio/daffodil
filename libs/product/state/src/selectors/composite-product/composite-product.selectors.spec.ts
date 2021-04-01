@@ -557,6 +557,33 @@ describe('Composite Product Selectors | integration tests', () => {
       expect(selector).toBeObservable(expected);
     });
 
+    it('should not throw an error when optional items are not provided', () => {
+      store.dispatch(new DaffProductLoadSuccess({
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            required: false,
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                is_default: false,
+              },
+              {
+                ...stubCompositeProduct.items[0].options[1],
+                is_default: false,
+              },
+            ],
+          },
+          ...stubCompositeProduct.items.slice(1),
+        ],
+      }));
+      const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
+      const expected = cold('a', { a: stubCompositeProduct.discount.amount });
+
+      expect(selector).toBeObservable(expected);
+    });
+
     it('should return undefined when required options are not chosen', () => {
       store.dispatch(new DaffProductLoadSuccess({
         ...stubCompositeProduct,
