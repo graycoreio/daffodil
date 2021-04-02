@@ -4,10 +4,10 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { MediaGalleryComponent } from './media-gallery.component';
+import { DesignLandMediaGalleryComponent } from './media-gallery.component';
 
 export const mediaGalleryRoutes: Routes = [
-  { path: '', component: MediaGalleryComponent },
+  { path: '', component: DesignLandMediaGalleryComponent },
 ];
 
 @NgModule({

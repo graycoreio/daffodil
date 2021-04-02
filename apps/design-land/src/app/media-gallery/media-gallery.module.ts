@@ -16,12 +16,12 @@ import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples'
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandMediaGalleryRoutingModule } from './media-gallery-routing-module';
-import { MediaGalleryComponent } from './media-gallery.component';
+import { DesignLandMediaGalleryComponent } from './media-gallery.component';
 
 
 @NgModule({
   declarations: [
-    MediaGalleryComponent,
+    DesignLandMediaGalleryComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +33,7 @@ import { MediaGalleryComponent } from './media-gallery.component';
     DaffImageModule,
   ],
 })
-export class MediaGalleryModule {
+export class DesignLandMediaGalleryModule {
   constructor(
     injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
