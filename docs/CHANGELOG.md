@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.31.1](https://github.com/graycoreio/daffodil/compare/v0.31.0...v0.31.1) (2021-04-02)
+
+
+### Features
+
+* **core:** add dictionary type ([#1396](https://github.com/graycoreio/daffodil/issues/1396)) ([1f95c6e](https://github.com/graycoreio/daffodil/commit/1f95c6eb27cfd1414a27f8291d49b1f4578edd76))
+* **product:** add getByUrl actions and effects ([#1400](https://github.com/graycoreio/daffodil/issues/1400)) ([163f761](https://github.com/graycoreio/daffodil/commit/163f761760bc46826a9f28429dbaa5ca46094ed4))
+* **product:** add getByUrl to drivers ([#1397](https://github.com/graycoreio/daffodil/issues/1397)) ([ae12e7d](https://github.com/graycoreio/daffodil/commit/ae12e7db903cfcf95fa09d7dddb9c16f549758c7))
+* **product:** add selector and facade field for composite product di… ([#1398](https://github.com/graycoreio/daffodil/issues/1398)) ([c2b0716](https://github.com/graycoreio/daffodil/commit/c2b071617a3eb0183cb60144d7d17fd2d3ebe771))
+
 ## [0.31.0](https://github.com/graycoreio/daffodil/compare/v0.30.0...v0.31.0) (2021-03-26)
 
 
