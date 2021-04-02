@@ -1,9 +1,9 @@
 import {
   DaffGenericCategory,
-  toggleCategoryFilter,
   daffApplyRequestsToFilters,
   daffRemoveRequestsFromFilters,
   daffClearFilters,
+  daffToggleRequestOnFilters,
 } from '@daffodil/category';
 import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -47,15 +47,6 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageFilterActions,
 ): DaffCategoryReducerState {
   switch (action.type) {
-
-    case DaffCategoryActionTypes.CategoryLoadAction:
-      return {
-        ...state,
-        categoryLoading: true,
-        productsLoading: true,
-        daffState: DaffState.Resolving,
-      };
-
     // This reducer must assume the call will be successful, and immediately set the applied filters to state, because the
     // GetCategory magento call doesn't return currently applied filters. If there is a bug where the wrong filters are somehow
     // applied by Magento, then this will result in a bug. Until Magento returns applied filters with a category call, this is
@@ -158,13 +149,12 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         daffState: DaffState.Mutating,
         categoryPageMetadata: {
           ...state.categoryPageMetadata,
-          filters: toggleCategoryFilter(action.filter, state.categoryPageMetadata.filters),
+          filters: daffToggleRequestOnFilters(action.filter, state.categoryPageMetadata.filters),
         },
       };
       // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
       // set here for reasons stated above.
 
-    case DaffCategoryActionTypes.CategoryLoadSuccessAction:
     case DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction:
       return {
         ...state,
@@ -185,7 +175,6 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         },
       };
 
-    case DaffCategoryActionTypes.CategoryLoadFailureAction:
     case DaffCategoryPageActionTypes.CategoryPageLoadFailureAction:
       return {
         ...state,

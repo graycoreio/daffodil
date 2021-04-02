@@ -8,12 +8,11 @@ import {
 
 import {
   DaffCategory,
-  DaffCategoryPageConfigurationState,
-  DaffCategoryRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { randomSubset } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
@@ -24,11 +23,11 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   category: DaffCategory;
-  categoryPageMetadata: DaffCategoryPageConfigurationState;
+  categoryPageMetadata: DaffCategoryPageMetadata;
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
-    private categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory,
+    private metadataFactory: DaffCategoryPageMetadataFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
   ) {}
 
@@ -43,7 +42,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   get(reqInfo: any) {
     const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 
-    this.categoryPageMetadata = this.categoryPageConfigurationFactory.create({
+    this.categoryPageMetadata = this.metadataFactory.create({
       id: reqInfo.id,
       page_size: this.generatePageSize(reqInfo),
       current_page: this.getCurrentPageParam(reqInfo),

@@ -1,5 +1,6 @@
-export enum DaffCategoryErrorCodes {
-  CATEGORY_FILTER_REQUEST_TYPE_MISMATCH = 'DAFF_CATEGORY_FILTER_REQUEST_TYPE_MISMATCH',
-  CATEGORY_FILTER_REQUEST_NAME_MISMATCH = 'DAFF_CATEGORY_FILTER_REQUEST_NAME_MISMATCH',
-  CATEGORY_UNKNOWN_FILTER_TYPE = 'DAFF_CATEGORY_UNKNOWN_FILTER_TYPE',
-}
+import { DaffCategoryFilterErrorCodes } from '../filters/errors/codes.enum';
+
+export const DaffCategoryErrorCodes = {
+  ...DaffCategoryFilterErrorCodes,
+} as const;
+export type DaffCategoryErrorCodes = typeof DaffCategoryErrorCodes;

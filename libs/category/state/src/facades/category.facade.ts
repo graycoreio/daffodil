@@ -12,6 +12,7 @@ import {
   DaffCategoryFilter,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
+import { Dict } from '@daffodil/core';
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
@@ -19,7 +20,10 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffCategoryReducersState } from '../reducers/public_api';
+import {
+  DaffCategoryReducersState,
+  DaffCategoryReducerState,
+} from '../reducers/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 import { DaffCategoryFacadeInterface } from './category-facade.interface';
 
@@ -40,10 +44,10 @@ export class DaffCategoryFacade<
 	 */
   category$: Observable<V>;
   /**
-   * The page configuration state for the selected category.
+   * The page metadata for the current selected selected category.
    */
   metadata$: Observable<DaffCategoryPageMetadata>;
-  pageLoadingState$: Observable<DaffStatefulCategoryPageConfigurationState['daffState']>;
+  pageLoadingState$: Observable<DaffCategoryReducerState['daffState']>;
   isPageMutating$: Observable<boolean>;
   isPageResolving$: Observable<boolean>;
   /**
@@ -65,7 +69,7 @@ export class DaffCategoryFacade<
   /**
    * The filters available for the products of the selected category.
    */
-  filters$: Observable<DaffCategoryFilter[]>;
+  filters$: Observable<Dict<DaffCategoryFilter>>;
   /**
    * The sort options available for the products of the selected category.
    */
@@ -73,7 +77,7 @@ export class DaffCategoryFacade<
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<DaffCategoryFilter[]>;
+  appliedFilters$: Observable<Dict<DaffCategoryFilter>>;
   /**
    * The sort options available for the products of the selected category.
    */
@@ -134,7 +138,7 @@ export class DaffCategoryFacade<
 	  this.category$ = this.store.pipe(select(this.categorySelectors.selectSelectedCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));
-	  this.pageConfigurationState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState));
+	  this.metadata$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata));
 	  this.pageLoadingState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageState));
 	  this.isPageMutating$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageMutating));
 	  this.isPageResolving$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageResolving));

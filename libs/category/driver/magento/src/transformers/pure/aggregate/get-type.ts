@@ -5,7 +5,7 @@ import { MagentoAggregation } from '../../../models/public_api';
 export const getType = (type: MagentoAggregation['type']): DaffCategoryFilterType => {
   switch (type){
     case 'price':
-      return DaffCategoryFilterType.Range;
+      return DaffCategoryFilterType.RangeNumeric;
     default:
       return DaffCategoryFilterType.Equal;
   }

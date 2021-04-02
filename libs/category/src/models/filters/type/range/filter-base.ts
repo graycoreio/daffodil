@@ -1,11 +1,11 @@
 import { Dict } from '@daffodil/core';
 
 import { DaffCategoryFilterBase } from '../../category-filter-base';
-import { DaffCategoryFilterType } from '../category-filter-type';
+import { DaffCategoryFilterRangeType } from './filter-type';
 import { DaffCategoryFilterRangePair } from './pair';
 
 export interface DaffCategoryFilterRangeBase<T> extends DaffCategoryFilterBase {
-	type: DaffCategoryFilterType.RangeNumeric;
+	type: DaffCategoryFilterRangeType;
 	min: T;
 	max: T;
 	options: Dict<DaffCategoryFilterRangePair<T>>;
