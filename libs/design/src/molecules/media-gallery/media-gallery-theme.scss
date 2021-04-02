@@ -1,0 +1,22 @@
+@mixin daff-media-gallery-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-configure-palette($daff-gray, 60);
+
+	.daff-media-gallery {
+		$root: &;
+
+		.daff-thumbnail {
+			border: 1px solid transparent;
+			transition: border 150ms;
+
+			&--selected {
+				border: 1px solid daff-color($gray);
+			}
+		}
+	}
+}

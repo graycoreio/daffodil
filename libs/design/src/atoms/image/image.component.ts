@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { daffThumbnailCompatToken } from '../../molecules/media-gallery/public_api';
+
 const validateProperty = (object: Record<string, any>, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
     throw new Error(`DaffImageComponent must have a defined ${prop} attribute.`);
@@ -35,6 +37,12 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+			 provide: daffThumbnailCompatToken, useExisting: DaffImageComponent,
+    },
+  ],
 })
 export class DaffImageComponent implements OnInit {
 
@@ -98,7 +106,7 @@ export class DaffImageComponent implements OnInit {
 	/**
 	 * @docs-private
 	 */
-	get paddingTop(): any {
+	get _paddingTop(): any {
 	  if (!this.height || !this.width ) {
 	    return undefined;
 	  }

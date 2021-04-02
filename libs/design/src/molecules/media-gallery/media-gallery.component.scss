@@ -1,0 +1,60 @@
+@import '../../scss/daff-util';
+
+:host(.daff-media-gallery) {
+	/* autoprefixer grid: autoplace */
+	$root: '.daff-media-gallery';
+	display: flex;
+	flex-direction: column;
+
+	@include breakpoint(big-tablet) {
+		flex-direction: row;
+	}
+
+	::ng-deep {
+		.daff-thumbnail {
+			@include clickable();
+			display: inline-block;
+			height: calc(25% - 8px);
+			width: calc(25% - 8px);
+			margin: 0 4px;
+			max-width: 100%;
+			overflow: hidden;
+			user-select: none;
+
+			@include breakpoint(mobile) {
+				height: calc(15% - 8px);
+				width: calc(15% - 8px);
+			}
+
+			@include breakpoint(big-tablet) {
+				display: block;
+				margin: 0 0 8px;
+				height: 80px;
+				width: 80px;
+			}
+		}
+	}
+}
+
+.daff-media-gallery {
+	&__thumbnails {
+		margin: 0 -4px;
+		max-height: 100%;
+		order: 2;
+
+		@include breakpoint(big-tablet) {
+			margin: 0 8px 0 0;
+			order: 1;
+		}
+	}
+
+	&__selected-thumbnail {
+		display: block;
+		flex-grow: 1;
+		order: 1;
+
+		@include breakpoint(big-tablet) {
+			order: 2;
+		}
+	}
+}
