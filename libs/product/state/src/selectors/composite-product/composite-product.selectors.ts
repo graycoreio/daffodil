@@ -39,6 +39,10 @@ export interface DaffCompositeProductMemoizedSelectors {
 	 */
 	selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id'] }, DaffPriceRange>;
 	/**
+	 * Get the discount amount for a composite product. This value will be undefined if all required options are not chosen.
+	 */
+	selectCompositeProductDiscountAmount: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id'] }, number>;
+	/**
 	 * Get the discount percent for a composite product. This value will be undefined if all required options are not chosen.
 	 * Note: this percent is computed client-side and should be treated as an estimate rather than an exact value.
 	 */
@@ -99,6 +103,27 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
     }),
   );
 
+  const selectCompositeProductDiscountAmount = createSelector(
+    selectProductEntities,
+    selectCompositeProductAppliedOptionsEntities,
+    (products, appliedOptionsEntities, props) => {
+      const product = selectProduct.projector(products, { id: props.id });
+      if(product.type !== DaffProductTypeEnum.Composite) {
+        return undefined;
+      }
+
+      const appliedConfigurationItem = appliedOptionsEntities[product.id].items;
+      if((<DaffCompositeProduct>product).items.filter(item => item.required && appliedConfigurationItem[item.id].value === null).length > 0) {
+        return undefined;
+      }
+      const appliedOptions = getAppliedOptionsForConfiguration(<DaffCompositeProduct>product, appliedConfigurationItem);
+
+      return (<DaffCompositeProduct>product).items.reduce((acc, item) =>
+        appliedOptions[item.id]?.discount?.amount ? daffAdd(acc, daffMultiply(appliedOptions[item.id].discount.amount, appliedOptions[item.id].quantity)) : acc,
+      product.discount.amount);
+    },
+  );
+
   const selectCompositeProductDiscountPercent = createSelector(
     selectProductEntities,
     selectCompositeProductAppliedOptionsEntities,
@@ -132,6 +157,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
     selectCompositeProductRequiredItemPricesForConfiguration,
     selectCompositeProductOptionalItemPricesForConfiguration,
     selectCompositeProductPricesAsCurrentlyConfigured,
+    selectCompositeProductDiscountAmount,
     selectCompositeProductDiscountPercent,
   };
 };

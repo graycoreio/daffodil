@@ -202,6 +202,37 @@ describe('DaffCompositeProductFacade', () => {
     });
   });
 
+  describe('getDiscountAmount', () => {
+
+    it('should return the discount percent for a composite product', () => {
+      store.dispatch(new DaffProductLoadSuccess({
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            required: true,
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                quantity: 1,
+                is_default: true,
+              },
+              {
+                ...stubCompositeProduct.items[0].options[1],
+                is_default: false,
+              },
+            ],
+          },
+        ],
+      }));
+
+      const expectedDiscountAmount = daffAdd(stubCompositeProduct.discount.amount, stubCompositeProduct.items[0].options[0].discount.amount);
+      const expected = cold('a', { a: expectedDiscountAmount });
+
+      expect(facade.getDiscountAmount(stubCompositeProduct.id)).toBeObservable(expected);
+    });
+  });
+
   describe('getDiscountPercent', () => {
 
     it('should return the discount percent for a composite product', () => {
