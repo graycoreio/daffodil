@@ -1,9 +1,13 @@
-import { DaffStateError } from '@daffodil/core/state';
+import { DaffCategoryPageMetadata } from '@daffodil/category';
+import {
+  DaffStateError,
+  DaffMutableLoadingState,
+  DaffStateable,
+} from '@daffodil/core/state';
 
-import { DaffStatefulCategoryPageConfigurationState } from '../../models/stateful-category-page-configuration-state.interface';
 
-export interface DaffCategoryReducerState {
-	categoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
+export interface DaffCategoryReducerState extends DaffStateable<DaffMutableLoadingState> {
+	categoryPageMetadata: DaffCategoryPageMetadata;
   /**
    * @deprecated
    */

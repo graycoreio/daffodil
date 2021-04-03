@@ -12,6 +12,7 @@ import {
 import {
   DaffCategoryRequest,
   DaffGetCategoryResponse,
+  daffApplyRequestsToFilters,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
@@ -30,12 +31,12 @@ import {
   MagentoGetCustomAttributeMetadata,
 } from './queries/public_api';
 import {
-  buildCustomMetadataAttribute,
-  addMetadataTypesToAggregates,
   DaffMagentoCategoryResponseTransformService,
   DaffMagentoAppliedFiltersTransformService,
   DaffMagentoAppliedSortOptionTransformService,
 } from './transformers/public_api';
+import { addMetadataTypesToAggregates } from './transformers/pure/aggregate/add-metadata-types-to-aggregates';
+import { buildCustomMetadataAttribute } from './transformers/pure/aggregate/build-custom-metadata-attribute';
 
 
 @Injectable({
@@ -85,7 +86,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       }),
     ]).pipe(
       map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1], result[2].data)),
-      map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult)),
+      map((result: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result)),
+      map((result) => ({
+        ...result,
+        categoryPageMetadata: {
+          ...result.categoryPageMetadata,
+          filters: daffApplyRequestsToFilters(categoryRequest.filter_requests, result.categoryPageMetadata.filters),
+        },
+      })),
     );
   }
 

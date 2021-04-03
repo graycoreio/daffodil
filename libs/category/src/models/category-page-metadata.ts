@@ -4,9 +4,10 @@ import {
   DaffNumericallyPaginable,
 } from '@daffodil/core/state';
 
-import { DaffCategoryFilter } from './category-filter';
+import { DaffCategoryFilterable } from './filters/public_api';
 
-export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyPaginable {
+
+export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyPaginable, DaffCategoryFilterable {
   /**
    * The ID of the currently visible category page.
    */
@@ -21,9 +22,4 @@ export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyP
    * The identifiers of the products currently visible in the category
    */
   product_ids: ID[];
-
-  /**
-   * The currently applied filters on the category.
-   */
-  filters: DaffCategoryFilter[];
 }

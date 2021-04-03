@@ -1,6 +1,6 @@
 export { DaffCategoryFactory } from './factories/category.factory';
 export {
-  DaffCategoryPageConfigurationStateFactory,
-  MockCategoryPageConfigurationState,
-} from './factories/category-page-configuration-state.factory';
+  DaffCategoryPageMetadataFactory,
+  MockCategoryPageMetadata,
+} from './factories/category-page-metadata.factory';
 export { isCategory } from './helpers/category-helper';

@@ -1,0 +1,40 @@
+import { TestBed } from '@angular/core/testing';
+
+import {
+  DaffCategoryFilter,
+  DaffCategory,
+  DaffCategoryFilterRangeOption,
+} from '@daffodil/category';
+
+import { DaffCategoryFilterRangeNumericOptionFactory } from './option';
+
+fdescribe('Category | Testing | Factories | DaffCategoryFilterRangeNumericOptionFactory', () => {
+
+  let factory: DaffCategoryFilterRangeNumericOptionFactory;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+
+    factory = TestBed.inject(DaffCategoryFilterRangeNumericOptionFactory);
+  });
+
+  it('should be created', () => {
+    expect(factory).toBeTruthy();
+  });
+
+  describe('create', () => {
+
+    let result: DaffCategoryFilterRangeOption<number>;
+
+    beforeEach(() => {
+      result = factory.create();
+    });
+
+    it('should return a numeric range option', () => {
+      console.log(result);
+
+      expect(result.value).toBeDefined();
+      expect(typeof result.value).toEqual('number');
+    });
+  });
+});

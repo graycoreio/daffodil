@@ -10,16 +10,18 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffCategory,
   DaffCategoryFilterType,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffStatefulCategoryPageConfigurationState,
 } from '@daffodil/category/state';
-import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
-import { DaffCategoryFactory } from '@daffodil/category/testing';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageMetadataFactory,
+} from '@daffodil/category/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
@@ -33,12 +35,15 @@ import { getDaffCategorySelectors } from './category.selector';
 describe('DaffCategorySelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategory>>;
-  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageConfigurationFactory: DaffStatefulCategoryPageConfigurationStateFactory = new DaffStatefulCategoryPageConfigurationStateFactory();
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+
+  let categoryFactory: DaffCategoryFactory;
+  let metadataFactory: DaffCategoryPageMetadataFactory;
+  let productFactory: DaffProductFactory;
+
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
+  let stubMetadata: DaffCategoryPageMetadata;
   let product: DaffProduct;
+
   const categorySelectors = getDaffCategorySelectors();
 
   beforeEach(() => {
@@ -51,18 +56,23 @@ describe('DaffCategorySelectors', () => {
       ],
     });
 
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    metadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
+
     stubCategory = categoryFactory.create();
     product = productFactory.create();
-    stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
-    stubCategoryPageConfigurationState.id = stubCategory.id;
-    stubCategoryPageConfigurationState.product_ids = [product.id];
+    stubMetadata = metadataFactory.create();
+    stubMetadata.id = stubCategory.id;
+    stubMetadata.product_ids = [product.id];
     stubCategory.product_ids = [product.id];
-    stubCategoryPageConfigurationState.filters = [
+    stubMetadata.filters = [
       {
         name: 'name',
         type: DaffCategoryFilterType.Equal,
         label: 'label',
         options: [{
+          applied: false,
           label: 'option_label',
           value: 'value',
           count: 2,
@@ -73,6 +83,7 @@ describe('DaffCategorySelectors', () => {
         type: DaffCategoryFilterType.Equal,
         label: 'label2',
         options: [{
+          applied: false,
           label: 'option_label2',
           value: 'value2',
           count: 2,
