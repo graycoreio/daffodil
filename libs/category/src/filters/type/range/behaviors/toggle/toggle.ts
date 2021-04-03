@@ -10,6 +10,6 @@ export const daffToggleFilterRange = <T>(
   request: DaffCategoryFilterRangeRequestBase<T>,
   filter: DaffCategoryFilterRangeBase<T>,
 ): DaffCategoryFilterRangeBase<T> =>
-    filter.options[daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)].applied
-      ? daffApplyFilterRange(request, filter)
-      : daffRemoveFilterRange(request, filter);
+    filter.options[daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]
+      ? daffRemoveFilterRange(request, filter)
+      : daffApplyFilterRange(request, filter);

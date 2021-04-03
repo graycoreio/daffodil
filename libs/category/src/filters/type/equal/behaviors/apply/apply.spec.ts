@@ -1,121 +1,114 @@
 import {
   DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterOption,
   DaffCategoryFilterType,
   DaffCategoryEqualFilter,
 } from '../../../../../models/public_api';
 import { daffApplyFilterEqual } from './apply';
 
-fdescribe('@daffodil/category | behaviors | filters | apply | equal', () => {
+describe('@daffodil/category | filters | type | equal | behaviors | apply', () => {
 
-  it('should not apply any option that do not equal the request value', () => {
+	let originalFilter: DaffCategoryEqualFilter;
+
+	beforeEach(() => {
+		originalFilter = {
+      type: DaffCategoryFilterType.Equal,
+      label: 'Color',
+      name: 'color',
+      options: {
+				red: {
+          applied: false,
+          value: 'red',
+          label: 'Red',
+          count: 2,
+        },
+        blue: {
+          applied: false,
+          value: 'blue',
+          label: 'Blue',
+          count: 2,
+        },
+			},
+    };
+	});
+
+  it('should not apply any option that does not equal the request value', () => {
     const request: DaffCategoryFilterEqualRequest = {
       type: DaffCategoryFilterType.Equal,
-      name: 'name',
-      value: ['value'],
+      name: 'not color',
+      value: ['clear'],
     };
 
-    const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Name',
-      name: 'name',
-      options: [],
-    };
-
-    const expected: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Name',
-      name: 'name',
-      options: [],
-    };
-
-    expect(daffApplyFilterEqual(request, filter)).toEqual(expected);
+    expect(daffApplyFilterEqual(request, originalFilter)).toEqual(originalFilter);
   });
 
   it('should apply an option that does equal the request value', () => {
     const request: DaffCategoryFilterEqualRequest = {
       type: DaffCategoryFilterType.Equal,
-      name: 'name',
-      value: ['value'],
-    };
-    const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Name',
-      name: 'name',
-      options: [
-        {
-          applied: false,
-          value: 'value',
-          label: 'label',
-          count: 2,
-        },
-      ],
+      name: 'color',
+      value: ['red'],
     };
 
-    const expected: DaffCategoryEqualFilter = {
+    let expected: DaffCategoryEqualFilter = {
       type: DaffCategoryFilterType.Equal,
-      label: 'Name',
-      name: 'name',
-      options: [
-        {
+      label: 'Color',
+      name: 'color',
+      options: {
+				red: {
           applied: true,
-          value: 'value',
-          label: 'label',
+          value: 'red',
+          label: 'Red',
           count: 2,
         },
-      ],
+        blue: {
+          applied: false,
+          value: 'blue',
+          label: 'Blue',
+          count: 2,
+        },
+			},
     };
 
-    expect(daffApplyFilterEqual(request, filter)).toEqual(expected);
+    expect(daffApplyFilterEqual(request, originalFilter)).toEqual(expected);
   });
 
   it('should apply multiple options if they equal the request values', () => {
     const request: DaffCategoryFilterEqualRequest = {
       type: DaffCategoryFilterType.Equal,
-      name: 'name',
-      value: ['value2', 'value'],
+      name: 'color',
+      value: ['red', 'blue'],
     };
 
-    const filter: DaffCategoryEqualFilter = {
+    let expected: DaffCategoryEqualFilter = {
       type: DaffCategoryFilterType.Equal,
-      label: 'Name',
-      name: 'name',
-      options: [
-        {
-          applied: false,
-          value: 'value2',
-          label: 'label',
+      label: 'Color',
+      name: 'color',
+      options: {
+				red: {
+          applied: true,
+          value: 'red',
+          label: 'Red',
           count: 2,
         },
-        {
-          applied: false,
-          value: 'value',
-          label: 'label',
+        blue: {
+          applied: true,
+          value: 'blue',
+          label: 'Blue',
           count: 2,
         },
-      ],
+			},
     };
 
-    const expected: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Name',
-      name: 'name',
-      options: [
-        {
-          applied: true,
-          value: 'value2',
-          label: 'label',
-          count: 2,
-        },
-        {
-          applied: true,
-          value: 'value',
-          label: 'label',
-          count: 2,
-        },
-      ],
-    };
-
-    expect(daffApplyFilterEqual(request, filter)).toEqual(expected);
+    expect(daffApplyFilterEqual(request, originalFilter)).toEqual(expected);
   });
+
+	it('should not change existing applied options of the filter', () => {
+		originalFilter.options['red'].applied = true;
+		const request: DaffCategoryFilterEqualRequest = {
+      type: DaffCategoryFilterType.Equal,
+      name: 'color',
+      value: ['red'],
+    };
+
+		expect(daffApplyFilterEqual(request, originalFilter)).toEqual(originalFilter);
+	});
 });

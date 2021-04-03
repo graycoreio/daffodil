@@ -1,7 +1,6 @@
 import {
   DaffCategoryFilterEqualRequest,
   DaffCategoryFilter,
-  DaffToggleCategoryFilterEqualRequest,
   DaffCategoryEqualFilter,
 } from '../../../../../models/public_api';
 
