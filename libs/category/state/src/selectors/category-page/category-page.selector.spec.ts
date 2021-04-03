@@ -11,8 +11,8 @@ import {
   DaffCategory,
   DaffCategoryFilterType,
   DaffCategoryFilterRequest,
-  DaffCategoryAppliedFilter,
   DaffCategoryRequest,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
@@ -55,6 +55,7 @@ describe('DaffCategoryPageSelectors', () => {
         type: DaffCategoryFilterType.Equal,
         label: 'label',
         options: [{
+          applied: false,
           label: 'option_label',
           value: 'value',
           count: 2,
@@ -65,6 +66,7 @@ describe('DaffCategoryPageSelectors', () => {
         type: DaffCategoryFilterType.Equal,
         label: 'label2',
         options: [{
+          applied: false,
           label: 'option_label2',
           value: 'value2',
           count: 2,
@@ -138,53 +140,97 @@ describe('DaffCategoryPageSelectors', () => {
 
   describe('selectCategoryPageAppliedFilters', () => {
 
-    it('sets applied filters to [] if the available filters is []', () => {
+    it('sets applied filters to [] if the available filters are []', () => {
+      const expectedAppliedFilters: DaffCategoryFilter[] = [];
+
       store.dispatch(new DaffCategoryPageLoadSuccess({
-        category: stubCategory,
+        products: [],
+        category: {
+          id: stubCategoryPageConfigurationState.id,
+          name: 'test',
+        },
         categoryPageConfigurationState: {
           ...stubCategoryPageConfigurationState,
-          filters: [],
+          filters: [
+            {
+              name: 'name',
+              type: DaffCategoryFilterType.Equal,
+              label: 'label',
+              options: [{
+                applied: false,
+                label: 'option_label',
+                value: 'value',
+                count: 2,
+              }],
+            },
+            {
+              name: 'name2',
+              type: DaffCategoryFilterType.Equal,
+              label: 'label2',
+              options: [{
+                applied: false,
+                label: 'option_label2',
+                value: 'value2',
+                count: 2,
+              }],
+            },
+          ],
         },
-        products: null,
       }));
-      const filterRequests: DaffCategoryFilterRequest[] = [
-        {
-          name: 'name',
-          type: DaffCategoryFilterType.Equal,
-          value: ['value'],
-        },
-      ];
-      const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [];
-      store.dispatch(new DaffCategoryPageLoad({
-        id: stubCategoryPageConfigurationState.id,
-        filter_requests: filterRequests,
-      }));
+
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedFilters));
       const expected = cold('a', { a: expectedAppliedFilters });
       expect(selector).toBeObservable(expected);
     });
 
     it('selects the applied filters of the current category', () => {
-      const filterRequests: DaffCategoryFilterRequest[] = [
-        {
-          name: 'name',
-          type: DaffCategoryFilterType.Equal,
-          value: ['value'],
-        },
-      ];
-      const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [{
+      const expectedAppliedFilters: DaffCategoryFilter[] = [{
         name: 'name',
         label: 'label',
         type: DaffCategoryFilterType.Equal,
         options: [{
+          applied: true,
           label: 'option_label',
           value: 'value',
+          count: 2,
         }],
       }];
-      store.dispatch(new DaffCategoryPageLoad({
-        id: stubCategoryPageConfigurationState.id,
-        filter_requests: filterRequests,
+
+      store.dispatch(new DaffCategoryPageLoadSuccess({
+        products: [],
+        category: {
+          id: stubCategoryPageConfigurationState.id,
+          name: 'test',
+        },
+        categoryPageConfigurationState: {
+          ...stubCategoryPageConfigurationState,
+          filters: [
+            {
+              name: 'name',
+              type: DaffCategoryFilterType.Equal,
+              label: 'label',
+              options: [{
+                applied: true,
+                label: 'option_label',
+                value: 'value',
+                count: 2,
+              }],
+            },
+            {
+              name: 'name2',
+              type: DaffCategoryFilterType.Equal,
+              label: 'label2',
+              options: [{
+                applied: false,
+                label: 'option_label2',
+                value: 'value2',
+                count: 2,
+              }],
+            },
+          ],
+        },
       }));
+
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedFilters));
       const expected = cold('a', { a: expectedAppliedFilters });
       expect(selector).toBeObservable(expected);

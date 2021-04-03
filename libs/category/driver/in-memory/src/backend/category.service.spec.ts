@@ -53,27 +53,27 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     it('should return a GetCategoryResponse', () => {
       expect(result.body).toEqual({
         category: categoryTestingService.category,
-        categoryPageConfigurationState: categoryTestingService.categoryPageConfigurationState,
+        categoryPageMetadata: categoryTestingService.categoryPageMetadata,
         products: inMemoryBackendProductService.products,
       });
     });
 
     it('should set total_pages', () => {
       const totalProducts = result.body.category.total_products;
-      const pageSize = result.body.categoryPageConfigurationState.page_size;
-      expect(result.body.categoryPageConfigurationState.total_pages).toEqual(Math.ceil(totalProducts/pageSize));
+      const pageSize = result.body.categoryPageMetadata.page_size;
+      expect(result.body.categoryPageMetadata.total_pages).toEqual(Math.ceil(totalProducts/pageSize));
     });
 
     it('should set no more products on the category than the page_size', () => {
-      expect(result.body.categoryPageConfigurationState.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
+      expect(result.body.categoryPageMetadata.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageMetadata.page_size);
     });
 
     it('should set page_size when the page_size is provided', () => {
-      expect(result.body.categoryPageConfigurationState.page_size).toEqual(stubPageSize);
+      expect(result.body.categoryPageMetadata.page_size).toEqual(stubPageSize);
     });
 
     it('should set current_page when the current_page is provided', () => {
-      expect(result.body.categoryPageConfigurationState.current_page).toEqual(stubCurrentPage);
+      expect(result.body.categoryPageMetadata.current_page).toEqual(stubCurrentPage);
     });
   });
 });
