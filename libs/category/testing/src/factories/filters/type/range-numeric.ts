@@ -11,8 +11,8 @@ export class MockCategoryFilterRangeNumeric implements DaffCategoryFilterRangeNu
   type: DaffCategoryFilterType.RangeNumeric = DaffCategoryFilterType.RangeNumeric;
   label = faker.commerce.productMaterial();
   name = faker.random.uuid();
-  min = faker.random.number({ min: 1, max: 10 }).toString();
-  max = faker.random.number({ min: 10, max: 200 }).toString();
+  min = faker.random.number({ min: 1, max: 10 });
+  max = faker.random.number({ min: 10, max: 200 });
   options = {};
 }
 @Injectable({

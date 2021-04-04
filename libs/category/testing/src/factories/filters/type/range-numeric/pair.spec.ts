@@ -26,10 +26,11 @@ describe('Category | Testing | Factories | DaffCategoryFilterRangeNumericPairFac
       result = rangePairFactory.create();
     });
 
-    it('should return a category filter of some type', () => {
-      console.log(result);
-
+    it('should return a numeric DaffCategoryFilterRangePair', () => {
       expect(result.max).toBeDefined();
+      expect(typeof result.max.value).toEqual('number');
+      expect(typeof result.min.value).toEqual('number');
+      expect(result.min.value).toBeLessThanOrEqual(result.max.value);
     });
   });
 });

@@ -8,7 +8,7 @@ import {
 
 import { DaffCategoryFilterEqualFactory } from './equal';
 
-fdescribe('Category | Testing | Factories | DaffCategoryFilterEqualFactory', () => {
+describe('Category | Testing | Factories | DaffCategoryFilterEqualFactory', () => {
 
   let factory: DaffCategoryFilterEqualFactory;
 
@@ -32,6 +32,8 @@ fdescribe('Category | Testing | Factories | DaffCategoryFilterEqualFactory', () 
 
     it('should return a category filter of type equal', () => {
       expect(result.type).toEqual(DaffCategoryFilterType.Equal);
+      expect(result.options).toBeDefined();
+      expect(Object.keys(result.options).length).toEqual(0);
     });
   });
 });

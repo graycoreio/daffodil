@@ -8,7 +8,7 @@ import {
 
 import { DaffCategoryFilterRangeNumericOptionFactory } from './option';
 
-fdescribe('Category | Testing | Factories | DaffCategoryFilterRangeNumericOptionFactory', () => {
+describe('Category | Testing | Factories | DaffCategoryFilterRangeNumericOptionFactory', () => {
 
   let factory: DaffCategoryFilterRangeNumericOptionFactory;
 
@@ -31,8 +31,6 @@ fdescribe('Category | Testing | Factories | DaffCategoryFilterRangeNumericOption
     });
 
     it('should return a numeric range option', () => {
-      console.log(result);
-
       expect(result.value).toBeDefined();
       expect(typeof result.value).toEqual('number');
     });

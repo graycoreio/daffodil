@@ -4,7 +4,7 @@ import { DaffCategoryFilterEqualOption } from '@daffodil/category';
 
 import { DaffCategoryFilterEqualOptionFactory } from './option';
 
-fdescribe('Category | Testing | Factories | DaffCategoryFilterEqualOptionFactory', () => {
+describe('Category | Testing | Factories | DaffCategoryFilterEqualOptionFactory', () => {
 
   let factory: DaffCategoryFilterEqualOptionFactory;
 
@@ -27,10 +27,10 @@ fdescribe('Category | Testing | Factories | DaffCategoryFilterEqualOptionFactory
     });
 
     it('should return an equal option', () => {
-      console.log(result);
-
       expect(result.value).toBeDefined();
-      expect(typeof result.value).toEqual('number');
+      expect(typeof result.value).toEqual('string');
+      expect(result.applied).toEqual(false);
+      expect(typeof result.count).toEqual('number');
     });
   });
 });
