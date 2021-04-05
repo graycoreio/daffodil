@@ -25,7 +25,7 @@ describe('@daffodil/category | daffCategoryFilterRangePairArrayToDict', () => {
 
     it('should return an object with the range pair keyed from its min and max values', () => {
       expect(dict).toEqual({
-        [daffCategoryComputeFilterRangePairLabel(rangeFilterPair.min, rangeFilterPair.max)]: rangeFilterPair,
+        [daffCategoryComputeFilterRangePairLabel(rangeFilterPair.min.value, rangeFilterPair.max.value)]: rangeFilterPair,
       });
     });
   });
