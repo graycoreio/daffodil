@@ -5,9 +5,9 @@ import { DaffCategoryFilterRangeNumericPairFactory } from '@daffodil/category/te
 import { Dict } from '@daffodil/core';
 
 import { daffCategoryComputeFilterRangePairLabel } from '../compute-pair-label';
-import { daffCategoryRangeFilterPairArrayToDict } from './pair';
+import { daffCategoryFilterRangePairArrayToDict } from './pair';
 
-describe('@daffodil/category | daffCategoryRangeFilterPairArrayToDict', () => {
+describe('@daffodil/category | daffCategoryFilterRangePairArrayToDict', () => {
   let rangePairFactory: DaffCategoryFilterRangeNumericPairFactory;
   let rangeFilterPair: DaffCategoryFilterRangePair<number>;
 
@@ -20,7 +20,7 @@ describe('@daffodil/category | daffCategoryRangeFilterPairArrayToDict', () => {
     let dict: Dict<DaffCategoryFilterRangePair<number>>;
 
     beforeEach(() => {
-      dict = daffCategoryRangeFilterPairArrayToDict([rangeFilterPair]);
+      dict = daffCategoryFilterRangePairArrayToDict([rangeFilterPair]);
     });
 
     it('should return an object with the range pair keyed from its min and max values', () => {

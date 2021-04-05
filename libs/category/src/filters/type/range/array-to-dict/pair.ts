@@ -8,7 +8,7 @@ import { daffCategoryComputeFilterRangePairLabel } from '../compute-pair-label';
  *
  * @param pairs The list of range pairs
  */
-export const daffCategoryRangeFilterPairArrayToDict = <T>(pairs: DaffCategoryFilterRangePair<T>[]): Dict<DaffCategoryFilterRangePair<T>> =>
+export const daffCategoryFilterRangePairArrayToDict = <T>(pairs: DaffCategoryFilterRangePair<T>[]): Dict<DaffCategoryFilterRangePair<T>> =>
   pairs.reduce((acc, pair) => {
     acc[daffCategoryComputeFilterRangePairLabel(pair.min, pair.max)] = pair;
     return acc;
