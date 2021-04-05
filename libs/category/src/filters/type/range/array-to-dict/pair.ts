@@ -10,6 +10,6 @@ import { daffCategoryComputeFilterRangePairLabel } from '../compute-pair-label';
  */
 export const daffCategoryFilterRangePairArrayToDict = <T>(pairs: DaffCategoryFilterRangePair<T>[]): Dict<DaffCategoryFilterRangePair<T>> =>
   pairs.reduce((acc, pair) => {
-    acc[daffCategoryComputeFilterRangePairLabel(pair.min, pair.max)] = pair;
+    acc[daffCategoryComputeFilterRangePairLabel(pair.min.value, pair.max.value)] = pair;
     return acc;
   }, {});
