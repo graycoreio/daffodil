@@ -29,7 +29,8 @@ describe('Category | Testing | Factories | DaffCategoryFilterToggleRequestRangeN
 
     it('should return a range numeric toggle-request', () => {
       expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
-      expect(typeof result.value).toEqual('number');
+      expect(typeof result.value.min).toEqual('number');
+      expect(typeof result.value.max).toEqual('number');
       expect(result.value.min).toBeDefined();
       expect(result.value.max).toBeDefined();
     });

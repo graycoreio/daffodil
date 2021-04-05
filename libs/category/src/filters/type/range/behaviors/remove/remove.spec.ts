@@ -1,22 +1,20 @@
+import { DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestRangeNumericFactory } from "@daffodil/category/testing";
 import { DaffCategoryFilter, DaffCategoryFilterRangeRequest, DaffCategoryFilterType } from "libs/category/src/models/public_api";
 import { daffRemoveFilterRange } from "./remove";
 
 describe('@daffodil/category | filters | type | range | behaviors | remove', () => {
 
   it('should remove the filter, when the filter option is the same as the request value', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -32,14 +30,10 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
           },
         },
 			},
-    };
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {},
     };
 
@@ -47,19 +41,16 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
   });
 
   it('should do nothing if the same filter is not applied', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 20,
         max: 40,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -75,7 +66,7 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
           },
         },
 			},
-    };
+    });
 
     expect(daffRemoveFilterRange(request, filter)).toEqual(filter);
   });

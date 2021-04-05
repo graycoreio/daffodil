@@ -11,7 +11,6 @@ export const daffToggleFilterEqual = (
   filter: DaffCategoryEqualFilter,
 ): DaffCategoryEqualFilter => {
   const option = filter.options[request.value];
-	console.log(option);
 
   return option
     ? {

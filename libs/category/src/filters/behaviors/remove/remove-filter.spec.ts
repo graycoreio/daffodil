@@ -1,3 +1,4 @@
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestEqualFactory, DaffCategoryFilterRequestRangeNumericFactory } from "@daffodil/category/testing";
 import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffCategoryFilterType } from "../../../models/public_api";
 import { DaffCategoryFilterRequestNameMismatch } from "../../errors/request-name-mismatch.error";
 import { DaffCategoryFilterRequestTypeMismatch } from "../../errors/request-type-mismatch.error";
@@ -5,68 +6,56 @@ import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.
 import { daffRemoveFilter } from "./remove-filter";
 
 describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter', () => {
-  it('should remove an equal request', () => {
-		const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
+
+	let colorFilter: DaffCategoryEqualFilter;
+
+	beforeEach(() => {
+		colorFilter = new DaffCategoryFilterEqualFactory().create({
       name: 'color',
       options: {
 				red: {
           applied: true,
           value: 'red',
-          label: 'Red',
-          count: 2,
         },
         blue: {
           applied: false,
           value: 'blue',
-          label: 'Blue',
-          count: 2,
         },
 			},
-    };
+    })
+	});
+
+  it('should remove an equal request', () => {
 		const request: DaffCategoryFilterEqualRequest = {
       type: DaffCategoryFilterType.Equal,
       name: 'color',
       value: ['red'],
     };
 		const expected: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
-      name: 'color',
-      options: {
+			...colorFilter,
+			options: {
+				...colorFilter.options,
 				red: {
-          applied: false,
-          value: 'red',
-          label: 'Red',
-          count: 2,
-        },
-        blue: {
-          applied: false,
-          value: 'blue',
-          label: 'Blue',
-          count: 2,
-        },
+					...colorFilter.options['red'],
+					applied: false,
+				}
 			},
     };
 
-		expect(daffRemoveFilter(request, filter)).toEqual(expected);
+		expect(daffRemoveFilter(request, colorFilter)).toEqual(expected);
   });
 		
   it('should remove a range request', () => {
-		const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+		const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -82,77 +71,38 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
           },
         },
 			},
-    };
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
-      options: {},
+      ...filter,
+			options: {},
     };
 
     expect(daffRemoveFilter(request, filter)).toEqual(expected);
   });
 	
   it('should throw an error if a request has a different name than the filter', () => {
-		const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Not Color',
+		const request: DaffCategoryFilterEqualRequest = new DaffCategoryFilterRequestEqualFactory().create({
       name: 'not color',
-      options: {
-				clear: {
-          applied: false,
-          value: 'clear',
-          label: 'Clear',
-          count: 2,
-        },
-			},
-    };
-		const request: DaffCategoryFilterEqualRequest = {
-      type: DaffCategoryFilterType.Equal,
-      name: 'color',
       value: ['clear'],
-    };
+    });
 
 		expect(() => {
-			daffRemoveFilter(request, filter)
+			daffRemoveFilter(request, colorFilter)
 		}).toThrow(new DaffCategoryFilterRequestNameMismatch('Filter names aren\'t equal'));
 	});
 
 	it('should throw an error if a request has a different type than the filter', () => {
-		const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
-      name: 'color',
-      options: {
-				red: {
-          applied: false,
-          value: 'red',
-          label: 'Red',
-          count: 2,
-        },
-        blue: {
-          applied: false,
-          value: 'blue',
-          label: 'Blue',
-          count: 2,
-        },
-			},
-    };
-
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'color',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
 		expect(() => {
-			daffRemoveFilter(request, filter)
+			daffRemoveFilter(request, colorFilter)
 		}).toThrow(new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal'));
 	});
 

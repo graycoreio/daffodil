@@ -1,6 +1,6 @@
+import { DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestRangeNumericFactory } from '@daffodil/category/testing';
 import {
   DaffCategoryFilterRangeRequest,
-  DaffCategoryFilterType,
   DaffCategoryFilter,
 } from '../../../../../models/public_api';
 import { daffApplyFilterRange } from './apply';
@@ -8,30 +8,23 @@ import { daffApplyFilterRange } from './apply';
 describe('@daffodil/category | filters | type | range | behaviors | apply', () => {
 
   it('should apply the filter, when the currently applied filters are empty', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
       label: 'price',
       min: 0,
       max: 200,
-      options: {},
-    };
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {
         '0-20': {
           applied: true,
@@ -51,19 +44,16 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
   });
 
   it('should do nothing if the same filter is already applied', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -79,14 +69,10 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
           },
         },
 			},
-    };
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+      ...filter,
       options: {
         '0-20': {
           applied: true,
@@ -106,19 +92,16 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
   });
 
   it('should remove the old filter, and apply the new one when an existing filter is already applied', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
       name: 'price',
       value: {
-        min: 0,
-        max: 20,
+        min: 20,
+        max: 40,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -134,24 +117,20 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
           },
         },
 			},
-    };
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+      ...filter,
       options: {
-        '0-20': {
+        '20-40': {
           applied: true,
           min: {
-            label: '0',
-            value: 0,
-          },
-          max: {
             label: '20',
             value: 20,
+          },
+          max: {
+            label: '40',
+            value: 40,
           },
         },
 			},

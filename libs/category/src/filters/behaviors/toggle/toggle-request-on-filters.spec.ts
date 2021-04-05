@@ -1,52 +1,47 @@
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterToggleRequestEqualFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
 import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterType, DaffToggleCategoryFilterEqualRequest } from "../../../models/public_api";
 import { daffToggleRequestOnFilters } from "./toggle-request-on-filters";
 
 describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestToFilters', () => {
-  it('should apply a toggle request', () => {
-		const filters: Dict<DaffCategoryEqualFilter> = {
-			'color': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Color',
-				name: 'color',
-				options: {
-					red: {
-						applied: false,
-						value: 'red',
-						label: 'Red',
-						count: 2,
-					},
-					blue: {
-						applied: false,
-						value: 'blue',
-						label: 'Blue',
-						count: 2,
-					},
+
+	let colorFilter: DaffCategoryEqualFilter;
+	let filters: Dict<DaffCategoryEqualFilter>;
+
+	beforeEach(() => {
+		colorFilter = new DaffCategoryFilterEqualFactory().create({
+			name: 'color',
+			options: {
+				red: {
+					applied: false,
+					value: 'red',
 				},
-			}
-    };
-		const request: DaffToggleCategoryFilterEqualRequest = {
+				blue: {
+					applied: false,
+					value: 'blue',
+				},
+			},
+		});
+		filters = {
+			color: colorFilter,
+		};
+	});
+
+  it('should apply a toggle request', () => {
+		const request: DaffToggleCategoryFilterEqualRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
       type: DaffCategoryFilterType.Equal,
       name: 'color',
       value: 'red',
-    };
+    });
 		const expected: Dict<DaffCategoryFilter> = {
+			...filters,
 			'color': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Color',
-				name: 'color',
+				...colorFilter,
 				options: {
+					...colorFilter.options,
 					red: {
+						...colorFilter.options['red'],
 						applied: true,
-						value: 'red',
-						label: 'Red',
-						count: 2,
-					},
-					blue: {
-						applied: false,
-						value: 'blue',
-						label: 'Blue',
-						count: 2,
 					},
 				},
 			}
@@ -56,32 +51,9 @@ describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestTo
   });
 
   it('should throw an error if the request does not match a known filter name', () => {
-		const filters: Dict<DaffCategoryEqualFilter> = {
-			'color': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Color',
-				name: 'color',
-				options: {
-					red: {
-						applied: false,
-						value: 'red',
-						label: 'Red',
-						count: 2,
-					},
-					blue: {
-						applied: false,
-						value: 'blue',
-						label: 'Blue',
-						count: 2,
-					},
-				},
-			}
-    };
-		const request: DaffToggleCategoryFilterEqualRequest = {
-      type: DaffCategoryFilterType.Equal,
+		const request: DaffToggleCategoryFilterEqualRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
       name: 'size',
-      value: 'medium',
-    };
+    });
 
 		expect(() => {
 			daffToggleRequestOnFilters(request, filters)

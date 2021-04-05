@@ -1,13 +1,12 @@
-import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterType } from "../../../models/public_api";
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory } from "@daffodil/category/testing";
+import { DaffCategoryEqualFilter, DaffCategoryFilter } from "../../../models/public_api";
 import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.error";
 import { daffClearFilter } from "./clear-filter";
 
 describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', () => {
   it('should clear a given range filter', () => {
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -23,13 +22,9 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
           },
         },
 			},
-    };
+    });
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {},
     };
 
@@ -37,41 +32,30 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
   });
 
   it('should clear a given equal filter', () => {
-    const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
+    const filter: DaffCategoryEqualFilter = new DaffCategoryFilterEqualFactory().create({
       name: 'color',
       options: {
 				red: {
           applied: true,
           value: 'red',
-          label: 'Red',
-          count: 2,
         },
         blue: {
           applied: true,
           value: 'blue',
-          label: 'Blue',
-          count: 2,
         },
 			},
-    };
+    });
 		const expected: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
-      name: 'color',
+      ...filter,
       options: {
+				...filter.options,
 				red: {
+					...filter.options['red'],
           applied: false,
-          value: 'red',
-          label: 'Red',
-          count: 2,
         },
         blue: {
+					...filter.options['blue'],
           applied: false,
-          value: 'blue',
-          label: 'Blue',
-          count: 2,
         },
 			},
     };

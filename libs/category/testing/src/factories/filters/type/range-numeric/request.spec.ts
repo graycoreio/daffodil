@@ -29,7 +29,8 @@ describe('Category | Testing | Factories | DaffCategoryFilterRequestRangeNumeric
 
     it('should return an range numeric request', () => {
       expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
-      expect(typeof result.value).toEqual('number');
+      expect(typeof result.value.min).toEqual('number');
+      expect(typeof result.value.max).toEqual('number');
       expect(result.value.min).toBeDefined();
       expect(result.value.max).toBeDefined();
     });

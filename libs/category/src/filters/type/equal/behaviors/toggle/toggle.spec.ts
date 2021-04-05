@@ -1,69 +1,53 @@
-import { DaffCategoryEqualFilter, DaffCategoryFilterType, DaffToggleCategoryFilterEqualRequest } from "../../../../../models/public_api";
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterToggleRequestEqualFactory } from "@daffodil/category/testing";
+import { DaffCategoryEqualFilter, DaffToggleCategoryFilterEqualRequest } from "../../../../../models/public_api";
 import { daffToggleFilterEqual } from "./toggle";
 
 describe('@daffodil/category | filters | type | equal | behaviors | toggle', () => {
 	
-	let originalFilter: DaffCategoryEqualFilter;
+	let filter: DaffCategoryEqualFilter;
 
 	beforeEach(() => {
-		originalFilter = {
-			type: DaffCategoryFilterType.Equal,
-			label: 'Color',
+		filter = new DaffCategoryFilterEqualFactory().create({
 			name: 'color',
 			options: {
 				red: {
 					applied: false,
 					value: 'red',
-					label: 'Red',
-					count: 2,
 				},
 				blue: {
 					applied: false,
 					value: 'blue',
-					label: 'Blue',
-					count: 2,
 				},
 			},
-		};
+		});
 	});
 
 	it('should not toggle an option that does not equal the request value', () => {
-		const request: DaffToggleCategoryFilterEqualRequest = {
-			type: DaffCategoryFilterType.Equal,
+		const request: DaffToggleCategoryFilterEqualRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
 			name: 'not color',
 			value: 'clear',
-		};
+		});
 
-		expect(daffToggleFilterEqual(request, originalFilter)).toEqual(originalFilter);
+		expect(daffToggleFilterEqual(request, filter)).toEqual(filter);
 	});
 
 	it('should toggle an option that does equal the request value', () => {
-		const request: DaffToggleCategoryFilterEqualRequest = {
-			type: DaffCategoryFilterType.Equal,
+		const request: DaffToggleCategoryFilterEqualRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
 			name: 'color',
 			value: 'red',
-		};
+		});
 
 		let expected: DaffCategoryEqualFilter = {
-			type: DaffCategoryFilterType.Equal,
-			label: 'Color',
-			name: 'color',
+			...filter,
 			options: {
+				...filter.options,
 				red: {
+					...filter.options['red'],
 					applied: true,
-					value: 'red',
-					label: 'Red',
-					count: 2,
-				},
-				blue: {
-					applied: false,
-					value: 'blue',
-					label: 'Blue',
-					count: 2,
 				},
 			},
 		};
 
-		expect(daffToggleFilterEqual(request, originalFilter)).toEqual(expected);
+		expect(daffToggleFilterEqual(request, filter)).toEqual(expected);
 	});
 });

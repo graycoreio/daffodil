@@ -1,21 +1,19 @@
-import { DaffCategoryFilter, DaffCategoryFilterRangeRequest, DaffCategoryFilterType } from "../../../../../models/public_api";
+import { DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterToggleRequestRangeNumericFactory } from "@daffodil/category/testing";
+import { DaffCategoryFilter, DaffCategoryFilterRangeRequest } from "../../../../../models/public_api";
 import { daffToggleFilterRange } from "./toggle";
 
 describe('@daffodil/category | filters | type | range | behaviors | toggle', () => {
 
 	it('should remove the request value from the filter when the request value is currently applied', () => {
-		const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+		const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    });
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -31,13 +29,9 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
           },
         },
 			},
-    };
+    });
 		const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {},
     };
 
@@ -45,28 +39,21 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
 	});
 
 	it('should apply the request value to the filter when there is no filter option applied', () => {
-		const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+		const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
-		const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    });
+		const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {},
-    };
+    });
 		const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {
         '0-20': {
           applied: true,
@@ -86,18 +73,15 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
 	});
 
 	it('should apply the request value to the filter when there is a different filter value applied', () => {
-		const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+		const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 20,
         max: 40,
       },
-    };
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    });
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {
@@ -113,13 +97,9 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
           },
         },
 			},
-    };
+    });
 		const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {
         '20-40': {
           applied: true,

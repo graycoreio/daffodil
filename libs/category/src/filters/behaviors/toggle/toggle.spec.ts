@@ -1,83 +1,66 @@
-import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterType, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterToggleRequestEqualFactory, DaffCategoryFilterToggleRequestRangeNumericFactory } from "@daffodil/category/testing";
+import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
 import { DaffCategoryFilterRequestNameMismatch } from "../../errors/request-name-mismatch.error";
 import { DaffCategoryFilterRequestTypeMismatch } from "../../errors/request-type-mismatch.error";
 import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.error";
 import { daffToggleFilter } from "./toggle";
 
 describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
-	it('should toggle an equal filter request', () => {
-		const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
-      name: 'color',
-      options: {
+	let colorFilter: DaffCategoryEqualFilter;
+
+	beforeEach(() => {
+		colorFilter = new DaffCategoryFilterEqualFactory().create({
+			name: 'color',
+			options: {
 				red: {
-          applied: false,
-          value: 'red',
-          label: 'Red',
-          count: 2,
-        },
-        blue: {
-          applied: false,
-          value: 'blue',
-          label: 'Blue',
-          count: 2,
-        },
+					applied: false,
+					value: 'red',
+				},
+				blue: {
+					applied: false,
+					value: 'blue',
+				},
 			},
-    };
-		const request: DaffToggleCategoryFilterRequest = {
-      type: DaffCategoryFilterType.Equal,
+		});
+	});
+
+	it('should toggle an equal filter request', () => {
+		const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
       name: 'color',
       value: 'red',
-    };
+    });
 		const expected: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
-      name: 'color',
-      options: {
+      ...colorFilter,
+			options: {
+				...colorFilter.options,
 				red: {
-          applied: true,
-          value: 'red',
-          label: 'Red',
-          count: 2,
-        },
-        blue: {
-          applied: false,
-          value: 'blue',
-          label: 'Blue',
-          count: 2,
-        },
+					...colorFilter.options['red'],
+					applied: true,
+				},
 			},
     };
 
-		expect(daffToggleFilter(request, filter)).toEqual(expected);
+		expect(daffToggleFilter(request, colorFilter)).toEqual(expected);
   });
 
   it('should toggle a range filter request', () => {
-		const request: DaffToggleCategoryFilterRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+		const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
       name: 'price',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
       name: 'price',
-      label: 'price',
       min: 0,
       max: 200,
       options: {},
-    };
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: 0,
-      max: 200,
+			...filter,
       options: {
         '0-20': {
           applied: true,
@@ -97,24 +80,19 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
   });
 
 	it('should throw an error if the filter name and request names do not match', () => {
-		const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Not Color',
+		const filter: DaffCategoryEqualFilter = new DaffCategoryFilterEqualFactory().create({
       name: 'not color',
       options: {
 				clear: {
           applied: false,
           value: 'clear',
-          label: 'Clear',
-          count: 2,
         },
 			},
-    };
-		const request: DaffToggleCategoryFilterRequest = {
-      type: DaffCategoryFilterType.Equal,
+    });
+		const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
       name: 'color',
       value: 'clear',
-    };
+    });
 
 		expect(() => {
 			daffToggleFilter(request, filter)
@@ -122,37 +100,16 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 	});
 
   it('should throw an error if the filter type and request type do not match', () => {
-		const filter: DaffCategoryEqualFilter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
-      name: 'color',
-      options: {
-				red: {
-          applied: false,
-          value: 'red',
-          label: 'Red',
-          count: 2,
-        },
-        blue: {
-          applied: false,
-          value: 'blue',
-          label: 'Blue',
-          count: 2,
-        },
-			},
-    };
-
-    const request: DaffToggleCategoryFilterRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
       name: 'color',
       value: {
         min: 0,
         max: 20,
       },
-    };
+    });
 
 		expect(() => {
-			daffToggleFilter(request, filter)
+			daffToggleFilter(request, colorFilter)
 		}).toThrow(new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal'));
 	});
 

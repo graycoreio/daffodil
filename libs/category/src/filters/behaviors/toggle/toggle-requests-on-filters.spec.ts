@@ -1,180 +1,125 @@
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterToggleRequestEqualFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
-import { DaffCategoryFilter, DaffCategoryFilterType, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
+import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterType, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
 import { daffToggleRequestsOnFilters } from "./toggle-requests-on-filters";
 
 describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequestsOnFilters', () => {
 
-	let originalFilters: Dict<DaffCategoryFilter>;
+	let colorFilter: DaffCategoryEqualFilter;
+	let sizeFilter: DaffCategoryEqualFilter;
+	let filters: Dict<DaffCategoryFilter>;
 
 	beforeEach(() => {
-		originalFilters	= {
-			'color': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Color',
-				name: 'color',
-				options: {
-					red: {
-						applied: false,
-						value: 'red',
-						label: 'Red',
-						count: 2,
-					},
-					blue: {
-						applied: false,
-						value: 'blue',
-						label: 'Blue',
-						count: 2,
-					},
+		colorFilter = new DaffCategoryFilterEqualFactory().create({
+			name: 'color',
+			options: {
+				red: {
+					applied: false,
+					value: 'red',
+				},
+				blue: {
+					applied: false,
+					value: 'blue',
 				},
 			},
-			'size': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Size',
-				name: 'size',
-				options: {
-					small: {
-						applied: false,
-						value: 'small',
-						label: 'Small',
-						count: 2,
-					},
-					medium: {
-						applied: false,
-						value: 'medium',
-						label: 'Medium',
-						count: 2,
-					},
+		});
+		sizeFilter = new DaffCategoryFilterEqualFactory().create({
+			name: 'size',
+			options: {
+				small: {
+					applied: false,
+					value: 'small',
 				},
-			}
+				medium: {
+					applied: false,
+					value: 'medium',
+				},
+			},
+		});
+		filters	= {
+			'color': colorFilter,
+			'size': sizeFilter,
     };
 	});
 
   it('should not toggle any filters if there are no filter requests', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [];
 		
-		expect(daffToggleRequestsOnFilters(requests, originalFilters)).toEqual(originalFilters);
+		expect(daffToggleRequestsOnFilters(requests, filters)).toEqual(filters);
   });
 
   it('should throw an error if there are no requests that match', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [
-			{
-				type: DaffCategoryFilterType.Equal,
+			new DaffCategoryFilterToggleRequestEqualFactory().create({
 				name: 'someFilter',
 				value: 'someFilter value',
-			}
+			}),
 		];
 
 		expect(() => {
-			daffToggleRequestsOnFilters(requests, originalFilters)
+			daffToggleRequestsOnFilters(requests, filters)
 		}).toThrowError();
   });
 
   it('should toggle a filter if there is a request that matches', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [
-			{
-				type: DaffCategoryFilterType.Equal,
+			new DaffCategoryFilterToggleRequestEqualFactory().create({
 				name: 'color',
 				value: 'red',
-			}
+			}),
 		];
 		const expected: Dict<DaffCategoryFilter> = {
+			...filters,
 			'color': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Color',
-				name: 'color',
+				...colorFilter,
 				options: {
+					...colorFilter.options,
 					red: {
+						...colorFilter.options['red'],
 						applied: true,
-						value: 'red',
-						label: 'Red',
-						count: 2,
-					},
-					blue: {
-						applied: false,
-						value: 'blue',
-						label: 'Blue',
-						count: 2,
-					},
-				},
-			},
-			'size': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Size',
-				name: 'size',
-				options: {
-					small: {
-						applied: false,
-						value: 'small',
-						label: 'Small',
-						count: 2,
-					},
-					medium: {
-						applied: false,
-						value: 'medium',
-						label: 'Medium',
-						count: 2,
 					},
 				},
 			}
     };
 
-		expect(daffToggleRequestsOnFilters(requests, originalFilters)).toEqual(expected);
+		expect(daffToggleRequestsOnFilters(requests, filters)).toEqual(expected);
   });
 
   it('should toggle multiple filters if there are multiple requests that match', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [
-			{
-				type: DaffCategoryFilterType.Equal,
+			new DaffCategoryFilterToggleRequestEqualFactory().create({
 				name: 'color',
 				value: 'red',
-			},
-			{
-				type: DaffCategoryFilterType.Equal,
+			}),
+			new DaffCategoryFilterToggleRequestEqualFactory().create({
 				name: 'size',
 				value: 'small',
-			}
+			})
 		];
 		const expected: Dict<DaffCategoryFilter> = {
+			...filters,
 			'color': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Color',
-				name: 'color',
+				...colorFilter,
 				options: {
+					...colorFilter.options,
 					red: {
+						...colorFilter.options['red'],
 						applied: true,
-						value: 'red',
-						label: 'Red',
-						count: 2,
-					},
-					blue: {
-						applied: false,
-						value: 'blue',
-						label: 'Blue',
-						count: 2,
 					},
 				},
 			},
 			'size': {
-				type: DaffCategoryFilterType.Equal,
-				label: 'Size',
-				name: 'size',
+				...sizeFilter,
 				options: {
+					...sizeFilter.options,
 					small: {
+						...sizeFilter.options['small'],
 						applied: true,
-						value: 'small',
-						label: 'Small',
-						count: 2,
-					},
-					medium: {
-						applied: false,
-						value: 'medium',
-						label: 'Medium',
-						count: 2,
 					},
 				},
-			}
+			},
     };
 
-		expect(daffToggleRequestsOnFilters(requests, originalFilters)).toEqual(expected);
+		expect(daffToggleRequestsOnFilters(requests, filters)).toEqual(expected);
   });
 });
