@@ -66,33 +66,37 @@ describe('DaffCategorySelectors', () => {
     stubMetadata.id = stubCategory.id;
     stubMetadata.product_ids = [product.id];
     stubCategory.product_ids = [product.id];
-    stubMetadata.filters = [
-      {
+    stubMetadata.filters = {
+      name: {
         name: 'name',
         type: DaffCategoryFilterType.Equal,
         label: 'label',
-        options: [{
-          applied: false,
-          label: 'option_label',
-          value: 'value',
-          count: 2,
-        }],
+        options: {
+          value: {
+            applied: false,
+            label: 'option_label',
+            value: 'value',
+            count: 2,
+          },
+        },
       },
-      {
+      name2: {
         name: 'name2',
         type: DaffCategoryFilterType.Equal,
         label: 'label2',
-        options: [{
-          applied: false,
-          label: 'option_label2',
-          value: 'value2',
-          count: 2,
-        }],
+        options: {
+          value2: {
+            applied: false,
+            label: 'option_label2',
+            value: 'value2',
+            count: 2,
+          },
+        },
       },
-    ];
+    };
     store = TestBed.inject(Store);
 
-    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubMetadata, products: null }));
     store.dispatch(new DaffProductGridLoadSuccess([product]));
   });
 
@@ -124,8 +128,8 @@ describe('DaffCategorySelectors', () => {
           ...stubCategory,
           product_ids: [productA.id, productB.id],
         },
-        categoryPageConfigurationState: {
-          ...stubCategoryPageConfigurationState,
+        categoryPageMetadata: {
+          ...stubMetadata,
           product_ids: [productA.id, productB.id],
         },
         products: [productA, productB],
@@ -145,8 +149,8 @@ describe('DaffCategorySelectors', () => {
           ...stubCategory,
           product_ids: [productB.id, productA.id],
         },
-        categoryPageConfigurationState: {
-          ...stubCategoryPageConfigurationState,
+        categoryPageMetadata: {
+          ...stubMetadata,
           product_ids: [productB.id, productA.id],
         },
         products: [productA, productB],
