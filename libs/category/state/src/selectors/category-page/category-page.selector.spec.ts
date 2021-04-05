@@ -13,6 +13,7 @@ import {
   DaffCategoryFilterRequest,
   DaffCategoryRequest,
   DaffCategoryFilter,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
@@ -20,21 +21,25 @@ import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoad,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffStatefulCategoryPageConfigurationState,
   DaffCategoryPageChangePageSize,
 } from '@daffodil/category/state';
-import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
-import { DaffCategoryFactory } from '@daffodil/category/testing';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageMetadataFactory,
+} from '@daffodil/category/testing';
+import { Dict } from '@daffodil/core';
+import { DaffState } from '@daffodil/core/state';
 
+import { DaffCategoryReducerState } from '../../reducers/public_api';
 import { getDaffCategoryPageSelectors } from './category-page.selector';
 
 describe('DaffCategoryPageSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategory>>;
-  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageConfigurationFactory: DaffStatefulCategoryPageConfigurationStateFactory = new DaffStatefulCategoryPageConfigurationStateFactory();
+  let categoryFactory: DaffCategoryFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
+  let stubCategoryPageMetadata: DaffCategoryPageMetadata;
   const categorySelectors = getDaffCategoryPageSelectors<DaffCategory>();
 
   beforeEach(() => {
@@ -45,44 +50,51 @@ describe('DaffCategoryPageSelectors', () => {
         }),
       ],
     });
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
 
     stubCategory = categoryFactory.create();
-    stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
-    stubCategoryPageConfigurationState.id = stubCategory.id;
-    stubCategoryPageConfigurationState.filters = [
-      {
+    stubCategoryPageMetadata = categoryPageMetadataFactory.create();
+    stubCategoryPageMetadata.id = stubCategory.id;
+    stubCategoryPageMetadata.filters = {
+      name: {
         name: 'name',
         type: DaffCategoryFilterType.Equal,
         label: 'label',
-        options: [{
-          applied: false,
-          label: 'option_label',
-          value: 'value',
-          count: 2,
-        }],
+        options: {
+          value: {
+            applied: false,
+            label: 'option_label',
+            value: 'value',
+            count: 2,
+          },
+        },
       },
-      {
+      name2: {
         name: 'name2',
         type: DaffCategoryFilterType.Equal,
         label: 'label2',
-        options: [{
-          applied: false,
-          label: 'option_label2',
-          value: 'value2',
-          count: 2,
-        }],
+        options: {
+          value2: {
+            applied: false,
+            label: 'option_label2',
+            value: 'value2',
+            count: 2,
+          },
+        },
       },
-    ];
-    store = TestBed.inject(Store);
+    };
 
-    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store = TestBed.inject(Store);
+    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryPageMetadata, products: null }));
   });
 
   describe('selectCategoryState', () => {
 
     it('selects CategoryReducerState for category', () => {
-      const expectedFeatureState = {
-        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+      const expectedFeatureState: DaffCategoryReducerState = {
+        categoryPageMetadata: stubCategoryPageMetadata,
+        daffState: DaffState.Stable,
         categoryLoading: false,
         productsLoading: false,
         errors: [],
@@ -93,11 +105,11 @@ describe('DaffCategoryPageSelectors', () => {
     });
   });
 
-  describe('selectCategoryPageConfigurationState', () => {
+  describe('selectCategoryPageMetadata', () => {
 
-    it('selects the category page configuration state', () => {
-      const selector = store.pipe(select(categorySelectors.selectCategoryPageConfigurationState));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState });
+    it('selects the category page metadata', () => {
+      const selector = store.pipe(select(categorySelectors.selectCategoryPageMetadata));
+      const expected = cold('a', { a: stubCategoryPageMetadata });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -106,7 +118,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the current page of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryCurrentPage));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.current_page });
+      const expected = cold('a', { a: stubCategoryPageMetadata.current_page });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -115,7 +127,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the total pages of products of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryTotalPages));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.total_pages });
+      const expected = cold('a', { a: stubCategoryPageMetadata.total_pages });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -124,7 +136,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the page size of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageSize));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.page_size });
+      const expected = cold('a', { a: stubCategoryPageMetadata.page_size });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -133,7 +145,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects filters of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryFilters));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.filters });
+      const expected = cold('a', { a: stubCategoryPageMetadata.filters });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -146,35 +158,39 @@ describe('DaffCategoryPageSelectors', () => {
       store.dispatch(new DaffCategoryPageLoadSuccess({
         products: [],
         category: {
-          id: stubCategoryPageConfigurationState.id,
+          id: stubCategoryPageMetadata.id,
           name: 'test',
         },
-        categoryPageConfigurationState: {
-          ...stubCategoryPageConfigurationState,
-          filters: [
-            {
+        categoryPageMetadata: {
+          ...stubCategoryPageMetadata,
+          filters: {
+            name: {
               name: 'name',
               type: DaffCategoryFilterType.Equal,
               label: 'label',
-              options: [{
-                applied: false,
-                label: 'option_label',
-                value: 'value',
-                count: 2,
-              }],
+              options: {
+                value: {
+                  applied: false,
+                  label: 'option_label',
+                  value: 'value',
+                  count: 2,
+                },
+              },
             },
-            {
+            name2: {
               name: 'name2',
               type: DaffCategoryFilterType.Equal,
               label: 'label2',
-              options: [{
-                applied: false,
-                label: 'option_label2',
-                value: 'value2',
-                count: 2,
-              }],
+              options: {
+                value2: {
+                  applied: false,
+                  label: 'option_label2',
+                  value: 'value2',
+                  count: 2,
+                },
+              },
             },
-          ],
+          },
         },
       }));
 
@@ -184,52 +200,58 @@ describe('DaffCategoryPageSelectors', () => {
     });
 
     it('selects the applied filters of the current category', () => {
-      const expectedAppliedFilters: DaffCategoryFilter[] = [{
-        name: 'name',
-        label: 'label',
-        type: DaffCategoryFilterType.Equal,
-        options: [{
-          applied: true,
-          label: 'option_label',
-          value: 'value',
-          count: 2,
-        }],
-      }];
+      const expectedAppliedFilters: Dict<DaffCategoryFilter>= {
+        name: {
+          name: 'name',
+          label: 'label',
+          type: DaffCategoryFilterType.Equal,
+          options: {
+            value: {
+              applied: true,
+              label: 'option_label',
+              value: 'value',
+              count: 2,
+            },
+          },
+        },
+      };
 
-      store.dispatch(new DaffCategoryPageLoadSuccess({
-        products: [],
+      store.dispatch(new DaffCategoryPageLoadSuccess({ products: [],
         category: {
-          id: stubCategoryPageConfigurationState.id,
+          id: stubCategoryPageMetadata.id,
           name: 'test',
         },
-        categoryPageConfigurationState: {
-          ...stubCategoryPageConfigurationState,
-          filters: [
-            {
+        categoryPageMetadata: {
+          ...stubCategoryPageMetadata,
+          filters: {
+            name: {
               name: 'name',
               type: DaffCategoryFilterType.Equal,
               label: 'label',
-              options: [{
-                applied: true,
-                label: 'option_label',
-                value: 'value',
-                count: 2,
-              }],
+              options: {
+                value: {
+                  applied: true,
+                  label: 'option_label',
+                  value: 'value',
+                  count: 2,
+                },
+              },
             },
-            {
+            name2: {
               name: 'name2',
               type: DaffCategoryFilterType.Equal,
               label: 'label2',
-              options: [{
-                applied: false,
-                label: 'option_label2',
-                value: 'value2',
-                count: 2,
-              }],
+              options: {
+                value2: {
+                  applied: false,
+                  label: 'option_label2',
+                  value: 'value2',
+                  count: 2,
+                },
+              },
             },
-          ],
-        },
-      }));
+          },
+        }}));
 
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedFilters));
       const expected = cold('a', { a: expectedAppliedFilters });
@@ -241,7 +263,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the category sort options of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategorySortOptions));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.sort_options.options });
+      const expected = cold('a', { a: stubCategoryPageMetadata.sort_options.options });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -250,7 +272,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the product_ids of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageProductIds));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.product_ids });
+      const expected = cold('a', { a: stubCategoryPageMetadata.product_ids });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -259,7 +281,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects whether the current category page is empty of products', () => {
       const selector = store.pipe(select(categorySelectors.selectIsCategoryPageEmpty));
-      const expected = cold('a', { a: !stubCategoryPageConfigurationState.product_ids.length });
+      const expected = cold('a', { a: !stubCategoryPageMetadata.product_ids.length });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -268,16 +290,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the total number of products of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageTotalProducts));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.total_products });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCategoryPageFilterRequests', () => {
-
-    it('selects the filter requests of the current category page', () => {
-      const selector = store.pipe(select(categorySelectors.selectCategoryPageFilterRequests));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.filter_requests });
+      const expected = cold('a', { a: stubCategoryPageMetadata.total_products });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -286,7 +299,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the applied sort option of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedSortOption));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_sort_option });
+      const expected = cold('a', { a: stubCategoryPageMetadata.applied_sort_option });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -295,7 +308,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the applied sort direction of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedSortDirection));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_sort_direction });
+      const expected = cold('a', { a: stubCategoryPageMetadata.applied_sort_direction });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -303,8 +316,8 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectCategoryPageState', () => {
 
     it('selects the daffState of the current category page', () => {
-      const selector = store.pipe(select(categorySelectors.selectCategoryPageState));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.daffState });
+      const selector = store.pipe(select(categorySelectors.selectCategoryState));
+      const expected = cold('a', { a: DaffState.Stable });
       expect(selector).toBeObservable(expected);
     });
   });
