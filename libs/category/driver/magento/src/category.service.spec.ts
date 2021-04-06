@@ -3,34 +3,55 @@ import {
   ApolloTestingModule,
   ApolloTestingController,
 } from 'apollo-angular/testing';
+import { Observable } from 'rxjs';
 
+import {
+  DaffCategoryRequest,
+  DaffCategory,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeRequestOption,
+  daffCategoryComputeFilterRangePairLabel,
+  DaffGetCategoryResponse,
+} from '@daffodil/category';
 import { DaffMagentoCategoryTransformerService } from '@daffodil/category/driver/magento';
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
+  DaffCategoryFilterRequestEqualFactory,
+  DaffCategoryFilterRequestRangeNumericFactory,
+  DaffCategoryFilterRangeNumericRequestOptionFactory,
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
 
-// Because ApolloTestingModule doesn't support multiple apollo queries in the same get call, this file is difficult to test.
-// Maybe one of us can make a pull request to apollo-angular if we get the time.
 xdescribe('Driver | Magento | Category | CategoryService', () => {
   let categoryService: DaffMagentoCategoryService;
-  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageMetadataFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let categoryFactory: DaffCategoryFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let controller: ApolloTestingController;
+  let productFactory: DaffProductFactory;
+  let equalFilterRequestFactory: DaffCategoryFilterRequestEqualFactory;
+  let rangeFilterRequestFactory: DaffCategoryFilterRequestRangeNumericFactory;
+  let rangeFilterRequestOptionFactory: DaffCategoryFilterRangeNumericRequestOptionFactory;
+
+  let mockCategoryRequest: DaffCategoryRequest;
+  let mockCategory: DaffCategory;
+  let equalFilterRequest: DaffCategoryFilterEqualRequest;
+  let rangeFilterRequest: DaffCategoryFilterRangeRequest;
+  let rangeFilterRequestOption: DaffCategoryFilterRangeRequestOption<number>;
+  let rangeFilterRequestOptionLabel: string;
 
   const transformedCategory = categoryFactory.create();
-  const transformedCategoryPageConfigurationState = categoryPageMetadataFactory.create();
+  const transformedCategoryPageMetadata = categoryPageMetadataFactory.create();
   const transformedProducts = productFactory.createMany(3);
-  const productTransformService = jasmine.createSpyObj('DaffMagentoProductTransformerService', ['transformMany']);
-  productTransformService.transformMany.and.returnValue(transformedProducts);
-  const magentoCategoryResponseTransformerService = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
-  magentoCategoryResponseTransformerService.transform.and.returnValue(transformedCategory);
-  const categoryPageConfigTransformService = jasmine.createSpyObj('DaffMagentoCategoryPageConfigTransformerService', ['transform']);
-  categoryPageConfigTransformService.transform.and.returnValue(transformedCategoryPageConfigurationState);
+  // const productTransformService = jasmine.createSpyObj('DaffMagentoProductTransformerService', ['transformMany']);
+  // productTransformService.transformMany.and.returnValue(transformedProducts);
+  // const magentoCategoryResponseTransformerService = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
+  // magentoCategoryResponseTransformerService.transform.and.returnValue(transformedCategory);
+  // const categoryPageConfigTransformService = jasmine.createSpyObj('DaffMagentoCategoryPageConfigTransformerService', ['transform']);
+  // categoryPageConfigTransformService.transform.and.returnValue(transformedCategoryPageMetadata);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,15 +60,66 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
       ],
       providers: [
         DaffMagentoCategoryService,
-        { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryResponseTransformerService },
+        // { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryResponseTransformerService },
       ],
     });
 
     categoryService = TestBed.inject(DaffMagentoCategoryService);
     controller = TestBed.inject(ApolloTestingController);
+
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+    rangeFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
+    rangeFilterRequestOptionFactory = TestBed.inject(DaffCategoryFilterRangeNumericRequestOptionFactory);
+
+    mockCategory = categoryFactory.create();
+    // mockCategoryRequest = {
+    //   id: mockCategory.id,
+    // };
   });
 
   it('should be created', () => {
     expect(categoryService).toBeTruthy();
+  });
+
+  describe('get | getting a category', () => {
+    let result: Observable<DaffGetCategoryResponse>;
+
+    describe('when filters are requested', () => {
+      beforeEach(() => {
+        equalFilterRequest = equalFilterRequestFactory.create();
+        rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
+        rangeFilterRequest = rangeFilterRequestFactory.create({
+          value: rangeFilterRequestOption,
+        });
+        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        mockCategoryRequest = {
+          ...mockCategoryRequest,
+          filter_requests: [
+            equalFilterRequest,
+            rangeFilterRequest,
+          ],
+        };
+
+        result = categoryService.get(mockCategoryRequest);
+      });
+
+      it('should apply those filters', done => {
+        const unsub = result.subscribe(res => {
+          equalFilterRequest.value.forEach(option => {
+            expect(res.categoryPageMetadata.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
+          });
+          expect(res.categoryPageMetadata.filters[rangeFilterRequest.name].options[rangeFilterRequestOptionLabel].applied).toBeTrue();
+          unsub.unsubscribe();
+          done();
+        });
+      });
+    });
+  });
+
+  afterEach(() => {
+    controller.verify();
   });
 });
