@@ -10,13 +10,16 @@ import {
 import {
   of,
   Observable,
+  asyncScheduler,
 } from 'rxjs';
+import { AsyncScheduler } from 'rxjs/internal/scheduler/AsyncScheduler';
 import {
   switchMap,
   catchError,
   switchMapTo,
   map,
   debounceTime,
+  tap,
 } from 'rxjs/operators';
 
 import {
@@ -68,11 +71,11 @@ export class DaffCategoryPageFilterEffects<
    * in a sequence.
    */
   @Effect()
-  updateFilters$: (debounceFrame?: number) => Observable<
+  updateFilters$: (debounceFrame: number, scheduler: AsyncScheduler) => Observable<
     DaffProductGridLoadSuccess
     | DaffCategoryPageLoadSuccess
     | DaffCategoryPageLoadFailure
-  > = (debounceFrame = 300) => this.actions$.pipe(
+  > = (debounceFrame = 300, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType<DaffCategoryPageFilterActions>(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
@@ -86,7 +89,7 @@ export class DaffCategoryPageFilterEffects<
       ...metadata,
       filter_requests: daffCategoryFiltersToRequests(metadata.filters),
     })),
-    debounceTime(debounceFrame),
+    debounceTime(debounceFrame, scheduler),
     switchMap(payload => this.driver.get(payload).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
