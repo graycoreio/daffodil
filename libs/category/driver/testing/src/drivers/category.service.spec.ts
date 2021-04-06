@@ -3,7 +3,7 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -17,10 +17,10 @@ describe('Driver | Testing | Category | CategoryService', () => {
   const mockCategoryFactory = jasmine.createSpyObj('DaffCategoryFactory', ['create']);
   mockCategoryFactory.create.and.returnValue(category);
 
-  const categoryPageMetadataFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const categoryPageMetadataFactory: DaffCategoryPageMetadataFactory = new DaffCategoryPageMetadataFactory();
   const categoryPageMetadata = categoryPageMetadataFactory.create();
-  const mockCategoryPageConfigurationStateFactory = jasmine.createSpyObj('DaffCategoryPageConfigurationStateFactory', ['create']);
-  mockCategoryPageConfigurationStateFactory.create.and.returnValue(categoryPageMetadata);
+  const mockCategoryPageMetadataFactory = jasmine.createSpyObj('DaffCategoryPageMetadataFactory', ['create']);
+  mockCategoryPageMetadataFactory.create.and.returnValue(categoryPageMetadata);
 
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const products = productFactory.createMany(3);
@@ -31,7 +31,7 @@ describe('Driver | Testing | Category | CategoryService', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffCategoryFactory, useValue: mockCategoryFactory },
-        { provide: DaffCategoryPageConfigurationStateFactory, useValue: mockCategoryPageConfigurationStateFactory },
+        { provide: DaffCategoryPageMetadataFactory, useValue: mockCategoryPageMetadataFactory },
         { provide: DaffProductFactory, useValue: mockProductFactory },
         DaffTestingCategoryService,
       ],

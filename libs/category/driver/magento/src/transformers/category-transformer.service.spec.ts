@@ -9,7 +9,7 @@ import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 
-describe('DaffMagentoCategoryTransformerService', () => {
+xdescribe('DaffMagentoCategoryTransformerService', () => {
 
   let service: DaffMagentoCategoryTransformerService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
