@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryEqualFilterFactory,
+  DaffCategoryFilterEqualFactory,
   DaffCategoryFilterEqualOptionFactory,
-  DaffCategoryRangeFilterFactory,
-  DaffCategoryFilterRangePairFactory,
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRangeNumericPairFactory,
 } from '@daffodil/category/testing';
 
 import {
-  DaffCategoryRangeFilter,
+  DaffCategoryFilterRangeNumeric,
   DaffCategoryEqualFilter,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterRangeRequest,
@@ -18,13 +18,13 @@ import {
 import { daffCategoryFilterToRequest } from './filter-to-request';
 
 describe('@daffodil/category | daffCategoryFilterToRequest', () => {
-  let equalFilterFactory: DaffCategoryEqualFilterFactory;
+  let equalFilterFactory: DaffCategoryFilterEqualFactory;
   let equalFilterOptionFactory: DaffCategoryFilterEqualOptionFactory;
-  let rangeFilterFactory: DaffCategoryRangeFilterFactory;
-  let rangeFilterPairFactory: DaffCategoryFilterRangePairFactory;
+  let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
+  let rangeFilterPairFactory: DaffCategoryFilterRangeNumericPairFactory;
 
-  let appliedRangeFilter: DaffCategoryRangeFilter;
-  let unappliedRangeFilter: DaffCategoryRangeFilter;
+  let appliedRangeFilter: DaffCategoryFilterRangeNumeric;
+  let unappliedRangeFilter: DaffCategoryFilterRangeNumeric;
   let appliedEqualFilter: DaffCategoryEqualFilter;
   let appliedEqualFilterOption0: DaffCategoryFilterEqualOption;
   let appliedEqualFilterOption1: DaffCategoryFilterEqualOption;
@@ -32,10 +32,10 @@ describe('@daffodil/category | daffCategoryFilterToRequest', () => {
   let unappliedEqualFilterOption: DaffCategoryFilterEqualOption;
 
   beforeEach(() => {
-    equalFilterFactory = TestBed.inject(DaffCategoryEqualFilterFactory);
+    equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
     equalFilterOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
-    rangeFilterFactory = TestBed.inject(DaffCategoryRangeFilterFactory);
-    rangeFilterPairFactory = TestBed.inject(DaffCategoryFilterRangePairFactory);
+    rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+    rangeFilterPairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
 
     appliedRangeFilter = rangeFilterFactory.create({
       options: [
@@ -71,7 +71,7 @@ describe('@daffodil/category | daffCategoryFilterToRequest', () => {
       });
 
       it('should set the request type to range', () => {
-        expect(result.type).toEqual(DaffCategoryFilterType.Range);
+        expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
       });
 
       it('should build the request from that applied option', () => {
