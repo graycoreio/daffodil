@@ -72,6 +72,8 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
+
+
 describe('DaffCategoryPageFilterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageFilterEffects<DaffCategory, DaffProduct>;
@@ -105,6 +107,40 @@ describe('DaffCategoryPageFilterEffects', () => {
   let equalFilterRequest: DaffCategoryFilterEqualRequest;
   let equalFilterToggleRequest: DaffToggleCategoryFilterEqualRequest;
   let error: DaffError;
+
+  const testDriverSuccess = () => {
+    describe('and the driver call succeeds', () => {
+      beforeEach(() => {
+        driverGetSpy.and.returnValue(of(stubCategoryResponse));
+      });
+
+      it('should call get category with filter requests transformed from state', () => {
+        const expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
+        expect(effects.updateFilters$()).toBeObservable(expected);
+        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
+          ...stubCategoryPageMetadata,
+          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
+        });
+      });
+    });
+  };
+
+  const testDriverFailure = () => {
+    describe('and the driver call fails', () => {
+      beforeEach(() => {
+        driverGetSpy.and.returnValue(hot('#', {}, error));
+      });
+
+      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
+        const expected = cold('--a', { a: categoryPageLoadFailureAction });
+        expect(effects.updateFilters$()).toBeObservable(expected);
+        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
+          ...stubCategoryPageMetadata,
+          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
+        });
+      });
+    });
+  };
 
   beforeEach(() => {
 
@@ -183,236 +219,62 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when ChangeCategoryFiltersAction is triggered', () => {
-    let expected;
-
     beforeEach(() => {
       const changeCategoryFiltersAction = new DaffCategoryPageChangeFilters([equalFilterRequest]);
       actions$ = hot('--a', { a: changeCategoryFiltersAction });
     });
 
-    describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
-
-      it('should call get category with filter requests transformed from state', () => {
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
-
-    describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
-      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
+    testDriverSuccess();
+    testDriverFailure();
   });
 
   describe('when CategoryPageReplaceFiltersAction is triggered', () => {
-    let expected;
-
     beforeEach(() => {
       const replaceCategoryFiltersAction = new DaffCategoryPageReplaceFilters([equalFilterRequest]);
       actions$ = hot('--a', { a: replaceCategoryFiltersAction });
     });
 
-    describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
-
-      it('should call get category with filter requests transformed from state', () => {
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
-
-    describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
-      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
+    testDriverSuccess();
+    testDriverFailure();
   });
 
   describe('when CategoryPageApplyFiltersAction is triggered', () => {
-    let expected;
-
     beforeEach(() => {
       const applyCategoryFiltersAction = new DaffCategoryPageApplyFilters([equalFilterRequest]);
       actions$ = hot('--a', { a: applyCategoryFiltersAction });
     });
 
-    describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
-
-      it('should call get category with filter requests transformed from state', () => {
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
-
-    describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
-      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
+    testDriverSuccess();
+    testDriverFailure();
   });
 
   describe('when CategoryPageClearFiltersAction is triggered', () => {
-    let expected;
-
     beforeEach(() => {
       const clearCategoryFiltersAction = new DaffCategoryPageClearFilters();
       actions$ = hot('--a', { a: clearCategoryFiltersAction });
     });
 
-    describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
-
-      it('should call get category with filter requests transformed from state', () => {
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
-
-    describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
-      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
+    testDriverSuccess();
+    testDriverFailure();
   });
 
   describe('when CategoryPageRemoveFiltersAction is triggered', () => {
-    let expected;
-
     beforeEach(() => {
       const removeCategoryFiltersAction = new DaffCategoryPageRemoveFilters([equalFilterRequest]);
       actions$ = hot('--a', { a: removeCategoryFiltersAction });
     });
 
-    describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
-
-      it('should call get category with filter requests transformed from state', () => {
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
-
-    describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
-      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
+    testDriverSuccess();
+    testDriverFailure();
   });
 
   describe('when CategoryPageToggleFilterAction is triggered', () => {
-    let expected;
-
     beforeEach(() => {
       const toggleCategoryFiltersAction = new DaffCategoryPageToggleFilter(equalFilterToggleRequest);
       actions$ = hot('--a', { a: toggleCategoryFiltersAction });
     });
 
-    describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
-
-      it('should call get category with filter requests transformed from state', () => {
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
-
-    describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
-      it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
-        expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-          ...stubCategoryPageMetadata,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
-        });
-      });
-    });
+    testDriverSuccess();
+    testDriverFailure();
   });
 });
