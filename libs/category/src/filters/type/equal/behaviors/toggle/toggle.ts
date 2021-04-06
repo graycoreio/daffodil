@@ -1,6 +1,5 @@
 import { DaffCategoryEqualFilter } from '../../../../../models/public_api';
 import {
-  DaffCategoryFilterEqualRequest,
   DaffToggleCategoryFilterEqualRequest,
 } from '../../../../../models/public_api';
 

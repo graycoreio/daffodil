@@ -1,163 +1,152 @@
+import { TestBed } from '@angular/core/testing';
+import { DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestRangeNumericFactory } from '@daffodil/category/testing';
 import {
   DaffCategoryFilterRangeRequest,
-  DaffCategoryFilterType,
   DaffCategoryFilter,
 } from '../../../../../models/public_api';
 import { daffApplyFilterRange } from './apply';
 
-describe('@daffodil/category | behaviors | filters | range | apply', () => {
+describe('@daffodil/category | filters | type | range | behaviors | apply', () => {
+	
+	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+	let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
+
+	beforeEach(() => {
+		 TestBed.configureTestingModule({});
+	
+		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+		 categoryFilterRequestRangeNumericFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
+	});
 
   it('should apply the filter, when the currently applied filters are empty', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
-        max: '0',
-        min: '20',
+        min: 0,
+        max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       label: 'price',
-      min: '0',
-      max: '200',
-      options: [],
-    };
+      min: 0,
+      max: 200,
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: '0',
-      max: '200',
-      options: [
-        {
+			...filter,
+      options: {
+        '0-20': {
           applied: true,
           min: {
-            label: 'USD',
-            value: '0',
+            label: '0',
+            value: 0,
           },
           max: {
-            label: 'USD',
-            value: '20',
+            label: '20',
+            value: 20,
           },
         },
-      ],
+			},
     };
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);
   });
 
   it('should do nothing if the same filter is already applied', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
-        max: '0',
-        min: '20',
+        min: 0,
+        max: 20,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
-      label: 'price',
-      min: '0',
-      max: '200',
-      options: [
-        {
+      min: 0,
+      max: 200,
+      options: {
+        '0-20': {
           applied: true,
           min: {
-            label: 'USD',
-            value: '0',
+            label: '0',
+            value: 0,
           },
           max: {
-            label: 'USD',
-            value: '20',
+            label: '20',
+            value: 20,
           },
         },
-      ],
-    };
+			},
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: '0',
-      max: '200',
-      options: [
-        {
+      ...filter,
+      options: {
+        '0-20': {
           applied: true,
           min: {
-            label: 'USD',
-            value: '0',
+            label: '0',
+            value: 0,
           },
           max: {
-            label: 'USD',
-            value: '20',
+            label: '20',
+            value: 20,
           },
         },
-      ],
+			},
     };
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);
   });
 
   it('should remove the old filter, and apply the new one when an existing filter is already applied', () => {
-    const request: DaffCategoryFilterRangeRequest = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
-        max: '0',
-        min: '20',
+        min: 20,
+        max: 40,
       },
-    };
+    });
 
-    const filter: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
-      label: 'price',
-      min: '0',
-      max: '200',
-      options: [
-        {
+      min: 0,
+      max: 200,
+      options: {
+        '0-20': {
           applied: true,
           min: {
-            label: 'USD',
-            value: '0',
+            label: '0',
+            value: 0,
           },
           max: {
-            label: 'USD',
-            value: '20',
+            label: '20',
+            value: 20,
           },
         },
-      ],
-    };
+			},
+    });
 
     const expected: DaffCategoryFilter = {
-      type: DaffCategoryFilterType.RangeNumeric,
-      name: 'price',
-      label: 'price',
-      min: '0',
-      max: '200',
-      options: [
-        {
+      ...filter,
+      options: {
+        '20-40': {
           applied: true,
           min: {
-            label: 'USD',
-            value: '0',
+            label: '20',
+            value: 20,
           },
           max: {
-            label: 'USD',
-            value: '20',
+            label: '40',
+            value: 40,
           },
         },
-      ],
+			},
     };
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);
   });
-
 });

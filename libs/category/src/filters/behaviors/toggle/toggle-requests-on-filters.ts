@@ -1,8 +1,8 @@
 import { Dict } from '@daffodil/core';
 
 import {
-  DaffCategoryFilterRequest,
   DaffCategoryFilter,
+	DaffToggleCategoryFilterRequest,
 } from '../../../models/public_api';
 import { daffToggleFilter } from './toggle';
 
@@ -13,7 +13,7 @@ import { daffToggleFilter } from './toggle';
  * In theory, this function should not exist, yet for now, it does.
  */
 export const daffToggleRequestsOnFilters = (
-  filtersRequests: DaffCategoryFilterRequest[],
+  filtersRequests: DaffToggleCategoryFilterRequest[],
   filters: Dict<DaffCategoryFilter>,
 ): Dict<DaffCategoryFilter> =>
   filtersRequests.reduce((acc, request) => {

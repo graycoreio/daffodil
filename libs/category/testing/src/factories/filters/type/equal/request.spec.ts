@@ -32,7 +32,6 @@ describe('Category | Testing | Factories | DaffCategoryFilterRequestEqualFactory
     it('should return an equal request', () => {
       expect(result.value).toBeDefined();
       expect(result.type).toEqual(DaffCategoryFilterType.Equal);
-      expect(typeof result.value).toEqual('array');
       expect(result.value.length).toEqual(1);
     });
   });
