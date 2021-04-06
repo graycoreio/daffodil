@@ -13,6 +13,7 @@ import {
   DaffCategoryFilterRangeRequestOption,
   daffCategoryComputeFilterRangePairLabel,
   DaffGetCategoryResponse,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import { DaffMagentoCategoryTransformerService } from '@daffodil/category/driver/magento';
 import {
@@ -22,6 +23,7 @@ import {
   DaffCategoryFilterRequestRangeNumericFactory,
   DaffCategoryFilterRangeNumericRequestOptionFactory,
 } from '@daffodil/category/testing';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
@@ -43,9 +45,9 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
   let rangeFilterRequestOption: DaffCategoryFilterRangeRequestOption<number>;
   let rangeFilterRequestOptionLabel: string;
 
-  const transformedCategory = categoryFactory.create();
-  const transformedCategoryPageMetadata = categoryPageMetadataFactory.create();
-  const transformedProducts = productFactory.createMany(3);
+  let transformedCategory: DaffCategory;
+  let transformedCategoryPageMetadata: DaffCategoryPageMetadata;
+  let transformedProducts: DaffProduct[];
   // const productTransformService = jasmine.createSpyObj('DaffMagentoProductTransformerService', ['transformMany']);
   // productTransformService.transformMany.and.returnValue(transformedProducts);
   // const magentoCategoryResponseTransformerService = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
@@ -78,6 +80,10 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
     // mockCategoryRequest = {
     //   id: mockCategory.id,
     // };
+
+    transformedCategory = categoryFactory.create();
+    transformedCategoryPageMetadata =  categoryPageMetadataFactory.create();
+    transformedProducts =  productFactory.createMany(3);
   });
 
   it('should be created', () => {
