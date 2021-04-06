@@ -1,32 +1,45 @@
-import { TestBed } from "@angular/core/testing";
-import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestEqualFactory, DaffCategoryFilterRequestRangeNumericFactory } from "@daffodil/category/testing";
-import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffCategoryFilterType } from "../../../models/public_api";
-import { DaffCategoryFilterRequestNameMismatch } from "../../errors/request-name-mismatch.error";
-import { DaffCategoryFilterRequestTypeMismatch } from "../../errors/request-type-mismatch.error";
-import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.error";
-import { daffApplyFilter } from "./apply-filter";
+import { TestBed } from '@angular/core/testing';
+
+import {
+  DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRequestEqualFactory,
+  DaffCategoryFilterRequestRangeNumericFactory,
+} from '@daffodil/category/testing';
+
+import {
+  DaffCategoryEqualFilter,
+  DaffCategoryFilter,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterType,
+} from '../../../models/public_api';
+import { DaffCategoryFilterNotFound } from '../../errors/request-not-found.error';
+import { DaffCategoryFilterRequestTypeMismatch } from '../../errors/request-type-mismatch.error';
+import { DaffCategoryUnknownFilterType } from '../../errors/unknown-filter-type.error';
+import { daffApplyFilter } from './apply-filter';
 
 describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', () => {
-	
-	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
-	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
-	let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
-	let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
 
-	beforeEach(() => {
+  let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+  let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
+  let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
+
+  beforeEach(() => {
 		 TestBed.configureTestingModule({});
-	
+
 		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
 		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
 		 categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
 		 categoryFilterRequestRangeNumericFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
-	});
+  });
 
   it('should apply an equal filter request', () => {
-		const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
+    const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-				red: {
+        red: {
           applied: false,
           value: 'red',
         },
@@ -34,28 +47,28 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
           applied: false,
           value: 'blue',
         },
-			},
+      },
     });
-		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
-		});
-		const expected: DaffCategoryEqualFilter = {
-			...filter,
+    });
+    const expected: DaffCategoryEqualFilter = {
+      ...filter,
       options: {
-				...filter.options,
-				red: {
-					...filter.options['red'],
+        ...filter.options,
+        red: {
+          ...filter.options['red'],
           applied: true,
         },
-			},
+      },
     };
 
-		expect(daffApplyFilter(request, filter)).toEqual(expected);
+    expect(daffApplyFilter(request, filter)).toEqual(expected);
   });
 
   it('should apply a range filter request', () => {
-		const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -70,10 +83,10 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
     });
 
     const expected: DaffCategoryFilter = {
-			...filter,
-			options: {
-				...filter.options,
-				'0-20': {
+      ...filter,
+      options: {
+        ...filter.options,
+        '0-20': {
           applied: true,
           min: {
             label: '0',
@@ -84,37 +97,37 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
             value: 20,
           },
         },
-			},
+      },
     };
 
     expect(daffApplyFilter(request, filter)).toEqual(expected);
   });
 
-	it('should throw an error if the filter name and request names do not match', () => {
-		const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
+  it('should throw an error if the filter name and request names do not match', () => {
+    const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
       name: 'not color',
       options: {
-				clear: {
+        clear: {
           applied: false,
           value: 'clear',
         },
-			},
+      },
     });
-		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['clear'],
     });
 
-		expect(() => {
-			daffApplyFilter(request, filter)
-		}).toThrow(new DaffCategoryFilterRequestNameMismatch('Filter names aren\'t equal'));
-	});
+    expect(() => {
+      daffApplyFilter(request, filter);
+    }).toThrow(new DaffCategoryFilterNotFound('Filter names aren\'t equal'));
+  });
 
   it('should throw an error if the filter type and request type do not match', () => {
-		const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
+    const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-				red: {
+        red: {
           applied: false,
           value: 'red',
         },
@@ -122,7 +135,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
           applied: false,
           value: 'blue',
         },
-			},
+      },
     });
 
     const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
@@ -134,18 +147,18 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
       },
     });
 
-		expect(() => {
-			daffApplyFilter(request, filter)
-		}).toThrow(new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal'));
-	});
+    expect(() => {
+      daffApplyFilter(request, filter);
+    }).toThrow(new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal'));
+  });
 
-	it('should throw an error if the request filter type is unknown', () => {
-		const filter: any = {
+  it('should throw an error if the request filter type is unknown', () => {
+    const filter: any = {
       type: 'some other type',
       label: 'Color',
       name: 'color',
       options: {
-				red: {
+        red: {
           applied: false,
           value: 'red',
           label: 'Red',
@@ -155,16 +168,16 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
           value: 'blue',
           label: 'Blue',
         },
-			},
+      },
     };
-		const request: any = {
+    const request: any = {
       type: 'some other type',
       name: 'color',
       value: ['red'],
     };
 
-		expect(() => {
-			daffApplyFilter(request, filter)
-		}).toThrow(new DaffCategoryUnknownFilterType('Unknown filter type'));
-	});
+    expect(() => {
+      daffApplyFilter(request, filter);
+    }).toThrow(new DaffCategoryUnknownFilterType('Unknown filter type'));
+  });
 });
