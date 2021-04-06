@@ -21,7 +21,7 @@ export class MockDaffCategoryFilterRangeNumericRequest implements DaffCategoryFi
   providedIn: 'root',
 })
 export class DaffCategoryFilterRequestRangeNumericFactory extends DaffModelFactory<DaffCategoryFilterRangeNumericRequest>{
-  constructor(private option: DaffCategoryFilterRangeNumericRequestOptionFactory){
+  constructor(private option: DaffCategoryFilterRangeNumericRequestOptionFactory = new DaffCategoryFilterRangeNumericRequestOptionFactory()){
     super(MockDaffCategoryFilterRangeNumericRequest);
   }
 
