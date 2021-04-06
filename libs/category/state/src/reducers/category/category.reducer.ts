@@ -47,10 +47,6 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageFilterActions,
 ): DaffCategoryReducerState {
   switch (action.type) {
-    // This reducer must assume the call will be successful, and immediately set the applied filters to state, because the
-    // GetCategory magento call doesn't return currently applied filters. If there is a bug where the wrong filters are somehow
-    // applied by Magento, then this will result in a bug. Until Magento returns applied filters with a category call, this is
-    // unavoidable.
     case DaffCategoryPageActionTypes.CategoryPageLoadAction:
       return {
         ...state,
@@ -152,8 +148,6 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
           filters: daffToggleRequestOnFilters(action.filter, state.categoryPageMetadata.filters),
         },
       };
-      // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
-      // set here for reasons stated above.
 
     case DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction:
       return {
