@@ -1,5 +1,5 @@
 import { DaffCategoryErrorCodes } from '../../errors/codes.enum';
-import { DaffCategoryFilterRequestNameMismatch } from './request-name-mismatch.error';
+import { DaffCategoryFilterNotFound } from './request-not-found.error';
 import { DaffCategoryFilterRequestTypeMismatch } from './request-type-mismatch.error';
 import { DaffCategoryUnknownFilterType } from './unknown-filter-type.error';
 
@@ -8,6 +8,6 @@ import { DaffCategoryUnknownFilterType } from './unknown-filter-type.error';
  */
 export const DaffCategoryFiltersErrorMap = {
   [DaffCategoryErrorCodes.CATEGORY_FILTER_REQUEST_TYPE_MISMATCH]: DaffCategoryFilterRequestTypeMismatch,
-  [DaffCategoryErrorCodes.CATEGORY_FILTER_REQUEST_NAME_MISMATCH]: DaffCategoryFilterRequestNameMismatch,
+  [DaffCategoryErrorCodes.CATEGORY_FILTER_NOT_FOUND]: DaffCategoryFilterNotFound,
   [DaffCategoryErrorCodes.CATEGORY_UNKNOWN_FILTER_TYPE]: DaffCategoryUnknownFilterType,
 };
