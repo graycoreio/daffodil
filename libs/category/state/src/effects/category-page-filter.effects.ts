@@ -68,7 +68,11 @@ export class DaffCategoryPageFilterEffects<
    * in a sequence.
    */
   @Effect()
-  updateFilters$: (debounceFrame?: number) => Observable<any> = (debounceFrame = 300) => this.actions$.pipe(
+  updateFilters$: (debounceFrame?: number) => Observable<
+    DaffProductGridLoadSuccess
+    | DaffCategoryPageLoadSuccess
+    | DaffCategoryPageLoadFailure
+  > = (debounceFrame = 300) => this.actions$.pipe(
     ofType<DaffCategoryPageFilterActions>(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
