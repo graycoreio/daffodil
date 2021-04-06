@@ -232,25 +232,24 @@ describe('Category | Category Reducer', () => {
     let result: DaffCategoryReducerState;
 
     beforeEach(() => {
-      equalFilterToggleRequest = equalFilterToggleRequestFactory.create();
+      currentEqualFilter = equalFilterFactory.create();
+      equalFilterToggleRequest = equalFilterToggleRequestFactory.create({
+        name: currentEqualFilter.name,
+      });
+      initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentEqualFilter]);
+
       const toggleCategoryFilter: DaffCategoryPageToggleFilter = new DaffCategoryPageToggleFilter(equalFilterToggleRequest);
       result = daffCategoryReducer(initialState, toggleCategoryFilter);
     });
 
     describe('and the equal filter is already applied', () => {
-      let categoryToggleFilterAction: DaffCategoryPageToggleFilter;
-
       beforeEach(() => {
         currentAppliedEqualFilterOption = equalOptionFactory.create({
           applied: true,
         });
-        currentUnappliedEqualFilterOption = equalOptionFactory.create({
-          applied: false,
-        });
         currentEqualFilter = equalFilterFactory.create({
           options: daffCategoryFilterEqualOptionArrayToDict([
             currentAppliedEqualFilterOption,
-            currentUnappliedEqualFilterOption,
           ]),
         });
         equalFilterToggleRequest = equalFilterToggleRequestFactory.create({
@@ -259,7 +258,7 @@ describe('Category | Category Reducer', () => {
         });
         initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentEqualFilter]);
 
-        categoryToggleFilterAction = new DaffCategoryPageToggleFilter(equalFilterToggleRequest);
+        const categoryToggleFilterAction = new DaffCategoryPageToggleFilter(equalFilterToggleRequest);
         result = daffCategoryReducer(initialState, categoryToggleFilterAction);
       });
 
@@ -298,7 +297,19 @@ describe('Category | Category Reducer', () => {
       let categoryToggleFilterAction: DaffCategoryPageToggleFilter;
 
       beforeEach(() => {
-        equalFilterToggleRequest = equalFilterToggleRequestFactory.create();
+        currentUnappliedEqualFilterOption = equalOptionFactory.create({
+          applied: false,
+        });
+        currentEqualFilter = equalFilterFactory.create({
+          options: daffCategoryFilterEqualOptionArrayToDict([
+            currentUnappliedEqualFilterOption,
+          ]),
+        });
+        equalFilterToggleRequest = equalFilterToggleRequestFactory.create({
+          name: currentEqualFilter.name,
+          value: currentUnappliedEqualFilterOption.value,
+        });
+        initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentEqualFilter]);
 
         categoryToggleFilterAction = new DaffCategoryPageToggleFilter(equalFilterToggleRequest);
         result = daffCategoryReducer(initialState, categoryToggleFilterAction);
@@ -313,11 +324,14 @@ describe('Category | Category Reducer', () => {
       let categoryToggleFilterAction: DaffCategoryPageToggleFilter;
 
       beforeEach(() => {
+        currentRangeFilter = rangeFilterFactory.create();
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterToggleRequest = rangeFilterToggleRequestFactory.create({
           value: rangeFilterRequestOption,
+          name: currentRangeFilter.name,
         });
         rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentRangeFilter]);
 
         categoryToggleFilterAction = new DaffCategoryPageToggleFilter(rangeFilterToggleRequest);
         result = daffCategoryReducer(initialState, categoryToggleFilterAction);
@@ -362,12 +376,16 @@ describe('Category | Category Reducer', () => {
         options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
       });
 
-      equalFilterRequest = equalFilterRequestFactory.create();
+      equalFilterRequest = equalFilterRequestFactory.create({
+        name: currentEqualFilter.name,
+        value: [currentUnappliedEqualFilterOption.value],
+      });
       rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
       rangeFilterRequest = rangeFilterRequestFactory.create({
         value: rangeFilterRequestOption,
+        name: currentRangeFilter.name,
       });
-      currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min, currentRangeFilterPair.max);
+      currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
       rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
       initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([
         currentEqualFilter,
@@ -399,7 +417,6 @@ describe('Category | Category Reducer', () => {
 
     it('should remove the existing options', () => {
       expect(result.categoryPageMetadata.filters[currentEqualFilter.name].options[currentAppliedEqualFilterOption.value].applied).toBeFalse();
-      expect(result.categoryPageMetadata.filters[currentEqualFilter.name].options[currentUnappliedEqualFilterOption.value].applied).toBeFalse();
       expect(result.categoryPageMetadata.filters[rangeFilterRequest.name].options[currentRangeFilterPairLabel]?.applied).toBeFalsy();
     });
 
@@ -429,10 +446,14 @@ describe('Category | Category Reducer', () => {
         options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
       });
 
-      equalFilterRequest = equalFilterRequestFactory.create();
+      equalFilterRequest = equalFilterRequestFactory.create({
+        name: currentEqualFilter.name,
+        value: [currentUnappliedEqualFilterOption.value],
+      });
       rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
       rangeFilterRequest = rangeFilterRequestFactory.create({
         value: rangeFilterRequestOption,
+        name: currentRangeFilter.name,
       });
       rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
       initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([
@@ -467,9 +488,8 @@ describe('Category | Category Reducer', () => {
 
     it('should remove the existing options', () => {
       expect(result.categoryPageMetadata.filters[currentEqualFilter.name].options[currentAppliedEqualFilterOption.value].applied).toBeFalse();
-      expect(result.categoryPageMetadata.filters[currentEqualFilter.name].options[currentUnappliedEqualFilterOption.value].applied).toBeFalse();
       expect(result.categoryPageMetadata.filters[rangeFilterRequest.name].options[
-        daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min, currentRangeFilterPair.max)
+        daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value)
       ]).toBeFalsy();
     });
 
@@ -482,9 +502,13 @@ describe('Category | Category Reducer', () => {
     let result: DaffCategoryReducerState;
 
     beforeEach(() => {
-      equalFilterRequest = equalFilterRequestFactory.create();
-      const applyCategoryFilters = new DaffCategoryPageApplyFilters([equalFilterRequest]);
+      currentEqualFilter = equalFilterFactory.create();
+      equalFilterRequest = equalFilterRequestFactory.create({
+        name: currentEqualFilter.name,
+      });
+      initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentEqualFilter]);
 
+      const applyCategoryFilters = new DaffCategoryPageApplyFilters([equalFilterRequest]);
       result = daffCategoryReducer(initialState, applyCategoryFilters);
     });
 
@@ -504,6 +528,7 @@ describe('Category | Category Reducer', () => {
         });
         equalFilterRequest = equalFilterRequestFactory.create({
           name: currentEqualFilter.name,
+          value: [currentUnappliedEqualFilterOption.value],
         });
         initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentEqualFilter]);
 
@@ -515,10 +540,6 @@ describe('Category | Category Reducer', () => {
         expect(result.categoryPageMetadata.filters[equalFilterRequest.name].options[currentAppliedEqualFilterOption.value].applied).toBeTrue();
       });
 
-      it('should not apply the unapplied, unrequested filter options', () => {
-        expect(result.categoryPageMetadata.filters[equalFilterRequest.name].options[currentUnappliedEqualFilterOption.value].applied).toBeFalse();
-      });
-
       it('should apply the requested filter options', () => {
         equalFilterRequest.value.forEach(option => {
           expect(result.categoryPageMetadata.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
@@ -526,7 +547,7 @@ describe('Category | Category Reducer', () => {
       });
     });
 
-    describe('and the range filter is already applied', () => {
+    describe('and the range filter is already applied with a different pair', () => {
       beforeEach(() => {
         currentRangeFilterPair = rangePairFactory.create();
         currentRangeFilter = rangeFilterFactory.create({
@@ -534,13 +555,10 @@ describe('Category | Category Reducer', () => {
         });
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterRequest = rangeFilterRequestFactory.create({
-          value: {
-            min: currentRangeFilterPair.min.value,
-            max: currentRangeFilterPair.min.value,
-          },
+          value: rangeFilterRequestOption,
           name: currentRangeFilter.name,
         });
-        currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min, currentRangeFilterPair.max);
+        currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
         rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentRangeFilter]);
 
@@ -559,12 +577,30 @@ describe('Category | Category Reducer', () => {
 
     describe('and the requested filters are not applied', () => {
       beforeEach(() => {
-        equalFilterRequest = equalFilterRequestFactory.create();
+        currentUnappliedEqualFilterOption = equalOptionFactory.create({
+          applied: false,
+        });
+        currentEqualFilter = equalFilterFactory.create({
+          options: daffCategoryFilterEqualOptionArrayToDict([
+            currentUnappliedEqualFilterOption,
+          ]),
+        });
+        currentRangeFilter = rangeFilterFactory.create();
+
+        equalFilterRequest = equalFilterRequestFactory.create({
+          name: currentEqualFilter.name,
+          value: [currentUnappliedEqualFilterOption.value],
+        });
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterRequest = rangeFilterRequestFactory.create({
+          name: currentRangeFilter.name,
           value: rangeFilterRequestOption,
         });
         rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([
+          currentEqualFilter,
+          currentRangeFilter,
+        ]);
 
         const applyCategoryFilters = new DaffCategoryPageApplyFilters([
           equalFilterRequest,
@@ -624,11 +660,13 @@ describe('Category | Category Reducer', () => {
     let result: DaffCategoryReducerState;
 
     beforeEach(() => {
-      const removeCategoryFilters = new DaffCategoryPageRemoveFilters([
-        equalFilterRequest,
-        rangeFilterRequest,
-      ]);
+      currentEqualFilter = equalFilterFactory.create();
+      equalFilterRequest = equalFilterRequestFactory.create({
+        name: currentEqualFilter.name,
+      });
+      initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentEqualFilter]);
 
+      const removeCategoryFilters = new DaffCategoryPageRemoveFilters([equalFilterRequest]);
       result = daffCategoryReducer(initialState, removeCategoryFilters);
     });
 
@@ -665,16 +703,16 @@ describe('Category | Category Reducer', () => {
         });
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterRequest = rangeFilterRequestFactory.create({
-          value: rangeFilterRequestOption,
           name: currentRangeFilter.name,
+          value: {
+            min: currentRangeFilterPair.min.value,
+            max: currentRangeFilterPair.max.value,
+          },
         });
-        currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min, currentRangeFilterPair.max);
+        currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
         initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([currentRangeFilter]);
 
-        const removeCategoryFilters = new DaffCategoryPageRemoveFilters([
-          equalFilterRequest,
-          rangeFilterRequest,
-        ]);
+        const removeCategoryFilters = new DaffCategoryPageRemoveFilters([rangeFilterRequest]);
         result = daffCategoryReducer(initialState, removeCategoryFilters);
       });
 
@@ -685,14 +723,31 @@ describe('Category | Category Reducer', () => {
 
     describe('and the requested filters are not applied', () => {
       beforeEach(() => {
-        equalFilterRequest = equalFilterRequestFactory.create();
+        currentUnappliedEqualFilterOption = equalOptionFactory.create({
+          applied: false,
+        });
+        currentEqualFilter = equalFilterFactory.create({
+          options: daffCategoryFilterEqualOptionArrayToDict([
+            currentUnappliedEqualFilterOption,
+          ]),
+        });
+        currentRangeFilter = rangeFilterFactory.create();
 
+        equalFilterRequest = equalFilterRequestFactory.create({
+          name: currentEqualFilter.name,
+          value: [currentUnappliedEqualFilterOption.value],
+        });
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterRequest = rangeFilterRequestFactory.create({
           value: rangeFilterRequestOption,
+          name: currentRangeFilter.name,
         });
+        initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([
+          currentEqualFilter,
+          currentRangeFilter,
+        ]);
 
-        const removeCategoryFilters = new DaffCategoryPageApplyFilters([
+        const removeCategoryFilters = new DaffCategoryPageRemoveFilters([
           equalFilterRequest,
           rangeFilterRequest,
         ]);
@@ -717,6 +772,7 @@ describe('Category | Category Reducer', () => {
     });
   });
 
+  // TODO: revisit for kinded requests
   describe('when CategoryPageLoadAction is triggered', () => {
     let result;
     let categoryRequest: DaffCategoryRequest;
@@ -744,10 +800,12 @@ describe('Category | Category Reducer', () => {
     });
 
     it('sets the included parameters on categoryPageMetadata', () => {
+      categoryRequest.filter_requests.forEach(request => {
+        expect(result.categoryPageMetadata.filters[request.name]).toBeTruthy();
+      });
       expect(result.categoryPageMetadata.id).toEqual(categoryRequest.id);
       expect(result.categoryPageMetadata.page_size).toEqual(categoryRequest.page_size);
       expect(result.categoryPageMetadata.current_page).toEqual(categoryRequest.current_page);
-      expect(result.categoryPageMetadata.filters).toEqual(categoryRequest.filter_requests);
       expect(result.categoryPageMetadata.applied_sort_direction).toEqual(categoryRequest.applied_sort_direction);
       expect(result.categoryPageMetadata.applied_sort_option).toEqual(categoryRequest.applied_sort_option);
     });
