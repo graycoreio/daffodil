@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
 import {
   hot,
   cold,
+  getTestScheduler,
 } from 'jasmine-marbles';
 import {
   Observable,
@@ -11,18 +13,11 @@ import {
 
 import {
   DaffCategory,
-  DaffCategoryFilterEqualRequest,
-  DaffCategoryPageMetadata,
   DaffGetCategoryResponse,
-  DaffCategoryEqualFilter,
-  DaffCategoryFilterEqualOption,
-  DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterRangePair,
-  DaffToggleCategoryFilterEqualRequest,
-  daffCategoryFilterEqualOptionArrayToDict,
-  daffCategoryFilterRangePairArrayToDict,
   daffCategoryFilterArrayToDict,
   daffCategoryFiltersToRequests,
+  DaffCategoryFilterRequest,
+  DaffToggleCategoryFilterRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -46,12 +41,9 @@ import {
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
-  DaffCategoryFilterRequestEqualFactory,
-  DaffCategoryFilterEqualFactory,
-  DaffCategoryFilterRangeNumericFactory,
-  DaffCategoryFilterEqualOptionFactory,
-  DaffCategoryFilterRangeNumericPairFactory,
-  DaffCategoryFilterToggleRequestEqualFactory,
+  DaffCategoryFilterFactory,
+  DaffCategoryFilterRequestFactory,
+  DaffCategoryFilterToggleRequestFactory,
 } from '@daffodil/category/testing';
 import {
   DaffInheritableError,
@@ -72,51 +64,47 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-
-
 describe('DaffCategoryPageFilterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageFilterEffects<DaffCategory, DaffProduct>;
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let facade: MockDaffCategoryFacade;
-  let driverGetSpy: jasmine.Spy;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let productFactory: DaffProductFactory;
-  let equalFilterFactory: DaffCategoryFilterEqualFactory;
-  let equalOptionFactory: DaffCategoryFilterEqualOptionFactory;
-  let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
-  let rangePairFactory: DaffCategoryFilterRangeNumericPairFactory;
-  let equalFilterRequestFactory: DaffCategoryFilterRequestEqualFactory;
-  let equalFilterToggleRequestFactory: DaffCategoryFilterToggleRequestEqualFactory;
+  let filterFactory: DaffCategoryFilterFactory;
+  let filterRequestFactory: DaffCategoryFilterRequestFactory;
+  let filterToggleRequestFactory: DaffCategoryFilterToggleRequestFactory;
 
-  let categoryLoadSuccessAction: DaffCategoryPageLoadSuccess<DaffCategory, DaffProduct>;
-  let productGridLoadSuccessAction: DaffProductGridLoadSuccess<DaffProduct>;
-  let categoryPageLoadFailureAction: DaffCategoryPageLoadFailure;
-
-  let stubCategory: DaffCategory;
-  let stubCategoryPageMetadata: DaffCategoryPageMetadata;
-  let stubProducts: DaffProduct[];
-  let stubCategoryResponse: DaffGetCategoryResponse;
-  let currentEqualFilter: DaffCategoryEqualFilter;
-  let currentAppliedEqualFilterOption: DaffCategoryFilterEqualOption;
-  let currentUnappliedEqualFilterOption: DaffCategoryFilterEqualOption;
-  let currentRangeFilter: DaffCategoryFilterRangeNumeric;
-  let currentRangeFilterPair: DaffCategoryFilterRangePair<number>;
-  let equalFilterRequest: DaffCategoryFilterEqualRequest;
-  let equalFilterToggleRequest: DaffToggleCategoryFilterEqualRequest;
-  let error: DaffError;
-
-  const testDriverSuccess = () => {
+  const testDriverSuccess = (cb: () => Action) => {
     describe('and the driver call succeeds', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(stubCategoryResponse));
-      });
+      it('should call get category with filter requests merged with state', () => {
+        const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
+          filters: daffCategoryFilterArrayToDict(filterFactory.createMany(3)),
+        });
+        const stubCategory = categoryFactory.create({
+          id: stubCategoryPageMetadata.id,
+        });
+        const stubProducts = productFactory.createMany(3);
+        const response: DaffGetCategoryResponse = {
+          category: stubCategory,
+          products: stubProducts,
+          categoryPageMetadata: stubCategoryPageMetadata,
+        };
 
-      it('should call get category with filter requests transformed from state', () => {
-        const expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
+        const spy = spyOn(daffCategoryDriver, 'get');
+        spy.and.returnValue(of(response));
+
+        facade.metadata$.next(stubCategoryPageMetadata);
+
+        actions$ = hot('--a', { a: cb() });
+
+        const expected = cold('--(ab)', {
+          a: new DaffProductGridLoadSuccess(response.products),
+          b: new DaffCategoryPageLoadSuccess(response),
+        });
+        expect(effects.updateFilters$(0, getTestScheduler())).toBeObservable(expected);
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
           ...stubCategoryPageMetadata,
           filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
@@ -125,15 +113,23 @@ describe('DaffCategoryPageFilterEffects', () => {
     });
   };
 
-  const testDriverFailure = () => {
+  const testDriverFailure = (cb: () => Action) => {
     describe('and the driver call fails', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(hot('#', {}, error));
-      });
-
       it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        const expected = cold('--a', { a: categoryPageLoadFailureAction });
-        expect(effects.updateFilters$()).toBeObservable(expected);
+        const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
+          filters: daffCategoryFilterArrayToDict(filterFactory.createMany(3)),
+        });
+
+        const error = new MockError();
+        const spy = spyOn(daffCategoryDriver, 'get');
+        spy.and.returnValue(hot('#', {}, error));
+
+        facade.metadata$.next(stubCategoryPageMetadata);
+
+        actions$ = hot('--a', { a: cb() });
+
+        const expected = cold('--a', { a: new DaffCategoryPageLoadFailure(daffTransformErrorToStateError(error)) });
+        expect(effects.updateFilters$(0, getTestScheduler())).toBeObservable(expected);
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
           ...stubCategoryPageMetadata,
           filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
@@ -143,7 +139,6 @@ describe('DaffCategoryPageFilterEffects', () => {
   };
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
       imports: [
         DaffCategoryTestingDriverModule.forRoot(),
@@ -162,56 +157,9 @@ describe('DaffCategoryPageFilterEffects', () => {
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
-    equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
-    equalOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
-    rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
-    rangePairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
-    equalFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
-    equalFilterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
-
-    currentAppliedEqualFilterOption = equalOptionFactory.create({
-      applied: true,
-    });
-    currentUnappliedEqualFilterOption = equalOptionFactory.create({
-      applied: false,
-    });
-    currentEqualFilter = equalFilterFactory.create({
-      options: daffCategoryFilterEqualOptionArrayToDict([
-        currentAppliedEqualFilterOption,
-        currentUnappliedEqualFilterOption,
-      ]),
-    });
-    equalFilterRequest = equalFilterRequestFactory.create();
-    equalFilterToggleRequest = equalFilterToggleRequestFactory.create();
-
-    currentRangeFilterPair = rangePairFactory.create();
-    currentRangeFilter = rangeFilterFactory.create({
-      options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
-    });
-
-    stubCategoryPageMetadata = categoryPageMetadataFactory.create({
-      filters: daffCategoryFilterArrayToDict([
-        currentEqualFilter,
-        currentRangeFilter,
-      ]),
-    });
-    stubCategory = categoryFactory.create({
-      id: stubCategoryPageMetadata.id,
-    });
-    stubProducts = productFactory.createMany(3);
-    stubCategoryResponse = {
-      category: stubCategory,
-      categoryPageMetadata: stubCategoryPageMetadata,
-      products: stubProducts,
-    };
-    error = new MockError();
-    driverGetSpy = spyOn(daffCategoryDriver, 'get');
-
-    categoryLoadSuccessAction = new DaffCategoryPageLoadSuccess(stubCategoryResponse);
-    productGridLoadSuccessAction = new DaffProductGridLoadSuccess(stubProducts);
-    categoryPageLoadFailureAction = new DaffCategoryPageLoadFailure(daffTransformErrorToStateError(error));
-
-    facade.metadata$.next(stubCategoryPageMetadata);
+    filterFactory = TestBed.inject(DaffCategoryFilterFactory);
+    filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestFactory);
+    filterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestFactory);
   });
 
   it('should be created', () => {
@@ -219,62 +167,85 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when ChangeCategoryFiltersAction is triggered', () => {
+    let filterRequest: DaffCategoryFilterRequest;
+    let action: Action;
+
     beforeEach(() => {
-      const changeCategoryFiltersAction = new DaffCategoryPageChangeFilters([equalFilterRequest]);
-      actions$ = hot('--a', { a: changeCategoryFiltersAction });
+      filterRequest = filterRequestFactory.create();
+      action = new DaffCategoryPageChangeFilters([filterRequest]);
     });
 
-    testDriverSuccess();
-    testDriverFailure();
+    testDriverSuccess(() => action);
+    testDriverFailure(() => action);
   });
 
   describe('when CategoryPageReplaceFiltersAction is triggered', () => {
+    let filterRequest: DaffCategoryFilterRequest;
+    let action: Action;
+
     beforeEach(() => {
-      const replaceCategoryFiltersAction = new DaffCategoryPageReplaceFilters([equalFilterRequest]);
-      actions$ = hot('--a', { a: replaceCategoryFiltersAction });
+      filterRequest = filterRequestFactory.create();
+      action = new DaffCategoryPageReplaceFilters([filterRequest]);
     });
 
-    testDriverSuccess();
-    testDriverFailure();
+    testDriverSuccess(() => action);
+    testDriverFailure(() => action);
   });
 
   describe('when CategoryPageApplyFiltersAction is triggered', () => {
+    let filterRequest: DaffCategoryFilterRequest;
+    let action: Action;
+
+
     beforeEach(() => {
-      const applyCategoryFiltersAction = new DaffCategoryPageApplyFilters([equalFilterRequest]);
-      actions$ = hot('--a', { a: applyCategoryFiltersAction });
+      filterRequest = filterRequestFactory.create();
+      action = new DaffCategoryPageApplyFilters([filterRequest]);
     });
 
-    testDriverSuccess();
-    testDriverFailure();
+    testDriverSuccess(() => action);
+    testDriverFailure(() => action);
   });
 
   describe('when CategoryPageClearFiltersAction is triggered', () => {
+    let filterRequest: DaffCategoryFilterRequest;
+    let action: Action;
+
+
     beforeEach(() => {
-      const clearCategoryFiltersAction = new DaffCategoryPageClearFilters();
-      actions$ = hot('--a', { a: clearCategoryFiltersAction });
+      filterRequest = filterRequestFactory.create();
+      action = new DaffCategoryPageClearFilters();
     });
 
-    testDriverSuccess();
-    testDriverFailure();
+    testDriverSuccess(() => action);
+    testDriverFailure(() => action);
   });
 
   describe('when CategoryPageRemoveFiltersAction is triggered', () => {
+    let filterRequest: DaffCategoryFilterRequest;
+    let action: Action;
+
+
     beforeEach(() => {
-      const removeCategoryFiltersAction = new DaffCategoryPageRemoveFilters([equalFilterRequest]);
-      actions$ = hot('--a', { a: removeCategoryFiltersAction });
+      filterRequest = filterRequestFactory.create();
+      action = new DaffCategoryPageRemoveFilters([filterRequest]);
     });
 
-    testDriverSuccess();
-    testDriverFailure();
+    testDriverSuccess(() => action);
+    testDriverFailure(() => action);
   });
 
   describe('when CategoryPageToggleFilterAction is triggered', () => {
+    let toggleRequest: DaffToggleCategoryFilterRequest;
+    let action: Action;
+
     beforeEach(() => {
-      const toggleCategoryFiltersAction = new DaffCategoryPageToggleFilter(equalFilterToggleRequest);
-      actions$ = hot('--a', { a: toggleCategoryFiltersAction });
+      toggleRequest = filterToggleRequestFactory.create();
+      action = new DaffCategoryPageToggleFilter(toggleRequest);
     });
 
-    testDriverSuccess();
-    testDriverFailure();
+    describe('driver behavior', () => {
+      testDriverSuccess(() => action);
+      testDriverFailure(() => action);
+    });
   });
 });
