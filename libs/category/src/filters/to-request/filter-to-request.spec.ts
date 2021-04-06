@@ -76,8 +76,8 @@ describe('@daffodil/category | daffCategoryFilterToRequest', () => {
 
       it('should build the request from that applied option', () => {
         expect(result.name).toEqual(appliedRangeFilter.name);
-        expect(result.value.min).toEqual(appliedRangeFilter.options[0].min);
-        expect(result.value.max).toEqual(appliedRangeFilter.options[0].max);
+        expect(result.value.min).toEqual(appliedRangeFilter.options[0].min.value);
+        expect(result.value.max).toEqual(appliedRangeFilter.options[0].max.value);
       });
     });
 

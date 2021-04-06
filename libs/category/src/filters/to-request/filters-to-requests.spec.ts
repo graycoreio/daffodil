@@ -85,8 +85,8 @@ describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
       type: DaffCategoryFilterType.RangeNumeric,
       name: appliedRangeFilter.name,
       value: {
-        min: appliedRangeFilter.options[0].min,
-        max: appliedRangeFilter.options[0].max,
+        min: appliedRangeFilter.options[0].min.value,
+        max: appliedRangeFilter.options[0].max.value,
       },
     };
     unappliedRangeFilterRequest = {
