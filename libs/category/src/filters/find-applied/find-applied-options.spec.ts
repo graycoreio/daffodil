@@ -1,28 +1,28 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryEqualFilterFactory,
   DaffCategoryFilterEqualOptionFactory,
-  DaffCategoryRangeFilterFactory,
-  DaffCategoryFilterRangePairFactory,
+  DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRangeNumericPairFactory,
 } from '@daffodil/category/testing';
 
 import {
-  DaffCategoryRangeFilter,
   DaffCategoryEqualFilter,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterOption,
+  DaffCategoryFilterRangeNumeric,
 } from '../../models/public_api';
 import { daffCategoryFindAppliedFilterOptions } from './find-applied-options';
 
 describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
-  let equalFilterFactory: DaffCategoryEqualFilterFactory;
+  let equalFilterFactory: DaffCategoryFilterEqualFactory;
   let equalFilterOptionFactory: DaffCategoryFilterEqualOptionFactory;
-  let rangeFilterFactory: DaffCategoryRangeFilterFactory;
-  let rangeFilterPairFactory: DaffCategoryFilterRangePairFactory;
+  let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
+  let rangeFilterPairFactory: DaffCategoryFilterRangeNumericPairFactory;
 
-  let appliedRangeFilter: DaffCategoryRangeFilter;
-  let unappliedRangeFilter: DaffCategoryRangeFilter;
+  let appliedRangeFilter: DaffCategoryFilterRangeNumeric;
+  let unappliedRangeFilter: DaffCategoryFilterRangeNumeric;
   let appliedEqualFilter: DaffCategoryEqualFilter;
   let appliedEqualFilterOption0: DaffCategoryFilterEqualOption;
   let appliedEqualFilterOption1: DaffCategoryFilterEqualOption;
@@ -30,10 +30,10 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
   let unappliedEqualFilterOption: DaffCategoryFilterEqualOption;
 
   beforeEach(() => {
-    equalFilterFactory = TestBed.inject(DaffCategoryEqualFilterFactory);
+    equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
     equalFilterOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
-    rangeFilterFactory = TestBed.inject(DaffCategoryRangeFilterFactory);
-    rangeFilterPairFactory = TestBed.inject(DaffCategoryFilterRangePairFactory);
+    rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+    rangeFilterPairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
 
     appliedRangeFilter = rangeFilterFactory.create({
       options: [
