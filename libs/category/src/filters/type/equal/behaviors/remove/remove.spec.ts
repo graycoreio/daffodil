@@ -1,35 +1,35 @@
-import { DaffCategoryFilterRequestEqualFactory } from "@daffodil/category/testing";
-import { DaffCategoryEqualFilter, DaffCategoryFilterEqualRequest, DaffCategoryFilterType } from "../../../../../models/public_api";
+import { TestBed } from "@angular/core/testing";
+import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRequestEqualFactory } from "@daffodil/category/testing";
+import { DaffCategoryEqualFilter, DaffCategoryFilterEqualRequest } from "../../../../../models/public_api";
 import { daffRemoveFilterEqual } from "./remove";
 
 describe('@daffodil/category | filters | type | equal | behaviors | remove', () => {
-
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
 	let filter: DaffCategoryEqualFilter;
-
+	
 	beforeEach(() => {
-		filter = {
-      type: DaffCategoryFilterType.Equal,
-      label: 'Color',
+		TestBed.configureTestingModule({});
+	
+		categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+		filter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
 				red: {
           applied: true,
           value: 'red',
-          label: 'Red',
-          count: 2,
         },
         blue: {
           applied: true,
           value: 'blue',
-          label: 'Blue',
-          count: 2,
         },
 			},
-    };
+    });
 	});
 
 	it('should unapply an option that equals the request value', () => {
-		const request: DaffCategoryFilterEqualRequest = new DaffCategoryFilterRequestEqualFactory().create({
+		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
     });
@@ -48,7 +48,7 @@ describe('@daffodil/category | filters | type | equal | behaviors | remove', () 
   });
 
   it('should not change the filter if the request value is not on the filter', () => {
-		const request: DaffCategoryFilterEqualRequest = new DaffCategoryFilterRequestEqualFactory().create({
+		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'not color',
       value: ['clear'],
     });
@@ -57,7 +57,7 @@ describe('@daffodil/category | filters | type | equal | behaviors | remove', () 
   });
 
   it('should unapply multiple options if they equal the request values', () => {
-    const request: DaffCategoryFilterEqualRequest = new DaffCategoryFilterRequestEqualFactory().create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red', 'blue'],
     });
@@ -82,7 +82,7 @@ describe('@daffodil/category | filters | type | equal | behaviors | remove', () 
 
 	it('should not change options of the filter that are already unapplied', () => {
 		filter.options['red'].applied = false;
-		const request: DaffCategoryFilterEqualRequest = new DaffCategoryFilterRequestEqualFactory().create({
+		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
     });

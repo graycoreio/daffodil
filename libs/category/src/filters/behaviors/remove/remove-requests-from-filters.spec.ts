@@ -1,16 +1,26 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRequestEqualFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
 import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterEqualRequest } from "../../../models/public_api";
 import { daffRemoveRequestsFromFilters } from "./remove-requests-from-filters";
 
 describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestsFromFilters', () => {
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
+
+	beforeEach(() => {
+		 TestBed.configureTestingModule({});
+	
+		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		 categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+	});
 
 	let colorFilter: DaffCategoryEqualFilter;
 	let sizeFilter: DaffCategoryEqualFilter;
 	let filters: Dict<DaffCategoryEqualFilter>;
 
 	beforeEach(() => {
-		colorFilter = new DaffCategoryFilterEqualFactory().create({
+		colorFilter = categoryFilterEqualFactory.create({
 			name: 'color',
 			options: {
 				red: {
@@ -23,7 +33,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
 				},
 			},
 		});
-		sizeFilter = new DaffCategoryFilterEqualFactory().create({
+		sizeFilter = categoryFilterEqualFactory.create({
 			name: 'size',
 			options: {
 				small: {
@@ -50,7 +60,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
 
   it('should throw an error if there are no requests that match', () => {
 		const requests: DaffCategoryFilterEqualRequest[] = [
-			new DaffCategoryFilterRequestEqualFactory().create({
+			categoryFilterRequestEqualFactory.create({
 				name: 'someFilter',
 				value: ['someFilter value'],
 			})
@@ -63,7 +73,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
 
   it('should remove a filter if there are requests that match', () => {
 		const requests: DaffCategoryFilterEqualRequest[] = [
-			new DaffCategoryFilterRequestEqualFactory().create({
+			categoryFilterRequestEqualFactory.create({
 				name: 'color',
 				value: ['red'],
 			})
@@ -87,11 +97,11 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
 
   it('should remove multiple filters if there are multiple requests that match', () => {
 		const requests: DaffCategoryFilterEqualRequest[] = [
-			new DaffCategoryFilterRequestEqualFactory().create({
+			categoryFilterRequestEqualFactory.create({
 				name: 'color',
 				value: ['red'],
 			}),
-			new DaffCategoryFilterRequestEqualFactory().create({
+			categoryFilterRequestEqualFactory.create({
 				name: 'size',
 				value: ['small'],
 			})

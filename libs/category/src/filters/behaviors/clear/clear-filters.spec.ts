@@ -1,3 +1,4 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
 
@@ -5,8 +6,18 @@ import { DaffCategoryFilter } from "../../../models/public_api";
 import { daffClearFilters } from "./clear-filters";
 
 describe('@daffodil/category | filters | behaviors | clear | daffClearFilters', () => {
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+
+	beforeEach(() => {
+		 TestBed.configureTestingModule({});
+	
+		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+	});
+
 	it('should clear all filters provided', () => {
-		let colorFilter = new DaffCategoryFilterEqualFactory().create({
+		let colorFilter = categoryFilterEqualFactory.create({
 			name: 'color',
 			options: {
 				red: {
@@ -19,7 +30,7 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilters', 
 				},
 			},
 		});
-		let priceFilter = new DaffCategoryFilterRangeNumericFactory().create({
+		let priceFilter = categoryFilterRangeNumericFactory.create({
 			name: 'price',
 			min: 0,
 			max: 200,

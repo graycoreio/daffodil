@@ -1,3 +1,4 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRequestEqualFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
 
@@ -5,15 +6,20 @@ import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterEqualReq
 import { daffApplyRequestsToFilters } from "./apply-requests-to-filters";
 
 describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsToFilters', () => {
-
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
 	let colorFilter: DaffCategoryEqualFilter;
 	let sizeFilter: DaffCategoryEqualFilter;
 	let filters: Dict<DaffCategoryEqualFilter>;
 	let colorRequest: DaffCategoryFilterEqualRequest;
 	let sizeRequest: DaffCategoryFilterEqualRequest;
-
+	
 	beforeEach(() => {
-		colorFilter = new DaffCategoryFilterEqualFactory().create({
+		TestBed.configureTestingModule({});
+	
+		categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+		colorFilter = categoryFilterEqualFactory.create({
 			name: 'color',
 			options: {
 				red: {
@@ -26,7 +32,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
 				},
 			},
 		});
-		sizeFilter = new DaffCategoryFilterEqualFactory().create({
+		sizeFilter = categoryFilterEqualFactory.create({
 			name: 'size',
 			options: {
 				small: {
@@ -43,11 +49,11 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
 			'color': colorFilter,
 			'size': sizeFilter,
     };
-		colorRequest = new DaffCategoryFilterRequestEqualFactory().create({
+		colorRequest = categoryFilterRequestEqualFactory.create({
 			name: 'color',
 			value: ['red'],
 		})
-		sizeRequest = new DaffCategoryFilterRequestEqualFactory().create({
+		sizeRequest = categoryFilterRequestEqualFactory.create({
 			name: 'size',
 			value: ['small'],
 		})
@@ -61,7 +67,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
 
   it('should throw an error if there are no requests that match', () => {
 		const requests: DaffCategoryFilterEqualRequest[] = [
-			new DaffCategoryFilterRequestEqualFactory().create({
+			categoryFilterRequestEqualFactory.create({
 				name: 'someFilter',
 				value: ['someFilter value'],
 			})

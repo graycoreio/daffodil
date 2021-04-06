@@ -1,16 +1,22 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterToggleRequestEqualFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
-import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterType, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
+import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
 import { daffToggleRequestsOnFilters } from "./toggle-requests-on-filters";
 
 describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequestsOnFilters', () => {
-
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
 	let colorFilter: DaffCategoryEqualFilter;
 	let sizeFilter: DaffCategoryEqualFilter;
 	let filters: Dict<DaffCategoryFilter>;
-
+	
 	beforeEach(() => {
-		colorFilter = new DaffCategoryFilterEqualFactory().create({
+		TestBed.configureTestingModule({});
+	
+		categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		categoryFilterToggleRequestEqualFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
+		colorFilter = categoryFilterEqualFactory.create({
 			name: 'color',
 			options: {
 				red: {
@@ -23,7 +29,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
 				},
 			},
 		});
-		sizeFilter = new DaffCategoryFilterEqualFactory().create({
+		sizeFilter = categoryFilterEqualFactory.create({
 			name: 'size',
 			options: {
 				small: {
@@ -50,7 +56,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
 
   it('should throw an error if there are no requests that match', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [
-			new DaffCategoryFilterToggleRequestEqualFactory().create({
+			categoryFilterToggleRequestEqualFactory.create({
 				name: 'someFilter',
 				value: 'someFilter value',
 			}),
@@ -63,7 +69,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
 
   it('should toggle a filter if there is a request that matches', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [
-			new DaffCategoryFilterToggleRequestEqualFactory().create({
+			categoryFilterToggleRequestEqualFactory.create({
 				name: 'color',
 				value: 'red',
 			}),
@@ -87,11 +93,11 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
 
   it('should toggle multiple filters if there are multiple requests that match', () => {
 		const requests: DaffToggleCategoryFilterRequest[] = [
-			new DaffCategoryFilterToggleRequestEqualFactory().create({
+			categoryFilterToggleRequestEqualFactory.create({
 				name: 'color',
 				value: 'red',
 			}),
-			new DaffCategoryFilterToggleRequestEqualFactory().create({
+			categoryFilterToggleRequestEqualFactory.create({
 				name: 'size',
 				value: 'small',
 			})

@@ -1,16 +1,27 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestEqualFactory, DaffCategoryFilterRequestRangeNumericFactory } from "@daffodil/category/testing";
-import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffCategoryFilterType } from "../../../models/public_api";
+import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest } from "../../../models/public_api";
 import { DaffCategoryFilterRequestNameMismatch } from "../../errors/request-name-mismatch.error";
 import { DaffCategoryFilterRequestTypeMismatch } from "../../errors/request-type-mismatch.error";
 import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.error";
 import { daffRemoveFilter } from "./remove-filter";
 
 describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter', () => {
-
+	
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+	let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
+	let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
 	let colorFilter: DaffCategoryEqualFilter;
-
+	
 	beforeEach(() => {
-		colorFilter = new DaffCategoryFilterEqualFactory().create({
+		TestBed.configureTestingModule({});
+	
+		categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+		categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+		categoryFilterRequestRangeNumericFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
+		colorFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
 				red: {
@@ -26,11 +37,10 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
 	});
 
   it('should remove an equal request', () => {
-		const request: DaffCategoryFilterEqualRequest = {
-      type: DaffCategoryFilterType.Equal,
+		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
-    };
+    });
 		const expected: DaffCategoryEqualFilter = {
 			...colorFilter,
 			options: {
@@ -46,7 +56,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
   });
 		
   it('should remove a range request', () => {
-		const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
+		const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -54,7 +64,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
       },
     });
 
-    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -82,7 +92,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
   });
 	
   it('should throw an error if a request has a different name than the filter', () => {
-		const request: DaffCategoryFilterEqualRequest = new DaffCategoryFilterRequestEqualFactory().create({
+		const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'not color',
       value: ['clear'],
     });
@@ -93,7 +103,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
 	});
 
 	it('should throw an error if a request has a different type than the filter', () => {
-    const request: DaffCategoryFilterRangeRequest = new DaffCategoryFilterRequestRangeNumericFactory().create({
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'color',
       value: {
         min: 0,

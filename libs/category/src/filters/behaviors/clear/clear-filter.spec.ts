@@ -1,11 +1,22 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory } from "@daffodil/category/testing";
 import { DaffCategoryEqualFilter, DaffCategoryFilter } from "../../../models/public_api";
 import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.error";
 import { daffClearFilter } from "./clear-filter";
 
 describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', () => {
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+
+	beforeEach(() => {
+		 TestBed.configureTestingModule({});
+	
+		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+	});
+
   it('should clear a given range filter', () => {
-    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -32,7 +43,7 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
   });
 
   it('should clear a given equal filter', () => {
-    const filter: DaffCategoryEqualFilter = new DaffCategoryFilterEqualFactory().create({
+    const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
 				red: {

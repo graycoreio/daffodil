@@ -1,15 +1,22 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterToggleRequestEqualFactory } from "@daffodil/category/testing";
 import { Dict } from "@daffodil/core";
 import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffCategoryFilterType, DaffToggleCategoryFilterEqualRequest } from "../../../models/public_api";
 import { daffToggleRequestOnFilters } from "./toggle-request-on-filters";
 
 describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestToFilters', () => {
-
+	
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
 	let colorFilter: DaffCategoryEqualFilter;
 	let filters: Dict<DaffCategoryEqualFilter>;
-
+	
 	beforeEach(() => {
-		colorFilter = new DaffCategoryFilterEqualFactory().create({
+		TestBed.configureTestingModule({});
+	
+		categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		categoryFilterToggleRequestEqualFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
+		colorFilter = categoryFilterEqualFactory.create({
 			name: 'color',
 			options: {
 				red: {
@@ -28,7 +35,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestTo
 	});
 
   it('should apply a toggle request', () => {
-		const request: DaffToggleCategoryFilterEqualRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
+		const request: DaffToggleCategoryFilterEqualRequest = categoryFilterToggleRequestEqualFactory.create({
       type: DaffCategoryFilterType.Equal,
       name: 'color',
       value: 'red',
@@ -51,7 +58,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestTo
   });
 
   it('should throw an error if the request does not match a known filter name', () => {
-		const request: DaffToggleCategoryFilterEqualRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
+		const request: DaffToggleCategoryFilterEqualRequest = categoryFilterToggleRequestEqualFactory.create({
       name: 'size',
     });
 

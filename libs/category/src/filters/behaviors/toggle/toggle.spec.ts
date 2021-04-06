@@ -1,3 +1,4 @@
+import { TestBed } from "@angular/core/testing";
 import { DaffCategoryFilterEqualFactory, DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterToggleRequestEqualFactory, DaffCategoryFilterToggleRequestRangeNumericFactory } from "@daffodil/category/testing";
 import { DaffCategoryEqualFilter, DaffCategoryFilter, DaffToggleCategoryFilterRequest } from "../../../models/public_api";
 import { DaffCategoryFilterRequestNameMismatch } from "../../errors/request-name-mismatch.error";
@@ -6,10 +7,25 @@ import { DaffCategoryUnknownFilterType } from "../../errors/unknown-filter-type.
 import { daffToggleFilter } from "./toggle";
 
 describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
+	
+	let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+	let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
+	let categoryFilterToggleRequestRangeNumericFactory: DaffCategoryFilterToggleRequestRangeNumericFactory;
+
+	beforeEach(() => {
+		 TestBed.configureTestingModule({});
+	
+		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+		 categoryFilterToggleRequestEqualFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
+		 categoryFilterToggleRequestRangeNumericFactory = TestBed.inject(DaffCategoryFilterToggleRequestRangeNumericFactory);
+	});
+
 	let colorFilter: DaffCategoryEqualFilter;
 
 	beforeEach(() => {
-		colorFilter = new DaffCategoryFilterEqualFactory().create({
+		colorFilter = categoryFilterEqualFactory.create({
 			name: 'color',
 			options: {
 				red: {
@@ -25,7 +41,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 	});
 
 	it('should toggle an equal filter request', () => {
-		const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
+		const request: DaffToggleCategoryFilterRequest = categoryFilterToggleRequestEqualFactory.create({
       name: 'color',
       value: 'red',
     });
@@ -44,7 +60,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
   });
 
   it('should toggle a range filter request', () => {
-		const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
+		const request: DaffToggleCategoryFilterRequest = categoryFilterToggleRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -52,7 +68,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
       },
     });
 
-    const filter: DaffCategoryFilter = new DaffCategoryFilterRangeNumericFactory().create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -80,7 +96,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
   });
 
 	it('should throw an error if the filter name and request names do not match', () => {
-		const filter: DaffCategoryEqualFilter = new DaffCategoryFilterEqualFactory().create({
+		const filter: DaffCategoryEqualFilter = categoryFilterEqualFactory.create({
       name: 'not color',
       options: {
 				clear: {
@@ -89,7 +105,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
         },
 			},
     });
-		const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestEqualFactory().create({
+		const request: DaffToggleCategoryFilterRequest = categoryFilterToggleRequestEqualFactory.create({
       name: 'color',
       value: 'clear',
     });
@@ -100,7 +116,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 	});
 
   it('should throw an error if the filter type and request type do not match', () => {
-    const request: DaffToggleCategoryFilterRequest = new DaffCategoryFilterToggleRequestRangeNumericFactory().create({
+    const request: DaffToggleCategoryFilterRequest = categoryFilterToggleRequestRangeNumericFactory.create({
       name: 'color',
       value: {
         min: 0,
