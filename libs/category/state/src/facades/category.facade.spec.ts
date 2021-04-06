@@ -25,6 +25,7 @@ import {
   DaffCategoryPageMetadataFactory,
   DaffCategoryFilterFactory,
 } from '@daffodil/category/testing';
+import { Dict } from '@daffodil/core';
 import {
   DaffState,
   DaffStateError,
@@ -177,8 +178,8 @@ describe('DaffCategoryFacade', () => {
   });
 
   describe('filters$', () => {
-    it('should be an empty array initially', () => {
-      const expected = cold('a', { a: []});
+    it('should be empty initially', () => {
+      const expected = cold('a', { a: {}});
       expect(facade.filters$).toBeObservable(expected);
     });
 
@@ -205,7 +206,7 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the selected category', () => {
-      const expectedFilters: DaffCategoryFilter[] = [];
+      const expectedFilters: Dict<DaffCategoryFilter> = {};
 
       const expected = cold('a', { a: expectedFilters });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
