@@ -20,11 +20,11 @@ export class MockDaffToggleCategoryFilterRangeNumericRequest implements DaffTogg
   providedIn: 'root',
 })
 export class DaffCategoryFilterToggleRequestRangeNumericFactory extends DaffModelFactory<DaffToggleCategoryFilterRangeNumericRequest>{
-  constructor(private option: DaffCategoryFilterRangeNumericRequestOptionFactory){
+  constructor(private option: DaffCategoryFilterRangeNumericRequestOptionFactory) {
     super(MockDaffToggleCategoryFilterRangeNumericRequest);
   }
 
-  create(partial: Partial<DaffToggleCategoryFilterRangeNumericRequest> = {}) {
+  create(partial: Partial<DaffToggleCategoryFilterRangeNumericRequest> = {}): DaffToggleCategoryFilterRangeNumericRequest {
     return {
       ...new this.type(),
       value: this.option.create(),
