@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffToggleCategoryFilterRequest } from '@daffodil/category';
+import { DaffCategoryFilterType } from '@daffodil/category';
 
 import { DaffCategoryFilterToggleRequestFactory } from './toggle-request';
 
@@ -26,9 +27,9 @@ describe('Category | Testing | Factories | DaffCategoryFilterToggleRequestFactor
       result = factory.create();
     });
 
-    it('should return a range numeric toggle-request', () => {
+    it('should return a toggle-request', () => {
       expect(result.value).toBeDefined();
-      expect(typeof result.value).toEqual('number');
+      expect([DaffCategoryFilterType.RangeNumeric, DaffCategoryFilterType.Equal]).toContain(result.type);
     });
   });
 });
