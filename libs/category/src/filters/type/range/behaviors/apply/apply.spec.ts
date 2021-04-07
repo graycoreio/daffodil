@@ -1,5 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestRangeNumericFactory } from '@daffodil/category/testing';
+
+import {
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRequestRangeNumericFactory,
+} from '@daffodil/category/testing';
+
 import {
   DaffCategoryFilterRangeRequest,
   DaffCategoryFilter,
@@ -7,16 +12,16 @@ import {
 import { daffApplyFilterRange } from './apply';
 
 describe('@daffodil/category | filters | type | range | behaviors | apply', () => {
-	
-	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
-	let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
 
-	beforeEach(() => {
+  let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+  let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
+
+  beforeEach(() => {
 		 TestBed.configureTestingModule({});
-	
+
 		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
 		 categoryFilterRequestRangeNumericFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
-	});
+  });
 
   it('should apply the filter, when the currently applied filters are empty', () => {
     const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
@@ -35,7 +40,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
     });
 
     const expected: DaffCategoryFilter = {
-			...filter,
+      ...filter,
       options: {
         '0-20': {
           applied: true,
@@ -48,7 +53,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
             value: 20,
           },
         },
-			},
+      },
     };
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);
@@ -79,7 +84,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
             value: 20,
           },
         },
-			},
+      },
     });
 
     const expected: DaffCategoryFilter = {
@@ -96,7 +101,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
             value: 20,
           },
         },
-			},
+      },
     };
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);
@@ -127,7 +132,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
             value: 20,
           },
         },
-			},
+      },
     });
 
     const expected: DaffCategoryFilter = {
@@ -144,7 +149,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
             value: 40,
           },
         },
-			},
+      },
     };
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);

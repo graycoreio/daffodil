@@ -1,7 +1,5 @@
 import { DaffCategoryEqualFilter } from '../../../../../models/public_api';
-import {
-  DaffCategoryFilterEqualRequest,
-} from '../../../../../models/public_api';
+import { DaffCategoryFilterEqualRequest } from '../../../../../models/public_api';
 
 /**
  * Applies a filter request to a group of equal type filter options .
