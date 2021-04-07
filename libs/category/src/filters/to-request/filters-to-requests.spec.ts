@@ -5,6 +5,7 @@ import {
   DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterRangeNumericPairFactory,
+  DaffCategoryFilterFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
@@ -26,6 +27,7 @@ describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
   let equalFilterOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
   let rangeFilterPairFactory: DaffCategoryFilterRangeNumericPairFactory;
+  let categoryFilterFactory: DaffCategoryFilterFactory;
 
   let filters: DaffCategoryFilter[];
   let filterDict: Dict<DaffCategoryFilter>;
@@ -47,12 +49,11 @@ describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
     equalFilterOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
     rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
     rangeFilterPairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
+    categoryFilterFactory = TestBed.inject(DaffCategoryFilterFactory);
 
     appliedRangeFilter = rangeFilterFactory.create({
       options: [
-        rangeFilterPairFactory.create({
-          applied: true,
-        }),
+        rangeFilterPairFactory.create(),
       ],
     });
     unappliedRangeFilter = rangeFilterFactory.create({
@@ -91,12 +92,12 @@ describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
     };
     unappliedRangeFilterRequest = {
       type: DaffCategoryFilterType.RangeNumeric,
-      name: appliedRangeFilter.name,
+      name: unappliedRangeFilter.name,
       value: null,
     };
     appliedEqualFilterRequest = {
       type: DaffCategoryFilterType.Equal,
-      name: appliedRangeFilter.name,
+      name: appliedEqualFilter.name,
       value: [
         appliedEqualFilterOption0.value,
         appliedEqualFilterOption1.value,
@@ -104,7 +105,7 @@ describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
     };
     unappliedEqualFilterRequest = {
       type: DaffCategoryFilterType.Equal,
-      name: appliedRangeFilter.name,
+      name: unappliedEqualFilter.name,
       value: [
         unappliedEqualFilterOption.value,
       ],
@@ -116,6 +117,11 @@ describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
 
     beforeEach(() => {
       result = daffCategoryFiltersToRequests(filterDict);
+    });
+
+    it('should return no requests if there are no applied options on the filters', () => {
+      result = daffCategoryFiltersToRequests(daffCategoryFilterArrayToDict(categoryFilterFactory.createMany(3)));
+      expect(result.length).toEqual(0);
     });
 
     it('should return requests built from applied options', () => {

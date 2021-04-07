@@ -123,7 +123,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 
     expect(() => {
       daffToggleFilter(request, filter);
-    }).toThrow(new DaffCategoryFilterNotFound('Filter names aren\'t equal'));
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterNotFound);
   });
 
   it('should throw an error if the filter type and request type do not match', () => {
@@ -137,7 +137,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 
     expect(() => {
       daffToggleFilter(request, colorFilter);
-    }).toThrow(new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal'));
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterRequestTypeMismatch);
   });
 
   it('should throw an error if the request filter type is unknown', () => {
@@ -168,6 +168,6 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 
     expect(() => {
       daffToggleFilter(request, filter);
-    }).toThrow(new DaffCategoryUnknownFilterType('Unknown filter type'));
+    }).toThrowMatching((e) => e instanceof DaffCategoryUnknownFilterType);
   });
 });
