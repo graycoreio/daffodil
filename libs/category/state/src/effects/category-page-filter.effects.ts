@@ -11,30 +11,36 @@ import {
   of,
   Observable,
   asyncScheduler,
+  concat,
 } from 'rxjs';
 import { AsyncScheduler } from 'rxjs/internal/scheduler/AsyncScheduler';
 import {
   switchMap,
   catchError,
-  switchMapTo,
   map,
   debounceTime,
-  tap,
+  withLatestFrom,
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
   daffCategoryFiltersToRequests,
-  DaffCategoryPageMetadata,
+  DaffCategoryFilter,
+  daffApplyRequestsToFilters,
+  daffClearFilters,
+  daffRemoveRequestsFromFilters,
+  daffToggleRequestOnFilters,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,
 } from '@daffodil/category/driver';
-import { DaffError } from '@daffodil/core';
+import {
+  DaffError,
+  Dict,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
@@ -42,6 +48,7 @@ import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 import {
   DaffCategoryPageFilterActionTypes,
   DaffCategoryPageFilterActions,
+  DaffCategoryPagePreapplyFilters,
 } from '../actions/category-page-filter.actions';
 import {
   DaffCategoryPageLoadSuccess,
@@ -71,10 +78,11 @@ export class DaffCategoryPageFilterEffects<
    * in a sequence.
    */
   @Effect()
-  updateFilters$: (debounceFrame: number, scheduler: AsyncScheduler) => Observable<
+  updateFilters$: (debounceFrame?: number, scheduler?: AsyncScheduler) => Observable<
     DaffProductGridLoadSuccess
     | DaffCategoryPageLoadSuccess
     | DaffCategoryPageLoadFailure
+    | DaffCategoryPagePreapplyFilters
   > = (debounceFrame = 300, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType<DaffCategoryPageFilterActions>(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
@@ -84,18 +92,46 @@ export class DaffCategoryPageFilterEffects<
       DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction,
     ),
-    switchMapTo(this.facade.metadata$),
-    map((metadata): DaffCategoryRequest => ({
-      ...metadata,
-      filter_requests: daffCategoryFiltersToRequests(metadata.filters),
-    })),
-    debounceTime(debounceFrame, scheduler),
-    switchMap(payload => this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponse<V, W>) => [
-        new DaffProductGridLoadSuccess(resp.products),
-        new DaffCategoryPageLoadSuccess(resp),
-      ]),
-      catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
+    withLatestFrom(this.facade.metadata$),
+    map(([action, metadata]) => {
+      const filters = this.updateFiltersFromAction(action, metadata.filters);
+      return {
+        request: {
+          ...metadata,
+          filter_requests: daffCategoryFiltersToRequests(filters),
+        },
+        filters,
+      };
+    }),
+    switchMap(({ request, filters }) => concat(
+      of(new DaffCategoryPagePreapplyFilters(filters)),
+      of(request).pipe(
+        debounceTime(debounceFrame, scheduler),
+        switchMap(req => this.driver.get(req)),
+        switchMap((resp: DaffGetCategoryResponse<V, W>) => [
+          new DaffProductGridLoadSuccess(resp.products),
+          new DaffCategoryPageLoadSuccess(resp),
+        ]),
+        catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
+      ),
     )),
   );
+
+  private updateFiltersFromAction(action: DaffCategoryPageFilterActions, filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> {
+    switch (action.type) {
+      case DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction:
+      case DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction:
+        return daffApplyRequestsToFilters(action.filters, daffClearFilters(filters));
+      case DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction:
+        return daffApplyRequestsToFilters(action.filters, filters);
+      case DaffCategoryPageFilterActionTypes.CategoryPageClearFiltersAction:
+        return {};
+      case DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction:
+        return daffRemoveRequestsFromFilters(action.filters, filters);
+      case DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction:
+        return daffToggleRequestOnFilters(action.filter, filters);
+      default:
+        return filters;
+    }
+  }
 }
