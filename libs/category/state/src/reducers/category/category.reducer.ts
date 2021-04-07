@@ -93,60 +93,25 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         },
       };
 
+    case DaffCategoryPageFilterActionTypes.CategoryPagePreapplyFiltersAction:
+      return {
+        ...state,
+        categoryPageMetadata: {
+          ...state.categoryPageMetadata,
+          filters: action.filters,
+        },
+      };
+
     case DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction:
     case DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction:
-      return {
-        ...state,
-        productsLoading: true,
-        daffState: DaffState.Mutating,
-        categoryPageMetadata: {
-          ...state.categoryPageMetadata,
-          filters: daffApplyRequestsToFilters(action.filters, daffClearFilters(state.categoryPageMetadata.filters)),
-        },
-      };
-
     case DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction:
-      return {
-        ...state,
-        productsLoading: true,
-        daffState: DaffState.Mutating,
-        categoryPageMetadata: {
-          ...state.categoryPageMetadata,
-          filters: daffApplyRequestsToFilters(action.filters, state.categoryPageMetadata.filters),
-        },
-      };
-
     case DaffCategoryPageFilterActionTypes.CategoryPageClearFiltersAction:
-      return {
-        ...state,
-        productsLoading: true,
-        daffState: DaffState.Mutating,
-        categoryPageMetadata: {
-          ...state.categoryPageMetadata,
-          filters: {},
-        },
-      };
-
     case DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction:
-      return {
-        ...state,
-        productsLoading: true,
-        daffState: DaffState.Mutating,
-        categoryPageMetadata: {
-          ...state.categoryPageMetadata,
-          filters: daffRemoveRequestsFromFilters(action.filters, state.categoryPageMetadata.filters),
-        },
-      };
-
     case DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction:
       return {
         ...state,
         productsLoading: true,
         daffState: DaffState.Mutating,
-        categoryPageMetadata: {
-          ...state.categoryPageMetadata,
-          filters: daffToggleRequestOnFilters(action.filter, state.categoryPageMetadata.filters),
-        },
       };
 
     case DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction:
