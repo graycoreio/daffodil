@@ -2,7 +2,7 @@ import { Dict } from '@daffodil/core';
 
 import {
   DaffCategoryFilter,
-	DaffToggleCategoryFilterRequest,
+  DaffToggleCategoryFilterRequest,
 } from '../../../models/public_api';
 import { daffToggleFilter } from './toggle';
 

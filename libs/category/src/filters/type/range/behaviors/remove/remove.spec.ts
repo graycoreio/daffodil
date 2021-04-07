@@ -1,19 +1,28 @@
-import { TestBed } from "@angular/core/testing";
-import { DaffCategoryFilterRangeNumericFactory, DaffCategoryFilterRequestRangeNumericFactory } from "@daffodil/category/testing";
-import { DaffCategoryFilter, DaffCategoryFilterRangeRequest, DaffCategoryFilterType } from "libs/category/src/models/public_api";
-import { daffRemoveFilterRange } from "./remove";
+import { TestBed } from '@angular/core/testing';
+import {
+  DaffCategoryFilter,
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterType,
+} from 'libs/category/src/models/public_api';
+
+import {
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRequestRangeNumericFactory,
+} from '@daffodil/category/testing';
+
+import { daffRemoveFilterRange } from './remove';
 
 describe('@daffodil/category | filters | type | range | behaviors | remove', () => {
-	
-	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
-	let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
 
-	beforeEach(() => {
+  let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+  let categoryFilterRequestRangeNumericFactory: DaffCategoryFilterRequestRangeNumericFactory;
+
+  beforeEach(() => {
 		 TestBed.configureTestingModule({});
-	
+
 		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
 		 categoryFilterRequestRangeNumericFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
-	});
+  });
 
   it('should remove the filter, when the filter option is the same as the request value', () => {
     const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
@@ -40,11 +49,11 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
             value: 20,
           },
         },
-			},
+      },
     });
 
     const expected: DaffCategoryFilter = {
-			...filter,
+      ...filter,
       options: {},
     };
 
@@ -76,7 +85,7 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
             value: 20,
           },
         },
-			},
+      },
     });
 
     expect(daffRemoveFilterRange(request, filter)).toEqual(filter);

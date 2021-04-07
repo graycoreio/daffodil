@@ -1,20 +1,22 @@
-import { TestBed } from "@angular/core/testing";
-import { DaffCategoryFilterRangeNumericFactory } from "@daffodil/category/testing";
-import { DaffCategoryFilter } from "../../../../../models/public_api";
-import { daffClearFilterRange } from "./clear";
+import { TestBed } from '@angular/core/testing';
+
+import { DaffCategoryFilterRangeNumericFactory } from '@daffodil/category/testing';
+
+import { DaffCategoryFilter } from '../../../../../models/public_api';
+import { daffClearFilterRange } from './clear';
 
 describe('@daffodil/category | filters | type | range | behaviors | clear', () => {
-	
-	let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
 
-	beforeEach(() => {
+  let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
+
+  beforeEach(() => {
 		 TestBed.configureTestingModule({});
-	
+
 		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
-	});
-	
+  });
+
   it('should remove any currently applied filter options.', () => {
-		const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 20,
@@ -30,24 +32,24 @@ describe('@daffodil/category | filters | type | range | behaviors | clear', () =
             value: 20,
           },
         },
-			},
+      },
     });
-		const expected: DaffCategoryFilter = {
-			...filter,
-			options: {},
+    const expected: DaffCategoryFilter = {
+      ...filter,
+      options: {},
     };
-		
-		expect(daffClearFilterRange(filter)).toEqual(expected);
+
+    expect(daffClearFilterRange(filter)).toEqual(expected);
   });
 
   it('should do nothing if there are no options currently applied', () => {
-		const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 20,
       options: {},
     });
 
-		expect(daffClearFilterRange(filter)).toEqual(filter);
+    expect(daffClearFilterRange(filter)).toEqual(filter);
   });
 });

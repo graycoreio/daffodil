@@ -1,7 +1,5 @@
 import { DaffCategoryEqualFilter } from '../../../../../models/public_api';
-import {
-  DaffToggleCategoryFilterEqualRequest,
-} from '../../../../../models/public_api';
+import { DaffToggleCategoryFilterEqualRequest } from '../../../../../models/public_api';
 
 /**
  * Toggles an equal type filter option.
