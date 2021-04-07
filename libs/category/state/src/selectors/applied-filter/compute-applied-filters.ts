@@ -1,8 +1,9 @@
 import { DaffCategoryFilter } from '@daffodil/category';
+import { DaffCategoryFilterBase } from '@daffodil/category';
 import { Dict } from '@daffodil/core';
 
-export const computeAppliedFilters = (filters: Dict<DaffCategoryFilter>) => {
-  const appliedFilters = {};
+export const computeAppliedFilters = (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> => {
+  const appliedFilters: Dict<DaffCategoryFilterBase> = {};
 
   /**
    * Recreate the filter dictionary only with those options that are already applied.
@@ -14,7 +15,7 @@ export const computeAppliedFilters = (filters: Dict<DaffCategoryFilter>) => {
           if(filters[key].options[optionKey].applied === true) {
             //Initialize the applied filters.
             if(!appliedFilters[key]){
-              appliedFilters[key] = {};
+              appliedFilters[key] = <DaffCategoryFilterBase>{ options: {}};
             }
 
             //Set the applied filter options.
@@ -36,5 +37,5 @@ export const computeAppliedFilters = (filters: Dict<DaffCategoryFilter>) => {
       };
     }
   }
-  return appliedFilters;
+  return <Dict<DaffCategoryFilter>>appliedFilters;
 };

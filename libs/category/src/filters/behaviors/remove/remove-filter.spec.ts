@@ -111,7 +111,8 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
 
     expect(() => {
       daffRemoveFilter(request, colorFilter);
-    }).toThrow(new DaffCategoryFilterNotFound('Filter names aren\'t equal'));
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterNotFound);
+
   });
 
   it('should throw an error if a request has a different type than the filter', () => {
@@ -125,7 +126,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
 
     expect(() => {
       daffRemoveFilter(request, colorFilter);
-    }).toThrow(new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal'));
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterRequestTypeMismatch);
   });
 
   it('should throw an error if the request is an unknown type', () => {
@@ -156,6 +157,6 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
 
     expect(() => {
       daffRemoveFilter(request, filter);
-    }).toThrow(new DaffCategoryUnknownFilterType('Unknown filter type'));
+    }).toThrowMatching((e) => e instanceof DaffCategoryUnknownFilterType);
   });
 });

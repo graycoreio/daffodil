@@ -56,7 +56,7 @@ describe('DaffCategoryEffects', () => {
   let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let store: Store<any>;
-  let driverGetSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCategoryServiceInterface['get']>;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageConfigurationStateFactory: DaffCategoryPageMetadataFactory;
@@ -98,7 +98,7 @@ describe('DaffCategoryEffects', () => {
     driverGetSpy = spyOn(daffCategoryDriver, 'get');
     driverGetSpy.and.returnValue(of({
       category: stubCategory,
-      categoryPageConfigurationState: stubCategoryPageMetadata,
+      categoryPageMetadata: stubCategoryPageMetadata,
       products: stubProducts,
     }));
 
@@ -127,7 +127,7 @@ describe('DaffCategoryEffects', () => {
       it('should dispatch a DaffCategoryLoadSuccess and a DaffProductGridLoadSuccess action', () => {
         driverGetSpy.and.returnValue(of({
           category: stubCategory,
-          categoryPageConfigurationState: stubCategoryPageMetadata,
+          categoryPageMetadata: stubCategoryPageMetadata,
           products: stubProducts,
         }));
 
@@ -157,7 +157,7 @@ describe('DaffCategoryEffects', () => {
     it('should call get category with the category request from the action payload', () => {
       driverGetSpy.and.returnValue(of({
         category: stubCategory,
-        categoryPageConfigurationState: stubCategoryPageMetadata,
+        categoryPageMetadata: stubCategoryPageMetadata,
         products: stubProducts,
       }));
 

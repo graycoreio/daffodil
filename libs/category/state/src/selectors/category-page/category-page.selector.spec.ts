@@ -14,6 +14,8 @@ import {
   DaffCategoryRequest,
   DaffCategoryFilter,
   DaffCategoryPageMetadata,
+  daffCategoryFilterArrayToDict,
+  daffCategoryFilterEqualOptionArrayToDict,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
@@ -26,6 +28,9 @@ import {
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
+  DaffCategoryFilterFactory,
+  DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 import { DaffState } from '@daffodil/core/state';
@@ -37,6 +42,10 @@ describe('DaffCategoryPageSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategory>>;
   let categoryFactory: DaffCategoryFactory;
+  let categoryFilterFactory: DaffCategoryFilterFactory;
+  let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
+
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
   let stubCategoryPageMetadata: DaffCategoryPageMetadata;
@@ -52,38 +61,14 @@ describe('DaffCategoryPageSelectors', () => {
     });
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
+    categoryFilterFactory = TestBed.inject(DaffCategoryFilterFactory);
+    categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
+
 
     stubCategory = categoryFactory.create();
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();
     stubCategoryPageMetadata.id = stubCategory.id;
-    stubCategoryPageMetadata.filters = {
-      name: {
-        name: 'name',
-        type: DaffCategoryFilterType.Equal,
-        label: 'label',
-        options: {
-          value: {
-            applied: false,
-            label: 'option_label',
-            value: 'value',
-            count: 2,
-          },
-        },
-      },
-      name2: {
-        name: 'name2',
-        type: DaffCategoryFilterType.Equal,
-        label: 'label2',
-        options: {
-          value2: {
-            applied: false,
-            label: 'option_label2',
-            value: 'value2',
-            count: 2,
-          },
-        },
-      },
-    };
 
     store = TestBed.inject(Store);
     store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryPageMetadata, products: null }));
@@ -152,8 +137,8 @@ describe('DaffCategoryPageSelectors', () => {
 
   describe('selectCategoryPageAppliedFilters', () => {
 
-    it('sets applied filters to [] if the available filters are []', () => {
-      const expectedAppliedFilters: DaffCategoryFilter[] = [];
+    it('sets applied filters to {} if there are no applied filters', () => {
+      const expectedAppliedFilters: Dict<DaffCategoryFilter> = {};
 
       store.dispatch(new DaffCategoryPageLoadSuccess({
         products: [],
@@ -200,21 +185,18 @@ describe('DaffCategoryPageSelectors', () => {
     });
 
     it('selects the applied filters of the current category', () => {
-      const expectedAppliedFilters: Dict<DaffCategoryFilter>= {
-        name: {
-          name: 'name',
-          label: 'label',
-          type: DaffCategoryFilterType.Equal,
-          options: {
-            value: {
-              applied: true,
-              label: 'option_label',
-              value: 'value',
-              count: 2,
-            },
-          },
-        },
-      };
+      const filters = categoryFilterFactory.createMany(5);
+      const filterEqual = categoryFilterEqualFactory.create({
+        options: daffCategoryFilterEqualOptionArrayToDict(categoryFilterEqualOptionFactory.createMany(2, {
+          applied: true,
+        })),
+      });
+      const filterDict = daffCategoryFilterArrayToDict([
+        ...filters,
+        filterEqual,
+      ]);
+
+      const expectedAppliedFilters: Dict<DaffCategoryFilter> = daffCategoryFilterArrayToDict([filterEqual]);
 
       store.dispatch(new DaffCategoryPageLoadSuccess({ products: [],
         category: {
@@ -223,34 +205,7 @@ describe('DaffCategoryPageSelectors', () => {
         },
         categoryPageMetadata: {
           ...stubCategoryPageMetadata,
-          filters: {
-            name: {
-              name: 'name',
-              type: DaffCategoryFilterType.Equal,
-              label: 'label',
-              options: {
-                value: {
-                  applied: true,
-                  label: 'option_label',
-                  value: 'value',
-                  count: 2,
-                },
-              },
-            },
-            name2: {
-              name: 'name2',
-              type: DaffCategoryFilterType.Equal,
-              label: 'label2',
-              options: {
-                value2: {
-                  applied: false,
-                  label: 'option_label2',
-                  value: 'value2',
-                  count: 2,
-                },
-              },
-            },
-          },
+          filters: filterDict,
         }}));
 
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedFilters));
@@ -316,7 +271,7 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectCategoryPageState', () => {
 
     it('selects the daffState of the current category page', () => {
-      const selector = store.pipe(select(categorySelectors.selectCategoryState));
+      const selector = store.pipe(select(categorySelectors.selectCategoryPageState));
       const expected = cold('a', { a: DaffState.Stable });
       expect(selector).toBeObservable(expected);
     });
