@@ -3,7 +3,9 @@ import { Action } from '@ngrx/store';
 import {
   DaffCategoryFilterRequest,
   DaffToggleCategoryFilterRequest,
+  DaffCategoryFilter,
 } from '@daffodil/category';
+import { Dict } from '@daffodil/core';
 
 export enum DaffCategoryPageFilterActionTypes {
   CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
@@ -11,7 +13,8 @@ export enum DaffCategoryPageFilterActionTypes {
   CategoryPageApplyFiltersAction = '[@daffodil/category] Category Page Apply Filters Action',
   CategoryPageRemoveFiltersAction = '[@daffodil/category] Category Page Remove Filters Action',
   CategoryPageClearFiltersAction = '[@daffodil/category] Category Page Clear Filters Action',
-  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action'
+  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action',
+  CategoryPagePreapplyFiltersAction = '[@daffodil/category] Category Page Preapply Filters Action',
 }
 
 /**
@@ -78,7 +81,19 @@ export class DaffCategoryPageToggleFilter implements Action {
   constructor(public filter: DaffToggleCategoryFilterRequest) { }
 }
 
+/**
+ * An action for optimistically applying filters to the category page state.
+ *
+ * @param filters - Filters to be stored in state.
+ */
+export class DaffCategoryPagePreapplyFilters implements Action {
+  readonly type = DaffCategoryPageFilterActionTypes.CategoryPagePreapplyFiltersAction;
+
+  constructor(public filters: Dict<DaffCategoryFilter>) { }
+}
+
 export type DaffCategoryPageFilterActions =
+  | DaffCategoryPagePreapplyFilters
   | DaffCategoryPageChangeFilters
   | DaffCategoryPageReplaceFilters
   | DaffCategoryPageApplyFilters
