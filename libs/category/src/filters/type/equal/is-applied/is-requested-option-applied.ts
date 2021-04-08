@@ -1,5 +1,3 @@
-import { Dict } from '@daffodil/core';
-
 import {
   DaffToggleCategoryFilterEqualRequest,
   DaffCategoryFilter,
@@ -11,4 +9,4 @@ import {
 export const daffIsRequestedFilterEqualOptionApplied = (
   request: DaffToggleCategoryFilterEqualRequest,
   filter: DaffCategoryFilter,
-): boolean => filter.options[request.name].applied;
+): boolean => !!filter.options[request.value]?.applied;
