@@ -7,6 +7,9 @@ const reducer = (acc, current: DaffCategoryFilterEqualOption): Dict<DaffCategory
   return acc;
 };
 
+/**
+ * Converts a list of category equal filter options to a dict of options keyed by option value.
+ */
 export const daffCategoryFilterEqualOptionArrayToDict =
   (options: DaffCategoryFilterEqualOption[]): Dict<DaffCategoryFilterEqualOption> =>
     options.reduce(reducer, <Dict<DaffCategoryFilterEqualOption>>{});
