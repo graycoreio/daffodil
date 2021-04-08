@@ -14,21 +14,21 @@
 		.daff-thumbnail {
 			@include clickable();
 			display: inline-block;
-			height: calc(25% - 8px);
-			width: calc(25% - 8px);
-			margin: 0 4px;
+			height: 64px;
+			width: 64px;
+			margin: 0 2px;
 			max-width: 100%;
 			overflow: hidden;
 			user-select: none;
 
 			@include breakpoint(mobile) {
-				height: calc(15% - 8px);
-				width: calc(15% - 8px);
+				height: 72px;
+				width: 72px;
 			}
 
 			@include breakpoint(big-tablet) {
 				display: block;
-				margin: 0 0 8px;
+				margin: 0 0 4px;
 				height: 80px;
 				width: 80px;
 			}
@@ -38,7 +38,7 @@
 
 .daff-media-gallery {
 	&__thumbnails {
-		margin: 0 -4px;
+		margin: 0 -2px;
 		max-height: 100%;
 		order: 2;
 
