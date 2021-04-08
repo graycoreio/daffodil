@@ -9,71 +9,50 @@
 
 	.daff-card {
 		$root: &;
-		box-shadow: 0 5px 10px 0 rgba($black, 0.12);
+		background: $base;
 		color: daff-text-contrast($base);
 
-		&__content {
-			background: daff-illuminate($base, $daff-gray, 1);
-		}
+		&--raised {
+			box-shadow: 0 14px 28px 0 rgba($black, 0.12), 0 4px 12px rgba($black, 0.06);
 
-		&:hover {
-			box-shadow: 0 30px 60px 0 rgba($black, 0.15);
+			&:hover {
+				box-shadow: 0 18px 28px 0 rgba($black, 0.12), 0 8px 12px rgba($black, 0.06);
+			}
 		}
 
 		&.daff-primary {
+			background: daff-color($primary);
 			color: daff-text-contrast(daff-color($primary));
-
-			#{$root}__content {
-				background: daff-color($primary);
-			}
 		}
 
 		&.daff-secondary {
+			background: daff-color($secondary);
 			color: daff-text-contrast(daff-color($secondary));
-
-			#{$root}__content {
-				background: daff-color($secondary);
-			}
 		}
 
 		&.daff-tertiary {
+			background: daff-color($tertiary);
 			color: daff-text-contrast(daff-color($tertiary));
-
-			#{$root}__content {
-				background: daff-color($tertiary);
-			}
 		}
 
 		&.daff-theme {
-			color: daff-text-contrast($base);
-
-			#{$root}__content {
-				background: $base;
-			}
+			background: daff-illuminate($base, $daff-gray, 1);
+			color: daff-text-contrast(daff-illuminate($base, $daff-gray, 1));
 		}
 
 		&.daff-theme-contrast {
+			background: daff-illuminate($base-contrast, $daff-gray, 1);
 			color: daff-text-contrast($base-contrast);
-
-			#{$root}__content {
-				background: $base-contrast;
-			}
 		}
 
 		&.daff-black {
+			background: $black;
 			color: daff-text-contrast($black);
-
-			#{$root}__content {
-				background: $black;
-			}
 		}
 
 		&.daff-white {
+			background: $white;
 			color: daff-text-contrast($white);
-
-			#{$root}__content {
-				background: $white;
-			}
 		}
 	}
 }

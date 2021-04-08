@@ -1,0 +1,16 @@
+:host {
+	display: block;
+	max-width: 340px;
+}
+
+.raised-card { /* stylelint-disable-line selector-class-pattern */
+	&__actions {
+		> * {
+			margin-right: 16px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}

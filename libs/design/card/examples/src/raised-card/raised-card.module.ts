@@ -1,26 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import {
   DaffCardModule,
   DaffImageModule,
+  DaffButtonModule,
 } from '@daffodil/design';
 
-import { CardWithColorComponent } from './card-with-color.component';
+import { RaisedCardComponent } from './raised-card.component';
 
 @NgModule({
   declarations: [
-    CardWithColorComponent,
+    RaisedCardComponent,
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    RouterModule,
     DaffCardModule,
     DaffImageModule,
+    DaffButtonModule,
   ],
   exports: [
-    CardWithColorComponent,
+    RaisedCardComponent,
   ],
 })
-export class CardWithColorModule { }
+export class RaisedCardModule { }

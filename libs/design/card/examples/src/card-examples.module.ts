@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CardWithColorModule } from './card-with-color/card-with-color.module';
-import { CardWithImageModule } from './card-with-image/card-with-image.module';
+import { BasicCardModule } from './basic-card/basic-card.module';
+import { CardThemingModule } from './card-theming/card-theming.module';
 import { CARD_EXAMPLES } from './examples';
+import { RaisedCardModule } from './raised-card/raised-card.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    CardWithImageModule,
-    CardWithColorModule,
+    BasicCardModule,
+    CardThemingModule,
+    RaisedCardModule,
   ],
   entryComponents: [
     ...CARD_EXAMPLES,

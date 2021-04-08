@@ -4,21 +4,23 @@ import { NgModule } from '@angular/core';
 import {
   DaffCardModule,
   DaffImageModule,
+  DaffButtonModule,
 } from '@daffodil/design';
 
-import { CardWithImageComponent } from './card-with-image.component';
+import { BasicCardComponent } from './basic-card.component';
 
 @NgModule({
   declarations: [
-    CardWithImageComponent,
+    BasicCardComponent,
   ],
   imports: [
     CommonModule,
     DaffCardModule,
     DaffImageModule,
+    DaffButtonModule,
   ],
   exports: [
-    CardWithImageComponent,
+    BasicCardComponent,
   ],
 })
-export class CardWithImageModule { }
+export class BasicCardModule { }

@@ -5,13 +5,13 @@ import {
   HostBinding,
   ElementRef,
   Renderer2,
-  Input,
+  Input
 } from '@angular/core';
 
 import {
   DaffColorable,
   DaffPalette,
-  daffColorMixin,
+  daffColorMixin
 } from '../../../core/colorable/colorable';
 
 /**
@@ -24,20 +24,28 @@ class DaffCardBase {
 const _daffCardBase = daffColorMixin(DaffCardBase);
 
 @Component({
-  selector: 'daff-card',
+  selector: '' +
+    'daff-card' + ',' +
+    'a[daff-card]',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DaffCardComponent extends _daffCardBase implements DaffColorable {
 
-	@Input() color: DaffPalette;
-	/**
-	 * @docs-private
-	 */
+  @Input() color: DaffPalette;
+  @Input() raised = false;
+
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-card') class = true;
+
+  @HostBinding('class.daff-card--raised') get raisedClass() {
+    return this.raised;
+  }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

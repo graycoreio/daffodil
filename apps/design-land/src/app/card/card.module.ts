@@ -9,6 +9,7 @@ import { CardComponent } from './card.component';
 import { DesignLandCardRoutingModule } from './card-routing.module';
 
 import {
+  DaffArticleModule,
   DaffCardModule,
   DaffImageModule,
 } from '@daffodil/design';
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DesignLandCardRoutingModule,
     DesignLandExampleViewerModule,
     ReactiveFormsModule,
+    DaffArticleModule,
     DaffCardModule,
     DaffImageModule,
     CardExamplesModule,

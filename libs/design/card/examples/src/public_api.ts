@@ -1,5 +1,6 @@
-export { CardWithImageComponent } from './card-with-image/card-with-image.component';
-export { CardWithColorComponent } from './card-with-color/card-with-color.component';
+export { BasicCardComponent} from './basic-card/basic-card.component';
+export { CardThemingComponent } from './card-theming/card-theming.component';
+export { RaisedCardComponent } from './raised-card/raised-card.component';
 
 export { CardExamplesModule } from './card-examples.module';
 
