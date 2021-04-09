@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCategoryFilter } from '@daffodil/category';
+import {
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
+} from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 import { DaffCategoryFilterEqualFactory } from './type/equal';
@@ -20,10 +23,25 @@ export class DaffCategoryFilterFactory extends DaffModelFactory<DaffCategoryFilt
     super(<any>MockDaffCategoryFilter);
   }
 
-  create(partial?: Partial<DaffCategoryFilter>): DaffCategoryFilter {
+  create(partial: Partial<DaffCategoryFilter> = {}): DaffCategoryFilter {
+    let factory;
+
+    switch (partial.type) {
+      case DaffCategoryFilterType.Equal:
+        factory = this.equalFactory;
+        break;
+      case DaffCategoryFilterType.RangeNumeric:
+        factory = this.rangeFactory;
+        break;
+      default:
+        factory = faker.random.number({ min: 1, max: 2 }) === 2
+          ? this.equalFactory
+          : this.rangeFactory;
+        break;
+    }
     return {
       ...new this.type(),
-      ...faker.random.number({ min: 1, max: 2 }) === 2 ? this.equalFactory.create() : this.rangeFactory.create(),
+      ...factory.create(partial),
     };
   }
 }

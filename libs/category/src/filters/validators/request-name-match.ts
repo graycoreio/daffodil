@@ -3,7 +3,7 @@ import {
   DaffCategoryFilter,
   DaffToggleCategoryFilterRequest,
 } from '../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../errors/request-not-found.error';
+import { DaffCategoryFilterNotFound } from '../errors/filter-not-found.error';
 
 /**
  * Ensures that the names of the filter and the filter request match.

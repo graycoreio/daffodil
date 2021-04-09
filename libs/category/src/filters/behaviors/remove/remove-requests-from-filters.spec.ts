@@ -11,7 +11,7 @@ import {
   DaffCategoryFilter,
   DaffCategoryFilterEqualRequest,
 } from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/request-not-found.error';
+import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
 import { daffRemoveRequestsFromFilters } from './remove-requests-from-filters';
 
 describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestsFromFilters', () => {

@@ -13,7 +13,7 @@ import {
   DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeRequest,
 } from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/request-not-found.error';
+import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
 import { DaffCategoryFilterRequestTypeMismatch } from '../../errors/request-type-mismatch.error';
 import { DaffCategoryUnknownFilterType } from '../../errors/unknown-filter-type.error';
 import { daffRemoveFilter } from './remove-filter';

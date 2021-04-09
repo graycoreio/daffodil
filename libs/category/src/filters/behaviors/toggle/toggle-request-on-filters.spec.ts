@@ -12,7 +12,7 @@ import {
   DaffCategoryFilterType,
   DaffToggleCategoryFilterEqualRequest,
 } from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/request-not-found.error';
+import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
 import { daffToggleRequestOnFilters } from './toggle-request-on-filters';
 
 describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestToFilters', () => {

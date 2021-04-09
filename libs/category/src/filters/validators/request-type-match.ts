@@ -15,6 +15,6 @@ export const daffCategoryValidateFilterRequestTypeMatch = (
   filter: DaffCategoryFilter,
 ): void => {
   if (request.type !== filter.type) {
-    throw new DaffCategoryFilterRequestTypeMismatch('Filter types aren\'t equal');
+    throw new DaffCategoryFilterRequestTypeMismatch('Filter types don\'t match');
   }
 };
