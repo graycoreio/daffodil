@@ -25,7 +25,6 @@ import {
 import {
   DaffCategoryRequest,
   DaffGenericCategory,
-  daffCategoryValidateFilters,
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
 } from '@daffodil/category';
@@ -74,13 +73,10 @@ export class DaffCategoryPageFilterEffects<
     switchMap((
       [action, categoryRequest]:
 			[DaffCategoryPageChangeFilters, DaffCategoryRequest],
-    ) => {
-      daffCategoryValidateFilters(action.filters);
-      return this.processCategoryGetRequest({
-        ...categoryRequest,
-        filter_requests: action.filters,
-      });
-    }),
+    ) => this.processCategoryGetRequest({
+      ...categoryRequest,
+      filter_requests: action.filters,
+    })),
   );
 
   @Effect()
@@ -92,12 +88,9 @@ export class DaffCategoryPageFilterEffects<
     switchMap((
       [action, categoryPageConfigurationState]:
 			[DaffCategoryPageToggleFilter, DaffStatefulCategoryPageConfigurationState],
-    ) => {
-      daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
-      return this.processCategoryGetRequest({
-        ...categoryPageConfigurationState,
-      });
-    }),
+    ) => this.processCategoryGetRequest({
+      ...categoryPageConfigurationState,
+    })),
   );
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {
