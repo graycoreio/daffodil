@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import {
-  DaffCategoryFilter,
-  DaffCategoryFilterBase,
-} from '@daffodil/category';
+import { DaffCategoryFilterBase } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 import { DaffCategoryFilterEqualFactory } from './type/equal';
