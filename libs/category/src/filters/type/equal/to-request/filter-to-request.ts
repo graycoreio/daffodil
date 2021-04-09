@@ -5,6 +5,9 @@ import {
   DaffCategoryFilterType,
 } from '../../../../models/public_api';
 
+/**
+ * Builds an equal filter request from the passed filter and options.
+ */
 export const daffCategoryFilterEqualToRequest = (
   filter: DaffCategoryEqualFilter,
   options: DaffCategoryFilterEqualOption[],
