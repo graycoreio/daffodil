@@ -4,7 +4,6 @@ export {
   DaffCategoryFilter,
   DaffCategoryFilterOption,
 } from './category-filter';
-export * from './filters/public_api';
 export { DaffCategoryPageConfigurationState } from './category-page-configuration-state';
 export { DaffCategoryBreadcrumb } from './category-breadcrumb';
 export { DaffCategory } from './category';
