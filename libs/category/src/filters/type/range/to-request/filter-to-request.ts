@@ -1,11 +1,12 @@
 import {
-  DaffCategoryFilterType,
   DaffCategoryFilterRangeBase,
   DaffCategoryFilterRangePair,
   DaffCategoryFilterRangeRequestBase,
-  DaffCategoryFilterRequest,
 } from '../../../../models/public_api';
 
+/**
+ * Builds an range filter request from the passed filter and options.
+ */
 export const daffCategoryFilterRangeToRequest = <T>(
   filter: DaffCategoryFilterRangeBase<T>,
   options: DaffCategoryFilterRangePair<T>[],

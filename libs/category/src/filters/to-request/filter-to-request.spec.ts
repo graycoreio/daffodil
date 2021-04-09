@@ -1,23 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterEqualFactory,
-  DaffCategoryFilterEqualOptionFactory,
-  DaffCategoryFilterRangeNumericFactory,
-  DaffCategoryFilterRangeNumericPairFactory,
-} from '@daffodil/category/testing';
-
-import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryEqualFilter,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterRangeRequest,
   DaffCategoryFilterType,
   DaffCategoryFilterEqualRequest,
-} from '../../models/public_api';
+} from '@daffodil/category';
+import {
+  DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRangeNumericPairFactory,
+} from '@daffodil/category/testing';
+
 import { daffCategoryFilterToRequest } from './filter-to-request';
 
-describe('@daffodil/category | daffCategoryFilterToRequest', () => {
+describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
   let equalFilterFactory: DaffCategoryFilterEqualFactory;
   let equalFilterOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;

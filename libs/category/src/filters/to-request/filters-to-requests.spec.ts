@@ -22,7 +22,7 @@ import {
 import { daffCategoryFilterArrayToDict } from '../array-to-dict/array-to-dict';
 import { daffCategoryFiltersToRequests } from './filters-to-requests';
 
-describe('@daffodil/category | daffCategoryFiltersToRequests', () => {
+describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
   let equalFilterFactory: DaffCategoryFilterEqualFactory;
   let equalFilterOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
