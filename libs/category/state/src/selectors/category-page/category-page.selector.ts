@@ -36,6 +36,10 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['product_ids']>;
 	selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
 	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['total_products']>;
+  /**
+   * Returns a dict of filters and only their applied options.
+   * Filters with no applied options will be omitted.
+   */
 	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, Dict<DaffCategoryFilter>>;
 	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['applied_sort_option']>;
 	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['applied_sort_direction']>;

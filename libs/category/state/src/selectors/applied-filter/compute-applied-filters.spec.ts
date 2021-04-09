@@ -1,16 +1,112 @@
+import { TestBed } from '@angular/core/testing';
+
+import {
+  DaffCategoryEqualFilter,
+  DaffCategoryFilterEqualOption,
+  DaffCategoryFilterRangeNumeric,
+  DaffCategoryFilterRangePair,
+  daffCategoryFilterEqualOptionArrayToDict,
+  DaffCategoryFilter,
+  daffCategoryFilterRangePairArrayToDict,
+  daffCategoryComputeFilterRangePairLabel,
+  daffCategoryFilterArrayToDict,
+} from '@daffodil/category';
+import {
+  DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
+  DaffCategoryFilterRangeNumericFactory,
+  DaffCategoryFilterRangeNumericPairFactory,
+} from '@daffodil/category/testing';
+import { Dict } from '@daffodil/core';
+
+import { computeAppliedFilters } from './compute-applied-filters';
+
 describe('@daffodil/category/state | computeAppliedFilters', () => {
-  it('will not return filters that have no applied options', () => {
+  let equalFilterFactory: DaffCategoryFilterEqualFactory;
+  let equalOptionFactory: DaffCategoryFilterEqualOptionFactory;
+  let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
+  let rangePairFactory: DaffCategoryFilterRangeNumericPairFactory;
 
+  let appliedEqualFilter: DaffCategoryEqualFilter;
+  let unappliedEqualFilter: DaffCategoryEqualFilter;
+  let appliedEqualFilterOption: DaffCategoryFilterEqualOption;
+  let unappliedEqualFilterOption: DaffCategoryFilterEqualOption;
+  let appliedRangeFilter: DaffCategoryFilterRangeNumeric;
+  let unappliedRangeFilter: DaffCategoryFilterRangeNumeric;
+  let rangeFilterPair: DaffCategoryFilterRangePair<number>;
+  let rangeFilterPairLabel: string;
+
+  let result: Dict<DaffCategoryFilter>;
+
+  beforeEach(() => {
+    equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    equalOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
+    rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+    rangePairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
+
+    appliedEqualFilterOption = equalOptionFactory.create({
+      applied: true,
+    });
+    unappliedEqualFilterOption = equalOptionFactory.create({
+      applied: false,
+    });
+    appliedEqualFilter = equalFilterFactory.create({
+      options: daffCategoryFilterEqualOptionArrayToDict([
+        appliedEqualFilterOption,
+        unappliedEqualFilterOption,
+      ]),
+    });
+    unappliedEqualFilter = equalFilterFactory.create({
+      options: {},
+    });
+
+    rangeFilterPair = rangePairFactory.create();
+    appliedRangeFilter = rangeFilterFactory.create({
+      options: daffCategoryFilterRangePairArrayToDict([rangeFilterPair]),
+    });
+    unappliedRangeFilter = rangeFilterFactory.create({
+      options: {},
+    });
+    rangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterPair.min.value, rangeFilterPair.max.value);
   });
 
-  it('will return an empty array if there are no applied filters', () => {
+  describe('when there are applied filters', () => {
+    beforeEach(() => {
+      result = computeAppliedFilters(daffCategoryFilterArrayToDict([
+        appliedRangeFilter,
+        unappliedRangeFilter,
+        appliedEqualFilter,
+        unappliedEqualFilter,
+      ]));
+    });
 
+    it('will not return filters that have no applied options', () => {
+      expect(result[unappliedEqualFilter.name]).toBeUndefined();
+      expect(result[unappliedRangeFilter.name]).toBeUndefined();
+    });
+
+    it('will return applied filters and their applied options', () => {
+      expect(result[appliedEqualFilter.name]).toBeDefined();
+      expect(result[appliedRangeFilter.name]).toBeDefined();
+      expect(result[appliedEqualFilter.name].options[appliedEqualFilterOption.value]).toBeDefined();
+      expect(result[appliedRangeFilter.name].options[rangeFilterPairLabel]).toBeDefined();
+    });
+
+    it('will not return unapplied options with applied filters', () => {
+      expect(result[appliedEqualFilter.name].options[unappliedEqualFilterOption.value]).toBeUndefined();
+    });
   });
 
-  it('will return filters that have one applied option', () => {
-  });
+  describe('when there are no applied filters', () => {
+    beforeEach(() => {
+      result = computeAppliedFilters(daffCategoryFilterArrayToDict([
+        unappliedRangeFilter,
+        unappliedEqualFilter,
+      ]));
+    });
 
-  it('will return multiple options for one filter if the same filter has multiple applied options', () => {
-
+    it('will return an empty dict', () => {
+      expect(result).toEqual({});
+    });
   });
 });
