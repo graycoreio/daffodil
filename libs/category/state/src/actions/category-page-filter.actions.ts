@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import {
   DaffCategoryFilterRequest,
-  DaffToggleCategoryFilterRequest,
+  DaffCategoryFilterToggleRequest,
 } from '@daffodil/category';
 
 export enum DaffCategoryPageFilterActionTypes {
@@ -75,7 +75,7 @@ export class DaffCategoryPageClearFilters implements Action {
 export class DaffCategoryPageToggleFilter implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction;
 
-  constructor(public filter: DaffToggleCategoryFilterRequest) { }
+  constructor(public filter: DaffCategoryFilterToggleRequest) { }
 }
 
 export type DaffCategoryPageFilterActions =
