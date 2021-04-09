@@ -20,10 +20,10 @@ export class DaffCategoryFilterFactory extends DaffModelFactory<DaffCategoryFilt
     super(<any>MockDaffCategoryFilter);
   }
 
-  create(partial?: Partial<DaffCategoryFilter>): DaffCategoryFilter {
+  create(partial: Partial<DaffCategoryFilter> = {}): DaffCategoryFilter {
     return {
       ...new this.type(),
-      ...faker.random.number({ min: 1, max: 2 }) === 2 ? this.equalFactory.create() : this.rangeFactory.create(),
+      ...faker.random.number({ min: 1, max: 2 }) === 2 ? this.equalFactory.create(partial) : this.rangeFactory.create(partial),
     };
   }
 }
