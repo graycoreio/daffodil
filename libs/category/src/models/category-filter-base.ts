@@ -1,8 +1,4 @@
-export enum DaffCategoryFilterType {
-	Match = 'match',
-	Equal = 'equal',
-	Range = 'range'
-}
+import { DaffCategoryFilterType } from './filters/public_api';
 
 export interface DaffCategoryFilterBase {
 	label: string;
