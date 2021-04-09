@@ -1,41 +1,30 @@
-import { DaffCategoryFilter } from '@daffodil/category';
-import { DaffCategoryFilterBase } from '@daffodil/category';
+import {
+  DaffCategoryFilter,
+  daffCategoryFindAppliedFilterOptions,
+  DaffCategoryFilterType,
+  daffCategoryFilterEqualOptionArrayToDict,
+  daffCategoryFilterRangePairArrayToDict,
+  DaffCategoryFilterEqualOption,
+  DaffCategoryFilterRangePair,
+} from '@daffodil/category';
 import { Dict } from '@daffodil/core';
 
-export const computeAppliedFilters = (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> => {
-  const appliedFilters: Dict<DaffCategoryFilterBase> = {};
+/**
+ * Returns a dict of filters and only their applied options.
+ * Filters with no applied options will be omitted.
+ */
+export const computeAppliedFilters = (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> =>
+  Object.keys(filters).map(key => filters[key]).reduce((acc, filter) => {
+    const appliedOptions = daffCategoryFindAppliedFilterOptions(filter);
 
-  /**
-   * Recreate the filter dictionary only with those options that are already applied.
-   */
-  for(const key in filters){
-    if(Object.prototype.hasOwnProperty.call(filters, key)){
-      for(const optionKey in filters[key].options) {
-        if(Object.prototype.hasOwnProperty.call(filters[key].options, optionKey)) {
-          if(filters[key].options[optionKey].applied === true) {
-            //Initialize the applied filters.
-            if(!appliedFilters[key]){
-              appliedFilters[key] = <DaffCategoryFilterBase>{ options: {}};
-            }
-
-            //Set the applied filter options.
-            appliedFilters[key].options[optionKey] = filters[key].options[optionKey];
-          }
-        }
-      }
-    }
-  }
-
-  /**
-   * Fill the applied filters with the rest of the properties of the original object.
-   */
-  for(const key in appliedFilters) {
-    if(Object.prototype.hasOwnProperty.call(appliedFilters, key)){
-      appliedFilters[key] = {
-        ...filters[key],
-        options: appliedFilters[key].options,
+    if (appliedOptions.length > 0) {
+      acc[filter.name] = {
+        ...filter,
+        options: filter.type === DaffCategoryFilterType.Equal
+          ? daffCategoryFilterEqualOptionArrayToDict(<DaffCategoryFilterEqualOption[]>appliedOptions)
+          : daffCategoryFilterRangePairArrayToDict(<DaffCategoryFilterRangePair<unknown>[]>appliedOptions),
       };
     }
-  }
-  return <Dict<DaffCategoryFilter>>appliedFilters;
-};
+
+    return acc;
+  }, {});
