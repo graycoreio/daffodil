@@ -5,9 +5,16 @@
 As a user, I would like to be able to apply filters to a collection of items of a category.
 As a user, I would like to know what filters are currently applied to the category. 
 As a user, I would like to see the filters applied IMMEDIATELY, without waiting for a [response from a backend platform (input-delay).](https://web.dev/fid/)
+
+## Features
+- [Filter Types](./filtering/types.md)
+  - [Equal](./filtering/types/equal.md)
+  - [Range](./filtering/types/range.md)
+- [Idempotence](./filtering/idempotence.md)
+
 ## Implementation Details
 
-When a an action is dispatched that would modify the "applied" filter state of the application, we intentionally optimistically apply the filters to the state of the category page. This means the following occurs in following order:
+When an action is dispatched that would modify the "applied" filter state of the application, we intentionally optimistically apply the filters to the state of the category page. This means the following occurs in following order:
 
 1. An action modifying the applied filter state is dispatched
 2. Reducers computing the next state ASSUMING that the associated filters will be applied/removed.
