@@ -1,13 +1,14 @@
+import { Dict } from '@daffodil/core';
+
 import {
   DaffCategoryFilter,
-  daffCategoryFindAppliedFilterOptions,
   DaffCategoryFilterType,
-  daffCategoryFilterEqualOptionArrayToDict,
-  daffCategoryFilterRangePairArrayToDict,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterRangePair,
-} from '@daffodil/category';
-import { Dict } from '@daffodil/core';
+} from '../../models/public_api';
+import { daffCategoryFindAppliedFilterOptions } from '../find-applied/public_api';
+import { daffCategoryFilterEqualOptionArrayToDict } from '../type/equal/public_api';
+import { daffCategoryFilterRangePairArrayToDict } from '../type/range/public_api';
 
 /**
  * Returns a dict of filters and only their applied options.
