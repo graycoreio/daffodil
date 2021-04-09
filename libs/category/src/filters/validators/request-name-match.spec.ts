@@ -27,9 +27,8 @@ describe('@daffodil/category | filters | validators | daffCategoryValidateFilter
   });
 
   describe('when the filter is not present', () => {
-    it('should throw a DaffCategoryFilterNotFound indicating a missing filter', () => {
-      const error = new DaffCategoryFilterNotFound('Filter does not exist');
-      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, null)).toThrow(error);
+    it('should throw a DaffCategoryFilterNotFound', () => {
+      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, null)).toThrow(jasmine.any(DaffCategoryFilterNotFound));
     });
   });
 
@@ -38,9 +37,8 @@ describe('@daffodil/category | filters | validators | daffCategoryValidateFilter
       filter = filterFactory.create();
     });
 
-    it('should throw a DaffCategoryFilterNotFound indicating a name mismatch', () => {
-      const error = new DaffCategoryFilterNotFound('Filter name does not match request name');
-      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, filter)).toThrow(error);
+    it('should throw a DaffCategoryFilterNotFound', () => {
+      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, filter)).toThrow(jasmine.any(DaffCategoryFilterNotFound));
     });
   });
 

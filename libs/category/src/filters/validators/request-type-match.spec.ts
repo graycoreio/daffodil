@@ -34,9 +34,8 @@ describe('@daffodil/category | filters | validators | daffCategoryValidateFilter
       filter = rangeFilterFactory.create();
     });
 
-    it('should throw a DaffCategoryFilterRequestTypeMismatch indicating a name mismatch', () => {
-      const error = new DaffCategoryFilterRequestTypeMismatch('Filter types don\'t match');
-      expect(() => daffCategoryValidateFilterRequestTypeMatch(equalFilterRequest, filter)).toThrow(error);
+    it('should throw a DaffCategoryFilterRequestTypeMismatch', () => {
+      expect(() => daffCategoryValidateFilterRequestTypeMatch(equalFilterRequest, filter)).toThrow(jasmine.any(DaffCategoryFilterRequestTypeMismatch));
     });
   });
 
