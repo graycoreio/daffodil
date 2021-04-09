@@ -8,12 +8,11 @@ import {
 
 import {
   DaffCategory,
-  DaffCategoryPageConfigurationState,
-  DaffCategoryRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { randomSubset } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
@@ -24,11 +23,11 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   category: DaffCategory;
-  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  categoryPageMetadata: DaffCategoryPageMetadata;
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
-    private categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory,
+    private metadataFactory: DaffCategoryPageMetadataFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
   ) {}
 
@@ -43,7 +42,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   get(reqInfo: any) {
     const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 
-    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
+    this.categoryPageMetadata = this.metadataFactory.create({
       id: reqInfo.id,
       page_size: this.generatePageSize(reqInfo),
       current_page: this.getCurrentPageParam(reqInfo),
@@ -54,13 +53,12 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     this.category = this.categoryFactory.create({
       id: reqInfo.id,
       total_products: allCategoryProductIds.length,
-      page_size: this.generatePageSize(reqInfo),
     });
 
     return reqInfo.utils.createResponse$(() => ({
       body: {
         category: this.category,
-        categoryPageConfigurationState: this.categoryPageConfigurationState,
+        categoryPageMetadata: this.categoryPageMetadata,
         products: this.productInMemoryBackendService.products,
       },
       status: STATUS.OK,

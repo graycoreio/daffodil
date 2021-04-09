@@ -37,7 +37,7 @@ describe('Category | Category Entities Reducer', () => {
       category = categoryFactory.create();
       categoryId = category.id;
 
-      const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({ category, categoryPageConfigurationState: null, products: null });
+      const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({ category, categoryPageMetadata: null, products: null });
 
       result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
     });
@@ -57,7 +57,7 @@ describe('Category | Category Entities Reducer', () => {
       category = categoryFactory.create();
       categoryId = category.id;
 
-      const categoryLoadSuccess = new DaffCategoryLoadSuccess({ category, categoryPageConfigurationState: null, products: null });
+      const categoryLoadSuccess = new DaffCategoryLoadSuccess({ category, categoryPageMetadata: null, products: null });
 
       result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
     });

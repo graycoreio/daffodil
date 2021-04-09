@@ -1,6 +1,6 @@
 export { DaffGetCategoryResponse } from './get-category-response';
 export * from './filters/public_api';
-export { DaffCategoryPageConfigurationState } from './category-page-configuration-state';
+export { DaffCategoryPageMetadata } from './category-page-metadata';
 export { DaffCategoryBreadcrumb } from './category-breadcrumb';
 export { DaffCategory } from './category';
 export { DaffGenericCategory } from './generic-category';

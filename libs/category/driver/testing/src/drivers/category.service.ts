@@ -11,7 +11,7 @@ import {
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -23,14 +23,14 @@ export class DaffTestingCategoryService implements DaffCategoryServiceInterface 
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
-    private categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory,
+    private categoryPageMetadataFactory: DaffCategoryPageMetadataFactory,
     private productFactory: DaffProductFactory,
   ) {}
 
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return of({
       category: this.categoryFactory.create(),
-      categoryPageConfigurationState: this.categoryPageConfigurationStateFactory.create(),
+      categoryPageMetadata: this.categoryPageMetadataFactory.create(),
       products: this.productFactory.createMany(3),
     });
   }

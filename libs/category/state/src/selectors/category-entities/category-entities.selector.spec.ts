@@ -7,26 +7,30 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCategory } from '@daffodil/category';
+import {
+  DaffCategory,
+  DaffCategoryPageMetadata,
+} from '@daffodil/category';
 import {
   DaffCategoryReducersState,
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffStatefulCategoryPageConfigurationState,
 } from '@daffodil/category/state';
-import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
-import { DaffCategoryFactory } from '@daffodil/category/testing';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageMetadataFactory,
+} from '@daffodil/category/testing';
 
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 
   let store: Store<DaffCategoryReducersState<DaffCategory>>;
-  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const categoryPageConfigurationFactory: DaffStatefulCategoryPageConfigurationStateFactory = new DaffStatefulCategoryPageConfigurationStateFactory();
+  let categoryFactory: DaffCategoryFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
+  let stubMetadata: DaffCategoryPageMetadata;
   const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategory>();
 
   beforeEach(() => {
@@ -38,10 +42,13 @@ describe('DaffCategoryEntitiesSelectors', () => {
       ],
     });
 
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     stubCategory = categoryFactory.create();
+    stubMetadata = categoryPageMetadataFactory.create();
     store = TestBed.inject(Store);
 
-    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubMetadata, products: null }));
   });
 
   describe('selectCategoryIds', () => {
