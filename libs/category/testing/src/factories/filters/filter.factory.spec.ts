@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryFilter } from '@daffodil/category';
+import {
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
+} from '@daffodil/category';
 
 import { DaffCategoryFilterFactory } from './filter.factory';
 
@@ -28,20 +31,32 @@ describe('Category | Testing | Factories | DaffCategoryFilterFactory', () => {
       result = categoryFilterFactory.create();
     });
 
+    describe('when the partial type is equal', () => {
+      beforeEach(() => {
+        result = categoryFilterFactory.create({
+          type: DaffCategoryFilterType.Equal,
+        });
+      });
+
+      it('should return an equal filter', () => {
+        expect(result.type).toEqual(DaffCategoryFilterType.Equal);
+      });
+    });
+
+    describe('when the partial type is range numeric', () => {
+      beforeEach(() => {
+        result = categoryFilterFactory.create({
+          type: DaffCategoryFilterType.RangeNumeric,
+        });
+      });
+
+      it('should return a range numeric filter', () => {
+        expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
+      });
+    });
+
     it('should return a category filter of some type', () => {
       expect(result.type).toBeDefined();
-    });
-  });
-
-  describe('createMany', () => {
-    let result: DaffCategoryFilter[];
-
-    it('should create as many category filters as desired', () => {
-      result = categoryFilterFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = categoryFilterFactory.createMany(3);
-      expect(result.length).toEqual(3);
     });
   });
 });
