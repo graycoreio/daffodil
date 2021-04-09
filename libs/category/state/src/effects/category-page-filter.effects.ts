@@ -86,8 +86,12 @@ export class DaffCategoryPageFilterEffects<
     ),
     switchMapTo(this.facade.metadata$),
     map((metadata): DaffCategoryRequest => ({
-      ...metadata,
+      id: metadata.id,
       filter_requests: daffCategoryFiltersToRequests(metadata.filters),
+      applied_sort_option: metadata.applied_sort_option,
+      applied_sort_direction: metadata.applied_sort_direction,
+      current_page: metadata.current_page,
+      page_size: metadata.page_size,
     })),
     debounceTime(debounceFrame, scheduler),
     switchMap(payload => this.driver.get(payload).pipe(
