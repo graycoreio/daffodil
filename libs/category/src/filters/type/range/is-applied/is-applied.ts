@@ -1,7 +1,7 @@
 import { DaffCategoryFilterRangeBase } from '../../../../models/public_api';
 
 /**
- * Determines whether or not a filter is applied.
+ * Determines whether or not a filter has any applied options.
  */
 export const daffIsFilterRangeApplied = <T>(filter: DaffCategoryFilterRangeBase<T>): boolean =>
-  Object.keys(filter.options).map((key) => filter.options[key]).length > 1;
+  Object.keys(filter.options).length > 0;
