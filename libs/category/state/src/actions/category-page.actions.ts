@@ -5,8 +5,6 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffGetCategoryResponse,
-  DaffCategoryFilterRequest,
-  DaffToggleCategoryFilterRequest,
 } from '@daffodil/category';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
