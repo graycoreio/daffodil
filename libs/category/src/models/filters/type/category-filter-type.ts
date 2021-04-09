@@ -1,5 +1,6 @@
 export enum DaffCategoryFilterType {
 	Match = 'match',
 	Equal = 'equal',
-	Range = 'range'
+	Range = 'range',
+	RangeNumeric = 'rangeNumeric'
 }

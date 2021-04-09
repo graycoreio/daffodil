@@ -1,4 +1,5 @@
 export { DaffGetCategoryResponse } from './get-category-response';
+export * from './filters/public_api';
 export {
   DaffCategoryFilter,
   DaffCategoryFilterOption,
