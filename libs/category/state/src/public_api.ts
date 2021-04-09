@@ -13,4 +13,3 @@ export * from './reducers/public_api';
 export * from './actions/category.actions';
 export * from './actions/category-page.actions';
 export * from './actions/category-page-filter.actions';
-export * from './models/public_api';

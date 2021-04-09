@@ -29,7 +29,7 @@ import {
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -40,6 +40,8 @@ describe('DaffCategoryPageResolver', () => {
   let categoryResolver: DaffCategoryPageResolver;
   let store: Store<DaffCategoryReducersState>;
   let categoryFactory: DaffCategoryFactory;
+  let productFactory: DaffProductFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
   let route: ActivatedRoute;
 
@@ -65,6 +67,8 @@ describe('DaffCategoryPageResolver', () => {
 
       categoryResolver = TestBed.inject(DaffCategoryPageResolver);
       categoryFactory = TestBed.inject(DaffCategoryFactory);
+      productFactory = TestBed.inject(DaffProductFactory);
+      categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
       stubCategory = categoryFactory.create();
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
@@ -86,7 +90,7 @@ describe('DaffCategoryPageResolver', () => {
       store.dispatch(new DaffCategoryPageLoadSuccess({
         products: [new DaffProductFactory().create()],
         category: stubCategory,
-        categoryPageConfigurationState: new DaffCategoryPageConfigurationStateFactory().create(),
+        categoryPageMetadata: categoryPageMetadataFactory.create(),
       }));
     });
 

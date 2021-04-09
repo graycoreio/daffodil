@@ -1,16 +1,8 @@
 import {
-  MagentoAggregation,
   MagentoCustomAttributeMetadataResponse,
   MagentoGetCategoryAggregationsResponse,
-  MagentoCustomMetadataAttribute,
-} from '../models/public_api';
-
-export function buildCustomMetadataAttribute(filter: MagentoAggregation): MagentoCustomMetadataAttribute {
-  return {
-    attribute_code: filter.attribute_code,
-    entity_type: '4',
-  };
-}
+} from '../../../models/public_api';
+import { getMatchedAttributeType } from './get-matched-attribute-type';
 
 export function addMetadataTypesToAggregates(
   attributeResponse: MagentoCustomAttributeMetadataResponse,
@@ -29,12 +21,4 @@ export function addMetadataTypesToAggregates(
       ],
     },
   };
-}
-
-function getMatchedAttributeType(aggregate: MagentoAggregation, attributes: MagentoCustomAttributeMetadataResponse): string {
-  if(aggregate.attribute_code === 'category_id') {
-    return 'select';
-  }
-
-  return attributes.customAttributeMetadata.items.filter(item => item.attribute_code === aggregate.attribute_code)[0].input_type;
 }
