@@ -1,5 +1,5 @@
 import { DaffCategoryErrorCodes } from '../../errors/codes.enum';
-import { DaffCategoryFilterNotFound } from './request-not-found.error';
+import { DaffCategoryFilterNotFound } from './filter-not-found.error';
 import { DaffCategoryFilterRequestTypeMismatch } from './request-type-mismatch.error';
 import { DaffCategoryUnknownFilterType } from './unknown-filter-type.error';
 
