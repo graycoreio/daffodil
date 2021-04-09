@@ -1,7 +1,7 @@
 import { ID } from '@daffodil/core';
 import { DaffSortDirectionEnum } from '@daffodil/core/state';
 
-import { DaffCategoryFilterRequest } from './requests/filter-request';
+import { DaffCategoryFilterRequest } from './filters/public_api';
 
 export interface DaffCategoryRequest {
   id: ID;
