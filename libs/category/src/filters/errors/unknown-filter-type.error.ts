@@ -5,7 +5,10 @@ import {
 
 import { DaffCategoryErrorCodes } from '../../errors/codes.enum';
 
-
+/**
+ * An error thrown when an operation targeting a filter matches a type unknown
+ * to Daffodil.
+ */
 export class DaffCategoryUnknownFilterType extends DaffInheritableError implements DaffError {
   public readonly code: string = DaffCategoryErrorCodes.CATEGORY_UNKNOWN_FILTER_TYPE;
 
