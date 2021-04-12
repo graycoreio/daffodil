@@ -6,6 +6,11 @@ The example below is a basic card with the default color and a fixed width. Card
 
 <design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
 
+## Linkable Card
+Cards can be linkable by adding the component selector to the <code>&lt;a&gt;</code> tag.
+
+<design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
+
 ## Supported Content Types
 A `<daff-card>` can transclude:
 - `[daffCardMedia]` - Container for media content like image or video 
@@ -17,7 +22,7 @@ A `<daff-card>` can transclude:
 ## Properties
 
 ### Raised
-A raised card can be defined by `[raised]="true"`. It's designed to be used when the whole card is actionable with styles to indicate hover and active states.
+The raised property adds elevation to a card and can be defined by using the `raised` property.
 
 <design-land-example-viewer-container example="raised-card"></design-land-example-viewer-container>
 
