@@ -14,7 +14,7 @@ import { daffCategoryFilterRangeNumericToRequest } from '../type/range-numeric/t
  * Builds a category filter request from a category filter.
  * Returns null if the category filter does not have at least one applied option.
  */
-export function daffCategoryFilterToRequest(filter: DaffCategoryFilter): DaffCategoryFilterRequest {
+export function daffCategoryFilterToRequest(filter: DaffCategoryFilter): DaffCategoryFilterRequest | null {
   const appliedOptions = daffCategoryFindAppliedFilterOptions(filter);
 
   if (appliedOptions.length > 0) {
