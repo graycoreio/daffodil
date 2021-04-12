@@ -47,14 +47,5 @@
 
 	&--raised {
 		text-decoration: none;
-		transition: transform 300ms, box-shadow 300ms;
-
-		&:hover {
-			transform: translateY(-2px);
-		}
-
-		&:active {
-			transform: translateY(0);
-		}
 	}
 }
