@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { BasicCardModule } from './basic-card/basic-card.module';
 import { CardThemingModule } from './card-theming/card-theming.module';
-import { CARD_EXAMPLES } from './examples';
+import { LinkableCardModule } from './linkable-card/linkable-card.module';
 import { RaisedCardModule } from './raised-card/raised-card.module';
 
 @NgModule({
@@ -12,9 +12,7 @@ import { RaisedCardModule } from './raised-card/raised-card.module';
     BasicCardModule,
     CardThemingModule,
     RaisedCardModule,
-  ],
-  entryComponents: [
-    ...CARD_EXAMPLES,
+    LinkableCardModule,
   ],
 })
 export class CardExamplesModule { }

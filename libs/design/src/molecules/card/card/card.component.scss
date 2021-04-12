@@ -18,7 +18,6 @@
 		}
 	}
 
-
 	&__tagline {
 		@include subheading();
 		margin: 0 0 4px;
@@ -44,8 +43,10 @@
 	&__actions {
 		padding: 0 24px 24px;
 	}
+}
 
-	&--raised {
+a {
+	&.daff-card {
 		text-decoration: none;
 	}
 }
