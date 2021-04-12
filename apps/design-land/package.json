@@ -1,0 +1,22 @@
+{
+  "name": "@daffodil/design-land",
+  "version": "0.0.0-PLACEHOLDER",
+  "private": true,
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "serve": "ng s design-land & lerna run watch --scope='@daffodil/tools-dgeni'"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "devDependencies": {
+    "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER"
+  }
+}
