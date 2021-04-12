@@ -2,6 +2,7 @@
 
 :host {
 	display: inline-block;
+	border-radius: inherit;
 	position: relative;
 	width: 100%;
 
@@ -19,6 +20,7 @@
 
 .daff-image {
 	&__wrapper {
+		border-radius: inherit;
 		height: 0;
 	}
 }
