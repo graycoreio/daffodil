@@ -7,10 +7,8 @@ import {
 import { daffToggleFilter } from './toggle';
 
 /**
- * Applies filters from a DaffCategoryRequest to a set of DaffCategoryFilterRequest.
- * This is useful when the platform that returns a DaffGetCategoryResponse does not
- * inform what filters actually wound up being being applied by the request.
- * In theory, this function should not exist, yet for now, it does.
+ * Toggles the state of the filters (and their options) in the {@link Dict<DaffCategoryFilter>}
+ * that match any of the {@link DaffCategoryFilterToggleRequest[]} .
  */
 export const daffToggleRequestsOnFilters = (
   filtersRequests: DaffCategoryFilterToggleRequest[],

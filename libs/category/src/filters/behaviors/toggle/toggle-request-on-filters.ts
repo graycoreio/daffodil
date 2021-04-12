@@ -7,7 +7,8 @@ import {
 import { daffToggleFilter } from './toggle';
 
 /**
- * Applies a filter requests to a set of DaffCategoryFilter.
+ * Toggles the state of a filter option in the {@link Dict<DaffCategoryFilter>}
+ * that matches the {@link DaffCategoryFilterToggleRequest}.
  */
 export const daffToggleRequestOnFilters = (
   request: DaffCategoryFilterToggleRequest,
