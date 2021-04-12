@@ -5,4 +5,4 @@ import { DaffCategoryFiltersErrorMap } from '../filters/errors/map';
  */
 export const DaffCategoryErrorMap = {
   ...DaffCategoryFiltersErrorMap,
-} as const;
+};
