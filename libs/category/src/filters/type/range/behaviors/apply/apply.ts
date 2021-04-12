@@ -5,9 +5,9 @@ import {
 import { daffCategoryComputeFilterRangePairLabel } from '../../compute-pair-label';
 
 /**
- * Applies a filter request to a group of range type filter options.
+ * Applies a {@link DaffCategoryFilterRangeRequestBase} to a {@link DaffCategoryFilterRangeBase}
  *
- * @idempotent
+ * @docs-private
  */
 export const daffApplyFilterRange = <T>(
   request: DaffCategoryFilterRangeRequestBase<T>,

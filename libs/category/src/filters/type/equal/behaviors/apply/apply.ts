@@ -4,7 +4,9 @@ import {
 } from '../../../../../models/public_api';
 
 /**
- * Applies a filter request to a group of equal type filter options .
+ * Applies a {@link DaffCategoryFilterEqualRequest} to a {@link DaffCategoryFilterEqual}
+ *
+ * @docs-private
  */
 export const daffApplyFilterEqual = (
   request: DaffCategoryFilterEqualRequest,

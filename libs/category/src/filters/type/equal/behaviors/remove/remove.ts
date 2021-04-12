@@ -5,8 +5,12 @@ import {
 } from '../../../../../models/public_api';
 
 /**
- * Removes a currently applied filter. If the filter isn't currently applied, returns
- * the original DaffCategoryFilterOption[].
+ * Removes the matching filter options of a {@link DaffCategoryFilterEqual}
+ * that match the {@link DaffCategoryFilterEqualRequest}
+ *
+ * If there are no matching options, returns the original {@link DaffCategoryFilterEqual}
+ *
+ * @docs-private
  */
 export const daffRemoveFilterEqual = (
   request: DaffCategoryFilterEqualRequest,

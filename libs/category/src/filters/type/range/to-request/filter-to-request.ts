@@ -5,7 +5,7 @@ import {
 } from '../../../../models/public_api';
 
 /**
- * Builds an range filter request from the passed filter and options.
+ * Builds a {@link DaffCategoryFilterRangeRequestBase} from the passed filter and options.
  */
 export const daffCategoryFilterRangeToRequest = <T>(
   filter: DaffCategoryFilterRangeBase<T>,
