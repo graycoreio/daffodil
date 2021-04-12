@@ -4,7 +4,7 @@ import {
 } from '../../../../models/public_api';
 
 /**
- * Determines whether or not the requested equal filter option is applied.
+ * Determines whether or not any {@link DaffCategoryFilter} options matching {@link DaffCategoryFilterEqualToggleRequest} are applied.
  */
 export const daffIsRequestedFilterEqualOptionApplied = (
   request: DaffCategoryFilterEqualToggleRequest,

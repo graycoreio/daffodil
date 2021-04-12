@@ -7,7 +7,7 @@ import {
 import { daffCategoryComputeFilterRangePairLabel } from '../compute-pair-label';
 
 /**
- * Determines whether or not the requested range filter option is applied.
+ * Determines whether or not the requested {@link DaffCategoryFilter} is applied.
  */
 export const daffIsRequestedFilterRangeOptionApplied = <T>(
   request: DaffCategoryFilterRangeRequestBase<T>,

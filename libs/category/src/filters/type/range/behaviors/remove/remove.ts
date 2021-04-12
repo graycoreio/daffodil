@@ -5,8 +5,12 @@ import {
 import { daffCategoryComputeFilterRangePairLabel } from '../../compute-pair-label';
 
 /**
- * Removes all currently applied filter options. If there are no options
- * currently applied, it returns the original filter.
+ * Removes the matching filter options of a {@link DaffCategoryFilterRangeBase}
+ * that match the {@link DaffCategoryFilterRangeRequestBase}
+ *
+ * If there are no matching options, returns the original {@link DaffCategoryFilterRangeBase}
+ *
+ * @docs-private
  */
 export const daffRemoveFilterRange = <T>(
   request: DaffCategoryFilterRangeRequestBase<T>,
