@@ -13,7 +13,7 @@ Cards can be linkable by adding the component selector to the <code>&lt;a&gt;</c
 
 ## Supported Content Types
 A `<daff-card>` can transclude:
-- `[daffCardMedia]` - Container for media content like image or video 
+- `[daffCardImage]` - Card image
 - `[daffCardTagline]` — Card tagline
 - `[daffCardTitle]` — Card title
 - `[daffCardActions]` — Container for buttons positioned at the bottom of a card
@@ -36,7 +36,7 @@ Supported colors: `primary | secondary | tertiary | white | black | theme | them
 ## Usage Example
 ``` html
 <daff-card>
-  <img daffCardMedia src="#" />
+  <img daffCardImage src="#" />
   <p daffCardTagline>Card Tagline</p>
   <h4 daffCardTitle>Card Title</h4>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
