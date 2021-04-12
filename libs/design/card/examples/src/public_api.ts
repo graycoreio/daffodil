@@ -1,4 +1,4 @@
-export { BasicCardComponent} from './basic-card/basic-card.component';
+export { BasicCardComponent } from './basic-card/basic-card.component';
 export { CardThemingComponent } from './card-theming/card-theming.component';
 export { RaisedCardComponent } from './raised-card/raised-card.component';
 

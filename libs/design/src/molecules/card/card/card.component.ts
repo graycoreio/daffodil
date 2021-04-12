@@ -5,13 +5,13 @@ import {
   HostBinding,
   ElementRef,
   Renderer2,
-  Input
+  Input,
 } from '@angular/core';
 
 import {
   DaffColorable,
   DaffPalette,
-  daffColorMixin
+  daffColorMixin,
 } from '../../../core/colorable/colorable';
 
 /**
@@ -30,7 +30,7 @@ const _daffCardBase = daffColorMixin(DaffCardBase);
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffCardComponent extends _daffCardBase implements DaffColorable {
