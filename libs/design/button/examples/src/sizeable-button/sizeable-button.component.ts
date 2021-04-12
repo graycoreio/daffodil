@@ -7,7 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './sizeable-button.component.html',
   styles: [`
     button {
-      margin-right: 8px;
+      margin: 4px;
     }
   `],
 })

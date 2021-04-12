@@ -11,7 +11,7 @@ import {
   styles: [`
     button[daff-button],
     a[daff-button] {
-      margin-right: 8px;
+      margin: 4px;
     }
   `],
 })

@@ -11,7 +11,7 @@ import {
   styles: [`
     button[daff-underline-button],
     a[daff-underline-button] {
-      margin-right: 8px;
+      margin: 4px;
     }
   `],
 })
