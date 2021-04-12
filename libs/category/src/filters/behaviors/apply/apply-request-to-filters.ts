@@ -7,7 +7,8 @@ import {
 import { daffApplyFilter } from './apply-filter';
 
 /**
- * Applies a filter requests to a set of DaffCategoryFilter.
+ * Applies a {@link DaffCategoryFilterRequest} to a {@link Dict} of {@link DaffCategoryFilter}
+ * returning the updated {@link Dict}.
  */
 export const daffApplyRequestToFilters = (request: DaffCategoryFilterRequest, filters: Dict<DaffCategoryFilter>):  Dict<DaffCategoryFilter> => ({
   ...filters,

@@ -16,7 +16,7 @@ import {
 /**
  * Applies a filter request to the matching filter.
  *
- * Note that this assumes that you
+ * @throws {@link DaffCategoryUnknownFilterType}
  */
 export const daffApplyFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {
   daffCategoryValidateFilterRequestNameMatch(request, filter);

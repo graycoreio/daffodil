@@ -14,9 +14,10 @@ import {
 } from '../../validators/public_api';
 
 /**
- * Applies a filter request to the matching filter.
+ * Undoes any applied options of a {@link DaffCategoryFilter} that match the
+ * {@link DaffCategoryFilterRequest}, returning the {@link DaffCategoryFilter}.
  *
- * Note that this assumes that you
+ * @idempotent
  */
 export const daffRemoveFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {
   daffCategoryValidateFilterRequestNameMatch(request, filter);
@@ -25,7 +26,7 @@ export const daffRemoveFilter = (request: DaffCategoryFilterRequest, filter: Daf
   switch (request.type) {
     case DaffCategoryFilterType.Equal:
       return daffRemoveFilterEqual(request, <DaffCategoryFilterEqual>filter);
-    case(DaffCategoryFilterType.RangeNumeric):
+    case (DaffCategoryFilterType.RangeNumeric):
       return daffRemoveFilterRange(request, <DaffCategoryFilterRangeNumeric>filter);
     default:
       throw new DaffCategoryUnknownFilterType('Unknown filter type');

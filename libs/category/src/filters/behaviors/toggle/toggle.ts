@@ -13,6 +13,10 @@ import {
   daffCategoryValidateFilterRequestTypeMatch,
 } from '../../validators/public_api';
 
+/**
+ * Toggles the state of the filters (and their options) in the {@link DaffCategoryFilter}
+ * that match the {@link DaffCategoryFilterToggleRequest} .
+ */
 export function daffToggleFilter(
   request: DaffCategoryFilterToggleRequest,
   filter: DaffCategoryFilter,

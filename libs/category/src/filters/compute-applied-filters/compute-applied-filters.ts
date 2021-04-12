@@ -11,8 +11,8 @@ import { daffCategoryFilterEqualOptionArrayToDict } from '../type/equal/public_a
 import { daffCategoryFilterRangePairArrayToDict } from '../type/range/public_api';
 
 /**
- * Returns a dict of filters and only their applied options.
- * Filters with no applied options will be omitted.
+ * Returns a {@link Dict<DaffCategoryFilter>} and only their applied options.
+ * {@link DaffCategoryFilter} that have no applied options will be omitted.
  */
 export const daffCategoryComputeAppliedFilters = (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> =>
   Object.keys(filters).map(key => filters[key]).reduce((acc, filter) => {
