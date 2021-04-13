@@ -7,6 +7,7 @@ import {
   DaffCategoryFilterRangeRequest,
   DaffCategoryFilterType,
   DaffCategoryFilterEqualRequest,
+  DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
@@ -123,6 +124,16 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
       it('should return null', () => {
         expect(result).toBeNull();
       });
+    });
+  });
+
+  describe('for an unknown filter type', () => {
+    it('should throw a DaffCategoryUnknownFilterType error', () => {
+      expect(() => daffCategoryFilterToRequest(<any>{
+        name: 'name',
+        type: null,
+        options: {},
+      })).toThrow(jasmine.any(DaffCategoryUnknownFilterType));
     });
   });
 });
