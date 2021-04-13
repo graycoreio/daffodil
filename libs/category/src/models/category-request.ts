@@ -3,6 +3,10 @@ import { DaffSortDirectionEnum } from '@daffodil/core/state';
 
 import { DaffCategoryFilterRequest } from './filters/public_api';
 
+/**
+ * A model of the request sent to the {@link DaffCategoryServiceInterface} to retrieve information
+ * about a category.
+ */
 export interface DaffCategoryRequest {
   id: ID;
   filter_requests?: DaffCategoryFilterRequest[];

@@ -7,6 +7,9 @@ import {
 import { DaffCategoryFilterable } from './filters/public_api';
 
 
+/**
+ * The DaffCategoryPageMetadata describes the properties of a Category Page.
+ */
 export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyPaginable, DaffCategoryFilterable {
   /**
    * The ID of the currently visible category page.
