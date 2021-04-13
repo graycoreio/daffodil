@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilter,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import {
-  DaffCategoryFilterRangeRequest,
-  DaffCategoryFilter,
-} from '../../../../../models/public_api';
 import { daffApplyFilterRange } from './apply';
 
 describe('@daffodil/category | filters | type | range | behaviors | apply', () => {

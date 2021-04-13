@@ -5,13 +5,13 @@ import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterRangeRequest,
   DaffCategoryFilterType,
+  daffCategoryFilterRangePairArrayToDict,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterRangeNumericPairFactory,
 } from '@daffodil/category/testing';
 
-import { daffCategoryFilterRangePairArrayToDict } from '../array-to-dict/pair';
 import { daffCategoryFilterRangeToRequest } from './filter-to-request';
 
 describe('@daffodil/category | filters | range | daffCategoryFilterRangeToRequest', () => {

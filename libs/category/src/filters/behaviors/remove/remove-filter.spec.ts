@@ -1,21 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterEqual,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilter,
+  DaffCategoryFilterNotFound,
+  DaffCategoryFilterRequestTypeMismatch,
+  DaffCategoryUnknownFilterType,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterRequestEqualFactory,
   DaffCategoryFilterRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import {
-  DaffCategoryFilterEqual,
-  DaffCategoryFilter,
-  DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterRangeRequest,
-} from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
-import { DaffCategoryFilterRequestTypeMismatch } from '../../errors/request-type-mismatch.error';
-import { DaffCategoryUnknownFilterType } from '../../errors/unknown-filter-type.error';
 import { daffRemoveFilter } from './remove-filter';
 
 describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter', () => {

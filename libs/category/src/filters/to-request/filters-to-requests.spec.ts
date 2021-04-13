@@ -1,6 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilter,
+  DaffCategoryFilterRangeNumeric,
+  DaffCategoryFilterEqual,
+  DaffCategoryFilterEqualOption,
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterEqualRequest,
+  daffCategoryFilterArrayToDict,
+  DaffCategoryFilterType,
+  DaffCategoryFilterRequest,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterRangeNumericFactory,
@@ -9,17 +20,6 @@ import {
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
-import {
-  DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualOption,
-  DaffCategoryFilterRequest,
-  DaffCategoryFilterRangeRequest,
-  DaffCategoryFilterType,
-  DaffCategoryFilterEqualRequest,
-  DaffCategoryFilter,
-} from '../../models/public_api';
-import { daffCategoryFilterArrayToDict } from '../array-to-dict/array-to-dict';
 import { daffCategoryFiltersToRequests } from './filters-to-requests';
 
 describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCategoryFilter } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRangeNumericFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
-import { DaffCategoryFilter } from '../../../models/public_api';
 import { daffClearFilters } from './clear-filters';
 
 describe('@daffodil/category | filters | behaviors | clear | daffClearFilters', () => {

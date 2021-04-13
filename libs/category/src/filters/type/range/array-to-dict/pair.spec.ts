@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryFilterRangePair } from '@daffodil/category';
+import {
+  DaffCategoryFilterRangePair,
+  daffCategoryComputeFilterRangePairLabel,
+} from '@daffodil/category';
 import { DaffCategoryFilterRangeNumericPairFactory } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
-import { daffCategoryComputeFilterRangePairLabel } from '../compute-pair-label';
 import { daffCategoryFilterRangePairArrayToDict } from './pair';
 
 describe('@daffodil/category | daffCategoryFilterRangePairArrayToDict', () => {
