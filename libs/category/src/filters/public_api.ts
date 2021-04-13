@@ -8,7 +8,6 @@ export * from './to-request/public_api';
 export * from './type/range/public_api';
 export * from './type/equal/public_api';
 export * from './validators/public_api';
-export * from './errors/public_api';
 
 export { daffCategoryFilterArrayToDict } from './array-to-dict/array-to-dict';
 export { daffCategoryComputeAppliedFilters } from './compute-applied-filters/compute-applied-filters';
