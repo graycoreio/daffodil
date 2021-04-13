@@ -15,7 +15,7 @@ import {
 import { daffIsRequestedFilterRangeOptionApplied } from './is-requested-option-applied';
 
 
-fdescribe('@daffodil/category | filters | range | daffIsRequestedFilterRangeOptionApplied', () => {
+describe('@daffodil/category | filters | range | daffIsRequestedFilterRangeOptionApplied', () => {
   let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
   let rangePairFactory: DaffCategoryFilterRangeNumericPairFactory;
   let rangeToggleRequestFactory: DaffCategoryFilterToggleRequestRangeNumericFactory;
