@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   daffCategoryFilterEqualOptionArrayToDict,
   daffCategoryFilterRangePairArrayToDict,
+  DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
@@ -56,5 +57,15 @@ describe('@daffodil/category | filters | daffIsFilterApplied', () => {
     });
 
     expect(daffIsFilterApplied(unappliedRangeFilter)).toBeFalse();
+  });
+
+  describe('for an unknown filter type', () => {
+    it('should throw a DaffCategoryUnknownFilterType error', () => {
+      expect(() => daffIsFilterApplied(<any>{
+        name: 'name',
+        type: null,
+        options: {},
+      })).toThrow(jasmine.any(DaffCategoryUnknownFilterType));
+    });
   });
 });

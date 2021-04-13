@@ -9,6 +9,7 @@ import {
   DaffCategoryFilterRangePair,
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterRangeNumericToggleRequest,
+  DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
@@ -144,6 +145,20 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
       it('should return true', () => {
         expect(result).toBeTrue();
       });
+    });
+  });
+
+  describe('for an unknown filter type', () => {
+    it('should throw a DaffCategoryUnknownFilterType error', () => {
+      expect(() => daffIsRequestedFilterOptionApplied(<any>{
+        name: 'name',
+        type: null,
+        value: '',
+      }, <any>{
+        name: 'name',
+        type: null,
+        options: {},
+      })).toThrow(jasmine.any(DaffCategoryUnknownFilterType));
     });
   });
 });
