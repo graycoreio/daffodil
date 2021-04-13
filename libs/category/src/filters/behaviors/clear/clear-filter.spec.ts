@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilter,
+  DaffCategoryFilterEqual,
+  DaffCategoryUnknownFilterType,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import {
-  DaffCategoryFilterEqual,
-  DaffCategoryFilter,
-} from '../../../models/public_api';
-import { DaffCategoryUnknownFilterType } from '../../errors/unknown-filter-type.error';
 import { daffClearFilter } from './clear-filter';
 
 describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', () => {

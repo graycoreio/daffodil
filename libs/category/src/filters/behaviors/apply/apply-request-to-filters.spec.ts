@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterEqual,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilter,
+  DaffCategoryFilterNotFound,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRequestEqualFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
-import {
-  DaffCategoryFilterEqual,
-  DaffCategoryFilter,
-  DaffCategoryFilterEqualRequest,
-} from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
 import { daffApplyRequestToFilters } from './apply-request-to-filters';
 
 describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestToFilters', () => {

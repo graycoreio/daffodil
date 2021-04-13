@@ -1,20 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterEqual,
+  DaffCategoryFilterToggleRequest,
+  DaffCategoryFilter,
+  DaffCategoryFilterNotFound,
+  DaffCategoryFilterRequestTypeMismatch,
+  DaffCategoryUnknownFilterType,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterToggleRequestEqualFactory,
   DaffCategoryFilterToggleRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import {
-  DaffCategoryFilterEqual,
-  DaffCategoryFilter,
-  DaffCategoryFilterToggleRequest,
-} from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
-import { DaffCategoryFilterRequestTypeMismatch } from '../../errors/request-type-mismatch.error';
-import { DaffCategoryUnknownFilterType } from '../../errors/unknown-filter-type.error';
 import { daffToggleFilter } from './toggle';
 
 describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {

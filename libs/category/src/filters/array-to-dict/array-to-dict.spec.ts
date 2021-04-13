@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCategoryFilter } from '@daffodil/category';
 import { DaffCategoryFilterFactory } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
-import { DaffCategoryFilter } from '../../models/public_api';
 import { daffCategoryFilterArrayToDict } from './array-to-dict';
 
 describe('@daffodil/category | filters | daffCategoryFilterArrayToDict', () => {

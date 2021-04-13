@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterRangeNumeric,
+  DaffCategoryFilterEqual,
+  DaffCategoryFilterEqualOption,
+  DaffCategoryFilterOption,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterRangeNumericPairFactory,
 } from '@daffodil/category/testing';
 
-import {
-  DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualOption,
-  DaffCategoryFilterOption,
-  DaffCategoryFilterRangeNumeric,
-} from '../../models/public_api';
 import { daffCategoryFindAppliedFilterOptions } from './find-applied-options';
 
 describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
