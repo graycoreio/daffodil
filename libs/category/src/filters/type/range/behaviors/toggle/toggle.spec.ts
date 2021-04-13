@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilter,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterRangeNumericFactory,
   DaffCategoryFilterToggleRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import {
-  DaffCategoryFilter,
-  DaffCategoryFilterRangeRequest,
-} from '../../../../../models/public_api';
 import { daffToggleFilterRange } from './toggle';
 
 describe('@daffodil/category | filters | type | range | behaviors | toggle', () => {

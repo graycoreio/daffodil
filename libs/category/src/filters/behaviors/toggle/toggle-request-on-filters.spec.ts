@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffCategoryFilterEqual,
+  DaffCategoryFilterEqualToggleRequest,
+  DaffCategoryFilterType,
+  DaffCategoryFilter,
+  DaffCategoryFilterNotFound,
+} from '@daffodil/category';
+import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterToggleRequestEqualFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
-import {
-  DaffCategoryFilterEqual,
-  DaffCategoryFilter,
-  DaffCategoryFilterType,
-  DaffCategoryFilterEqualToggleRequest,
-} from '../../../models/public_api';
-import { DaffCategoryFilterNotFound } from '../../errors/filter-not-found.error';
 import { daffToggleRequestOnFilters } from './toggle-request-on-filters';
 
 describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestToFilters', () => {

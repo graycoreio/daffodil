@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCategoryFilter } from '@daffodil/category';
 import { DaffCategoryFilterRangeNumericFactory } from '@daffodil/category/testing';
 
-import { DaffCategoryFilter } from '../../../../../models/public_api';
 import { daffClearFilterRange } from './clear';
 
 describe('@daffodil/category | filters | type | range | behaviors | clear', () => {
