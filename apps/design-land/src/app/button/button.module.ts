@@ -1,26 +1,22 @@
+import { CommonModule } from '@angular/common';
 import {
   NgModule,
   Injector,
   ComponentFactoryResolver,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { createCustomElement } from '@angular/elements';
 
-import { ButtonComponent } from './button.component';
-import { DesignLandButtonRoutingModule } from './button-routing.module';
 
 import {
   DaffButtonSetModule,
   DaffButtonModule,
   DaffArticleModule,
 } from '@daffodil/design';
+import { BUTTON_EXAMPLES } from '@daffodil/design/button/examples';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
-
-import {
-  BUTTON_EXAMPLES,
-  ButtonExamplesModule,
-} from '@daffodil/design/button/examples';
+import { DesignLandButtonRoutingModule } from './button-routing.module';
+import { ButtonComponent } from './button.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +30,6 @@ import {
     DaffButtonSetModule,
     DaffButtonModule,
     DaffArticleModule,
-    ButtonExamplesModule,
   ],
 })
 export class ButtonModule {

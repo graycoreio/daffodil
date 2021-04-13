@@ -11,7 +11,7 @@ import {
   styles: [`
     button[daff-stroked-button],
     a[daff-stroked-button] {
-      margin-right: 8px;
+      margin: 4px;
     }
   `],
 })
