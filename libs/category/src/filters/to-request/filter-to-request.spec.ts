@@ -130,9 +130,8 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
   describe('for an unknown filter type', () => {
     it('should throw a DaffCategoryUnknownFilterType error', () => {
       expect(() => daffCategoryFilterToRequest(<any>{
-        name: 'name',
+        ...appliedEqualFilter,
         type: null,
-        options: {},
       })).toThrow(jasmine.any(DaffCategoryUnknownFilterType));
     });
   });
