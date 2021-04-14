@@ -14,10 +14,10 @@ import { daffRemoveFilterRange } from '../remove/remove';
  *
  * @docs-private
  */
-export const daffToggleFilterRange = <T>(
+export const daffToggleFilterRange = <T, U extends DaffCategoryFilterRangeBase<T>>(
   request: DaffCategoryFilterRangeRequestBase<T>,
-  filter: DaffCategoryFilterRangeBase<T>,
-): DaffCategoryFilterRangeBase<T> =>
+  filter: U,
+): U =>
     filter.options[daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]
       ? daffRemoveFilterRange(request, filter)
       : daffApplyFilterRange(request, filter);

@@ -9,10 +9,10 @@ import { daffCategoryComputeFilterRangePairLabel } from '../../compute-pair-labe
  *
  * @docs-private
  */
-export const daffApplyFilterRange = <T>(
-  request: DaffCategoryFilterRangeRequestBase<T>,
-  filter: DaffCategoryFilterRangeBase<T>,
-): DaffCategoryFilterRangeBase<T> => ({
+export const daffApplyFilterRange = <T, U extends DaffCategoryFilterRangeRequestBase<T>, V extends DaffCategoryFilterRangeBase<T>>(
+  request: U,
+  filter: V,
+): V => ({
     ...filter,
     options: {
       [daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]: {

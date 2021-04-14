@@ -10,5 +10,4 @@ import { daffCategoryFilterRangeToRequest } from '../../range/to-request/filter-
  */
 export const daffCategoryFilterRangeNumericToRequest = (
   filter: DaffCategoryFilterRangeNumeric,
-  options: DaffCategoryFilterRangePair<number>[],
-): DaffCategoryFilterRangeNumericRequest => <DaffCategoryFilterRangeNumericRequest>daffCategoryFilterRangeToRequest(filter, options);
+): DaffCategoryFilterRangeNumericRequest => <DaffCategoryFilterRangeNumericRequest>daffCategoryFilterRangeToRequest(filter);

@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffCategoryFilterRangePair } from 'libs/category/src/models/public_api';
 
 import {
   DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterRangeRequest,
   DaffCategoryFilterType,
   daffCategoryFilterRangePairArrayToDict,
+  DaffCategoryFilterRangePair,
+  DaffCategoryFilterRangeRequestBase,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterRangeNumericFactory,
@@ -34,12 +34,11 @@ describe('@daffodil/category | filters | range | daffCategoryFilterRangeToReques
   });
 
   describe('when the filter has an applied option', () => {
-    let result: DaffCategoryFilterRangeRequest;
+    let result: DaffCategoryFilterRangeRequestBase<number>;
 
     beforeEach(() => {
       result = daffCategoryFilterRangeToRequest(
         appliedRangeFilter,
-        [rangeFilterPair],
       );
     });
 

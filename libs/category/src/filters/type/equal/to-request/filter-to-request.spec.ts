@@ -38,10 +38,7 @@ describe('@daffodil/category | filters | equal | daffCategoryFilterEqualToReques
     let result: DaffCategoryFilterEqualRequest;
 
     beforeEach(() => {
-      result = daffCategoryFilterEqualToRequest(
-        appliedEqualFilter,
-        [appliedEqualFilterOption0, appliedEqualFilterOption1],
-      );
+      result = daffCategoryFilterEqualToRequest(appliedEqualFilter);
     });
 
     it('should set the request type to equal', () => {

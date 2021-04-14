@@ -1,6 +1,6 @@
 import {
-  DaffCategoryFilterRangeBase,
   DaffCategoryFilterType,
+  DaffCategoryFilterRangeNumeric,
 } from '@daffodil/category';
 
 import { MagentoAggregation } from '../../../../models/public_api';
@@ -11,7 +11,7 @@ import { MagentoAggregation } from '../../../../models/public_api';
  */
 export const magentoBucketSeparator = '-';
 
-export const transformAggregateRange = (aggregate: MagentoAggregation): DaffCategoryFilterRangeBase<number> => ({
+export const transformAggregateRange = (aggregate: MagentoAggregation): DaffCategoryFilterRangeNumeric => ({
   label: aggregate.label,
   type: DaffCategoryFilterType.RangeNumeric,
   name: aggregate.attribute_code,

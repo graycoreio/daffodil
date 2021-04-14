@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterRangeRequest,
   DaffCategoryFilter,
+  DaffCategoryFilterRangeNumeric,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterRangeNumericFactory,
@@ -32,14 +33,14 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
       },
     });
 
-    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilterRangeNumeric = categoryFilterRangeNumericFactory.create({
       name: 'price',
       label: 'price',
       min: 0,
       max: 200,
     });
 
-    const expected: DaffCategoryFilter = {
+    const expected: DaffCategoryFilterRangeNumeric = {
       ...filter,
       options: {
         '0-20': {

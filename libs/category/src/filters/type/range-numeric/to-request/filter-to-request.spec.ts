@@ -39,7 +39,6 @@ describe('@daffodil/category | filters | range numeric | daffCategoryFilterRange
     beforeEach(() => {
       result = daffCategoryFilterRangeNumericToRequest(
         appliedRangeFilter,
-        [rangeFilterPair],
       );
     });
 

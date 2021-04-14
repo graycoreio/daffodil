@@ -1,5 +1,3 @@
-import { Dict } from '@daffodil/core';
-
 import {
   DaffCategoryFilter,
   DaffCategoryFilterRangeRequestBase,

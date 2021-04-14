@@ -1,4 +1,5 @@
 export { DaffCategoryFilterBase } from './category-filter-base';
+export { DaffCategoryFilterOptionBase } from './category-filter-option-base';
 export { DaffCategoryFilter } from './category-filter';
 export { DaffCategoryFilterOption } from './category-filter-option';
 export { DaffCategoryFilterRequest } from './filter-request';

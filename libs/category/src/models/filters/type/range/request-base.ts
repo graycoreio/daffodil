@@ -1,8 +1,8 @@
+import { DaffCategoryFilterType } from '../category-filter-type';
 import { DaffCategoryFilterRangeRequestOption } from '../range/public_api';
-import { DaffCategoryFilterRangeType } from './filter-type';
 
 export interface DaffCategoryFilterRangeRequestBase<T> {
-	type: DaffCategoryFilterRangeType;
+	type: DaffCategoryFilterType;
 	name: string;
 	value: DaffCategoryFilterRangeRequestOption<T>;
 }

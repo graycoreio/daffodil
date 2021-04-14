@@ -5,7 +5,7 @@ import { DaffCategoryFilterRangeBase } from '../../../../../models/public_api';
  *
  * @docs-private
  */
-export const daffClearFilterRange = <T>(filter: DaffCategoryFilterRangeBase<T>): DaffCategoryFilterRangeBase<T> => ({
+export const daffClearFilterRange = <T, U extends DaffCategoryFilterRangeBase<T>>(filter: U): U => ({
   ...filter,
   options: {},
 });

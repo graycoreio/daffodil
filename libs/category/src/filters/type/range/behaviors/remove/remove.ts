@@ -12,10 +12,10 @@ import { daffCategoryComputeFilterRangePairLabel } from '../../compute-pair-labe
  *
  * @docs-private
  */
-export const daffRemoveFilterRange = <T>(
+export const daffRemoveFilterRange = <T, U extends DaffCategoryFilterRangeBase<T>>(
   request: DaffCategoryFilterRangeRequestBase<T>,
-  filter: DaffCategoryFilterRangeBase<T>,
-): DaffCategoryFilterRangeBase<T> =>
+  filter: U,
+): U =>
     filter.options[daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]
       ? ({
         ...filter,
