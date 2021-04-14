@@ -9,6 +9,8 @@ import { daffApplyFilter } from './apply-filter';
 /**
  * Applies a {@link DaffCategoryFilterRequest} to a {@link Dict} of {@link DaffCategoryFilter}
  * returning the updated {@link Dict}.
+ *
+ * @idempotent
  */
 export const daffApplyRequestToFilters = (request: DaffCategoryFilterRequest, filters: Dict<DaffCategoryFilter>):  Dict<DaffCategoryFilter> => ({
   ...filters,

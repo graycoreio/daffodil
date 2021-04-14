@@ -75,4 +75,13 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestF
       daffRemoveRequestFromFilters(request, filters);
     }).toThrowMatching((e) => e instanceof DaffCategoryFilterNotFound);
   });
+
+  it('should be idempotent over filters', () => {
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
+      name: 'color',
+      value: ['red'],
+    });
+
+    expect((idempotentArg?: Dict<DaffCategoryFilter>) => (daffRemoveRequestFromFilters(request, idempotentArg || filters))).toBeIdempotent();
+  });
 });

@@ -180,4 +180,22 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
       daffApplyFilter(request, filter);
     }).toThrowMatching((e) => e instanceof DaffCategoryUnknownFilterType);
   });
+
+  it('should be idempotent over filter', () => {
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+      name: 'price',
+      value: {
+        min: 0,
+        max: 20,
+      },
+    });
+
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
+      name: 'price',
+      min: 0,
+      max: 200,
+    });
+
+    expect((idempotentArg?: DaffCategoryFilter) => (daffApplyFilter(request, idempotentArg || filter))).toBeIdempotent();
+  });
 });

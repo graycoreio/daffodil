@@ -159,4 +159,35 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
       daffRemoveFilter(request, filter);
     }).toThrowMatching((e) => e instanceof DaffCategoryUnknownFilterType);
   });
+
+  it('should be idempotent over filter', () => {
+    const request = categoryFilterRequestRangeNumericFactory.create({
+      name: 'price',
+      value: {
+        min: 0,
+        max: 20,
+      },
+    });
+
+    const filter = categoryFilterRangeNumericFactory.create({
+      name: 'price',
+      min: 0,
+      max: 200,
+      options: {
+        '0-20': {
+          applied: true,
+          min: {
+            label: '0',
+            value: 0,
+          },
+          max: {
+            label: '20',
+            value: 20,
+          },
+        },
+      },
+    });
+
+    expect((idempotentArg?: DaffCategoryFilter) => (daffRemoveFilter(request, idempotentArg || filter))).toBeIdempotent();
+  });
 });

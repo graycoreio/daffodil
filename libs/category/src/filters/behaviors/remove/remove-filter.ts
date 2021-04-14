@@ -17,7 +17,8 @@ import {
  * Undoes any applied options of a {@link DaffCategoryFilter} that match the
  * {@link DaffCategoryFilterRequest}, returning the {@link DaffCategoryFilter}.
  *
- * @idempotent
+ * @idempotent {filter}
+ * @pure
  */
 export const daffRemoveFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {
   daffCategoryValidateFilterRequestNameMatch(request, filter);
