@@ -120,7 +120,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         daffState: DaffState.Mutating,
         categoryPageMetadata: {
           ...state.categoryPageMetadata,
-          filters: {},
+          filters: daffClearFilters({}),
         },
       };
 
