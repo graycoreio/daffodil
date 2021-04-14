@@ -1,9 +1,9 @@
 import {
   DaffCategoryPageMetadata,
-  DaffCategoryRequest,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 
-type MetadataRequestIntersection = keyof DaffCategoryPageMetadata & keyof DaffCategoryRequest;
+type MetadataRequestIntersection = keyof DaffCategoryPageMetadata & keyof DaffCategoryIdRequest;
 
 const allowedMetadataKeys: MetadataRequestIntersection[] = [
   'id',
@@ -13,7 +13,7 @@ const allowedMetadataKeys: MetadataRequestIntersection[] = [
   'page_size',
 ];
 
-export const buildMetadataFromRequest = (request: DaffCategoryRequest): Partial<DaffCategoryPageMetadata> =>
+export const buildMetadataFromRequest = (request: DaffCategoryIdRequest): Partial<DaffCategoryPageMetadata> =>
   allowedMetadataKeys.reduce(<K extends MetadataRequestIntersection>(acc: Partial<DaffCategoryPageMetadata>, key: K) => {
     if (request[key]) {
       acc[key] = request[key];

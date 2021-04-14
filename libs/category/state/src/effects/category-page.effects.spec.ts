@@ -15,9 +15,10 @@ import {
 } from 'rxjs';
 
 import {
-  DaffCategoryRequest,
   DaffCategory,
   DaffCategoryPageMetadata,
+  DaffCategoryPageRequestKind,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -124,7 +125,7 @@ describe('DaffCategoryPageEffects', () => {
     let categoryLoadAction;
 
     beforeEach(() => {
- 		  categoryLoadAction = new DaffCategoryPageLoad({ id: stubCategory.id });
+ 		  categoryLoadAction = new DaffCategoryPageLoad({ id: stubCategory.id, kind: DaffCategoryPageRequestKind.ID });
     });
 
     describe('when the call to CategoryService is successful', () => {
@@ -169,10 +170,10 @@ describe('DaffCategoryPageEffects', () => {
     let categoryPageLoadSuccessAction: DaffCategoryPageLoadSuccess;
     let expected;
     let categoryPageLoadAction;
-    let categoryRequest: DaffCategoryRequest;
+    let categoryRequest: DaffCategoryIdRequest;
 
     beforeEach(() => {
-      categoryRequest = { id: stubCategory.id };
+      categoryRequest = { id: stubCategory.id, kind: DaffCategoryPageRequestKind.ID };
       categoryPageLoadAction = new DaffCategoryPageLoad(categoryRequest);
       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
         category: stubCategory,
@@ -245,6 +246,7 @@ describe('DaffCategoryPageEffects', () => {
       expect(effects.changeCategoryPageSize$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
+        kind: DaffCategoryPageRequestKind.ID,
         page_size: 3,
       });
     });
@@ -267,6 +269,7 @@ describe('DaffCategoryPageEffects', () => {
       expect(effects.changeCategoryCurrentPage$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
+        kind: DaffCategoryPageRequestKind.ID,
         current_page: 3,
       });
     });
@@ -292,6 +295,7 @@ describe('DaffCategoryPageEffects', () => {
       expect(effects.changeCategorySort$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
+        kind: DaffCategoryPageRequestKind.ID,
         applied_sort_direction: DaffSortDirectionEnum.Ascending,
         applied_sort_option: 'option',
       });

@@ -10,11 +10,11 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffCategory,
   DaffCategoryFilterType,
-  DaffCategoryRequest,
   DaffCategoryFilter,
   DaffCategoryPageMetadata,
   daffCategoryFilterArrayToDict,
   daffCategoryFilterEqualOptionArrayToDict,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
@@ -337,7 +337,7 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectIsCategoryPageResolving', () => {
     describe('when the category page is resolving', () => {
       beforeEach(() => {
-        store.dispatch(new DaffCategoryPageLoad(<DaffCategoryRequest>{}));
+        store.dispatch(new DaffCategoryPageLoad(<DaffCategoryIdRequest>{}));
       });
 
       it('returns true', () => {

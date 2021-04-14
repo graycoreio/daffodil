@@ -15,9 +15,10 @@ import {
 } from 'rxjs';
 
 import {
-  DaffCategoryRequest,
   DaffCategory,
   DaffCategoryPageMetadata,
+  DaffCategoryPageRequestKind,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -59,12 +60,12 @@ describe('DaffCategoryEffects', () => {
   let driverGetSpy: jasmine.Spy<DaffCategoryServiceInterface['get']>;
 
   let categoryFactory: DaffCategoryFactory;
-  let categoryPageConfigurationStateFactory: DaffCategoryPageMetadataFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let productFactory: DaffProductFactory;
   let productGridLoadSuccessAction: DaffProductGridLoadSuccess;
   let categoryLoadSuccessAction: DaffCategoryLoadSuccess;
   let categoryLoadAction;
-  let categoryRequest: DaffCategoryRequest;
+  let categoryRequest: DaffCategoryIdRequest;
 
   beforeEach(() => {
 
@@ -86,11 +87,11 @@ describe('DaffCategoryEffects', () => {
     effects = TestBed.inject(DaffCategoryEffects);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
-    categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
 
     stubCategory = categoryFactory.create();
-    stubCategoryPageMetadata = categoryPageConfigurationStateFactory.create();
+    stubCategoryPageMetadata = categoryPageMetadataFactory.create();
     stubCategory.id = stubCategoryPageMetadata.id;
     stubProducts = productFactory.createMany(3);
 
@@ -103,7 +104,7 @@ describe('DaffCategoryEffects', () => {
     }));
 
     productGridLoadSuccessAction = new DaffProductGridLoadSuccess(stubProducts);
-    categoryRequest = { id: stubCategory.id };
+    categoryRequest = { id: stubCategory.id, kind: DaffCategoryPageRequestKind.ID };
     categoryLoadAction = new DaffCategoryLoad(categoryRequest);
     categoryLoadSuccessAction = new DaffCategoryLoadSuccess({
       category: stubCategory,
@@ -169,10 +170,10 @@ describe('DaffCategoryEffects', () => {
 
     describe('multiple times in quick succession', () => {
       let otherCategoryLoadAction: DaffCategoryLoad;
-      let otherCategoryRequest: DaffCategoryRequest;
+      let otherCategoryRequest: DaffCategoryIdRequest;
 
       beforeEach(() => {
-        otherCategoryRequest = { id: 'someOtherCategory' };
+        otherCategoryRequest = { id: 'someOtherCategory', kind: DaffCategoryPageRequestKind.ID };
         otherCategoryLoadAction = new DaffCategoryLoad(otherCategoryRequest);
         actions$ = hot('--(ab)', { a: categoryLoadAction, b: otherCategoryLoadAction });
       });

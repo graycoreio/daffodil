@@ -19,14 +19,15 @@ import {
   switchMap,
   catchError,
   withLatestFrom,
-  map,
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
+  DaffCategoryPageRequestKind,
+  DaffCategoryIdRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
@@ -72,13 +73,12 @@ export class DaffCategoryPageEffects<
   @Effect()
   changeCategoryPageSize$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageChangeSizeAction),
-    withLatestFrom(
+    withLatestFrom<DaffCategoryPageChangePageSize, Observable<DaffCategoryPageMetadata>>(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangePageSize, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
+    switchMap(([action, categoryRequest]) => this.processCategoryGetRequest({
       ...categoryRequest,
+      kind: DaffCategoryPageRequestKind.ID,
       page_size: action.pageSize,
     })),
   );
@@ -86,33 +86,31 @@ export class DaffCategoryPageEffects<
   @Effect()
   changeCategoryCurrentPage$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction),
-    withLatestFrom(
+    withLatestFrom<DaffCategoryPageChangeCurrentPage, Observable<DaffCategoryPageMetadata>>(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangeCurrentPage, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
+    switchMap(([action, categoryRequest]) => this.processCategoryGetRequest({
       ...categoryRequest,
+      kind: DaffCategoryPageRequestKind.ID,
       current_page: action.currentPage,
     })),
   );
 
   @Effect()
   changeCategorySort$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
-    withLatestFrom(
+    ofType<DaffCategoryPageChangeSortingOption>(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
+    withLatestFrom<DaffCategoryPageChangeSortingOption, Observable<DaffCategoryPageMetadata>>(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangeSortingOption, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
+    switchMap(([action, categoryRequest]) => this.processCategoryGetRequest({
       ...categoryRequest,
+      kind: DaffCategoryPageRequestKind.ID,
       applied_sort_option: action.sort.option,
       applied_sort_direction: action.sort.direction,
     })),
   );
 
-  private processCategoryGetRequest(payload: DaffCategoryRequest) {
+  private processCategoryGetRequest(payload: DaffCategoryIdRequest) {
     return this.driver.get(payload).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),

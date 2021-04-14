@@ -14,6 +14,7 @@ import {
   daffCategoryFiltersToRequests,
   DaffCategoryFilterRequest,
   DaffCategoryFilterToggleRequest,
+  DaffCategoryPageRequestKind,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -113,6 +114,7 @@ describe('DaffCategoryPageFilterEffects', () => {
         });
 
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
+          kind: DaffCategoryPageRequestKind.ID,
           id: stubCategoryPageMetadata.id,
           applied_sort_option: stubCategoryPageMetadata.applied_sort_option,
           applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
@@ -162,6 +164,7 @@ describe('DaffCategoryPageFilterEffects', () => {
         });
 
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
+          kind: DaffCategoryPageRequestKind.ID,
           id: stubCategoryPageMetadata.id,
           applied_sort_option: stubCategoryPageMetadata.applied_sort_option,
           applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
@@ -204,6 +207,7 @@ describe('DaffCategoryPageFilterEffects', () => {
         });
 
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
+          kind: DaffCategoryPageRequestKind.ID,
           id: stubCategoryPageMetadata.id,
           applied_sort_option: stubCategoryPageMetadata.applied_sort_option,
           applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
