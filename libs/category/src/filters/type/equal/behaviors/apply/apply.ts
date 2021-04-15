@@ -6,6 +6,7 @@ import {
 /**
  * Applies a {@link DaffCategoryFilterEqualRequest} to a {@link DaffCategoryFilterEqual}
  *
+ * @idempotent {filter}
  * @docs-private
  */
 export const daffApplyFilterEqual = (

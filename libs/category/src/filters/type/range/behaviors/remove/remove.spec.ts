@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { DaffCategoryFilterRangeNumeric } from 'libs/category/src/models/public_api';
 
 import {
   DaffCategoryFilterRangeRequest,
@@ -88,5 +89,36 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
     });
 
     expect(daffRemoveFilterRange(request, filter)).toEqual(filter);
+  });
+
+  it('should be idempotent over filter', () => {
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+      name: 'price',
+      value: {
+        min: 0,
+        max: 20,
+      },
+    });
+
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
+      name: 'price',
+      min: 0,
+      max: 200,
+      options: {
+        '0-20': {
+          applied: true,
+          min: {
+            label: '0',
+            value: 0,
+          },
+          max: {
+            label: '20',
+            value: 20,
+          },
+        },
+      },
+    });
+
+    expect((idempotentArg?: DaffCategoryFilterRangeNumeric) => (daffRemoveFilterRange(request, idempotentArg || filter))).toBeIdempotent();
   });
 });

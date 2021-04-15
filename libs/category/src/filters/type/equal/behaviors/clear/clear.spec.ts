@@ -63,4 +63,22 @@ describe('@daffodil/category | filters | type | equal | behaviors | clear', () =
 
     expect(daffClearFilterEqual(filter)).toEqual(filter);
   });
+
+  it('should be idempotent over filter', () => {
+    const filter: DaffCategoryFilterEqual = categoryFilterEqualFactory.create({
+      name: 'color',
+      options: {
+        red: {
+          applied: true,
+          value: 'red',
+        },
+        blue: {
+          applied: true,
+          value: 'blue',
+        },
+      },
+    });
+
+    expect((idempotentArg?: DaffCategoryFilterEqual) => (daffClearFilterEqual(idempotentArg || filter))).toBeIdempotent();
+  });
 });

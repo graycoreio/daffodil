@@ -94,4 +94,22 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
       daffClearFilter(filter);
     }).toThrowMatching((e) => e instanceof DaffCategoryUnknownFilterType);
   });
+
+  it('should be idempotent over filter', () => {
+    const filter: DaffCategoryFilterEqual = categoryFilterEqualFactory.create({
+      name: 'color',
+      options: {
+        red: {
+          applied: true,
+          value: 'red',
+        },
+        blue: {
+          applied: true,
+          value: 'blue',
+        },
+      },
+    });
+
+    expect((idempotentArg?: DaffCategoryFilter) => (daffClearFilter(idempotentArg || filter))).toBeIdempotent();
+  });
 });

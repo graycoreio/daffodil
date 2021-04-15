@@ -3,6 +3,7 @@ import { DaffCategoryFilterEqual } from '../../../../../models/public_api';
 /**
  * Unapplies the applied filter options of a {@link DaffCategoryFilterEqual}
  *
+ * @idempotent {filter}
  * @docs-private
  */
 export const daffClearFilterEqual = (filter: DaffCategoryFilterEqual): DaffCategoryFilterEqual => ({

@@ -10,6 +10,7 @@ import { daffCategoryComputeFilterRangePairLabel } from '../../compute-pair-labe
  *
  * If there are no matching options, returns the original {@link DaffCategoryFilterRangeBase}
  *
+ * @idempotent {filter}
  * @docs-private
  */
 export const daffRemoveFilterRange = <T, U extends DaffCategoryFilterRangeBase<T>>(

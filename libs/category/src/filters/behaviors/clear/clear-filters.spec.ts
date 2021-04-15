@@ -80,4 +80,45 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilters', 
 
     expect(daffClearFilters(filters)).toEqual(expected);
   });
+
+  it('should be idempotent over filters', () => {
+    const colorFilter = categoryFilterEqualFactory.create({
+      name: 'color',
+      options: {
+        red: {
+          applied: true,
+          value: 'red',
+        },
+        blue: {
+          applied: true,
+          value: 'blue',
+        },
+      },
+    });
+    const priceFilter = categoryFilterRangeNumericFactory.create({
+      name: 'price',
+      min: 0,
+      max: 200,
+      options: {
+        '0-20': {
+          applied: true,
+          min: {
+            label: '0',
+            value: 0,
+          },
+          max: {
+            label: '20',
+            value: 20,
+          },
+        },
+      },
+    });
+
+    const filters: Dict<DaffCategoryFilter> = {
+      color: colorFilter,
+      price: priceFilter,
+    };
+
+    expect((idempotentArg?: Dict<DaffCategoryFilter>) => (daffClearFilters(idempotentArg || filters))).toBeIdempotent();
+  });
 });

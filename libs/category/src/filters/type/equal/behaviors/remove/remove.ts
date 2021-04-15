@@ -10,6 +10,7 @@ import {
  *
  * If there are no matching options, returns the original {@link DaffCategoryFilterEqual}
  *
+ * @idempotent {filter}
  * @docs-private
  */
 export const daffRemoveFilterEqual = (

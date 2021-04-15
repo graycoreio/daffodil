@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { DaffCategoryFilterRangeNumeric } from 'libs/category/src/models/public_api';
 
 import { DaffCategoryFilter } from '@daffodil/category';
 import { DaffCategoryFilterRangeNumericFactory } from '@daffodil/category/testing';
@@ -51,5 +52,28 @@ describe('@daffodil/category | filters | type | range | behaviors | clear', () =
     });
 
     expect(daffClearFilterRange(filter)).toEqual(filter);
+  });
+
+  it('should be idempotent over filter', () => {
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
+      name: 'price',
+      min: 0,
+      max: 20,
+      options: {
+        '0-20': {
+          applied: true,
+          min: {
+            label: '0',
+            value: 0,
+          },
+          max: {
+            label: '20',
+            value: 20,
+          },
+        },
+      },
+    });
+
+    expect((idempotentArg?: DaffCategoryFilterRangeNumeric) => (daffClearFilterRange(idempotentArg || filter))).toBeIdempotent();
   });
 });

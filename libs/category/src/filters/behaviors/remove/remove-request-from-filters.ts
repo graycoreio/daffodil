@@ -10,7 +10,7 @@ import { daffRemoveFilter } from './remove-filter';
  * Undoes any applied options of a particular filter of a {@link Dict} of {@link DaffCategoryFilter}
  * that match the {@link DaffCategoryFilterRequest}, returning the {@link Dict} of {@link DaffCategoryFilter}.
  *
- * @idempotent
+ * @idempotent {filters}
  */
 export const daffRemoveRequestFromFilters = (
   request: DaffCategoryFilterRequest,

@@ -9,6 +9,8 @@ import { daffClearFilterRange } from '../../type/range/behaviors/clear/clear';
 /**
  * Undoes the applied state of all applied filter options of a {@link DaffCategoryFilter}
  * returning the filter.
+ *
+ * @idempotent {filter}
  */
 export const daffClearFilter = (filter: DaffCategoryFilter): DaffCategoryFilter => {
   switch (filter.type) {

@@ -7,6 +7,7 @@ import { daffCategoryComputeFilterRangePairLabel } from '../../compute-pair-labe
 /**
  * Applies a {@link DaffCategoryFilterRangeRequestBase} to a {@link DaffCategoryFilterRangeBase}
  *
+ * @idempotent {filter}
  * @docs-private
  */
 export const daffApplyFilterRange = <T, U extends DaffCategoryFilterRangeRequestBase<T>, V extends DaffCategoryFilterRangeBase<T>>(

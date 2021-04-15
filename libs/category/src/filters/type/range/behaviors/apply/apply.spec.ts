@@ -155,4 +155,35 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
 
     expect(daffApplyFilterRange(request, filter)).toEqual(expected);
   });
+
+  it('should be idempotent over filter', () => {
+    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+      name: 'price',
+      value: {
+        min: 20,
+        max: 40,
+      },
+    });
+
+    const filter: DaffCategoryFilterRangeNumeric = categoryFilterRangeNumericFactory.create({
+      name: 'price',
+      min: 0,
+      max: 200,
+      options: {
+        '0-20': {
+          applied: true,
+          min: {
+            label: '0',
+            value: 0,
+          },
+          max: {
+            label: '20',
+            value: 20,
+          },
+        },
+      },
+    });
+
+    expect((idempotentArg?: DaffCategoryFilterRangeNumeric) => (daffApplyFilterRange(request, idempotentArg || filter))).toBeIdempotent();
+  });
 });

@@ -10,7 +10,7 @@ import { daffApplyFilter } from './apply-filter';
  * Applies filters from a {@link DaffCategoryFilterRequest} to a {@link Dict}
  * of {@link DaffCategoryFilter}.
  *
- * @idempotent
+ * @idempotent {filters}
  */
 export const daffApplyRequestsToFilters = (
   filtersRequests: DaffCategoryFilterRequest[],

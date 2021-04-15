@@ -11,7 +11,7 @@ import { daffRemoveFilter } from './remove-filter';
  * that match any of the {@link DaffCategoryFilterRequest},
  * returning the updated {@link Dict} of {@link DaffCategoryFilter}.
  *
- * @idempotent
+ * @idempotent {filters}
  */
 export const daffRemoveRequestsFromFilters = (
   requests: (DaffCategoryFilterRequest)[],

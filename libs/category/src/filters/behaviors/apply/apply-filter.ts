@@ -16,7 +16,7 @@ import {
 /**
  * Applies a filter request to the matching filter.
  *
- * @idempotent
+ * @idempotent {filter}
  * @throws {@link DaffCategoryUnknownFilterType}
  */
 export const daffApplyFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {

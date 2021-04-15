@@ -137,4 +137,13 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
 
     expect(daffApplyRequestsToFilters(requests, filters)).toEqual(expected);
   });
+
+  it('should be idempotent over filters', () => {
+    const requests: DaffCategoryFilterEqualRequest[] = [
+      colorRequest,
+      sizeRequest,
+    ];
+
+    expect((idempotentArg?: Dict<DaffCategoryFilterEqual>) => (daffApplyRequestsToFilters(requests, idempotentArg || filters))).toBeIdempotent();
+  });
 });
