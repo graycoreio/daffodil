@@ -5,7 +5,6 @@ import { DaffCategoryFilterOptionBase } from '../../category-filter-option-base'
  * "Red" or "Green", "Tall" or "Short", etc.
  */
 export interface DaffCategoryFilterEqualOption extends DaffCategoryFilterOptionBase {
-	applied: boolean;
 	value: string;
 	label: string;
 	count: number;
