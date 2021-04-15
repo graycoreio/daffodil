@@ -11,7 +11,7 @@ import {
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
-import { setup } from '@daffodil/core/testing/jasmine';
+import { setup } from '@daffodil/jasmine';
 setup();
 
 declare const require: any;
