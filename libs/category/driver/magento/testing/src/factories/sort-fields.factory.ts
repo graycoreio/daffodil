@@ -4,7 +4,7 @@ import * as faker from 'faker/locale/en_US';
 import { MagentoSortFields } from '@daffodil/category/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-class MockMagentoPageInfo implements MagentoSortFields {
+class MockMagentoSortFields implements MagentoSortFields {
   default = 'position';
   options = [
     {
@@ -19,6 +19,6 @@ class MockMagentoPageInfo implements MagentoSortFields {
 })
 export class DaffCategoryDriverMagentoSortFieldsFactory extends DaffModelFactory<MagentoSortFields> {
   constructor(){
-    super(MockMagentoPageInfo);
+    super(MockMagentoSortFields);
   }
 }
