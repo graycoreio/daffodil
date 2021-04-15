@@ -63,17 +63,17 @@ export class DaffCategoryPageFilterEffects<
   /**
    * Updates the filters applied to the category page. It will take the currently
    * applied filters from state, form them into a request, and attempt to apply
-   * those request to a backend service.
+   * that request to a backend service.
    *
-   * @param debounceFrame the amount of time to delay when apply/removing filters
+   * @param throttleWindow the amount of time to delay when apply/removing filters
    * in a sequence.
    */
   @Effect()
-  updateFilters$: (debounceFrame: number, scheduler: AsyncScheduler) => Observable<
+  updateFilters$: (throttleWindow: number, scheduler: AsyncScheduler) => Observable<
     DaffProductGridLoadSuccess
     | DaffCategoryPageLoadSuccess
     | DaffCategoryPageLoadFailure
-  > = (debounceFrame = 300, scheduler = asyncScheduler) => this.actions$.pipe(
+  > = (throttleWindow = 100, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType<DaffCategoryPageFilterActions>(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
@@ -91,7 +91,7 @@ export class DaffCategoryPageFilterEffects<
       current_page: metadata.current_page,
       page_size: metadata.page_size,
     })),
-    throttleTime(debounceFrame, scheduler, { leading: true, trailing: true }),
+    throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
     switchMap(payload => this.driver.get(payload).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
