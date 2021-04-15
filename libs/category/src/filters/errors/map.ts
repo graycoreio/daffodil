@@ -7,7 +7,7 @@ import { DaffCategoryUnknownFilterType } from './unknown-filter-type.error';
  * A mapping from error codes to error class constructors.
  */
 export const DaffCategoryFiltersErrorMap = {
-  [DaffCategoryFilterErrorCodes.CATEGORY_FILTER_REQUEST_TYPE_MISMATCH]: DaffCategoryFilterRequestTypeMismatch,
-  [DaffCategoryFilterErrorCodes.CATEGORY_FILTER_NOT_FOUND]: DaffCategoryFilterNotFound,
-  [DaffCategoryFilterErrorCodes.CATEGORY_UNKNOWN_FILTER_TYPE]: DaffCategoryUnknownFilterType,
+  [DaffCategoryFilterErrorCodes.FILTER_REQUEST_TYPE_MISMATCH]: DaffCategoryFilterRequestTypeMismatch,
+  [DaffCategoryFilterErrorCodes.FILTER_NOT_FOUND]: DaffCategoryFilterNotFound,
+  [DaffCategoryFilterErrorCodes.UNKNOWN_FILTER_TYPE]: DaffCategoryUnknownFilterType,
 };

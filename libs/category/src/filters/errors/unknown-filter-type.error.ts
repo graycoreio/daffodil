@@ -10,7 +10,7 @@ import { DaffCategoryErrorCodes } from '../../errors/codes.enum';
  * to Daffodil.
  */
 export class DaffCategoryUnknownFilterType extends DaffInheritableError implements DaffError {
-  public readonly code: string = DaffCategoryErrorCodes.CATEGORY_UNKNOWN_FILTER_TYPE;
+  public readonly code: string = DaffCategoryErrorCodes.UNKNOWN_FILTER_TYPE;
 
   constructor(message?: string) {
 	  super(message);
