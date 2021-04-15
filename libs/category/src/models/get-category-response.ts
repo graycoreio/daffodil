@@ -4,10 +4,10 @@ import { DaffCategory } from './category';
 import { DaffCategoryPageMetadata } from './category-page-metadata';
 import { DaffGenericCategory } from './generic-category';
 
+//TODO: move this type to the driver.
+
 /**
  * The response to a call to the {@link DaffCategoryServiceInterface}.
- *
- * TODO: move this type to the driver.
  */
 export interface DaffGetCategoryResponse<
 	V extends DaffGenericCategory<V> = DaffCategory,
