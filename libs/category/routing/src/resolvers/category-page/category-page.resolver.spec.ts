@@ -88,7 +88,7 @@ describe('DaffCategoryPageResolver', () => {
       });
 
       store.dispatch(new DaffCategoryPageLoadSuccess({
-        products: [new DaffProductFactory().create()],
+        products: [productFactory.create()],
         category: stubCategory,
         categoryPageMetadata: categoryPageMetadataFactory.create(),
       }));
