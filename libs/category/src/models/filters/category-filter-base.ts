@@ -18,7 +18,7 @@ export interface DaffCategoryFilterBase {
 	name: string;
 
 	/**
-	 * The type of the filter. This is used to determined the specific behavior of the filter.
+	 * The type of the filter. This is used to determine the specific behavior of the filter.
 	 */
 	type: DaffCategoryFilterType;
 
