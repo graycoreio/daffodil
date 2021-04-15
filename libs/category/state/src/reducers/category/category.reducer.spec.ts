@@ -21,6 +21,7 @@ import {
   DaffCategoryFilterRangeNumericToggleRequest,
   daffCategoryComputeFilterRangePairLabel,
   daffCategoryFiltersToRequests,
+  daffIsFilterApplied,
 } from '@daffodil/category';
 import {
   DaffCategoryReducerState,
@@ -634,13 +635,35 @@ describe('Category | Category Reducer', () => {
     let result: DaffCategoryReducerState;
 
     beforeEach(() => {
-      const clearCategoryFilters = new DaffCategoryPageClearFilters();
+      currentAppliedEqualFilterOption = equalOptionFactory.create({
+        applied: true,
+      });
+      currentUnappliedEqualFilterOption = equalOptionFactory.create({
+        applied: false,
+      });
+      currentEqualFilter = equalFilterFactory.create({
+        options: daffCategoryFilterEqualOptionArrayToDict([
+          currentAppliedEqualFilterOption,
+          currentUnappliedEqualFilterOption,
+        ]),
+      });
+      currentRangeFilterPair = rangePairFactory.create();
+      currentRangeFilter = rangeFilterFactory.create({
+        options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+      });
+      initialState.categoryPageMetadata.filters = daffCategoryFilterArrayToDict([
+        currentEqualFilter,
+        currentRangeFilter,
+      ]);
 
+      const clearCategoryFilters = new DaffCategoryPageClearFilters();
       result = daffCategoryReducer(initialState, clearCategoryFilters);
     });
 
-    it('should set filters to an empty object', () => {
-      expect(result.categoryPageMetadata.filters).toEqual({});
+    it('should unapply all filters', () => {
+      Object.values(result.categoryPageMetadata.filters).forEach(filter => {
+        expect(daffIsFilterApplied(filter)).toBeFalse();
+      });
     });
 
     it('does not change the categoryLoading state', () => {
