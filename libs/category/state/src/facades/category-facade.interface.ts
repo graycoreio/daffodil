@@ -13,7 +13,6 @@ import {
   DaffSortDirectionEnum,
   DaffSortOption,
   DaffStateError,
-  DaffState,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
