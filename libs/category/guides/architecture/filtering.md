@@ -15,8 +15,8 @@ When an action is dispatched that would modify the applied filter state of the a
 
 1. An action modifying the applied filter state is dispatched
 2. Reducers add/remove the filters modified by the action in state. The modification assumes that the associated filters will be applied/removed successfully by the backing platform (optimistic).
-3. A driver call will be made to get the resulting category (and its items) by computing a `DaffCategoryRequest` from the current category state.
+3. A driver call will be made to get the resulting category (and its items) by computing a `DaffCategoryRequest` from the current category state including the applied filter modification from (2).
 4. Processing the response from the [associated driver](./#driver-specific-mechanisms) into a `DaffGetCategoryResponse`. 
 
 ### Driver Specific Mechanisms
-It is important to note that not all platforms guarantee a response with enough information to determine whether or not a filter was or was not applied. As a result, drivers targeting such platforms **must** internally process their responses to return appropriately applied filter states, otherwise the applied filter state will be lost when the next state is computed from the response. Such drivers can do so by using the [behaviors](../../src/filters/behaviors) of the `@daffodil/category` package.
+It is important to note that not all platforms guarantee a response with enough information to determine whether or not a filter state was modified successfully. As a result, drivers targeting such platforms **must** internally process their responses to return appropriately applied filter states, otherwise the applied filter state will be lost when the next state is computed from the response. Such drivers can do so by using the [behaviors](../../src/filters/behaviors) of the `@daffodil/category` package.
