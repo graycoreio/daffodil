@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffCategoryFilterRangeNumeric } from 'libs/category/src/models/public_api';
 
-import { DaffCategoryFilter } from '@daffodil/category';
+import {
+  DaffCategoryFilter,
+  DaffCategoryFilterRangeNumeric,
+} from '@daffodil/category';
 import { DaffCategoryFilterRangeNumericFactory } from '@daffodil/category/testing';
 
 import { daffClearFilterRange } from './clear';

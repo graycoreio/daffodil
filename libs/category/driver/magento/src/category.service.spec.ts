@@ -9,13 +9,12 @@ import {
   DaffCategoryRequest,
   DaffCategory,
   DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterRangeRequest,
   DaffCategoryFilterRangeRequestOption,
   daffCategoryComputeFilterRangePairLabel,
   DaffGetCategoryResponse,
   DaffCategoryPageMetadata,
+  DaffCategoryFilterRangeNumericRequest,
 } from '@daffodil/category';
-import { DaffMagentoCategoryTransformerService } from '@daffodil/category/driver/magento';
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
@@ -41,7 +40,7 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
   let mockCategoryRequest: DaffCategoryRequest;
   let mockCategory: DaffCategory;
   let equalFilterRequest: DaffCategoryFilterEqualRequest;
-  let rangeFilterRequest: DaffCategoryFilterRangeRequest;
+  let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
   let rangeFilterRequestOption: DaffCategoryFilterRangeRequestOption<number>;
   let rangeFilterRequestOptionLabel: string;
 

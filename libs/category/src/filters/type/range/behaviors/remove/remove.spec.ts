@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffCategoryFilterRangeNumeric } from 'libs/category/src/models/public_api';
-
+]\
 import {
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
+  DaffCategoryFilterRangeNumeric,
   DaffCategoryFilter,
 } from '@daffodil/category';
 import {
@@ -25,7 +25,7 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
   });
 
   it('should remove the filter, when the filter option is the same as the request value', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -61,7 +61,7 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
   });
 
   it('should do nothing if the same filter is not applied', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 20,
@@ -92,7 +92,7 @@ describe('@daffodil/category | filters | type | range | behaviors | remove', () 
   });
 
   it('should be idempotent over filter', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,

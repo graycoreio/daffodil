@@ -5,7 +5,7 @@ import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterEqualRequest,
   daffCategoryFilterArrayToDict,
   DaffCategoryFilterType,
@@ -39,8 +39,8 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
   let unappliedEqualFilter: DaffCategoryFilterEqual;
   let unappliedEqualFilterOption: DaffCategoryFilterEqualOption;
 
-  let appliedRangeFilterRequest: DaffCategoryFilterRangeRequest;
-  let unappliedRangeFilterRequest: DaffCategoryFilterRangeRequest;
+  let appliedRangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
+  let unappliedRangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
   let appliedEqualFilterRequest: DaffCategoryFilterEqualRequest;
   let unappliedEqualFilterRequest: DaffCategoryFilterEqualRequest;
 

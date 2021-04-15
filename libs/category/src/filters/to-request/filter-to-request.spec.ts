@@ -4,7 +4,7 @@ import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterType,
   DaffCategoryFilterEqualRequest,
   DaffCategoryUnknownFilterType,
@@ -65,10 +65,10 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
 
   describe('building a range filter request', () => {
     describe('when the filter has an applied option', () => {
-      let result: DaffCategoryFilterRangeRequest;
+      let result: DaffCategoryFilterRangeNumericRequest;
 
       beforeEach(() => {
-        result = <DaffCategoryFilterRangeRequest>daffCategoryFilterToRequest(appliedRangeFilter);
+        result = <DaffCategoryFilterRangeNumericRequest>daffCategoryFilterToRequest(appliedRangeFilter);
       });
 
       it('should set the request type to range', () => {
@@ -83,10 +83,10 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
     });
 
     describe('when the filter has no applied options', () => {
-      let result: DaffCategoryFilterRangeRequest;
+      let result: DaffCategoryFilterRangeNumericRequest;
 
       beforeEach(() => {
-        result = <DaffCategoryFilterRangeRequest>daffCategoryFilterToRequest(unappliedRangeFilter);
+        result = <DaffCategoryFilterRangeNumericRequest>daffCategoryFilterToRequest(unappliedRangeFilter);
       });
 
       it('should return null', () => {

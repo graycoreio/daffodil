@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilter,
   DaffCategoryFilterNotFound,
   DaffCategoryFilterType,
@@ -68,7 +68,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
   });
 
   it('should apply a range filter request', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -138,7 +138,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
       },
     });
 
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       type: DaffCategoryFilterType.RangeNumeric,
       name: 'color',
       value: {
@@ -182,7 +182,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
   });
 
   it('should be idempotent over filter', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,

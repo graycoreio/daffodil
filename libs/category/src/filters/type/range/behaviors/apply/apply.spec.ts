@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilter,
   DaffCategoryFilterRangeNumeric,
 } from '@daffodil/category';
@@ -25,7 +25,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
   });
 
   it('should apply the filter, when the currently applied filters are empty', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -61,7 +61,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
   });
 
   it('should do nothing if the same filter is already applied', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -109,7 +109,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
   });
 
   it('should remove the old filter, and apply the new one when an existing filter is already applied', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 20,
@@ -157,7 +157,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
   });
 
   it('should be idempotent over filter', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 20,

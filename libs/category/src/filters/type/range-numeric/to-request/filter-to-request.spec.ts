@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterType,
   daffCategoryFilterRangePairArrayToDict,
   DaffCategoryFilterRangePair,
@@ -34,7 +34,7 @@ describe('@daffodil/category | filters | range numeric | daffCategoryFilterRange
   });
 
   describe('when the filter has an applied option', () => {
-    let result: DaffCategoryFilterRangeRequest;
+    let result: DaffCategoryFilterRangeNumericRequest;
 
     beforeEach(() => {
       result = daffCategoryFilterRangeNumericToRequest(

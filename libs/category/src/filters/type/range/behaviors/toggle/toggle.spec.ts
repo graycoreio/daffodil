@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilter,
 } from '@daffodil/category';
 import {
@@ -23,7 +23,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
   });
 
   it('should remove the request value from the filter when the request value is currently applied', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterToggleRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterToggleRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -57,7 +57,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
   });
 
   it('should apply the request value to the filter when there is no filter option applied', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterToggleRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterToggleRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -91,7 +91,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
   });
 
   it('should apply the request value to the filter when there is a different filter value applied', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterToggleRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterToggleRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 20,

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterRangeRequest,
+  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilter,
   DaffCategoryFilterNotFound,
   DaffCategoryFilterRequestTypeMismatch,
@@ -68,7 +68,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
   });
 
   it('should remove a range request', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'price',
       value: {
         min: 0,
@@ -116,7 +116,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
   });
 
   it('should throw an error if a request has a different type than the filter', () => {
-    const request: DaffCategoryFilterRangeRequest = categoryFilterRequestRangeNumericFactory.create({
+    const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
       name: 'color',
       value: {
         min: 0,

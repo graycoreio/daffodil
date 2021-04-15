@@ -4,6 +4,8 @@ import {
   daffRemoveRequestsFromFilters,
   daffClearFilters,
   daffToggleRequestOnFilters,
+  DaffCategoryRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -16,8 +18,9 @@ import { DaffCategoryPageActions } from '../../actions/category-page.actions';
 import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
 import { DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
+import { buildMetadataFromRequest } from './pure/build-metadata-from-request';
 
-const initialState: DaffCategoryReducerState = {
+export const initialState: DaffCategoryReducerState = {
   categoryPageMetadata: {
     id: null,
     applied_sort_option: null,
@@ -51,8 +54,8 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         productsLoading: true,
         daffState: DaffState.Resolving,
         categoryPageMetadata: {
-          ...state.categoryPageMetadata,
-          ...action.request,
+          ...initialState.categoryPageMetadata,
+          ...buildMetadataFromRequest(action.request),
         },
       };
 
