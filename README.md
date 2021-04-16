@@ -4,8 +4,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1b331aa9dd107c168250/maintainability)](https://codeclimate.com/github/graycoreio/daffodil/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1b331aa9dd107c168250/test_coverage)](https://codeclimate.com/github/graycoreio/daffodil/test_coverage)
 [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
-[![dependencies Status](https://david-dm.org/graycoreio/daffodil/status.svg)](https://david-dm.org/graycoreio/daffodil)
-[![devDependencies Status](https://david-dm.org/graycoreio/daffodil/dev-status.svg)](https://david-dm.org/graycoreio/daffodil?type=dev)
 
 ## What is Daffodil?
 Daffodil is a frontend toolkit that intends to accomplish three things:
