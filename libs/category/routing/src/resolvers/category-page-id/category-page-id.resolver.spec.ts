@@ -17,7 +17,10 @@ import {
 import { fail } from 'assert';
 import { Observable } from 'rxjs';
 
-import { DaffCategory } from '@daffodil/category';
+import {
+  DaffCategory,
+  DaffCategoryPageRequestKind,
+} from '@daffodil/category';
 import {
   daffCategoryReducers,
   DaffCategoryPageLoad,
@@ -33,11 +36,11 @@ import {
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffCategoryPageResolver } from './category-page.resolver';
+import { DaffCategoryPageIdResolver } from './category-page-id.resolver';
 
-describe('DaffCategoryPageResolver', () => {
+describe('DaffCategoryPageIdResolver', () => {
   const actions$: Observable<any> = null;
-  let categoryResolver: DaffCategoryPageResolver;
+  let categoryResolver: DaffCategoryPageIdResolver;
   let store: Store<DaffCategoryReducersState>;
   let categoryFactory: DaffCategoryFactory;
   let productFactory: DaffProductFactory;
@@ -59,26 +62,27 @@ describe('DaffCategoryPageResolver', () => {
           { provide: DaffDefaultCategoryPageSize, useValue: 12 },
           {
             provide: ActivatedRoute,
-            useValue: { snapshot: { paramMap: { get: () => '123' }}},
+            useValue: { snapshot: { paramMap: { get: () => '123' }, toString: () => '123' }},
           },
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID },
         ],
       });
 
-      categoryResolver = TestBed.inject(DaffCategoryPageResolver);
+      categoryResolver = TestBed.inject(DaffCategoryPageIdResolver);
       categoryFactory = TestBed.inject(DaffCategoryFactory);
       productFactory = TestBed.inject(DaffProductFactory);
       categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
-      stubCategory = categoryFactory.create();
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
+
+      stubCategory = categoryFactory.create();
     }));
 
     it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoad({ id: '123', page_size: 12 }),
+        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryPageRequestKind.ID }),
       );
     });
 
@@ -88,7 +92,7 @@ describe('DaffCategoryPageResolver', () => {
       });
 
       store.dispatch(new DaffCategoryPageLoadSuccess({
-        products: [new DaffProductFactory().create()],
+        products: [productFactory.create()],
         category: stubCategory,
         categoryPageMetadata: categoryPageMetadataFactory.create(),
       }));
@@ -124,24 +128,25 @@ describe('DaffCategoryPageResolver', () => {
           { provide: DaffDefaultCategoryPageSize, useValue: 12 },
           {
             provide: ActivatedRoute,
-            useValue: { snapshot: { paramMap: { get: () => '123' }}},
+            useValue: { snapshot: { paramMap: { get: () => '123' }, toString: () => '123' }},
           },
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID },
         ],
       });
 
-      categoryResolver = TestBed.inject(DaffCategoryPageResolver);
+      categoryResolver = TestBed.inject(DaffCategoryPageIdResolver);
       categoryFactory = TestBed.inject(DaffCategoryFactory);
-      stubCategory = categoryFactory.create();
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
+
+      stubCategory = categoryFactory.create();
     }));
 
     it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoad({ id: '123', page_size: 12 }),
+        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryPageRequestKind.ID }),
       );
     });
 
