@@ -73,7 +73,7 @@ export class DaffCategoryPageFilterEffects<
     DaffProductGridLoadSuccess
     | DaffCategoryPageLoadSuccess
     | DaffCategoryPageLoadFailure
-  > = (throttleWindow = 100, scheduler = asyncScheduler) => this.actions$.pipe(
+  > = (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType<DaffCategoryPageFilterActions>(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
