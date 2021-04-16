@@ -8,7 +8,7 @@
       </a>
       <div class="daffio-simple-footer__social">
         <a *ngFor="let socialLink of socialLinks" [href]="socialLink.link" target="_blank" rel="noopener noreferrer" class="daffio-simple-footer__social-link">
-          <fa-icon [icon]="socialLink.icon" size="2x" aria-label="{{socialLink.title}} Logo" class="daffio-simple-footer__social-icon"></fa-icon> <span>{{socialLink.title}}</span>
+          <fa-icon [icon]="socialLink.icon" size="2x" attr.aria-label="{{socialLink.title}} Logo" class="daffio-simple-footer__social-icon"></fa-icon> <span>{{socialLink.title}}</span>
         </a>
       </div>
     </div>

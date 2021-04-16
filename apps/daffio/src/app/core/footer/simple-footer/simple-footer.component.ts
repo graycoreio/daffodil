@@ -23,6 +23,6 @@ export class DaffioSimpleFooterComponent {
 
   socialLinks: any[] = [
     { link: 'https://github.com/graycoreio/daffodil', title: 'Github',  icon: faGithub },
-    { link: '', title: 'Discord', icon: faDiscord },
+    { link: 'https://discord.gg/BdaJVZ53sR', title: 'Discord', icon: faDiscord },
   ];
 }
