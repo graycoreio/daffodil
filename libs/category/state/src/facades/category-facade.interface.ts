@@ -28,7 +28,7 @@ export interface DaffCategoryFacadeInterface<
 	 */
   category$: Observable<V>;
   /**
-   * The page configuration state for the selected category.
+   * The page metadata for the current selected selected category.
    */
   metadata$: Observable<DaffCategoryPageMetadata>;
   /**

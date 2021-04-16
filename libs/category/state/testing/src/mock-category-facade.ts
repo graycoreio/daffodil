@@ -17,6 +17,9 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
