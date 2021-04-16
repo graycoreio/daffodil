@@ -13,13 +13,16 @@ import {
   styleUrls: ['./simple-footer.component.scss'],
 })
 export class DaffioSimpleFooterComponent {
-  faGithub = faGithub;
-  faGitter = faDiscord;
 
   @HostBinding('class.daffio-simple-footer') class = true;
 
   links: any[] = [
     { path: '/why-pwa', title: 'Why PWA' },
     { path: '/support', title: 'Support' },
+  ];
+
+  socialLinks: any[] = [
+    { link: 'https://github.com/graycoreio/daffodil', title: 'Github',  icon: faGithub },
+    { link: '', title: 'Discord', icon: faDiscord },
   ];
 }
