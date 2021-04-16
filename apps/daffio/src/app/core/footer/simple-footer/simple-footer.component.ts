@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   faGithub,
-  faGitter,
+  faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -14,7 +14,7 @@ import {
 })
 export class DaffioSimpleFooterComponent {
   faGithub = faGithub;
-  faGitter = faGitter;
+  faGitter = faDiscord;
 
   @HostBinding('class.daffio-simple-footer') class = true;
 
