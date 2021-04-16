@@ -12,7 +12,7 @@ import {
   DaffCategoryFilterToggleRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import { daffIsRequestedFilterRangeOptionApplied } from './is-requested-option-applied';
+import { daffIsRangeToggleRequestAppliedToFilter } from './is-toggle-request-applied-to-filter';
 
 
 describe('@daffodil/category | filters | range | daffIsRequestedFilterRangeOptionApplied', () => {
@@ -41,7 +41,7 @@ describe('@daffodil/category | filters | range | daffIsRequestedFilterRangeOptio
         name: rangeFilter.name,
       });
 
-      result = daffIsRequestedFilterRangeOptionApplied(filterRequest, rangeFilter);
+      result = daffIsRangeToggleRequestAppliedToFilter(filterRequest, rangeFilter);
     });
 
     it('should return false', () => {
@@ -63,7 +63,7 @@ describe('@daffodil/category | filters | range | daffIsRequestedFilterRangeOptio
         },
       });
 
-      result = daffIsRequestedFilterRangeOptionApplied(filterRequest, rangeFilter);
+      result = daffIsRangeToggleRequestAppliedToFilter(filterRequest, rangeFilter);
     });
 
     it('should return true', () => {

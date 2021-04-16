@@ -12,7 +12,7 @@ import {
   DaffCategoryFilterToggleRequestEqualFactory,
 } from '@daffodil/category/testing';
 
-import { daffIsRequestedFilterEqualOptionApplied } from './is-requested-option-applied';
+import { daffIsEqualToggleRequestAppliedToFilter } from './is-toggle-request-applied-to-filter';
 
 
 describe('@daffodil/category | filters | equal | daffIsRequestedFilterEqualOptionApplied', () => {
@@ -41,7 +41,7 @@ describe('@daffodil/category | filters | equal | daffIsRequestedFilterEqualOptio
         name: equalFilter.name,
       });
 
-      result = daffIsRequestedFilterEqualOptionApplied(filterRequest, equalFilter);
+      result = daffIsEqualToggleRequestAppliedToFilter(filterRequest, equalFilter);
     });
 
     it('should return false', () => {
@@ -60,7 +60,7 @@ describe('@daffodil/category | filters | equal | daffIsRequestedFilterEqualOptio
         value: equalFilterOption.value,
       });
 
-      result = daffIsRequestedFilterEqualOptionApplied(filterRequest, equalFilter);
+      result = daffIsEqualToggleRequestAppliedToFilter(filterRequest, equalFilter);
     });
 
     it('should return false', () => {
@@ -79,7 +79,7 @@ describe('@daffodil/category | filters | equal | daffIsRequestedFilterEqualOptio
         value: equalFilterOption.value,
       });
 
-      result = daffIsRequestedFilterEqualOptionApplied(filterRequest, equalFilter);
+      result = daffIsEqualToggleRequestAppliedToFilter(filterRequest, equalFilter);
     });
 
     it('should return true', () => {

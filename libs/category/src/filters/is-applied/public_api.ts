@@ -1,2 +1,2 @@
 export { daffIsFilterApplied } from './is-filter-applied';
-export { daffIsRequestedFilterOptionApplied } from './is-requested-option-applied';
+export { daffIsToggleRequestAppliedToFilter } from './is-toggle-request-applied-to-filter';

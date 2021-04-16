@@ -20,7 +20,7 @@ import {
   DaffCategoryFilterToggleRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 
-import { daffIsRequestedFilterOptionApplied } from './is-requested-option-applied';
+import { daffIsToggleRequestAppliedToFilter } from './is-toggle-request-applied-to-filter';
 
 
 describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', () => {
@@ -56,7 +56,7 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
           name: equalFilter.name,
         });
 
-        result = daffIsRequestedFilterOptionApplied(filterRequest, equalFilter);
+        result = daffIsToggleRequestAppliedToFilter(filterRequest, equalFilter);
       });
 
       it('should return false', () => {
@@ -75,7 +75,7 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
           value: equalFilterOption.value,
         });
 
-        result = daffIsRequestedFilterOptionApplied(filterRequest, equalFilter);
+        result = daffIsToggleRequestAppliedToFilter(filterRequest, equalFilter);
       });
 
       it('should return false', () => {
@@ -94,7 +94,7 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
           value: equalFilterOption.value,
         });
 
-        result = daffIsRequestedFilterOptionApplied(filterRequest, equalFilter);
+        result = daffIsToggleRequestAppliedToFilter(filterRequest, equalFilter);
       });
 
       it('should return true', () => {
@@ -117,7 +117,7 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
           name: rangeFilter.name,
         });
 
-        result = daffIsRequestedFilterOptionApplied(filterRequest, rangeFilter);
+        result = daffIsToggleRequestAppliedToFilter(filterRequest, rangeFilter);
       });
 
       it('should return false', () => {
@@ -139,7 +139,7 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
           },
         });
 
-        result = daffIsRequestedFilterOptionApplied(filterRequest, rangeFilter);
+        result = daffIsToggleRequestAppliedToFilter(filterRequest, rangeFilter);
       });
 
       it('should return true', () => {
@@ -150,7 +150,7 @@ describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', ()
 
   describe('for an unknown filter type', () => {
     it('should throw a DaffCategoryUnknownFilterType error', () => {
-      expect(() => daffIsRequestedFilterOptionApplied(<any>{
+      expect(() => daffIsToggleRequestAppliedToFilter(<any>{
         name: 'name',
         type: null,
         value: '',
