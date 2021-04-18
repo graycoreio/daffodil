@@ -9,15 +9,15 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffCardImageDirective } from './card-image.directive';
+import { DaffCardActionsDirective } from './card-actions.directive';
 
 @Component({
-  template: `<img src="/" daffCardImage />`,
+  template: `<div daffCardActions></div>`,
 })
 
 class WrapperComponent {}
 
-describe('DaffCardImageDirective', () => {
+describe('DaffCardActionsDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -25,7 +25,7 @@ describe('DaffCardImageDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffCardImageDirective,
+        DaffCardActionsDirective,
         WrapperComponent,
       ],
     })
@@ -35,7 +35,7 @@ describe('DaffCardImageDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('img[daffCardImage]'));
+    de = fixture.debugElement.query(By.css('[daffCardActions]'));
     fixture.detectChanges();
   });
 
@@ -43,10 +43,10 @@ describe('DaffCardImageDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffCardImage]', () => {
-    it('should add a class of "daff-card__image" to the host element', () => {
+  describe('[daffCardActions]', () => {
+    it('should add a class of "daff-card__actions" to the host element', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-card__image': true,
+        'daff-card__actions': true,
       }));
     });
   });

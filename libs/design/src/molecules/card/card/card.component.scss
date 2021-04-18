@@ -7,20 +7,32 @@
 	border-radius: 8px;
 
 	&__image {
-		display: block;
+		display: inline-block;
+		width: 100%;
 		border-top-left-radius: inherit;
 		border-top-right-radius: inherit;
-		width: 100%;
+
+		img {
+			border-top-left-radius: inherit;
+			border-top-right-radius: inherit;
+		}
+	}
+
+	&__tagline {
+		@include subheading();
+		margin: 0 0 4px;
+		padding: 0;
+	}
+
+	&__title {
+		@include embolden();
+		font-size: 1.5rem;
+		line-height: 2rem;
+		margin-bottom: 16px;
 	}
 
 	&__content {
 		padding: 24px;
-		border-bottom-left-radius: inherit;
-		border-bottom-right-radius: inherit;
-
-		&:first-child {
-			border-top: 0;
-		}
 
 		p {
 			margin: 0;
@@ -28,8 +40,13 @@
 		}
 	}
 
-	&__title {
-		@include headline-sm();
-		margin-bottom: 8px;
+	&__actions {
+		padding: 0 24px 24px;
+	}
+}
+
+a {
+	&.daff-card {
+		text-decoration: none;
 	}
 }

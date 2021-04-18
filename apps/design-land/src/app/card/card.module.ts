@@ -1,25 +1,22 @@
+import { CommonModule } from '@angular/common';
 import {
   NgModule,
   Injector,
   ComponentFactoryResolver,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { CardComponent } from './card.component';
-import { DesignLandCardRoutingModule } from './card-routing.module';
+import { createCustomElement } from '@angular/elements';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
+  DaffArticleModule,
   DaffCardModule,
   DaffImageModule,
 } from '@daffodil/design';
+import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
 
-import {
-  CARD_EXAMPLES,
-  CardExamplesModule,
-} from '@daffodil/design/card/examples';
-import { createCustomElement } from '@angular/elements';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { DesignLandCardRoutingModule } from './card-routing.module';
+import { CardComponent } from './card.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     DesignLandCardRoutingModule,
     DesignLandExampleViewerModule,
     ReactiveFormsModule,
+    DaffArticleModule,
     DaffCardModule,
     DaffImageModule,
-    CardExamplesModule,
   ],
 })
 export class CardModule {

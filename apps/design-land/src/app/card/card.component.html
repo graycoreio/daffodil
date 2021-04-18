@@ -1,7 +1,35 @@
-<h1>Card</h1>
+<daff-article>
+	<h1 daffArticleTitle>Card</h1>
+	<p daffArticleLead>The card is a flexibe content container that supports multiple content types used in the context of a single subject.</p>
 
-<h2>Card with Image</h2>
-<design-land-example-viewer-container example="card-with-image"></design-land-example-viewer-container>
+	<h2>Basic Card</h2>
+	<p>The example below is a basic card with the default color and a fixed width. Cards naturally do not have a fixed width, so they'll fill the full width of its parent element. Widths of cards can be defined by its parent element.</p>
+	<design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
 
-<h2>Colored Cards</h2>
-<design-land-example-viewer-container example="card-with-color"></design-land-example-viewer-container>
+	<h2>Linkable Card</h2>
+	<p>Cards can be linkable by adding the component selector to the <code>&lt;a&gt;</code> tag.</p>
+	<design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
+
+	<h2>Supported Content Types</h2>
+	<p>A <code>&lt;daff-card&gt;</code> can transclude:</p>
+	<ul>
+		<li><code>[daffCardImage]</code> - Card image</li>
+		<li><code>[daffCardTagline]</code> — Card tagline</li>
+		<li><code>[daffCardTitle]</code>— Card title</li>
+		<li><code>[daffCardActions]</code> — Container for buttons positioned at the bottom of a card</li>
+		<li>Any additional text and components will be placed between title and actions.</li>
+	</ul>
+
+	<h2>Properties</h2>
+
+	<h3>Raised</h3>
+	<p>The raised property adds elevation to a card and can be defined by using the <code>raised</code> property.</p>
+	<design-land-example-viewer-container example="raised-card"></design-land-example-viewer-container>
+
+	<h3>Theming</h3>
+  <p>The color of a card background can be defined by using the <code>color</code> property. There's no default color property defined, and if one is not defined in its usage, the card background will display the base color of the application.</p>
+
+  <p>Supported colors: <code>primary | secondary | tertiary | white | black | theme | theme-contrast</code></p>
+
+	<design-land-example-viewer-container example="card-theming"></design-land-example-viewer-container>
+</daff-article>

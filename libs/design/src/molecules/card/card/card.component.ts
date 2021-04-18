@@ -24,7 +24,9 @@ class DaffCardBase {
 const _daffCardBase = daffColorMixin(DaffCardBase);
 
 @Component({
-  selector: 'daff-card',
+  selector: '' +
+    'daff-card' + ',' +
+    'a[daff-card]',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -33,11 +35,17 @@ const _daffCardBase = daffColorMixin(DaffCardBase);
 
 export class DaffCardComponent extends _daffCardBase implements DaffColorable {
 
-	@Input() color: DaffPalette;
-	/**
-	 * @docs-private
-	 */
+  @Input() color: DaffPalette;
+  @Input() raised = false;
+
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-card') class = true;
+
+  @HostBinding('class.daff-card--raised') get raisedClass() {
+    return this.raised;
+  }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

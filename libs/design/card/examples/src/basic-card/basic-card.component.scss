@@ -1,0 +1,16 @@
+:host {
+	display: block;
+	max-width: 340px;
+}
+
+.daff-basic-card {
+	&__actions {
+		> * {
+			margin-right: 16px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}

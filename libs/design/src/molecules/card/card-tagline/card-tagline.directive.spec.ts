@@ -9,15 +9,15 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffCardImageDirective } from './card-image.directive';
+import { DaffCardTaglineDirective } from './card-tagline.directive';
 
 @Component({
-  template: `<img src="/" daffCardImage />`,
+  template: `<div daffCardTagline></div>`,
 })
 
 class WrapperComponent {}
 
-describe('DaffCardImageDirective', () => {
+describe('DaffCardTaglineDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -25,7 +25,7 @@ describe('DaffCardImageDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffCardImageDirective,
+        DaffCardTaglineDirective,
         WrapperComponent,
       ],
     })
@@ -35,7 +35,7 @@ describe('DaffCardImageDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('img[daffCardImage]'));
+    de = fixture.debugElement.query(By.css('[daffCardTagline]'));
     fixture.detectChanges();
   });
 
@@ -43,10 +43,10 @@ describe('DaffCardImageDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffCardImage]', () => {
-    it('should add a class of "daff-card__image" to the host element', () => {
+  describe('[daffCardTagline]', () => {
+    it('should add a class of "daff-card__tagline" to the host element', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-card__image': true,
+        'daff-card__tagline': true,
       }));
     });
   });
