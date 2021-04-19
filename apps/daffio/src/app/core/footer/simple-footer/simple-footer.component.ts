@@ -7,6 +7,8 @@ import {
   faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 
+import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
+
 @Component({
   selector: 'daffio-simple-footer',
   templateUrl: './simple-footer.component.html',
@@ -22,7 +24,7 @@ export class DaffioSimpleFooterComponent {
   ];
 
   socialLinks: any[] = [
-    { link: 'https://github.com/graycoreio/daffodil', title: 'Github',  icon: faGithub },
-    { link: 'https://discord.gg/BdaJVZ53sR', title: 'Discord', icon: faDiscord },
+    { link: DAFF_BRANDING_CONSTANTS.REPO_URL, title: 'Github',  icon: faGithub },
+    { link: DAFF_BRANDING_CONSTANTS.DISCORD_URL, title: 'Discord', icon: faDiscord },
   ];
 }
