@@ -1,0 +1,17 @@
+import { ID } from '@daffodil/core';
+import { DaffSortDirectionEnum } from '@daffodil/core/state';
+
+import { DaffCategoryFilterRequestReplacement } from './filters/public_api';
+
+/**
+ * A model of the request sent to the {@link DaffCategoryServiceInterface} to retrieve information
+ * about a category.
+ */
+export interface DaffCategoryRequestReplacement {
+  id: ID;
+  filter_requests?: DaffCategoryFilterRequestReplacement[];
+  applied_sort_option?: string;
+  applied_sort_direction?: DaffSortDirectionEnum;
+  current_page?: number;
+  page_size?: number;
+}
