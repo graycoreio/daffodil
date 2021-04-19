@@ -784,8 +784,8 @@
               "apps/design-land/src/assets",
               {
                 "glob": "**/*",
-                "input": "dist/docs/design-examples",
-                "output": "/assets/design-examples"
+                "input": "dist/docs/",
+                "output": "/assets/"
               }
             ],
             "styles": [
