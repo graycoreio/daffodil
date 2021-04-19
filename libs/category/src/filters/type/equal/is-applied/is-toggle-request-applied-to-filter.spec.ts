@@ -15,7 +15,7 @@ import {
 import { daffIsEqualToggleRequestAppliedToFilter } from './is-toggle-request-applied-to-filter';
 
 
-describe('@daffodil/category | filters | equal | daffIsRequestedFilterEqualOptionApplied', () => {
+describe('@daffodil/category | filters | equal | daffIsEqualToggleRequestAppliedToFilter', () => {
   let equalFilterFactory: DaffCategoryFilterEqualFactory;
   let equalOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let equalToggleRequestFactory: DaffCategoryFilterToggleRequestEqualFactory;

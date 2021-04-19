@@ -23,7 +23,7 @@ import {
 import { daffIsToggleRequestAppliedToFilter } from './is-toggle-request-applied-to-filter';
 
 
-describe('@daffodil/category | filters | daffIsRequestedFilterOptionApplied', () => {
+describe('@daffodil/category | filters | daffIsToggleRequestAppliedToFilter', () => {
   let equalFilterFactory: DaffCategoryFilterEqualFactory;
   let equalOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
