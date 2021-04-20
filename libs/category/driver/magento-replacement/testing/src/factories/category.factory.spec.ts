@@ -31,7 +31,15 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
       result = factory.create();
     });
 
-    it('should return', () => {
+    it('should return a category', () => {
+      expect(result.id).toBeDefined();
+      expect(result.name).toBeDefined();
+      expect(result.description).toBeDefined();
+      expect(result.breadcrumbs).toBeDefined();
+      expect(result.level).toBeDefined();
+      expect(result.children_count).toBeDefined();
+      expect(result.children).toBeDefined();
+      expect(result.products).toBeDefined();
     });
   });
 });

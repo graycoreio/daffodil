@@ -29,6 +29,9 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
     });
 
     it('should return', () => {
+      expect(result.current_page).toBeDefined();
+      expect(result.page_size).toBeDefined();
+      expect(result.total_pages).toBeDefined();
     });
   });
 });

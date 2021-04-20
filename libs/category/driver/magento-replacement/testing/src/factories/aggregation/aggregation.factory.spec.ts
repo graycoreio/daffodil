@@ -28,7 +28,12 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
       result = factory.create();
     });
 
-    it('should return', () => {
+    it('should return an aggregation', () => {
+      expect(result.attribute_code).toBeDefined();
+      expect(result.type).toBeDefined();
+      expect(result.count).toBeDefined();
+      expect(result.label).toBeDefined();
+      expect(result.options).toBeDefined();
     });
   });
 });

@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryFilterReplacement } from '@daffodil/category';
-import { MagentoAggregation } from '@daffodil/category/driver/magento-replacement';
+import {
+  MagentoAggregation,
+  MagentoCategoryFilterType,
+} from '@daffodil/category/driver/magento-replacement';
 
 import { DaffCategoryDriverMagentoAggregationPriceFactory } from './price.factory';
 
@@ -29,7 +32,12 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
       result = factory.create();
     });
 
-    it('should return', () => {
+    it('should return a price aggregation', () => {
+      expect(result.attribute_code).toEqual('price');
+      expect(result.type).toEqual(MagentoCategoryFilterType.Range);
+      expect(result.count).toBeDefined();
+      expect(result.label).toBeDefined();
+      expect(result.options).toBeDefined();
     });
   });
 });

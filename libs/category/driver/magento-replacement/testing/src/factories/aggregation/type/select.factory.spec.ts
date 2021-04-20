@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoAggregation } from '@daffodil/category/driver/magento-replacement';
+import {
+  MagentoAggregation,
+  MagentoCategoryFilterType,
+} from '@daffodil/category/driver/magento-replacement';
 
 import { DaffCategoryDriverMagentoAggregationSelectFactory } from './select.factory';
 
@@ -28,7 +31,12 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
       result = factory.create();
     });
 
-    it('should return', () => {
+    it('should return a select aggregation', () => {
+      expect(result.attribute_code).toEqual('select');
+      expect(result.type).toEqual(MagentoCategoryFilterType.Equal);
+      expect(result.count).toBeDefined();
+      expect(result.label).toBeDefined();
+      expect(result.options).toBeDefined();
     });
   });
 });
