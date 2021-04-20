@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 
 import {
   DaffCategory,
-  DaffCategoryFilterRequest,
-  DaffCategoryFilterType,
-  DaffCategoryFromToFilterSeparator,
+  DaffCategoryFilterRequestReplacement,
+  DaffCategoryFilterTypeReplacement,
 } from '@daffodil/category';
 
 import {
@@ -17,7 +16,7 @@ import {
 })
 export class DaffMagentoAppliedFiltersTransformService {
 
-  transform(categoryId: DaffCategory['id'], daffFilters: DaffCategoryFilterRequest[]): MagentoCategoryFilters {
+  transform(categoryId: DaffCategory['id'], daffFilters: DaffCategoryFilterRequestReplacement[]): MagentoCategoryFilters {
     const magentoFilters: MagentoCategoryFilters = {
       category_id: {
         [MagentoCategoryFilterActionEnum.Equal]: String(categoryId),
@@ -31,12 +30,11 @@ export class DaffMagentoAppliedFiltersTransformService {
     daffFilters.forEach(filter => {
       // The FromTo filter needs special treatment, because Magento accepts the "from" and "to" filters
       // separately (it also outputs FromTo filter pairs together)
-      if(filter.type === DaffCategoryFilterType.Range) {
-        const fromToValues = filter.value[0].split(DaffCategoryFromToFilterSeparator);
+      if(filter.type === DaffCategoryFilterTypeReplacement.RangeNumeric) {
         magentoFilters[filter.name] = {
           ...magentoFilters[filter.name],
-          ...this.getRangeFromValue(fromToValues[0]),
-          ...this.getRangeToValue(fromToValues[1]),
+          ...this.getRangeFromValue(filter.value.min.toString()),
+          ...this.getRangeToValue(filter.value.max.toString()),
         };
       } else {
         magentoFilters[filter.name] = {
@@ -52,8 +50,8 @@ export class DaffMagentoAppliedFiltersTransformService {
   /**
    * Returns an In action for Equal type and a Match action for Match type.
    */
-  private getFilterAction(type: DaffCategoryFilterType): MagentoCategoryFilterActionEnum {
-    return type === DaffCategoryFilterType.Equal
+  private getFilterAction(type: DaffCategoryFilterTypeReplacement): MagentoCategoryFilterActionEnum {
+    return type === DaffCategoryFilterTypeReplacement.Equal
       ? MagentoCategoryFilterActionEnum.In
       : MagentoCategoryFilterActionEnum.Match;
   }
@@ -61,8 +59,8 @@ export class DaffMagentoAppliedFiltersTransformService {
   /**
    * Returns an array for Equal type and a string for Match type.
    */
-  private getFilterValue(type: DaffCategoryFilterType, value: DaffCategoryFilterRequest['value']): string | string[] {
-    return type === DaffCategoryFilterType.Equal ? value : value[0];
+  private getFilterValue(type: DaffCategoryFilterTypeReplacement, value: DaffCategoryFilterRequestReplacement['value']): string | string[] {
+    return type === DaffCategoryFilterTypeReplacement.Equal ? value : value[0];
   }
 
   private getRangeFromValue(fromValue: string) {

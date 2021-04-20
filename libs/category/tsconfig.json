@@ -27,11 +27,8 @@
       "@daffodil/category/driver/magento": [
         "libs/category/driver/magento/src"
       ],
-      "@daffodil/category/driver/magento-replacement": [
-        "libs/category/driver/magento-replacement/src"
-      ],
-      "@daffodil/category/driver/magento-replacement/testing": [
-        "libs/category/driver/magento-replacement/testing/src"
+      "@daffodil/category/driver/magento/testing": [
+        "libs/category/driver/magento/testing/src"
       ],
       "@daffodil/category/testing": [
         "libs/category/testing/src"

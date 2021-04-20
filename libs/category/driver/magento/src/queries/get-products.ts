@@ -21,6 +21,23 @@ query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInp
 			current_page
 			total_pages
 		}
+		aggregations {
+			label
+			count
+			attribute_code
+			options {
+					count
+					label
+					value
+			}
+		}
+		sort_fields {
+			default
+			options {
+				label
+				value
+			}
+		}
 	}
 }
 ${magentoProductFragment}

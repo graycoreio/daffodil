@@ -2,8 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategory,
-  DaffCategoryPageConfigurationState,
-  DaffCategoryRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffMagentoCategoryTransformerService,
@@ -14,15 +13,12 @@ import {
   MagentoPageInfo,
   MagentoSortFields,
 } from '@daffodil/category/driver/magento';
+import { DaffCategoryDriverMagentoAggregationFactory } from '@daffodil/category/driver/magento/testing';
 import {
   DaffCategoryFactory,
-  DaffCategoryPageConfigurationStateFactory,
+  DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { DaffProduct } from '@daffodil/product';
-import {
-  MagentoProduct,
-  transformManyMagentoProducts,
-} from '@daffodil/product/driver/magento';
+import { transformManyMagentoProducts } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -31,20 +27,23 @@ import { DaffMagentoCategoryResponseTransformService } from './category-response
 describe('DaffMagentoCategoryResponseTransformService', () => {
 
   let service: DaffMagentoCategoryResponseTransformService;
-  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const stubCategory: DaffCategory = categoryFactory.create({
-    id: '1',
-  });
-  const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
-  const productFactory: DaffProductFactory = new DaffProductFactory();
-  const stubProducts: DaffProduct[] = productFactory.createMany(4);
 
-  const magentoCategoryTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
-  const magentoCategoryPageConfigurationTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryPageConfigTransformerService', ['transform']);
-  const magentoProductTransformerServiceSpy = jasmine.createSpyObj('DaffProductTransformerInterface', ['transformMany']);
+  let stubCategory: DaffCategory;
+  let stubCategoryPageMetadata: DaffCategoryPageMetadata;
+
+  let productFactory: DaffProductFactory;
+  let magentoProductFactory: MagentoProductFactory;
+  let categoryFactory: DaffCategoryFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
+  let aggregateFactory: DaffCategoryDriverMagentoAggregationFactory;
+
+  let magentoCategoryTransformerServiceSpy: jasmine.SpyObj<DaffMagentoCategoryTransformerService>;
+  let magentoCategoryPageConfigurationTransformerServiceSpy: jasmine.SpyObj<DaffMagentoCategoryPageConfigTransformerService>;
 
   beforeEach(() => {
+    magentoCategoryTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
+    magentoCategoryPageConfigurationTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryPageConfigTransformerService', ['transform']);
+
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCategoryResponseTransformService,
@@ -52,7 +51,18 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },
       ],
     });
+
     service = TestBed.inject(DaffMagentoCategoryResponseTransformService);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
+    magentoProductFactory = TestBed.inject(MagentoProductFactory);
+    aggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationFactory);
+
+    stubCategory = categoryFactory.create({
+      id: '1',
+    });
+    stubCategoryPageMetadata = categoryPageMetadataFactory.create();
   });
 
   it('should be created', () => {
@@ -65,8 +75,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
     beforeEach(() => {
       magentoCategoryTransformerServiceSpy.transform.and.returnValue(stubCategory);
-      magentoCategoryPageConfigurationTransformerServiceSpy.transform.and.returnValue(stubCategoryPageConfigurationState);
-      magentoProductTransformerServiceSpy.transformMany.and.returnValue(stubProducts);
+      magentoCategoryPageConfigurationTransformerServiceSpy.transform.and.returnValue(stubCategoryPageMetadata);
 
       const category: MagentoCategory = {
         id: Number(stubCategory.id),
@@ -79,23 +88,20 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         }],
         children_count: stubCategory.children_count,
       };
-      const aggregates: MagentoAggregation[] = [{
-        attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-        label: stubCategoryPageConfigurationState.filters[0].label,
-      }];
+      const aggregates: MagentoAggregation[] = aggregateFactory.createMany(1);
 
       const page_info: MagentoPageInfo = {
-        page_size: stubCategoryPageConfigurationState.page_size,
-        current_page: stubCategoryPageConfigurationState.current_page,
-        total_pages: stubCategoryPageConfigurationState.total_pages,
+        page_size: stubCategoryPageMetadata.page_size,
+        current_page: stubCategoryPageMetadata.current_page,
+        total_pages: stubCategoryPageMetadata.total_pages,
       };
 
       const sort_fields: MagentoSortFields = {
-        default: stubCategoryPageConfigurationState.sort_options.options[0].value,
-        options: stubCategoryPageConfigurationState.sort_options.options,
+        default: stubCategoryPageMetadata.sort_options.options[0].value,
+        options: stubCategoryPageMetadata.sort_options.options,
       };
 
-      const products: MagentoProduct[] = new MagentoProductFactory().createMany(1);
+      const products = magentoProductFactory.createMany(1);
 
       completeCategory = {
         category,
@@ -123,13 +129,13 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       expect(service.transform(completeCategory).products.length).toEqual(completeCategory.products.length);
     });
 
-    it('should return a DaffGetCategoryResponse', () => {
+    it('should return a DaffGetCategoryResponseReplacement', () => {
       expect(service.transform(completeCategory)).toEqual(
         {
           ...{ magentoCompleteCategoryResponse: completeCategory },
           category: stubCategory,
           products: transformManyMagentoProducts(completeCategory.products),
-          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          categoryPageMetadata: stubCategoryPageMetadata,
         },
       );
     });

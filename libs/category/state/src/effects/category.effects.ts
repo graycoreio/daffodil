@@ -19,8 +19,7 @@ import {
 
 import {
   DaffGenericCategory,
-  daffCategoryValidateFilters,
-  DaffGetCategoryResponse,
+  DaffGetCategoryResponseReplacement,
   DAFF_CATEGORY_ERROR_MATCHER,
 } from '@daffodil/category';
 import {
@@ -54,15 +53,12 @@ export class DaffCategoryEffects<
   @Effect()
   loadCategory$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    mergeMap((action: DaffCategoryLoad) => {
-      daffCategoryValidateFilters(action.request.filter_requests);
-      return this.driver.get(action.request).pipe(
-        switchMap((resp: DaffGetCategoryResponse<V,W>) => of(
-          new DaffProductGridLoadSuccess(resp.products),
-          new DaffCategoryLoadSuccess(resp),
-        )),
-        catchError((error: DaffError) => of(new DaffCategoryLoadFailure(this.errorMatcher(error)))),
-      );
-    }),
+    mergeMap((action: DaffCategoryLoad) => this.driver.get(action.request).pipe(
+      switchMap((resp: DaffGetCategoryResponseReplacement<V,W>) => of(
+        new DaffProductGridLoadSuccess(resp.products),
+        new DaffCategoryLoadSuccess(resp),
+      )),
+      catchError((error: DaffError) => of(new DaffCategoryLoadFailure(this.errorMatcher(error)))),
+    )),
   );
 }
