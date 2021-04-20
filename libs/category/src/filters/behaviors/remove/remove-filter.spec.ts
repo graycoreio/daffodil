@@ -5,7 +5,7 @@ import {
   DaffCategoryFilterEqualRequestReplacement,
   DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterReplacement,
-  DaffCategoryFilterNotFound,
+  DaffCategoryFilterRequestNameMismatch,
   DaffCategoryFilterRequestTypeMismatch,
   DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
@@ -111,7 +111,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
 
     expect(() => {
       daffRemoveFilter(request, colorFilter);
-    }).toThrowMatching((e) => e instanceof DaffCategoryFilterNotFound);
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterRequestNameMismatch);
 
   });
 

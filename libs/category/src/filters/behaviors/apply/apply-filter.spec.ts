@@ -5,7 +5,7 @@ import {
   DaffCategoryFilterEqualRequestReplacement,
   DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterReplacement,
-  DaffCategoryFilterNotFound,
+  DaffCategoryFilterRequestNameMismatch,
   DaffCategoryFilterTypeReplacement,
   DaffCategoryFilterRequestTypeMismatch,
   DaffCategoryUnknownFilterType,
@@ -120,7 +120,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
 
     expect(() => {
       daffApplyFilter(request, filter);
-    }).toThrowMatching((e) => e instanceof DaffCategoryFilterNotFound);
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterRequestNameMismatch);
   });
 
   it('should throw an error if the filter type and request type do not match', () => {

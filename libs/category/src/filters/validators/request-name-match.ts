@@ -4,6 +4,7 @@ import {
   DaffCategoryFilterToggleRequest,
 } from '../../models/public_api';
 import { DaffCategoryFilterNotFound } from '../errors/filter-not-found.error';
+import { DaffCategoryFilterRequestNameMismatch } from '../errors/request-name-mismatch.error';
 
 /**
  * Ensures that the names of the filter and the filter request match.
@@ -18,6 +19,6 @@ export const daffCategoryValidateFilterRequestNameMatch = (
     throw new DaffCategoryFilterNotFound('Filter does not exist');
   }
   if (request.name !== filter.name) {
-    throw new DaffCategoryFilterNotFound('Filter name does not match request name');
+    throw new DaffCategoryFilterRequestNameMismatch('Filter name does not match request name');
   }
 };

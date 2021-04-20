@@ -10,6 +10,7 @@ import {
   DaffCategoryFilterRequestReplacementFactory,
 } from '@daffodil/category/testing';
 
+import { DaffCategoryFilterRequestNameMismatch } from '../errors/request-name-mismatch.error';
 import { daffCategoryValidateFilterRequestNameMatch } from './request-name-match';
 
 describe('@daffodil/category | filters | validators | daffCategoryValidateFilterRequestNameMatch', () => {
@@ -28,7 +29,7 @@ describe('@daffodil/category | filters | validators | daffCategoryValidateFilter
 
   describe('when the filter is not present', () => {
     it('should throw a DaffCategoryFilterNotFound', () => {
-      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, null)).toThrow(new DaffCategoryFilterNotFound('Filter does not exist'));
+      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, null)).toThrow(jasmine.any(DaffCategoryFilterNotFound));
     });
   });
 
@@ -38,7 +39,7 @@ describe('@daffodil/category | filters | validators | daffCategoryValidateFilter
     });
 
     it('should throw a DaffCategoryFilterNotFound', () => {
-      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, filter)).toThrow(new DaffCategoryFilterNotFound('Filter name does not match request name'));
+      expect(() => daffCategoryValidateFilterRequestNameMatch(filterRequest, filter)).toThrow(jasmine.any(DaffCategoryFilterRequestNameMismatch));
     });
   });
 

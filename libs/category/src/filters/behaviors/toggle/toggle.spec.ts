@@ -4,7 +4,7 @@ import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterToggleRequest,
   DaffCategoryFilterReplacement,
-  DaffCategoryFilterNotFound,
+  DaffCategoryFilterRequestNameMismatch,
   DaffCategoryFilterRequestTypeMismatch,
   DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
@@ -123,7 +123,7 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
 
     expect(() => {
       daffToggleFilter(request, filter);
-    }).toThrowMatching((e) => e instanceof DaffCategoryFilterNotFound);
+    }).toThrowMatching((e) => e instanceof DaffCategoryFilterRequestNameMismatch);
   });
 
   it('should throw an error if the filter type and request type do not match', () => {
