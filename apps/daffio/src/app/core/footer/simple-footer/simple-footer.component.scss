@@ -1,84 +1,88 @@
 @import 'utilities';
 
 :host {
-  display: block;
-  padding: 50px 10px;
-  font-size: $small-font-size;
+	display: block;
+	padding: 50px 10px;
+	font-size: $small-font-size;
 
-  @include breakpoint(tablet) {
-    padding: 75px 50px;
-  }
+	@include breakpoint(tablet) {
+		padding: 75px 50px;
+	}
 
-  @include breakpoint(big-tablet) {
-    padding: 75px 0;
-  }
+	@include breakpoint(big-tablet) {
+		padding: 75px 0;
+	}
 }
 
 .daffio-simple-footer {
-  &__grid {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-    'logo'
-    'menu'
-    'social';
-    grid-gap: 15px;
+	&__grid {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'logo'
+			'menu'
+			'social';
+		grid-gap: 15px;
 
-    @include breakpoint(tablet) {
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-areas: 'menu logo social';
-      grid-gap: 50px;
-    }
-  }
+		@include breakpoint(tablet) {
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-areas: 'menu logo social';
+			grid-gap: 50px;
+		}
+	}
 
-  &__menu {
-    grid-area: menu;
-    display: flex;
-    justify-content: center;
+	&__menu {
+		grid-area: menu;
+		display: flex;
+		justify-content: center;
 
-    @include breakpoint(tablet) {
-      justify-content: flex-start;
-    }
-  }
+		@include breakpoint(tablet) {
+			justify-content: flex-start;
+		}
+	}
 
-  &__logo {
-    grid-area: logo;
-    display: flex;
-    justify-content: center;
-    width: 50px;
-    margin: 0 auto;
-  }
+	&__logo {
+		grid-area: logo;
+		display: flex;
+		justify-content: center;
+		width: 50px;
+		margin: 0 auto;
+	}
 
-  &__social {
-    grid-area: social;
-    display: flex;
-    justify-content: center;
+	&__social {
+		grid-area: social;
+		display: flex;
+		justify-content: center;
 
-    @include breakpoint(tablet) {
-      justify-content: flex-end;
-    }
-  }
+		@include breakpoint(tablet) {
+			justify-content: flex-end;
+		}
+	}
 
-  &__link, &__social-link {
-    @include embolden();
-    @include uppercase();
-    padding-right: 30px;
-    text-decoration: none;
+	&__link,
+	&__social-link {
+		@include embolden();
+		@include uppercase();
+		padding-right: 30px;
+		text-decoration: none;
 
-    &:last-child {
-      padding-right: 0;
-    }
+		&:last-child {
+			padding-right: 0;
+		}
 
-    span {
-      margin-left: 5px;
-    }
-  }
+		span {
+			margin-left: 5px;
+		}
+	}
 
-  &__copyright {
-    display: block;
+	&__social-icon {
+		vertical-align: middle;
+	}
 
-    text-align: center;
-    margin-top: 25px;
-  }
+	&__copyright {
+		display: block;
+		text-align: center;
+		margin-top: 25px;
+	}
 }

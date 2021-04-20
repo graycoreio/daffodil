@@ -4,8 +4,10 @@ import {
 } from '@angular/core';
 import {
   faGithub,
-  faGitter,
+  faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
+
+import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
 
 @Component({
   selector: 'daffio-simple-footer',
@@ -13,13 +15,16 @@ import {
   styleUrls: ['./simple-footer.component.scss'],
 })
 export class DaffioSimpleFooterComponent {
-  faGithub = faGithub;
-  faGitter = faGitter;
 
   @HostBinding('class.daffio-simple-footer') class = true;
 
   links: any[] = [
     { path: '/why-pwa', title: 'Why PWA' },
     { path: '/support', title: 'Support' },
+  ];
+
+  socialLinks: any[] = [
+    { link: DAFF_BRANDING_CONSTANTS.REPO_URL, title: 'Github',  icon: faGithub },
+    { link: DAFF_BRANDING_CONSTANTS.DISCORD_URL, title: 'Discord', icon: faDiscord },
   ];
 }
