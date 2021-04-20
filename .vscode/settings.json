@@ -22,7 +22,8 @@
         ".sasslintrc": "json"
     },
     "cSpell.words": [
-        "Daffio"
+        "Daffio",
+        "Idempotence"
     ],
     "eslint.options": {
         "extensions": [
