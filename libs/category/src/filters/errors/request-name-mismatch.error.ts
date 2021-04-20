@@ -10,7 +10,7 @@ import { DaffCategoryErrorCodes } from '../../errors/codes.enum';
  * matches a filter of another name.
  */
 export class DaffCategoryFilterRequestNameMismatch extends DaffInheritableError implements DaffError {
-  public readonly code: string = DaffCategoryErrorCodes.FILTER_NOT_FOUND;
+  public readonly code: string = DaffCategoryErrorCodes.FILTER_REQUEST_NAME_MISMATCH;
 
   constructor(message?: string) {
 	  super(message);
