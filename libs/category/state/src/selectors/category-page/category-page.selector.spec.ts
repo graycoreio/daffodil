@@ -9,9 +9,9 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
-  DaffCategoryFilterTypeReplacement,
-  DaffCategoryRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterType,
+  DaffCategoryRequest,
+  DaffCategoryFilter,
   DaffCategoryPageMetadata,
   daffCategoryFilterArrayToDict,
   daffCategoryFilterEqualOptionArrayToDict,
@@ -137,7 +137,7 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectCategoryPageAppliedFilters', () => {
 
     it('sets applied filters to {} if there are no applied filters', () => {
-      const expectedAppliedFilters: Dict<DaffCategoryFilterReplacement> = {};
+      const expectedAppliedFilters: Dict<DaffCategoryFilter> = {};
 
       store.dispatch(new DaffCategoryPageLoadSuccess({
         products: [],
@@ -150,8 +150,8 @@ describe('DaffCategoryPageSelectors', () => {
           filters: {
             name: {
               name: 'name',
-              type: DaffCategoryFilterTypeReplacement.Equal,
-              label: 'labelRDaffCategoryFilterRequestReplacement',
+              type: DaffCategoryFilterType.Equal,
+              label: 'labelRDaffCategoryFilterRequest',
               options: {
                 value: {
                   applied: false,
@@ -163,8 +163,8 @@ describe('DaffCategoryPageSelectors', () => {
             },
             name2: {
               name: 'name2',
-              type: DaffCategoryFilterTypeReplacement.Equal,
-              label: 'label2RDaffCategoryFilterRequestReplacement',
+              type: DaffCategoryFilterType.Equal,
+              label: 'label2RDaffCategoryFilterRequest',
               options: {
                 value2: {
                   applied: false,
@@ -195,7 +195,7 @@ describe('DaffCategoryPageSelectors', () => {
         filterEqual,
       ]);
 
-      const expectedAppliedFilters: Dict<DaffCategoryFilterReplacement> = daffCategoryFilterArrayToDict([filterEqual]);
+      const expectedAppliedFilters: Dict<DaffCategoryFilter> = daffCategoryFilterArrayToDict([filterEqual]);
 
       store.dispatch(new DaffCategoryPageLoadSuccess({ products: [],
         category: {
@@ -337,7 +337,7 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectIsCategoryPageResolving', () => {
     describe('when the category page is resolving', () => {
       beforeEach(() => {
-        store.dispatch(new DaffCategoryPageLoad(<DaffCategoryRequestReplacement>{}));
+        store.dispatch(new DaffCategoryPageLoad(<DaffCategoryRequest>{}));
       });
 
       it('returns true', () => {

@@ -1,7 +1,7 @@
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
   DaffCategoryFilterEqual,
   DaffCategoryFilterRangeNumeric,
 } from '../../../models/public_api';
@@ -14,20 +14,20 @@ import {
 } from '../../validators/public_api';
 
 /**
- * Undoes any applied options of a {@link DaffCategoryFilterReplacement} that match the
- * {@link DaffCategoryFilterRequestReplacement}, returning the {@link DaffCategoryFilterReplacement}.
+ * Undoes any applied options of a {@link DaffCategoryFilter} that match the
+ * {@link DaffCategoryFilterRequest}, returning the {@link DaffCategoryFilter}.
  *
  * @idempotent {filter}
  * @pure
  */
-export const daffRemoveFilter = (request: DaffCategoryFilterRequestReplacement, filter: DaffCategoryFilterReplacement): DaffCategoryFilterReplacement => {
+export const daffRemoveFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {
   daffCategoryValidateFilterRequestNameMatch(request, filter);
   daffCategoryValidateFilterRequestTypeMatch(request, filter);
 
   switch (request.type) {
-    case DaffCategoryFilterTypeReplacement.Equal:
+    case DaffCategoryFilterType.Equal:
       return daffRemoveFilterEqual(request, <DaffCategoryFilterEqual>filter);
-    case (DaffCategoryFilterTypeReplacement.RangeNumeric):
+    case (DaffCategoryFilterType.RangeNumeric):
       return daffRemoveFilterRange(request, <DaffCategoryFilterRangeNumeric>filter);
     default:
       throw new DaffCategoryUnknownFilterType('Unknown filter type');

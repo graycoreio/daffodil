@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   DaffCategoryFilterEqual,
 } from '@daffodil/category';
 
@@ -30,7 +30,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterEqualFactory', () =
     });
 
     it('should return a category filter of type equal', () => {
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+      expect(result.type).toEqual(DaffCategoryFilterType.Equal);
       expect(result.options).toBeDefined();
       expect(Object.keys(result.options).length).toEqual(0);
     });

@@ -9,10 +9,10 @@ import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
-  DaffGetCategoryResponseReplacement,
+  DaffGetCategoryResponse,
   daffCategoryFilterArrayToDict,
   daffCategoryFiltersToRequests,
-  DaffCategoryFilterRequestReplacement,
+  DaffCategoryFilterRequest,
   DaffCategoryFilterToggleRequest,
 } from '@daffodil/category';
 import {
@@ -38,7 +38,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
   DaffCategoryFilterFactory,
-  DaffCategoryFilterRequestReplacementFactory,
+  DaffCategoryFilterRequestFactory,
   DaffCategoryFilterToggleRequestFactory,
 } from '@daffodil/category/testing';
 import {
@@ -70,7 +70,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let productFactory: DaffProductFactory;
   let filterFactory: DaffCategoryFilterFactory;
-  let filterRequestFactory: DaffCategoryFilterRequestReplacementFactory;
+  let filterRequestFactory: DaffCategoryFilterRequestFactory;
   let filterToggleRequestFactory: DaffCategoryFilterToggleRequestFactory;
 
   const testDriverSuccess = (cb: () => Action) => {
@@ -87,7 +87,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           id: stubCategoryPageMetadata.id,
         });
         const stubProducts = productFactory.createMany(3);
-        const response: DaffGetCategoryResponseReplacement = {
+        const response: DaffGetCategoryResponse = {
           category: stubCategory,
           products: stubProducts,
           categoryPageMetadata: stubCategoryPageMetadata,
@@ -136,7 +136,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           id: stubCategoryPageMetadata.id,
         });
         const stubProducts = productFactory.createMany(3);
-        const response: DaffGetCategoryResponseReplacement = {
+        const response: DaffGetCategoryResponse = {
           category: stubCategory,
           products: stubProducts,
           categoryPageMetadata: stubCategoryPageMetadata,
@@ -235,7 +235,7 @@ describe('DaffCategoryPageFilterEffects', () => {
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
     filterFactory = TestBed.inject(DaffCategoryFilterFactory);
-    filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestReplacementFactory);
+    filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestFactory);
     filterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestFactory);
   });
 
@@ -244,7 +244,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when ChangeCategoryFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequestReplacement;
+    let filterRequest: DaffCategoryFilterRequest;
     let action: Action;
 
     beforeEach(() => {
@@ -257,7 +257,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageReplaceFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequestReplacement;
+    let filterRequest: DaffCategoryFilterRequest;
     let action: Action;
 
     beforeEach(() => {
@@ -270,7 +270,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageApplyFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequestReplacement;
+    let filterRequest: DaffCategoryFilterRequest;
     let action: Action;
 
 
@@ -284,7 +284,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageClearFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequestReplacement;
+    let filterRequest: DaffCategoryFilterRequest;
     let action: Action;
 
 
@@ -298,7 +298,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageRemoveFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequestReplacement;
+    let filterRequest: DaffCategoryFilterRequest;
     let action: Action;
 
 

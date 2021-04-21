@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffCategoryFilterRequestReplacement,
+  DaffCategoryFilterRequest,
   DaffCategoryFilterToggleRequest,
 } from '@daffodil/category';
 
@@ -23,7 +23,7 @@ export enum DaffCategoryPageFilterActionTypes {
 export class DaffCategoryPageChangeFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction;
 
-  constructor(public filters: DaffCategoryFilterRequestReplacement[]) { }
+  constructor(public filters: DaffCategoryFilterRequest[]) { }
 }
 
 /**
@@ -35,7 +35,7 @@ export class DaffCategoryPageChangeFilters implements Action {
 export class DaffCategoryPageReplaceFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction;
 
-  constructor(public filters: DaffCategoryFilterRequestReplacement[]) { }
+  constructor(public filters: DaffCategoryFilterRequest[]) { }
 }
 
 /**
@@ -46,7 +46,7 @@ export class DaffCategoryPageReplaceFilters implements Action {
 export class DaffCategoryPageApplyFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction;
 
-  constructor(public filters: DaffCategoryFilterRequestReplacement[]) { }
+  constructor(public filters: DaffCategoryFilterRequest[]) { }
 }
 
 /**
@@ -57,7 +57,7 @@ export class DaffCategoryPageApplyFilters implements Action {
 export class DaffCategoryPageRemoveFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction;
 
-  constructor(public filters: DaffCategoryFilterRequestReplacement[]) { }
+  constructor(public filters: DaffCategoryFilterRequest[]) { }
 }
 
 /**

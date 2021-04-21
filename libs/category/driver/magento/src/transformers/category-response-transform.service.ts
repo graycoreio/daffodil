@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DaffGetCategoryResponseReplacement } from '@daffodil/category';
+import { DaffGetCategoryResponse } from '@daffodil/category';
 import { transformManyMagentoProducts } from '@daffodil/product/driver/magento';
 
 import { MagentoCompleteCategoryResponse } from '../models/public_api';
@@ -17,7 +17,7 @@ export class DaffMagentoCategoryResponseTransformService {
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
   ) {}
 
-  transform(completeCategory: MagentoCompleteCategoryResponse): DaffGetCategoryResponseReplacement {
+  transform(completeCategory: MagentoCompleteCategoryResponse): DaffGetCategoryResponse {
     return {
       ...{ magentoCompleteCategoryResponse: completeCategory },
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),

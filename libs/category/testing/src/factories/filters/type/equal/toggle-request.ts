@@ -3,12 +3,12 @@ import * as faker from 'faker/locale/en_US';
 
 import {
   DaffCategoryFilterEqualToggleRequest,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffToggleCategoryFilterEqualRequest implements DaffCategoryFilterEqualToggleRequest {
-  type: DaffCategoryFilterTypeReplacement.Equal = DaffCategoryFilterTypeReplacement.Equal;
+  type: DaffCategoryFilterType.Equal = DaffCategoryFilterType.Equal;
   name = faker.random.word();
   value = faker.random.uuid();
 }

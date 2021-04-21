@@ -1,7 +1,7 @@
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
   DaffCategoryFilterEqual,
   DaffCategoryFilterRangeNumeric,
 } from '../../../models/public_api';
@@ -19,14 +19,14 @@ import {
  * @idempotent {filter}
  * @throws {@link DaffCategoryUnknownFilterType}
  */
-export const daffApplyFilter = (request: DaffCategoryFilterRequestReplacement, filter: DaffCategoryFilterReplacement): DaffCategoryFilterReplacement => {
+export const daffApplyFilter = (request: DaffCategoryFilterRequest, filter: DaffCategoryFilter): DaffCategoryFilter => {
   daffCategoryValidateFilterRequestNameMatch(request, filter);
   daffCategoryValidateFilterRequestTypeMatch(request, filter);
 
   switch (request.type) {
-    case DaffCategoryFilterTypeReplacement.Equal:
+    case DaffCategoryFilterType.Equal:
       return daffApplyFilterEqual(request, <DaffCategoryFilterEqual>filter);
-    case(DaffCategoryFilterTypeReplacement.RangeNumeric):
+    case(DaffCategoryFilterType.RangeNumeric):
       return daffApplyFilterRange(request, <DaffCategoryFilterRangeNumeric>filter);
     default:
       throw new DaffCategoryUnknownFilterType('Unknown filter type');

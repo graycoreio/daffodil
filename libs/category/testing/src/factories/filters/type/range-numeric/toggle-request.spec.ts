@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryFilterRangeNumericToggleRequest } from '@daffodil/category';
-import { DaffCategoryFilterTypeReplacement } from '@daffodil/category';
+import { DaffCategoryFilterType } from '@daffodil/category';
 
 import { DaffCategoryFilterToggleRequestRangeNumericFactory } from './toggle-request';
 
@@ -28,7 +28,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterToggleRequestRangeN
     });
 
     it('should return a range numeric toggle-request', () => {
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+      expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
       expect(typeof result.value.min).toEqual('number');
       expect(typeof result.value.max).toEqual('number');
       expect(result.value.min).toBeDefined();

@@ -1,21 +1,21 @@
 import { Dict } from '@daffodil/core';
 
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilter,
 } from '../../../models/public_api';
 import { daffApplyFilter } from './apply-filter';
 
 /**
- * Applies filters from a {@link DaffCategoryFilterRequestReplacement} to a {@link Dict}
- * of {@link DaffCategoryFilterReplacement}.
+ * Applies filters from a {@link DaffCategoryFilterRequest} to a {@link Dict}
+ * of {@link DaffCategoryFilter}.
  *
  * @idempotent {filters}
  */
 export const daffApplyRequestsToFilters = (
-  filtersRequests: DaffCategoryFilterRequestReplacement[],
-  filters: Dict<DaffCategoryFilterReplacement>,
-): Dict<DaffCategoryFilterReplacement> =>
+  filtersRequests: DaffCategoryFilterRequest[],
+  filters: Dict<DaffCategoryFilter>,
+): Dict<DaffCategoryFilter> =>
   filtersRequests.reduce((acc, request) => {
     acc[request.name] = daffApplyFilter(request, filters[request.name]);
     return acc;

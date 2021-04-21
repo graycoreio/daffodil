@@ -6,7 +6,7 @@ import {
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryPageMetadata,
   daffCategoryComputeAppliedFilters,
 } from '@daffodil/category';
@@ -39,7 +39,7 @@ export interface DaffCategoryPageMemoizedSelectors<
    * Returns a dict of filters and only their applied options.
    * Filters with no applied options will be omitted.
    */
-	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, Dict<DaffCategoryFilterReplacement>>;
+	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, Dict<DaffCategoryFilter>>;
 	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['applied_sort_option']>;
 	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['applied_sort_direction']>;
 	selectCategoryPageState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState['daffState']>;
@@ -121,7 +121,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
    */
   const selectCategoryPageAppliedFilters = createSelector(
     selectCategoryFilters,
-    (filters: Dict<DaffCategoryFilterReplacement>): Dict<DaffCategoryFilterReplacement> => daffCategoryComputeAppliedFilters(filters),
+    (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> => daffCategoryComputeAppliedFilters(filters),
   );
 
   const selectCategoryPageAppliedSortOption = createSelector(

@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilterType,
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
 } from '@daffodil/category';
 import {
   MagentoCategoryFilters,
@@ -79,13 +79,13 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
     });
 
     describe('when the filter type is not Range', () => {
-      let equalFilterRequest: DaffCategoryFilterEqualRequestReplacement;
+      let equalFilterRequest: DaffCategoryFilterEqualRequest;
 
       beforeEach(() => {
         equalFilterRequest = equalFilterRequestFactory.create();
       });
 
-      it('should transform an array of DaffCategoryFilterRequestReplacement into a MagentoCategoryFilters', () => {
+      it('should transform an array of DaffCategoryFilterRequest into a MagentoCategoryFilters', () => {
         const expectedReturn: MagentoCategoryFilters = {
           category_id: {
             eq: 'id',

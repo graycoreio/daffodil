@@ -4,7 +4,7 @@ import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
-  DaffCategoryFilterOptionReplacement,
+  DaffCategoryFilterOption,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualOptionFactory,
@@ -62,7 +62,7 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
 
   describe('finding applied range option', () => {
     describe('when the filter has an applied option', () => {
-      let result: DaffCategoryFilterOptionReplacement[];
+      let result: DaffCategoryFilterOption[];
 
       beforeEach(() => {
         result = daffCategoryFindAppliedFilterOptions(appliedRangeFilter);
@@ -74,7 +74,7 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
     });
 
     describe('when the filter has no applied options', () => {
-      let result: DaffCategoryFilterOptionReplacement[];
+      let result: DaffCategoryFilterOption[];
 
       beforeEach(() => {
         result = daffCategoryFindAppliedFilterOptions(unappliedRangeFilter);
@@ -88,7 +88,7 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
 
   describe('finding applied equal options', () => {
     describe('when the filter has applied options', () => {
-      let result: DaffCategoryFilterOptionReplacement[];
+      let result: DaffCategoryFilterOption[];
 
       beforeEach(() => {
         result = daffCategoryFindAppliedFilterOptions(appliedEqualFilter);
@@ -101,7 +101,7 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
     });
 
     describe('when the filter has no applied options', () => {
-      let result: DaffCategoryFilterOptionReplacement[];
+      let result: DaffCategoryFilterOption[];
 
       beforeEach(() => {
         result = daffCategoryFindAppliedFilterOptions(unappliedEqualFilter);

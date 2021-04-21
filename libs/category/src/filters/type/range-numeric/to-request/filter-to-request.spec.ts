@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   daffCategoryFilterRangePairArrayToDict,
   DaffCategoryFilterRangePair,
 } from '@daffodil/category';
@@ -43,7 +43,7 @@ describe('@daffodil/category | filters | range numeric | daffCategoryFilterRange
     });
 
     it('should set the request type to range', () => {
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+      expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
     });
 
     it('should build the request from that applied option', () => {

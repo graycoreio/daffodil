@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 
 import { DaffCategoryFilterRangeNumericFactory } from './range-numeric';
@@ -34,7 +34,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterRangeNumericFactory
       expect(result.min).toBeDefined();
       expect(typeof result.min).toEqual('number');
       expect(typeof result.max).toEqual('number');
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+      expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
       expect(Object.keys(result.options).length).toEqual(0);
     });
   });

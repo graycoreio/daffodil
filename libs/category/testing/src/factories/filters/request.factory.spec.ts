@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryFilterRequestReplacement } from '@daffodil/category';
+import { DaffCategoryFilterRequest } from '@daffodil/category';
 
-import { DaffCategoryFilterRequestReplacementFactory } from './request.factory';
+import { DaffCategoryFilterRequestFactory } from './request.factory';
 
-describe('Category | Testing | Factories | DaffCategoryFilterRequestReplacementFactory', () => {
+describe('Category | Testing | Factories | DaffCategoryFilterRequestFactory', () => {
 
-  let factory: DaffCategoryFilterRequestReplacementFactory;
+  let factory: DaffCategoryFilterRequestFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCategoryFilterRequestReplacementFactory],
+      providers: [DaffCategoryFilterRequestFactory],
     });
 
-    factory = TestBed.inject(DaffCategoryFilterRequestReplacementFactory);
+    factory = TestBed.inject(DaffCategoryFilterRequestFactory);
   });
 
   it('should be created', () => {
@@ -22,7 +22,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterRequestReplacementF
 
   describe('create', () => {
 
-    let result: DaffCategoryFilterRequestReplacement;
+    let result: DaffCategoryFilterRequest;
 
     beforeEach(() => {
       result = factory.create();

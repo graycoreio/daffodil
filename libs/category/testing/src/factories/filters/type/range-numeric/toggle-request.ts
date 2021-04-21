@@ -5,13 +5,13 @@ import {
   DaffCategoryFilterRangeNumericToggleRequest,
   DaffCategoryFilterRangeRequestOption,
 } from '@daffodil/category';
-import { DaffCategoryFilterTypeReplacement } from '@daffodil/category';
+import { DaffCategoryFilterType } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 import { DaffCategoryFilterRangeNumericRequestOptionFactory } from './request-option';
 
 export class MockDaffToggleCategoryFilterRangeNumericRequest implements DaffCategoryFilterRangeNumericToggleRequest {
-  type: DaffCategoryFilterTypeReplacement.RangeNumeric = DaffCategoryFilterTypeReplacement.RangeNumeric;
+  type: DaffCategoryFilterType.RangeNumeric = DaffCategoryFilterType.RangeNumeric;
   name = faker.random.word();
   value: DaffCategoryFilterRangeRequestOption<number>;
 }

@@ -15,7 +15,7 @@ import {
 } from 'rxjs';
 
 import {
-  DaffCategoryRequestReplacement,
+  DaffCategoryRequest,
   DaffCategory,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
@@ -64,7 +64,7 @@ describe('DaffCategoryEffects', () => {
   let productGridLoadSuccessAction: DaffProductGridLoadSuccess;
   let categoryLoadSuccessAction: DaffCategoryLoadSuccess;
   let categoryLoadAction;
-  let categoryRequest: DaffCategoryRequestReplacement;
+  let categoryRequest: DaffCategoryRequest;
 
   beforeEach(() => {
 
@@ -169,7 +169,7 @@ describe('DaffCategoryEffects', () => {
 
     describe('multiple times in quick succession', () => {
       let otherCategoryLoadAction: DaffCategoryLoad;
-      let otherCategoryRequest: DaffCategoryRequestReplacement;
+      let otherCategoryRequest: DaffCategoryRequest;
 
       beforeEach(() => {
         otherCategoryRequest = { id: 'someOtherCategory' };

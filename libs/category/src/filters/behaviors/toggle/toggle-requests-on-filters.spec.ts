@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterToggleRequest,
   DaffCategoryFilterNotFound,
 } from '@daffodil/category';
@@ -19,7 +19,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
   let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
   let colorFilter: DaffCategoryFilterEqual;
   let sizeFilter: DaffCategoryFilterEqual;
-  let filters: Dict<DaffCategoryFilterReplacement>;
+  let filters: Dict<DaffCategoryFilter>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -84,7 +84,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
         value: 'red',
       }),
     ];
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -112,7 +112,7 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
         value: 'small',
       }),
     ];
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,

@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
-  DaffCategoryFilterTypeReplacement,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterType,
+  DaffCategoryFilterEqualRequest,
   daffCategoryFilterEqualOptionArrayToDict,
 } from '@daffodil/category';
 import {
@@ -35,14 +35,14 @@ describe('@daffodil/category | filters | equal | daffCategoryFilterEqualToReques
   });
 
   describe('when the filter has applied options', () => {
-    let result: DaffCategoryFilterEqualRequestReplacement;
+    let result: DaffCategoryFilterEqualRequest;
 
     beforeEach(() => {
       result = daffCategoryFilterEqualToRequest(appliedEqualFilter);
     });
 
     it('should set the request type to equal', () => {
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+      expect(result.type).toEqual(DaffCategoryFilterType.Equal);
     });
 
     it('should build the request from the applied options', () => {

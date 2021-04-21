@@ -23,9 +23,9 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequestReplacement,
+  DaffCategoryRequest,
   DaffGenericCategory,
-  DaffGetCategoryResponseReplacement,
+  DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
 } from '@daffodil/category';
 import {
@@ -76,7 +76,7 @@ export class DaffCategoryPageEffects<
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangePageSize, DaffCategoryRequestReplacement],
+      [action, categoryRequest]: [DaffCategoryPageChangePageSize, DaffCategoryRequest],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       page_size: action.pageSize,
@@ -90,7 +90,7 @@ export class DaffCategoryPageEffects<
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangeCurrentPage, DaffCategoryRequestReplacement],
+      [action, categoryRequest]: [DaffCategoryPageChangeCurrentPage, DaffCategoryRequest],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       current_page: action.currentPage,
@@ -104,7 +104,7 @@ export class DaffCategoryPageEffects<
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangeSortingOption, DaffCategoryRequestReplacement],
+      [action, categoryRequest]: [DaffCategoryPageChangeSortingOption, DaffCategoryRequest],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       applied_sort_option: action.sort.option,
@@ -112,9 +112,9 @@ export class DaffCategoryPageEffects<
     })),
   );
 
-  private processCategoryGetRequest(payload: DaffCategoryRequestReplacement) {
+  private processCategoryGetRequest(payload: DaffCategoryRequest) {
     return this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponseReplacement<V, W>) => [
+      switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),
       ]),

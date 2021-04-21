@@ -3,7 +3,7 @@ import * as faker from 'faker/locale/en_US';
 
 import {
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   DaffCategoryFilterRangeRequestOption,
 } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
@@ -12,7 +12,7 @@ import { DaffCategoryFilterRangeNumericRequestOptionFactory } from './request-op
 
 
 export class MockDaffCategoryFilterRangeNumericRequest implements DaffCategoryFilterRangeNumericRequest {
-  type: DaffCategoryFilterTypeReplacement.RangeNumeric = DaffCategoryFilterTypeReplacement.RangeNumeric;
+  type: DaffCategoryFilterType.RangeNumeric = DaffCategoryFilterType.RangeNumeric;
   name = faker.random.word();
   value: DaffCategoryFilterRangeRequestOption<number>;
 }

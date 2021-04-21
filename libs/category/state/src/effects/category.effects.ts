@@ -19,7 +19,7 @@ import {
 
 import {
   DaffGenericCategory,
-  DaffGetCategoryResponseReplacement,
+  DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
 } from '@daffodil/category';
 import {
@@ -54,7 +54,7 @@ export class DaffCategoryEffects<
   loadCategory$: Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
     mergeMap((action: DaffCategoryLoad) => this.driver.get(action.request).pipe(
-      switchMap((resp: DaffGetCategoryResponseReplacement<V,W>) => of(
+      switchMap((resp: DaffGetCategoryResponse<V,W>) => of(
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryLoadSuccess(resp),
       )),

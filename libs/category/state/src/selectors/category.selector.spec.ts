@@ -9,7 +9,7 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
@@ -69,7 +69,7 @@ describe('DaffCategorySelectors', () => {
     stubMetadata.filters = {
       name: {
         name: 'name',
-        type: DaffCategoryFilterTypeReplacement.Equal,
+        type: DaffCategoryFilterType.Equal,
         label: 'label',
         options: {
           value: {
@@ -82,7 +82,7 @@ describe('DaffCategorySelectors', () => {
       },
       name2: {
         name: 'name2',
-        type: DaffCategoryFilterTypeReplacement.Equal,
+        type: DaffCategoryFilterType.Equal,
         label: 'label2',
         options: {
           value2: {

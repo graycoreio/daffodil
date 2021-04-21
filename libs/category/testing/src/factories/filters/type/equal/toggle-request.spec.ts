@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqualToggleRequest,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 
 import { DaffCategoryFilterToggleRequestEqualFactory } from './toggle-request';
@@ -31,7 +31,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterToggleRequestEqualF
 
     it('should return an equal toggle-request', () => {
       expect(result.value).toBeDefined();
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+      expect(result.type).toEqual(DaffCategoryFilterType.Equal);
       expect(result.name).toBeDefined();
       expect(typeof result.value).toEqual('string');
     });

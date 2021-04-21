@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { MagentoAggregation } from '@daffodil/category/driver/magento';
 import {
@@ -17,7 +17,7 @@ describe('@daffodil/category/driver/magento | transformAggregate', () => {
   let selectAggregateFactory: DaffCategoryDriverMagentoAggregationSelectFactory;
   let aggregation: MagentoAggregation;
 
-  let result: DaffCategoryFilterReplacement;
+  let result: DaffCategoryFilter;
 
   beforeEach(() => {
     selectAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationSelectFactory);
@@ -35,7 +35,7 @@ describe('@daffodil/category/driver/magento | transformAggregate', () => {
     });
 
     it('should return a range filter', () => {
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+      expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
     });
   });
 
@@ -46,7 +46,7 @@ describe('@daffodil/category/driver/magento | transformAggregate', () => {
     });
 
     it('should return an equal filter', () => {
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+      expect(result.type).toEqual(DaffCategoryFilterType.Equal);
     });
   });
 });

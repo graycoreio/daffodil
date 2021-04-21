@@ -129,7 +129,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       expect(service.transform(completeCategory).products.length).toEqual(completeCategory.products.length);
     });
 
-    it('should return a DaffGetCategoryResponseReplacement', () => {
+    it('should return a DaffGetCategoryResponse', () => {
       expect(service.transform(completeCategory)).toEqual(
         {
           ...{ magentoCompleteCategoryResponse: completeCategory },

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { MagentoAggregation } from '@daffodil/category/driver/magento';
 import { DaffCategoryDriverMagentoAggregationSelectFactory } from '@daffodil/category/driver/magento/testing';
@@ -24,7 +24,7 @@ describe('@daffodil/category/driver/magento | transformers | transformAggregateE
   });
 
   it('should return a DaffCategoryFilterEqual with the transformed fields', () => {
-    expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+    expect(result.type).toEqual(DaffCategoryFilterType.Equal);
     expect(result.name).toEqual(aggregation.attribute_code);
     expect(result.label).toEqual(aggregation.label);
     aggregation.options.forEach(option => {

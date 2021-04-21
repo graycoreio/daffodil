@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRangeBase,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { MagentoAggregation } from '@daffodil/category/driver/magento';
 import { DaffCategoryDriverMagentoAggregationPriceFactory } from '@daffodil/category/driver/magento/testing';
@@ -46,7 +46,7 @@ describe('@daffodil/category/driver/magento | transformers | transformAggregateR
   });
 
   it('should return a DaffCategoryFilterRangeBase<number> with the transformed fields', () => {
-    expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+    expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
     expect(result.name).toEqual(aggregation.attribute_code);
     expect(result.label).toEqual(aggregation.label);
     expect(result.min).toEqual(min);

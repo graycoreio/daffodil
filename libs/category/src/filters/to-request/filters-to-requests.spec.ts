@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
   daffCategoryFilterArrayToDict,
-  DaffCategoryFilterTypeReplacement,
-  DaffCategoryFilterRequestReplacement,
+  DaffCategoryFilterType,
+  DaffCategoryFilterRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
@@ -29,8 +29,8 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
   let rangeFilterPairFactory: DaffCategoryFilterRangeNumericPairFactory;
   let categoryFilterFactory: DaffCategoryFilterFactory;
 
-  let filters: DaffCategoryFilterReplacement[];
-  let filterDict: Dict<DaffCategoryFilterReplacement>;
+  let filters: DaffCategoryFilter[];
+  let filterDict: Dict<DaffCategoryFilter>;
   let appliedRangeFilter: DaffCategoryFilterRangeNumeric;
   let unappliedRangeFilter: DaffCategoryFilterRangeNumeric;
   let appliedEqualFilter: DaffCategoryFilterEqual;
@@ -41,8 +41,8 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
 
   let appliedRangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
   let unappliedRangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
-  let appliedEqualFilterRequest: DaffCategoryFilterEqualRequestReplacement;
-  let unappliedEqualFilterRequest: DaffCategoryFilterEqualRequestReplacement;
+  let appliedEqualFilterRequest: DaffCategoryFilterEqualRequest;
+  let unappliedEqualFilterRequest: DaffCategoryFilterEqualRequest;
 
   beforeEach(() => {
     equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
@@ -83,7 +83,7 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
     filterDict = daffCategoryFilterArrayToDict(filters);
 
     appliedRangeFilterRequest = {
-      type: DaffCategoryFilterTypeReplacement.RangeNumeric,
+      type: DaffCategoryFilterType.RangeNumeric,
       name: appliedRangeFilter.name,
       value: {
         min: appliedRangeFilter.options[0].min.value,
@@ -91,12 +91,12 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
       },
     };
     unappliedRangeFilterRequest = {
-      type: DaffCategoryFilterTypeReplacement.RangeNumeric,
+      type: DaffCategoryFilterType.RangeNumeric,
       name: unappliedRangeFilter.name,
       value: null,
     };
     appliedEqualFilterRequest = {
-      type: DaffCategoryFilterTypeReplacement.Equal,
+      type: DaffCategoryFilterType.Equal,
       name: appliedEqualFilter.name,
       value: [
         appliedEqualFilterOption0.value,
@@ -104,7 +104,7 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
       ],
     };
     unappliedEqualFilterRequest = {
-      type: DaffCategoryFilterTypeReplacement.Equal,
+      type: DaffCategoryFilterType.Equal,
       name: unappliedEqualFilter.name,
       value: [
         unappliedEqualFilterOption.value,
@@ -113,7 +113,7 @@ describe('@daffodil/category | filters | daffCategoryFiltersToRequests', () => {
   });
 
   describe('building filter requests', () => {
-    let result: DaffCategoryFilterRequestReplacement[];
+    let result: DaffCategoryFilterRequest[];
 
     beforeEach(() => {
       result = daffCategoryFiltersToRequests(filterDict);

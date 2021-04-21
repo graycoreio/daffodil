@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilter,
   DaffCategoryFilterNotFound,
 } from '@daffodil/category';
 import {
@@ -44,11 +44,11 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestF
   });
 
   it('should remove filters in a filter request', () => {
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
     });
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -66,7 +66,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestF
   });
 
   it('should throw an error if the filter name does not exist', () => {
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'size',
       value: ['medium'],
     });
@@ -77,11 +77,11 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestF
   });
 
   it('should be idempotent over filters', () => {
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
     });
 
-    expect((idempotentArg?: Dict<DaffCategoryFilterReplacement>) => (daffRemoveRequestFromFilters(request, idempotentArg || filters))).toBeIdempotent();
+    expect((idempotentArg?: Dict<DaffCategoryFilter>) => (daffRemoveRequestFromFilters(request, idempotentArg || filters))).toBeIdempotent();
   });
 });

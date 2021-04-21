@@ -8,4 +8,4 @@ import { DaffCategoryFilterRangeNumeric } from './type/range-numeric/filter';
  *
  * Importantly, filters have "types" which determine their behavior. See {@link DaffCategoryFilterType} for a complete list.
  */
-export type DaffCategoryFilterReplacement = DaffCategoryFilterRangeNumeric | DaffCategoryFilterEqual;
+export type DaffCategoryFilter = DaffCategoryFilterRangeNumeric | DaffCategoryFilterEqual;

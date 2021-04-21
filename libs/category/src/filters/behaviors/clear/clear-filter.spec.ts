@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterEqual,
   DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
@@ -24,7 +24,7 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
   });
 
   it('should clear a given range filter', () => {
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -42,7 +42,7 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
         },
       },
     });
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {},
     };
@@ -110,6 +110,6 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
       },
     });
 
-    expect((idempotentArg?: DaffCategoryFilterReplacement) => (daffClearFilter(idempotentArg || filter))).toBeIdempotent();
+    expect((idempotentArg?: DaffCategoryFilter) => (daffClearFilter(idempotentArg || filter))).toBeIdempotent();
   });
 });

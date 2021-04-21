@@ -6,7 +6,7 @@ import {
   DaffCategoryFilterRangeNumeric,
   DaffCategoryFilterRangePair,
   daffCategoryFilterEqualOptionArrayToDict,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   daffCategoryFilterRangePairArrayToDict,
   daffCategoryComputeFilterRangePairLabel,
   daffCategoryFilterArrayToDict,
@@ -36,7 +36,7 @@ describe('@daffodil/category/state | daffCategoryComputeAppliedFilters', () => {
   let rangeFilterPair: DaffCategoryFilterRangePair<number>;
   let rangeFilterPairLabel: string;
 
-  let result: Dict<DaffCategoryFilterReplacement>;
+  let result: Dict<DaffCategoryFilter>;
 
   beforeEach(() => {
     equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);

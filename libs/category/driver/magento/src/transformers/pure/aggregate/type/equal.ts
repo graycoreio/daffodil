@@ -1,7 +1,7 @@
 import { DaffCategoryFilterEqualOption } from '@daffodil/category';
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { Dict } from '@daffodil/core';
 
@@ -9,7 +9,7 @@ import { MagentoAggregation } from '../../../../models/public_api';
 
 export const transformAggregateEqual = (aggregate: MagentoAggregation): DaffCategoryFilterEqual => ({
   label: aggregate.label,
-  type: DaffCategoryFilterTypeReplacement.Equal,
+  type: DaffCategoryFilterType.Equal,
   name: aggregate.attribute_code,
   options: aggregate.options.reduce((acc, option) => {
     acc[option.value] = {

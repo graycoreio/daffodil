@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryFilterNotFound,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
@@ -20,8 +20,8 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
   let colorFilter: DaffCategoryFilterEqual;
   let sizeFilter: DaffCategoryFilterEqual;
   let filters: Dict<DaffCategoryFilterEqual>;
-  let colorRequest: DaffCategoryFilterEqualRequestReplacement;
-  let sizeRequest: DaffCategoryFilterEqualRequestReplacement;
+  let colorRequest: DaffCategoryFilterEqualRequest;
+  let sizeRequest: DaffCategoryFilterEqualRequest;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -69,13 +69,13 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
   });
 
   it('should not apply any filters if there are no filter requests', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [];
+    const requests: DaffCategoryFilterEqualRequest[] = [];
 
     expect(daffApplyRequestsToFilters(requests, filters)).toEqual(filters);
   });
 
   it('should throw an error if there are no requests that match', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       categoryFilterRequestEqualFactory.create({
         name: 'someFilter',
         value: ['someFilter value'],
@@ -88,8 +88,8 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
   });
 
   it('should apply a filter if there is a request that matches', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [ colorRequest ];
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const requests: DaffCategoryFilterEqualRequest[] = [ colorRequest ];
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -107,11 +107,11 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
   });
 
   it('should apply multiple filters if there are multiple requests that match', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       colorRequest,
       sizeRequest,
     ];
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -139,7 +139,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyRequestsTo
   });
 
   it('should be idempotent over filters', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       colorRequest,
       sizeRequest,
     ];

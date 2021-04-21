@@ -1,5 +1,5 @@
 import {
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   DaffCategoryFilterRangeNumeric,
 } from '@daffodil/category';
 
@@ -13,7 +13,7 @@ export const magentoBucketSeparator = '-';
 
 export const transformAggregateRange = (aggregate: MagentoAggregation): DaffCategoryFilterRangeNumeric => ({
   label: aggregate.label,
-  type: DaffCategoryFilterTypeReplacement.RangeNumeric,
+  type: DaffCategoryFilterType.RangeNumeric,
   name: aggregate.attribute_code,
   min: parseInt(aggregate.options[0].value.split('-')[0], 10),
   max: parseInt(aggregate.options[aggregate.options.length - 1].value.split(magentoBucketSeparator)[1], 10),

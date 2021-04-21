@@ -1,4 +1,4 @@
-import { DaffCategoryFilterReplacement } from '@daffodil/category';
+import { DaffCategoryFilter } from '@daffodil/category';
 
 import {
   MagentoAggregation,
@@ -7,7 +7,7 @@ import {
 import { transformAggregateEqual } from './type/equal';
 import { transformAggregateRange } from './type/range';
 
-export const transformAggregate = (aggregate: MagentoAggregation): DaffCategoryFilterReplacement => {
+export const transformAggregate = (aggregate: MagentoAggregation): DaffCategoryFilter => {
   switch (aggregate.type) {
     case MagentoCategoryFilterType.Range:
       return transformAggregateRange(aggregate);

@@ -1,6 +1,6 @@
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilter,
   DaffCategoryFilterToggleRequest,
 } from '../../models/public_api';
 import { DaffCategoryFilterRequestTypeMismatch } from '../errors/request-type-mismatch.error';
@@ -11,8 +11,8 @@ import { DaffCategoryFilterRequestTypeMismatch } from '../errors/request-type-mi
  * @throws {@link DaffCategoryFilterRequestTypeMismatch} if the types do not match.
  */
 export const daffCategoryValidateFilterRequestTypeMatch = (
-  request: DaffCategoryFilterRequestReplacement | DaffCategoryFilterToggleRequest,
-  filter: DaffCategoryFilterReplacement,
+  request: DaffCategoryFilterRequest | DaffCategoryFilterToggleRequest,
+  filter: DaffCategoryFilter,
 ): void => {
   if (request.type !== filter.type) {
     throw new DaffCategoryFilterRequestTypeMismatch('Filter types don\'t match');

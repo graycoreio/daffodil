@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryFilterReplacement } from '@daffodil/category';
+import { DaffCategoryFilter } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
   DaffCategoryFilterRangeNumericFactory,
@@ -52,11 +52,11 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilters', 
         },
       },
     });
-    const filters: Dict<DaffCategoryFilterReplacement> = {
+    const filters: Dict<DaffCategoryFilter> = {
       color: colorFilter,
       price: priceFilter,
     };
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -114,11 +114,11 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilters', 
       },
     });
 
-    const filters: Dict<DaffCategoryFilterReplacement> = {
+    const filters: Dict<DaffCategoryFilter> = {
       color: colorFilter,
       price: priceFilter,
     };
 
-    expect((idempotentArg?: Dict<DaffCategoryFilterReplacement>) => (daffClearFilters(idempotentArg || filters))).toBeIdempotent();
+    expect((idempotentArg?: Dict<DaffCategoryFilter>) => (daffClearFilters(idempotentArg || filters))).toBeIdempotent();
   });
 });

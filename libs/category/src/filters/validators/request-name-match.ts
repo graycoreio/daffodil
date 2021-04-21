@@ -1,6 +1,6 @@
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilter,
   DaffCategoryFilterToggleRequest,
 } from '../../models/public_api';
 import { DaffCategoryFilterNotFound } from '../errors/filter-not-found.error';
@@ -12,8 +12,8 @@ import { DaffCategoryFilterRequestNameMismatch } from '../errors/request-name-mi
  * @throws {@link DaffCategoryFilterNotFound} if the names do not match.
  */
 export const daffCategoryValidateFilterRequestNameMatch = (
-  request: DaffCategoryFilterRequestReplacement | DaffCategoryFilterToggleRequest,
-  filter: DaffCategoryFilterReplacement,
+  request: DaffCategoryFilterRequest | DaffCategoryFilterToggleRequest,
+  filter: DaffCategoryFilter,
 ): void => {
   if (!filter) {
     throw new DaffCategoryFilterNotFound('Filter does not exist');

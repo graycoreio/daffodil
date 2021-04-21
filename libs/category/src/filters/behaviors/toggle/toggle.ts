@@ -1,7 +1,7 @@
 import {
   DaffCategoryFilterToggleRequest,
-  DaffCategoryFilterReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
   DaffCategoryFilterEqual,
   DaffCategoryFilterRangeNumeric,
 } from '../../../models/public_api';
@@ -14,20 +14,20 @@ import {
 } from '../../validators/public_api';
 
 /**
- * Toggles the state of the filters (and their options) in the {@link DaffCategoryFilterReplacement}
+ * Toggles the state of the filters (and their options) in the {@link DaffCategoryFilter}
  * that match the {@link DaffCategoryFilterToggleRequest} .
  */
 export function daffToggleFilter(
   request: DaffCategoryFilterToggleRequest,
-  filter: DaffCategoryFilterReplacement,
-): DaffCategoryFilterReplacement {
+  filter: DaffCategoryFilter,
+): DaffCategoryFilter {
   daffCategoryValidateFilterRequestNameMatch(request, filter);
   daffCategoryValidateFilterRequestTypeMatch(request, filter);
 
   switch (request.type) {
-    case DaffCategoryFilterTypeReplacement.Equal:
+    case DaffCategoryFilterType.Equal:
       return daffToggleFilterEqual(request, <DaffCategoryFilterEqual>filter);
-    case(DaffCategoryFilterTypeReplacement.RangeNumeric):
+    case(DaffCategoryFilterType.RangeNumeric):
       return daffToggleFilterRange(request, <DaffCategoryFilterRangeNumeric>filter);
     default:
       throw new DaffCategoryUnknownFilterType('Unknown filter type');

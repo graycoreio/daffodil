@@ -1,21 +1,21 @@
 import { Dict } from '@daffodil/core';
 
 import {
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilter,
 } from '../../../models/public_api';
 import { daffRemoveFilter } from './remove-filter';
 
 /**
- * Undoes any applied options of a particular filter of a {@link Dict} of {@link DaffCategoryFilterReplacement}
- * that match the {@link DaffCategoryFilterRequestReplacement}, returning the {@link Dict} of {@link DaffCategoryFilterReplacement}.
+ * Undoes any applied options of a particular filter of a {@link Dict} of {@link DaffCategoryFilter}
+ * that match the {@link DaffCategoryFilterRequest}, returning the {@link Dict} of {@link DaffCategoryFilter}.
  *
  * @idempotent {filters}
  */
 export const daffRemoveRequestFromFilters = (
-  request: DaffCategoryFilterRequestReplacement,
-  filters: Dict<DaffCategoryFilterReplacement>,
-): Dict<DaffCategoryFilterReplacement> => ({
+  request: DaffCategoryFilterRequest,
+  filters: Dict<DaffCategoryFilter>,
+): Dict<DaffCategoryFilter> => ({
   ...filters,
   [request.name]: daffRemoveFilter(request, filters[request.name]),
 });

@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryFilterNotFound,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
@@ -63,13 +63,13 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
   });
 
   it('should not remove any filters if there are no filter requests', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [];
+    const requests: DaffCategoryFilterEqualRequest[] = [];
 
     expect(daffRemoveRequestsFromFilters(requests, filters)).toEqual(filters);
   });
 
   it('should throw an error if there are no requests that match', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       categoryFilterRequestEqualFactory.create({
         name: 'someFilter',
         value: ['someFilter value'],
@@ -82,13 +82,13 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
   });
 
   it('should remove a filter if there are requests that match', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       categoryFilterRequestEqualFactory.create({
         name: 'color',
         value: ['red'],
       }),
     ];
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -106,7 +106,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
   });
 
   it('should remove multiple filters if there are multiple requests that match', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       categoryFilterRequestEqualFactory.create({
         name: 'color',
         value: ['red'],
@@ -116,7 +116,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
         value: ['small'],
       }),
     ];
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -145,13 +145,13 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
 
 
   it('should be idempotent over filters', () => {
-    const requests: DaffCategoryFilterEqualRequestReplacement[] = [
+    const requests: DaffCategoryFilterEqualRequest[] = [
       categoryFilterRequestEqualFactory.create({
         name: 'color',
         value: ['red'],
       }),
     ];
 
-    expect((idempotentArg?: Dict<DaffCategoryFilterReplacement>) => (daffRemoveRequestsFromFilters(requests, idempotentArg || filters))).toBeIdempotent();
+    expect((idempotentArg?: Dict<DaffCategoryFilter>) => (daffRemoveRequestsFromFilters(requests, idempotentArg || filters))).toBeIdempotent();
   });
 });

@@ -5,8 +5,8 @@ import {
 } from 'rxjs';
 
 import {
-  DaffCategoryRequestReplacement,
-  DaffGetCategoryResponseReplacement,
+  DaffCategoryRequest,
+  DaffGetCategoryResponse,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
@@ -27,7 +27,7 @@ export class DaffTestingCategoryService implements DaffCategoryServiceInterface 
     private productFactory: DaffProductFactory,
   ) {}
 
-  get(categoryRequest: DaffCategoryRequestReplacement): Observable<DaffGetCategoryResponseReplacement> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return of({
       category: this.categoryFactory.create(),
       categoryPageMetadata: this.categoryPageMetadataFactory.create(),

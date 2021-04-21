@@ -1,7 +1,7 @@
 import { Dict } from '@daffodil/core';
 
-import { DaffCategoryFilterBaseReplacement } from '../../category-filter-base';
-import { DaffCategoryFilterTypeReplacement } from '../category-filter-type';
+import { DaffCategoryFilterBase } from '../../category-filter-base';
+import { DaffCategoryFilterType } from '../category-filter-type';
 import { DaffCategoryFilterEqualOption } from './option';
 
 /**
@@ -15,7 +15,7 @@ import { DaffCategoryFilterEqualOption } from './option';
  * options are applied to collections of items, items that are "Red" AND "Green" vs.
  * items that are "Red" OR "Green".
  */
-export interface DaffCategoryFilterEqual extends DaffCategoryFilterBaseReplacement {
-	type: DaffCategoryFilterTypeReplacement.Equal;
+export interface DaffCategoryFilterEqual extends DaffCategoryFilterBase {
+	type: DaffCategoryFilterType.Equal;
 	options: Dict<DaffCategoryFilterEqualOption>;
 }
