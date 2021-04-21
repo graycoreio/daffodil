@@ -1,12 +1,12 @@
 import { Dict } from '@daffodil/core';
 
 import { DaffCategoryFilterOptionBase } from './category-filter-option-base';
-import { DaffCategoryFilterTypeReplacement } from './type/category-filter-type';
+import { DaffCategoryFilterType } from './type/category-filter-type';
 
 /**
- * The base type of a category filter. This will replace DaffCategoryFilterBase in a future PR.
+ * The base type of a category filter.
  */
-export interface DaffCategoryFilterBaseReplacement {
+export interface DaffCategoryFilterBase {
 	/**
 	 * The end-user facing string that explains the filter e.g. "Color".
 	 */
@@ -20,7 +20,7 @@ export interface DaffCategoryFilterBaseReplacement {
 	/**
 	 * The type of the filter. This is used to determine the specific behavior of the filter.
 	 */
-	type: DaffCategoryFilterTypeReplacement;
+	type: DaffCategoryFilterType;
 
 	/**
 	 * The available options by which to filter a category, e.g. "red", "blue", or "green".

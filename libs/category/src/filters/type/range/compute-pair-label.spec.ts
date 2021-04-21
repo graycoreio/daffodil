@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRangePair,
-  DaffCategoryFromToFilterSeparatorReplacement,
+  DaffCategoryFromToFilterSeparator,
 } from '@daffodil/category';
 import { DaffCategoryFilterRangeNumericPairFactory } from '@daffodil/category/testing';
 
@@ -24,6 +24,6 @@ describe('@daffodil/category | filters | range | daffCategoryComputeFilterRangeP
   it('should return a label from the pair\'s min, followed by the separator, followed by the max', () => {
     const result = daffCategoryComputeFilterRangePairLabel(rangeFilterPair.min.value, rangeFilterPair.max.value);
 
-    expect(result).toEqual(`${rangeFilterPair.min.value}${DaffCategoryFromToFilterSeparatorReplacement}${rangeFilterPair.max.value}`);
+    expect(result).toEqual(`${rangeFilterPair.min.value}${DaffCategoryFromToFilterSeparator}${rangeFilterPair.max.value}`);
   });
 });

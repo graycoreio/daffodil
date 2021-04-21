@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryFilterReplacement } from '@daffodil/category';
+import { DaffCategoryFilter } from '@daffodil/category';
 import { DaffCategoryFilterFactory } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 
@@ -8,9 +8,9 @@ import { daffCategoryFilterArrayToDict } from './array-to-dict';
 
 describe('@daffodil/category | filters | daffCategoryFilterArrayToDict', () => {
   let filterFactory: DaffCategoryFilterFactory;
-  let filters: DaffCategoryFilterReplacement[];
+  let filters: DaffCategoryFilter[];
 
-  let result: Dict<DaffCategoryFilterReplacement>;
+  let result: Dict<DaffCategoryFilter>;
 
   beforeEach(() => {
     filterFactory = TestBed.inject(DaffCategoryFilterFactory);

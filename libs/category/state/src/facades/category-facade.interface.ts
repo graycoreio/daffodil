@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import { Dict } from '@daffodil/core';
@@ -62,7 +62,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The filters available for the products of the selected category.
    */
-  filters$: Observable<Dict<DaffCategoryFilterReplacement>>;
+  filters$: Observable<Dict<DaffCategoryFilter>>;
   /**
    * The sort options available for the products of the selected category.
    */
@@ -70,7 +70,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<Dict<DaffCategoryFilterReplacement>>;
+  appliedFilters$: Observable<Dict<DaffCategoryFilter>>;
   /**
    * The sort options available for the products of the selected category.
    */

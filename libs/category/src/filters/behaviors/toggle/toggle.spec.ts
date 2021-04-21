@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterToggleRequest,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterRequestNameMismatch,
   DaffCategoryFilterRequestTypeMismatch,
   DaffCategoryUnknownFilterType,
@@ -79,14 +79,14 @@ describe('@daffodil/category | filters | behaviors | toggle | toggle', () => {
       },
     });
 
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
       options: {},
     });
 
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {
         '0-20': {

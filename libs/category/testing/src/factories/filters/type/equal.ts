@@ -3,12 +3,12 @@ import * as faker from 'faker/locale/en_US';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryEqualFilter implements DaffCategoryFilterEqual {
-  type: DaffCategoryFilterTypeReplacement.Equal = DaffCategoryFilterTypeReplacement.Equal;
+  type: DaffCategoryFilterType.Equal = DaffCategoryFilterType.Equal;
   label = faker.commerce.productMaterial();
   name = faker.random.uuid();
   options = {};

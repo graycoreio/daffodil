@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterEqualRequestReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 
 import { DaffCategoryFilterRequestEqualFactory } from './request';
@@ -23,7 +23,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterRequestEqualFactory
 
   describe('create', () => {
 
-    let result: DaffCategoryFilterEqualRequestReplacement;
+    let result: DaffCategoryFilterEqualRequest;
 
     beforeEach(() => {
       result = factory.create();
@@ -31,7 +31,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterRequestEqualFactory
 
     it('should return an equal request', () => {
       expect(result.value).toBeDefined();
-      expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+      expect(result.type).toEqual(DaffCategoryFilterType.Equal);
       expect(result.value.length).toEqual(1);
     });
   });

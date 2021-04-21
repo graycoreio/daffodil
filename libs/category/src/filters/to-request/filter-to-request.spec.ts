@@ -5,8 +5,8 @@ import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterTypeReplacement,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterType,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
 import {
@@ -72,7 +72,7 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
       });
 
       it('should set the request type to range', () => {
-        expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+        expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
       });
 
       it('should build the request from that applied option', () => {
@@ -97,14 +97,14 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
 
   describe('building a equal filter request', () => {
     describe('when the filter has applied options', () => {
-      let result: DaffCategoryFilterEqualRequestReplacement;
+      let result: DaffCategoryFilterEqualRequest;
 
       beforeEach(() => {
-        result = <DaffCategoryFilterEqualRequestReplacement>daffCategoryFilterToRequest(appliedEqualFilter);
+        result = <DaffCategoryFilterEqualRequest>daffCategoryFilterToRequest(appliedEqualFilter);
       });
 
       it('should set the request type to equal', () => {
-        expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+        expect(result.type).toEqual(DaffCategoryFilterType.Equal);
       });
 
       it('should build the request from the applied options', () => {
@@ -115,10 +115,10 @@ describe('@daffodil/category | filters | daffCategoryFilterToRequest', () => {
     });
 
     describe('when the filter has no applied options', () => {
-      let result: DaffCategoryFilterEqualRequestReplacement;
+      let result: DaffCategoryFilterEqualRequest;
 
       beforeEach(() => {
-        result = <DaffCategoryFilterEqualRequestReplacement>daffCategoryFilterToRequest(unappliedEqualFilter);
+        result = <DaffCategoryFilterEqualRequest>daffCategoryFilterToRequest(unappliedEqualFilter);
       });
 
       it('should return null', () => {

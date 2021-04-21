@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRequestTypeMismatch,
-  DaffCategoryFilterReplacement,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilter,
+  DaffCategoryFilterEqualRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterRequestEqualFactory,
@@ -18,8 +18,8 @@ describe('@daffodil/category | filters | validators | daffCategoryValidateFilter
   let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
   let equalFilterRequestFactory: DaffCategoryFilterRequestEqualFactory;
 
-  let equalFilterRequest: DaffCategoryFilterEqualRequestReplacement;
-  let filter: DaffCategoryFilterReplacement;
+  let equalFilterRequest: DaffCategoryFilterEqualRequest;
+  let filter: DaffCategoryFilter;
 
   beforeEach(() => {
     equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);

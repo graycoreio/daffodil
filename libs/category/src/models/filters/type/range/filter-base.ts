@@ -1,6 +1,6 @@
 import { Dict } from '@daffodil/core';
 
-import { DaffCategoryFilterBaseReplacement } from '../../category-filter-base';
+import { DaffCategoryFilterBase } from '../../category-filter-base';
 import { DaffCategoryFilterRangePair } from './pair';
 
 /**
@@ -10,7 +10,7 @@ import { DaffCategoryFilterRangePair } from './pair';
  *
  * Note that this is the generic base allowing for stricter type implementations.
  */
-export interface DaffCategoryFilterRangeBase<T> extends DaffCategoryFilterBaseReplacement {
+export interface DaffCategoryFilterRangeBase<T> extends DaffCategoryFilterBase {
 	min: T;
 	max: T;
 	options: Dict<DaffCategoryFilterRangePair<T>>;

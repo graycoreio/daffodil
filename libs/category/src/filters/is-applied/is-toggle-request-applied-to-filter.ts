@@ -1,7 +1,7 @@
 import {
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterToggleRequest,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   DaffCategoryFilterRangeNumericToggleRequest,
   DaffCategoryFilterEqualToggleRequest,
 } from '../../models/public_api';
@@ -10,13 +10,13 @@ import { daffIsEqualToggleRequestAppliedToFilter } from '../type/equal/is-applie
 import { daffIsRangeToggleRequestAppliedToFilter } from '../type/range/is-applied/is-toggle-request-applied-to-filter';
 
 /**
- * Determines whether or not a {@link DaffCategoryFilterToggleRequest} is already applied to a {@link DaffCategoryFilterReplacement}.
+ * Determines whether or not a {@link DaffCategoryFilterToggleRequest} is already applied to a {@link DaffCategoryFilter}.
  */
-export const daffIsToggleRequestAppliedToFilter = (request: DaffCategoryFilterToggleRequest, filter: DaffCategoryFilterReplacement): boolean => {
+export const daffIsToggleRequestAppliedToFilter = (request: DaffCategoryFilterToggleRequest, filter: DaffCategoryFilter): boolean => {
   switch (filter.type) {
-    case DaffCategoryFilterTypeReplacement.RangeNumeric:
+    case DaffCategoryFilterType.RangeNumeric:
       return daffIsRangeToggleRequestAppliedToFilter(<DaffCategoryFilterRangeNumericToggleRequest>request, filter);
-    case DaffCategoryFilterTypeReplacement.Equal:
+    case DaffCategoryFilterType.Equal:
       return daffIsEqualToggleRequestAppliedToFilter(<DaffCategoryFilterEqualToggleRequest>request, filter);
     default:
       throw new DaffCategoryUnknownFilterType('Unknown filter type');

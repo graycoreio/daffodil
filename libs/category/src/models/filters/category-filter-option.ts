@@ -1,7 +1,7 @@
-import { DaffCategoryFilterReplacement } from './category-filter';
+import { DaffCategoryFilter } from './category-filter';
 
 /**
  * A given option of a particular filter, e.g. "Blue" is a DaffCategoryFilterOption
- * of the {@link DaffCategoryFilterReplacement} "Color".
+ * of the {@link DaffCategoryFilter} "Color".
  */
-export type DaffCategoryFilterOptionReplacement = DaffCategoryFilterReplacement['options'][string];
+export type DaffCategoryFilterOption = DaffCategoryFilter['options'][string];

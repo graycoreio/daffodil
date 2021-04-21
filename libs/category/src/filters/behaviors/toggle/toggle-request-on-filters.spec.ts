@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualToggleRequest,
-  DaffCategoryFilterTypeReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterType,
+  DaffCategoryFilter,
   DaffCategoryFilterNotFound,
 } from '@daffodil/category';
 import {
@@ -47,11 +47,11 @@ describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestTo
 
   it('should apply a toggle request', () => {
     const request: DaffCategoryFilterEqualToggleRequest = categoryFilterToggleRequestEqualFactory.create({
-      type: DaffCategoryFilterTypeReplacement.Equal,
+      type: DaffCategoryFilterType.Equal,
       name: 'color',
       value: 'red',
     });
-    const expected: Dict<DaffCategoryFilterReplacement> = {
+    const expected: Dict<DaffCategoryFilter> = {
       ...filters,
       color: {
         ...colorFilter,

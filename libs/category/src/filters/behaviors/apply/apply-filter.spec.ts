@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterRequestNameMismatch,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
   DaffCategoryFilterRequestTypeMismatch,
   DaffCategoryUnknownFilterType,
 } from '@daffodil/category';
@@ -49,7 +49,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
         },
       },
     });
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
     });
@@ -76,13 +76,13 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
       },
     });
 
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
     });
 
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {
         ...filter.options,
@@ -113,7 +113,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
         },
       },
     });
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['clear'],
     });
@@ -139,7 +139,7 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
     });
 
     const request: DaffCategoryFilterRangeNumericRequest = categoryFilterRequestRangeNumericFactory.create({
-      type: DaffCategoryFilterTypeReplacement.RangeNumeric,
+      type: DaffCategoryFilterType.RangeNumeric,
       name: 'color',
       value: {
         min: 0,
@@ -190,12 +190,12 @@ describe('@daffodil/category | filters | behaviors | apply | daffApplyFilter', (
       },
     });
 
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
     });
 
-    expect((idempotentArg?: DaffCategoryFilterReplacement) => (daffApplyFilter(request, idempotentArg || filter))).toBeIdempotent();
+    expect((idempotentArg?: DaffCategoryFilter) => (daffApplyFilter(request, idempotentArg || filter))).toBeIdempotent();
   });
 });

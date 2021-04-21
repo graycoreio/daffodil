@@ -8,7 +8,7 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryPageMetadata,
   daffCategoryFilterArrayToDict,
 } from '@daffodil/category';
@@ -205,7 +205,7 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the selected category', () => {
-      const expectedFilters: Dict<DaffCategoryFilterReplacement> = {};
+      const expectedFilters: Dict<DaffCategoryFilter> = {};
 
       const expected = cold('a', { a: expectedFilters });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));

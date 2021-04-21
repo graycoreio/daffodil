@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryFilterToggleRequest } from '@daffodil/category';
-import { DaffCategoryFilterTypeReplacement } from '@daffodil/category';
+import { DaffCategoryFilterType } from '@daffodil/category';
 
 import { DaffCategoryFilterToggleRequestFactory } from './toggle-request';
 
@@ -29,7 +29,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterToggleRequestFactor
 
     it('should return a toggle-request', () => {
       expect(result.value).toBeDefined();
-      expect([DaffCategoryFilterTypeReplacement.RangeNumeric, DaffCategoryFilterTypeReplacement.Equal]).toContain(result.type);
+      expect([DaffCategoryFilterType.RangeNumeric, DaffCategoryFilterType.Equal]).toContain(result.type);
     });
   });
 });

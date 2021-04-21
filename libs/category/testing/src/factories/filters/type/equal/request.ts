@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import {
-  DaffCategoryFilterEqualRequestReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockDaffCategoryFilterEqualRequest implements DaffCategoryFilterEqualRequestReplacement {
-  type: DaffCategoryFilterTypeReplacement.Equal = DaffCategoryFilterTypeReplacement.Equal;
+export class MockDaffCategoryFilterEqualRequest implements DaffCategoryFilterEqualRequest {
+  type: DaffCategoryFilterType.Equal = DaffCategoryFilterType.Equal;
   name = faker.random.word();
   value = [faker.random.uuid()];
 }
@@ -16,7 +16,7 @@ export class MockDaffCategoryFilterEqualRequest implements DaffCategoryFilterEqu
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCategoryFilterRequestEqualFactory extends DaffModelFactory<DaffCategoryFilterEqualRequestReplacement>{
+export class DaffCategoryFilterRequestEqualFactory extends DaffModelFactory<DaffCategoryFilterEqualRequest>{
   constructor(){
     super(MockDaffCategoryFilterEqualRequest);
   }

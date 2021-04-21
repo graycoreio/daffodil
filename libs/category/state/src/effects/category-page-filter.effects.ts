@@ -23,7 +23,7 @@ import {
 
 import {
   DaffGenericCategory,
-  DaffGetCategoryResponseReplacement,
+  DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
   daffCategoryFiltersToRequests,
 } from '@daffodil/category';
@@ -93,7 +93,7 @@ export class DaffCategoryPageFilterEffects<
     })),
     throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
     switchMap(payload => this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponseReplacement<V, W>) => [
+      switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),
       ]),

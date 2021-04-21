@@ -1,7 +1,7 @@
 /**
- * The known types of filters. This will replace DaffCategoryFilterType in a future PR.
+ * The known types of filters.
  */
-export enum DaffCategoryFilterTypeReplacement {
+export enum DaffCategoryFilterType {
 	Equal = 'equal',
 	RangeNumeric = 'rangeNumeric'
 }

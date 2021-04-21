@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterRangeNumeric,
 } from '@daffodil/category';
 import {
@@ -69,7 +69,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
       },
     });
 
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -88,7 +88,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
       },
     });
 
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {
         '0-20': {
@@ -117,7 +117,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
       },
     });
 
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -136,7 +136,7 @@ describe('@daffodil/category | filters | type | range | behaviors | apply', () =
       },
     });
 
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {
         '20-40': {

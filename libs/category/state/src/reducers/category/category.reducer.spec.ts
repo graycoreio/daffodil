@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategory,
-  DaffCategoryRequestReplacement,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryRequest,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterEqualToggleRequest,
   DaffCategoryFilterEqual,
@@ -82,7 +82,7 @@ describe('Category | Category Reducer', () => {
   let currentRangeFilter: DaffCategoryFilterRangeNumeric;
   let currentRangeFilterPair: DaffCategoryFilterRangePair<number>;
   let currentRangeFilterPairLabel: string;
-  let equalFilterRequest: DaffCategoryFilterEqualRequestReplacement;
+  let equalFilterRequest: DaffCategoryFilterEqualRequest;
   let equalFilterToggleRequest: DaffCategoryFilterEqualToggleRequest;
   let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
   let rangeFilterToggleRequest: DaffCategoryFilterRangeNumericToggleRequest;
@@ -883,7 +883,7 @@ describe('Category | Category Reducer', () => {
   // TODO: revisit for kinded requests
   describe('when CategoryPageLoadAction is triggered', () => {
     let result;
-    let categoryRequest: DaffCategoryRequestReplacement;
+    let categoryRequest: DaffCategoryRequest;
 
     beforeEach(() => {
       categoryRequest = {

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategory,
   DaffCategoryPageMetadata,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import {
   MagentoCompleteCategoryResponse,
@@ -131,7 +131,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       });
 
       it('should return a DaffCategoryPageMetadata with an equal filter type', () => {
-        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffCategoryFilterType.Equal);
       });
     });
 
@@ -145,7 +145,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       });
 
       it('should return a DaffCategoryPageMetadata with a range filter type', () => {
-        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffCategoryFilterType.RangeNumeric);
       });
     });
   });

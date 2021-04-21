@@ -15,7 +15,7 @@ import {
 } from 'rxjs';
 
 import {
-  DaffCategoryRequestReplacement,
+  DaffCategoryRequest,
   DaffCategory,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
@@ -169,7 +169,7 @@ describe('DaffCategoryPageEffects', () => {
     let categoryPageLoadSuccessAction: DaffCategoryPageLoadSuccess;
     let expected;
     let categoryPageLoadAction;
-    let categoryRequest: DaffCategoryRequestReplacement;
+    let categoryRequest: DaffCategoryRequest;
 
     beforeEach(() => {
       categoryRequest = { id: stubCategory.id };

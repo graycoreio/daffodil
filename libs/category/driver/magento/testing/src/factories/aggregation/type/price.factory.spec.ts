@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryFilterReplacement } from '@daffodil/category';
+import { DaffCategoryFilter } from '@daffodil/category';
 import {
   MagentoAggregation,
   MagentoCategoryFilterType,

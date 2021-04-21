@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterRangeNumericFactory,
@@ -30,7 +30,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
         max: 20,
       },
     });
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -48,7 +48,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
         },
       },
     });
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {},
     };
@@ -64,13 +64,13 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
         max: 20,
       },
     });
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
       options: {},
     });
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {
         '0-20': {
@@ -98,7 +98,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
         max: 40,
       },
     });
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -116,7 +116,7 @@ describe('@daffodil/category | filters | type | range | behaviors | toggle', () 
         },
       },
     });
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {
         '20-40': {

@@ -3,7 +3,7 @@ import { DaffCategoryFilterEqualToggleRequest } from '../../../../../models/publ
 
 /**
  * Oscillates the applied state of the matching filter options of a {@link DaffCategoryFilterEqual}
- * that match the {@link DaffCategoryFilterEqualRequestReplacement}
+ * that match the {@link DaffCategoryFilterEqualRequest}
  *
  * If there are no matching options, returns the original {@link DaffCategoryFilterEqual}
  *

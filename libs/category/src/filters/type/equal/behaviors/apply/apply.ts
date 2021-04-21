@@ -1,16 +1,16 @@
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
 } from '../../../../../models/public_api';
 
 /**
- * Applies a {@link DaffCategoryFilterEqualRequestReplacement} to a {@link DaffCategoryFilterEqual}
+ * Applies a {@link DaffCategoryFilterEqualRequest} to a {@link DaffCategoryFilterEqual}
  *
  * @idempotent {filter}
  * @docs-private
  */
 export const daffApplyFilterEqual = (
-  request: DaffCategoryFilterEqualRequestReplacement,
+  request: DaffCategoryFilterEqualRequest,
   filter: DaffCategoryFilterEqual,
 ): DaffCategoryFilterEqual => ({
   ...filter,

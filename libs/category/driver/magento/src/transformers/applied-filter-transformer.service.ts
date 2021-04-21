@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import {
   DaffCategory,
-  DaffCategoryFilterRequestReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilterRequest,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 
 import {
@@ -16,7 +16,7 @@ import {
 })
 export class DaffMagentoAppliedFiltersTransformService {
 
-  transform(categoryId: DaffCategory['id'], daffFilters: DaffCategoryFilterRequestReplacement[]): MagentoCategoryFilters {
+  transform(categoryId: DaffCategory['id'], daffFilters: DaffCategoryFilterRequest[]): MagentoCategoryFilters {
     const magentoFilters: MagentoCategoryFilters = {
       category_id: {
         [MagentoCategoryFilterActionEnum.Equal]: String(categoryId),
@@ -30,7 +30,7 @@ export class DaffMagentoAppliedFiltersTransformService {
     daffFilters.forEach(filter => {
       // The FromTo filter needs special treatment, because Magento accepts the "from" and "to" filters
       // separately (it also outputs FromTo filter pairs together)
-      if(filter.type === DaffCategoryFilterTypeReplacement.RangeNumeric) {
+      if(filter.type === DaffCategoryFilterType.RangeNumeric) {
         magentoFilters[filter.name] = {
           ...magentoFilters[filter.name],
           ...this.getRangeFromValue(filter.value.min.toString()),
@@ -50,8 +50,8 @@ export class DaffMagentoAppliedFiltersTransformService {
   /**
    * Returns an In action for Equal type and a Match action for Match type.
    */
-  private getFilterAction(type: DaffCategoryFilterTypeReplacement): MagentoCategoryFilterActionEnum {
-    return type === DaffCategoryFilterTypeReplacement.Equal
+  private getFilterAction(type: DaffCategoryFilterType): MagentoCategoryFilterActionEnum {
+    return type === DaffCategoryFilterType.Equal
       ? MagentoCategoryFilterActionEnum.In
       : MagentoCategoryFilterActionEnum.Match;
   }
@@ -59,8 +59,8 @@ export class DaffMagentoAppliedFiltersTransformService {
   /**
    * Returns an array for Equal type and a string for Match type.
    */
-  private getFilterValue(type: DaffCategoryFilterTypeReplacement, value: DaffCategoryFilterRequestReplacement['value']): string | string[] {
-    return type === DaffCategoryFilterTypeReplacement.Equal ? value : value[0];
+  private getFilterValue(type: DaffCategoryFilterType, value: DaffCategoryFilterRequest['value']): string | string[] {
+    return type === DaffCategoryFilterType.Equal ? value : value[0];
   }
 
   private getRangeFromValue(fromValue: string) {

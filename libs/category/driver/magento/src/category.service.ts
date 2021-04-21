@@ -11,11 +11,11 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffGetCategoryResponseReplacement,
+  DaffGetCategoryResponse,
   daffApplyRequestsToFilters,
   DaffCategoryPageMetadata,
-  DaffCategoryRequestReplacement,
-  DaffCategoryFilterRequestReplacement,
+  DaffCategoryRequest,
+  DaffCategoryFilterRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
@@ -38,7 +38,7 @@ import {
 } from './transformers/public_api';
 import { addMetadataTypesToAggregates } from './transformers/pure/aggregate/add-metadata-types-to-aggregates';
 
-const applyFiltersOnResponse = (requests: DaffCategoryFilterRequestReplacement[], response: DaffGetCategoryResponseReplacement): DaffGetCategoryResponseReplacement => ({
+const applyFiltersOnResponse = (requests: DaffCategoryFilterRequest[], response: DaffGetCategoryResponse): DaffGetCategoryResponse => ({
   ...response,
   categoryPageMetadata: {
     ...response.categoryPageMetadata,
@@ -63,7 +63,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   /**
    * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
    *
-   * @param categoryRequest A DaffCategoryRequestReplacement object.
+   * @param categoryRequest A DaffCategoryRequest object.
    */
   get(categoryRequest: any): Observable<any> {
     return combineLatest([
@@ -91,7 +91,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     );
   }
 
-  private getProductsQueryVariables(request: DaffCategoryRequestReplacement): MagentoGetProductsByCategoriesRequest {
+  private getProductsQueryVariables(request: DaffCategoryRequest): MagentoGetProductsByCategoriesRequest {
     const queryVariables = {
       filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.filter_requests),
     };
@@ -112,7 +112,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     categoryResponse: MagentoGetACategoryResponse,
     filterTypesResponse: MagentoGetCategoryFilterTypesResponse,
     productsResponse: MagentoGetProductsResponse,
-  ): DaffGetCategoryResponseReplacement {
+  ): DaffGetCategoryResponse {
     const aggregations = addMetadataTypesToAggregates(filterTypesResponse, productsResponse);
     const completeCategory = {
       category: categoryResponse.categoryList[0],

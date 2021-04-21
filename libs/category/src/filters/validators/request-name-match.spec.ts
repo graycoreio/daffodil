@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterRequestReplacement,
+  DaffCategoryFilterRequest,
   DaffCategoryFilterNotFound,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterFactory,
-  DaffCategoryFilterRequestReplacementFactory,
+  DaffCategoryFilterRequestFactory,
 } from '@daffodil/category/testing';
 
 import { DaffCategoryFilterRequestNameMismatch } from '../errors/request-name-mismatch.error';
@@ -15,14 +15,14 @@ import { daffCategoryValidateFilterRequestNameMatch } from './request-name-match
 
 describe('@daffodil/category | filters | validators | daffCategoryValidateFilterRequestNameMatch', () => {
   let filterFactory: DaffCategoryFilterFactory;
-  let filterRequestFactory: DaffCategoryFilterRequestReplacementFactory;
+  let filterRequestFactory: DaffCategoryFilterRequestFactory;
 
-  let filterRequest: DaffCategoryFilterRequestReplacement;
-  let filter: DaffCategoryFilterReplacement;
+  let filterRequest: DaffCategoryFilterRequest;
+  let filter: DaffCategoryFilter;
 
   beforeEach(() => {
     filterFactory = TestBed.inject(DaffCategoryFilterFactory);
-    filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestReplacementFactory);
+    filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestFactory);
 
     filterRequest = filterRequestFactory.create();
   });

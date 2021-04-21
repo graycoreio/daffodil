@@ -6,12 +6,12 @@ import {
 import { Observable } from 'rxjs';
 
 import {
-  DaffCategoryRequestReplacement,
+  DaffCategoryRequest,
   DaffCategory,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeRequestOption,
   daffCategoryComputeFilterRangePairLabel,
-  DaffGetCategoryResponseReplacement,
+  DaffGetCategoryResponse,
   DaffCategoryPageMetadata,
   DaffCategoryFilterRangeNumericRequest,
 } from '@daffodil/category';
@@ -72,9 +72,9 @@ describe('Driver | Magento | Category | CategoryService', () => {
   let magentoProductFactory: MagentoSimpleProductFactory;
   let magentoPageInfoFactory: DaffCategoryDriverMagentoPageInfoFactory;
 
-  let mockCategoryRequest: DaffCategoryRequestReplacement;
+  let mockCategoryRequest: DaffCategoryRequest;
   let mockCategory: DaffCategory;
-  let equalFilterRequest: DaffCategoryFilterEqualRequestReplacement;
+  let equalFilterRequest: DaffCategoryFilterEqualRequest;
   let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
   let rangeFilterRequestOption: DaffCategoryFilterRangeRequestOption<number>;
   let rangeFilterRequestOptionLabel: string;
@@ -189,7 +189,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
   });
 
   describe('get | getting a category', () => {
-    let result: Observable<DaffGetCategoryResponseReplacement>;
+    let result: Observable<DaffGetCategoryResponse>;
 
     beforeEach(() => {
       result = categoryService.get(mockCategoryRequest);

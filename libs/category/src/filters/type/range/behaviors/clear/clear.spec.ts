@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterRangeNumeric,
 } from '@daffodil/category';
 import { DaffCategoryFilterRangeNumericFactory } from '@daffodil/category/testing';
@@ -19,7 +19,7 @@ describe('@daffodil/category | filters | type | range | behaviors | clear', () =
   });
 
   it('should remove any currently applied filter options.', () => {
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 20,
@@ -37,7 +37,7 @@ describe('@daffodil/category | filters | type | range | behaviors | clear', () =
         },
       },
     });
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {},
     };
@@ -46,7 +46,7 @@ describe('@daffodil/category | filters | type | range | behaviors | clear', () =
   });
 
   it('should do nothing if there are no options currently applied', () => {
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 20,
@@ -57,7 +57,7 @@ describe('@daffodil/category | filters | type | range | behaviors | clear', () =
   });
 
   it('should be idempotent over filter', () => {
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 20,

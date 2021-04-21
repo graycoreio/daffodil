@@ -1,12 +1,12 @@
 import {
-  DaffCategoryFilterEqualRequestReplacement,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilterEqualRequest,
+  DaffCategoryFilter,
   DaffCategoryFilterEqual,
 } from '../../../../../models/public_api';
 
 /**
  * Removes the matching filter options of a {@link DaffCategoryFilterEqual}
- * that match the {@link DaffCategoryFilterEqualRequestReplacement}
+ * that match the {@link DaffCategoryFilterEqualRequest}
  *
  * If there are no matching options, returns the original {@link DaffCategoryFilterEqual}
  *
@@ -14,9 +14,9 @@ import {
  * @docs-private
  */
 export const daffRemoveFilterEqual = (
-  request: DaffCategoryFilterEqualRequestReplacement,
+  request: DaffCategoryFilterEqualRequest,
   filter: DaffCategoryFilterEqual,
-): DaffCategoryFilterReplacement => ({
+): DaffCategoryFilter => ({
   ...filter,
   options: request.value.reduce((acc, value) => {
     const option = filter.options[value];

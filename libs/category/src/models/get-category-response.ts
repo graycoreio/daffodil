@@ -9,7 +9,7 @@ import { DaffGenericCategory } from './generic-category';
 /**
  * The response to a call to the {@link DaffCategoryServiceInterface}.
  */
-export interface DaffGetCategoryResponseReplacement<
+export interface DaffGetCategoryResponse<
 	V extends DaffGenericCategory<V> = DaffCategory,
 	W extends DaffProduct = DaffProduct
 > {

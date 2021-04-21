@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualRequestReplacement,
+  DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterReplacement,
+  DaffCategoryFilter,
   DaffCategoryFilterRequestNameMismatch,
   DaffCategoryFilterRequestTypeMismatch,
   DaffCategoryUnknownFilterType,
@@ -49,7 +49,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
   });
 
   it('should remove an equal request', () => {
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'color',
       value: ['red'],
     });
@@ -76,7 +76,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
       },
     });
 
-    const filter: DaffCategoryFilterReplacement = categoryFilterRangeNumericFactory.create({
+    const filter: DaffCategoryFilter = categoryFilterRangeNumericFactory.create({
       name: 'price',
       min: 0,
       max: 200,
@@ -95,7 +95,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
       },
     });
 
-    const expected: DaffCategoryFilterReplacement = {
+    const expected: DaffCategoryFilter = {
       ...filter,
       options: {},
     };
@@ -104,7 +104,7 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
   });
 
   it('should throw an error if a request has a different name than the filter', () => {
-    const request: DaffCategoryFilterEqualRequestReplacement = categoryFilterRequestEqualFactory.create({
+    const request: DaffCategoryFilterEqualRequest = categoryFilterRequestEqualFactory.create({
       name: 'not color',
       value: ['clear'],
     });
@@ -188,6 +188,6 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveFilter',
       },
     });
 
-    expect((idempotentArg?: DaffCategoryFilterReplacement) => (daffRemoveFilter(request, idempotentArg || filter))).toBeIdempotent();
+    expect((idempotentArg?: DaffCategoryFilter) => (daffRemoveFilter(request, idempotentArg || filter))).toBeIdempotent();
   });
 });

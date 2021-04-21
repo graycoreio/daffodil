@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterReplacement,
-  DaffCategoryFilterTypeReplacement,
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 
 import { DaffCategoryFilterFactory } from './filter.factory';
@@ -25,7 +25,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterFactory', () => {
 
   describe('create', () => {
 
-    let result: DaffCategoryFilterReplacement;
+    let result: DaffCategoryFilter;
 
     beforeEach(() => {
       result = categoryFilterFactory.create();
@@ -34,24 +34,24 @@ describe('Category | Testing | Factories | DaffCategoryFilterFactory', () => {
     describe('when the partial type is equal', () => {
       beforeEach(() => {
         result = categoryFilterFactory.create({
-          type: DaffCategoryFilterTypeReplacement.Equal,
+          type: DaffCategoryFilterType.Equal,
         });
       });
 
       it('should return an equal filter', () => {
-        expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.Equal);
+        expect(result.type).toEqual(DaffCategoryFilterType.Equal);
       });
     });
 
     describe('when the partial type is range numeric', () => {
       beforeEach(() => {
         result = categoryFilterFactory.create({
-          type: DaffCategoryFilterTypeReplacement.RangeNumeric,
+          type: DaffCategoryFilterType.RangeNumeric,
         });
       });
 
       it('should return a range numeric filter', () => {
-        expect(result.type).toEqual(DaffCategoryFilterTypeReplacement.RangeNumeric);
+        expect(result.type).toEqual(DaffCategoryFilterType.RangeNumeric);
       });
     });
 
