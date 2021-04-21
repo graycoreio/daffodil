@@ -1,9 +1,11 @@
+import { MagentoCategoryFilterType } from './filter-type.enum';
+
 /**
  * Filterable options for products.
  */
 export interface MagentoAggregation {
 	attribute_code: string;
-	type?: string;
+	type?: MagentoCategoryFilterType;
 	count?: number;
 	label?: string;
 	options?: MagentoAggregationOption[];

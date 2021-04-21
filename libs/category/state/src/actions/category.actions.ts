@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffCategoryRequest,
+  DaffCategoryRequestReplacement,
   DaffGenericCategory,
   DaffCategory,
-  DaffGetCategoryResponse,
+  DaffGetCategoryResponseReplacement,
 } from '@daffodil/category';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -18,18 +18,18 @@ export enum DaffCategoryActionTypes {
 /**
  * An action triggered to initialize a category load request.
  *
- * @param request - DaffCategoryRequest object
+ * @param request - DaffCategoryRequestReplacement object
  */
 export class DaffCategoryLoad implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public request: DaffCategoryRequest) { }
+  constructor(public request: DaffCategoryRequestReplacement) { }
 }
 
 /**
  * An action triggered upon a successful category request.
  *
- * @param response - DaffGetCategoryResponse object
+ * @param response - DaffGetCategoryResponseReplacement object
  */
 export class DaffCategoryLoadSuccess<
   V extends DaffGenericCategory<V> = DaffCategory,
@@ -37,7 +37,7 @@ export class DaffCategoryLoadSuccess<
   > implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse<V, W>) { }
+  constructor(public response: DaffGetCategoryResponseReplacement<V, W>) { }
 }
 
 /**

@@ -1,4 +1,3 @@
-export { MagentoGetCustomAttributeMetadata } from './custom-attribute-metadata';
-export * from './get-category-aggregations';
+export * from './get-filter-types';
 export * from './get-category';
 export * from './get-products';

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilter,
+  DaffCategoryFilterReplacement,
   DaffCategoryFilterTypeReplacement,
 } from '@daffodil/category';
 
@@ -25,7 +25,7 @@ describe('Category | Testing | Factories | DaffCategoryFilterFactory', () => {
 
   describe('create', () => {
 
-    let result: DaffCategoryFilter;
+    let result: DaffCategoryFilterReplacement;
 
     beforeEach(() => {
       result = categoryFilterFactory.create();

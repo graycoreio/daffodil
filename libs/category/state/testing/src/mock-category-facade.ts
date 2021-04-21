@@ -4,13 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 
 import {
   DaffCategory,
-  DaffCategoryFilter,
-  DaffCategoryAppliedFilter,
+  DaffCategoryFilterReplacement,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
-import {
-  DaffCategoryFacadeInterface,
-  DaffStatefulCategoryPageConfigurationState,
-} from '@daffodil/category/state';
+import { DaffCategoryFacadeInterface } from '@daffodil/category/state';
+import { DaffCategoryReducerState } from '@daffodil/category/state';
+import { Dict } from '@daffodil/core';
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
@@ -18,21 +17,24 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);
-  pageConfigurationState$: BehaviorSubject<DaffStatefulCategoryPageConfigurationState> = new BehaviorSubject(null);
-  pageLoadingState$: BehaviorSubject<DaffStatefulCategoryPageConfigurationState['daffState']> = new BehaviorSubject(null);
+  metadata$: BehaviorSubject<DaffCategoryPageMetadata> = new BehaviorSubject(null);
+  pageLoadingState$: BehaviorSubject<DaffCategoryReducerState['daffState']> = new BehaviorSubject(null);
   isPageMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isPageResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   currentPage$: BehaviorSubject<number> = new BehaviorSubject(null);
 	totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
 	totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
   pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
-  filters$: BehaviorSubject<DaffCategoryFilter[]> = new BehaviorSubject([]);
+  filters$: BehaviorSubject<Dict<DaffCategoryFilterReplacement>> = new BehaviorSubject({});
   sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
-  appliedFilters$: BehaviorSubject<DaffCategoryAppliedFilter[]> = new BehaviorSubject([]);
+  appliedFilters$: BehaviorSubject<Dict<DaffCategoryFilterReplacement>> = new BehaviorSubject({});
   appliedSortOption$: BehaviorSubject<string> = new BehaviorSubject(null);
   appliedSortDirection$: BehaviorSubject<DaffSortDirectionEnum> = new BehaviorSubject(null);
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);

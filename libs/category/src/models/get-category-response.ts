@@ -1,19 +1,14 @@
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategory } from './category';
-import { DaffCategoryPageConfigurationState } from './category-page-configuration-state';
 import { DaffCategoryPageMetadata } from './category-page-metadata';
 import { DaffGenericCategory } from './generic-category';
 
-export interface DaffGetCategoryResponse<
-	V extends DaffGenericCategory<V> = DaffCategory,
-	W extends DaffProduct = DaffProduct
-> {
-  products: W[];
-  category: V;
-  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
-}
+//TODO: move this type to the driver.
 
+/**
+ * The response to a call to the {@link DaffCategoryServiceInterface}.
+ */
 export interface DaffGetCategoryResponseReplacement<
 	V extends DaffGenericCategory<V> = DaffCategory,
 	W extends DaffProduct = DaffProduct

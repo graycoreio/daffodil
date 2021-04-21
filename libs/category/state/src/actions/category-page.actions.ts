@@ -1,12 +1,10 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffCategoryRequest,
+  DaffCategoryRequestReplacement,
   DaffGenericCategory,
   DaffCategory,
-  DaffGetCategoryResponse,
-  DaffCategoryFilterRequest,
-  DaffToggleCategoryFilterRequest,
+  DaffGetCategoryResponseReplacement,
 } from '@daffodil/category';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -24,18 +22,18 @@ export enum DaffCategoryPageActionTypes {
  * An action triggered to initialize a category page load request.
  * This is intended to be used for loading full category pages.
  *
- * @param request - DaffCategoryRequest object
+ * @param request - DaffCategoryRequestReplacement object
  */
 export class DaffCategoryPageLoad implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadAction;
 
-  constructor(public request: DaffCategoryRequest) { }
+  constructor(public request: DaffCategoryRequestReplacement) { }
 }
 
 /**
  * An action triggered upon a successful category page request.
  *
- * @param response - DaffGetCategoryResponse object
+ * @param response - DaffGetCategoryResponseReplacement object
  */
 export class DaffCategoryPageLoadSuccess<
   V extends DaffGenericCategory<V> = DaffCategory,
@@ -43,7 +41,7 @@ export class DaffCategoryPageLoadSuccess<
   > implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse<V, W>) { }
+  constructor(public response: DaffGetCategoryResponseReplacement<V, W>) { }
 }
 
 /**
@@ -89,8 +87,8 @@ export class DaffCategoryPageChangeSortingOption implements Action {
 
   constructor(
     public sort: {
-      option: DaffCategoryRequest['applied_sort_option'];
-      direction: DaffCategoryRequest['applied_sort_direction'];
+      option: DaffCategoryRequestReplacement['applied_sort_option'];
+      direction: DaffCategoryRequestReplacement['applied_sort_direction'];
     },
   ) { }
 }

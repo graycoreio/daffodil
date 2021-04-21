@@ -15,8 +15,9 @@ import {
 } from 'rxjs';
 
 import {
-  DaffCategoryRequest,
+  DaffCategoryRequestReplacement,
   DaffCategory,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -32,10 +33,11 @@ import {
   DaffCategoryPageChangeCurrentPage,
   DaffCategoryPageChangeSortingOption,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffStatefulCategoryPageConfigurationState,
 } from '@daffodil/category/state';
-import { DaffStatefulCategoryPageConfigurationStateFactory } from '@daffodil/category/state/testing';
-import { DaffCategoryFactory } from '@daffodil/category/testing';
+import {
+  DaffCategoryFactory,
+  DaffCategoryPageMetadataFactory,
+} from '@daffodil/category/testing';
 import {
   DaffSortDirectionEnum,
   DaffStateError,
@@ -54,14 +56,14 @@ describe('DaffCategoryPageEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageEffects<DaffCategory, DaffProduct>;
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffStatefulCategoryPageConfigurationState;
+  let stubcategoryPageMetadata: DaffCategoryPageMetadata;
   let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let store: Store<any>;
   let driverGetSpy: jasmine.Spy;
 
   let categoryFactory: DaffCategoryFactory;
-  let categoryPageConfigurationStateFactory: DaffStatefulCategoryPageConfigurationStateFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let productFactory: DaffProductFactory;
   let categoryLoadSuccessAction: DaffCategoryPageLoadSuccess<DaffCategory, DaffProduct>;
   let productGridLoadSuccessAction: DaffProductGridLoadSuccess<DaffProduct>;
@@ -85,12 +87,12 @@ describe('DaffCategoryPageEffects', () => {
     effects = TestBed.inject(DaffCategoryPageEffects);
     store = TestBed.inject(Store);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
-    categoryPageConfigurationStateFactory = TestBed.inject(DaffStatefulCategoryPageConfigurationStateFactory);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = new DaffProductFactory();
 
     stubCategory = categoryFactory.create();
-    stubCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
-    stubCategory.id = stubCategoryPageConfigurationState.id;
+    stubcategoryPageMetadata = categoryPageMetadataFactory.create();
+    stubCategory.id = stubcategoryPageMetadata.id;
     stubProducts = productFactory.createMany(3);
 
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
@@ -98,13 +100,13 @@ describe('DaffCategoryPageEffects', () => {
     driverGetSpy = spyOn(daffCategoryDriver, 'get');
     driverGetSpy.and.returnValue(of({
       category: stubCategory,
-      categoryPageConfigurationState: stubCategoryPageConfigurationState,
+      categoryPageMetadata: stubcategoryPageMetadata,
       products: stubProducts,
     }));
 
     categoryLoadSuccessAction = new DaffCategoryPageLoadSuccess({
       category: stubCategory,
-      categoryPageConfigurationState: stubCategoryPageConfigurationState,
+      categoryPageMetadata: stubcategoryPageMetadata,
       products: stubProducts,
     });
     productGridLoadSuccessAction = new DaffProductGridLoadSuccess(stubProducts);
@@ -134,7 +136,7 @@ describe('DaffCategoryPageEffects', () => {
       it('should dispatch a DaffCategoryPageLoadSuccess and a DaffProductGridLoadSuccess action', () => {
         driverGetSpy.and.returnValue(of({
           category: stubCategory,
-          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          categoryPageMetadata: stubcategoryPageMetadata,
           products: stubProducts,
         }));
 
@@ -167,14 +169,14 @@ describe('DaffCategoryPageEffects', () => {
     let categoryPageLoadSuccessAction: DaffCategoryPageLoadSuccess;
     let expected;
     let categoryPageLoadAction;
-    let categoryRequest: DaffCategoryRequest;
+    let categoryRequest: DaffCategoryRequestReplacement;
 
     beforeEach(() => {
       categoryRequest = { id: stubCategory.id };
       categoryPageLoadAction = new DaffCategoryPageLoad(categoryRequest);
       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
         category: stubCategory,
-        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+        categoryPageMetadata: stubcategoryPageMetadata,
         products: stubProducts,
       });
 
@@ -185,7 +187,7 @@ describe('DaffCategoryPageEffects', () => {
       it('should dispatch a DaffCategoryPageLoadSuccess and a DaffProductGridLoadSuccess action', () => {
         driverGetSpy.and.returnValue(of({
           category: stubCategory,
-          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          categoryPageMetadata: stubcategoryPageMetadata,
           products: stubProducts,
         }));
 
@@ -215,7 +217,7 @@ describe('DaffCategoryPageEffects', () => {
     it('should call get category with the category request from the action payload', () => {
       driverGetSpy.and.returnValue(of({
         category: stubCategory,
-        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+        categoryPageMetadata: stubcategoryPageMetadata,
         products: stubProducts,
       }));
 
@@ -233,7 +235,7 @@ describe('DaffCategoryPageEffects', () => {
     it('should call get category with an id, page size, applied filters, and an applied sort option', () => {
       driverGetSpy.and.returnValue(of({
         category: stubCategory,
-        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+        categoryPageMetadata: stubcategoryPageMetadata,
         products: stubProducts,
       }));
       const changeCategoryPageSizeAction = new DaffCategoryPageChangePageSize(3);
@@ -242,7 +244,7 @@ describe('DaffCategoryPageEffects', () => {
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       expect(effects.changeCategoryPageSize$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-        ...stubCategoryPageConfigurationState,
+        ...stubcategoryPageMetadata,
         page_size: 3,
       });
     });
@@ -255,7 +257,7 @@ describe('DaffCategoryPageEffects', () => {
     it('should call get category with every available parameter', () => {
       driverGetSpy.and.returnValue(of({
         category: stubCategory,
-        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+        categoryPageMetadata: stubcategoryPageMetadata,
         products: stubProducts,
       }));
       const changeCategoryCurrentPageAction = new DaffCategoryPageChangeCurrentPage(3);
@@ -264,7 +266,7 @@ describe('DaffCategoryPageEffects', () => {
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       expect(effects.changeCategoryCurrentPage$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-        ...stubCategoryPageConfigurationState,
+        ...stubcategoryPageMetadata,
         current_page: 3,
       });
     });
@@ -277,7 +279,7 @@ describe('DaffCategoryPageEffects', () => {
     it('should call get category with an id, page size, applied filters, and an applied sorting option', () => {
       driverGetSpy.and.returnValue(of({
         category: stubCategory,
-        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+        categoryPageMetadata: stubcategoryPageMetadata,
         products: stubProducts,
       }));
       const changeCategorySortingOption = new DaffCategoryPageChangeSortingOption({
@@ -289,7 +291,7 @@ describe('DaffCategoryPageEffects', () => {
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       expect(effects.changeCategorySort$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
-        ...stubCategoryPageConfigurationState,
+        ...stubcategoryPageMetadata,
         applied_sort_direction: DaffSortDirectionEnum.Ascending,
         applied_sort_option: 'option',
       });

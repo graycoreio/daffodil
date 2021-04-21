@@ -8,27 +8,26 @@ import {
   ofType,
 } from '@ngrx/effects';
 import {
-  Store,
-  select,
-} from '@ngrx/store';
-import {
   of,
   Observable,
+  asyncScheduler,
 } from 'rxjs';
+import { AsyncScheduler } from 'rxjs/internal/scheduler/AsyncScheduler';
 import {
   switchMap,
   catchError,
-  withLatestFrom,
   map,
+  throttleTime,
+  withLatestFrom,
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
-  daffCategoryValidateFilters,
-  DaffGetCategoryResponse,
+  DaffGetCategoryResponseReplacement,
   DAFF_CATEGORY_ERROR_MATCHER,
+  daffCategoryFiltersToRequests,
 } from '@daffodil/category';
+import { DaffCategoryPageMetadata } from '@daffodil/category';
 import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,
@@ -39,16 +38,14 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
-  DaffCategoryPageChangeFilters,
-  DaffCategoryPageToggleFilter,
   DaffCategoryPageFilterActionTypes,
+  DaffCategoryPageFilterActions,
 } from '../actions/category-page-filter.actions';
 import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
 } from '../actions/category-page.actions';
-import { DaffStatefulCategoryPageConfigurationState } from '../models/public_api';
-import { getDaffCategorySelectors } from '../selectors/category.selector';
+import { DaffCategoryFacade } from '../facades/category.facade';
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
@@ -60,53 +57,47 @@ export class DaffCategoryPageFilterEffects<
     private actions$: Actions,
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V, W>,
 		@Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    private store: Store<any>,
+    private facade: DaffCategoryFacade,
   ){}
 
-	private categorySelectors = getDaffCategorySelectors<V, W>();
-
+  /**
+   * Updates the filters applied to the category page. It will take the currently
+   * applied filters from state, form them into a request, and attempt to apply
+   * that request to a backend service.
+   *
+   * @param throttleWindow the amount of time to delay when apply/removing filters
+   * in a sequence.
+   */
   @Effect()
-  changeCategoryFilters$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction),
-    withLatestFrom(
-      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
+  updateFilters$: (throttleWindow: number, scheduler: AsyncScheduler) => Observable<
+    DaffProductGridLoadSuccess
+    | DaffCategoryPageLoadSuccess
+    | DaffCategoryPageLoadFailure
+  > = (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
+    ofType(
+      DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
+      DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
+      DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction,
+      DaffCategoryPageFilterActionTypes.CategoryPageClearFiltersAction,
+      DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction,
+      DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction,
     ),
-    switchMap((
-      [action, categoryRequest]:
-			[DaffCategoryPageChangeFilters, DaffCategoryRequest],
-    ) => {
-      daffCategoryValidateFilters(action.filters);
-      return this.processCategoryGetRequest({
-        ...categoryRequest,
-        filter_requests: action.filters,
-      });
-    }),
-  );
-
-  @Effect()
-  toggleCategoryFilter$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction),
-    withLatestFrom(
-      this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState)),
-    ),
-    switchMap((
-      [action, categoryPageConfigurationState]:
-			[DaffCategoryPageToggleFilter, DaffStatefulCategoryPageConfigurationState],
-    ) => {
-      daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
-      return this.processCategoryGetRequest({
-        ...categoryPageConfigurationState,
-      });
-    }),
-  );
-
-  private processCategoryGetRequest(payload: DaffCategoryRequest) {
-    return this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponse<V, W>) => [
+    withLatestFrom(this.facade.metadata$),
+    map(([action, metadata]: [DaffCategoryPageFilterActions, DaffCategoryPageMetadata]) => ({
+      id: metadata.id,
+      filter_requests: daffCategoryFiltersToRequests(metadata.filters),
+      applied_sort_option: metadata.applied_sort_option,
+      applied_sort_direction: metadata.applied_sort_direction,
+      current_page: metadata.current_page,
+      page_size: metadata.page_size,
+    })),
+    throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
+    switchMap(payload => this.driver.get(payload).pipe(
+      switchMap((resp: DaffGetCategoryResponseReplacement<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),
       ]),
       catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
-    );
-  }
+    )),
+  );
 }
