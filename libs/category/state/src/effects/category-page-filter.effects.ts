@@ -27,6 +27,7 @@ import {
   DAFF_CATEGORY_ERROR_MATCHER,
   daffCategoryFiltersToRequests,
 } from '@daffodil/category';
+import { DaffCategoryPageMetadata } from '@daffodil/category';
 import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,
@@ -45,7 +46,6 @@ import {
   DaffCategoryPageLoadFailure,
 } from '../actions/category-page.actions';
 import { DaffCategoryFacade } from '../facades/category.facade';
-import { DaffCategoryPageMetadata } from '@daffodil/category';
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
