@@ -16,13 +16,12 @@ import { AsyncScheduler } from 'rxjs/internal/scheduler/AsyncScheduler';
 import {
   switchMap,
   catchError,
-  switchMapTo,
   map,
   throttleTime,
+  withLatestFrom,
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequestReplacement,
   DaffGenericCategory,
   DaffGetCategoryResponseReplacement,
   DAFF_CATEGORY_ERROR_MATCHER,
@@ -46,6 +45,7 @@ import {
   DaffCategoryPageLoadFailure,
 } from '../actions/category-page.actions';
 import { DaffCategoryFacade } from '../facades/category.facade';
+import { DaffCategoryPageMetadata } from '@daffodil/category';
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
@@ -74,7 +74,7 @@ export class DaffCategoryPageFilterEffects<
     | DaffCategoryPageLoadSuccess
     | DaffCategoryPageLoadFailure
   > = (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
-    ofType<DaffCategoryPageFilterActions>(
+    ofType(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction,
@@ -82,8 +82,8 @@ export class DaffCategoryPageFilterEffects<
       DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction,
     ),
-    switchMapTo(this.facade.metadata$),
-    map((metadata): DaffCategoryRequestReplacement => ({
+    withLatestFrom(this.facade.metadata$),
+    map(([action, metadata]: [DaffCategoryPageFilterActions, DaffCategoryPageMetadata]) => ({
       id: metadata.id,
       filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       applied_sort_option: metadata.applied_sort_option,

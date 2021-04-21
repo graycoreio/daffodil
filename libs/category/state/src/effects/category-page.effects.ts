@@ -65,18 +65,18 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   loadCategoryPage$: Observable<any> = this.actions$.pipe(
-    ofType<DaffCategoryPageLoad>(DaffCategoryPageActionTypes.CategoryPageLoadAction),
-    switchMap(action => this.processCategoryGetRequest(action.request)),
+    ofType(DaffCategoryPageActionTypes.CategoryPageLoadAction),
+    switchMap((action: DaffCategoryPageLoad) => this.processCategoryGetRequest(action.request)),
   );
 
   @Effect()
   changeCategoryPageSize$: Observable<any> = this.actions$.pipe(
-    ofType<DaffCategoryPageChangePageSize>(DaffCategoryPageActionTypes.CategoryPageChangeSizeAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSizeAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryRequest],
+      [action, categoryRequest]: [DaffCategoryPageChangePageSize, DaffCategoryRequestReplacement],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       page_size: action.pageSize,
@@ -85,12 +85,12 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   changeCategoryCurrentPage$: Observable<any> = this.actions$.pipe(
-    ofType<DaffCategoryPageChangeCurrentPage>(DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryRequest],
+      [action, categoryRequest]: [DaffCategoryPageChangeCurrentPage, DaffCategoryRequestReplacement],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       current_page: action.currentPage,
@@ -99,12 +99,12 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   changeCategorySort$: Observable<any> = this.actions$.pipe(
-    ofType<DaffCategoryPageChangeSortingOption>(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
+    ofType(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
     switchMap((
-      [action, categoryRequest],
+      [action, categoryRequest]: [DaffCategoryPageChangeSortingOption, DaffCategoryRequestReplacement],
     ) => this.processCategoryGetRequest({
       ...categoryRequest,
       applied_sort_option: action.sort.option,

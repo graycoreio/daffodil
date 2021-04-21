@@ -25,10 +25,10 @@ query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInp
 			label
 			count
 			attribute_code
-			options {
-					count
-					label
-					value
+      options {
+        count
+        label
+        value
 			}
 		}
 		sort_fields {
