@@ -4,7 +4,7 @@ import { DaffCategoryFilterOptionBase } from './category-filter-option-base';
 import { DaffCategoryFilterType } from './type/category-filter-type';
 
 /**
- * The base type of a category filter. This will replace DaffCategoryFilterBase in a future PR.
+ * The base type of a category filter.
  */
 export interface DaffCategoryFilterBase {
 	/**

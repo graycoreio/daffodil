@@ -3,7 +3,7 @@ import { DaffCategoryFilterRangeNumericRequest } from './type/range-numeric/requ
 
 /**
  * A DaffCategoryFilterRequest is used to modify the applied or unapplied state of
- * the options of a {@link DaffCategoryFilter}. This will replace DaffCategoryFilterRequest in a future PR.
+ * the options of a {@link DaffCategoryFilter}.
  */
 export type DaffCategoryFilterRequest =
 	DaffCategoryFilterEqualRequest |
