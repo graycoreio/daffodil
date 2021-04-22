@@ -1,12 +1,12 @@
 import {
   DaffCategoryPageMetadata,
+  DaffCategoryIdRequest,
   DaffCategoryRequest,
 } from '@daffodil/category';
 
 type MetadataRequestIntersection = keyof DaffCategoryPageMetadata & keyof DaffCategoryRequest;
 
 const allowedMetadataKeys: MetadataRequestIntersection[] = [
-  'id',
   'applied_sort_option',
   'applied_sort_direction',
   'current_page',

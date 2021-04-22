@@ -5,7 +5,7 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffGetCategoryResponse,
-  DaffCategoryRequest,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
 
@@ -13,7 +13,7 @@ export interface DaffCategoryServiceInterface<
 	V extends DaffGenericCategory<V> = DaffCategory,
 	W extends DaffProduct = DaffProduct
 > {
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<V, W>>;
+  get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse<V, W>>;
 }
 
 //TODO(damienwebdev): This any generic is necessary until we ship Ivy packages, do not change it.

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 import {
   DaffGetCategoryResponse,
-  DaffCategoryRequest,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
@@ -19,7 +19,7 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
 
   constructor(private http: HttpClient) {}
 
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
+  get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse> {
     const params = new HttpParams()
       .set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
       .set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);

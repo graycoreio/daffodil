@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
   DaffGetCategoryResponse,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -23,7 +23,7 @@ export enum DaffCategoryActionTypes {
 export class DaffCategoryLoad implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public request: DaffCategoryRequest) { }
+  constructor(public request: DaffCategoryIdRequest) { }
 }
 
 /**

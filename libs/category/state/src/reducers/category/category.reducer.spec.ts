@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategory,
-  DaffCategoryRequest,
   DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeNumericRequest,
   DaffCategoryFilterEqualToggleRequest,
@@ -19,10 +18,11 @@ import {
   daffCategoryComputeFilterRangePairLabel,
   daffCategoryFiltersToRequests,
   daffIsFilterApplied,
+  DaffCategoryIdRequest,
+  DaffCategoryRequestKind,
 } from '@daffodil/category';
 import {
   DaffCategoryReducerState,
-  DaffCategoryLoad,
   DaffCategoryPageChangePageSize,
   DaffCategoryPageChangeCurrentPage,
   DaffCategoryPageChangeSortingOption,
@@ -883,10 +883,11 @@ describe('Category | Category Reducer', () => {
   // TODO: revisit for kinded requests
   describe('when CategoryPageLoadAction is triggered', () => {
     let result;
-    let categoryRequest: DaffCategoryRequest;
+    let categoryRequest: DaffCategoryIdRequest;
 
     beforeEach(() => {
       categoryRequest = {
+        kind: DaffCategoryRequestKind.ID,
         id: categoryId,
         page_size: categoryPageMetadata.page_size,
         filter_requests: daffCategoryFiltersToRequests(categoryPageMetadata.filters),
@@ -930,6 +931,7 @@ describe('Category | Category Reducer', () => {
     describe('when fields are missing from the request', () => {
       beforeEach(() => {
         categoryRequest = {
+          kind: DaffCategoryRequestKind.ID,
           id: categoryId,
         };
         const categoryLoadAction: DaffCategoryPageLoad = new DaffCategoryPageLoad(categoryRequest);

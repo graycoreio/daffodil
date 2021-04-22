@@ -5,6 +5,7 @@ import {
   DaffGenericCategory,
   DaffCategory,
   DaffGetCategoryResponse,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -21,13 +22,14 @@ export enum DaffCategoryPageActionTypes {
 /**
  * An action triggered to initialize a category page load request.
  * This is intended to be used for loading full category pages.
+ * Queries the category by ID.
  *
  * @param request - DaffCategoryRequest object
  */
 export class DaffCategoryPageLoad implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadAction;
 
-  constructor(public request: DaffCategoryRequest) { }
+  constructor(public request: DaffCategoryIdRequest) { }
 }
 
 /**

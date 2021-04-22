@@ -19,14 +19,15 @@ import {
   switchMap,
   catchError,
   withLatestFrom,
-  map,
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
+  DaffCategoryRequestKind,
+  DaffCategoryIdRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
@@ -75,10 +76,9 @@ export class DaffCategoryPageEffects<
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangePageSize, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
-      ...categoryRequest,
+    switchMap(([action, metadata]: [DaffCategoryPageChangePageSize, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
+      ...metadata,
+      kind: DaffCategoryRequestKind.ID,
       page_size: action.pageSize,
     })),
   );
@@ -89,10 +89,9 @@ export class DaffCategoryPageEffects<
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangeCurrentPage, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
-      ...categoryRequest,
+    switchMap(([action, metadata]: [DaffCategoryPageChangeCurrentPage, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
+      ...metadata,
+      kind: DaffCategoryRequestKind.ID,
       current_page: action.currentPage,
     })),
   );
@@ -103,16 +102,15 @@ export class DaffCategoryPageEffects<
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap((
-      [action, categoryRequest]: [DaffCategoryPageChangeSortingOption, DaffCategoryRequest],
-    ) => this.processCategoryGetRequest({
-      ...categoryRequest,
+    switchMap(([action, metadata]: [DaffCategoryPageChangeSortingOption, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
+      ...metadata,
+      kind: DaffCategoryRequestKind.ID,
       applied_sort_option: action.sort.option,
       applied_sort_direction: action.sort.direction,
     })),
   );
 
-  private processCategoryGetRequest(payload: DaffCategoryRequest) {
+  private processCategoryGetRequest(payload: DaffCategoryIdRequest) {
     return this.driver.get(payload).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),

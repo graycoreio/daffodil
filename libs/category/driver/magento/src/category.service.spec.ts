@@ -6,17 +6,16 @@ import {
 import { Observable } from 'rxjs';
 
 import {
-  DaffCategoryRequest,
+  DaffCategoryIdRequest,
   DaffCategory,
   DaffCategoryFilterEqualRequest,
   DaffCategoryFilterRangeRequestOption,
   daffCategoryComputeFilterRangePairLabel,
   DaffGetCategoryResponse,
-  DaffCategoryPageMetadata,
+  DaffCategoryRequestKind,
   DaffCategoryFilterRangeNumericRequest,
 } from '@daffodil/category';
 import {
-  DaffMagentoCategoryTransformerService,
   MagentoGetACategoryResponse,
   MagentoGetCategoryFilterTypesResponse,
   MagentoCategory,
@@ -32,7 +31,6 @@ import {
 import {
   DaffCategoryDriverMagentoCategoryFactory,
   DaffCategoryDriverMagentoSortFieldsFactory,
-  DaffCategoryDriverMagentoAggregationFactory,
   DaffCategoryDriverMagentoCategoryFilterTypeFieldFactory,
   DaffCategoryDriverMagentoPageInfoFactory,
   DaffCategoryDriverMagentoAggregationPriceFactory,
@@ -45,11 +43,7 @@ import {
   DaffCategoryFilterRequestRangeNumericFactory,
   DaffCategoryFilterRangeNumericRequestOptionFactory,
 } from '@daffodil/category/testing';
-import { DaffProduct } from '@daffodil/product';
-import {
-  MagentoProduct,
-  MagentoSimpleProduct,
-} from '@daffodil/product/driver/magento';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
 import { MagentoSimpleProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -72,7 +66,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
   let magentoProductFactory: MagentoSimpleProductFactory;
   let magentoPageInfoFactory: DaffCategoryDriverMagentoPageInfoFactory;
 
-  let mockCategoryRequest: DaffCategoryRequest;
+  let mockCategoryRequest: DaffCategoryIdRequest;
   let mockCategory: DaffCategory;
   let equalFilterRequest: DaffCategoryFilterEqualRequest;
   let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
@@ -121,6 +115,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
 
     mockCategory = categoryFactory.create();
     mockCategoryRequest = {
+      kind: DaffCategoryRequestKind.ID,
       id: mockCategory.id,
     };
     mockMagentoProduct = magentoProductFactory.create();
@@ -225,6 +220,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         mockCategoryRequest = {
           ...mockCategoryRequest,
+          kind: DaffCategoryRequestKind.ID,
           filter_requests: [
             equalFilterRequest,
             rangeFilterRequest,
