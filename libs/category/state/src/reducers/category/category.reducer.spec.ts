@@ -19,7 +19,7 @@ import {
   daffCategoryFiltersToRequests,
   daffIsFilterApplied,
   DaffCategoryIdRequest,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
 } from '@daffodil/category';
 import {
   DaffCategoryReducerState,
@@ -887,7 +887,7 @@ describe('Category | Category Reducer', () => {
 
     beforeEach(() => {
       categoryRequest = {
-        kind: DaffCategoryPageRequestKind.ID,
+        kind: DaffCategoryRequestKind.ID,
         id: categoryId,
         page_size: categoryPageMetadata.page_size,
         filter_requests: daffCategoryFiltersToRequests(categoryPageMetadata.filters),
@@ -931,7 +931,7 @@ describe('Category | Category Reducer', () => {
     describe('when fields are missing from the request', () => {
       beforeEach(() => {
         categoryRequest = {
-          kind: DaffCategoryPageRequestKind.ID,
+          kind: DaffCategoryRequestKind.ID,
           id: categoryId,
         };
         const categoryLoadAction: DaffCategoryPageLoad = new DaffCategoryPageLoad(categoryRequest);

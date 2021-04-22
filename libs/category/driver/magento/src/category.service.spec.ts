@@ -12,7 +12,7 @@ import {
   DaffCategoryFilterRangeRequestOption,
   daffCategoryComputeFilterRangePairLabel,
   DaffGetCategoryResponse,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
   DaffCategoryFilterRangeNumericRequest,
 } from '@daffodil/category';
 import {
@@ -115,7 +115,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
 
     mockCategory = categoryFactory.create();
     mockCategoryRequest = {
-      kind: DaffCategoryPageRequestKind.ID,
+      kind: DaffCategoryRequestKind.ID,
       id: mockCategory.id,
     };
     mockMagentoProduct = magentoProductFactory.create();
@@ -220,7 +220,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         mockCategoryRequest = {
           ...mockCategoryRequest,
-          kind: DaffCategoryPageRequestKind.ID,
+          kind: DaffCategoryRequestKind.ID,
           filter_requests: [
             equalFilterRequest,
             rangeFilterRequest,

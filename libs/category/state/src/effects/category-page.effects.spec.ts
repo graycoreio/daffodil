@@ -17,7 +17,7 @@ import {
 import {
   DaffCategory,
   DaffCategoryPageMetadata,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
   DaffCategoryIdRequest,
 } from '@daffodil/category';
 import {
@@ -125,7 +125,7 @@ describe('DaffCategoryPageEffects', () => {
     let categoryLoadAction;
 
     beforeEach(() => {
- 		  categoryLoadAction = new DaffCategoryPageLoad({ id: stubCategory.id, kind: DaffCategoryPageRequestKind.ID });
+ 		  categoryLoadAction = new DaffCategoryPageLoad({ id: stubCategory.id, kind: DaffCategoryRequestKind.ID });
     });
 
     describe('when the call to CategoryService is successful', () => {
@@ -173,7 +173,7 @@ describe('DaffCategoryPageEffects', () => {
     let categoryRequest: DaffCategoryIdRequest;
 
     beforeEach(() => {
-      categoryRequest = { id: stubCategory.id, kind: DaffCategoryPageRequestKind.ID };
+      categoryRequest = { id: stubCategory.id, kind: DaffCategoryRequestKind.ID };
       categoryPageLoadAction = new DaffCategoryPageLoad(categoryRequest);
       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
         category: stubCategory,
@@ -246,7 +246,7 @@ describe('DaffCategoryPageEffects', () => {
       expect(effects.changeCategoryPageSize$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
-        kind: DaffCategoryPageRequestKind.ID,
+        kind: DaffCategoryRequestKind.ID,
         page_size: 3,
       });
     });
@@ -269,7 +269,7 @@ describe('DaffCategoryPageEffects', () => {
       expect(effects.changeCategoryCurrentPage$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
-        kind: DaffCategoryPageRequestKind.ID,
+        kind: DaffCategoryRequestKind.ID,
         current_page: 3,
       });
     });
@@ -295,7 +295,7 @@ describe('DaffCategoryPageEffects', () => {
       expect(effects.changeCategorySort$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
-        kind: DaffCategoryPageRequestKind.ID,
+        kind: DaffCategoryRequestKind.ID,
         applied_sort_direction: DaffSortDirectionEnum.Ascending,
         applied_sort_option: 'option',
       });

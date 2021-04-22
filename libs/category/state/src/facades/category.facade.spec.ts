@@ -11,7 +11,7 @@ import {
   DaffCategoryFilter,
   DaffCategoryPageMetadata,
   daffCategoryFilterArrayToDict,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
 } from '@daffodil/category';
 import {
   daffCategoryReducers,
@@ -262,7 +262,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should be true if the category state is loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffCategoryPageLoad({ id: '1', kind: DaffCategoryPageRequestKind.ID }));
+      store.dispatch(new DaffCategoryPageLoad({ id: '1', kind: DaffCategoryRequestKind.ID }));
       expect(facade.categoryLoading$).toBeObservable(expected);
     });
   });
@@ -275,7 +275,7 @@ describe('DaffCategoryFacade', () => {
 
     it('should be true if the category products are loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffCategoryPageLoad({ id: '1', kind: DaffCategoryPageRequestKind.ID }));
+      store.dispatch(new DaffCategoryPageLoad({ id: '1', kind: DaffCategoryRequestKind.ID }));
       expect(facade.productsLoading$).toBeObservable(expected);
     });
   });
@@ -293,7 +293,7 @@ describe('DaffCategoryFacade', () => {
         message: 'Failed to load the category',
       };
       const expected = cold('a', { a: [error]});
-      store.dispatch(new DaffCategoryPageLoad({ id: 'id', kind: DaffCategoryPageRequestKind.ID }));
+      store.dispatch(new DaffCategoryPageLoad({ id: 'id', kind: DaffCategoryRequestKind.ID }));
       store.dispatch(new DaffCategoryPageLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);
     });

@@ -17,7 +17,7 @@ import {
 import {
   DaffCategory,
   DaffCategoryPageMetadata,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
   DaffCategoryIdRequest,
 } from '@daffodil/category';
 import {
@@ -104,7 +104,7 @@ describe('DaffCategoryEffects', () => {
     }));
 
     productGridLoadSuccessAction = new DaffProductGridLoadSuccess(stubProducts);
-    categoryRequest = { id: stubCategory.id, kind: DaffCategoryPageRequestKind.ID };
+    categoryRequest = { id: stubCategory.id, kind: DaffCategoryRequestKind.ID };
     categoryLoadAction = new DaffCategoryLoad(categoryRequest);
     categoryLoadSuccessAction = new DaffCategoryLoadSuccess({
       category: stubCategory,
@@ -173,7 +173,7 @@ describe('DaffCategoryEffects', () => {
       let otherCategoryRequest: DaffCategoryIdRequest;
 
       beforeEach(() => {
-        otherCategoryRequest = { id: 'someOtherCategory', kind: DaffCategoryPageRequestKind.ID };
+        otherCategoryRequest = { id: 'someOtherCategory', kind: DaffCategoryRequestKind.ID };
         otherCategoryLoadAction = new DaffCategoryLoad(otherCategoryRequest);
         actions$ = hot('--(ab)', { a: categoryLoadAction, b: otherCategoryLoadAction });
       });

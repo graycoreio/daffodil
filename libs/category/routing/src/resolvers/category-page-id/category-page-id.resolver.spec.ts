@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 
 import {
   DaffCategory,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
 } from '@daffodil/category';
 import {
   daffCategoryReducers,
@@ -82,7 +82,7 @@ describe('DaffCategoryPageIdResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryPageRequestKind.ID }),
+        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryRequestKind.ID }),
       );
     });
 
@@ -146,7 +146,7 @@ describe('DaffCategoryPageIdResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryPageRequestKind.ID }),
+        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryRequestKind.ID }),
       );
     });
 

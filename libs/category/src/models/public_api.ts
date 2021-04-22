@@ -7,7 +7,7 @@ export { DaffGenericCategory } from './generic-category';
 export {
   DaffCategoryRequest,
   DaffCategoryBaseRequest,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
   DaffCategoryIdRequest,
   DaffCategoryUriRequest,
 } from './category-request';

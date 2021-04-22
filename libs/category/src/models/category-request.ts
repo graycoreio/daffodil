@@ -6,7 +6,7 @@ import { DaffCategoryFilterRequest } from './filters/public_api';
 /**
  * When you request a category page, there's two ways to do so, via URI or via ID.
  */
-export enum DaffCategoryPageRequestKind {
+export enum DaffCategoryRequestKind {
   URI = 'URI',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   ID = 'ID'
@@ -53,7 +53,7 @@ export type DaffCategoryRequest = DaffCategoryIdRequest | DaffCategoryUriRequest
  */
 export interface DaffCategoryIdRequest extends DaffCategoryBaseRequest {
   id: ID;
-  kind: DaffCategoryPageRequestKind.ID;
+  kind: DaffCategoryRequestKind.ID;
 }
 
 /**
@@ -61,5 +61,5 @@ export interface DaffCategoryIdRequest extends DaffCategoryBaseRequest {
  */
 export interface DaffCategoryUriRequest extends DaffCategoryBaseRequest {
   uri: string;
-  kind: DaffCategoryPageRequestKind.URI;
+  kind: DaffCategoryRequestKind.URI;
 };

@@ -26,7 +26,7 @@ import {
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
   daffCategoryFiltersToRequests,
-  DaffCategoryPageRequestKind,
+  DaffCategoryRequestKind,
   DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffCategoryPageMetadata } from '@daffodil/category';
@@ -88,7 +88,7 @@ export class DaffCategoryPageFilterEffects<
     map((
       [action, metadata]: [DaffCategoryPageFilterActions, DaffCategoryPageMetadata],
     ): DaffCategoryIdRequest => ({
-      kind: DaffCategoryPageRequestKind.ID,
+      kind: DaffCategoryRequestKind.ID,
       id: metadata.id,
       filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       applied_sort_option: metadata.applied_sort_option,
