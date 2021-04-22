@@ -54,6 +54,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
           ...buildMetadataFromRequest(action.request),
+          id: action.request.id,
         },
       };
 
