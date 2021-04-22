@@ -33,6 +33,7 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
 
     it('should return a category', () => {
       expect(result.id).toBeDefined();
+      expect(result.url_path).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.description).toBeDefined();
       expect(result.breadcrumbs).toBeDefined();

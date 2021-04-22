@@ -6,6 +6,7 @@ export const MagentoGetCategoryQuery = gql`
 query ${DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME}($filters: CategoryFilterInput){
 	categoryList(filters: $filters) {
 		id
+    url_path
 		name
 		level
 		description

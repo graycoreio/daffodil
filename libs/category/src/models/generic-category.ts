@@ -9,6 +9,10 @@ import { DaffCategoryBreadcrumb } from './category-breadcrumb';
  */
 export interface DaffGenericCategory<T extends DaffGenericCategory<T>> {
   id: ID;
+  /**
+   * The URI associated with this category.
+   */
+  uri: string;
 	name: string;
 	description?: string;
   children_count?: number;

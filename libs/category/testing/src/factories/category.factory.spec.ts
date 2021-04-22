@@ -30,6 +30,7 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
 
     it('should return a Category with all required fields defined', () => {
       expect(result.id).toBeDefined();
+      expect(result.uri).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.description).toBeDefined();
       expect(result.children_count).toBeDefined();

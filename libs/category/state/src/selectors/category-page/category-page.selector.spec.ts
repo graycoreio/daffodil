@@ -143,6 +143,7 @@ describe('DaffCategoryPageSelectors', () => {
         products: [],
         category: {
           id: stubCategoryPageMetadata.id,
+          uri: 'test',
           name: 'test',
         },
         categoryPageMetadata: {
@@ -200,6 +201,7 @@ describe('DaffCategoryPageSelectors', () => {
       store.dispatch(new DaffCategoryPageLoadSuccess({ products: [],
         category: {
           id: stubCategoryPageMetadata.id,
+          uri: 'test',
           name: 'test',
         },
         categoryPageMetadata: {
