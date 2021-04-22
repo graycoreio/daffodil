@@ -76,8 +76,8 @@ export class DaffCategoryPageEffects<
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap(([action, categoryRequest]: [DaffCategoryPageChangePageSize, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
-      ...categoryRequest,
+    switchMap(([action, metadata]: [DaffCategoryPageChangePageSize, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
+      ...metadata,
       kind: DaffCategoryPageRequestKind.ID,
       page_size: action.pageSize,
     })),
@@ -89,8 +89,8 @@ export class DaffCategoryPageEffects<
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap(([action, categoryRequest]: [DaffCategoryPageChangeCurrentPage, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
-      ...categoryRequest,
+    switchMap(([action, metadata]: [DaffCategoryPageChangeCurrentPage, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
+      ...metadata,
       kind: DaffCategoryPageRequestKind.ID,
       current_page: action.currentPage,
     })),
@@ -102,8 +102,8 @@ export class DaffCategoryPageEffects<
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
     ),
-    switchMap(([action, categoryRequest]: [DaffCategoryPageChangeSortingOption, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
-      ...categoryRequest,
+    switchMap(([action, metadata]: [DaffCategoryPageChangeSortingOption, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
+      ...metadata,
       kind: DaffCategoryPageRequestKind.ID,
       applied_sort_option: action.sort.option,
       applied_sort_direction: action.sort.direction,
