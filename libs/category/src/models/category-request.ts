@@ -23,17 +23,17 @@ export interface DaffCategoryBaseRequest {
   filter_requests?: DaffCategoryFilterRequest[];
 
   /**
-   * The option by which to sort a categories' items.
+   * The option by which to sort a category's items.
    */
   applied_sort_option?: string;
 
   /**
-   * The sort direction to sort the categories' items by.
+   * The direction by which to sort the category's items.
    */
   applied_sort_direction?: DaffSortDirectionEnum;
 
   /**
-   * What page of the categories' items to retrieve.
+   * What page of the category's items to retrieve.
    */
   current_page?: number;
 
