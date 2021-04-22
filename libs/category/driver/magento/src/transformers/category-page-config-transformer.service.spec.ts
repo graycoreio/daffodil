@@ -78,6 +78,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
     beforeEach(() => {
       category = {
         id: Number(stubCategory.id),
+        url_path: stubCategory.uri,
         name: stubCategory.name,
         breadcrumbs: [{
           category_id: Number(stubCategory.breadcrumbs[0].categoryId),

@@ -2,6 +2,7 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 export interface MagentoCategory {
   id: number;
+  url_path: string;
 	name?: string;
 	description?: string;
   breadcrumbs?: MagentoBreadcrumb[];
