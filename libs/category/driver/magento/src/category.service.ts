@@ -60,7 +60,6 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.
-  // TODO(griest024): fix return type
   /**
    * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
    *
