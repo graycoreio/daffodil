@@ -327,7 +327,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       flush();
     }));
 
-    describe('when filters are requested', () => {
+    describe('when the request applied a filter', () => {
       beforeEach(() => {
         equalFilterRequest = equalFilterRequestFactory.create({
           name: mockMagentoSelectFilterTypeField.name,
@@ -350,7 +350,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         result = categoryService.getByUri(mockCategoryUriRequest);
       });
 
-      it('should apply those filters', fakeAsync(() => {
+      it('should apply those filters in the response', fakeAsync(() => {
         result.subscribe(res => {
           equalFilterRequest.value.forEach(option => {
             expect(res.categoryPageMetadata.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
