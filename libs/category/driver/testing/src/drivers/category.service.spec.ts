@@ -50,4 +50,12 @@ describe('Driver | Testing | Category | CategoryService', () => {
       expect(categoryService.get('id')).toBeObservable(expected);
     });
   });
+
+  describe('getByUri', () => {
+
+    it('should return a DaffGetCategoryResponse', () => {
+      const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
+      expect(categoryService.getByUri('url')).toBeObservable(expected);
+    });
+  });
 });
