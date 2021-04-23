@@ -18,7 +18,7 @@ export class DaffMagentoCategoryTransformerService {
   transform(category: MagentoCategory): DaffCategory {
     return {
       id: String(category.id),
-      uri: category.url_path,
+      uri: `${category.url_path}${category.url_suffix}`,
       name: category.name,
       description: category.description,
       children_count: category.children_count,
