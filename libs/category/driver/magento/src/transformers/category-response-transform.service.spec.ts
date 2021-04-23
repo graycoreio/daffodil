@@ -28,6 +28,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
   let service: DaffMagentoCategoryResponseTransformService;
 
+  let uri: DaffCategory['uri'];
   let stubCategory: DaffCategory;
   let stubCategoryPageMetadata: DaffCategoryPageMetadata;
 
@@ -59,8 +60,10 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     magentoProductFactory = TestBed.inject(MagentoProductFactory);
     aggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationFactory);
 
+    uri = 'uri';
     stubCategory = categoryFactory.create({
       id: '1',
+      uri: `${uri}.html`,
     });
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();
   });
@@ -79,7 +82,8 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
       const category: MagentoCategory = {
         id: Number(stubCategory.id),
-        url_path: stubCategory.uri,
+        url_path: uri,
+        url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{
           category_id: Number(stubCategory.breadcrumbs[0].categoryId),

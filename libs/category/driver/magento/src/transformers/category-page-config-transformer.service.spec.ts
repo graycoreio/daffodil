@@ -29,6 +29,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
   let service: DaffMagentoCategoryPageConfigTransformerService;
 
+  let uri: DaffCategory['uri'];
   let stubCategory: DaffCategory;
   let stubCategoryPageMetadata: DaffCategoryPageMetadata;
   let aggregation: MagentoAggregation;
@@ -51,8 +52,10 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
     selectAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationSelectFactory);
     priceAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationPriceFactory);
 
+    uri = 'uri';
     stubCategory = categoryFactory.create({
       id: '1',
+      uri: `${uri}.html`,
     });
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();
 
@@ -79,6 +82,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       category = {
         id: Number(stubCategory.id),
         url_path: stubCategory.uri,
+        url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{
           category_id: Number(stubCategory.breadcrumbs[0].categoryId),

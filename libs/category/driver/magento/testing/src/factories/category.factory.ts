@@ -7,6 +7,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 class MockMagentoCategory implements MagentoCategory {
   id = faker.random.number();
   url_path = faker.internet.url();
+  url_suffix = '.html';
   name? = faker.random.word();
   description? = faker.random.words(40);
   breadcrumbs? =  [];

@@ -3,6 +3,7 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 export interface MagentoCategory {
   id: number;
   url_path: string;
+  url_suffix: string;
 	name?: string;
 	description?: string;
   breadcrumbs?: MagentoBreadcrumb[];
