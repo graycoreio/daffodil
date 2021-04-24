@@ -24,13 +24,14 @@
 		grid-template-columns: 1fr;
 		grid-template-areas:
 			'brand-yellow'
+			'bronze'
 			'red-palette'
-			'bronze';
+			'green-palette';
 
 		@include breakpoint(tablet) {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(4, 1fr);
 			grid-template-areas:
-				'brand-yellow red-palette bronze';
+				'brand-yellow bronze red-palette green-palette';
 		}
 	}
 
@@ -93,6 +94,10 @@
 
 		&.bronze {
 			grid-area: bronze;
+		}
+
+		&.green {
+			grid-area: green-palette;
 		}
 	}
 
