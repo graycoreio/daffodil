@@ -8,6 +8,11 @@ import { DaffCategoryDriver } from '@daffodil/category/driver';
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 
 import { DaffMagentoCategoryService } from './category.service';
+import { MAGENTO_CATEGORY_CONFIG_DEFAULT } from './config/default';
+import {
+  DaffCategoryMagentoDriverConfig,
+  MAGENTO_CATEGORY_CONFIG_TOKEN,
+} from './interfaces/public_api';
 import { DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME } from './queries/get-category';
 import { DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME } from './queries/get-products';
 import { DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME } from './queries/public_api';
@@ -23,7 +28,7 @@ import { DaffMagentoCategoryTransformerService } from './transformers/category-t
   ],
 })
 export class DaffCategoryMagentoDriverModule {
-  static forRoot(): ModuleWithProviders<DaffCategoryMagentoDriverModule> {
+  static forRoot(config: DaffCategoryMagentoDriverConfig = MAGENTO_CATEGORY_CONFIG_DEFAULT): ModuleWithProviders<DaffCategoryMagentoDriverModule> {
     return {
       ngModule: DaffCategoryMagentoDriverModule,
       providers: [
@@ -50,6 +55,13 @@ export class DaffCategoryMagentoDriverModule {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
           useValue: DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME,
           multi: true,
+        },
+        {
+          provide: MAGENTO_CATEGORY_CONFIG_TOKEN,
+          useValue: {
+            ...MAGENTO_CATEGORY_CONFIG_DEFAULT,
+            ...config,
+          },
         },
       ],
     };

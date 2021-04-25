@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+} from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import {
   Observable,
@@ -19,6 +22,10 @@ import {
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
+import {
+  MAGENTO_CATEGORY_CONFIG_TOKEN,
+  DaffCategoryMagentoDriverConfig,
+} from './interfaces/public_api';
 import { MagentoGetCategoryFilterTypesResponse } from './models/get-filter-types-response.interface';
 import {
   MagentoGetACategoryResponse,
@@ -55,6 +62,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 		private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
 		private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
 		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
+    @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.
@@ -93,7 +101,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
         query: MagentoGetCategoryQuery,
-        variables: { filters: { url_path: { eq: categoryRequest.uri }}},
+        variables: { filters: { url_path: { eq: this.truncateUriExtension(categoryRequest.uri) }}},
       }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
         query: MagentoGetCategoryFilterTypes,
@@ -152,5 +160,9 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     };
 
     return this.magentoCategoryResponseTransformer.transform(completeCategory);
+  }
+
+  private truncateUriExtension(uri: string): string {
+    return uri.match(this.config.truncatedUriMatcher)?.groups.uri || uri;
   }
 }
