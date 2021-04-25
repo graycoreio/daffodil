@@ -7,6 +7,7 @@ import {
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 import { DaffProductDriver } from '@daffodil/product/driver';
 
+import { MAGENTO_PRODUCT_CONFIG_DEFAULT } from './config/public_api';
 import {
   DaffProductMagentoDriverConfig,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
@@ -21,7 +22,7 @@ import { DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME } from './queries/get-product';
   ],
 })
 export class DaffProductMagentoDriverModule {
-  static forRoot(config: DaffProductMagentoDriverConfig): ModuleWithProviders<DaffProductMagentoDriverModule> {
+  static forRoot(config: DaffProductMagentoDriverConfig = MAGENTO_PRODUCT_CONFIG_DEFAULT): ModuleWithProviders<DaffProductMagentoDriverModule> {
     return {
       ngModule: DaffProductMagentoDriverModule,
       providers: [

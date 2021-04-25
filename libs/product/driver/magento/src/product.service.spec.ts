@@ -6,11 +6,14 @@ import {
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { Observable } from 'rxjs';
 
 import { schema } from '@daffodil/driver/magento';
+import { DaffProduct } from '@daffodil/product';
 import {
   GetProductQuery,
   MagentoSimpleProduct,
+  MAGENTO_PRODUCT_CONFIG_DEFAULT,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
@@ -38,7 +41,7 @@ describe('Product | Magento | ProductService', () => {
         },
         {
           provide: MAGENTO_PRODUCT_CONFIG_TOKEN,
-          useValue: 'http://testwebsite.com',
+          useValue: MAGENTO_PRODUCT_CONFIG_DEFAULT,
         },
       ],
     });
@@ -101,8 +104,16 @@ describe('Product | Magento | ProductService', () => {
   });
 
   describe('getByUrl | getting a single product by url', () => {
+    let uri: string;
+    let result: Observable<DaffProduct>;
+
+    beforeEach(() => {
+      uri = 'TESTING_URL';
+      result = service.getByUrl(uri);
+    });
+
     it('should return a DaffProduct', done => {
-      service.getByUrl('TESTING_URL').subscribe(r => {
+      result.subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
         expect(r.name).toBeDefined();
         done();
@@ -117,6 +128,31 @@ describe('Product | Magento | ProductService', () => {
             items: [stubSimpleProduct],
           },
         },
+      });
+    });
+
+    describe('when the request URI has a file extension', () => {
+      beforeEach(() => {
+        result = service.getByUrl(`${uri}.html`);
+      });
+
+      it('should query the category with the truncated URI', () => {
+        result.subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+
+        expect(op.operation.variables.url).toEqual(uri);
+      });
+    });
+
+    describe('when the request URI does not have a file extension', () => {
+
+      it('should query the category with the original URI', () => {
+        result.subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+
+        expect(op.operation.variables.url).toEqual(uri);
       });
     });
   });

@@ -53,10 +53,20 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
+    let truncatedUri = url;
+
+    if (this.config.truncateUri) {
+      const match = truncatedUri.match(this.config.truncatedUriMatcher);
+      // only truncate if we get a match
+      if (match) {
+        truncatedUri = match.groups.uri;
+      }
+    }
+
     return this.apollo.query<any>({
       query: GetProductByUrlQuery,
       variables: {
-        url,
+        url: truncatedUri,
       },
     }).pipe(
       map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
