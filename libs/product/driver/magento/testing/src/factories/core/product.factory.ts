@@ -12,6 +12,7 @@ export class MockMagentoCoreProduct implements MagentoProduct {
 	__typename = MagentoProductTypeEnum.SimpleProduct;
   id = faker.random.uuid();
   url_key = faker.random.alphaNumeric(16);
+  url_suffix = '.html';
   name = faker.random.word();
 	sku = faker.random.alphaNumeric(16);
 	stock_status = MagentoProductStockStatusEnum.InStock;

@@ -1,7 +1,7 @@
 {
 	"type": "composite",
 	"id": "22",
-	"url": "url",
+	"url": "url.html",
 	"price": 0,
 	"in_stock": true,
 	"discount": {
