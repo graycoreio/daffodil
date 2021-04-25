@@ -9,6 +9,7 @@ export const magentoProductFragment = gql`
 		__typename
 		id
 		url_key
+    url_suffix
 		name
 		sku
 		stock_status

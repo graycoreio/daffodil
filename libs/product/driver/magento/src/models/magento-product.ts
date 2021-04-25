@@ -18,6 +18,7 @@ export interface MagentoProduct {
   name: string;
   sku: string;
   url_key: string;
+  url_suffix: string;
   image: {
 		url: string;
 		label: string;
