@@ -58,7 +58,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
         products: {
           items: [{
             __typename: 'simple',
-            id: 1,
+            uid: '1',
             name: 'name',
             sku: stubCategory.product_ids[0],
             url_key: 'url_key',
