@@ -16,5 +16,5 @@ import { DaffPalette } from '@daffodil/design';
 export class CardThemingComponent {
   color: DaffPalette = 'primary';
 
-  colorControl: FormControl = new FormControl('primary');
+  colorControl: FormControl = new FormControl('');
 }
