@@ -7,7 +7,7 @@ import { magentoSimpleProductFragment } from './simple-product';
 export const magentoProductFragment = gql`
   fragment product on ProductInterface {
 		__typename
-		id
+		uid
 		url_key
     url_suffix
 		name
@@ -38,7 +38,7 @@ export const magentoProductFragment = gql`
 			file
 			position
 			disabled
-			id
+			uid
 		}
 		short_description {
 			html

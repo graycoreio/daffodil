@@ -28,7 +28,7 @@ describe('Product | Testing | Factories | MagentoBundledProductFactory', () => {
 
     it('should return a MagentoBundledProduct with all required fields defined', () => {
       expect(result.__typename).toBeDefined();
-      expect(result.id).toBeDefined();
+      expect(result.uid).toBeDefined();
       expect(result.image.label).toBeDefined();
       expect(result.image.url).toBeDefined();
       expect(result.thumbnail.label).toBeDefined();

@@ -56,6 +56,6 @@ function transformMediaGalleryEntries(product: MagentoProduct, mediaUrl: string)
   return product.media_gallery_entries ? product.media_gallery_entries.map(image => ({
     url: mediaUrl + 'catalog/product' + image.file,
     label: image.label,
-    id: image.id.toString(),
+    id: image.uid.toString(),
   })) : [];
 }

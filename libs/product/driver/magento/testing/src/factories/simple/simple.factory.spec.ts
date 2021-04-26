@@ -28,7 +28,7 @@ describe('Product | Testing | Factories | MagentoSimpleProductFactory', () => {
 
     it('should return a MagentoSimpleProduct with all required fields defined', () => {
       expect(result.__typename).toBeDefined();
-      expect(result.id).toBeDefined();
+      expect(result.uid).toBeDefined();
       expect(result.image.label).toBeDefined();
       expect(result.image.url).toBeDefined();
       expect(result.thumbnail.label).toBeDefined();

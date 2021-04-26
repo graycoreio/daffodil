@@ -6,7 +6,7 @@ export const magentoConfigurableProductFragment = gql`
 		configurable_options {
 			attribute_code
 			attribute_id
-			id
+			uid
 			label
 			position
 			product_id
