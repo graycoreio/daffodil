@@ -90,12 +90,10 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   }
 
   getByUri(categoryRequest: DaffCategoryUriRequest): Observable<DaffGetCategoryResponse> {
-    const truncatedUri = categoryRequest.uri.replace('.html', '');
-
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
         query: MagentoGetCategoryQuery,
-        variables: { filters: { url_path: { eq: truncatedUri }}},
+        variables: { filters: { url_path: { eq: categoryRequest.uri }}},
       }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
         query: MagentoGetCategoryFilterTypes,

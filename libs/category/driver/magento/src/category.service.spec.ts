@@ -289,25 +289,6 @@ describe('Driver | Magento | Category | CategoryService', () => {
       productsOp.flushData(mockGetProductsResponse);
     }));
 
-    it('should query the category with the truncated URI', fakeAsync(() => {
-      result.subscribe();
-
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
-
-      categoryOp.flushData(mockGetCategoryResponse);
-      filterTypesOp.flushData(mockGetFilterTypesResponse);
-
-      tick();
-
-      const productsOp = controller.expectOne(MagentoGetProductsQuery);
-      productsOp.flushData(mockGetProductsResponse);
-
-      expect(categoryOp.operation.variables.filters.url_path.eq).toEqual(uri);
-
-      flush();
-    }));
-
     it('should query the products with the category ID', fakeAsync(() => {
       result.subscribe();
 
