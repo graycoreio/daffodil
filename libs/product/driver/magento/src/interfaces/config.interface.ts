@@ -22,7 +22,7 @@ export interface DaffProductMagentoDriverConfig {
    * during the {@link DaffMagentoProductService#getByUrl} call.
    * True by default.
    */
-  truncateUri: boolean;
+  truncateUri?: boolean;
   /**
    * The regex used to truncate the URI.
    * The truncated URI should be a capture group named `uri`.

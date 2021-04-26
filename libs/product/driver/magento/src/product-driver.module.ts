@@ -42,7 +42,10 @@ export class DaffProductMagentoDriverModule {
         },
         {
           provide: MAGENTO_PRODUCT_CONFIG_TOKEN,
-          useValue: config,
+          useValue: {
+            ...MAGENTO_PRODUCT_CONFIG_DEFAULT,
+            ...config,
+          },
         },
       ],
     };

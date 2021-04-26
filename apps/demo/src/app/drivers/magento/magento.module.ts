@@ -27,7 +27,6 @@ const cache = new InMemoryCache({ possibleTypes });
     DaffAuthMagentoDriverModule.forRoot(),
     DaffProductMagentoDriverModule.forRoot({
       baseMediaUrl: 'https://magento2.test/media/',
-      truncateUri: true,
     }),
     DaffCartMagentoDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot(),
