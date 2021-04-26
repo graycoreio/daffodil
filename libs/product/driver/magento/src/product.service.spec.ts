@@ -13,11 +13,9 @@ import { DaffProduct } from '@daffodil/product';
 import {
   GetProductQuery,
   MagentoSimpleProduct,
-  MAGENTO_PRODUCT_CONFIG_DEFAULT,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
-import { MAGENTO_PRODUCT_CONFIG_TOKEN } from './interfaces/public_api';
 import { DaffMagentoProductService } from './product.service';
 import { GetProductByUrlQuery } from './queries/get-product-by-url';
 
@@ -38,10 +36,6 @@ describe('Product | Magento | ProductService', () => {
             addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
-        },
-        {
-          provide: MAGENTO_PRODUCT_CONFIG_TOKEN,
-          useValue: MAGENTO_PRODUCT_CONFIG_DEFAULT,
         },
       ],
     });
