@@ -3,7 +3,6 @@ import { Apollo } from 'apollo-angular';
 import {
   Observable,
   combineLatest,
-  of,
 } from 'rxjs';
 import {
   map,
@@ -11,12 +10,12 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffCategoryIdRequest,
   DaffGetCategoryResponse,
   daffApplyRequestsToFilters,
-  DaffCategoryPageMetadata,
-  DaffCategoryRequest,
+  DaffCategoryUriRequest,
+  DaffCategoryRequestKind,
   DaffCategoryFilterRequest,
+  DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
@@ -24,7 +23,6 @@ import { MagentoGetCategoryFilterTypesResponse } from './models/get-filter-types
 import {
   MagentoGetACategoryResponse,
   MagentoGetProductsResponse,
-  MagentoCompleteCategoryResponse,
   MagentoGetProductsByCategoriesRequest,
 } from './models/public_api';
 import { MagentoGetCategoryFilterTypes } from './queries/get-filter-types';
@@ -88,6 +86,36 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
         : result,
       ),
+    );
+  }
+
+  getByUri(categoryRequest: DaffCategoryUriRequest): Observable<DaffGetCategoryResponse> {
+    return combineLatest([
+      this.apollo.query<MagentoGetACategoryResponse>({
+        query: MagentoGetCategoryQuery,
+        variables: { filters: { url_path: { eq: categoryRequest.uri }}},
+      }),
+      this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
+        query: MagentoGetCategoryFilterTypes,
+      }),
+    ]).pipe(
+      switchMap(([
+        category,
+        filterTypes,
+      ]) => this.apollo.query<MagentoGetProductsResponse>({
+        query: MagentoGetProductsQuery,
+        variables: this.getProductsQueryVariables({
+          ...categoryRequest,
+          id: category.data.categoryList[0]?.id?.toString(),
+          kind: DaffCategoryRequestKind.ID,
+        }),
+      }).pipe(
+        map(products => this.transformCategory(category.data, filterTypes.data, products.data)),
+        map(result => categoryRequest.filter_requests
+          ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
+          : result,
+        ),
+      )),
     );
   }
 

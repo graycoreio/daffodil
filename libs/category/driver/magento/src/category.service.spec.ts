@@ -1,4 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import {
+  TestBed,
+  fakeAsync,
+  tick,
+  flush,
+} from '@angular/core/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
@@ -14,6 +19,7 @@ import {
   DaffGetCategoryResponse,
   DaffCategoryRequestKind,
   DaffCategoryFilterRangeNumericRequest,
+  DaffCategoryUriRequest,
 } from '@daffodil/category';
 import {
   MagentoGetACategoryResponse,
@@ -183,7 +189,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
     expect(categoryService).toBeTruthy();
   });
 
-  describe('get | getting a category', () => {
+  describe('get | getting a category by ID', () => {
     let result: Observable<DaffGetCategoryResponse>;
 
     beforeEach(() => {
@@ -247,6 +253,104 @@ describe('Driver | Magento | Category | CategoryService', () => {
         filterTypesOp.flushData(mockGetFilterTypesResponse);
         productsOp.flushData(mockGetProductsResponse);
       });
+    });
+  });
+
+  describe('getByUri | getting a category by URI', () => {
+    let mockCategoryUriRequest: DaffCategoryUriRequest;
+    let uri: string;
+    let result: Observable<DaffGetCategoryResponse>;
+
+    beforeEach(() => {
+      uri = mockCategory.uri;
+      mockCategoryUriRequest = {
+        kind: DaffCategoryRequestKind.URI,
+        uri,
+      };
+      result = categoryService.getByUri(mockCategoryUriRequest);
+    });
+
+    it('should return a category with the correct info', fakeAsync(() => {
+      result.subscribe(res => {
+        expect(res.category.id).toEqual(String(mockMagentoCategory.id));
+        expect(res.category.name).toEqual(String(mockMagentoCategory.name));
+        flush();
+      });
+
+      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+
+      categoryOp.flushData(mockGetCategoryResponse);
+      filterTypesOp.flushData(mockGetFilterTypesResponse);
+
+      tick();
+
+      const productsOp = controller.expectOne(MagentoGetProductsQuery);
+      productsOp.flushData(mockGetProductsResponse);
+    }));
+
+    it('should query the products with the category ID', fakeAsync(() => {
+      result.subscribe();
+
+      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+
+      categoryOp.flushData(mockGetCategoryResponse);
+      filterTypesOp.flushData(mockGetFilterTypesResponse);
+
+      tick();
+
+      const productsOp = controller.expectOne(MagentoGetProductsQuery);
+      productsOp.flushData(mockGetProductsResponse);
+
+      expect(productsOp.operation.variables.filter.category_id.eq).toEqual(String(mockMagentoCategory.id));
+
+      flush();
+    }));
+
+    describe('when the request applied a filter', () => {
+      beforeEach(() => {
+        equalFilterRequest = equalFilterRequestFactory.create({
+          name: mockMagentoSelectFilterTypeField.name,
+          value: mockMagentoSelectAggregation.options.map(agg => agg.value),
+        });
+        rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
+        rangeFilterRequest = rangeFilterRequestFactory.create({
+          name: mockMagentoPriceFilterTypeField.name,
+          value: rangeFilterRequestOption,
+        });
+        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        mockCategoryUriRequest = {
+          ...mockCategoryUriRequest,
+          filter_requests: [
+            equalFilterRequest,
+            rangeFilterRequest,
+          ],
+        };
+
+        result = categoryService.getByUri(mockCategoryUriRequest);
+      });
+
+      it('should apply those filters in the response', fakeAsync(() => {
+        result.subscribe(res => {
+          equalFilterRequest.value.forEach(option => {
+            expect(res.categoryPageMetadata.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
+          });
+          expect(res.categoryPageMetadata.filters[rangeFilterRequest.name].options[rangeFilterRequestOptionLabel].applied).toBeTrue();
+          flush();
+        });
+
+        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+        const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+
+        categoryOp.flushData(mockGetCategoryResponse);
+        filterTypesOp.flushData(mockGetFilterTypesResponse);
+
+        tick();
+
+        const productsOp = controller.expectOne(MagentoGetProductsQuery);
+        productsOp.flushData(mockGetProductsResponse);
+      }));
     });
   });
 

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import {
   DaffGetCategoryResponse,
   DaffCategoryIdRequest,
+  DaffCategoryUriRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
@@ -25,5 +26,13 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
       .set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);
 
     return this.http.get<DaffGetCategoryResponse>(this.url + categoryRequest.id, { params });
+  }
+
+  getByUri(categoryRequest: DaffCategoryUriRequest): Observable<DaffGetCategoryResponse> {
+    const params = new HttpParams()
+      .set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
+      .set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);
+
+    return this.http.get<DaffGetCategoryResponse>(`${this.url}${categoryRequest.uri}`, { params });
   }
 }
