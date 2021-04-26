@@ -32,7 +32,7 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
     return this.apollo.query<GetCategoryTreeResponse>({
       query: daffMagentoGetCategoryTree(this.categoryTreeQueryDepth),
       variables: {
-        filters: { ids: { eq: categoryId }},
+        filters: { category_uid: { eq: categoryId }},
       },
     }).pipe(
       map(result => this.transformer.transform(result.data.categoryList[0])),

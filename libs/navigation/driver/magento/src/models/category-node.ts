@@ -1,6 +1,6 @@
 export interface CategoryNode {
   __typename?: string;
-  id: number;
+  uid: string;
   name?: string;
   include_in_menu: boolean;
   product_count: number;
@@ -12,8 +12,8 @@ export interface CategoryNode {
 }
 
 export interface MagentoBreadcrumb {
-  category_id: number;
-  category_name: string;
-  category_level: number;
+  category_uid: CategoryNode['uid'];
+  category_name: CategoryNode['name'];
+  category_level: CategoryNode['level'];
   category_url_key: string;
 }

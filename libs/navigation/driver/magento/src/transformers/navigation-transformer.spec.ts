@@ -19,7 +19,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     service = TestBed.inject(DaffMagentoNavigationTransformerService);
 
     categoryNode = {
-      id: 1,
+      uid: '1',
       name: 'Root Category',
       include_in_menu: true,
       product_count: 10,
@@ -27,7 +27,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       children_count: 0,
       children: [
         {
-          id: 2,
+          uid: '2',
           include_in_menu: true,
           name: 'Subcategory',
           product_count: 10,
@@ -36,13 +36,13 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
           position: 2,
           breadcrumbs: [
             {
-              category_id: 2,
+              category_uid: '2',
               category_level: 2,
               category_name: 'name2',
               category_url_key: 'url2',
             },
             {
-              category_id: 1,
+              category_uid: '1',
               category_level: 1,
               category_name: 'name',
               category_url_key: 'url',
@@ -50,7 +50,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
           ],
         },
         {
-          id: 3,
+          uid: '3',
           include_in_menu: false,
           name: 'Subcategory',
           product_count: 10,
@@ -60,7 +60,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
           breadcrumbs: [],
         },
         {
-          id: 5,
+          uid: '5',
           include_in_menu: true,
           name: 'Subcategory',
           product_count: 10,
@@ -130,8 +130,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
   it('should order the categories by position', () => {
     const categoryResult = service.transform(categoryNode);
-    expect(categoryResult.children[0].id).toEqual(categoryNode.children[2].id.toString());
-    expect(categoryResult.children[1].id).toEqual(categoryNode.children[0].id.toString());
+    expect(categoryResult.children[0].id).toEqual(categoryNode.children[2].uid.toString());
+    expect(categoryResult.children[1].id).toEqual(categoryNode.children[0].uid.toString());
   });
 
   it('should order the breadcrumbs by level', () => {
