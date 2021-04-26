@@ -18,8 +18,8 @@ export interface DaffProductMagentoDriverConfig {
    */
 	baseMediaUrl: string;
   /**
-   * Whether or not to attempt to truncate the file extension suffix from the product URI
-   * during the {@link DaffMagentoProductService#getByUrl} call.
+   * Whether or not to attempt to truncate the file extension suffix and leading path segments
+   * from the product URI during the {@link DaffMagentoProductService#getByUrl} call.
    * True by default.
    */
   truncateUri?: boolean;

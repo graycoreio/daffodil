@@ -24,6 +24,8 @@ import {
   transformManyMagentoProducts,
 } from './transforms/product-transformers';
 
+const TRUNCATE_URI_LEADING_PATH_SEGMENTS = /.*\/(?<uri>.*)$/;
+
 /**
  * A service for making magento apollo queries for products of type, DaffProduct.
  */
@@ -53,20 +55,10 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
-    let truncatedUri = url;
-
-    if (this.config.truncateUri) {
-      const match = truncatedUri.match(this.config.truncatedUriMatcher);
-      // only truncate if we get a match
-      if (match) {
-        truncatedUri = match.groups.uri;
-      }
-    }
-
     return this.apollo.query<any>({
       query: GetProductByUrlQuery,
       variables: {
-        url: truncatedUri,
+        url: this.truncateUriLeadingPathSegments(this.truncateUriExtension(url)),
       },
     }).pipe(
       map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
@@ -88,5 +80,13 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   //todo: move to a different bestsellers module.
   getBestSellers(): Observable<DaffProduct[]> {
     return of(null);
+  }
+
+  private truncateUriExtension(uri: string): string {
+    return uri.match(this.config.truncatedUriMatcher)?.groups.uri || uri;
+  }
+
+  private truncateUriLeadingPathSegments(uri: string): string {
+    return uri.match(TRUNCATE_URI_LEADING_PATH_SEGMENTS)?.groups.uri || uri;
   }
 }

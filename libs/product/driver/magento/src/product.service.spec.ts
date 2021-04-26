@@ -139,7 +139,21 @@ describe('Product | Magento | ProductService', () => {
       });
     });
 
-    describe('when the request URI does not have a file extension', () => {
+    describe('when the request URI has leading path segments', () => {
+      beforeEach(() => {
+        result = service.getByUrl(`foo/bar/baz/${uri}`);
+      });
+
+      it('should query the category with the truncated URI', () => {
+        result.subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+
+        expect(op.operation.variables.url).toEqual(uri);
+      });
+    });
+
+    describe('when the request URI does not have a file extension or leading path segments', () => {
 
       it('should query the category with the original URI', () => {
         result.subscribe();
