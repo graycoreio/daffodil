@@ -10,7 +10,7 @@ export class MockCategory implements DaffCategory {
 	name = faker.commerce.productMaterial();
 	description = faker.random.words(Math.floor(Math.random() * 20));
   breadcrumbs = [{
-    categoryId: String(faker.random.number({ min: 1, max: 100 })),
+    categoryId: faker.random.uuid(),
     categoryName: faker.commerce.productMaterial(),
     categoryLevel: faker.random.number({ min: 1, max: 5 }),
     categoryUrlKey: faker.commerce.productMaterial(),
