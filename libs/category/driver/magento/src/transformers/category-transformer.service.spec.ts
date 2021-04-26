@@ -44,12 +44,12 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
     beforeEach(() => {
       magentoCategory = {
-        id: Number(stubCategory.id),
+        uid: stubCategory.id,
         url_path: uri,
         url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{
-          category_id: Number(stubCategory.breadcrumbs[0].categoryId),
+          category_uid: stubCategory.breadcrumbs[0].categoryId,
           category_name: stubCategory.breadcrumbs[0].categoryName,
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey,
@@ -81,19 +81,19 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
     it('should return breadcrumbs in order of category_level', () => {
       magentoCategory.breadcrumbs = [{
-        category_id: 3,
+        category_uid: '3',
         category_name: 'category3',
         category_level: 3,
         category_url_key: 'urlKey3',
       },
       {
-        category_id: 1,
+        category_uid: '1',
         category_name: 'category1',
         category_level: 1,
         category_url_key: 'urlKey1',
       },
       {
-        category_id: 2,
+        category_uid: '2',
         category_name: 'category2',
         category_level: 2,
         category_url_key: 'urlKey2',

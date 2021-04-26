@@ -75,7 +75,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
         query: MagentoGetCategoryQuery,
-        variables: { filters: { ids: { eq: categoryRequest.id }}},
+        variables: { filters: { category_uid: { eq: categoryRequest.id }}},
       }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
         query: MagentoGetCategoryFilterTypes,
@@ -118,7 +118,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoGetProductsQuery,
         variables: this.getProductsQueryVariables({
           ...categoryRequest,
-          id: category.data.categoryList[0]?.id?.toString(),
+          id: category.data.categoryList[0]?.uid,
           kind: DaffCategoryRequestKind.ID,
         }),
       }).pipe(

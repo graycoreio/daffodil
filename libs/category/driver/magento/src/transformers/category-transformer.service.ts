@@ -17,7 +17,7 @@ export class DaffMagentoCategoryTransformerService {
 
   transform(category: MagentoCategory): DaffCategory {
     return {
-      id: String(category.id),
+      id: category.uid,
       uri: `${category.url_path}${category.url_suffix}`,
       name: category.name,
       description: category.description,
@@ -32,7 +32,7 @@ export class DaffMagentoCategoryTransformerService {
 
   private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffCategoryBreadcrumb {
     return {
-      categoryId: String(breadcrumb.category_id),
+      categoryId: breadcrumb.category_uid,
       categoryName: breadcrumb.category_name,
       categoryLevel: breadcrumb.category_level,
       categoryUrlKey: breadcrumb.category_url_key,

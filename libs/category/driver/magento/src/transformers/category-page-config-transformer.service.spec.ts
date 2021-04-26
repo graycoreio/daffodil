@@ -80,12 +80,12 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
     beforeEach(() => {
       category = {
-        id: Number(stubCategory.id),
+        uid: stubCategory.id,
         url_path: stubCategory.uri,
         url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{
-          category_id: Number(stubCategory.breadcrumbs[0].categoryId),
+          category_uid: stubCategory.breadcrumbs[0].categoryId,
           category_name: stubCategory.breadcrumbs[0].categoryName,
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey,
