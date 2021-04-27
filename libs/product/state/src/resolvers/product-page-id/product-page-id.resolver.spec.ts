@@ -80,7 +80,7 @@ describe('DaffProductPageIdResolver', () => {
       store.dispatch(new DaffProductPageLoadSuccess(stubProduct));
     });
 
-    it('should resolve when DaffCartLoadFailure is dispatched', () => {
+    it('should resolve when DaffProductPageLoadFailure is dispatched', () => {
       resolver.resolve(route.snapshot).subscribe(value => {
         expect(value).toEqual(true);
       });

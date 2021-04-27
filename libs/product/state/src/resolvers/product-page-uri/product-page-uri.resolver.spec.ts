@@ -64,7 +64,7 @@ describe('DaffProductPageUriResolver', () => {
       route = TestBed.inject(ActivatedRoute);
     }));
 
-    it('should dispatch a DaffProductPageLoadByUrl action with the correct product id', () => {
+    it('should dispatch a DaffProductPageLoadByUrl action with the correct product url', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
@@ -80,7 +80,7 @@ describe('DaffProductPageUriResolver', () => {
       store.dispatch(new DaffProductPageLoadSuccess(stubProduct));
     });
 
-    it('should resolve when DaffCartLoadFailure is dispatched', () => {
+    it('should resolve when DaffProductPageLoadFailure is dispatched', () => {
       resolver.resolve(route.snapshot).subscribe(value => {
         expect(value).toEqual(true);
       });
@@ -122,7 +122,7 @@ describe('DaffProductPageUriResolver', () => {
       route = TestBed.inject(ActivatedRoute);
     }));
 
-    it('should dispatch a DaffProductPageLoadByUrl action with the correct product id', () => {
+    it('should dispatch a DaffProductPageLoadByUrl action with the correct product url', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
