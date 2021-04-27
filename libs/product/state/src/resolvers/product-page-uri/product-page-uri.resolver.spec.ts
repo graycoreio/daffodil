@@ -51,7 +51,7 @@ describe('DaffProductPageUriResolver', () => {
           provideMockActions(() => actions$),
           {
             provide: ActivatedRoute,
-            useValue: { snapshot: { paramMap: { get: () => '123' }}},
+            useValue: { snapshot: { paramMap: { get: () => '123' }, toString: () => '123' }},
           },
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID },
         ],
@@ -109,7 +109,7 @@ describe('DaffProductPageUriResolver', () => {
           provideMockActions(() => actions$),
           {
             provide: ActivatedRoute,
-            useValue: { snapshot: { paramMap: { get: () => '123' }}},
+            useValue: { snapshot: { paramMap: { get: () => '123' }, toString: () => '123' }},
           },
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID },
         ],
