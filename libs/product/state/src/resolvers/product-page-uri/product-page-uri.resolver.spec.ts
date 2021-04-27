@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProductPageLoad,
+  DaffProductPageLoadByUrl,
   DaffProductPageLoadSuccess,
   DaffProductPageLoadFailure,
   daffProductReducers,
@@ -28,11 +28,11 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageResolver } from './product-page.resolver';
+import { DaffProductPageUriResolver } from './product-page-uri.resolver';
 
-describe('DaffProductPageResolver', () => {
+describe('DaffProductPageUriResolver', () => {
   const actions$: Observable<any> = null;
-  let resolver: DaffProductPageResolver;
+  let resolver: DaffProductPageUriResolver;
   let store: Store<DaffProductReducersState>;
   let ProductFactory: DaffProductFactory;
   let stubProduct: DaffProduct;
@@ -57,18 +57,18 @@ describe('DaffProductPageResolver', () => {
         ],
       });
 
-      resolver = TestBed.inject(DaffProductPageResolver);
+      resolver = TestBed.inject(DaffProductPageUriResolver);
       ProductFactory = TestBed.inject(DaffProductFactory);
       stubProduct = ProductFactory.create();
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
     }));
 
-    it('should dispatch a DaffProductPageLoad action with the correct product id', () => {
+    it('should dispatch a DaffProductPageLoadByUrl action with the correct product id', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffProductPageLoad('123'),
+        new DaffProductPageLoadByUrl(route.toString()),
       );
     });
 
@@ -115,18 +115,18 @@ describe('DaffProductPageResolver', () => {
         ],
       });
 
-      resolver = TestBed.inject(DaffProductPageResolver);
+      resolver = TestBed.inject(DaffProductPageUriResolver);
       ProductFactory = TestBed.inject(DaffProductFactory);
       stubProduct = ProductFactory.create();
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
     }));
 
-    it('should dispatch a DaffProductPageLoad action with the correct product id', () => {
+    it('should dispatch a DaffProductPageLoadByUrl action with the correct product id', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffProductPageLoad('123'),
+        new DaffProductPageLoadByUrl(route.toString()),
       );
     });
 

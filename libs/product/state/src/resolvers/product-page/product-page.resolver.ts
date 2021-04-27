@@ -1,32 +1,11 @@
-import { isPlatformBrowser } from '@angular/common';
-import {
-  Inject,
-  Injectable,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Resolve,
 } from '@angular/router';
-import { ofType } from '@ngrx/effects';
-import {
-  ActionsSubject,
-  Store,
-} from '@ngrx/store';
-import {
-  Observable,
-  of,
-} from 'rxjs';
-import {
-  mapTo,
-  take,
-} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import {
-  DaffProductPageActionTypes,
-  DaffProductPageLoad,
-} from '../../actions/product-page.actions';
-import { DaffProductReducersState } from '../../reducers/public_api';
+import { DaffProductPageIdResolver } from '../product-page-id/product-page-id.resolver';
 
 /**
  * Resolves product data for product pages, and will only resolve the url after a product page request succeeds or fails. This resolver expects a url
@@ -37,18 +16,10 @@ import { DaffProductReducersState } from '../../reducers/public_api';
 })
 export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
   constructor(
-		@Inject(PLATFORM_ID) private platformId: string,
-		private store: Store<DaffProductReducersState>,
-    private dispatcher: ActionsSubject,
-  ) {}
+    private productPageIdResolver: DaffProductPageIdResolver,
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    this.store.dispatch(new DaffProductPageLoad(route.paramMap.get('id')));
-
-    return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-      ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction, DaffProductPageActionTypes.ProductPageLoadFailureAction),
-      mapTo(true),
-      take(1),
-    );
+    return this.productPageIdResolver.resolve(route);
   }
 }
