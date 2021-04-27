@@ -73,8 +73,8 @@ export class DaffCategoryPageEffects<
 
   @Effect()
   loadCategoryPageByUri$: Observable<any> = this.actions$.pipe(
-    ofType<DaffCategoryPageLoadByUri>(DaffCategoryPageActionTypes.CategoryPageLoadByUriAction),
-    switchMap(action => this.driver.getByUri(action.request).pipe(
+    ofType(DaffCategoryPageActionTypes.CategoryPageLoadByUriAction),
+    switchMap((action: DaffCategoryPageLoadByUri) => this.driver.getByUri(action.request).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),
