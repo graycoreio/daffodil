@@ -10,6 +10,9 @@ import { DaffProductPageIdResolver } from '../product-page-id/product-page-id.re
 /**
  * Resolves product data for product pages, and will only resolve the url after a product page request succeeds or fails. This resolver expects a url
  * of the form `some/url/{id}` where `{id}` is the product id.
+ *
+ * @deprecated
+ * @see DaffProductPageIdResolver
  */
 @Injectable({
   providedIn: 'root',
