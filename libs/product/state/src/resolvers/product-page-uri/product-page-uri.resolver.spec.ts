@@ -68,7 +68,7 @@ describe('DaffProductPageUriResolver', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffProductPageLoadByUrl(route.toString()),
+        new DaffProductPageLoadByUrl(route.snapshot.toString()),
       );
     });
 
@@ -126,7 +126,7 @@ describe('DaffProductPageUriResolver', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffProductPageLoadByUrl(route.toString()),
+        new DaffProductPageLoadByUrl(route.snapshot.toString()),
       );
     });
 
