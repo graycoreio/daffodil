@@ -240,7 +240,7 @@ describe('DaffCategoryPageEffects', () => {
     let categoryRequest: DaffCategoryUriRequest;
 
     beforeEach(() => {
-      categoryRequest = { uri: stubCategory.id, kind: DaffCategoryPageRequestKind.URI };
+      categoryRequest = { uri: stubCategory.id, kind: DaffCategoryRequestKind.URI };
       categoryPageLoadAction = new DaffCategoryPageLoadByUri(categoryRequest);
       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
         category: stubCategory,
