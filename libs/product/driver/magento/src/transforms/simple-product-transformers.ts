@@ -18,7 +18,7 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
   return {
     type: DaffProductTypeEnum.Simple,
     id: product.sku,
-    url: product.url_key,
+    url: `${product.url_key}${product.url_suffix}`,
     name: product.name,
     price: getPrice(product),
     discount: getDiscount(product),

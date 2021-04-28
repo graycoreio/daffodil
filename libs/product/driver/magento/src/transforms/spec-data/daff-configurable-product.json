@@ -1,7 +1,7 @@
 {
 	"type": "configurable",
 	"id": "22",
-	"url": "url",
+	"url": "url.html",
 	"price": 23,
 	"discount": {
 		"amount": null,

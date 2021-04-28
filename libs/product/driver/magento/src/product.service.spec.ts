@@ -6,15 +6,16 @@ import {
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { Observable } from 'rxjs';
 
 import { schema } from '@daffodil/driver/magento';
+import { DaffProduct } from '@daffodil/product';
 import {
   GetProductQuery,
   MagentoSimpleProduct,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
-import { MAGENTO_PRODUCT_CONFIG_TOKEN } from './interfaces/public_api';
 import { DaffMagentoProductService } from './product.service';
 import { GetProductByUrlQuery } from './queries/get-product-by-url';
 
@@ -35,10 +36,6 @@ describe('Product | Magento | ProductService', () => {
             addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
-        },
-        {
-          provide: MAGENTO_PRODUCT_CONFIG_TOKEN,
-          useValue: 'http://testwebsite.com',
         },
       ],
     });
@@ -101,8 +98,16 @@ describe('Product | Magento | ProductService', () => {
   });
 
   describe('getByUrl | getting a single product by url', () => {
+    let uri: string;
+    let result: Observable<DaffProduct>;
+
+    beforeEach(() => {
+      uri = 'TESTING_URL';
+      result = service.getByUrl(uri);
+    });
+
     it('should return a DaffProduct', done => {
-      service.getByUrl('TESTING_URL').subscribe(r => {
+      result.subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
         expect(r.name).toBeDefined();
         done();
@@ -117,6 +122,45 @@ describe('Product | Magento | ProductService', () => {
             items: [stubSimpleProduct],
           },
         },
+      });
+    });
+
+    describe('when the request URI has a file extension', () => {
+      beforeEach(() => {
+        result = service.getByUrl(`${uri}.html`);
+      });
+
+      it('should query the category with the truncated URI', () => {
+        result.subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+
+        expect(op.operation.variables.url).toEqual(uri);
+      });
+    });
+
+    describe('when the request URI has leading path segments', () => {
+      beforeEach(() => {
+        result = service.getByUrl(`foo/bar/baz/${uri}`);
+      });
+
+      it('should query the category with the truncated URI', () => {
+        result.subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+
+        expect(op.operation.variables.url).toEqual(uri);
+      });
+    });
+
+    describe('when the request URI does not have a file extension or leading path segments', () => {
+
+      it('should query the category with the original URI', () => {
+        result.subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+
+        expect(op.operation.variables.url).toEqual(uri);
       });
     });
   });
