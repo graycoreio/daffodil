@@ -27,7 +27,7 @@ The raised property adds elevation to a card and can be defined by using the `ra
 <design-land-example-viewer-container example="raised-card"></design-land-example-viewer-container>
 
 ### Theming
-The color of a card background or border can be defined by using the `color` property. There's no default color property defined, and if one is not defined in its usage, the card background will display the base color of the application.
+The default background color of a card is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
 Supported colors: `primary | secondary | tertiary | white | black | theme | theme-contrast`
 

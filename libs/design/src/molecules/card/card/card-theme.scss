@@ -9,8 +9,8 @@
 
 	.daff-card {
 		$root: &;
-		background: $base;
-		color: daff-text-contrast($base);
+		background: daff-illuminate($base, $daff-gray, 1);
+		color: daff-text-contrast(daff-illuminate($base, $daff-gray, 1));
 
 		&--raised {
 			box-shadow: 0 14px 28px 0 rgba($black, 0.12), 0 4px 12px rgba($black, 0.06);
@@ -32,12 +32,12 @@
 		}
 
 		&.daff-theme {
-			background: daff-illuminate($base, $daff-gray, 1);
-			color: daff-text-contrast(daff-illuminate($base, $daff-gray, 1));
+			background: $base;
+			color: daff-text-contrast($base);
 		}
 
 		&.daff-theme-contrast {
-			background: daff-illuminate($base-contrast, $daff-gray, 1);
+			background: $base-contrast;
 			color: daff-text-contrast($base-contrast);
 		}
 
