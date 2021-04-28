@@ -22,7 +22,7 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { DaffCategoryPageRequestKind } from '@daffodil/category';
+import { DaffCategoryRequestKind } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
   DaffCategoryPageActionTypes,
@@ -50,7 +50,7 @@ export class DaffCategoryPageUriResolver implements Resolve<Observable<boolean>>
     this.store.dispatch(new DaffCategoryPageLoadByUri({
       uri: route.toString(),
       page_size: this.defaultCategoryPageSize,
-      kind: DaffCategoryPageRequestKind.URI,
+      kind: DaffCategoryRequestKind.URI,
     }));
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
