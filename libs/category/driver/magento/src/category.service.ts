@@ -101,7 +101,11 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
         query: MagentoGetCategoryQuery,
-        variables: { filters: { url_path: { eq: this.truncateUriExtension(categoryRequest.uri) }}},
+        variables: { filters: { url_path: {
+          eq: this.config.truncateUri
+            ? this.truncateUriExtension(categoryRequest.uri)
+            : categoryRequest.uri,
+        }}},
       }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
         query: MagentoGetCategoryFilterTypes,
