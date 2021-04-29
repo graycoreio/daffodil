@@ -199,65 +199,70 @@
 		&.daff-primary {
 			@include daff-stroked-button-theme-variant(
 				daff-color($primary),
-				0.08,
-				daff-color($primary)
+				daff-color($primary),
+				daff-color($primary, 70)
 			);
 		}
 
 		&.daff-secondary {
 			@include daff-stroked-button-theme-variant(
 				daff-color($secondary),
-				0.08,
-				daff-color($secondary)
+				daff-color($secondary),
+				daff-color($secondary, 70)
 			);
 		}
 
 		&.daff-tertiary {
 			@include daff-stroked-button-theme-variant(
 				daff-color($tertiary),
-				0.08,
-				daff-color($tertiary)
+				daff-color($tertiary),
+				daff-color($tertiary, 70)
 			);
 		}
 
 		&.daff-black {
 			@include daff-stroked-button-theme-variant(
 				$black,
-				0.08,
-				$black
+				$black,
+				daff-color($daff-gray, 100)
 			);
 		}
 
 		&.daff-white {
 			@include daff-stroked-button-theme-variant(
 				$white,
-				0.08,
-				$white
+				$white,
+				daff-color($daff-gray, 10)
 			);
 		}
 
 		&.daff-theme {
 			@include daff-stroked-button-theme-variant(
 				$base,
-				0.08,
-				$base
+				$base,
+				daff-illuminate($base, $daff-gray, 2)
 			);
 		}
 
 		&.daff-theme-contrast {
 			@include daff-stroked-button-theme-variant(
-				currentColor,
-				0.08,
-				currentColor
+				$base-contrast,
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 2)
 			);
 		}
 
 		&[disabled] {
 			@include daff-stroked-button-theme-variant(
 				daff-color($daff-gray, 30),
-				0,
-				daff-color($gray)
+				daff-color($gray),
+				transparent
 			);
+
+			&:hover {
+				background-color: transparent;
+				color: daff-color($gray);
+			}
 		}
 	}
 

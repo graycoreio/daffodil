@@ -1,20 +1,19 @@
 @mixin daff-stroked-button-theme-variant(
 	$base-color,
-	$background-opacity,
-	$font-color
+	$font-color,
+	$focus-color
 ) {
 	border: 1px solid $base-color;
 	color: $font-color;
+	background-color: transparent;
 
-	.daff-button__bg {
-		background-color: transparent;
+	&:hover {
+		background-color: $base-color;
+		color: daff-text-contrast($base-color);
 	}
 
-	&:hover,
 	&:focus {
-		.daff-button__bg {
-			background-color: $base-color;
-			opacity: $background-opacity;
-		}
+		background-color: $focus-color;
+		color: daff-text-contrast($focus-color);
 	}
 }
