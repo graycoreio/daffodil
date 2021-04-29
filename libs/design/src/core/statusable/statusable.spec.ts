@@ -58,11 +58,11 @@ describe('daffStatusMixin', () => {
 
     beforeEach(() => {
       instance.status = 'warn';
-      instance.status = 'error';
+      instance.status = 'danger';
     });
 
     it('should add the new status class', () => {
-      expect(instance.element.classList).toContain('daff-error');
+      expect(instance.element.classList).toContain('daff-danger');
     });
 
     it('should remove the provious status class', () => {

@@ -2,10 +2,10 @@ export interface DaffStatusable {
 	status: DaffStatus;
 }
 
-export type DaffStatus = 'warn' | 'error' | 'success';
+export type DaffStatus = 'warn' | 'danger' | 'success';
 
 export enum DaffStatusEnum {
   Warn = 'warn',
-  Error = 'error',
+  Danger = 'danger',
   Success = 'success'
 }
