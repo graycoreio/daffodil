@@ -16,6 +16,7 @@ import {
 } from '@daffodil/navigation/driver/magento';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
+import { GetCategoryTreeResponse } from './models/public_api';
 import { DaffMagentoNavigationService } from './navigation.service';
 
 describe('Driver | Magento | Navigation | NavigationService', () => {
@@ -60,6 +61,20 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
   describe('get | getting a single navigation', () => {
     it('should return an observable single navigation', done => {
       const navigation = navigationTreeFactory.create();
+      const response: GetCategoryTreeResponse = {
+        categoryList: [{
+          __typename: 'CategoryTree',
+          uid: navigation.id,
+          name: navigation.name,
+          include_in_menu: true,
+          level: 0,
+          position: 1,
+          product_count: navigation.total_products,
+          children_count: navigation.children_count,
+          children: [],
+          breadcrumbs: [],
+        }],
+      };
 
       navigationService.get(navigation.id).subscribe((result) => {
         expect(result.id).toEqual(navigation.id);
@@ -71,23 +86,10 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
 
       const op = controller.expectOne(addTypenameToDocument(daffMagentoGetCategoryTree(queryDepth)));
 
-      expect(op.operation.variables.filters).toEqual({ ids: { eq: navigation.id }});
+      expect(op.operation.variables.filters).toEqual({ category_uid: { eq: navigation.id }});
 
       op.flush({
-        data: {
-          categoryList: [{
-            __typename: 'CategoryTree',
-            id: navigation.id,
-            name: navigation.name,
-            include_in_menu: true,
-            level: 0,
-            position: 1,
-            product_count: navigation.total_products,
-            children_count: navigation.children_count,
-            children: [],
-            breadcrumbs: [],
-          }],
-        },
+        data: response,
       });
     });
 

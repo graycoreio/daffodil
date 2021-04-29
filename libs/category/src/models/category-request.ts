@@ -1,6 +1,7 @@
 import { ID } from '@daffodil/core';
 import { DaffSortDirectionEnum } from '@daffodil/core/state';
 
+import { DaffCategory } from './category';
 import { DaffCategoryFilterRequest } from './filters/public_api';
 
 /**
@@ -52,7 +53,7 @@ export type DaffCategoryRequest = DaffCategoryIdRequest | DaffCategoryUriRequest
  * A request used to retrieve a category by its uid.
  */
 export interface DaffCategoryIdRequest extends DaffCategoryBaseRequest {
-  id: ID;
+  id: DaffCategory['id'];
   kind: DaffCategoryRequestKind.ID;
 }
 
@@ -60,6 +61,10 @@ export interface DaffCategoryIdRequest extends DaffCategoryBaseRequest {
  * A request used to retrieve a category by its URI.
  */
 export interface DaffCategoryUriRequest extends DaffCategoryBaseRequest {
-  uri: string;
+  /**
+   * The qualified URI without domain.
+   * e.g. a/path/to/the/category.html
+   */
+  uri: DaffCategory['uri'];
   kind: DaffCategoryRequestKind.URI;
 };

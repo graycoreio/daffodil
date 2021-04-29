@@ -16,7 +16,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 
   transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageMetadata {
     return {
-      id: String(categoryResponse.category.id),
+      id: categoryResponse.category.uid,
       page_size: categoryResponse.page_info.page_size,
       current_page: categoryResponse.page_info.current_page,
       total_pages: categoryResponse.page_info.total_pages,

@@ -17,7 +17,7 @@ import {
 export class DaffMagentoNavigationTransformerService implements DaffNavigationTransformerInterface<DaffNavigationTree> {
 
   transform(node: CategoryNode): DaffNavigationTree {
-    const id = String(node.id);
+    const id = node.uid;
     return {
       id,
       path: id,
@@ -36,7 +36,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
 
   private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffNavigationBreadcrumb {
     return {
-      categoryId: String(breadcrumb.category_id),
+      categoryId: breadcrumb.category_uid,
       categoryName: breadcrumb.category_name,
       categoryLevel: breadcrumb.category_level,
       categoryUrlKey: breadcrumb.category_url_key,

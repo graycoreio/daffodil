@@ -19,7 +19,7 @@ export class DaffMagentoAppliedFiltersTransformService {
   transform(categoryId: DaffCategory['id'], daffFilters: DaffCategoryFilterRequest[]): MagentoCategoryFilters {
     const magentoFilters: MagentoCategoryFilters = {
       category_id: {
-        [MagentoCategoryFilterActionEnum.Equal]: String(categoryId),
+        [MagentoCategoryFilterActionEnum.Equal]: categoryId,
       },
     };
 

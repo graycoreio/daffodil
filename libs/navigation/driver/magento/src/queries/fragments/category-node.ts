@@ -6,12 +6,12 @@ import { DocumentNode } from 'graphql';
  * A category tree fragment with no nested children.
  */
 const categoryNodeFragment = `
-	id
+	uid
 	level
 	name
 	include_in_menu
 	breadcrumbs {
-		category_id
+		category_uid
 		category_name
 		category_level
 		category_url_key

@@ -197,8 +197,8 @@ describe('Driver | Magento | Category | CategoryService', () => {
 
     it('should return a category with the correct info', done => {
       result.subscribe(res => {
-        expect(res.category.id).toEqual(String(mockMagentoCategory.id));
-        expect(res.category.name).toEqual(String(mockMagentoCategory.name));
+        expect(res.category.id).toEqual(mockMagentoCategory.uid);
+        expect(res.category.name).toEqual(mockMagentoCategory.name);
         done();
       });
 
@@ -271,8 +271,8 @@ describe('Driver | Magento | Category | CategoryService', () => {
 
     it('should return a category with the correct info', fakeAsync(() => {
       result.subscribe(res => {
-        expect(res.category.id).toEqual(String(mockMagentoCategory.id));
-        expect(res.category.name).toEqual(String(mockMagentoCategory.name));
+        expect(res.category.id).toEqual(mockMagentoCategory.uid);
+        expect(res.category.name).toEqual(mockMagentoCategory.name);
         flush();
       });
 
@@ -363,7 +363,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       const productsOp = controller.expectOne(MagentoGetProductsQuery);
       productsOp.flushData(mockGetProductsResponse);
 
-      expect(productsOp.operation.variables.filter.category_id.eq).toEqual(String(mockMagentoCategory.id));
+      expect(productsOp.operation.variables.filter.category_id.eq).toEqual(mockMagentoCategory.uid);
 
       flush();
     }));

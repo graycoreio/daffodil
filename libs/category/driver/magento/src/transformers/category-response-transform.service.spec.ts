@@ -81,12 +81,12 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       magentoCategoryPageConfigurationTransformerServiceSpy.transform.and.returnValue(stubCategoryPageMetadata);
 
       const category: MagentoCategory = {
-        id: Number(stubCategory.id),
         url_path: uri,
         url_suffix: '.html',
+        uid: stubCategory.id,
         name: stubCategory.name,
         breadcrumbs: [{
-          category_id: Number(stubCategory.breadcrumbs[0].categoryId),
+          category_uid: stubCategory.breadcrumbs[0].categoryId,
           category_name: stubCategory.breadcrumbs[0].categoryName,
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey,

@@ -20,9 +20,9 @@ import { CategoryNode } from '@daffodil/navigation/driver/magento';
 
 import { getCategoryNodeFragment } from './category-node';
 
-const generateMagentoCategoryTree = (id): CategoryNode => ({
+const generateMagentoCategoryTree = (id: CategoryNode['uid']): CategoryNode => ({
   __typename: 'CategoryTree',
-  id,
+  uid: id,
   name: 'name',
   include_in_menu: true,
   level: 0,
@@ -60,22 +60,22 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
     apollo = TestBed.inject(Apollo);
     controller = TestBed.inject(ApolloTestingController);
 
-    childlessNavigationTree = generateMagentoCategoryTree(1);
+    childlessNavigationTree = generateMagentoCategoryTree('1');
     delete childlessNavigationTree.children;
     delete childlessNavigationTree.children_count;
     depth1NavigationTree = {
-      ...generateMagentoCategoryTree(2),
+      ...generateMagentoCategoryTree('2'),
       children_count: 1,
       children: [childlessNavigationTree],
     };
     depth3NavigationTree = {
-      ...generateMagentoCategoryTree(3),
+      ...generateMagentoCategoryTree('3'),
       children_count: 1,
       children: [{
-        ...generateMagentoCategoryTree(4),
+        ...generateMagentoCategoryTree('4'),
         children_count: 1,
         children: [{
-          ...generateMagentoCategoryTree(5),
+          ...generateMagentoCategoryTree('5'),
           children_count: 1,
           children: [childlessNavigationTree],
         }],
@@ -202,7 +202,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
   //This test only exists to test the workaround.
   it('should not use nested fragments', () => {
     const expectedFields = [
-      'id',
+      'uid',
       'level',
       'name',
       'include_in_menu',
