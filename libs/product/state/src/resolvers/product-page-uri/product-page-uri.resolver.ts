@@ -7,6 +7,7 @@ import {
 import {
   ActivatedRouteSnapshot,
   Resolve,
+  RouterStateSnapshot,
 } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
@@ -43,8 +44,10 @@ export class DaffProductPageUriResolver implements Resolve<Observable<boolean>> 
     private dispatcher: ActionsSubject,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    this.store.dispatch(new DaffProductPageLoadByUrl(route.toString()));
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    this.store.dispatch(
+      new DaffProductPageLoadByUrl(state.url),
+    );
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
       ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction, DaffProductPageActionTypes.ProductPageLoadFailureAction),
