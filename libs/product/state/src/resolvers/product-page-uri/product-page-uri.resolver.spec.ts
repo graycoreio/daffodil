@@ -89,7 +89,7 @@ describe('DaffProductPageUriResolver', () => {
     }));
 
     it('should dispatch a DaffProductPageLoadByUrl action with the correct product url', fakeAsync(() => {
-      const url = `/${path}?thing=test#weenwrji`
+      const url = `/${path}?thing=test#weenwrji`;
       router.navigateByUrl(url);
       tick();
 
@@ -168,7 +168,7 @@ describe('DaffProductPageUriResolver', () => {
     }));
 
     it('should dispatch a DaffProductPageLoadByUrl action with the correct product url', fakeAsync(() => {
-      const url = `/${path}?thing=test#weenwrji`
+      const url = `/${path}?thing=test#weenwrji`;
       router.navigateByUrl(url);
       tick();
 
