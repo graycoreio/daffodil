@@ -332,11 +332,11 @@
 		}
 
 		&.daff-theme-contrast {
-			@include daff-underline-button-theme-variant;
+			@include daff-underline-button-theme-variant($base-contrast);
 		}
 
 		&[disabled] {
-			@include daff-underline-button-theme-variant(daff-color($gray));
+			@include daff-underline-button-theme-variant(daff-illuminate($base, $daff-gray, 4));
 		}
 	}
 

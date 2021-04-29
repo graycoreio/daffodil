@@ -119,6 +119,10 @@
 		}
 	}
 
+	&:focus {
+		border-radius: 4px;
+	}
+
 	&::after {
 		bottom: 0;
 		content: '';
