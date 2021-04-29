@@ -7,6 +7,7 @@ import {
 import {
   ActivatedRouteSnapshot,
   Resolve,
+  RouterStateSnapshot,
 } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
@@ -46,9 +47,9 @@ export class DaffCategoryPageUriResolver implements Resolve<Observable<boolean>>
     private dispatcher: ActionsSubject,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     this.store.dispatch(new DaffCategoryPageLoadByUri({
-      uri: route.toString(),
+      uri: state.url,
       page_size: this.defaultCategoryPageSize,
       kind: DaffCategoryRequestKind.URI,
     }));
