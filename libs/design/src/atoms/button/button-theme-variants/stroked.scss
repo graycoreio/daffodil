@@ -3,6 +3,13 @@
 	$font-color,
 	$focus-color
 ) {
+	@if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
+		@error 'Stroked Button Hover State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	}
+
+	@if daff-contrast-ratio($focus-color, daff-text-contrast($focus-color)) < 4.5 {
+		@error 'Stroked Button Focus State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	}
 	border: 1px solid $base-color;
 	color: $font-color;
 	background-color: transparent;

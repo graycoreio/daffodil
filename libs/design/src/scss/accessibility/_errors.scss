@@ -1,0 +1,12 @@
+/* stylelint-disable */
+$wcag-aa-errors: (
+	'text-contrast': 'WCAG 2.0 level AA requires text and its background color to have a contrast ratio of at least 4.5:1',
+	'icon-contrast': 'WCAG 2.0 level AA requires the icon and its background color to have a contrast ratio of at least 3:1'
+);
+
+$wcag-aaa-errors: (
+	map-merge($wcag-aa-errors, (
+		'text-contrast': 'WCAG 2.0 level AA requires text and its background color to have a contrast ratio of at least 7:1',
+	))
+);
+/* stylelint-enable */
