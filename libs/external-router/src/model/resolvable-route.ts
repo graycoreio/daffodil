@@ -16,6 +16,11 @@ import { DaffExternalRouteType } from './route-type';
  */
 export interface DaffExternallyResolvableUrl {
   id: ID;
+  /**
+   * The URL that will be used for the path of the route inserted
+   * into the Angular routing config.
+   * Should not contain URL fragments, query parameters, or leading slashes.
+   */
 	url: string;
 	type: DaffExternalRouteType;
 }
