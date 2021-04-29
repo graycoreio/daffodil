@@ -48,7 +48,7 @@ function transformMagentoBundledProductItem(item: MagentoBundledProductItem): Da
 
 function transformMagentoBundledProductItemOption(option: MagentoBundledProductItemOption): DaffCompositeProductItemOption {
   return {
-    id: option.id.toString(),
+    id: option.uid.toString(),
     name: option.label,
     price: getPrice(option.product),
     images: [],

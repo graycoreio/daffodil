@@ -14,7 +14,7 @@ export enum MagentoProductStockStatusEnum {
  */
 export interface MagentoProduct {
 	__typename: string;
-  id: number;
+  uid: string;
   name: string;
   sku: string;
   url_key: string;
@@ -45,7 +45,7 @@ export interface MagentoProduct {
 		file: string;
 		position: number;
 		disabled: boolean;
-		id: number;
+		uid: string;
 	}[];
   short_description?: {
 		html: string;

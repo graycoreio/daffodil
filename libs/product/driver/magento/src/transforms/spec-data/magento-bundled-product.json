@@ -1,6 +1,6 @@
 {
 	"__typename": "BundleProduct",
-	"id": 213,
+	"uid": "213",
 	"image": {
 		"label": "image-label",
 		"url": "image-url"
@@ -37,14 +37,14 @@
 			"type": "select",
 			"options": [
 				{
-					"id": 1,
+					"uid": "1",
 					"label": "Option 1",
 					"price": 10,
 					"quantity": 1,
 					"is_default": true,
 					"product": {
 						"__typename": "name",
-						"id": 14,
+						"uid": "14",
 						"name": "name",
 						"image": {
 							"label": "image-label",
@@ -72,14 +72,14 @@
 					}
 				},
 				{
-					"id": 2,
+					"uid": "2",
 					"label": "Option 2",
 					"price": 12,
 					"quantity": 1,
 					"is_default": false,
 					"product": {
 						"__typename": "name",
-						"id": 24,
+						"uid": "24",
 						"name": "name",
 						"image": {
 							"label": "image-label",

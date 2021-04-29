@@ -9,7 +9,7 @@ export interface MagentoConfigurableProduct extends MagentoProduct {
 export interface MagentoConfigurableProductOption {
 	attribute_code:	string;
 	attribute_id:	string;
-	id:	number;
+	uid:	number;
 	label: string;
 	position:	number;
 	product_id:	number;

@@ -43,7 +43,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   ) {}
 
   /**
-   * Get an Observable of a DaffProduct by id.
+   * Get an Observable of a DaffProduct by uid.
    *
    * @param productId a product Id
    */

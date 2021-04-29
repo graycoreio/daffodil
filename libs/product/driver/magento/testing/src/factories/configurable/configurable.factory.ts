@@ -23,7 +23,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	  {
 	    attribute_code: 'color',
 	    attribute_id: faker.random.alphaNumeric(12),
-	    id: faker.random.uuid(),
+	    uid: faker.random.uuid(),
 	    label: 'Color',
 	    position: 0,
 	    product_id: faker.random.number({ min: 1, max: 1000 }),
@@ -54,7 +54,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    ],
 	    product: {
 	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      id: faker.random.uuid(),
+	      uid: faker.random.uuid(),
 	      url_key: faker.random.alphaNumeric(16),
 	      url_suffix: '.html',
 	      name: faker.random.word(),
@@ -98,7 +98,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    ],
 	    product: {
 	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      id: faker.random.uuid(),
+	      uid: faker.random.uuid(),
 	      url_key: faker.random.alphaNumeric(16),
 	      url_suffix: '.html',
 	      name: faker.random.word(),
@@ -141,7 +141,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    ],
 	    product: {
 	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      id: faker.random.uuid(),
+	      uid: faker.random.uuid(),
 	      url_key: faker.random.alphaNumeric(16),
 	      url_suffix: '.html',
 	      name: faker.random.word(),

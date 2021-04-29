@@ -54,7 +54,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
       const magentoConfigurableProductOption: MagentoConfigurableProductOption = {
         attribute_id: null,
         product_id: null,
-        id: null,
+        uid: null,
         position: daffConfigurableProduct.configurableAttributes[0].order,
         attribute_code: daffConfigurableProduct.configurableAttributes[0].code,
         label: daffConfigurableProduct.configurableAttributes[0].label,

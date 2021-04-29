@@ -12,7 +12,7 @@ export const magentoBundledProductFragment = gql`
 			type
 			options {
 				can_change_quantity
-				id
+				uid
 				is_default
 				label
 				position
@@ -20,7 +20,7 @@ export const magentoBundledProductFragment = gql`
 				price
 				quantity
 				product {
-					id
+					uid
 					name
 					sku
 					stock_status

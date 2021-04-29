@@ -22,7 +22,7 @@ export interface MagentoBundledProductItem {
 }
 
 export interface MagentoBundledProductItemOption {
-	id: number;
+	uid: string;
 	label: string;
 	price: number;
 	quantity: number;

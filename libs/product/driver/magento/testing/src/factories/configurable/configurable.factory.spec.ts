@@ -31,7 +31,7 @@ describe('Product | Testing | Factories | MagentoConfigurableProductFactory', ()
 
     it('should return a MagentoConfigurableProduct with all required fields defined', () => {
       expect(result.__typename).toEqual(MagentoProductTypeEnum.ConfigurableProduct);
-      expect(result.id).toBeDefined();
+      expect(result.uid).toBeDefined();
       expect(result.image.label).toBeDefined();
       expect(result.image.url).toBeDefined();
       expect(result.thumbnail.label).toBeDefined();
