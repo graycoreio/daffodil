@@ -46,7 +46,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffSizeMixin(DaffButtonBase, 'md'),'theme-contrast')));
+const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin(DaffButtonBase, 'md')))));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 

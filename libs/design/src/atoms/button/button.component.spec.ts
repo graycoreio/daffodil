@@ -149,18 +149,15 @@ describe('DaffButtonComponent', () => {
   });
 
   describe('using the color property of a button', () => {
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
+    });
+
     it('should add the class of the defined color to the host element', () => {
       wrapper.color = 'primary';
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
-
-    it('should set the default color to theme-contrast', () => {
-      wrapper.color = 'theme-contrast';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-theme-contrast')).toEqual(true);
     });
   });
 

@@ -12,13 +12,11 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 - `daff-stroked-button` -- Rectangular outlined button with no background color
 
 ## Theming
-The color of a button can be changed by using the `color` property. By default, the button uses the base-contrast color of the theme. This can be changed to one of the supported colors.
-- Supported colors: `primary | secondary | tertiary | black | white`
+The default color of a button is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
-## Accessbility
-Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default. The `<button>` element should be used when a clickable action is performed within the same page. The `<a>` element should be used to navigate users to a new page or to a different target on the same page.
+Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
-Buttons and links containing only icons (`<daff-icon-button>`) need to be given meaningful labels using `aria-label` or `aria-labelledby`.
+> For select button types, `white` and `theme` should be used on a darker background in order to have sufficient contrast.
 
 ## Usage Example
 ``` html
