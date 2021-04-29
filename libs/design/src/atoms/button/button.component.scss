@@ -8,6 +8,10 @@
 	position: relative;
 	text-align: center;
 	text-decoration: none;
+
+	&[disabled] {
+		cursor: not-allowed;
+	}
 }
 
 @mixin daff-button-animation($translate: 1px, $hover-animation: false) {
@@ -50,16 +54,34 @@
 	}
 }
 
-.daff-button {
+.daff-button,
+.daff-raised-button,
+.daff-stroked-button {
 	@include daff-button();
 	@include daff-button-animation();
 	@include prefix-suffix();
-}
+	min-width: 96px;
 
-.daff-raised-button {
-	@include daff-button();
-	@include daff-button-animation(1px, true);
-	@include prefix-suffix();
+	&.daff-sm {
+		font-size: $small-font-size;
+		line-height: 2rem;
+		height: 2rem;
+		padding: 0 1rem;
+	}
+
+	&.daff-md {
+		font-size: $normal-font-size;
+		line-height: 3rem;
+		height: 3rem;
+		padding: 0 1.5rem;
+	}
+
+	&.daff-lg {
+		font-size: $medium-font-size;
+		line-height: 3.5rem;
+		height: 3.5rem;
+		padding: 0 1.5rem;
+	}
 }
 
 .daff-icon-button {
@@ -185,32 +207,5 @@
 
 	to {
 		transform: translateX(0);
-	}
-}
-
-.daff-button,
-.daff-raised-button,
-.daff-stroked-button {
-	min-width: 96px;
-
-	&.daff-sm {
-		font-size: $small-font-size;
-		line-height: 2rem;
-		height: 2rem;
-		padding: 0 1rem;
-	}
-
-	&.daff-md {
-		font-size: $normal-font-size;
-		line-height: 3rem;
-		height: 3rem;
-		padding: 0 1.5rem;
-	}
-
-	&.daff-lg {
-		font-size: $medium-font-size;
-		line-height: 3.5rem;
-		height: 3.5rem;
-		padding: 0 1.5rem;
 	}
 }

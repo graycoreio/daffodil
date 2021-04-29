@@ -11,10 +11,12 @@
 	&:focus {
 		background-color: $hover-color;
 		border: 1px solid $hover-color;
+		color: daff-text-contrast($hover-color);
 	}
 
 	&:active {
 		background-color: $active-color;
 		border: 1px solid $active-color;
+		color: daff-text-contrast($active-color);
 	}
 }
