@@ -14,7 +14,7 @@
 	}
 }
 
-@mixin daff-button-animation($translate: 1px, $hover-animation: false) {
+@mixin daff-button-animation() {
 	transition:
 		background-color 300ms,
 		border-color 300ms,
@@ -22,21 +22,6 @@
 		color 300ms,
 		transform 300ms;
 	will-change: background-color, border-color, box-shadow, color;
-
-	@if $hover-animation {
-		&:hover {
-			transform: translateY(-$translate);
-		}
-	}
-
-	&:active {
-		transform: translateY($translate);
-	}
-
-	&[disabled] {
-		cursor: not-allowed;
-		transform: none;
-	}
 }
 
 @mixin prefix-suffix {

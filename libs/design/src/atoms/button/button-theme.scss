@@ -95,39 +95,72 @@
 		}
 
 		&.daff-primary {
-			@include daff-raised-button-theme-variant(daff-color($primary));
+			@include daff-raised-button-theme-variant(
+				daff-color($primary),
+				daff-color($primary, 70),
+				daff-color($primary)
+			);
 		}
 
 		&.daff-secondary {
-			@include daff-raised-button-theme-variant(daff-color($secondary));
+			@include daff-raised-button-theme-variant(
+				daff-color($secondary),
+				daff-color($secondary, 70),
+				daff-color($secondary)
+			);
 		}
 
 		&.daff-tertiary {
-			@include daff-raised-button-theme-variant(daff-color($tertiary));
+			@include daff-raised-button-theme-variant(
+				daff-color($tertiary),
+				daff-color($tertiary, 70),
+				daff-color($tertiary)
+			);
 		}
 
 		&.daff-black {
-			@include daff-raised-button-theme-variant($black);
+			@include daff-raised-button-theme-variant(
+				$black,
+				daff-color($gray, 100),
+				daff-color($gray)
+			);
 		}
 
 		&.daff-white {
-			@include daff-raised-button-theme-variant($white);
+			@include daff-raised-button-theme-variant(
+				$white,
+				daff-color($gray, 10),
+				daff-color($gray)
+			);
 		}
 
 		&.daff-theme {
-			@include daff-raised-button-theme-variant($base);
+			@include daff-raised-button-theme-variant(
+				$base,
+				daff-illuminate($base, $daff-gray, 1),
+				$base
+			);
 		}
 
 		&.daff-theme-contrast {
-			@include daff-raised-button-theme-variant($base-contrast);
+			@include daff-raised-button-theme-variant(
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 1),
+				$base-contrast
+			);
 		}
 
 		&[disabled] {
-			@include daff-raised-button-theme-variant(daff-color($daff-gray, 30));
+			@include daff-raised-button-theme-variant(
+				daff-color($daff-gray, 30),
+				daff-color($daff-gray, 30),
+				daff-color($gray)
+			);
 			color: daff-color($gray);
 
 			&:hover {
 				box-shadow: 0 3px 5px rgba($black, 0.12), 0 1px 3px rgba($black, 0.08);
+				color: daff-color($gray);
 			}
 		}
 	}
@@ -301,7 +334,6 @@
 	}
 
 	.daff-button,
-	.daff-raised-button,
 	.daff-stroked-button,
 	.daff-underline-button,
 	.daff-icon-button {

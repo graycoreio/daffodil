@@ -1,5 +1,38 @@
-@mixin daff-raised-button-theme-variant($base-color) {
+@mixin daff-raised-button-theme-variant(
+	$base-color,
+	$active-color,
+	$focus-shadow
+) {
 	background-color: $base-color;
 	border: 1px solid $base-color;
+	box-shadow:
+		0 3px 5px rgba($black, 0.12),
+		0 1px 3px rgba($black, 0.08);
 	color: daff-text-contrast($base-color);
+
+	&:hover {
+		background-color: $base-color;
+		border: 1px solid $base-color;
+	}
+
+	&:hover,
+	&:active {
+		box-shadow:
+			0 6px 12px rgba($black, 0.12),
+			0 4px 6px rgba($black, 0.1);
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow:
+			0 0 0 4px rgba($focus-shadow, 0.3),
+			0 6px 12px rgba($black, 0.12),
+			0 4px 6px rgba($black, 0.1);
+	}
+
+	&:active {
+		background-color: $active-color;
+		border: 1px solid $active-color;
+		color: daff-text-contrast($active-color);
+	}
 }
