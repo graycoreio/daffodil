@@ -6,6 +6,8 @@ import { RaisedButtonComponent } from './raised-button/raised-button.component';
 export { RaisedButtonModule } from './raised-button/raised-button.module';
 import { SizeableButtonComponent } from './sizeable-button/sizeable-button.component';
 export { SizeableButtonModule } from './sizeable-button/sizeable-button.module';
+import { StatusableButtonComponent } from './statusable-button/statusable-button.component';
+export { StatusableButtonModule } from './statusable-button/statusable-button.module';
 import { StrokedButtonComponent } from './stroked-button/stroked-button.component';
 export { StrokedButtonModule } from './stroked-button/stroked-button.module';
 import { UnderlineButtonComponent } from './underline-button/underline-button.component';
@@ -16,6 +18,7 @@ export const BUTTON_EXAMPLES = [
   IconButtonComponent,
   RaisedButtonComponent,
   SizeableButtonComponent,
+  StatusableButtonComponent,
   StrokedButtonComponent,
   UnderlineButtonComponent,
 ];

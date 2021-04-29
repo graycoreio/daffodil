@@ -10,6 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffPalette } from '../../core/colorable/colorable';
+import { DaffStatus } from '../../core/statusable/statusable';
 import {
   DaffButtonComponent,
   DaffButtonSize,
@@ -17,22 +18,23 @@ import {
 
 @Component({
   template: `
-    <a daff-button [color]="color" [size]="size">Link Daff Button</a>
-    <a daff-stroked-button [color]="color" [size]="size">Link Daff Stroked Button</a>
-    <a daff-raised-button [color]="color" [size]="size">Link Daff Raised Button</a>
-    <a daff-icon-button [color]="color" [size]="size">Link Daff Icon Button</a>
-    <a daff-underline-button [color]="color" [size]="size">Link Daff Underline Button</a>
-    <button daff-button [color]="color" [size]="size">Button Daff Button</button>
-    <button daff-stroked-button [color]="color" [size]="size">Button Daff Stroked Button</button>
-    <button daff-raised-button [color]="color" [size]="size">Button Daff Raised Button</button>
-    <button daff-icon-button [color]="color" [size]="size">Button Daff Icon Button</button>
-    <button daff-underline-button [color]="color" [size]="size">Button Daff Underline Button</button>
+    <a daff-button [color]="color" [size]="size" [status]="status">Link Daff Button</a>
+    <a daff-stroked-button [color]="color" [size]="size" [status]="status">Link Daff Stroked Button</a>
+    <a daff-raised-button [color]="color" [size]="size" [status]="status">Link Daff Raised Button</a>
+    <a daff-icon-button [color]="color" [size]="size" [status]="status">Link Daff Icon Button</a>
+    <a daff-underline-button [color]="color" [size]="size" [status]="status">Link Daff Underline Button</a>
+    <button daff-button [color]="color" [size]="size" [status]="status">Button Daff Button</button>
+    <button daff-stroked-button [color]="color" [size]="size" [status]="status">Button Daff Stroked Button</button>
+    <button daff-raised-button [color]="color" [size]="size" [status]="status">Button Daff Raised Button</button>
+    <button daff-icon-button [color]="color" [size]="size" [status]="status">Button Daff Icon Button</button>
+    <button daff-underline-button [color]="color" [size]="size" [status]="status">Button Daff Underline Button</button>
   `,
 })
 
 class WrapperComponent {
   color: DaffPalette;
   size: DaffButtonSize;
+  status: DaffStatus;
 }
 
 describe('DaffButtonComponent', () => {
@@ -41,6 +43,7 @@ describe('DaffButtonComponent', () => {
   let de: DebugElement;
   let buttonDE: DebugElement;
   let anchorDE: DebugElement;
+  let component: DaffButtonComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -56,6 +59,7 @@ describe('DaffButtonComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('[daff-button]'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -171,6 +175,19 @@ describe('DaffButtonComponent', () => {
 
     it('should set the default size to md', () => {
       expect(de.nativeElement.classList.contains('daff-md')).toEqual(true);
+    });
+  });
+
+  describe('using the status property of a button', () => {
+    it('should not set a default status', () => {
+      expect(component.status).toBeFalsy();
+    });
+
+    it('should add the class of the defined status to the host element', () => {
+      wrapper.status = 'warn';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
     });
   });
 });

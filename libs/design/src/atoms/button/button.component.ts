@@ -27,6 +27,11 @@ import {
   DaffSizeLargeType,
 } from '../../core/sizeable/sizeable';
 import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
+import {
+  DaffStatusable,
+  DaffStatus,
+} from '../../core/statusable/statusable';
+import { daffStatusMixin } from '../../core/statusable/statusable-mixin';
 
 /**
  * List of classes to add to DaffButtonComponent instances based on host attributes to style as different variants.
@@ -84,9 +89,10 @@ enum DaffButtonTypeEnum {
 
 export class DaffButtonComponent
   extends _daffButtonBase
-  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize> {
+  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize>, DaffStatusable {
     @Input() color: DaffPalette;
 		@Input() size: DaffButtonSize;
+    @Input() status: DaffStatus;
 
     private buttonType: DaffButtonType;
 
@@ -99,7 +105,6 @@ export class DaffButtonComponent
         }
       }
     }
-
 
     /**
      * @docs-private

@@ -11,6 +11,21 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 - `daff-raised-button` - Rectangular contained button with background color and elevation
 - `daff-stroked-button` -- Rectangular outlined button with no background color
 
+### Basic Button
+<design-land-example-viewer-container example="basic-button"></design-land-example-viewer-container>
+
+### Stroked Button
+<design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
+
+### Raised Button
+<design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
+
+### Icon Button
+<design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
+
+### Underline Button
+<design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
+
 ## Theming
 The default color of a button is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
@@ -18,59 +33,21 @@ Supported colors: `primary | secondary | tertiary | black | white | theme | them
 
 > For select button types, `white` and `theme` should be used on a darker background in order to have sufficient contrast.
 
-## Usage Example
-``` html
-<h4>Basic Button</h4>
-<daff-button-set>
-  <button type="button" daff-button color="primary">Primary</button>
-  <button type="button" daff-button color="secondary">Secondary</button>
-  <button type="button" daff-button color="black">Black</button>
-  <button type="button" daff-button color="white">White</button>
-  <button type="button" daff-button color="caution">Caution</button>
-  <a href="#" href="#" daff-button>Link</a>
-  <button type="button" daff-button disabled>Disabled</button>
-</daff-button-set>
+## Status Indicators
+Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context.
 
-<h4>Icon Button</h4>
-<daff-button-set>
-  <button type="button" aria-label="Icon button with a heart icon" daff-icon-button color="primary"><fa-icon [icon]="faHeart"></fa-icon></button>
-  <button type="button" aria-label="Icon button with a heart icon" daff-icon-button color="secondary"><fa-icon [icon]="faHeart"></fa-icon></button>
-  <button type="button" aria-label="Icon button with a heart icon" daff-icon-button color="black"><fa-icon [icon]="faHeart"></fa-icon></button>
-  <button type="button" aria-label="Icon button with a heart icon" daff-icon-button color="white"><fa-icon [icon]="faHeart"></fa-icon></button>
-  <button type="button" aria-label="Icon button with a heart icon" daff-icon-button color="caution"><fa-icon [icon]="faHeart"></fa-icon></button>
-  <button type="button" aria-label="Icon button with a heart icon" daff-icon-button disabled><fa-icon [icon]="faHeart"></fa-icon></button>
-</daff-button-set>
+Supported statuses: `warn | danger | success`
 
-<h4>Raised Button</h4>
-<daff-button-set>
-  <button type="button" daff-raised-button color="primary">Primary</button>
-  <button type="button" daff-raised-button color="secondary">Secondary</button>
-  <button type="button" daff-raised-button color="black">Black</button>
-  <button type="button" daff-raised-button color="white">White</button>
-  <button type="button" daff-raised-button color="caution">Caution</button>
-  <a href="#" daff-raised-button>Link</a>
-  <button type="button" daff-raised-button disabled>Disabled</button>
-</daff-button-set>
+<design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
 
-<h4>Stroked Button</h4>
-<daff-button-set>
-  <button type="button" daff-stroked-button color="primary">Primary</button>
-  <button type="button" daff-stroked-button color="secondary">Secondary</button>
-  <button type="button" daff-stroked-button color="black">Black</button>
-  <button type="button" daff-stroked-button color="white">White</button>
-  <button type="button" daff-stroked-button color="caution">Caution</button>
-  <a href="#" daff-stroked-button>Link</a>
-  <button type="button" daff-stroked-button disabled>Disabled</button>
-</daff-button-set>
+## Sizes
+The size of a button can be changed by using the `size` property. The size of all the button variants will default to `md` if no size is defined. This can be changed to one of the supported sizes.
 
-<h4>Underline Button</h4>
-<daff-button-set>
-  <button type="button" daff-underline-button color="primary">Primary</button>
-  <button type="button" daff-underline-button color="secondary">Secondary</button>
-  <button type="button" daff-underline-button color="black">Black</button>
-  <button type="button" daff-underline-button color="white">White</button>
-  <button type="button" daff-underline-button color="caution">Caution</button>
-  <a href="#" daff-underline-button>Link</a>
-  <button type="button" daff-underline-button disabled>Disabled</button>
-</daff-button-set>
-```
+Supported Sizes: `sm | md | lg`
+
+<design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
+
+## Accessbility
+Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default. The `<button>` element should be used when a clickable action is performed within the same page. The `<a>` element should be used to navigate users to a new page or to a different target on the same page.
+
+Buttons and links containing only icons (`<daff-icon-button>`) need to be given meaningful labels using `aria-label` or `aria-labelledby`.
