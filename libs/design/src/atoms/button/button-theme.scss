@@ -169,24 +169,24 @@
 		&.daff-primary {
 			@include daff-icon-button-theme-variant(
 				daff-color($primary),
-				daff-color($primary, 80),
-				daff-color($primary, 90)
+				daff-color($primary, 70),
+				daff-color($primary, 80)
 			);
 		}
 
 		&.daff-secondary {
 			@include daff-icon-button-theme-variant(
 				daff-color($secondary),
-				daff-color($secondary, 80),
-				daff-color($secondary, 90)
+				daff-color($secondary, 70),
+				daff-color($secondary, 80)
 			);
 		}
 
 		&.daff-tertiary {
 			@include daff-icon-button-theme-variant(
 				daff-color($tertiary),
-				daff-color($tertiary, 80),
-				daff-color($tertiary, 90)
+				daff-color($tertiary, 70),
+				daff-color($tertiary, 80)
 			);
 		}
 
@@ -194,7 +194,7 @@
 			@include daff-icon-button-theme-variant(
 				$black,
 				daff-color($daff-gray, 100),
-				daff-color($daff-gray, 90)
+				daff-color($daff-gray, 80)
 			);
 		}
 
@@ -215,16 +215,23 @@
 		}
 
 		&.daff-theme-contrast {
-			@include daff-icon-button-theme-variant();
+			@include daff-icon-button-theme-variant(
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 1)
+				daff-illuminate($base-contrast, $daff-gray, 2)
+			);
 		}
 
 		&[disabled] {
 			@include daff-icon-button-theme-variant(
-				daff-color($gray),
-				daff-color($gray),
-				daff-color($gray)
+				daff-illuminate($base, $daff-gray, 4),
+				daff-illuminate($base, $daff-gray, 4),
+				daff-illuminate($base, $daff-gray, 4)
 			);
-			color: daff-color($gray);
+
+			&:hover {
+				color: daff-illuminate($base, $daff-gray, 4);
+			}
 		}
 	}
 
