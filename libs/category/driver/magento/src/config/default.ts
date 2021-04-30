@@ -1,8 +1,8 @@
-import { DaffCategoryMagentoDriverConfig } from '../interfaces/public_api';
+import { MAGENTO_TRUNCATE_FILE_EXTENSION_REGEX } from '@daffodil/driver/magento';
 
-export const MAGENTO_CATEGORY_URI_TRUNCATION_REGEX = /(?<uri>.*)\.(.*)$/;
+import { DaffCategoryMagentoDriverConfig } from '../interfaces/public_api';
 
 export const MAGENTO_CATEGORY_CONFIG_DEFAULT: DaffCategoryMagentoDriverConfig = {
   truncateUri: true,
-  truncatedUriMatcher: MAGENTO_CATEGORY_URI_TRUNCATION_REGEX,
+  truncatedUriMatcher: MAGENTO_TRUNCATE_FILE_EXTENSION_REGEX,
 };
