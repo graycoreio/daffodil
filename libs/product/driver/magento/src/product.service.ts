@@ -9,7 +9,7 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MAGENTO_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX } from '@daffodil/driver/magento';
+import { DAFF_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX } from '@daffodil/driver';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
@@ -86,6 +86,6 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   private truncateUriLeadingPathSegments(uri: string): string {
-    return uri.match(MAGENTO_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX)?.groups.uri || uri;
+    return uri.match(DAFF_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX)?.groups.uri || uri;
   }
 }
