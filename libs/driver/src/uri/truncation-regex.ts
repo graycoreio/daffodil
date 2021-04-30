@@ -17,3 +17,10 @@ export const DAFF_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX = /(.*\/)?(?<uri>.+)$/;
  * i.e. /foo/bar/baz.html -> foo/bar/baz.html
  */
 export const DAFF_TRUNCATE_LEADING_SLASH_REGEX = /^\/?(?<uri>.+)$/;
+
+/**
+ * A regex to truncate query parameters and fragments from a URI,
+ * capturing the truncated section in the `uri` group.
+ * i.e. /foo/bar/baz.html?thing=test#id -> /foo/bar/baz.html
+ */
+export const DAFF_TRUNCATE_QUERY_FRAGMENT_REGEX = /(?<uri>[^?#]+)[?#](.*)$/;
