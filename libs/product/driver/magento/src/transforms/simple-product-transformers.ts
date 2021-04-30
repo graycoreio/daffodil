@@ -35,6 +35,7 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
  * A function for null checking an object.
  */
 function getPrice(product: MagentoProduct): number {
+  // TODO: optional chaining
   return product.price_range &&
 		product.price_range.maximum_price &&
 		product.price_range.maximum_price.regular_price &&
@@ -43,6 +44,7 @@ function getPrice(product: MagentoProduct): number {
 }
 
 function getDiscount(product: MagentoProduct): DaffProductDiscount {
+  // TODO: optional chaining
   return product.price_range &&
 		product.price_range.maximum_price &&
 		product.price_range.maximum_price.discount

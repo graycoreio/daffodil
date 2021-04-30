@@ -9,6 +9,7 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { MAGENTO_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
@@ -23,12 +24,6 @@ import {
   transformMagentoProduct,
   transformManyMagentoProducts,
 } from './transforms/product-transformers';
-
-/**
- * A regex to truncate leading path segments from a URI, capturing the last segment in the uri group.
- * i.e. foo/bar/baz.html -> baz.html
- */
-const TRUNCATE_URI_LEADING_PATH_SEGMENTS_REGEX = /.*\/(?<uri>.*)$/;
 
 /**
  * A service for making magento apollo queries for products of type, DaffProduct.
@@ -91,6 +86,6 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   private truncateUriLeadingPathSegments(uri: string): string {
-    return uri.match(TRUNCATE_URI_LEADING_PATH_SEGMENTS_REGEX)?.groups.uri || uri;
+    return uri.match(MAGENTO_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX)?.groups.uri || uri;
   }
 }
