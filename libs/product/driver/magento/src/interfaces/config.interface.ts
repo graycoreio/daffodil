@@ -27,5 +27,5 @@ export interface DaffProductMagentoDriverConfig {
    * An optional custom function to truncate the URI.
    * Defaults to capture everything before the last dot: `.`.
    */
-  uriTruncater?: (string) => string;
+  uriTruncationStrategy?: (string) => string;
 }

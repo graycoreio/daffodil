@@ -103,7 +103,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoGetCategoryQuery,
         variables: { filters: { url_path: {
           eq: this.config.truncateUri
-            ? this.config.uriTruncater(categoryRequest.uri)
+            ? this.config.uriTruncationStrategy(categoryRequest.uri)
             : categoryRequest.uri,
         }}},
       }),

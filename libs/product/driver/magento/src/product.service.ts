@@ -60,7 +60,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     return this.apollo.query<any>({
       query: GetProductByUrlQuery,
       variables: {
-        url: daffUriTruncateLeadingPathSegments(this.config.uriTruncater(url)),
+        url: daffUriTruncateLeadingPathSegments(this.config.uriTruncationStrategy(url)),
       },
     }).pipe(
       map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
