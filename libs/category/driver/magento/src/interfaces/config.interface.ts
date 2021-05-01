@@ -19,9 +19,8 @@ export interface DaffCategoryMagentoDriverConfig {
    */
   truncateUri?: boolean;
   /**
-   * The regex used to truncate the URI.
-   * The truncated URI should be a capture group named `uri`.
+   * An optional custom function to truncate the URI.
    * Defaults to capture everything before the last dot: `.`.
    */
-  truncatedUriMatcher?: RegExp;
+  uriTruncater?: (string) => string;
 }

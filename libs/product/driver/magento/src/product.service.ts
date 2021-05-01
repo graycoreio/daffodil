@@ -9,7 +9,10 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DAFF_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX } from '@daffodil/driver';
+import {
+  DAFF_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX,
+  daffUriTruncateLeadingPathSegments,
+} from '@daffodil/driver';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
@@ -57,7 +60,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     return this.apollo.query<any>({
       query: GetProductByUrlQuery,
       variables: {
-        url: this.truncateUriLeadingPathSegments(this.truncateUriExtension(url)),
+        url: daffUriTruncateLeadingPathSegments(this.config.uriTruncater(url)),
       },
     }).pipe(
       map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
@@ -79,13 +82,5 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   //todo: move to a different bestsellers module.
   getBestSellers(): Observable<DaffProduct[]> {
     return of(null);
-  }
-
-  private truncateUriExtension(uri: string): string {
-    return uri.match(this.config.truncatedUriMatcher)?.groups.uri || uri;
-  }
-
-  private truncateUriLeadingPathSegments(uri: string): string {
-    return uri.match(DAFF_TRUNCATE_LEADING_PATH_SEGMENTS_REGEX)?.groups.uri || uri;
   }
 }
