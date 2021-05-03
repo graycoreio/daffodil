@@ -1,33 +1,24 @@
 <daff-article>
   <h1>Hero</h1>
-  <p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transcluding any content and optionally including a predefined <code>title</code> and <code>subtitle</code>.</p>
+  <p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transclusion of any content and includes predefined <code>tagline</code>, <code>title</code> and <code>subtitle</code> styles.</p>
 
   <h2>Supported Content Types</h2>
-  A <code>&lt;daff-hero&gt;</code> transcludes:
+  A <code>&lt;daff-hero&gt;</code> can transclude:
   <ul>
-    <li><code>[daffHeroTagline]</code></li>
-    <li><code>[daffHeroTitle]</code></li>
-    <li><code>[daffHeroSubtitle]</code></li>
+    <li><code>[daffHeroTagline]</code> - Hero tagline</li>
+    <li><code>[daffHeroTitle]</code> - Hero title, used with the <code>&lt;h1&gt;</code> tag</li>
+    <li><code>[daffHeroSubtitle]</code> - Hero subtitle, used with the <code>&lt;h2&gt;</code> tag</li>
     <li>Any additional components</li>
   </ul>
 
-  <h3>Tagline</h3>
-  <p>Hero tagline is used by adding <code>daffHeroTagline</code> to a <code>&lt;p&gt;</code> or <code>&lt;div&gt;</code> tag.</p>
-
-  <h3>Title</h3>
-  <p>Hero title is used by adding <code>daffHeroTitle</code> to a <code>&lt;h1&gt;</code> tag.</p>
-
-  <h3>Subtitle</h3>
-  <p>Hero subtitle is used by adding <code>daffHeroSubtitle</code> to a <code>&lt;h2&gt;</code> tag.</p>
-
   <h3>Theming</h3>
-  <p>The hero's background color is defined by using the <code>color</code> property. By default, the color is set to <code>theme-contrast</code>. This can be changed to one of the supported colors.</p>
+  <p>The default background color of a hero is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
   <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
 
   <design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
 
   <h2>Size</h2>
-  <p>The <code>size</code> property will be deprecated in v1.0.0. The <code>compact</code> value will be replaced by the <code>DaffCompactable</code> interface.</p>
+  <p>The <code>size</code> property will be deprecated in v1.0.0. <code>compact</code> will be replaced by the <code>DaffCompactable</code> interface.</p>
 
   <h2>Layout</h2>
   <p>The <code>layout</code> property will be deprecated in v1.0.0</p>

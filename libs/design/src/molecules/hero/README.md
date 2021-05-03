@@ -1,38 +1,22 @@
 # Hero
-`DaffHeroComponent` is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transcluding any content and optionally including a predefined `tagline`, `title` and `subtitle`.
+`DaffHeroComponent` is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transclusion of any content and includes predefined `tagline`, `title` and `subtitle` styles.
 
 ## Supported Content Types
-A `daff-hero` transcludes:
-- `[daffHeroTitle]`
-- `[daffHeroSubtitle]`
+A `daff-hero` can transclude:
+- `[daffHeroTagline]` - Hero tagline
+- `[daffHeroTitle]` - Hero title, used with the `<h1>` tag
+- `[daffHeroSubtitle]` - Hero subtitle, used with the `<h2>` tag
 - Any additional components
 
-### Title
-- Hero title is used by adding `<daffHeroTitle>` to a `<h1>` tag.
-
-### Subtitle
-Hero subtitle is used by adding `daffHeroSubtitle` to a `<h2>` tag.
-
 ## Theming
-The hero's background color is defined by using the `color` property. By default, the color is set to `theme`. This can be changed to one of the supported colors.
+The default background color of a hero is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
-Supported colors: `primary, secondary, tertiary, black, white, theme, and theme-contrast`
+Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
-## Colors
-- To define a hero background color, add `color="[value]"` to the hero tag.
-- Values: `primary`, `secondary`, `tertiary`, and `black`, and `white`
+<design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
 
 ## Size
-- The `size` property will be deprecated in v1.0.0
+- The `size` property will be deprecated in v1.0.0. `compact` will be replaced by the `DaffCompactable` interface.
 
 ## Layout
-- The `size` property will be deprecated in v1.0.0
-
-
-## Usage
-```
-<daff-hero color="primary">
-  <h1 daffHeroTitle>Hero Title</h1>
-  <h2 daffHeroSubtitle>Hero subtitle</h2>
-</daff-hero>
-```
+- The `layout` property will be deprecated in v1.0.0

@@ -1,14 +1,12 @@
 <daff-hero [color]="colorControl.value">
-	<div>
-		<div daffHeroTagline>Hero Tagline</div>
-		<h1 daffHeroTitle>Hero Title</h1>
-		<h2 daffHeroSubtitle>Hero subtitle</h2>
-		<div>Additional Content (i.e. buttons, images)</div>
-	</div>
+	<div daffHeroTagline>Hero Tagline</div>
+	<h1 daffHeroTitle>Hero Title</h1>
+	<h2 daffHeroSubtitle>Hero subtitle</h2>
+	<div>Additional Content (i.e. buttons, images)</div>
 </daff-hero>
 
 <select [formControl]="colorControl">
-	<option value="theme">Default</option>
+	<option value="">Default</option>
 	<option value="primary">Primary</option>
 	<option value="secondary">Secondary</option>
 	<option value="tertiary">Tertiary</option>

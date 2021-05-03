@@ -34,11 +34,11 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(DaffHeroBase, 'theme');
+const _daffHeroBase = daffColorMixin(DaffHeroBase);
 
 @Component({
   selector: 'daff-hero',
-  templateUrl: './hero.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./hero.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
