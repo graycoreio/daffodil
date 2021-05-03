@@ -9,7 +9,7 @@ import { DaffPalette } from '@daffodil/design';
   templateUrl: './hero-theming.component.html',
 })
 export class HeroThemingComponent {
-  color: DaffPalette = 'theme';
+  color: DaffPalette = 'primary';
 
-  colorControl: FormControl = new FormControl('theme');
+  colorControl: FormControl = new FormControl('');
 }
