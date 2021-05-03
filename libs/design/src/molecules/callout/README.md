@@ -1,5 +1,5 @@
 # Callout
-`DaffCalloutComponent` is a versatile component that can be used to easily highlight a piece of content. It supports transcluding any content and optionally including a predefined, `tagline`, `title` and `subtitle`.
+`DaffCalloutComponent` is a versatile component that can be used to easily highlight a piece of content. It supports transclusion of any content and includes predefined `tagline`, `title` and `subtitle` styles.
 
 ## Use Cases
 1. It can be used alongside a product list to highlight a set of products.
@@ -8,24 +8,16 @@
 
 ## Supported Content Types
 A `<daff-callout>` transcludes:
-- `[daffCalloutTagline]`
-- `[daffCalloutTitle]`
-- `[daffCalloutSubtitle]`
+- `[daffCalloutTagline]` - Callout Tagline
+- `[daffCalloutTitle]` - Callout Title
+- `[daffCalloutSubtitle]` - Callout Subtitle0
 - Any additional components
 
-### Tagline
-Callout headline is used by adding `[daffCalloutTagline]` to any tag.
-
-### Title
-Callout title is used by adding `[daffCalloutTitle]` to any tag.
-
-### Subtitle
-Callout subtitle is used by adding `[daffCalloutSubtitle]` to any tag.
 
 ## Theming
-The callout's background color is defined by using the `color` property. By default, the color is set to `theme`. This can be changed to one of the supported colors.
+The default background color of a callout is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
-Supported colors: `primary, secondary, tertiary, black, white, theme, and theme-contrast`
+Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
 ## Layout
 The `layout` property will be deprecated in v1.0.0

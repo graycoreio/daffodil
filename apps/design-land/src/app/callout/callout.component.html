@@ -1,6 +1,6 @@
 <daff-article>
   <h1 daffArticleTitle>Callout</h1>
-  <p daffArticleLead><code>DaffCalloutComponent</code> is a versatile component that can be used to easily highlight a piece of content. It supports transcluding any content and optionally including a predefined <code>tagline</code>, <code>title</code> and <code>subtitle</code>.</p>
+  <p daffArticleLead><code>DaffCalloutComponent</code> is a versatile component that can be used to easily highlight a piece of content. It supports transclusion of any content and includes predefined <code>tagline</code>, <code>title</code> and <code>subtitle</code> styles.</p>
 
   <h2>Use Cases</h2>
   <ul>
@@ -12,24 +12,15 @@
   <h2>Supported Content Types</h2>
   <p>A <code>&lt;daff-callout&gt;</code> transcludes:</p>
   <ul>
-    <li><code>[daffCalloutTagline]</code></li>
-    <li><code>[daffCalloutTitle]</code></li>
-    <li><code>[daffCalloutSubtitle]</code></li>
+    <li><code>[daffCalloutTagline]</code> - Callout Tagline</li>
+    <li><code>[daffCalloutTitle]</code> - Callout Title</li>
+    <li><code>[daffCalloutSubtitle]</code> - Callout Subtitle</li>
     <li>Any additional components</li>
   </ul>
 
-  <h3>Tagline</h3>
-  <p>Callout tagline is used by adding <code>[daffCalloutTagline]</code> to any tag.</p>
-
-  <h3>Title</h3>
-  <p>Callout title is used by adding <code>[daffCalloutTitle]</code> to any tag.</p>
-
-  <h3>Subtitle</h3>
-  <p>Callout subtitle is used by adding <code>[daffCalloutSubtitle]</code> to any tag.</p>
-
-  <h2>Colors</h2>
-  <p>The callout's background color is defined by using the <code>color</code> property. By default, the color is set to <code>theme</code>. This can be changed to one of the supported colors.</p>
-  <p>Supported colors: <code>primary | secondary | tertiary | theme | theme-contrast | black | white</code></p>
+  <h2>Theming</h2>
+  <p>The default background color of a callout is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
+  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
 
   <design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
 

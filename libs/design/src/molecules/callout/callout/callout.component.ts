@@ -33,11 +33,11 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(DaffCalloutBase, 'theme');
+const _daffCalloutBase = daffColorMixin(DaffCalloutBase);
 
 @Component({
   selector: 'daff-callout',
-  templateUrl: './callout.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./callout.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
