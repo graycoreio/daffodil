@@ -136,6 +136,7 @@ describe('DaffProductPageUriResolver', () => {
   describe('resolve - in the browser', () => {
 
     beforeEach(waitForAsync(() => {
+      path = '123.html';
       TestBed.configureTestingModule({
         imports: [
           StoreModule.forRoot({
