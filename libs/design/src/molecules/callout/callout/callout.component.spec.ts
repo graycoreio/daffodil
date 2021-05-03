@@ -63,18 +63,15 @@ describe('DaffCalloutComponent', () => {
   });
 
   describe('using a colored variant of a callout',() => {
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
+    });
+
     it('should set a color class on the callout', () => {
       wrapper.color = 'primary';
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
-
-    it('should set the default color to theme', () => {
-      wrapper.color = 'theme';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-theme')).toEqual(true);
     });
   });
 
