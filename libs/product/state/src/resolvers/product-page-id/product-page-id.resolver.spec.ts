@@ -28,11 +28,11 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageResolver } from './product-page.resolver';
+import { DaffProductPageIdResolver } from './product-page-id.resolver';
 
-describe('DaffProductPageResolver', () => {
+describe('DaffProductPageIdResolver', () => {
   const actions$: Observable<any> = null;
-  let resolver: DaffProductPageResolver;
+  let resolver: DaffProductPageIdResolver;
   let store: Store<DaffProductReducersState>;
   let ProductFactory: DaffProductFactory;
   let stubProduct: DaffProduct;
@@ -57,7 +57,7 @@ describe('DaffProductPageResolver', () => {
         ],
       });
 
-      resolver = TestBed.inject(DaffProductPageResolver);
+      resolver = TestBed.inject(DaffProductPageIdResolver);
       ProductFactory = TestBed.inject(DaffProductFactory);
       stubProduct = ProductFactory.create();
       store = TestBed.inject(Store);
@@ -80,7 +80,7 @@ describe('DaffProductPageResolver', () => {
       store.dispatch(new DaffProductPageLoadSuccess(stubProduct));
     });
 
-    it('should resolve when DaffCartLoadFailure is dispatched', () => {
+    it('should resolve when DaffProductPageLoadFailure is dispatched', () => {
       resolver.resolve(route.snapshot).subscribe(value => {
         expect(value).toEqual(true);
       });
@@ -115,7 +115,7 @@ describe('DaffProductPageResolver', () => {
         ],
       });
 
-      resolver = TestBed.inject(DaffProductPageResolver);
+      resolver = TestBed.inject(DaffProductPageIdResolver);
       ProductFactory = TestBed.inject(DaffProductFactory);
       stubProduct = ProductFactory.create();
       store = TestBed.inject(Store);
