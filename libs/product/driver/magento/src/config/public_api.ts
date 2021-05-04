@@ -1,4 +1,1 @@
-export {
-  MAGENTO_PRODUCT_CONFIG_DEFAULT,
-  MAGENTO_PRODUCT_URI_TRUNCATION_REGEX,
-} from './default';
+export { MAGENTO_PRODUCT_CONFIG_DEFAULT } from './default';

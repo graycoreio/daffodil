@@ -18,15 +18,14 @@ export interface DaffProductMagentoDriverConfig {
    */
 	baseMediaUrl: string;
   /**
-   * Whether or not to attempt to truncate the file extension suffix and leading path segments
-   * from the product URI during the {@link DaffMagentoProductService#getByUrl} call.
+   * Whether or not to attempt to truncate the product URI
+   * during the {@link DaffMagentoProductService#getByUrl} call.
    * True by default.
    */
   truncateUri?: boolean;
   /**
-   * The regex used to truncate the URI.
-   * The truncated URI should be a capture group named `uri`.
-   * Defaults to capture everything before the last dot: `.`.
+   * An optional custom function to truncate the URI.
+   * Defaults to truncate leading path segments, file extension, query params, and fragments.
    */
-  truncatedUriMatcher?: RegExp;
+  uriTruncationStrategy?: (string) => string;
 }
