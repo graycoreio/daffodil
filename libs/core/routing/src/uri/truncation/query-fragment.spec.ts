@@ -15,6 +15,17 @@ describe('@daffodil/core/routing | daffUriTruncateQueryFragment', () => {
     });
   });
 
+  describe('when the string does not have a leading slash', () => {
+    beforeEach(() => {
+      testStr = 'foo';
+      result = daffUriTruncateQueryFragment(testStr);
+    });
+
+    it('should return the original string with a leading slash', () => {
+      expect(result).toEqual(`/${testStr}`);
+    });
+  });
+
   describe('when the string has query parameters', () => {
     beforeEach(() => {
       testStr = '/foo?test=thing';
