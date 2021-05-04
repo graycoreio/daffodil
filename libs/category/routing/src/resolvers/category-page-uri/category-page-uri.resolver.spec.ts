@@ -78,7 +78,7 @@ describe('DaffCategoryPageUriResolver', () => {
             {
               path: 'outlet',
               component: TestComponent,
-              outlet: 'secondary'
+              outlet: 'secondary',
             },
             {
               path: '**',
@@ -169,7 +169,7 @@ describe('DaffCategoryPageUriResolver', () => {
             {
               path: 'outlet',
               component: TestComponent,
-              outlet: 'secondary'
+              outlet: 'secondary',
             },
             {
               path: '**',
