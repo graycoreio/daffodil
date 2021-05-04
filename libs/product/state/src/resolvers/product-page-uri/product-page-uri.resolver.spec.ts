@@ -68,6 +68,11 @@ describe('DaffProductPageUriResolver', () => {
               component: TestComponent,
             },
             {
+              path: 'outlet',
+              component: TestComponent,
+              outlet: 'secondary',
+            },
+            {
               path: '**',
               component: TestComponent,
             },
@@ -88,15 +93,15 @@ describe('DaffProductPageUriResolver', () => {
       router.initialNavigation();
     }));
 
-    it('should dispatch a DaffProductPageLoadByUrl action with the correct product url', fakeAsync(() => {
-      const url = `/${path}?thing=test#weenwrji`;
+    it('should dispatch a DaffProductPageLoadByUrl action with the normalized product url', fakeAsync(() => {
+      const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
       tick();
 
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot, router.routerState.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffProductPageLoadByUrl(url),
+        new DaffProductPageLoadByUrl(`/${path}`),
       );
     }));
 
@@ -148,6 +153,11 @@ describe('DaffProductPageUriResolver', () => {
               component: TestComponent,
             },
             {
+              path: 'outlet',
+              component: TestComponent,
+              outlet: 'secondary',
+            },
+            {
               path: '**',
               component: TestComponent,
             },
@@ -168,15 +178,15 @@ describe('DaffProductPageUriResolver', () => {
       router.initialNavigation();
     }));
 
-    it('should dispatch a DaffProductPageLoadByUrl action with the correct product url', fakeAsync(() => {
-      const url = `/${path}?thing=test#weenwrji`;
+    it('should dispatch a DaffProductPageLoadByUrl action with the normalized product url', fakeAsync(() => {
+      const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
       tick();
 
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot, router.routerState.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffProductPageLoadByUrl(url),
+        new DaffProductPageLoadByUrl(`/${path}`),
       );
     }));
 
