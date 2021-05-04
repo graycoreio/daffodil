@@ -21,7 +21,7 @@ export class DaffRoutingUriNormalizer {
    * e.g. `normalize('some/url.html(secondary:outlet)?query=param#fragment')` -> `'some/url.html?query=param#fragment'`
    *
    * Optionally accepts an outlet to target.
-   * e.g. `normalize('some/url.html(secondary:outlet)?query=param#fragment', 'secondary')` -> `'some/outlet?query=param#fragment'`
+   * e.g. `normalize('some/url.html(secondary:outlet)?query=param#fragment', 'secondary')` -> `'outlet?query=param#fragment'`
    *
    * @param uri The URI to normalize.
    * @param outlet An optional outlet to process into a URI.
