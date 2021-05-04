@@ -24,5 +24,8 @@
   "peerDependencies": {
     "@angular/core": "0.0.0-PLACEHOLDER",
     "graphql": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@angular/router": "0.0.0-PLACEHOLDER"
   }
 }
