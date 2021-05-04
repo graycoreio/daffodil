@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
 import {
@@ -27,7 +28,9 @@ describe('Product | Magento | ProductService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ApolloTestingModule],
+      imports: [
+        ApolloTestingModule,
+      ],
       providers: [
         DaffMagentoProductService,
         {
@@ -102,7 +105,7 @@ describe('Product | Magento | ProductService', () => {
     let result: Observable<DaffProduct>;
 
     beforeEach(() => {
-      uri = 'TESTING_URL';
+      uri = '/path/to/TESTING_URL?with=query#fragment';
       result = service.getByUrl(uri);
     });
 
@@ -125,43 +128,12 @@ describe('Product | Magento | ProductService', () => {
       });
     });
 
-    describe('when the request URI has a file extension', () => {
-      beforeEach(() => {
-        result = service.getByUrl(`${uri}.html`);
-      });
+    it('should query the category with the truncated URI', () => {
+      result.subscribe();
 
-      it('should query the category with the truncated URI', () => {
-        result.subscribe();
+      const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
 
-        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
-
-        expect(op.operation.variables.url).toEqual(uri);
-      });
-    });
-
-    describe('when the request URI has leading path segments', () => {
-      beforeEach(() => {
-        result = service.getByUrl(`foo/bar/baz/${uri}`);
-      });
-
-      it('should query the category with the truncated URI', () => {
-        result.subscribe();
-
-        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
-
-        expect(op.operation.variables.url).toEqual(uri);
-      });
-    });
-
-    describe('when the request URI does not have a file extension or leading path segments', () => {
-
-      it('should query the category with the original URI', () => {
-        result.subscribe();
-
-        const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
-
-        expect(op.operation.variables.url).toEqual(uri);
-      });
+      expect(op.operation.variables.url).toEqual('TESTING_URL');
     });
   });
 });

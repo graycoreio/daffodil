@@ -25,12 +25,6 @@ import {
 } from './transforms/product-transformers';
 
 /**
- * A regex to truncate leading path segments from a URI, capturing the last segment in the uri group.
- * i.e. foo/bar/baz.html -> baz.html
- */
-const TRUNCATE_URI_LEADING_PATH_SEGMENTS_REGEX = /.*\/(?<uri>.*)$/;
-
-/**
  * A service for making magento apollo queries for products of type, DaffProduct.
  */
 @Injectable({
@@ -62,7 +56,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     return this.apollo.query<any>({
       query: GetProductByUrlQuery,
       variables: {
-        url: this.truncateUriLeadingPathSegments(this.truncateUriExtension(url)),
+        url: this.config.uriTruncationStrategy(url),
       },
     }).pipe(
       map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
@@ -84,13 +78,5 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   //todo: move to a different bestsellers module.
   getBestSellers(): Observable<DaffProduct[]> {
     return of(null);
-  }
-
-  private truncateUriExtension(uri: string): string {
-    return uri.match(this.config.truncatedUriMatcher)?.groups.uri || uri;
-  }
-
-  private truncateUriLeadingPathSegments(uri: string): string {
-    return uri.match(TRUNCATE_URI_LEADING_PATH_SEGMENTS_REGEX)?.groups.uri || uri;
   }
 }
