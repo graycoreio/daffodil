@@ -23,6 +23,8 @@ import {
   take,
 } from 'rxjs/operators';
 
+import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
+
 import {
   DaffProductPageLoadByUrl,
   DaffProductPageActionTypes,
@@ -32,7 +34,8 @@ import { DaffProductReducersState } from '../../reducers/public_api';
 /**
  * Resolves product data for product pages, and will only resolve the url
  * after a product request succeeds or fails. This resolver will take a full
- * a url of the form `some/url.html` and attempt to resolve a product from it.
+ * a url of the form `some/url.html(secondary:outlet)?query=param#fragment` and attempt to resolve a product from it.
+ * Assumes that the URL to be resolved is the primary outlet.
  */
 @Injectable({
   providedIn: 'root',
@@ -42,11 +45,12 @@ export class DaffProductPageUriResolver implements Resolve<Observable<boolean>> 
     @Inject(PLATFORM_ID) private platformId: string,
     private store: Store<DaffProductReducersState>,
     private dispatcher: ActionsSubject,
+    private urlNormalizer: DaffRoutingUriNormalizer,
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     this.store.dispatch(
-      new DaffProductPageLoadByUrl(state.url),
+      new DaffProductPageLoadByUrl(this.urlNormalizer.normalize(state.url)),
     );
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
