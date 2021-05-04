@@ -6,6 +6,7 @@ import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { daffUriTruncateQueryFragment } from '@daffodil/core/routing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 import { MagentoUrlResolverResponse } from '@daffodil/external-router/driver/magento';
@@ -29,7 +30,7 @@ implements DaffExternalRouterDriverInterface {
       .query<MagentoUrlResolverResponse>({
         query: MagentoResolveUrlv241,
         variables: {
-          url,
+          url: daffUriTruncateQueryFragment(url),
         },
       })
       .pipe(map(response => transformResolutionToResolvableUrlv241(response.data.urlResolver)));

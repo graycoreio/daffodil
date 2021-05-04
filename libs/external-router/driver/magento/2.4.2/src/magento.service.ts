@@ -1,12 +1,10 @@
-import {
-  Injectable,
-  Inject,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
+import { daffUriTruncateQueryFragment } from '@daffodil/core/routing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 import { MagentoUrlResolverResponse } from '@daffodil/external-router/driver/magento';
@@ -33,7 +31,7 @@ implements DaffExternalRouterDriverInterface {
       .query<MagentoUrlResolverResponse>({
         query: MagentoResolveUrlv242,
         variables: {
-          url,
+          url: daffUriTruncateQueryFragment(url),
         },
       })
       .pipe(map(response => transformResolutionToResolvableUrlv242(response.data.urlResolver)));

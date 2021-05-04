@@ -21,7 +21,8 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
   let controller: ApolloTestingController;
   let scheduler: TestScheduler;
   let id: ID;
-  let url: string;
+  let responseUrl: string;
+  let requestUrl: string;
   let resolution: MagentoUrlResolverResponse;
   let resolvableUrl: DaffExternallyResolvableUrl;
 
@@ -39,11 +40,12 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
       expect(actual).toEqual(expected);
     });
 
-    url = 'url';
+    responseUrl = 'url';
+    requestUrl = `/${responseUrl}`;
     id = 'id';
     resolution = {
       urlResolver: {
-        relative_url: url,
+        relative_url: responseUrl,
         type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
         redirectCode: 0,
         entity_uid: id,
@@ -52,7 +54,7 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
 
     resolvableUrl = {
       id,
-      url,
+      url:responseUrl,
       type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
     };
   };
@@ -66,9 +68,8 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
     it('should return a resolvable url when using the v2.4.2', done => {
       setupTest();
 
-      service.resolve(url).subscribe(result => {
-        console.log(result);
-        expect(result.url).toEqual(url);
+      service.resolve(requestUrl).subscribe(result => {
+        expect(result.url).toEqual(responseUrl);
         expect(result.type).toEqual(MagentoUrlRewriteEntityTypeEnum.PRODUCT);
         done();
       });
@@ -77,6 +78,17 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
 
       op.flush({
         data: resolution,
+      });
+    });
+
+    describe('when the request URL has query params and fragments', () => {
+      it('should make the request with a truncated URL', () => {
+        setupTest();
+
+        service.resolve(`${requestUrl}?with=query#fragment`).subscribe();
+
+        const op = controller.expectOne(MagentoResolveUrlv242);
+        expect(op.operation.variables.url).toEqual(requestUrl);
       });
     });
   });

@@ -9,6 +9,10 @@ import {
   throwError,
 } from 'rxjs';
 
+import {
+  daffUriTruncateLeadingSlash,
+  daffUriTruncateQueryFragment,
+} from '@daffodil/core/routing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 
@@ -34,16 +38,18 @@ implements DaffExternalRouterDriverInterface {
   ) {}
 
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {
-    if (!this.testingConfiguration[url]) {
+    const truncatedUrl = daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(url));
+
+    if (!this.testingConfiguration[truncatedUrl]) {
       return throwError(`\
-The route '${url}' wasn't provided with a matching type by the testing driver. \
+The route '${truncatedUrl}' wasn't provided with a matching type by the testing driver. \
 Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot(config)`);
     }
 
     return of({
       id: faker.random.uuid(),
-      url,
-      type: this.testingConfiguration[url],
+      url: truncatedUrl,
+      type: this.testingConfiguration[truncatedUrl],
     });
   }
 }

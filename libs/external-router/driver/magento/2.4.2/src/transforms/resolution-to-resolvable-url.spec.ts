@@ -17,7 +17,7 @@ describe('@daffodil/external-router/driver/magento | transformResolutionToResolv
     id = 'id';
     url = 'url';
     resolution = {
-      relative_url: url,
+      relative_url: `/${url}`,
       type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
       redirectCode: 0,
       entity_uid: id,
