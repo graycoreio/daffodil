@@ -15,7 +15,8 @@
     "lib": [
       "dom",
       "es2015",
-      "ESNext.AsyncIterable"
+      "ESNext.AsyncIterable",
+      "es2018.regexp"
     ]
   },
   "angularCompilerOptions": {
