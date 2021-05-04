@@ -17,5 +17,11 @@ export const DaffExternalRouterDriver = new InjectionToken<
  * Daffodil.
  */
 export interface DaffExternalRouterDriverInterface {
+  /**
+   * Resolves a URL with a platform.
+   * Returns information about the type of URL.
+   *
+   * @param url The full URL path qualified with file extension and leading slash but without domain. i.e. /full/path/to/thing.html
+   */
 	resolve(url: string): Observable<DaffExternallyResolvableUrl>;
 }
