@@ -48,7 +48,7 @@ export class DaffCategoryPageUriResolver implements Resolve<Observable<boolean>>
     private store: Store<DaffCategoryReducersState>,
     private dispatcher: ActionsSubject,
     private urlNormalizer: DaffRoutingUriNormalizer,
-    ) { }
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     this.store.dispatch(new DaffCategoryPageLoadByUri({
