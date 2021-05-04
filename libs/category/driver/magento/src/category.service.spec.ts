@@ -261,7 +261,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
     let result: Observable<DaffGetCategoryResponse>;
 
     beforeEach(() => {
-      uri = mockCategory.uri;
+      uri = '/test/uri?with=query#fragment';
       mockCategoryUriRequest = {
         kind: DaffCategoryRequestKind.URI,
         uri,
@@ -288,66 +288,24 @@ describe('Driver | Magento | Category | CategoryService', () => {
       productsOp.flushData(mockGetProductsResponse);
     }));
 
-    describe('when the request URI has a file extension', () => {
-      beforeEach(() => {
-        uri = mockCategory.uri;
-        mockCategoryUriRequest = {
-          kind: DaffCategoryRequestKind.URI,
-          uri: `${uri}.html`,
-        };
-        result = categoryService.getByUri(mockCategoryUriRequest);
-      });
+    it('should query the category with the truncated URI', fakeAsync(() => {
+      result.subscribe();
 
-      it('should query the category with the truncated URI', fakeAsync(() => {
-        result.subscribe();
+      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
 
-        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-        const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+      categoryOp.flushData(mockGetCategoryResponse);
+      filterTypesOp.flushData(mockGetFilterTypesResponse);
 
-        categoryOp.flushData(mockGetCategoryResponse);
-        filterTypesOp.flushData(mockGetFilterTypesResponse);
+      tick();
 
-        tick();
+      const productsOp = controller.expectOne(MagentoGetProductsQuery);
+      productsOp.flushData(mockGetProductsResponse);
 
-        const productsOp = controller.expectOne(MagentoGetProductsQuery);
-        productsOp.flushData(mockGetProductsResponse);
+      expect(categoryOp.operation.variables.filters.url_path.eq).toEqual('test/uri');
 
-        expect(categoryOp.operation.variables.filters.url_path.eq).toEqual(uri);
-
-        flush();
-      }));
-    });
-
-    describe('when the request URI does not have a file extension', () => {
-      beforeEach(() => {
-        uri = 'uri';
-        mockCategory.uri = uri;
-        mockCategoryUriRequest = {
-          kind: DaffCategoryRequestKind.URI,
-          uri,
-        };
-        result = categoryService.getByUri(mockCategoryUriRequest);
-      });
-
-      it('should query the category with the original URI', fakeAsync(() => {
-        result.subscribe();
-
-        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-        const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
-
-        categoryOp.flushData(mockGetCategoryResponse);
-        filterTypesOp.flushData(mockGetFilterTypesResponse);
-
-        tick();
-
-        const productsOp = controller.expectOne(MagentoGetProductsQuery);
-        productsOp.flushData(mockGetProductsResponse);
-
-        expect(categoryOp.operation.variables.filters.url_path.eq).toEqual(uri);
-
-        flush();
-      }));
-    });
+      flush();
+    }));
 
     it('should query the products with the category ID', fakeAsync(() => {
       result.subscribe();

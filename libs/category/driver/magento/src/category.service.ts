@@ -103,7 +103,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoGetCategoryQuery,
         variables: { filters: { url_path: {
           eq: this.config.truncateUri
-            ? this.truncateUriExtension(categoryRequest.uri)
+            ? this.config.uriTruncationStrategy(categoryRequest.uri)
             : categoryRequest.uri,
         }}},
       }),
@@ -164,9 +164,5 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     };
 
     return this.magentoCategoryResponseTransformer.transform(completeCategory);
-  }
-
-  private truncateUriExtension(uri: string): string {
-    return uri.match(this.config.truncatedUriMatcher)?.groups.uri || uri;
   }
 }

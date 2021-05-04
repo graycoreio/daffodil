@@ -13,15 +13,14 @@ export const MAGENTO_CATEGORY_CONFIG_TOKEN = new InjectionToken<DaffCategoryMage
  */
 export interface DaffCategoryMagentoDriverConfig {
   /**
-   * Whether or not to attempt to truncate the file extension suffix from the category URI
+   * Whether or not to attempt to truncate the category URI
    * during the {@link DaffMagentoCategoryService#getByUri} call.
    * True by default.
    */
   truncateUri?: boolean;
   /**
-   * The regex used to truncate the URI.
-   * The truncated URI should be a capture group named `uri`.
-   * Defaults to capture everything before the last dot: `.`.
+   * An optional custom function to truncate the URI.
+   * Defaults to truncate leading slash, file extension, query params, and fragments.
    */
-  truncatedUriMatcher?: RegExp;
+  uriTruncationStrategy?: (string) => string;
 }
