@@ -76,6 +76,11 @@ describe('DaffCategoryPageUriResolver', () => {
               component: TestComponent,
             },
             {
+              path: 'outlet',
+              component: TestComponent,
+              outlet: 'secondary'
+            },
+            {
               path: '**',
               component: TestComponent,
             },
@@ -98,15 +103,15 @@ describe('DaffCategoryPageUriResolver', () => {
       router.initialNavigation();
     }));
 
-    it('should dispatch a DaffCategoryPageLoadByUri action with the correct category url', fakeAsync(() => {
-      const url = `/${path}?asfgsfd=afdgsdf#asadiufy`;
+    it('should dispatch a DaffCategoryPageLoadByUri action with the normalized category url', fakeAsync(() => {
+      const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
       tick();
 
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoadByUri({ uri: url, page_size: 12, kind: DaffCategoryRequestKind.URI }),
+        new DaffCategoryPageLoadByUri({ uri: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URI }),
       );
     }));
 
@@ -162,6 +167,11 @@ describe('DaffCategoryPageUriResolver', () => {
               component: TestComponent,
             },
             {
+              path: 'outlet',
+              component: TestComponent,
+              outlet: 'secondary'
+            },
+            {
               path: '**',
               component: TestComponent,
             },
@@ -184,14 +194,14 @@ describe('DaffCategoryPageUriResolver', () => {
     }));
 
     it('should dispatch a DaffCategoryPageLoadByUri action with the correct category id', fakeAsync(() => {
-      const url = `/${path}?asfgsfd=afdgsdf#asadiufy`;
+      const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
       tick();
 
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoadByUri({ uri: url, page_size: 12, kind: DaffCategoryRequestKind.URI }),
+        new DaffCategoryPageLoadByUri({ uri: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URI }),
       );
     }));
 
