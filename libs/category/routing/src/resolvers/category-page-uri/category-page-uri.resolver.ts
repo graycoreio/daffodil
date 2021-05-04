@@ -30,11 +30,13 @@ import {
   DaffDefaultCategoryPageSize,
   DaffCategoryPageLoadByUri,
 } from '@daffodil/category/state';
+import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 
 /**
  * Resolves category data for category pages, and will only resolve the url
  * after a category request succeeds or fails. This resolver will take a full
- * a url of the form `some/url` and attempt to resolve a category from it.
+ * a url of the form `some/url.html(secondary:outlet)?query=param#fragment` and attempt to resolve a product from it.
+ * Assumes that the URL to be resolved is the primary outlet.
  */
 @Injectable({
   providedIn: 'root',
@@ -45,11 +47,12 @@ export class DaffCategoryPageUriResolver implements Resolve<Observable<boolean>>
     @Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
     private store: Store<DaffCategoryReducersState>,
     private dispatcher: ActionsSubject,
+    private urlNormalizer: DaffRoutingUriNormalizer,
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     this.store.dispatch(new DaffCategoryPageLoadByUri({
-      uri: state.url,
+      uri: this.urlNormalizer.normalize(state.url),
       page_size: this.defaultCategoryPageSize,
       kind: DaffCategoryRequestKind.URI,
     }));
