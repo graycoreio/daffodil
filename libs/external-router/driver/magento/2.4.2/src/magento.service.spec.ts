@@ -80,16 +80,5 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
         data: resolution,
       });
     });
-
-    describe('when the request URL has query params and fragments', () => {
-      it('should make the request with a truncated URL', () => {
-        setupTest();
-
-        service.resolve(`${requestUrl}?with=query#fragment`).subscribe();
-
-        const op = controller.expectOne(MagentoResolveUrlv242);
-        expect(op.operation.variables.url).toEqual(requestUrl);
-      });
-    });
   });
 });
