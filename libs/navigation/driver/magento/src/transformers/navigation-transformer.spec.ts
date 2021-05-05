@@ -20,6 +20,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
     categoryNode = {
       uid: '1',
+      url_path: '1',
+      url_suffix: '.html',
       name: 'Root Category',
       include_in_menu: true,
       product_count: 10,
@@ -28,6 +30,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       children: [
         {
           uid: '2',
+          url_path: '2',
+          url_suffix: '.html',
           include_in_menu: true,
           name: 'Subcategory',
           product_count: 10,
@@ -51,6 +55,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         },
         {
           uid: '3',
+          url_path: '3',
+          url_suffix: '.html',
           include_in_menu: false,
           name: 'Subcategory',
           product_count: 10,
@@ -61,6 +67,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         },
         {
           uid: '5',
+          url_path: '5',
+          url_suffix: '.html',
           include_in_menu: true,
           name: 'Subcategory',
           product_count: 10,
@@ -75,12 +83,14 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
     expectedNavigation = {
       id: '1',
+      url: '1.html',
       name: 'Root Category',
       path: '1',
       total_products: 10,
       children: [
         {
           id: '5',
+          url: '5.html',
           name: 'Subcategory',
           path: '5',
           total_products: 10,
@@ -90,6 +100,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         },
         {
           id: '2',
+          url: '2.html',
           name: 'Subcategory',
           path: '2',
           total_products: 10,

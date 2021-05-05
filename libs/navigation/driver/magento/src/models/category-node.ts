@@ -1,6 +1,8 @@
 export interface CategoryNode {
   __typename?: string;
   uid: string;
+  url_path: string;
+  url_suffix: string;
   name?: string;
   include_in_menu: boolean;
   product_count: number;
