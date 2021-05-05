@@ -1,15 +1,7 @@
-import {
-  NgModule,
-  ModuleWithProviders,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import {
-  DaffCartStateConfiguration,
-  DAFF_CART_STATE_CONFIG,
-  daffCartStateConfigurationDefault,
-} from './config/config';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartBillingAddressEffects } from './effects/cart-billing-address.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
@@ -22,23 +14,11 @@ import { DaffCartShippingAddressEffects } from './effects/cart-shipping-address.
 import { DaffCartShippingInformationEffects } from './effects/cart-shipping-information.effects';
 import { DaffCartShippingMethodsEffects } from './effects/cart-shipping-methods.effects';
 import { DaffCartEffects } from './effects/cart.effects';
-import {
-  DaffCartBillingAddressGuardRedirectUrl,
-  DaffCartShippingAddressGuardRedirectUrl,
-  DaffCartShippingMethodGuardRedirectUrl,
-  DaffCartPaymentMethodGuardRedirectUrl,
-  DaffCartOrderResultGuardRedirectUrl,
-  DaffCartItemsGuardRedirectUrl,
-} from './guards/public_api';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
 import {
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
 } from './reducers/public_api';
-import {
-  DaffEmptyCartResolverRedirectUrl,
-  DaffCartResolverRedirectUrl,
-} from './resolvers/public_api';
 
 @NgModule({
   imports: [
@@ -59,30 +39,7 @@ import {
     ]),
   ],
   providers: [
-    { provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartItemsGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartOrderResultGuardRedirectUrl, useValue: '/' },
-    { provide: DaffEmptyCartResolverRedirectUrl, useValue: '/' },
-    { provide: DaffCartResolverRedirectUrl, useValue: '/' },
     { provide: DaffCartItemStateDebounceTime, useValue: 4000 },
   ],
 })
-export class DaffCartStateModule {
-  static forRoot(config: DaffCartStateConfiguration = <any>{}): ModuleWithProviders<DaffCartStateModule> {
-    return {
-      ngModule: DaffCartStateModule,
-      providers: [
-        {
-          provide: DAFF_CART_STATE_CONFIG,
-          useValue: {
-            ...daffCartStateConfigurationDefault,
-            ...config,
-          },
-        },
-      ],
-    };
-  }
-}
+export class DaffCartStateModule {}
