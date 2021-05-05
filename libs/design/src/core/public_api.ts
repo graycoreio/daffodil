@@ -6,3 +6,4 @@ export * from './constructor/constructor';
 export * from './statusable/statusable';
 export * from './skeletonable/skeletonable';
 export * from './mutable/mutable';
+export * from './text-alignable/text-alignable';
