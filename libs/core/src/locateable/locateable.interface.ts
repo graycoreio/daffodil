@@ -1,9 +1,9 @@
 /**
- * An object that has a location referenced by a URI.
+ * An object that has a location referenced by a URL.
  */
 export interface DaffLocateable {
   /**
-   * The URI describing the location of the entity.
+   * The URL describing the location of the entity.
    */
-  uri: string;
+  url: string;
 }
