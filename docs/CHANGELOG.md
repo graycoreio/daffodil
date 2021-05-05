@@ -2,6 +2,82 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.32.0](https://github.com/graycoreio/daffodil/compare/v0.31.1...v0.32.0) (2021-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** The `DaffCategoryMagentoDriverConfig#uriTruncationStrategy` now uses a function instead of a regex. 
+* **category:** The `DaffCategoryPageConfigurationState` was changed to `DaffCategoryPageMetadata`, and many models around category filtering have changed.
+
+Co-authored-by: Damien Retzinger <damienwebdev@gmail.com>
+Co-authored-by: Peter Lauck <griest024@gmail.com>
+* **design:** A default color from DaffPalette is no longer enforced on hero
+* **design:** Errors will be shown if user updates palettes that don't pass WCAG accessibility guidelines
+* **design:** base UI of buttons is gray set by base styles instead of the theme-contrast color
+* **design:** The icon button's hover and focus state colors have been updated so they only increment by one step
+* **design:** color has been added to the focus and active state UI
+* **design:** A default color from DaffPalette is no longer enforced on callout
+* **design:** The basic button's hover and focus state colors have been updated so they only increment by one step
+* **category,navigation:** DaffCategoryBreadcrumb#categoryId is now a string
+* **design:** Daffodil's original "green" palette is changed to `turquoise` to accommodate a more common green palette.
+* **category:** URI is now a required field on DaffCategory
+* DaffCategoryRequest is now a union. The old DaffCategoryRequest is now DaffCategoryIdRequest. This change impacts the `DaffCategoryServiceInterface` as well.
+* **category:** Many model names around category filters have changed.
+* **design:** stroked button's hover UI now has an opaque background
+
+### Features
+
+* **cart:** move guards and resolvers to a new routing subpackage ([#1497](https://github.com/graycoreio/daffodil/issues/1497)) ([be8d9e8](https://github.com/graycoreio/daffodil/commit/be8d9e82cfa3db6cff6ef1ca93cb00ddcd0ac189))
+* **category:** add category filter models, category page metadata model, errors, and factories ([#1448](https://github.com/graycoreio/daffodil/issues/1448)) ([bbf62f1](https://github.com/graycoreio/daffodil/commit/bbf62f130a803633dcc8344663f47fc657cc7523))
+* **category:** add filter type field query to replacement driver ([#1454](https://github.com/graycoreio/daffodil/issues/1454)) ([9f75983](https://github.com/graycoreio/daffodil/commit/9f75983f1b3499b247bf9187c5972f14dd3a743f))
+* **category:** add functions to manage category filters ([#1449](https://github.com/graycoreio/daffodil/issues/1449)) ([9d1478b](https://github.com/graycoreio/daffodil/commit/9d1478b254c83801ad99366a4a2359e981d7003f))
+* **category:** add get by URI action and effect ([#1469](https://github.com/graycoreio/daffodil/issues/1469)) ([4934357](https://github.com/graycoreio/daffodil/commit/4934357e87a52fe0cc1a86be9ff2667590102c60))
+* **category:** add getByUri driver call ([#1461](https://github.com/graycoreio/daffodil/issues/1461)) ([60d58b0](https://github.com/graycoreio/daffodil/commit/60d58b0e57cddd5b60f1e797ea605da8c9d3de83))
+* **category:** add URI field to category model ([#1462](https://github.com/graycoreio/daffodil/issues/1462)) ([e1a8799](https://github.com/graycoreio/daffodil/commit/e1a87998746217691939f33d1e064a92dd1cf078))
+* **category:** add URI resolver ([#1477](https://github.com/graycoreio/daffodil/issues/1477)) ([a8ede25](https://github.com/graycoreio/daffodil/commit/a8ede25c6b95b0e3f8054a96baf25b6a755d0081))
+* **category:** add url suffix and URI truncation to Magento driver ([#1468](https://github.com/graycoreio/daffodil/issues/1468)) ([df57ddd](https://github.com/graycoreio/daffodil/commit/df57ddd4f66a9459d3fa3a87249b6d477ddb5c36))
+* **category:** append url_suffix to category url key ([#1464](https://github.com/graycoreio/daffodil/issues/1464)) ([6f99abd](https://github.com/graycoreio/daffodil/commit/6f99abdfc4c715c23e5912c521fdb250cfd86cde))
+* **category:** change driver and state subpackages to use the new category filter changes ([#1451](https://github.com/graycoreio/daffodil/issues/1451)) ([a706ffc](https://github.com/graycoreio/daffodil/commit/a706ffc3bdfa0232acd19a88ec46e1d4db6963d7))
+* **category:** normalize URI in resolver before dispatching ([#1490](https://github.com/graycoreio/daffodil/issues/1490)) ([edd02cb](https://github.com/graycoreio/daffodil/commit/edd02cbeb973f17906f26fafa8767f5e859b20b5))
+* **category:** remove 'Replacement' suffix from any category models … ([#1457](https://github.com/graycoreio/daffodil/issues/1457)) ([e5472d7](https://github.com/graycoreio/daffodil/commit/e5472d79483784c58139c47a20657369255f2730))
+* **category:** truncate URI with function ([#1489](https://github.com/graycoreio/daffodil/issues/1489)) ([ebd0446](https://github.com/graycoreio/daffodil/commit/ebd04463a562347c8dbd6d52013e3eec0e8e6f58))
+* **category,navigation:** replace category ID with UID in magento driver ([#1475](https://github.com/graycoreio/daffodil/issues/1475)) ([90455aa](https://github.com/graycoreio/daffodil/commit/90455aac5cdcd03979116514385a6bd1ad0c1d70))
+* **core:** add URI truncation functions and normalizer service ([#1488](https://github.com/graycoreio/daffodil/issues/1488)) ([bd07f7a](https://github.com/graycoreio/daffodil/commit/bd07f7a7828e990020cc3be12d669b08c3a47b2b))
+* **core:** handle missing leading slash in query fragment truncation ([#1493](https://github.com/graycoreio/daffodil/issues/1493)) ([411c3ff](https://github.com/graycoreio/daffodil/commit/411c3ff0a3680844d3194f45def467e09b17ca63))
+* **daffio, branding:** update daffio to use discord information ([#1445](https://github.com/graycoreio/daffodil/issues/1445)) ([64928fb](https://github.com/graycoreio/daffodil/commit/64928fb4ec0821fe4a67bd20a80c9d4e6dc27b52))
+* **design:** add a media-gallery component ([#1206](https://github.com/graycoreio/daffodil/issues/1206)) ([a131764](https://github.com/graycoreio/daffodil/commit/a1317644a80d2f1033c92490d6877109685b9427))
+* **design:** add statusable interface to button ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([f0dd613](https://github.com/graycoreio/daffodil/commit/f0dd6136e75f87d0bf075f378dec563e00a5f7a7))
+* **design:** adjust primary palette to scale the same way as rest of palettes ([#1480](https://github.com/graycoreio/daffodil/issues/1480)) ([bf1304f](https://github.com/graycoreio/daffodil/commit/bf1304f60dee23af0eff73feff8b7b890c9c2c6f))
+* **design:** enforce WCAG accessibility guidelines for buttons ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([9e6101a](https://github.com/graycoreio/daffodil/commit/9e6101a4ee43bc7cae207f7a008df642de179ef8))
+* **design:** remove animation on raised button and update state UI ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([fb08aa2](https://github.com/graycoreio/daffodil/commit/fb08aa244cb11808f74d841f50c66bb05e9d2893))
+* **design:** remove default theme and template file on callout component ([#1486](https://github.com/graycoreio/daffodil/issues/1486)) ([9bef4cc](https://github.com/graycoreio/daffodil/commit/9bef4cc73f3357af48f183d4797c7087c8287e87))
+* **design:** remove default theme and template file on hero component ([#1463](https://github.com/graycoreio/daffodil/issues/1463)) ([70ef58b](https://github.com/graycoreio/daffodil/commit/70ef58baae824ef0610c5d7c02dc8d30b1e60322))
+* **design:** remove enforcement of default color and add styles to base button styles ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([63d0768](https://github.com/graycoreio/daffodil/commit/63d07685f120699fcf55199ef368abeb900abd84))
+* **design:** update DaffCardComponent ([#1420](https://github.com/graycoreio/daffodil/issues/1420)) ([8ea9f2e](https://github.com/graycoreio/daffodil/commit/8ea9f2e581f1a7f6a9c4cbcd011964be80f30a11))
+* **design:** update daffodil's "green" palette to turqoise and create green palette ([#1460](https://github.com/graycoreio/daffodil/issues/1460)) ([b42e2d2](https://github.com/graycoreio/daffodil/commit/b42e2d20034ad415aeb0cd06273a9c369550055c))
+* **design:** update default card theme to a gray rather than 'theme' ([#1467](https://github.com/graycoreio/daffodil/issues/1467)) ([7558fb8](https://github.com/graycoreio/daffodil/commit/7558fb8ea69f8050adf35a14753358904aeadeb5))
+* **design:** update error status to danger ([#1481](https://github.com/graycoreio/daffodil/issues/1481)) ([98254e8](https://github.com/graycoreio/daffodil/commit/98254e8f5e92f2e62273bc2d5be59f7604978631))
+* **design:** update gray palette ([#1479](https://github.com/graycoreio/daffodil/issues/1479)) ([ee0c8ce](https://github.com/graycoreio/daffodil/commit/ee0c8ce4803ddac819d971e53928c7d86b6d9a56))
+* **design:** update stroked button's background to be fully opaque ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([d7b82d3](https://github.com/graycoreio/daffodil/commit/d7b82d385d2b6896b0abf766d5795094341e8ca4))
+* **design:** update the basic button's UI ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([a5068a0](https://github.com/graycoreio/daffodil/commit/a5068a0f748451402b329f1fe9e72df2acc5f20f))
+* **design:** update the icon button's UI ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([0f0b5f4](https://github.com/graycoreio/daffodil/commit/0f0b5f4e691e4bec6d113887fa2fa5e9ab5e7452))
+* **design:** update underline button's UI for theme-contrast and disabled to ensure they work in dark mode ([#1478](https://github.com/graycoreio/daffodil/issues/1478)) ([fd52572](https://github.com/graycoreio/daffodil/commit/fd5257278df34bebd0291d3c9826c93fa9989bfa))
+* **external-router:** truncate driver request and response per driver ([#1495](https://github.com/graycoreio/daffodil/issues/1495)) ([5f228ab](https://github.com/graycoreio/daffodil/commit/5f228abb46838761a550d82bd6ebe5dca53735e7))
+* **product:** add uri resolver ([#1472](https://github.com/graycoreio/daffodil/issues/1472)) ([555d911](https://github.com/graycoreio/daffodil/commit/555d91197894db5601de16efcc3cb8d02fa07ddc))
+* **product:** add url suffix and URI truncation to Magento driver ([#1466](https://github.com/graycoreio/daffodil/issues/1466)) ([f0da6ee](https://github.com/graycoreio/daffodil/commit/f0da6ee915083b400adbe9e6814f7fa2ad624a5c))
+* **product:** normalize URI in resolver before dispatching ([#1492](https://github.com/graycoreio/daffodil/issues/1492)) ([465176d](https://github.com/graycoreio/daffodil/commit/465176d335286e057351f512f1a05e484e679f64))
+* **product:** truncate URI with function in Magento driver ([#1491](https://github.com/graycoreio/daffodil/issues/1491)) ([3d20145](https://github.com/graycoreio/daffodil/commit/3d201453f556c1903446d494af1f3d51bdbbc533))
+* **tools-jasmine:** add a new jasmine tool with idempotence matchers ([#1438](https://github.com/graycoreio/daffodil/issues/1438)) ([3a3f8f3](https://github.com/graycoreio/daffodil/commit/3a3f8f3bfec8feeb3f3bc646db53b8da70dbf0ce))
+
+
+### Bug Fixes
+
+* **daffio:** widens the api doc name and ellipsis the ref, instead of squishing the label ([#1444](https://github.com/graycoreio/daffodil/issues/1444)) ([2eb1d59](https://github.com/graycoreio/daffodil/commit/2eb1d593be3256622ff627c01dab130623aea82f))
+
+
+*  feat(category): add kinded category requests (#1459) ([c820965](https://github.com/graycoreio/daffodil/commit/c82096546fa2771ad76cf170b6dacc9c6f516328)), closes [#1459](https://github.com/graycoreio/daffodil/issues/1459)
+
 ### [0.31.1](https://github.com/graycoreio/daffodil/compare/v0.31.0...v0.31.1) (2021-04-02)
 
 
