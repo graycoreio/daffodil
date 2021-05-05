@@ -28,16 +28,17 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
   });
 
   it('should return a resolved route if the route lookup succeeds', () => {
+    const url = 'test';
     setupTest({
-      test: 'PRODUCT',
+      [url]: 'PRODUCT',
     });
 
     scheduler.run(helpers => {
       const { expectObservable } = helpers;
       const expected = '(a|)';
 
-      expectObservable(service.resolve('test')).toBe(expected, {
-        a: { url: 'test', type: 'PRODUCT', id: jasmine.any(String) },
+      expectObservable(service.resolve(`/${url}`)).toBe(expected, {
+        a: { url, type: 'PRODUCT', id: jasmine.any(String) },
       });
     });
   });
@@ -48,7 +49,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
       const { expectObservable } = helpers;
       const expected = '#';
 
-      expectObservable(service.resolve('test')).toBe(
+      expectObservable(service.resolve('/test')).toBe(
         expected,
         null,
         `\

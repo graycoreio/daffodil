@@ -19,6 +19,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
+import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 import {
   DaffExternalRouter,
   DaffExternalRouterConfiguration,
@@ -28,8 +29,6 @@ import {
   DaffExternalRouterDriverInterface,
   DaffExternalRouterDriver,
 } from '@daffodil/external-router/driver';
-
-import { daffConvertToPath } from '../helper/convert-to-path';
 
 /**
  * The DaffExternalRouterExistenceGuard is responsible for guarding the wildcard route
@@ -47,13 +46,14 @@ export class DaffExternalRouterExistenceGuard implements CanActivate {
 		private router: Router,
 		@Inject(DAFF_EXTERNAL_ROUTER_CONFIG)
 		private config: DaffExternalRouterConfiguration,
+    private urlNormalizer: DaffRoutingUriNormalizer,
   ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<UrlTree | boolean> {
-    return this.driver.resolve(daffConvertToPath(next.url)).pipe(
+    return this.driver.resolve(this.urlNormalizer.normalize(state.url)).pipe(
       switchMap(resolvedRoute => of(this.externalRouter.add(resolvedRoute))),
       // Note that we have to use state.url as we want to ensure that we keep any fragments or query strings.
       // When we succeed, redirect to the new route.
