@@ -83,14 +83,14 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
     expectedNavigation = {
       id: '1',
-      url: '1.html',
+      url: '/1.html',
       name: 'Root Category',
       path: '1',
       total_products: 10,
       children: [
         {
           id: '5',
-          url: '5.html',
+          url: '/5.html',
           name: 'Subcategory',
           path: '5',
           total_products: 10,
@@ -100,7 +100,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         },
         {
           id: '2',
-          url: '2.html',
+          url: '/2.html',
           name: 'Subcategory',
           path: '2',
           total_products: 10,

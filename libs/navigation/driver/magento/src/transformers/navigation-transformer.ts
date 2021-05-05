@@ -20,7 +20,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
     const id = node.uid;
     return {
       id,
-      url: `${node.url_path}${node.url_suffix}`,
+      url: `/${node.url_path}${node.url_suffix}`,
       path: id,
       name: node.name,
       total_products: node.product_count,
