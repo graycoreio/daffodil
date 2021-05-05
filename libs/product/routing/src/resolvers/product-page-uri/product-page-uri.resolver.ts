@@ -24,12 +24,11 @@ import {
 } from 'rxjs/operators';
 
 import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
-
 import {
+  DaffProductReducersState,
   DaffProductPageLoadByUrl,
   DaffProductPageActionTypes,
-} from '../../actions/public_api';
-import { DaffProductReducersState } from '../../reducers/public_api';
+} from '@daffodil/product/state';
 
 /**
  * Resolves product data for product pages, and will only resolve the url

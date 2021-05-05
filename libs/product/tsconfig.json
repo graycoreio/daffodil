@@ -33,6 +33,9 @@
       "@daffodil/product/testing": [
         "libs/product/testing/src"
       ],
+      "@daffodil/product/routing": [
+        "libs/product/routing/src"
+      ],
     }
   }
 }

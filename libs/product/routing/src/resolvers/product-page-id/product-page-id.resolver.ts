@@ -23,10 +23,10 @@ import {
 } from 'rxjs/operators';
 
 import {
+  DaffProductReducersState,
   DaffProductPageLoad,
   DaffProductPageActionTypes,
-} from '../../actions/public_api';
-import { DaffProductReducersState } from '../../reducers/public_api';
+} from '@daffodil/product/state';
 
 /**
  * Resolves product data for product pages, and will only resolve the url after a product request succeeds or fails. This resolver expects a url
