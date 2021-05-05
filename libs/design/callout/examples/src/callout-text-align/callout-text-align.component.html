@@ -1,0 +1,12 @@
+<daff-callout [style.text-align]="textAlignControl.value">
+	<daff-container size="md">
+		<p daffCalloutTagline>Callout Tagline</p>
+		<h3 daffCalloutTitle>Callout Title</h3>
+		<p daffCalloutSubtitle>Callout subtitle</p>
+		<p>Additional content can be placed here.</p>
+	</daff-container>
+</daff-callout>
+
+<select [formControl]="textAlignControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>
