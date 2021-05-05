@@ -321,7 +321,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       const productsOp = controller.expectOne(MagentoGetProductsQuery);
       productsOp.flushData(mockGetProductsResponse);
 
-      expect(productsOp.operation.variables.filter.category_id.eq).toEqual(mockMagentoCategory.uid);
+      expect(productsOp.operation.variables.filter.category_uid.eq).toEqual(mockMagentoCategory.uid);
 
       flush();
     }));
