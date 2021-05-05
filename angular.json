@@ -786,6 +786,11 @@
                 "glob": "**/*",
                 "input": "dist/docs/",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/design/assets/",
+                "output": "/assets/design"
               }
             ],
             "styles": [

@@ -13,6 +13,11 @@ import {
   DaffPalette,
   daffColorMixin,
 } from '../../../core/colorable/colorable';
+import {
+  DaffTextAlignable,
+  DaffTextAlignment,
+} from '../../../core/text-alignable/text-alignable';
+import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
 
 // DaffCalloutLayout will be deprecated in v1.0.0
 export type DaffCalloutLayout = 'centered' | undefined;
@@ -33,7 +38,7 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(DaffCalloutBase);
+const _daffCalloutBase = daffColorMixin(daffTextAlignmentMixin(DaffCalloutBase));
 
 @Component({
   selector: 'daff-callout',
@@ -42,10 +47,15 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase);
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {
+export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable, DaffTextAlignable {
   @Input() color: DaffPalette;
   @Input() layout: DaffCalloutLayout; // Will be deprecated in v1.0.0
   @Input() size: DaffCalloutSize; // Will be deprecated in v1.0.0
+
+  /**
+   * Controls text alignment for component-specific UI
+   */
+  @Input() textAlignment: DaffTextAlignment;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

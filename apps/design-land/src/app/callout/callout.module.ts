@@ -3,6 +3,7 @@ import {
   NgModule,
   Injector,
   ComponentFactoryResolver,
+  Type,
 } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
@@ -35,7 +36,7 @@ export class DesignLandCalloutModule {
     injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
-    CALLOUT_EXAMPLES.map((classConstructor) => ({
+    CALLOUT_EXAMPLES.map((classConstructor: Type<unknown>) => ({
       element: createCustomElement(classConstructor, { injector }),
       class: classConstructor,
     }))

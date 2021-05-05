@@ -1,6 +1,6 @@
 <daff-article>
   <h1 daffArticleTitle>Callout</h1>
-  <p daffArticleLead><code>DaffCalloutComponent</code> is a versatile component that can be used to easily highlight a piece of content. It supports transclusion of any content and includes predefined <code>tagline</code>, <code>title</code> and <code>subtitle</code> styles.</p>
+  <p daffArticleLead><code>DaffCalloutComponent</code> is a versatile component that can be used to easily highlight a piece of content. It supports transclusion of any content and includes predefined <code>tagline</code>, <code>title</code>, and <code>subtitle</code> styles.</p>
 
   <h2>Use Cases</h2>
   <ul>
@@ -24,10 +24,20 @@
 
   <design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
 
+  <h2>Text Alignment</h2>
+  <p>Align callout-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to any additional components or elements that is placed inside of a callout.</p>
+  <p>Supported alignments: <code>left | center | right</code></p>
+  <design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
+
+  <h2>Gridded Callout</h2>
+  <p>Callouts are flexible enough to support grids within them.</p>
+
+  <h3>Two Column Grid Callout</h3>
+  <design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
+
   <h2>Layout</h2>
   <p>The <code>layout</code> property will be deprecated in v1.0.0</p>
 
   <h2>Size</h2>
   <p>The <code>size</code> property will be deprecated in v1.0.0. The <code>compact</code> value will be replaced by the <code>DaffCompactable</code> interface.</p>
-
 </daff-article>

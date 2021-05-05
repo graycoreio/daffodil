@@ -1,0 +1,47 @@
+@import 'daff-util';
+
+.daff-callout-with-grid {
+	&__grid {
+		/* autoprefixer grid: autoplace */
+		display: grid;
+		grid-template:
+			'image'
+			'content' / 1fr;
+		grid-gap: 24px;
+
+		@include breakpoint(tablet) {
+			grid-template:
+				'image content' / 1fr 1fr;
+			grid-gap: 48px;
+		}
+	}
+
+	&__image {
+		grid-area: image;
+	}
+
+	&__content-wrapper {
+		grid-area: content;
+	}
+
+	&__actions {
+		display: grid;
+		grid-template:
+			'daffodil-action'
+			'demo-action' / auto;
+		grid-gap: 24px;
+
+		@include breakpoint(tablet) {
+			grid-template:
+				'daffodil-action demo-action' / auto;
+		}
+	}
+
+	&__daffodil-action {
+		grid-area: daffodil-action;
+	}
+
+	&__demo-action {
+		grid-area: demo-action;
+	}
+}
