@@ -1,5 +1,5 @@
 export { DaffAddress } from './address/address';
-export { DaffLocateable } from './locateable/locateable.interface';
+export { DaffLocatable } from './locateable/locateable.interface';
 
 export * from './utils/long-arithmetic';
 export { range } from './utils/range';
