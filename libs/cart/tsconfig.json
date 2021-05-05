@@ -33,6 +33,9 @@
       "@daffodil/cart/testing": [
         "libs/cart/testing/src"
       ],
+      "@daffodil/cart/routing": [
+        "libs/cart/routing/src"
+      ],
     }
   }
 }
