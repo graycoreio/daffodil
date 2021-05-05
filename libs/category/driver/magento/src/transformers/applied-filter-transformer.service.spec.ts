@@ -43,7 +43,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
     it('should return only a category filter when there are no additional filters', () => {
       const expectedReturn: MagentoCategoryFilters = {
-        category_id: {
+        category_uid: {
           eq: 'id',
         },
       };
@@ -65,7 +65,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
       it('should transform a range filter request into a valid magento FromTo filter', () => {
         const expectedReturn: MagentoCategoryFilters = {
-          category_id: {
+          category_uid: {
             eq: 'id',
           },
           [rangeFilterRequest.name]: {
@@ -87,7 +87,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
       it('should transform an array of DaffCategoryFilterRequest into a MagentoCategoryFilters', () => {
         const expectedReturn: MagentoCategoryFilters = {
-          category_id: {
+          category_uid: {
             eq: 'id',
           },
           [equalFilterRequest.name]: {
