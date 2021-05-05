@@ -4,10 +4,12 @@ import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffNavigationTree } from '@daffodil/navigation';
 
+const randomUrl = () => (new URL(faker.internet.url())).pathname
+
 export class MockNavigationTree implements DaffNavigationTree {
   id = faker.random.uuid();
   name = '';
-  url = faker.internet.url();
+  url = randomUrl();
   path = faker.commerce.department().toString().toLowerCase();
   total_products = faker.random.number({ min: 1, max: 10 });
   children = [...Array(faker.random.number({ min:1, max:3 }))].map(() => this.fakeTree(3));
@@ -24,7 +26,7 @@ export class MockNavigationTree implements DaffNavigationTree {
 
 	    return {
 	      id,
-        url: faker.internet.url(),
+        url: randomUrl(),
         name: faker.commerce.department(),
 	      path: faker.commerce.department().toString().toLowerCase(),
 	      total_products: faker.random.number({ min: 1, max: 20 }),
@@ -42,7 +44,7 @@ export class MockNavigationTree implements DaffNavigationTree {
 
 	    return {
 	      id,
-        url: faker.internet.url(),
+        url: randomUrl(),
 	      name: faker.commerce.department(),
 	      path: faker.commerce.department().toString().toLowerCase(),
 	      total_products: faker.random.number({ min: 1, max: 20 }),
