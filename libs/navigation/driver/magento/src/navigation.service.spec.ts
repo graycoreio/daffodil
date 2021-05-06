@@ -65,6 +65,8 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
         categoryList: [{
           __typename: 'CategoryTree',
           uid: navigation.id,
+          url_path: navigation.id,
+          url_suffix: '.html',
           name: navigation.name,
           include_in_menu: true,
           level: 0,
@@ -79,6 +81,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
       navigationService.get(navigation.id).subscribe((result) => {
         expect(result.id).toEqual(navigation.id);
         expect(result.name).toEqual(navigation.name);
+        expect(result.url).toEqual(`/${navigation.id}.html`);
         expect(result.total_products).toEqual(navigation.total_products);
         expect(result.children_count).toEqual(navigation.children_count);
         done();

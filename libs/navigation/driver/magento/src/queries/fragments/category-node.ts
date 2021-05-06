@@ -7,6 +7,8 @@ import { DocumentNode } from 'graphql';
  */
 const categoryNodeFragment = `
 	uid
+  url_path
+  url_suffix
 	level
 	name
 	include_in_menu

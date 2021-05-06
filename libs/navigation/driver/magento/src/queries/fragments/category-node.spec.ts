@@ -23,6 +23,8 @@ import { getCategoryNodeFragment } from './category-node';
 const generateMagentoCategoryTree = (id: CategoryNode['uid']): CategoryNode => ({
   __typename: 'CategoryTree',
   uid: id,
+  url_path: id,
+  url_suffix: '.html',
   name: 'name',
   include_in_menu: true,
   level: 0,
@@ -203,6 +205,8 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
   it('should not use nested fragments', () => {
     const expectedFields = [
       'uid',
+      'url_path',
+      'url_suffix',
       'level',
       'name',
       'include_in_menu',
