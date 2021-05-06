@@ -15,7 +15,8 @@
     "build": "ng build external-router --prod",
     "lint": "cd ../.. && ng lint external-router",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test external-router --watch=false --browsers=ChromeHeadless"
+    "test": "ng test external-router --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/external-router; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
