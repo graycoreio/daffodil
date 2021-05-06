@@ -81,7 +81,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
       navigationService.get(navigation.id).subscribe((result) => {
         expect(result.id).toEqual(navigation.id);
         expect(result.name).toEqual(navigation.name);
-        expect(result.url).toEqual(`${navigation.id}.html`);
+        expect(result.url).toEqual(`/${navigation.id}.html`);
         expect(result.total_products).toEqual(navigation.total_products);
         expect(result.children_count).toEqual(navigation.children_count);
         done();
