@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.0](https://github.com/graycoreio/daffodil/compare/v0.32.0...v0.33.0) (2021-05-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** product resolvers have moved to a new @daffodil/product/routing subpackage.
+
+### Features
+
+* **core:** add locatable interface ([#1501](https://github.com/graycoreio/daffodil/issues/1501)) ([3487233](https://github.com/graycoreio/daffodil/commit/3487233f435ec932e995074c91bf525f60907533))
+* **navigation:** add url to DaffGenericNavigationTree ([#1503](https://github.com/graycoreio/daffodil/issues/1503)) ([d1f5abf](https://github.com/graycoreio/daffodil/commit/d1f5abfb6cd1fe77a5fbb71639ffa189a1d78e3c))
+* **product:** add routing subpackage ([#1504](https://github.com/graycoreio/daffodil/issues/1504)) ([0d904a5](https://github.com/graycoreio/daffodil/commit/0d904a5521bbef35c4312fdb498e490928601025))
+
+
+### Bug Fixes
+
+* **category:** magento driver setting wrong ID filter key ([#1500](https://github.com/graycoreio/daffodil/issues/1500)) ([d559bfe](https://github.com/graycoreio/daffodil/commit/d559bfef52c01220d5aa2f16747e5bf2391a758e))
+
 ## [0.32.0](https://github.com/graycoreio/daffodil/compare/v0.31.1...v0.32.0) (2021-05-05)
 
 
