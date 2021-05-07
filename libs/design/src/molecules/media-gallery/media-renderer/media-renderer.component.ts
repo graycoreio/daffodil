@@ -13,10 +13,8 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import {
-  DaffMediaGalleryRegistration,
-  DAFF_MEDIA_GALLERY_TOKEN,
-} from '../media-gallery-token';
+import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 /**

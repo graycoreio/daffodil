@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import {
-  DaffMediaGalleryRegistration,
-  DaffThumbnailRegistration,
-} from '../media-gallery-token';
+import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DaffThumbnailRegistration } from '../thumbnail/thumbnail-registration.interface';
 
 export interface DaffMediaGalleryDict {
 	[galleryName: string]: BehaviorSubject<DaffMediaGallery>;

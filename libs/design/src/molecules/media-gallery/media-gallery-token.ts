@@ -1,15 +1,5 @@
-import {
-  InjectionToken,
-  Type,
-} from '@angular/core';
-export interface DaffMediaGalleryRegistration {
-	name: string;
-}
-export interface DaffThumbnailRegistration {
-	gallery: DaffMediaGalleryRegistration;
-	selected: boolean;
-	component: Type<unknown>;
-	select: () => DaffThumbnailRegistration;
-	deselect: () => DaffThumbnailRegistration;
-}
+import { InjectionToken } from '@angular/core';
+
+import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
+
 export const DAFF_MEDIA_GALLERY_TOKEN = new InjectionToken<DaffMediaGalleryRegistration>('DAFF_MEDIA_GALLERY_TOKEN');

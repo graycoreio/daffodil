@@ -5,10 +5,8 @@ import {
   Input,
 } from '@angular/core';
 
-import {
-  DAFF_MEDIA_GALLERY_TOKEN,
-  DaffMediaGalleryRegistration,
-} from './media-gallery-token';
+import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from './media-gallery-token';
 
 let uniqueGalleryId = 0;
 
