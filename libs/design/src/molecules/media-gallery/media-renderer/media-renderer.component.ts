@@ -2,21 +2,21 @@ import {
   Component,
   OnInit,
   ComponentFactoryResolver,
-  Input,
   Type,
   ViewChild,
   ViewContainerRef,
   TemplateRef,
   ChangeDetectionStrategy,
   OnDestroy,
+  Inject,
 } from '@angular/core';
-import {
-  Subscription,
-  Subject,
-} from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
+import {
+  DaffMediaGalleryRegistration,
+  DAFF_MEDIA_GALLERY_TOKEN,
+} from '../media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 /**
@@ -35,16 +35,11 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
    */
    private _destroy$ = new Subject();
 
-  /**
-   * The constructor function of the component to render.
-   */
-  @Input() component: Type<unknown>;
-
-  constructor(
+   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private registry: DaffMediaGalleryRegistry,
-    private gallery: DaffMediaGalleryComponent,
-  ) {}
+    @Inject(DAFF_MEDIA_GALLERY_TOKEN) private gallery: DaffMediaGalleryRegistration,
+   ) {}
 
   /**
    * The slot that the "component" is rendered into.

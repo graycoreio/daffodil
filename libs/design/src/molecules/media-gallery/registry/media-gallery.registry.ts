@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
-import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
+import {
+  DaffMediaGalleryRegistration,
+  DaffThumbnailRegistration,
+} from '../media-gallery-token';
 
 export interface DaffMediaGalleryDict {
 	[galleryName: string]: BehaviorSubject<DaffMediaGallery>;
 }
 
 export interface DaffMediaGallery {
-	gallery: DaffMediaGalleryComponent;
-	thumbnails: DaffThumbnailDirective[];
+	gallery: DaffMediaGalleryRegistration;
+	thumbnails: DaffThumbnailRegistration[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +23,7 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Adds a media element to the internal registry.
 	 */
-	add(gallery: DaffMediaGalleryComponent, thumbnail: DaffThumbnailDirective) {
+	add(gallery: DaffMediaGalleryRegistration, thumbnail: DaffThumbnailRegistration) {
 	  if(this.galleries[gallery.name]) {
 	    let newGallery = this.galleries[gallery.name].getValue();
 
@@ -49,7 +51,7 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Removes a media element from the internal registry.
 	 */
-	remove(thumbnail: DaffThumbnailDirective) {
+	remove(thumbnail: DaffThumbnailRegistration) {
 	  if(!this.galleries[thumbnail.gallery.name]) {
 	    return;
 	  }
@@ -73,7 +75,7 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Selects a media element for a given gallery.
 	 */
-	select(thumbnail: DaffThumbnailDirective) {
+	select(thumbnail: DaffThumbnailRegistration) {
 	  if(!this.galleries[thumbnail.gallery.name]) {
 	    return;
 	  }

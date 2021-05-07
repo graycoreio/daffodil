@@ -20,7 +20,7 @@ import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
 	</daff-media-gallery>`,
 })
 class WrapperComponent {
-	nameValue: number;
+	nameValue: string;
 }
 
 @Component({
@@ -34,7 +34,7 @@ describe('DaffMediaGalleryComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let component: DaffMediaGalleryComponent;
-  const stubName = 3;
+  const stubName = 'some name';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -108,6 +108,7 @@ describe('DaffMediaGalleryComponent - default', () => {
   });
 
   it('should set the name to a unique id if a name is not provided', () => {
-    expect(component.name).toEqual(jasmine.any(Number));
+    expect(component.name).not.toEqual('');
+    expect(component.name).toEqual(jasmine.any(String));
   });
 });
