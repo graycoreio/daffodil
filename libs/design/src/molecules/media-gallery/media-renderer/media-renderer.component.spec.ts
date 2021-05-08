@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffArticleComponent } from '../../article/public_api';
 import { DaffCardComponent } from '../../card/public_api';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
@@ -66,7 +67,7 @@ describe('DaffMediaRendererComponent', () => {
           useValue: jasmine.createSpyObj('DaffMediaGalleryRegistry', ['add', 'remove', 'select']),
         },
         {
-          provide: DaffMediaGalleryComponent,
+          provide: DAFF_MEDIA_GALLERY_TOKEN,
           useValue: mockGallery,
         },
       ],

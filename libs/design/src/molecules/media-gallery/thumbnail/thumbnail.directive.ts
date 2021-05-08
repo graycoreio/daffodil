@@ -1,6 +1,5 @@
 import {
   Directive,
-  Input,
   Inject,
   Type,
   HostBinding,
@@ -12,9 +11,11 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
+import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
+import { DaffThumbnailRegistration } from './thumbnail-registration.interface';
 
 /**
  * A directive marking thumbnails for the `DaffMediaRendererComponent`. Needs to be wrapped in a `daff-media-gallery` component
@@ -23,7 +24,7 @@ import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 @Directive({
   selector: '[daffThumbnail]',
 })
-export class DaffThumbnailDirective implements OnInit, OnDestroy {
+export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailRegistration {
 
 	/**
 	 * Adds a class for styling a selected thumbnail
@@ -36,7 +37,7 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy {
 		@Inject(daffThumbnailCompatToken) public component: Type<unknown>,
 		private cd: ChangeDetectorRef,
 		private registry: DaffMediaGalleryRegistry,
-		public gallery: DaffMediaGalleryComponent,
+    @Inject(DAFF_MEDIA_GALLERY_TOKEN) public gallery: DaffMediaGalleryRegistration,
 	) {}
 
 	/**
