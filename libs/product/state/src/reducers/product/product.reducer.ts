@@ -27,9 +27,9 @@ export function daffProductReducer<T extends DaffProduct>(state = initialState, 
   switch (action.type) {
     case DaffProductPageActionTypes.ProductPageLoadAction:
     case DaffProductPageActionTypes.ProductPageLoadByUrlAction:
-      return { ...state, loading: true, selectedProductId: action.payload };
+      return { ...state, loading: true, selectedProductId: null };
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      return { ...state, loading: false };
+      return { ...state, loading: false, selectedProductId: action.payload.id };
     case DaffProductPageActionTypes.ProductPageLoadFailureAction:
       return { ...state,
         loading: false,

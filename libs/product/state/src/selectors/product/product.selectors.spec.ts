@@ -17,6 +17,7 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
+import { DaffProductPageLoadSuccess } from '../../actions/public_api';
 import { getDaffProductPageSelectors } from './product.selectors';
 
 describe('selectProductState', () => {
@@ -45,7 +46,7 @@ describe('selectProductState', () => {
     store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
-    store.dispatch(new DaffProductPageLoad(mockProduct.id));
+    store.dispatch(new DaffProductPageLoadSuccess(mockProduct));
   });
 
   describe('SelectedProductState', () => {
@@ -58,7 +59,7 @@ describe('selectProductState', () => {
         expectedProductState = {
           selectedProductId: mockProduct.id,
           qty: 1,
-          loading: true,
+          loading: false,
           errors: [],
         };
       });
@@ -95,7 +96,7 @@ describe('selectProductState', () => {
 
       it('selects the loading state of the selected product', () => {
         const selector = store.pipe(select(selectSelectedProductLoadingState));
-        const expected = cold('a', { a: true });
+        const expected = cold('a', { a: false });
 
         expect(selector).toBeObservable(expected);
       });
