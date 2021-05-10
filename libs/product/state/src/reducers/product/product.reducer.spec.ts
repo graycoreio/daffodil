@@ -50,6 +50,10 @@ describe('Product | Product Reducer', () => {
     it('sets loading state to true', () => {
       expect(result.loading).toEqual(true);
     });
+
+    it('resets selectedProductId', () => {
+      expect(result.selectedProductId).toBeNull();
+    });
   });
 
   describe('when ProductLoadAction is triggered', () => {
@@ -65,8 +69,8 @@ describe('Product | Product Reducer', () => {
       expect(result.loading).toEqual(true);
     });
 
-    it('sets selectedProductId to the product id', () => {
-      expect(result.selectedProductId).toEqual(productId);
+    it('resets selectedProductId', () => {
+      expect(result.selectedProductId).toBeNull();
     });
   });
 
@@ -87,6 +91,10 @@ describe('Product | Product Reducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('sets selectedProductId to the loaded product ID', () => {
+      expect(result.selectedProductId).toEqual(product.id);
     });
   });
 
