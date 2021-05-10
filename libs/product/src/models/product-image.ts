@@ -1,10 +1,12 @@
-import { ID } from '@daffodil/core';
+import {
+  ID,
+  DaffLocatable,
+} from '@daffodil/core';
 
 /**
  * Interface for an image on a DaffProduct.
  */
-export interface DaffProductImage {
+export interface DaffProductImage extends DaffLocatable {
   id: ID;
-  url: string;
   label: string;
 }
