@@ -19,8 +19,11 @@ describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_
   it('allow you to provide a resolvable route type', () => {
     TestBed.configureTestingModule({
       providers: [
-        daffProvideRouteResolvableByType('some-type', {
-          redirectTo: 'somewhere',
+        daffProvideRouteResolvableByType({
+          type: 'some-type',
+          route: {
+            redirectTo: 'somewhere',
+          },
         }),
       ],
     });
@@ -42,11 +45,13 @@ describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_
     TestBed.configureTestingModule({
       providers: [
         daffProvideRouteResolvableByType(
-          'some-type',
           {
-            redirectTo: 'somewhere',
+            type: 'some-type',
+            route: {
+              redirectTo: 'somewhere',
+            },
+            insertionStrategy: customStrategy,
           },
-          customStrategy,
         ),
       ],
     });

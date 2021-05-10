@@ -40,7 +40,10 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
         }),
       ],
       providers: [
-        daffProvideRouteResolvableByType(STUB_RESOLVABLE_TYPE, { redirectTo: '/' }),
+        daffProvideRouteResolvableByType({
+          type: STUB_RESOLVABLE_TYPE,
+          route: { redirectTo: '/' },
+        }),
         {
           provide: DAFF_EXTERNAL_ROUTER_CONFIG,
           useValue: {
