@@ -1,8 +1,8 @@
 import { DaffProductMagentoDriverConfig } from '../interfaces/public_api';
-import { magentoProductTruncateUri } from '../transforms/truncate-uri';
+import { magentoProductTruncateUrl } from '../transforms/truncate-url';
 
 export const MAGENTO_PRODUCT_CONFIG_DEFAULT: DaffProductMagentoDriverConfig = {
   baseMediaUrl: '',
-  truncateUri: true,
-  uriTruncationStrategy: magentoProductTruncateUri,
+  truncateUrl: true,
+  urlTruncationStrategy: magentoProductTruncateUrl,
 };

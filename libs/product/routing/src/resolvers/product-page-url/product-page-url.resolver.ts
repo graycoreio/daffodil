@@ -39,7 +39,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffProductPageUriResolver implements Resolve<Observable<boolean>> {
+export class DaffProductPageUrlResolver implements Resolve<Observable<boolean>> {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
     private store: Store<DaffProductReducersState>,

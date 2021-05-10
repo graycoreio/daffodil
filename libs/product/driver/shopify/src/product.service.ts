@@ -84,6 +84,7 @@ export const GetAProduct = gql`
  */
 export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct => ({
   id: node.id,
+  url: null,
   name: node.title,
   images: [],
 });

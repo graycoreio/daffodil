@@ -37,14 +37,14 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageUriResolver } from './product-page-uri.resolver';
+import { DaffProductPageUrlResolver } from './product-page-url.resolver';
 
 @Component({ template: '' })
 class TestComponent {}
 
-describe('DaffProductPageUriResolver', () => {
+describe('DaffProductPageUrlResolver', () => {
   const actions$: Observable<any> = null;
-  let resolver: DaffProductPageUriResolver;
+  let resolver: DaffProductPageUrlResolver;
   let store: Store<DaffProductReducersState>;
   let ProductFactory: DaffProductFactory;
   let stubProduct: DaffProduct;
@@ -84,7 +84,7 @@ describe('DaffProductPageUriResolver', () => {
         ],
       });
 
-      resolver = TestBed.inject(DaffProductPageUriResolver);
+      resolver = TestBed.inject(DaffProductPageUrlResolver);
       ProductFactory = TestBed.inject(DaffProductFactory);
       stubProduct = ProductFactory.create();
       store = TestBed.inject(Store);
@@ -169,7 +169,7 @@ describe('DaffProductPageUriResolver', () => {
         ],
       });
 
-      resolver = TestBed.inject(DaffProductPageUriResolver);
+      resolver = TestBed.inject(DaffProductPageUrlResolver);
       ProductFactory = TestBed.inject(DaffProductFactory);
       stubProduct = ProductFactory.create();
       store = TestBed.inject(Store);

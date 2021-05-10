@@ -101,12 +101,12 @@ describe('Product | Magento | ProductService', () => {
   });
 
   describe('getByUrl | getting a single product by url', () => {
-    let uri: string;
+    let url: string;
     let result: Observable<DaffProduct>;
 
     beforeEach(() => {
-      uri = '/path/to/TESTING_URL?with=query#fragment';
-      result = service.getByUrl(uri);
+      url = '/path/to/TESTING_URL?with=query#fragment';
+      result = service.getByUrl(url);
     });
 
     it('should return a DaffProduct', done => {
@@ -128,7 +128,7 @@ describe('Product | Magento | ProductService', () => {
       });
     });
 
-    it('should query the category with the truncated URI', () => {
+    it('should query the category with the truncated URL', () => {
       result.subscribe();
 
       const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
