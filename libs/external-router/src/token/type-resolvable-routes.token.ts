@@ -3,6 +3,7 @@ import {
   Provider,
 } from '@angular/core';
 
+import { DaffExternalRouterInsertionStrategy } from '../model/insertion-strategy.type';
 import { DaffExternalRouteType } from '../model/route-type';
 import { DaffRouteWithoutPath } from '../model/route-without-path';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
@@ -23,18 +24,24 @@ export const DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE = new InjectionToken
 export function daffProvideRouteResolvableByType(
   type: DaffExternalRouteType,
   route: DaffRouteWithoutPath,
+  insertionStrategy?: DaffExternalRouterInsertionStrategy,
 ): Provider {
   return {
     provide: DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
     multi: true,
-    useValue: { type, route },
+    useValue: { type,
+      route,
+      ...insertionStrategy ? { insertionStrategy } : {}},
   };
 }
 
-export function provideRoutesResolvableByType(routes: DaffTypeRoutePair[]): Provider[] {
+/**
+ * A multi-provider used to connect an array of types an respective route.
+ */
+export function daffProvideRoutesResolvableByType(routes: DaffTypeRoutePair[]): Provider[] {
   return routes.map((route: DaffTypeRoutePair) => ({
     provide: DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
     multi: true,
-    useValue: { type: route.type, route: route.route },
+    useValue: route,
   }));
 }
