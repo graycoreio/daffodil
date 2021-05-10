@@ -46,7 +46,7 @@ import {
   DaffCategoryPageChangePageSize,
   DaffCategoryPageChangeCurrentPage,
   DaffCategoryPageChangeSortingOption,
-  DaffCategoryPageLoadByUri,
+  DaffCategoryPageLoadByUrl,
 } from '../actions/category-page.actions';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 
@@ -72,9 +72,9 @@ export class DaffCategoryPageEffects<
   );
 
   @Effect()
-  loadCategoryPageByUri$: Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoryPageActionTypes.CategoryPageLoadByUriAction),
-    switchMap((action: DaffCategoryPageLoadByUri) => this.driver.getByUri(action.request).pipe(
+  loadCategoryPageByUrl$: Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction),
+    switchMap((action: DaffCategoryPageLoadByUrl) => this.driver.getByUrl(action.request).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryPageLoadSuccess(resp),

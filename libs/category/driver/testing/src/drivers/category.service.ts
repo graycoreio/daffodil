@@ -7,7 +7,7 @@ import {
 import {
   DaffGetCategoryResponse,
   DaffCategoryIdRequest,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
@@ -36,7 +36,7 @@ export class DaffTestingCategoryService implements DaffCategoryServiceInterface 
     });
   }
 
-  getByUri(categoryRequest: DaffCategoryUriRequest): Observable<DaffGetCategoryResponse> {
+  getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse> {
     return of({
       category: this.categoryFactory.create(),
       categoryPageMetadata: this.categoryPageMetadataFactory.create(),

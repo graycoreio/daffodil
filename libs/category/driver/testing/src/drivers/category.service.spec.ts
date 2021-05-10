@@ -51,11 +51,11 @@ describe('Driver | Testing | Category | CategoryService', () => {
     });
   });
 
-  describe('getByUri', () => {
+  describe('getByUrl', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
       const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.getByUri('url')).toBeObservable(expected);
+      expect(categoryService.getByUrl('url')).toBeObservable(expected);
     });
   });
 });

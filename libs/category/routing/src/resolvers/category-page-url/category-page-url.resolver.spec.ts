@@ -32,7 +32,7 @@ import {
 } from '@daffodil/category';
 import {
   daffCategoryReducers,
-  DaffCategoryPageLoadByUri,
+  DaffCategoryPageLoadByUrl,
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
   DaffCategoryReducersState,
@@ -45,14 +45,14 @@ import {
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffCategoryPageUriResolver } from './category-page-uri.resolver';
+import { DaffCategoryPageUrlResolver } from './category-page-url.resolver';
 
 @Component({ template: '' })
 class TestComponent {}
 
-describe('DaffCategoryPageUriResolver', () => {
+describe('DaffCategoryPageUrlResolver', () => {
   const actions$: Observable<any> = null;
-  let categoryResolver: DaffCategoryPageUriResolver;
+  let categoryResolver: DaffCategoryPageUrlResolver;
   let store: Store<DaffCategoryReducersState>;
   let categoryFactory: DaffCategoryFactory;
   let productFactory: DaffProductFactory;
@@ -93,7 +93,7 @@ describe('DaffCategoryPageUriResolver', () => {
         ],
       });
 
-      categoryResolver = TestBed.inject(DaffCategoryPageUriResolver);
+      categoryResolver = TestBed.inject(DaffCategoryPageUrlResolver);
       categoryFactory = TestBed.inject(DaffCategoryFactory);
       productFactory = TestBed.inject(DaffProductFactory);
       stubCategory = categoryFactory.create();
@@ -103,7 +103,7 @@ describe('DaffCategoryPageUriResolver', () => {
       router.initialNavigation();
     }));
 
-    it('should dispatch a DaffCategoryPageLoadByUri action with the normalized category url', fakeAsync(() => {
+    it('should dispatch a DaffCategoryPageLoadByUrl action with the normalized category url', fakeAsync(() => {
       const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
       tick();
@@ -111,7 +111,7 @@ describe('DaffCategoryPageUriResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoadByUri({ uri: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URI }),
+        new DaffCategoryPageLoadByUrl({ url: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URL }),
       );
     }));
 
@@ -184,7 +184,7 @@ describe('DaffCategoryPageUriResolver', () => {
         ],
       });
 
-      categoryResolver = TestBed.inject(DaffCategoryPageUriResolver);
+      categoryResolver = TestBed.inject(DaffCategoryPageUrlResolver);
       categoryFactory = TestBed.inject(DaffCategoryFactory);
       stubCategory = categoryFactory.create();
       store = TestBed.inject(Store);
@@ -193,7 +193,7 @@ describe('DaffCategoryPageUriResolver', () => {
       router.initialNavigation();
     }));
 
-    it('should dispatch a DaffCategoryPageLoadByUri action with the correct category id', fakeAsync(() => {
+    it('should dispatch a DaffCategoryPageLoadByUrl action with the correct category id', fakeAsync(() => {
       const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
       tick();
@@ -201,7 +201,7 @@ describe('DaffCategoryPageUriResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoadByUri({ uri: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URI }),
+        new DaffCategoryPageLoadByUrl({ url: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URL }),
       );
     }));
 
