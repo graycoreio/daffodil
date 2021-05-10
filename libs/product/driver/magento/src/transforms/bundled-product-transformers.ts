@@ -6,6 +6,7 @@ import {
   DaffCompositeProductItem,
   DaffCompositeProductItemInputEnum,
 } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 import {
   MagentoBundledProduct,
@@ -25,7 +26,7 @@ import { transformMagentoSimpleProduct } from './simple-product-transformers';
  */
 export function transformMagentoBundledProduct(product: MagentoBundledProduct, mediaUrl: string): DaffCompositeProduct {
   return {
-    ...transformMagentoSimpleProduct(product, mediaUrl),
+    ...<DaffProduct>transformMagentoSimpleProduct(product, mediaUrl),
     price: 0,
     discount: {
       amount: 0,
@@ -49,6 +50,7 @@ function transformMagentoBundledProductItem(item: MagentoBundledProductItem): Da
 function transformMagentoBundledProductItemOption(option: MagentoBundledProductItemOption): DaffCompositeProductItemOption {
   return {
     id: option.uid.toString(),
+    url: null,
     name: option.label,
     price: getPrice(option.product),
     images: [],

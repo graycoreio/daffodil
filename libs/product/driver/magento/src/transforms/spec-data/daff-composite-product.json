@@ -26,6 +26,7 @@
 			"options": [
 				{
 					"id": "1",
+          "url": null,
 					"name": "Option 1",
 					"price": 5,
 					"images": [],
@@ -39,6 +40,7 @@
 				},
 				{
 					"id": "2",
+          "url": null,
 					"name": "Option 2",
 					"price": 2,
 					"images": [],
