@@ -15,7 +15,7 @@ import {
 import {
   DaffGetCategoryResponse,
   daffApplyRequestsToFilters,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
   DaffCategoryRequestKind,
   DaffCategoryFilterRequest,
   DaffCategoryIdRequest,
@@ -97,14 +97,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     );
   }
 
-  getByUri(categoryRequest: DaffCategoryUriRequest): Observable<DaffGetCategoryResponse> {
+  getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
         query: MagentoGetCategoryQuery,
         variables: { filters: { url_path: {
-          eq: this.config.truncateUri
-            ? this.config.uriTruncationStrategy(categoryRequest.uri)
-            : categoryRequest.uri,
+          eq: this.config.truncateUrl
+            ? this.config.uriTruncationStrategy(categoryRequest.url)
+            : categoryRequest.url,
         }}},
       }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({

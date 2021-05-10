@@ -62,13 +62,13 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
     });
   });
 
-  describe('getByUri | getting a single category by URL', () => {
+  describe('getByUrl | getting a single category by URL', () => {
 
     it('should send a get request', () => {
       const mockCategory = categoryFactory.create();
       const mockProducts = productFactory.createMany(3);
 
-      categoryService.getByUri({ uri: mockCategory.uri, page_size: 12, kind: DaffCategoryRequestKind.URI }).subscribe(categoryResponse => {
+      categoryService.getByUrl({ url: mockCategory.url, page_size: 12, kind: DaffCategoryRequestKind.URL }).subscribe(categoryResponse => {
         expect(categoryResponse).toEqual(jasmine.objectContaining({
           category: mockCategory,
           products: mockProducts,

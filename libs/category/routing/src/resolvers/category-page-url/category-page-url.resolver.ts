@@ -28,7 +28,7 @@ import {
   DaffCategoryReducersState,
   DaffCategoryPageActionTypes,
   DaffDefaultCategoryPageSize,
-  DaffCategoryPageLoadByUri,
+  DaffCategoryPageLoadByUrl,
 } from '@daffodil/category/state';
 import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 
@@ -41,7 +41,7 @@ import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCategoryPageUriResolver implements Resolve<Observable<boolean>> {
+export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>> {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
     @Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
@@ -51,10 +51,10 @@ export class DaffCategoryPageUriResolver implements Resolve<Observable<boolean>>
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    this.store.dispatch(new DaffCategoryPageLoadByUri({
-      uri: this.urlNormalizer.normalize(state.url),
+    this.store.dispatch(new DaffCategoryPageLoadByUrl({
+      url: this.urlNormalizer.normalize(state.url),
       page_size: this.defaultCategoryPageSize,
-      kind: DaffCategoryRequestKind.URI,
+      kind: DaffCategoryRequestKind.URL,
     }));
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(

@@ -7,5 +7,5 @@ import {
 /**
  * Truncates leading slash, file extension, query params, and fragments.
  */
-export const magentoCategoryTruncateUri = (uri: string): string =>
-  daffUriTruncateLeadingSlash(daffUriTruncateFileExtension(daffUriTruncateQueryFragment(uri)));
+export const magentoCategoryTruncateUrl = (url: string): string =>
+  daffUriTruncateLeadingSlash(daffUriTruncateFileExtension(daffUriTruncateQueryFragment(url)));

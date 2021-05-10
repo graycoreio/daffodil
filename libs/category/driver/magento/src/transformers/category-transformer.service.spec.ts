@@ -15,7 +15,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
   let categoryFactory: DaffCategoryFactory;
   let stubCategory: DaffCategory;
 
-  let uri: DaffCategory['uri'];
+  let url: DaffCategory['url'];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,10 +27,10 @@ describe('DaffMagentoCategoryTransformerService', () => {
     service = TestBed.inject(DaffMagentoCategoryTransformerService);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
 
-    uri = 'uri';
+    url = 'url';
     stubCategory = categoryFactory.create({
       id: '1',
-      uri: `${uri}.html`,
+      url: `${url}.html`,
     });
   });
 
@@ -45,7 +45,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
     beforeEach(() => {
       magentoCategory = {
         uid: stubCategory.id,
-        url_path: uri,
+        url_path: url,
         url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{

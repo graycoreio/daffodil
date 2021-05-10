@@ -6,7 +6,7 @@ import {
   DaffCategory,
   DaffGetCategoryResponse,
   DaffCategoryIdRequest,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
 
@@ -21,7 +21,7 @@ export interface DaffCategoryServiceInterface<
   /**
    * Fetch a category by its associated URL.
    */
-  getByUri(categoryRequest: DaffCategoryUriRequest): Observable<DaffGetCategoryResponse<V, W>>;
+  getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse<V, W>>;
 }
 
 //TODO(damienwebdev): This any generic is necessary until we ship Ivy packages, do not change it.

@@ -19,7 +19,7 @@ import {
   DaffGetCategoryResponse,
   DaffCategoryRequestKind,
   DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import {
   MagentoGetACategoryResponse,
@@ -255,18 +255,18 @@ describe('Driver | Magento | Category | CategoryService', () => {
     });
   });
 
-  describe('getByUri | getting a category by URI', () => {
-    let mockCategoryUriRequest: DaffCategoryUriRequest;
-    let uri: string;
+  describe('getByUrl | getting a category by URL', () => {
+    let mockCategoryUrlRequest: DaffCategoryUrlRequest;
+    let url: string;
     let result: Observable<DaffGetCategoryResponse>;
 
     beforeEach(() => {
-      uri = '/test/uri?with=query#fragment';
-      mockCategoryUriRequest = {
-        kind: DaffCategoryRequestKind.URI,
-        uri,
+      url = '/test/url?with=query#fragment';
+      mockCategoryUrlRequest = {
+        kind: DaffCategoryRequestKind.URL,
+        url,
       };
-      result = categoryService.getByUri(mockCategoryUriRequest);
+      result = categoryService.getByUrl(mockCategoryUrlRequest);
     });
 
     it('should return a category with the correct info', fakeAsync(() => {
@@ -288,7 +288,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       productsOp.flushData(mockGetProductsResponse);
     }));
 
-    it('should query the category with the truncated URI', fakeAsync(() => {
+    it('should query the category with the truncated URL', fakeAsync(() => {
       result.subscribe();
 
       const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
@@ -302,7 +302,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       const productsOp = controller.expectOne(MagentoGetProductsQuery);
       productsOp.flushData(mockGetProductsResponse);
 
-      expect(categoryOp.operation.variables.filters.url_path.eq).toEqual('test/uri');
+      expect(categoryOp.operation.variables.filters.url_path.eq).toEqual('test/url');
 
       flush();
     }));
@@ -338,15 +338,15 @@ describe('Driver | Magento | Category | CategoryService', () => {
           value: rangeFilterRequestOption,
         });
         rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
-        mockCategoryUriRequest = {
-          ...mockCategoryUriRequest,
+        mockCategoryUrlRequest = {
+          ...mockCategoryUrlRequest,
           filter_requests: [
             equalFilterRequest,
             rangeFilterRequest,
           ],
         };
 
-        result = categoryService.getByUri(mockCategoryUriRequest);
+        result = categoryService.getByUrl(mockCategoryUrlRequest);
       });
 
       it('should apply those filters in the response', fakeAsync(() => {

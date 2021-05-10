@@ -19,7 +19,7 @@ import {
   DaffCategoryPageMetadata,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -35,7 +35,7 @@ import {
   DaffCategoryPageChangeCurrentPage,
   DaffCategoryPageChangeSortingOption,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffCategoryPageLoadByUri,
+  DaffCategoryPageLoadByUrl,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -102,7 +102,7 @@ describe('DaffCategoryPageEffects', () => {
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
 
     driverGetSpy = spyOn(daffCategoryDriver, 'get');
-    driverGetByUrlSpy = spyOn(daffCategoryDriver, 'getByUri');
+    driverGetByUrlSpy = spyOn(daffCategoryDriver, 'getByUrl');
     driverGetSpy.and.returnValue(of({
       category: stubCategory,
       categoryPageMetadata: stubcategoryPageMetadata,
@@ -233,15 +233,15 @@ describe('DaffCategoryPageEffects', () => {
     });
   });
 
-  describe('when CategoryPageLoadByUriAction is triggered', () => {
+  describe('when CategoryPageLoadByUrlAction is triggered', () => {
     let categoryPageLoadSuccessAction: DaffCategoryPageLoadSuccess;
     let expected;
-    let categoryPageLoadAction: DaffCategoryPageLoadByUri;
-    let categoryRequest: DaffCategoryUriRequest;
+    let categoryPageLoadAction: DaffCategoryPageLoadByUrl;
+    let categoryRequest: DaffCategoryUrlRequest;
 
     beforeEach(() => {
-      categoryRequest = { uri: stubCategory.id, kind: DaffCategoryRequestKind.URI };
-      categoryPageLoadAction = new DaffCategoryPageLoadByUri(categoryRequest);
+      categoryRequest = { url: stubCategory.id, kind: DaffCategoryRequestKind.URL };
+      categoryPageLoadAction = new DaffCategoryPageLoadByUrl(categoryRequest);
       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
         category: stubCategory,
         categoryPageMetadata: stubcategoryPageMetadata,
@@ -260,7 +260,7 @@ describe('DaffCategoryPageEffects', () => {
         }));
 
         expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryPageLoadSuccessAction });
-        expect(effects.loadCategoryPageByUri$).toBeObservable(expected);
+        expect(effects.loadCategoryPageByUrl$).toBeObservable(expected);
       });
     });
 
@@ -278,7 +278,7 @@ describe('DaffCategoryPageEffects', () => {
       });
 
       it('should dispatch a CategoryPageLoadFailure action', () => {
-        expect(effects.loadCategoryPageByUri$).toBeObservable(expected);
+        expect(effects.loadCategoryPageByUrl$).toBeObservable(expected);
       });
     });
 
@@ -290,9 +290,9 @@ describe('DaffCategoryPageEffects', () => {
       }));
 
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryPageLoadSuccessAction });
-      expect(effects.loadCategoryPageByUri$).toBeObservable(expected);
+      expect(effects.loadCategoryPageByUrl$).toBeObservable(expected);
 
-      expect(daffCategoryDriver.getByUri).toHaveBeenCalledWith(categoryRequest);
+      expect(daffCategoryDriver.getByUrl).toHaveBeenCalledWith(categoryRequest);
     });
   });
 

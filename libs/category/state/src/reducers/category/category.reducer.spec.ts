@@ -20,7 +20,7 @@ import {
   daffIsFilterApplied,
   DaffCategoryIdRequest,
   DaffCategoryRequestKind,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import {
   DaffCategoryReducerState,
@@ -36,7 +36,7 @@ import {
   DaffCategoryPageApplyFilters,
   DaffCategoryPageClearFilters,
   DaffCategoryPageRemoveFilters,
-  DaffCategoryPageLoadByUri,
+  DaffCategoryPageLoadByUrl,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -952,21 +952,21 @@ describe('Category | Category Reducer', () => {
     });
   });
 
-  describe('when CategoryPageLoadByUriAction is triggered', () => {
+  describe('when CategoryPageLoadByUrlAction is triggered', () => {
     let result;
-    let categoryRequest: DaffCategoryUriRequest;
+    let categoryRequest: DaffCategoryUrlRequest;
 
     beforeEach(() => {
       categoryRequest = {
-        kind: DaffCategoryRequestKind.URI,
-        uri: category.uri,
+        kind: DaffCategoryRequestKind.URL,
+        url: category.url,
         page_size: categoryPageMetadata.page_size,
         filter_requests: daffCategoryFiltersToRequests(categoryPageMetadata.filters),
         applied_sort_option: categoryPageMetadata.applied_sort_option,
         applied_sort_direction: categoryPageMetadata.applied_sort_direction,
         current_page: categoryPageMetadata.current_page,
       };
-      const categoryLoadAction: DaffCategoryPageLoadByUri = new DaffCategoryPageLoadByUri(categoryRequest);
+      const categoryLoadAction: DaffCategoryPageLoadByUrl = new DaffCategoryPageLoadByUrl(categoryRequest);
 
       result = daffCategoryReducer(initialState, categoryLoadAction);
     });
@@ -1005,10 +1005,10 @@ describe('Category | Category Reducer', () => {
     describe('when fields are missing from the request', () => {
       beforeEach(() => {
         categoryRequest = {
-          kind: DaffCategoryRequestKind.URI,
-          uri: category.uri,
+          kind: DaffCategoryRequestKind.URL,
+          url: category.url,
         };
-        const categoryLoadAction: DaffCategoryPageLoadByUri = new DaffCategoryPageLoadByUri(categoryRequest);
+        const categoryLoadAction: DaffCategoryPageLoadByUrl = new DaffCategoryPageLoadByUrl(categoryRequest);
 
         result = daffCategoryReducer(undefined, categoryLoadAction);
       });

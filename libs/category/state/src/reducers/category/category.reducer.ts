@@ -46,7 +46,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
 ): DaffCategoryReducerState {
   switch (action.type) {
     case DaffCategoryPageActionTypes.CategoryPageLoadAction:
-    case DaffCategoryPageActionTypes.CategoryPageLoadByUriAction:
+    case DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction:
       return {
         ...state,
         categoryLoading: true,

@@ -6,14 +6,14 @@ import {
   DaffCategory,
   DaffGetCategoryResponse,
   DaffCategoryIdRequest,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCategoryPageActionTypes {
   CategoryPageLoadAction = '[@daffodil/category] Category Page Load Action',
-  CategoryPageLoadByUriAction = '[@daffodil/category] Category Page Load By URI Action',
+  CategoryPageLoadByUrlAction = '[@daffodil/category] Category Page Load By URL Action',
   CategoryPageLoadSuccessAction = '[@daffodil/category] Category Page Load Success Action',
   CategoryPageLoadFailureAction = '[@daffodil/category] Category Page Load Failure Action',
   CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
@@ -37,14 +37,14 @@ export class DaffCategoryPageLoad implements Action {
 /**
  * An action triggered to initialize a category page load request.
  * This is intended to be used for loading full category pages.
- * Queries the category by URI.
+ * Queries the category by URL.
  *
  * @param request - DaffCategoryRequest object
  */
-export class DaffCategoryPageLoadByUri implements Action {
-  readonly type = DaffCategoryPageActionTypes.CategoryPageLoadByUriAction;
+export class DaffCategoryPageLoadByUrl implements Action {
+  readonly type = DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction;
 
-  constructor(public request: DaffCategoryUriRequest) { }
+  constructor(public request: DaffCategoryUrlRequest) { }
 }
 
 /**
@@ -115,7 +115,7 @@ export type DaffCategoryPageActions<
   W extends DaffProduct = DaffProduct
   > =
   | DaffCategoryPageLoad
-  | DaffCategoryPageLoadByUri
+  | DaffCategoryPageLoadByUrl
   | DaffCategoryPageLoadSuccess<U, W>
   | DaffCategoryPageLoadFailure
   | DaffCategoryPageChangePageSize
