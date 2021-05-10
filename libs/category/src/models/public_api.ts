@@ -9,6 +9,6 @@ export {
   DaffCategoryBaseRequest,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
-  DaffCategoryUriRequest,
+  DaffCategoryUrlRequest,
 } from './category-request';
 

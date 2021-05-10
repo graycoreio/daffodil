@@ -1,4 +1,7 @@
-import { ID } from '@daffodil/core';
+import {
+  ID,
+  DaffLocatable,
+} from '@daffodil/core';
 
 import { DaffCategoryBreadcrumb } from './category-breadcrumb';
 
@@ -7,12 +10,8 @@ import { DaffCategoryBreadcrumb } from './category-breadcrumb';
  * in Daffodil. As Categories are often considered Trees of Categories,
  * this type is a recursive generic.
  */
-export interface DaffGenericCategory<T extends DaffGenericCategory<T>> {
+export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends DaffLocatable {
   id: ID;
-  /**
-   * The URI associated with this category.
-   */
-  uri: string;
 	name: string;
 	description?: string;
   children_count?: number;
