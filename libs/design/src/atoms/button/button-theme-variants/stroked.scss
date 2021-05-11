@@ -10,17 +10,24 @@
 	@if daff-contrast-ratio($focus-color, daff-text-contrast($focus-color)) < 4.5 {
 		@error 'Stroked Button Focus State: ' + map-get($wcag-aa-errors, 'text-contrast');
 	}
+
+	@if daff-contrast-ratio($focus-color, daff-text-contrast($focus-color)) < 4.5 {
+		@error 'Stroked Button Active State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	}
 	border: 1px solid $base-color;
 	color: $font-color;
 	background-color: transparent;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		background-color: $base-color;
+		border: 1px solid $base-color;
 		color: daff-text-contrast($base-color);
 	}
 
-	&:focus {
+	&:active {
 		background-color: $focus-color;
+		border: 1px solid $focus-color;
 		color: daff-text-contrast($focus-color);
 	}
 }

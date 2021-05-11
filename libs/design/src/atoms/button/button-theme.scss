@@ -329,6 +329,12 @@
 			color: daff-text-contrast(daff-illuminate($base, $daff-gray, 2));
 		}
 
+		&:active {
+			background-color: daff-illuminate($base, $daff-gray, 3);
+			border: 1px solid daff-illuminate($base, $daff-gray, 3);
+			color: daff-text-contrast(daff-illuminate($base, $daff-gray, 3));
+		}
+
 		&.daff-primary {
 			@include daff-stroked-button-theme-variant(
 				daff-color($primary),
@@ -365,7 +371,7 @@
 			@include daff-stroked-button-theme-variant(
 				$white,
 				$white,
-				daff-color($daff-gray, 10)
+				daff-color($daff-gray, 20)
 			);
 		}
 
@@ -418,7 +424,7 @@
 			@include daff-stroked-button-theme-variant(
 				daff-color($daff-green, 60),
 				daff-color($daff-green, 60),
-				daff-color($daff-bronze, 70)
+				daff-color($daff-green, 70)
 			);
 		}
 	}
