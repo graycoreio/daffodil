@@ -27,7 +27,6 @@ import { DaffCategoryRequestKind } from '@daffodil/category';
 import {
   DaffCategoryReducersState,
   DaffCategoryPageActionTypes,
-  DaffDefaultCategoryPageSize,
   DaffCategoryPageLoadByUrl,
 } from '@daffodil/category/state';
 import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
@@ -44,7 +43,6 @@ import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>> {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
-    @Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
     private store: Store<DaffCategoryReducersState>,
     private dispatcher: ActionsSubject,
     private urlNormalizer: DaffRoutingUriNormalizer,
@@ -53,7 +51,6 @@ export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>>
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     this.store.dispatch(new DaffCategoryPageLoadByUrl({
       url: this.urlNormalizer.normalize(state.url),
-      page_size: this.defaultCategoryPageSize,
       kind: DaffCategoryRequestKind.URL,
     }));
 

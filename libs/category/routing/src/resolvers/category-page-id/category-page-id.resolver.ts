@@ -27,7 +27,6 @@ import {
   DaffCategoryReducersState,
   DaffCategoryPageLoad,
   DaffCategoryPageActionTypes,
-  DaffDefaultCategoryPageSize,
 } from '@daffodil/category/state';
 
 /**
@@ -40,7 +39,6 @@ import {
 export class DaffCategoryPageIdResolver implements Resolve<Observable<boolean>> {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
-    @Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
     private store: Store<DaffCategoryReducersState>,
     private dispatcher: ActionsSubject,
   ) { }
@@ -48,7 +46,6 @@ export class DaffCategoryPageIdResolver implements Resolve<Observable<boolean>> 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     this.store.dispatch(new DaffCategoryPageLoad({
       id: route.paramMap.get('id'),
-      page_size: this.defaultCategoryPageSize,
       kind: DaffCategoryRequestKind.ID,
     }));
 
