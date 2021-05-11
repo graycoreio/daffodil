@@ -46,7 +46,7 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
       const mockCategory = categoryFactory.create();
       const mockProducts = productFactory.createMany(3);
 
-      categoryService.get({ id: mockCategory.id, page_size: 12, kind: DaffCategoryRequestKind.ID }).subscribe(categoryResponse => {
+      categoryService.get({ id: mockCategory.id, kind: DaffCategoryRequestKind.ID }).subscribe(categoryResponse => {
         expect(categoryResponse).toEqual(jasmine.objectContaining({
           category: mockCategory,
           products: mockProducts,
@@ -68,7 +68,7 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
       const mockCategory = categoryFactory.create();
       const mockProducts = productFactory.createMany(3);
 
-      categoryService.getByUrl({ url: mockCategory.url, page_size: 12, kind: DaffCategoryRequestKind.URL }).subscribe(categoryResponse => {
+      categoryService.getByUrl({ url: mockCategory.url, kind: DaffCategoryRequestKind.URL }).subscribe(categoryResponse => {
         expect(categoryResponse).toEqual(jasmine.objectContaining({
           category: mockCategory,
           products: mockProducts,

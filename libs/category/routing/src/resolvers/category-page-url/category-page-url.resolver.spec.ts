@@ -37,7 +37,6 @@ import {
   DaffCategoryPageLoadFailure,
   DaffCategoryReducersState,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffDefaultCategoryPageSize,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -88,7 +87,6 @@ describe('DaffCategoryPageUrlResolver', () => {
         ],
         providers: [
           provideMockActions(() => actions$),
-          { provide: DaffDefaultCategoryPageSize, useValue: 12 },
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID },
         ],
       });
@@ -111,7 +109,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoadByUrl({ url: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URL }),
+        new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL }),
       );
     }));
 
@@ -179,7 +177,6 @@ describe('DaffCategoryPageUrlResolver', () => {
         ],
         providers: [
           provideMockActions(() => actions$),
-          { provide: DaffDefaultCategoryPageSize, useValue: 12 },
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID },
         ],
       });
@@ -201,7 +198,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoadByUrl({ url: `/${path}`, page_size: 12, kind: DaffCategoryRequestKind.URL }),
+        new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL }),
       );
     }));
 

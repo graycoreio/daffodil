@@ -28,7 +28,6 @@ import {
   DaffCategoryPageLoadFailure,
   DaffCategoryReducersState,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
-  DaffDefaultCategoryPageSize,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -59,7 +58,6 @@ describe('DaffCategoryPageIdResolver', () => {
         ],
         providers: [
           provideMockActions(() => actions$),
-          { provide: DaffDefaultCategoryPageSize, useValue: 12 },
           {
             provide: ActivatedRoute,
             useValue: { snapshot: { paramMap: { get: () => '123' }, toString: () => '123' }},
@@ -82,7 +80,7 @@ describe('DaffCategoryPageIdResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryRequestKind.ID }),
+        new DaffCategoryPageLoad({ id: '123', kind: DaffCategoryRequestKind.ID }),
       );
     });
 
@@ -125,7 +123,6 @@ describe('DaffCategoryPageIdResolver', () => {
         ],
         providers: [
           provideMockActions(() => actions$),
-          { provide: DaffDefaultCategoryPageSize, useValue: 12 },
           {
             provide: ActivatedRoute,
             useValue: { snapshot: { paramMap: { get: () => '123' }, toString: () => '123' }},
@@ -146,7 +143,7 @@ describe('DaffCategoryPageIdResolver', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
       expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffCategoryPageLoad({ id: '123', page_size: 12, kind: DaffCategoryRequestKind.ID }),
+        new DaffCategoryPageLoad({ id: '123', kind: DaffCategoryRequestKind.ID }),
       );
     });
 
