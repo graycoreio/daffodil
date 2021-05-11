@@ -85,10 +85,10 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{
-          category_uid: stubCategory.breadcrumbs[0].categoryId,
-          category_name: stubCategory.breadcrumbs[0].categoryName,
-          category_level: stubCategory.breadcrumbs[0].categoryLevel,
-          category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey,
+          category_uid: stubCategory.breadcrumbs[0].id,
+          category_name: stubCategory.breadcrumbs[0].name,
+          category_level: stubCategory.breadcrumbs[0].level,
+          category_url_key: stubCategory.breadcrumbs[0].url,
         }],
         children_count: stubCategory.children_count,
       };
