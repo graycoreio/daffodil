@@ -27,7 +27,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       children_count: node.children_count,
       breadcrumbs: node.breadcrumbs
         ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
-        .sort((a, b) => a.categoryLevel - b.categoryLevel) ||
+        .sort((a, b) => a.level - b.level) ||
       [],
       children: node.children?.filter(child => child.include_in_menu)
         .sort((a, b) => a.position - b.position)
@@ -37,10 +37,10 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
 
   private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffNavigationBreadcrumb {
     return {
-      categoryId: breadcrumb.category_uid,
-      categoryName: breadcrumb.category_name,
-      categoryLevel: breadcrumb.category_level,
-      categoryUrlKey: breadcrumb.category_url_key,
+      id: breadcrumb.category_uid,
+      name: breadcrumb.category_name,
+      level: breadcrumb.category_level,
+      url: breadcrumb.category_url_key,
     };
   }
 }

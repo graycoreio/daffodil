@@ -108,16 +108,16 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
           children_count: 0,
           breadcrumbs: [
             {
-              categoryId: '1',
-              categoryLevel: 1,
-              categoryName: 'name',
-              categoryUrlKey: 'url',
+              id: '1',
+              level: 1,
+              name: 'name',
+              url: 'url',
             },
             {
-              categoryId: '2',
-              categoryLevel: 2,
-              categoryName: 'name2',
-              categoryUrlKey: 'url2',
+              id: '2',
+              level: 2,
+              name: 'name2',
+              url: 'url2',
             },
           ],
         },
@@ -147,7 +147,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
   it('should order the breadcrumbs by level', () => {
     const breadcrumbsResult = service.transform(categoryNode).children[1].breadcrumbs;
-    expect(breadcrumbsResult[0].categoryLevel).toBeLessThan(breadcrumbsResult[1].categoryLevel);
+    expect(breadcrumbsResult[0].level).toBeLessThan(breadcrumbsResult[1].level);
   });
 
   it('should set children to an empty array when magento returns a null children array', () => {
