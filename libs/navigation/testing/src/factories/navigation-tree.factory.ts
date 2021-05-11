@@ -33,10 +33,10 @@ export class MockNavigationTree implements DaffNavigationTree {
 	      children: [],
 	      children_count: 0,
 	      breadcrumbs: [{
-	        categoryId: id,
-	        categoryName: '',
-	        categoryLevel: 1,
-	        categoryUrlKey: faker.commerce.productMaterial(),
+	        id,
+	        name: '',
+	        level: 1,
+	        url: faker.commerce.productMaterial(),
 	      }],
 	    };
 	  } else {
@@ -51,10 +51,10 @@ export class MockNavigationTree implements DaffNavigationTree {
 	      children,
 	      children_count: children.length,
 	      breadcrumbs: [{
-	        categoryId: id,
-	        categoryName: '',
-	        categoryLevel: 1,
-	        categoryUrlKey: faker.commerce.productMaterial(),
+	        id,
+	        name: '',
+	        level: 1,
+	        url: faker.commerce.productMaterial(),
 	      }],
 	    };
 	  }

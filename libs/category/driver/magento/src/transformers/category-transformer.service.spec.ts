@@ -49,10 +49,10 @@ describe('DaffMagentoCategoryTransformerService', () => {
         url_suffix: '.html',
         name: stubCategory.name,
         breadcrumbs: [{
-          category_uid: stubCategory.breadcrumbs[0].categoryId,
-          category_name: stubCategory.breadcrumbs[0].categoryName,
-          category_level: stubCategory.breadcrumbs[0].categoryLevel,
-          category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey,
+          category_uid: stubCategory.breadcrumbs[0].id,
+          category_name: stubCategory.breadcrumbs[0].name,
+          category_level: stubCategory.breadcrumbs[0].level,
+          category_url_key: stubCategory.breadcrumbs[0].url,
         }],
         description: stubCategory.description,
         products: {
@@ -99,22 +99,22 @@ describe('DaffMagentoCategoryTransformerService', () => {
         category_url_key: 'urlKey2',
       }];
       const expectedBreadcrumbs: DaffCategoryBreadcrumb[] = [{
-        categoryId: '1',
-        categoryName: 'category1',
-        categoryLevel: 1,
-        categoryUrlKey: 'urlKey1',
+        id: '1',
+        name: 'category1',
+        level: 1,
+        url: 'urlKey1',
       },
       {
-        categoryId: '2',
-        categoryName: 'category2',
-        categoryLevel: 2,
-        categoryUrlKey: 'urlKey2',
+        id: '2',
+        name: 'category2',
+        level: 2,
+        url: 'urlKey2',
       },
       {
-        categoryId: '3',
-        categoryName: 'category3',
-        categoryLevel: 3,
-        categoryUrlKey: 'urlKey3',
+        id: '3',
+        name: 'category3',
+        level: 3,
+        url: 'urlKey3',
       }];
 
       expect(service.transform(magentoCategory).breadcrumbs).toEqual(expectedBreadcrumbs);
