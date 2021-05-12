@@ -23,4 +23,8 @@ export interface DaffExternallyResolvableUrl {
    */
 	url: string;
 	type: DaffExternalRouteType;
+  /**
+   * The HTTP status code for the resolvable route.
+   */
+  code: number;
 }

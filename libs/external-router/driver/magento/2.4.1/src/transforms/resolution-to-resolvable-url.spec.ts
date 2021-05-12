@@ -25,6 +25,7 @@ describe('@daffodil/external-router/driver/magento | transformResolutionToResolv
       id: String(numberId),
       url,
       type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
+      code: 200,
     };
   });
 
@@ -33,5 +34,6 @@ describe('@daffodil/external-router/driver/magento | transformResolutionToResolv
     expect(result.type).toEqual(MagentoUrlRewriteEntityTypeEnum.PRODUCT);
     expect(result.url).toEqual(url);
     expect(result.id).toEqual(String(numberId));
+    expect(result.code).toEqual(200);
   });
 });

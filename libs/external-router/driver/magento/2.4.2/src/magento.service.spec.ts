@@ -56,6 +56,7 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
       id,
       url:responseUrl,
       type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
+      code: 200,
     };
   };
 

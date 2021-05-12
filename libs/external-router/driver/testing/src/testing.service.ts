@@ -50,6 +50,7 @@ Did you configure the available route types with DaffExternalRouterDriverTesting
       id: faker.random.uuid(),
       url: truncatedUrl,
       type: this.testingConfiguration[truncatedUrl],
+      code: 200,
     });
   }
 }

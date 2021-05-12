@@ -68,6 +68,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       url: urlTree.toString(),
       type: STUB_RESOLVABLE_TYPE,
       id: 'id',
+      code: 200,
     }));
 
     guard.canActivate(

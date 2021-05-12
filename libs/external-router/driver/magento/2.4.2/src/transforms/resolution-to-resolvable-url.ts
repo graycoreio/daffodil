@@ -3,7 +3,10 @@ import {
   daffUriTruncateQueryFragment,
 } from '@daffodil/core/routing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
-import { MagentoUrlResolver } from '@daffodil/external-router/driver/magento';
+import {
+  MagentoUrlResolver,
+  magentoTransformRedirectToHttpCode,
+} from '@daffodil/external-router/driver/magento';
 
 
 export const transformResolutionToResolvableUrlv242 = (
@@ -12,4 +15,5 @@ export const transformResolutionToResolvableUrlv242 = (
   id: resolution.entity_uid,
   url: daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(resolution.relative_url)),
   type: resolution.type,
+  code: magentoTransformRedirectToHttpCode(resolution.redirectCode),
 });
