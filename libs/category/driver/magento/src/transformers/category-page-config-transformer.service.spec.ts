@@ -126,6 +126,22 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       });
     });
 
+    describe('when the aggregate is for category_id', () => {
+      beforeEach(() => {
+        aggregation = selectAggregateFactory.create({
+          attribute_code: 'category_id',
+        });
+        result = service.transform({
+          ...completeCategoryResponse,
+          aggregates: [aggregation],
+        });
+      });
+
+      it('should not include that filter in the result', () => {
+        expect(result.filters['category_id']).toBeUndefined();
+      });
+    });
+
     describe('when the aggregate is a select', () => {
       beforeEach(() => {
         aggregation = selectAggregateFactory.create();
