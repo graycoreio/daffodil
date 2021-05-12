@@ -6,5 +6,3 @@ export {
   DaffExternalRouterDriverInterface,
   DaffExternalRouterDriver,
 } from './interfaces/external-router-driver.interface';
-
-export * from './errors/public_api';
