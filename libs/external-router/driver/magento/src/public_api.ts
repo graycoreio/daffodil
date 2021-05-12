@@ -3,3 +3,4 @@
  */
 
 export * from './model/public_api';
+export * from './transforms/public_api';

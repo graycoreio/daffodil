@@ -20,7 +20,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
     const insertionStrategy = () => [];
     expect(
       daffTransformResolvedRouteToRoute(
-        { url: 'some-url', type: 'some-type', id: 'id' },
+        { url: 'some-url', type: 'some-type', id: 'id', code: 200 },
         [{ type: 'some-type', route: { redirectTo: '/' }, insertionStrategy }],
       ),
     ).toEqual({
@@ -34,7 +34,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
 
   it('throws an error if it is unable to map the route to a known type', () => {
     expect(() =>
-      daffTransformResolvedRouteToRoute({ url: '', type: 'some-type', id: 'id' }, []),
+      daffTransformResolvedRouteToRoute({ url: '', type: 'some-type', id: 'id', code: 200 }, []),
     ).toThrowError(DaffExternalRouterUnknownRouteTypeError);
   });
 });
