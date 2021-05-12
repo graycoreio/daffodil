@@ -15,13 +15,15 @@ import { coerceDefaultSortOptionFirst } from './pure/sort-default-option-first';
 export class DaffMagentoCategoryPageConfigTransformerService {
 
   transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageMetadata {
+    const aggregatesWithoutCategories = categoryResponse.aggregates.filter(aggregate => aggregate.attribute_code !== 'category_id');
+
     return {
       id: categoryResponse.category.uid,
       page_size: categoryResponse.page_info.page_size,
       current_page: categoryResponse.page_info.current_page,
       total_pages: categoryResponse.page_info.total_pages,
       total_products: categoryResponse.total_count,
-      filters: daffCategoryFilterArrayToDict(categoryResponse.aggregates.map(transformAggregate)),
+      filters: daffCategoryFilterArrayToDict(aggregatesWithoutCategories.map(transformAggregate)),
       sort_options: {
         default: categoryResponse.sort_fields.default,
         options: coerceDefaultSortOptionFirst(categoryResponse.sort_fields).options,
