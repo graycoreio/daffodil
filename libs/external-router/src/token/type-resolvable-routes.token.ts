@@ -30,7 +30,7 @@ export function daffProvideRouteResolvableByType(typeRoutePair: DaffTypeRoutePai
 }
 
 /**
- * A multi-provider used to connect an array of types an respective route.
+ * A multi-provider used to connect an array of types to their respective routes.
  */
 export function daffProvideRoutesResolvableByType(routes: DaffTypeRoutePair[]): Provider[] {
   return routes.map((route: DaffTypeRoutePair) => ({
