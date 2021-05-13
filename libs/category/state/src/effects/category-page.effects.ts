@@ -28,6 +28,7 @@ import {
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
   DaffCategoryPageMetadata,
+  daffCategoryFiltersToRequests,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
@@ -92,6 +93,7 @@ export class DaffCategoryPageEffects<
     switchMap(([action, metadata]: [DaffCategoryPageChangePageSize, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
       ...metadata,
       kind: DaffCategoryRequestKind.ID,
+      filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       page_size: action.pageSize,
     })),
   );
@@ -105,6 +107,7 @@ export class DaffCategoryPageEffects<
     switchMap(([action, metadata]: [DaffCategoryPageChangeCurrentPage, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
       ...metadata,
       kind: DaffCategoryRequestKind.ID,
+      filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       current_page: action.currentPage,
     })),
   );
@@ -118,6 +121,7 @@ export class DaffCategoryPageEffects<
     switchMap(([action, metadata]: [DaffCategoryPageChangeSortingOption, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
       ...metadata,
       kind: DaffCategoryRequestKind.ID,
+      filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       applied_sort_option: action.sort.option,
       applied_sort_direction: action.sort.direction,
     })),
