@@ -3,6 +3,6 @@
   "dest": "../../dist/design",
   "lib": {
     "entryFile": "src/public_api.ts",
-    "styleIncludePaths": ["./scss"]
+    "styleIncludePaths": ["./src/scss"]
   }
 }
