@@ -3,6 +3,7 @@
   "dest": "../../dist/design/examples",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/index.ts"
+    "entryFile": "src/index.ts",
+    "styleIncludePaths": ["../../src/scss"]
   }
 } 
