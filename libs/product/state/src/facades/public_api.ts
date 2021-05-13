@@ -5,5 +5,7 @@ export { DaffConfigurableProductFacadeInterface } from './configurable-product/c
 export { DaffConfigurableProductFacade } from './configurable-product/configurable-product.facade';
 export { DaffProductFacadeInterface } from './product/product-facade.interface';
 export { DaffProductFacade } from './product/product.facade';
+export { DaffProductPageFacadeInterface } from './product-page/product-page-facade.interface';
+export { DaffProductPageFacade } from './product-page/product-page.facade';
 export { DaffProductGridFacadeInterface } from './product-grid/product-grid-facade.interface';
 export { DaffProductGridFacade } from './product-grid/product-grid.facade';

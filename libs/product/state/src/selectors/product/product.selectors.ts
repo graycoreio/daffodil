@@ -61,8 +61,6 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
 
   /**
    * Selects the selected product from product state and the selected product ID.
-   *
-   * @deprecated use selectProduct entities selector instead.
    */
   const selectSelectedProduct = createSelector(
     selectProductState,
