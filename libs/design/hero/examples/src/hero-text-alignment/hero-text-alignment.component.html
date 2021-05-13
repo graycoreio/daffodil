@@ -1,0 +1,14 @@
+<daff-hero [textAlignment]="textAlignControl.value">
+	<daff-container size="md">
+		<div daffHeroTagline>Frontend framework for ecommerce PWAs</div>
+		<h3 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h3>
+		<div daffHeroSubtitle>
+			<p>Daffodil provides everything you need to create powerful and flexible ecommerce experiences.</p>
+			<p>With Daffodil, ambitious businesses are able to achieve more while minimizing development and maintenance costs.</p>
+		</div>
+	</daff-container>
+</daff-hero>
+
+<select [formControl]="textAlignControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>

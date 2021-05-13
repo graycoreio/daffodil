@@ -3,7 +3,7 @@
   <p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transclusion of any content and includes predefined <code>tagline</code>, <code>title</code> and <code>subtitle</code> styles.</p>
 
   <h2>Supported Content Types</h2>
-  A <code>&lt;daff-hero&gt;</code> can transclude:
+  A <code>&lt;daff-hero&gt;</code> transcludes:
   <ul>
     <li><code>[daffHeroTagline]</code> - Hero tagline</li>
     <li><code>[daffHeroTitle]</code> - Hero title, used with the <code>&lt;h1&gt;</code> tag</li>
@@ -16,6 +16,17 @@
   <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
 
   <design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
+
+  <h2>Text Alignment</h2>
+  <p>Align hero-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to any additional components or elements that is placed inside of a hero.</p>
+  <p>Supported alignments: <code>left | center | right</code></p>
+  <design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
+
+  <h2>Gridded Hero</h2>
+  <p>Heros are flexible enough to support grids within them.</p>
+
+  <h3>Two Column Grid Hero</h3>
+  <design-land-example-viewer-container example="hero-with-grid"></design-land-example-viewer-container>
 
   <h2>Size</h2>
   <p>The <code>size</code> property will be deprecated in v1.0.0. <code>compact</code> will be replaced by the <code>DaffCompactable</code> interface.</p>

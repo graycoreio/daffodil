@@ -13,6 +13,11 @@ import {
   daffColorMixin,
   DaffColorable,
 } from '../../../core/colorable/colorable';
+import {
+  DaffTextAlignable,
+  DaffTextAlignment,
+} from '../../../core/text-alignable/text-alignable';
+import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
 
 // DaffHeroLayout will be deprecated in v1.0.0
 export type DaffHeroLayout = 'centered' | undefined;
@@ -34,7 +39,7 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(DaffHeroBase);
+const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase));
 
 @Component({
   selector: 'daff-hero',
@@ -43,11 +48,16 @@ const _daffHeroBase = daffColorMixin(DaffHeroBase);
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
+export class DaffHeroComponent extends _daffHeroBase implements DaffColorable, DaffTextAlignable {
 
   @Input() layout: DaffHeroLayout; // Will be deprecated in v1.0.0
   @Input() size: DaffHeroSize; // Will be deprecated in v1.0.0
   @Input() color: DaffPalette;
+
+  /**
+   * Controls text alignment for component-specific UI
+   */
+  @Input() textAlignment: DaffTextAlignment;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

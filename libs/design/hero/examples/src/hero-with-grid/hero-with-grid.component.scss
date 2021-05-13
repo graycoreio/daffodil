@@ -1,0 +1,27 @@
+@import 'daff-util';
+
+.daff-hero-with-grid {
+	&__grid {
+		/* autoprefixer grid: autoplace */
+		display: grid;
+		grid-template:
+			'image'
+			'content' / 1fr;
+		grid-gap: 24px;
+
+		@include breakpoint(tablet) {
+			grid-template:
+				'image content' / 1fr 1fr;
+			grid-gap: 48px;
+			align-items: center;
+		}
+	}
+
+	&__image {
+		grid-area: image;
+	}
+
+	&__content-wrapper {
+		grid-area: content;
+	}
+}
