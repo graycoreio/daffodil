@@ -1,16 +1,10 @@
 import {
   DaffCartItemInput,
   DaffCompositeCartItemInput,
-  DaffCompositeCartItemInputOption,
   DaffConfigurableCartItemInput,
 } from '@daffodil/cart';
 
-import {
-  MagentoCartItemInput,
-  MagentoBundledCartItemInput,
-  MagentoBundledCartItemOption,
-  MagentoConfigurableCartItemInput,
-} from '../../models/requests/cart-item';
+import { MagentoCartItemInput } from '../../models/requests/cart-item';
 
 export function transformSimpleCartItem(item: DaffCartItemInput): MagentoCartItemInput {
   return {
@@ -19,27 +13,17 @@ export function transformSimpleCartItem(item: DaffCartItemInput): MagentoCartIte
   };
 }
 
-function transformCompositeCartItemOption(option: DaffCompositeCartItemInputOption): MagentoBundledCartItemOption {
+export function transformCompositeCartItem(item: DaffCompositeCartItemInput): MagentoCartItemInput {
   return {
-    id: Number(option.code),
-    quantity: option.quantity,
-    value: [option.value],
+    ...transformSimpleCartItem(item),
+    selected_options: item.options?.map(option => option.value) || [],
   };
 }
 
-export function transformCompositeCartItem(item: DaffCompositeCartItemInput): MagentoBundledCartItemInput {
+export function transformConfigurableCartItem(item: DaffConfigurableCartItemInput): MagentoCartItemInput {
   return {
-    input: transformSimpleCartItem(item),
-    options: item.options ? item.options.map(transformCompositeCartItemOption) : [],
-  };
-}
-
-export function transformConfigurableCartItem(item: DaffConfigurableCartItemInput): MagentoConfigurableCartItemInput {
-  return {
-    parentSku: item.productId,
-    data: {
-      quantity: item.qty,
-      sku: item.variantId,
-    },
+    parent_sku: item.productId,
+    quantity: item.qty,
+    sku: item.variantId,
   };
 }

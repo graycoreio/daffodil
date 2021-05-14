@@ -23,18 +23,14 @@ import {
   MagentoCartItem,
   MagentoCartItemInput,
   MagentoCartItemUpdateInput,
-  MagentoAddSimpleCartItemResponse,
-  MagentoAddBundleCartItemResponse,
-  MagentoAddConfigurableCartItemResponse,
   MagentoListCartItemsResponse,
   MagentoUpdateCartItemResponse,
   MagentoRemoveCartItemResponse,
   listCartItems,
-  addBundleCartItem,
-  addSimpleCartItem,
-  addConfigurableCartItem,
   updateCartItem,
   removeCartItem,
+  MagentoAddCartItemResponse,
+  addCartItem,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -87,9 +83,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let mockMagentoCartItemInput: MagentoCartItemInput;
   let mockMagentoCartItemUpdateInput: MagentoCartItemUpdateInput;
   let mockDaffCartItem: DaffCartItem;
-  let mockAddSimpleCartItemResponse: MagentoAddSimpleCartItemResponse;
-  let mockAddBundleCartItemResponse: MagentoAddBundleCartItemResponse;
-  let mockAddConfigurableCartItemResponse: MagentoAddConfigurableCartItemResponse;
+  let mockAddCartItemResponse: MagentoAddCartItemResponse;
   let mockListCartItemResponse: MagentoListCartItemsResponse;
   let mockUpdateCartItemResponse: MagentoUpdateCartItemResponse;
   let mockRemoveCartItemResponse: MagentoRemoveCartItemResponse;
@@ -168,21 +162,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         items: [mockMagentoCartItem],
       },
     };
-    mockAddSimpleCartItemResponse = {
-      addSimpleProductsToCart: {
-        __typename: 'AddSimpleProducts',
-        cart: mockMagentoCart,
-      },
-    };
-    mockAddBundleCartItemResponse = {
-      addBundleProductsToCart: {
-        __typename: 'AddBundleProductsToCart',
-        cart: mockMagentoCart,
-      },
-    };
-    mockAddConfigurableCartItemResponse = {
-      addConfigurableProductsToCart: {
-        __typename: 'AddConfigurableProductsToCart',
+    mockAddCartItemResponse = {
+      addProductsToCart: {
+        __typename: 'AddProductsToCartOutput',
         cart: mockMagentoCart,
       },
     };
@@ -269,10 +251,10 @@ describe('Driver | Magento | Cart | CartItemService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([])));
+        const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
 
         op.flush({
-          data: mockAddBundleCartItemResponse,
+          data: mockAddCartItemResponse,
         });
       });
     });
@@ -284,10 +266,10 @@ describe('Driver | Magento | Cart | CartItemService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([])));
+        const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
 
         op.flush({
-          data: mockAddSimpleCartItemResponse,
+          data: mockAddCartItemResponse,
         });
       });
     });
@@ -299,10 +281,10 @@ describe('Driver | Magento | Cart | CartItemService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([])));
+        const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
 
         op.flush({
-          data: mockAddConfigurableCartItemResponse,
+          data: mockAddCartItemResponse,
         });
       });
     });
