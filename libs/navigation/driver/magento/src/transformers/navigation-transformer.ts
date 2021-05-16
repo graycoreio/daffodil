@@ -40,7 +40,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       id: breadcrumb.category_uid,
       name: breadcrumb.category_name,
       level: breadcrumb.category_level,
-      url: breadcrumb.category_url_key,
+      url: `/${breadcrumb.category_url_path}`,
     };
   }
 }

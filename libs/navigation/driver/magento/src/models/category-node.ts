@@ -17,5 +17,5 @@ export interface MagentoBreadcrumb {
   category_uid: CategoryNode['uid'];
   category_name: CategoryNode['name'];
   category_level: CategoryNode['level'];
-  category_url_key: string;
+  category_url_path: CategoryNode['url_path'];
 }
