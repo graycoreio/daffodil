@@ -26,7 +26,7 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       total_products: node.product_count,
       children_count: node.children_count,
       breadcrumbs: node.breadcrumbs
-        ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
+        ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb, node))
         .sort((a, b) => a.level - b.level) ||
       [],
       children: node.children?.filter(child => child.include_in_menu)
@@ -35,12 +35,12 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
     };
   }
 
-  private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffNavigationBreadcrumb {
+  private transformBreadcrumb(breadcrumb: MagentoBreadcrumb, category: CategoryNode): DaffNavigationBreadcrumb {
     return {
       id: breadcrumb.category_uid,
       name: breadcrumb.category_name,
       level: breadcrumb.category_level,
-      url: `/${breadcrumb.category_url_path}`,
+      url: `/${breadcrumb.category_url_path}${category.url_suffix}`,
     };
   }
 }
