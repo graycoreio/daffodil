@@ -1,20 +1,12 @@
 export interface MagentoCartItemInput {
   quantity: number;
   sku: string;
+  parent_sku?: string;
+  selected_options?: string[];
+  entered_options?: MagentoEnteredOptionInput[];
 }
 
-export interface MagentoBundledCartItemInput {
-	input: MagentoCartItemInput;
-	options: MagentoBundledCartItemOption[];
-}
-
-export interface MagentoBundledCartItemOption {
-	id: number;
-	quantity: number;
-	value: string[];
-}
-
-export interface MagentoConfigurableCartItemInput {
-	parentSku: string;
-	data: MagentoCartItemInput;
+export interface MagentoEnteredOptionInput {
+  uid: string;
+  value: string;
 }
