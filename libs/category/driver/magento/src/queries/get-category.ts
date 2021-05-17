@@ -15,7 +15,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME}($filters: CategoryFilterInput){
 			category_uid
 			category_name
 			category_level
-			category_url_key
+			category_url_path
 		}
 		products {
 			items {
