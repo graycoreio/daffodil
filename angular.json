@@ -494,7 +494,7 @@
             "karmaConfig": "libs/design/karma.conf.js",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "libs/design/scss"
+                "libs/design/src/scss"
               ]
             }
           }
