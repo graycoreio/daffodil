@@ -53,4 +53,31 @@
 			padding: 50px;
 		}
 	}
+
+	&.daff-left {
+		#{$root}__tagline,
+		#{$root}__title,
+		#{$root}__subtitle {
+			text-align: left;
+		}
+	}
+
+	&.daff-center {
+		#{$root}__tagline,
+		#{$root}__title,
+		#{$root}__subtitle {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	}
+
+	&.daff-right {
+		#{$root}__tagline,
+		#{$root}__title,
+		#{$root}__subtitle {
+			margin-left: auto;
+			text-align: right;
+		}
+	}
 }

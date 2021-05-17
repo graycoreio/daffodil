@@ -10,6 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffPalette } from '../../../core/colorable/colorable';
+import { DaffTextAlignment } from '../../../core/text-alignable/text-alignable';
 import {
   DaffHeroComponent,
   DaffHeroLayout,
@@ -17,12 +18,13 @@ import {
 } from './hero.component';
 
 @Component({
-  template: `<daff-hero [layout]="layout" [size]="size" [color]="color"></daff-hero>`,
+  template: `<daff-hero [layout]="layout" [size]="size" [color]="color" [textAlignment]="textAlignment"></daff-hero>`,
 })
 class WrapperComponent {
   layout: DaffHeroLayout;
   size: DaffHeroSize;
   color: DaffPalette;
+  textAlignment: DaffTextAlignment;
 }
 
 describe('DaffHeroComponent', () => {
@@ -109,5 +111,9 @@ describe('DaffHeroComponent', () => {
     it('should not set a default color', () => {
       expect(component.color).toBeFalsy();
     });
+  });
+
+  it('should take textAlignment as an input', () => {
+    expect(component.textAlignment).toEqual(wrapper.textAlignment);
   });
 });
