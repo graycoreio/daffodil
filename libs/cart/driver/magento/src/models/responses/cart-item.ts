@@ -15,6 +15,8 @@ export interface MagentoCartItemProduct {
   id: number;
   name: string;
   sku: string;
+  url_key: string;
+  url_suffix: string;
   thumbnail: {
     __typename: string;
     label: string;

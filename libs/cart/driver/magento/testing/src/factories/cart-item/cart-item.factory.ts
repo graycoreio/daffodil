@@ -34,6 +34,8 @@ export class MockMagentoCartItem implements MagentoCartItem {
       __typename: 'SimpleProduct',
       id: faker.random.number({ min: 1, max: 1500 }),
       name: faker.random.word(),
+      url_key: faker.random.word(),
+      url_suffix: '.html',
       sku: faker.commerce.product(),
       thumbnail: {
         __typename: 'Thumbnail',
