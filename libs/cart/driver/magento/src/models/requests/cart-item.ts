@@ -3,5 +3,5 @@ export interface MagentoCartItemInput {
   sku: string;
   parent_sku?: string;
   selected_options?: string[];
-  entereded_options?: string[];
+  entered_options?: string[];
 }
