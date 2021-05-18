@@ -16,6 +16,7 @@
 	}
 
 	&__title {
+		@include embolden();
 		font-size: 1.75rem;
 		line-height: 2rem;
 		margin: 0;
