@@ -45,7 +45,12 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      excludedPackagesRegex + '/src/index.ts'
+      excludedPackagesRegex + '/src/index.ts',
+			excludedPackagesRegex + '/state/src/index.ts',
+			excludedPackagesRegex + '/driver/src/index.ts',
+			excludedPackagesRegex + '/driver/magento/src/index.ts',
+			excludedPackagesRegex + '/routing/src/index.ts',
+			excludedPackagesRegex + '/testing/src/index.ts',
     ];
   })
   .config(function(computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) {
