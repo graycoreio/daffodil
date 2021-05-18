@@ -42,6 +42,8 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       discount0 = price - 1;
 
       mockMagentoCartItem.product.sku = sku;
+      mockMagentoCartItem.product.url_key = url;
+      mockMagentoCartItem.product.url_suffix = '.html';
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
       mockMagentoCartItem.product.thumbnail = {
@@ -62,6 +64,7 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
     it('should return an object with the correct values', () => {
       expect(transformedCartItem.type).toEqual(DaffCartItemInputType.Simple);
       expect(transformedCartItem.sku).toEqual(sku);
+      expect(transformedCartItem.url).toEqual(`/${url}.html`);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);
       expect(transformedCartItem.in_stock).toEqual(true);

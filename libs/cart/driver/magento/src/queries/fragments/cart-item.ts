@@ -7,6 +7,8 @@ export const cartItemProductFragment = gql`
     id
 		name
     sku
+    url_key
+    url_suffix
     thumbnail {
       label
       url
