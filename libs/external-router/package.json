@@ -24,12 +24,10 @@
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/router": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/driver": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
     "apollo-angular": "0.0.0-PLACEHOLDER"
