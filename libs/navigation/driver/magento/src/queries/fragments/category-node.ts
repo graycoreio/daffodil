@@ -16,7 +16,7 @@ const categoryNodeFragment = `
 		category_uid
 		category_name
 		category_level
-		category_url_key
+		category_url_path
 	}
 	position
 	product_count
