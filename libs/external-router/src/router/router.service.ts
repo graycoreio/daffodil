@@ -2,7 +2,10 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Router,
+  Route,
+} from '@angular/router';
 
 
 import { DaffExternalRouterNoWildcardError } from '../errors/no-wildcard';
@@ -17,27 +20,27 @@ import { daffInsertRouteBeforeWildCardStrategy } from './helper/insert-route-bef
 })
 export class DaffExternalRouter {
   constructor(
-		private router: Router,
-		@Inject(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE)
-		private runtimeRoutes: DaffTypeRoutePair[],
-  ) {}
+    private router: Router,
+    @Inject(DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE)
+    private runtimeRoutes: DaffTypeRoutePair[],
+  ) { }
 
   /**
    * Adds a route to the existing router configuration.
    */
-  add(resolvedRoute: DaffExternallyResolvableUrl): void {
-    try {
-      const {
-        route,
-        insertionStrategy,
-      } = daffTransformResolvedRouteToRoute(
-        resolvedRoute,
-        this.runtimeRoutes,
-      );
+  add(resolvedRoute: DaffExternallyResolvableUrl) {
+    //Get the route.
+    const {
+      route,
+      insertionStrategy,
+    } = daffTransformResolvedRouteToRoute(
+      resolvedRoute,
+      this.runtimeRoutes,
+    );
 
-      this.router.resetConfig(
-        (insertionStrategy || daffInsertRouteBeforeWildCardStrategy)(route, this.router.config),
-      );
+    try {
+      //Add it to configuration.
+      this.router.config = (insertionStrategy || daffInsertRouteBeforeWildCardStrategy)(route, this.router.config);
     } catch (e) {
       if (e instanceof DaffExternalRouterNoWildcardError) {
         throw new DaffExternalRouterNoWildcardError(
@@ -47,5 +50,18 @@ export class DaffExternalRouter {
 
       throw e;
     }
+  }
+
+  addRedirect(fromPath: string, toPath: string): void {
+    //Add it to configuration.
+    this.router.resetConfig(
+      daffInsertRouteBeforeWildCardStrategy(
+        {
+          path: fromPath,
+          redirectTo: toPath,
+        }
+        , this.router.config,
+      ),
+    );
   }
 }

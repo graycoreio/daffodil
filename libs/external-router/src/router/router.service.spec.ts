@@ -130,4 +130,13 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     ).toThrowError(DaffExternalRouterNoWildcardError, /misconfigured/);
     expect(router.config).toEqual([]);
   });
+
+  it('should add a redirect to configuration', () => {
+    setupTest([], [{ path: '**', redirectTo: 'somewhere-else' }]);
+    service.addRedirect('fromUrl', 'toUrl');
+    expect(router.config).toEqual([
+      { path: 'fromUrl', redirectTo: 'toUrl' },
+      { path: '**', redirectTo: 'somewhere-else' },
+    ]);
+  });
 });
