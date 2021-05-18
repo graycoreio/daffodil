@@ -1,14 +1,21 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffioDoc } from '../../../shared/models/doc';
 import { DaffioApiDoc } from '../../models/api-doc';
 import { DaffioApiDocComponent } from './api-doc.component';
-import { DaffioDoc } from '../../../shared/models/doc';
 
-@Component({template: '', selector: 'daffio-doc-viewer'})
+@Component({ template: '', selector: 'daffio-doc-viewer' })
 class MockDaffioDocViewerComponent {
-	@Input() doc: DaffioDoc
+	@Input() doc: DaffioDoc;
 }
 
 @Component({ template: '<daffio-api-doc [doc]="docValue"></daffio-api-doc>' })
@@ -30,10 +37,10 @@ describe('DaffioApiDocComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-				WrapperComponent,
-				DaffioApiDocComponent,
-				MockDaffioDocViewerComponent
-      ]
+        WrapperComponent,
+        DaffioApiDocComponent,
+        MockDaffioDocViewerComponent,
+      ],
     })
       .compileComponents();
   }));
