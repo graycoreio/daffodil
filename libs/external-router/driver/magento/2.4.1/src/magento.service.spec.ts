@@ -92,5 +92,24 @@ describe('@daffodil/external-router/driver/magento/2.4.1 | DaffExternalRouterMag
         expect(op.operation.variables.url).toEqual(requestUrl);
       });
     });
+
+    describe('the driver returning null', () => {
+      it('should return a DaffExternallyResolvableUrl with a code of 404', done => {
+        setupTest();
+
+        service.resolve(requestUrl).subscribe(result => {
+          expect(result.code).toEqual(404);
+          done();
+        });
+
+        const op = controller.expectOne(MagentoResolveUrlv241);
+
+        op.flush({
+          data: {
+            urlResolver: null,
+          },
+        });
+      });
+    });
   });
 });
