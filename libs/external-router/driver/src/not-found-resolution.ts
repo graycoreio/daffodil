@@ -6,7 +6,7 @@ import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
  * should return. Drivers are not required to return this value, but may do so
  * if they would like.
  */
-export const NOT_FOUND_RESOLUTION: DaffExternallyResolvableUrl = {
+export const DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION: DaffExternallyResolvableUrl = {
   id: null,
   url: null,
   code: 404,

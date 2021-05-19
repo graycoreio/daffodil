@@ -6,4 +6,4 @@ export {
   DaffExternalRouterDriverInterface,
   DaffExternalRouterDriver,
 } from './interfaces/external-router-driver.interface';
-export { NOT_FOUND_RESOLUTION } from './not-found-resolution';
+export { DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION } from './not-found-resolution';
