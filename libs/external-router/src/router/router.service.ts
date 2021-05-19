@@ -51,17 +51,4 @@ export class DaffExternalRouter {
       throw e;
     }
   }
-
-  addRedirect(fromPath: string, toPath: string): void {
-    //Add it to configuration.
-    this.router.resetConfig(
-      daffInsertRouteBeforeWildCardStrategy(
-        {
-          path: fromPath,
-          redirectTo: toPath,
-        }
-        , this.router.config,
-      ),
-    );
-  }
 }
