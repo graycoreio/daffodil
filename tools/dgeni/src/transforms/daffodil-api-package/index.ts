@@ -1,5 +1,6 @@
 import { Package } from 'dgeni';
 const typescriptPackage = require('dgeni-packages/typescript');
+const linksPackage = require('dgeni-packages/links');
 import { daffodilBasePackage } from '../daffodil-base-package';
 
 import { API_SOURCE_PATH, API_TEMPLATES_PATH } from '../config';
@@ -18,7 +19,8 @@ const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 
 export const apiDocs =  new Package('checkout', [
   daffodilBasePackage,
-  typescriptPackage
+  typescriptPackage,
+	linksPackage,
 ])
   //Register Processors for this package
   .processor(new FilterContainedDocsProcessor())
