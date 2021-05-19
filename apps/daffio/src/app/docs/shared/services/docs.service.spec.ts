@@ -38,7 +38,7 @@ describe('DaffioDocService', () => {
     service.get('my/path').subscribe((apiDoc) => {
       expect(apiDoc).toEqual(doc);
     });
-    const req = httpTestingController.expectOne('/assets/daffio/my/path.json');
+    const req = httpTestingController.expectOne('/assets/daffio/docs/my/path.json');
 
     expect(req.request.method).toEqual('GET');
 
