@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.34.0](https://github.com/graycoreio/daffodil/compare/v0.33.0...v0.34.0) (2021-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** DaffCartItem#url is a new required field
+* **category:** category config and default page size token have been removed
+* **category,navigation:** DaffNavigationBreadcrumb field names have changed
+* **product:** URI has been changed to URL
+* **category:** Many new API member names have changed from URI to URL
+
+### Features
+
+* **cart:** locatable cart items ([#1545](https://github.com/graycoreio/daffodil/issues/1545)) ([c38815d](https://github.com/graycoreio/daffodil/commit/c38815dc34dd1910852b142841c965229c46ebd0))
+* **category:** remove category config and default page size token ([#1520](https://github.com/graycoreio/daffodil/issues/1520)) ([8fa13b2](https://github.com/graycoreio/daffodil/commit/8fa13b2470042c17bd31eb291f4fda3a4bebb170))
+* **category:** remove the category ID filter from response ([#1528](https://github.com/graycoreio/daffodil/issues/1528)) ([0d75e75](https://github.com/graycoreio/daffodil/commit/0d75e75f547d73a1eeb2b80fa1954fea1b89de94))
+* **category:** reset category state ID on load, add LoadByUri state computation ([#1512](https://github.com/graycoreio/daffodil/issues/1512)) ([e440a4e](https://github.com/graycoreio/daffodil/commit/e440a4e57a98bd3ac6992575ec911b1498e3c0ed))
+* **category:** use locatable interface and change URI to URL ([#1514](https://github.com/graycoreio/daffodil/issues/1514)) ([bde7fad](https://github.com/graycoreio/daffodil/commit/bde7fadcb1f6207c74d3d30a1ab3c17de06a2cb8))
+* **category,navigation:** use locatable and remove category prefix from breadcrumbs ([#1519](https://github.com/graycoreio/daffodil/issues/1519)) ([dc500dc](https://github.com/graycoreio/daffodil/commit/dc500dc72eadcecd925d6a3bb1ba13ce3278b57d))
+* **design:** add active style to stroked button ([#1521](https://github.com/graycoreio/daffodil/issues/1521)) ([5a4767a](https://github.com/graycoreio/daffodil/commit/5a4767a3321d6f6db1837459ed16095a9222f68c))
+* **design:** add embolden mixin to callout title ([#1546](https://github.com/graycoreio/daffodil/issues/1546)) ([7cf1337](https://github.com/graycoreio/daffodil/commit/7cf1337f9fb4cb1389c8f23c7c7922f07061d829))
+* **design:** create DaffTextAlignable interface and implement DaffCalloutComponent ([#1502](https://github.com/graycoreio/daffodil/issues/1502)) ([d0c8a53](https://github.com/graycoreio/daffodil/commit/d0c8a5338583b7785ae64b58b3f2895273cf7c15))
+* **design:** implement DaffTextAlignable in DaffHeroComponent ([#1532](https://github.com/graycoreio/daffodil/issues/1532)) ([db9787b](https://github.com/graycoreio/daffodil/commit/db9787b7df5c49c9bc5d93f4d7e7e1e4d8cc47b2))
+* **design:** update daff-util paths in component files ([#1533](https://github.com/graycoreio/daffodil/issues/1533)) ([77ea3d7](https://github.com/graycoreio/daffodil/commit/77ea3d7a76b926a91ceb515783444980927c1ffd))
+* **external-router:** add HTTP code to resolvable route ([#1524](https://github.com/graycoreio/daffodil/issues/1524)) ([1010a14](https://github.com/graycoreio/daffodil/commit/1010a14f7f0ebbcd49f6ca4c63092fbdaf977869))
+* **external-router:** cache magento 2 urlResolver queries ([#1552](https://github.com/graycoreio/daffodil/issues/1552)) ([8d552c7](https://github.com/graycoreio/daffodil/commit/8d552c781f98aa20602cbeda5572c61d853e8622))
+* **external-router:** export some models ([#1510](https://github.com/graycoreio/daffodil/issues/1510)) ([800c00f](https://github.com/graycoreio/daffodil/commit/800c00f1a977326eff6a1fb60df53a0aad47f635))
+* **external-router:** process redirects and errors ([#1516](https://github.com/graycoreio/daffodil/issues/1516)) ([2d107c6](https://github.com/graycoreio/daffodil/commit/2d107c61b8ec266ca76ae8fb0d508237ae99577e))
+* **external-router:** provide full type route in providers ([#1513](https://github.com/graycoreio/daffodil/issues/1513)) ([156f3a4](https://github.com/graycoreio/daffodil/commit/156f3a429e6034a73c28ed292c46e55b469d612f))
+* **product:** add magento productByUri query to the cached query set ([#1551](https://github.com/graycoreio/daffodil/issues/1551)) ([b453604](https://github.com/graycoreio/daffodil/commit/b4536048bc2fc2648d8e2f9b8757064a94627d2f))
+* **product:** reset product ID on load and set on load success ([#1511](https://github.com/graycoreio/daffodil/issues/1511)) ([8169a4e](https://github.com/graycoreio/daffodil/commit/8169a4e9c58949d6197963acb8d182d1a2ece333))
+* **product:** use locatable interface and change URI to URL ([#1517](https://github.com/graycoreio/daffodil/issues/1517)) ([9bf5593](https://github.com/graycoreio/daffodil/commit/9bf559353d1281c264fcdded1d6bccdd28ed729d))
+* **tools-dgeni:** generate documentation for subpackages ([#1548](https://github.com/graycoreio/daffodil/issues/1548)) ([5825018](https://github.com/graycoreio/daffodil/commit/5825018e2c2532c5e80bb5afabc409741067c7f9))
+
+
+### Bug Fixes
+
+* **cart:** cannot add composite products to cart ([#1540](https://github.com/graycoreio/daffodil/issues/1540)) ([258e2a0](https://github.com/graycoreio/daffodil/commit/258e2a050c42ddde8c932f52fbf15d210728df06))
+* **cart:** faker method not called for URL ([#1547](https://github.com/graycoreio/daffodil/issues/1547)) ([3c955ff](https://github.com/graycoreio/daffodil/commit/3c955ff4d1df4071b2ab67d5fd30400a1d797229))
+* **category:** non-filter page effects not applying filters ([#1530](https://github.com/graycoreio/daffodil/issues/1530)) ([53f709c](https://github.com/graycoreio/daffodil/commit/53f709c569a5fe4195cf64e9fa61345fdcfce593))
+* **category,navigation:** breadcrumb URL not locatable ([#1542](https://github.com/graycoreio/daffodil/issues/1542)) ([6c32c54](https://github.com/graycoreio/daffodil/commit/6c32c54ebb825e2762cd2b444a73e9d366ddea5f))
+* **design:** media-gallery fails to render properly in aot compiled code ([#1508](https://github.com/graycoreio/daffodil/issues/1508)) ([d8e7363](https://github.com/graycoreio/daffodil/commit/d8e7363799eabc8b4b18df2d85751116879af487))
+* **product:** factory URLs not locatable ([#1549](https://github.com/graycoreio/daffodil/issues/1549)) ([7c6ebd5](https://github.com/graycoreio/daffodil/commit/7c6ebd57cceb31c60ed7329a28db30932fd96c9b))
+* **product:** product URL not locatable ([#1541](https://github.com/graycoreio/daffodil/issues/1541)) ([6d97cc9](https://github.com/graycoreio/daffodil/commit/6d97cc97744ddfab47a69b13c95433e3438eee59))
+
 ## [0.33.0](https://github.com/graycoreio/daffodil/compare/v0.32.0...v0.33.0) (2021-05-06)
 
 
