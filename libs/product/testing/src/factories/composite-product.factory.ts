@@ -16,7 +16,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	private stubDiscount = faker.random.number({ min: 0, max: this.stubPrice - 1 });
 	type = DaffProductTypeEnum.Composite;
 	id = faker.random.uuid();
-	url = faker.internet.url();
+	url = `/${faker.random.word()}.html`;
 	price = this.stubPrice;
 	images = [];
 	discount = {
@@ -30,14 +30,14 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	items = [
 	  {
 	    id: faker.random.uuid(),
-	    url: faker.internet.url(),
+	    url: `/${faker.random.word()}.html`,
 	    required: faker.random.boolean(),
 	    title: faker.commerce.productName(),
 	    input_type: DaffCompositeProductItemInputEnum.select,
 	    options: [
 	      {
 	        id: faker.random.uuid(),
-	        url: faker.internet.url(),
+	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.random.number({ min: 1, max: 100 }),
 	        images: [],
@@ -51,7 +51,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	      },
 	      {
 	        id: faker.random.uuid(),
-	        url: faker.internet.url(),
+	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.random.number({ min: 1, max: 100 }),
 	        images: [],
@@ -67,14 +67,14 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	  },
 	  {
 	    id: faker.random.uuid(),
-	    url: faker.internet.url(),
+	    url: `/${faker.random.word()}.html`,
 	    required: faker.random.boolean(),
 	    title: faker.commerce.productName(),
 	    input_type: DaffCompositeProductItemInputEnum.select,
 	    options: [
 	      {
 	        id: faker.random.uuid(),
-	        url: faker.internet.url(),
+	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.random.number({ min: 1, max: 100 }),
 	        images: [],
@@ -88,7 +88,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	      },
 	      {
 	        id: faker.random.uuid(),
-	        url: faker.internet.url(),
+	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.random.number({ min: 1, max: 100 }),
 	        images: [],

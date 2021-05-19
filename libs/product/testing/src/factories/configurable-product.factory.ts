@@ -20,7 +20,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 
 	type = DaffProductTypeEnum.Configurable;
 	id = faker.random.uuid();
-	url = faker.random.alphaNumeric(16);
+	url = `/${faker.random.word()}.html`;
 	price = faker.random.number({ min: 1, max: 1500 });
 	images = [];
   name = faker.commerce.productName();
