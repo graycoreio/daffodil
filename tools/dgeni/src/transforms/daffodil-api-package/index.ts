@@ -45,7 +45,7 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      excludedPackagesRegex + '/src/index.ts'
+      excludedPackagesRegex + '/**/src/index.ts',
     ];
   })
   .config(function(computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) {
