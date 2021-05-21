@@ -33,6 +33,9 @@
       "@daffodil/order/driver/magento/2.4.1": [
         "libs/order/driver/magento/2.4.1/src"
       ],
+      "@daffodil/order/routing": [
+        "libs/order/routing/src"
+      ],
     }
   }
 }
