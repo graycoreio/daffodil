@@ -1,6 +1,6 @@
 import { ElementRef } from '@angular/core';
 
-import { daffSizeMixin } from './sizeable-mixin';
+import { daffSizeMixin } from './sizable-mixin';
 
 class TestingClass {
   element: HTMLElement = document.createElement('div');

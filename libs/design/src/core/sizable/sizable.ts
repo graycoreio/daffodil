@@ -1,4 +1,4 @@
-export interface DaffSizeable<T extends DaffSizeAllType> {
+export interface DaffSizable<T extends DaffSizeAllType> {
 	size: T;
 }
 
@@ -10,7 +10,7 @@ export type DaffSizeXLargeType = 'xl';
 
 export type DaffSizeAllType = DaffSizeXSmallType | DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType | DaffSizeXLargeType;
 
-export enum DaffSizeableEnum {
+export enum DaffSizableEnum {
   XSmall = 'xs',
   Small = 'sm',
   Medium = 'md',
