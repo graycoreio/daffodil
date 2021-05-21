@@ -3,19 +3,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffButtonModule } from '@daffodil/design';
 
-import { SizeableButtonComponent } from './sizeable-button.component';
+import { SizableButtonComponent } from './sizable-button.component';
 
 
 @NgModule({
   declarations: [
-    SizeableButtonComponent,
+    SizableButtonComponent,
   ],
   exports: [
-    SizeableButtonComponent,
+    SizableButtonComponent,
   ],
   imports: [
     DaffButtonModule,
     FontAwesomeModule,
   ],
 })
-export class SizeableButtonModule { }
+export class SizableButtonModule { }

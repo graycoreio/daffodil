@@ -21,12 +21,12 @@ import {
   daffSuffixableMixin,
 } from '../../core/prefix-suffix/public_api';
 import {
-  DaffSizeable,
+  DaffSizable,
   DaffSizeSmallType,
   DaffSizeMediumType,
   DaffSizeLargeType,
-} from '../../core/sizeable/sizeable';
-import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
+} from '../../core/sizable/sizable';
+import { daffSizeMixin } from '../../core/sizable/sizable-mixin';
 import {
   DaffStatusable,
   DaffStatus,
@@ -56,7 +56,7 @@ const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(d
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
 /**
- * The DaffSizeable types that the DaffButtonComponent can implement
+ * The DaffSizable types that the DaffButtonComponent can implement
  */
 export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType;
 
@@ -89,7 +89,7 @@ enum DaffButtonTypeEnum {
 
 export class DaffButtonComponent
   extends _daffButtonBase
-  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize>, DaffStatusable {
+  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizable<DaffButtonSize>, DaffStatusable {
     @Input() color: DaffPalette;
 		@Input() size: DaffButtonSize;
     @Input() status: DaffStatus;

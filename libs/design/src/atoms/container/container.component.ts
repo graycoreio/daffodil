@@ -9,13 +9,12 @@ import {
 
 import {
   DaffSizeAllType,
-  DaffSizeable,
-  DaffSizeableEnum,
-} from '../../core/sizeable/sizeable';
-import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
+  DaffSizable,
+} from '../../core/sizable/sizable';
+import { daffSizeMixin } from '../../core/sizable/sizable-mixin';
 
 /**
- * An _elementRef and an instance of renderer2 are needed for the Sizeable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Sizable mixin
  */
 class DaffContainerBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
@@ -29,7 +28,7 @@ const _daffContainerBase = daffSizeMixin(DaffContainerBase);
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffContainerComponent extends _daffContainerBase implements DaffSizeable<DaffSizeAllType> {
+export class DaffContainerComponent extends _daffContainerBase implements DaffSizable<DaffSizeAllType> {
 
   @Input() size: DaffSizeAllType;
 

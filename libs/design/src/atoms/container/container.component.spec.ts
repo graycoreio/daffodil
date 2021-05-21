@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffSizeAllType } from '../../core/sizeable/sizeable';
+import { DaffSizeAllType } from '../../core/sizable/sizable';
 import { DaffContainerComponent } from './container.component';
 
 @Component({

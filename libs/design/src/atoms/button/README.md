@@ -45,7 +45,7 @@ The size of a button can be changed by using the `size` property. The size of al
 
 Supported Sizes: `sm | md | lg`
 
-<design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="sizable-button"></design-land-example-viewer-container>
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default. The `<button>` element should be used when a clickable action is performed within the same page. The `<a>` element should be used to navigate users to a new page or to a different target on the same page.
