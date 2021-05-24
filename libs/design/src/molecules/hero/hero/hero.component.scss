@@ -3,10 +3,14 @@
 .daff-hero {
 	$root: &;
 	display: block;
-	padding: 72px 24px;
+	padding: 64px 24px;
 
 	@include breakpoint(mobile) {
 		padding: 96px 48px;
+	}
+
+	@include breakpoint(big-tablet) {
+		padding: 96px 0;
 	}
 
 	&__tagline {
