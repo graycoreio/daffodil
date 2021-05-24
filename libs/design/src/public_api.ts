@@ -11,6 +11,7 @@ export * from './atoms/image/public_api';
 export * from './atoms/form/input/public_api';
 export * from './atoms/form/select/public_api';
 export * from './atoms/form/checkbox/public_api';
+export * from './atoms/form/textarea/public_api';
 export * from './atoms/container/public_api';
 export * from './atoms/loading-icon/public_api';
 export * from './atoms/progress-indicator/public_api';

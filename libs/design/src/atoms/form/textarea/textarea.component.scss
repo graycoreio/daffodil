@@ -1,0 +1,23 @@
+@import 'daff-util';
+
+:host {
+	background: transparent;
+	border: none;
+	border-radius: 3px;
+	box-shadow: none;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	margin: 0;
+	width: 100% !important; /* stylelint-disable-line declaration-no-important */
+	box-sizing: border-box;
+
+	&:focus {
+		border: none;
+		box-shadow: none;
+		outline: none;
+	}
+
+	&::placeholder {
+		color: transparent;
+	}
+}

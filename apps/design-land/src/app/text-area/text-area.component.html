@@ -1,0 +1,12 @@
+<form [formGroup]="form" #ngForm="ngForm">
+	<daff-form-field>
+		<label golfFormLabel>Comments/Questions?</label>
+		<textarea daff-textarea type="text"
+			[formControl]="form.controls['textareaExample']"
+			[formSubmitted]="ngForm.submitted"></textarea>
+		<daff-error-message *ngIf="form.controls['textareaExample'].errors && (form.controls['textareaExample'].touched || ngForm.submitted)">This is a required field >:(</daff-error-message>
+		<div class="form__error-placeholder" *ngIf="!(form.controls['textareaExample'].errors && (form.controls['textareaExample'].touched || ngForm.submitted))"></div>
+	</daff-form-field>
+	<button daff-button type="submit" daff-button>Submit</button>
+</form>
+  
