@@ -8,6 +8,7 @@ import { DaffioGuideList } from '../../../shared/models/guide-list';
 @Component({
   selector: 'daffio-guides-list',
   templateUrl: './guides-list.component.html',
+  styleUrls: ['guides-list.component.scss'],
 })
 export class DaffioGuidesListComponent {
   /**

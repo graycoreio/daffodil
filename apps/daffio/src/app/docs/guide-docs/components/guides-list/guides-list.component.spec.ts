@@ -65,8 +65,8 @@ describe('DaffioGuidesListComponent', () => {
     expect(anchorTags.length).toEqual(2);
   });
 
-  it('should render another daffio-guides-list when the guide child has children', () => {
-    const daffioGuidesList = fixture.debugElement.queryAll(By.css('daffio-guides-list'));
-    expect(daffioGuidesList.length).toEqual(1);
+  it('should render a daff-nav-accordion-item for each guide', () => {
+    const daffNavAccordionItem = fixture.debugElement.queryAll(By.css('daff-nav-accordion-item'));
+    expect(daffNavAccordionItem.length).toEqual(4);
   });
 });

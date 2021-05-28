@@ -1,10 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
-  Component,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import {
   async,
   ComponentFixture,
   TestBed,
