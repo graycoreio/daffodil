@@ -1,16 +1,16 @@
 @import 'daff-util';
 
-:host(.daff-nav-accordion-item__level-1) {
+:host(.daff-nav-accordion-item--level-1) {
 	.daff-nav-accordion-item__header {
 		padding-left: 15px;
 	}
 }
-:host(.daff-nav-accordion-item__level-2) {
+:host(.daff-nav-accordion-item--level-2) {
 	.daff-nav-accordion-item__header {
 		padding-left: 30px;
 	}
 }
-:host(.daff-nav-accordion-item__level-3) {
+:host(.daff-nav-accordion-item--level-3) {
 	.daff-nav-accordion-item__header {
 		padding-left: 45px;
 	}

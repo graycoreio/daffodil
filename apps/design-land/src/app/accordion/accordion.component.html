@@ -1,60 +1,13 @@
-<div class="design-land-accordion-example">
-	<h1>Daff Accordion</h1>
+<daff-article>
+	<h1 daffArticleTitle>Accordion</h1>
 
-	<daff-accordion>
-		<daff-accordion-item initiallyActive="true">
-			<h3 daffAccordionItemTitle>Details</h3>
-			<div daffAccordionItemContent>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo 
-					lacus ut sapien consectetur, et ultricies leo rutrum. Integer iaculis ultrices nunc, 
-					et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus sagittis libero sagittis eget.
-					<a>Learn More.</a>
-			</div>
-		</daff-accordion-item>
-		<daff-accordion-item>
-			<h3 daffAccordionItemTitle>Details</h3>
-			<div daffAccordionItemContent>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo 
-					lacus ut sapien consectetur, et ultricies leo rutrum. Integer iaculis ultrices nunc, 
-					et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus sagittis libero sagittis eget.
-					<a>Learn More.</a>
-			</div>
-		</daff-accordion-item>
-		<daff-accordion-item>
-			<h3 daffAccordionItemTitle>Details</h3>
-			<div daffAccordionItemContent>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo 
-					lacus ut sapien consectetur, et ultricies leo rutrum. Integer iaculis ultrices nunc, 
-					et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus sagittis libero sagittis eget.
-					<a>Learn More.</a>
-			</div>
-		</daff-accordion-item>
-	</daff-accordion>
-</div>
+	<h3>Types</h3>
+  <p><code>daff-accordion-item</code> - An accordion that typically holds content.</p>
+  <p><code>daff-nav-accordion-item</code> — An accordion that is used for navigation whose content is nested daff-nav-accordion-items.</p>
 
-<div class="design-land-accordion-example">
-	<h1>Daff Nav Accordion</h1>
-	<daff-accordion>
-		<daff-nav-accordion-item>
-			<h3 daffAccordionItemTitle>Details</h3>
-				<daff-nav-accordion-item>
-					<h3 daffAccordionItemTitle>Details</h3>
-						<daff-nav-accordion-item>
-							<a daffAccordionItemTitle>Details</a>
-						</daff-nav-accordion-item>
-						<daff-nav-accordion-item>
-							<a daffAccordionItemTitle>Details</a>
-						</daff-nav-accordion-item>
-				</daff-nav-accordion-item>
-				<daff-nav-accordion-item>
-					<h3 daffAccordionItemTitle>Details</h3>
-						<daff-nav-accordion-item>
-							<a daffAccordionItemTitle>Details</a>
-						</daff-nav-accordion-item>
-						<daff-nav-accordion-item>
-							<a daffAccordionItemTitle>Details</a>
-						</daff-nav-accordion-item>
-				</daff-nav-accordion-item>
-		</daff-nav-accordion-item>
-	</daff-accordion>
-</div>
+	<h3>Content Accordion Item</h3>
+	<design-land-example-viewer-container example="basic-accordion"></design-land-example-viewer-container>
+	
+	<h3>Navigation Accordion Item</h3>
+	<design-land-example-viewer-container example="nav-accordion"></design-land-example-viewer-container>
+</daff-article>

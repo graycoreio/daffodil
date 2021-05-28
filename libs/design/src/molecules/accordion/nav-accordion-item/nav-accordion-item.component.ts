@@ -5,7 +5,8 @@ import {
   HostBinding,
   SkipSelf,
   Optional,
-  ContentChild,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
 import {
   faChevronDown,
@@ -45,14 +46,14 @@ export class DaffNavAccordionItemComponent implements OnInit {
 	@HostBinding('class') get classes() {
     return [
       'daff-nav-accordion-item',
-      'daff-nav-accordion-item__level-' + this._level,
+      'daff-nav-accordion-item--level-' + this._level,
     ];
   }
 
 	@Input() initiallyActive: boolean;
 
-	@ContentChild(DaffNavAccordionItemComponent, { static: true })
-	_navAccordionItemChild: DaffNavAccordionItemComponent;
+	@ContentChildren(DaffNavAccordionItemComponent, { descendants: true })
+	_navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
 
 	/**
 	 * @docs-private
