@@ -7,6 +7,7 @@ import { DaffAccordionItemContentDirective } from './accordion-item-content/acco
 import { DaffAccordionItemTitleDirective } from './accordion-item-title/accordion-item-title.directive';
 import { DaffAccordionItemComponent } from './accordion-item/accordion-item.component';
 import { DaffAccordionComponent } from './accordion/accordion.component';
+import { DaffNavAccordionItemComponent } from './nav-accordion-item/nav-accordion-item.component';
 
 @NgModule({
   imports: [
@@ -18,12 +19,14 @@ import { DaffAccordionComponent } from './accordion/accordion.component';
   declarations: [
     DaffAccordionComponent,
     DaffAccordionItemComponent,
+    DaffNavAccordionItemComponent,
     DaffAccordionItemTitleDirective,
     DaffAccordionItemContentDirective,
   ],
   exports: [
     DaffAccordionComponent,
     DaffAccordionItemComponent,
+    DaffNavAccordionItemComponent,
     DaffAccordionItemTitleDirective,
     DaffAccordionItemContentDirective,
   ],
