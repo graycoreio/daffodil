@@ -117,7 +117,7 @@ export class NavigationTrie {
     else if (child && child.children.length == 0) {
       const node = new NavigationTrie('', 'Overview', child.path);
       delete (child.path);
-      child.appendChild(node);
+			child.appendChild(node);
     }
     return child;
   }

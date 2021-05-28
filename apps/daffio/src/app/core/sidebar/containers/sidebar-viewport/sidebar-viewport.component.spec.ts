@@ -25,7 +25,7 @@ import {
   DaffSidebarComponent,
 } from '@daffodil/design';
 
-import { DaffioGuidesViewerModule } from '../../../../docs/shared/components/guides-viewer/guides-viewer.module';
+import { DaffioGuidesListModule } from '../../../../docs/guide-docs/components/guides-list/guides-list.module';
 import {
   OpenSidebar,
   CloseSidebar,
@@ -52,7 +52,7 @@ describe('DaffioSidebarViewportContainer', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule,
-        DaffioGuidesViewerModule,
+        DaffioGuidesListModule,
         HttpClientTestingModule,
       ],
       declarations: [

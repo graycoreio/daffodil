@@ -5,10 +5,10 @@ import { RouterModule } from '@angular/router';
 import {
   DaffSidebarModule,
   DaffButtonModule,
-  DaffLinkSetModule,
+  DaffAccordionModule,
 } from '@daffodil/design';
 
-import { DaffioGuidesViewerModule } from '../../docs/shared/components/guides-viewer/guides-viewer.module';
+import { DaffioGuidesListModule } from '../../docs/guide-docs/components/guides-list/guides-list.module';
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
 
@@ -19,7 +19,8 @@ import { DaffioSidebarStateModule } from './sidebar.state.module';
     DaffioSidebarStateModule,
     DaffSidebarModule,
     DaffButtonModule,
-    DaffioGuidesViewerModule,
+    DaffioGuidesListModule,
+    DaffAccordionModule,
   ],
   declarations: [
     DaffioSidebarViewportContainer,
