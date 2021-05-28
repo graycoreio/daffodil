@@ -1,4 +1,4 @@
-# `@daffodil/external-router` Configuration
+# Configuration
 
 The External Router exposes configuration via a configuration object passed to the `forRoot` of the `DaffExternalRouterModule`.
 

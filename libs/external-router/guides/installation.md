@@ -1,4 +1,4 @@
-# `@daffodil/external-router` Installation
+# Installation
 
 ```bash
 npm install @daffodil/core @daffodil/external-router --save

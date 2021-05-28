@@ -20,3 +20,9 @@ When an action is dispatched that would modify the applied filter state of the a
 
 ### Driver Specific Mechanisms
 It is important to note that not all platforms guarantee a response with enough information to determine whether or not a filter state was modified successfully. As a result, drivers targeting such platforms **must** internally process their responses to return appropriately applied filter states, otherwise the applied filter state will be lost when the next state is computed from the response. Such drivers can do so by using the [behaviors](../../src/filters/behaviors) of the `@daffodil/category` package.
+
+## Idempotence
+
+Daffodil applies filters "idempotently". That is to say, when a filter operation is applied multiple times, the returned result is guaranteed the be the same. 
+
+The only exception to this rule is a toggle action, as it is strictly impossible for such an action to be idempotent since it intentionally oscillates a state property from one value to another.

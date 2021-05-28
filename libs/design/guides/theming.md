@@ -1,4 +1,4 @@
-# Daffodil Theming Installation Guide
+# Theming
 
 ## Theming Installation
 
