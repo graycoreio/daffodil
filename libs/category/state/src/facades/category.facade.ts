@@ -83,11 +83,11 @@ export class DaffCategoryFacade<
 	}
 
 	getProductsByCategory(categoryId: V['id']): Observable<W[]> {
-	  return this.store.pipe(select(this.categorySelectors.selectProductsByCategory, { id: categoryId }));
+	  return this.store.pipe(select(this.categorySelectors.selectProductsByCategory(categoryId)));
 	}
 
 	getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
-	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory, { id: categoryId }));
+	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory(categoryId)));
 	}
 
 	constructor(private store: Store<DaffCategoryReducersState<V>>) {

@@ -179,7 +179,7 @@ describe('DaffCategorySelectors', () => {
   describe('selectProductsByCategory', () => {
 
     it('selects products by category', () => {
-      const selector = store.pipe(select(categorySelectors.selectProductsByCategory, { id: stubCategory.id }));
+      const selector = store.pipe(select(categorySelectors.selectProductsByCategory(stubCategory.id)));
       const expected = cold('a', { a: [product]});
       expect(selector).toBeObservable(expected);
     });
@@ -188,7 +188,7 @@ describe('DaffCategorySelectors', () => {
   describe('selectTotalProductsByCategory', () => {
 
     it('selects products by category', () => {
-      const selector = store.pipe(select(categorySelectors.selectTotalProductsByCategory, { id: stubCategory.id }));
+      const selector = store.pipe(select(categorySelectors.selectTotalProductsByCategory(stubCategory.id)));
       const expected = cold('a', { a: 1 });
       expect(selector).toBeObservable(expected);
     });
