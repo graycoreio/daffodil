@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { DaffContactUnion } from '@daffodil/contact';
 import { DaffContactServiceInterface } from '@daffodil/contact/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
