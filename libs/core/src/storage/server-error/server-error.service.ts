@@ -6,6 +6,8 @@ import { DaffServerSideStorageError } from './server-error';
 /**
  * A storage service meant to be loaded into SSR contexts.
  * It will always throw the {@link DaffServerSideStorageError}.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

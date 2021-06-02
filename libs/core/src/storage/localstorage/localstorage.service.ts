@@ -7,6 +7,9 @@ import {
 
 import { DaffPersistenceService } from '../persistence.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
