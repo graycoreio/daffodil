@@ -8,6 +8,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 /**
  * An error thrown when a cart item's requested quantity
  * exceeds that allowed by the platform for the specified product.
+ *
  * @inheritdoc
  */
 export class DaffProductOutOfStockError extends DaffInheritableError implements DaffError {

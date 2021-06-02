@@ -39,6 +39,7 @@ import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/ship
 
 /**
  * A service for making Magento GraphQL queries for a cart's shipping address.
+ *
  * @inheritdoc
  */
 @Injectable({

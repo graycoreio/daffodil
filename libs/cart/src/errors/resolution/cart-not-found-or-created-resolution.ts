@@ -8,6 +8,7 @@ import { DaffCartErrorCodes } from '../codes.enum';
 /**
  * An error thrown when the cart fails to resolve.
  * This happens when the cart cannot be found and a new cart cannot be created.
+ *
  * @inheritdoc
  */
 export class DaffCartNotFoundOrCreatedResolutionError extends DaffInheritableError implements DaffError {

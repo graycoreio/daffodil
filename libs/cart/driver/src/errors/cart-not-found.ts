@@ -8,6 +8,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 /**
  * An error thrown when a cart driver call is sent with a cart identifier
  * that cannot be found by the platform.
+ *
  * @inheritdoc
  */
 export class DaffCartNotFoundError extends DaffInheritableError implements DaffError {
