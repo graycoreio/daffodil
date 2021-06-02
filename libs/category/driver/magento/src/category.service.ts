@@ -52,6 +52,9 @@ const applyFiltersOnResponse = (requests: DaffCategoryFilterRequest[], response:
   },
 });
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

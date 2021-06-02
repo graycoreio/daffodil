@@ -12,6 +12,9 @@ import {
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
