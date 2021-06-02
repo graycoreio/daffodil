@@ -19,6 +19,9 @@ import { transformMagentoAuthError } from './errors/transform';
 import { createCustomerMutation } from './queries/public_api';
 import { DaffMagentoLoginInfoTransformerService } from './transforms/login-info-transformer.service';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

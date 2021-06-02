@@ -10,6 +10,9 @@ import {
 } from '@daffodil/auth';
 import { DaffRegisterServiceInterface } from '@daffodil/auth/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

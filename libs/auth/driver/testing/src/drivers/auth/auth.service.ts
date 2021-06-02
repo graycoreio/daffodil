@@ -6,6 +6,9 @@ import {
 
 import { DaffAuthServiceInterface } from '@daffodil/auth/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

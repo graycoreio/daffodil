@@ -13,6 +13,9 @@ import { DaffAuthFeatureState } from '../reducers/public_api';
 import { getDaffAuthSelectors } from '../selectors/public_api';
 import { DaffAuthFacadeInterface } from './auth-facade.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

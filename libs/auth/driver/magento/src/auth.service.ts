@@ -19,6 +19,9 @@ import {
 } from './queries/public_api';
 import { validateCheckTokenResponse } from './validators/public_api';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

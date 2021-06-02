@@ -5,6 +5,9 @@ import {
 } from 'angular-in-memory-web-api';
 import * as faker from 'faker/locale/en_US';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

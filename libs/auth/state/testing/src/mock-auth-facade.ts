@@ -6,6 +6,9 @@ import { DaffAuthToken } from '@daffodil/auth';
 import { DaffAuthFacadeInterface } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffAuthFacade implements DaffAuthFacadeInterface<DaffAuthToken> {
   auth$ = new BehaviorSubject<DaffAuthToken>(null);

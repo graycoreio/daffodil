@@ -29,6 +29,9 @@ import {
   validateGenerateTokenResponse,
 } from './validators/public_api';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
