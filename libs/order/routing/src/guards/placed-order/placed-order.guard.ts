@@ -9,7 +9,8 @@ import {
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { DaffOrderFacade } from '../../facades/order/order.facade';
+import { DaffOrderFacade } from '@daffodil/order/state';
+
 import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
 
 /**
