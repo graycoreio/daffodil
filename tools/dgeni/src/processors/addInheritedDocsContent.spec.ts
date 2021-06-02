@@ -32,7 +32,7 @@ describe("AddInheritedDocsContentProcessor", () => {
     expect(processor.$process(docs)[0].members[0].description).toEqual(copiedDescription);
   });
 
-  it("should copy member descriptions from inherited docs without the 'inheritdoc' tag", () => {
+  it("should not copy member descriptions from implements interfaces without the 'inheritdoc' tag", () => {
 		const copiedDescription = 'some member description';
     let docs = [{
 			tags: {
