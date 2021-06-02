@@ -8,6 +8,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 /**
  * An error thrown when the specified country is invalid for the specified address
  * or missing where it is required.
+ * @inheritdoc
  */
 export class DaffInvalidCountryError extends DaffInheritableError implements DaffError {
 	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUNTRY;

@@ -14,6 +14,9 @@ import {
   DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

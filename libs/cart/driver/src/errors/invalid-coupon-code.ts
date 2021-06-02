@@ -9,6 +9,7 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 /**
  * An error thrown when the specified coupon code cannot be applied to the cart.
  * Either the coupon code does not exist or the required conditions are not met.
+ * @inheritdoc
  */
 export class DaffInvalidCouponCodeError extends DaffInheritableError implements DaffError {
 	public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUPON_CODE;

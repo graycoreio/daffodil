@@ -20,6 +20,7 @@ import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-pay
 
 /**
  * A service for making Magento GraphQL queries for carts.
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

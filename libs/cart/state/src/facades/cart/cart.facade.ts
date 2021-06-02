@@ -36,6 +36,9 @@ import {
 import { getDaffCartSelectors } from '../../selectors/public_api';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
