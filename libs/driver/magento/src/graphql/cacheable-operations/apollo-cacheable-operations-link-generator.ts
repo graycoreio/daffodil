@@ -10,6 +10,8 @@ import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token'
 
 /**
  * A service that will convert cacheable apollo operations into a format that Magento will understand as cacheable.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',
