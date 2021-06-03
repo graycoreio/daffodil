@@ -13,11 +13,12 @@ export class AddInheritedDocsContentProcessor implements Processor {
 			if(!doc.members || !doc.tags.tags.filter(tag => tag.tagName === 'inheritdoc').length) return doc;
 
 			//get all interfaces that the doc implements.
-			doc.moduleDoc.exports.filter(e => e.symbol.escapedName.includes('Interface'))
+			doc.moduleDoc.exports.filter(e => e.docType === 'interface')
 				.map(i => {
 					i.members.map(member => {
 						//copy over the description from the interface to the doc.
-						doc.members.find(m => m.name === member.name).description = member.description;
+						const memberMatch = doc.members.find(m => m.name === member.name);
+						if(memberMatch) memberMatch.description = member.description;
 					})
 				})
 			return doc;
