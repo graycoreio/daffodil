@@ -41,6 +41,9 @@ class DaffHeroBase {
 
 const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase));
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-hero',
   template: '<ng-content></ng-content>',

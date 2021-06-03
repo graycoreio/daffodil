@@ -22,6 +22,9 @@ class DaffLoadingIconBase{
 
 const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary');
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-loading-icon',
   templateUrl: './loading-icon.component.html',

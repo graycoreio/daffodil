@@ -22,6 +22,9 @@ class DaffNavbarBase {
 
 const _daffNavbarBase = daffColorMixin(DaffNavbarBase);
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-navbar',
   styleUrls: ['./navbar.component.scss'],

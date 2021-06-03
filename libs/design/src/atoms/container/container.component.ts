@@ -23,6 +23,9 @@ class DaffContainerBase{
 
 const _daffContainerBase = daffSizeMixin(DaffContainerBase);
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-container',
   styleUrls: ['./container.component.scss'],

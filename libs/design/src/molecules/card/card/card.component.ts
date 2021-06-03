@@ -23,6 +23,9 @@ class DaffCardBase {
 
 const _daffCardBase = daffColorMixin(DaffCardBase);
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: '' +
     'daff-card' + ',' +

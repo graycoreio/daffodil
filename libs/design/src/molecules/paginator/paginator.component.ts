@@ -36,6 +36,9 @@ const _daffPaginatorBase = daffColorMixin(DaffPaginatorBase);
 
 const visiblePageRange = 2;
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-paginator',
   styleUrls: ['./paginator.component.scss'],
