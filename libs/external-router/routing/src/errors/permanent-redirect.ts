@@ -6,6 +6,8 @@ import {
 /**
  * An error thrown when the driver determines that the url needs to be routed somewhere
  * else permanently.
+ *
+ * @inheritdoc
  */
 export class DaffExternalRouterPermanentRedirectError extends DaffInheritableError
   implements DaffError {

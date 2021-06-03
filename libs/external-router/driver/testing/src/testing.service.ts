@@ -25,6 +25,8 @@ import {
  * The DaffExternalRouterTestingDriver is responsible for translating an
  * arbitrary URI into a DaffExternallyResolvableUrl in testing environments.
  *
+ * @inheritdoc
+ *
  * @see {@link DaffExternalRouterTestingDriver}
  */
 @Injectable({

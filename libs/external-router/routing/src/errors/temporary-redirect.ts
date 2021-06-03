@@ -6,6 +6,8 @@ import {
 /**
  * An error thrown when the driver needs a URI to be temporarily redirected
  * to another location.
+ *
+ * @inheritdoc
  */
 export class DaffExternalRouterTemporaryRedirectError extends DaffInheritableError
   implements DaffError {

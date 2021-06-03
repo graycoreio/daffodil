@@ -6,6 +6,8 @@ import {
 /**
  * An error thrown when there is a failure matching a configured route to a
  * route type.
+ *
+ * @inheritdoc
  */
 export class DaffExternalRouterUnknownRouteTypeError extends DaffInheritableError
   implements DaffError {

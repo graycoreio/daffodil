@@ -15,6 +15,8 @@ import { transformResolutionToResolvableUrlv242 } from './transforms/resolution-
 /**
  * The DaffExternalRouterMagentoDriver is responsible for translating an
  * arbitrary URI into a DaffExternallyResolvableUrl with Magento environments.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',
