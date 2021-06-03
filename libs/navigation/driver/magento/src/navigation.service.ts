@@ -17,6 +17,9 @@ import { MAGENTO_NAVIGATION_TREE_QUERY_DEPTH } from './interfaces/navigation-con
 import { GetCategoryTreeResponse } from './models/get-category-tree-response';
 import { daffMagentoGetCategoryTree } from './queries/get-category-tree';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
