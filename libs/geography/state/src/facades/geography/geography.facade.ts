@@ -17,6 +17,9 @@ import {
 } from '../../selectors/public_api';
 import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

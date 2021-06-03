@@ -14,6 +14,8 @@ import {
 
 /**
  * An in-memory service that stubs out the backend services for getting countries.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',
@@ -32,6 +34,7 @@ export class DaffInMemoryBackendGeographyService implements InMemoryDbService, D
   /**
    * Creates a fake database of countries for the geography inmemory backend service.
    *
+   * @docs-private
    * @returns A fake database of an array of countries
    */
   createDb(reqInfo: RequestInfo): any {
