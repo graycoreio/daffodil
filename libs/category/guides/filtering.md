@@ -23,6 +23,6 @@ It is important to note that not all platforms guarantee a response with enough 
 
 ## Idempotence
 
-Daffodil applies filters "idempotently". That is to say, when a filter operation is applied multiple times, the returned result is guaranteed the be the same. 
+Daffodil applies filters "idempotently". That is to say, when a filter operation is applied multiple times, the returned result is guaranteed to be the same. 
 
 The only exception to this rule is a toggle action, as it is strictly impossible for such an action to be idempotent since it intentionally oscillates a state property from one value to another.
