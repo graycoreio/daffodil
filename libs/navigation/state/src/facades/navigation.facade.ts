@@ -13,6 +13,9 @@ import { DaffNavigationReducersState } from '../reducers/navigation-reducers.int
 import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
 import { DaffNavigationFacadeInterface } from './navigation-facade.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

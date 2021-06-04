@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

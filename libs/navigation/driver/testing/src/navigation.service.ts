@@ -8,7 +8,9 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
-
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
