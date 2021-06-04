@@ -92,6 +92,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct =>
 /**
  * A service for getting DaffProducts from apollo shopify product requests.
  *
+ * @inheritdoc
  * @Param apollo
  */
 @Injectable({

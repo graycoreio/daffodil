@@ -11,6 +11,9 @@ import {
 } from '@daffodil/product';
 import { DaffCompositeProductFacadeInterface } from '@daffodil/product/state';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
   getRequiredItemPricesForConfiguration(id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {

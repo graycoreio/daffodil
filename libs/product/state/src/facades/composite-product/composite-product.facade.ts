@@ -26,6 +26,8 @@ import { DaffCompositeProductFacadeInterface } from './composite-product-facade.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  *
  * See the <a href="docs/api/product/DaffCompositeProductFacadeInterface">DaffCompositeProductFacadeInterface docs</a> for more details.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

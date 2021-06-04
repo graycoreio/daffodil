@@ -21,6 +21,8 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  *
  * See the <a href="docs/api/product/DaffConfigurableProductFacadeInterface">DaffConfigurableProductFacadeInterface docs</a> for more details.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

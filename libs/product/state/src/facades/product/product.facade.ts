@@ -16,6 +16,8 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
  * A facade for getting state about a particular product.
  *
  * See the <a href="docs/api/product/DaffProductFacadeInterface">DaffProductFacadeInterface docs</a> for more details.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

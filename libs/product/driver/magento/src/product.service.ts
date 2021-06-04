@@ -26,6 +26,8 @@ import {
 
 /**
  * A service for making magento apollo queries for products of type, DaffProduct.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

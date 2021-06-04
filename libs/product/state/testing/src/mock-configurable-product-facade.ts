@@ -8,6 +8,9 @@ import {
 } from '@daffodil/product';
 import { DaffConfigurableProductFacadeInterface } from '@daffodil/product/state';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
   getAllAttributes(id: DaffConfigurableProduct['id']): BehaviorSubject<Dictionary<string[]>> {

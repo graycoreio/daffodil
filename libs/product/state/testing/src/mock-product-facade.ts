@@ -4,6 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFacadeInterface } from '@daffodil/product/state';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);

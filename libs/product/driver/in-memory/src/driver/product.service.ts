@@ -8,6 +8,7 @@ import { DaffProductServiceInterface } from '@daffodil/product/driver';
 /**
  * The product inmemory driver to mock the product backend service.
  *
+ * @inheritdoc
  * @Param HttpClient
  */
 @Injectable({
