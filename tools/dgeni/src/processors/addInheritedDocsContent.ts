@@ -4,7 +4,7 @@ import { Processor, Document } from 'dgeni';
  * Inherit docs content from parent interfaces.
  */
 export class AddInheritedDocsContentProcessor implements Processor {
-	name = 'filterOutPrivateProperties';
+	name = 'addInheritedDocsContent';
 	$runAfter = ['docs-processed'];
 	$runBefore = ['rendering-docs'];
 
