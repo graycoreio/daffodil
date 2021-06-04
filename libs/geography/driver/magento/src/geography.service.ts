@@ -24,6 +24,8 @@ import { validateGetCountriesResponse } from './validators/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

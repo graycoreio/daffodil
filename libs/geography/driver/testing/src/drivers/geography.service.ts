@@ -11,6 +11,9 @@ import {
   DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -15,6 +15,9 @@ import {
   DaffCountryNotFoundError,
 } from '@daffodil/geography/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
