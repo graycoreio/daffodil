@@ -16,6 +16,9 @@ import {
 } from '../selectors/contact.selector';
 import { DaffContactFacadeInterface } from './contact-facade.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: DaffContactStateModule })
 export class DaffContactFacade implements DaffContactFacadeInterface {
 	success$: Observable<boolean> = this.store.select(selectDaffContactSuccess);
