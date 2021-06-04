@@ -14,6 +14,7 @@ import {
 /**
  * The product testing driver to mock the backend product service.
  *
+ * @inheritdoc
  * @param productFactory - A DaffProductFactory instance
  * @param productImageFactory - A DaffProductImageFactory instance
  */

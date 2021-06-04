@@ -14,6 +14,8 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
 
 /**
  * A facade for accessing best sellers state from an application component.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

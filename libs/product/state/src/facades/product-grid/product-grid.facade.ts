@@ -14,6 +14,8 @@ import { DaffProductGridFacadeInterface } from './product-grid-facade.interface'
 
 /**
  * A facade for accessing state for a list of products from an application component.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',
