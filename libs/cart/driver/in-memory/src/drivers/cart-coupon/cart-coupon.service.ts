@@ -8,6 +8,9 @@ import {
 } from '@daffodil/cart';
 import { DaffCartCouponServiceInterface } from '@daffodil/cart/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

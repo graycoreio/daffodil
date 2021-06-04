@@ -7,6 +7,9 @@ import {
 import { DaffCartOrderResult } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

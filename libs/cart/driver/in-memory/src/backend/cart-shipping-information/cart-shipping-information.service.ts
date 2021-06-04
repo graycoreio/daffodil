@@ -18,6 +18,9 @@ import {
   DaffCartInMemoryExtraAttributesHook,
 } from '../../injection-tokens/public_api';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

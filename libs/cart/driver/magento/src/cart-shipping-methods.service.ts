@@ -20,6 +20,8 @@ import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/car
 
 /**
  * A service for making Magento GraphQL queries for carts' shipping methods.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

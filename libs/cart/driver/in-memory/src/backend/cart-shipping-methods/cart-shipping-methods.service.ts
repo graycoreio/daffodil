@@ -11,6 +11,9 @@ import {
 import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

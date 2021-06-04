@@ -9,6 +9,9 @@ import {
 } from '@daffodil/cart';
 import { DaffCartPaymentServiceInterface } from '@daffodil/cart/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

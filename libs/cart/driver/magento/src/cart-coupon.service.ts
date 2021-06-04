@@ -37,6 +37,8 @@ import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/c
 
 /**
  * A service for making Magento GraphQL queries for carts.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

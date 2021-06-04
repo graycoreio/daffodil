@@ -15,6 +15,9 @@ import {
   DaffCartNotFoundError,
 } from '@daffodil/cart/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -26,6 +26,8 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',
