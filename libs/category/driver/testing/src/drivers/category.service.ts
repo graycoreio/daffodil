@@ -16,7 +16,9 @@ import {
 } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
