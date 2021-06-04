@@ -18,6 +18,9 @@ import { DaffOrderEntitySelectors } from '../../selectors/order-entities.selecto
 import { getDaffOrderSelectors } from '../../selectors/public_api';
 import { DaffOrderFacadeInterface } from './order-facade.interface';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

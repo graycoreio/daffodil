@@ -10,6 +10,9 @@ import {
 } from '@daffodil/order';
 import { DaffOrderFacadeInterface } from '@daffodil/order/state';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
