@@ -11,6 +11,9 @@ import {
 import { DaffPaypalServiceInterface } from '@daffodil/paypal/driver';
 import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

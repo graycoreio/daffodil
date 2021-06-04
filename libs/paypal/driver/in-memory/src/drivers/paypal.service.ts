@@ -8,6 +8,9 @@ import {
 } from '@daffodil/paypal';
 import { DaffPaypalServiceInterface } from '@daffodil/paypal/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

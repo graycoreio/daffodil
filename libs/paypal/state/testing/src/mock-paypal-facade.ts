@@ -6,6 +6,9 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 import { DaffPaypalFacadeInterface } from '@daffodil/paypal/state';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({ providedIn: 'root' })
 export class MockDaffPaypalFacade implements DaffPaypalFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
