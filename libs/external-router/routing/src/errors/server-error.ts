@@ -5,8 +5,6 @@ import {
 
 /**
  * An error thrown when the platform performing url resolution fails.
- *
- * @inheritdoc
  */
 export class DaffExternalRouterServerError extends DaffInheritableError
   implements DaffError {

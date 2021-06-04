@@ -5,8 +5,6 @@ import {
 
 /**
  * An error thrown when the driver encounters a 4xx error.
- *
- * @inheritdoc
  */
 export class DaffExternalRouterClientError extends DaffInheritableError
   implements DaffError {
