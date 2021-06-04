@@ -3,9 +3,6 @@ import {
   DaffInheritableError,
 } from '@daffodil/core';
 
-/**
- * @inheritdoc
- */
 export class DaffBadInputError extends DaffInheritableError implements DaffError {
   public readonly code: string = 'DAFF_BAD_INPUT';
 
