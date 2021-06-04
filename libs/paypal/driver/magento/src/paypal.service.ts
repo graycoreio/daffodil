@@ -23,6 +23,9 @@ import {
 } from './models/public_api';
 import { GenerateTokenMutation } from './mutations/generate-token';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

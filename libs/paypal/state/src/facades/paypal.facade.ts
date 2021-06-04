@@ -13,6 +13,9 @@ import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { getDaffPaypalSelectors } from '../selectors/paypal.selector';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
