@@ -5,6 +5,9 @@ import { mapTo } from 'rxjs/operators';
 
 import { DaffAuthServiceInterface } from '@daffodil/auth/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -13,6 +13,9 @@ import {
 } from '@daffodil/auth';
 import { DaffLoginServiceInterface } from '@daffodil/auth/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
