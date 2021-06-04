@@ -31,6 +31,8 @@ import { validateGetOrdersResponse } from './validators/public_api';
 
 /**
  * A service for making Magento GraphQL queries for orders.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',

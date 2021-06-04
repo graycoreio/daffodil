@@ -11,6 +11,8 @@ import { DaffOrderFactory } from '@daffodil/order/testing';
 
 /**
  * An in-memory service that stubs out the backend services for getting orders.
+ *
+ * @inheritdoc
  */
 @Injectable({
   providedIn: 'root',
@@ -27,6 +29,7 @@ export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffI
   /**
    * Creates a fake database of orders for the order inmemory backend service.
    *
+   * @docs-private
    * @returns A fake database of an array of orders
    */
   createDb(reqInfo: RequestInfo): any {

@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderServiceInterface } from '@daffodil/order/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

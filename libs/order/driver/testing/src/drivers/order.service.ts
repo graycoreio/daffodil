@@ -8,6 +8,9 @@ import { DaffOrder } from '@daffodil/order';
 import { DaffOrderServiceInterface } from '@daffodil/order/driver';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
