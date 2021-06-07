@@ -8,15 +8,15 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffLinkSetModule } from '@daffodil/design';
 
-import { DaffioGuidesListComponent } from './guides-list.component';
+import { DaffioGuideNavComponent } from './guide-nav.component';
 
-describe('DaffioGuidesListComponent', () => {
-  let component: DaffioGuidesListComponent;
-  let fixture: ComponentFixture<DaffioGuidesListComponent>;
+describe('DaffioGuideNavComponent', () => {
+  let component: DaffioGuideNavComponent;
+  let fixture: ComponentFixture<DaffioGuideNavComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DaffioGuidesListComponent],
+      declarations: [DaffioGuideNavComponent],
       imports: [
         RouterTestingModule,
         DaffLinkSetModule,
@@ -26,7 +26,7 @@ describe('DaffioGuidesListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioGuidesListComponent);
+    fixture = TestBed.createComponent(DaffioGuideNavComponent);
     component = fixture.componentInstance;
     const guideWithoutChildren = {
       id: 'id2',

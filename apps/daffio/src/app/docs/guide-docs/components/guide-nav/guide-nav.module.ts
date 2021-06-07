@@ -8,15 +8,15 @@ import {
   DaffAccordionModule,
 } from '@daffodil/design';
 
-import { DaffioGuidesListComponent } from './guides-list.component';
+import { DaffioGuideNavComponent } from './guide-nav.component';
 
 
 @NgModule({
   declarations: [
-    DaffioGuidesListComponent,
+    DaffioGuideNavComponent,
   ],
   exports: [
-    DaffioGuidesListComponent,
+    DaffioGuideNavComponent,
   ],
   imports: [
     CommonModule,
@@ -26,4 +26,4 @@ import { DaffioGuidesListComponent } from './guides-list.component';
     DaffAccordionModule,
   ],
 })
-export class DaffioGuidesListModule { }
+export class DaffioGuideNavModule { }
