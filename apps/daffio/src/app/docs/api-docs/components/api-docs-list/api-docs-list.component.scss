@@ -1,8 +1,11 @@
 @import 'utilities';
 
-.api-docs-list {
-	padding: 15px;
+:host {
+	display: block;
+	padding: 16px;
+}
 
+.api-docs-list {
 	&__package {
 		margin: 15px 0 40px 0;
 	}

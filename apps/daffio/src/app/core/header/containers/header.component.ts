@@ -13,7 +13,7 @@ export class DaffioHeaderContainer {
   faBars = faBars;
 
   links: any[] = [
-    { path: '/docs/api', title: 'Docs' },
+    { path: '/api', title: 'Docs' },
     { path: '/why-pwa', title: 'Why PWA' },
   ];
 
