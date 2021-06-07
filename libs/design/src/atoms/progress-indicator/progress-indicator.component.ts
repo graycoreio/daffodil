@@ -26,6 +26,9 @@ class DaffProgressIndicatorBase{
 
 const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'primary');
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-progress-indicator',
   templateUrl: './progress-indicator.component.html',

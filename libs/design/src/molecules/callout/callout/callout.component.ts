@@ -40,6 +40,9 @@ class DaffCalloutBase {
 
 const _daffCalloutBase = daffColorMixin(daffTextAlignmentMixin(DaffCalloutBase));
 
+/**
+ * @inheritdoc
+ */
 @Component({
   selector: 'daff-callout',
   template: '<ng-content></ng-content>',

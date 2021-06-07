@@ -68,6 +68,9 @@ enum DaffButtonTypeEnum {
   Underline = 'daff-underline-button'
 }
 
+/**
+ * @inheritdoc
+ */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '' +
@@ -86,7 +89,6 @@ enum DaffButtonTypeEnum {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class DaffButtonComponent
   extends _daffButtonBase
   implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize>, DaffStatusable {
