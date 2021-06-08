@@ -8,7 +8,9 @@ export class PackagesProcessor implements Processor {
   $process(docs: Document[]): Document[] {
     return docs.map(doc => {
       if (doc.docType === 'module') {
-        doc.id = doc.id.replace(/\/src$/, '');
+        doc.id = doc.id
+					.replace(/\/src$/, '')
+					.replace(/^.*libs\//, '');
         doc.docType = 'package';
         // The name is actually the full id
         doc.name = `@daffodil/${doc.id}`;
