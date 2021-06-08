@@ -14,6 +14,7 @@ import {
   daffProductReducers,
   DaffConfigurableProductApplyAttribute,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
+  DaffProductGridLoad,
 } from '@daffodil/product/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
 
@@ -97,7 +98,7 @@ describe('selectConfigurableProductEntitiesState', () => {
   describe('selectConfigurableProductAppliedAttributes', () => {
 
     it('selects the configurable product attributes of the given id', () => {
-      const selector = store.pipe(select(selectConfigurableProductAppliedAttributes, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductAppliedAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
         a: [{
           code: stubConfigurableProduct.configurableAttributes[0].code,
@@ -107,12 +108,23 @@ describe('selectConfigurableProductEntitiesState', () => {
 
       expect(selector).toBeObservable(expected);
     });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductAppliedAttributes(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('selectConfigurableProductAppliedAttributesAsDictionary', () => {
 
     it('selects the configurable product attributes of the given id as a dictionary', () => {
-      const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
       const expected = cold('a', {
         a: {
           [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
@@ -120,6 +132,17 @@ describe('selectConfigurableProductEntitiesState', () => {
       });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });

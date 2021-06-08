@@ -14,6 +14,7 @@ import {
   DaffProductReducersState,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
+  DaffProductGridLoad,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -102,77 +103,154 @@ describe('selectProductEntitiesState', () => {
   describe('selectProduct', () => {
 
     it('should select the product of the given id', () => {
-      const selector = store.pipe(select(selectProduct, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectProduct(mockProduct.id)));
       const expected = cold('a', { a: mockProduct });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectProduct(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectProductPrice', () => {
 
     it('should select the product of the given id', () => {
-      const selector = store.pipe(select(selectProductPrice, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectProductPrice(mockProduct.id)));
       const expected = cold('a', { a: mockProduct.price });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectProductPrice(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectProductDiscountAmount', () => {
 
     it('should select the product discount amount of the given id', () => {
-      const selector = store.pipe(select(selectProductDiscountAmount, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectProductDiscountAmount(mockProduct.id)));
       const expected = cold('a', { a: mockProduct.discount.amount });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectProductDiscountAmount(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectProductDiscountedPrice', () => {
 
     it('should select the product of the given id', () => {
-      const selector = store.pipe(select(selectProductDiscountedPrice, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectProductDiscountedPrice(mockProduct.id)));
       const expected = cold('a', { a: daffSubtract(mockProduct.price, mockProduct.discount.amount) });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectProductDiscountedPrice(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectProductDiscountPercent', () => {
 
     it('should select the product discount amount of the given id', () => {
-      const selector = store.pipe(select(selectProductDiscountPercent, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectProductDiscountPercent(mockProduct.id)));
       const expected = cold('a', { a: mockProduct.discount.percent });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectProductDiscountPercent(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectProductHasDiscount', () => {
 
     it('should select whether the product has a discount', () => {
-      const selector = store.pipe(select(selectProductHasDiscount, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectProductHasDiscount(mockProduct.id)));
       const expected = cold('a', { a: !!mockProduct.discount.amount });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectProductHasDiscount(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectIsProductOutOfStock', () => {
 
     it('should select whether the product is out of stock', () => {
-      const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct.id }));
+      const selector = store.pipe(select(selectIsProductOutOfStock(mockProduct.id)));
       const expected = cold('a', { a: !mockProduct.in_stock });
 
       expect(selector).toBeObservable(expected);
     });
 
     it('should return null if the product is not in state', () => {
-      const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct + 'notId' }));
+      const selector = store.pipe(select(selectIsProductOutOfStock(mockProduct + 'notId')));
       const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectIsProductOutOfStock(mockProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });

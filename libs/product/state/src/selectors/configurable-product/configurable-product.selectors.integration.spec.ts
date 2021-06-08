@@ -59,7 +59,7 @@ describe('Configurable Product Selectors | integration tests', () => {
 
     it(`should include all attribute values for the selected attribute code;
 				should include only attributes values for the remaining attribute codes that match variants having the selected attribute value`, () => {
-      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
         a: {
           color: ['0', '1'],
@@ -91,7 +91,7 @@ describe('Configurable Product Selectors | integration tests', () => {
     it(`should include all attribute values for the attribute code that was selected first;
 				should include only attribute values for the second selected attribute code that match variants having the first selected attribute value;
 				should include only attribute values for the remaining attribute codes that match variants having both the first and second selected attribute values`, () => {
-      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
         a: {
           color: ['0', '1', '2'],
@@ -114,7 +114,7 @@ describe('Configurable Product Selectors | integration tests', () => {
       });
 
       it('should clear the second selection (size)', () => {
-        const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary, { id: stubConfigurableProduct.id }));
+        const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
         const expected = cold('a', {
           a: {
             color: '1',
@@ -136,7 +136,7 @@ describe('Configurable Product Selectors | integration tests', () => {
       });
 
       it('should not clear the first selection (color)', () => {
-        const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary, { id: stubConfigurableProduct.id }));
+        const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
         const expected = cold('a', {
           a: {
             color: '0',
@@ -151,7 +151,7 @@ describe('Configurable Product Selectors | integration tests', () => {
 
   it('returns a dictionary of attribute values that are still selectable', () => {
     store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
-    const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+    const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
     const expected = cold('a', {
       a: {
         color: ['0', '1', '2'],

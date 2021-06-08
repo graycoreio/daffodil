@@ -2,7 +2,7 @@ import { EntityState } from '@ngrx/entity';
 import {
   createSelector,
   MemoizedSelector,
-  MemoizedSelectorWithProps,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { daffSubtract } from '@daffodil/core';
@@ -18,13 +18,13 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	selectProductEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
 	selectAllProducts: MemoizedSelector<Record<string, any>, T[]>;
 	selectProductTotal: MemoizedSelector<Record<string, any>, number>;
-	selectProduct: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, T>;
-	selectProductPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductDiscountAmount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductDiscountedPrice: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductDiscountPercent: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, number>;
-	selectProductHasDiscount: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
-	selectIsProductOutOfStock: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
+	selectProduct: (productId: T['id']) => MemoizedSelector<Record<string, any>, T>;
+	selectProductPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {
@@ -80,65 +80,41 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
     adapterSelectors.selectTotal,
   );
 
-  const selectProduct = createSelector(
+  const selectProduct = defaultMemoize((productId: T['id']) => createSelector(
     selectProductEntities,
-    (products, props) => products[props.id],
-  );
+    products => products[productId],
+  )).memoized;
 
-  const selectProductPrice = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const product = selectProduct.projector(products, { id: props.id });
+  const selectProductPrice = defaultMemoize((productId: T['id']) => createSelector(
+    selectProduct(productId),
+    (product: T) => product?.price || null,
+  )).memoized;
 
-      return product?.price || null;
-    },
-  );
+  const selectProductDiscountAmount = defaultMemoize((productId: T['id']) => createSelector(
+    selectProduct(productId),
+    (product: T) => product?.discount?.amount || 0,
+  )).memoized;
 
-  const selectProductDiscountAmount = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const product = selectProduct.projector(products, { id: props.id });
+  const selectProductDiscountedPrice = defaultMemoize((productId: T['id']) => createSelector(
+    selectProductPrice(productId),
+    selectProductDiscountAmount(productId),
+    (price: number, discountAmount: number) => daffSubtract(price, discountAmount),
+  )).memoized;
 
-      return product?.discount?.amount || 0;
-    },
-  );
+  const selectProductDiscountPercent = defaultMemoize((productId: T['id']) => createSelector(
+    selectProduct(productId),
+    (product: T) => product.discount?.percent || 0,
+  )).memoized;
 
-  const selectProductDiscountedPrice = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const price = selectProductPrice.projector(products, { id: props.id });
-      const discountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
+  const selectProductHasDiscount = defaultMemoize((productId: T['id']) => createSelector(
+    selectProductDiscountAmount(productId),
+    (discountAmount: number) => !!discountAmount,
+  )).memoized;
 
-      return daffSubtract(price, discountAmount);
-    },
-  );
-
-  const selectProductDiscountPercent = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const product = selectProduct.projector(products, { id: props.id });
-
-      return product.discount?.percent || 0;
-    },
-  );
-
-  const selectProductHasDiscount = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const discountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
-
-      return !!discountAmount;
-    },
-  );
-
-  const selectIsProductOutOfStock = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const product = selectProduct.projector(products, { id: props.id });
-
-      return product ? !product.in_stock : null;
-    },
-  );
+  const selectIsProductOutOfStock = defaultMemoize((productId: T['id']) => createSelector(
+    selectProduct(productId),
+    (product: T) => product ? !product.in_stock : null,
+  )).memoized;
 
   return {
     selectProductEntitiesState,

@@ -25,6 +25,7 @@ import {
   DaffProductReducersState,
   DaffCompositeProductApplyOption,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
+  DaffProductGridLoad,
 } from '@daffodil/product/state';
 import {
   DaffCompositeProductFactory,
@@ -105,14 +106,25 @@ describe('Composite Product Selectors | integration tests', () => {
   describe('selectCompositeProductRequiredItemPricesForConfiguration', () => {
 
     it('should return undefined when the product is not a composite product', () => {
-      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
     });
 
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
     it('should return the broadest price range when no configuration is provided', () => {
-      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
@@ -142,7 +154,7 @@ describe('Composite Product Selectors | integration tests', () => {
           qty: stubQty1,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -180,7 +192,7 @@ describe('Composite Product Selectors | integration tests', () => {
           qty: stubQty1,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -216,7 +228,7 @@ describe('Composite Product Selectors | integration tests', () => {
           value: stubCompositeProduct.items[1].options[1].id,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -252,7 +264,7 @@ describe('Composite Product Selectors | integration tests', () => {
           qty: stubQty1,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -281,15 +293,26 @@ describe('Composite Product Selectors | integration tests', () => {
   describe('selectCompositeProductOptionalItemPricesForConfiguration', () => {
 
     it('should return undefined when the product is not a composite product', () => {
-      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
     });
 
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
     it(`should return the broadest price range for a composite product including optional items
 				when no configuration is provided`, () => {
-      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
@@ -321,7 +344,7 @@ describe('Composite Product Selectors | integration tests', () => {
           qty: stubQty0,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + (stubPrice00 - stubDiscountAmount00) * stubQty0,
@@ -356,7 +379,7 @@ describe('Composite Product Selectors | integration tests', () => {
           qty: stubQty1,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -392,7 +415,7 @@ describe('Composite Product Selectors | integration tests', () => {
           value: stubCompositeProduct.items[1].options[1].id,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -428,7 +451,7 @@ describe('Composite Product Selectors | integration tests', () => {
           qty: stubQty1,
         },
       };
-      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+      const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -457,10 +480,21 @@ describe('Composite Product Selectors | integration tests', () => {
   describe('selectCompositeProductPricesAsCurrentlyConfigured', () => {
 
     it('should return undefined when the product is not a composite product', () => {
-      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should return the expected price range for the current configuration of the product in state', () => {
@@ -477,7 +511,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				stubQty1,
       ));
 
-      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -522,7 +556,7 @@ describe('Composite Product Selectors | integration tests', () => {
         ],
       }));
 
-      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
@@ -551,10 +585,21 @@ describe('Composite Product Selectors | integration tests', () => {
   describe('selectCompositeProductDiscountAmount', () => {
 
     it('should return undefined when the product is not a composite product', () => {
-      const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should not throw an error when optional items are not provided', () => {
@@ -578,7 +623,7 @@ describe('Composite Product Selectors | integration tests', () => {
           ...stubCompositeProduct.items.slice(1),
         ],
       }));
-      const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expected = cold('a', { a: stubCompositeProduct.discount.amount });
 
       expect(selector).toBeObservable(expected);
@@ -605,7 +650,7 @@ describe('Composite Product Selectors | integration tests', () => {
           ...stubCompositeProduct.items.slice(1),
         ],
       }));
-      const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
@@ -633,7 +678,7 @@ describe('Composite Product Selectors | integration tests', () => {
         ],
       }));
 
-      const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expectedDiscountAmount = daffAdd(stubCompositeProduct.discount.amount, stubCompositeProduct.items[0].options[0].discount.amount);
       const expected = cold('a', { a: expectedDiscountAmount });
 
@@ -644,10 +689,21 @@ describe('Composite Product Selectors | integration tests', () => {
   describe('selectCompositeProductDiscountPercent', () => {
 
     it('should return undefined when the product is not a composite product', () => {
-      const selector = store.pipe(select(selectCompositeProductDiscountPercent, { id: stubProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should return undefined when required options are not chosen', () => {
@@ -671,7 +727,7 @@ describe('Composite Product Selectors | integration tests', () => {
           ...stubCompositeProduct.items.slice(1),
         ],
       }));
-      const selector = store.pipe(select(selectCompositeProductDiscountPercent, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));
       const expected = cold('a', { a: undefined });
 
       expect(selector).toBeObservable(expected);
@@ -699,7 +755,7 @@ describe('Composite Product Selectors | integration tests', () => {
         ],
       }));
 
-      const selector = store.pipe(select(selectCompositeProductDiscountPercent, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));
       const totalOriginalPrice = daffAdd(stubCompositeProduct.price, stubCompositeProduct.items[0].options[0].price);
       const primaryProductDiscountedPrice = daffSubtract(stubCompositeProduct.price, stubCompositeProduct.discount.amount);
       const selectedOptionDiscountedPrice = daffSubtract(stubCompositeProduct.items[0].options[0].price, stubCompositeProduct.items[0].options[0].discount.amount);
