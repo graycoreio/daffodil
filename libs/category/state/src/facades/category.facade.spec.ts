@@ -310,7 +310,6 @@ describe('DaffCategoryFacade', () => {
   });
 
   describe('getProductsByCategory', () => {
-
     it('should be an observable of an array of products that are filtered by the provided category id', () => {
       const expected = cold('a', { a: [stubProduct]});
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
@@ -321,7 +320,7 @@ describe('DaffCategoryFacade', () => {
 
   describe('getTotalProductsByCategory', () => {
 
-    it('should be an observable of an array of products that are filtered by the provided category id', () => {
+    it('should be an observable of the number of products that are filtered by the provided category id', () => {
       const expected = cold('a', { a: 1 });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       store.dispatch(new DaffProductGridLoadSuccess([stubProduct]));

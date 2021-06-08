@@ -17,6 +17,7 @@ import {
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffCategoryPageChangePageSize,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -170,27 +171,60 @@ describe('DaffCategorySelectors', () => {
   describe('selectCategory', () => {
 
     it('selects the category by id', () => {
-      const selector = store.pipe(select(categorySelectors.selectCategory, { id: stubCategory.id }));
+      const selector = store.pipe(select(categorySelectors.selectCategory(stubCategory.id)));
       const expected = cold('a', { a: stubCategory });
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(categorySelectors.selectCategory(stubCategory.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCategoryPageChangePageSize(5));
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectProductsByCategory', () => {
 
     it('selects products by category', () => {
-      const selector = store.pipe(select(categorySelectors.selectProductsByCategory, { id: stubCategory.id }));
+      const selector = store.pipe(select(categorySelectors.selectProductsByCategory(stubCategory.id)));
       const expected = cold('a', { a: [product]});
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(categorySelectors.selectProductsByCategory(stubCategory.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCategoryPageChangePageSize(5));
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectTotalProductsByCategory', () => {
 
     it('selects products by category', () => {
-      const selector = store.pipe(select(categorySelectors.selectTotalProductsByCategory, { id: stubCategory.id }));
+      const selector = store.pipe(select(categorySelectors.selectTotalProductsByCategory(stubCategory.id)));
       const expected = cold('a', { a: 1 });
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(categorySelectors.selectTotalProductsByCategory(stubCategory.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCategoryPageChangePageSize(5));
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });
