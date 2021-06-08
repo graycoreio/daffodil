@@ -14,6 +14,7 @@ import {
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
   DaffCountryLoadSuccess,
   DaffCountryListSuccess,
+  DaffCountryList,
 } from '@daffodil/geography/state';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
@@ -93,28 +94,61 @@ describe('Geography | Selector | CountryEntities', () => {
 
   describe('selectCountry', () => {
     it('should select a specific country by ID', () => {
-      const selector = store.pipe(select(selectCountry, { id: mockCountry.id }));
+      const selector = store.pipe(select(selectCountry(mockCountry.id)));
       const expected = cold('a', { a: jasmine.objectContaining(mockCountry) });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCountry(mockCountry.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCountryList());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectCountrySubdivisions', () => {
     it('should select a specific country\'s subdivisions by ID', () => {
-      const selector = store.pipe(select(selectCountrySubdivisions, { id: mockCountry.id }));
+      const selector = store.pipe(select(selectCountrySubdivisions(mockCountry.id)));
       const expected = cold('a', { a: mockCountry.subdivisions });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCountrySubdivisions(mockCountry.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCountryList());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('selectIsCountryFullyLoaded', () => {
     it('should initially be false', () => {
-      const selector = store.pipe(select(selectIsCountryFullyLoaded, { id: mockCountry.id }));
+      const selector = store.pipe(select(selectIsCountryFullyLoaded(mockCountry.id)));
       const expected = cold('a', { a: false });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCountrySubdivisions(mockCountry.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCountryList());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     describe('when a country is loaded', () => {
@@ -123,7 +157,7 @@ describe('Geography | Selector | CountryEntities', () => {
       });
 
       it('should be true', () => {
-        const selector = store.pipe(select(selectIsCountryFullyLoaded, { id: mockCountry.id }));
+        const selector = store.pipe(select(selectIsCountryFullyLoaded(mockCountry.id)));
         const expected = cold('a', { a: true });
 
         expect(selector).toBeObservable(expected);

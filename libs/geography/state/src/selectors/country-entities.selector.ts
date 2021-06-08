@@ -2,7 +2,7 @@ import { Dictionary } from '@ngrx/entity';
 import {
   createSelector,
   MemoizedSelector,
-  MemoizedSelectorWithProps,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffCountry } from '@daffodil/geography';
@@ -19,9 +19,9 @@ export interface DaffCountryEntitySelectors<T extends DaffCountry = DaffCountry>
   selectCountryEntities: MemoizedSelector<Record<string, any>, Dictionary<T>>;
   selectAllCountries: MemoizedSelector<Record<string, any>, T[]>;
   selectCountryTotal: MemoizedSelector<Record<string, any>, number>;
-  selectCountry: MemoizedSelectorWithProps<Record<string, any>, {id: T['id']}, T>;
-  selectCountrySubdivisions: MemoizedSelectorWithProps<Record<string, any>, {id: T['id']}, T['subdivisions']>;
-  selectIsCountryFullyLoaded: MemoizedSelector<Record<string, any>, boolean>;
+  selectCountry: (id: T['id']) => MemoizedSelector<Record<string, any>, T>;
+  selectCountrySubdivisions: (id: T['id']) => MemoizedSelector<Record<string, any>, T['subdivisions']>;
+  selectIsCountryFullyLoaded: (id: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createCountryEntitySelectors = <T extends DaffCountry = DaffCountry>() => {
@@ -32,26 +32,20 @@ const createCountryEntitySelectors = <T extends DaffCountry = DaffCountry>() => 
   );
   const { selectIds, selectEntities, selectAll, selectTotal } = getCountryAdapter<T>().getSelectors(selectCountryEntitiesState);
 
-  const selectCountry = createSelector(
+  const selectCountry = defaultMemoize((countryId: T['id']) => createSelector(
     selectEntities,
-    (countries: Dictionary<T>, props) => countries[props.id],
-  );
+    (countries: Dictionary<T>) => countries[countryId],
+  )).memoized;
 
-  const selectCountrySubdivisions = createSelector(
-    selectEntities,
-    (countries: Dictionary<T>, props) => {
-      const country = selectCountry.projector(countries, { id: props.id });
-      return country ? country.subdivisions : [];
-    },
-  );
+  const selectCountrySubdivisions = defaultMemoize((countryId: T['id']) => createSelector(
+    selectCountry(countryId),
+    (country: T) => country?.subdivisions || [],
+  )).memoized;
 
-  const selectIsCountryFullyLoaded = createSelector(
-    selectEntities,
-    (countries: Dictionary<T>, props: {id: T['id']}) => {
-      const country = selectCountry.projector(countries, { id: props.id });
-      return country && country.loaded;
-    },
-  );
+  const selectIsCountryFullyLoaded = defaultMemoize((countryId: T['id']) => createSelector(
+    selectCountry(countryId),
+    (country: T) => country?.loaded,
+  )).memoized;
 
   return {
     selectCountryEntitiesState,
