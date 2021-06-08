@@ -1,12 +1,12 @@
 <daff-accordion *ngIf="guideList">
 	<daff-nav-accordion-item>
-		<h3 daffAccordionItemTitle *ngIf="guideList.children.length">{{ guideList.path }}</h3>
+		<div daffAccordionItemTitle *ngIf="guideList.children.length">{{ guideList.path }}</div>
 		<daff-nav-accordion-item *ngFor="let guide of guideList.children">
 			<a daffAccordionItemTitle *ngIf="!guide.children.length" routerLink="/docs/{{ guide.path }}">{{ guide.title }}</a>
-			<h3 daffAccordionItemTitle *ngIf="guide.children.length">{{ guide.title }}</h3>
+			<div daffAccordionItemTitle *ngIf="guide.children.length">{{ guide.title }}</div>
 			<daff-nav-accordion-item *ngFor="let childGuide of guide.children">
 				<a daffAccordionItemTitle *ngIf="!childGuide.children.length" routerLink="/docs/{{ childGuide.path }}">{{ childGuide.title }}</a>
-				<h3 daffAccordionItemTitle *ngIf="childGuide.children.length">{{ childGuide.title }}</h3>
+				<div daffAccordionItemTitle *ngIf="childGuide.children.length">{{ childGuide.title }}</div>
 			</daff-nav-accordion-item>
 		</daff-nav-accordion-item>
 	</daff-nav-accordion-item>
