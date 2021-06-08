@@ -5,7 +5,7 @@ import {
 import {
   createSelector,
   MemoizedSelector,
-  MemoizedSelectorWithProps,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
@@ -23,8 +23,8 @@ export interface DaffConfigurableProductEntitiesMemoizedSelectors {
 	selectConfigurableProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['ids']>;
 	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['entities']>;
 	selectConfigurableProductTotal: MemoizedSelector<Record<string, any>, number>;
-	selectConfigurableProductAppliedAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableProductEntityAttribute[]>;
-	selectConfigurableProductAppliedAttributesAsDictionary: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<string>>;
+	selectConfigurableProductAppliedAttributes: (productId: DaffProduct['id']) => MemoizedSelector<Record<string, any>, DaffConfigurableProductEntityAttribute[]>;
+	selectConfigurableProductAppliedAttributesAsDictionary: (productId: DaffProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<string>>;
 }
 
 const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends DaffProduct>(): DaffConfigurableProductEntitiesMemoizedSelectors => {
@@ -67,18 +67,18 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
   /**
    * Selector for the applied attributes of a particular configurable product.
    */
-  const selectConfigurableProductAppliedAttributes = createSelector(
+  const selectConfigurableProductAppliedAttributes = defaultMemoize((productId: DaffProduct['id']) => createSelector(
     selectConfigurableProductAppliedAttributesEntitiesState,
-    (products, props) => products.entities[props.id].attributes,
-  );
+    products => products.entities[productId].attributes,
+  )).memoized;
 
-  const selectConfigurableProductAppliedAttributesAsDictionary = createSelector(
-    selectConfigurableProductAppliedAttributesEntitiesState,
-    (products, props) => selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((acc, attribute) => ({
+  const selectConfigurableProductAppliedAttributesAsDictionary = defaultMemoize((productId: DaffProduct['id']) => createSelector(
+    selectConfigurableProductAppliedAttributes(productId),
+    (attributes: DaffConfigurableProductEntityAttribute[]) => attributes.reduce((acc, attribute) => ({
       ...acc,
       [attribute.code]: attribute.value,
     }), {}),
-  );
+  )).memoized;
 
   return {
     selectConfigurableProductAppliedAttributesEntitiesState,

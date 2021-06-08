@@ -34,55 +34,55 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 	constructor(private store: Store<DaffProductReducersState<T>>) {}
 
 	getAllAttributes(id: T['id']): Observable<Dictionary<string[]>> {
-	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes, { id }));
+	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes(id)));
 	}
 
 	getAllVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
-	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductVariants, { id }));
+	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductVariants(id)));
 	}
 
 	getAppliedAttributes(id: T['id']): Observable<Dictionary<string>> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributesAsDictionary, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributesAsDictionary(id)));
 	}
 
 	getMinimumPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPrice, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPrice(id)));
 	}
 
 	getMaximumPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPrice, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPrice(id)));
 	}
 
 	getMinimumDiscountedPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumDiscountedPrice, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumDiscountedPrice(id)));
 	}
 
 	getMaximumDiscountedPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumDiscountedPrice, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumDiscountedPrice(id)));
 	}
 
 	getMinimumPercentDiscount(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPercentDiscount, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumPercentDiscount(id)));
 	}
 
 	getMaximumPercentDiscount(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPercentDiscount, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPercentDiscount(id)));
 	}
 
 	isPriceRanged(id: T['id']): Observable<boolean> {
-	  return this.store.pipe(select(this.selectors.isConfigurablePriceRanged, { id }));
+	  return this.store.pipe(select(this.selectors.isConfigurablePriceRanged(id)));
 	}
 
 	hasDiscount(id: T['id']): Observable<boolean> {
-	  return this.store.pipe(select(this.selectors.selectConfigurableProductHasDiscount, { id }));
+	  return this.store.pipe(select(this.selectors.selectConfigurableProductHasDiscount(id)));
 	}
 
 	getSelectableAttributes(id: T['id']): Observable<Dictionary<string[]>> {
-	  return this.store.pipe(select(this.selectors.selectSelectableConfigurableProductAttributes, { id }));
+	  return this.store.pipe(select(this.selectors.selectSelectableConfigurableProductAttributes(id)));
 	}
 
 	getMatchingVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
-	  return this.store.pipe(select(this.selectors.selectMatchingConfigurableProductVariants, { id }));
+	  return this.store.pipe(select(this.selectors.selectMatchingConfigurableProductVariants(id)));
 	}
 
 	/**

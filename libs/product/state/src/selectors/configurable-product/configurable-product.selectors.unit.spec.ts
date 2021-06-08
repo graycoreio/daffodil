@@ -15,6 +15,7 @@ import {
   DaffProductGridLoadSuccess,
   DaffConfigurableProductApplyAttribute,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
+  DaffProductGridLoad,
 } from '@daffodil/product/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
 
@@ -59,10 +60,23 @@ describe('Configurable Product Selectors | unit tests', () => {
 
     it('returns all variants for the given product', () => {
       store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
-      const selector = store.pipe(select(selectAllConfigurableProductVariants, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectAllConfigurableProductVariants(stubConfigurableProduct.id)));
       const expected = cold('a', { a: stubConfigurableProduct.variants });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectAllConfigurableProductVariants(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -79,10 +93,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductPrices, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductPrices(stubConfigurableProduct.id)));
       const expected = cold('a', { a: [2, 1, 3, 4]});
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductPrices(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -103,10 +130,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductDiscountedPrices, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductDiscountedPrices(stubConfigurableProduct.id)));
       const expected = cold('a', { a: [.8, 1.998, 2.0000001, 1]});
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductDiscountedPrices(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -124,10 +164,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductPercentDiscounts, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductPercentDiscounts(stubConfigurableProduct.id)));
       const expected = cold('a', { a: [1, 2, 3, 4]});
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductPercentDiscounts(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -144,7 +197,7 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductHasDiscount, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductHasDiscount(stubConfigurableProduct.id)));
       const expected = cold('a', { a: true });
 
       expect(selector).toBeObservable(expected);
@@ -161,10 +214,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductHasDiscount, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductHasDiscount(stubConfigurableProduct.id)));
       const expected = cold('a', { a: false });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductHasDiscount(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -181,10 +247,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductMinimumPrice, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductMinimumPrice(stubConfigurableProduct.id)));
       const expected = cold('a', { a: 1 });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductMinimumPrice(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -201,10 +280,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductMaximumPrice, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductMaximumPrice(stubConfigurableProduct.id)));
       const expected = cold('a', { a: 4 });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductMaximumPrice(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -225,10 +317,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductMinimumDiscountedPrice, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductMinimumDiscountedPrice(stubConfigurableProduct.id)));
       const expected = cold('a', { a: 6 });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductMinimumDiscountedPrice(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -249,10 +354,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductMaximumDiscountedPrice, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductMaximumDiscountedPrice(stubConfigurableProduct.id)));
       const expected = cold('a', { a: 9 });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductMaximumDiscountedPrice(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -269,10 +387,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductMinimumPercentDiscount, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductMinimumPercentDiscount(stubConfigurableProduct.id)));
       const expected = cold('a', { a: 1 });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductMinimumPercentDiscount(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -289,10 +420,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectConfigurableProductMaximumPercentDiscount, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectConfigurableProductMaximumPercentDiscount(stubConfigurableProduct.id)));
       const expected = cold('a', { a: 4 });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectConfigurableProductMaximumPercentDiscount(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -309,7 +453,7 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(isConfigurablePriceRanged, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(isConfigurablePriceRanged(stubConfigurableProduct.id)));
       const expected = cold('a', { a: true });
 
       expect(selector).toBeObservable(expected);
@@ -332,10 +476,23 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[2].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[2].code],
       ));
-      const selector = store.pipe(select(isConfigurablePriceRanged, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(isConfigurablePriceRanged(stubConfigurableProduct.id)));
       const expected = cold('a', { a: false });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(isConfigurablePriceRanged(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -348,7 +505,7 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectMatchingConfigurableProductVariants, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectMatchingConfigurableProductVariants(stubConfigurableProduct.id)));
       const expected = cold('a', { a:
 				stubConfigurableProduct.variants.slice(0, 4) });
 
@@ -364,11 +521,24 @@ describe('Configurable Product Selectors | unit tests', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const selector = store.pipe(select(selectMatchingConfigurableProductVariants, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectMatchingConfigurableProductVariants(stubConfigurableProduct.id)));
       const expected = cold('a', { a:
 				stubConfigurableProduct.variants.slice(1, 4) });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectMatchingConfigurableProductVariants(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -376,7 +546,7 @@ describe('Configurable Product Selectors | unit tests', () => {
 
     it('returns a dictionary of attribute values that are still selectable', () => {
       store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
-      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
         a: {
           color: ['0', '1', '2'],
@@ -397,7 +567,7 @@ describe('Configurable Product Selectors | unit tests', () => {
         return variant;
       });
       store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
-      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
         a: {
           color: ['0', '1', '2'],
@@ -407,6 +577,19 @@ describe('Configurable Product Selectors | unit tests', () => {
       });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });

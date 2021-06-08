@@ -13,6 +13,7 @@ import {
   DaffProductReducersState,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
+  DaffProductGridLoad,
 } from '@daffodil/product/state';
 import { DaffCompositeProductFactory } from '@daffodil/product/testing';
 
@@ -95,7 +96,7 @@ describe('selectCompositeProductEntitiesState', () => {
   describe('selectCompositeProductAppliedOptions', () => {
 
     it('selects the composite product applied options of the given id', () => {
-      const selector = store.pipe(select(selectCompositeProductAppliedOptions, { id: stubCompositeProduct.id }));
+      const selector = store.pipe(select(selectCompositeProductAppliedOptions(stubCompositeProduct.id)));
       const expected = cold('a', {
         a: {
           [stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
@@ -105,17 +106,39 @@ describe('selectCompositeProductEntitiesState', () => {
 
       expect(selector).toBeObservable(expected);
     });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCompositeProductAppliedOptions(stubCompositeProduct.id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('selectIsCompositeProductItemRequired', () => {
 
     it('selects the composite product applied options of the given id', () => {
-      const selector = store.pipe(select(selectIsCompositeProductItemRequired, { id: stubCompositeProduct.id, item_id: stubCompositeProduct.items[0].id }));
+      const selector = store.pipe(select(selectIsCompositeProductItemRequired(stubCompositeProduct.id, stubCompositeProduct.items[0].id)));
       const expected = cold('a', {
         a: stubCompositeProduct.items[0].required,
       });
 
       expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectIsCompositeProductItemRequired(stubCompositeProduct.id, stubCompositeProduct.items[0].id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffProductGridLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });

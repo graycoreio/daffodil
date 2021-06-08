@@ -34,31 +34,31 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 	}
 
 	getProduct(id: T['id']): Observable<T> {
-	  return this.store.pipe(select(this.selectors.selectProduct, { id }));
+	  return this.store.pipe(select(this.selectors.selectProduct(id)));
 	}
 
 	getPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectProductPrice, { id }));
+	  return this.store.pipe(select(this.selectors.selectProductPrice(id)));
 	}
 
 	hasDiscount(id: T['id']): Observable<boolean> {
-	  return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
+	  return this.store.pipe(select(this.selectors.selectProductHasDiscount(id)));
 	}
 
 	getDiscountAmount(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectProductDiscountAmount, { id }));
+	  return this.store.pipe(select(this.selectors.selectProductDiscountAmount(id)));
 	}
 
 	getDiscountedPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectProductDiscountedPrice, { id }));
+	  return this.store.pipe(select(this.selectors.selectProductDiscountedPrice(id)));
 	}
 
 	getDiscountPercent(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.selectors.selectProductDiscountPercent, { id }));
+	  return this.store.pipe(select(this.selectors.selectProductDiscountPercent(id)));
 	}
 
 	isOutOfStock(id: T['id']): Observable<boolean> {
-	  return this.store.pipe(select(this.selectors.selectIsProductOutOfStock, { id }));
+	  return this.store.pipe(select(this.selectors.selectIsProductOutOfStock(id)));
 	}
 
 	/**

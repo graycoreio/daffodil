@@ -5,7 +5,7 @@ import {
 import {
   createSelector,
   MemoizedSelector,
-  MemoizedSelectorWithProps,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -27,8 +27,8 @@ export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	selectCompositeProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['ids']>;
 	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['entities']>;
 	selectCompositeProductTotal: MemoizedSelector<Record<string, any>, number>;
-	selectCompositeProductAppliedOptions: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, Dictionary<DaffCompositeProductItemOption>>;
-	selectIsCompositeProductItemRequired: MemoizedSelectorWithProps<Record<string, any>, { id: DaffCompositeProduct['id']; item_id: DaffCompositeProductItem['id']}, boolean>;
+	selectCompositeProductAppliedOptions: (id: DaffCompositeProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<DaffCompositeProductItemOption>>;
+	selectIsCompositeProductItemRequired: (id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']) => MemoizedSelector<Record<string, any>, boolean>;
 }
 
 const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors => {
@@ -75,16 +75,15 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
   /**
    * Selector for the applied attributes of a particular composite product.
    */
-  const selectCompositeProductAppliedOptions = createSelector(
-    selectProductEntities,
+  const selectCompositeProductAppliedOptions = defaultMemoize((id: DaffCompositeProduct['id']) => createSelector(
+    selectProduct(id),
     selectCompositeProductAppliedOptionsEntitiesState,
-    (products, appliedOptions, props) => {
-      const product = selectProduct.projector(products, { id: props.id });
+    (product: DaffCompositeProduct, appliedOptions) => {
       if(product.type !== DaffProductTypeEnum.Composite) {
         return undefined;
       }
 
-      return (<DaffCompositeProduct>product).items.reduce((acc, item) => ({
+      return product.items.reduce((acc, item) => ({
         ...acc,
         [item.id]: appliedOptions.entities[product.id].items[item.id].value ? {
           ...item.options.find(option => option.id === appliedOptions.entities[product.id].items[item.id].value),
@@ -92,20 +91,21 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
         } : null,
       }), {});
     },
-  );
+  )).memoized;
 
-  const selectIsCompositeProductItemRequired = createSelector(
-    selectProductEntities,
-    (products, props) => {
-      const product = selectProduct.projector(products, { id: props.id });
+  const selectIsCompositeProductItemRequired = defaultMemoize((id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']) => createSelector(
+    selectProduct(id),
+    (product: DaffCompositeProduct) => {
       if(product.type !== DaffProductTypeEnum.Composite) {
         return undefined;
       }
-      const productItem = (<DaffCompositeProduct>product).items.find(item => item.id === props.item_id);
+
+      const productItem = product.items.find(item => item.id === item_id);
 
       return productItem ? productItem.required : null;
     },
-  );
+  )).memoized;
+
 
   return {
     selectCompositeProductAppliedOptionsEntitiesState,
