@@ -13,6 +13,7 @@ export const appRoutes: Routes = [
       { path: 'why-pwa', loadChildren: () => import('./content/pwa/pwa.module').then(m => m.DaffioPwaModule) },
       { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
       { path: 'api', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
+      { path: 'guides', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
       { path: '404', loadChildren: () => import('./content/not-found/not-found.module').then(m => m.DaffioNotFoundModule) },
     ],
   },

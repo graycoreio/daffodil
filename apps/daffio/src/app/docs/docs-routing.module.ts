@@ -3,8 +3,8 @@ import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { DaffioDocViewerComponent } from './shared/components/doc-viewer/doc-viewer.component';
 
+import { DaffioDocViewerComponent } from './shared/components/doc-viewer/doc-viewer.component';
 import { DocResolver } from './shared/resolvers/doc-resolver.service';
 
 export const docsRoutes: Routes = [
