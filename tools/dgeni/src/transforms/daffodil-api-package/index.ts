@@ -36,8 +36,8 @@ export const apiDocs =  new Package('checkout', [
   //Configure our package
   .config(function(readFilesProcessor, readTypeScriptModules, tsParser) {
 
-    // Tell TypeScript how to load modules that start with with `@daffodil`
-    tsParser.options.paths = { '@daffodil/*': [API_SOURCE_PATH + '/*'] };
+    // Tell TypeScript how to load modules that start with `@daffodil`
+		tsParser.options.paths = { '@daffodil/*': [API_SOURCE_PATH + '/*/src'] };
     tsParser.options.baseUrl = '.';
 
     // The typescriptPackage only uses the 'readTypeScriptModules' processor, so disable readFilesProcessor.

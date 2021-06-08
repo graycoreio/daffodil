@@ -3,87 +3,60 @@ import { AddInheritedDocsContentProcessor } from './addInheritedDocsContent';
 
 describe("AddInheritedDocsContentProcessor", () => {
   let processor: AddInheritedDocsContentProcessor = new AddInheritedDocsContentProcessor();
+	let stubInterfaceMemberDescription;
+
+	beforeEach(() => {
+		stubInterfaceMemberDescription = 'some member description';
+	});
 
   it("should copy member descriptions from inherited docs", () => {
-		const copiedDescription = 'some member description';
-    let docs = [{
-			tags: {
-				tags: [{
-					tagName: 'inheritdoc',
-				}]
-			},
-			moduleDoc: {
-				exports: [{
-					docType: 'interface',
-					members: [{
-						name: 'member1',
-						description: copiedDescription
+    let docs = [
+			{
+				tags: {
+					tags: [{
+						tagName: 'inheritdoc',
 					}]
+				},
+				members: [{
+					name: 'member1',
+					description: null,
+				}],
+				implementsClauses: [{
+					doc: {
+						members: [
+							{
+								name: 'member1',
+								description: stubInterfaceMemberDescription
+							}
+						]
+					}
 				}]
 			},
-			members: [{
-				name: 'member1',
-				description: null,
-			}]
-		}];
+		];
 
-    expect(processor.$process(docs)[0].members[0].description).toEqual(copiedDescription);
+    expect(processor.$process(docs)[0].members[0].description).toEqual(stubInterfaceMemberDescription);
   });
 
-	//this is needed, because sometimes dgeni thinks an interface is implemented by a class when it isn't.
-	//E.g. DaffCategoryMemoizedSelectors is listed as an interface for DaffCategoryFacade by dgeni.
-  it("should not throw an error if the member in the interface does not exist in the original class", () => {
-		const copiedDescription = 'some member description';
-    let docs = [{
-			tags: {
-				tags: [{
-					tagName: 'inheritdoc',
+  it("should not copy member descriptions from implemented interfaces without the 'inheritdoc' tag", () => {
+    let docs = [
+			{
+				tags: { tags: [] },
+				members: [{
+					name: 'member1',
+					description: null,
+				}],
+				implementsClauses: [{
+					doc: {
+						members: [
+							{
+								name: 'member1',
+								description: stubInterfaceMemberDescription
+							}
+						]
+					}
 				}]
 			},
-			moduleDoc: {
-				exports: [{
-					docType: 'interface',
-					members: [
-						{
-							name: 'member1',
-							description: copiedDescription
-						},
-						{
-							name: 'non-matching member name',
-							description: 'some description'
-						}
-					]
-				}]
-			},
-			members: [{
-				name: 'member1',
-				description: null,
-			}]
-		}];
-
-    expect(processor.$process(docs)[0].members[0].description).toEqual(copiedDescription);
-  });
-
-  it("should not copy member descriptions from implements interfaces without the 'inheritdoc' tag", () => {
-		const copiedDescription = 'some member description';
-    let docs = [{
-			tags: {
-				tags: []
-			},
-			moduleDoc: {
-				exports: [{
-					docType: 'interface',
-					members: [{
-						name: 'member1',
-						description: copiedDescription
-					}]
-				}]
-			},
-			members: [{
-				name: 'member1',
-				description: null,
-			}]
-		}];
+		];
 
     expect(processor.$process(docs)[0].members[0].description).toEqual(null);
   });

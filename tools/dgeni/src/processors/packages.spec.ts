@@ -19,4 +19,12 @@ describe("PackagesProcessor", () => {
       jasmine.objectContaining(processedDocs)
     ]);
   });
+
+  it('should ensure the id and name trim absolute paths', () => {
+    let docs = [{docType: 'module', id: 'Users/root/daffodil/libs/driver/src'}];
+    let processedDocs = {docType: 'package', id: 'driver', name: '@daffodil/driver'};
+    expect(processor.$process(docs)).toEqual([
+      jasmine.objectContaining(processedDocs)
+    ]);
+  });
 });
