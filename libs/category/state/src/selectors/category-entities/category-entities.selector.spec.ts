@@ -12,7 +12,6 @@ import {
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
-  DaffCategoryReducersState,
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
@@ -22,11 +21,12 @@ import {
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 
+import { DaffCategoryRootSlice } from '../../reducers/public_api';
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategory>>;
+  let store: Store<DaffCategoryRootSlice>;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
