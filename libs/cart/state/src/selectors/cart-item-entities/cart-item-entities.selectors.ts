@@ -2,7 +2,7 @@ import { EntityState } from '@ngrx/entity';
 import {
   createSelector,
   MemoizedSelector,
-  MemoizedSelectorWithProps,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -32,41 +32,41 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCar
 	selectCartItemEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
 	selectAllCartItems: MemoizedSelector<Record<string, any>, T[]>;
 	selectCartItemTotal: MemoizedSelector<Record<string, any>, number>;
-	selectCartItem: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, T>;
+	selectCartItem: (id: T['item_id']) => MemoizedSelector<Record<string, any>, T>;
 	selectTotalNumberOfCartItems: MemoizedSelector<Record<string, any>, number>;
-	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffConfigurableCartItemAttribute[]>;
-	selectCartItemCompositeOptions: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffCompositeCartItemOption[]>;
-	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, boolean>;
+	selectCartItemConfiguredAttributes: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffConfigurableCartItemAttribute[]>;
+	selectCartItemCompositeOptions: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffCompositeCartItemOption[]>;
+	selectIsCartItemOutOfStock: (id: T['item_id']) => MemoizedSelector<Record<string, any>, boolean>;
 	selectCartItemMutating: MemoizedSelector<Record<string, any>, boolean>;
-	selectCartItemState: MemoizedSelectorWithProps<Record<string, any>, Record<string, any>, DaffCartItemStateEnum>;
+	selectCartItemState: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffCartItemStateEnum>;
   /**
    * Selects the specified item's price.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	selectCartItemPrice: MemoizedSelectorWithProps<Record<string, any>, {id: DaffCartItem['item_id']}, number>;
+	selectCartItemPrice: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
   /**
    * Selects the specified item's quantity.
    * Zero by default.
    */
-	selectCartItemQuantity: MemoizedSelectorWithProps<Record<string, any>, {id: DaffCartItem['item_id']}, number>;
+	selectCartItemQuantity: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
   /**
    * Selects the specified item's row total.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	selectCartItemRowTotal: MemoizedSelectorWithProps<Record<string, any>, {id: DaffCartItem['item_id']}, number>;
+	selectCartItemRowTotal: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
   /**
    * Selects the specified item's array of cart (not product) discounts for the entire row.
    */
-	selectCartItemDiscounts: MemoizedSelectorWithProps<Record<string, any>, {id: DaffCartItem['item_id']}, DaffCartItemDiscount[]>;
+	selectCartItemDiscounts: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffCartItemDiscount[]>;
   /**
    * Selects the specified item's sum of all cart (not product) discounts for the entire row.
    * Zero by default.
    */
-	selectCartItemTotalDiscount: MemoizedSelectorWithProps<Record<string, any>, {id: DaffCartItem['item_id']}, number>;
+	selectCartItemTotalDiscount: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
 }
 
 const createCartItemEntitiesSelectors = <
@@ -126,10 +126,10 @@ const createCartItemEntitiesSelectors = <
     adapterSelectors.selectTotal,
   );
 
-  const selectCartItem = createSelector(
+  const selectCartItem = defaultMemoize((itemId: U['item_id']) => createSelector(
     selectCartItemEntities,
-    (cartItems, props) => cartItems[props.id],
-  );
+    cartItems => cartItems[itemId],
+  )).memoized;
 
   /**
    * Selector for the total number of cart items that takes into account the qty on each cart item.
@@ -139,39 +139,33 @@ const createCartItemEntitiesSelectors = <
     (cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0),
   );
 
-  const selectCartItemConfiguredAttributes = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => {
-      const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+  const selectCartItemConfiguredAttributes = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: DaffConfigurableCartItem) => {
       if(cartItem.type !== DaffCartItemInputType.Configurable) {
         return null;
       }
 
-      return (<DaffConfigurableCartItem>cartItem).attributes;
+      return cartItem.attributes;
     },
-  );
+  )).memoized;
 
-  const selectCartItemCompositeOptions = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => {
-      const cartItem = selectCartItem.projector(cartItems, { id: props.id });
-
+  const selectCartItemCompositeOptions = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: DaffCompositeCartItem) => {
       if(cartItem.type !== DaffCartItemInputType.Composite) {
         return null;
       }
 
-      return (<DaffCompositeCartItem>cartItem).options;
+      return cartItem.options;
     },
-  );
+  )).memoized;
 
-  const selectIsCartItemOutOfStock = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => {
-      const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+  const selectIsCartItemOutOfStock = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem ? !cartItem.in_stock : null,
+  )).memoized;
 
-      return cartItem ? !cartItem.in_stock : null;
-    },
-  );
 
   const selectCartItemMutating = createSelector(
     selectAllCartItems,
@@ -179,35 +173,35 @@ const createCartItemEntitiesSelectors = <
       acc || item.daffState === DaffCartItemStateEnum.Mutating, false),
   );
 
-  const selectCartItemState = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.daffState || null,
-  );
+  const selectCartItemState = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem?.daffState || null,
+  )).memoized;
 
-  const selectCartItemQuantity = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.qty || 0,
-  );
+  const selectCartItemQuantity = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem?.qty || 0,
+  )).memoized;
 
-  const selectCartItemRowTotal = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.row_total || 0,
-  );
+  const selectCartItemRowTotal = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem?.row_total || 0,
+  )).memoized;
 
-  const selectCartItemPrice = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.price || 0,
-  );
+  const selectCartItemPrice = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem?.price || 0,
+  )).memoized;
 
-  const selectCartItemDiscounts = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => selectCartItem.projector(cartItems, { id: props.id })?.discounts || [],
-  );
+  const selectCartItemDiscounts = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem?.discounts || [],
+  )).memoized;
 
-  const selectCartItemTotalDiscount = createSelector(
-    selectCartItemEntities,
-    (cartItems, props) => selectCartItemDiscounts.projector(cartItems, { id: props.id })?.reduce((acc, { amount }) => daffAdd(acc, amount), 0) || 0,
-  );
+  const selectCartItemTotalDiscount = defaultMemoize((itemId: U['item_id']) => createSelector(
+    selectCartItemDiscounts(itemId),
+    (discounts: U['discounts']) => discounts?.reduce((acc, { amount }) => daffAdd(acc, amount), 0) || 0,
+  )).memoized;
 
   return {
     selectCartItemEntitiesState,
