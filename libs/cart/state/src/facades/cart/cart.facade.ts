@@ -33,7 +33,10 @@ import {
   DaffCartReducersState,
   DaffCartResolveState,
 } from '../../reducers/public_api';
-import { getDaffCartSelectors } from '../../selectors/public_api';
+import {
+  getDaffCartSelectors,
+  DaffCartMemoizedSelectors,
+} from '../../selectors/public_api';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 
 /**
@@ -133,15 +136,15 @@ export class DaffCartFacade<
   orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	private _selectCartItemConfiguredAttributes;
-	private _selectCartItemCompositeOptions;
-	private _selectIsCartItemOutOfStock;
-	private _selectCartItemState;
-  private _selectCartItemPrice;
-  private _selectCartItemQuantity;
-  private _selectCartItemRowTotal;
-  private _selectCartItemDiscounts;
-  private _selectCartItemTotalDiscount;
+	private _selectCartItemConfiguredAttributes: DaffCartMemoizedSelectors<T, V, U>['selectCartItemConfiguredAttributes'];
+	private _selectCartItemCompositeOptions: DaffCartMemoizedSelectors<T, V, U>['selectCartItemCompositeOptions'];
+	private _selectIsCartItemOutOfStock: DaffCartMemoizedSelectors<T, V, U>['selectIsCartItemOutOfStock'];
+	private _selectCartItemState: DaffCartMemoizedSelectors<T, V, U>['selectCartItemState'];
+  private _selectCartItemPrice: DaffCartMemoizedSelectors<T, V, U>['selectCartItemPrice'];
+  private _selectCartItemQuantity: DaffCartMemoizedSelectors<T, V, U>['selectCartItemQuantity'];
+  private _selectCartItemRowTotal: DaffCartMemoizedSelectors<T, V, U>['selectCartItemRowTotal'];
+  private _selectCartItemDiscounts: DaffCartMemoizedSelectors<T, V, U>['selectCartItemDiscounts'];
+  private _selectCartItemTotalDiscount: DaffCartMemoizedSelectors<T, V, U>['selectCartItemTotalDiscount'];
 
   constructor(
     private store: Store<DaffCartReducersState<T, V, U>>,
@@ -350,39 +353,39 @@ export class DaffCartFacade<
   }
 
   getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]> {
-    return this.store.pipe(select(this._selectCartItemConfiguredAttributes, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemConfiguredAttributes(itemId)));
   };
 
   getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]> {
-    return this.store.pipe(select(this._selectCartItemCompositeOptions, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemCompositeOptions(itemId)));
   };
 
   isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean> {
-    return this.store.pipe(select(this._selectIsCartItemOutOfStock, { id: itemId }));
+    return this.store.pipe(select(this._selectIsCartItemOutOfStock(itemId)));
   }
 
   getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum> {
-    return this.store.pipe(select(this._selectCartItemState, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemState(itemId)));
   }
 
   getCartItemPrice(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemPrice, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemPrice(itemId)));
   }
 
   getCartItemQuantity(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemQuantity, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemQuantity(itemId)));
   }
 
   getCartItemRowTotal(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemRowTotal, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemRowTotal(itemId)));
   }
 
   getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]> {
-    return this.store.pipe(select(this._selectCartItemDiscounts, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemDiscounts(itemId)));
   }
 
   getCartItemTotalDiscount(itemId: U['item_id']): Observable<number> {
-    return this.store.pipe(select(this._selectCartItemTotalDiscount, { id: itemId }));
+    return this.store.pipe(select(this._selectCartItemTotalDiscount(itemId)));
   }
 
   dispatch(action: Action) {
