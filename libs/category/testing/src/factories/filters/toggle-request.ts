@@ -22,7 +22,7 @@ export class DaffCategoryFilterToggleRequestFactory extends DaffModelFactory<Daf
   create(partial?: Partial<DaffCategoryFilterToggleRequest>): DaffCategoryFilterToggleRequest {
     return {
       ...new this.type(),
-      ...faker.random.number({ min: 1, max: 2 }) === 2 ? this.equalFactory.create() : this.rangeFactory.create(),
+      ...faker.datatype.number({ min: 1, max: 2 }) === 2 ? this.equalFactory.create() : this.rangeFactory.create(),
     };
   }
 }

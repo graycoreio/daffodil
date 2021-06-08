@@ -11,17 +11,17 @@ import {
  * Mocked DaffConfigurableProduct object.
  */
 export class MockConfigurableProduct implements DaffConfigurableProduct {
-	private stubPriceVariant1 = faker.random.number({ min: 1, max: 1500 });
-	private stubDiscountVariant1 = faker.random.number({ min: 0, max: this.stubPriceVariant1 - 1 });
-	private stubPriceVariant2 = faker.random.number({ min: 1, max: 1500 });
-	private stubDiscountVariant2 = faker.random.number({ min: 0, max: this.stubPriceVariant2 - 1 });
-	private stubPriceVariant3 = faker.random.number({ min: 1, max: 1500 });
-	private stubDiscountVariant3 = faker.random.number({ min: 0, max: this.stubPriceVariant3 - 1 });
+	private stubPriceVariant1 = faker.datatype.number({ min: 1, max: 1500 });
+	private stubDiscountVariant1 = faker.datatype.number({ min: 0, max: this.stubPriceVariant1 - 1 });
+	private stubPriceVariant2 = faker.datatype.number({ min: 1, max: 1500 });
+	private stubDiscountVariant2 = faker.datatype.number({ min: 0, max: this.stubPriceVariant2 - 1 });
+	private stubPriceVariant3 = faker.datatype.number({ min: 1, max: 1500 });
+	private stubDiscountVariant3 = faker.datatype.number({ min: 0, max: this.stubPriceVariant3 - 1 });
 
 	type = DaffProductTypeEnum.Configurable;
-	id = faker.random.uuid();
+	id = faker.datatype.uuid();
 	url = `/${faker.random.word()}.html`;
-	price = faker.random.number({ min: 1, max: 1500 });
+	price = faker.datatype.number({ min: 1, max: 1500 });
 	images = [];
   name = faker.commerce.productName();
   brand = faker.company.companyName();
@@ -116,7 +116,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant1,
 	      percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -130,7 +130,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant1,
 	      percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -144,7 +144,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant3,
 	      percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -158,7 +158,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant1,
 	      percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -172,7 +172,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant1,
 	      percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -186,7 +186,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant3,
 	      percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -200,7 +200,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant1,
 	      percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -214,7 +214,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant2,
 	      percent: Math.floor((this.stubDiscountVariant2/this.stubPriceVariant2) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -228,7 +228,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant3,
 	      percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	  {
@@ -242,7 +242,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	      amount: this.stubDiscountVariant1,
 	      percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100),
 	    },
-	    id: faker.random.uuid(),
+	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
 	];

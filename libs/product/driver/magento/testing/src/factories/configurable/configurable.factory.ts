@@ -12,21 +12,21 @@ import { MockMagentoCoreProduct } from '../core/product.factory';
 
 export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct implements MagentoConfigurableProduct {
 
-	private priceVariant1 = faker.random.number({ min: 1, max: 1000 });
-	private discountVariant1 = faker.random.number({ min: 0, max: this.priceVariant1 - 1 });
-	private priceVariant2 = faker.random.number({ min: 1, max: 1000 });
-	private discountVariant2 = faker.random.number({ min: 0, max: this.priceVariant2 - 1 });
-	private priceVariant3 = faker.random.number({ min: 1, max: 1000 });
-	private discountVariant3 = faker.random.number({ min: 0, max: this.priceVariant3 - 1 });
+	private priceVariant1 = faker.datatype.number({ min: 1, max: 1000 });
+	private discountVariant1 = faker.datatype.number({ min: 0, max: this.priceVariant1 - 1 });
+	private priceVariant2 = faker.datatype.number({ min: 1, max: 1000 });
+	private discountVariant2 = faker.datatype.number({ min: 0, max: this.priceVariant2 - 1 });
+	private priceVariant3 = faker.datatype.number({ min: 1, max: 1000 });
+	private discountVariant3 = faker.datatype.number({ min: 0, max: this.priceVariant3 - 1 });
   __typename = MagentoProductTypeEnum.ConfigurableProduct;
 	configurable_options = [
 	  {
 	    attribute_code: 'color',
 	    attribute_id: faker.random.alphaNumeric(12),
-	    uid: faker.random.uuid(),
+	    uid: faker.datatype.uuid(),
 	    label: 'Color',
 	    position: 0,
-	    product_id: faker.random.number({ min: 1, max: 1000 }),
+	    product_id: faker.datatype.number({ min: 1, max: 1000 }),
 	    values: [
 	      {
 	        label: 'Blue',
@@ -54,7 +54,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    ],
 	    product: {
 	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      uid: faker.random.uuid(),
+	      uid: faker.datatype.uuid(),
 	      url_key: faker.random.alphaNumeric(16),
 	      url_suffix: '.html',
 	      name: faker.random.word(),
@@ -98,7 +98,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    ],
 	    product: {
 	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      uid: faker.random.uuid(),
+	      uid: faker.datatype.uuid(),
 	      url_key: faker.random.alphaNumeric(16),
 	      url_suffix: '.html',
 	      name: faker.random.word(),
@@ -141,7 +141,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    ],
 	    product: {
 	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      uid: faker.random.uuid(),
+	      uid: faker.datatype.uuid(),
 	      url_key: faker.random.alphaNumeric(16),
 	      url_suffix: '.html',
 	      name: faker.random.word(),

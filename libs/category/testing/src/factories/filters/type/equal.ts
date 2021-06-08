@@ -10,7 +10,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockCategoryEqualFilter implements DaffCategoryFilterEqual {
   type: DaffCategoryFilterType.Equal = DaffCategoryFilterType.Equal;
   label = faker.commerce.productMaterial();
-  name = faker.random.uuid();
+  name = faker.datatype.uuid();
   options = {};
 }
 

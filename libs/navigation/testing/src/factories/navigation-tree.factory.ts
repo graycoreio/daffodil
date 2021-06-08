@@ -7,29 +7,29 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 const randomUrl = () => (new URL(faker.internet.url())).pathname;
 
 export class MockNavigationTree implements DaffNavigationTree {
-  id = faker.random.uuid();
+  id = faker.datatype.uuid();
   name = '';
   url = randomUrl();
   path = faker.commerce.department().toString().toLowerCase();
-  total_products = faker.random.number({ min: 1, max: 10 });
-  children = [...Array(faker.random.number({ min:1, max:3 }))].map(() => this.fakeTree(3));
+  total_products = faker.datatype.number({ min: 1, max: 10 });
+  children = [...Array(faker.datatype.number({ min:1, max:3 }))].map(() => this.fakeTree(3));
 	children_count = 0;
 	breadcrumbs = [];
 
 	private fakeTree(depth: number = 0): DaffNavigationTree {
 	  const children = depth !== 0
-	    ? [...Array(faker.random.number({ min:1, max:3 }))].map(() => this.fakeTree(depth - 1))
+	    ? [...Array(faker.datatype.number({ min:1, max:3 }))].map(() => this.fakeTree(depth - 1))
 	    : [];
 
 	  if (depth <= 0) {
-	    const id = faker.random.uuid();
+	    const id = faker.datatype.uuid();
 
 	    return {
 	      id,
 	      url: randomUrl(),
 	      name: faker.commerce.department(),
 	      path: faker.commerce.department().toString().toLowerCase(),
-	      total_products: faker.random.number({ min: 1, max: 20 }),
+	      total_products: faker.datatype.number({ min: 1, max: 20 }),
 	      children: [],
 	      children_count: 0,
 	      breadcrumbs: [{
@@ -40,14 +40,14 @@ export class MockNavigationTree implements DaffNavigationTree {
 	      }],
 	    };
 	  } else {
-	    const id = faker.random.uuid();
+	    const id = faker.datatype.uuid();
 
 	    return {
 	      id,
 	      url: randomUrl(),
 	      name: faker.commerce.department(),
 	      path: faker.commerce.department().toString().toLowerCase(),
-	      total_products: faker.random.number({ min: 1, max: 20 }),
+	      total_products: faker.datatype.number({ min: 1, max: 20 }),
 	      children,
 	      children_count: children.length,
 	      breadcrumbs: [{

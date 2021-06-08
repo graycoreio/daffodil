@@ -5,19 +5,19 @@ import { DaffCategory } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategory implements DaffCategory {
-  id = faker.random.uuid();
+  id = faker.datatype.uuid();
   url = faker.internet.url();
 	name = faker.commerce.productMaterial();
 	description = faker.random.words(Math.floor(Math.random() * 20));
   breadcrumbs = [{
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     name: faker.commerce.productMaterial(),
-    level: faker.random.number({ min: 1, max: 5 }),
+    level: faker.datatype.number({ min: 1, max: 5 }),
     url: faker.commerce.productMaterial(),
   }];
-  children_count = faker.random.number({ min: 1, max: 10 });
+  children_count = faker.datatype.number({ min: 1, max: 10 });
   total_products = 1;
-  product_ids = [faker.random.number({ min: 1, max: 100 }).toString()];
+  product_ids = [faker.datatype.number({ min: 1, max: 100 }).toString()];
 }
 
 @Injectable({

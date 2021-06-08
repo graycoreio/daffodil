@@ -19,7 +19,7 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   }
 
   private generateId(): string {
-    return faker.random.uuid();
+    return faker.datatype.uuid();
   }
 
   createDb() {

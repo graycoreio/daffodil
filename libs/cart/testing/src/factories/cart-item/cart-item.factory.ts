@@ -11,24 +11,24 @@ import { DaffProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 export class DaffMockCartItem implements DaffCartItem {
-	item_id = faker.random.uuid();
+	item_id = faker.datatype.uuid();
 	type = DaffCartItemInputType.Simple;
-  product_id = faker.random.uuid();
-	parent_item_id = faker.random.uuid();
+  product_id = faker.datatype.uuid();
+	parent_item_id = faker.datatype.uuid();
 	image = <DaffProductImage>new DaffProductImageFactory().create();
   sku = 'sku';
   name = 'Product Name';
   url = `/${faker.random.word()}.html`;
-  qty = faker.random.number({ min: 1, max: 100 });
-  price = faker.random.number({ min: 1, max: 1500 });
+  qty = faker.datatype.number({ min: 1, max: 100 });
+  price = faker.datatype.number({ min: 1, max: 1500 });
   row_total = this.qty * this.price;
 	in_stock = true;
-  _numberOfDiscounts = faker.random.number({ min: 0, max: 2 });
+  _numberOfDiscounts = faker.datatype.number({ min: 0, max: 2 });
   discounts = this._discounts(this._numberOfDiscounts, Math.floor(this.price / this._numberOfDiscounts));
 
   private _discounts(number = 2, max = 100): DaffCartItemDiscount[] {
-    return new Array(faker.random.number(number)).fill(null).map(() => ({
-      amount: faker.random.number({ min: 1, max }),
+    return new Array(faker.datatype.number(number)).fill(null).map(() => ({
+      amount: faker.datatype.number({ min: 1, max }),
       label: faker.random.word(),
     }));
   }

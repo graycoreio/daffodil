@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffSubdivision } from '@daffodil/geography';
 
 export class MockSubdivision implements DaffSubdivision {
-  id = faker.random.uuid();
+  id = faker.datatype.uuid();
   name = faker.random.word();
 	iso_3166_2 = faker.random.alphaNumeric(2);
 }

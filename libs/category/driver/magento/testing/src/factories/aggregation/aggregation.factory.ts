@@ -12,6 +12,6 @@ import { DaffCategoryDriverMagentoAggregationSelectFactory } from './type/select
 })
 export class DaffCategoryDriverMagentoAggregationFactory extends DaffModelFactory<MagentoAggregation> {
   constructor(private selectFactory: DaffCategoryDriverMagentoAggregationSelectFactory, private priceFactory: DaffCategoryDriverMagentoAggregationPriceFactory){
-    super(faker.random.number({ min: 1, max: 2 }) === 2 ? selectFactory.type : priceFactory.type);
+    super(faker.datatype.number({ min: 1, max: 2 }) === 2 ? selectFactory.type : priceFactory.type);
   }
 }

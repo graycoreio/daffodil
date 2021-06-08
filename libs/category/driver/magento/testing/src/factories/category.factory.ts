@@ -11,8 +11,8 @@ class MockMagentoCategory implements MagentoCategory {
   name? = faker.random.word();
   description? = faker.random.words(40);
   breadcrumbs? =  [];
-  level? =  faker.random.number(15);
-  children_count? = faker.random.number(15);
+  level? =  faker.datatype.number(15);
+  children_count? = faker.datatype.number(15);
   products? =  { items: []};
   children?: MagentoCategory[] = [];
 }

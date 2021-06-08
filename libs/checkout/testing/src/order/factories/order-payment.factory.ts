@@ -8,15 +8,15 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * @deprecated
  */
 export class MockOrderPayment implements DaffOrderPayment {
-    payment_id = faker.random.number({ min: 1, max: 1000 });
-    quote_id = faker.random.number({ min: 1, max: 1000 });
+    payment_id = faker.datatype.number({ min: 1, max: 1000 });
+    quote_id = faker.datatype.number({ min: 1, max: 1000 });
     created_at = new Date();
     updated_at = new Date();
     method = 'card';
     cc_type = 'visa';
-    cc_number_enc = faker.random.number({ min: 1000, max: 9999 }).toString();
-    cc_last4 = faker.random.number({ min: 1000, max: 9999 }).toString();
-    cc_cid_enc = faker.random.number({ min: 1, max: 1000 }).toString();
+    cc_number_enc = faker.datatype.number({ min: 1000, max: 9999 }).toString();
+    cc_last4 = faker.datatype.number({ min: 1000, max: 9999 }).toString();
+    cc_cid_enc = faker.datatype.number({ min: 1, max: 1000 }).toString();
     cc_owner = 'owner';
     cc_exp_month = 'month';
     cc_exp_year = 'year';

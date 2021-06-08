@@ -9,8 +9,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 class MockMagentoPageInfo implements MagentoPageInfo {
   current_page =  1;
-  page_size = faker.random.number(100);
-  total_pages = faker.random.number(100);
+  page_size = faker.datatype.number(100);
+  total_pages = faker.datatype.number(100);
 }
 
 @Injectable({

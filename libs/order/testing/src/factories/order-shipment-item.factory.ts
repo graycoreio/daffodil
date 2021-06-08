@@ -6,7 +6,7 @@ import { DaffOrderShipmentItem } from '@daffodil/order';
 
 export class MockOrderShipmentItem implements DaffOrderShipmentItem {
   item = null;
-  qty = faker.random.number({ min: 1, max: 100 });
+  qty = faker.datatype.number({ min: 1, max: 100 });
 };
 
 @Injectable({

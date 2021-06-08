@@ -9,8 +9,8 @@ import {
 
 export class MockOrderTotal implements DaffOrderTotal {
   label = faker.random.word();
-  value = faker.random.number({ min: 1, max: 100 });
-  sort_order = faker.random.number({ min: 1, max: 100 });
+  value = faker.datatype.number({ min: 1, max: 100 });
+  sort_order = faker.datatype.number({ min: 1, max: 100 });
   type = DaffOrderTotalTypeEnum.GrandTotal;
 };
 
