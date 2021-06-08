@@ -63,15 +63,15 @@ export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements
   }
 
   getCountry(id: T['id']): Observable<T> {
-    return this.store.pipe(select(this._selectCountry, { id }));
+    return this.store.pipe(select(this._selectCountry(id)));
   }
 
   getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']> {
-    return this.store.pipe(select(this._selectCountrySubdivisions, { id }));
+    return this.store.pipe(select(this._selectCountrySubdivisions(id)));
   }
 
   isCountryFullyLoaded(id: T['id']): Observable<boolean> {
-    return this.store.pipe(select(this._selectIsCountryFullyLoaded, { id }));
+    return this.store.pipe(select(this._selectIsCountryFullyLoaded(id)));
   }
 
   dispatch(action: Action) {
