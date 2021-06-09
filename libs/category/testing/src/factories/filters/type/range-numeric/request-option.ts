@@ -5,8 +5,8 @@ import { DaffCategoryFilterRangeRequestOption } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffCategoryFilterRangeNumericRequestOption implements DaffCategoryFilterRangeRequestOption<number> {
-  min = faker.random.number({ min: 0, max: 100 });
-  max = faker.random.number({ min: 100, max: 1000 });
+  min = faker.datatype.number({ min: 0, max: 100 });
+  max = faker.datatype.number({ min: 100, max: 1000 });
 }
 
 @Injectable({

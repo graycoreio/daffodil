@@ -10,7 +10,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockDaffToggleCategoryFilterEqualRequest implements DaffCategoryFilterEqualToggleRequest {
   type: DaffCategoryFilterType.Equal = DaffCategoryFilterType.Equal;
   name = faker.random.word();
-  value = faker.random.uuid();
+  value = faker.datatype.uuid();
 }
 
 @Injectable({

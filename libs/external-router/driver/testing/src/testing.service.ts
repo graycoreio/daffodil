@@ -49,7 +49,7 @@ Did you configure the available route types with DaffExternalRouterDriverTesting
     }
 
     return of({
-      id: faker.random.uuid(),
+      id: faker.datatype.uuid(),
       url: truncatedUrl,
       type: this.testingConfiguration[truncatedUrl],
       code: 200,

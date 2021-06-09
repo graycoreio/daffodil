@@ -21,8 +21,8 @@ import { DaffCartOrderServiceInterface } from '@daffodil/cart/driver';
 export class DaffTestingCartOrderService implements DaffCartOrderServiceInterface {
   placeOrder(cartId: DaffCart['id'], payment?: DaffCartPaymentMethod): Observable<DaffCartOrderResult> {
     return of({
-      id: faker.random.uuid(),
-      orderId: faker.random.uuid(),
+      id: faker.datatype.uuid(),
+      orderId: faker.datatype.uuid(),
       cartId,
     });
   }

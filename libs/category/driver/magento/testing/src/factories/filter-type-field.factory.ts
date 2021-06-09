@@ -16,7 +16,7 @@ const TYPES = [
 class MockMagentoCategoryFilterTypeField implements MagentoCategoryFilterTypeField {
   name = faker.random.word();
   type = {
-    name: TYPES[faker.random.number({ min: 0, max: TYPES.length - 1 })],
+    name: TYPES[faker.datatype.number({ min: 0, max: TYPES.length - 1 })],
   };
 }
 

@@ -19,20 +19,20 @@ import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento'
 
 export class MockMagentoCartItem implements MagentoCartItem {
 	__typename = MagentoCartItemTypeEnum.Simple;
-  id = faker.random.uuid();
+  id = faker.datatype.uuid();
   prices = {
     __typename: 'CartItemPrices',
     price: this.money(),
     row_total: this.money(),
-    discounts: this.discounts(faker.random.number({ min: 0, max: 2 })),
+    discounts: this.discounts(faker.datatype.number({ min: 0, max: 2 })),
   };
   product = this.createProduct();
-  quantity = faker.random.number({ min: 1, max: 20 });
+  quantity = faker.datatype.number({ min: 1, max: 20 });
 
   private createProduct(): MagentoCartItemProduct {
     return {
       __typename: 'SimpleProduct',
-      id: faker.random.number({ min: 1, max: 1500 }),
+      id: faker.datatype.number({ min: 1, max: 1500 }),
       name: faker.random.word(),
       url_key: faker.random.word(),
       url_suffix: '.html',

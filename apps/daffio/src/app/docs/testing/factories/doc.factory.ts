@@ -6,7 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffioDoc } from '../../shared/models/doc';
 
 export class MockDoc implements DaffioDoc {
-  id = String(faker.random.number(1000));
+  id = String(faker.datatype.number(1000));
   title = faker.lorem.words();
   contents = faker.lorem.paragraph();
 };

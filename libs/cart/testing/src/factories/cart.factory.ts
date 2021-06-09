@@ -8,7 +8,7 @@ import {
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCart implements DaffCart {
-  id = faker.random.uuid();
+  id = faker.datatype.uuid();
   subtotal = 10000;
   grand_total = 15000;
   coupons = [];

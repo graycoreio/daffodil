@@ -6,7 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 
 export class MockShippingOption implements ShippingOption {
-  id = faker.random.uuid();
+  id = faker.datatype.uuid();
   text = faker.company.companyName() + ' ' + faker.commerce.productAdjective() + ' Shipping';
 }
 

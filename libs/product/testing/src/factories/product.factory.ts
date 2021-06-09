@@ -11,11 +11,11 @@ import {
  * Mocked DaffProduct object.
  */
 export class MockProduct implements DaffProduct {
-	private stubPrice = faker.random.number({ min: 1, max: 1500 });
-	private stubDiscount = faker.random.number({ min: 0, max: this.stubPrice - 1 });
+	private stubPrice = faker.datatype.number({ min: 1, max: 1500 });
+	private stubDiscount = faker.datatype.number({ min: 0, max: this.stubPrice - 1 });
 
 	type = DaffProductTypeEnum.Simple;
-	id = faker.random.uuid();
+	id = faker.datatype.uuid();
 	url = `/${faker.random.word()}.html`;
 	price = this.stubPrice;
 	in_stock = true;

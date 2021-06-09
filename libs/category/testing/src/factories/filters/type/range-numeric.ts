@@ -10,9 +10,9 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockCategoryFilterRangeNumeric implements DaffCategoryFilterRangeNumeric {
   type: DaffCategoryFilterType.RangeNumeric = DaffCategoryFilterType.RangeNumeric;
   label = faker.commerce.productMaterial();
-  name = faker.random.uuid();
-  min = faker.random.number({ min: 1, max: 10 });
-  max = faker.random.number({ min: 10, max: 200 });
+  name = faker.datatype.uuid();
+  min = faker.datatype.number({ min: 1, max: 10 });
+  max = faker.datatype.number({ min: 10, max: 200 });
   options = {};
 }
 @Injectable({

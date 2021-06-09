@@ -14,7 +14,7 @@ export class MockMagentoCartAddressInput implements MagentoCartAddressInput {
   city = faker.address.city();
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();
-  save_in_address_book = faker.random.boolean();
+  save_in_address_book = faker.datatype.boolean();
 }
 
 @Injectable({

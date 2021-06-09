@@ -10,7 +10,7 @@ import {
 
 export class MockMagentoCoreProduct implements MagentoProduct {
 	__typename = MagentoProductTypeEnum.SimpleProduct;
-  uid = faker.random.uuid();
+  uid = faker.datatype.uuid();
   url_key = faker.random.alphaNumeric(16);
   url_suffix = '.html';
   name = faker.random.word();
@@ -36,13 +36,13 @@ export class MockMagentoCoreProduct implements MagentoProduct {
       __typename: 'ProductPrice',
       regular_price: {
         __typename: 'Money',
-        value: faker.random.number({ min: 100, max: 1000 }),
+        value: faker.datatype.number({ min: 100, max: 1000 }),
         currency: null,
       },
       discount: {
         __typename: 'ProductDiscount',
-        amount_off: faker.random.number({ min: 1, max: 99 }),
-        percent_off: faker.random.number({ min: 1, max: 99 }),
+        amount_off: faker.datatype.number({ min: 1, max: 99 }),
+        percent_off: faker.datatype.number({ min: 1, max: 99 }),
       },
     },
   };

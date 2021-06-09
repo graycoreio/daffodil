@@ -5,8 +5,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffOrder } from '@daffodil/order';
 
 export class MockOrder implements DaffOrder {
-  id = faker.random.uuid();
-  customer_id = faker.random.uuid();
+  id = faker.datatype.uuid();
+  customer_id = faker.datatype.uuid();
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();
   status = faker.random.word();

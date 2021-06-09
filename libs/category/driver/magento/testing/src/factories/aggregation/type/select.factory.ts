@@ -10,23 +10,23 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 class MockMagentoAggregationSelect implements MagentoAggregation {
   attribute_code = 'select';
 	type = MagentoCategoryFilterType.Equal;
-	count = faker.random.number();
+	count = faker.datatype.number();
 	label = faker.random.word();
 	options =  [
 	  {
-	    count: faker.random.number(),
+	    count: faker.datatype.number(),
 	    label: faker.random.word(),
-	    value: faker.random.uuid(),
+	    value: faker.datatype.uuid(),
 	  },
 	  {
-	    count: faker.random.number(),
+	    count: faker.datatype.number(),
 	    label: faker.random.word(),
-	    value: faker.random.uuid(),
+	    value: faker.datatype.uuid(),
 	  },
 	  {
-	    count: faker.random.number(),
+	    count: faker.datatype.number(),
 	    label: faker.random.word(),
-	    value: faker.random.uuid(),
+	    value: faker.datatype.uuid(),
 	  },
 	];
 }

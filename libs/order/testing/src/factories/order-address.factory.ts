@@ -6,7 +6,7 @@ import { MockDaffPersonalAddress } from '@daffodil/geography/testing';
 import { DaffOrderAddress } from '@daffodil/order';
 
 export class MockOrderAddress extends MockDaffPersonalAddress implements DaffOrderAddress {
-  order_id = faker.random.uuid();
+  order_id = faker.datatype.uuid();
 }
 
 @Injectable({
