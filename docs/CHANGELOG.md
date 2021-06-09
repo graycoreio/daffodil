@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.35.0](https://github.com/graycoreio/daffodil/compare/v0.34.0...v0.35.0) (2021-06-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **order:** Guards and `DaffPlacedOrderGuardRedirectUrl` have moved to @daffodil/order/routing and 
+
+### Features
+
+* **all:** update all apps to use system fonts ([#1518](https://github.com/graycoreio/daffodil/issues/1518)) ([86d42c0](https://github.com/graycoreio/daffodil/commit/86d42c0046f869a9c838eba7bae4f64ed9f7c99e))
+* **cart:** properly memoize parameterized selectors ([#1590](https://github.com/graycoreio/daffodil/issues/1590)) ([61b2a2c](https://github.com/graycoreio/daffodil/commit/61b2a2cd5bbf0d642f66c62f52e4575fdef535a0))
+* **core,category:** add array to dict function and use it for filters ([#1578](https://github.com/graycoreio/daffodil/issues/1578)) ([a9ec23e](https://github.com/graycoreio/daffodil/commit/a9ec23e80bb174650eec3bf4645512f88669c4ef))
+* **demo,product:** properly memoize parameterized selectors ([#1588](https://github.com/graycoreio/daffodil/issues/1588)) ([de89665](https://github.com/graycoreio/daffodil/commit/de896656bb19ba9f4e1c81e840d195b8bc18e386))
+* **design:** add nav-accordion-item component ([#1555](https://github.com/graycoreio/daffodil/issues/1555)) ([1ac300f](https://github.com/graycoreio/daffodil/commit/1ac300f6db90d84473e9428dc17253cae68e1a03))
+* **geography:** properly memoize parameterized selectors ([#1587](https://github.com/graycoreio/daffodil/issues/1587)) ([125dcb3](https://github.com/graycoreio/daffodil/commit/125dcb3ddef54211e097132f397518a02cb38dfb))
+* **order:** add routing subpackage ([#1554](https://github.com/graycoreio/daffodil/issues/1554)) ([62da8ba](https://github.com/graycoreio/daffodil/commit/62da8ba1125af4f6b2d90f2b9a823889ce360d98))
+* **tools-dgeni:** add processor for the [@inheritdoc](https://github.com/inheritdoc) tag ([#1568](https://github.com/graycoreio/daffodil/issues/1568)) ([a91bbdb](https://github.com/graycoreio/daffodil/commit/a91bbdb33751d79d304e7b22195ce4c7c9356f3c))
+* **tools-dgeni:** enable links generation for api docs ([#1550](https://github.com/graycoreio/daffodil/issues/1550)) ([907fa86](https://github.com/graycoreio/daffodil/commit/907fa86aa368422b166eb6d31c528f745ed0c310))
+
+
+### Bug Fixes
+
+* **category:** parameterized selectors not properly memoized ([#1589](https://github.com/graycoreio/daffodil/issues/1589)) ([6cccc53](https://github.com/graycoreio/daffodil/commit/6cccc53736a8410559f8c1e1cb2e1d75006cda70))
+* **tools-dgeni:** correct the processing of inherited docs ([#1584](https://github.com/graycoreio/daffodil/issues/1584)) ([20e5cd3](https://github.com/graycoreio/daffodil/commit/20e5cd334c393cd03f1e0bd27f53ace96215d661))
+
 ## [0.34.0](https://github.com/graycoreio/daffodil/compare/v0.33.0...v0.34.0) (2021-05-19)
 
 
