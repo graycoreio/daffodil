@@ -14,6 +14,9 @@ export const initialState: DaffBestSellersReducerState = {
 
 export const resetState: DaffBestSellersReducerState = Object.assign({}, initialState);
 
+/**
+ * The default best sellers reducer provided by daffodil.
+ */
 export function daffBestSellersReducer<T extends DaffProduct>(state = initialState, action: DaffBestSellersActions<T>): DaffBestSellersReducerState {
   switch (action.type) {
     case DaffBestSellersActionTypes.BestSellersLoadAction:

@@ -19,7 +19,7 @@ export interface DaffProductMagentoDriverConfig {
 	baseMediaUrl: string;
   /**
    * Whether or not to attempt to truncate the product URL
-   * durlng the {@link DaffMagentoProductService#getByUrl} call.
+   * during the {@link DaffMagentoProductService#getByUrl} call.
    * True by default.
    */
   truncateUrl?: boolean;

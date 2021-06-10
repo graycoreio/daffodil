@@ -23,6 +23,9 @@ import {
   providedIn: 'root',
 })
 export class DaffInMemoryBackendProductService implements InMemoryDbService {
+	/**
+	 * @docs-private
+	 */
   products: DaffProduct[];
 
   constructor(
@@ -73,6 +76,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
    * @param url initial url
    * @param utils utility to parse url
    * @returns ParsedRequestUrl
+	 * @docs-private
    */
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
@@ -82,6 +86,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
    * Creates a fake database of products for the product inmemory backend service.
    *
    * @returns A fake database of an array of products
+	 * @docs-private
    */
   createDb(): any {
     return {

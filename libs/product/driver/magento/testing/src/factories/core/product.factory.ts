@@ -53,6 +53,9 @@ export class MockMagentoCoreProduct implements MagentoProduct {
 	media_gallery_entries = [];
 }
 
+/**
+ * A factory for creating stub data for {@link MagentoProduct}s.
+ */
 @Injectable({
   providedIn: 'root',
 })

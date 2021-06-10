@@ -8,6 +8,9 @@ import { DaffProductDriver } from '@daffodil/product/driver';
 
 import { DaffShopifyProductService } from './product.service';
 
+/**
+ * A module that provides the {@link DaffProductDriver} as the {@link DaffShopifyProductService}.
+ */
 @NgModule({
   imports: [
     CommonModule,

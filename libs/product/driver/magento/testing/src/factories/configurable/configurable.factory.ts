@@ -177,6 +177,9 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	];
 }
 
+/**
+ * A factory for creating stub data for {@link MagentoConfigurableProduct}s.
+ */
 @Injectable({
   providedIn: 'root',
 })

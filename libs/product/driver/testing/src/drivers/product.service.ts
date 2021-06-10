@@ -27,11 +27,6 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     private productFactory: DaffProductFactory,
     private productImageFactory: DaffProductImageFactory) {}
 
-  /**
-   * Get all products as DaffProduct[].
-   *
-   * @returns An Observable of Product[]
-   */
   getAll(): Observable<DaffProduct[]> {
     return of([
       this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
@@ -42,11 +37,6 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  /**
-   * Get all best selling products.
-   *
-   * @returns An Observable of Product[]
-   */
   getBestSellers(): Observable<DaffProduct[]> {
     return of([
       this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
@@ -56,12 +46,6 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  /**
-   * Get product by ID
-   *
-   * @param productId product ID
-   * @returns An Observable of a Product
-   */
   get(productId: DaffProduct['id']): Observable<DaffProduct> {
     return of(this.productFactory.create({ images: this.productImageFactory.createMany(5) }));
   }

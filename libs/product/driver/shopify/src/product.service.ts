@@ -109,11 +109,6 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     return of();
   }
 
-  /**
-   * A query for retrieving all Products as an Observable<DaffProduct[]>.
-   *
-   * @returns Observable<Product[]>
-   */
   getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
@@ -137,12 +132,6 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
-  /**
-   * A query for retrieving a particular product as an Observable<DaffProduct>.
-   *
-   * @param productId - A product ID
-   * @returns Observable<Product>
-   */
   get(productId: string): Observable<DaffProduct> {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,

@@ -18,12 +18,35 @@ import {
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
+/**
+ * An interface for selectors related to the configurable product applied attributes.
+ */
 export interface DaffConfigurableProductEntitiesMemoizedSelectors {
+	/**
+	 * Selects the configurable product applied attributes entities state.
+	 */
 	selectConfigurableProductAppliedAttributesEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>>;
+	/**
+	 * Selects all ids for configurable products in state.
+	 */
 	selectConfigurableProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['ids']>;
+	/**
+	 * Selects the configurable product applied attributes as rxjs entities.
+	 */
 	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['entities']>;
+	/**
+	 * Selects the total number of configurable products in state.
+	 */
 	selectConfigurableProductTotal: MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects the applied attributes of a configurable product.
+	 * @param productId the id of the configurable product.
+	 */
 	selectConfigurableProductAppliedAttributes: (productId: DaffProduct['id']) => MemoizedSelector<Record<string, any>, DaffConfigurableProductEntityAttribute[]>;
+	/**
+	 * Selects the applied attributes of a configurable product as a dictionary.
+	 * @param productId the id of the configurable product.
+	 */
 	selectConfigurableProductAppliedAttributesAsDictionary: (productId: DaffProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<string>>;
 }
 
@@ -32,41 +55,27 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
     selectProductState,
   } = getDaffProductFeatureSelector<T>();
   const adapterSelectors = daffConfigurableProductAppliedAttributesEntitiesAdapter().getSelectors();
-  /**
-   * Configurable Product Entities State
-   */
+
   const selectConfigurableProductAppliedAttributesEntitiesState = createSelector(
     selectProductState,
     (state: DaffProductReducersState<T>) => state.configurableProductAttributes,
   );
 
-  /**
-   * Selector for configurable product IDs.
-   */
   const selectConfigurableProductIds = createSelector(
     selectConfigurableProductAppliedAttributesEntitiesState,
     adapterSelectors.selectIds,
   );
 
-  /**
-   * Selector for all configurable product applied attributes as entities (see ngrx/entity).
-   */
   const selectConfigurableProductAppliedAttributesEntities = createSelector(
     selectConfigurableProductAppliedAttributesEntitiesState,
     adapterSelectors.selectEntities,
   );
 
-  /**
-   * Selector for the total number of configurable products.
-   */
   const selectConfigurableProductTotal = createSelector(
     selectConfigurableProductAppliedAttributesEntitiesState,
     adapterSelectors.selectTotal,
   );
 
-  /**
-   * Selector for the applied attributes of a particular configurable product.
-   */
   const selectConfigurableProductAppliedAttributes = defaultMemoize((productId: DaffProduct['id']) => createSelector(
     selectConfigurableProductAppliedAttributesEntitiesState,
     products => products.entities[productId].attributes,
@@ -90,6 +99,10 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
   };
 };
 
+/**
+ * A function that returns all selectors related to configurable product applied attributes.
+ * Returns {@link DaffConfigurableProductEntitiesMemoizedSelectors}.
+ */
 export const getDaffConfigurableProductEntitiesSelectors = (() => {
   let cache;
   return <T extends DaffProduct>(): DaffConfigurableProductEntitiesMemoizedSelectors => cache = cache

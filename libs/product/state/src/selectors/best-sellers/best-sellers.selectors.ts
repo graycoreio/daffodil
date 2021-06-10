@@ -10,10 +10,25 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
+/**
+ * An interface for the available best sellers selectors.
+ */
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
+	/**
+   * Selector for best sellers feature state
+   */
 	selectBestSellersState: MemoizedSelector<Record<string, any>, DaffBestSellersReducerState>;
+	/**
+   * Selector for the loading state of best selling products.
+   */
 	selectBestSellersLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+	/**
+   * Selector for the IDs of best selling products.
+   */
 	selectBestSellersIdsState: MemoizedSelector<Record<string, any>, T['id'][]>;
+	/**
+   * Selector for the best selling products.
+   */
 	selectBestSellersProducts: MemoizedSelector<Record<string, any>, T[]>;
 }
 
@@ -24,33 +39,22 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
   const {
     selectProductState,
   } = getDaffProductFeatureSelector<T>();
-  /**
-   * Selector for Best Seller State
-   */
+  
   const selectBestSellersState = createSelector(
     selectProductState,
     (state: DaffProductReducersState<T>) => state.bestSellers,
   );
 
-  /**
-   * Selector for the loading state of best selling products.
-   */
   const selectBestSellersLoadingState = createSelector(
     selectBestSellersState,
     (state: DaffBestSellersReducerState) => state.loading,
   );
 
-  /**
-   * Selector for the IDs of best selling products.
-   */
   const selectBestSellersIdsState = createSelector(
     selectBestSellersState,
     (state: DaffBestSellersReducerState) => state.productIds,
   );
 
-  /**
-   * Selector for the best selling products.
-   */
   const selectBestSellersProducts = createSelector(
     selectBestSellersIdsState,
     selectAllProducts,
@@ -65,6 +69,11 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
   };
 };
 
+/**
+ * A function that returns all selectors related to best sellers state.
+ * 
+ * Returns {@link DaffBestSellersMemoizedSelectors}.
+ */
 export const getDaffBestSellersSelectors = (() => {
   let cache;
   return <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => cache = cache

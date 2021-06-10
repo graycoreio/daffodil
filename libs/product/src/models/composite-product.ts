@@ -10,5 +10,8 @@ import { DaffProduct } from './product';
  * All of these items could have different prices/discounts/etc which would cause the composite products to have ranged prices.
  */
 export interface DaffCompositeProduct extends DaffProduct {
+	/**
+	 * The available items for this composite product.
+	 */
 	items: DaffCompositeProductItem[];
 }

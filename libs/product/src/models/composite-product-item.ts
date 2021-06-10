@@ -19,10 +19,25 @@ export enum DaffCompositeProductItemInputEnum {
  * composite product, or neither if the item is optional.
  */
 export interface DaffCompositeProductItem {
+	/**
+	 * The ID of the item.
+	 */
 	id: ID;
+	/**
+	 * Whether this item is required or optional.
+	 */
 	required: boolean;
+	/**
+	 * The title lable for the item.
+	 */
 	title: string;
+	/**
+	 * Describes how this item should be displayed.
+	 */
 	input_type: DaffCompositeProductItemInputEnum;
+	/**
+	 * The options that may be chosen for this item.
+	 */
 	options: DaffCompositeProductItemOption[];
 }
 
@@ -30,9 +45,24 @@ export interface DaffCompositeProductItem {
  * The composite product item option is a DaffProduct that can be added to a composite product.
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
+	/**
+	 * The id of this product.
+	 */
 	id: ID;
+	/**
+	 * The name label for this product.
+	 */
 	name: string;
+	/**
+	 * The price of this product.
+	 */
 	price: number;
+	/**
+	 * Whether this product option is the default option for its parent {@link DaffCompositeProductItem}.
+	 */
 	is_default: boolean;
+	/**
+	 * The quantity chosen for this product.
+	 */
 	quantity: number;
 }

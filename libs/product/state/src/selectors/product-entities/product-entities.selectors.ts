@@ -12,18 +12,64 @@ import { daffProductEntitiesAdapter } from '../../reducers/product-entities/prod
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
+/**
+ * An interface for selectors related to product entities and prices for simple products.
+ */
 export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
+	/**
+	 * Selects the rxjs entities state for products.
+	 */
 	selectProductEntitiesState: MemoizedSelector<Record<string, any>, EntityState<T>>;
+	/**
+	 * Selects all ids for products in state.
+	 */
 	selectProductIds: MemoizedSelector<Record<string, any>, EntityState<T>['ids']>;
+	/**
+	 * Selects the rxjs entities for all products in state.
+	 */
 	selectProductEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
+	/**
+	 * Selects all products in state as an array.
+	 */
 	selectAllProducts: MemoizedSelector<Record<string, any>, T[]>;
+	/**
+	 * Selects the total number of products in state.
+	 */
 	selectProductTotal: MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects a product by id.
+	 * @param productId the id of the product.
+	 */
 	selectProduct: (productId: T['id']) => MemoizedSelector<Record<string, any>, T>;
+	/**
+	 * Selects the price of a product.
+	 * @param productId the id of the product.
+	 */
 	selectProductPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects the discount of a product as some amount of currency.
+	 * @param productId the id of the product.
+	 */
 	selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects the discounted price of a product.
+	 * @param productId the id of the product.
+	 */
 	selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects the discount of a product as a percent of the original price.
+	 * @param productId the id of the product.
+	 */
 	selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects whether or not the product has a discount.
+	 * @param productId the id of the product.
+	 */
 	selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	/**
+	 * Selects whether or not a product is out of stock.
+	 * @param productId the id of the product.
+	 */
 	selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
 }
 
@@ -48,33 +94,21 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
    * the total number of records. This reduces boilerplate
    * in selecting records from the entity state.
    */
-  /**
-   * Selector for product IDs.
-   */
   const selectProductIds = createSelector(
     selectProductEntitiesState,
     adapterSelectors.selectIds,
   );
 
-  /**
-   * Selector for all product entities (see ngrx/entity).
-   */
   const selectProductEntities = createSelector(
     selectProductEntitiesState,
     adapterSelectors.selectEntities,
   );
 
-  /**
-   * Selector for all products on state.
-   */
   const selectAllProducts = createSelector(
     selectProductEntitiesState,
     adapterSelectors.selectAll,
   );
 
-  /**
-   * Selector for the total number of products.
-   */
   const selectProductTotal = createSelector(
     selectProductEntitiesState,
     adapterSelectors.selectTotal,
@@ -132,6 +166,9 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
   };
 };
 
+/**
+ * A function that returns all selectors related to product entities and simple product prices.
+ */
 export const getDaffProductEntitiesSelectors = (() => {
   let cache;
   return <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => cache = cache

@@ -9,6 +9,9 @@ import { DaffProductEffects } from './effects/product.effects';
 import { daffProductReducers } from './reducers/product-reducers';
 import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './reducers/product-store-feature-key';
 
+/**
+ * A module that provides the default reducers and effects for the product redux state.
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_PRODUCT_STORE_FEATURE_KEY, daffProductReducers),

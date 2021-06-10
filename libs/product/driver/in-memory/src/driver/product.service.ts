@@ -15,6 +15,9 @@ import { DaffProductServiceInterface } from '@daffodil/product/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryProductService implements DaffProductServiceInterface {
+	/**
+	 * @docs-private
+	 */
   url = '/api/products/';
 
   constructor(private http: HttpClient) {}
@@ -47,6 +50,9 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
     return this.http.get<DaffProduct>(this.url + productId);
   }
 
+	/**
+	 * Get a product by url.
+	 */
   getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
     return this.http.get<DaffProduct>(`${this.url}${url}`);
   }
