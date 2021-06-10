@@ -157,7 +157,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 /**
  * A function that returns all selectors related to the composite product feature.
- * 
+ *
  * Returns {@link DaffCompositeProductMemoizedSelectors}.
  */
 export const getDaffCompositeProductSelectors = (() => {

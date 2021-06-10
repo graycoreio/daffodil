@@ -19,11 +19,13 @@ export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffPr
 	selectSelectedProductState: MemoizedSelector<Record<string, any>, DaffProductReducerState>;
 	/**
 	 * Selects the id of the selected product.
+	 *
 	 * @deprecated
 	 */
 	selectSelectedProductId: MemoizedSelector<Record<string, any>, T['id']>;
 	/**
 	 * Selects the qty of the selected product.
+	 *
 	 * @deprecated
 	 */
 	selectSelectedProductQty: MemoizedSelector<Record<string, any>, number>;
@@ -33,6 +35,7 @@ export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffPr
 	selectSelectedProductLoadingState: MemoizedSelector<Record<string, any>, boolean>;
 	/**
 	 * Selects the selected product, which is the product loaded for a product page.
+	 *
 	 * @deprecated
 	 */
 	selectSelectedProduct: MemoizedSelector<Record<string, any>, T>;

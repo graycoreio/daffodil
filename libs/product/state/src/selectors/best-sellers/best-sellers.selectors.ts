@@ -15,20 +15,20 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  */
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	/**
-   * Selector for best sellers feature state
-   */
+	 * Selector for best sellers feature state
+	 */
 	selectBestSellersState: MemoizedSelector<Record<string, any>, DaffBestSellersReducerState>;
 	/**
-   * Selector for the loading state of best selling products.
-   */
+	 * Selector for the loading state of best selling products.
+	 */
 	selectBestSellersLoadingState: MemoizedSelector<Record<string, any>, boolean>;
 	/**
-   * Selector for the IDs of best selling products.
-   */
+	 * Selector for the IDs of best selling products.
+	 */
 	selectBestSellersIdsState: MemoizedSelector<Record<string, any>, T['id'][]>;
 	/**
-   * Selector for the best selling products.
-   */
+	 * Selector for the best selling products.
+	 */
 	selectBestSellersProducts: MemoizedSelector<Record<string, any>, T[]>;
 }
 
@@ -39,7 +39,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
   const {
     selectProductState,
   } = getDaffProductFeatureSelector<T>();
-  
+
   const selectBestSellersState = createSelector(
     selectProductState,
     (state: DaffProductReducersState<T>) => state.bestSellers,
@@ -71,7 +71,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 
 /**
  * A function that returns all selectors related to best sellers state.
- * 
+ *
  * Returns {@link DaffBestSellersMemoizedSelectors}.
  */
 export const getDaffBestSellersSelectors = (() => {

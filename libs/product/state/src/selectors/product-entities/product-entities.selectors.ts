@@ -38,36 +38,43 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	selectProductTotal: MemoizedSelector<Record<string, any>, number>;
 	/**
 	 * Selects a product by id.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectProduct: (productId: T['id']) => MemoizedSelector<Record<string, any>, T>;
 	/**
 	 * Selects the price of a product.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectProductPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
 	/**
 	 * Selects the discount of a product as some amount of currency.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
 	/**
 	 * Selects the discounted price of a product.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
 	/**
 	 * Selects the discount of a product as a percent of the original price.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
 	/**
 	 * Selects whether or not the product has a discount.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
 	/**
 	 * Selects whether or not a product is out of stock.
+	 *
 	 * @param productId the id of the product.
 	 */
 	selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;

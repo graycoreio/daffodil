@@ -19,7 +19,7 @@ export interface DaffConfigurableProduct extends DaffProduct {
 	 */
 	configurableAttributes: DaffConfigurableProductAttribute[];
 	/**
-	 * The possible different variants of this product. 
+	 * The possible different variants of this product.
 	 */
 	variants: DaffConfigurableProductVariant[];
 }

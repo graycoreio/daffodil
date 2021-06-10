@@ -40,11 +40,13 @@ export interface DaffConfigurableProductEntitiesMemoizedSelectors {
 	selectConfigurableProductTotal: MemoizedSelector<Record<string, any>, number>;
 	/**
 	 * Selects the applied attributes of a configurable product.
+	 *
 	 * @param productId the id of the configurable product.
 	 */
 	selectConfigurableProductAppliedAttributes: (productId: DaffProduct['id']) => MemoizedSelector<Record<string, any>, DaffConfigurableProductEntityAttribute[]>;
 	/**
 	 * Selects the applied attributes of a configurable product as a dictionary.
+	 *
 	 * @param productId the id of the configurable product.
 	 */
 	selectConfigurableProductAppliedAttributesAsDictionary: (productId: DaffProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<string>>;
