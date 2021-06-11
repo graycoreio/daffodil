@@ -9,7 +9,7 @@ export interface DaffProductPrices {
 	 */
 	discountedPrice: number;
 	/**
-	 * The discount of a product.
+	 * The discount of the product.
 	 */
 	discount: DaffProductDiscount;
 	/**
@@ -23,11 +23,11 @@ export interface DaffProductPrices {
  */
 export interface DaffPriceRange {
 	/**
-	 * The maximum prices of a product. Includes discounts, the maximum discounted price, and the maximum original price.
+	 * The maximum prices of the product. Includes discounts, the maximum discounted price, and the maximum original price.
 	 */
 	maxPrice: DaffProductPrices;
 	/**
-	 * The minimum prices of a product. Includes discounts, the minimum discounted price, and the minimum original price.
+	 * The minimum prices of the product. Includes discounts, the minimum discounted price, and the minimum original price.
 	 */
 	minPrice: DaffProductPrices;
 }

@@ -53,7 +53,7 @@ export interface DaffConfigurableProductAttribute extends DaffOrderable {
  */
 export interface DaffConfigurableProductVariant {
 	/**
-	 * The attributes applied to the product to form this product variant.
+	 * The attributes applied to the product to form the product variant.
 	 */
 	appliedAttributes: DaffProductVariantAttributesDictionary;
 	/**
@@ -65,15 +65,15 @@ export interface DaffConfigurableProductVariant {
 	 */
 	price: number;
 	/**
-	 * The total discount for this variant.
+	 * The total discount for the variant.
 	 */
 	discount: DaffProductDiscount;
 	/**
-	 * An image of this product variant.
+	 * An image of the product variant.
 	 */
 	image?: DaffProductImage;
 	/**
-	 * Whether or not this variant is in stock.
+	 * Whether or not the variant is in stock.
 	 */
 	in_stock: boolean;
 }
