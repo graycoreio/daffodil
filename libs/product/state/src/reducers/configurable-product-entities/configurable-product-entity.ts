@@ -23,7 +23,7 @@ export interface DaffConfigurableProductEntityAttribute {
 	 */
 	code: string;
 	/**
-	 * The value chosen for this attribute.
+	 * The value chosen for the attribute.
 	 */
 	value: string;
 }

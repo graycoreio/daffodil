@@ -11,7 +11,7 @@ import { DaffProduct } from './product';
  */
 export interface DaffCompositeProduct extends DaffProduct {
 	/**
-	 * The available items for this composite product.
+	 * The available items for the composite product.
 	 */
 	items: DaffCompositeProductItem[];
 }

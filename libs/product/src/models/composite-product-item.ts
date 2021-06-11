@@ -24,19 +24,19 @@ export interface DaffCompositeProductItem {
 	 */
 	id: ID;
 	/**
-	 * Whether this item is required or optional.
+	 * Whether the item is required or optional.
 	 */
 	required: boolean;
 	/**
-	 * The title lable for the item.
+	 * The title label for the item.
 	 */
 	title: string;
 	/**
-	 * Describes how this item should be displayed.
+	 * Describes how the item should be displayed.
 	 */
 	input_type: DaffCompositeProductItemInputEnum;
 	/**
-	 * The options that may be chosen for this item.
+	 * The options that may be chosen for the item.
 	 */
 	options: DaffCompositeProductItemOption[];
 }
@@ -46,23 +46,11 @@ export interface DaffCompositeProductItem {
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
 	/**
-	 * The id of this product.
-	 */
-	id: ID;
-	/**
-	 * The name label for this product.
-	 */
-	name: string;
-	/**
-	 * The price of this product.
-	 */
-	price: number;
-	/**
-	 * Whether this product option is the default option for its parent {@link DaffCompositeProductItem}.
+	 * Whether the option is the default option for its parent {@link DaffCompositeProductItem}.
 	 */
 	is_default: boolean;
 	/**
-	 * The quantity chosen for this product.
+	 * The quantity chosen for the option.
 	 */
 	quantity: number;
 }

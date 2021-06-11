@@ -6,7 +6,7 @@ import { DaffProduct } from '@daffodil/product';
  */
 export interface DaffBestSellersReducerState {
 	/**
-	 * Product ids for best sellers.
+	 * Product ids for best selling products.
 	 */
   productIds: DaffProduct['id'][];
 	/**

@@ -19,7 +19,7 @@ export interface DaffConfigurableProduct extends DaffProduct {
 	 */
 	configurableAttributes: DaffConfigurableProductAttribute[];
 	/**
-	 * The possible different variants of this product.
+	 * The possible different variants of the product.
 	 */
 	variants: DaffConfigurableProductVariant[];
 }
@@ -30,7 +30,7 @@ export interface DaffConfigurableProduct extends DaffProduct {
  */
 export interface DaffConfigurableProductAttribute extends DaffOrderable {
 	/**
-	 * The identifier for this attribute type.
+	 * The identifier for the attribute type.
 	 */
 	code:	string;
 	/**
@@ -57,7 +57,7 @@ export interface DaffConfigurableProductVariant {
 	 */
 	appliedAttributes: DaffProductVariantAttributesDictionary;
 	/**
-	 * The id for this variant.
+	 * The id for the variant.
 	 */
 	id: ID;
 	/**
