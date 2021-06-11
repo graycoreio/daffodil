@@ -4,8 +4,8 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DaffioDocViewerComponent } from './shared/components/doc-viewer/doc-viewer.component';
 import { DocResolver } from './shared/resolvers/doc-resolver.service';
-import { DaffioDocViewComponent } from './shared/views/doc/doc-view.component';
 
 export const docsRoutes: Routes = [
   { path: '', loadChildren: () => import('./api-docs/api.module').then(m => m.DaffioDocsApiModule),
@@ -14,7 +14,7 @@ export const docsRoutes: Routes = [
     }},
   {
     path: '**',
-    component: DaffioDocViewComponent,
+    component: DaffioDocViewerComponent,
     resolve: {
       doc: DocResolver,
     },

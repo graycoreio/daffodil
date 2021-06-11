@@ -1,10 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
-  Component,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import {
   async,
   ComponentFixture,
   TestBed,
@@ -25,7 +20,7 @@ import {
   DaffSidebarComponent,
 } from '@daffodil/design';
 
-import { DaffioGuidesViewerModule } from '../../../../docs/shared/components/guides-viewer/guides-viewer.module';
+import { DaffioGuideNavModule } from '../../../../docs/guide-docs/components/guide-nav/guide-nav.module';
 import {
   OpenSidebar,
   CloseSidebar,
@@ -52,7 +47,7 @@ describe('DaffioSidebarViewportContainer', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule,
-        DaffioGuidesViewerModule,
+        DaffioGuideNavModule,
         HttpClientTestingModule,
       ],
       declarations: [

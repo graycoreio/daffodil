@@ -5,22 +5,25 @@ import { RouterModule } from '@angular/router';
 import {
   DaffListModule,
   DaffLinkSetModule,
+  DaffAccordionModule,
 } from '@daffodil/design';
 
-import { DaffioGuidesViewerComponent } from './guides-viewer.component';
+import { DaffioGuideNavComponent } from './guide-nav.component';
 
 
 @NgModule({
   declarations: [
-    DaffioGuidesViewerComponent,
+    DaffioGuideNavComponent,
   ],
   exports: [
-    DaffioGuidesViewerComponent,
+    DaffioGuideNavComponent,
   ],
   imports: [
     CommonModule,
     DaffLinkSetModule,
+    DaffListModule,
     RouterModule,
+    DaffAccordionModule,
   ],
 })
-export class DaffioGuidesViewerModule { }
+export class DaffioGuideNavModule { }
