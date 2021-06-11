@@ -31,7 +31,7 @@ export interface DaffConfigurableProductEntitiesMemoizedSelectors {
 	 */
 	selectConfigurableProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['ids']>;
 	/**
-	 * Selects the configurable product applied attributes as rxjs entities.
+	 * Selects the configurable product applied attributes as ngrx entities.
 	 */
 	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<Record<string, any>, EntityState<DaffConfigurableProductEntity>['entities']>;
 	/**

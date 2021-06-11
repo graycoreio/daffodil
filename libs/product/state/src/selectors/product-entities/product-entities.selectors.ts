@@ -17,7 +17,7 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  */
 export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	/**
-	 * Selects the rxjs entities state for products.
+	 * Selects the ngrx entities state for products.
 	 */
 	selectProductEntitiesState: MemoizedSelector<Record<string, any>, EntityState<T>>;
 	/**
@@ -25,7 +25,7 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	 */
 	selectProductIds: MemoizedSelector<Record<string, any>, EntityState<T>['ids']>;
 	/**
-	 * Selects the rxjs entities for all products in state.
+	 * Selects the ngrx entities for all products in state.
 	 */
 	selectProductEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
 	/**

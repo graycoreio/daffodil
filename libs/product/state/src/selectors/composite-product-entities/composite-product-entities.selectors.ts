@@ -27,7 +27,7 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  */
 export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	/**
-	 * The rxjs entities state for composite product applied options.
+	 * The ngrx entities state for composite product applied options.
 	 */
 	selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>>;
 	/**
@@ -35,7 +35,7 @@ export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	 */
 	selectCompositeProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['ids']>;
 	/**
-	 * The rxjs entities for the composite product appllied options.
+	 * The ngrx entities for the composite product appllied options.
 	 */
 	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['entities']>;
 	/**
