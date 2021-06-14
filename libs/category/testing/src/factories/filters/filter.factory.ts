@@ -14,6 +14,9 @@ export class MockDaffCategoryFilter {
 
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilter}.
+ */
 @Injectable({
   providedIn: 'root',
 })

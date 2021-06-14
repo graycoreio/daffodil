@@ -13,6 +13,8 @@ import {
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 
 /**
+ * The category in memory driver for mocking the {@link DaffCategoryDriver} with in memory data.
+ *
  * @inheritdoc
  */
 @Injectable({

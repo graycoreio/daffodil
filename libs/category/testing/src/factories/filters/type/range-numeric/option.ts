@@ -9,6 +9,9 @@ export class MockCategoryFilterRangeNumericOption implements DaffCategoryFilterR
   label = faker.random.alpha({ count: 3 });
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterRangeOption}.
+ */
 @Injectable({
   providedIn: 'root',
 })

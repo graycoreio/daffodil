@@ -13,6 +13,9 @@ export class MockDaffToggleCategoryFilterEqualRequest implements DaffCategoryFil
   value = faker.datatype.uuid();
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterEqualToggleRequest}.
+ */
 @Injectable({
   providedIn: 'root',
 })

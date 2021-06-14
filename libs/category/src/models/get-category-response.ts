@@ -13,7 +13,16 @@ export interface DaffGetCategoryResponse<
 	V extends DaffGenericCategory<V> = DaffCategory,
 	W extends DaffProduct = DaffProduct
 > {
+	/**
+	 * The list of products described by the category.
+	 */
   products: W[];
+	/**
+	 * The category requested.
+	 */
   category: V;
+	/**
+	 * The properties of a category page.
+	 */
   categoryPageMetadata: DaffCategoryPageMetadata;
 }

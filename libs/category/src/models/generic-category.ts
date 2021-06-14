@@ -11,7 +11,13 @@ import { DaffCategoryBreadcrumb } from './category-breadcrumb';
  * this type is a recursive generic.
  */
 export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends DaffLocatable, DaffIdentifiable {
+	/**
+	 * The name of the category that can be used as a UI label.
+	 */
 	name: string;
+	/**
+	 * A description of the category.
+	 */
 	description?: string;
 	/**
 	 * A title for the category for usage in the tab title of the webpage.
@@ -21,9 +27,24 @@ export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends D
 	 * An overview description of the category for search engine results.
 	 */
 	meta_description?: string;
+	/**
+	 * The number of child category nodes under this category.
+	 */
   children_count?: number;
+	/**
+	 * The number of products described by this category.
+	 */
   total_products?: number;
+	/**
+	 * The direct child categories of this category.
+	 */
   children?: T[];
+	/**
+	 * The ids for all of the products described by this category.
+	 */
   product_ids?: string[];
+	/**
+	 * The breadcrumb trail that leads from this category to its root category.
+	 */
   breadcrumbs?: DaffCategoryBreadcrumb[];
 }

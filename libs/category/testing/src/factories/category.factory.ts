@@ -22,6 +22,9 @@ export class MockCategory implements DaffCategory {
   product_ids = [faker.datatype.number({ min: 1, max: 100 }).toString()];
 }
 
+/**
+ * A factory for creating a {@link DaffCategory}.
+ */
 @Injectable({
   providedIn: 'root',
 })

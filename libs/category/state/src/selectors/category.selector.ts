@@ -24,6 +24,9 @@ import {
   getDaffCategoryPageSelectors,
 } from './category-page/category-page.selector';
 
+/**
+ * An interface for selectors that combine category metadata and category entities selectors.
+ */
 export interface DaffCategoryMemoizedSelectors<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct
@@ -31,11 +34,32 @@ export interface DaffCategoryMemoizedSelectors<
   DaffCategoryFeatureMemoizedSelectors<V>,
   DaffCategoryPageMemoizedSelectors<V>,
   DaffCategoryEntitiesMemoizedSelectors<V> {
-  selectCurrentCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
-  selectCategoryPageProducts: MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
-  selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
-  selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
-  selectTotalProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
+  /**
+	 * Selects the current category
+	 */
+	 selectCurrentCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  /**
+	 * Selects the products of the current category.
+	 */
+	selectCategoryPageProducts: MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
+  /**
+	 * Selects a category by id.
+	 *
+	 * @param categoryId a category id.
+	 */
+	selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  /**
+	 * Selects products by category id.
+	 *
+	 * @param categoryId a category id.
+	 */
+	selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
+  /**
+	 * Selects the total number of products in a category.
+	 *
+	 * @param categoryId a category id.
+	 */
+	selectTotalProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
 }
 
 const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends DaffProduct>(): DaffCategoryMemoizedSelectors<V, W> => {
@@ -94,6 +118,9 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
   };
 };
 
+/**
+ * A function that returns all combinatoric category selectors.
+ */
 export const getDaffCategorySelectors = (() => {
   let cache;
   return <

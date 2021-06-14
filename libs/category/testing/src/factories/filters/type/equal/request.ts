@@ -13,6 +13,9 @@ export class MockDaffCategoryFilterEqualRequest implements DaffCategoryFilterEqu
   value = [faker.datatype.uuid()];
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterEqualRequest}.
+ */
 @Injectable({
   providedIn: 'root',
 })

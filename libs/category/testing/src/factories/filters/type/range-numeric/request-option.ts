@@ -9,6 +9,9 @@ export class MockDaffCategoryFilterRangeNumericRequestOption implements DaffCate
   max = faker.datatype.number({ min: 100, max: 1000 });
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterRangeRequestOption}.
+ */
 @Injectable({
   providedIn: 'root',
 })

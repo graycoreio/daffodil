@@ -18,6 +18,8 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 /**
+ * Can be used to mock out the {@link DaffCategoryFacade} in testing environments.
+ *
  * @inheritdoc
  */
 @Injectable({ providedIn: 'root' })

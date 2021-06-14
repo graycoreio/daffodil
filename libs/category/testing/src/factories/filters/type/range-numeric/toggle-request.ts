@@ -16,6 +16,9 @@ export class MockDaffToggleCategoryFilterRangeNumericRequest implements DaffCate
   value: DaffCategoryFilterRangeRequestOption<number>;
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterRangeNumericToggleRequest}.
+ */
 @Injectable({
   providedIn: 'root',
 })

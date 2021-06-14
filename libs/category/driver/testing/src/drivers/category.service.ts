@@ -17,6 +17,8 @@ import {
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 /**
+ * The category testing driver to mock {@link DaffCategoryServiceInterface}.
+ *
  * @inheritdoc
  */
 @Injectable({

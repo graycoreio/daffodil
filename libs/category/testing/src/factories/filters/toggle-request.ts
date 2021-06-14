@@ -11,6 +11,9 @@ export class MockDaffToggleCategoryFilterRequest {
 
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterToggleRequest}.
+ */
 @Injectable({
   providedIn: 'root',
 })

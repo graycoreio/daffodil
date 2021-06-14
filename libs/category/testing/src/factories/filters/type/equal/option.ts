@@ -11,6 +11,9 @@ export class MockDaffCategoryFilterEqualOption implements DaffCategoryFilterEqua
 	count = faker.datatype.number({ min: 1, max: 1000 });
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterEqualOption}.
+ */
 @Injectable({
   providedIn: 'root',
 })

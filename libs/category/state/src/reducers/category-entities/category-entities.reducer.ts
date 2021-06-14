@@ -16,6 +16,9 @@ import {
 } from '../../actions/category.actions';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 
+/**
+ * Returns the state for category entities.
+ */
 export function daffCategoryEntitiesReducer<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct

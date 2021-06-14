@@ -17,11 +17,29 @@ import { DaffCategoryReducersState } from '../../reducers/category-reducers.inte
 import { DaffCategoryStateRootSlice } from '../../reducers/public_api';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
+/**
+ * An interface to describe all selectors related to category ngrx entities state.
+ */
 export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCategory<V> = DaffCategory> {
+	/**
+	 * Selects ngrx category entities state.
+	 */
 	selectCategoryEntitiesState: MemoizedSelector<DaffCategoryStateRootSlice<V>, EntityState<V>>;
+	/**
+	 * Selects the ids of all categories in state.
+	 */
 	selectCategoryIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, string[] | number[]>;
+	/**
+	 * Selects all categories in state as a dictionary.
+	 */
 	selectCategoryEntities: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dictionary<V>>;
+	/**
+	 * Selects all categories in state as an array.
+	 */
 	selectAllCategories: MemoizedSelector<DaffCategoryStateRootSlice<V>, V[]>;
+	/**
+	 * Selects the total number of categories in state.
+	 */
 	selectCategoryTotal: MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
 }
 
@@ -29,9 +47,7 @@ const createCategoryFeatureSelectors = <V extends DaffGenericCategory<V>>(): Daf
 
   const entitiesSelectors = daffCategoryEntitiesAdapter<V>().getSelectors();
   const categoryFeatureState = getDaffCategoryFeatureSelector<V>().selectCategoryFeatureState;
-  /**
-   * Category Entities State
-   */
+
   const selectCategoryEntitiesState = createSelector(
     categoryFeatureState,
     (state: DaffCategoryReducersState<V>) => state.categoryEntities,
@@ -66,6 +82,9 @@ const createCategoryFeatureSelectors = <V extends DaffGenericCategory<V>>(): Daf
   };
 };
 
+/**
+ * A function that returns all selectors related to category entities.
+ */
 export const getDaffCategoryEntitiesSelectors = (() => {
   let cache;
   return <V extends DaffGenericCategory<V>>(): DaffCategoryEntitiesMemoizedSelectors<V> => cache = cache

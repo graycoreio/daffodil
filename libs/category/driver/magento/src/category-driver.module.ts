@@ -22,6 +22,10 @@ import { DaffMagentoCategoryPageConfigTransformerService } from './transformers/
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
 import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
 
+/**
+ * A module that provides the {@link DaffCategoryDriver} and {@link MAGENTO_CATEGORY_CONFIG_TOKEN} as the {@link DaffMagentoCategoryService} and
+ * {@link MAGENTO_CATEGORY_CONFIG_DEFAULT} respectively
+ */
 @NgModule({
   imports: [
     CommonModule,

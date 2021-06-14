@@ -7,6 +7,9 @@ import {
 
 
 export interface DaffCategoryReducerState extends DaffStateable<DaffMutableLoadingState> {
+	/**
+	 * The metadata for the current category page.
+	 */
 	categoryPageMetadata: DaffCategoryPageMetadata;
   /**
    * @deprecated
@@ -16,5 +19,8 @@ export interface DaffCategoryReducerState extends DaffStateable<DaffMutableLoadi
    * @deprecated
    */
   productsLoading: boolean;
+	/**
+	 * Errors associated with loading categories.
+	 */
   errors: DaffStateError[];
 }

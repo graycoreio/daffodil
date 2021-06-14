@@ -7,6 +7,9 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffCategoryFilterRequestEqualFactory } from './type/equal/request';
 import { DaffCategoryFilterRequestRangeNumericFactory } from './type/range-numeric/request';
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterRequest}.
+ */
 @Injectable({
   providedIn: 'root',
 })

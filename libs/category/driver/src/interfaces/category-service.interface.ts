@@ -10,6 +10,9 @@ import {
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
 
+/**
+ * An interface for category service drivers.
+ */
 export interface DaffCategoryServiceInterface<
 	V extends DaffGenericCategory<V> = DaffCategory,
 	W extends DaffProduct = DaffProduct

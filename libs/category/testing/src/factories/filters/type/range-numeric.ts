@@ -15,6 +15,10 @@ export class MockCategoryFilterRangeNumeric implements DaffCategoryFilterRangeNu
   max = faker.datatype.number({ min: 10, max: 200 });
   options = {};
 }
+
+/**
+ * A factory for creating a {@link DaffCategoryFilterRangeNumeric}.
+ */
 @Injectable({
   providedIn: 'root',
 })

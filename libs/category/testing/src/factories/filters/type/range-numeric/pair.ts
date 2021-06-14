@@ -15,6 +15,9 @@ export class MockDaffCategoryFilterRangeNumericPair implements DaffCategoryFilte
   min: DaffCategoryFilterRangeOption<number>;
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterRangePair}.
+ */
 @Injectable({
   providedIn: 'root',
 })
