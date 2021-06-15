@@ -19,7 +19,7 @@
 			"input_type": "select",
 			"options": [
 				{
-					"id": "1",
+					"id": "14",
           "url": null,
 					"name": "Option 1",
 					"price": 5,
@@ -33,7 +33,7 @@
 					"in_stock": true
 				},
 				{
-					"id": "2",
+					"id": "24",
           "url": null,
 					"name": "Option 2",
 					"price": 2,
