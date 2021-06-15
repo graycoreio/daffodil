@@ -49,7 +49,7 @@ function transformMagentoBundledProductItem(item: MagentoBundledProductItem): Da
 
 function transformMagentoBundledProductItemOption(option: MagentoBundledProductItemOption): DaffCompositeProductItemOption {
   return {
-		//todo: this should be option.uid.toString() but this is not a unique id at the time of Magento 2.4.
+    //todo: this should be option.uid.toString() but this is not a unique id at the time of Magento 2.4.
     id: option.product.uid.toString(),
     url: null,
     name: option.label,
