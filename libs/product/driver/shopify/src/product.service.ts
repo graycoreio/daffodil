@@ -9,9 +9,7 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  DaffProduct,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
 interface GetAllProductsResponse {
