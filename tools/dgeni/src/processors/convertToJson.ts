@@ -14,6 +14,7 @@ export class ConvertToJsonProcessor implements Processor {
         let contents = doc.renderedContent || '';
 
         let title = doc.title;
+				let tableOfContents = doc.tableOfContents;
 
         // We do allow an empty `title` but if it is `undefined` we resort to `vFile.title` and then `name`
         if (title === undefined) {
@@ -30,7 +31,7 @@ export class ConvertToJsonProcessor implements Processor {
           this.log.warn(this.createDocMessage('Title property expected', doc));
         }
 
-        doc.renderedContent = JSON.stringify({ id: doc.path, title, contents }, null, 2);
+        doc.renderedContent = JSON.stringify({ id: doc.path, title, contents, tableOfContents }, null, 2);
       }
     });
   }

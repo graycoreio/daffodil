@@ -1,9 +1,6 @@
+var toc = require('markdown-toc');
+
 export function guideFileReader() {
-  const extractTitle = (doc: any) => {
-    const matchesArray = doc.content.match(/^\#(.*?)$/m);
-    if(!matchesArray){throw 'Guide doc ' + doc.id + ' is missing a title'};
-    return matchesArray ? matchesArray[1].trim() : '';
-  }
 
   return {
     name: 'guideFileReader',
@@ -12,8 +9,15 @@ export function guideFileReader() {
       return [{
         docType: 'guide',
         title: extractTitle(fileInfo),
+				tableOfContents: toc(fileInfo.content),
         content: fileInfo.content
       }];
     }
   };
+}
+
+export const extractTitle = (doc: any) => {
+	const matchesArray = doc.content.match(/^\#(.*?)$/m);
+	if(!matchesArray){throw 'Guide doc ' + doc.id + ' is missing a title'};
+	return matchesArray[1].trim();
 }

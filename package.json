@@ -44,6 +44,7 @@
     "express": "^4.17.1",
     "faker": "^5.5.3",
     "graphql": "^15.4.0",
+    "markdown-toc": "^1.2.0",
     "modern-normalize": "^0.5.0",
     "rxjs": "6.6.3",
     "web-animations-js": "^2.3.2",

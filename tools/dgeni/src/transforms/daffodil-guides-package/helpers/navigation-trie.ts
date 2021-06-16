@@ -5,6 +5,7 @@ export interface NavigationDocument {
   id: string;
   title: string;
   path: string;
+	tableOfContents: string;
 }
 
 /**
@@ -16,16 +17,19 @@ export class NavigationTrie {
   id: string = '';
   path?: string;
   title: string = '';
+	tableOfContents: string = '';
   children: NavigationTrie[] = [];
 
   constructor(
     key: string = '',
     title: string = '',
     path: string = '',
-    children: NavigationTrie[] = []
+  	tableOfContents: string = '',
+	  children: NavigationTrie[] = []
   ) {
     this.id = key;
     this.title = title;
+		this.tableOfContents = tableOfContents;
     if (path) {
       this.path = path;
     }
@@ -74,14 +78,15 @@ export class NavigationTrie {
 
     //If no child exists, simply append the word
     if (!child) {
-      this.appendChild(new NavigationTrie(path, doc.title, doc.path));
+      this.appendChild(new NavigationTrie(path, doc.title, doc.path, doc.tableOfContents));
       return;
     }
 
     //If a child already exists, but that child isn't a word.
     if (child.children.length != 0) {
       child.title = doc.title;
-      child.appendChild(new NavigationTrie('', 'Overview', doc.path));
+			child.tableOfContents = doc.tableOfContents;
+      child.appendChild(new NavigationTrie('', 'Overview', doc.path, doc.tableOfContents));
       return;
     }
 
@@ -115,7 +120,7 @@ export class NavigationTrie {
     //If there is a child, and it is a 'word' node, transform that
     //node into a true word node.
     else if (child && child.children.length == 0) {
-      const node = new NavigationTrie('', 'Overview', child.path);
+      const node = new NavigationTrie('', 'Overview', child.path, child.tableOfContents);
       delete (child.path);
 			child.appendChild(node);
     }
