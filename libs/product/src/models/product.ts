@@ -31,7 +31,7 @@ export interface DaffProduct extends DaffLocatable {
    */
   name?: string;
   /**
-   * The main image for the product.
+   * A smaller image to concisely visualize the product.
    */
   thumbnail: DaffProductImage;
   /**
