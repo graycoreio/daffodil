@@ -87,6 +87,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct =>
   url: null,
   name: node.title,
   images: [],
+  thumbnail: null,
 });
 
 /**

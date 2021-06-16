@@ -25,6 +25,7 @@ import { DaffProductFacade } from './product.facade';
 describe('DaffProductFacade', () => {
   let store: Store<Partial<DaffProductReducersState>>;
   let facade: DaffProductFacade;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,6 +41,7 @@ describe('DaffProductFacade', () => {
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffProductFacade);
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   it('should be created', () => {
@@ -75,7 +77,7 @@ describe('DaffProductFacade', () => {
     });
 
     it('should be an observable of the currently selected product', () => {
-      const product = new DaffProductFactory().create();
+      const product = productFactory.create();
       const expected = cold('a', { a: product });
       store.dispatch(new DaffProductPageLoad(product.id));
       store.dispatch(new DaffProductPageLoadSuccess(product));
@@ -85,7 +87,7 @@ describe('DaffProductFacade', () => {
 
   describe('getProduct()', () => {
     it('should be an observable of a product', () => {
-      const product = new DaffProductFactory().create();
+      const product = productFactory.create();
       const expected = cold('a', { a: product });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -95,7 +97,7 @@ describe('DaffProductFacade', () => {
 
   describe('getPrice()', () => {
     it('should be an observable of a product', () => {
-      const product = new DaffProductFactory().create();
+      const product = productFactory.create();
       const expected = cold('a', { a: product.price });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -105,7 +107,9 @@ describe('DaffProductFacade', () => {
 
   describe('hasDiscount()', () => {
     it('should be an observable of whether the given product has discount', () => {
-      const product = { id: '1', url: 'url', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
+      const product = productFactory.create({
+        discount: { amount: 20, percent: 10 },
+      });
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -115,7 +119,9 @@ describe('DaffProductFacade', () => {
 
   describe('getDiscountAmount()', () => {
     it('should be an observable of whether the given product has discount', () => {
-      const product = { id: '1', url: 'url', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
+      const product = productFactory.create({
+        discount: { amount: 20, percent: 10 },
+      });
       const expected = cold('a', { a: 20 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -125,7 +131,7 @@ describe('DaffProductFacade', () => {
 
   describe('getDiscountedPrice()', () => {
     it('should be an observable of the discounted price of a product', () => {
-      const product = new DaffProductFactory().create();
+      const product = productFactory.create();
       const expected = cold('a', { a: daffSubtract(product.price, product.discount.amount) });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -135,7 +141,9 @@ describe('DaffProductFacade', () => {
 
   describe('getDiscountPercent()', () => {
     it('should be an observable of whether the given product has discount', () => {
-      const product = { id: '1', url: 'url', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
+      const product = productFactory.create({
+        discount: { amount: 20, percent: 10 },
+      });
       const expected = cold('a', { a: 10 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -145,7 +153,10 @@ describe('DaffProductFacade', () => {
 
   describe('isOutOfStock()', () => {
     it('should be an observable of whether the given product is out of stock', () => {
-      const product = { id: '1', url: 'url', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }, in_stock: false };
+      const product = productFactory.create({
+        discount: { amount: 20, percent: 10 },
+        in_stock: false,
+      });
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
