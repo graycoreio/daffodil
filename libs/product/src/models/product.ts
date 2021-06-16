@@ -23,21 +23,37 @@ export interface DaffProduct extends DaffLocatable {
 	 */
 	id: ID;
 	/**
-	 * The type of product.
+   * The type of product.
 	 */
-	type?: DaffProductTypeEnum;
-	/**
-	 * The price of the product.
-	 */
+  type?: DaffProductTypeEnum;
+  /**
+   * The product name.
+   */
+  name?: string;
+  /**
+   * The main image for the product.
+   */
+  thumbnail: DaffProductImage;
+  /**
+   * An array of images for the product.
+   */
+  images: DaffProductImage[];
+
+  // TODO: move to subtypes
+  /**
+   * The price of the product.
+   */
 	price?: number;
 	/**
 	 * The total discounts associated with this product.
 	 */
-	discount?: DaffProductDiscount;
-	/**
-	 * The product name.
-	 */
-  name?: string;
+  discount?: DaffProductDiscount;
+  /**
+   * Whether or not the product is in stock.
+   */
+  in_stock?: boolean;
+
+  // TODO: move to meta object
 	/**
 	 * The product brand.
 	 */
@@ -46,14 +62,6 @@ export interface DaffProduct extends DaffLocatable {
 	 * Describes the product.
 	 */
   description?: string;
-	/**
-	 * An array of images for the product.
-	 */
-	images: DaffProductImage[];
-	/**
-	 * Whether or not the product is in stock.
-	 */
-	in_stock?: boolean;
 }
 
 /**

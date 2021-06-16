@@ -25,6 +25,7 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
     discount: getDiscount(product),
     in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
     images: transformMediaGalleryEntries(product, mediaUrl),
+    thumbnail: transformImage(product.thumbnail, mediaUrl),
     description: product.description.html,
   };
 }
@@ -42,6 +43,14 @@ function getDiscount(product: MagentoProduct): DaffProductDiscount {
       amount: product.price_range.maximum_price.discount.amount_off,
       percent: product.price_range.maximum_price.discount.percent_off,
     } : { amount: null, percent: null };
+}
+
+function transformImage(image: MagentoProduct['image'], mediaUrl: string): DaffProductImage {
+  return {
+    url: `${mediaUrl}catalog/product${image.url}`,
+    label: image.label,
+    id: null,
+  };
 }
 
 function transformMediaGalleryEntries(product: MagentoProduct, mediaUrl: string): DaffProductImage[] {

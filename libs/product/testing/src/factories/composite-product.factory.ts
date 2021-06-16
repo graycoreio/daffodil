@@ -8,25 +8,13 @@ import {
   DaffCompositeProductItemInputEnum,
 } from '@daffodil/product';
 
+import { MockProduct } from './product.factory';
+
 /**
  * Mocked DaffCompositeProduct object.
  */
-export class MockCompositeProduct implements DaffCompositeProduct {
-	private stubPrice = faker.datatype.number({ min: 1, max: 1500 });
-	private stubDiscount = faker.datatype.number({ min: 0, max: this.stubPrice - 1 });
+export class MockCompositeProduct extends MockProduct implements DaffCompositeProduct {
 	type = DaffProductTypeEnum.Composite;
-	id = faker.datatype.uuid();
-	url = `/${faker.random.word()}.html`;
-	price = this.stubPrice;
-	images = [];
-	discount = {
-	  amount: this.stubDiscount,
-	  percent: this.stubDiscount/this.stubPrice,
-	};
-	in_stock = true;
-  name = faker.commerce.productName();
-  brand = faker.company.companyName();
-	description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.';
 	items = [
 	  {
 	    id: faker.datatype.uuid(),
@@ -41,6 +29,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
+	        thumbnail: null,
 	        discount: {
 	          amount: 0,
 	          percent: 0,
@@ -55,6 +44,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
+	        thumbnail: null,
 	        discount: {
 	          amount: 0,
 	          percent: 0,
@@ -78,6 +68,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
+	        thumbnail: null,
 	        discount: {
 	          amount: 0,
 	          percent: 0,
@@ -92,6 +83,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
+	        thumbnail: null,
 	        discount: {
 	          amount: 0,
 	          percent: 0,

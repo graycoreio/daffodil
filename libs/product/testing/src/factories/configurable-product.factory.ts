@@ -7,10 +7,12 @@ import {
   DaffProductTypeEnum,
 } from '@daffodil/product';
 
+import { MockProduct } from './product.factory';
+
 /**
  * Mocked DaffConfigurableProduct object.
  */
-export class MockConfigurableProduct implements DaffConfigurableProduct {
+export class MockConfigurableProduct extends MockProduct implements DaffConfigurableProduct {
 	private stubPriceVariant1 = faker.datatype.number({ min: 1, max: 1500 });
 	private stubDiscountVariant1 = faker.datatype.number({ min: 0, max: this.stubPriceVariant1 - 1 });
 	private stubPriceVariant2 = faker.datatype.number({ min: 1, max: 1500 });
@@ -19,14 +21,6 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	private stubDiscountVariant3 = faker.datatype.number({ min: 0, max: this.stubPriceVariant3 - 1 });
 
 	type = DaffProductTypeEnum.Configurable;
-	id = faker.datatype.uuid();
-	url = `/${faker.random.word()}.html`;
-	price = faker.datatype.number({ min: 1, max: 1500 });
-	images = [];
-  name = faker.commerce.productName();
-  brand = faker.company.companyName();
-	description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.';
-	in_stock = true;
 	configurableAttributes = [
 	  {
 	    code: 'color',

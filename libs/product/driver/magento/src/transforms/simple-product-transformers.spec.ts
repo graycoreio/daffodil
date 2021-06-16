@@ -30,6 +30,11 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
         percent: stubMagentoProduct.price_range.maximum_price.discount.percent_off,
       },
       images: [],
+      thumbnail: {
+        url: `${mediaUrl}catalog/product${stubMagentoProduct.thumbnail.url}`,
+        label: stubMagentoProduct.thumbnail.label,
+        id: null,
+      },
       description: stubMagentoProduct.description.html,
       in_stock: true,
     };

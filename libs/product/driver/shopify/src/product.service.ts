@@ -9,7 +9,9 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+} from '@daffodil/product';
 import { DaffProductServiceInterface } from '@daffodil/product/driver';
 
 interface GetAllProductsResponse {
@@ -87,6 +89,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct =>
   url: null,
   name: node.title,
   images: [],
+  thumbnail: null,
 });
 
 /**
