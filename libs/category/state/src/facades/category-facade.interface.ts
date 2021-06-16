@@ -20,7 +20,7 @@ import { DaffCategoryReducerState } from '../reducers/category/category-reducer-
 
 /**
  * A facade for interacting with the category state.
- * Exposes many parts of the state for easy access and allows dispatching of actions.
+ * This facade exposes many parts of the state for easy access and allows dispatching of actions.
  */
 export interface DaffCategoryFacadeInterface<
 	V extends DaffGenericCategory<V> = DaffCategory,

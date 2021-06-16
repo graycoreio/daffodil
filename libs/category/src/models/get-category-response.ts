@@ -14,7 +14,7 @@ export interface DaffGetCategoryResponse<
 	W extends DaffProduct = DaffProduct
 > {
 	/**
-	 * The list of products described by the category.
+	 * The list of products described by the requested category.
 	 */
   products: W[];
 	/**
@@ -22,7 +22,7 @@ export interface DaffGetCategoryResponse<
 	 */
   category: V;
 	/**
-	 * The properties of a category page.
+	 * The properties of the requested category page.
 	 */
   categoryPageMetadata: DaffCategoryPageMetadata;
 }
