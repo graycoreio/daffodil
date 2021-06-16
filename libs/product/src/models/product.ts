@@ -23,7 +23,7 @@ export interface DaffProduct extends DaffLocatable {
 	 */
 	id: ID;
 	/**
-   * The type of product.
+	 * The type of product.
 	 */
   type?: DaffProductTypeEnum;
   /**
