@@ -37,6 +37,9 @@ import {
   getDaffProductPageSelectors,
 } from './product/product.selectors';
 
+/**
+ * An interface for all selectors in the entire product feature area.
+ */
 export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> extends
 	DaffProductPageMemoizedSelectors<T>,
 	DaffBestSellersMemoizedSelectors<T>,
@@ -48,6 +51,10 @@ export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> ex
 	DaffCompositeProductEntitiesMemoizedSelectors,
 	DaffCompositeProductMemoizedSelectors { }
 
+/**
+ * A function that returns all selectors in the entire product feature area.
+ * Returns {@link DaffProductAllSelectors}.
+ */
 export const getDaffProductSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductAllSelectors<T> => ({
   ...getDaffBestSellersSelectors<T>(),
   ...getDaffProductPageSelectors<T>(),

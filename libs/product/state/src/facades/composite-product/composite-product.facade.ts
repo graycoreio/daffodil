@@ -25,8 +25,6 @@ import { DaffCompositeProductFacadeInterface } from './composite-product-facade.
  * A facade for interacting with the composite product state.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  *
- * See the <a href="docs/api/product/DaffCompositeProductFacadeInterface">DaffCompositeProductFacadeInterface docs</a> for more details.
- *
  * @inheritdoc
  */
 @Injectable({
@@ -38,18 +36,8 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 
 	selectors = getDaffProductSelectors<T>();
 
-	/**
-	 * Returns whether a DaffPriceRange has a discount.
-	 *
-	 * @param priceRange a DaffPriceRange
-	 */
 	hasDiscount = productPriceRangeHasDiscount;
 
-	/**
-	 * Returns whether the min and max prices of a DaffPriceRange are different.
-	 *
-	 * @param priceRange a DaffPriceRange
-	 */
 	hasPriceRange = productPriceRangeHasPriceRange;
 
 	getRequiredItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
@@ -80,9 +68,6 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	  return this.store.pipe(select(this.selectors.selectIsCompositeProductItemRequired(id, item_id)));
 	}
 
-	/**
-	 * Dispatches an action to the rxjs action stream.
-	 */
 	dispatch(action: Action) {
 	  this.store.dispatch(action);
 	}

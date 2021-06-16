@@ -25,7 +25,7 @@ import {
 } from './transforms/product-transformers';
 
 /**
- * A service for making magento apollo queries for products of type, DaffProduct.
+ * A service for making magento apollo queries for products of type, {@link DaffProduct}.
  *
  * @inheritdoc
  */
@@ -38,11 +38,6 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
   ) {}
 
-  /**
-   * Get an Observable of a DaffProduct by uid.
-   *
-   * @param productId a product Id
-   */
   get(productId: DaffProduct['id']): Observable<DaffProduct> {
     return this.apollo.query<any>({
       query: GetProductQuery,
@@ -65,9 +60,6 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     );
   }
 
-  /**
-   * Get an Observable of an array of DaffProducts.
-   */
   getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<any>({
       query: GetAllProductsQuery,

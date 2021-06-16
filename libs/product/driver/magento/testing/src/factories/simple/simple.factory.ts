@@ -12,6 +12,9 @@ export class MockMagentoSimpleProduct extends MockMagentoCoreProduct implements 
 	__typename = MagentoProductTypeEnum.SimpleProduct;
 }
 
+/**
+ * A factory for creating stub data for {@link MagentoSimpleProduct}s.
+ */
 @Injectable({
   providedIn: 'root',
 })

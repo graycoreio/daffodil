@@ -22,12 +22,38 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
+/**
+ * An interface for selectors related to the composite product applied options.
+ */
 export interface DaffCompositeProductEntitiesMemoizedSelectors {
+	/**
+	 * The ngrx entities state for composite product applied options.
+	 */
 	selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>>;
+	/**
+	 * A selector for all composite product ids in state.
+	 */
 	selectCompositeProductIds: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['ids']>;
+	/**
+	 * The ngrx entities for the composite product appllied options.
+	 */
 	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<Record<string, any>, EntityState<DaffCompositeProductEntity>['entities']>;
+	/**
+	 * The total number of composite products in state.
+	 */
 	selectCompositeProductTotal: MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects the applied options for a composite product.
+	 *
+	 * @param id the id of the composite product.
+	 */
 	selectCompositeProductAppliedOptions: (id: DaffCompositeProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<DaffCompositeProductItemOption>>;
+	/**
+	 * Selects whether the particular item of a composite product is required in order for the product to be valid, i.e. addable to the cart.
+	 *
+	 * @param id the id of the composite product.
+	 * @param item_id the id of the composite product item.
+	 */
 	selectIsCompositeProductItemRequired: (id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']) => MemoizedSelector<Record<string, any>, boolean>;
 }
 
@@ -40,41 +66,27 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
     selectProduct,
   } = getDaffProductEntitiesSelectors();
   const adapterSelectors = daffCompositeProductAppliedOptionsEntitiesAdapter().getSelectors();
-  /**
-   * Composite Product Entities State
-   */
+
   const selectCompositeProductAppliedOptionsEntitiesState = createSelector(
     selectProductState,
     (state: DaffProductReducersState<T>) => state.compositeProductOptions,
   );
 
-  /**
-   * Selector for composite product IDs.
-   */
   const selectCompositeProductIds = createSelector(
     selectCompositeProductAppliedOptionsEntitiesState,
     adapterSelectors.selectIds,
   );
 
-  /**
-   * Selector for all composite product applied attributes as entities (see ngrx/entity).
-   */
   const selectCompositeProductAppliedOptionsEntities = createSelector(
     selectCompositeProductAppliedOptionsEntitiesState,
     adapterSelectors.selectEntities,
   );
 
-  /**
-   * Selector for the total number of composite products.
-   */
   const selectCompositeProductTotal = createSelector(
     selectCompositeProductAppliedOptionsEntitiesState,
     adapterSelectors.selectTotal,
   );
 
-  /**
-   * Selector for the applied attributes of a particular composite product.
-   */
   const selectCompositeProductAppliedOptions = defaultMemoize((id: DaffCompositeProduct['id']) => createSelector(
     selectProduct(id),
     selectCompositeProductAppliedOptionsEntitiesState,
@@ -117,6 +129,10 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
   };
 };
 
+/**
+ * A function that returns all selectors related to composite product applied option entities.
+ * Returns {@link DaffCompositeProductEntitiesMemoizedSelectors}.
+ */
 export const getDaffCompositeProductEntitiesSelectors = (() => {
   let cache;
   return <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors => cache = cache

@@ -9,7 +9,7 @@ import { DaffProductDriver } from '@daffodil/product/driver';
 import { DaffTestingProductService } from './product.service';
 
 /**
- * Module for providing DaffProductTestingService driver as the backend product service to your application.
+ * Module for providing the {@link DaffProductTestingService} driver as the {@link DaffProductDriver}.
  */
 @NgModule({
   imports: [

@@ -9,7 +9,7 @@ import { DaffProductGridReducerState } from './product-grid/product-grid-reducer
 import { DaffProductReducerState } from './product/product-reducer-state.interface';
 
 /**
- * Interface for product redux store.
+ * Interface for the redux store of the product feature area.
  */
 export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   products: EntityState<T>;

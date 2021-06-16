@@ -13,6 +13,9 @@ export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements
   items = [];
 }
 
+/**
+ * A factory for creating stub data for {@link MagentoBundledProduct}s.
+ */
 @Injectable({
   providedIn: 'root',
 })

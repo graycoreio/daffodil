@@ -15,8 +15,6 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
 /**
  * A facade for getting state about a particular product.
  *
- * See the <a href="docs/api/product/DaffProductFacadeInterface">DaffProductFacadeInterface docs</a> for more details.
- *
  * @inheritdoc
  */
 @Injectable({
@@ -61,9 +59,6 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 	  return this.store.pipe(select(this.selectors.selectIsProductOutOfStock(id)));
 	}
 
-	/**
-	 * Dispatches an action to the rxjs action stream.
-	 */
 	dispatch(action: Action) {
 	  this.store.dispatch(action);
 	}

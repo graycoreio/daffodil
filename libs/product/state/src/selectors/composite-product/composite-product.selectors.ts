@@ -25,6 +25,9 @@ import {
 import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-entities/composite-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 
+/**
+ * An interface describing selectors unique to the composite product, such as pricing and discounts.
+ */
 export interface DaffCompositeProductMemoizedSelectors {
 	/**
 	 * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
@@ -152,6 +155,11 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
   };
 };
 
+/**
+ * A function that returns all selectors related to the composite product feature.
+ *
+ * Returns {@link DaffCompositeProductMemoizedSelectors}.
+ */
 export const getDaffCompositeProductSelectors = (() => {
   let cache;
   return (): DaffCompositeProductMemoizedSelectors => cache = cache

@@ -29,6 +29,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
 	 *
 	 * @param id the id of the composite product.
+	 * @param configuration a Dictionary of DaffCompositeConfigurationItems
 	 */
 	getOptionalItemPricesForConfiguration(id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange>;
 

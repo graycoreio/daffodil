@@ -20,8 +20,6 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
  * A facade for interacting with the configurable product state.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  *
- * See the <a href="docs/api/product/DaffConfigurableProductFacadeInterface">DaffConfigurableProductFacadeInterface docs</a> for more details.
- *
  * @inheritdoc
  */
 @Injectable({
@@ -85,9 +83,6 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 	  return this.store.pipe(select(this.selectors.selectMatchingConfigurableProductVariants(id)));
 	}
 
-	/**
-	 * Dispatches an action to the rxjs action stream.
-	 */
 	dispatch(action: Action) {
 	  this.store.dispatch(action);
 	}

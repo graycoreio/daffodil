@@ -9,11 +9,35 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { DaffProductReducerState } from '../../reducers/product/product-reducer-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
+/**
+ * An interface for selectors related to the selected product page.
+ */
 export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> {
+	/**
+	 * Selects the entire state object for the product page feature area.
+	 */
 	selectSelectedProductState: MemoizedSelector<Record<string, any>, DaffProductReducerState>;
+	/**
+	 * Selects the id of the selected product.
+	 *
+	 * @deprecated
+	 */
 	selectSelectedProductId: MemoizedSelector<Record<string, any>, T['id']>;
+	/**
+	 * Selects the qty of the selected product.
+	 *
+	 * @deprecated
+	 */
 	selectSelectedProductQty: MemoizedSelector<Record<string, any>, number>;
+	/**
+	 * Selects the loading state of the selected product.
+	 */
 	selectSelectedProductLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+	/**
+	 * Selects the selected product, which is the product loaded for a product page.
+	 *
+	 * @deprecated
+	 */
 	selectSelectedProduct: MemoizedSelector<Record<string, any>, T>;
 }
 
@@ -23,47 +47,26 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
     selectProductState,
   } = getDaffProductFeatureSelector<T>();
 
-  /**
-   * Selector for product state.
-   */
   const selectSelectedProductState = createSelector(
     selectProductState,
     (state: DaffProductReducersState<T>) => state.product,
   );
 
-  /**
-   * Selector for the selected product's ID.
-   *
-   * @deprecated
-   */
   const selectSelectedProductId = createSelector(
     selectSelectedProductState,
     (state: DaffProductReducerState) => state.selectedProductId,
   );
 
-  /**
-   * Selector for the quantity of the product.
-   *
-   * @deprecated
-   */
   const selectSelectedProductQty = createSelector(
     selectSelectedProductState,
     (state: DaffProductReducerState) => state.qty,
   );
 
-  /**
-   * Selector for the loading state of the selected product.
-   */
   const selectSelectedProductLoadingState = createSelector(
     selectSelectedProductState,
     (state: DaffProductReducerState) => state.loading,
   );
 
-  /**
-   * Selects the selected product from product state and the selected product ID.
-   *
-   * @deprecated use selectProduct entities selector instead.
-   */
   const selectSelectedProduct = createSelector(
     selectProductState,
     selectSelectedProductId,
@@ -79,6 +82,10 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
   };
 };
 
+/**
+ * A function that returns all selectors related to the product page.
+ * Returns {@link DaffProductPageMemoizedSelectors}.
+ */
 export const getDaffProductPageSelectors = (() => {
   let cache;
   return <T extends DaffProduct>(): DaffProductPageMemoizedSelectors<T> => cache = cache

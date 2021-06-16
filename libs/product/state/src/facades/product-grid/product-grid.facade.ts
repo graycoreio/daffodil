@@ -21,13 +21,7 @@ import { DaffProductGridFacadeInterface } from './product-grid-facade.interface'
   providedIn: 'root',
 })
 export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implements DaffProductGridFacadeInterface<T> {
-  /**
-   * The loading state for retrieving a list of products.
-   */
   loading$: Observable<boolean>;
-  /**
-   * The state for a list of products.
-   */
   products$: Observable<T[]>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
@@ -40,9 +34,6 @@ export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implemen
     this.products$ = this.store.pipe(select(selectAllProducts));
   }
 
-  /**
-   * Dispatches an action to the rxjs action stream.
-   */
   dispatch(action: Action) {
     this.store.dispatch(action);
   }

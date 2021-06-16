@@ -15,34 +15,21 @@ import { DaffProductServiceInterface } from '@daffodil/product/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryProductService implements DaffProductServiceInterface {
+  /**
+   * @docs-private
+   */
   url = '/api/products/';
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Gets all products.
-   *
-   * @returns An Observable of DaffProduct[]
-   */
   getAll(): Observable<DaffProduct[]> {
     return this.http.get<DaffProduct[]>(this.url);
   }
 
-  /**
-   * Gets all best selling products.
-   *
-   * @returns An Observable of DaffProduct[]
-   */
   getBestSellers(): Observable<DaffProduct[]> {
     return this.http.get<DaffProduct[]>(this.url + 'best-sellers');
   }
 
-  /**
-   * Get a product by ID.
-   *
-   * @param productId string - product ID
-   * @returns An Observable of a DaffProduct
-   */
   get(productId: DaffProduct['id']): Observable<DaffProduct> {
     return this.http.get<DaffProduct>(this.url + productId);
   }
