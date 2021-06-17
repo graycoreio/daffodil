@@ -25,6 +25,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	    options: [
 	      {
 	        id: faker.datatype.uuid(),
+	        type: DaffProductTypeEnum.Simple,
 	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
@@ -40,6 +41,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      },
 	      {
 	        id: faker.datatype.uuid(),
+	        type: DaffProductTypeEnum.Simple,
 	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
@@ -64,6 +66,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	    options: [
 	      {
 	        id: faker.datatype.uuid(),
+	        type: DaffProductTypeEnum.Simple,
 	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
@@ -79,6 +82,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      },
 	      {
 	        id: faker.datatype.uuid(),
+	        type: DaffProductTypeEnum.Simple,
 	        url: `/${faker.random.word()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),

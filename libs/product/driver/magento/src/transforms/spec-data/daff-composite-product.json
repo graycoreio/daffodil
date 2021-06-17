@@ -20,6 +20,7 @@
 			"options": [
 				{
 					"id": "1",
+          "type": "simple",
           "thumbnail": null,
           "url": null,
 					"name": "Option 1",
@@ -35,6 +36,7 @@
 				},
 				{
 					"id": "2",
+          "type": "simple",
           "thumbnail": null,
           "url": null,
 					"name": "Option 2",
