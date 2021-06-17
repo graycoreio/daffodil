@@ -16,6 +16,9 @@ export const apiRoutes: Routes = [
     resolve: {
       reference: DaffioApiListResolver,
     },
+    data: {
+      sidebarMode: 'side',
+    },
   },
   {
     path: '**',

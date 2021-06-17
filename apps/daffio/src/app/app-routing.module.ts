@@ -4,7 +4,7 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { TemplateComponent } from './core//template/template.component';
+import { TemplateComponent } from './core/template/template.component';
 
 export const appRoutes: Routes = [
   {
@@ -12,8 +12,8 @@ export const appRoutes: Routes = [
       { path: '', pathMatch: 'full', loadChildren: () => import('./content/homepage/homepage.module').then(m => m.DaffioHomepageModule) },
       { path: 'why-pwa', loadChildren: () => import('./content/pwa/pwa.module').then(m => m.DaffioPwaModule) },
       { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
-      { path: 'api', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
-      { path: 'guides', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
+      { path: 'api', loadChildren: () => import('./docs/api-docs/api.module').then(m => m.DaffioDocsApiModule) },
+      { path: 'guides', loadChildren: () => import('./docs/guide-docs/guide-docs.module').then(m => m.DaffioGuideDocsModule) },
       { path: '404', loadChildren: () => import('./content/not-found/not-found.module').then(m => m.DaffioNotFoundModule) },
     ],
   },
