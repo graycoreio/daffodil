@@ -1,4 +1,4 @@
-import { ID } from "../types/id.type";
+import { ID } from '../types/id.type';
 
 /**
  * An object that has an identifier.
