@@ -9,7 +9,7 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffBestSellersLoad,
   DaffBestSellersLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
@@ -18,7 +18,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffBestSellersFacade } from './best-sellers.facade';
 
 describe('DaffBestSellersFacade', () => {
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   let facade: DaffBestSellersFacade;
 
   beforeEach(() => {

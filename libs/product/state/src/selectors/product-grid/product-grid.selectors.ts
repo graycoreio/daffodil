@@ -6,7 +6,10 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffProductGridReducerState } from '../../reducers/product-grid/product-grid-reducer-state.interface';
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import {
+  DaffProductReducersState,
+  DaffProductStateRootSlice,
+} from '../../reducers/product-reducers-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**
@@ -16,11 +19,11 @@ export interface DaffProductGridMemoizedSelectors<T extends DaffProduct = DaffPr
 	/**
 	 * Selects the redux state for the product grid feature area. Returns {@link DaffProductGridReducerState}.
 	 */
-	selectProductGridState: MemoizedSelector<Record<string, any>, DaffProductGridReducerState<T>>;
+	selectProductGridState: MemoizedSelector<DaffProductStateRootSlice<T>, DaffProductGridReducerState<T>>;
 	/**
 	 * Selects whether any product grid requests are loading.
 	 */
-	selectProductGridLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+	selectProductGridLoadingState: MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
 }
 
 const createProductGridSelectors = <T extends DaffProduct>(): DaffProductGridMemoizedSelectors<T> => {

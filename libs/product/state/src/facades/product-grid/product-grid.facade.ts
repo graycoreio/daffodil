@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffProductGridFacadeInterface } from './product-grid-facade.interface';
 
@@ -24,7 +24,7 @@ export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implemen
   loading$: Observable<boolean>;
   products$: Observable<T[]>;
 
-  constructor(private store: Store<DaffProductReducersState<T>>) {
+  constructor(private store: Store<DaffProductStateRootSlice<T>>) {
     const {
       selectProductGridLoadingState,
       selectAllProducts,

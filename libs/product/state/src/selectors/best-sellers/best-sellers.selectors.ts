@@ -6,7 +6,10 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffBestSellersReducerState } from '../../reducers/best-sellers/best-sellers-reducer-state.interface';
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import {
+  DaffProductReducersState,
+  DaffProductStateRootSlice,
+} from '../../reducers/product-reducers-state.interface';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
@@ -17,19 +20,19 @@ export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffPr
 	/**
 	 * Selector for best sellers feature state
 	 */
-	selectBestSellersState: MemoizedSelector<Record<string, any>, DaffBestSellersReducerState>;
+	selectBestSellersState: MemoizedSelector<DaffProductStateRootSlice<T>, DaffBestSellersReducerState>;
 	/**
 	 * Selector for the loading state of best selling products.
 	 */
-	selectBestSellersLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+	selectBestSellersLoadingState: MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
 	/**
 	 * Selector for the IDs of best selling products.
 	 */
-	selectBestSellersIdsState: MemoizedSelector<Record<string, any>, T['id'][]>;
+	selectBestSellersIdsState: MemoizedSelector<DaffProductStateRootSlice<T>, T['id'][]>;
 	/**
 	 * Selector for the best selling products.
 	 */
-	selectBestSellersProducts: MemoizedSelector<Record<string, any>, T[]>;
+	selectBestSellersProducts: MemoizedSelector<DaffProductStateRootSlice<T>, T[]>;
 }
 
 const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => {

@@ -1,5 +1,8 @@
 export { daffProductReducers } from './product-reducers';
-export { DaffProductReducersState } from './product-reducers-state.interface';
+export {
+  DaffProductReducersState,
+  DaffProductStateRootSlice,
+} from './product-reducers-state.interface';
 export { DaffProductGridReducerState } from './product-grid/product-grid-reducer-state.interface';
 export { daffProductGridReducer } from './product-grid/product-grid.reducer';
 export { daffProductEntitiesAdapter } from './product-entities/product-entities-reducer-adapter';

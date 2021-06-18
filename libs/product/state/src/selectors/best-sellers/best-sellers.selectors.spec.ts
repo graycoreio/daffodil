@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffBestSellersLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
@@ -20,7 +20,7 @@ import { getDaffBestSellersSelectors } from './best-sellers.selectors';
 
 describe('selectBestSellersState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: DaffProduct;
   const {

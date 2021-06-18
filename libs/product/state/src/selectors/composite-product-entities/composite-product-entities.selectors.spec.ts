@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffCompositeProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
   DaffProductGridLoad,
@@ -21,7 +21,7 @@ import { getDaffCompositeProductEntitiesSelectors } from './composite-product-en
 
 describe('selectCompositeProductEntitiesState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const compositeProductFactory: DaffCompositeProductFactory = new DaffCompositeProductFactory();
   let stubCompositeProduct: DaffCompositeProduct;
   const {

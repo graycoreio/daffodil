@@ -22,6 +22,7 @@ import {
   DaffCompositeConfigurationItem,
 } from '@daffodil/product';
 
+import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
 import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-entities/composite-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 
@@ -32,25 +33,25 @@ export interface DaffCompositeProductMemoizedSelectors {
 	/**
 	 * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
 	 */
-	selectCompositeProductRequiredItemPricesForConfiguration: ( id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> ) => MemoizedSelector<Record<string, any>, DaffPriceRange>;
+	selectCompositeProductRequiredItemPricesForConfiguration: ( id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> ) => MemoizedSelector<DaffProductStateRootSlice, DaffPriceRange>;
 	/**
 	 * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
 	 */
-	selectCompositeProductOptionalItemPricesForConfiguration: ( id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> ) => MemoizedSelector<Record<string, any>, DaffPriceRange>;
+	selectCompositeProductOptionalItemPricesForConfiguration: ( id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> ) => MemoizedSelector<DaffProductStateRootSlice, DaffPriceRange>;
 	/**
 	 * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state and
 	 * excluding unselected, optional item prices.
 	 */
-	selectCompositeProductPricesAsCurrentlyConfigured: ( id: DaffCompositeProduct['id'] ) => MemoizedSelector<Record<string, any>, DaffPriceRange>;
+	selectCompositeProductPricesAsCurrentlyConfigured: ( id: DaffCompositeProduct['id'] ) => MemoizedSelector<DaffProductStateRootSlice, DaffPriceRange>;
 	/**
 	 * Get the discount amount for a composite product. This value will be undefined if all required options are not chosen.
 	 */
-	selectCompositeProductDiscountAmount: ( id: DaffCompositeProduct['id'] ) => MemoizedSelector<Record<string, any>, number>;
+	selectCompositeProductDiscountAmount: ( id: DaffCompositeProduct['id'] ) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Get the discount percent for a composite product. This value will be undefined if all required options are not chosen.
 	 * Note: this percent is computed client-side and should be treated as an estimate rather than an exact value.
 	 */
-	selectCompositeProductDiscountPercent: ( id: DaffCompositeProduct['id'] ) => MemoizedSelector<Record<string, any>, number>;
+	selectCompositeProductDiscountPercent: ( id: DaffCompositeProduct['id'] ) => MemoizedSelector<DaffProductStateRootSlice, number>;
 }
 
 const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelectors => {

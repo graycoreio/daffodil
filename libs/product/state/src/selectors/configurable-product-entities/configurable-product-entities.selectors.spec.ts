@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DaffConfigurableProductApplyAttribute,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
@@ -22,7 +22,7 @@ import { getDaffConfigurableProductEntitiesSelectors } from './configurable-prod
 
 describe('selectConfigurableProductEntitiesState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
   let stubConfigurableProduct: DaffConfigurableProduct;
   const {

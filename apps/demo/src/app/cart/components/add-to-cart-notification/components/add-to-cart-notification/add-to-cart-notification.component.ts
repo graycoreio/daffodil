@@ -15,7 +15,10 @@ import { switchMap } from 'rxjs/operators';
 
 import { DaffCartItem } from '@daffodil/cart';
 import { DaffProduct } from '@daffodil/product';
-import { getDaffProductSelectors } from '@daffodil/product/state';
+import {
+  DaffProductStateRootSlice,
+  getDaffProductSelectors,
+} from '@daffodil/product/state';
 
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import * as fromDemoAddToCartNotification from '../../reducers/index';
@@ -37,7 +40,7 @@ export class AddToCartNotificationComponent implements OnInit {
   productId$: Observable<DaffCartItem['product_id']>;
   product$: Observable<DaffProduct>;
 
-  constructor(private store: Store<fromDemoAddToCartNotification.State>) { }
+  constructor(private store: Store<fromDemoAddToCartNotification.State | DaffProductStateRootSlice>) { }
 
   ngOnInit() {
     const { selectProduct } = getDaffProductSelectors<DaffProduct>();

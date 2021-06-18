@@ -5,7 +5,10 @@ import {
 
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import {
+  DaffProductReducersState,
+  DaffProductStateRootSlice,
+} from '../../reducers/product-reducers-state.interface';
 import { DaffProductReducerState } from '../../reducers/product/product-reducer-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
@@ -16,29 +19,29 @@ export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffPr
 	/**
 	 * Selects the entire state object for the product page feature area.
 	 */
-	selectSelectedProductState: MemoizedSelector<Record<string, any>, DaffProductReducerState>;
+	selectSelectedProductState: MemoizedSelector<DaffProductStateRootSlice, DaffProductReducerState>;
 	/**
 	 * Selects the id of the selected product.
 	 *
 	 * @deprecated
 	 */
-	selectSelectedProductId: MemoizedSelector<Record<string, any>, T['id']>;
+	selectSelectedProductId: MemoizedSelector<DaffProductStateRootSlice, T['id']>;
 	/**
 	 * Selects the qty of the selected product.
 	 *
 	 * @deprecated
 	 */
-	selectSelectedProductQty: MemoizedSelector<Record<string, any>, number>;
+	selectSelectedProductQty: MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects the loading state of the selected product.
 	 */
-	selectSelectedProductLoadingState: MemoizedSelector<Record<string, any>, boolean>;
+	selectSelectedProductLoadingState: MemoizedSelector<DaffProductStateRootSlice, boolean>;
 	/**
 	 * Selects the selected product, which is the product loaded for a product page.
 	 *
 	 * @deprecated
 	 */
-	selectSelectedProduct: MemoizedSelector<Record<string, any>, T>;
+	selectSelectedProduct: MemoizedSelector<DaffProductStateRootSlice, T>;
 }
 
 const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {

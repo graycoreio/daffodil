@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 
 /**
@@ -30,7 +30,7 @@ export class DaffBestSellersFacade<T extends DaffProduct = DaffProduct> implemen
    */
   bestSellers$: Observable<DaffProduct[]>;
 
-  constructor(private store: Store<DaffProductReducersState<T>>) {
+  constructor(private store: Store<DaffProductStateRootSlice<T>>) {
     const {
       selectBestSellersProducts,
       selectBestSellersLoadingState,
