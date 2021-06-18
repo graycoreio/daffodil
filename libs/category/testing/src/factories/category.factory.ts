@@ -9,7 +9,7 @@ export class MockCategory implements DaffCategory {
   url = faker.internet.url();
 	name = faker.commerce.productMaterial();
 	description = faker.random.words(Math.floor(Math.random() * 20));
-	meta_name = faker.commerce.productMaterial();
+	meta_title = faker.commerce.productMaterial();
 	meta_description = faker.random.words(Math.floor(Math.random() * 20));
   breadcrumbs = [{
     id: faker.datatype.uuid(),

@@ -15,9 +15,9 @@ export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends D
 	name: string;
 	description?: string;
 	/**
-	 * The name of the category for usage in the tab title of the webpage.
+	 * A title for the category for usage in the tab title of the webpage.
 	 */
-	meta_name?: string;
+	meta_title?: string;
 	/**
 	 * An overview description of the category for search engine results.
 	 */

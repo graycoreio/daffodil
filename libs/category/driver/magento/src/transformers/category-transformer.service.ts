@@ -21,7 +21,7 @@ export class DaffMagentoCategoryTransformerService {
       url: `${category.url_path}${category.url_suffix}`,
       name: category.name,
       description: category.description,
-      meta_name: category.meta_title,
+      meta_title: category.meta_title,
       meta_description: category.meta_description,
       children_count: category.children_count,
       breadcrumbs: category.breadcrumbs

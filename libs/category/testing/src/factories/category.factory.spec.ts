@@ -33,7 +33,7 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
       expect(result.url).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.description).toBeDefined();
-      expect(result.meta_name).toBeDefined();
+      expect(result.meta_title).toBeDefined();
       expect(result.meta_description).toBeDefined();
       expect(result.children_count).toBeDefined();
       expect(result.total_products).toBeDefined();

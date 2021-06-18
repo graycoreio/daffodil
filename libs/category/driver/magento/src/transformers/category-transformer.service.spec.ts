@@ -48,7 +48,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
         url_path: url,
         url_suffix: '.html',
         name: stubCategory.name,
-        meta_title: stubCategory.meta_name,
+        meta_title: stubCategory.meta_title,
         meta_description: stubCategory.meta_description,
         breadcrumbs: [{
           category_uid: stubCategory.breadcrumbs[0].id,
