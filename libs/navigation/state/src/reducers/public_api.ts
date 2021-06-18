@@ -1,5 +1,8 @@
 export { daffNavigationReducers } from './navigation-reducers';
-export { DaffNavigationReducersState } from './navigation-reducers.interface';
+export {
+  DaffNavigationReducersState,
+  DaffNavigationStateRootSlice,
+} from './navigation-reducers.interface';
 export { DaffNavigationReducerState } from './navigation/navigation-reducer-state.interface';
 export {
   daffNavigationReducer,
