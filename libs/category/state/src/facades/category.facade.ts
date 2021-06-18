@@ -21,7 +21,7 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 import {
-  DaffCategoryReducersState,
+  DaffCategoryStateRootSlice,
   DaffCategoryReducerState,
 } from '../reducers/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
@@ -90,7 +90,7 @@ export class DaffCategoryFacade<
 	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory(categoryId)));
 	}
 
-	constructor(private store: Store<DaffCategoryReducersState<V>>) {
+	constructor(private store: Store<DaffCategoryStateRootSlice<V, W>>) {
 	  this.category$ = this.store.pipe(select(this.categorySelectors.selectSelectedCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));

@@ -21,12 +21,12 @@ import {
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 
-import { DaffCategoryRootSlice } from '../../reducers/public_api';
+import { DaffCategoryStateRootSlice } from '../../reducers/public_api';
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 
-  let store: Store<DaffCategoryRootSlice>;
+  let store: Store<DaffCategoryStateRootSlice>;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;

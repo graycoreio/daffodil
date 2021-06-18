@@ -10,12 +10,9 @@ import {
   DaffCategory,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
-import {
-  DaffProductStateRootSlice,
-  getDaffProductSelectors,
-} from '@daffodil/product/state';
+import { getDaffProductSelectors } from '@daffodil/product/state';
 
-import { DaffCategoryRootSlice } from '../reducers/public_api';
+import { DaffCategoryStateRootSlice } from '../reducers/public_api';
 import { DaffCategoryEntitiesMemoizedSelectors } from './category-entities/category-entities.selector';
 import { getDaffCategoryEntitiesSelectors } from './category-entities/category-entities.selector';
 import {
@@ -30,19 +27,19 @@ import {
 export interface DaffCategoryMemoizedSelectors<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct
-  > extends
+> extends
   DaffCategoryFeatureMemoizedSelectors<V>,
   DaffCategoryPageMemoizedSelectors<V>,
   DaffCategoryEntitiesMemoizedSelectors<V> {
-  selectSelectedCategory: MemoizedSelector<Record<string, any>, V>;
-  selectCategoryPageProducts: MemoizedSelector<Record<string, any>, W[]>;
-  selectCategory: (categoryId: V['id']) => MemoizedSelector<Record<string, any>, V>;
-  selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<Record<string, any>, W[]>;
-  selectTotalProductsByCategory: (categoryId: V['id']) => MemoizedSelector<Record<string, any>, number>;
+  selectSelectedCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  selectCategoryPageProducts: MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
+  selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
+  selectTotalProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
 }
 
 const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends DaffProduct>(): DaffCategoryMemoizedSelectors<V, W> => {
-  const { selectProductEntities, selectAllProducts } = getDaffProductSelectors<W>();
+  const { selectAllProducts,selectProductEntities } = getDaffProductSelectors<W>();
 
   const {
     selectCategoryEntities,
@@ -60,22 +57,23 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
     (entities: Dictionary<V>, selectedCategoryId: V['id']) => entities[selectedCategoryId],
   );
 
-  const selectCategoryPageProducts = createSelector(
+  const selectCategoryPageProducts = createSelector<DaffCategoryStateRootSlice<V, W>, string[], Dictionary<W>, W[]>(
     selectCategoryPageProductIds,
     selectProductEntities,
     (ids, products: Dictionary<W>) => ids.map(id => products[id]).filter(p => p != null),
   );
 
-  const selectCategory = defaultMemoize((categoryId: V['id']) => createSelector(
-    selectCategoryEntities,
-    (entities: Dictionary<V>) => entities[categoryId],
-  )).memoized;
+  const selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V> =
+    defaultMemoize((categoryId: V['id']) => createSelector(
+      selectCategoryEntities,
+      (entities: Dictionary<V>) => entities[categoryId],
+    )).memoized;
 
-  const selectProductsByCategory = defaultMemoize((categoryId: V['id']) => createSelector<DaffCategoryRootSlice | DaffProductStateRootSlice, Dictionary<V>, W[], W[]>(
-    selectCategoryEntities,
+  const selectProductsByCategory = defaultMemoize((categoryId: V['id']) => createSelector<DaffCategoryStateRootSlice<V, W>, V, W[], W[]>(
+    selectCategory(categoryId),
     selectAllProducts,
-    (entities, products) => entities[categoryId] && entities[categoryId].product_ids
-      ? products.filter(product => entities[categoryId].product_ids.indexOf(product.id) >= 0)
+    (category, products) => category?.product_ids
+      ? products.filter(product => category.product_ids.indexOf(product.id) >= 0)
       : [],
   )).memoized;
 

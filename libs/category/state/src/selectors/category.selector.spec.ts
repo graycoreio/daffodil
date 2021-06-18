@@ -13,7 +13,7 @@ import {
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
-  DaffCategoryReducersState,
+  DaffCategoryStateRootSlice,
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
@@ -35,7 +35,7 @@ import { getDaffCategorySelectors } from './category.selector';
 
 describe('DaffCategorySelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategory>>;
+  let store: Store<DaffCategoryStateRootSlice>;
 
   let categoryFactory: DaffCategoryFactory;
   let metadataFactory: DaffCategoryPageMetadataFactory;

@@ -19,42 +19,43 @@ import {
 import {
   DaffCategoryReducerState,
   DaffCategoryReducersState,
+  DaffCategoryStateRootSlice,
 } from '../../reducers/public_api';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
 export interface DaffCategoryPageMemoizedSelectors<
 	V extends DaffGenericCategory<V> = DaffCategory
 > {
-	selectCategoryState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState>;
-	selectCategoryPageMetadata: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata>;
-	selectCategoryCurrentPage: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['current_page']>;
-	selectCategoryTotalPages: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['total_pages']>;
-	selectCategoryPageSize: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['page_size']>;
-	selectCategoryFilters: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['filters']>;
-	selectCategorySortOptions: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['sort_options']['options']>;
-	selectCategoryPageProductIds: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['product_ids']>;
-	selectIsCategoryPageEmpty: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryPageTotalProducts: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['total_products']>;
+	selectCategoryState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState>;
+	selectCategoryPageMetadata: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata>;
+	selectCategoryCurrentPage: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['current_page']>;
+	selectCategoryTotalPages: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['total_pages']>;
+	selectCategoryPageSize: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['page_size']>;
+	selectCategoryFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['filters']>;
+	selectCategorySortOptions: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['sort_options']['options']>;
+	selectCategoryPageProductIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['product_ids']>;
+	selectIsCategoryPageEmpty: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+	selectCategoryPageTotalProducts: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['total_products']>;
   /**
    * Returns a dict of filters and only their applied options.
    * Filters with no applied options will be omitted.
    */
-	selectCategoryPageAppliedFilters: MemoizedSelector<Record<string, any>, Dict<DaffCategoryFilter>>;
-	selectCategoryPageAppliedSortOption: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['applied_sort_option']>;
-	selectCategoryPageAppliedSortDirection: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['applied_sort_direction']>;
-	selectCategoryPageState: MemoizedSelector<Record<string, any>, DaffCategoryReducerState['daffState']>;
-	selectSelectedCategoryId: MemoizedSelector<Record<string, any>, DaffCategoryPageMetadata['id']>;
+	selectCategoryPageAppliedFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dict<DaffCategoryFilter>>;
+	selectCategoryPageAppliedSortOption: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_option']>;
+	selectCategoryPageAppliedSortDirection: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_direction']>;
+	selectCategoryPageState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState['daffState']>;
+	selectSelectedCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
   /**
    * @deprecated Use selectIsCategoryPageResolving instead
    */
-	selectCategoryLoading: MemoizedSelector<Record<string, any>, boolean>;
+	selectCategoryLoading: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
   /**
    * @deprecated Use selectIsCategoryPageResolving and selectIsCategoryPageMutating instead
    */
-	selectCategoryProductsLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectCategoryErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-  selectIsCategoryPageMutating: MemoizedSelector<Record<string, any>, boolean>;
-  selectIsCategoryPageResolving: MemoizedSelector<Record<string, any>, boolean>;
+	selectCategoryProductsLoading: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+	selectCategoryErrors: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffStateError[]>;
+  selectIsCategoryPageMutating: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+  selectIsCategoryPageResolving: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
 }
 
 const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => {

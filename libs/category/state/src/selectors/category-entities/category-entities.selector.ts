@@ -14,15 +14,15 @@ import {
 
 import { daffCategoryEntitiesAdapter } from '../../reducers/category-entities/category-entities-adapter';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
-import { DaffCategoryRootSlice } from '../../reducers/public_api';
+import { DaffCategoryStateRootSlice } from '../../reducers/public_api';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
 export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCategory<V> = DaffCategory> {
-	selectCategoryEntitiesState: MemoizedSelector<DaffCategoryRootSlice, EntityState<V>>;
-	selectCategoryIds: MemoizedSelector<DaffCategoryRootSlice, string[] | number[]>;
-	selectCategoryEntities: MemoizedSelector<DaffCategoryRootSlice, Dictionary<V>>;
-	selectAllCategories: MemoizedSelector<DaffCategoryRootSlice, V[]>;
-	selectCategoryTotal: MemoizedSelector<DaffCategoryRootSlice, number>;
+	selectCategoryEntitiesState: MemoizedSelector<DaffCategoryStateRootSlice<V>, EntityState<V>>;
+	selectCategoryIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, string[] | number[]>;
+	selectCategoryEntities: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dictionary<V>>;
+	selectAllCategories: MemoizedSelector<DaffCategoryStateRootSlice<V>, V[]>;
+	selectCategoryTotal: MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
 }
 
 const createCategoryFeatureSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryEntitiesMemoizedSelectors<V> => {
