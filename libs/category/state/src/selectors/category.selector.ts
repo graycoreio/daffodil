@@ -10,8 +10,12 @@ import {
   DaffCategory,
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
-import { getDaffProductSelectors } from '@daffodil/product/state';
+import {
+  DaffProductStateRootSlice,
+  getDaffProductSelectors,
+} from '@daffodil/product/state';
 
+import { DaffCategoryRootSlice } from '../reducers/public_api';
 import { DaffCategoryEntitiesMemoizedSelectors } from './category-entities/category-entities.selector';
 import { getDaffCategoryEntitiesSelectors } from './category-entities/category-entities.selector';
 import {
@@ -67,7 +71,7 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
     (entities: Dictionary<V>) => entities[categoryId],
   )).memoized;
 
-  const selectProductsByCategory = defaultMemoize((categoryId: V['id']) => createSelector(
+  const selectProductsByCategory = defaultMemoize((categoryId: V['id']) => createSelector<DaffCategoryRootSlice | DaffProductStateRootSlice, Dictionary<V>, W[], W[]>(
     selectCategoryEntities,
     selectAllProducts,
     (entities, products) => entities[categoryId] && entities[categoryId].product_ids
