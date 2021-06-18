@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
+import { DaffAuthorizeNetStateRootSlice } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
 
@@ -22,7 +22,7 @@ export class DaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
   paymentError$: Observable<DaffStateError>;
   acceptJsLoadError$: Observable<DaffStateError>;
 
-  constructor(private store: Store<DaffAuthorizeNetReducersState>) {
+  constructor(private store: Store<DaffAuthorizeNetStateRootSlice>) {
     const {
       selectIsAcceptJsLoaded,
       selectLoading,
