@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 import { DaffCart } from '@daffodil/cart';
 import {
   daffCartReducers,
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   DAFF_CART_STORE_FEATURE_KEY,
 }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -30,7 +30,7 @@ import { CartResolver } from './cart-resolver.service';
 describe('CartResolver', () => {
   const actions$: Observable<any> = null;
   let cartResolver: CartResolver;
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartStateRootSlice>;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
   let router: Router;

@@ -26,15 +26,15 @@ export interface DaffCartMemoizedSelectors<
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > extends DaffCartFeatureMemoizedSelectors<T, V>,
-	DaffCartOrderMemoizedSelectors<V>,
+	DaffCartOrderMemoizedSelectors<T, V, U>,
 	DaffCartStateMemoizedSelectors<T>,
-	DaffCartItemEntitiesMemoizedSelectors<U> {}
+	DaffCartItemEntitiesMemoizedSelectors<T, V, U> {}
 
 const createCartSelectors = <
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
->(): DaffCartMemoizedSelectors<T> => ({
+>(): DaffCartMemoizedSelectors<T, V, U> => ({
     ...getDaffCartFeatureSelector<T, V, U>(),
     ...getCartOrderSelectors<T, V, U>(),
     ...getCartSelectors<T, V, U>(),

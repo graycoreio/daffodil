@@ -31,7 +31,7 @@ import {
   DaffCartDriver,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
-import { DaffCartReducersState } from '@daffodil/cart/state';
+import { DaffCartStateRootSlice } from '@daffodil/cart/state';
 
 import { daffCartSelectors } from '../../selectors/cart-selector';
 import {
@@ -44,7 +44,7 @@ import {
 export class CartResolverEffects {
   constructor(
 		private actions$: Actions,
-		private store: Store<DaffCartReducersState>,
+		private store: Store<DaffCartStateRootSlice>,
 		private cartStorage: DaffCartStorageService,
 		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface,
   ) {}
