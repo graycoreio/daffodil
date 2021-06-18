@@ -6,6 +6,8 @@ export interface MagentoCategory {
   url_suffix: string;
 	name?: string;
 	description?: string;
+	meta_title?: string;
+	meta_description?: string;
   breadcrumbs?: MagentoBreadcrumb[];
   level?: number;
 	children_count?: number;
