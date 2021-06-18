@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageLoad,
@@ -46,7 +47,10 @@ describe('selectProductState', () => {
     store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
-    store.dispatch(new DaffProductPageLoadSuccess(mockProduct));
+    store.dispatch(new DaffProductPageLoadSuccess({
+      id: mockProduct.id,
+      products: daffArrayToDict([mockProduct], p => p.id),
+    }));
   });
 
   describe('SelectedProductState', () => {

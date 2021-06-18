@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -72,8 +73,12 @@ describe('DaffProductPageEffects', () => {
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffProductDriver, 'get').and.returnValue(of(mockProduct));
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(mockProduct);
+        const response = {
+          id: mockProduct.id,
+          products: daffArrayToDict([mockProduct], p => p.id),
+        };
+        spyOn(daffProductDriver, 'get').and.returnValue(of(response));
+        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
         actions$ = hot('--a', { a: productPageLoadAction });
         expected = cold('--b', { b: productLoadSuccessAction });
       });
@@ -112,8 +117,12 @@ describe('DaffProductPageEffects', () => {
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffProductDriver, 'getByUrl').and.returnValue(of(mockProduct));
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(mockProduct);
+        const response = {
+          id: mockProduct.id,
+          products: daffArrayToDict([mockProduct], p => p.id),
+        };
+        spyOn(daffProductDriver, 'getByUrl').and.returnValue(of(response));
+        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
         actions$ = hot('--a', { a: productPageLoadAction });
         expected = cold('--b', { b: productLoadSuccessAction });
       });

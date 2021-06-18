@@ -1,3 +1,4 @@
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -84,7 +85,10 @@ describe('Product | Product Entities Reducer', () => {
       product = productFactory.create();
       productId = product.id;
 
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
+      });
 
       result = daffProductEntitiesReducer(initialState, productPageLoadSuccess);
     });
@@ -104,7 +108,10 @@ describe('Product | Product Entities Reducer', () => {
       product = productFactory.create();
       productId = product.id;
 
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
+      });
 
       result = daffProductEntitiesReducer(initialState, productLoadSuccess);
     });

@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -49,7 +50,10 @@ describe('Configurable Product Selectors | integration tests', () => {
   describe('when one attribute (material) is chosen', () => {
 
     beforeEach(() => {
-      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: stubConfigurableProduct.id,
+        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+      }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         'material',
@@ -75,7 +79,10 @@ describe('Configurable Product Selectors | integration tests', () => {
   describe('when more than one attribute (color and size) is chosen', () => {
 
     beforeEach(() => {
-      store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: stubConfigurableProduct.id,
+        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+      }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         'color',
@@ -150,7 +157,10 @@ describe('Configurable Product Selectors | integration tests', () => {
   });
 
   it('returns a dictionary of attribute values that are still selectable', () => {
-    store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+    store.dispatch(new DaffProductLoadSuccess({
+      id: stubConfigurableProduct.id,
+      products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+    }));
     const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
     const expected = cold('a', {
       a: {

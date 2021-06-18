@@ -49,9 +49,11 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      if(action.payload.type === DaffProductTypeEnum.Composite) {
+      const product = action.payload.products[action.payload.id];
+
+      if(product.type === DaffProductTypeEnum.Composite) {
         return adapter.upsertOne(
-          buildCompositeProductAppliedOptionsEntity(<V><unknown>action.payload),
+          buildCompositeProductAppliedOptionsEntity(<V><unknown>product),
           state,
         );
       };

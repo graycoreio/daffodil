@@ -50,9 +50,11 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      if(action.payload.type === DaffProductTypeEnum.Configurable) {
+      const product = action.payload.products[action.payload.id];
+
+      if(product.type === DaffProductTypeEnum.Configurable) {
         return adapter.upsertOne(
-          buildConfigurableProductAppliedAttributesEntity(action.payload),
+          buildConfigurableProductAppliedAttributesEntity(product),
           state,
         );
       };

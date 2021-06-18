@@ -13,6 +13,7 @@ import {
   daffMultiply,
   daffSubtract,
 } from '@daffodil/core';
+import { daffArrayToDict } from '@daffodil/core';
 import {
   DaffCompositeProduct,
   DaffCompositeConfigurationItem,
@@ -77,7 +78,10 @@ describe('DaffCompositeProductFacade', () => {
     stubCompositeProduct.items[0].options[1].quantity = 1;
     stubCompositeProduct.items[1].options[0].quantity = 1;
     stubCompositeProduct.items[1].options[1].quantity = 1;
-    store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
+    store.dispatch(new DaffProductLoadSuccess({
+      id: stubCompositeProduct.id,
+      products: daffArrayToDict([stubCompositeProduct], p => p.id),
+    }));
   });
 
   it('should be created', () => {
@@ -205,7 +209,7 @@ describe('DaffCompositeProductFacade', () => {
   describe('getDiscountAmount', () => {
 
     it('should return the discount percent for a composite product', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -224,6 +228,10 @@ describe('DaffCompositeProductFacade', () => {
             ],
           },
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
 
       const expectedDiscountAmount = daffAdd(stubCompositeProduct.discount.amount, stubCompositeProduct.items[0].options[0].discount.amount);
@@ -236,7 +244,7 @@ describe('DaffCompositeProductFacade', () => {
   describe('getDiscountPercent', () => {
 
     it('should return the discount percent for a composite product', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -255,6 +263,10 @@ describe('DaffCompositeProductFacade', () => {
             ],
           },
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
 
       const totalOriginalPrice = daffAdd(stubCompositeProduct.price, stubCompositeProduct.items[0].options[0].price);

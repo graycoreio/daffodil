@@ -1,3 +1,4 @@
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageLoad,
@@ -85,7 +86,10 @@ describe('Product | Product Reducer', () => {
         loading: true,
       };
 
-      const productLoadSuccess = new DaffProductPageLoadSuccess(product);
+      const productLoadSuccess = new DaffProductPageLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
+      });
       result = daffProductReducer(state, productLoadSuccess);
     });
 

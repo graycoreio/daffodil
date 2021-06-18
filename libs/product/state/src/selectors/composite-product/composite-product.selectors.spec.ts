@@ -14,6 +14,7 @@ import {
   daffMultiply,
   daffSubtract,
 } from '@daffodil/core';
+import { daffArrayToDict } from '@daffodil/core';
 import {
   DaffCompositeProduct,
   DaffProduct,
@@ -99,8 +100,10 @@ describe('Composite Product Selectors | integration tests', () => {
       percent: null,
     };
     store = TestBed.inject(Store);
-    store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
-    store.dispatch(new DaffProductLoadSuccess(stubProduct));
+    store.dispatch(new DaffProductLoadSuccess({
+      id: stubCompositeProduct.id,
+      products: daffArrayToDict([stubCompositeProduct, stubProduct], p => p.id),
+    }));
   });
 
   describe('selectCompositeProductRequiredItemPricesForConfiguration', () => {
@@ -539,7 +542,7 @@ describe('Composite Product Selectors | integration tests', () => {
     });
 
     it('should return a price range that reflects the expected option quantity when the default item option is out of stock', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -554,6 +557,10 @@ describe('Composite Product Selectors | integration tests', () => {
           },
           ...stubCompositeProduct.items.slice(1),
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
 
       const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
@@ -603,7 +610,7 @@ describe('Composite Product Selectors | integration tests', () => {
     });
 
     it('should not throw an error when optional items are not provided', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -622,6 +629,10 @@ describe('Composite Product Selectors | integration tests', () => {
           },
           ...stubCompositeProduct.items.slice(1),
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
       const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expected = cold('a', { a: stubCompositeProduct.discount.amount });
@@ -630,7 +641,7 @@ describe('Composite Product Selectors | integration tests', () => {
     });
 
     it('should return undefined when required options are not chosen', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -649,6 +660,10 @@ describe('Composite Product Selectors | integration tests', () => {
           },
           ...stubCompositeProduct.items.slice(1),
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
       const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expected = cold('a', { a: undefined });
@@ -657,7 +672,7 @@ describe('Composite Product Selectors | integration tests', () => {
     });
 
     it('should return the discount amount when all required options are chosen', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -676,6 +691,10 @@ describe('Composite Product Selectors | integration tests', () => {
             ],
           },
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
 
       const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
@@ -707,7 +726,7 @@ describe('Composite Product Selectors | integration tests', () => {
     });
 
     it('should return undefined when required options are not chosen', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -726,6 +745,10 @@ describe('Composite Product Selectors | integration tests', () => {
           },
           ...stubCompositeProduct.items.slice(1),
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
       const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));
       const expected = cold('a', { a: undefined });
@@ -734,7 +757,7 @@ describe('Composite Product Selectors | integration tests', () => {
     });
 
     it('should return a percent discount when all required options are chosen', () => {
-      store.dispatch(new DaffProductLoadSuccess({
+      const product = {
         ...stubCompositeProduct,
         items: [
           {
@@ -753,6 +776,10 @@ describe('Composite Product Selectors | integration tests', () => {
             ],
           },
         ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: daffArrayToDict([product], p => p.id),
       }));
 
       const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));

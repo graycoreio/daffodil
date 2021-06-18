@@ -4,8 +4,12 @@ import {
   of,
 } from 'rxjs';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductServiceInterface } from '@daffodil/product/driver';
+import {
+  DaffProductDriverResponse,
+  DaffProductServiceInterface,
+} from '@daffodil/product/driver';
 import {
   DaffProductFactory,
   DaffProductImageFactory,
@@ -46,11 +50,26 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  get(productId: DaffProduct['id']): Observable<DaffProduct> {
-    return of(this.productFactory.create({ images: this.productImageFactory.createMany(5) }));
+  /**
+   * Get product by ID
+   *
+   * @param productId product ID
+   * @returns An Observable of a Product
+   */
+  get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
+    return of({
+      id: productId,
+      products: daffArrayToDict([
+        this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      ], p => p.id),
+    });
   }
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
-    return of(this.productFactory.create({ url, images: this.productImageFactory.createMany(5) }));
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
+    const product = this.productFactory.create({ images: this.productImageFactory.createMany(5), url });
+    return of({
+      id: product.id,
+      products: daffArrayToDict([product], p => p.id),
+    });
   }
 }

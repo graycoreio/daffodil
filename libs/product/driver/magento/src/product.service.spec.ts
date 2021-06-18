@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 
 import { schema } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
+import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
   GetProductQuery,
   MagentoSimpleProduct,
@@ -62,7 +63,8 @@ describe('Product | Magento | ProductService', () => {
     it('should return a DaffProduct', done => {
       service.get('TESTING_SKU').subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
-        expect(r.name).toBeDefined();
+        expect(r.products[stubSimpleProduct.sku].id).toEqual(stubSimpleProduct.sku);
+        expect(r.products[stubSimpleProduct.sku].name).toBeDefined();
         done();
       });
 
@@ -82,7 +84,8 @@ describe('Product | Magento | ProductService', () => {
       it('should be able to retrieve a DaffProduct for a simple', done => {
         service.get('TESTING_SKU').subscribe(r => {
           expect(r.id).toEqual(stubSimpleProduct.sku);
-          expect(r.name).toBeDefined();
+          expect(r.products[stubSimpleProduct.sku].id).toEqual(stubSimpleProduct.sku);
+          expect(r.products[stubSimpleProduct.sku].name).toBeDefined();
           done();
         });
 
@@ -102,7 +105,7 @@ describe('Product | Magento | ProductService', () => {
 
   describe('getByUrl | getting a single product by url', () => {
     let url: string;
-    let result: Observable<DaffProduct>;
+    let result: Observable<DaffProductDriverResponse>;
 
     beforeEach(() => {
       url = '/path/to/TESTING_URL?with=query#fragment';
@@ -112,7 +115,8 @@ describe('Product | Magento | ProductService', () => {
     it('should return a DaffProduct', done => {
       result.subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
-        expect(r.name).toBeDefined();
+        expect(r.products[stubSimpleProduct.sku].id).toEqual(stubSimpleProduct.sku);
+        expect(r.products[stubSimpleProduct.sku].name).toBeDefined();
         done();
       });
 

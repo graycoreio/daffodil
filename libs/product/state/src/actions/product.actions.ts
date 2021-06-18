@@ -2,14 +2,15 @@ import { Action } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
+import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 /**
  * Action types for Product Actions.
  */
 export enum DaffProductActionTypes {
-    ProductLoadAction = '[Product] Load Action',
-    ProductLoadSuccessAction = '[Product] Load Success Action',
-    ProductLoadFailureAction = '[Product] Load Failure Action',
+  ProductLoadAction = '[Product] Load Action',
+  ProductLoadSuccessAction = '[Product] Load Success Action',
+  ProductLoadFailureAction = '[Product] Load Failure Action',
 }
 
 /**
@@ -29,9 +30,9 @@ export class DaffProductLoad implements Action {
  * @param payload - A Product
  */
 export class DaffProductLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
-    readonly type = DaffProductActionTypes.ProductLoadSuccessAction;
+  readonly type = DaffProductActionTypes.ProductLoadSuccessAction;
 
-    constructor(public payload: T) {}
+  constructor(public payload: DaffProductDriverResponse<T>) {}
 }
 
 /**
@@ -46,6 +47,6 @@ export class DaffProductLoadFailure implements Action {
 }
 
 export type DaffProductActions<T extends DaffProduct = DaffProduct> =
-    | DaffProductLoad
-    | DaffProductLoadSuccess<T>
-    | DaffProductLoadFailure;
+  | DaffProductLoad
+  | DaffProductLoadSuccess<T>
+  | DaffProductLoadFailure;

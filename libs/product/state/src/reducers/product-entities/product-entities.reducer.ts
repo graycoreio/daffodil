@@ -32,11 +32,8 @@ export function daffProductEntitiesReducer<T extends DaffProduct>(
       return adapter.upsertMany(action.payload, state);
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
     case DaffProductActionTypes.ProductLoadSuccessAction:
-      return adapter.upsertOne(
-        {
-          id: action.payload.id,
-          ...action.payload,
-        },
+      return adapter.upsertMany(
+        Object.keys(action.payload.products).map(k => action.payload.products[k]),
         state,
       );
     case DaffProductGridActionTypes.ProductGridResetAction:

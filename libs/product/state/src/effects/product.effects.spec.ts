@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -71,8 +72,14 @@ describe('DaffProductEffects', () => {
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffProductDriver, 'get').and.returnValue(of(mockProduct));
-        const productLoadSuccessAction = new DaffProductLoadSuccess(mockProduct);
+        spyOn(daffProductDriver, 'get').and.returnValue(of({
+          id: mockProduct.id,
+          products: daffArrayToDict([mockProduct], p => p.id),
+        }));
+        const productLoadSuccessAction = new DaffProductLoadSuccess({
+          id: mockProduct.id,
+          products: daffArrayToDict([mockProduct], p => p.id),
+        });
         actions$ = hot('--a', { a: productLoadAction });
         expected = cold('--b', { b: productLoadSuccessAction });
       });
