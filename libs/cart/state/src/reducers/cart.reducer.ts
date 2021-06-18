@@ -15,7 +15,7 @@ import { cartShippingMethodsReducer } from './cart-shipping-methods/cart-shippin
 import { DaffCartReducerState } from './cart-state.interface';
 import { cartReducer } from './cart/cart.reducer';
 
-const REDUCERS = [
+const composedReducers = daffCreateMetaReducer([
   cartReducer,
   cartItemReducer,
   cartBillingAddressReducer,
@@ -26,7 +26,7 @@ const REDUCERS = [
   cartPaymentMethodsReducer,
   cartCouponReducer,
   cartResolveReducer,
-];
+]);
 
 /**
  * Calls each of the individual cart reducers in turn,
@@ -36,5 +36,5 @@ export function daffCartReducer<T extends DaffCart = DaffCart>(
   state = initialState,
   action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
-  return daffCreateMetaReducer<DaffCartReducerState<T>, ActionTypes<T>>(REDUCERS)(state, action);
+  return composedReducers(state, action);
 }
