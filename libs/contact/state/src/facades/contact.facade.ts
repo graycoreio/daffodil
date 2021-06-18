@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffContactStateModule } from '../contact.module';
+import { DaffContactStateRootSlice } from '../reducers/contact.reducer';
 import {
-  DaffContactFeatureState,
   selectDaffContactLoading,
   selectDaffContactError,
   selectDaffContactSuccess,
@@ -25,7 +25,7 @@ export class DaffContactFacade implements DaffContactFacadeInterface {
 	error$: Observable<DaffStateError[]> = this.store.select(selectDaffContactError);
 	loading$: Observable<boolean> = this.store.select(selectDaffContactLoading);
 
-	constructor(private store: Store<DaffContactFeatureState>) { }
+	constructor(private store: Store<DaffContactStateRootSlice>) { }
 	dispatch(action: Action) {
 	  this.store.dispatch(action);
 	}

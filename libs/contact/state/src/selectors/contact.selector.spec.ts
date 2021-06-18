@@ -10,18 +10,18 @@ import {
   reducer,
   DaffContactState,
   DAFF_CONTACT_STORE_FEATURE_KEY,
+  DaffContactStateRootSlice,
 } from '@daffodil/contact/state';
 
 import {
   selectDaffContactLoading,
   selectDaffContactSuccess,
   selectDaffContactError,
-  DaffContactFeatureState,
 } from './contact.selector';
 
 describe('the contact selectors', () => {
 
-  let store: Store<DaffContactFeatureState>;
+  let store: Store<DaffContactStateRootSlice>;
   let mockContactState: DaffContactState;
   beforeEach(() => {
     TestBed.configureTestingModule({
