@@ -14,6 +14,8 @@ export class MockMagentoCoreProduct implements MagentoProduct {
   url_key = faker.random.alphaNumeric(16);
   url_suffix = '.html';
   name = faker.random.word();
+  meta_title = faker.random.word();
+  meta_description = faker.random.words(3);
 	sku = faker.random.alphaNumeric(16);
 	stock_status = MagentoProductStockStatusEnum.InStock;
   image = {
