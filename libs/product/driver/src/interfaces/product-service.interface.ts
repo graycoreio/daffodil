@@ -2,6 +2,8 @@ import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
+
+import { DaffProductDriverResponse } from '../models/response.interface';
 /**
  * Injection token that serves as a placeholder for any service that implements the DaffProductServiceInterface.
  */
@@ -26,11 +28,11 @@ export interface DaffProductServiceInterface<T extends DaffProduct = DaffProduct
    *
    * @param productId - A string of the product ID.
    */
-  get(productId: T['id']): Observable<T>;
+  get(productId: T['id']): Observable<DaffProductDriverResponse<T>>;
   /**
    * Get a product by URL.
    *
    * @param url - A string of the product URL.
    */
-  getByUrl(url: DaffProduct['url']): Observable<T>;
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse<T>>;
 }
