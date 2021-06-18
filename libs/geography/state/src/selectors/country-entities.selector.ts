@@ -7,6 +7,7 @@ import {
 
 import { DaffCountry } from '@daffodil/geography';
 
+import { DaffGeographyStateRootSlice } from '../reducers/geography-reducers-state.interface';
 import {
   getCountryAdapter,
   DaffCountryEntityState,
@@ -14,14 +15,14 @@ import {
 import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 
 export interface DaffCountryEntitySelectors<T extends DaffCountry = DaffCountry> {
-  selectCountryEntitiesState: MemoizedSelector<Record<string, any>, DaffCountryEntityState<T>>;
-  selectCountryIds: MemoizedSelector<Record<string, any>, T['id'][]>;
-  selectCountryEntities: MemoizedSelector<Record<string, any>, Dictionary<T>>;
-  selectAllCountries: MemoizedSelector<Record<string, any>, T[]>;
-  selectCountryTotal: MemoizedSelector<Record<string, any>, number>;
-  selectCountry: (id: T['id']) => MemoizedSelector<Record<string, any>, T>;
-  selectCountrySubdivisions: (id: T['id']) => MemoizedSelector<Record<string, any>, T['subdivisions']>;
-  selectIsCountryFullyLoaded: (id: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
+  selectCountryEntitiesState: MemoizedSelector<DaffGeographyStateRootSlice<T>, DaffCountryEntityState<T>>;
+  selectCountryIds: MemoizedSelector<DaffGeographyStateRootSlice<T>, T['id'][]>;
+  selectCountryEntities: MemoizedSelector<DaffGeographyStateRootSlice<T>, Dictionary<T>>;
+  selectAllCountries: MemoizedSelector<DaffGeographyStateRootSlice<T>, T[]>;
+  selectCountryTotal: MemoizedSelector<DaffGeographyStateRootSlice<T>, number>;
+  selectCountry: (id: T['id']) => MemoizedSelector<DaffGeographyStateRootSlice<T>, T>;
+  selectCountrySubdivisions: (id: T['id']) => MemoizedSelector<DaffGeographyStateRootSlice<T>, T['subdivisions']>;
+  selectIsCountryFullyLoaded: (id: T['id']) => MemoizedSelector<DaffGeographyStateRootSlice<T>, boolean>;
 }
 
 const createCountryEntitySelectors = <T extends DaffCountry = DaffCountry>() => {

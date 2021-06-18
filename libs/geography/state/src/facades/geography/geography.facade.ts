@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
-import { DaffGeographyFeatureState } from '../../reducers/public_api';
+import { DaffGeographyStateRootSlice } from '../../reducers/public_api';
 import {
   getDaffGeographySelectors,
   DaffGeographyAllSelectors,
@@ -36,7 +36,7 @@ export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements
   private _selectCountrySubdivisions: DaffGeographyAllSelectors<T>['selectCountrySubdivisions'];
   private _selectIsCountryFullyLoaded: DaffGeographyAllSelectors<T>['selectIsCountryFullyLoaded'];
 
-  constructor(private store: Store<DaffGeographyFeatureState<T>>) {
+  constructor(private store: Store<DaffGeographyStateRootSlice<T>>) {
     const {
       selectCountryIds,
       selectCountryEntities,
