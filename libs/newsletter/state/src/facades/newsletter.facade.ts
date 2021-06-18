@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffContactStateRootSlice } from '../reducers/newsletter.reducer';
 import {
-  State,
   selectDaffNewsletterSuccess,
   selectDaffNewsletterError,
   selectDaffNewsletterLoading,
@@ -21,7 +21,7 @@ export class DaffNewsletterFacade implements DaffNewsletterFacadeInterface {
   error$: Observable<DaffStateError> = this.store.select(selectDaffNewsletterError);
   loading$: Observable<boolean> = this.store.select(selectDaffNewsletterLoading);
 
-  constructor(private store: Store<State>){
+  constructor(private store: Store<DaffContactStateRootSlice>){
 
   }
   dispatch(action: Action) {

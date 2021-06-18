@@ -10,18 +10,18 @@ import {
   DaffNewsletterState,
   reducer,
   DAFF_NEWSLETTER_STORE_FEATURE_KEY,
+  DaffContactStateRootSlice,
 } from '@daffodil/newsletter/state';
 
 import {
   selectDaffNewsletterLoading,
-  State,
   selectDaffNewsletterSuccess,
   selectDaffNewsletterError,
 } from './newsletter.selector';
 
 
 describe('DaffNewsletterSelectors', () => {
-  let store: Store<State>;
+  let store: Store<DaffContactStateRootSlice>;
   let mockNewsletter: DaffNewsletterState;
 
   beforeEach(() => {

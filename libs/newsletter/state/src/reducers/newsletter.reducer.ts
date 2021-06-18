@@ -5,11 +5,16 @@ import {
   DaffNewsletterActions,
   DaffNewsletterActionTypes,
 } from './../actions/newsletter.actions';
+import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './newsletter-store-feature-key';
 
 export interface DaffNewsletterState {
   success: boolean;
   loading: boolean;
   error: DaffStateError;
+}
+
+export interface DaffContactStateRootSlice {
+  [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: DaffNewsletterState;
 }
 
 const initialState: DaffNewsletterState = {
