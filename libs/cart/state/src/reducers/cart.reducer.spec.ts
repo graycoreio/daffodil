@@ -1,7 +1,4 @@
-import {
-  daffCartReducer,
-  composeReducers,
-} from '../reducers/cart.reducer';
+import { daffCartReducer } from '../reducers/cart.reducer';
 import { initialState } from './cart-initial-state';
 
 describe('Cart | Reducer | Cart', () => {
@@ -11,32 +8,6 @@ describe('Cart | Reducer | Cart', () => {
       const result = daffCartReducer(initialState, action);
 
       expect(result).toEqual(initialState);
-    });
-  });
-
-  describe('composeReducers', () => {
-    let action;
-
-    beforeEach(() => {
-      action = <any>{};
-    });
-
-    it('should return state when there are no reducers', () => {
-      const result = composeReducers(initialState, action, []);
-
-      expect(result).toEqual(initialState);
-    });
-
-    it('should pass the return from the first reducer into the second reducer', () => {
-      const firstReturn = { state: 'thing' };
-      const firstReducer = jasmine.createSpy();
-      const secondReducer = jasmine.createSpy();
-
-      firstReducer.withArgs(initialState, action).and.returnValue(firstReturn);
-
-      composeReducers(initialState, action, [firstReducer, secondReducer]);
-
-      expect(secondReducer).toHaveBeenCalledWith(firstReturn, action);
     });
   });
 });

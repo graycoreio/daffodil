@@ -1,4 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
+import { daffCreateMetaReducer } from '@daffodil/core/state';
 
 import { ActionTypes } from './action-types.type';
 import { cartBillingAddressReducer } from './cart-billing-address/cart-billing-address.reducer';
@@ -14,39 +15,26 @@ import { cartShippingMethodsReducer } from './cart-shipping-methods/cart-shippin
 import { DaffCartReducerState } from './cart-state.interface';
 import { cartReducer } from './cart/cart.reducer';
 
-/**
- * Recursively invoke reducers, passing the returned state from one into the next.
- */
-export function composeReducers(state, action, reducers) {
-  return reducers.length > 0
-    // if there are still more reducers, invoke the first one and recurse on the remaining ones
-    ? composeReducers(
-      reducers[0](state, action),
-      action,
-      reducers.slice(1),
-    )
-    // if there are no more reducers, just return state
-    : state;
-}
+const REDUCERS = [
+  cartReducer,
+  cartItemReducer,
+  cartBillingAddressReducer,
+  cartShippingAddressReducer,
+  cartShippingMethodsReducer,
+  cartShippingInformationReducer,
+  cartPaymentReducer,
+  cartPaymentMethodsReducer,
+  cartCouponReducer,
+  cartResolveReducer,
+];
 
+/**
+ * Calls each of the individual cart reducers in turn,
+ * passing the returned state into the next.
+ */
 export function daffCartReducer<T extends DaffCart = DaffCart>(
   state = initialState,
-  action: ActionTypes,
+  action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
-  return composeReducers(
-    state,
-    action,
-    [
-      cartReducer,
-      cartItemReducer,
-      cartBillingAddressReducer,
-      cartShippingAddressReducer,
-      cartShippingMethodsReducer,
-      cartShippingInformationReducer,
-      cartPaymentReducer,
-      cartPaymentMethodsReducer,
-      cartCouponReducer,
-      cartResolveReducer,
-    ],
-  );
+  return daffCreateMetaReducer<DaffCartReducerState<T>, ActionTypes<T>>(REDUCERS)(state, action);
 }
