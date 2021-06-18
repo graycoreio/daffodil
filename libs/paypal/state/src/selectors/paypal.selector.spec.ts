@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 import {
-  DaffPaypalReducersState,
+  DaffPaypalStateRootSlice,
   DAFF_PAYPAL_STORE_FEATURE_KEY,
   daffPaypalReducers,
   DaffGeneratePaypalExpressTokenSuccess,
@@ -22,7 +22,7 @@ import { getDaffPaypalSelectors } from './paypal.selector';
 
 describe('Daff Paypal Selectors', () => {
 
-  let store: Store<DaffPaypalReducersState>;
+  let store: Store<DaffPaypalStateRootSlice>;
   const navigationTreeFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
   let stubPaypalTokenResponse: DaffPaypalTokenResponse;
   const {
