@@ -27,6 +27,8 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
     images: transformMediaGalleryEntries(product, mediaUrl),
     thumbnail: transformImage(product.thumbnail, mediaUrl),
     description: product.description.html,
+    meta_title: product.meta_title,
+    meta_description: product.meta_description,
   };
 }
 

@@ -11,6 +11,8 @@ export const magentoProductFragment = gql`
 		url_key
     url_suffix
 		name
+		meta_title
+		meta_description
 		sku
 		stock_status
 		price_range {

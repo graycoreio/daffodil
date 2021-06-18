@@ -16,6 +16,8 @@ export interface MagentoProduct {
 	__typename: string;
   uid: string;
   name: string;
+  meta_title?: string;
+  meta_description?: string;
   sku: string;
   url_key: string;
   url_suffix: string;

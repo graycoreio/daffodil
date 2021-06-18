@@ -38,6 +38,8 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined();
       expect(result.description).toBeDefined();
+      expect(result.meta_title).toBeDefined();
+      expect(result.meta_description).toBeDefined();
       expect(result.in_stock).toBeDefined();
     });
 
