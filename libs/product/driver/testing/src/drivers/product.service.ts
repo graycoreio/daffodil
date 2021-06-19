@@ -50,12 +50,6 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  /**
-   * Get product by ID
-   *
-   * @param productId product ID
-   * @returns An Observable of a Product
-   */
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return of({
       id: productId,
