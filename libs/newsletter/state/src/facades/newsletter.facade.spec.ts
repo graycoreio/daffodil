@@ -11,7 +11,7 @@ import {
   DaffNewsletterSubscribe,
   DaffNewsletterFailedSubscribe,
   DaffNewsletterSuccessSubscribe,
-  DaffContactStateRootSlice,
+  DaffNewsletterStateRootSlice,
   DAFF_NEWSLETTER_STORE_FEATURE_KEY,
   reducer,
 } from '@daffodil/newsletter/state';
@@ -20,7 +20,7 @@ import { DaffNewsletterFacade } from './newsletter.facade';
 
 describe('DaffNewsletterFacade', () => {
 
-  let store: Store<DaffContactStateRootSlice>;
+  let store: Store<DaffNewsletterStateRootSlice>;
   let facade: DaffNewsletterFacade;
 
   beforeEach(() =>{

@@ -10,7 +10,7 @@ import {
   DaffNewsletterState,
   reducer,
   DAFF_NEWSLETTER_STORE_FEATURE_KEY,
-  DaffContactStateRootSlice,
+  DaffNewsletterStateRootSlice,
 } from '@daffodil/newsletter/state';
 
 import {
@@ -21,7 +21,7 @@ import {
 
 
 describe('DaffNewsletterSelectors', () => {
-  let store: Store<DaffContactStateRootSlice>;
+  let store: Store<DaffNewsletterStateRootSlice>;
   let mockNewsletter: DaffNewsletterState;
 
   beforeEach(() => {

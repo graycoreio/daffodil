@@ -13,7 +13,7 @@ export interface DaffNewsletterState {
   error: DaffStateError;
 }
 
-export interface DaffContactStateRootSlice {
+export interface DaffNewsletterStateRootSlice {
   [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: DaffNewsletterState;
 }
 
