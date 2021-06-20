@@ -15,6 +15,7 @@ export { DaffContactFacadeInterface } from './facades/contact-facade.interface';
 export {
   DaffContactState,
   reducer,
+  DaffContactStateRootSlice,
 } from './reducers/contact.reducer';
 export { DAFF_CONTACT_STORE_FEATURE_KEY } from './reducers/contact-store-feature-key';
 
@@ -23,5 +24,4 @@ export {
   selectDaffContactLoading,
   selectDaffContactSuccess,
   selectContactFeatureState,
-  DaffContactFeatureState,
 } from './selectors/contact.selector';

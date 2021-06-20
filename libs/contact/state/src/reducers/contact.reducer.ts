@@ -4,11 +4,16 @@ import {
   DaffContactActions,
   DaffContactActionTypes,
 } from '../actions/contact.actions';
+import { DAFF_CONTACT_STORE_FEATURE_KEY } from './contact-store-feature-key';
 
 export interface DaffContactState {
   success: boolean;
   loading: boolean;
   errors: DaffStateError[];
+}
+
+export interface DaffContactStateRootSlice {
+  [DAFF_CONTACT_STORE_FEATURE_KEY]: DaffContactState;
 }
 
 const initialState: DaffContactState = {

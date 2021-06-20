@@ -10,14 +10,14 @@ import {
   DaffContactSuccessSubmit,
   DaffContactSubmit,
   DaffContactFailedSubmit,
-  DaffContactFeatureState,
+  DaffContactStateRootSlice,
   DAFF_CONTACT_STORE_FEATURE_KEY,
 } from '@daffodil/contact/state';
 
 import { DaffContactFacade } from './contact.facade';
 
 describe('the DaffContactFacade', () => {
-  let store: Store<Partial<DaffContactFeatureState>>;
+  let store: Store<Partial<DaffContactStateRootSlice>>;
   let facade: DaffContactFacade;
 
   beforeEach(() => {
