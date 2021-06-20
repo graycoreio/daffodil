@@ -15,13 +15,14 @@ import {
   DaffCountryLoadSuccess,
   DaffCountryListSuccess,
   DaffCountryList,
+  DaffGeographyStateRootSlice,
 } from '@daffodil/geography/state';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { getDaffCountryEntitySelectors } from './country-entities.selector';
 
 describe('Geography | Selector | CountryEntities', () => {
-  let store: Store<DaffCountryEntityState<DaffCountry>>;
+  let store: Store<DaffGeographyStateRootSlice>;
 
   let countryFactory: DaffCountryFactory;
 

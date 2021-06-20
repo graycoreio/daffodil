@@ -12,7 +12,7 @@ import {
   DaffCountryLoad,
   DaffCountryLoadSuccess,
   DaffCountryLoadFailure,
-  DaffGeographyFeatureState,
+  DaffGeographyStateRootSlice,
   daffGeographyReducers,
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
   DaffCountryListSuccess,
@@ -25,7 +25,7 @@ import {
 import { DaffGeographyFacade } from './geography.facade';
 
 describe('DaffGeographyFacade', () => {
-  let store: Store<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyFeatureState> }>;
+  let store: Store<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyStateRootSlice> }>;
   let facade: DaffGeographyFacade;
   let countryFactory: DaffCountryFactory;
   let subdivisionFactory: DaffSubdivisionFactory;

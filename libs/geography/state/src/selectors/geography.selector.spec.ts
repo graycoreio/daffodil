@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffCountry } from '@daffodil/geography';
 import {
   daffGeographyReducers,
-  DaffGeographyFeatureState,
+  DaffGeographyStateRootSlice,
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
   DaffCountryListSuccess,
 } from '@daffodil/geography/state';
@@ -19,7 +19,7 @@ import { DaffCountryFactory } from '@daffodil/geography/testing';
 import { getGeographySelectors } from './geography.selector';
 
 describe('Geography | Selector | Geography', () => {
-  let store: Store<DaffGeographyFeatureState>;
+  let store: Store<DaffGeographyStateRootSlice>;
 
   let countryFactory: DaffCountryFactory;
 
