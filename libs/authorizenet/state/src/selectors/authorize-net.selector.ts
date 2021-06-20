@@ -6,17 +6,21 @@ import {
 
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
-import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authorize-net-reducer.interface';
-import { DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '../reducers/authorizenet-store-feature-key';
+import {
+  DaffAuthorizeNetReducersState,
+  DaffAuthorizeNetReducerState,
+  DaffAuthorizeNetStateRootSlice,
+  DAFF_AUTHORIZENET_STORE_FEATURE_KEY,
+} from '../reducers/public_api';
+
 
 export interface DaffAuthorizeNetMemoizedSelectors {
-	selectAuthorizeNetFeatureState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducersState>;
-	selectAuthorizeNetState: MemoizedSelector<Record<string, any>, DaffAuthorizeNetReducerState> ;
-	selectLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectPaymentError: MemoizedSelector<Record<string, any>, DaffStateError>;
-	selectAcceptJsLoadError: MemoizedSelector<Record<string, any>, DaffStateError>;
-	selectIsAcceptJsLoaded: MemoizedSelector<Record<string, any>, boolean>;
+	selectAuthorizeNetFeatureState: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducersState>;
+	selectAuthorizeNetState: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducerState> ;
+	selectLoading: MemoizedSelector<DaffAuthorizeNetStateRootSlice, boolean>;
+	selectPaymentError: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffStateError>;
+	selectAcceptJsLoadError: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffStateError>;
+	selectIsAcceptJsLoaded: MemoizedSelector<DaffAuthorizeNetStateRootSlice, boolean>;
 }
 
 const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
@@ -24,7 +28,7 @@ const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
   /**
    * AuthorizeNet Feature State
    */
-  const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetReducersState>(DAFF_AUTHORIZENET_STORE_FEATURE_KEY);
+  const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducersState>(DAFF_AUTHORIZENET_STORE_FEATURE_KEY);
 
   /**
    * AuthorizeNet State
