@@ -1,6 +1,7 @@
 @import 'daff-util';
 
 :host(.daff-media-gallery) {
+	// stylelint-disable-next-line scss/comment-no-loud
 	/* autoprefixer grid: autoplace */
 	$root: '.daff-media-gallery';
 	display: flex;

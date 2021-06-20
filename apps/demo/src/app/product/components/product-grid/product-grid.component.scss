@@ -6,14 +6,11 @@
 	grid-gap: 25px 5px;
 	padding: 50px 0;
 
-	/*
-  * This allows text-overflow: ellipsis elements to not break their
-  * bounding grid items.
-  */
+	// This allows text-overflow: ellipsis elements to not break their
+	// bounding grid items.
 	> * {
 		min-width: 0;
 	}
-
 
 	@include breakpoint(tablet) {
 		grid-template-columns: 1fr 1fr 1fr;
