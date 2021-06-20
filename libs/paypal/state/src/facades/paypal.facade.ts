@@ -10,7 +10,7 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
-import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
+import { DaffPaypalStateRootSlice } from '../reducers/paypal-reducers.interface';
 import { getDaffPaypalSelectors } from '../selectors/paypal.selector';
 
 /**
@@ -45,7 +45,7 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalToke
    */
   error$: Observable<DaffStateError>;
 
-  constructor(private store: Store<DaffPaypalReducersState<T>>) {
+  constructor(private store: Store<DaffPaypalStateRootSlice<T>>) {
     const {
       selectPaypalTokenResponse,
       selectPaypalToken,

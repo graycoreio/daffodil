@@ -8,7 +8,10 @@ export {
 
 
 export { DaffPaypalEffects } from './effects/paypal.effects';
-export { DaffPaypalReducersState } from './reducers/paypal-reducers.interface';
+export {
+  DaffPaypalReducersState,
+  DaffPaypalStateRootSlice,
+} from './reducers/paypal-reducers.interface';
 export { daffPaypalReducers } from './reducers/paypal-reducers';
 export { DaffPaypalReducerState } from './reducers/paypal/paypal-reducer.interface';
 export { daffPaypalReducer } from './reducers/paypal/paypal.reducer';
