@@ -32,13 +32,12 @@ import {
   DaffCartShippingInformationDelete,
   DaffCartPaymentRemove,
   DaffCartCouponRemoveAll,
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   DaffCartLoading,
   DaffCartErrors,
   daffCartReducers,
   DaffCartOperationType,
   DaffCartItemAdd,
-  DaffCartItemLoadingState,
   DaffCartResolveState,
   DaffResolveCart,
   DaffResolveCartFailure,
@@ -59,7 +58,7 @@ import {
 import { getCartSelectors } from './cart.selector';
 
 describe('Cart | Selector | Cart', () => {
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartStateRootSlice>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;

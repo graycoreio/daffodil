@@ -23,57 +23,64 @@ import {
   DaffStatefulCartItem,
 } from '../../models/stateful-cart-item';
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
-import { DaffCartReducersState } from '../../reducers/public_api';
+import {
+  DaffCartStateRootSlice,
+  DaffCartReducersState,
+} from '../../reducers/public_api';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 
-export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCartItem = DaffStatefulCartItem> {
-	selectCartItemEntitiesState: MemoizedSelector<Record<string, any>, EntityState<T>>;
-	selectCartItemIds: MemoizedSelector<Record<string, any>, EntityState<T>['ids']>;
-	selectCartItemEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
-	selectAllCartItems: MemoizedSelector<Record<string, any>, T[]>;
-	selectCartItemTotal: MemoizedSelector<Record<string, any>, number>;
-	selectCartItem: (id: T['item_id']) => MemoizedSelector<Record<string, any>, T>;
-	selectTotalNumberOfCartItems: MemoizedSelector<Record<string, any>, number>;
-	selectCartItemConfiguredAttributes: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffConfigurableCartItemAttribute[]>;
-	selectCartItemCompositeOptions: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffCompositeCartItemOption[]>;
-	selectIsCartItemOutOfStock: (id: T['item_id']) => MemoizedSelector<Record<string, any>, boolean>;
-	selectCartItemMutating: MemoizedSelector<Record<string, any>, boolean>;
-	selectCartItemState: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffCartItemStateEnum>;
+export interface DaffCartItemEntitiesMemoizedSelectors<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
+> {
+	selectCartItemEntitiesState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, EntityState<U>>;
+	selectCartItemIds: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, EntityState<U>['ids']>;
+	selectCartItemEntities: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, EntityState<U>['entities']>;
+	selectAllCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U[]>;
+	selectCartItemTotal: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
+	selectCartItem: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U>;
+	selectTotalNumberOfCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
+	selectCartItemConfiguredAttributes: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffConfigurableCartItemAttribute[]>;
+	selectCartItemCompositeOptions: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCompositeCartItemOption[]>;
+	selectIsCartItemOutOfStock: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+	selectCartItemMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+	selectCartItemState: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartItemStateEnum>;
   /**
    * Selects the specified item's price.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	selectCartItemPrice: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
+	selectCartItemPrice: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
   /**
    * Selects the specified item's quantity.
    * Zero by default.
    */
-	selectCartItemQuantity: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
+	selectCartItemQuantity: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
   /**
    * Selects the specified item's row total.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	selectCartItemRowTotal: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
+	selectCartItemRowTotal: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
   /**
    * Selects the specified item's array of cart (not product) discounts for the entire row.
    */
-	selectCartItemDiscounts: (id: T['item_id']) => MemoizedSelector<Record<string, any>, DaffCartItemDiscount[]>;
+	selectCartItemDiscounts: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartItemDiscount[]>;
   /**
    * Selects the specified item's sum of all cart (not product) discounts for the entire row.
    * Zero by default.
    */
-	selectCartItemTotalDiscount: (id: T['item_id']) => MemoizedSelector<Record<string, any>, number>;
+	selectCartItemTotalDiscount: (id: U['item_id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
 }
 
 const createCartItemEntitiesSelectors = <
 	T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
   U extends DaffStatefulCartItem = DaffStatefulCartItem
->(): DaffCartItemEntitiesMemoizedSelectors<U> => {
+>(): DaffCartItemEntitiesMemoizedSelectors<T, V, U> => {
   const {
     selectCartFeatureState,
   } = getDaffCartFeatureSelector<T, V, U>();
@@ -230,7 +237,7 @@ export const getDaffCartItemEntitiesSelectors = (() => {
 		T extends DaffCart = DaffCart,
 		V extends DaffCartOrderResult = DaffCartOrderResult,
 		U extends DaffStatefulCartItem = DaffStatefulCartItem
-	>(): DaffCartItemEntitiesMemoizedSelectors<U> => cache = cache
+	>(): DaffCartItemEntitiesMemoizedSelectors<T, V, U> => cache = cache
     ? cache
     : createCartItemEntitiesSelectors<T, V, U>();
 })();

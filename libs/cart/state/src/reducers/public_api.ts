@@ -1,5 +1,8 @@
 export { daffCartReducers } from './cart-reducers';
-export { DaffCartReducersState } from './cart-reducers-state.interface';
+export {
+  DaffCartReducersState,
+  DaffCartStateRootSlice,
+} from './cart-reducers-state.interface';
 
 export * from './loading/cart-loading.type';
 export { DaffCartErrors } from './errors/cart-errors.type';

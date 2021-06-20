@@ -10,6 +10,7 @@ import {
 
 import { DaffStatefulCartItem } from '../models/stateful-cart-item';
 import {
+  DaffCartStateRootSlice,
   DaffCartReducersState,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '../reducers/public_api';
@@ -19,7 +20,7 @@ export interface DaffCartFeatureMemoizedSelectors<
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-	selectCartFeatureState: MemoizedSelector<Record<string, any>, DaffCartReducersState<T, V, U>>;
+	selectCartFeatureState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducersState<T, V, U>>;
 }
 
 export const getDaffCartFeatureSelector = (() => {
@@ -30,5 +31,8 @@ export const getDaffCartFeatureSelector = (() => {
 		U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartFeatureMemoizedSelectors<T, V, U> => cache = cache
     ? cache
-    : { selectCartFeatureState: createFeatureSelector<DaffCartReducersState<T, V, U>>(DAFF_CART_STORE_FEATURE_KEY) };
+    : {
+      selectCartFeatureState:
+        createFeatureSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducersState<T, V, U>>(DAFF_CART_STORE_FEATURE_KEY),
+    };
 })();

@@ -30,7 +30,7 @@ import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 import {
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   DaffCartResolveState,
 } from '../../reducers/public_api';
 import {
@@ -147,7 +147,7 @@ export class DaffCartFacade<
   private _selectCartItemTotalDiscount: DaffCartMemoizedSelectors<T, V, U>['selectCartItemTotalDiscount'];
 
   constructor(
-    private store: Store<DaffCartReducersState<T, V, U>>,
+    private store: Store<DaffCartStateRootSlice<T, V, U>>,
     // typing this as `Record<string, any>` or `object` fails the build
     // because Angular explicitly types this as `Object`
     // eslint-disable-next-line @typescript-eslint/ban-types

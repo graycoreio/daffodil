@@ -15,7 +15,7 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { DaffCartReducersState } from '@daffodil/cart/state';
+import { DaffCartStateRootSlice } from '@daffodil/cart/state';
 
 import {
   ResolveCart,
@@ -29,7 +29,7 @@ import {
 })
 export class CartResolver implements Resolve<Observable<Action>> {
   constructor(
-    private store: Store<DaffCartReducersState>,
+    private store: Store<DaffCartStateRootSlice>,
     private dispatcher: ActionsSubject,
     private router: Router,
   ) {}

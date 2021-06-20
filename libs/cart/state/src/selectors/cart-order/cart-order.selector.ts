@@ -13,33 +13,36 @@ import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 import {
   DaffCartReducersState,
   DaffCartOrderReducerState,
+  DaffCartStateRootSlice,
 } from '../../reducers/public_api';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 
 export interface DaffCartOrderMemoizedSelectors<
-  T extends DaffCartOrderResult = DaffCartOrderResult
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-  selectCartOrderState: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>>;
+  selectCartOrderState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartOrderReducerState<V>>;
   /**
    * Selects whether there is a cart order operation in progress.
    */
-  selectCartOrderLoading: MemoizedSelector<Record<string, any>, boolean>;
+  selectCartOrderLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
   /**
    * Selects whether there is a place order operation in progress.
    */
-  selectCartOrderMutating: MemoizedSelector<Record<string, any>, boolean>;
-	selectCartOrderErrors: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['errors']>;
-	selectCartOrderValue: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']>;
-	selectCartOrderId: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']['orderId']>;
-	selectCartOrderCartId: MemoizedSelector<Record<string, any>, DaffCartOrderReducerState<T>['cartOrderResult']['cartId']>;
-  selectHasOrderResult: MemoizedSelector<Record<string, any>, boolean>;
+  selectCartOrderMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+	selectCartOrderErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartOrderReducerState<V>['errors']>;
+	selectCartOrderValue: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartOrderReducerState<V>['cartOrderResult']>;
+	selectCartOrderId: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartOrderReducerState<V>['cartOrderResult']['orderId']>;
+	selectCartOrderCartId: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartOrderReducerState<V>['cartOrderResult']['cartId']>;
+  selectHasOrderResult: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
 }
 
 const createCartOrderSelectors = <
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
->(): DaffCartOrderMemoizedSelectors<V> => {
+>(): DaffCartOrderMemoizedSelectors<T, V, U> => {
   const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
 
   const selectCartOrderState = createSelector(
@@ -95,7 +98,7 @@ export const getCartOrderSelectors = (() => {
     T extends DaffCart = DaffCart,
 		V extends DaffCartOrderResult = DaffCartOrderResult,
 		U extends DaffStatefulCartItem = DaffStatefulCartItem
-  >(): DaffCartOrderMemoizedSelectors<V> => cache = cache
+  >(): DaffCartOrderMemoizedSelectors<T, V, U> => cache = cache
     ? cache
     : createCartOrderSelectors<T, V, U>();
 })();

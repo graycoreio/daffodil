@@ -9,7 +9,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   daffCartReducers,
   DaffCartLoadSuccess,
   DaffCartPlaceOrderSuccess,
@@ -19,12 +19,11 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffState } from '@daffodil/core/state';
-import { DaffLoadingState } from '@daffodil/core/state';
 
 import { getCartOrderSelectors } from './cart-order.selector';
 
 describe('Cart | Selector | CartOrder', () => {
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartStateRootSlice>;
 
   let cartFactory: DaffCartFactory;
 

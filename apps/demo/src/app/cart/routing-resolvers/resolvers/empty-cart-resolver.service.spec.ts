@@ -17,7 +17,7 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
 }  from '@daffodil/cart/state';
@@ -32,7 +32,7 @@ import { EmptyCartResolver } from './empty-cart-resolver.service';
 describe('EmptyCartResolver', () => {
   const actions$: Observable<any> = null;
   let emptyCartResolver: EmptyCartResolver;
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartStateRootSlice>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let stubCart: DaffCart;

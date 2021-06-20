@@ -13,7 +13,7 @@ import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartClear,
   DaffCartLoadSuccess,
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
@@ -29,7 +29,7 @@ import {
 
 describe('selectCartState', () => {
 
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartStateRootSlice>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: DaffCart;

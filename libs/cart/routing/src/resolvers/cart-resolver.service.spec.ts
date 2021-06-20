@@ -16,7 +16,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartResolverRedirectUrl } from '@daffodil/cart/routing';
 import {
   daffCartReducers,
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   DaffCartLoadSuccess,
   DaffCartLoadFailure,
   DaffCartCreateFailure,
@@ -36,7 +36,7 @@ import { DaffCartResolver } from './cart-resolver.service';
 describe('DaffCartResolver', () => {
   const actions$: Observable<any> = null;
   let cartResolver: DaffCartResolver;
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartStateRootSlice>;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
   let router: Router;

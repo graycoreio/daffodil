@@ -19,7 +19,7 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffCartReducersState,
+  DaffCartStateRootSlice,
   DaffResolveCart,
   DaffCartActionTypes,
 } from '@daffodil/cart/state';
@@ -35,7 +35,7 @@ import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.tok
 })
 export class DaffCartResolver implements Resolve<Observable<Action>> {
   constructor(
-    private store: Store<DaffCartReducersState>,
+    private store: Store<DaffCartStateRootSlice>,
     private dispatcher: ActionsSubject,
 		private router: Router,
 		@Inject(DaffCartResolverRedirectUrl) private redirectUrl: string,
