@@ -26,7 +26,6 @@ import {
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { daffArrayToDict } from '@daffodil/core';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -112,10 +111,7 @@ describe('AddToCartNotificationComponent', () => {
     const stubCart = cartFactory.create();
 
     beforeEach(() => {
-      store.dispatch(new DaffProductLoadSuccess({
-        id: stubProduct.id,
-        products: daffArrayToDict([stubProduct], p => p.id),
-      }));
+      store.dispatch(new DaffProductLoadSuccess(stubProduct));
       store.dispatch(new OpenAddToCartNotification());
       store.dispatch(new DaffAddToCart(productAddPayload));
       store.dispatch(new DaffAddToCartSuccess(stubCart));
