@@ -1,4 +1,3 @@
-import { Dict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 /**
@@ -11,9 +10,10 @@ export interface DaffProductDriverResponse<T extends DaffProduct = DaffProduct> 
    */
   id: T['id'];
   /**
-   * The dictionary of products.
+   * The list of products.
    * Contains the main product referenced by `id` and
-   * possibly additional products nested inside the main product.
+   * possibly additional products that were nested inside the main product.
+   * Does not guarantee uniqueness; duplicates may appear.
    */
-  products: Dict<T>;
+  products: T[];
 }

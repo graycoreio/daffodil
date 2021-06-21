@@ -49,7 +49,7 @@ describe('selectProductState', () => {
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new DaffProductPageLoadSuccess({
       id: mockProduct.id,
-      products: daffArrayToDict([mockProduct], p => p.id),
+      products: [mockProduct],
     }));
   });
 

@@ -23,7 +23,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductResponse', (
     expect(result.id).toEqual(stubMagentoProduct.sku);
   });
 
-  it('should add the transformed product to the products dictionary', () => {
-    expect(result.products[stubMagentoProduct.sku].id).toEqual(stubMagentoProduct.sku);
+  it('should add the transformed product to the products array', () => {
+    expect(result.products[0].id).toEqual(stubMagentoProduct.sku);
   });
 });

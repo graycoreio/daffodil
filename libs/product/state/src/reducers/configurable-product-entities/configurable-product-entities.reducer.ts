@@ -48,9 +48,10 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      const products = Object.keys(action.payload.products).map(e => action.payload.products[e]);
-
-      return adapter.upsertMany(mapEntities(<V[]><unknown>products), state);
+      return adapter.upsertMany(
+        mapEntities(<V[]><unknown>action.payload.products),
+        state,
+      );
     case DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction:
       return adapter.upsertOne(
         {

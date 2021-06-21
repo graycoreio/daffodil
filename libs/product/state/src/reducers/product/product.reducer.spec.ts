@@ -88,7 +88,7 @@ describe('Product | Product Reducer', () => {
 
       const productLoadSuccess = new DaffProductPageLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       });
       result = daffProductReducer(state, productLoadSuccess);
     });

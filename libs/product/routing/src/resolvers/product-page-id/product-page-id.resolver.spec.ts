@@ -80,7 +80,7 @@ describe('DaffProductPageIdResolver', () => {
 
       store.dispatch(new DaffProductPageLoadSuccess({
         id: stubProduct.id,
-        products: daffArrayToDict([stubProduct], p => p.id),
+        products: [stubProduct],
       }));
     });
 

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriverResponse,
@@ -39,7 +38,7 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
     return this.http.get<DaffProduct>(this.url + productId).pipe(
       map(product => ({
         id: productId,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       })),
     );
   }
@@ -48,7 +47,7 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
     return this.http.get<DaffProduct>(`${this.url}${url}`).pipe(
       map(product => ({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       })),
     );
   }

@@ -1,4 +1,3 @@
-import { daffArrayToDict } from '@daffodil/core';
 import {
   DaffProduct,
   DaffCompositeProduct,
@@ -103,7 +102,7 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('sets a composite product entity when the given product is composite', () => {
       const productLoadSuccess = new DaffProductLoadSuccess({
         id: compositeProduct.id,
-        products: daffArrayToDict([compositeProduct], p => p.id),
+        products: [compositeProduct],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
       expect(result.entities[compositeProduct.id]).toEqual({
@@ -124,7 +123,7 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('does not set a composite product entity when the given product is not composite', () => {
       const productLoadSuccess = new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
@@ -143,7 +142,7 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('sets a composite product entity when the given product is composite', () => {
       const productPageLoadSuccess = new DaffProductPageLoadSuccess({
         id: compositeProduct.id,
-        products: daffArrayToDict([compositeProduct], p => p.id),
+        products: [compositeProduct],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[compositeProduct.id]).toEqual({
@@ -164,7 +163,7 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('does not set a composite product entity when the given product is not composite', () => {
       const productPageLoadSuccess = new DaffProductPageLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
@@ -220,7 +219,7 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[1].in_stock = true;
       const productLoadSuccess = new DaffProductLoadSuccess({
         id: compositeProduct.id,
-        products: daffArrayToDict([compositeProduct], p => p.id),
+        products: [compositeProduct],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
@@ -236,7 +235,7 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[1].in_stock = false;
       const productLoadSuccess = new DaffProductLoadSuccess({
         id: compositeProduct.id,
-        products: daffArrayToDict([compositeProduct], p => p.id),
+        products: [compositeProduct],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
@@ -249,7 +248,7 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[1].in_stock = false;
       const productLoadSuccess = new DaffProductLoadSuccess({
         id: compositeProduct.id,
-        products: daffArrayToDict([compositeProduct], p => p.id),
+        products: [compositeProduct],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
@@ -262,7 +261,7 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].required = true;
       const productLoadSuccess = new DaffProductLoadSuccess({
         id: compositeProduct.id,
-        products: daffArrayToDict([compositeProduct], p => p.id),
+        products: [compositeProduct],
       });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 

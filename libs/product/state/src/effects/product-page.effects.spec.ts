@@ -75,7 +75,7 @@ describe('DaffProductPageEffects', () => {
       beforeEach(() => {
         const response = {
           id: mockProduct.id,
-          products: daffArrayToDict([mockProduct], p => p.id),
+          products: [mockProduct],
         };
         spyOn(daffProductDriver, 'get').and.returnValue(of(response));
         const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
@@ -119,7 +119,7 @@ describe('DaffProductPageEffects', () => {
       beforeEach(() => {
         const response = {
           id: mockProduct.id,
-          products: daffArrayToDict([mockProduct], p => p.id),
+          products: [mockProduct],
         };
         spyOn(daffProductDriver, 'getByUrl').and.returnValue(of(response));
         const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);

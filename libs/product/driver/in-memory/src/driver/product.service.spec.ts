@@ -74,7 +74,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
 
       productService.get(mockProduct.id).subscribe((resp: DaffProductDriverResponse) => {
         expect(resp.id).toEqual(mockProduct.id);
-        expect(resp.products[mockProduct.id]).toEqual(mockProduct);
+        expect(resp.products[0]).toEqual(mockProduct);
       });
 
       const req = httpMock.expectOne(`${productService.url}${mockProduct.id}`);
@@ -91,7 +91,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
 
       productService.getByUrl(mockProduct.url).subscribe((resp: DaffProductDriverResponse) => {
         expect(resp.id).toEqual(mockProduct.id);
-        expect(resp.products[mockProduct.id]).toEqual(mockProduct);
+        expect(resp.products[0]).toEqual(mockProduct);
       });
 
       const req = httpMock.expectOne(`${productService.url}${mockProduct.url}`);

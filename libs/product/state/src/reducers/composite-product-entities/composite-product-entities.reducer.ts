@@ -47,9 +47,10 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      const products = Object.keys(action.payload.products).map(e => action.payload.products[e]);
-
-      return adapter.upsertMany(mapOptionsEntities(<V[]><unknown>products), state);
+      return adapter.upsertMany(
+        mapOptionsEntities(<V[]><unknown>action.payload.products),
+        state,
+      );
     case DaffCompositeProductActionTypes.CompositeProductApplyOptionAction:
       return adapter.upsertOne(
         {

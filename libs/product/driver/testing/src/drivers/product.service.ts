@@ -53,9 +53,9 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return of({
       id: productId,
-      products: daffArrayToDict([
+      products: [
         this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
-      ], p => p.id),
+      ],
     });
   }
 
@@ -63,7 +63,7 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     const product = this.productFactory.create({ images: this.productImageFactory.createMany(5), url });
     return of({
       id: product.id,
-      products: daffArrayToDict([product], p => p.id),
+      products: [product],
     });
   }
 }

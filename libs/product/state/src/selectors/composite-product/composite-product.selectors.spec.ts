@@ -102,7 +102,7 @@ describe('Composite Product Selectors | integration tests', () => {
     store = TestBed.inject(Store);
     store.dispatch(new DaffProductLoadSuccess({
       id: stubCompositeProduct.id,
-      products: daffArrayToDict([stubCompositeProduct, stubProduct], p => p.id),
+      products: [stubCompositeProduct, stubProduct],
     }));
   });
 
@@ -560,7 +560,7 @@ describe('Composite Product Selectors | integration tests', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
 
       const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
@@ -632,7 +632,7 @@ describe('Composite Product Selectors | integration tests', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expected = cold('a', { a: stubCompositeProduct.discount.amount });
@@ -663,7 +663,7 @@ describe('Composite Product Selectors | integration tests', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
       const expected = cold('a', { a: undefined });
@@ -694,7 +694,7 @@ describe('Composite Product Selectors | integration tests', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
 
       const selector = store.pipe(select(selectCompositeProductDiscountAmount(stubCompositeProduct.id)));
@@ -748,7 +748,7 @@ describe('Composite Product Selectors | integration tests', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));
       const expected = cold('a', { a: undefined });
@@ -779,7 +779,7 @@ describe('Composite Product Selectors | integration tests', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
 
       const selector = store.pipe(select(selectCompositeProductDiscountPercent(stubCompositeProduct.id)));

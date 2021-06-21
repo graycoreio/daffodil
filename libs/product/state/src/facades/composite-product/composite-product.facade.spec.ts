@@ -80,7 +80,7 @@ describe('DaffCompositeProductFacade', () => {
     stubCompositeProduct.items[1].options[1].quantity = 1;
     store.dispatch(new DaffProductLoadSuccess({
       id: stubCompositeProduct.id,
-      products: daffArrayToDict([stubCompositeProduct], p => p.id),
+      products: [stubCompositeProduct],
     }));
   });
 
@@ -231,7 +231,7 @@ describe('DaffCompositeProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
 
       const expectedDiscountAmount = daffAdd(stubCompositeProduct.discount.amount, stubCompositeProduct.items[0].options[0].discount.amount);
@@ -266,7 +266,7 @@ describe('DaffCompositeProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
 
       const totalOriginalPrice = daffAdd(stubCompositeProduct.price, stubCompositeProduct.items[0].options[0].price);

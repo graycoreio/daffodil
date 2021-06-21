@@ -62,7 +62,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('returns all variants for the given product', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       const selector = store.pipe(select(selectAllConfigurableProductVariants(stubConfigurableProduct.id)));
       const expected = cold('a', { a: stubConfigurableProduct.variants });
@@ -73,7 +73,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -109,7 +109,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -149,7 +149,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -186,7 +186,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -239,7 +239,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -275,7 +275,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -311,7 +311,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -351,7 +351,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -391,7 +391,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -427,7 +427,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -463,7 +463,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -486,7 +486,7 @@ describe('Configurable Product Selectors | unit tests', () => {
       stubConfigurableProduct.variants[3].price = 4;
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
@@ -502,7 +502,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should return false when only one price is possible', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
@@ -528,7 +528,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -547,7 +547,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('returns the variants that match current attribute filters', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
@@ -566,7 +566,7 @@ describe('Configurable Product Selectors | unit tests', () => {
 
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
@@ -583,7 +583,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();
@@ -602,7 +602,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('returns a dictionary of attribute values that are still selectable', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
@@ -626,7 +626,7 @@ describe('Configurable Product Selectors | unit tests', () => {
       });
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       const expected = cold('a', {
@@ -643,7 +643,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
 
       const spy = jasmine.createSpy();

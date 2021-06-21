@@ -74,11 +74,11 @@ describe('DaffProductEffects', () => {
       beforeEach(() => {
         spyOn(daffProductDriver, 'get').and.returnValue(of({
           id: mockProduct.id,
-          products: daffArrayToDict([mockProduct], p => p.id),
+          products: [mockProduct],
         }));
         const productLoadSuccessAction = new DaffProductLoadSuccess({
           id: mockProduct.id,
-          products: daffArrayToDict([mockProduct], p => p.id),
+          products: [mockProduct],
         });
         actions$ = hot('--a', { a: productLoadAction });
         expected = cold('--b', { b: productLoadSuccessAction });

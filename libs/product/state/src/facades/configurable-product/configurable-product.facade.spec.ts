@@ -41,7 +41,7 @@ describe('DaffConfigurableProductFacade', () => {
     stubConfigurableProduct = new DaffConfigurableProductFactory().create();
     store.dispatch(new DaffProductLoadSuccess({
       id: stubConfigurableProduct.id,
-      products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+      products: [stubConfigurableProduct],
     }));
   });
 
@@ -142,7 +142,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: 1 });
 
@@ -182,7 +182,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: 4 });
 
@@ -238,7 +238,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: 1 });
 
@@ -294,7 +294,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: 3 });
 
@@ -346,7 +346,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: 1 });
 
@@ -398,7 +398,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: 3 });
 
@@ -438,7 +438,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: true });
 
@@ -490,7 +490,7 @@ describe('DaffConfigurableProductFacade', () => {
       };
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       const expected = cold('a', { a: true });
 
@@ -535,7 +535,7 @@ describe('DaffConfigurableProductFacade', () => {
     it('should return variants that match the applied attributes for a configurable product', () => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,

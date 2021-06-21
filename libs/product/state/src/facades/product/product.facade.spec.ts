@@ -85,7 +85,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductPageLoad(product.id));
       store.dispatch(new DaffProductPageLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.product$).toBeObservable(expected);
     });
@@ -98,7 +98,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.getProduct(product.id)).toBeObservable(expected);
     });
@@ -111,7 +111,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.getPrice(product.id)).toBeObservable(expected);
     });
@@ -126,7 +126,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.hasDiscount(product.id)).toBeObservable(expected);
     });
@@ -141,7 +141,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
     });
@@ -154,7 +154,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);
     });
@@ -169,7 +169,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.getDiscountPercent(product.id)).toBeObservable(expected);
     });
@@ -185,7 +185,7 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
-        products: daffArrayToDict([product], p => p.id),
+        products: [product],
       }));
       expect(facade.isOutOfStock(product.id)).toBeObservable(expected);
     });

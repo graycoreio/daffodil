@@ -1,4 +1,3 @@
-import { daffArrayToDict } from '@daffodil/core';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 import { MagentoProduct } from '../models/magento-product';
@@ -13,8 +12,6 @@ export function transformMagentoProductResponse(product: MagentoProduct, mediaUr
   const daffProduct = transformMagentoProduct(product, mediaUrl);
   return {
     id: daffProduct.id,
-    products: daffArrayToDict([
-      daffProduct,
-    ], p => p.id),
+    products: [daffProduct],
   };
 }

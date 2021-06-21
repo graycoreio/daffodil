@@ -52,7 +52,7 @@ describe('Configurable Product Selectors | integration tests', () => {
     beforeEach(() => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
@@ -81,7 +81,7 @@ describe('Configurable Product Selectors | integration tests', () => {
     beforeEach(() => {
       store.dispatch(new DaffProductLoadSuccess({
         id: stubConfigurableProduct.id,
-        products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+        products: [stubConfigurableProduct],
       }));
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
@@ -159,7 +159,7 @@ describe('Configurable Product Selectors | integration tests', () => {
   it('returns a dictionary of attribute values that are still selectable', () => {
     store.dispatch(new DaffProductLoadSuccess({
       id: stubConfigurableProduct.id,
-      products: daffArrayToDict([stubConfigurableProduct], p => p.id),
+      products: [stubConfigurableProduct],
     }));
     const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
     const expected = cold('a', {

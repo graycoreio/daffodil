@@ -63,8 +63,8 @@ describe('Product | Magento | ProductService', () => {
     it('should return a DaffProduct', done => {
       service.get('TESTING_SKU').subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
-        expect(r.products[stubSimpleProduct.sku].id).toEqual(stubSimpleProduct.sku);
-        expect(r.products[stubSimpleProduct.sku].name).toBeDefined();
+        expect(r.products[0].id).toEqual(stubSimpleProduct.sku);
+        expect(r.products[0].name).toBeDefined();
         done();
       });
 
@@ -84,8 +84,8 @@ describe('Product | Magento | ProductService', () => {
       it('should be able to retrieve a DaffProduct for a simple', done => {
         service.get('TESTING_SKU').subscribe(r => {
           expect(r.id).toEqual(stubSimpleProduct.sku);
-          expect(r.products[stubSimpleProduct.sku].id).toEqual(stubSimpleProduct.sku);
-          expect(r.products[stubSimpleProduct.sku].name).toBeDefined();
+          expect(r.products[0].id).toEqual(stubSimpleProduct.sku);
+          expect(r.products[0].name).toBeDefined();
           done();
         });
 
@@ -115,8 +115,8 @@ describe('Product | Magento | ProductService', () => {
     it('should return a DaffProduct', done => {
       result.subscribe(r => {
         expect(r.id).toEqual(stubSimpleProduct.sku);
-        expect(r.products[stubSimpleProduct.sku].id).toEqual(stubSimpleProduct.sku);
-        expect(r.products[stubSimpleProduct.sku].name).toBeDefined();
+        expect(r.products[0].id).toEqual(stubSimpleProduct.sku);
+        expect(r.products[0].name).toBeDefined();
         done();
       });
 

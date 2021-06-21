@@ -120,7 +120,7 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     // TODO: implement
     return of({
       id: null,
-      products: {},
+      products: [],
     });
   }
 
@@ -156,7 +156,7 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     }).pipe(
       map(result => ({
         id: productId,
-        products: daffArrayToDict([DaffShopifyProductTransformer(result.data.node)], p => p.id),
+        products: [DaffShopifyProductTransformer(result.data.node)],
       })),
     );
   }
