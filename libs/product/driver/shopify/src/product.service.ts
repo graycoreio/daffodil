@@ -99,6 +99,8 @@ export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct =>
   price: null,
   discount: null,
   in_stock: true,
+  related: [],
+  upsell: [],
 });
 
 /**

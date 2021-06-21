@@ -2,36 +2,16 @@ import { gql } from 'apollo-angular';
 
 import { magentoBundledProductFragment } from './bundled-product';
 import { magentoConfigurableProductFragment } from './configurable-product';
+import { magentoProductPreviewFragment } from './product-preview';
 import { magentoSimpleProductFragment } from './simple-product';
 
 export const magentoProductFragment = gql`
   fragment product on ProductInterface {
-		__typename
-		uid
-		url_key
-    url_suffix
-		name
-		meta_title
+		...magentoProductPreview
+    meta_title
 		meta_description
-		sku
-		stock_status
-		price_range {
-			maximum_price {
-				regular_price {
-					value
-					currency
-				}
-				discount {
-					amount_off
-					percent_off
-				}
-			}
-		}
-		image {
-			url
-			label
-		}
-    thumbnail {
+    stock_status
+    image {
 			url
 			label
 		}
@@ -48,6 +28,12 @@ export const magentoProductFragment = gql`
 		description {
 			html
 		}
+    upsell_products {
+      ...magentoProductPreview
+    }
+    related_products {
+      ...magentoProductPreview
+    }
 		...magentoBundledProduct
 		...magentoSimpleProduct
 		...magentoConfigurableProduct
@@ -55,4 +41,5 @@ export const magentoProductFragment = gql`
 	${magentoBundledProductFragment}
 	${magentoSimpleProductFragment}
 	${magentoConfigurableProductFragment}
+	${magentoProductPreviewFragment}
 `;

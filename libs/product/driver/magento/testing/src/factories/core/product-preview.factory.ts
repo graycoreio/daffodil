@@ -3,28 +3,19 @@ import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
-  MagentoProduct,
+  MagentoProductPreview,
   MagentoProductTypeEnum,
   MagentoProductStockStatusEnum,
 } from '@daffodil/product/driver/magento';
 
-export class MockMagentoCoreProduct implements MagentoProduct {
+export class MockMagentoProductPreview implements MagentoProductPreview {
 	__typename = MagentoProductTypeEnum.SimpleProduct;
   uid = faker.datatype.uuid();
   url_key = faker.random.alphaNumeric(16);
   url_suffix = '.html';
   name = faker.random.word();
-  meta_title = faker.random.word();
-  meta_description = faker.random.words(3);
 	sku = faker.random.alphaNumeric(16);
 	stock_status = MagentoProductStockStatusEnum.InStock;
-  upsell_products = [];
-  related_products = [];
-  image = {
-    __typename: 'ProductImage',
-    label: faker.random.words(3),
-    url: faker.image.imageUrl(),
-  };
   thumbnail = {
     __typename: 'ProductImage',
     label: faker.random.words(3),
@@ -50,22 +41,14 @@ export class MockMagentoCoreProduct implements MagentoProduct {
       },
     },
   };
-  short_description = {
-    __typename: 'ComplexTextValue',
-    html: faker.random.words(3),
-  };
-	media_gallery_entries = [];
 }
 
-/**
- * A factory for creating stub data for {@link MagentoProduct}s.
- */
 @Injectable({
   providedIn: 'root',
 })
-export class MagentoCoreProductFactory extends DaffModelFactory<MagentoProduct> {
+export class MagentoProductPreviewFactory extends DaffModelFactory<MagentoProductPreview> {
 
   constructor(){
-    super(MockMagentoCoreProduct);
+    super(MockMagentoProductPreview);
   }
 }

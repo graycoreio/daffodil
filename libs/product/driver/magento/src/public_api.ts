@@ -5,6 +5,7 @@ export {
   MagentoBundledProductItem,
   MagentoPriceTypeEnum,
 } from './models/bundled-product';
+export { MagentoProductPreview } from './models/product-preview.interface';
 export { MagentoSimpleProduct } from './models/simple-product';
 export * from './models/configurable-product';
 

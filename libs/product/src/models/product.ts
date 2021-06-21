@@ -37,7 +37,15 @@ export interface DaffProduct extends DaffLocatable {
   /**
    * An array of images for the product.
    */
-  images: DaffProductImage[];
+  images?: DaffProductImage[];
+  /**
+   * A list of related products.
+   */
+  related?: DaffProduct[];
+  /**
+   * A list of upsell productss.
+   */
+  upsell?: DaffProduct[];
 
   // TODO: move to subtypes
   /**
