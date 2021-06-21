@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.36.0](https://github.com/graycoreio/daffodil/compare/v0.35.0...v0.36.0) (2021-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** type and name are required fields on DaffProduct
+
+### Features
+
+* **authorizenet:** add root state slice interface ([#1617](https://github.com/graycoreio/daffodil/issues/1617)) ([bbd696a](https://github.com/graycoreio/daffodil/commit/bbd696a5b08b0830497df53d7a3993eefec9ac86))
+* **cart,demo:** add root state slice interface ([#1614](https://github.com/graycoreio/daffodil/issues/1614)) ([5ea23eb](https://github.com/graycoreio/daffodil/commit/5ea23eb24af8e41e6c887463e8c72ce3e45037f8))
+* **category:** add meta_name and meta_description to DaffCategory ([#1609](https://github.com/graycoreio/daffodil/issues/1609)) ([e18b9fa](https://github.com/graycoreio/daffodil/commit/e18b9fabcb6167514301084d214a765772540c58))
+* **contact:** add root state slice interface ([#1616](https://github.com/graycoreio/daffodil/issues/1616)) ([071b0d6](https://github.com/graycoreio/daffodil/commit/071b0d6004b0a9f77d1b100b67e6affbb7e95e9d))
+* **core:** add DaffIdentifiable interface ([#1603](https://github.com/graycoreio/daffodil/issues/1603)) ([21fac9c](https://github.com/graycoreio/daffodil/commit/21fac9c3d3fe485c92242096cdc946480be30b83))
+* **daffio:** update guides sidebar with nested accordions ([#1557](https://github.com/graycoreio/daffodil/issues/1557)) ([210cde2](https://github.com/graycoreio/daffodil/commit/210cde290e80a0aac667a52c6946e20e039bedc3))
+* **geography:** add root state slice interface ([#1611](https://github.com/graycoreio/daffodil/issues/1611)) ([31e83e8](https://github.com/graycoreio/daffodil/commit/31e83e802ad0f490f987e6a336b7d0ed81939360))
+* **newsletter:** add root state slice interface ([#1610](https://github.com/graycoreio/daffodil/issues/1610)) ([31651c8](https://github.com/graycoreio/daffodil/commit/31651c8b765cd19fb228e98fff64e366b831e55f))
+* **paypal:** add root state slice interface ([#1613](https://github.com/graycoreio/daffodil/issues/1613)) ([37d813a](https://github.com/graycoreio/daffodil/commit/37d813aa8504b63a88e4359fe2909c152e3e35af))
+* **product:** add driver response model ([#1604](https://github.com/graycoreio/daffodil/issues/1604)) ([88ac1ae](https://github.com/graycoreio/daffodil/commit/88ac1aefd646138617d05220573cb07741af0a89))
+* **product:** add meta data fields for DaffProduct ([#1619](https://github.com/graycoreio/daffodil/issues/1619)) ([e297d51](https://github.com/graycoreio/daffodil/commit/e297d518440399f1217ab1fa40c5d8be7ce52f45))
+* **product:** add thumbnail field ([#1599](https://github.com/graycoreio/daffodil/issues/1599)) ([db49419](https://github.com/graycoreio/daffodil/commit/db49419951bbe46828e85fc936b11d7474e6b941))
+* **product:** make type and name required on product model ([#1602](https://github.com/graycoreio/daffodil/issues/1602)) ([94ad4e6](https://github.com/graycoreio/daffodil/commit/94ad4e6de46ff9237dc5b7e3a46a492178f5e41b))
+* **tools-dgeni:** add table of contents array to guides list ([#1560](https://github.com/graycoreio/daffodil/issues/1560)) ([9ed9bdf](https://github.com/graycoreio/daffodil/commit/9ed9bdf04c55eec5787d93a764d5dde5fb380776))
+
+
+### Bug Fixes
+
+* **product:** magento driver returning duplicate images ([#1598](https://github.com/graycoreio/daffodil/issues/1598)) ([e607a1e](https://github.com/graycoreio/daffodil/commit/e607a1eb8421a724d0f0c6dd02813016d9683dad))
+
 ## [0.35.0](https://github.com/graycoreio/daffodil/compare/v0.34.0...v0.35.0) (2021-06-09)
 
 
