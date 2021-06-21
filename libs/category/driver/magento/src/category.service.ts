@@ -21,6 +21,10 @@ import {
   DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
+import {
+  DaffProductMagentoDriverConfig,
+  MAGENTO_PRODUCT_CONFIG_TOKEN,
+} from '@daffodil/product/driver/magento';
 
 import {
   MAGENTO_CATEGORY_CONFIG_TOKEN,
@@ -66,6 +70,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 		private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
 		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
     @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
+    @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.
@@ -92,7 +97,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         category,
         filterTypes,
         products,
-      ]) => this.transformCategory(category.data, filterTypes.data, products.data)),
+      ]) => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
       map(result => categoryRequest.filter_requests
         ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
         : result,
@@ -125,7 +130,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
           kind: DaffCategoryRequestKind.ID,
         }),
       }).pipe(
-        map(products => this.transformCategory(category.data, filterTypes.data, products.data)),
+        map(products => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
         map(result => categoryRequest.filter_requests
           ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
           : result,
@@ -155,6 +160,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     categoryResponse: MagentoGetACategoryResponse,
     filterTypesResponse: MagentoGetCategoryFilterTypesResponse,
     productsResponse: MagentoGetProductsResponse,
+    mediaUrl: string,
   ): DaffGetCategoryResponse {
     const aggregations = addMetadataTypesToAggregates(filterTypesResponse, productsResponse);
     const completeCategory = {
@@ -166,6 +172,6 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       page_info: productsResponse.products.page_info,
     };
 
-    return this.magentoCategoryResponseTransformer.transform(completeCategory);
+    return this.magentoCategoryResponseTransformer.transform(completeCategory, mediaUrl);
   }
 }

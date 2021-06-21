@@ -18,7 +18,10 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { transformManyMagentoProducts } from '@daffodil/product/driver/magento';
+import {
+  MAGENTO_PRODUCT_CONFIG_TOKEN,
+  transformManyMagentoProducts,
+} from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -40,6 +43,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
   let magentoCategoryTransformerServiceSpy: jasmine.SpyObj<DaffMagentoCategoryTransformerService>;
   let magentoCategoryPageConfigurationTransformerServiceSpy: jasmine.SpyObj<DaffMagentoCategoryPageConfigTransformerService>;
+  const stubMediaUrl = 'mediaUrl';
 
   beforeEach(() => {
     magentoCategoryTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
@@ -50,6 +54,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         DaffMagentoCategoryResponseTransformService,
         { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryTransformerServiceSpy },
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },
+        { provide: MAGENTO_PRODUCT_CONFIG_TOKEN, useValue: { baseMediaUrl: stubMediaUrl }},
       ],
     });
 
@@ -119,34 +124,34 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     });
 
     it('should call transform on the magentoCategoryTransformerService', () => {
-      service.transform(completeCategory);
+      service.transform(completeCategory, stubMediaUrl);
 
       expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory.category);
     });
 
     it('should call transform on the magentoCategoryPageConfigurationService', () => {
-      service.transform(completeCategory);
+      service.transform(completeCategory, stubMediaUrl);
 
       expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory);
     });
 
     it('should return the same number of products it receives', () => {
-      expect(service.transform(completeCategory).products.length).toEqual(completeCategory.products.length);
+      expect(service.transform(completeCategory, stubMediaUrl).products.length).toEqual(completeCategory.products.length);
     });
 
     it('should return a DaffGetCategoryResponse', () => {
-      expect(service.transform(completeCategory)).toEqual(
+      expect(service.transform(completeCategory, stubMediaUrl)).toEqual(
         {
           ...{ magentoCompleteCategoryResponse: completeCategory },
           category: stubCategory,
-          products: transformManyMagentoProducts(completeCategory.products),
+          products: transformManyMagentoProducts(completeCategory.products, stubMediaUrl),
           categoryPageMetadata: stubCategoryPageMetadata,
         },
       );
     });
 
     it('should return the magento MagentoCompleteCategoryResponse on the daffodil response', () => {
-      expect((<any>service.transform(completeCategory)).magentoCompleteCategoryResponse).toEqual(completeCategory);
+      expect((<any>service.transform(completeCategory, stubMediaUrl)).magentoCompleteCategoryResponse).toEqual(completeCategory);
     });
   });
 });

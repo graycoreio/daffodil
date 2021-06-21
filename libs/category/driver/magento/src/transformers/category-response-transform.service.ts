@@ -17,12 +17,12 @@ export class DaffMagentoCategoryResponseTransformService {
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
   ) {}
 
-  transform(completeCategory: MagentoCompleteCategoryResponse): DaffGetCategoryResponse {
+  transform(completeCategory: MagentoCompleteCategoryResponse, mediaUrl: string): DaffGetCategoryResponse {
     return {
       ...{ magentoCompleteCategoryResponse: completeCategory },
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),
       categoryPageMetadata: this.magentoCategoryPageConfigurationTransformerService.transform(completeCategory),
-      products: transformManyMagentoProducts(completeCategory.products),
+      products: transformManyMagentoProducts(completeCategory.products, mediaUrl),
     };
   }
 }
