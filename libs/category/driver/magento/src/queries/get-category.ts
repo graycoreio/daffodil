@@ -10,6 +10,8 @@ query ${DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME}($filters: CategoryFilterInput){
     url_suffix
 		name
 		level
+		meta_title
+		meta_description
 		description
 		breadcrumbs {
 			category_uid
