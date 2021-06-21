@@ -14,11 +14,11 @@ export interface DaffGetCategoryResponse<
 	W extends DaffProduct = DaffProduct
 > {
 	/**
-	 * The list of products described by the requested category.
+	 * The list of products that belong to the requested category.
 	 */
   products: W[];
 	/**
-	 * The category requested.
+	 * The requested category.
 	 */
   category: V;
 	/**

@@ -17,7 +17,7 @@ import {
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 
 /**
- * Returns the state for category entities.
+ * A reducer function to store category entities from DaffCategoryLoadSuccess and DaffCategoryPageLoadSuccess actions.
  */
 export function daffCategoryEntitiesReducer<
   V extends DaffGenericCategory<V> = DaffCategory,

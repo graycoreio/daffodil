@@ -62,7 +62,7 @@ export interface DaffCategoryPageMemoizedSelectors<
 	 */
 	selectCategoryPageProductIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['product_ids']>;
 	/**
-	 * Selects whether or not the category page has no products.
+	 * Selects whether the category page has no products.
 	 */
 	selectIsCategoryPageEmpty: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
 	/**

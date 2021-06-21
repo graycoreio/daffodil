@@ -32,7 +32,7 @@ export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends D
 	 */
   children_count?: number;
 	/**
-	 * The number of products described by the category.
+	 * The number of products that belong to the category.
 	 */
   total_products?: number;
 	/**
@@ -40,7 +40,7 @@ export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends D
 	 */
   children?: T[];
 	/**
-	 * The ids for all of the products described by the category.
+	 * The ids for all of the products that belong to the category.
 	 */
   product_ids?: string[];
 	/**
