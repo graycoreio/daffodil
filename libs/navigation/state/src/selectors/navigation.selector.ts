@@ -10,15 +10,16 @@ import { DaffGenericNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationReducersState,
   DaffNavigationReducerState,
+  DaffNavigationStateRootSlice,
   DAFF_NAVIGATION_STORE_FEATURE_KEY,
 } from '../reducers/public_api';
 
 export interface DaffNavigationMemoizedSelectors<T extends DaffGenericNavigationTree<T>> {
-	selectNavigationFeatureState: MemoizedSelector<Record<string, any>, DaffNavigationReducersState<T>>;
-	selectNavigationState: MemoizedSelector<Record<string, any>, DaffNavigationReducerState<T>>;
-	selectNavigationTree: MemoizedSelector<Record<string, any>, T>;
-	selectNavigationLoading: MemoizedSelector<Record<string, any>, boolean>;
-	selectNavigationErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+	selectNavigationFeatureState: MemoizedSelector<DaffNavigationStateRootSlice<T>, DaffNavigationReducersState<T>>;
+	selectNavigationState: MemoizedSelector<DaffNavigationStateRootSlice<T>, DaffNavigationReducerState<T>>;
+	selectNavigationTree: MemoizedSelector<DaffNavigationStateRootSlice<T>, T>;
+	selectNavigationLoading: MemoizedSelector<DaffNavigationStateRootSlice<T>, boolean>;
+	selectNavigationErrors: MemoizedSelector<DaffNavigationStateRootSlice<T>, DaffStateError[]>;
 }
 
 const createNavigationFeatureSelectors = <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => {

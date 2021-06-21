@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationLoadSuccess,
-  DaffNavigationReducersState,
+  DaffNavigationStateRootSlice,
   daffNavigationReducers,
   DAFF_NAVIGATION_STORE_FEATURE_KEY,
 } from '@daffodil/navigation/state';
@@ -20,7 +20,7 @@ import { getDaffNavigationSelectors } from './navigation.selector';
 
 describe('DaffNavigationSelectors', () => {
 
-  let store: Store<DaffNavigationReducersState<DaffNavigationTree>>;
+  let store: Store<DaffNavigationStateRootSlice<DaffNavigationTree>>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   let mockNavigation: DaffNavigationTree;
   const {

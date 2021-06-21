@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
-import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { DaffNavigationStateRootSlice } from '../reducers/navigation-reducers.interface';
 import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
 import { DaffNavigationFacadeInterface } from './navigation-facade.interface';
 
@@ -33,7 +33,7 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
    */
   errors$: Observable<DaffStateError[]>;
 
-  constructor(private store: Store<DaffNavigationReducersState<T>>) {
+  constructor(private store: Store<DaffNavigationStateRootSlice<T>>) {
     const {
       selectNavigationTree,
       selectNavigationLoading,
