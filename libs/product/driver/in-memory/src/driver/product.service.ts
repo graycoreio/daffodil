@@ -35,12 +35,6 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
     return this.http.get<DaffProduct[]>(this.url + 'best-sellers');
   }
 
-  /**
-   * Get a product by ID.
-   *
-   * @param productId string - product ID
-   * @returns An Observable of a DaffProduct
-   */
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.http.get<DaffProduct>(this.url + productId).pipe(
       map(product => ({

@@ -41,11 +41,6 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
   ) {}
 
-  /**
-   * Get an Observable of a DaffProduct by uid.
-   *
-   * @param productId a product Id
-   */
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<any>({
       query: GetProductQuery,
