@@ -1,5 +1,7 @@
 {
-    "entry": "./libs/design/src/scss/daff-theme.scss",
-    "dest": "../../dist/design/daff-theme.scss",
-    "project": "../../"
+    "bundlerOptions": {
+        "entryFile": "./src/scss/daff-theme.scss",
+        "outFile": "../../dist/design/daff-theme.scss",
+        "project": "../../../"
+    }
 }

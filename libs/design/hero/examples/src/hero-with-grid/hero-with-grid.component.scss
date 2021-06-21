@@ -2,6 +2,7 @@
 
 .daff-hero-with-grid {
 	&__grid {
+		// stylelint-disable-next-line scss/comment-no-loud
 		/* autoprefixer grid: autoplace */
 		display: grid;
 		grid-template:
