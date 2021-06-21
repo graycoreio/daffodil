@@ -55,8 +55,8 @@ describe('Driver | Testing | Product | ProductService', () => {
     it('should return a driver response with a single product with images', () => {
       productService.get('id').subscribe(resp => {
         expect(resp.id).toEqual('id');
-        expect(isProduct(Object.values(resp.products)[0])).toBeTruthy();
-        expect(Object.values(resp.products)[0].images).toEqual(stubProductImages);
+        expect(isProduct(resp.products[0])).toBeTruthy();
+        expect(resp.products[0].images).toEqual(stubProductImages);
       });
     });
   });
@@ -67,9 +67,9 @@ describe('Driver | Testing | Product | ProductService', () => {
       const url = 'url';
 
       productService.getByUrl(url).subscribe(resp => {
-        expect(isProduct(Object.values(resp.products)[0])).toBeTruthy();
-        expect(Object.values(resp.products)[0].images).toEqual(stubProductImages);
-        expect(Object.values(resp.products)[0].url).toEqual(url);
+        expect(isProduct(resp.products[0])).toBeTruthy();
+        expect(resp.products[0].images).toEqual(stubProductImages);
+        expect(resp.products[0].url).toEqual(url);
       });
     });
   });
