@@ -147,12 +147,6 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
-  /**
-   * A query for retrieving a particular product as an Observable<DaffProduct>.
-   *
-   * @param productId - A product ID
-   * @returns Observable<Product>
-   */
   get(productId: string): Observable<DaffProductDriverResponse> {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,
