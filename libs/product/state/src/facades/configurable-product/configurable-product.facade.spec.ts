@@ -11,7 +11,7 @@ import {
   DaffConfigurableProductApplyAttribute,
   DaffProductLoadSuccess,
   daffProductReducers,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
@@ -19,7 +19,7 @@ import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProductFacade } from './configurable-product.facade';
 
 describe('DaffConfigurableProductFacade', () => {
-  let store: Store<Partial<DaffProductReducersState>>;
+  let store: Store<DaffProductStateRootSlice>;
   let facade: DaffConfigurableProductFacade;
   let stubConfigurableProduct: DaffConfigurableProduct;
 
