@@ -20,7 +20,7 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 import { DaffNavigationFacade } from './navigation.facade';
 
 describe('DaffNavigationFacade', () => {
-  let store: Store<Partial<DaffNavigationStateRootSlice<DaffNavigationTree>>>;
+  let store: Store<DaffNavigationStateRootSlice<DaffNavigationTree>>;
   let facade: DaffNavigationFacade<DaffNavigationTree>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   let navigation: DaffNavigationTree;
