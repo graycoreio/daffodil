@@ -29,6 +29,6 @@ export function transformMagentoProduct(product: MagentoProduct, mediaUrl?: stri
 /**
  * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
  */
-export function transformManyMagentoProducts(products: MagentoProduct[], mediaUrl?: string): DaffProduct[] {
+export function transformManyMagentoProducts(products: MagentoProduct[], mediaUrl: string): DaffProduct[] {
   return products.map(product => transformMagentoProduct(product, mediaUrl));
 }
