@@ -114,62 +114,62 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   }
 
   getOrder$(orderId: T['id']): Observable<T> {
-    return this.store.pipe(select(this._order, { id: orderId }));
+    return this.store.pipe(select(this._order(orderId)));
   }
 
   getTotals$(orderId: T['id']): Observable<T['totals']> {
-    return this.store.pipe(select(this._totals, { id: orderId }));
+    return this.store.pipe(select(this._totals(orderId)));
   }
 
   getAppliedCodes$(orderId: T['id']): Observable<T['applied_codes']> {
-    return this.store.pipe(select(this._appliedCodes, { id: orderId }));
+    return this.store.pipe(select(this._appliedCodes(orderId)));
   }
 
   getItems$(orderId: T['id']): Observable<T['items']> {
-    return this.store.pipe(select(this._items, { id: orderId }));
+    return this.store.pipe(select(this._items(orderId)));
   }
 
   getBillingAddresses$(orderId: T['id']): Observable<T['billing_addresses']> {
-    return this.store.pipe(select(this._billingAddresses, { id: orderId }));
+    return this.store.pipe(select(this._billingAddresses(orderId)));
   }
 
   getShippingAddresses$(orderId: T['id']): Observable<T['shipping_addresses']> {
-    return this.store.pipe(select(this._shippingAddresses, { id: orderId }));
+    return this.store.pipe(select(this._shippingAddresses(orderId)));
   }
 
   getShipments$(orderId: T['id']): Observable<T['shipments']> {
-    return this.store.pipe(select(this._shipments, { id: orderId }));
+    return this.store.pipe(select(this._shipments(orderId)));
   }
 
   getPayment$(orderId: T['id']): Observable<T['payment']> {
-    return this.store.pipe(select(this._payment, { id: orderId }));
+    return this.store.pipe(select(this._payment(orderId)));
   }
 
   getInvoices$(orderId: T['id']): Observable<T['invoices']> {
-    return this.store.pipe(select(this._invoices, { id: orderId }));
+    return this.store.pipe(select(this._invoices(orderId)));
   }
 
   getCredits$(orderId: T['id']): Observable<T['credits']> {
-    return this.store.pipe(select(this._credits, { id: orderId }));
+    return this.store.pipe(select(this._credits(orderId)));
   }
 
   getGrandTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._grandTotal, { id: orderId }));
+    return this.store.pipe(select(this._grandTotal(orderId)));
   };
   getSubtotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._subtotal, { id: orderId }));
+    return this.store.pipe(select(this._subtotal(orderId)));
   };
   getShippingTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._shipping, { id: orderId }));
+    return this.store.pipe(select(this._shipping(orderId)));
   };
   getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._discount, { id: orderId }));
+    return this.store.pipe(select(this._discount(orderId)));
   };
   hasDiscount$(orderId: T['id']): Observable<boolean> {
-    return this.store.pipe(select(this._hasDiscount, { id: orderId }));
+    return this.store.pipe(select(this._hasDiscount(orderId)));
   };
   getTaxTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
-    return this.store.pipe(select(this._tax, { id: orderId }));
+    return this.store.pipe(select(this._tax(orderId)));
   };
 
   dispatch(action: Action) {
