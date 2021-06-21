@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.36.1](https://github.com/graycoreio/daffodil/compare/v0.36.0...v0.36.1) (2021-06-21)
+
+
+### Features
+
+* **core,cart:** add meta reducer factory and use it for cart ([#1605](https://github.com/graycoreio/daffodil/issues/1605)) ([565f8ba](https://github.com/graycoreio/daffodil/commit/565f8ba0669349bfa054b1b8715d8bc30971b8a8))
+* **navigation:** add root state slice interface ([#1612](https://github.com/graycoreio/daffodil/issues/1612)) ([a8495aa](https://github.com/graycoreio/daffodil/commit/a8495aa9ca2ccade8391df8d2190edbec6596509))
+
+
+### Bug Fixes
+
+* **product, category:** product images from category calls have a bad url ([#1624](https://github.com/graycoreio/daffodil/issues/1624)) ([8e7be90](https://github.com/graycoreio/daffodil/commit/8e7be90dbc942c78c82e97ddf23cb2d2cadf6afc))
+
 ## [0.36.0](https://github.com/graycoreio/daffodil/compare/v0.35.0...v0.36.0) (2021-06-21)
 
 
