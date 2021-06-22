@@ -27,6 +27,15 @@ import { transformMagentoSimpleProduct } from './simple-product-transformers';
 export function transformMagentoBundledProduct(product: MagentoBundledProduct, mediaUrl: string): DaffCompositeProduct {
   return {
     ...<DaffProduct>transformMagentoSimpleProduct(product, mediaUrl),
+    ...transformMagentoBundledProductFragment(product),
+  };
+}
+
+/**
+ * transforms just the additional fields added by bundle product
+ */
+export function transformMagentoBundledProductFragment(product: MagentoBundledProduct): DaffCompositeProduct {
+  return <DaffCompositeProduct>{
     price: 0,
     discount: {
       amount: 0,

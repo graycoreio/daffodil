@@ -5,11 +5,15 @@ import {
   DaffProductDiscount,
 } from '@daffodil/product';
 
+import { MagentoBundledProduct } from '../models/bundled-product';
+import { MagentoConfigurableProduct } from '../models/configurable-product';
 import {
   MagentoProduct,
   MagentoProductTypeEnum,
 } from '../models/magento-product';
 import { MagentoProductPreview } from '../models/product-preview.interface';
+import { transformMagentoBundledProductFragment } from './bundled-product-transformers';
+import { transformMagentoConfigurableProductFragment } from './configurable-product-transformers';
 
 const productTypeMap = {
   [MagentoProductTypeEnum.BundledProduct]: DaffProductTypeEnum.Composite,
@@ -28,6 +32,24 @@ export function transformMagentoProductPreview(product: MagentoProductPreview, m
     discount: getDiscount(product),
     images: transformMediaGalleryEntries(product, mediaUrl),
   };
+}
+
+export function transformFullProductPreview(product: MagentoProductPreview, mediaUrl: string): DaffProduct {
+  const preview = transformMagentoProductPreview(product, mediaUrl);
+  switch(product.__typename) {
+    case MagentoProductTypeEnum.BundledProduct:
+      return {
+        ...preview,
+        ...transformMagentoBundledProductFragment(<MagentoBundledProduct>product),
+      };
+    case MagentoProductTypeEnum.ConfigurableProduct:
+      return {
+        ...preview,
+        ...transformMagentoConfigurableProductFragment(<MagentoConfigurableProduct>product),
+      };
+    default:
+      return preview;
+  }
 }
 
 function transformImage(image: MagentoProduct['thumbnail'], mediaUrl: string): DaffProductImage {

@@ -30,9 +30,15 @@ export const magentoProductFragment = gql`
 		}
     upsell_products {
       ...magentoProductPreview
+      ...magentoBundledProduct
+      ...magentoSimpleProduct
+      ...magentoConfigurableProduct
     }
     related_products {
       ...magentoProductPreview
+      ...magentoBundledProduct
+      ...magentoSimpleProduct
+      ...magentoConfigurableProduct
     }
 		...magentoBundledProduct
 		...magentoSimpleProduct

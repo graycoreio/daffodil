@@ -29,6 +29,15 @@ import { transformMagentoSimpleProduct } from './simple-product-transformers';
 export function transformMagentoConfigurableProduct(product: MagentoConfigurableProduct, mediaUrl: string): DaffConfigurableProduct {
   return {
     ...transformMagentoSimpleProduct(product, mediaUrl),
+    ...transformMagentoConfigurableProductFragment(product),
+  };
+}
+
+/**
+ * transforms just the additional fields added by configurable product
+ */
+export function transformMagentoConfigurableProductFragment(product: MagentoConfigurableProduct): DaffConfigurableProduct {
+  return <DaffConfigurableProduct>{
     type: DaffProductTypeEnum.Configurable,
     configurableAttributes: product.configurable_options.map(transformOption),
     variants: product.variants.map(transformVariant),
