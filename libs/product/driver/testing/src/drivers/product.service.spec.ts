@@ -9,7 +9,7 @@ import {
 import { DaffTestingProductService } from './product.service';
 
 describe('Driver | Testing | Product | ProductService', () => {
-  let productService;
+  let productService: DaffTestingProductService;
   let productImageFactory: DaffProductImageFactory;
   let stubProductImages: DaffProductImage[];
 
@@ -52,23 +52,24 @@ describe('Driver | Testing | Product | ProductService', () => {
 
   describe('get', () => {
 
-    it('should return a single product with images', () => {
-      productService.get('id').subscribe(product => {
-        expect(isProduct(product)).toBeTruthy();
-        expect(product.images).toEqual(stubProductImages);
+    it('should return a driver response with a single product with images', () => {
+      productService.get('id').subscribe(resp => {
+        expect(resp.id).toEqual('id');
+        expect(isProduct(resp.products[0])).toBeTruthy();
+        expect(resp.products[0].images).toEqual(stubProductImages);
       });
     });
   });
 
   describe('getByUrl', () => {
 
-    it('should return a single product with images and the same url', () => {
+    it('should return a driver response with a single product with images and the same url', () => {
       const url = 'url';
 
-      productService.getByUrl(url).subscribe(product => {
-        expect(isProduct(product)).toBeTruthy();
-        expect(product.images).toEqual(stubProductImages);
-        expect(product.url).toEqual(url);
+      productService.getByUrl(url).subscribe(resp => {
+        expect(isProduct(resp.products[0])).toBeTruthy();
+        expect(resp.products[0].images).toEqual(stubProductImages);
+        expect(resp.products[0].url).toEqual(url);
       });
     });
   });

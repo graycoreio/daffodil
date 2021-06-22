@@ -6,7 +6,10 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { daffSubtract } from '@daffodil/core';
+import {
+  daffArrayToDict,
+  daffSubtract,
+} from '@daffodil/core';
 import {
   DaffProductLoad,
   DaffProductLoadSuccess,
@@ -80,7 +83,10 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create();
       const expected = cold('a', { a: product });
       store.dispatch(new DaffProductPageLoad(product.id));
-      store.dispatch(new DaffProductPageLoadSuccess(product));
+      store.dispatch(new DaffProductPageLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.product$).toBeObservable(expected);
     });
   });
@@ -90,7 +96,10 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create();
       const expected = cold('a', { a: product });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.getProduct(product.id)).toBeObservable(expected);
     });
   });
@@ -100,7 +109,10 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create();
       const expected = cold('a', { a: product.price });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.getPrice(product.id)).toBeObservable(expected);
     });
   });
@@ -112,7 +124,10 @@ describe('DaffProductFacade', () => {
       });
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.hasDiscount(product.id)).toBeObservable(expected);
     });
   });
@@ -124,7 +139,10 @@ describe('DaffProductFacade', () => {
       });
       const expected = cold('a', { a: 20 });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
     });
   });
@@ -134,7 +152,10 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create();
       const expected = cold('a', { a: daffSubtract(product.price, product.discount.amount) });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);
     });
   });
@@ -146,7 +167,10 @@ describe('DaffProductFacade', () => {
       });
       const expected = cold('a', { a: 10 });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.getDiscountPercent(product.id)).toBeObservable(expected);
     });
   });
@@ -159,7 +183,10 @@ describe('DaffProductFacade', () => {
       });
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
-      store.dispatch(new DaffProductLoadSuccess(product));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
       expect(facade.isOutOfStock(product.id)).toBeObservable(expected);
     });
   });

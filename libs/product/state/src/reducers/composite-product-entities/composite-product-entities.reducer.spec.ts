@@ -100,7 +100,10 @@ describe('Product | Composite Product Entities Reducer', () => {
     });
 
     it('sets a composite product entity when the given product is composite', () => {
-      const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: compositeProduct.id,
+        products: [compositeProduct],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
       expect(result.entities[compositeProduct.id]).toEqual({
         id: compositeProduct.id,
@@ -118,7 +121,10 @@ describe('Product | Composite Product Entities Reducer', () => {
     });
 
     it('does not set a composite product entity when the given product is not composite', () => {
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
     });
@@ -134,7 +140,10 @@ describe('Product | Composite Product Entities Reducer', () => {
     });
 
     it('sets a composite product entity when the given product is composite', () => {
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess(compositeProduct);
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
+        id: compositeProduct.id,
+        products: [compositeProduct],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[compositeProduct.id]).toEqual({
         id: compositeProduct.id,
@@ -152,7 +161,10 @@ describe('Product | Composite Product Entities Reducer', () => {
     });
 
     it('does not set a composite product entity when the given product is not composite', () => {
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
+        id: product.id,
+        products: [product],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
     });
@@ -205,7 +217,10 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[0].is_default = false;
       compositeProduct.items[0].options[1].is_default = true;
       compositeProduct.items[0].options[1].in_stock = true;
-      const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: compositeProduct.id,
+        products: [compositeProduct],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
       expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
@@ -218,7 +233,10 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[0].is_default = false;
       compositeProduct.items[0].options[1].is_default = true;
       compositeProduct.items[0].options[1].in_stock = false;
-      const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: compositeProduct.id,
+        products: [compositeProduct],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
       expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id].value).toEqual(null);
@@ -228,7 +246,10 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[0].is_default = false;
       compositeProduct.items[0].options[1].is_default = true;
       compositeProduct.items[0].options[1].in_stock = false;
-      const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: compositeProduct.id,
+        products: [compositeProduct],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
       expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id].qty).toEqual(compositeProduct.items[0].options[1].quantity);
@@ -238,7 +259,10 @@ describe('Product | Composite Product Entities Reducer', () => {
       compositeProduct.items[0].options[0].is_default = false;
       compositeProduct.items[0].options[1].is_default = false;
       compositeProduct.items[0].required = true;
-      const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: compositeProduct.id,
+        products: [compositeProduct],
+      });
       result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
       expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({ value: null, qty: null });

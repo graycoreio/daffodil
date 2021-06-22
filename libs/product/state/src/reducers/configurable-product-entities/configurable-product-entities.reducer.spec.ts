@@ -103,13 +103,19 @@ describe('Product | Product Entities Reducer', () => {
     });
 
     it('sets a configurable product entity when the given product is configurable', () => {
-      const productLoadSuccess = new DaffProductLoadSuccess(configurableProduct);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: configurableProduct.id,
+        products: [configurableProduct],
+      });
       result = daffConfigurableProductEntitiesReducer(initialState, productLoadSuccess);
       expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id, attributes: []});
     });
 
     it('does not set a configurable product entity when the given product is not configurable', () => {
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      });
       result = daffConfigurableProductEntitiesReducer(initialState, productLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
     });
@@ -125,13 +131,19 @@ describe('Product | Product Entities Reducer', () => {
     });
 
     it('sets a configurable product entity when the given product is configurable', () => {
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess(configurableProduct);
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
+        id: configurableProduct.id,
+        products: [configurableProduct],
+      });
       result = daffConfigurableProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id, attributes: []});
     });
 
     it('does not set a configurable product entity when the given product is not configurable', () => {
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
+        id: product.id,
+        products: [product],
+      });
       result = daffConfigurableProductEntitiesReducer(initialState, productPageLoadSuccess);
       expect(result.entities[product.id]).toBeUndefined();
     });

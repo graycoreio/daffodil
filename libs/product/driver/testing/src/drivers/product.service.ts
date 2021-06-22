@@ -4,8 +4,12 @@ import {
   of,
 } from 'rxjs';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductServiceInterface } from '@daffodil/product/driver';
+import {
+  DaffProductDriverResponse,
+  DaffProductServiceInterface,
+} from '@daffodil/product/driver';
 import {
   DaffProductFactory,
   DaffProductImageFactory,
@@ -46,11 +50,20 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  get(productId: DaffProduct['id']): Observable<DaffProduct> {
-    return of(this.productFactory.create({ images: this.productImageFactory.createMany(5) }));
+  get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
+    return of({
+      id: productId,
+      products: [
+        this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
+      ],
+    });
   }
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
-    return of(this.productFactory.create({ url, images: this.productImageFactory.createMany(5) }));
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
+    const product = this.productFactory.create({ images: this.productImageFactory.createMany(5), url });
+    return of({
+      id: product.id,
+      products: [product],
+    });
   }
 }

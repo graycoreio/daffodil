@@ -4,6 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffInMemoryProductService } from './product.service';
@@ -71,8 +72,9 @@ describe('Driver | InMemory | Product | ProductService', () => {
     it('should send a get request', () => {
       const mockProduct = productFactory.create();
 
-      productService.get(mockProduct.id).subscribe(product => {
-        expect(product).toEqual(mockProduct);
+      productService.get(mockProduct.id).subscribe((resp: DaffProductDriverResponse) => {
+        expect(resp.id).toEqual(mockProduct.id);
+        expect(resp.products[0]).toEqual(mockProduct);
       });
 
       const req = httpMock.expectOne(`${productService.url}${mockProduct.id}`);
@@ -87,8 +89,9 @@ describe('Driver | InMemory | Product | ProductService', () => {
     it('should send a get request', () => {
       const mockProduct = productFactory.create();
 
-      productService.getByUrl(mockProduct.url).subscribe(product => {
-        expect(product).toEqual(mockProduct);
+      productService.getByUrl(mockProduct.url).subscribe((resp: DaffProductDriverResponse) => {
+        expect(resp.id).toEqual(mockProduct.id);
+        expect(resp.products[0]).toEqual(mockProduct);
       });
 
       const req = httpMock.expectOne(`${productService.url}${mockProduct.url}`);

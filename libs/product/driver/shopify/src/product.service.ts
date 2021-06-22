@@ -9,11 +9,15 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { daffArrayToDict } from '@daffodil/core';
 import {
   DaffProduct,
   DaffProductTypeEnum,
 } from '@daffodil/product';
-import { DaffProductServiceInterface } from '@daffodil/product/driver';
+import {
+  DaffProductDriverResponse,
+  DaffProductServiceInterface,
+} from '@daffodil/product/driver';
 
 interface GetAllProductsResponse {
   shop?: ShopGraph;
@@ -112,9 +116,12 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
 
   constructor(private apollo: Apollo) {}
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
     // TODO: implement
-    return of();
+    return of({
+      id: null,
+      products: [],
+    });
   }
 
   getAll(): Observable<DaffProduct[]> {
@@ -140,14 +147,17 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
-  get(productId: string): Observable<DaffProduct> {
+  get(productId: string): Observable<DaffProductDriverResponse> {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,
       variables: {
         id: productId,
       },
     }).pipe(
-      map(result => DaffShopifyProductTransformer(result.data.node)),
+      map(result => ({
+        id: productId,
+        products: [DaffShopifyProductTransformer(result.data.node)],
+      })),
     );
   }
 }

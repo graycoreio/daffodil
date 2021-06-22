@@ -26,6 +26,7 @@ import {
 import { fail } from 'assert';
 import { Observable } from 'rxjs';
 
+import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageLoadByUrl,
@@ -113,7 +114,10 @@ describe('DaffProductPageUrlResolver', () => {
         expect(value).toEqual(true);
       });
 
-      store.dispatch(new DaffProductPageLoadSuccess(stubProduct));
+      store.dispatch(new DaffProductPageLoadSuccess({
+        id: stubProduct.id,
+        products: [stubProduct],
+      }));
     }));
 
     it('should resolve when DaffProductPageLoadFailure is dispatched', fakeAsync(() => {

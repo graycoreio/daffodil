@@ -77,7 +77,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
 
       productService.get(product.id).subscribe((result) => {
         expect(result.id).toEqual(product.id);
-        expect(result.name).toEqual(product.name);
+        expect(result.products[0].name).toEqual(product.name);
         done();
       });
 

@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductServiceInterface } from '@daffodil/product/driver';
+import {
+  DaffProductDriverResponse,
+  DaffProductServiceInterface,
+} from '@daffodil/product/driver';
 
 /**
  * The product inmemory driver to mock the product backend service.
@@ -30,11 +34,21 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
     return this.http.get<DaffProduct[]>(this.url + 'best-sellers');
   }
 
-  get(productId: DaffProduct['id']): Observable<DaffProduct> {
-    return this.http.get<DaffProduct>(this.url + productId);
+  get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
+    return this.http.get<DaffProduct>(this.url + productId).pipe(
+      map(product => ({
+        id: productId,
+        products: [product],
+      })),
+    );
   }
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
-    return this.http.get<DaffProduct>(`${this.url}${url}`);
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
+    return this.http.get<DaffProduct>(`${this.url}${url}`).pipe(
+      map(product => ({
+        id: product.id,
+        products: [product],
+      })),
+    );
   }
 }

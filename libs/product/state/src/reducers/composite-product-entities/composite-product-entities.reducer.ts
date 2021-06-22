@@ -42,20 +42,15 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertMany(
-        action.payload
-          .filter(product => product.type === DaffProductTypeEnum.Composite)
-          .map(product => buildCompositeProductAppliedOptionsEntity(<V><unknown>product)),
+        mapOptionsEntities(<V[]><unknown>action.payload),
         state,
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      if(action.payload.type === DaffProductTypeEnum.Composite) {
-        return adapter.upsertOne(
-          buildCompositeProductAppliedOptionsEntity(<V><unknown>action.payload),
-          state,
-        );
-      };
-      return state;
+      return adapter.upsertMany(
+        mapOptionsEntities(<V[]><unknown>action.payload.products),
+        state,
+      );
     case DaffCompositeProductActionTypes.CompositeProductApplyOptionAction:
       return adapter.upsertOne(
         {
@@ -73,6 +68,11 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
     default:
       return state;
   }
+}
+
+function mapOptionsEntities(products: DaffCompositeProduct[]): DaffCompositeProductEntity[] {
+  return products.filter(product => product.type === DaffProductTypeEnum.Composite)
+    .map(product => buildCompositeProductAppliedOptionsEntity(product));
 }
 
 function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct): DaffCompositeProductEntity {

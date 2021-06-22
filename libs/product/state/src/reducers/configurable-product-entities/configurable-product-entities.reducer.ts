@@ -43,20 +43,15 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertMany(
-        action.payload
-          .filter(product => product.type === DaffProductTypeEnum.Configurable)
-          .map(buildConfigurableProductAppliedAttributesEntity),
+        mapEntities(<V[]><unknown>action.payload),
         state,
       );
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      if(action.payload.type === DaffProductTypeEnum.Configurable) {
-        return adapter.upsertOne(
-          buildConfigurableProductAppliedAttributesEntity(action.payload),
-          state,
-        );
-      };
-      return state;
+      return adapter.upsertMany(
+        mapEntities(<V[]><unknown>action.payload.products),
+        state,
+      );
     case DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction:
       return adapter.upsertOne(
         {
@@ -86,6 +81,11 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
     default:
       return state;
   }
+}
+
+function mapEntities(products: DaffConfigurableProduct[]): DaffConfigurableProductEntity[] {
+  return products.filter(product => product.type === DaffProductTypeEnum.Configurable)
+    .map(product => buildConfigurableProductAppliedAttributesEntity(product));
 }
 
 function buildConfigurableProductAppliedAttributesEntity(product: DaffProduct): DaffConfigurableProductEntity {

@@ -10,7 +10,10 @@ import {
 import { map } from 'rxjs/operators';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductServiceInterface } from '@daffodil/product/driver';
+import {
+  DaffProductDriverResponse,
+  DaffProductServiceInterface,
+} from '@daffodil/product/driver';
 
 import {
   MAGENTO_PRODUCT_CONFIG_TOKEN,
@@ -20,9 +23,9 @@ import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
 import { GetProductByUrlQuery } from './queries/get-product-by-url';
 import {
-  transformMagentoProduct,
+  transformMagentoProductResponse,
   transformManyMagentoProducts,
-} from './transforms/product-transformers';
+} from './transforms/public_api';
 
 /**
  * A service for making magento apollo queries for products of type, {@link DaffProduct}.
@@ -38,25 +41,25 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
   ) {}
 
-  get(productId: DaffProduct['id']): Observable<DaffProduct> {
+  get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<any>({
       query: GetProductQuery,
       variables: {
         sku: productId,
       },
     }).pipe(
-      map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
+      map(result => transformMagentoProductResponse(result.data.products.items[0], this.config.baseMediaUrl)),
     );
   }
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProduct> {
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<any>({
       query: GetProductByUrlQuery,
       variables: {
         url: this.config.urlTruncationStrategy(url),
       },
     }).pipe(
-      map(result => transformMagentoProduct(result.data.products.items[0], this.config.baseMediaUrl)),
+      map(result => transformMagentoProductResponse(result.data.products.items[0], this.config.baseMediaUrl)),
     );
   }
 

@@ -111,7 +111,10 @@ describe('AddToCartNotificationComponent', () => {
     const stubCart = cartFactory.create();
 
     beforeEach(() => {
-      store.dispatch(new DaffProductLoadSuccess(stubProduct));
+      store.dispatch(new DaffProductLoadSuccess({
+        id: stubProduct.id,
+        products: [stubProduct],
+      }));
       store.dispatch(new OpenAddToCartNotification());
       store.dispatch(new DaffAddToCart(productAddPayload));
       store.dispatch(new DaffAddToCartSuccess(stubCart));

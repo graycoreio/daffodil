@@ -2,16 +2,17 @@ import { Action } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
+import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 /**
  * Action types for Product Page Actions.
  */
 export enum DaffProductPageActionTypes {
-    ProductPageLoadByUrlAction = '[Product Page] Load By URL Action',
-    ProductPageLoadAction = '[Product Page] Load Action',
-    ProductPageLoadSuccessAction = '[Product Page] Load Success Action',
-    ProductPageLoadFailureAction = '[Product Page] Load Failure Action',
-		UpdateQtyAction = '[Product Page] Update Qty Action'
+  ProductPageLoadByUrlAction = '[Product Page] Load By URL Action',
+  ProductPageLoadAction = '[Product Page] Load Action',
+  ProductPageLoadSuccessAction = '[Product Page] Load Success Action',
+  ProductPageLoadFailureAction = '[Product Page] Load Failure Action',
+  UpdateQtyAction = '[Product Page] Update Qty Action'
 }
 
 /**
@@ -46,7 +47,7 @@ export class DaffProductPageLoad implements Action {
 export class DaffProductPageLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
   readonly type = DaffProductPageActionTypes.ProductPageLoadSuccessAction;
 
-  constructor(public payload: T) { }
+  constructor(public payload: DaffProductDriverResponse<T>) { }
 }
 
 /**
@@ -66,14 +67,14 @@ export class DaffProductPageLoadFailure implements Action {
  * @param payload - The qty of the product.
  */
 export class DaffProductPageUpdateQty implements Action {
-    readonly type = DaffProductPageActionTypes.UpdateQtyAction;
+  readonly type = DaffProductPageActionTypes.UpdateQtyAction;
 
-    constructor(public payload: number) {}
+  constructor(public payload: number) {}
 }
 
 export type DaffProductPageActions<T extends DaffProduct = DaffProduct> =
-    | DaffProductPageLoadByUrl<T>
-    | DaffProductPageLoad
-    | DaffProductPageLoadSuccess<T>
-    | DaffProductPageLoadFailure
-		| DaffProductPageUpdateQty;
+  | DaffProductPageLoadByUrl<T>
+  | DaffProductPageLoad
+  | DaffProductPageLoadSuccess<T>
+  | DaffProductPageLoadFailure
+  | DaffProductPageUpdateQty;

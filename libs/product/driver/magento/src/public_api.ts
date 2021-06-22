@@ -14,10 +14,7 @@ export { magentoBundledProductFragment } from './queries/fragments/bundled-produ
 export { magentoProductFragment } from './queries/fragments/product';
 export { DaffMagentoProductService } from './product.service';
 export { DaffProductMagentoDriverModule } from './product-driver.module';
-export {
-  transformMagentoProduct,
-  transformManyMagentoProducts,
-} from './transforms/product-transformers';
 
+export * from './transforms/public_api';
 export * from './interfaces/public_api';
 export * from './config/public_api';

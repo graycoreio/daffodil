@@ -84,7 +84,10 @@ describe('Product | Product Entities Reducer', () => {
       product = productFactory.create();
       productId = product.id;
 
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess(product);
+      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
+        id: product.id,
+        products: [product],
+      });
 
       result = daffProductEntitiesReducer(initialState, productPageLoadSuccess);
     });
@@ -104,7 +107,10 @@ describe('Product | Product Entities Reducer', () => {
       product = productFactory.create();
       productId = product.id;
 
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
+      const productLoadSuccess = new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      });
 
       result = daffProductEntitiesReducer(initialState, productLoadSuccess);
     });
