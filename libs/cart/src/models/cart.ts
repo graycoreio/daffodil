@@ -1,4 +1,4 @@
-import { ID } from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 
 import { DaffCartAddress } from './cart-address';
 import { DaffCartCoupon } from './cart-coupon';
@@ -8,8 +8,7 @@ import { DaffCartShippingInformation } from './cart-shipping-info';
 import { DaffCartShippingRate } from './cart-shipping-rate';
 import { DaffCartTotal } from './cart-total';
 
-export interface DaffCart {
-	id: ID;
+export interface DaffCart extends DaffIdentifiable {
 	/**
 	 * @deprecated use totals instead
 	 */

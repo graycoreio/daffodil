@@ -1,4 +1,7 @@
-import { ID } from '@daffodil/core';
+import {
+  DaffIdentifiable,
+  ID,
+} from '@daffodil/core';
 import {
   DaffSortable,
   DaffNumericallyPaginable,
@@ -10,12 +13,7 @@ import { DaffCategoryFilterable } from './filters/public_api';
 /**
  * The DaffCategoryPageMetadata describes the properties of a Category Page.
  */
-export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyPaginable, DaffCategoryFilterable {
-  /**
-   * The ID of the currently visible category page.
-   */
-  id: ID;
-
+export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyPaginable, DaffCategoryFilterable, DaffIdentifiable {
   /**
    * The total number of products in the currently visible category.
    */

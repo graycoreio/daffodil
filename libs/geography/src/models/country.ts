@@ -1,4 +1,4 @@
-import { ID } from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 
 import { DaffSubdivision } from './subdivision';
 
@@ -6,8 +6,7 @@ import { DaffSubdivision } from './subdivision';
  * A representation of a country on the planet Earth.
  * See: ISO-3166
  */
-export interface DaffCountry {
-	id: ID;
+export interface DaffCountry extends DaffIdentifiable {
 	name: string;
 	name_en: string;
 	alpha2: string;

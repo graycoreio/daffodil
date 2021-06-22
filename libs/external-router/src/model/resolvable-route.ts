@@ -1,4 +1,4 @@
-import { ID } from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 
 import { DaffExternalRouteType } from './route-type';
 
@@ -14,8 +14,7 @@ import { DaffExternalRouteType } from './route-type';
  * }
  * ```
  */
-export interface DaffExternallyResolvableUrl {
-  id: ID;
+export interface DaffExternallyResolvableUrl extends DaffIdentifiable {
   /**
    * The URL that will be used for the path of the route inserted
    * into the Angular routing config.

@@ -1,7 +1,6 @@
-import { ID } from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 
-export interface DaffCartShippingRate {
-  id: ID;
+export interface DaffCartShippingRate extends DaffIdentifiable {
   carrier: string;
   carrier_title: string;
   method_code: string;
