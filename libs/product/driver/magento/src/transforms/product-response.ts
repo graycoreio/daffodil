@@ -12,6 +12,6 @@ export function transformMagentoProductResponse(product: MagentoProduct, mediaUr
   const daffProduct = transformMagentoProduct(product, mediaUrl);
   return {
     id: daffProduct.id,
-    products: [daffProduct],
+    products: [daffProduct, ...daffProduct.upsell, ...daffProduct.related],
   };
 }
