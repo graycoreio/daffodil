@@ -17,32 +17,25 @@ import {
   MagentoProduct,
   MagentoProductStockStatusEnum,
 } from '../models/magento-product';
-import { transformMagentoSimpleProduct } from './simple-product-transformers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
  *
  * @param response the response from a magento product query.
  */
-export function transformMagentoBundledProduct(product: MagentoBundledProduct, mediaUrl: string): DaffCompositeProduct {
+export function transformMagentoBundledProduct(
+  daffProduct: DaffProduct,
+  { items }: MagentoBundledProduct,
+): DaffCompositeProduct {
   return {
-    ...<DaffProduct>transformMagentoSimpleProduct(product, mediaUrl),
-    ...transformMagentoBundledProductFragment(product),
-  };
-}
-
-/**
- * transforms just the additional fields added by bundle product
- */
-export function transformMagentoBundledProductFragment(product: MagentoBundledProduct): DaffCompositeProduct {
-  return <DaffCompositeProduct>{
+    ...daffProduct,
     price: 0,
     discount: {
       amount: 0,
       percent: 0,
     },
     type: DaffProductTypeEnum.Composite,
-    items: product.items.map(transformMagentoBundledProductItem),
+    items: items.map(transformMagentoBundledProductItem),
   };
 }
 

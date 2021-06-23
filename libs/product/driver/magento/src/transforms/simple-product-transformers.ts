@@ -4,10 +4,8 @@ import {
   MagentoProduct,
   MagentoProductStockStatusEnum,
 } from '../models/magento-product';
-import {
-  transformFullProductPreview,
-  transformMagentoProductPreview,
-} from './product-preview';
+import { transformMagentoProductPreview } from './product-preview';
+import { transformProductPreview } from './product-transformers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
@@ -22,7 +20,7 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
     description: product.description.html,
     meta_title: product.meta_title,
     meta_description: product.meta_description,
-    related: product.related_products?.map(p => transformFullProductPreview(p, mediaUrl)) || [],
-    upsell: product.upsell_products?.map(p => transformFullProductPreview(p, mediaUrl)) || [],
+    related: product.related_products?.map(p => transformProductPreview(p, mediaUrl)) || [],
+    upsell: product.upsell_products?.map(p => transformProductPreview(p, mediaUrl)) || [],
   };
 }

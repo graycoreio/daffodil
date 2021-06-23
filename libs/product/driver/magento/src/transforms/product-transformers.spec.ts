@@ -16,6 +16,7 @@ import {
   transformMagentoProduct,
   transformManyMagentoProducts,
 } from './product-transformers';
+import { transformMagentoSimpleProduct } from './simple-product-transformers';
 
 describe('DaffMagentoProductTransformers', () => {
   const mediaUrl = 'media url';
@@ -31,7 +32,7 @@ describe('DaffMagentoProductTransformers', () => {
     describe('when the product is a simple product', () => {
 
       it('should return a simple product', () => {
-        expect(transformMagentoProduct(stubMagentoProducts[0], mediaUrl).type).toEqual(DaffProductTypeEnum.Simple);
+        expect(transformMagentoProduct(transformMagentoSimpleProduct(stubMagentoProducts[0], mediaUrl), stubMagentoProducts[0]).type).toEqual(DaffProductTypeEnum.Simple);
       });
     });
 
@@ -43,7 +44,7 @@ describe('DaffMagentoProductTransformers', () => {
       });
 
       it('should return a composite product', () => {
-        expect(transformMagentoProduct(magentoBundledProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Composite);
+        expect(transformMagentoProduct(transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct).type).toEqual(DaffProductTypeEnum.Composite);
       });
     });
 
@@ -55,7 +56,7 @@ describe('DaffMagentoProductTransformers', () => {
       });
 
       it('should return a configurable product', () => {
-        expect(transformMagentoProduct(magentoConfigurableProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Configurable);
+        expect(transformMagentoProduct(transformMagentoSimpleProduct(magentoConfigurableProduct, mediaUrl), magentoConfigurableProduct).type).toEqual(DaffProductTypeEnum.Configurable);
       });
     });
   });

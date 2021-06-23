@@ -6,6 +6,7 @@ import {
   DaffProductVariantAttributesDictionary,
   DaffProductTypeEnum,
   DaffProductDiscount,
+  DaffProduct,
 } from '@daffodil/product';
 
 import {
@@ -19,28 +20,21 @@ import {
   MagentoProduct,
   MagentoProductStockStatusEnum,
 } from '../models/magento-product';
-import { transformMagentoSimpleProduct } from './simple-product-transformers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
  *
  * @param response the response from a magento product query.
  */
-export function transformMagentoConfigurableProduct(product: MagentoConfigurableProduct, mediaUrl: string): DaffConfigurableProduct {
+export function transformMagentoConfigurableProduct(
+  daffProduct: DaffProduct,
+  { configurable_options, variants }: MagentoConfigurableProduct,
+): DaffConfigurableProduct {
   return {
-    ...transformMagentoSimpleProduct(product, mediaUrl),
-    ...transformMagentoConfigurableProductFragment(product),
-  };
-}
-
-/**
- * transforms just the additional fields added by configurable product
- */
-export function transformMagentoConfigurableProductFragment(product: MagentoConfigurableProduct): DaffConfigurableProduct {
-  return <DaffConfigurableProduct>{
+    ...daffProduct,
     type: DaffProductTypeEnum.Configurable,
-    configurableAttributes: product.configurable_options.map(transformOption),
-    variants: product.variants.map(transformVariant),
+    configurableAttributes: configurable_options.map(transformOption),
+    variants: variants.map(transformVariant),
   };
 }
 

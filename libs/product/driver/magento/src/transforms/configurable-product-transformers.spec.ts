@@ -6,6 +6,7 @@ import {
   MagentoConfigurableProductOption,
   MagentoConfigurableProductVariant,
   MagentoConfigurableAttributeOption,
+  transformMagentoSimpleProduct,
 } from '@daffodil/product/driver/magento';
 import { MagentoConfigurableProductFactory } from '@daffodil/product/driver/magento/testing';
 import {
@@ -44,7 +45,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
   describe('transformMagentoConfigurableProduct', () => {
 
     it('should transform a magento configurable product into a daffodil configurable product', () => {
-      expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
+      expect(transformMagentoConfigurableProduct(transformMagentoSimpleProduct(magentoConfigurableProductData, mediaUrl), magentoConfigurableProductData)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
     });
   });
 
