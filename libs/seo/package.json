@@ -1,7 +1,8 @@
 {
   "name": "@daffodil/seo",
+  "private": true,
   "version": "0.0.0-PLACEHOLDER",
-  "description": "A client-side Angular package for managing ecommerce orders agnostic to the ecommerce platform.",
+  "description": "A client-side Angular package for managing canonical URLs and other SEO features.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -15,22 +16,11 @@
     "build": "ng build seo --prod",
     "lint": "cd ../.. && ng lint seo",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test seo --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/seo; npm publish --access=public)"
+    "test": "ng test seo --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
-    "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
-    "@daffodil/cart": "0.0.0-PLACEHOLDER",
-    "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/geography": "0.0.0-PLACEHOLDER",
-    "@daffodil/product": "0.0.0-PLACEHOLDER"
-  },
-  "devDependencies": {
-    "@daffodil/cart": "0.0.0-PLACEHOLDER",
-    "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/geography": "0.0.0-PLACEHOLDER",
-    "@daffodil/product": "0.0.0-PLACEHOLDER"
+    "@angular/core": "0.0.0-PLACEHOLDER"
   }
 }
