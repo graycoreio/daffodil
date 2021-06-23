@@ -8,19 +8,18 @@ import { transformMagentoProductResponse } from './product-response';
 
 describe('@daffodil/product/driver/magento | transformMagentoProductResponse', () => {
   let stubMagentoProduct: MagentoProduct;
+  let productFactory: MagentoProductFactory;
   const mediaUrl = 'media url';
   let result: DaffProductDriverResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
-    stubMagentoProduct = new MagentoProductFactory().create({
-      related_products: [
-        new MagentoProductFactory().create(),
-      ],
-      upsell_products: [
-        new MagentoProductFactory().create(),
-      ],
+    productFactory = TestBed.inject(MagentoProductFactory);
+
+    stubMagentoProduct = productFactory.create({
+      related_products: productFactory.createMany(1),
+      upsell_products: productFactory.createMany(1),
     });
 
     result = transformMagentoProductResponse(stubMagentoProduct, mediaUrl);

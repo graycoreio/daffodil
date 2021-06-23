@@ -5,21 +5,39 @@ import {
   DaffProductDiscount,
 } from '@daffodil/product';
 
+import { MagentoBundledProduct } from '../models/bundled-product';
+import { MagentoConfigurableProduct } from '../models/configurable-product';
 import {
   MagentoProduct,
   MagentoProductTypeEnum,
 } from '../models/magento-product';
 import { MagentoProductPreview } from '../models/product-preview.interface';
+import { transformMagentoBundledProduct } from './bundled-product-transformers';
+import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
 
-const productTypeMap = {
-  [MagentoProductTypeEnum.BundledProduct]: DaffProductTypeEnum.Composite,
-  [MagentoProductTypeEnum.ConfigurableProduct]: DaffProductTypeEnum.Configurable,
-  [MagentoProductTypeEnum.SimpleProduct]: DaffProductTypeEnum.Simple,
-};
+/**
+ * Transforms a Magento product into a product preview.
+ * Handles all product types.
+ */
+export function transformMagentoProductPreview(product: MagentoProduct, mediaUrl: string): DaffProduct {
+  const preview = transformMagentoSimpleProductPreview(product, mediaUrl);
+  switch(product.__typename) {
+    case MagentoProductTypeEnum.BundledProduct:
+      return transformMagentoBundledProduct(preview, <MagentoBundledProduct>product);
+    case MagentoProductTypeEnum.ConfigurableProduct:
+      return transformMagentoConfigurableProduct(preview, <MagentoConfigurableProduct>product);
+    case MagentoProductTypeEnum.SimpleProduct:
+    default:
+      return preview;
+  }
+}
 
-export function transformMagentoProductPreview(product: MagentoProductPreview, mediaUrl: string): DaffProduct {
+/**
+ * Transforms a Magento simple product into a product preview.
+ */
+export function transformMagentoSimpleProductPreview(product: MagentoProductPreview, mediaUrl: string): DaffProduct {
   return {
-    type: productTypeMap[product.__typename],
+    type: DaffProductTypeEnum.Simple,
     id: product.sku,
     url: `/${product.url_key}${product.url_suffix}`,
     name: product.name,
