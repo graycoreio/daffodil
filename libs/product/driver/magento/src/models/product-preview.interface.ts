@@ -1,5 +1,3 @@
-import { MagentoProduct } from './magento-product';
-
 /**
  * An stripped down version of the Magento product for related and upsell products.
  */
