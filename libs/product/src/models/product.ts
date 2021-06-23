@@ -63,6 +63,10 @@ export interface DaffProduct extends DaffLocatable {
 	 */
   description?: string;
 	/**
+	 * A shorter description of the product.
+	 */
+	short_description?: string;
+	/**
 	 * A title for the product to display in the browser tab title.
 	 */
 	meta_title?: string;
