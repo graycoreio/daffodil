@@ -20,15 +20,14 @@ import { transformMagentoConfigurableProduct } from './configurable-product-tran
  * Handles all product types.
  */
 export function transformMagentoProductPreview(product: MagentoProduct, mediaUrl: string): DaffProduct {
-  const preview = transformMagentoSimpleProductPreview(product, mediaUrl);
   switch(product.__typename) {
     case MagentoProductTypeEnum.BundledProduct:
-      return transformMagentoBundledProduct(preview, <MagentoBundledProduct>product);
+      return transformMagentoBundledProduct(transformMagentoSimpleProductPreview(product, mediaUrl), <MagentoBundledProduct>product);
     case MagentoProductTypeEnum.ConfigurableProduct:
-      return transformMagentoConfigurableProduct(preview, <MagentoConfigurableProduct>product);
+      return transformMagentoConfigurableProduct(transformMagentoSimpleProductPreview(product, mediaUrl), <MagentoConfigurableProduct>product);
     case MagentoProductTypeEnum.SimpleProduct:
     default:
-      return preview;
+      return transformMagentoSimpleProductPreview(product, mediaUrl);
   }
 }
 
