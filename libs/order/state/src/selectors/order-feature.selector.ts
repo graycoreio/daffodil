@@ -6,12 +6,13 @@ import {
 import { DaffOrder } from '@daffodil/order';
 
 import {
+  DaffOrderStateRootSlice,
   DaffOrderReducersState,
   DAFF_ORDER_STORE_FEATURE_KEY,
 } from '../reducers/public_api';
 
 export interface DaffOrderFeatureSelector<T extends DaffOrder = DaffOrder> {
-  selectOrderFeatureState: MemoizedSelector<Record<string, any>, DaffOrderReducersState<T>>;
+  selectOrderFeatureState: MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderReducersState<T>>;
 }
 
 export const getDaffOrderReducersStateSelector = (() => {

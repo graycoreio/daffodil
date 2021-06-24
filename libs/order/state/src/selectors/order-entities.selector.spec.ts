@@ -23,6 +23,7 @@ import {
   daffOrderReducers,
   DAFF_ORDER_STORE_FEATURE_KEY,
   DaffOrderListSuccess,
+  DaffOrderStateRootSlice,
 } from '@daffodil/order/state';
 import {
   DaffOrderFactory,
@@ -33,7 +34,7 @@ import {
 import { getDaffOrderEntitySelectors } from './order-entities.selector';
 
 describe('Order | Selector | OrderEntities', () => {
-  let store: Store<DaffOrderEntityState>;
+  let store: Store<DaffOrderStateRootSlice>;
 
   let orderFactory: DaffOrderFactory;
   let orderItemFactory: DaffOrderItemFactory;
