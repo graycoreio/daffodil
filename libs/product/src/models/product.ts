@@ -1,5 +1,5 @@
 import {
-  ID,
+  DaffIdentifiable,
   DaffLocatable,
 } from '@daffodil/core';
 
@@ -17,11 +17,7 @@ export enum DaffProductTypeEnum {
 /**
  * An interface for a product usable by the @daffodil/product library.
  */
-export interface DaffProduct extends DaffLocatable {
-	/**
-	 * The id of the product.
-	 */
-	id: ID;
+export interface DaffProduct extends DaffLocatable, DaffIdentifiable {
 	/**
 	 * The type of product.
 	 */

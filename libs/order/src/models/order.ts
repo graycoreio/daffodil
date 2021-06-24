@@ -1,4 +1,7 @@
-import { ID } from '@daffodil/core';
+import {
+  ID,
+  DaffIdentifiable,
+} from '@daffodil/core';
 
 import { DaffOrderAddress } from './order-address';
 import { DaffOrderCoupon } from './order-coupon';
@@ -9,8 +12,7 @@ import { DaffOrderPayment } from './order-payment';
 import { DaffOrderShipment } from './order-shipment';
 import { DaffOrderTotal } from './order-total';
 
-export interface DaffOrder {
-  id: ID;
+export interface DaffOrder extends DaffIdentifiable {
   customer_id: ID;
   created_at: string;
   updated_at: string;

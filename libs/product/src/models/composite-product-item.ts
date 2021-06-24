@@ -1,4 +1,4 @@
-import { ID } from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 
 import { DaffProduct } from './product';
 
@@ -18,11 +18,7 @@ export enum DaffCompositeProductItemInputEnum {
  * item might be a phillips head and a flathead. The customer could choose to add either a phillips head or a flathead to the
  * composite product, or neither if the item is optional.
  */
-export interface DaffCompositeProductItem {
-	/**
-	 * The ID of the item.
-	 */
-	id: ID;
+export interface DaffCompositeProductItem extends DaffIdentifiable {
 	/**
 	 * Whether the item is required or optional.
 	 */

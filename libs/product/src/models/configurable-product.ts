@@ -1,6 +1,6 @@
 import {
   DaffOrderable,
-  ID,
+  DaffIdentifiable,
 } from '@daffodil/core';
 
 import {
@@ -51,15 +51,11 @@ export interface DaffConfigurableProductAttribute extends DaffOrderable {
  * in stock. However, variants don't usually need to be considered by the frontend dev, because daffodil abstacts away the concept of variants into
  * an "available attributes" selector.
  */
-export interface DaffConfigurableProductVariant {
+export interface DaffConfigurableProductVariant extends DaffIdentifiable {
 	/**
 	 * The attributes applied to the product to form the product variant.
 	 */
 	appliedAttributes: DaffProductVariantAttributesDictionary;
-	/**
-	 * The id for the variant.
-	 */
-	id: ID;
 	/**
 	 * The price of the variant.
 	 */
