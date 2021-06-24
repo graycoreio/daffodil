@@ -1112,7 +1112,7 @@ describe('DaffCartFacade', () => {
         a:
           statefulCartItems.reduce((acc, item) => ({
             ...acc,
-            [item.item_id]: item,
+            [item.id]: item,
           }), {}),
       });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
@@ -1491,7 +1491,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cartItems[0].attributes });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getConfiguredCartItemAttributes(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getConfiguredCartItemAttributes(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1504,7 +1504,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cartItems[0].options });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCompositeCartItemOptions(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCompositeCartItemOptions(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1516,7 +1516,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: !cart.items[0].in_stock });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.isCartItemOutOfStock(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.isCartItemOutOfStock(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1529,7 +1529,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: statefulCartItem.daffState });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemState(statefulCartItem.item_id)).toBeObservable(expected);
+      expect(facade.getCartItemState(statefulCartItem.id)).toBeObservable(expected);
     });
   });
 
@@ -1650,7 +1650,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cart.items[0].price });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemPrice(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCartItemPrice(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1662,7 +1662,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cart.items[0].qty });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemQuantity(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCartItemQuantity(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1674,7 +1674,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cart.items[0].row_total });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemRowTotal(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCartItemRowTotal(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1686,7 +1686,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cart.items[0].discounts });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemDiscounts(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCartItemDiscounts(cart.items[0].id)).toBeObservable(expected);
     });
   });
 
@@ -1698,7 +1698,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: cart.items[0].discounts.reduce((acc, { amount }) => acc + amount, 0) });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemTotalDiscount(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCartItemTotalDiscount(cart.items[0].id)).toBeObservable(expected);
     });
   });
 });

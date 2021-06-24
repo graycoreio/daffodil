@@ -66,9 +66,9 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     );
   }
 
-  get(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<DaffCartItem> {
+  get(cartId: DaffCart['id'], itemId: DaffCartItem['id']): Observable<DaffCartItem> {
     return this.list(cartId).pipe(
-      map(items => items.find(item => item.item_id === itemId)),
+      map(items => items.find(item => item.id === itemId)),
     );
   }
 
@@ -83,14 +83,14 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     }
   }
 
-  update(cartId: DaffCart['id'], itemId: DaffCartItem['item_id'], changes: Partial<DaffCartItem>): Observable<Partial<DaffCart>> {
+  update(cartId: DaffCart['id'], itemId: DaffCartItem['id'], changes: Partial<DaffCartItem>): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoUpdateCartItemResponse>({
       mutation: updateCartItem(this.extraCartFragments),
       variables: {
         cartId,
         input: this.cartItemUpdateInputTransformer.transform({
           ...changes,
-          item_id: itemId,
+          id: itemId,
         }),
       },
     }).pipe(
@@ -98,7 +98,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     );
   }
 
-  delete(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<Partial<DaffCart>> {
+  delete(cartId: DaffCart['id'], itemId: DaffCartItem['id']): Observable<Partial<DaffCart>> {
     return this.mutationQueue.mutate<MagentoRemoveCartItemResponse>({
       mutation: removeCartItem(this.extraCartFragments),
       variables: {

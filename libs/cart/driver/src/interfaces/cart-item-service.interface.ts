@@ -23,7 +23,7 @@ export interface DaffCartItemServiceInterface<
 	/**
 	 * Get a specific cart item of a cart.
 	 */
-	get(cartId: V['id'], item_id: DaffCartItem['item_id']): Observable<T>;
+	get(cartId: V['id'], item_id: DaffCartItem['id']): Observable<T>;
 
 	/**
 	 * Add something to a cart.
@@ -35,14 +35,14 @@ export interface DaffCartItemServiceInterface<
 	 */
 	update(
 		cartId: V['id'],
-		itemId: T['item_id'],
+		itemId: T['id'],
 		changes: Partial<T>,
 	): Observable<Partial<V>>;
 
 	/**
 	 * Remove an item from a cart.
 	 */
-	delete(cartId: V['id'], itemId: T['item_id']): Observable<Partial<V>>;
+	delete(cartId: V['id'], itemId: T['id']): Observable<Partial<V>>;
 }
 
 export const DaffCartItemDriver = new InjectionToken<

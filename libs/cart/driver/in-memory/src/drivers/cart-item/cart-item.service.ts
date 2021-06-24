@@ -28,7 +28,7 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
     return this.http.get<DaffCartItem[]>(`${this.url}/${cartId}/`);
   }
 
-  get(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<DaffCartItem> {
+  get(cartId: DaffCart['id'], itemId: DaffCartItem['id']): Observable<DaffCartItem> {
     return this.http.get<DaffCartItem>(`${this.url}/${cartId}/${itemId}`);
   }
 
@@ -38,13 +38,13 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
 
   update(
     cartId: DaffCart['id'],
-    itemId: DaffCartItem['item_id'],
+    itemId: DaffCartItem['id'],
     item: Partial<DaffCartItem>,
   ): Observable<Partial<DaffCart>> {
     return this.http.put<Partial<DaffCart>>(`${this.url}/${cartId}/${itemId}`, item);
   }
 
-  delete(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<Partial<DaffCart>> {
+  delete(cartId: DaffCart['id'], itemId: DaffCartItem['id']): Observable<Partial<DaffCart>> {
     return this.http.delete<Partial<DaffCart>>(`${this.url}/${cartId}/${itemId}`);
   }
 }

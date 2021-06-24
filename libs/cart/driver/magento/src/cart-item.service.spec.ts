@@ -126,7 +126,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     mockMagentoCartItem = magentoCartItemFactory.create();
 
     cartId = mockDaffCart.id;
-    itemId = mockDaffCartItem.item_id;
+    itemId = mockDaffCartItem.id;
     sku = mockDaffCartItem.sku;
     mockMagentoCartItem.id = itemId;
     mockDaffCart.items = [mockDaffCartItem];
@@ -197,7 +197,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     it('should return the correct value', done => {
       service.list(cartId).subscribe(result => {
         expect(result).toEqual([jasmine.objectContaining({
-          item_id: mockMagentoCartItem.id,
+          id: mockMagentoCartItem.id,
           type: DaffCartItemInputType.Simple,
           image: {
             id: mockMagentoCartItem.product.thumbnail.label,
@@ -235,7 +235,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     });
 
     it('should return the correct value', done => {
-      service.get(cartId, mockDaffCartItem.item_id).subscribe(result => {
+      service.get(cartId, mockDaffCartItem.id).subscribe(result => {
         expect(result).toEqual(jasmine.objectContaining(mockDaffCartItem));
         done();
       });
@@ -306,7 +306,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     });
 
     it('should return the correct value', done => {
-      service.update(cartId, mockDaffCartItem.item_id, mockDaffCartItem).subscribe(result => {
+      service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).subscribe(result => {
         expect(result.items[0].qty).toEqual(qty);
         done();
       });
@@ -330,9 +330,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     });
 
     it('should return the cart without the cart item', done => {
-      service.delete(cartId, mockDaffCartItem.item_id).subscribe(result => {
-        expect(result.items.find(({ item_id }) =>
-          item_id === mockDaffCartItem.item_id,
+      service.delete(cartId, mockDaffCartItem.id).subscribe(result => {
+        expect(result.items.find(({ id }) =>
+          id === mockDaffCartItem.id,
         )).toBeFalsy();
         done();
       });

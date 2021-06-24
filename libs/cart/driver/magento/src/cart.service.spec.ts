@@ -95,7 +95,7 @@ describe('Driver | Magento | Cart | CartService', () => {
     mockMagentoCartItem = magentoCartItemFactory.create();
     mockDaffCartItem = daffCartItemFactory.create();
 
-    mockMagentoCartItem.id = mockDaffCartItem.item_id;
+    mockMagentoCartItem.id = mockDaffCartItem.id;
     cartId = mockDaffCart.id;
     mockMagentoCart.items = [mockMagentoCartItem];
     mockDaffCart.items = [mockDaffCartItem];
@@ -111,7 +111,7 @@ describe('Driver | Magento | Cart | CartService', () => {
     magentoCartItemSpy.list.and.returnValue(of(mockDaffCart.items));
     magentoCartItemSpy.delete.and.callFake((_, itemId) => of({
       ...mockDaffCart,
-      items: mockDaffCart.items.filter(({ item_id }) => item_id !== itemId),
+      items: mockDaffCart.items.filter(({ id }) => id !== itemId),
     }));
   });
 
@@ -156,7 +156,7 @@ describe('Driver | Magento | Cart | CartService', () => {
       spyOn(service, 'get').and.returnValue(of(mockDaffCart));
       service.clear(cartId).subscribe(() => {
         mockDaffCart.items.forEach(item => {
-          expect(magentoCartItemSpy.delete).toHaveBeenCalledWith(cartId, item.item_id);
+          expect(magentoCartItemSpy.delete).toHaveBeenCalledWith(cartId, item.id);
         });
         done();
       });

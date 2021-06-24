@@ -48,7 +48,7 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
     mockCartItem = cartItemFactory.create();
     mockCart.items = [mockCartItem];
     cartId = mockCart.id;
-    itemId = mockCartItem.item_id;
+    itemId = mockCartItem.id;
   });
 
   afterEach(() => {
@@ -121,7 +121,7 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
 
     beforeEach(() => {
       newCartItem = cartItemFactory.create();
-      newCartItem.item_id = itemId;
+      newCartItem.id = itemId;
       mockCart.items = [newCartItem];
     });
 
