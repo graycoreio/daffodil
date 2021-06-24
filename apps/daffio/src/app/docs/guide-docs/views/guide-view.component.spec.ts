@@ -5,6 +5,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
@@ -26,6 +27,7 @@ describe('DaffioGuideViewComponent', () => {
       declarations: [DaffioGuideViewComponent],
       imports: [
         DaffioGuideViewerModule,
+        RouterTestingModule,
       ],
       providers: [
         { provide: ActivatedRoute, useValue: stubActivatedRoute },

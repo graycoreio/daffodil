@@ -7,14 +7,11 @@ import {
 } from '@angular/router';
 import {
   Observable,
-  of,
   EMPTY,
 } from 'rxjs';
 import {
   take,
-  mergeMap,
   catchError,
-  tap,
 } from 'rxjs/operators';
 
 import { DaffioDoc } from '../models/doc';
@@ -30,7 +27,8 @@ export class DocResolver<T extends DaffioDoc, V extends DaffioGuideList> impleme
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
     return this.docService
-      .get(state.url.substring(1))
+    //remove any route fragment and initial slash from the route.
+      .get(state.url.split('#')[0].substring(1))
       .pipe(
         take(1),
         catchError(() => {

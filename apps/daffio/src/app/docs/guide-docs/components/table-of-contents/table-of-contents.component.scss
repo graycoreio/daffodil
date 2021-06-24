@@ -1,0 +1,22 @@
+:host {
+	
+	a {
+		text-decoration: none;
+	}
+}
+
+.table-of-contents__item {
+	width: 350px;
+
+	&--level2 {
+		padding-left: 20px;
+	}
+
+	&--level3 {
+		padding-left: 40px;
+	}
+
+	&--level4 {
+		padding-left: 60px;
+	}
+}

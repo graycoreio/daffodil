@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DaffLinkSetModule } from '@daffodil/design';
 
 import { DaffioDocViewerModule } from '../../../shared/components/doc-viewer/doc-viewer.module';
+import { DaffioGuideTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 import { DaffioGuideViewerComponent } from './guide-viewer.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DaffioGuideViewerComponent } from './guide-viewer.component';
     DaffioDocViewerModule,
     DaffLinkSetModule,
     RouterModule,
+    DaffioGuideTableOfContentsModule,
   ],
 })
 export class DaffioGuideViewerModule { }

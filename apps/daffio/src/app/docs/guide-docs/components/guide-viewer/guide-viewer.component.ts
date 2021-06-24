@@ -9,6 +9,7 @@ import { DaffioDoc } from '../../../shared/models/doc';
 @Component({
   selector: 'daffio-guide-viewer',
   templateUrl: './guide-viewer.component.html',
+  styleUrls: ['./guide-viewer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioGuideViewerComponent {

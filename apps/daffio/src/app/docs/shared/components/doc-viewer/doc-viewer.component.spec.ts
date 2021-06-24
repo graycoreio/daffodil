@@ -3,6 +3,7 @@ import {
   async,
   ComponentFixture,
   TestBed,
+  waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -22,7 +23,7 @@ describe('DaffioDocViewerComponent', () => {
   let wrapper: WrapperComponent;
   const docFactory = new DaffioDocFactory();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [WrapperComponent, DaffioDocViewerComponent],
     })
@@ -45,12 +46,5 @@ describe('DaffioDocViewerComponent', () => {
     fixture.detectChanges();
     const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
     expect(componentEl.innerHTML).toEqual(wrapper.doc.contents);
-  });
-
-  it('should rely on Angular mechanisms to prevent rendering of malicious code', () => {
-    wrapper.doc = docFactory.create({ contents: '<script>alert("Malicious")</script>' });
-    fixture.detectChanges();
-    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
-    expect(componentEl.innerHTML).toEqual('');
   });
 });
