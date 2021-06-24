@@ -46,7 +46,7 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selector for the most recently placed order (if any).
    */
-  selectPlacedOrder: MemoizedSelector<DaffCartStateRootSlice | DaffOrderStateRootSlice<T>, T>;
+  selectPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, T>;
   /**
    * Selector for the existence of the most recently placed order.
    */
