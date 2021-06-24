@@ -1,7 +1,7 @@
 import {
   ID,
   DaffLocatable,
-	DaffIdentifiable,
+  DaffIdentifiable,
 } from '@daffodil/core';
 import {
   DaffProductImage,
