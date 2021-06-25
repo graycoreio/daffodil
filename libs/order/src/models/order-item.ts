@@ -1,4 +1,7 @@
-import { ID } from '@daffodil/core';
+import {
+  DaffIdentifiable,
+  ID,
+} from '@daffodil/core';
 import { DaffProductImage } from '@daffodil/product';
 
 import { DaffOrder } from './order';
@@ -9,8 +12,11 @@ export enum DaffOrderItemType {
   Configurable = 'configurable'
 }
 
-export interface DaffOrderItem {
+export interface DaffOrderItem extends DaffIdentifiable {
   type: DaffOrderItemType;
+	/**
+	 * @deprecated use id instead.
+	 */
   item_id: ID;
   qty_ordered: number;
   qty_canceled: number;

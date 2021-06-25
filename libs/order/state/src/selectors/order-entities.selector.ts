@@ -88,7 +88,7 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selects the specified order's specified item.
    */
-  selectOrderItem: (orderId: T['id'], itemId: T['items'][0]['item_id']) => MemoizedSelector<Record<string, any>, DaffOrderItem>;
+  selectOrderItem: (orderId: T['id'], itemId: T['items'][0]['id']) => MemoizedSelector<Record<string, any>, DaffOrderItem>;
 
   /**
    * Selects the specified order's grand total.
@@ -240,9 +240,9 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     },
   )).memoized;
 
-  const selectOrderItem = defaultMemoize((orderId: T['id'], itemId: T['items'][0]['item_id']) => createSelector(
+  const selectOrderItem = defaultMemoize((orderId: T['id'], itemId: T['items'][0]['id']) => createSelector(
     selectOrderItems(orderId),
-    items => items.find(item => item.item_id === itemId) || null,
+    items => items.find(item => item.id === itemId) || null,
   )).memoized;
 
   return {

@@ -124,6 +124,7 @@ function transformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number)
 
   return {
     type: DaffOrderItemType.Simple,
+    id: null,
     item_id: null,
     qty_ordered: item.quantity_ordered,
     qty_canceled: item.quantity_canceled,
