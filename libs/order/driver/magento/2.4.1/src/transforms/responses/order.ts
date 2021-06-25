@@ -210,6 +210,7 @@ function transformPayment(payment: MagentoOrderPayment, order: MagentoOrder): Da
     return index > -1 ? payment.additional_data[index].value : null;
   };
   return {
+    id: null,
     payment_id: null,
     order_id: order.id,
     created_at: null,

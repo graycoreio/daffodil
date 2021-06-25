@@ -5,7 +5,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffOrderPayment } from '@daffodil/order';
 
 export class MockOrderPayment implements DaffOrderPayment {
-  payment_id = faker.datatype.uuid();
+  id = faker.datatype.uuid();
+  payment_id = this.id;
   order_id = faker.datatype.uuid();
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();

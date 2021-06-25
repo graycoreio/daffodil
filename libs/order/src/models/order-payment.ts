@@ -1,8 +1,14 @@
-import { ID } from '@daffodil/core';
+import {
+  DaffIdentifiable,
+  ID,
+} from '@daffodil/core';
 
 import { DaffOrder } from './order';
 
-export interface DaffOrderCreditCardPayment {
+export interface DaffOrderCreditCardPayment extends DaffIdentifiable {
+	/**
+	 * @deprecated use id instead.
+	 */
   payment_id: ID;
   order_id: DaffOrder['id'];
   created_at: string;
