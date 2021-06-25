@@ -66,6 +66,7 @@ function transformTotals(totals: {
 
 function transformItem(item: MagentoGraycoreOrderItem): DaffOrderItem {
   return {
+    id: null,
     item_id: null,
     type: DaffOrderItemType.Simple,
     qty_ordered: item.qty_ordered,

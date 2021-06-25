@@ -8,7 +8,8 @@ import {
 } from '@daffodil/order';
 
 export class MockOrderItem implements DaffOrderItem {
-  item_id = faker.datatype.uuid();
+  id = faker.datatype.uuid();
+  item_id = this.id;
   image = {
     url: faker.image.imageUrl(),
     id: faker.datatype.uuid(),

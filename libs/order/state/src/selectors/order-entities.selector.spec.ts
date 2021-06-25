@@ -429,7 +429,7 @@ describe('Order | Selector | OrderEntities', () => {
 
   describe('selectOrderItem', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.item_id)));
+      const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.id)));
       const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
@@ -441,7 +441,7 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order item', () => {
-        const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.item_id)));
+        const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.id)));
         const expected = cold('a', { a: mockOrderItem });
 
         expect(selector).toBeObservable(expected);

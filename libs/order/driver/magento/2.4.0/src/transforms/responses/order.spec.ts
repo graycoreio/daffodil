@@ -112,6 +112,7 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
       product_id: '4',
       order_id: '2',
       item_id: null,
+      id: null,
     });
     mockDaffOrderShipmentItem = daffOrderShipmentItemFactory.create({
       item: mockDaffOrderItem,

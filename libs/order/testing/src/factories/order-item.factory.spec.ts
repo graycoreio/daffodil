@@ -30,6 +30,7 @@ describe('Order | Testing | Factories | OrderItemFactory', () => {
 
     it('should return a DaffOrderItem with all required fields defined', () => {
       expect(result.item_id).not.toBeNull();
+      expect(result.id).not.toBeNull();
       expect(result.order_id).not.toBeNull();
       expect(result.qty_canceled).not.toBeNull();
       expect(result.qty_fulfilled).not.toBeNull();
