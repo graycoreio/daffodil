@@ -10,15 +10,19 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffMockCartItem } from './cart-item.factory';
 
 export class DaffMockCompositeCartItem extends DaffMockCartItem implements DaffCompositeCartItem {
+	private optionId1 = faker.datatype.number(1000).toString();
+	private optionId2 = faker.datatype.number(1000).toString();
 	type = DaffCartItemInputType.Composite;
 	options = [
 	  {
-	    option_id: faker.datatype.number(1000).toString(),
+	    id: this.optionId1,
+	    option_id: this.optionId1,
 	    option_label: faker.random.word(),
 	    value_label: faker.random.word(),
 	  },
 	  {
-	    option_id: faker.datatype.number(1000).toString(),
+	    id: this.optionId2,
+	    option_id: this.optionId2,
 	    option_label: faker.random.word(),
 	    value_label: faker.random.word(),
 	  },
