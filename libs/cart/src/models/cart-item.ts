@@ -1,6 +1,7 @@
 import {
   ID,
   DaffLocatable,
+  DaffIdentifiable,
 } from '@daffodil/core';
 import {
   DaffProductImage,
@@ -14,7 +15,10 @@ export interface DaffCartItemDiscount {
   label: string;
 }
 
-export interface DaffCartItem extends DaffLocatable {
+export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
+	/**
+	 * @deprecated use id instead.
+	 */
 	item_id: ID;
 	type: DaffCartItemInputType;
   image?: DaffProductImage;

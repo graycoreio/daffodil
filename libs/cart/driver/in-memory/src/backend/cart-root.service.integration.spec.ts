@@ -44,7 +44,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
   let mockShippingMethod: DaffCartShippingRate;
   let mockShippingInformation: DaffCartShippingInformation;
   let cartId: DaffCart['id'];
-  let itemId: DaffCartItem['item_id'];
+  let itemId: DaffCartItem['id'];
 
   beforeEach(done => {
     TestBed.configureTestingModule({
@@ -75,7 +75,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       address_id: null,
     };
     cartId = mockCart.id;
-    itemId = mockCartItem.item_id;
+    itemId = mockCartItem.id;
     mockCart.items.push(mockCartItem);
     mockCart.coupons.push(mockCartCoupon);
     mockCart.shipping_address = mockShippingAddress;

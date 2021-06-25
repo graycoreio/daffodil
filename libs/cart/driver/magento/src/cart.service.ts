@@ -83,7 +83,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     return this.cartItemDriver.list(cartId).pipe(
       switchMap(items =>
         forkJoin(...items.map(item =>
-          this.cartItemDriver.delete(cartId, item.item_id),
+          this.cartItemDriver.delete(cartId, item.id),
         )),
       ),
       switchMap(() => this.get(cartId)),

@@ -97,14 +97,14 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     let itemId;
 
     beforeEach(() => {
-      itemId = mockCartItems[0].item_id;
+      itemId = mockCartItems[0].id;
       reqInfoStub.url = `${cartUrl}${itemId}`;
 
       result = service.get(reqInfoStub);
     });
 
     it('should return the cart item', () => {
-      expect(result.body.item_id).toEqual(itemId);
+      expect(result.body.id).toEqual(itemId);
     });
   });
 
@@ -143,7 +143,7 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     let itemId;
 
     beforeEach(() => {
-      itemId = mockCartItems[0].item_id;
+      itemId = mockCartItems[0].id;
       reqInfoStub.url = `${cartUrl}${itemId}`;
       qty = mockCartItems[0].qty + 1;
       reqInfoStub.req.body = { qty };
@@ -165,14 +165,14 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     let itemId;
 
     beforeEach(() => {
-      itemId = mockCartItems[0].item_id;
+      itemId = mockCartItems[0].id;
       reqInfoStub.url = `${cartUrl}${itemId}`;
 
       result = service.delete(reqInfoStub);
     });
 
     it('should remove the cart item from the cart', () => {
-      expect(result.body.items.find(({ item_id }) => itemId === item_id)).toBeFalsy();
+      expect(result.body.items.find(({ id }) => itemId === id)).toBeFalsy();
     });
 
     it('should set extra_attributes to the value returned by the provided hook function', () => {

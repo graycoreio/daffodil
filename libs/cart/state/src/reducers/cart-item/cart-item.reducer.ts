@@ -52,7 +52,7 @@ export function cartItemReducer<T extends DaffCart>(
         cart: {
           ...state.cart,
           items: state.cart.items.map(item =>
-            item.item_id === action.payload.item_id
+            item.id === action.payload.id
               ? action.payload
               : item,
           ),

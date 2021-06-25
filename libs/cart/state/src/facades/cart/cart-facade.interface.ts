@@ -242,39 +242,39 @@ export interface DaffCartFacadeInterface<
 	orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]>;
-	getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
-	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;
+	getConfiguredCartItemAttributes(itemId: U['id']): Observable<DaffConfigurableCartItemAttribute[]>;
+	getCompositeCartItemOptions(itemId: U['id']): Observable<DaffCompositeCartItemOption[]>;
+	isCartItemOutOfStock(itemId: U['id']): Observable<boolean>;
 	/**
 	 * The state of a cart item.
 	 */
-  getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum>;
+  getCartItemState(itemId: U['id']): Observable<DaffCartItemStateEnum>;
   /**
    * Selects the specified item's price.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	getCartItemPrice(itemId: U['item_id']): Observable<number>;
+	getCartItemPrice(itemId: U['id']): Observable<number>;
   /**
    * Selects the specified item's quantity.
    * Zero by default.
    */
-	getCartItemQuantity(itemId: U['item_id']): Observable<number>;
+	getCartItemQuantity(itemId: U['id']): Observable<number>;
   /**
    * Selects the specified item's row total.
    * Zero by default.
    * This includes any discounts and sales that apply to the product or category.
    * This excludes cart discounts.
    */
-	getCartItemRowTotal(itemId: U['item_id']): Observable<number>;
+	getCartItemRowTotal(itemId: U['id']): Observable<number>;
   /**
    * Selects the specified item's array of cart (not product) discounts.
    */
-	getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]>;
+	getCartItemDiscounts(itemId: U['id']): Observable<DaffCartItemDiscount[]>;
   /**
    * Selects the specified item's sum of all cart (not product) discounts for the entire row.
    * Zero by default.
    */
-	getCartItemTotalDiscount(itemId: U['item_id']): Observable<number>;
+	getCartItemTotalDiscount(itemId: U['id']): Observable<number>;
 }

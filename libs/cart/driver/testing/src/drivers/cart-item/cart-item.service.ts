@@ -31,7 +31,7 @@ export class DaffTestingCartItemService implements DaffCartItemServiceInterface 
     return of(this.cartItemFactory.createMany(3));
   }
 
-  get(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<DaffCartItem> {
+  get(cartId: DaffCart['id'], itemId: DaffCartItem['id']): Observable<DaffCartItem> {
     return of(this.cartItemFactory.create());
   }
 
@@ -41,13 +41,13 @@ export class DaffTestingCartItemService implements DaffCartItemServiceInterface 
 
   update(
     cartId: DaffCart['id'],
-    itemId: DaffCartItem['item_id'],
+    itemId: DaffCartItem['id'],
     item: Partial<DaffCartItem>,
   ): Observable<Partial<DaffCart>> {
     return of(this.cartFactory.create());
   }
 
-  delete(cartId: DaffCart['id'], itemId: DaffCartItem['item_id']): Observable<Partial<DaffCart>> {
+  delete(cartId: DaffCart['id'], itemId: DaffCartItem['id']): Observable<Partial<DaffCart>> {
     return of(this.cartFactory.create());
   }
 }

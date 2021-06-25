@@ -30,6 +30,7 @@ describe('Cart | Testing | Factories | CompositeCartItemFactory', () => {
 
     it('should return a DaffCompositeCartItem with all required fields defined', () => {
       expect(result.item_id).not.toBeNull();
+      expect(result.id).not.toBeNull();
       expect(result.product_id).not.toBeNull();
       expect(result.parent_item_id).not.toBeNull();
       expect(result.image).not.toBeNull();

@@ -115,39 +115,39 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 	orderResultCartId$ = new BehaviorSubject<DaffCartOrderResult['cartId']>(null);
 	hasOrderResult$ = new BehaviorSubject<boolean>(false);
 
-	getCartItemPrice(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+	getCartItemPrice(itemId: DaffCartItem['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(0);
 	}
 
-	getCartItemQuantity(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+	getCartItemQuantity(itemId: DaffCartItem['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(0);
 	}
 
-	getCartItemRowTotal(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+	getCartItemRowTotal(itemId: DaffCartItem['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(0);
 	}
 
-	getConfiguredCartItemAttributes(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
+	getConfiguredCartItemAttributes(itemId: DaffCartItem['id']): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
 	  return new BehaviorSubject([]);
 	}
 
-	getCompositeCartItemOptions(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCompositeCartItemOption[]> {
+	getCompositeCartItemOptions(itemId: DaffCartItem['id']): BehaviorSubject<DaffCompositeCartItemOption[]> {
 	  return new BehaviorSubject([]);
 	}
 
-	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): BehaviorSubject<boolean> {
+	isCartItemOutOfStock(itemId: DaffCartItem['id']): BehaviorSubject<boolean> {
 	  return new BehaviorSubject(false);
 	}
 
-	getCartItemState(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemStateEnum> {
+	getCartItemState(itemId: DaffCartItem['id']): BehaviorSubject<DaffCartItemStateEnum> {
 	  return new BehaviorSubject(DaffCartItemStateEnum.Default);
 	}
 
-	getCartItemDiscounts(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemDiscount[]> {
+	getCartItemDiscounts(itemId: DaffCartItem['id']): BehaviorSubject<DaffCartItemDiscount[]> {
 	  return new BehaviorSubject([]);
 	}
 
-	getCartItemTotalDiscount(itemId: DaffCartItem['item_id']): BehaviorSubject<number> {
+	getCartItemTotalDiscount(itemId: DaffCartItem['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(0);
 	}
 

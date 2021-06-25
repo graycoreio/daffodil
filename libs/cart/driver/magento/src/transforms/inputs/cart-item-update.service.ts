@@ -11,7 +11,7 @@ export class DaffMagentoCartItemUpdateInputTransformer {
   transform(item: Partial<DaffCartItem>): MagentoCartItemUpdateInput {
     return {
       quantity: item.qty,
-      cart_item_id: Number(item.item_id),
+      cart_item_id: Number(item.id),
     };
   }
 }

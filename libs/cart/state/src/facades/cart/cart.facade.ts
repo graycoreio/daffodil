@@ -352,39 +352,39 @@ export class DaffCartFacade<
     this.hasOrderResult$ = this.store.pipe(select(selectHasOrderResult));
   }
 
-  getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]> {
+  getConfiguredCartItemAttributes(itemId: U['id']): Observable<DaffConfigurableCartItemAttribute[]> {
     return this.store.pipe(select(this._selectCartItemConfiguredAttributes(itemId)));
   };
 
-  getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]> {
+  getCompositeCartItemOptions(itemId: U['id']): Observable<DaffCompositeCartItemOption[]> {
     return this.store.pipe(select(this._selectCartItemCompositeOptions(itemId)));
   };
 
-  isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean> {
+  isCartItemOutOfStock(itemId: U['id']): Observable<boolean> {
     return this.store.pipe(select(this._selectIsCartItemOutOfStock(itemId)));
   }
 
-  getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum> {
+  getCartItemState(itemId: U['id']): Observable<DaffCartItemStateEnum> {
     return this.store.pipe(select(this._selectCartItemState(itemId)));
   }
 
-  getCartItemPrice(itemId: U['item_id']): Observable<number> {
+  getCartItemPrice(itemId: U['id']): Observable<number> {
     return this.store.pipe(select(this._selectCartItemPrice(itemId)));
   }
 
-  getCartItemQuantity(itemId: U['item_id']): Observable<number> {
+  getCartItemQuantity(itemId: U['id']): Observable<number> {
     return this.store.pipe(select(this._selectCartItemQuantity(itemId)));
   }
 
-  getCartItemRowTotal(itemId: U['item_id']): Observable<number> {
+  getCartItemRowTotal(itemId: U['id']): Observable<number> {
     return this.store.pipe(select(this._selectCartItemRowTotal(itemId)));
   }
 
-  getCartItemDiscounts(itemId: U['item_id']): Observable<DaffCartItemDiscount[]> {
+  getCartItemDiscounts(itemId: U['id']): Observable<DaffCartItemDiscount[]> {
     return this.store.pipe(select(this._selectCartItemDiscounts(itemId)));
   }
 
-  getCartItemTotalDiscount(itemId: U['item_id']): Observable<number> {
+  getCartItemTotalDiscount(itemId: U['id']): Observable<number> {
     return this.store.pipe(select(this._selectCartItemTotalDiscount(itemId)));
   }
 

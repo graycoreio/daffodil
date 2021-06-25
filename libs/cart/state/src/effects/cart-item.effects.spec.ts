@@ -161,7 +161,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     let cartItemLoadAction;
 
     beforeEach(() => {
-      cartItemLoadAction = new DaffCartItemLoad(mockCartItem.item_id);
+      cartItemLoadAction = new DaffCartItemLoad(mockCartItem.id);
     });
 
     describe('and the call to CartItemService is successful', () => {
@@ -182,7 +182,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const error: DaffStateError = { code: 'code', message: 'Failed to load cart item' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error, mockCartItem.item_id);
+        const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error, mockCartItem.id);
         actions$ = hot('--a', { a: cartItemLoadAction });
         expected = cold('--b', { b: cartItemLoadFailureAction });
       });
@@ -241,8 +241,8 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     beforeEach(() => {
       qty = mockCartItem.qty + 1;
       mockCartItem.qty = qty;
-      cartItemUpdateAction = new DaffCartItemUpdate(mockCartItem.item_id, mockCartItem);
-      cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.item_id);
+      cartItemUpdateAction = new DaffCartItemUpdate(mockCartItem.id, mockCartItem);
+      cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.id);
     });
 
     describe('and the call to CartItemService is successful', () => {
@@ -262,8 +262,8 @@ describe('Daffodil | Cart | CartItemEffects', () => {
       it('should not cancel the first observable', () => {
         const mockCartItem2 = new DaffCartItemFactory().create();
         driverUpdateSpy.and.returnValue(cold('--a', { a: mockCart }));
-        const cartItemUpdateAction2 = new DaffCartItemUpdate(mockCartItem2.item_id, mockCartItem2);
-        const cartItemUpdateSuccessAction2 = new DaffCartItemUpdateSuccess(mockCart, mockCartItem2.item_id);
+        const cartItemUpdateAction2 = new DaffCartItemUpdate(mockCartItem2.id, mockCartItem2);
+        const cartItemUpdateSuccessAction2 = new DaffCartItemUpdateSuccess(mockCart, mockCartItem2.id);
         actions$ = hot('ab', { a: cartItemUpdateAction, b: cartItemUpdateAction2 });
         expected = cold('--cd', { c: cartItemUpdateSuccessAction, d: cartItemUpdateSuccessAction2 });
 
@@ -276,7 +276,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const error: DaffStateError = { code: 'code', message: 'Failed to update cart item' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error, mockCartItem.item_id);
+        const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error, mockCartItem.id);
         actions$ = hot('--a', { a: cartItemUpdateAction });
         expected = cold('--b', { b: cartItemUpdateFailureAction });
       });
@@ -316,7 +316,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         });
         testScheduler.run(helpers => {
           const expectedMarble = '4000ms a';
-          const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.item_id);
+          const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.id);
           const shopCartItemReset = new DaffCartItemStateReset();
           actions$ = helpers.hot('a', { a: cartItemUpdateSuccess });
           expectedObservable = { a: shopCartItemReset };
@@ -333,7 +333,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     let cartItemDeleteSuccessAction;
 
     beforeEach(() => {
-      cartItemDeleteAction = new DaffCartItemDelete(mockCartItem.item_id);
+      cartItemDeleteAction = new DaffCartItemDelete(mockCartItem.id);
       cartItemDeleteSuccessAction = new DaffCartItemDeleteSuccess(mockCart);
     });
 
@@ -355,7 +355,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
       it('should not cancel the first observable', () => {
         const mockCartItem2 = new DaffCartItemFactory().create();
         driverDeleteSpy.and.returnValue(cold('--a', { a: mockCart }));
-        const cartItemDeleteAction2 = new DaffCartItemDelete(mockCartItem2.item_id);
+        const cartItemDeleteAction2 = new DaffCartItemDelete(mockCartItem2.id);
         actions$ = hot('ab', { a: cartItemDeleteAction, b: cartItemDeleteAction2 });
         expected = cold('--cd', { c: cartItemDeleteSuccessAction, d: cartItemDeleteSuccessAction });
 
@@ -368,7 +368,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
-        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error, mockCartItem.item_id);
+        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error, mockCartItem.id);
         actions$ = hot('--a', { a: cartItemDeleteAction });
         expected = cold('--b', { b: cartItemRemoveCartFailureAction });
       });
