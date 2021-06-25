@@ -8,7 +8,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * @deprecated
  */
 export class MockOrderPayment implements DaffOrderPayment {
-    payment_id = faker.datatype.number({ min: 1, max: 1000 });
+    id = faker.datatype.number({ min: 1, max: 1000 });
+    payment_id = this.id;
     quote_id = faker.datatype.number({ min: 1, max: 1000 });
     created_at = new Date();
     updated_at = new Date();

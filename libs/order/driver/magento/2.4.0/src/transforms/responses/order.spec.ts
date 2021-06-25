@@ -98,6 +98,7 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
     mockDaffOrderPayment = daffOrderPaymentFactory.create({
       created_at: null,
       order_id: '2',
+      id: '6',
       payment_id: '6',
       updated_at: null,
     });
@@ -241,7 +242,7 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
       items: [mockMagentoOrderShipmentItem],
     };
     mockMagentoOrderPayment = {
-      payment_id: Number(mockDaffOrderPayment.payment_id),
+      payment_id: Number(mockDaffOrderPayment.id),
       order_id: Number(mockDaffOrderPayment.order_id),
       method: mockDaffOrderPayment.method,
       cc_type: mockDaffOrderPayment.cc_type,

@@ -77,6 +77,7 @@ export class MagentoOrderTestDataFactory {
     const mockDaffOrderPayment: DaffOrderPayment = this.daffOrderPaymentFactory.create({
       created_at: null,
       updated_at: null,
+      id: null,
       payment_id: null,
     });
     const mockDaffOrderItem: DaffOrderItem = this.daffOrderItemFactory.create({
@@ -363,7 +364,7 @@ export class MagentoOrderTestDataFactory {
     };
     const mockMagentoOrderPayment: MagentoOrderPayment = {
       __typename: 'OrderPaymentMethod',
-      name: mockDaffOrderPayment.payment_id,
+      name: mockDaffOrderPayment.id,
       type: mockDaffOrderPayment.method,
       additional_data: [
         {

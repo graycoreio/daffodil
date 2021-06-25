@@ -147,6 +147,7 @@ function transformShipment(shipment: MagentoGraycoreOrderShipment): DaffOrderShi
 
 function transformPayment(payment: MagentoGraycoreOrderPayment): DaffOrderPayment {
   return {
+    id: String(payment.payment_id),
     payment_id: String(payment.payment_id),
     order_id: String(payment.order_id),
     created_at: null,
