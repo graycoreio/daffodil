@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.37.0](https://github.com/graycoreio/daffodil/compare/v0.36.1...v0.37.0) (2021-06-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** changes the return type of get and getByUrl
+
+### Features
+
+* **all:** use identifiable interface ([#1625](https://github.com/graycoreio/daffodil/issues/1625)) ([8924758](https://github.com/graycoreio/daffodil/commit/892475869dbbc4da5212cd8a022cad9a399995e4))
+* **cart:** deprecate DaffCartItem.item_id and extend DaffIdentifiabl… ([#1634](https://github.com/graycoreio/daffodil/issues/1634)) ([370dd5d](https://github.com/graycoreio/daffodil/commit/370dd5de6b9d8abc971b1ea6c80024ed28d4dec2))
+* **order:** fix parameterized selectors ([#1623](https://github.com/graycoreio/daffodil/issues/1623)) ([b38f3df](https://github.com/graycoreio/daffodil/commit/b38f3dfb0260e559c48ec60273d7b78bc6dce626))
+* **product:** add short_description to DaffProduct ([#1631](https://github.com/graycoreio/daffodil/issues/1631)) ([c57c006](https://github.com/graycoreio/daffodil/commit/c57c00662e9a99a0fb04925d4468635119ef8413))
+* **product:** change driver interface to return response object ([#1618](https://github.com/graycoreio/daffodil/issues/1618)) ([e0e8c33](https://github.com/graycoreio/daffodil/commit/e0e8c337c908919ff4a7afcfbaec76657169cfdc))
+
+
+### Bug Fixes
+
+* **daffio:** the routing around api and guide docs is not correct ([#1606](https://github.com/graycoreio/daffodil/issues/1606)) ([f5af449](https://github.com/graycoreio/daffodil/commit/f5af44982e07b60b7c45f766dffefb87266dc3c6))
+
 ### [0.36.1](https://github.com/graycoreio/daffodil/compare/v0.36.0...v0.36.1) (2021-06-21)
 
 
