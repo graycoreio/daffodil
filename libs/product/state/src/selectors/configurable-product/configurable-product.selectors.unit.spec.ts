@@ -12,7 +12,7 @@ import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DaffProductGridLoadSuccess,
   DaffConfigurableProductApplyAttribute,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
@@ -24,7 +24,7 @@ import { getDaffConfigurableProductSelectors } from './configurable-product.sele
 
 describe('Configurable Product Selectors | unit tests', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
   let stubConfigurableProduct: DaffConfigurableProduct;
   const {

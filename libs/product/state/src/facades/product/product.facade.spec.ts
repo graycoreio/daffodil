@@ -14,7 +14,7 @@ import {
   DaffProductLoad,
   DaffProductLoadSuccess,
   daffProductReducers,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -26,7 +26,7 @@ import {
 import { DaffProductFacade } from './product.facade';
 
 describe('DaffProductFacade', () => {
-  let store: Store<Partial<DaffProductReducersState>>;
+  let store: Store<DaffProductStateRootSlice>;
   let facade: DaffProductFacade;
   let productFactory: DaffProductFactory;
 

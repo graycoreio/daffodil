@@ -12,7 +12,7 @@ import {
   DaffConfigurableProductVariant,
 } from '@daffodil/product';
 
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffConfigurableProductFacadeInterface } from './configurable-product-facade.interface';
 
@@ -29,7 +29,7 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 
 	selectors = getDaffProductSelectors<T>();
 
-	constructor(private store: Store<DaffProductReducersState<T>>) {}
+	constructor(private store: Store<DaffProductStateRootSlice<T>>) {}
 
 	getAllAttributes(id: T['id']): Observable<Dictionary<string[]>> {
 	  return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes(id)));

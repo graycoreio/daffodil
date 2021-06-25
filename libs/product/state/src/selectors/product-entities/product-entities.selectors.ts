@@ -9,7 +9,10 @@ import { daffSubtract } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 import { daffProductEntitiesAdapter } from '../../reducers/product-entities/product-entities-reducer-adapter';
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import {
+  DaffProductReducersState,
+  DaffProductStateRootSlice,
+} from '../../reducers/product-reducers-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**
@@ -19,65 +22,65 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	/**
 	 * Selects the ngrx entities state for products.
 	 */
-	selectProductEntitiesState: MemoizedSelector<Record<string, any>, EntityState<T>>;
+	selectProductEntitiesState: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>>;
 	/**
 	 * Selects all ids for products in state.
 	 */
-	selectProductIds: MemoizedSelector<Record<string, any>, EntityState<T>['ids']>;
+	selectProductIds: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>['ids']>;
 	/**
 	 * Selects the ngrx entities for all products in state.
 	 */
-	selectProductEntities: MemoizedSelector<Record<string, any>, EntityState<T>['entities']>;
+	selectProductEntities: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>['entities']>;
 	/**
 	 * Selects all products in state as an array.
 	 */
-	selectAllProducts: MemoizedSelector<Record<string, any>, T[]>;
+	selectAllProducts: MemoizedSelector<DaffProductStateRootSlice<T>, T[]>;
 	/**
 	 * Selects the total number of products in state.
 	 */
-	selectProductTotal: MemoizedSelector<Record<string, any>, number>;
+	selectProductTotal: MemoizedSelector<DaffProductStateRootSlice<T>, number>;
 	/**
 	 * Selects a product by id.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectProduct: (productId: T['id']) => MemoizedSelector<Record<string, any>, T>;
+	selectProduct: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, T>;
 	/**
 	 * Selects the price of a product.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectProductPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductPrice: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
 	/**
 	 * Selects the discount of a product as some amount of currency.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
 	/**
 	 * Selects the discounted price of a product.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
 	/**
 	 * Selects the discount of a product as a percent of the original price.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
 	/**
 	 * Selects whether or not the product has a discount.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
 	/**
 	 * Selects whether or not a product is out of stock.
 	 *
 	 * @param productId the id of the product.
 	 */
-	selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {

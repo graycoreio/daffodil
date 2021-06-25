@@ -14,6 +14,7 @@ import {
 } from '@daffodil/product';
 
 import { DaffConfigurableProductEntityAttribute } from '../../reducers/configurable-product-entities/configurable-product-entity';
+import { DaffProductStateRootSlice } from '../../reducers/public_api';
 import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-product-entities/configurable-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 
@@ -26,88 +27,88 @@ export interface DaffConfigurableProductMemoizedSelectors {
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectAllConfigurableProductAttributes: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<string[]>>;
+	selectAllConfigurableProductAttributes: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, Dictionary<string[]>>;
 	/**
 	 * Selects all variants of the configurable product.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectAllConfigurableProductVariants: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, DaffConfigurableProductVariant[]>;
+	selectAllConfigurableProductVariants: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, DaffConfigurableProductVariant[]>;
 	/**
 	 * Selects the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectMatchingConfigurableProductVariants: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, DaffConfigurableProductVariant[]>;
+	selectMatchingConfigurableProductVariants: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, DaffConfigurableProductVariant[]>;
 	/**
 	 * Selects all prices for the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductPrices: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number[]>;
+	selectConfigurableProductPrices: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number[]>;
 	/**
 	 * Selects all discounted prices for the configurable product variant that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductDiscountedPrices: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number[]>;
+	selectConfigurableProductDiscountedPrices: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number[]>;
 	/**
 	 * Selects all percent discounts for the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductPercentDiscounts: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number[]>;
+	selectConfigurableProductPercentDiscounts: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number[]>;
 	/**
 	 * Selects whether or not any variants that match the currently applied attributes have a discount.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductHasDiscount: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	selectConfigurableProductHasDiscount: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, boolean>;
 	/**
 	 * Selects the minimum possible price of the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductMinimumPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectConfigurableProductMinimumPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects the maximum possible price of the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductMaximumPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectConfigurableProductMaximumPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects the minimum possible discounted price of the configurable product variants that match the currently applied attributes.
 	 */
-	selectConfigurableProductMinimumDiscountedPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectConfigurableProductMinimumDiscountedPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects the maximum possible discounted price of the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductMaximumDiscountedPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectConfigurableProductMaximumDiscountedPrice: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects the minimum possible percent discount of the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductMinimumPercentDiscount: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectConfigurableProductMinimumPercentDiscount: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects the maximum possible percent discount of the configurable product variants that match the currently applied attributes.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	selectConfigurableProductMaximumPercentDiscount: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, number>;
+	selectConfigurableProductMaximumPercentDiscount: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, number>;
 	/**
 	 * Selects whether or not the currently applied attributes result in more than one possible price.
 	 *
 	 * @param productId the id of the configurable product.
 	 */
-	isConfigurablePriceRanged: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	isConfigurablePriceRanged: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, boolean>;
 	/**
 	 * Selects the available/selectable configurable product attributes derived from the order of currently applied attributes and the remaining variants
 	 * (determined by the currently applied attributes). An attribute might not be selectable if none of the matching variants have that particular attribute.
 	 */
-	selectSelectableConfigurableProductAttributes: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<Record<string, any>, Dictionary<string[]>>;
+	selectSelectableConfigurableProductAttributes: (productId: DaffConfigurableProduct['id']) => MemoizedSelector<DaffProductStateRootSlice, Dictionary<string[]>>;
 }
 
 const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSelectors => {

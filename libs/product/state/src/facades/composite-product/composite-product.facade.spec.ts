@@ -21,7 +21,7 @@ import {
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DaffCompositeProductApplyOption,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
@@ -30,7 +30,7 @@ import { DaffCompositeProductFactory } from '@daffodil/product/testing';
 import { DaffCompositeProductFacade } from './composite-product.facade';
 
 describe('DaffCompositeProductFacade', () => {
-  let store: Store<Partial<DaffProductReducersState>>;
+  let store: Store<DaffProductStateRootSlice>;
   let facade: DaffCompositeProductFacade;
   let stubCompositeProduct: DaffCompositeProduct;
   let compositeProductFactory: DaffCompositeProductFactory;

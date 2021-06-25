@@ -11,7 +11,7 @@ import { daffSubtract } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
   DaffProductGridLoad,
@@ -22,7 +22,7 @@ import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 
 describe('selectProductEntitiesState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: DaffProduct;
   const {

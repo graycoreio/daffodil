@@ -25,7 +25,7 @@ import {
 
 import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 import {
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DaffProductPageLoadByUrl,
   DaffProductPageActionTypes,
 } from '@daffodil/product/state';
@@ -42,7 +42,7 @@ import {
 export class DaffProductPageUrlResolver implements Resolve<Observable<boolean>> {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
-    private store: Store<DaffProductReducersState>,
+    private store: Store<DaffProductStateRootSlice>,
     private dispatcher: ActionsSubject,
     private urlNormalizer: DaffRoutingUriNormalizer,
   ) { }

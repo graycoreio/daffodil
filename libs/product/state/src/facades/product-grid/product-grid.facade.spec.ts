@@ -9,7 +9,7 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffProductGridLoad,
   DaffProductGridLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
@@ -18,7 +18,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductGridFacade } from './product-grid.facade';
 
 describe('DaffProductGridFacade', () => {
-  let store: Store<Partial<DaffProductReducersState>>;
+  let store: Store<DaffProductStateRootSlice>;
   let facade: DaffProductGridFacade;
 
   beforeEach(() => {

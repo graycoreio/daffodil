@@ -17,7 +17,7 @@ import {
   productPriceRangeHasPriceRange,
 } from '@daffodil/product';
 
-import { DaffProductReducersState } from '../../reducers/public_api';
+import { DaffProductStateRootSlice } from '../../reducers/public_api';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
 
@@ -32,7 +32,7 @@ import { DaffCompositeProductFacadeInterface } from './composite-product-facade.
 })
 export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> implements DaffCompositeProductFacadeInterface {
 
-  constructor(private store: Store<DaffProductReducersState<T>>) {}
+  constructor(private store: Store<DaffProductStateRootSlice<T>>) {}
 
 	selectors = getDaffProductSelectors<T>();
 

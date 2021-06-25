@@ -6,6 +6,7 @@ import { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer
 import { DaffCompositeProductEntity } from './composite-product-entities/composite-product-entity';
 import { DaffConfigurableProductEntity } from './configurable-product-entities/configurable-product-entity';
 import { DaffProductGridReducerState } from './product-grid/product-grid-reducer-state.interface';
+import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './product-store-feature-key';
 import { DaffProductReducerState } from './product/product-reducer-state.interface';
 
 /**
@@ -18,4 +19,8 @@ export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
 	bestSellers: DaffBestSellersReducerState;
 	configurableProductAttributes: EntityState<DaffConfigurableProductEntity>;
 	compositeProductOptions: EntityState<DaffCompositeProductEntity>;
+}
+
+export interface DaffProductStateRootSlice<T extends DaffProduct = DaffProduct> {
+  [DAFF_PRODUCT_STORE_FEATURE_KEY]: DaffProductReducersState<T>;
 }

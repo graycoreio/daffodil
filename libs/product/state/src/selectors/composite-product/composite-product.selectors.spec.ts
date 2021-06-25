@@ -23,7 +23,7 @@ import {
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DaffCompositeProductApplyOption,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
   DaffProductGridLoad,
@@ -37,7 +37,7 @@ import { getDaffCompositeProductSelectors } from './composite-product.selectors'
 
 describe('Composite Product Selectors | integration tests', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const compositeProductFactory: DaffCompositeProductFactory = new DaffCompositeProductFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let stubCompositeProduct: DaffCompositeProduct;

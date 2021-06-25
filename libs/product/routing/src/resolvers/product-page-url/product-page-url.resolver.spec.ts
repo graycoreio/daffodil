@@ -33,7 +33,7 @@ import {
   DaffProductPageLoadSuccess,
   DaffProductPageLoadFailure,
   daffProductReducers,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -46,7 +46,7 @@ class TestComponent {}
 describe('DaffProductPageUrlResolver', () => {
   const actions$: Observable<any> = null;
   let resolver: DaffProductPageUrlResolver;
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   let ProductFactory: DaffProductFactory;
   let stubProduct: DaffProduct;
   let route: ActivatedRoute;

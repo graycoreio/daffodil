@@ -12,7 +12,7 @@ import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageLoad,
   DaffProductGridLoadSuccess,
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
@@ -23,7 +23,7 @@ import { getDaffProductPageSelectors } from './product.selectors';
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductStateRootSlice>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: DaffProduct;
   const {

@@ -23,7 +23,7 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffProductReducersState,
+  DaffProductStateRootSlice,
   DaffProductPageLoad,
   DaffProductPageActionTypes,
 } from '@daffodil/product/state';
@@ -38,7 +38,7 @@ import {
 export class DaffProductPageIdResolver implements Resolve<Observable<boolean>> {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
-    private store: Store<DaffProductReducersState>,
+    private store: Store<DaffProductStateRootSlice>,
     private dispatcher: ActionsSubject,
   ) { }
 
