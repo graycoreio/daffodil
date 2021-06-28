@@ -29,7 +29,7 @@ export class NavigationTrie {
   ) {
     this.id = key;
     this.title = title;
-		this.tableOfContents = tableOfContents;
+		this.tableOfContents = '';
     if (path) {
       this.path = path;
     }
@@ -78,7 +78,7 @@ export class NavigationTrie {
 
     //If no child exists, simply append the word
     if (!child) {
-      this.appendChild(new NavigationTrie(path, doc.title, doc.path, doc.tableOfContents));
+      this.appendChild(new NavigationTrie(path, doc.title, doc.path, ''));
       return;
     }
 
@@ -86,7 +86,7 @@ export class NavigationTrie {
     if (child.children.length != 0) {
       child.title = doc.title;
 			child.tableOfContents = doc.tableOfContents;
-      child.appendChild(new NavigationTrie('', 'Overview', doc.path, doc.tableOfContents));
+      child.appendChild(new NavigationTrie('', 'Overview', doc.path, ''));
       return;
     }
 
@@ -120,7 +120,7 @@ export class NavigationTrie {
     //If there is a child, and it is a 'word' node, transform that
     //node into a true word node.
     else if (child && child.children.length == 0) {
-      const node = new NavigationTrie('', 'Overview', child.path, child.tableOfContents);
+      const node = new NavigationTrie('', 'Overview', child.path, '');
       delete (child.path);
 			child.appendChild(node);
     }
