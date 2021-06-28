@@ -34,7 +34,7 @@ import {
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
-  let store: Store<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderStateRootSlice> }>;
+  let store: Store<DaffOrderStateRootSlice>;
   let facade: DaffOrderFacade;
   let orderFactory: DaffOrderFactory;
   let orderTotalFactory: DaffOrderTotalFactory;
