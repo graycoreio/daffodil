@@ -1,3 +1,5 @@
+import { MagentoProductPreview } from './product-preview.interface';
+
 export enum MagentoProductTypeEnum {
 	BundledProduct = 'BundleProduct',
 	ConfigurableProduct = 'ConfigurableProduct',
@@ -12,36 +14,14 @@ export enum MagentoProductStockStatusEnum {
 /**
  * An object for defining what the product service requests and retrieves from a magento backend.
  */
-export interface MagentoProduct {
-	__typename: string;
-  uid: string;
-  name: string;
+export interface MagentoProduct extends MagentoProductPreview {
   meta_title?: string;
   meta_description?: string;
-  sku: string;
-  url_key: string;
-  url_suffix: string;
-  image: {
+	stock_status?: MagentoProductStockStatusEnum;
+  image?: {
 		url: string;
 		label: string;
   };
-  thumbnail: {
-		url: string;
-		label: string;
-	};
-  price_range: {
-		maximum_price: {
-			regular_price: {
-				value: number;
-				currency: any;
-			};
-			discount: {
-				amount_off: number;
-				percent_off: number;
-			};
-		};
-	};
-	stock_status?: MagentoProductStockStatusEnum;
   media_gallery_entries?: {
 		label: string;
 		file: string;
@@ -55,4 +35,6 @@ export interface MagentoProduct {
   description?: {
 		html: string;
 	};
+  related_products?: MagentoProductPreview[];
+  upsell_products?: MagentoProductPreview[];
 }

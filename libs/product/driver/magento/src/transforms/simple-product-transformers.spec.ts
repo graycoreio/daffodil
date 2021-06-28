@@ -4,18 +4,29 @@ import {
   DaffProduct,
   DaffProductTypeEnum,
 } from '@daffodil/product';
+import { MagentoConfigurableProduct } from '@daffodil/product/driver/magento';
+import { MagentoBundledProduct } from '@daffodil/product/driver/magento';
 import { MagentoProduct } from '@daffodil/product/driver/magento';
-import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
+import {
+  MagentoBundledProductFactory,
+  MagentoConfigurableProductFactory,
+  MagentoProductFactory,
+} from '@daffodil/product/driver/magento/testing';
 
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
 
 describe('DaffMagentoSimpleProductTransformerService', () => {
   let stubMagentoProduct: MagentoProduct;
+  let bundleProductFactory: MagentoBundledProductFactory;
+  let configurableProductFactory: MagentoConfigurableProductFactory;
   const mediaUrl = 'media url';
   let expectedDaffProduct: DaffProduct;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+
+    bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);
+    configurableProductFactory = TestBed.inject(MagentoConfigurableProductFactory);
 
     stubMagentoProduct = new MagentoProductFactory().create();
 
@@ -40,6 +51,8 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
       meta_title: stubMagentoProduct.meta_title,
       meta_description: stubMagentoProduct.meta_description,
       in_stock: true,
+      upsell: [],
+      related: [],
     };
   });
 
@@ -47,6 +60,44 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
 
     it('should transform a MagentoProduct to a DaffProduct', () => {
       expect(transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl)).toEqual(expectedDaffProduct);
+    });
+
+    describe('when there is a related bundle product', () => {
+      let relatedProduct: MagentoBundledProduct;
+
+      beforeEach(() => {
+        relatedProduct = bundleProductFactory.create();
+        stubMagentoProduct.related_products = [
+          relatedProduct,
+          ...stubMagentoProduct.related_products,
+        ];
+      });
+
+      it('should transform to a daff composite product', () => {
+        const result = transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
+
+        expect(result.related[0].type).toEqual(DaffProductTypeEnum.Composite);
+        expect(result.related[0].id).toEqual(relatedProduct.sku);
+      });
+    });
+
+    describe('when there is a related configurable product', () => {
+      let relatedProduct: MagentoConfigurableProduct;
+
+      beforeEach(() => {
+        relatedProduct = configurableProductFactory.create();
+        stubMagentoProduct.related_products = [
+          relatedProduct,
+          ...stubMagentoProduct.related_products,
+        ];
+      });
+
+      it('should transform to a daff configurable product', () => {
+        const result = transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
+
+        expect(result.related[0].type).toEqual(DaffProductTypeEnum.Configurable);
+        expect(result.related[0].id).toEqual(relatedProduct.sku);
+      });
     });
   });
 });

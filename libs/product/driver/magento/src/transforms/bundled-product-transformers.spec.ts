@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   MagentoProductStockStatusEnum,
   MagentoBundledProduct,
+  transformMagentoSimpleProduct,
 } from '@daffodil/product/driver/magento';
 
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
@@ -25,7 +26,7 @@ describe('DaffMagentoBundledProductTransformers', () => {
     magentoBundledProduct.items[0].options[1].product.stock_status = MagentoProductStockStatusEnum.InStock;
 
     it('should transform a MagentoBundledProduct to a DaffCompositeProduct', () => {
-      expect(transformMagentoBundledProduct(magentoBundledProduct, mediaUrl)).toEqual(jasmine.objectContaining(daffCompositeProductData));
+      expect(transformMagentoBundledProduct(transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct)).toEqual(jasmine.objectContaining(daffCompositeProductData));
     });
   });
 });
