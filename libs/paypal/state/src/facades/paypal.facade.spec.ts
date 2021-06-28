@@ -14,13 +14,14 @@ import {
   DaffGeneratePaypalExpressTokenSuccess,
   DaffGeneratePaypalExpressToken,
   DaffGeneratePaypalExpressTokenFailure,
+  DaffPaypalStateRootSlice,
 } from '@daffodil/paypal/state';
 import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 
 import { DaffPaypalFacade } from './paypal.facade';
 
 describe('DaffPaypalFacade', () => {
-  let store: Store<any>;
+  let store: Store<DaffPaypalStateRootSlice>;
   let facade: DaffPaypalFacade;
   const paypalTokenResponseFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
   let stubPaypalTokenResponse: DaffPaypalTokenResponse;

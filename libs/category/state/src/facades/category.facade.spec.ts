@@ -19,6 +19,7 @@ import {
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
+  DaffCategoryStateRootSlice,
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
@@ -41,7 +42,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFacade } from './category.facade';
 
 describe('DaffCategoryFacade', () => {
-  let store: Store<any>;
+  let store: Store<DaffCategoryStateRootSlice>;
   let facade: DaffCategoryFacade<DaffCategory, DaffProduct>;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
