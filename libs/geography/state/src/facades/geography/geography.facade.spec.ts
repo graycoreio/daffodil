@@ -25,7 +25,7 @@ import {
 import { DaffGeographyFacade } from './geography.facade';
 
 describe('DaffGeographyFacade', () => {
-  let store: Store<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyStateRootSlice> }>;
+  let store: Store<DaffGeographyStateRootSlice>;
   let facade: DaffGeographyFacade;
   let countryFactory: DaffCountryFactory;
   let subdivisionFactory: DaffSubdivisionFactory;

@@ -17,7 +17,7 @@ import {
 import { DaffContactFacade } from './contact.facade';
 
 describe('the DaffContactFacade', () => {
-  let store: Store<Partial<DaffContactStateRootSlice>>;
+  let store: Store<DaffContactStateRootSlice>;
   let facade: DaffContactFacade;
 
   beforeEach(() => {

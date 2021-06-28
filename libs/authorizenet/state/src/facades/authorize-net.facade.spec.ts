@@ -9,6 +9,7 @@ import { cold } from 'jasmine-marbles';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import {
   daffAuthorizeNetReducers,
+  DaffAuthorizeNetStateRootSlice,
   DaffAuthorizeNetUpdatePaymentFailure,
   DaffLoadAcceptJsFailure,
   DAFF_AUTHORIZENET_STORE_FEATURE_KEY,
@@ -19,7 +20,7 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 
 describe('DaffAuthorizeNetFacade', () => {
-  let store: Store<any>;
+  let store: Store<DaffAuthorizeNetStateRootSlice>;
   let facade: DaffAuthorizeNetFacade;
   let mockError: DaffStateError;
 

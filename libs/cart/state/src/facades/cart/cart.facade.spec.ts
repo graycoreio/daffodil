@@ -63,6 +63,7 @@ import {
   DaffCartItemAdd,
   DaffCartResolveState,
   DAFF_CART_STORE_FEATURE_KEY,
+  DaffCartStateRootSlice,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -74,15 +75,12 @@ import {
   DaffCompositeCartItemFactory,
 } from '@daffodil/cart/testing';
 import { DaffState } from '@daffodil/core/state';
-import {
-  DaffLoadingState,
-  DaffStateError,
-} from '@daffodil/core/state';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartFacade } from './cart.facade';
 
 describe('DaffCartFacade', () => {
-  let store: Store<{ product: Partial<DaffCartReducersState> }>;
+  let store: Store<DaffCartStateRootSlice>;
   let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
