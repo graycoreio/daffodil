@@ -17,7 +17,7 @@ import {
   DaffCategoryIdRequest,
 } from '@daffodil/category';
 import {
-  DaffCategoryReducersState,
+  DaffCategoryStateRootSlice,
   daffCategoryReducers,
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoad,
@@ -39,7 +39,7 @@ import { getDaffCategoryPageSelectors } from './category-page.selector';
 
 describe('DaffCategoryPageSelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategory>>;
+  let store: Store<DaffCategoryStateRootSlice>;
   let categoryFactory: DaffCategoryFactory;
   let categoryFilterFactory: DaffCategoryFilterFactory;
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
