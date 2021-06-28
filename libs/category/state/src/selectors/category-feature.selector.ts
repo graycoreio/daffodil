@@ -25,5 +25,5 @@ export const getDaffCategoryFeatureSelector = (() => {
   let cache;
   return <V extends DaffGenericCategory<V>>(): DaffCategoryFeatureMemoizedSelectors<V> => cache = cache
     ? cache
-    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryStateRootSlice,DaffCategoryReducersState<V>>(DAFF_CATEGORY_STORE_FEATURE_KEY) };
+    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryStateRootSlice<V>,DaffCategoryReducersState<V>>(DAFF_CATEGORY_STORE_FEATURE_KEY) };
 })();
