@@ -6,7 +6,6 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { daffArrayToDict } from '@daffodil/core';
 import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DaffConfigurableProductApplyAttribute,
@@ -499,7 +498,7 @@ describe('DaffConfigurableProductFacade', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.isPriceRanged(stubConfigurableProduct.id)).toBeObservable(expected);
+      expect(facade.hasDiscount(stubConfigurableProduct.id)).toBeObservable(expected);
     });
   });
 
