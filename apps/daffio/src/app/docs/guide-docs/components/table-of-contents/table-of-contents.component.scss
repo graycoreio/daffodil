@@ -1,4 +1,11 @@
+@import 'utilities';
+
 :host {
+	display: none;
+
+  @include breakpoint(tablet) {
+		display: block;
+	}
 	
 	a {
 		text-decoration: none;
@@ -6,7 +13,7 @@
 }
 
 .table-of-contents__item {
-	width: 350px;
+	display: flex;
 
 	&--level2 {
 		padding-left: 20px;

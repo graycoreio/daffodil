@@ -1,4 +1,13 @@
 :host {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+
+	& daffio-doc-viewer {
+		flex: 4;
+	}
+	
+	& daffio-guide-table-of-contents {
+		flex: 1;
+	}
 }

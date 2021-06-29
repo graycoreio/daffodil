@@ -28,6 +28,7 @@ export class DaffioDocViewerComponent implements OnChanges {
 	sanitizedContent: SafeHtml;
 
 	ngOnChanges() {
+	  //It is necessary to bypass the default angular sanitization to keep id tags in the injected html. These id tags are used for fragment routing.
 	  this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.doc.contents);
 	}
 }
