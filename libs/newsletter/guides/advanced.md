@@ -1,11 +1,8 @@
-# Customizing Submission Data
+# Advanced
+
+## Customizing Submission Data
 Whenever you are setting up your newsletter feature within your application, you must decide what information is important for your user to include for the subscription. This guide will walk you through including your desired newsletter payload when a user submits their newsletter subscription using the DaffNewsletter library.
 
-
-## Table of Contents
-- [The DaffNewsletterSubmission](#the-daff-newsletter-submission)
-- [Creating your own submission object](#creating-your-own-submission-object)
-- [Utilizing your payload](#utilizing-your-payload)
 ## The DaffNewsletterSubmission
 
 The `DaffNewsletterSubmission` is the object that holds your subscription data and gets sent to your application's backend. 
