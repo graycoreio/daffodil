@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffLinkSetModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design';
 
 import { DaffioDocViewerModule } from '../../../shared/components/doc-viewer/doc-viewer.module';
+import { DaffioGuideTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 import { DaffioGuideViewerComponent } from './guide-viewer.component';
 
 @NgModule({
@@ -16,9 +17,10 @@ import { DaffioGuideViewerComponent } from './guide-viewer.component';
   ],
   imports: [
     CommonModule,
-    DaffioDocViewerModule,
-    DaffLinkSetModule,
     RouterModule,
+    DaffioDocViewerModule,
+    DaffContainerModule,
+    DaffioGuideTableOfContentsModule,
   ],
 })
 export class DaffioGuideViewerModule { }

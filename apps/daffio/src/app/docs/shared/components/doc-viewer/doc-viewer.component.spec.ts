@@ -3,8 +3,11 @@ import {
   async,
   ComponentFixture,
   TestBed,
+  waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
+import { DaffArticleModule } from '@daffodil/design';
 
 import { DaffioDocFactory } from '../../../testing/factories/doc.factory';
 import { DaffioDoc } from '../../models/doc';
@@ -22,8 +25,9 @@ describe('DaffioDocViewerComponent', () => {
   let wrapper: WrapperComponent;
   const docFactory = new DaffioDocFactory();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [DaffArticleModule],
       declarations: [WrapperComponent, DaffioDocViewerComponent],
     })
       .compileComponents();
@@ -43,14 +47,7 @@ describe('DaffioDocViewerComponent', () => {
   it('should render the contents of the doc as innerhtml', () => {
     wrapper.doc = docFactory.create({ contents: 'Some Content' });
     fixture.detectChanges();
-    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
-    expect(componentEl.innerHTML).toEqual(wrapper.doc.contents);
-  });
-
-  it('should rely on Angular mechanisms to prevent rendering of malicious code', () => {
-    wrapper.doc = docFactory.create({ contents: '<script>alert("Malicious")</script>' });
-    fixture.detectChanges();
-    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
-    expect(componentEl.innerHTML).toEqual('');
+    const articleElement = fixture.debugElement.query(By.css('daff-article')).nativeElement;
+    expect(articleElement.innerHTML).toEqual(wrapper.doc.contents);
   });
 });

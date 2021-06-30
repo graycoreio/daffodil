@@ -9,6 +9,35 @@ export class MockDoc implements DaffioDoc {
   id = String(faker.datatype.number(1000));
   title = faker.lorem.words();
   contents = faker.lorem.paragraph();
+	tableOfContents = {
+	  json: [
+	    {
+	      content: faker.lorem.words(),
+	      lvl: 1,
+	      slug: faker.random.word(),
+	    },
+	    {
+	      content: faker.lorem.words(),
+	      lvl: 2,
+	      slug: faker.random.word(),
+	    },
+	    {
+	      content: faker.lorem.words(),
+	      lvl: 3,
+	      slug: faker.random.word(),
+	    },
+	    {
+	      content: faker.lorem.words(),
+	      lvl: 3,
+	      slug: faker.random.word(),
+	    },
+	    {
+	      content: faker.lorem.words(),
+	      lvl: 2,
+	      slug: faker.random.word(),
+	    },
+	  ],
+	};
 };
 
 @Injectable({
