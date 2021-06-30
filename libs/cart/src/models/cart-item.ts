@@ -10,22 +10,50 @@ import {
 
 import { DaffCartItemInputType } from './cart-item-input';
 
+/**
+ * A discount applied to a specific cart item.
+ */
 export interface DaffCartItemDiscount {
+  /**
+   * The amount of the discount.
+   */
   amount: number;
+  /**
+   * A human-readable label describing the discount.
+   */
   label: string;
 }
 
+/**
+ * A cart item.
+ * Cart item types correspond to product types.
+ * They hold information about the product to which they correspond and how many of said product is in the cart.
+ */
 export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
 	/**
 	 * @deprecated use id instead.
 	 */
 	item_id: ID;
 	type: DaffCartItemInputType;
+  /**
+   * The image or thumbnail of the corresponding product.
+   */
   image?: DaffProductImage;
+  /**
+   * The ID of the corresponding product.
+   */
   product_id: DaffProduct['id'];
+  // TODO: move to composites?
   parent_item_id: ID;
+  // TODO: how is the different from product_id?
   sku: string;
+  /**
+   * A human-readable label.
+   */
   name: string;
+  /**
+   * How many of the corresponding product is in the cart.
+   */
   qty: number;
   /**
    * The price per item, excluding cart discounts.
@@ -37,6 +65,9 @@ export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
    * This includes any discounts and sales that apply to the product or category.
    */
   row_total: number;
+  /**
+   * Whether or not the specified quantity of the corresponding product is in stock.
+   */
 	in_stock: boolean;
   /**
    * A list of discounts applied to the cart item row.

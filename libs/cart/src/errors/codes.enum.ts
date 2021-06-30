@@ -1,3 +1,7 @@
+/**
+ * An enum for the cart error codes.
+ * Each error code is unique to an error class.
+ */
 export enum DaffCartErrorCodes {
   CART_RESOLUTION = 'DAFF_CART_RESOLUTION',
   CART_STORAGE_RESOLUTION = 'DAFF_CART_STORAGE_RESOLUTION',
