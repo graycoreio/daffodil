@@ -32,7 +32,7 @@ describe('DaffioGuideTableOfContentsComponent', () => {
     fixture = TestBed.createComponent(DaffioGuideTableOfContentsComponent);
     component = fixture.componentInstance;
     stubDaffioDoc = new DaffioDocFactory().create();
-    component.doc = stubDaffioDoc;
+    component.tableOfContents = stubDaffioDoc.tableOfContents;
     fixture.detectChanges();
   });
 
@@ -41,14 +41,14 @@ describe('DaffioGuideTableOfContentsComponent', () => {
   });
 
   it('should render a table-of-contents__item for each entry in the table of contents', () => {
-    const tocItems = fixture.debugElement.queryAll(By.css('.table-of-contents__item'));
+    const tocItems = fixture.debugElement.queryAll(By.css('.daffio-table-of-contents__item'));
     expect(tocItems.length).toEqual(stubDaffioDoc.tableOfContents.json.length);
   });
 
   it('should label each toc__item with an indent level based on its toc level', () => {
-    const tocLevel1 = fixture.debugElement.queryAll(By.css('.table-of-contents__item--level1'));
-    const tocLevel2 = fixture.debugElement.queryAll(By.css('.table-of-contents__item--level2'));
-    const tocLevel3 = fixture.debugElement.queryAll(By.css('.table-of-contents__item--level3'));
+    const tocLevel1 = fixture.debugElement.queryAll(By.css('.daffio-table-of-contents__item--level-1'));
+    const tocLevel2 = fixture.debugElement.queryAll(By.css('.daffio-table-of-contents__item--level-2'));
+    const tocLevel3 = fixture.debugElement.queryAll(By.css('.daffio-table-of-contents__item--level-3'));
     expect(tocLevel1.length).toEqual(stubDaffioDoc.tableOfContents.json.filter(content => content.lvl === 1).length);
     expect(tocLevel2.length).toEqual(stubDaffioDoc.tableOfContents.json.filter(content => content.lvl === 2).length);
     expect(tocLevel3.length).toEqual(stubDaffioDoc.tableOfContents.json.filter(content => content.lvl === 3).length);

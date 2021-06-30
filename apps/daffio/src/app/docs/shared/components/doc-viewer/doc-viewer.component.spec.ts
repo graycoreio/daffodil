@@ -7,6 +7,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffArticleModule } from '@daffodil/design';
+
 import { DaffioDocFactory } from '../../../testing/factories/doc.factory';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocViewerComponent } from './doc-viewer.component';
@@ -25,6 +27,7 @@ describe('DaffioDocViewerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [DaffArticleModule],
       declarations: [WrapperComponent, DaffioDocViewerComponent],
     })
       .compileComponents();
@@ -44,7 +47,7 @@ describe('DaffioDocViewerComponent', () => {
   it('should render the contents of the doc as innerhtml', () => {
     wrapper.doc = docFactory.create({ contents: 'Some Content' });
     fixture.detectChanges();
-    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.daffio-doc-viewer')).nativeElement;
-    expect(componentEl.innerHTML).toEqual(wrapper.doc.contents);
+    const articleElement = fixture.debugElement.query(By.css('daff-article')).nativeElement;
+    expect(articleElement.innerHTML).toEqual(wrapper.doc.contents);
   });
 });

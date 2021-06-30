@@ -16,5 +16,5 @@ export class DaffioGuideTableOfContentsComponent {
   /**
    * The doc to render
    */
-	@Input() doc: DaffioDoc;
+	@Input() tableOfContents: DaffioDoc['tableOfContents'];
 }

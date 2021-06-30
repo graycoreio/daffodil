@@ -1,4 +1,8 @@
 import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
   ComponentFixture,
   TestBed,
   waitForAsync,
@@ -11,8 +15,12 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffioDoc } from '../../shared/models/doc';
 import { DaffioDocFactory } from '../../testing/factories/doc.factory';
-import { DaffioGuideViewerModule } from '../components/guide-viewer/guide-viewer.module';
 import { DaffioGuideViewComponent } from './guide-view.component';
+
+@Component({ selector: 'daffio-guide-viewer', template: '' })
+class MockDaffioGuideViewerComponent {
+	@Input() doc: DaffioDoc;
+}
 
 describe('DaffioGuideViewComponent', () => {
   let component: DaffioGuideViewComponent;
@@ -24,9 +32,11 @@ describe('DaffioGuideViewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DaffioGuideViewComponent],
+      declarations: [
+        DaffioGuideViewComponent,
+        MockDaffioGuideViewerComponent,
+      ],
       imports: [
-        DaffioGuideViewerModule,
         RouterTestingModule,
       ],
       providers: [
@@ -39,6 +49,7 @@ describe('DaffioGuideViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioGuideViewComponent);
     component = fixture.componentInstance;
+    console.log(doc);
     stubActivatedRoute.data.next({ doc });
     fixture.detectChanges();
   });
