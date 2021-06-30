@@ -7,6 +7,9 @@ import {
 } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
+/**
+ * An enum for the cart payment action types.
+ */
 export enum DaffCartPaymentActionTypes {
   CartPaymentLoadAction = '[DaffCart] Payment Load Action',
   CartPaymentLoadSuccessAction = '[DaffCart] Payment Load Success Action',
@@ -23,34 +26,52 @@ export enum DaffCartPaymentActionTypes {
 	CartPaymentMethodAddAction = '[DaffCart] Payment Method Add Action'
 }
 
+/**
+ * Triggers the load of the cart's selected payment method.
+ */
 export class DaffCartPaymentLoad implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadAction;
 }
 
+/**
+ * Indicates the successful load of the cart's selected payment method.
+ */
 export class DaffCartPaymentLoadSuccess<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction;
 
   constructor(public payload: T) {}
 }
 
+/**
+ * Indicates the failed load of the cart's selected payment method.
+ */
 export class DaffCartPaymentLoadFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the update of the cart's selected payment method.
+ */
 export class DaffCartPaymentUpdate<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the successful update of the cart's selected payment method.
+ */
 export class DaffCartPaymentUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the failed update of the cart's selected payment method.
+ */
 export class DaffCartPaymentUpdateFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction;
 
@@ -94,14 +115,23 @@ export class DaffCartPaymentUpdateWithBillingFailure implements Action {
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the removal of the cart's selected payment method.
+ */
 export class DaffCartPaymentRemove implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentRemoveAction;
 }
 
+/**
+ * Indicates the successful removal of the cart's selected payment method.
+ */
 export class DaffCartPaymentRemoveSuccess implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction;
 }
 
+/**
+ * Indicates the failed removal of the cart's selected payment method.
+ */
 export class DaffCartPaymentRemoveFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction;
 
@@ -120,6 +150,9 @@ export class DaffCartPaymentMethodAdd<T extends DaffCartPaymentMethod = DaffCart
 	constructor(public payload: T) {}
 }
 
+/**
+ * A union of all the cart payment action classes.
+ */
 export type DaffCartPaymentActions<
   T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
   V extends DaffCart = DaffCart,

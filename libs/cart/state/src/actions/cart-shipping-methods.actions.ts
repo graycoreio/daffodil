@@ -3,12 +3,18 @@ import { Action } from '@ngrx/store';
 import { DaffCartShippingRate } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
+/**
+ * An enum for the cart shipping methods action types.
+ */
 export enum DaffCartShippingMethodsActionTypes {
   CartShippingMethodsLoadAction = '[DaffCart] Shipping Methods Load Action',
   CartShippingMethodsLoadSuccessAction = '[DaffCart] Shipping Methods Load Success Action',
   CartShippingMethodsLoadFailureAction = '[DaffCart] Shipping Methods Load Failure Action',
 }
 
+/**
+ * Triggers the load of the cart's available payment methods.
+ */
 export class DaffCartShippingMethodsLoad implements Action {
   readonly type = DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadAction;
 
@@ -27,6 +33,9 @@ export class DaffCartShippingMethodsLoadFailure implements Action {
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * A union of all the cart shipping methods action classes.
+ */
 export type DaffCartShippingMethodsActions<T extends DaffCartShippingRate = DaffCartShippingRate> =
   | DaffCartShippingMethodsLoad
   | DaffCartShippingMethodsLoadSuccess<T>

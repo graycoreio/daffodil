@@ -6,6 +6,9 @@ import {
 } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
+/**
+ * An enum for the cart address action types.
+ */
 export enum DaffCartAddressActionTypes {
   CartAddressUpdateAction = '[DaffCart] Cart Address Update Action',
   CartAddressUpdateSuccessAction = '[DaffCart] Cart Address Update Success Action',
@@ -39,6 +42,9 @@ export class DaffCartAddressUpdateFailure implements Action {
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * A union of all the cart address action classes.
+ */
 export type DaffCartAddressActions<
   T extends DaffCartAddress = DaffCartAddress,
   V extends DaffCart = DaffCart

@@ -6,6 +6,9 @@ import {
 } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
+/**
+ * An enum for the cart billing address action types.
+ */
 export enum DaffCartBillingAddressActionTypes {
   CartBillingAddressLoadAction = '[DaffCart] Billing Address Load Action',
   CartBillingAddressLoadSuccessAction = '[DaffCart] Billing Address Load Success Action',
@@ -15,40 +18,61 @@ export enum DaffCartBillingAddressActionTypes {
   CartBillingAddressUpdateFailureAction = '[DaffCart] Billing Address Update Failure Action',
 }
 
+/**
+ * Triggers the load of the cart's billing address.
+ */
 export class DaffCartBillingAddressLoad implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressLoadAction;
 }
 
+/**
+ * Indicates the successful load of the cart's billing address.
+ */
 export class DaffCartBillingAddressLoadSuccess<T extends DaffCartAddress> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressLoadSuccessAction;
 
   constructor(public payload: T) {}
 }
 
+/**
+ * Indicates the failed load of the cart's billing address.
+ */
 export class DaffCartBillingAddressLoadFailure implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressLoadFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the update of the cart's billing address.
+ */
 export class DaffCartBillingAddressUpdate<T extends DaffCartAddress = DaffCartAddress> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the successful update of the cart's billing address.
+ */
 export class DaffCartBillingAddressUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the failed update of the cart's billing address.
+ */
 export class DaffCartBillingAddressUpdateFailure implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * A union of all the cart billing address action classes.
+ */
 export type DaffCartBillingAddressActions<
   T extends DaffCartAddress = DaffCartAddress,
   V extends DaffCart = DaffCart
