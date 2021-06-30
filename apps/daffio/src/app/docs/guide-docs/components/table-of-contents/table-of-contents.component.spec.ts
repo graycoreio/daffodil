@@ -32,7 +32,7 @@ describe('DaffioGuideTableOfContentsComponent', () => {
     fixture = TestBed.createComponent(DaffioGuideTableOfContentsComponent);
     component = fixture.componentInstance;
     stubDaffioDoc = new DaffioDocFactory().create();
-    component.tableOfContents = stubDaffioDoc.tableOfContents;
+    component.tableOfContents = stubDaffioDoc.tableOfContents.json;
     fixture.detectChanges();
   });
 
