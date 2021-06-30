@@ -1,13 +1,36 @@
-:host {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+@import 'utilities';
 
-	& daffio-doc-viewer {
-		flex: 4;
+:host {
+	display: block;
+}
+
+.daffio-guide-viewer {
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'content';
+		padding: 48px;
+		
+		@include breakpoint(big-tablet) {
+			grid-template-columns: minmax(0px, 960px) 240px;
+			grid-template-areas:
+				'content table-of-contents';
+			padding: 48px;
+			grid-gap: 48px;
+		}
 	}
-	
-	& daffio-guide-table-of-contents {
-		flex: 1;
+
+	&__content {
+		grid-area: content;
+	}
+
+	&__table-of-contents {
+		display: none;
+		
+		@include breakpoint(big-tablet) {
+			display: block;
+			grid-area: table-of-contents;
+		}
 	}
 }

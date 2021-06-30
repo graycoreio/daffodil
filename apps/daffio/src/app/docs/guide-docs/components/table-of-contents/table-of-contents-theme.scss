@@ -1,0 +1,17 @@
+@mixin daffio-table-of-contents-theme($theme){
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, "core.base");
+	$base-contrast: daff-map-deep-get($theme, "core.base-contrast");
+
+	.daffio-table-of-contents {
+		&__item {
+			color: daff-illuminate($base-contrast, $daff-gray, 4);
+
+			&:first-of-type {
+				border-bottom: 1px solid daff-illuminate($base, $daff-gray, 3);
+			}
+		}
+	}
+}

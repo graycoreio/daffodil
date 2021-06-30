@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { DaffArticleModule } from '@daffodil/design';
+
 import { DaffioDocViewerComponent } from './doc-viewer.component';
 
 @NgModule({
@@ -12,6 +14,7 @@ import { DaffioDocViewerComponent } from './doc-viewer.component';
   ],
   imports: [
     CommonModule,
+    DaffArticleModule,
   ],
 })
 export class DaffioDocViewerModule { }

@@ -44,7 +44,7 @@ describe('DaffioDocViewerComponent', () => {
   it('should render the contents of the doc as innerhtml', () => {
     wrapper.doc = docFactory.create({ contents: 'Some Content' });
     fixture.detectChanges();
-    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.doc-viewer')).nativeElement;
+    const componentEl = <HTMLElement>fixture.debugElement.query(By.css('.daffio-doc-viewer')).nativeElement;
     expect(componentEl.innerHTML).toEqual(wrapper.doc.contents);
   });
 });
