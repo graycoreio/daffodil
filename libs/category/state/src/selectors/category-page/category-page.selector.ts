@@ -103,12 +103,12 @@ export interface DaffCategoryPageMemoizedSelectors<
 	 */
 	selectCategoryErrors: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffStateError[]>;
   /**
-	 * Selects whether the current category page is mutating; e.g. when a filter is applied to it.
-	 */
+   * Selects whether the current category page is mutating; e.g. when a filter is applied to it.
+   */
 	selectIsCategoryPageMutating: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
   /**
-	 * Selects whether the current category is resolving; e.g. when the category first loads.
-	 */
+   * Selects whether the current category is resolving; e.g. when the category first loads.
+   */
 	selectIsCategoryPageResolving: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
 }
 
