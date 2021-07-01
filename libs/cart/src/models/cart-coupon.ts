@@ -8,7 +8,6 @@ export interface DaffCartCoupon {
   /**
    * The coupon ID.
    */
-  // TODO: change to id
   coupon_id?: ID;
   /**
    * The coupon code.
