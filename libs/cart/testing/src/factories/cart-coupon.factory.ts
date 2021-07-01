@@ -5,7 +5,8 @@ import { DaffCartCoupon } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffCartCoupon implements DaffCartCoupon {
-  coupon_id = faker.datatype.number({ min: 1, max: 1000 });
+  id = faker.datatype.number({ min: 1, max: 1000 });
+  coupon_id = this.id;
   code = faker.random.alphaNumeric(20);
   description = faker.random.words(5);
 };

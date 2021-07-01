@@ -27,6 +27,7 @@ describe('Cart | Testing | Factories | CartCouponFactory', () => {
     });
 
     it('should return a CartCoupon with all required fields defined', () => {
+      expect(result.id).toBeDefined();
       expect(result.coupon_id).toBeDefined();
       expect(result.code).toBeDefined();
       expect(result.description).toBeDefined();
