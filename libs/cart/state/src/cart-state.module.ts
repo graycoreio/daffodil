@@ -15,14 +15,12 @@ import { DaffCartShippingInformationEffects } from './effects/cart-shipping-info
 import { DaffCartShippingMethodsEffects } from './effects/cart-shipping-methods.effects';
 import { DaffCartEffects } from './effects/cart.effects';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
-import {
-  daffCartReducers,
-  DAFF_CART_STORE_FEATURE_KEY,
-} from './reducers/public_api';
+import { DAFF_CART_STORE_FEATURE_KEY } from './reducers/public_api';
+import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature(DAFF_CART_STORE_FEATURE_KEY, daffCartReducers),
+    StoreModule.forFeature(DAFF_CART_STORE_FEATURE_KEY, DAFF_CART_REDUCERS),
     EffectsModule.forFeature([
       DaffCartEffects,
       DaffCartItemEffects,
