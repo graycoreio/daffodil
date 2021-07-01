@@ -6,6 +6,9 @@ import {
 } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
+/**
+ * An enum for the cart shipping information action types.
+ */
 export enum DaffCartShippingInformationActionTypes {
   CartShippingInformationLoadAction = '[DaffCart] Shipping Information Load Action',
   CartShippingInformationLoadSuccessAction = '[DaffCart] Shipping Information Load Success Action',
@@ -18,40 +21,61 @@ export enum DaffCartShippingInformationActionTypes {
   CartShippingInformationDeleteFailureAction = '[DaffCart] Shipping Information Remove Failure Action',
 }
 
+/**
+ * Triggers the load of the cart's shipping information.
+ */
 export class DaffCartShippingInformationLoad implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction;
 }
 
+/**
+ * Indicates the successful load of the cart's shipping information.
+ */
 export class DaffCartShippingInformationLoadSuccess<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction;
 
   constructor(public payload: T) {}
 }
 
+/**
+ * Indicates the failed load of the cart's shipping information.
+ */
 export class DaffCartShippingInformationLoadFailure implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the update of the cart's shipping information.
+ */
 export class DaffCartShippingInformationUpdate<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the successful update of the cart's shipping information.
+ */
 export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the failed update of the cart's shipping information.
+ */
 export class DaffCartShippingInformationUpdateFailure implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the deletion of the cart's shipping information.
+ */
 export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction;
 
@@ -70,6 +94,9 @@ export class DaffCartShippingInformationDeleteFailure implements Action {
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * A union of all the cart shipping information action classes.
+ */
 export type DaffCartShippingInformationActions<
   T extends DaffCartShippingRate = DaffCartShippingRate,
   V extends DaffCart = DaffCart

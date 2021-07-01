@@ -4,6 +4,9 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+/**
+ * An enum for the cart action types.
+ */
 export enum DaffCartActionTypes {
   CartStorageFailureAction = '[DaffCart] Cart Storage Failure Action',
   CartLoadAction = '[DaffCart] Cart Load Action',
@@ -24,72 +27,105 @@ export enum DaffCartActionTypes {
   ResolveCartFailureAction = '[DaffCart] Resolve Cart Failure Action',
 }
 
+/**
+ * Indicates that an error occured while either reading or writing the cart ID to or from storage.
+ */
 export class DaffCartStorageFailure implements Action {
   readonly type = DaffCartActionTypes.CartStorageFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the load of the cart.
+ */
 export class DaffCartLoad implements Action {
   readonly type = DaffCartActionTypes.CartLoadAction;
 }
 
+/**
+ * Indicates the successful load of the cart.
+ */
 export class DaffCartLoadSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartLoadSuccessAction;
 
   constructor(public payload: T) {}
 }
 
+/**
+ * Indicates the failed load of the cart.
+ */
 export class DaffCartLoadFailure implements Action {
   readonly type = DaffCartActionTypes.CartLoadFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the creation of a new cart.
+ */
 export class DaffCartCreate implements Action {
   readonly type = DaffCartActionTypes.CartCreateAction;
 }
 
+/**
+ * Indicates the successful creation of a new cart.
+ */
 export class DaffCartCreateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartCreateSuccessAction;
 
   constructor(public payload: {id: T['id']}) {}
 }
 
+/**
+ * Indicates the failed creation of a new cart.
+ */
 export class DaffCartCreateFailure implements Action {
   readonly type = DaffCartActionTypes.CartCreateFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+// TODO: deprecate
 export class DaffAddToCart implements Action {
   readonly type = DaffCartActionTypes.AddToCartAction;
 
   constructor(public payload: {productId: DaffProduct['id']; qty: number}) {}
 }
 
+// TODO: deprecate
 export class DaffAddToCartSuccess implements Action {
   readonly type = DaffCartActionTypes.AddToCartSuccessAction;
 
   constructor(public payload: DaffCart) {}
 }
 
+// TODO: deprecate
 export class DaffAddToCartFailure implements Action {
   readonly type = DaffCartActionTypes.AddToCartFailureAction;
 
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * Triggers the removal of all items from the cart.
+ */
 export class DaffCartClear implements Action {
   readonly type = DaffCartActionTypes.CartClearAction;
 }
 
+/**
+ * Indicates the successful removal of all items from the cart.
+ */
 export class DaffCartClearSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartClearSuccessAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
+/**
+ * Indicates the failed removal of all items from the cart.
+ */
 export class DaffCartClearFailure implements Action {
   readonly type = DaffCartActionTypes.CartClearFailureAction;
 
@@ -97,7 +133,8 @@ export class DaffCartClearFailure implements Action {
 }
 
 /**
- * An action indicating that cart resolution begins.
+ * Triggers cart resolution.
+ * Will attempt to load a cart if it exists and create a cart otherwise.
  */
 export class DaffResolveCart implements Action {
   readonly type = DaffCartActionTypes.ResolveCartAction;
@@ -131,6 +168,9 @@ export class DaffResolveCartServerSide implements Action {
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * A union of all the cart action classes.
+ */
 export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartStorageFailure
   | DaffCartLoad
