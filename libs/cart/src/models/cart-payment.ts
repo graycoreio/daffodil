@@ -4,6 +4,7 @@
 export interface DaffCartPaymentMethod {
   /**
    * Identifies the kind of payment used.
+   * e.g. "credit-card"
    */
 	method: string;
   /**

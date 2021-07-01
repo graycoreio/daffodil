@@ -17,7 +17,7 @@ export interface DaffCompositeCartItem extends DaffCartItem {
 }
 
 /**
- * A composite product option in the cart item.
+ * A composite product option in a cart item.
  */
 export interface DaffCompositeCartItemOption extends DaffIdentifiable {
 	/**

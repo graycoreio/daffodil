@@ -10,6 +10,9 @@ export interface DaffConfigurableCartItem extends DaffCartItem {
 	attributes: DaffConfigurableCartItemAttribute[];
 }
 
+/**
+ * Defines a selected attribute for a configurable cart item.
+ */
 export interface DaffConfigurableCartItemAttribute {
   /**
    * A human-readable label for the attribute.

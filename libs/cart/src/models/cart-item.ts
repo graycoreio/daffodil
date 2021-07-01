@@ -34,6 +34,9 @@ export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
 	 * @deprecated use id instead.
 	 */
 	item_id: ID;
+  /**
+   * The type of cart item.
+   */
 	type: DaffCartItemInputType;
   /**
    * The image or thumbnail of the corresponding product.

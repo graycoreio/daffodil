@@ -23,7 +23,7 @@ export interface DaffCart extends DaffIdentifiable {
 	 */
   grand_total: number;
   /**
-   * A list of coupon applied to the cart.
+   * A list of coupons applied to the cart.
    */
   coupons: DaffCartCoupon[];
   /**
@@ -51,11 +51,11 @@ export interface DaffCart extends DaffIdentifiable {
    */
   shipping_information: DaffCartShippingInformation | null;
   /**
-   * A list of possible shipping methods.
+   * A list of available shipping methods.
    */
   available_shipping_methods: DaffCartShippingRate[];
   /**
-   * A list of possible payment methods.
+   * A list of available payment methods.
    */
   available_payment_methods: DaffCartPaymentMethod[];
   /**
