@@ -37,7 +37,7 @@ export interface DaffSimpleCartItemInput extends DaffCartItemInput {
 }
 
 /**
- * An cart item input for composite products.
+ * A cart item input for composite products.
  */
 export interface DaffCompositeCartItemInput extends DaffCartItemInput {
 	type: DaffCartItemInputType.Composite;
