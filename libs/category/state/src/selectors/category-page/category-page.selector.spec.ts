@@ -278,10 +278,10 @@ describe('DaffCategoryPageSelectors', () => {
     });
   });
 
-  describe('selectSelectedCategoryId', () => {
+  describe('selectCurrentCategoryId', () => {
 
-    it('selects the id of the selected category', () => {
-      const selector = store.pipe(select(categorySelectors.selectSelectedCategoryId));
+    it('selects the id of the current category', () => {
+      const selector = store.pipe(select(categorySelectors.selectCurrentCategoryId));
       const expected = cold('a', { a: stubCategory.id });
       expect(selector).toBeObservable(expected);
     });
@@ -307,7 +307,7 @@ describe('DaffCategoryPageSelectors', () => {
 
   describe('selectCategoryErrors', () => {
 
-    it('returns the selected category id', () => {
+    it('returns errors associated with loading the category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryErrors));
       const expected = cold('a', { a: []});
       expect(selector).toBeObservable(expected);

@@ -101,17 +101,17 @@ describe('DaffCategorySelectors', () => {
     store.dispatch(new DaffProductGridLoadSuccess([product]));
   });
 
-  describe('selectSelectedCategory', () => {
+  describe('selectCurrentCategory', () => {
 
-    it('selects the selected category', () => {
-      const selector = store.pipe(select(categorySelectors.selectSelectedCategory));
+    it('selects the current category', () => {
+      const selector = store.pipe(select(categorySelectors.selectCurrentCategory));
       const expected = cold('a', { a: stubCategory });
       expect(selector).toBeObservable(expected);
     });
   });
 
   describe('selectCategoryPageProducts', () => {
-    it('selects the products of the selected category', () => {
+    it('selects the products of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageProducts));
       const expected = cold('a', { a: [product]});
       expect(selector).toBeObservable(expected);

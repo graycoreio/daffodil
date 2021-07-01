@@ -15,9 +15,9 @@ export enum DaffCategoryPageFilterActionTypes {
 }
 
 /**
- * An action for changing the filters for the selected category.
+ * An action for changing the filters for the current category.
  *
- * @param filters - Filters to be changed to the selected category.
+ * @param filters - Filters to be changed on the current category.
  * @deprecated use {@link DaffCategoryPageReplaceFilters} or {@link DaffCategoryPageApplyFilters}
  */
 export class DaffCategoryPageChangeFilters implements Action {
@@ -27,10 +27,10 @@ export class DaffCategoryPageChangeFilters implements Action {
 }
 
 /**
- * An action for replacing the filters for the selected category.
+ * An action for replacing the filters for the current category.
  * All existing filters will be removed and the specified filters will be applied.
  *
- * @param filters - Filters to be set to the selected category.
+ * @param filters - Filters to be set on the current category.
  */
 export class DaffCategoryPageReplaceFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction;
@@ -39,9 +39,9 @@ export class DaffCategoryPageReplaceFilters implements Action {
 }
 
 /**
- * An action for applying the specified filters for the selected category.
+ * An action for applying the specified filters for the current category.
  *
- * @param filters - Filters to be applied to the selected category.
+ * @param filters - Filters to be applied to the current category.
  */
 export class DaffCategoryPageApplyFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction;
@@ -50,9 +50,9 @@ export class DaffCategoryPageApplyFilters implements Action {
 }
 
 /**
- * An action for removing the specified filters for the selected category.
+ * An action for removing the specified filters for the current category.
  *
- * @param filters - Filters to be removed from the selected category.
+ * @param filters - Filters to be removed from the current category.
  */
 export class DaffCategoryPageRemoveFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction;
@@ -61,16 +61,16 @@ export class DaffCategoryPageRemoveFilters implements Action {
 }
 
 /**
- * An action for removing all the filters for the selected category.
+ * An action for removing all the filters for the current category.
  */
 export class DaffCategoryPageClearFilters implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageClearFiltersAction;
 }
 
 /**
- * An action for toggling a filters for the selected category.
+ * An action for toggling a filters for the current category.
  *
- * @param filter - Filter to be toggled on the selected category.
+ * @param filter - Filter to be toggled on the current category.
  */
 export class DaffCategoryPageToggleFilter implements Action {
   readonly type = DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction;

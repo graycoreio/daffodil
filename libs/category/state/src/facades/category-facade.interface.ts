@@ -13,7 +13,6 @@ import {
   DaffSortDirectionEnum,
   DaffSortOption,
   DaffStateError,
-  DaffState,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
@@ -28,27 +27,27 @@ export interface DaffCategoryFacadeInterface<
 	 */
   category$: Observable<V>;
   /**
-   * The page metadata for the current selected selected category.
+   * The page metadata for the current category.
    */
   metadata$: Observable<DaffCategoryPageMetadata>;
   /**
-   * The current loading state of the selected category page.
+   * The loading state of the current category page.
    */
   pageLoadingState$: Observable<DaffCategoryReducerState['daffState']>;
   /**
-   * Whether the selected category is in a mutating state.
+   * Whether the current category is in a mutating state.
    */
   isPageMutating$: Observable<boolean>;
   /**
-   * Whether the selected category is in a resolving state.
+   * Whether the current category is in a resolving state.
    */
   isPageResolving$: Observable<boolean>;
   /**
-   * The current page of products for the selected category.
+   * The current page of products for the current category.
    */
   currentPage$: Observable<number>;
   /**
-   * The number of pages of product for the selected category.
+   * The number of pages of products available in the current category.
    */
 	totalPages$: Observable<number>;
 	/**
@@ -56,31 +55,31 @@ export interface DaffCategoryFacadeInterface<
 	 */
 	totalProducts$: Observable<number>;
   /**
-   * The number of products per page for the selected category.
+   * The number of products per page for the current category.
    */
   pageSize$: Observable<number>;
   /**
-   * The filters available for the products of the selected category.
+   * The filters available for the products of the current category.
    */
   filters$: Observable<Dict<DaffCategoryFilter>>;
   /**
-   * The sort options available for the products of the selected category.
+   * The sort options available for the products of the current category.
    */
   sortOptions$: Observable<DaffSortOption[]>;
   /**
-   * The sort options available for the products of the selected category.
+   * The sort options available for the products of the current category.
    */
   appliedFilters$: Observable<Dict<DaffCategoryFilter>>;
   /**
-   * The sort options available for the products of the selected category.
+   * The sort options available for the products of the current category.
    */
   appliedSortOption$: Observable<string>;
   /**
-   * The sort options available for the products of the selected category.
+   * The sort options available for the products of the current category.
    */
   appliedSortDirection$: Observable<DaffSortDirectionEnum>;
   /**
-   * Products of the currently selected category.
+   * Products of the current category.
    */
   products$: Observable<W[]>;
   /**

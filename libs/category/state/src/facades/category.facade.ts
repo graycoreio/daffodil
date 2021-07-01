@@ -91,7 +91,7 @@ export class DaffCategoryFacade<
 	}
 
 	constructor(private store: Store<DaffCategoryStateRootSlice<V, W>>) {
-	  this.category$ = this.store.pipe(select(this.categorySelectors.selectSelectedCategory));
+	  this.category$ = this.store.pipe(select(this.categorySelectors.selectCurrentCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));
 	  this.metadata$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata));
