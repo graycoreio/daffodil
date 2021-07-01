@@ -51,14 +51,17 @@ export interface DaffCompositeCartItemInput extends DaffCartItemInput {
  * Designates a particular option for the composite product to add to the cart.
  */
 export interface DaffCompositeCartItemInputOption {
-  // TODO: what's this for? can we remove it?
+  /**
+   * An identifier of the option for which a value has been chosen.
+   */
+  // TODO: change to id?
 	code: string | number;
   /**
    * How many of the specified option should be added to the cart.
    */
 	quantity: number;
   /**
-   * The value identifying the particular composite product option.
+   * The value identifying the chosen composite product option.
    */
 	value: string;
 }
