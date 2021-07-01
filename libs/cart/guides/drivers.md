@@ -4,9 +4,10 @@
   - [Supported Drivers](#supported-drivers)
     - [In-Memory Web API](#in-memory-web-api)
     - [Magento](#magento)
+      - [Fragment Introspection](#fragment-introspection)
   - [Usage](#usage)
 
-Daffodil can interface with supported platforms through drivers. Choose the driver that correspondes to the platform of choice and follow the linked guide to set it up.
+Daffodil can interface with supported platforms through drivers. Choose the driver that corresponds to the platform of choice and follow the linked guide to set it up.
 
 ## Supported Drivers
 

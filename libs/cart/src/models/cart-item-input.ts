@@ -16,7 +16,7 @@ export enum DaffCartItemInputType {
  */
 export interface DaffCartItemInput {
   /**
-   * The type of cart item that correspondes to the product being added to the cart.
+   * The type of cart item that corresponds to the product being added to the cart.
    */
 	type: DaffCartItemInputType;
   /**
