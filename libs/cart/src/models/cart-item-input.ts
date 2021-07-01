@@ -42,13 +42,13 @@ export interface DaffSimpleCartItemInput extends DaffCartItemInput {
 export interface DaffCompositeCartItemInput extends DaffCartItemInput {
 	type: DaffCartItemInputType.Composite;
   /**
-   * The selected composite product options to be added to the cart.
+   * The selected options for the composite product to be added to the cart.
    */
 	options: DaffCompositeCartItemInputOption[];
 }
 
 /**
- * Designates a particular composite product option to add to the cart.
+ * Designates a particular option for the composite product to add to the cart.
  */
 export interface DaffCompositeCartItemInputOption {
   // TODO: what's this for? can we remove it?
