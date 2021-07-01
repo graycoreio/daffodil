@@ -13,7 +13,7 @@ export enum DaffCartShippingMethodsActionTypes {
 }
 
 /**
- * Triggers the load of the cart's available payment methods.
+ * Triggers the load of the cart's available shipping methods.
  */
 export class DaffCartShippingMethodsLoad implements Action {
   readonly type = DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadAction;
