@@ -1,3 +1,6 @@
+/**
+ * An enum for the types of totals that can appear in a cart.
+ */
 export enum DaffCartTotalTypeEnum {
 	grandTotal = 'grand_total',
 	subtotalExcludingTax = 'subtotal_excluding_tax',
@@ -16,7 +19,16 @@ export enum DaffCartTotalTypeEnum {
  * method that costs zero.
  */
 export interface DaffCartTotal {
+  /**
+   * The amount of the total.
+   */
   value: number;
+  /**
+   * A human-readable label of the total.
+   */
   label: string;
+  /**
+   * The type of the total.
+   */
   name: DaffCartTotalTypeEnum;
 }

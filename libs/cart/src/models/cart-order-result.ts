@@ -5,7 +5,13 @@ import { ID } from '@daffodil/core';
  * Stores a reference to a cart and order object.
  */
 export interface DaffCartOrderResult {
+  /**
+   * The ID of the cart for which this order was placed.
+   */
   cartId: ID;
+  /**
+   * The ID of the order placed.
+   */
   orderId: ID;
   /**
    * @deprecated Use DaffCartOrderResult#orderId instead.
