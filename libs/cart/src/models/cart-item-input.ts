@@ -54,7 +54,7 @@ export interface DaffCompositeCartItemInputOption {
   /**
    * An identifier of the option for which a value has been chosen.
    */
-  // TODO: change to id?
+  // TODO: change to ID type?
 	code: string | number;
   /**
    * How many of the specified option should be added to the cart.
