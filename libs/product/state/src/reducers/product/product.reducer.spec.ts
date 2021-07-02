@@ -52,8 +52,8 @@ describe('Product | Product Reducer', () => {
       expect(result.loading).toEqual(true);
     });
 
-    it('resets selectedProductId', () => {
-      expect(result.selectedProductId).toBeNull();
+    it('resets currentProductId', () => {
+      expect(result.currentProductId).toBeNull();
     });
   });
 
@@ -70,8 +70,8 @@ describe('Product | Product Reducer', () => {
       expect(result.loading).toEqual(true);
     });
 
-    it('resets selectedProductId', () => {
-      expect(result.selectedProductId).toBeNull();
+    it('resets currentProductId', () => {
+      expect(result.currentProductId).toBeNull();
     });
   });
 
@@ -97,8 +97,8 @@ describe('Product | Product Reducer', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('sets selectedProductId to the loaded product ID', () => {
-      expect(result.selectedProductId).toEqual(product.id);
+    it('sets currentProductId to the loaded product ID', () => {
+      expect(result.currentProductId).toEqual(product.id);
     });
   });
 

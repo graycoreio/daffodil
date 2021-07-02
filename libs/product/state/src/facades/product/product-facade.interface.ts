@@ -12,12 +12,6 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	 * Whether a product is being loaded.
 	 */
 	loading$: Observable<boolean>;
-	/**
-	 * deprecated - use getProduct instead.
-	 *
-	 * @deprecated use getProduct instead.
-	 */
-	product$: Observable<T>;
 
 	/**
 	 * Get a product.

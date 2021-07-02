@@ -62,7 +62,7 @@ export class DaffProductPageLoadFailure implements Action {
 }
 
 /**
- * Update the qty of the selected product.
+ * Update the qty of the current product.
  *
  * @param payload - The qty of the product.
  */

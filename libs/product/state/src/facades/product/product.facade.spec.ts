@@ -6,10 +6,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import {
-  daffArrayToDict,
-  daffSubtract,
-} from '@daffodil/core';
+import { daffSubtract } from '@daffodil/core';
 import {
   DaffProductLoad,
   DaffProductLoadSuccess,
@@ -70,24 +67,6 @@ describe('DaffProductFacade', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductPageLoad('1'));
       expect(facade.loading$).toBeObservable(expected);
-    });
-  });
-
-  describe('product$', () => {
-    it('should initially be undefined', () => {
-      const initial = cold('a', { a: undefined });
-      expect(facade.product$).toBeObservable(initial);
-    });
-
-    it('should be an observable of the currently selected product', () => {
-      const product = productFactory.create();
-      const expected = cold('a', { a: product });
-      store.dispatch(new DaffProductPageLoad(product.id));
-      store.dispatch(new DaffProductPageLoadSuccess({
-        id: product.id,
-        products: [product],
-      }));
-      expect(facade.product$).toBeObservable(expected);
     });
   });
 

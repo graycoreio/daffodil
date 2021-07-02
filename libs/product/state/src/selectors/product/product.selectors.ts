@@ -13,35 +13,21 @@ import { DaffProductReducerState } from '../../reducers/product/product-reducer-
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**
- * An interface for selectors related to the selected product page.
+ * An interface for selectors related to the current product page.
  */
 export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	/**
 	 * Selects the entire state object for the product page feature area.
 	 */
-	selectSelectedProductState: MemoizedSelector<DaffProductStateRootSlice, DaffProductReducerState>;
+	selectCurrentProductState: MemoizedSelector<DaffProductStateRootSlice, DaffProductReducerState>;
 	/**
-	 * Selects the id of the selected product.
-	 *
-	 * @deprecated
+	 * Selects the loading state of the current product.
 	 */
-	selectSelectedProductId: MemoizedSelector<DaffProductStateRootSlice, T['id']>;
+	selectCurrentProductLoadingState: MemoizedSelector<DaffProductStateRootSlice, boolean>;
 	/**
-	 * Selects the qty of the selected product.
-	 *
-	 * @deprecated
+	 * Selects the id of the current product.
 	 */
-	selectSelectedProductQty: MemoizedSelector<DaffProductStateRootSlice, number>;
-	/**
-	 * Selects the loading state of the selected product.
-	 */
-	selectSelectedProductLoadingState: MemoizedSelector<DaffProductStateRootSlice, boolean>;
-	/**
-	 * Selects the selected product, which is the product loaded for a product page.
-	 *
-	 * @deprecated
-	 */
-	selectSelectedProduct: MemoizedSelector<DaffProductStateRootSlice, T>;
+	selectCurrentProductId: MemoizedSelector<DaffProductStateRootSlice, T['id']>;
 }
 
 const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {
@@ -50,38 +36,25 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
     selectProductState,
   } = getDaffProductFeatureSelector<T>();
 
-  const selectSelectedProductState = createSelector(
+  const selectCurrentProductState = createSelector(
     selectProductState,
     (state: DaffProductReducersState<T>) => state.product,
   );
 
-  const selectSelectedProductId = createSelector(
-    selectSelectedProductState,
-    (state: DaffProductReducerState) => state.selectedProductId,
-  );
-
-  const selectSelectedProductQty = createSelector(
-    selectSelectedProductState,
-    (state: DaffProductReducerState) => state.qty,
-  );
-
-  const selectSelectedProductLoadingState = createSelector(
-    selectSelectedProductState,
+  const selectCurrentProductLoadingState = createSelector(
+    selectCurrentProductState,
     (state: DaffProductReducerState) => state.loading,
   );
 
-  const selectSelectedProduct = createSelector(
-    selectProductState,
-    selectSelectedProductId,
-    (state: DaffProductReducersState<T>, id: T['id']) => state.products.entities[id],
+  const selectCurrentProductId = createSelector(
+    selectCurrentProductState,
+    (state: DaffProductReducerState) => state.currentProductId,
   );
 
   return {
-    selectSelectedProductState,
-    selectSelectedProductId,
-    selectSelectedProductQty,
-    selectSelectedProductLoadingState,
-    selectSelectedProduct,
+    selectCurrentProductState,
+    selectCurrentProductLoadingState,
+    selectCurrentProductId,
   };
 };
 
