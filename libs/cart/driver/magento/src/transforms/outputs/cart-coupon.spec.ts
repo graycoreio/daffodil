@@ -12,4 +12,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartCoupon', () => {
   it('should return an object with the correct code', () => {
     expect(result.code).toEqual(code);
   });
+
+  it('should return an object with the correct id', () => {
+    expect(result.id).toEqual(code);
+  });
 });
