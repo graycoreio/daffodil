@@ -2,15 +2,15 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 /**
- * An interface describing product redux state. This state describes the product that is loaded for a product page.
+ * An interface describing product redux state. This state describes the current product that is loaded for a product page.
  */
 export interface DaffProductReducerState {
 	/**
-	 * The id of the currently selected product.
+	 * The id of the current product.
 	 */
-  selectedProductId: DaffProduct['id'];
+  currentProductId: DaffProduct['id'];
 	/**
-	 * The quantity chosen for the selected product.
+	 * The quantity chosen for the current product.
 	 */
   qty: number;
 	/**

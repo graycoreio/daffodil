@@ -7,10 +7,8 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProductPageLoad,
   DaffProductGridLoadSuccess,
   DaffProductStateRootSlice,
   daffProductReducers,
@@ -27,11 +25,9 @@ describe('selectProductState', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: DaffProduct;
   const {
-    selectSelectedProductLoadingState,
-    selectSelectedProduct,
-    selectSelectedProductState,
-    selectSelectedProductId,
-    selectSelectedProductQty,
+    selectCurrentProductLoadingState,
+    selectCurrentProductState,
+    selectCurrentProductId,
   } = getDaffProductPageSelectors();
 
   beforeEach(() => {
@@ -55,65 +51,45 @@ describe('selectProductState', () => {
 
   describe('SelectedProductState', () => {
 
-    describe('selectSelectedProductState', () => {
+    describe('selectCurrentProductState', () => {
 
       let expectedProductState;
 
       beforeEach(() => {
         expectedProductState = {
-          selectedProductId: mockProduct.id,
+          currentProductId: mockProduct.id,
           qty: 1,
           loading: false,
           errors: [],
         };
       });
 
-      it('returns the selected product state', () => {
-        const selector = store.pipe(select(selectSelectedProductState));
+      it('returns the state for the current product', () => {
+        const selector = store.pipe(select(selectCurrentProductState));
         const expected = cold('a', { a: expectedProductState });
 
         expect(selector).toBeObservable(expected);
       });
     });
 
-    describe('selectSelectedProductId', () => {
+    describe('selectCurrentProductLoadingState', () => {
 
-      it('returns the selected product id', () => {
-        const selector = store.pipe(select(selectSelectedProductId));
-        const expected = cold('a', { a: mockProduct.id });
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-
-    describe('selectSelectedProductQty', () => {
-
-      it('returns the selected product qty', () => {
-        const selector = store.pipe(select(selectSelectedProductQty));
-        const expected = cold('a', { a: 1 });
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-
-    describe('selectSelectedProductLoadingState', () => {
-
-      it('selects the loading state of the selected product', () => {
-        const selector = store.pipe(select(selectSelectedProductLoadingState));
+      it('selects the loading state of the current product', () => {
+        const selector = store.pipe(select(selectCurrentProductLoadingState));
         const expected = cold('a', { a: false });
 
         expect(selector).toBeObservable(expected);
       });
     });
-  });
 
-  describe('selectSelectedProduct', () => {
+    describe('selectCurrentProductId', () => {
 
-    it('selects the selected product', () => {
-      const selector = store.pipe(select(selectSelectedProduct));
-      const expected = cold('a', { a: mockProduct });
+      it('returns the current product id', () => {
+        const selector = store.pipe(select(selectCurrentProductId));
+        const expected = cold('a', { a: mockProduct.id });
 
-      expect(selector).toBeObservable(expected);
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 });
