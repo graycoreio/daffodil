@@ -132,7 +132,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.currentPage$).toBeObservable(expected);
     });
 
-    it('should return an observable of the current page for the selected category', () => {
+    it('should return an observable of the current page for the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.current_page });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.currentPage$).toBeObservable(expected);
@@ -145,7 +145,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.totalPages$).toBeObservable(expected);
     });
 
-    it('should return an observable of the total number of pages for the selected category', () => {
+    it('should return an observable of the total number of pages for the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.total_pages });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.totalPages$).toBeObservable(expected);
@@ -158,7 +158,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.totalProducts$).toBeObservable(expected);
     });
 
-    it('should return an observable of the total number of pages for the selected category', () => {
+    it('should return an observable of the total number of pages for the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.total_products });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.totalProducts$).toBeObservable(expected);
@@ -171,7 +171,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.pageSize$).toBeObservable(expected);
     });
 
-    it('should return an observable of the page size for the selected category page configuration', () => {
+    it('should return an observable of the page size for the current category page configuration', () => {
       const expected = cold('a', { a: stubCategoryMetadata.page_size });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.pageSize$).toBeObservable(expected);
@@ -184,7 +184,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.filters$).toBeObservable(expected);
     });
 
-    it('should return an observable of the filters for the selected category', () => {
+    it('should return an observable of the filters for the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.filters });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.filters$).toBeObservable(expected);
@@ -197,7 +197,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.sortOptions$).toBeObservable(expected);
     });
 
-    it('should return an observable of the sort options for the selected category', () => {
+    it('should return an observable of the sort options for the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.sort_options.options });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.sortOptions$).toBeObservable(expected);
@@ -206,7 +206,7 @@ describe('DaffCategoryFacade', () => {
 
   describe('appliedFilters$', () => {
 
-    it('should return an observable of the applied filters on the selected category', () => {
+    it('should return an observable of the applied filters on the current category', () => {
       const expectedFilters: Dict<DaffCategoryFilter> = {};
 
       const expected = cold('a', { a: expectedFilters });
@@ -221,7 +221,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.appliedSortOption$).toBeObservable(expected);
     });
 
-    it('should return an observable of the applied sort option on the selected category', () => {
+    it('should return an observable of the applied sort option on the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.applied_sort_option });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.appliedSortOption$).toBeObservable(expected);
@@ -234,7 +234,7 @@ describe('DaffCategoryFacade', () => {
       expect(facade.appliedSortDirection$).toBeObservable(expected);
     });
 
-    it('should return an observable of the applied sort direction on the selected category', () => {
+    it('should return an observable of the applied sort direction on the current category', () => {
       const expected = cold('a', { a: stubCategoryMetadata.applied_sort_direction });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.appliedSortDirection$).toBeObservable(expected);

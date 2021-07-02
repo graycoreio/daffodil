@@ -31,7 +31,7 @@ export interface DaffCategoryMemoizedSelectors<
   DaffCategoryFeatureMemoizedSelectors<V>,
   DaffCategoryPageMemoizedSelectors<V>,
   DaffCategoryEntitiesMemoizedSelectors<V> {
-  selectSelectedCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  selectCurrentCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
   selectCategoryPageProducts: MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
   selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
   selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
@@ -45,16 +45,16 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
     selectCategoryEntities,
   } = getDaffCategoryEntitiesSelectors<V>();
   const {
-    selectSelectedCategoryId,
+    selectCurrentCategoryId,
     selectCategoryPageProductIds,
   } = getDaffCategoryPageSelectors<V>();
   /**
    * Combinatoric Category Selectors
    */
-  const selectSelectedCategory = createSelector(
+  const selectCurrentCategory = createSelector(
     selectCategoryEntities,
-    selectSelectedCategoryId,
-    (entities: Dictionary<V>, selectedCategoryId: V['id']) => entities[selectedCategoryId],
+    selectCurrentCategoryId,
+    (entities: Dictionary<V>, currentCategoryId: V['id']) => entities[currentCategoryId],
   );
 
   const selectCategoryPageProducts = createSelector<DaffCategoryStateRootSlice<V, W>, string[], Dictionary<W>, W[]>(
@@ -86,7 +86,7 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
     ...getDaffCategoryFeatureSelector<V>(),
     ...getDaffCategoryEntitiesSelectors<V>(),
     ...getDaffCategoryPageSelectors<V>(),
-    selectSelectedCategory,
+    selectCurrentCategory,
     selectCategoryPageProducts,
     selectCategory,
     selectProductsByCategory,

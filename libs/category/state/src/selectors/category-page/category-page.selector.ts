@@ -44,7 +44,7 @@ export interface DaffCategoryPageMemoizedSelectors<
 	selectCategoryPageAppliedSortOption: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_option']>;
 	selectCategoryPageAppliedSortDirection: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_direction']>;
 	selectCategoryPageState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState['daffState']>;
-	selectSelectedCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
+	selectCurrentCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
   /**
    * @deprecated Use selectIsCategoryPageResolving instead
    */
@@ -141,9 +141,9 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
   );
 
   /**
-   * Selected Category Id State
+   * Current Category Id State
    */
-  const selectSelectedCategoryId = createSelector(
+  const selectCurrentCategoryId = createSelector(
     selectCategoryPageMetadata,
     (state: DaffCategoryPageMetadata) => state.id,
   );
@@ -197,7 +197,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     selectCategoryPageAppliedSortOption,
     selectCategoryPageAppliedSortDirection,
     selectCategoryPageState,
-    selectSelectedCategoryId,
+    selectCurrentCategoryId,
     selectCategoryLoading,
     selectCategoryProductsLoading,
     selectCategoryErrors,
