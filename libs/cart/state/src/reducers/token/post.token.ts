@@ -32,6 +32,7 @@ export const DAFF_CART_POST_REDUCERS = new InjectionToken<ActionReducer<DaffCart
  *     myReducer2
  *   )
  * ]
+ * ```
  */
 export function daffCartProvidePostReducers<
   T extends DaffCart = DaffCart,
