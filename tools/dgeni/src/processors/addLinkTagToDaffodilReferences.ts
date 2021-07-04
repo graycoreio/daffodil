@@ -1,7 +1,7 @@
 import { Processor, Document } from 'dgeni';
 
 /**
- * Inherit docs content from parent interfaces.
+ * Adds a link tag ({@link }) around daffodil models, classes, etc.
  */
 export class AddLinkTagToDaffodilReferencesProcessor implements Processor {
 	name = 'addLinkTagToDaffodilReferences';
