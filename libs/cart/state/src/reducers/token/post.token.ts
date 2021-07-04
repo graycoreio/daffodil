@@ -13,9 +13,9 @@ import { DaffStatefulCartItem } from '../../models/public_api';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
 
 /**
- * An internal token to hold the injectable post reducers.
+ * A token to hold the injectable post reducers.
  *
- * @docs-private
+ * Prefer using {@link daffCartProvidePostReducers}.
  */
 export const DAFF_CART_POST_REDUCERS = new InjectionToken<ActionReducer<DaffCartReducersState>[]>(
   'DAFF_CART_POST_REDUCERS',
