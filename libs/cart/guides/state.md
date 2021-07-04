@@ -242,5 +242,71 @@ export class AppModule {}
 
 The only argument to `forRoot` is the configuration object. For more information, see `DaffCartStateConfiguration`.
 
-<!-- TODO: add dependency injectable reducers guide once we implement it -->
+## Dependency Injectable Reducers
+
+`@daffodil/cart/state` provides mechanisms for consuming applications and libraries to modify state reduction behavior.
+
+### Purpose
+
+`@daffodil/cart/state` consumers may wish to modify the state for the `daffCart` feature in a way not explicitly provided by `@daffodil/cart/state`. A common example is adding payment info to the cart payment object in response to non-`@daffodil/cart/state` actions.
+
+#### Before vs. After
+
+Both before and after reducer slots are provided.
+
+Custom before reducers run before the native `@daffodil/cart/state` reducers. Before reducers can be used to contribute data to state with the understanding that the data may be overwritten by subsequent reducers.
+
+Custom after reducers run after the native `@daffodil/cart/state` reducers. After reducers can be used to fully control the final data in state. After reducers should take care to not malform state in a way that breaks `@daffodil/cart/state` features.
+
+### Usage
+
+The following example demonstrates modifying the cart's payment info in response to a user-defined action.
+
+```ts
+interface MyPaymentInfo {
+  ccLast4: string;
+}
+
+class MyUpdatePaymentSuccessAction implements Action {
+  type = 'My Update Payment Success Action';
+
+  constructor(
+    public paymentInfo: MyPaymentInfo,
+  ) {}
+}
+
+function myPaymentUpdateReducer(state: DaffCartReducersState, action: MyUpdatePaymentSuccessAction): DaffCartReducersState {
+  switch (action.type) {
+    case 'My Update Payment Success Action':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          cart: {
+            ...state.cart.cart,
+            payment: {
+              ...state.cart.cart.payment,
+              payment_info: {
+                ...state.cart.cart.payment.payment_info, // careful not to overwrite existing payment data
+                ...action.paymentInfo,
+              },
+            },
+          },
+        },
+      };
+    default:
+      return state;
+  }
+}
+
+@NgModule({
+  providers: [
+    ...daffCartProvideAfterReducers(
+      myPaymentUpdateReducer,
+    ),
+  ],
+})
+class MyPaymentModule {}
+```
+
 <!-- TODO: add dependency injectable actions for effects guide once we implement it -->
