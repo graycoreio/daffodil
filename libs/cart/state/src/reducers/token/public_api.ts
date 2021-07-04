@@ -1,8 +1,8 @@
 export {
-  daffCartProvidePreReducers,
-  DAFF_CART_PRE_REDUCERS,
-} from './pre.token';
+  daffCartProvideBeforeReducers,
+  DAFF_CART_BEFORE_REDUCERS,
+} from './before.token';
 export {
-  daffCartProvidePostReducers,
-  DAFF_CART_POST_REDUCERS,
-} from './post.token';
+  daffCartProvideAfterReducers,
+  DAFF_CART_AFTER_REDUCERS,
+} from './after.token';

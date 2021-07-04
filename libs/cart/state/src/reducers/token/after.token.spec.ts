@@ -4,11 +4,11 @@ import { ActionReducer } from '@ngrx/store';
 import { DaffCartReducersState } from '@daffodil/cart/state';
 
 import {
-  daffCartProvidePostReducers,
-  DAFF_CART_POST_REDUCERS,
-} from './post.token';
+  daffCartProvideAfterReducers,
+  DAFF_CART_AFTER_REDUCERS,
+} from './after.token';
 
-describe('daffCartProvidePostReducers', () => {
+describe('daffCartProvideAfterReducers', () => {
   let reducers: ActionReducer<DaffCartReducersState>[];
   let result: ActionReducer<DaffCartReducersState>[];
 
@@ -20,11 +20,11 @@ describe('daffCartProvidePostReducers', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffCartProvidePostReducers(...reducers),
+        ...daffCartProvideAfterReducers(...reducers),
       ],
     });
 
-    result = TestBed.inject(DAFF_CART_POST_REDUCERS);
+    result = TestBed.inject(DAFF_CART_AFTER_REDUCERS);
   });
 
   it('should provide the reducers to the token', () => {

@@ -13,28 +13,28 @@ import { DaffStatefulCartItem } from '../../models/public_api';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
 
 /**
- * A token to hold the injectable pre reducers.
+ * A token to hold the injectable after reducers.
  *
- * Prefer using {@link daffCartProvidePreReducers}.
+ * Beforefer using {@link daffCartProvideAfterReducers}.
  */
-export const DAFF_CART_PRE_REDUCERS = new InjectionToken<ActionReducer<DaffCartReducersState>[]>(
-  'DAFF_CART_PRE_REDUCERS',
+export const DAFF_CART_AFTER_REDUCERS = new InjectionToken<ActionReducer<DaffCartReducersState>[]>(
+  'DAFF_CART_AFTER_REDUCERS',
   { factory: () => []},
 );
 
 /**
- * Provides reducers that run before the standard Daffodil cart reducers.
+ * Provides reducers that run after the standard Daffodil cart reducers.
  *
  * ```ts
  * providers: [
- *   ...daffCartProvidePreReducers(
+ *   ...daffCartProvideAfterReducers(
  *     myReducer1,
  *     myReducer2
  *   )
  * ]
  * ```
  */
-export function daffCartProvidePreReducers<
+export function daffCartProvideAfterReducers<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
   U extends DaffStatefulCartItem = DaffStatefulCartItem
@@ -42,7 +42,7 @@ export function daffCartProvidePreReducers<
   ...reducers: ActionReducer<DaffCartReducersState<T, V, U>>[]
 ): Provider[] {
   return reducers.map(reducer => ({
-    provide: DAFF_CART_PRE_REDUCERS,
+    provide: DAFF_CART_AFTER_REDUCERS,
     useValue: reducer,
     multi: true,
   }));

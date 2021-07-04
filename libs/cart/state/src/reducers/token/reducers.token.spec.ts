@@ -3,17 +3,17 @@ import { ActionReducer } from '@ngrx/store';
 
 import {
   DaffCartBillingAddressLoadSuccess,
-  daffCartProvidePostReducers,
-  daffCartProvidePreReducers,
+  daffCartProvideAfterReducers,
+  daffCartProvideBeforeReducers,
   DaffCartReducersState,
   initialState as cartInitialState,
 } from '@daffodil/cart/state';
 
 import { DAFF_CART_REDUCERS } from './reducers.token';
 
-describe('daffCartProvidePostReducers', () => {
-  let preReducer: ActionReducer<DaffCartReducersState>;
-  let postReducer: ActionReducer<DaffCartReducersState>;
+describe('daffCartProvideAfterReducers', () => {
+  let beforeReducer: ActionReducer<DaffCartReducersState>;
+  let afterReducer: ActionReducer<DaffCartReducersState>;
 
   let reducer: ActionReducer<DaffCartReducersState>;
   let result: DaffCartReducersState;
@@ -24,7 +24,7 @@ describe('daffCartProvidePostReducers', () => {
       cartItems: null,
       order: null,
     };
-    postReducer = (state, action) => ({
+    afterReducer = (state, action) => ({
       ...state,
       cart: {
         ...state.cart,
@@ -33,13 +33,13 @@ describe('daffCartProvidePostReducers', () => {
           available_payment_methods: [
             ...state.cart.cart.available_payment_methods,
             {
-              method: 'post reducer',
+              method: 'after reducer',
             },
           ],
         },
       },
     });
-    preReducer = (state, action) => ({
+    beforeReducer = (state, action) => ({
       ...state,
       cart: {
         ...state.cart,
@@ -48,7 +48,7 @@ describe('daffCartProvidePostReducers', () => {
           available_payment_methods: [
             ...state.cart.cart.available_payment_methods,
             {
-              method: 'pre reducer',
+              method: 'before reducer',
             },
           ],
         },
@@ -57,8 +57,8 @@ describe('daffCartProvidePostReducers', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffCartProvidePostReducers(postReducer),
-        ...daffCartProvidePreReducers(preReducer),
+        ...daffCartProvideAfterReducers(afterReducer),
+        ...daffCartProvideBeforeReducers(beforeReducer),
       ],
     });
 
@@ -67,11 +67,11 @@ describe('daffCartProvidePostReducers', () => {
     result = reducer(initialState, new DaffCartBillingAddressLoadSuccess(null));
   });
 
-  it('should run the pre reducer first', () => {
-    expect(result.cart.cart.available_payment_methods[0].method).toEqual('pre reducer');
+  it('should run the before reducer first', () => {
+    expect(result.cart.cart.available_payment_methods[0].method).toEqual('before reducer');
   });
 
-  it('should run the post reducer last', () => {
-    expect(result.cart.cart.available_payment_methods[1].method).toEqual('post reducer');
+  it('should run the after reducer last', () => {
+    expect(result.cart.cart.available_payment_methods[1].method).toEqual('after reducer');
   });
 });
