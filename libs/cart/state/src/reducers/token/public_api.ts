@@ -3,6 +3,6 @@ export {
   DAFF_CART_BEFORE_REDUCERS,
 } from './before.token';
 export {
-  daffCartProvideAfterReducers,
-  DAFF_CART_AFTER_REDUCERS,
-} from './after.token';
+  daffCartProvideExtraReducers,
+  DAFF_CART_EXTRA_REDUCERS,
+} from './extra.token';

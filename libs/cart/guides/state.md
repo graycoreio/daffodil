@@ -244,19 +244,11 @@ The only argument to `forRoot` is the configuration object. For more information
 
 ## Dependency Injectable Reducers
 
-`@daffodil/cart/state` provides mechanisms for consuming applications and libraries to modify state reduction behavior.
+`@daffodil/cart/state` provides mechanisms for consuming applications and libraries to modify state reduction behavior. Injected reducers run after the Daffodil reducers and should take care to meet the `DaffCartReducersState` interface.
 
 ### Purpose
 
 `@daffodil/cart/state` consumers may wish to modify the state for the `daffCart` feature in a way not explicitly provided by `@daffodil/cart/state`. A common example is adding payment info to the cart payment object in response to non-`@daffodil/cart/state` actions.
-
-#### Before vs. After
-
-Both before and after reducer slots are provided.
-
-Custom before reducers run before the native `@daffodil/cart/state` reducers. Before reducers can be used to contribute data to state with the understanding that the data may be overwritten by subsequent reducers.
-
-Custom after reducers run after the native `@daffodil/cart/state` reducers. After reducers can be used to fully control the final data in state. After reducers should take care to not malform state in a way that breaks `@daffodil/cart/state` features.
 
 ### Usage
 
