@@ -293,7 +293,7 @@ function myPaymentUpdateReducer(state: DaffCartReducersState, action: MyUpdatePa
 
 @NgModule({
   providers: [
-    ...daffCartProvideAfterReducers(
+    ...daffCartProvideExtraReducers(
       myPaymentUpdateReducer,
     ),
   ],
