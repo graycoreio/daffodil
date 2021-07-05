@@ -20,7 +20,7 @@ export interface DaffCategoryPageMetadata extends DaffSortable, DaffNumericallyP
   total_products: number;
 
   /**
-   * The identifiers of the products currently visible in the category
+   * The identifiers of the products currently visible in the category.
    */
   product_ids: ID[];
 }

@@ -18,6 +18,10 @@ import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 
+/**
+ * A facade for interacting with the category state.
+ * This facade exposes many parts of the state for easy access and allows dispatching of actions.
+ */
 export interface DaffCategoryFacadeInterface<
 	V extends DaffGenericCategory<V> = DaffCategory,
 	W extends DaffProduct = DaffProduct

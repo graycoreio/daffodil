@@ -11,6 +11,9 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+/**
+ * The possible types of category page actions.
+ */
 export enum DaffCategoryPageActionTypes {
   CategoryPageLoadAction = '[@daffodil/category] Category Page Load Action',
   CategoryPageLoadByUrlAction = '[@daffodil/category] Category Page Load By URL Action',

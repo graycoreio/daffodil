@@ -57,6 +57,8 @@ const applyFiltersOnResponse = (requests: DaffCategoryFilterRequest[], response:
 });
 
 /**
+ * A service for making magento apollo queries for categories. Should be provided via the {@link DaffCategoryDriver} token.
+ *
  * @inheritdoc
  */
 @Injectable({
@@ -74,11 +76,6 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.
-  /**
-   * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
-   *
-   * @param categoryRequest A DaffCategoryIdRequest object.
-   */
   get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({

@@ -40,6 +40,9 @@ export const initialState: DaffCategoryReducerState = {
   errors: [],
 };
 
+/**
+ * Returns the state for category data except for category entities.
+ */
 export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
   state = initialState,
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageFilterActions,

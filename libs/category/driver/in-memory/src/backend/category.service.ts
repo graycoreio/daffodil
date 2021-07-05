@@ -18,6 +18,9 @@ import { randomSubset } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
+/**
+ * An in-memory service that mocks out the backend services for getting categories. See the angular in memory documentation for more details.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -31,14 +34,25 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
   ) {}
 
+  /**
+   * @docs-private
+   */
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
   }
 
+  /**
+   * @docs-private
+   */
   createDb(): any {
     return {};
   }
 
+  /**
+   * Get a category.
+   *
+   * @param reqInfo
+   */
   get(reqInfo: any) {
     const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 

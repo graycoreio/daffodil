@@ -5,6 +5,9 @@ import {
   DaffCategoryFilterToggleRequest,
 } from '@daffodil/category';
 
+/**
+ * The possible types of category page filter actions.
+ */
 export enum DaffCategoryPageFilterActionTypes {
   CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
   CategoryPageReplaceFiltersAction = '[@daffodil/category] Category Page Replace Filters Action',

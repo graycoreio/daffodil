@@ -16,6 +16,9 @@ import {
 } from '../../actions/category.actions';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 
+/**
+ * A reducer function to store category entities from DaffCategoryLoadSuccess and DaffCategoryPageLoadSuccess actions.
+ */
 export function daffCategoryEntitiesReducer<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct

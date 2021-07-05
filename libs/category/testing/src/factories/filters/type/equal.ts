@@ -14,6 +14,9 @@ export class MockCategoryEqualFilter implements DaffCategoryFilterEqual {
   options = {};
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterEqual}.
+ */
 @Injectable({
   providedIn: 'root',
 })

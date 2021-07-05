@@ -23,28 +23,73 @@ import {
 } from '../../reducers/public_api';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 
+/**
+ * An interface to describe all selectors related to the category page metadata, category loading, and errors.
+ */
 export interface DaffCategoryPageMemoizedSelectors<
 	V extends DaffGenericCategory<V> = DaffCategory
 > {
+	/**
+	 * Selects all state related to the category page metadata, category loading, and errors.
+	 */
 	selectCategoryState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState>;
+	/**
+	 * Selects the metadata for the current category page.
+	 */
 	selectCategoryPageMetadata: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata>;
+	/**
+	 * Selects the current page of products of the current category.
+	 */
 	selectCategoryCurrentPage: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['current_page']>;
+	/**
+	 * Selects the total number of pages of products that exist in the current category.
+	 */
 	selectCategoryTotalPages: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['total_pages']>;
+	/**
+	 * Selects the number of products on each category page.
+	 */
 	selectCategoryPageSize: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['page_size']>;
+	/**
+	 * Selects the filters that may be applied to the current category.
+	 */
 	selectCategoryFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['filters']>;
+	/**
+	 * Selects the sort options that may be applied to the current category.
+	 */
 	selectCategorySortOptions: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['sort_options']['options']>;
+	/**
+	 * Selects the ids of all products in the current category page.
+	 */
 	selectCategoryPageProductIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['product_ids']>;
+	/**
+	 * Selects whether the category page has no products.
+	 */
 	selectIsCategoryPageEmpty: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+	/**
+	 * Selects the total number of products for the current category.
+	 */
 	selectCategoryPageTotalProducts: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['total_products']>;
   /**
    * Returns a dict of filters and only their applied options.
    * Filters with no applied options will be omitted.
    */
 	selectCategoryPageAppliedFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dict<DaffCategoryFilter>>;
+	/**
+	 * Selects the applied sorting option if one is applied.
+	 */
 	selectCategoryPageAppliedSortOption: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_option']>;
+	/**
+	 * Selects the applied sorting direction if a sorting option is applied.
+	 */
 	selectCategoryPageAppliedSortDirection: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_direction']>;
+	/**
+	 * Selects the loading state of the current category; e.g. mutating, resolving, stable.
+	 */
 	selectCategoryPageState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState['daffState']>;
-	selectCurrentCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
+	/**
+	 * Selects the id of the current category.
+	 */
+	 selectCurrentCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
   /**
    * @deprecated Use selectIsCategoryPageResolving instead
    */
@@ -53,25 +98,28 @@ export interface DaffCategoryPageMemoizedSelectors<
    * @deprecated Use selectIsCategoryPageResolving and selectIsCategoryPageMutating instead
    */
 	selectCategoryProductsLoading: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+	/**
+	 * Selects all errors associated with loading a category.
+	 */
 	selectCategoryErrors: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffStateError[]>;
-  selectIsCategoryPageMutating: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
-  selectIsCategoryPageResolving: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+  /**
+   * Selects whether the current category page is mutating; e.g. when a filter is applied to it.
+   */
+	selectIsCategoryPageMutating: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
+  /**
+   * Selects whether the current category is resolving; e.g. when the category first loads.
+   */
+	selectIsCategoryPageResolving: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
 }
 
 const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => {
   const selectCategoryFeatureState = getDaffCategoryFeatureSelector<V>().selectCategoryFeatureState;
 
-  /**
-   * Category State
-   */
   const selectCategoryState = createSelector(
     selectCategoryFeatureState,
     (state: DaffCategoryReducersState<V>) => state.category,
   );
 
-  /**
-   * CategoryPageConfigurationState State
-   */
   const selectCategoryPageMetadata = createSelector(
     selectCategoryState,
     (state: DaffCategoryReducerState) => state.categoryPageMetadata,
@@ -117,9 +165,6 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (state: DaffCategoryPageMetadata) => state.total_products,
   );
 
-  /**
-   * Selects the applied filters for the current category page.
-   */
   const selectCategoryPageAppliedFilters = createSelector(
     selectCategoryFilters,
     (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> => daffCategoryComputeAppliedFilters(filters),
@@ -140,33 +185,21 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (state: DaffCategoryReducerState) => state.daffState,
   );
 
-  /**
-   * Current Category Id State
-   */
   const selectCurrentCategoryId = createSelector(
     selectCategoryPageMetadata,
     (state: DaffCategoryPageMetadata) => state.id,
   );
 
-  /**
-   * Category Loading State
-   */
   const selectCategoryLoading = createSelector(
     selectCategoryState,
     (state: DaffCategoryReducerState) => state.categoryLoading,
   );
 
-  /**
-   * Category Products Loading State
-   */
   const selectCategoryProductsLoading = createSelector(
     selectCategoryState,
     (state: DaffCategoryReducerState) => state.productsLoading,
   );
 
-  /**
-   * Load Category Errors
-   */
   const selectCategoryErrors = createSelector(
     selectCategoryState,
     (state: DaffCategoryReducerState) => state.errors,
@@ -206,6 +239,10 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
   };
 };
 
+/**
+ * A function that returns all selectors related to the category page metadata, category loading, and errors.
+ * Returns {@link DaffCategoryPageMemoizedSelectors}.
+ */
 export const getDaffCategoryPageSelectors = (() => {
   let cache;
   return <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => cache = cache

@@ -9,6 +9,9 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+/**
+ * The possible types of category actions.
+ */
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
   CategoryLoadSuccessAction = '[Daff-Category] Category Load Success Action',

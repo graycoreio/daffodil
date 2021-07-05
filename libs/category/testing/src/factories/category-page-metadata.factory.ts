@@ -36,6 +36,9 @@ export class MockCategoryPageMetadata implements DaffCategoryPageMetadata {
   filters = {};
 }
 
+/**
+ * A factory for creating {@link DaffCategoryPageMetadata}.
+ */
 @Injectable({
   providedIn: 'root',
 })

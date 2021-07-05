@@ -8,6 +8,9 @@ import { DaffCategoryDriver } from '@daffodil/category/driver';
 
 import { DaffTestingCategoryService } from './category.service';
 
+/**
+ * A module for providing the {@link DaffTestingCategoryService} for the {@link DaffCategoryDriver} token.
+ */
 @NgModule({
   imports: [
     CommonModule,

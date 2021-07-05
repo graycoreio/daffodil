@@ -28,6 +28,9 @@ import { getDaffCategorySelectors } from '../selectors/category.selector';
 import { DaffCategoryFacadeInterface } from './category-facade.interface';
 
 /**
+ * A facade for interacting with the category state.
+ * This facade exposes many parts of the state for easy access and allows dispatching of actions.
+ *
  * @inheritdoc
  */
 @Injectable({

@@ -17,6 +17,9 @@ export class MockDaffCategoryFilterRangeNumericRequest implements DaffCategoryFi
   value: DaffCategoryFilterRangeRequestOption<number>;
 }
 
+/**
+ * A factory for creating a {@link DaffCategoryFilterRangeNumericRequest}.
+ */
 @Injectable({
   providedIn: 'root',
 })

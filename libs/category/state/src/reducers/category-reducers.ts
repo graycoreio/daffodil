@@ -4,6 +4,9 @@ import { daffCategoryEntitiesReducer } from './category-entities/category-entiti
 import { DaffCategoryReducersState } from './category-reducers.interface';
 import { daffCategoryReducer } from './category/category.reducer';
 
+/**
+ * All daffodil defined category reducers.
+ */
 export const daffCategoryReducers: ActionReducerMap<DaffCategoryReducersState> = {
   category: daffCategoryReducer,
   categoryEntities: daffCategoryEntitiesReducer,

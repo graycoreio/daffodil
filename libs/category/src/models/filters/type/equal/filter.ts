@@ -16,6 +16,12 @@ import { DaffCategoryFilterEqualOption } from './option';
  * items that are "Red" OR "Green".
  */
 export interface DaffCategoryFilterEqual extends DaffCategoryFilterBase {
+	/**
+	 * The filter type for this model is always of type "DaffCategoryFilterType.Equal".
+	 */
 	type: DaffCategoryFilterType.Equal;
+	/**
+	 * A dictionary of filter options.
+	 */
 	options: Dict<DaffCategoryFilterEqualOption>;
 }
