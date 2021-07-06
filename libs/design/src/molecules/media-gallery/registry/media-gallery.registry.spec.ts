@@ -1,6 +1,6 @@
 import {
   ChangeDetectorRef,
-  Directive,
+  Component,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -8,39 +8,45 @@ import {
 } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
-import { DaffMediaGalleryRegistry } from './media-gallery.registry';
+import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
+import {
+  DaffMediaGallery,
+  DaffMediaGalleryRegistry,
+} from './media-gallery.registry';
 
-@Directive({
-  selector: '[daffMockThumbnail]',
-})
-export class DaffMockThumbnailDirective {
+@Component({})
+export class FakeComponent {}
 
-  constructor(
-		public gallery: DaffMediaGalleryComponent,
-  ) {}
+export class ChangeDetectorRefMock implements Partial<ChangeDetectorRef> {
+  markForCheck() {
 
-	select = jasmine.createSpy();
-	selected: boolean;
+  }
 }
 
 describe('DaffMediaGalleryRegistry', () => {
-  let service: DaffMediaGalleryRegistry;
-  let mockGalleryAlreadyAdded;
-  let mockThumbnailAlreadyAdded;
+  let registry: DaffMediaGalleryRegistry;
+  let cd: ChangeDetectorRef;
+  const mockGalleryAlreadyAdded: DaffMediaGalleryRegistration = {
+    name: 'galleryAlreadyAdded',
+  };
+  let mockThumbnailAlreadyAdded: DaffThumbnailDirective;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffMediaGalleryRegistry,
-        ChangeDetectorRef,
+        {
+          provide: ChangeDetectorRef,
+          useClass: ChangeDetectorRefMock,
+        },
       ],
     });
-    service = TestBed.inject(DaffMediaGalleryRegistry);
+    registry = TestBed.inject(DaffMediaGalleryRegistry);
+    cd = TestBed.inject(ChangeDetectorRef);
+    mockThumbnailAlreadyAdded = new DaffThumbnailDirective(FakeComponent, cd, registry, mockGalleryAlreadyAdded);
 
-    mockGalleryAlreadyAdded = new DaffMediaGalleryComponent();
-    mockThumbnailAlreadyAdded = new DaffMockThumbnailDirective(mockGalleryAlreadyAdded);
-    service.galleries = {
+    registry.galleries = {
       [mockGalleryAlreadyAdded.name]: new BehaviorSubject({
         gallery: mockGalleryAlreadyAdded,
         thumbnails: [mockThumbnailAlreadyAdded],
@@ -49,7 +55,7 @@ describe('DaffMediaGalleryRegistry', () => {
   }));
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(registry).toBeTruthy();
   });
 
   describe('add', () => {
@@ -57,33 +63,38 @@ describe('DaffMediaGalleryRegistry', () => {
     describe('when the gallery given already exists in the registry', () => {
 
       it('should add the thumbnail to the gallery given', () => {
-        const newThumbnail: any = new DaffMockThumbnailDirective(mockGalleryAlreadyAdded);
-        service.add(mockGalleryAlreadyAdded, newThumbnail);
+        const newThumbnail: any = new DaffThumbnailDirective(FakeComponent, cd, registry, mockGalleryAlreadyAdded);
+        registry.add(mockGalleryAlreadyAdded, newThumbnail);
 
-        expect(service.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.findIndex((t) => (<DaffMockThumbnailDirective><unknown>t) === newThumbnail)).toBeGreaterThan(-1);
+        expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.findIndex((t) =>
+        (<DaffThumbnailDirective><unknown>t) === newThumbnail)).toBeGreaterThan(-1);
       });
 
       it('should not add the thumbnail when the thumbnail already exists in the registry', () => {
-        expect(service.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
-        service.add(mockGalleryAlreadyAdded, mockThumbnailAlreadyAdded);
+        expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
+        registry.add(mockGalleryAlreadyAdded, mockThumbnailAlreadyAdded);
 
-        expect(service.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
+        expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
       });
     });
 
     describe('when the gallery given does not exist in the registry', () => {
 
-      let newGallery;
-      let newThumbnail;
-      let addedGallery;
+      const newGallery: DaffMediaGalleryRegistration = {
+        name: 'newGallery'
+      };
+
+      let newThumbnail: DaffThumbnailDirective;
+      let addedGallery: DaffMediaGallery;
 
       beforeEach(() => {
-        newGallery = new DaffMediaGalleryComponent();
-        newThumbnail = new DaffMockThumbnailDirective(newGallery);
+        newThumbnail = new DaffThumbnailDirective(FakeComponent, cd, registry, newGallery);
 
-        service.add(newGallery, newThumbnail);
+        spyOn(newThumbnail, 'select').and.callThrough();
 
-        addedGallery = service.galleries[newGallery.name].getValue();
+        registry.add(newGallery, newThumbnail);
+
+        addedGallery = registry.galleries[newGallery.name].getValue();
       });
 
       it('should add the gallery to the registry', () => {
@@ -95,7 +106,7 @@ describe('DaffMediaGalleryRegistry', () => {
       });
 
       it('should select the thumbnail', () => {
-        expect(newThumbnail.select).toHaveBeenCalled();
+        expect(newThumbnail.select).toHaveBeenCalledWith();
       });
     });
   });
@@ -103,56 +114,61 @@ describe('DaffMediaGalleryRegistry', () => {
   describe('remove', () => {
 
     it('should not do anything if the gallery associated with the given thumbnail DNE', () => {
-      const newGallery = new DaffMediaGalleryComponent();
-      const newThumbnail: any = new DaffMockThumbnailDirective(newGallery);
-      service.remove(newThumbnail);
+      const newGallery: DaffMediaGalleryRegistration = {
+        name: 'newGallery'
+      };
+      const newThumbnail = new DaffThumbnailDirective(FakeComponent, cd, registry, newGallery);
+      registry.remove(newThumbnail);
 
-      expect(service.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
+      expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
     });
 
     it('should not do anything if the thumbnail does not exist in the registry', () => {
-      const newThumbnail: any = new DaffMockThumbnailDirective(mockGalleryAlreadyAdded);
-      service.remove(newThumbnail);
+      const newThumbnail = new DaffThumbnailDirective(FakeComponent, cd, registry, mockGalleryAlreadyAdded);
+      registry.remove(newThumbnail);
 
-      expect(service.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
+      expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
     });
 
     it('should remove the thumbnail from the registry', () => {
-      service.remove(mockThumbnailAlreadyAdded);
+      registry.remove(mockThumbnailAlreadyAdded);
 
-      expect(service.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(0);
+      expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(0);
     });
   });
 
   describe('select', () => {
 
     it('should not do anything if the gallery associated with the given thumbnail DNE', () => {
-      const newGallery = new DaffMediaGalleryComponent();
-      const newThumbnail: any = new DaffMockThumbnailDirective(newGallery);
-      service.select(newThumbnail);
+      const newThumbnail = new DaffThumbnailDirective(FakeComponent, cd, registry, mockGalleryAlreadyAdded);
+      spyOn(newThumbnail, 'select').and.callThrough();
+      registry.select(newThumbnail);
 
       expect(newThumbnail.select).not.toHaveBeenCalled();
     });
 
     it('should not do anything if the thumbnail is already selected', () => {
       mockThumbnailAlreadyAdded.selected = true;
-      service.select(mockThumbnailAlreadyAdded);
+      registry.select(mockThumbnailAlreadyAdded);
 
       expect(mockThumbnailAlreadyAdded.selected).toEqual(true);
     });
 
     it('should not do anything if the thumbnail does not exist in the registry', () => {
-      const newThumbnail: any = new DaffMockThumbnailDirective(mockGalleryAlreadyAdded);
-      service.select(newThumbnail);
+      const newThumbnail = new DaffThumbnailDirective(FakeComponent, cd, registry, mockGalleryAlreadyAdded);
+      spyOn(newThumbnail, 'select').and.callThrough();
+      registry.select(newThumbnail);
 
       expect(newThumbnail.select).not.toHaveBeenCalled();
     });
 
     it('should select the thumbnail', () => {
       mockThumbnailAlreadyAdded.selected = false;
-      service.select(mockThumbnailAlreadyAdded);
+      spyOn(mockThumbnailAlreadyAdded, 'select').and.callThrough();
 
-      expect(mockThumbnailAlreadyAdded.select).toHaveBeenCalled();
+      registry.select(mockThumbnailAlreadyAdded);
+
+      expect(mockThumbnailAlreadyAdded.select).toHaveBeenCalledWith();
     });
   });
 });

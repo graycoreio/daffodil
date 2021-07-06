@@ -12,8 +12,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffArticleComponent } from '../../article/public_api';
 import { DaffCardComponent } from '../../card/public_api';
+import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
@@ -47,12 +47,14 @@ describe('DaffMediaRendererComponent', () => {
   let component: DaffMediaRendererComponent;
   let fixture: ComponentFixture<DaffMediaRendererComponent>;
   let registry: DaffMediaGalleryRegistry;
-  let mockGallery: DaffMediaGalleryComponent;
   let mockThumbnail1: DaffThumbnailDirective;
   let mockThumbnail2: DaffThumbnailDirective;
+  const stubRegistration: DaffMediaGalleryRegistration = {
+    name: 'mockGallery',
+  };
 
   beforeEach(waitForAsync(() => {
-    mockGallery = new DaffMediaGalleryComponent();
+
     TestBed.configureTestingModule({
       declarations: [
         DaffMediaRendererComponent,
@@ -68,7 +70,7 @@ describe('DaffMediaRendererComponent', () => {
         },
         {
           provide: DAFF_MEDIA_GALLERY_TOKEN,
-          useValue: mockGallery,
+          useValue: stubRegistration,
         },
       ],
     })
@@ -78,16 +80,19 @@ describe('DaffMediaRendererComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffMediaRendererComponent);
     registry = TestBed.inject(DaffMediaGalleryRegistry);
-    mockThumbnail1 = new DaffThumbnailDirective(null, jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']), null, mockGallery);
+
+    mockThumbnail1 = new DaffThumbnailDirective(null, jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']), null, stubRegistration);
     mockThumbnail1.component = <Type<unknown>><unknown>(new DaffArticleComponent());
-    mockThumbnail2 = new DaffThumbnailDirective(null, jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']), null, mockGallery);
-    mockThumbnail2.component = <Type<unknown>><unknown>(new DaffCardComponent(null, null));
+    mockThumbnail2 = new DaffThumbnailDirective(null, jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']), null, stubRegistration);
     mockThumbnail1.selected = true;
     mockThumbnail2.selected = false;
     registry.galleries = {
-      [mockGallery.name]: new BehaviorSubject({
-        gallery: mockGallery,
-        thumbnails: [mockThumbnail1, mockThumbnail2],
+      [stubRegistration.name]: new BehaviorSubject({
+        gallery: stubRegistration,
+        thumbnails: [
+          mockThumbnail1,
+          mockThumbnail2,
+        ],
       }),
     };
     component = fixture.componentInstance;
