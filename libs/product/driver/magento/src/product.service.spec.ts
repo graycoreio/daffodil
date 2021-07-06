@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { InMemoryCache } from '@apollo/client/core';
 import { addTypenameToDocument } from '@apollo/client/utilities';
 import {
@@ -10,16 +9,15 @@ import {
 import { Observable } from 'rxjs';
 
 import { schema } from '@daffodil/driver/magento';
-import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
-  GetProductQuery,
   MagentoSimpleProduct,
+  getProduct,
+  getProductByUrl,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { DaffMagentoProductService } from './product.service';
-import { GetProductByUrlQuery } from './queries/get-product-by-url';
 
 describe('Product | Magento | ProductService', () => {
   let service: DaffMagentoProductService;
@@ -68,7 +66,7 @@ describe('Product | Magento | ProductService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(GetProductQuery));
+      const op = controller.expectOne(addTypenameToDocument(getProduct()));
 
       op.flush({
         data: {
@@ -89,7 +87,7 @@ describe('Product | Magento | ProductService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(GetProductQuery));
+        const op = controller.expectOne(addTypenameToDocument(getProduct()));
 
         op.flush({
           data: {
@@ -120,7 +118,7 @@ describe('Product | Magento | ProductService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+      const op = controller.expectOne(addTypenameToDocument(getProductByUrl()));
 
       op.flush({
         data: {
@@ -135,7 +133,7 @@ describe('Product | Magento | ProductService', () => {
     it('should query the category with the truncated URL', () => {
       result.subscribe();
 
-      const op = controller.expectOne(addTypenameToDocument(GetProductByUrlQuery));
+      const op = controller.expectOne(addTypenameToDocument(getProductByUrl()));
 
       expect(op.operation.variables.url).toEqual('TESTING_URL');
     });
