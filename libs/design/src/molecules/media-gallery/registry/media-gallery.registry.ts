@@ -21,22 +21,25 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Adds a media element to the internal registry.
 	 */
-	add(gallery: DaffMediaGalleryRegistration, thumbnail: DaffThumbnailRegistration) {
+	add(gallery: DaffMediaGalleryRegistration, thumbnail?: DaffThumbnailRegistration) {
 	  if(this.galleries[gallery.name]) {
 	    let newGallery = this.galleries[gallery.name].getValue();
 
-	    newGallery = {
-	      ...newGallery,
-	      thumbnails: [
-	        ...newGallery.thumbnails.filter(t => t !== thumbnail),
-	        thumbnail,
-	      ],
-	    };
+	    if(thumbnail) {
+	      newGallery = {
+	        ...newGallery,
+	        thumbnails: [
+	          ...newGallery.thumbnails.filter(t => t !== thumbnail),
+	          thumbnail,
+	        ],
+	      };
+	    }
+
 	    this.galleries[gallery.name].next(newGallery);
 	  } else {
 	    this.galleries[gallery.name] = new BehaviorSubject({
 	      gallery,
-	      thumbnails: [thumbnail],
+	      thumbnails: thumbnail ? [thumbnail] : [],
 	    });
 	  }
 
