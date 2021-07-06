@@ -67,7 +67,7 @@ describe('DaffMediaGalleryRegistry', () => {
         registry.add(mockGalleryAlreadyAdded, newThumbnail);
 
         expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.findIndex((t) =>
-        (<DaffThumbnailDirective><unknown>t) === newThumbnail)).toBeGreaterThan(-1);
+          (<DaffThumbnailDirective><unknown>t) === newThumbnail)).toBeGreaterThan(-1);
       });
 
       it('should not add the thumbnail when the thumbnail already exists in the registry', () => {
@@ -81,7 +81,7 @@ describe('DaffMediaGalleryRegistry', () => {
     describe('when the gallery given does not exist in the registry', () => {
 
       const newGallery: DaffMediaGalleryRegistration = {
-        name: 'newGallery'
+        name: 'newGallery',
       };
 
       let newThumbnail: DaffThumbnailDirective;
@@ -115,7 +115,7 @@ describe('DaffMediaGalleryRegistry', () => {
 
     it('should not do anything if the gallery associated with the given thumbnail DNE', () => {
       const newGallery: DaffMediaGalleryRegistration = {
-        name: 'newGallery'
+        name: 'newGallery',
       };
       const newThumbnail = new DaffThumbnailDirective(FakeComponent, cd, registry, newGallery);
       registry.remove(newThumbnail);
