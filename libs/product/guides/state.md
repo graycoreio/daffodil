@@ -66,6 +66,8 @@ At this point, the user should see that the L and Green options are selected and
 
 `@daffodil/product/state` exposes the `daffProductProvideMetaReducers` function with which custom meta-reducers can be provided. Meta-reducers run before the reducer and should be used for behavior other than modifying state. Modifying actions or logging are good examples of behavior that belongs in meta-reducers.
 
+> See https://ngrx.io/guide/store/metareducers for more info.
+
 ### Example
 
 The following example demonstrates providing a custom meta-reducer that modifies the names of loaded products.
