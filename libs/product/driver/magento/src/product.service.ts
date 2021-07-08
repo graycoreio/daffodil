@@ -17,9 +17,9 @@ import {
 
 import { MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './injection-tokens/public_api';
 import {
-  MAGENTO_PRODUCT_CONFIG_TOKEN,
-  DaffProductMagentoDriverConfig,
-  DaffMagentoProductResponseTransform,
+  MAGENTO_PRO  CT_CONFIG_TOKEN,
+  DaffProduct  gentoDriverConfig,
+  DaffMagento  oductResponseTransform,
 } from './interfaces/public_api';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
@@ -32,48 +32,45 @@ import { transformManyMagentoProducts } from './transforms/public_api';
  * @inheritdoc
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn:  root',
 })
 export class DaffMagentoProductService implements DaffProductServiceInterface {
-  constructor(
-    private apollo: Apollo,
+  constructor      private apollo: Apollo,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
     @Inject(MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
   ) {}
 
-  get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
-    return this.apollo.query<any>({
-      query: GetProductQuery,
+  get(productId: D  fProdu  ['id']): Observable<DaffProductDriverResponse> {
+    return this.apollo.que    ny>({
+      query: GetProductQue          variables: {
+             productId,
+             }).pipe(
+          res    => this.r      eTransform(result.data.products.items[0], this.config.baseMediaUrl)),
+    );
+  }
+
+  getByUrl(url    ffP  duc  'url']): Observable<DaffProductDriverResponse> {
+    return this.apollo.que    ny>({
+      query: GetProductByU      y,
       variables: {
-        sku: productId,
+             this.config.u        tionStrategy(url),
       },
     }).pipe(
-      map(result => this.responseTransform(result.data.products.items[0], this.config.baseMediaUrl)),
+          res    => this.r      eTransform(result.data.products.items[0], this.config.baseMediaUrl)),
     );
   }
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
-    return this.apollo.query<any>({
-      query: GetProductByUrlQuery,
-      variables: {
-        url: this.config.urlTruncationStrategy(url),
-      },
+  getAll(): Ob    abl  Daf  roduct[]> {
+    return this.apollo.que    ny>({
+      query: GetAllProduct      ,
     }).pipe(
-      map(result => this.responseTransform(result.data.products.items[0], this.config.baseMediaUrl)),
+      map(res    => transf      yMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
   }
 
-  getAll(): Observable<DaffProduct[]> {
-    return this.apollo.query<any>({
-      query: GetAllProductsQuery,
-    }).pipe(
-      map(result => transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
-    );
-  }
-
-  //todo: add actual getBestSellers apollo call for Magento.
-  //todo: move to a different bestsellers module.
-  getBestSellers(): Observable<DaffProduct[]> {
+  //todo: add     al   tBe  Sellers apollo call for Magento.
+  //todo: move to a differ  t bestsellers module.
+  getBestSellers(): Observ  le<DaffProduct[]> {
     return of(null);
   }
 }
