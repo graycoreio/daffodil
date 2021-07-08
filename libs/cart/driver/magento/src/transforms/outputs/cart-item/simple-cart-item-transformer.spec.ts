@@ -74,10 +74,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       expect(transformedCartItem.discounts[0].amount).toEqual(discount0);
     });
 
-    it('should set magento_cart_item', () => {
-      expect(transformedCartItem.magento_cart_item).toEqual(mockMagentoCartItem);
-    });
-
     describe('when the argument is null', () => {
       beforeEach(() => {
         transformedCartItem = transformMagentoSimpleCartItem(null);

@@ -13,8 +13,6 @@ import { MagentoCartItem } from '../../../models/public_api';
  */
 export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffCartItem {
   return cartItem ? {
-    ...{ magento_cart_item: cartItem },
-
     // base
     type: DaffCartItemInputType.Simple,
     item_id: cartItem.id,

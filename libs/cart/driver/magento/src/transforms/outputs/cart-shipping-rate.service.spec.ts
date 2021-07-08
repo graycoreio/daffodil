@@ -49,10 +49,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () =
       expect(transformedCartShippingRate.price).toEqual(price);
     });
 
-    it('should set magento_shipping_method', () => {
-      expect(transformedCartShippingRate.magento_shipping_method).toEqual(mockMagentoShippingMethod);
-    });
-
     describe('when the argument is null', () => {
       beforeEach(() => {
         transformedCartShippingRate = service.transform(null);

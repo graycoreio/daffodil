@@ -112,7 +112,6 @@ export class DaffMagentoCartTransformer {
    */
   transform(cart: MagentoCart): DaffCart {
     return cart ? {
-      // add the magento cart in this way to avoid 'object literal may only specify known proerties'
       extra_attributes: cart,
 
       ...this.transformCartItems(cart),
