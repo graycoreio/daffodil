@@ -60,4 +60,47 @@ Available attributes:
 2. Color: Green
 3. Material: cotton, polyester
 
-At this point, the user should see that the L and Green options are selected and that only the available attributes are interactable. The final question is, why are all of the sizes still available, but only the Green color is? The answer is that the order in which the user selects attribute options matters, and this is the key to how the selectors work. Each set of available attribute options ("Material: cotton, polyester" would be a set) is determined only by the attributes that were chosen before it. This allows the user to deselect an option simply by choosing a different one, while at the same time informing the user of what attribute options will result in a product that is actually in stock. Furthermore, whenever the user chooses a new option for an attribute they'd already chosen (e.g. a size of S), all attributes that were chosen after the newly selected attribute will be reset, since the available attributes for the proceeding attributes may have changed (in this case, Color would change to include Red). 
+At this point, the user should see that the L and Green options are selected and that only the available attributes are interactable. The final question is, why are all of the sizes still available, but only the Green color is? The answer is that the order in which the user selects attribute options matters, and this is the key to how the selectors work. Each set of available attribute options ("Material: cotton, polyester" would be a set) is determined only by the attributes that were chosen before it. This allows the user to deselect an option simply by choosing a different one, while at the same time informing the user of what attribute options will result in a product that is actually in stock. Furthermore, whenever the user chooses a new option for an attribute they'd already chosen (e.g. a size of S), all attributes that were chosen after the newly selected attribute will be reset, since the available attributes for the proceeding attributes may have changed (in this case, Color would change to include Red).
+
+## Dependency Injectable Meta-Reducers
+
+`@daffodil/product/state` exposes the `daffProductProvideMetaReducers` function with which custom meta-reducers can be provided. Meta-reducers run before the reducer and should be used for behavior other than modifying state. Modifying actions or logging are good examples of behavior that belongs in meta-reducers.
+
+> See https://ngrx.io/guide/store/metareducers for more info.
+
+### Example
+
+The following example demonstrates providing a custom meta-reducer that modifies the names of loaded products.
+
+```ts
+const metaReducer: MetaReducer<DaffProductReducersState, DaffProductPageActions | DaffProductActions> =
+  (reducer) => (state, action) => {
+    switch (action.type) {
+      case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
+      case DaffProductActionTypes.ProductLoadSuccessAction:
+        return reducer(
+          state,
+          new DaffProductPageLoadSuccess({
+            ...action.payload,
+            products: action.payload.products.map(product => ({
+              ...product,
+              name: `${product.name} meta-reducer was here`,
+            })),
+          }),
+        );
+
+      default:
+        return reducer(state, action);
+    }
+  };
+
+@NgModule({
+  imports: [
+    DaffProductStateModule,
+  ],
+  providers: [
+    ...daffProductProvideMetaReducers(metaReducer),
+  ],
+})
+class MyModule {}
+```
