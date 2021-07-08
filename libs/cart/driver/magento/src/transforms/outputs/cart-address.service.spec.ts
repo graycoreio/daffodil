@@ -53,10 +53,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
       expect(transformedCartAddress.firstname).toEqual(firstname);
     });
 
-    it('should set magento_address', () => {
-      expect(transformedCartAddress.magento_address).toEqual(mockMagentoCartAddress);
-    });
-
     describe('when the argument is null', () => {
       beforeEach(() => {
         transformedCartAddress = service.transform(null);

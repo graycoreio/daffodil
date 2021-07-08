@@ -45,10 +45,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
       expect(transformedCartPayment.method).toEqual(method);
     });
 
-    it('should set magento_payment_method', () => {
-      expect(transformedCartPayment.magento_payment_method).toEqual(mockMagentoPaymentMethod);
-    });
-
     describe('when the argument is null', () => {
       beforeEach(() => {
         transformedCartPayment = service.transform(null);

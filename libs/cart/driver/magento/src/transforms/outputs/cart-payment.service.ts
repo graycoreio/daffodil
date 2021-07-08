@@ -19,8 +19,6 @@ export class DaffMagentoCartPaymentTransformer {
    */
   transform(responsePayment: MagentoCartPaymentMethod): DaffCartPaymentMethod {
     return responsePayment ? {
-      ...{ magento_payment_method: responsePayment },
-
       method: responsePayment.code,
     } : null;
   }
