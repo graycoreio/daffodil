@@ -13,9 +13,9 @@ import { transformMagentoProductResponse } from '../../transforms/public_api';
 import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from './response-extra.token';
 
 /**
- * An internal token to combine the Magento reponse transform with the injected transforms.
+ * An internal token to combine the Magento response transform with the injected transforms.
  */
-export const MAGENTO_PRODUCT_RESPONSE_TRANSFORM = new InjectionToken<DaffMagentoProductResponseTransform>(
+export const DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM = new InjectionToken<DaffMagentoProductResponseTransform>(
   'DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM',
   {
     factory: () => {

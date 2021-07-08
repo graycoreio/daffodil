@@ -9,10 +9,10 @@ import {
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
-import { MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './response.token';
+import { DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './response.token';
 
 
-describe('MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
+describe('DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
   let magentoProductFactory: MagentoProductFactory;
   let magentoProduct: MagentoProduct;
   let result: DaffProductDriverResponse;
@@ -39,7 +39,7 @@ describe('MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
     });
 
     magentoProductFactory = TestBed.inject(MagentoProductFactory);
-    responseTransform = TestBed.inject(MAGENTO_PRODUCT_RESPONSE_TRANSFORM);
+    responseTransform = TestBed.inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM);
 
     magentoProduct = magentoProductFactory.create();
     result = responseTransform(magentoProduct, 'test');
