@@ -6,11 +6,9 @@ import { DaffBestSellersEffects } from './effects/best-seller.effects';
 import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductPageEffects } from './effects/product-page.effects';
 import { DaffProductEffects } from './effects/product.effects';
+import { DAFF_PRODUCT_STORE_CONFIG } from './reducers/injection-tokens/config.token';
 import { daffProductReducers } from './reducers/product-reducers';
-import {
-  DAFF_PRODUCT_STORE_CONFIG,
-  DAFF_PRODUCT_STORE_FEATURE_KEY,
-} from './reducers/public_api';
+import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './reducers/public_api';
 
 /**
  * A module that provides the default reducers and effects for the product redux state.
