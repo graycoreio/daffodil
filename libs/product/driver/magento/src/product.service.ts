@@ -15,17 +15,16 @@ import {
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
 
+import { DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './injection-tokens/public_api';
 import {
   MAGENTO_PRODUCT_CONFIG_TOKEN,
   DaffProductMagentoDriverConfig,
+  DaffMagentoProductResponseTransform,
 } from './interfaces/public_api';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
 import { GetProductByUrlQuery } from './queries/get-product-by-url';
-import {
-  transformMagentoProductResponse,
-  transformManyMagentoProducts,
-} from './transforms/public_api';
+import { transformManyMagentoProducts } from './transforms/public_api';
 
 /**
  * A service for making magento apollo queries for products of type, {@link DaffProduct}.
@@ -39,6 +38,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   constructor(
     private apollo: Apollo,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
+    @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
   ) {}
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
@@ -48,7 +48,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
         sku: productId,
       },
     }).pipe(
-      map(result => transformMagentoProductResponse(result.data.products.items[0], this.config.baseMediaUrl)),
+      map(result => this.responseTransform(result.data.products.items[0], this.config.baseMediaUrl)),
     );
   }
 
@@ -59,7 +59,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
         url: this.config.urlTruncationStrategy(url),
       },
     }).pipe(
-      map(result => transformMagentoProductResponse(result.data.products.items[0], this.config.baseMediaUrl)),
+      map(result => this.responseTransform(result.data.products.items[0], this.config.baseMediaUrl)),
     );
   }
 
