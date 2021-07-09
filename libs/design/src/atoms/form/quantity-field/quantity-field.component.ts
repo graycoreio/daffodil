@@ -57,6 +57,7 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
   focused = false;
   disabled = false;
   private _quantity = 1;
+  private _inputHasBeenShown = false;
 
   get quantity() {
     return this._quantity;
@@ -64,9 +65,13 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
 
   set quantity(value: number) {
     this._quantity = coerceNumberProperty(value, 1);
+
+
   }
 
-  constructor(@Optional() @Self() public ngControl: NgControl) {
+  constructor(
+    @Optional() @Self() public ngControl: NgControl,
+  ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
@@ -87,11 +92,6 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
     this.onTouched = fn;
   }
 
-  onChangedWrapper(value: any) {
-    this.quantity = value;
-    this.onChange(value);
-  }
-
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
@@ -107,9 +107,15 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
   }
 
   get showInputField(): boolean {
-    return this.ngControl
+    const ret = this._inputHasBeenShown || (this.ngControl
       ? this.ngControl.value >= this.selectMax
-      : this.quantity >= this.selectMax;
+      : this.quantity >= this.selectMax);
+
+    if (ret) {
+      this._inputHasBeenShown = true;
+    }
+
+    return ret;
   }
 
   get showSelectField(): boolean {
