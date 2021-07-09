@@ -9,6 +9,6 @@ import { FormControl } from '@angular/forms';
 export class DesignLandQuantityFieldComponent {
   control = new FormControl(1);
   selectMaxCustom = new FormControl(1);
-  customRange = new FormControl(1);
+  customRange = new FormControl(5);
   disabled = new FormControl({ value : '' , disabled: true });
 }
