@@ -7,3 +7,4 @@ The maximum number allowed in a quantity field input is 500.
 ## Usage
 ```
 <daff-quantity-field [formControl]="control"></daff-quantity-field>
+```
