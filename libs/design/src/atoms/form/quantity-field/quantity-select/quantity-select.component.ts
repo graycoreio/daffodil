@@ -4,16 +4,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewChild,
-  ElementRef,
-  Optional,
-  Self,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NgControl,
-} from '@angular/forms';
+import { NgControl } from '@angular/forms';
 
-import { DaffFormFieldControl } from '../../form-field/public_api';
 import { DaffNativeSelectComponent } from '../../select/public_api';
 
 /**
@@ -26,15 +19,8 @@ export const makeValueArray = (min: number, max: number, increment: number) =>
   selector: 'daff-quantity-select',
   templateUrl: './quantity-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: DaffFormFieldControl,
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      useExisting: DaffQuantitySelectComponent,
-    },
-  ],
 })
-export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFormFieldControl {
+export class DaffQuantitySelectComponent {
 
   @ViewChild(DaffNativeSelectComponent) select: DaffNativeSelectComponent;
 
@@ -63,22 +49,24 @@ export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFo
   private increment = 1;
 
   _value = 1;
-  disabled = false;
-  private onChange(quantity: number): void { };
-  private onTouched(quantity: number): void { };
 
-  constructor(@Optional() @Self() public ngControl: NgControl, private changeDetectorRef: ChangeDetectorRef) {
-    if (this.ngControl != null) {
-      this.ngControl.valueAccessor = this;
-    }
+  get value() {
+    return this._value;
   }
+  set value(value) {
+    this._value = value;
+    this.ngControl.control.patchValue(this._value);
+    this.changeDetectorRef.markForCheck();
+  }
+
+  constructor(public ngControl: NgControl, private changeDetectorRef: ChangeDetectorRef) {}
 
   /**
    * Callback function fired when the value changes.
    * Used to pass the value back up to the ngControl.
    */
   onValueChange(e) {
-    this.onChange(e);
+    this.value = e.target.value;
   }
 
   get focused() {
@@ -94,19 +82,5 @@ export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFo
    */
   get valueArray() {
     return makeValueArray(this.min, this.max, this.increment);
-  }
-
-  writeValue(value: number): void {
-    this._value = value;
-    this.changeDetectorRef.markForCheck();
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
   }
 }

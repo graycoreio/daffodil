@@ -5,30 +5,24 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Optional,
-  Self,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
+  FormControl,
   NgControl,
 } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { DaffFormFieldControl } from '../../form-field/public_api';
 import { DaffInputComponent } from '../../input/public_api';
 
 @Component({
   selector: 'daff-quantity-input',
   templateUrl: './quantity-input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: DaffFormFieldControl,
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      useExisting: DaffQuantityInputComponent,
-    },
-  ],
 })
-export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFormFieldControl {
+export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   @ViewChild(DaffInputComponent) input: DaffInputComponent;
 
   /**
@@ -43,40 +37,48 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
    */
   @Input() max = 10;
 
+  /**
+   * A new control for the nested native input.
+   * We don't bind the native input directly to the inherited form control
+   * to avoid triggering updates on the input event.
+   * Instead, we listen for the change event and manually patch form control values.
+   */
+  _inputControl = new FormControl();
   focused = false;
-  disabled = false;
-  value = 1;
-  private readonly digitOnlyRegex = new RegExp(/^[0-9]+$/g);
-  private readonly specialKeys = ['Backspace', 'Tab', 'End', 'Home', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'];
-  private onChange(quantity: number): void {};
-  private onTouched(obj: any): void {};
+  _value;
+  _destroyed = new Subject();
 
-  onInputKeyDown(event: KeyboardEvent) {
-    if (
-      this.specialKeys.indexOf(event.key) !== -1
-      || (
-        (event.key === 'a' || event.key === 'v' || event.key === 'c')
-        && (event.metaKey === true || event.ctrlKey === true)
-      )
-    ) {
-      return;
-    }
+  get value() {
+    return this.ngControl.control.value;
+  }
+  set value(value) {
+    const val = coerceNumberProperty(value);
+    this.ngControl.control.patchValue(val);
+    this._inputControl.patchValue(val);
+    this.changeDetectorRef.markForCheck();
+  }
 
-    const current = String(this.input.ngControl.value || '');
-    const next: string = current.concat(event.key);
-
-    if (next && !String(next).match(this.digitOnlyRegex)) {
-      event.preventDefault();
-    }
+  get disabled() {
+    return this.ngControl.control.disabled;
   }
 
   constructor(
-    @Optional() @Self() public ngControl: NgControl,
+    public ngControl: NgControl,
     private changeDetectorRef: ChangeDetectorRef,
-  ) {
-    if (this.ngControl != null) {
-      this.ngControl.valueAccessor = this;
-    }
+  ) {}
+
+  ngOnInit() {
+    this._inputControl.patchValue(this.ngControl.control.value);
+    this.setInputDisabled();
+    this.ngControl.statusChanges.pipe(
+      takeUntil(this._destroyed),
+    ).subscribe(() => {
+      this.setInputDisabled();
+    });
+  }
+
+  ngOnDestroy() {
+    this._destroyed.next(true);
   }
 
   focus() {
@@ -86,7 +88,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
 
   onFocus() {
     this.focused = true;
-    this.onTouched({});
+    this.ngControl.control.markAsTouched();
   }
 
   onBlur() {
@@ -96,50 +98,18 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
     }
   }
 
-  onInputPaste(event: ClipboardEvent) {
-    if (!String(event.clipboardData.getData('input').match(this.digitOnlyRegex))) {
-      event.preventDefault();
-    }
-  }
-
   /**
    * Callback function fired when the value changes.
    * Used to pass the value back up to the ngControl.
    */
-  onValueChange(e) {
-    this.onChange(e);
+  onValueChange(e: any) {
+    this.value = e.target.value;
   }
 
-  /**
-   * Set the initial model value.
-   * Implemented as part of ControlValueAccessor.
-   */
-  writeValue(value: number): void {
-    this.value = coerceNumberProperty(value);
-    this.changeDetectorRef.markForCheck();
-  }
-
-  /**
-   * Registers a callback to be triggered when the value has changed.
-   * Implemented as part of ControlValueAccessor.
-   */
-  registerOnChange(fn: any): void {
-    this.onChange(fn);
-  }
-
-  /**
-   * Registers a callback to be triggered when control has been touched.
-   * Implemented as part of ControlValueAccessor.
-   */
-  registerOnTouched(fn: any): void {
-    this.onTouched(fn);
-  }
-
-  /**
-   * Sets whether the component should be disabled.
-   * Implemented as part of ControlValueAccessor.
-   */
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+  private setInputDisabled() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    this.ngControl.disabled
+      ? this._inputControl.disable()
+      : this._inputControl.enable();
   }
 }

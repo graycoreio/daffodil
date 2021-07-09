@@ -2,9 +2,9 @@
   type="number"
   [attr.max]="max"
   [attr.min]="min"
-  [ngModel]="value" (ngModelChange)="onValueChange($event)"
+  [attr.step]="1"
   (focus)="onFocus()"
   (blur)="onBlur()"
-  (keydown)="onInputKeyDown($event)"
-  (paste)="onInputPaste($event)"
-  [disabled]="disabled">
+  (change)="onValueChange($event)"
+  [formControl]="_inputControl"
+>
