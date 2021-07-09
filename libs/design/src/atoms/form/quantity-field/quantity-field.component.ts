@@ -6,6 +6,7 @@ import {
   Optional,
   Self,
   ViewChild,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -62,15 +63,20 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
   get quantity() {
     return this._quantity;
   }
-
   set quantity(value: number) {
     this._quantity = coerceNumberProperty(value, 1);
+  }
 
-
+  /**
+   * Returns the lesser of max and selectMax.
+   */
+  get _maxFloor(): number {
+    return Math.min(this.max, this.selectMax);
   }
 
   constructor(
     @Optional() @Self() public ngControl: NgControl,
+    private cd: ChangeDetectorRef,
   ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
@@ -82,6 +88,7 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
 
   writeValue(quantity: number): void {
     this.quantity = quantity;
+    this.cd.markForCheck();
   }
 
   registerOnChange(fn: (quantity: number) => void): void {
