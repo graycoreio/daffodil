@@ -1,8 +1,20 @@
-import { Component, Input, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { DaffInputComponent } from '../../input/public_api';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Optional,
+  Self,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  NgControl,
+} from '@angular/forms';
+
 import { DaffFormFieldControl } from '../../form-field/public_api';
+import { DaffInputComponent } from '../../input/public_api';
 
 @Component({
   selector: 'daff-quantity-input',
@@ -11,9 +23,10 @@ import { DaffFormFieldControl } from '../../form-field/public_api';
   providers: [
     {
       provide: DaffFormFieldControl,
-      useExisting: DaffQuantityInputComponent
-    }
-  ]
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      useExisting: DaffQuantityInputComponent,
+    },
+  ],
 })
 export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFormFieldControl {
   @ViewChild(DaffInputComponent) input: DaffInputComponent;
@@ -33,7 +46,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
   focused = false;
   disabled = false;
   value = 1;
-  private regex: RegExp = new RegExp(/^[0-9]+$/g);
+  private regex = new RegExp(/^[0-9]+$/g);
   private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'];
   private onChange(quantity: number): void {};
   private onTouched(obj: any): void {};
@@ -49,7 +62,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
       return;
     }
 
-    const current: string = String(this.input.ngControl.value);
+    const current = String(this.input.ngControl.value);
     const next: string = current.concat(event.key);
 
     if (next && !String(next).match(this.regex)) {
@@ -58,8 +71,8 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
   }
 
   constructor(
-    @Optional() @Self() public ngControl: NgControl, 
-    private changeDetectorRef: ChangeDetectorRef
+    @Optional() @Self() public ngControl: NgControl,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
@@ -88,7 +101,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
       event.preventDefault();
     }
   }
-  
+
   /**
    * Callback function fired when the value changes.
    * Used to pass the value back up to the ngControl.
@@ -105,7 +118,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
     this.value = coerceNumberProperty(value);
     this.changeDetectorRef.markForCheck();
   }
-  
+
   /**
    * Registers a callback to be triggered when the value has changed.
    * Implemented as part of ControlValueAccessor.

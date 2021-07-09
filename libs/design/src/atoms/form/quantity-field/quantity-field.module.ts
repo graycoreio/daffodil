@@ -1,28 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { DaffNativeSelectModule } from '../select/public_api';
 import { DaffInputModule } from '../input/public_api';
-
+import { DaffNativeSelectModule } from '../select/public_api';
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
 
 @NgModule({
   declarations: [
-    DaffQuantityFieldComponent, 
+    DaffQuantityFieldComponent,
     DaffQuantityInputComponent,
-    DaffQuantitySelectComponent
+    DaffQuantitySelectComponent,
   ],
   imports: [
     CommonModule,
     DaffNativeSelectModule,
     DaffInputModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
-    DaffQuantityFieldComponent
-  ]
+    DaffQuantityFieldComponent,
+  ],
 })
 export class DaffQuantityFieldModule { }

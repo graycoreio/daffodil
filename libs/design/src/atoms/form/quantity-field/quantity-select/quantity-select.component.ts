@@ -1,11 +1,22 @@
-import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ElementRef, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+  Optional,
+  Self,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  NgControl,
+} from '@angular/forms';
+
 import { DaffFormFieldControl } from '../../form-field/public_api';
 import { DaffNativeSelectComponent } from '../../select/public_api';
 
-export const makeValueArray = (min: number, max: number, increment: number) => {
-  return Array(max - 1).fill(0).map((x, i) => i);
-}
+export const makeValueArray = (min: number, max: number, increment: number) => Array(max - 1).fill(0).map((x, i) => i);
 
 @Component({
   selector: 'daff-quantity-select',
@@ -14,9 +25,10 @@ export const makeValueArray = (min: number, max: number, increment: number) => {
   providers: [
     {
       provide: DaffFormFieldControl,
-      useExisting: DaffQuantitySelectComponent
-    }
-  ]
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      useExisting: DaffQuantitySelectComponent,
+    },
+  ],
 })
 export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFormFieldControl {
 
@@ -35,7 +47,7 @@ export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFo
   @Input() max = 10;
 
   /**
-   * @docs 
+   * @docs
    * Property used to determine whether or not the DaffQuantitySelectComponent is
    * used in a situation whether the `max` isn't a true max.
    */
@@ -65,7 +77,7 @@ export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFo
     this.onChange(e);
   }
 
-  get focused () {
+  get focused() {
     return this.select.focused;
   }
 
