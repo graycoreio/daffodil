@@ -1,14 +1,3 @@
-export * from './models/magento-product';
-export {
-  MagentoBundledProduct,
-  MagentoBundledProductItemOption,
-  MagentoBundledProductItem,
-  MagentoPriceTypeEnum,
-} from './models/bundled-product';
-export { MagentoProductPreview } from './models/product-preview.interface';
-export { MagentoSimpleProduct } from './models/simple-product';
-export * from './models/configurable-product';
-
 export * from './queries/get-product';
 export * from './queries/get-product-by-url';
 export * from './queries/get-all-products';
@@ -21,3 +10,4 @@ export * from './transforms/public_api';
 export * from './interfaces/public_api';
 export * from './config/public_api';
 export * from './injection-tokens/public_api';
+export * from './models/public_api';

@@ -94,7 +94,6 @@ describe('@daffodil/product | Querying and Transforming Custom Fields in Magento
 
     const op = controller.expectOne(DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME);
 
-    // TODO: add magento response type
     op.flushData({
       __typename: '',
       products: {
