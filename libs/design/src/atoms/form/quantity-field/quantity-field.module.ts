@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffInputModule } from '../input/public_api';
 import { DaffNativeSelectModule } from '../select/public_api';
@@ -21,11 +18,12 @@ import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.c
     CommonModule,
     DaffNativeSelectModule,
     DaffInputModule,
-    FormsModule,
     ReactiveFormsModule,
   ],
   exports: [
     DaffQuantityFieldComponent,
+    DaffQuantityInputComponent,
+    DaffQuantitySelectComponent,
   ],
 })
 export class DaffQuantityFieldModule { }
