@@ -25,6 +25,7 @@ import {
   DaffProductMagentoDriverConfig,
   DaffMagentoProductResponseTransform,
 } from './interfaces/public_api';
+import { MagentoGetProductResponse } from './models/public_api';
 import { getAllProducts } from './queries/get-all-products';
 import { getProduct } from './queries/get-product';
 import { getProductByUrl } from './queries/get-product-by-url';
@@ -47,7 +48,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   ) {}
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
-    return this.apollo.query<any>({
+    return this.apollo.query<MagentoGetProductResponse>({
       query: getProduct(this.extraFragments),
       variables: {
         sku: productId,
@@ -58,7 +59,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
-    return this.apollo.query<any>({
+    return this.apollo.query<MagentoGetProductResponse>({
       query: getProductByUrl(this.extraFragments),
       variables: {
         url: this.config.urlTruncationStrategy(url),
@@ -69,7 +70,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   getAll(): Observable<DaffProduct[]> {
-    return this.apollo.query<any>({
+    return this.apollo.query<MagentoGetProductResponse>({
       query: getAllProducts(this.extraFragments),
     }).pipe(
       map(result => transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
