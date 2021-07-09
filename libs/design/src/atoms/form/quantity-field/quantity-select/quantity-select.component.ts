@@ -16,7 +16,8 @@ import {
 import { DaffFormFieldControl } from '../../form-field/public_api';
 import { DaffNativeSelectComponent } from '../../select/public_api';
 
-export const makeValueArray = (min: number, max: number, increment: number) => Array(max - 1).fill(0).map((x, i) => i);
+export const makeValueArray = (min: number, max: number, increment: number) =>
+  Array(max - 1).fill(0).map((x, i) => (i * increment) + min);
 
 @Component({
   selector: 'daff-quantity-select',
