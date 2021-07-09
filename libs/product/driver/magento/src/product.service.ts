@@ -3,6 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 import {
   Observable,
   of,
@@ -15,15 +16,18 @@ import {
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
 
-import { DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './injection-tokens/public_api';
+import {
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM,
+} from './injection-tokens/public_api';
 import {
   MAGENTO_PRODUCT_CONFIG_TOKEN,
   DaffProductMagentoDriverConfig,
   DaffMagentoProductResponseTransform,
 } from './interfaces/public_api';
-import { GetAllProductsQuery } from './queries/get-all-products';
-import { GetProductQuery } from './queries/get-product';
-import { GetProductByUrlQuery } from './queries/get-product-by-url';
+import { getAllProducts } from './queries/get-all-products';
+import { getProduct } from './queries/get-product';
+import { getProductByUrl } from './queries/get-product-by-url';
 import { transformManyMagentoProducts } from './transforms/public_api';
 
 /**
@@ -39,11 +43,12 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     private apollo: Apollo,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
+    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraFragments: DocumentNode[],
   ) {}
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<any>({
-      query: GetProductQuery,
+      query: getProduct(this.extraFragments),
       variables: {
         sku: productId,
       },
@@ -54,7 +59,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<any>({
-      query: GetProductByUrlQuery,
+      query: getProductByUrl(this.extraFragments),
       variables: {
         url: this.config.urlTruncationStrategy(url),
       },
@@ -65,7 +70,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
 
   getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<any>({
-      query: GetAllProductsQuery,
+      query: getAllProducts(this.extraFragments),
     }).pipe(
       map(result => transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
