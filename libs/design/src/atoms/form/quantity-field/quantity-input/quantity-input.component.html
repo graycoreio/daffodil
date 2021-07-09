@@ -1,9 +1,10 @@
-<input daff-input 
-  type="number" min="1"
+<input daff-input
+  type="number"
   [attr.max]="max"
-  [ngModel]="value" (ngModelChange)="onValueChange($event)" 
+  [attr.min]="min"
+  [ngModel]="value" (ngModelChange)="onValueChange($event)"
   (focus)="onFocus()"
-  (blur)="onBlur()" 
+  (blur)="onBlur()"
   (keydown)="onInputKeyDown($event)"
   (paste)="onInputPaste($event)"
   [disabled]="disabled">
