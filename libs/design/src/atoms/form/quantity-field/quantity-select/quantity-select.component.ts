@@ -16,8 +16,11 @@ import {
 import { DaffFormFieldControl } from '../../form-field/public_api';
 import { DaffNativeSelectComponent } from '../../select/public_api';
 
+/**
+ * Create an array of numbers from min to max, not including max.
+ */
 export const makeValueArray = (min: number, max: number, increment: number) =>
-  Array(max - min + 1).fill(0).map((x, i) => (i * increment) + min);
+  Array(max - min).fill(0).map((x, i) => (i * increment) + min);
 
 @Component({
   selector: 'daff-quantity-select',
