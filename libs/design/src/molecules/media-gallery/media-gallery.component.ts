@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Input,
   OnInit,
+  OnDestroy,
 } from '@angular/core';
 
 import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
@@ -22,7 +23,7 @@ let uniqueGalleryId = 0;
     { provide: DAFF_MEDIA_GALLERY_TOKEN, useExisting: DaffMediaGalleryComponent },
   ],
 })
-export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, OnInit {
+export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
 	/**
 	 * Adds a class for styling the media gallery
 	 */
@@ -39,5 +40,9 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
 
 	ngOnInit() {
 	  this.registry.add(this);
+	}
+
+	ngOnDestroy() {
+	  this.registry.remove(this);
 	}
 }

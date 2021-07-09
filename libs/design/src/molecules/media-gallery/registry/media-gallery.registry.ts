@@ -13,6 +13,8 @@ export interface DaffMediaGallery {
 	thumbnails: DaffThumbnailRegistration[];
 }
 
+export const isGallery = (element: DaffThumbnailRegistration | DaffMediaGalleryRegistration): element is DaffMediaGalleryRegistration => !('gallery' in element);
+
 @Injectable({ providedIn: 'root' })
 export class DaffMediaGalleryRegistry {
 	galleries: DaffMediaGalleryDict = {};
@@ -50,9 +52,17 @@ export class DaffMediaGalleryRegistry {
 
 	/**
 	 * @description
-	 * Removes a media element from the internal registry.
+	 * Removes a thumbnail or gallery from the internal registry.
 	 */
-	remove(thumbnail: DaffThumbnailRegistration) {
+	remove(element: DaffThumbnailRegistration | DaffMediaGalleryRegistration) {
+	  if(isGallery(element)) {
+	    this.removeGallery(element);
+	  } else {
+	    this.removeThumbnail(element);
+	  }
+	}
+
+	private removeThumbnail(thumbnail: DaffThumbnailRegistration) {
 	  if(!this.galleries[thumbnail.gallery.name]) {
 	    return;
 	  }
@@ -70,6 +80,10 @@ export class DaffMediaGalleryRegistry {
 	      ...gallery.thumbnails.slice(index + 1),
 	    ],
 	  });
+	}
+
+	private removeGallery(gallery: DaffMediaGalleryRegistration) {
+	  delete this.galleries[gallery.name];
 	}
 
 	/**
