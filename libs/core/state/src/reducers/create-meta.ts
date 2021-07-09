@@ -4,9 +4,9 @@ import {
 } from '@ngrx/store';
 
 /**
- * Creates a meta reducer that invokes each of the passed reducers in turn.
+ * Creates and returns a composite reducer that invokes each of the passed reducers in turn.
  */
-export function daffCreateMetaReducer<
+export function daffComposeReducers<
   T,
   V extends Action = Action
 >(reducers: ActionReducer<T, V>[]): ActionReducer<T, V> {

@@ -1,5 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
-import { daffCreateMetaReducer } from '@daffodil/core/state';
+import { daffComposeReducers } from '@daffodil/core/state';
 
 import { ActionTypes } from './action-types.type';
 import { cartBillingAddressReducer } from './cart-billing-address/cart-billing-address.reducer';
@@ -15,7 +15,7 @@ import { cartShippingMethodsReducer } from './cart-shipping-methods/cart-shippin
 import { DaffCartReducerState } from './cart-state.interface';
 import { cartReducer } from './cart/cart.reducer';
 
-const composedReducers = daffCreateMetaReducer([
+const composedReducers = daffComposeReducers([
   cartReducer,
   cartItemReducer,
   cartBillingAddressReducer,

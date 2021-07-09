@@ -1,1 +1,1 @@
-export { daffCreateMetaReducer } from './create-meta';
+export { daffComposeReducers } from './create-meta';

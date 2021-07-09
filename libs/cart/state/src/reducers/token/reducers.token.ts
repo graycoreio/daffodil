@@ -12,7 +12,7 @@ import {
   DaffCart,
   DaffCartOrderResult,
 } from '@daffodil/cart';
-import { daffCreateMetaReducer } from '@daffodil/core/state';
+import { daffComposeReducers } from '@daffodil/core/state';
 
 import { daffCartReducers } from '../cart-reducers';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
@@ -27,7 +27,7 @@ import { DAFF_CART_EXTRA_REDUCERS } from './extra.token';
 export const DAFF_CART_REDUCERS = new InjectionToken<ActionReducer<DaffCartReducersState>>(
   'DAFF_CART_REDUCERS',
   {
-    factory: () => daffCreateMetaReducer([
+    factory: () => daffComposeReducers([
       combineReducers(daffCartReducers),
       ...inject(DAFF_CART_EXTRA_REDUCERS),
     ]),
