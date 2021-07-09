@@ -45,6 +45,10 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
     expect(result.thumbnail).toBeDefined();
   });
 
+  it('should set the extra_attributes to the magento product', () => {
+    expect(result.extra_attributes).toEqual(stubMagentoProduct);
+  });
+
   describe('when the product is a simple product', () => {
 
     it('should return a simple product', () => {

@@ -36,6 +36,7 @@ export function transformMagentoProductPreview(product: MagentoProduct, mediaUrl
  */
 export function transformMagentoSimpleProductPreview(product: MagentoProductPreview, mediaUrl: string): DaffProduct {
   return {
+    extra_attributes: product,
     type: DaffProductTypeEnum.Simple,
     id: product.sku,
     url: `/${product.url_key}${product.url_suffix}`,

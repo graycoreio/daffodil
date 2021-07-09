@@ -31,6 +31,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
     stubMagentoProduct = new MagentoProductFactory().create();
 
     expectedDaffProduct = {
+      extra_attributes: stubMagentoProduct,
       type: DaffProductTypeEnum.Simple,
       id: stubMagentoProduct.sku,
       url: `/${stubMagentoProduct.url_key}${stubMagentoProduct.url_suffix}`,

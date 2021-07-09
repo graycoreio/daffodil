@@ -78,6 +78,11 @@ export interface DaffProduct extends DaffLocatable, DaffIdentifiable {
 	 * A description of the product for usage in search engine results.
 	 */
 	meta_description?: string;
+  /**
+   * The field is set to the platform product object returned by the most recent driver call.
+   * No fields are guaranteed here. Use this with care.
+   */
+	 extra_attributes?: any;
 }
 
 /**
