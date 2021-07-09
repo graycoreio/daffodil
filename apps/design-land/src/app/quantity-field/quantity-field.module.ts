@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DesignLandQuantityFieldComponent } from './quantity-field.component';
-import { DesignLandQuantityFieldRoutingModule } from './quantity-field-routing.module';
 import {
   DaffArticleModule,
   DaffQuantityFieldModule,
-  DaffFormFieldModule
+  DaffFormFieldModule,
 } from '@daffodil/design';
+
+import { DesignLandQuantityFieldRoutingModule } from './quantity-field-routing.module';
+import { DesignLandQuantityFieldComponent } from './quantity-field.component';
 
 @NgModule({
   declarations: [
-    DesignLandQuantityFieldComponent
+    DesignLandQuantityFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +21,7 @@ import {
     DaffArticleModule,
     DaffFormFieldModule,
     DaffQuantityFieldModule,
-    DesignLandQuantityFieldRoutingModule
-  ]
+    DesignLandQuantityFieldRoutingModule,
+  ],
 })
 export class DesignLandQuantityFieldModule { }
