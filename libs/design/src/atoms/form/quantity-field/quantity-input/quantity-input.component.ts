@@ -35,7 +35,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
    * @docs
    * The minimum number for the quantity input field
    */
-  @Input() min = 0;
+  @Input() min = 1;
 
   /**
    * @docs

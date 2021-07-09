@@ -17,7 +17,7 @@ import { DaffFormFieldControl } from '../../form-field/public_api';
 import { DaffNativeSelectComponent } from '../../select/public_api';
 
 export const makeValueArray = (min: number, max: number, increment: number) =>
-  Array(max - min - 1).fill(0).map((x, i) => (i * increment) + min);
+  Array(max - min + 1).fill(0).map((x, i) => (i * increment) + min);
 
 @Component({
   selector: 'daff-quantity-select',
@@ -39,7 +39,7 @@ export class DaffQuantitySelectComponent implements ControlValueAccessor, DaffFo
    * @docs
    * The minimum number selectable.
    */
-  @Input() min = 0;
+  @Input() min = 1;
 
   /**
    * @docs
