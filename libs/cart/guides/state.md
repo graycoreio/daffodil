@@ -242,5 +242,63 @@ export class AppModule {}
 
 The only argument to `forRoot` is the configuration object. For more information, see `DaffCartStateConfiguration`.
 
-<!-- TODO: add dependency injectable reducers guide once we implement it -->
+## Dependency Injectable Reducers
+
+`@daffodil/cart/state` provides mechanisms for consuming applications and libraries to modify state reduction behavior. Injected reducers run after the Daffodil reducers and should take care to not violate the `DaffCartReducersState` interface.
+
+### Purpose
+
+`@daffodil/cart/state` consumers may wish to modify the state for the `daffCart` feature in a way not explicitly provided by `@daffodil/cart/state`. A common example is adding payment info to the cart payment object in response to non-`@daffodil/cart/state` actions.
+
+### Usage
+
+The following example demonstrates modifying the cart's payment info in response to a user-defined action.
+
+```ts
+interface MyPaymentInfo {
+  ccLast4: string;
+}
+
+class MyUpdatePaymentSuccessAction implements Action {
+  type = 'My Update Payment Success Action';
+
+  constructor(
+    public paymentInfo: MyPaymentInfo,
+  ) {}
+}
+
+function myPaymentUpdateReducer(state: DaffCartReducersState, action: MyUpdatePaymentSuccessAction): DaffCartReducersState {
+  switch (action.type) {
+    case 'My Update Payment Success Action':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          cart: {
+            ...state.cart.cart,
+            payment: {
+              ...state.cart.cart.payment,
+              payment_info: {
+                ...state.cart.cart.payment.payment_info, // careful not to overwrite existing payment data
+                ...action.paymentInfo,
+              },
+            },
+          },
+        },
+      };
+    default:
+      return state;
+  }
+}
+
+@NgModule({
+  providers: [
+    ...daffCartProvideExtraReducers(
+      myPaymentUpdateReducer,
+    ),
+  ],
+})
+class MyPaymentModule {}
+```
+
 <!-- TODO: add dependency injectable actions for effects guide once we implement it -->
