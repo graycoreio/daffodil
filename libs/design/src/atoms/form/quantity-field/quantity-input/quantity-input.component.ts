@@ -35,7 +35,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
    * @docs
    * The minimum number for the quantity input field
    */
-  @Input() min = 1;
+  @Input() min = 0;
 
   /**
    * @docs
@@ -46,8 +46,8 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
   focused = false;
   disabled = false;
   value = 1;
-  private regex = new RegExp(/^[0-9]+$/g);
-  private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'];
+  private readonly digitOnlyRegex = new RegExp(/^[0-9]+$/g);
+  private readonly specialKeys = ['Backspace', 'Tab', 'End', 'Home', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'];
   private onChange(quantity: number): void {};
   private onTouched(obj: any): void {};
 
@@ -62,10 +62,10 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
       return;
     }
 
-    const current = String(this.input.ngControl.value);
+    const current = String(this.input.ngControl.value || '');
     const next: string = current.concat(event.key);
 
-    if (next && !String(next).match(this.regex)) {
+    if (next && !String(next).match(this.digitOnlyRegex)) {
       event.preventDefault();
     }
   }
@@ -97,7 +97,7 @@ export class DaffQuantityInputComponent implements ControlValueAccessor, DaffFor
   }
 
   onInputPaste(event: ClipboardEvent) {
-    if (!String(event.clipboardData.getData('input').match(this.regex))) {
+    if (!String(event.clipboardData.getData('input').match(this.digitOnlyRegex))) {
       event.preventDefault();
     }
   }
