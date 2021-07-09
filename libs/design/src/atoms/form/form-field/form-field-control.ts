@@ -18,5 +18,5 @@ export abstract class DaffFormFieldControl {
 
   readonly focused: boolean;
 
-  abstract focus(event?: MouseEvent): void;
-}
+  abstract focus(event?: Event): void;
+};

@@ -59,6 +59,15 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
   isValid = false;
 
   /**
+   * @docs
+   *
+   * Determines whether or not the form field should display its focused state.
+   */
+  get isFocused() {
+    return this._control?.focused;
+  }
+
+  /**
    * Keeps the state of the form field consistent with its child DaffFormControl
    *
    * TODO: consider whether or not this can be refactored to some kind of
@@ -67,7 +76,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * @docs-private
    */
   ngDoCheck() {
-    if (this._control) {
+    if(this._control?.ngControl) {
       this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
       this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
     }
