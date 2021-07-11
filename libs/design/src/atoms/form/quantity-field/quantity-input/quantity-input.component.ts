@@ -45,7 +45,6 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
    */
   _inputControl = new FormControl();
   focused = false;
-  _value;
   _destroyed = new Subject();
 
   get value() {
@@ -82,6 +81,8 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   }
 
   focus() {
+    console.log('dsfgfgd');
+
     this.focused = true;
     this.input.focus();
   }
@@ -92,6 +93,7 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   }
 
   onBlur() {
+    // TODO: this.focused = false ?
     if(this.value === null || this.value === undefined){
       this.value = 1;
       this.changeDetectorRef.markForCheck();
