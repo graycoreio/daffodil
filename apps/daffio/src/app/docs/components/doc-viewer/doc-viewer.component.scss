@@ -1,0 +1,36 @@
+@import 'utilities';
+
+:host {
+	display: block;
+}
+
+.daffio-doc-viewer {
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'content';
+		padding: 48px;
+		
+		@include breakpoint(big-tablet) {
+			grid-template-columns: minmax(0px, 960px) 240px;
+			grid-template-areas:
+				'content table-of-contents';
+			padding: 48px;
+			grid-gap: 48px;
+		}
+	}
+
+	&__content {
+		grid-area: content;
+	}
+
+	&__table-of-contents {
+		display: none;
+		
+		@include breakpoint(big-tablet) {
+			display: block;
+			grid-area: table-of-contents;
+		}
+	}
+}
