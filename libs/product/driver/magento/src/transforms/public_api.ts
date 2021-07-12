@@ -1,7 +1,4 @@
-export {
-  transformMagentoProduct,
-  transformManyMagentoProducts,
-} from './product-transformers';
+export * from './product-transformers';
 
 export * from './bundled-product-transformers';
 export * from './configurable-product-transformers';

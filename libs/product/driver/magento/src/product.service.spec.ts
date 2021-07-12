@@ -18,6 +18,7 @@ import {
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { DaffMagentoProductService } from './product.service';
+import { DaffMagentoProductsTransformer } from './transforms/product-transformers';
 
 describe('Product | Magento | ProductService', () => {
   let service: DaffMagentoProductService;
@@ -32,6 +33,7 @@ describe('Product | Magento | ProductService', () => {
       ],
       providers: [
         DaffMagentoProductService,
+        DaffMagentoProductsTransformer,
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({

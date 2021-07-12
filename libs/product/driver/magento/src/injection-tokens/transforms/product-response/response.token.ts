@@ -7,9 +7,9 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
-import { DaffMagentoProductResponseTransform } from '../../interfaces/public_api';
-import { MagentoProduct } from '../../models/magento-product';
-import { transformMagentoProductResponse } from '../../transforms/public_api';
+import { DaffMagentoProductResponseTransform } from '../../../interfaces/public_api';
+import { MagentoProduct } from '../../../models/magento-product';
+import { DaffMagentoProductResponseTransformers } from '../../../transforms/public_api';
 import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from './response-extra.token';
 
 /**
@@ -20,10 +20,11 @@ export const DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM = new InjectionToke
   {
     factory: () => {
       const transforms = inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS);
+      const daffResponseTransformer = inject(DaffMagentoProductResponseTransformers);
       return (magentoProduct: MagentoProduct, mediaUrl: string) =>
         transforms.reduce(
           (daffProductResponse, transform) => transform(daffProductResponse, magentoProduct, mediaUrl),
-          transformMagentoProductResponse(magentoProduct, mediaUrl),
+          daffResponseTransformer.transformMagentoProductResponse(magentoProduct, mediaUrl),
         );
     },
   },

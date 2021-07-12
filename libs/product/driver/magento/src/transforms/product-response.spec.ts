@@ -4,17 +4,23 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import { MagentoProduct } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
-import { transformMagentoProductResponse } from './product-response';
+import { DaffMagentoProductResponseTransformers } from './product-response';
 
 describe('@daffodil/product/driver/magento | transformMagentoProductResponse', () => {
   let stubMagentoProduct: MagentoProduct;
   let productFactory: MagentoProductFactory;
   const mediaUrl = 'media url';
   let result: DaffProductDriverResponse;
+  let service: DaffMagentoProductResponseTransformers;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        DaffMagentoProductResponseTransformers,
+      ],
+    });
 
+    service = TestBed.inject(DaffMagentoProductResponseTransformers);
     productFactory = TestBed.inject(MagentoProductFactory);
 
     stubMagentoProduct = productFactory.create({
@@ -22,7 +28,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductResponse', (
       upsell_products: productFactory.createMany(1),
     });
 
-    result = transformMagentoProductResponse(stubMagentoProduct, mediaUrl);
+    result = service.transformMagentoProductResponse(stubMagentoProduct, mediaUrl);
   });
 
   it('should set the ID to the main product ID', () => {

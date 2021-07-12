@@ -6,7 +6,6 @@ import {
   MagentoConfigurableProductOption,
   MagentoConfigurableProductVariant,
   MagentoConfigurableAttributeOption,
-  transformMagentoSimpleProduct,
 } from '@daffodil/product/driver/magento';
 import { MagentoConfigurableProductFactory } from '@daffodil/product/driver/magento/testing';
 import {
@@ -21,6 +20,7 @@ import {
   transformVariantAttributes,
   transformMagentoConfigurableProduct,
 } from './configurable-product-transformers';
+import { DaffMagentoSimpleProductTransformers } from './simple-product-transformers';
 import daffConfigurableProductData from './spec-data/daff-configurable-product.json';
 import magentoConfigurableProductData from './spec-data/magento-configurable-product.json';
 
@@ -37,15 +37,22 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
   delete daffConfigurableProduct.configurableAttributes[0].values[0].swatch;
   delete daffConfigurableProduct.configurableAttributes[0].values[1].swatch;
   delete daffConfigurableProduct.configurableAttributes[0].values[2].swatch;
+  let simpleProductService: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        DaffMagentoSimpleProductTransformers,
+      ],
+    });
+
+    simpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
   });
 
   describe('transformMagentoConfigurableProduct', () => {
 
     it('should transform a magento configurable product into a daffodil configurable product', () => {
-      expect(transformMagentoConfigurableProduct(transformMagentoSimpleProduct(magentoConfigurableProductData, mediaUrl), magentoConfigurableProductData)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
+      expect(transformMagentoConfigurableProduct(simpleProductService.transformMagentoSimpleProduct(magentoConfigurableProductData, mediaUrl), magentoConfigurableProductData)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
     });
   });
 

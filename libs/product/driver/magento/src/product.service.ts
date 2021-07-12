@@ -29,7 +29,7 @@ import { MagentoGetProductResponse } from './models/public_api';
 import { getAllProducts } from './queries/get-all-products';
 import { getProduct } from './queries/get-product';
 import { getProductByUrl } from './queries/get-product-by-url';
-import { transformManyMagentoProducts } from './transforms/public_api';
+import { DaffMagentoProductsTransformer } from './transforms/product-transformers';
 
 /**
  * A service for making magento apollo queries for products of type, {@link DaffProduct}.
@@ -45,6 +45,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraFragments: DocumentNode[],
+		private magentoProductsTransformer: DaffMagentoProductsTransformer,
   ) {}
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
@@ -73,7 +74,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     return this.apollo.query<MagentoGetProductResponse>({
       query: getAllProducts(this.extraFragments),
     }).pipe(
-      map(result => transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
+      map(result => this.magentoProductsTransformer.transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
   }
 

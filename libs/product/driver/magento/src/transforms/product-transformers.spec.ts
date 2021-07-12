@@ -12,17 +12,20 @@ import {
   MagentoConfigurableProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 
-import {
-  transformMagentoProduct,
-  transformManyMagentoProducts,
-} from './product-transformers';
+import { DaffMagentoProductsTransformer } from './product-transformers';
 
-describe('DaffMagentoProductTransformers', () => {
+describe('DaffMagentoProductsTransformer', () => {
   const mediaUrl = 'media url';
   let stubMagentoProducts: MagentoProduct[];
+  let service: DaffMagentoProductsTransformer;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        DaffMagentoProductsTransformer,
+      ],
+    });
+    service = TestBed.inject(DaffMagentoProductsTransformer);
     stubMagentoProducts = new MagentoProductFactory().createMany(2);
   });
 
@@ -31,7 +34,7 @@ describe('DaffMagentoProductTransformers', () => {
     describe('when the product is a simple product', () => {
 
       it('should return a simple product', () => {
-        expect(transformMagentoProduct(stubMagentoProducts[0], mediaUrl).type).toEqual(DaffProductTypeEnum.Simple);
+        expect(service.transformMagentoProduct(stubMagentoProducts[0], mediaUrl).type).toEqual(DaffProductTypeEnum.Simple);
       });
     });
 
@@ -43,7 +46,7 @@ describe('DaffMagentoProductTransformers', () => {
       });
 
       it('should return a composite product', () => {
-        expect(transformMagentoProduct(magentoBundledProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Composite);
+        expect(service.transformMagentoProduct(magentoBundledProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Composite);
       });
     });
 
@@ -55,15 +58,15 @@ describe('DaffMagentoProductTransformers', () => {
       });
 
       it('should return a configurable product', () => {
-        expect(transformMagentoProduct(magentoConfigurableProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Configurable);
+        expect(service.transformMagentoProduct(magentoConfigurableProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Configurable);
       });
     });
   });
 
-  describe('transformMany', () => {
+  describe('transformManyMagentoProducts', () => {
 
     it('should transform many products', () => {
-      expect(transformManyMagentoProducts(stubMagentoProducts, mediaUrl).length).toEqual(2);
+      expect(service.transformManyMagentoProducts(stubMagentoProducts, mediaUrl).length).toEqual(2);
     });
   });
 });

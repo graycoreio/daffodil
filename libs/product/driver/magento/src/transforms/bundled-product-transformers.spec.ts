@@ -3,18 +3,25 @@ import { TestBed } from '@angular/core/testing';
 import {
   MagentoProductStockStatusEnum,
   MagentoBundledProduct,
-  transformMagentoSimpleProduct,
 } from '@daffodil/product/driver/magento';
 
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
+import { DaffMagentoSimpleProductTransformers } from './simple-product-transformers';
 import daffCompositeProductData from './spec-data/daff-composite-product.json';
 import magentoBundledProductData from './spec-data/magento-bundled-product.json';
 
 describe('DaffMagentoBundledProductTransformers', () => {
   const mediaUrl = 'media url';
+  let simpleProductService: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        DaffMagentoSimpleProductTransformers,
+      ],
+    });
+
+    simpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
   });
 
   describe('transform', () => {
@@ -26,7 +33,7 @@ describe('DaffMagentoBundledProductTransformers', () => {
     magentoBundledProduct.items[0].options[1].product.stock_status = MagentoProductStockStatusEnum.InStock;
 
     it('should transform a MagentoBundledProduct to a DaffCompositeProduct', () => {
-      expect(transformMagentoBundledProduct(transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct)).toEqual(jasmine.objectContaining(daffCompositeProductData));
+      expect(transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct)).toEqual(jasmine.objectContaining(daffCompositeProductData));
     });
   });
 });

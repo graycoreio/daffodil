@@ -9,6 +9,7 @@ import {
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
+import { DaffMagentoProductResponseTransformers } from '../../../transforms/product-response';
 import { DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './response.token';
 
 
@@ -34,6 +35,7 @@ describe('DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        DaffMagentoProductResponseTransformers,
         ...daffProvideProductMagentoExtraProductResponseTransforms(...transforms),
       ],
     });
