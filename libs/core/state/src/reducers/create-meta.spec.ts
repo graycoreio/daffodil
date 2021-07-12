@@ -1,6 +1,6 @@
 import { ActionReducer } from '@ngrx/store';
 
-import { daffCreateMetaReducer } from './create-meta';
+import { daffComposeReducers } from './create-meta';
 
 interface MockState {
   foo: string;
@@ -12,7 +12,7 @@ const initialState: MockState = {
   bar: '',
 };
 
-describe('@daffodil/core/state | daffCreateMetaReducer', () => {
+describe('@daffodil/core/state | daffComposeReducers', () => {
   let reducers: ActionReducer<MockState>[];
   let metaReducer: ActionReducer<MockState>;
 
@@ -28,7 +28,7 @@ describe('@daffodil/core/state | daffCreateMetaReducer', () => {
       }),
     ];
 
-    metaReducer = daffCreateMetaReducer(reducers);
+    metaReducer = daffComposeReducers(reducers);
   });
 
   describe('the meta reducer', () => {
