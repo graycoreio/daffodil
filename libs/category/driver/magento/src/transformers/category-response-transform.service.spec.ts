@@ -19,8 +19,8 @@ import {
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import {
+  DaffMagentoProductsTransformer,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
-  transformManyMagentoProducts,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -44,6 +44,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
   let magentoCategoryTransformerServiceSpy: jasmine.SpyObj<DaffMagentoCategoryTransformerService>;
   let magentoCategoryPageConfigurationTransformerServiceSpy: jasmine.SpyObj<DaffMagentoCategoryPageConfigTransformerService>;
   const stubMediaUrl = 'mediaUrl';
+  let magentoProductsTransformService: DaffMagentoProductsTransformer;
 
   beforeEach(() => {
     magentoCategoryTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
@@ -51,6 +52,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        DaffMagentoProductsTransformer,
         DaffMagentoCategoryResponseTransformService,
         { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryTransformerServiceSpy },
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },
@@ -59,6 +61,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     });
 
     service = TestBed.inject(DaffMagentoCategoryResponseTransformService);
+    magentoProductsTransformService = TestBed.inject(DaffMagentoProductsTransformer);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     productFactory = TestBed.inject(DaffProductFactory);
@@ -144,7 +147,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         {
           ...{ magentoCompleteCategoryResponse: completeCategory },
           category: stubCategory,
-          products: transformManyMagentoProducts(completeCategory.products, stubMediaUrl),
+          products: magentoProductsTransformService.transformManyMagentoProducts(completeCategory.products, stubMediaUrl),
           categoryPageMetadata: stubCategoryPageMetadata,
         },
       );
