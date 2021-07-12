@@ -9,6 +9,7 @@
 	$gray: daff-configure-palette($daff-gray, 60);
 
 	$text-color: daff-illuminate($base-contrast, $daff-gray, 2);
+	$table-border-color: daff-illuminate($base, $daff-gray, 2);
 
 	.daff-article {
 		&__meta {
@@ -41,6 +42,17 @@
 		blockquote {
 			border-left: 4px solid $base-contrast;
 			color: $text-color;
+		}
+
+		table {
+			th {
+				background: daff-illuminate($base, $daff-gray, 1);
+				border: 1px solid $table-border-color;
+			}
+
+			td {
+				border: 1px solid $table-border-color;
+			}
 		}
 	}
 }
