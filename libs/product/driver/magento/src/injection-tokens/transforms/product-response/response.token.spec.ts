@@ -35,7 +35,6 @@ describe('DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoProductResponseTransformers,
         ...daffProvideProductMagentoExtraProductResponseTransforms(...transforms),
       ],
     });

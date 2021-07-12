@@ -40,11 +40,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
   let simpleProductService: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffMagentoSimpleProductTransformers,
-      ],
-    });
+    TestBed.configureTestingModule({});
 
     simpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
   });

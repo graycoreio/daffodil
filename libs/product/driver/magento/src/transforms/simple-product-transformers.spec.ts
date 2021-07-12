@@ -24,11 +24,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
   let service: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffMagentoSimpleProductTransformers,
-      ],
-    });
+    TestBed.configureTestingModule({});
     service = TestBed.inject(DaffMagentoSimpleProductTransformers);
 
     bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);

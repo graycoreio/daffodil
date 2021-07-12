@@ -14,11 +14,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductResponse', (
   let service: DaffMagentoProductResponseTransformers;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffMagentoProductResponseTransformers,
-      ],
-    });
+    TestBed.configureTestingModule({});
 
     service = TestBed.inject(DaffMagentoProductResponseTransformers);
     productFactory = TestBed.inject(MagentoProductFactory);

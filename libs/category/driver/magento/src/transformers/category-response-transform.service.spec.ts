@@ -52,7 +52,6 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoProductsTransformer,
         DaffMagentoCategoryResponseTransformService,
         { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryTransformerServiceSpy },
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },

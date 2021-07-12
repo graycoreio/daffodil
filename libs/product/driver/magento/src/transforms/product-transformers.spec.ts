@@ -20,11 +20,7 @@ describe('DaffMagentoProductsTransformer', () => {
   let service: DaffMagentoProductsTransformer;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffMagentoProductsTransformer,
-      ],
-    });
+    TestBed.configureTestingModule({});
     service = TestBed.inject(DaffMagentoProductsTransformer);
     stubMagentoProducts = new MagentoProductFactory().createMany(2);
   });
