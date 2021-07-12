@@ -14,13 +14,17 @@
 
 <section class="members">
   <h2>Properties</h2>
-  <div class="members-table">
-    <div class="members-table__header">Name</div>
-    <div class="members-table__header">Type</div>
-    <div class="members-table__header">Description</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
     {%- for i in range(0, doc.members.length) %}
 			{$ member(doc.members[i]) $}
     {% endfor -%}
-  </div>
+  </table>
 </section>
 {% endblock %}
