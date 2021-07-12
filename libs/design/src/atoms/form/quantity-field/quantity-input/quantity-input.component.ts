@@ -44,6 +44,7 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
    * Instead, we listen for the change event and manually patch form control values.
    */
   _inputControl = new FormControl();
+  // TODO: should this not use this.input as the source of truth for focused?
   focused = false;
   _destroyed = new Subject();
 
@@ -81,8 +82,6 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   }
 
   focus() {
-    console.log('dsfgfgd');
-
     this.focused = true;
     this.input.focus();
   }
