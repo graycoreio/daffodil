@@ -13,7 +13,7 @@ import {
   DaffOrderTotal,
 } from '@daffodil/order';
 
-import { DaffOrderReducersState } from '../../reducers/public_api';
+import { DaffOrderStateRootSlice } from '../../reducers/public_api';
 import { DaffOrderEntitySelectors } from '../../selectors/order-entities.selector';
 import { getDaffOrderSelectors } from '../../selectors/public_api';
 import { DaffOrderFacadeInterface } from './order-facade.interface';
@@ -53,7 +53,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   _hasDiscount: DaffOrderEntitySelectors<T>['selectOrderHasDiscount'];
   _tax: DaffOrderEntitySelectors<T>['selectOrderTaxTotal'];
 
-  constructor(private store: Store<DaffOrderReducersState<T>>) {
+  constructor(private store: Store<DaffOrderStateRootSlice<T>>) {
     const {
       selectOrderIds,
       selectOrderEntities,

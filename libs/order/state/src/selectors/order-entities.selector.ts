@@ -5,7 +5,10 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { getDaffCartSelectors } from '@daffodil/cart/state';
+import {
+  getDaffCartSelectors,
+  DaffCartStateRootSlice,
+} from '@daffodil/cart/state';
 import {
   DaffOrder,
   DaffOrderItem,
@@ -14,106 +17,107 @@ import {
 } from '@daffodil/order';
 
 import {
+  DaffOrderStateRootSlice,
   daffGetOrderAdapter,
   DaffOrderEntityState,
 } from '../reducers/public_api';
 import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 
 export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
-  selectOrderEntitiesState: MemoizedSelector<Record<string, any>, DaffOrderEntityState<T>>;
+  selectOrderEntitiesState: MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderEntityState<T>>;
   /**
    * Selector for order IDs.
    */
-  selectOrderIds: MemoizedSelector<Record<string, any>, T['id'][]>;
+  selectOrderIds: MemoizedSelector<DaffOrderStateRootSlice<T>, T['id'][]>;
   /**
    * Selector for order entities.
    */
-  selectOrderEntities: MemoizedSelector<Record<string, any>, Dictionary<T>>;
+  selectOrderEntities: MemoizedSelector<DaffOrderStateRootSlice<T>, Dictionary<T>>;
   /**
    * Selector for all orders.
    */
-  selectAllOrders: MemoizedSelector<Record<string, any>, T[]>;
+  selectAllOrders: MemoizedSelector<DaffOrderStateRootSlice<T>, T[]>;
   /**
    * Selector for total number of orders.
    */
-  selectOrderTotal: MemoizedSelector<Record<string, any>, number>;
-  selectOrder: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T>;
+  selectOrderTotal: MemoizedSelector<DaffOrderStateRootSlice<T>, number>;
+  selectOrder: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T>;
 
   /**
    * Selector for the most recently placed order (if any).
    */
-  selectPlacedOrder: MemoizedSelector<Record<string, any>, T>;
+  selectPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, T>;
   /**
    * Selector for the existence of the most recently placed order.
    */
-  selectHasPlacedOrder: MemoizedSelector<Record<string, any>, boolean>;
+  selectHasPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, boolean>;
 
   /**
    * Selects the specified order's totals.
    */
-  selectOrderTotals: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['totals']>;
+  selectOrderTotals: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['totals']>;
   /**
    * Selects the specified order's applied coupon codes.
    */
-  selectOrderAppliedCodes: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['applied_codes']>;
+  selectOrderAppliedCodes: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['applied_codes']>;
   /**
    * Selects the specified order's items.
    */
-  selectOrderItems: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['items']>;
+  selectOrderItems: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['items']>;
   /**
    * Selects the specified order's billing addresses.
    */
-  selectOrderBillingAddresses: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['billing_addresses']>;
+  selectOrderBillingAddresses: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['billing_addresses']>;
   /**
    * Selects the specified order's shipping addresses.
    */
-  selectOrderShippingTotalAddresses: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['shipping_addresses']>;
+  selectOrderShippingTotalAddresses: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['shipping_addresses']>;
   /**
    * Selects the specified order's shipments.
    */
-  selectOrderShipments: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['shipments']>;
+  selectOrderShipments: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['shipments']>;
   /**
    * Selects the specified order's payment.
    */
-  selectOrderPayment: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['payment']>;
+  selectOrderPayment: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['payment']>;
   /**
    * Selects the specified order's invoices.
    */
-  selectOrderInvoices: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['invoices']>;
+  selectOrderInvoices: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['invoices']>;
   /**
    * Selects the specified order's credits.
    */
-  selectOrderCredits: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['credits']>;
+  selectOrderCredits: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['credits']>;
 
   /**
    * Selects the specified order's specified item.
    */
-  selectOrderItem: (orderId: T['id'], itemId: T['items'][0]['id']) => MemoizedSelector<Record<string, any>, DaffOrderItem>;
+  selectOrderItem: (orderId: T['id'], itemId: T['items'][0]['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderItem>;
 
   /**
    * Selects the specified order's grand total.
    */
-  selectOrderGrandTotal: (orderId: T['id']) => MemoizedSelector<Record<string, any>, DaffOrderTotal>;
+  selectOrderGrandTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
   /**
    * Selects the specified order's subtotal.
    */
-  selectOrderSubtotal: (orderId: T['id']) => MemoizedSelector<Record<string, any>, DaffOrderTotal>;
+  selectOrderSubtotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
   /**
    * Selects the specified order's shipping total.
    */
-  selectOrderShippingTotal: (orderId: T['id']) => MemoizedSelector<Record<string, any>, DaffOrderTotal>;
+  selectOrderShippingTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
   /**
    * Selects the specified order's discount total.
    */
-	selectOrderDiscountTotal: (orderId: T['id']) => MemoizedSelector<Record<string, any>, DaffOrderTotal>;
+	selectOrderDiscountTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
 	/**
 	 * Selects whether the specified order has a discount.
 	 */
-	selectOrderHasDiscount: (orderId: T['id']) => MemoizedSelector<Record<string, any>, boolean>;
+	selectOrderHasDiscount: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, boolean>;
   /**
    * Selects the specified order's tax total.
    */
-  selectOrderTaxTotal: (orderId: T['id']) => MemoizedSelector<Record<string, any>, DaffOrderTotal>;
+  selectOrderTaxTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
 }
 
 const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
@@ -125,7 +129,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
   const { selectIds, selectEntities, selectAll, selectTotal } = daffGetOrderAdapter<T>().getSelectors(selectOrderEntitiesState);
   const { selectCartOrderId } = getDaffCartSelectors();
 
-  const selectOrder: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T> =
+  const selectOrder: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T> =
     defaultMemoize((orderId: T['id']) => createSelector(
       selectEntities,
       (orders: Dictionary<T>) => orders[orderId] || null,
@@ -142,7 +146,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     placedOrder => !!placedOrder,
   );
 
-  const selectOrderTotals: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['totals']> =
+  const selectOrderTotals: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['totals']> =
     defaultMemoize((orderId: T['id']) => createSelector(
       selectOrder(orderId),
       (order) => (order && order.totals) || [],
@@ -153,7 +157,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     (order) => (order && order.applied_codes) || [],
   )).memoized;
 
-  const selectOrderItems: (orderId: T['id']) => MemoizedSelector<Record<string, any>, T['items']> =
+  const selectOrderItems: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['items']> =
     defaultMemoize((orderId: T['id']) => createSelector(
       selectOrder(orderId),
       (order) => (order && order.items) || [],
@@ -216,7 +220,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     },
   )).memoized;
 
-  const selectOrderDiscountTotal: (orderId: T['id']) => MemoizedSelector<Record<string, any>, DaffOrderTotal> =
+  const selectOrderDiscountTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal> =
     defaultMemoize((orderId: T['id']) => createSelector(
       selectOrderTotals(orderId),
       totals => {

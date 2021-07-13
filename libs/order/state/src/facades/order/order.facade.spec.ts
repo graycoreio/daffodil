@@ -21,7 +21,7 @@ import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
   DaffOrderLoadFailure,
-  DaffOrderReducersState,
+  DaffOrderStateRootSlice,
   daffOrderReducers,
   DAFF_ORDER_STORE_FEATURE_KEY,
   DaffOrderListSuccess,
@@ -34,7 +34,7 @@ import {
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
-  let store: Store<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderReducersState> }>;
+  let store: Store<DaffOrderStateRootSlice>;
   let facade: DaffOrderFacade;
   let orderFactory: DaffOrderFactory;
   let orderTotalFactory: DaffOrderTotalFactory;

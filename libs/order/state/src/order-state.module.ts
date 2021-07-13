@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { DaffCartStateModule } from '@daffodil/cart/state';
+
 import { DaffOrderEffects } from './effects/order.effects';
 import {
   DAFF_ORDER_STORE_FEATURE_KEY,
@@ -10,6 +12,7 @@ import {
 
 @NgModule({
   imports: [
+    DaffCartStateModule,
     EffectsModule.forFeature([
       DaffOrderEffects,
     ]),

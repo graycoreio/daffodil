@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffOrder } from '@daffodil/order';
 import {
   daffOrderReducers,
-  DaffOrderReducersState,
+  DaffOrderStateRootSlice,
   DAFF_ORDER_STORE_FEATURE_KEY,
   DaffOrderListSuccess,
 } from '@daffodil/order/state';
@@ -19,7 +19,7 @@ import { DaffOrderFactory } from '@daffodil/order/testing';
 import { getOrderSelectors } from './order.selector';
 
 describe('Order | Selector | Order', () => {
-  let store: Store<DaffOrderReducersState>;
+  let store: Store<DaffOrderStateRootSlice>;
 
   let orderFactory: DaffOrderFactory;
 
