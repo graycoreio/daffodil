@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { DaffProduct } from '@daffodil/product';
 
 import { MagentoBundledProduct } from '../models/bundled-product';
@@ -8,28 +10,37 @@ import {
 } from '../models/magento-product';
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
 import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
-import { transformMagentoSimpleProduct } from './simple-product-transformers';
+import { DaffMagentoSimpleProductTransformers } from './simple-product-transformers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
  *
  * @param product a magento product
  */
-export function transformMagentoProduct(product: MagentoProduct, mediaUrl: string): DaffProduct {
-  switch(product.__typename) {
-    case MagentoProductTypeEnum.BundledProduct:
-      return transformMagentoBundledProduct(transformMagentoSimpleProduct(product, mediaUrl), <MagentoBundledProduct>product);
-    case MagentoProductTypeEnum.ConfigurableProduct:
-      return transformMagentoConfigurableProduct(transformMagentoSimpleProduct(product, mediaUrl), <MagentoConfigurableProduct>product);
-    case MagentoProductTypeEnum.SimpleProduct:
-    default:
-      return transformMagentoSimpleProduct(product, mediaUrl);
+@Injectable({
+  providedIn: 'root',
+})
+export class DaffMagentoProductsTransformer {
+
+  constructor(private magentoSimpleProductTransformers: DaffMagentoSimpleProductTransformers) {}
+
+  transformMagentoProduct(product: MagentoProduct, mediaUrl: string): DaffProduct {
+    switch(product.__typename) {
+      case MagentoProductTypeEnum.BundledProduct:
+        return transformMagentoBundledProduct(this.magentoSimpleProductTransformers.transformMagentoSimpleProduct(product, mediaUrl), <MagentoBundledProduct>product);
+      case MagentoProductTypeEnum.ConfigurableProduct:
+        return transformMagentoConfigurableProduct(this.magentoSimpleProductTransformers.transformMagentoSimpleProduct(product, mediaUrl), <MagentoConfigurableProduct>product);
+      case MagentoProductTypeEnum.SimpleProduct:
+      default:
+        return this.magentoSimpleProductTransformers.transformMagentoSimpleProduct(product, mediaUrl);
+    }
+  }
+
+  /**
+   * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
+   */
+  transformManyMagentoProducts(products: MagentoProduct[], mediaUrl: string): DaffProduct[] {
+    return products.map(product => this.transformMagentoProduct(product, mediaUrl));
   }
 }
 
-/**
- * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
- */
-export function transformManyMagentoProducts(products: MagentoProduct[], mediaUrl: string): DaffProduct[] {
-  return products.map(product => transformMagentoProduct(product, mediaUrl));
-}

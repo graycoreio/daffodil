@@ -13,7 +13,7 @@ import {
   MagentoProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 
-import { transformMagentoSimpleProduct } from './simple-product-transformers';
+import { DaffMagentoSimpleProductTransformers } from './simple-product-transformers';
 
 describe('DaffMagentoSimpleProductTransformerService', () => {
   let stubMagentoProduct: MagentoProduct;
@@ -21,9 +21,11 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
   let configurableProductFactory: MagentoConfigurableProductFactory;
   const mediaUrl = 'media url';
   let expectedDaffProduct: DaffProduct;
+  let service: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+    service = TestBed.inject(DaffMagentoSimpleProductTransformers);
 
     bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);
     configurableProductFactory = TestBed.inject(MagentoConfigurableProductFactory);
@@ -59,7 +61,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
   describe('transformMagentoSimpleProduct', () => {
 
     it('should transform a MagentoProduct to a DaffProduct', () => {
-      expect(transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl)).toEqual(expectedDaffProduct);
+      expect(service.transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl)).toEqual(expectedDaffProduct);
     });
 
     describe('when there is a related bundle product', () => {
@@ -74,7 +76,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
       });
 
       it('should transform to a daff composite product', () => {
-        const result = transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
+        const result = service.transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
 
         expect(result.related[0].type).toEqual(DaffProductTypeEnum.Composite);
         expect(result.related[0].id).toEqual(relatedProduct.sku);
@@ -93,7 +95,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
       });
 
       it('should transform to a daff configurable product', () => {
-        const result = transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
+        const result = service.transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
 
         expect(result.related[0].type).toEqual(DaffProductTypeEnum.Configurable);
         expect(result.related[0].id).toEqual(relatedProduct.sku);
