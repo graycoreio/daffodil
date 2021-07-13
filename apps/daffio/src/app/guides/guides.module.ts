@@ -14,5 +14,8 @@ import { DaffioGuidesPageComponent } from './pages/guides-page.component';
   declarations: [
     DaffioGuidesPageComponent,
   ],
+  exports: [
+    DaffioGuidesPageComponent,
+  ],
 })
 export class DaffioGuidesModule {}
