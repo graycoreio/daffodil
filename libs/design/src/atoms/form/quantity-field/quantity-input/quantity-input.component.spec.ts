@@ -150,4 +150,15 @@ describe('DaffQuantityInputComponent', () => {
       expect(component.value).toEqual(wrapper.maxValue);
     });
   });
+
+  describe('when the component value is set to a non-integer value', () => {
+    beforeEach(() => {
+      component.value = 5.5;
+      fixture.detectChanges();
+    });
+
+    it('should set the value to the nearest integer', () => {
+      expect(component.value).toEqual(6);
+    });
+  });
 });
