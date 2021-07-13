@@ -139,4 +139,15 @@ describe('DaffQuantityInputComponent', () => {
       expect(inputComponent.focused).toBeTrue();
     });
   });
+
+  describe('when the component value is set to a value greater than max', () => {
+    beforeEach(() => {
+      component.value = wrapper.maxValue + 5;
+      fixture.detectChanges();
+    });
+
+    it('should set the value to max', () => {
+      expect(component.value).toEqual(wrapper.maxValue);
+    });
+  });
 });

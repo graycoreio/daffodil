@@ -52,7 +52,7 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
     return this.ngControl.control.value;
   }
   set value(value) {
-    const val = coerceNumberProperty(value);
+    const val = Math.min(coerceNumberProperty(value), this.max);
     this.ngControl.control.patchValue(val);
     this._inputControl.patchValue(val);
     this.changeDetectorRef.markForCheck();
