@@ -74,6 +74,29 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
     return Math.min(this.max, this.selectMax);
   }
 
+  get controlType() {
+    // TODO: use enum
+    return this.showInputField
+      ? 'native-input'
+      : 'native-select';
+  }
+
+  get showInputField(): boolean {
+    const ret = this._inputHasBeenShown || (this.ngControl
+      ? this.ngControl.value >= this.selectMax
+      : this.quantity >= this.selectMax);
+
+    if (ret) {
+      this._inputHasBeenShown = true;
+    }
+
+    return ret;
+  }
+
+  get showSelectField(): boolean {
+    return !this.showInputField;
+  }
+
   constructor(
     @Optional() @Self() public ngControl: NgControl,
     private cd: ChangeDetectorRef,
@@ -111,21 +134,5 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
       this.input.focus();
     }
     this.focused = true;
-  }
-
-  get showInputField(): boolean {
-    const ret = this._inputHasBeenShown || (this.ngControl
-      ? this.ngControl.value >= this.selectMax
-      : this.quantity >= this.selectMax);
-
-    if (ret) {
-      this._inputHasBeenShown = true;
-    }
-
-    return ret;
-  }
-
-  get showSelectField(): boolean {
-    return !this.showInputField;
   }
 }
