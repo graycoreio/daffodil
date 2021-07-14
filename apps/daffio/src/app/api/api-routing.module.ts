@@ -26,6 +26,9 @@ export const apiRoutes: Routes = [
     resolve: {
       doc: DocsResolver,
     },
+    data: {
+      sidebarMode: 'side',
+    },
   },
 ];
 
