@@ -21,6 +21,11 @@
 .api-list-item {
 	margin: 5px 0;
 
+	&__title {
+		align-items: center;
+		display: flex;
+	}
+
 	&__name {
 		width: 100%;
     display: block;
