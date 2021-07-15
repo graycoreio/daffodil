@@ -18,6 +18,7 @@ import {
 
 import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM,
 } from './injection-tokens/public_api';
 import {
@@ -45,12 +46,16 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraFragments: DocumentNode[],
+    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
 		private magentoProductsTransformer: DaffMagentoProductsTransformer,
   ) {}
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<MagentoGetProductResponse>({
-      query: getProduct(this.extraFragments),
+      query: getProduct([
+        ...this.extraPreviewFragments,
+        ...this.extraFragments,
+      ]),
       variables: {
         sku: productId,
       },
@@ -61,7 +66,10 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
     return this.apollo.query<MagentoGetProductResponse>({
-      query: getProductByUrl(this.extraFragments),
+      query: getProductByUrl([
+        ...this.extraPreviewFragments,
+        ...this.extraFragments,
+      ]),
       variables: {
         url: this.config.urlTruncationStrategy(url),
       },
@@ -72,7 +80,10 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
 
   getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<MagentoGetProductResponse>({
-      query: getAllProducts(this.extraFragments),
+      query: getAllProducts([
+        ...this.extraPreviewFragments,
+        ...this.extraFragments,
+      ]),
     }).pipe(
       map(result => this.magentoProductsTransformer.transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
