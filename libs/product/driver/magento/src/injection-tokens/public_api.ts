@@ -8,6 +8,10 @@ export {
   daffProvideProductMagentoExtraProductFragments,
 } from './fragments/product.token';
 export {
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
+  daffProvideProductMagentoExtraProductPreviewFragments,
+} from './fragments/product-preview.token';
+export {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
   daffProvideProductMagentoExtraProductPreviewTransforms,
 } from './transforms/product-preview/preview-extra.token';
