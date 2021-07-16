@@ -9,10 +9,6 @@
 		padding: 96px 48px;
 	}
 
-	@include breakpoint(big-tablet) {
-		padding: 96px 0;
-	}
-
 	&__tagline {
 		@include subheading();
 		margin: 0 0 8px;
