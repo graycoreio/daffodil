@@ -15,12 +15,11 @@
     "directory": "../../dist/product"
   },
   "scripts": {
-    "build": "ng build product --prod && npm run build:assets",
-    "build:assets": "cp -R assets/ ../../dist/product/assets/",
-    "lint": "cd ../.. && ng lint product",
+    "build": "ng build related-products --prod",
+    "lint": "cd ../.. && ng lint related-products",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test product --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/product; npm publish --access=public)"
+    "test": "ng test related-products --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/related-products; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
