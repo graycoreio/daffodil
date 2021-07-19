@@ -130,10 +130,16 @@ describe('DaffMediaGalleryRegistry', () => {
       expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
     });
 
-    it('should remove the thumbnail from the registry', () => {
+    it('should remove a thumbnail', () => {
       registry.remove(mockThumbnailAlreadyAdded);
 
       expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(0);
+    });
+
+    it('should remove a gallery', () => {
+      registry.remove(mockGalleryAlreadyAdded);
+
+      expect(registry.galleries[mockGalleryAlreadyAdded.name]).toBeUndefined();
     });
   });
 
