@@ -1,4 +1,5 @@
-export { MagentoSimpleProductFactory } from './simple/simple.factory';
-export { MagentoSimpleProductFactory as MagentoProductFactory } from './simple/simple.factory';
-export { MagentoBundledProductFactory } from './bundle/bundle.factory';
-export { MagentoConfigurableProductFactory } from './configurable/configurable.factory';
+export * from './simple/simple.factory';
+export * from './bundle/bundle.factory';
+export * from './configurable/configurable.factory';
+export * from './core/product.factory';
+export * from './core/product-preview.factory';
