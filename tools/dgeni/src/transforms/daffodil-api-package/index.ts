@@ -12,6 +12,7 @@ import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { MakeTypesHtmlCompatibleProcessor } from '../../processors/makeTypesHtmlCompatible';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
+import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 
 //List of packages to be left out of API generation
 const excludedPackages = ['branding'];
@@ -28,6 +29,7 @@ export const apiDocs =  new Package('checkout', [
   .processor(new MakeTypesHtmlCompatibleProcessor())
   .processor(new FilterOutPrivatePropertiesProcessor())
   .processor(new AddInheritedDocsContentProcessor())
+  .processor(new AddLinkTagToDaffodilReferencesProcessor())
   .processor(new GenerateApiListProcessor())
   .processor(new PackagesProcessor())
   .factory(function API_DOC_TYPES_TO_RENDER(EXPORT_DOC_TYPES) {
