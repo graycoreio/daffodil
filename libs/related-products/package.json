@@ -12,7 +12,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "publishConfig": {
-    "directory": "../../dist/product"
+    "directory": "../../dist/related-products"
   },
   "scripts": {
     "build": "ng build related-products --prod",
