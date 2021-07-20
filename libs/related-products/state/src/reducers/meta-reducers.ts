@@ -8,8 +8,8 @@ import {
 
 /**
  * A meta reducer that dedupes nested related products.
- * Invokes the passed reducer with a new DaffProductPageLoadSuccess containing
- * a payload missing the related products.
+ * Invokes the passed reducer with a new DaffProductPageLoadSuccess
+ * that contains a payload missing the related products.
  */
 export function daffRelatedProductsDedupeMetaReducer<T = Record<string, any>>(
   reducer: ActionReducer<T, DaffProductPageActions>,

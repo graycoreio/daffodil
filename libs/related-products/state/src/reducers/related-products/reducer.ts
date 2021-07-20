@@ -15,10 +15,6 @@ export const initialState: DaffRelatedProductsReducerState = {
 
 /**
  * Reducer function that catches actions and changes/overwrites related product state.
- *
- * @param state current State of the redux store
- * @param action a product action
- * @returns product state
  */
 export function daffRelatedProductsReducer<T extends DaffProduct>(state = initialState, action: DaffProductPageActions<T>): DaffRelatedProductsReducerState {
   switch (action.type) {
