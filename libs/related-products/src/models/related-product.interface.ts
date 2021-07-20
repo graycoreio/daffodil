@@ -1,7 +1,7 @@
 import { DaffProduct } from '@daffodil/product';
 
 /**
- * An extension of a products that includes a list of related products.
+ * An extension of a {@link DaffProduct} that includes a list of related products.
  */
 export interface DaffRelatedProduct extends DaffProduct {
   /**
