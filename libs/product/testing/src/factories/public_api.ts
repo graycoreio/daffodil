@@ -1,4 +1,4 @@
-export { DaffCompositeProductFactory } from './composite-product.factory';
-export { DaffConfigurableProductFactory } from './configurable-product.factory';
-export { DaffProductImageFactory } from './product-image.factory';
-export { DaffProductFactory } from './product.factory';
+export * from './composite-product.factory';
+export * from './configurable-product.factory';
+export * from './product-image.factory';
+export * from './product.factory';
