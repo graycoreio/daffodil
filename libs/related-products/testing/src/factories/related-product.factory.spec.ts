@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffProduct } from '@daffodil/product';
+import { DaffRelatedProduct } from '@daffodil/related-products';
 
 import { DaffRelatedProductFactory } from './related-product.factory';
 
@@ -22,7 +23,7 @@ describe('Product | Testing | Factories | DaffRelatedProductFactory', () => {
 
   describe('create', () => {
 
-    let result: DaffProduct;
+    let result: DaffRelatedProduct;
 
     beforeEach(() => {
       result = productFactory.create();
@@ -43,23 +44,14 @@ describe('Product | Testing | Factories | DaffRelatedProductFactory', () => {
       expect(result.meta_description).toBeDefined();
       expect(result.in_stock).toBeDefined();
       expect(result.related).toBeDefined();
-      expect(result.upsell).toBeDefined();
+    });
+
+    it('should return at least one related product', () => {
+      expect(result.related.length).toBeGreaterThan(0);
     });
 
     it('should the percentage as a whole number', () => {
       expect(result.discount.percent % 1).toEqual(0);
-    });
-  });
-
-  describe('createMany', () => {
-    let result: DaffProduct[];
-
-    it('should create as many products as desired', () => {
-      result = productFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = productFactory.createMany(3);
-      expect(result.length).toEqual(3);
     });
   });
 });
