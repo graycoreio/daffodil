@@ -1,2 +1,1 @@
-// TODO: implement
-export {};
+export * from './models/related-product.interface';
