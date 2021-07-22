@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.38.0](https://github.com/graycoreio/daffodil/compare/v0.37.0...v0.38.0) (2021-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** magento product transformers are no longer pure functions but are injectable services
+* **core,cart:** daffCreateMetaReducer has changed to daffComposeReducers
+* **category:** the api around the "selected" category has changed to "current" category.
+* **product:** selectors and facade fields called selectedProduct* have changed or have been removed
+* **cart:** DaffCartCoupon has a new required field, id.
+* **category:** selector types have changed
+* **demo,product:** selector types have changed
+
+### Features
+
+* **cart:** add dependency injectable reducers ([#1655](https://github.com/graycoreio/daffodil/issues/1655)) ([e64422f](https://github.com/graycoreio/daffodil/commit/e64422f98a7909c1027fddb46a315da486e8ca2a))
+* **cart:** deprecate DaffCartCoupon.coupon_id and extend the DaffIdentifiable interface ([#1659](https://github.com/graycoreio/daffodil/issues/1659)) ([8f58d35](https://github.com/graycoreio/daffodil/commit/8f58d359a7ebce729f260fbb7e8066798604b554))
+* **cart:** deprecate DaffCompositeCartItemOption.option_id in favor of DaffIdentifiable ([#1635](https://github.com/graycoreio/daffodil/issues/1635)) ([732a71a](https://github.com/graycoreio/daffodil/commit/732a71af5b1552ba01b7cc76e9261853d75c25bf))
+* **cart:** remove magento object spread in driver transforms ([#1674](https://github.com/graycoreio/daffodil/issues/1674)) ([a51570c](https://github.com/graycoreio/daffodil/commit/a51570c14f8dc5e59db2d830a07382e01e9a18c6))
+* **category:** add root state slice interface ([#1639](https://github.com/graycoreio/daffodil/issues/1639)) ([c8e1fb5](https://github.com/graycoreio/daffodil/commit/c8e1fb5a0e7813984d0421bfafd8d2e187eb5cb2))
+* **category:** change wording of selectedCategory to currentCategory ([#1658](https://github.com/graycoreio/daffodil/issues/1658)) ([c39fd27](https://github.com/graycoreio/daffodil/commit/c39fd273f9910e8d3bf12920f8b4516bdaa937ba))
+* **core,cart:** daffCreateMetaReducer -> daffComposeReducers ([#1680](https://github.com/graycoreio/daffodil/issues/1680)) ([6c15ef1](https://github.com/graycoreio/daffodil/commit/6c15ef142a78d42765fb5d90c968990412547f91))
+* **daffio:** add table of contents for guide docs ([#1607](https://github.com/graycoreio/daffodil/issues/1607)) ([86f644c](https://github.com/graycoreio/daffodil/commit/86f644c4d2fd202425cb375c0d8d55c639d4fa2c))
+* **demo,product:** add root state slice interface ([#1615](https://github.com/graycoreio/daffodil/issues/1615)) ([3e227ac](https://github.com/graycoreio/daffodil/commit/3e227acf695d44c8ec233a5c42db2e69f7ec3363))
+* **design:** add focus control to form-field ([#1647](https://github.com/graycoreio/daffodil/issues/1647)) ([64f853e](https://github.com/graycoreio/daffodil/commit/64f853eb57ac7ea2803bb36ecccd6aa44ee25c14))
+* **order:** add state root slice ([#1620](https://github.com/graycoreio/daffodil/issues/1620)) ([d206b40](https://github.com/graycoreio/daffodil/commit/d206b40cb30accb60482eb41b0343c6876e30428))
+* **order:** deprecate DaffOrderCreditCardPayment.payment_id in favor of DaffIdentifiable interface ([#1636](https://github.com/graycoreio/daffodil/issues/1636)) ([aad131d](https://github.com/graycoreio/daffodil/commit/aad131d51161eaad55fb4f44a3a3994fe3c1768e))
+* **order:** deprecate DaffOrderItem.item_id in favor of the DaffIdentifiable interface ([#1637](https://github.com/graycoreio/daffodil/issues/1637)) ([db8d758](https://github.com/graycoreio/daffodil/commit/db8d75804263359efe74b8ccb93e32106c480d40))
+* **product:** add dependency injectable meta-reducers ([#1671](https://github.com/graycoreio/daffodil/issues/1671)) ([39c110c](https://github.com/graycoreio/daffodil/commit/39c110c2dc04a57dbaa12d12f33661ef0c8e0517))
+* **product:** add magento get product response model ([#1679](https://github.com/graycoreio/daffodil/issues/1679)) ([37ae04d](https://github.com/graycoreio/daffodil/commit/37ae04d0a24851ac6bb99ee31cc41a91bcc1a876))
+* **product:** add product preview fragment injection token to magento driver ([#1692](https://github.com/graycoreio/daffodil/issues/1692)) ([03c293d](https://github.com/graycoreio/daffodil/commit/03c293dbd0acf90fbd7eaa0191191c0965f3f4cd))
+* **product:** add support for extra product fragments for Magento ([#1665](https://github.com/graycoreio/daffodil/issues/1665)) ([5223e8f](https://github.com/graycoreio/daffodil/commit/5223e8f3390df96388e7ce03051cdaddcd5e254f))
+* **product:** add upsell and related products ([#1626](https://github.com/graycoreio/daffodil/issues/1626)) ([713701d](https://github.com/graycoreio/daffodil/commit/713701d464724b5c5ef6e119d8b306cdee5b6010))
+* **product:** change instances of selectedProduct to currentProduct and remove instances of selectedProduct that are deprecated ([#1657](https://github.com/graycoreio/daffodil/issues/1657)) ([3b346a0](https://github.com/graycoreio/daffodil/commit/3b346a09df0562c0792a7ba34ffe87626dd77caf))
+* **product:** enable injection of product preview transformers ([#1684](https://github.com/graycoreio/daffodil/issues/1684)) ([21b217e](https://github.com/graycoreio/daffodil/commit/21b217ee43bb1d7b5cf5404e160206ba8e21f830))
+* **product:** export magento preview fragment ([#1693](https://github.com/graycoreio/daffodil/issues/1693)) ([91efecb](https://github.com/graycoreio/daffodil/commit/91efecb66967f5cbe336ba9fd2903a0d84c622fd))
+* **product:** export mock models ([#1696](https://github.com/graycoreio/daffodil/issues/1696)) ([0a926ef](https://github.com/graycoreio/daffodil/commit/0a926ef504f4f6cf6fd63f9aba85f3a8720ec5db))
+* **product:** inject extra product driver response transforms ([#1669](https://github.com/graycoreio/daffodil/issues/1669)) ([d018425](https://github.com/graycoreio/daffodil/commit/d0184259ce473738e31ea991aa01e1abe70be9e6))
+* **related-products:** add related product model ([#1699](https://github.com/graycoreio/daffodil/issues/1699)) ([9a26c10](https://github.com/graycoreio/daffodil/commit/9a26c1021eb6e71a1fb9c3c307010da9ccf20a7d))
+* **related-products:** add related products package scaffold ([#1698](https://github.com/graycoreio/daffodil/issues/1698)) ([d0e1b7b](https://github.com/graycoreio/daffodil/commit/d0e1b7bb34ccec4c7602b793727fd8fa29f8d231))
+* **seo:** add canonical service ([#1643](https://github.com/graycoreio/daffodil/issues/1643)) ([0ead503](https://github.com/graycoreio/daffodil/commit/0ead503a18fc8d4e840d12f95b717289a0bd8f20))
+* **seo:** add initial package scaffold ([#1633](https://github.com/graycoreio/daffodil/issues/1633)) ([36a01b8](https://github.com/graycoreio/daffodil/commit/36a01b8e9c323a70f178eec35478d2f1761d5977))
+
+
+### Bug Fixes
+
+* **product:** the DaffConfigurableProductFacade.hasDiscount test is incorrect ([#1641](https://github.com/graycoreio/daffodil/issues/1641)) ([c7cea5a](https://github.com/graycoreio/daffodil/commit/c7cea5ab7d72942b5a8d100a141d9193c1e52f1c))
+* **tools-dgeni:** the generated guide list should not include the toc ([#1640](https://github.com/graycoreio/daffodil/issues/1640)) ([36219d9](https://github.com/graycoreio/daffodil/commit/36219d9cc2a6eea599a617bdb8d2412cb5c89da1))
+
 ## [0.37.0](https://github.com/graycoreio/daffodil/compare/v0.36.1...v0.37.0) (2021-06-25)
 
 
