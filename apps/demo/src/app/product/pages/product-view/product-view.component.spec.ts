@@ -25,7 +25,7 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductLoad } from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
-  MockDaffProductFacade,
+  MockDaffProductPageFacade,
 } from '@daffodil/product/state/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -63,7 +63,7 @@ describe('ProductViewComponent', () => {
   let cartFacade: MockDaffCartFacade;
   let productComponent: ProductComponent;
   let addToCartComponent: AddToCartComponent;
-  let facade: MockDaffProductFacade;
+  let facade: MockDaffProductPageFacade;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -89,7 +89,7 @@ describe('ProductViewComponent', () => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-    facade = TestBed.inject(MockDaffProductFacade);
+    facade = TestBed.inject(MockDaffProductPageFacade);
     cartFacade = TestBed.inject(MockDaffCartFacade);
 
     fixture.detectChanges();

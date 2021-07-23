@@ -20,7 +20,7 @@ import {
 } from '@daffodil/cart/state';
 import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProductFacade,
+  DaffProductPageFacade,
   DaffProductLoad,
 } from '@daffodil/product/state';
 
@@ -36,7 +36,7 @@ export class ProductViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-		private productViewFacade: DaffProductFacade<DaffProduct>,
+		private productViewFacade: DaffProductPageFacade,
 		private cartFacade: DaffCartFacade,
   ) { }
 
