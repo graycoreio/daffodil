@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.1](https://github.com/graycoreio/daffodil/compare/v0.38.0...v0.38.1) (2021-07-23)
+
+
+### Features
+
+* **product:** add product page facade ([#1702](https://github.com/graycoreio/daffodil/issues/1702)) ([3f62774](https://github.com/graycoreio/daffodil/commit/3f62774b38b85a31586ce461f0ee624e2c1d8fb3))
+
 ## [0.38.0](https://github.com/graycoreio/daffodil/compare/v0.37.0...v0.38.0) (2021-07-22)
 
 
