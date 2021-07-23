@@ -28,6 +28,10 @@ export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffPr
 	 * Selects the id of the current product.
 	 */
 	selectCurrentProductId: MemoizedSelector<DaffProductStateRootSlice, T['id']>;
+  /**
+   * Selects the current product, which is the product loaded for a product page.
+   */
+	selectCurrentProduct: MemoizedSelector<DaffProductStateRootSlice, T>;
 }
 
 const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {
@@ -51,10 +55,17 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
     (state: DaffProductReducerState) => state.currentProductId,
   );
 
+  const selectCurrentProduct = createSelector(
+    selectProductState,
+    selectCurrentProductId,
+    (state: DaffProductReducersState<T>, id: T['id']) => state.products.entities[id],
+  );
+
   return {
     selectCurrentProductState,
     selectCurrentProductLoadingState,
     selectCurrentProductId,
+    selectCurrentProduct,
   };
 };
 

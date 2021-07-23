@@ -28,6 +28,7 @@ describe('selectProductState', () => {
     selectCurrentProductLoadingState,
     selectCurrentProductState,
     selectCurrentProductId,
+    selectCurrentProduct,
   } = getDaffProductPageSelectors();
 
   beforeEach(() => {
@@ -87,6 +88,15 @@ describe('selectProductState', () => {
       it('returns the current product id', () => {
         const selector = store.pipe(select(selectCurrentProductId));
         const expected = cold('a', { a: mockProduct.id });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('selectCurrentProduct', () => {
+      it('selects the selected product', () => {
+        const selector = store.pipe(select(selectCurrentProduct));
+        const expected = cold('a', { a: mockProduct });
 
         expect(selector).toBeObservable(expected);
       });
