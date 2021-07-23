@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.2](https://github.com/graycoreio/daffodil/compare/v0.38.1...v0.38.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* **product:** Magento driver prefixing thumbnail URL ([#1703](https://github.com/graycoreio/daffodil/issues/1703)) ([dc9bef0](https://github.com/graycoreio/daffodil/commit/dc9bef00f72bc4249bae966879ff487594904559))
+
 ### [0.38.1](https://github.com/graycoreio/daffodil/compare/v0.38.0...v0.38.1) (2021-07-23)
 
 
