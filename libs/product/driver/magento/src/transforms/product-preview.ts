@@ -40,16 +40,16 @@ export function transformMagentoSimpleProductPreview(product: MagentoProductPrev
     id: product.sku,
     url: `/${product.url_key}${product.url_suffix}`,
     name: product.name,
-    thumbnail: transformImage(product.thumbnail, mediaUrl),
+    thumbnail: transformThumbnail(product.thumbnail),
     price: getPrice(product),
     discount: getDiscount(product),
     images: transformMediaGalleryEntries(product, mediaUrl),
   };
 }
 
-function transformImage(image: MagentoProduct['thumbnail'], mediaUrl: string): DaffProductImage {
+function transformThumbnail(image: MagentoProduct['thumbnail']): DaffProductImage {
   return {
-    url: `${mediaUrl}catalog/product${image.url}`,
+    url: image.url,
     label: image.label,
     id: null,
   };

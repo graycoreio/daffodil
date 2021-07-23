@@ -44,7 +44,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
       },
       images: [],
       thumbnail: {
-        url: `${mediaUrl}catalog/product${stubMagentoProduct.thumbnail.url}`,
+        url: stubMagentoProduct.thumbnail.url,
         label: stubMagentoProduct.thumbnail.label,
         id: null,
       },
