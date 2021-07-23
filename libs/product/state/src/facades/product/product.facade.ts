@@ -22,7 +22,6 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
 })
 export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
   loading$: Observable<boolean>;
-  product$: Observable<T>;
 
 	private selectors = getDaffProductSelectors<T>();
 

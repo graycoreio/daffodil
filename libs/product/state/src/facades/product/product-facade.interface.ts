@@ -9,7 +9,9 @@ import { DaffProduct } from '@daffodil/product';
  */
 export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct> extends DaffStoreFacade<Action> {
 	/**
-	 * Whether a product is being loaded.
+	 * Whether the product page is loading.
+	 *
+	 * @deprecated prefer {@link DaffProductPageFacadeInterface#loading$}
 	 */
 	loading$: Observable<boolean>;
 
