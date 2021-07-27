@@ -18,7 +18,6 @@ export interface MagentoBundledProductItem {
 	type: string;
 	options: MagentoBundledProductItemOption[];
 	option_id?: number;
-	position?: number;
 }
 
 export interface MagentoBundledProductItemOption {
@@ -28,7 +27,6 @@ export interface MagentoBundledProductItemOption {
 	quantity: number;
 	can_change_quantity?: boolean;
 	is_default: boolean;
-	position?: number;
 	price_type?: MagentoPriceTypeEnum;
 	product?: MagentoSimpleProduct;
 }

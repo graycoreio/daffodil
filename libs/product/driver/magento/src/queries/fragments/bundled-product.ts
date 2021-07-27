@@ -5,7 +5,6 @@ export const magentoBundledProductFragment = gql`
   fragment magentoBundledProduct on BundleProduct {
 		items {
 			option_id
-			position
 			required
 			sku
 			title
@@ -15,7 +14,6 @@ export const magentoBundledProductFragment = gql`
 				uid
 				is_default
 				label
-				position
 				price_type
 				price
 				quantity
