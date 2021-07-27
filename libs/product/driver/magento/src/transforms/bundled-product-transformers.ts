@@ -29,11 +29,13 @@ export function transformMagentoBundledProduct(
 ): DaffCompositeProduct {
   return {
     ...daffProduct,
-    price: 0,
-    discount: {
-      amount: 0,
-      percent: 0,
-    },
+    ...items.length > 0 ? {
+      price: 0,
+      discount: {
+        amount: 0,
+        percent: 0,
+      },
+    } : {},
     type: DaffProductTypeEnum.Composite,
     items: items.map(transformMagentoBundledProductItem),
   };
