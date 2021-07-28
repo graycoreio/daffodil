@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
-import { DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY } from './reducers/public_api';
+import { daffProductProvideMetaReducers } from '@daffodil/product/state';
+
+import {
+  DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY,
+  daffRelatedProductsDedupeMetaReducer,
+} from './reducers/public_api';
 import { daffRelatedProductsReducers } from './reducers/reducers';
 
 /**
@@ -10,6 +15,9 @@ import { daffRelatedProductsReducers } from './reducers/reducers';
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY, daffRelatedProductsReducers),
+  ],
+  providers: [
+    ...daffProductProvideMetaReducers(daffRelatedProductsDedupeMetaReducer),
   ],
 })
 export class DaffRelatedProductStateModule {}
