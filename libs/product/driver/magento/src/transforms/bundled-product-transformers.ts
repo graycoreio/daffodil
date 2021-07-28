@@ -12,6 +12,7 @@ import {
   MagentoBundledProduct,
   MagentoBundledProductItem,
   MagentoBundledProductItemOption,
+  MagentoBundledProductItemOptionProduct,
 } from '../models/bundled-product';
 import { MagentoProductStockStatusEnum } from '../models/magento-product';
 
@@ -65,11 +66,11 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 /**
  * A function for null checking an object.
  */
-function getPrice(product): number {
+function getPrice(product: MagentoBundledProductItemOptionProduct): number {
   return product.price_range?.maximum_price?.regular_price?.value || null;
 }
 
-function getDiscount(product): DaffProductDiscount {
+function getDiscount(product: MagentoBundledProductItemOptionProduct): DaffProductDiscount {
   return product.price_range?.maximum_price?.discount
     ? {
       amount: product.price_range.maximum_price.discount.amount_off,

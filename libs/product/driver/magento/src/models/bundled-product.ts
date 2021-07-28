@@ -26,18 +26,20 @@ export interface MagentoBundledProductItemOption {
 	label: string;
 	quantity: number;
 	is_default: boolean;
-	product: {
-		stock_status: MagentoProductStockStatusEnum;
-		price_range: {
-			maximum_price: {
-				regular_price: {
-					value: number;
-					currency: any;
-				};
-				discount: {
-					amount_off: number;
-					percent_off: number;
-				};
+	product: MagentoBundledProductItemOptionProduct;
+}
+
+export interface MagentoBundledProductItemOptionProduct {
+	stock_status?: MagentoProductStockStatusEnum;
+	price_range: {
+		maximum_price: {
+			regular_price: {
+				value: number;
+				currency: any;
+			};
+			discount: {
+				amount_off: number;
+				percent_off: number;
 			};
 		};
 	};
