@@ -34,7 +34,6 @@
 	"items": [
 		{
 			"option_id": 1,
-			"sku": "22-1",
 			"required": false,
 			"title": "Options",
 			"type": "select",
@@ -42,24 +41,10 @@
 				{
 					"uid": "1",
 					"label": "Option 1",
-					"price": 10,
 					"quantity": 1,
 					"is_default": true,
 					"product": {
 						"__typename": "name",
-						"uid": "14",
-						"name": "name",
-						"image": {
-							"label": "image-label",
-							"url": "image-url"
-						},
-						"thumbnail": {
-							"url": "thumbnail-url",
-							"label": "thumbnail-label"
-						},
-						"sku": "22",
-						"url_key": "url",
-            "url_suffix": ".html",
 						"price_range": {
 							"maximum_price": {
 								"regular_price": {
@@ -77,24 +62,10 @@
 				{
 					"uid": "2",
 					"label": "Option 2",
-					"price": 12,
 					"quantity": 1,
 					"is_default": false,
 					"product": {
 						"__typename": "name",
-						"uid": "24",
-						"name": "name",
-						"image": {
-							"label": "image-label",
-							"url": "image-url"
-						},
-						"thumbnail": {
-							"url": "thumbnail-url",
-							"label": "thumbnail-label"
-						},
-						"sku": "22",
-						"url_key": "url",
-            "url_suffix": ".html",
 						"price_range": {
 							"maximum_price": {
 								"regular_price": {

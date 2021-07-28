@@ -6,21 +6,14 @@ export const magentoBundledProductFragment = gql`
 		items {
 			option_id
 			required
-			sku
 			title
 			type
 			options {
-				can_change_quantity
 				uid
 				is_default
 				label
-				price_type
-				price
 				quantity
 				product {
-					uid
-					name
-					sku
 					stock_status
 					price_range {
 						maximum_price {

@@ -1,5 +1,7 @@
-import { MagentoProduct } from './magento-product';
-import { MagentoSimpleProduct } from './simple-product';
+import {
+  MagentoProduct,
+  MagentoProductStockStatusEnum,
+} from './magento-product';
 
 export enum MagentoPriceTypeEnum {
 	fixed = 'FIXED',
@@ -13,7 +15,6 @@ export interface MagentoBundledProduct extends MagentoProduct {
 
 export interface MagentoBundledProductItem {
 	required: boolean;
-	sku: string;
 	title: string;
 	type: string;
 	options: MagentoBundledProductItemOption[];
@@ -23,10 +24,21 @@ export interface MagentoBundledProductItem {
 export interface MagentoBundledProductItemOption {
 	uid: string;
 	label: string;
-	price: number;
 	quantity: number;
-	can_change_quantity?: boolean;
 	is_default: boolean;
-	price_type?: MagentoPriceTypeEnum;
-	product?: MagentoSimpleProduct;
+	product: {
+		stock_status: MagentoProductStockStatusEnum;
+		price_range: {
+			maximum_price: {
+				regular_price: {
+					value: number;
+					currency: any;
+				};
+				discount: {
+					amount_off: number;
+					percent_off: number;
+				};
+			};
+		};
+	};
 }
