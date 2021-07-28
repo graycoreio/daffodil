@@ -50,6 +50,10 @@ describe('@daffodil/seo | DaffCanonicalService', () => {
       it('should update the existing link element', () => {
         expect(link.getAttribute('href')).toEqual(url);
       });
+
+      it('should cache the URL', () => {
+        expect(service.url).toEqual(url);
+      });
     });
 
     describe('when a canonical link tag does not exist', () => {
@@ -60,6 +64,10 @@ describe('@daffodil/seo | DaffCanonicalService', () => {
       it('should add a link tag to the document head', () => {
         const el = document.head.querySelector('link[rel="canonical"]');
         expect(el).toBeTruthy();
+      });
+
+      it('should cache the URL', () => {
+        expect(service.url).toEqual(url);
       });
     });
   });
