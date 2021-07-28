@@ -21,15 +21,32 @@ describe('DaffMagentoBundledProductTransformers', () => {
   });
 
   describe('transform', () => {
-    const magentoBundledProduct: MagentoBundledProduct = {
-      ...magentoBundledProductData,
-      stock_status: MagentoProductStockStatusEnum.InStock,
-    };
-    magentoBundledProduct.items[0].options[0].product.stock_status = MagentoProductStockStatusEnum.InStock;
-    magentoBundledProduct.items[0].options[1].product.stock_status = MagentoProductStockStatusEnum.InStock;
+    let magentoBundledProduct: MagentoBundledProduct;
+
+    beforeEach(() => {
+      magentoBundledProduct = {
+        ...magentoBundledProductData,
+        stock_status: MagentoProductStockStatusEnum.InStock,
+      };
+      magentoBundledProduct.items[0].options[0].product.stock_status = MagentoProductStockStatusEnum.InStock;
+      magentoBundledProduct.items[0].options[1].product.stock_status = MagentoProductStockStatusEnum.InStock;
+    });
 
     it('should transform a MagentoBundledProduct to a DaffCompositeProduct', () => {
       expect(transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct)).toEqual(jasmine.objectContaining(daffCompositeProductData));
+    });
+
+    it('should replace the base prices with 0 when bundled product items are present', () => {
+      expect(
+        transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct).price,
+      ).toEqual(0);
+    });
+
+    it('should add the base prices to the transformed product when bundled product items are missing', () => {
+      magentoBundledProduct.items = [];
+      expect(
+        transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct).price,
+      ).toEqual(magentoBundledProduct.price_range.maximum_price.regular_price.value);
     });
   });
 });
