@@ -1,0 +1,10 @@
+<input daff-input
+  type="number"
+  [attr.max]="max"
+  [attr.min]="min"
+  [attr.step]="1"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (change)="onValueChange($event)"
+  [formControl]="_inputControl"
+>

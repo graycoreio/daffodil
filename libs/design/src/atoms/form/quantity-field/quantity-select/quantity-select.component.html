@@ -1,0 +1,5 @@
+<select daff-native-select [formControl]="ngControl.control">
+  <option *ngFor="let item of valueArray" [value]="item">{{ item }}</option>
+  <option [value]="max" *ngIf="extendable">{{ max }}+</option>
+  <option [value]="max" *ngIf="!extendable">{{ max }}</option>
+</select>
