@@ -41,3 +41,6 @@ export * from './molecules/card/public_api';
 
 // Core
 export * from './core/public_api';
+
+// Examples
+export * from './examples/public_api';
