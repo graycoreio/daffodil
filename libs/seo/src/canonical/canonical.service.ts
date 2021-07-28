@@ -12,13 +12,28 @@ const CSS_SELECTOR = 'link[rel="canonical"]';
  * @inheritdoc
  */
 // TODO: fix document type and remove casts
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DaffCanonicalService implements DaffCanonicalServiceInterface {
+  private _url: string;
+
+  /**
+   * The most recently upserted URL.
+   * Is not cleared when the URL is removed.
+   */
+  get url(): string {
+    return this._url;
+  }
+
+  /**
+   * The canonical link element.
+   */
   get canonicalLink(): HTMLLinkElement {
     return this.documentHead.querySelector<HTMLLinkElement>(CSS_SELECTOR);
   }
 
-  get documentHead(): HTMLHeadElement {
+  private get documentHead(): HTMLHeadElement {
     return (<Document>this.document).head;
   }
 
@@ -26,6 +41,9 @@ export class DaffCanonicalService implements DaffCanonicalServiceInterface {
     @Inject(DOCUMENT) private document: any,
   ) {}
 
+  /**
+   * Inserts or updates a canonical URL into the document head.
+   */
   upsert(url: string): void {
     const el = this.canonicalLink;
 
@@ -37,8 +55,13 @@ export class DaffCanonicalService implements DaffCanonicalServiceInterface {
       link.setAttribute('href', url);
       this.documentHead.appendChild(link);
     }
+
+    this._url = url;
   }
 
+  /**
+   * Removes the canonical link element from the document head.
+   */
   remove(): void {
     const el = this.canonicalLink;
 
