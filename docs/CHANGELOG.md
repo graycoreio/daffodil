@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.3](https://github.com/graycoreio/daffodil/compare/v0.38.2...v0.38.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* **product:** add workaround for magento not returning bundled product items in related/upsell products ([#1706](https://github.com/graycoreio/daffodil/issues/1706)) ([da5cc32](https://github.com/graycoreio/daffodil/commit/da5cc3262c41b301a666466bd011caf0ff9daba9))
+
 ### [0.38.2](https://github.com/graycoreio/daffodil/compare/v0.38.1...v0.38.2) (2021-07-23)
 
 
