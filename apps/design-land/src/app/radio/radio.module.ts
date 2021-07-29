@@ -15,6 +15,6 @@ import { DesignLandRadioComponent } from './radio.component';
     CommonModule,
   ],
 })
-export class RadioModule {
+export class DesignLandRadioModule {
 
 }
