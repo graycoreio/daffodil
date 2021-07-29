@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DesignLandTypographyComponent } from './typography.component';
-import { DesignLandTypographyRoutingModule } from './typography-routing.module';
+import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design';
 
+import { DesignLandTypographyRoutingModule } from './typography-routing.module';
+import { DesignLandTypographyComponent } from './typography.component';
+
+
 @NgModule({
   declarations: [
-    DesignLandTypographyComponent
+    DesignLandTypographyComponent,
   ],
   imports: [
     CommonModule,
     DesignLandTypographyRoutingModule,
-    DaffArticleModule
+    DaffArticleModule,
   ],
 })
 export class DesignLandTypographyModule {}

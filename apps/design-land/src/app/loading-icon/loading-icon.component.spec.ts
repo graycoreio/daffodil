@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { LoadingIconComponent } from './loading-icon.component';
+import { DesignLandLoadingIconComponent } from './loading-icon.component';
 
-describe('LoadingIconComponent', () => {
-  let component: LoadingIconComponent;
-  let fixture: ComponentFixture<LoadingIconComponent>;
+describe('DesignLandLoadingIconComponent', () => {
+  let component: DesignLandLoadingIconComponent;
+  let fixture: ComponentFixture<DesignLandLoadingIconComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadingIconComponent ],
+      declarations: [ DesignLandLoadingIconComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoadingIconComponent);
+    fixture = TestBed.createComponent(DesignLandLoadingIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { SidebarComponent } from './sidebar.component';
+import { DesignLandSidebarComponent } from './sidebar.component';
 
-describe('SidebarComponent', () => {
-  let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+describe('DesignLandSidebarComponent', () => {
+  let component: DesignLandSidebarComponent;
+  let fixture: ComponentFixture<DesignLandSidebarComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ],
+      declarations: [ DesignLandSidebarComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarComponent);
+    fixture = TestBed.createComponent(DesignLandSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

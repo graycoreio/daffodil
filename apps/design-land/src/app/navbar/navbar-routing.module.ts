@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { NavbarComponent } from './navbar.component';
+
+import { DesignLandNavbarComponent } from './navbar.component';
 
 export const loadingRoutes: Routes = [
-  { path: '', component: NavbarComponent },
+  { path: '', component: DesignLandNavbarComponent },
 ];
 
 @NgModule({

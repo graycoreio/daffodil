@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LinkSetComponent } from './link-set.component';
-import { DesignLandLinkSetRoutingModule } from './link-set-routing.module';
+import { NgModule } from '@angular/core';
 
 import { DaffLinkSetModule } from '@daffodil/design';
 
+import { DesignLandLinkSetRoutingModule } from './link-set-routing.module';
+import { DesignLandLinkSetComponent } from './link-set.component';
+
+
 @NgModule({
   declarations: [
-    LinkSetComponent,
+    DesignLandLinkSetComponent,
   ],
   imports: [
     CommonModule,
@@ -17,4 +18,4 @@ import { DaffLinkSetModule } from '@daffodil/design';
     DaffLinkSetModule,
   ],
 })
-export class LinkSetModule { }
+export class DesignLandLinkSetModule { }

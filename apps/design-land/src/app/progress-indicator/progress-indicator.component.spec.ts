@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { ProgressIndicatorComponent } from './progress-indicator.component';
+import { DesignLandProgressIndicatorComponent } from './progress-indicator.component';
 
-describe('ProgressIndicatorComponent', () => {
-  let component: ProgressIndicatorComponent;
-  let fixture: ComponentFixture<ProgressIndicatorComponent>;
+describe('DesignLandProgressIndicatorComponent', () => {
+  let component: DesignLandProgressIndicatorComponent;
+  let fixture: ComponentFixture<DesignLandProgressIndicatorComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProgressIndicatorComponent ],
+      declarations: [ DesignLandProgressIndicatorComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProgressIndicatorComponent);
+    fixture = TestBed.createComponent(DesignLandProgressIndicatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

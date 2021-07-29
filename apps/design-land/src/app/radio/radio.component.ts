@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],
 })
-export class RadioComponent {
+export class DesignLandRadioComponent {
 
 }

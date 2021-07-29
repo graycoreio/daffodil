@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { RadioComponent } from './radio.component';
+import { DesignLandRadioComponent } from './radio.component';
 
-describe('RadioComponent', () => {
-  let component: RadioComponent;
-  let fixture: ComponentFixture<RadioComponent>;
+describe('DesignLandRadioComponent', () => {
+  let component: DesignLandRadioComponent;
+  let fixture: ComponentFixture<DesignLandRadioComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RadioComponent ],
+      declarations: [ DesignLandRadioComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RadioComponent);
+    fixture = TestBed.createComponent(DesignLandRadioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

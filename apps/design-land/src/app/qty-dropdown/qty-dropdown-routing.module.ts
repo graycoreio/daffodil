@@ -1,14 +1,15 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { QtyDropdownComponent } from './qty-dropdown.component';
+
+import { DesignLandQtyDropdownComponent } from './qty-dropdown.component';
 
 
 
 export const qtyDropdownRoutes: Routes = [
-  { path: '', component: QtyDropdownComponent },
+  { path: '', component: DesignLandQtyDropdownComponent },
 ];
 
 @NgModule({

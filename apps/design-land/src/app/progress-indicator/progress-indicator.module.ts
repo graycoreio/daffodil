@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProgressIndicatorComponent } from './progress-indicator.component';
+import { NgModule } from '@angular/core';
 
 import { DaffProgressIndicatorModule } from '@daffodil/design';
+
 import { DesignLandProgressIndicatorRoutingModule } from './progress-indicator-routing.module';
+import { DesignLandProgressIndicatorComponent } from './progress-indicator.component';
 
 @NgModule({
   declarations: [
-    ProgressIndicatorComponent,
+    DesignLandProgressIndicatorComponent,
   ],
   imports: [
     CommonModule,
@@ -15,4 +16,4 @@ import { DesignLandProgressIndicatorRoutingModule } from './progress-indicator-r
     DesignLandProgressIndicatorRoutingModule,
   ],
 })
-export class ProgressIndicatorModule { }
+export class DesignLandProgressIndicatorModule { }

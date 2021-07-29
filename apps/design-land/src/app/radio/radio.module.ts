@@ -1,27 +1,20 @@
-import { NgModule } from '@angular/core';
-import {
-  DaffRadioModule,
-  DaffButtonModule,
-} from '@daffodil/design';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { RadioComponent } from './radio.component';
-import { DesignLandRadioRoutingModule } from './radio-routing.module';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
+import { DesignLandRadioRoutingModule } from './radio-routing.module';
+import { DesignLandRadioComponent } from './radio.component';
 
 @NgModule({
   declarations: [
-    RadioComponent,
+    DesignLandRadioComponent,
   ],
   imports: [
     DesignLandExampleViewerModule,
     DesignLandRadioRoutingModule,
-    DaffRadioModule,
-    ReactiveFormsModule,
     CommonModule,
   ],
 })
-export class RadioModule {
+export class DesignLandRadioModule {
 
 }

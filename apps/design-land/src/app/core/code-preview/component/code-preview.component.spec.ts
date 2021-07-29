@@ -1,9 +1,9 @@
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { CodePreviewComponent } from './code-preview.component';
@@ -50,6 +50,7 @@ describe('CodePreviewComponent', () => {
     })
       .compileComponents();
   }));
+
   describe('for its inputs', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(WrapperComponent);
@@ -57,12 +58,15 @@ describe('CodePreviewComponent', () => {
       component = fixture.debugElement.query(By.css('design-land-code-preview')).componentInstance;
       fixture.detectChanges();
     });
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
     it('should take a title for an input', () => {
       expect(component.title).toBe('testTitle');
     });
+
     it('should take an example for an input', () => {
       expect(component.example).toBe(wrapper.exampleComponent);
     });

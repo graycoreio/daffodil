@@ -1,9 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DesignLandExampleViewerContainer } from './example-viewer.component';
 

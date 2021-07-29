@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { DesignLandFormRoutingModule } from './form-routing.module';
-
-import { FormComponent } from './form.component';
 import {
   DaffInputModule,
   DaffFormFieldModule,
   DaffButtonModule,
 } from '@daffodil/design';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { DesignLandFormRoutingModule } from './form-routing.module';
+import { DesignLandFormComponent } from './form.component';
 
 @NgModule({
   declarations: [
-    FormComponent,
+    DesignLandFormComponent,
   ],
   imports: [
     CommonModule,
@@ -24,4 +24,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     DaffButtonModule,
   ],
 })
-export class FormModule { }
+export class DesignLandFormModule { }

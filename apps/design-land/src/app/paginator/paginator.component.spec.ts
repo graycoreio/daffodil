@@ -6,11 +6,11 @@ import {
 
 import { DaffPaginatorModule } from '@daffodil/design';
 
-import { PaginatorComponent } from './paginator.component';
+import { DesignLandPaginatorComponent } from './paginator.component';
 
-describe('PaginatorComponent', () => {
-  let component: PaginatorComponent;
-  let fixture: ComponentFixture<PaginatorComponent>;
+describe('DesignLandPaginatorComponent', () => {
+  let component: DesignLandPaginatorComponent;
+  let fixture: ComponentFixture<DesignLandPaginatorComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -18,14 +18,14 @@ describe('PaginatorComponent', () => {
         DaffPaginatorModule,
       ],
       declarations: [
-        PaginatorComponent,
+        DesignLandPaginatorComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginatorComponent);
+    fixture = TestBed.createComponent(DesignLandPaginatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

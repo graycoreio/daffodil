@@ -4,23 +4,23 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import { DesignLandCheckboxComponent } from './checkbox.component';
 
-describe('CheckboxComponent', () => {
-  let component: CheckboxComponent;
-  let fixture: ComponentFixture<CheckboxComponent>;
+describe('DesignLandCheckboxComponent', () => {
+  let component: DesignLandCheckboxComponent;
+  let fixture: ComponentFixture<DesignLandCheckboxComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CheckboxComponent,
+        DesignLandCheckboxComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxComponent);
+    fixture = TestBed.createComponent(DesignLandCheckboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

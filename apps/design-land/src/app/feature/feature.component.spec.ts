@@ -4,23 +4,23 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { FeatureComponent } from './feature.component';
+import { DesignLandFeatureComponent } from './feature.component';
 
-describe('FeatureComponent', () => {
-  let component: FeatureComponent;
-  let fixture: ComponentFixture<FeatureComponent>;
+describe('DesignLandFeatureComponent', () => {
+  let component: DesignLandFeatureComponent;
+  let fixture: ComponentFixture<DesignLandFeatureComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        FeatureComponent,
+        DesignLandFeatureComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FeatureComponent);
+    fixture = TestBed.createComponent(DesignLandFeatureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

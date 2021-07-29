@@ -8,7 +8,7 @@ import { DaffModalModule } from '@daffodil/design';
 
 import { DesignLandModalComponent } from './modal.component';
 
-describe('ModalComponent', () => {
+describe('DesignLandModalComponent', () => {
   let component: DesignLandModalComponent;
   let fixture: ComponentFixture<DesignLandModalComponent>;
 

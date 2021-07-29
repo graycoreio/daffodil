@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { CodeExampleService } from './code-example.service';
 
@@ -26,6 +26,7 @@ describe('CodeExampleService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
   describe('and the get method', () => {
     it('should return an unknown example', () => {
       service.get('test').subscribe(resp => {

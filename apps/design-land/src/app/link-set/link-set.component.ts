@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './link-set.component.html',
   styleUrls: ['./link-set.component.scss'],
 })
-export class LinkSetComponent {}
+export class DesignLandLinkSetComponent {}

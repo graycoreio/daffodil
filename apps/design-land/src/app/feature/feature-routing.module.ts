@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { FeatureComponent } from './feature.component';
+
+import { DesignLandFeatureComponent } from './feature.component';
 
 export const featureRoutes: Routes = [
-  { path: '', component: FeatureComponent },
+  { path: '', component: DesignLandFeatureComponent },
 ];
 
 @NgModule({

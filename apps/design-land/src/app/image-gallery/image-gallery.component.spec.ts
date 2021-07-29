@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { ImageGalleryComponent } from './image-gallery.component';
+import { DesignLandImageGalleryComponent } from './image-gallery.component';
 
-describe('ImageGalleryComponent', () => {
-  let component: ImageGalleryComponent;
-  let fixture: ComponentFixture<ImageGalleryComponent>;
+describe('DesignLandImageGalleryComponent', () => {
+  let component: DesignLandImageGalleryComponent;
+  let fixture: ComponentFixture<DesignLandImageGalleryComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageGalleryComponent ],
+      declarations: [ DesignLandImageGalleryComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImageGalleryComponent);
+    fixture = TestBed.createComponent(DesignLandImageGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

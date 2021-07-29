@@ -1,8 +1,9 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
+
 import { DesignLandListComponent } from './list.component';
 
 export const listRoutes: Routes = [

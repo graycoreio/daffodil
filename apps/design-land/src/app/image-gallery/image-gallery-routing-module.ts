@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { ImageGalleryComponent } from './image-gallery.component';
+
+import { DesignLandImageGalleryComponent } from './image-gallery.component';
 
 export const imagegalleryRoutes: Routes = [
-  { path: '', component: ImageGalleryComponent },
+  { path: '', component: DesignLandImageGalleryComponent },
 ];
 
 @NgModule({

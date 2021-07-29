@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CardComponent } from './card.component';
+
+import { DesignLandCardComponent } from './card.component';
 
 export const cardRoutes: Routes = [
-  { path: '', component: CardComponent },
+  { path: '', component: DesignLandCardComponent },
 ];
 
 @NgModule({

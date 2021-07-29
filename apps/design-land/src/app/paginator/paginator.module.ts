@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { DaffPaginatorModule } from '@daffodil/design';
 
-import { PaginatorComponent } from './paginator.component';
 import { DesignLandPaginatorRoutingModule } from './paginator-routing.module';
+import { DesignLandPaginatorComponent } from './paginator.component';
 
 @NgModule({
   declarations: [
-    PaginatorComponent,
+    DesignLandPaginatorComponent,
   ],
   imports: [
     CommonModule,
@@ -16,4 +16,4 @@ import { DesignLandPaginatorRoutingModule } from './paginator-routing.module';
     DesignLandPaginatorRoutingModule,
   ],
 })
-export class PaginatorModule { }
+export class DesignLandPaginatorModule { }
