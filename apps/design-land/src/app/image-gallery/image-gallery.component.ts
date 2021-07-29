@@ -2,15 +2,13 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { selectDemoImageGalleryState } from 'apps/demo/src/app/core/image-gallery/reducers';
-import { Image } from 'libs/design/src/interfaces/image';
 
 @Component({
   selector: 'design-land-image-gallery',
   templateUrl: './image-gallery.component.html',
   styleUrls: ['./image-gallery.component.scss'],
 })
-export class ImageGalleryComponent implements OnInit {
+export class DesignLandImageGalleryComponent implements OnInit {
 
   selectedImage = { url: '', label: '' };
 

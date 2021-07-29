@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar.component';
-
-import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
+import { NgModule } from '@angular/core';
 
 import {
   DaffNavbarModule,
   DaffButtonModule,
 } from '@daffodil/design';
 
+import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
+import { DesignLandNavbarComponent } from './navbar.component';
+
+
 @NgModule({
   declarations: [
-    NavbarComponent,
+    DesignLandNavbarComponent,
   ],
   imports: [
     CommonModule,
@@ -21,4 +22,4 @@ import {
     DaffButtonModule,
   ],
 })
-export class NavbarModule { }
+export class DesignLandNavbarModule { }

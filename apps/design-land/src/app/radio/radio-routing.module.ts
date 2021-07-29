@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { RadioComponent } from './radio.component';
+
+import { DesignLandRadioComponent } from './radio.component';
 
 export const radioIndicatorRoutes: Routes = [
-  { path: '', component: RadioComponent },
+  { path: '', component: DesignLandRadioComponent },
 ];
 
 @NgModule({

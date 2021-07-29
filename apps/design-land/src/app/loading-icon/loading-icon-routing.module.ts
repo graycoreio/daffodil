@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { LoadingIconComponent } from './loading-icon.component';
+
+import { DesignLandLoadingIconComponent } from './loading-icon.component';
 
 export const loadingRoutes: Routes = [
-  { path: '', component: LoadingIconComponent },
+  { path: '', component: DesignLandLoadingIconComponent },
 ];
 
 @NgModule({

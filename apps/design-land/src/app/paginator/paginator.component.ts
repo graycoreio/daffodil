@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent {
+export class DesignLandPaginatorComponent {
   numberOfPages = 20;
   primaryCurrentPage = 2;
   secondaryCurrentPage = 3;

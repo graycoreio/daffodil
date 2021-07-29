@@ -10,7 +10,7 @@ import {
   templateUrl: './qty-dropdown.component.html',
   styleUrls: ['./qty-dropdown.component.scss'],
 })
-export class QtyDropdownComponent{
+export class DesignLandQtyDropdownComponent{
   selectedValue = 1;
 
   updateValue(qty: number){

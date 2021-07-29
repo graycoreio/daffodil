@@ -1,16 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DesignLandListRoutingModule } from './list-routing.module';
-
-import { DesignLandListComponent } from './list.component';
+import { DaffArticleModule } from '@daffodil/design';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
-
-import {
-  DaffArticleModule,
-  DaffListModule,
-} from '@daffodil/design';
+import { DesignLandListRoutingModule } from './list-routing.module';
+import { DesignLandListComponent } from './list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +15,6 @@ import {
     CommonModule,
     DesignLandListRoutingModule,
     DaffArticleModule,
-    DaffListModule,
 
     DesignLandExampleViewerModule,
   ],

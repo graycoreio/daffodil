@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { PaginatorComponent } from './paginator.component';
+
+import { DesignLandPaginatorComponent } from './paginator.component';
 
 export const loadingRoutes: Routes = [
-  { path: '', component: PaginatorComponent },
+  { path: '', component: DesignLandPaginatorComponent },
 ];
 
 @NgModule({

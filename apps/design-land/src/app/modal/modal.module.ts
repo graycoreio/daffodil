@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import {
   DaffModalModule,
@@ -7,9 +7,9 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { DesignLandModalComponent } from './modal.component';
 import { DesignLandModalContentComponent } from './modal-content/modal-content.component';
 import { DesignLandModalRoutingModule } from './modal-routing.module';
+import { DesignLandModalComponent } from './modal.component';
 
 @NgModule({
   declarations: [
@@ -24,5 +24,5 @@ import { DesignLandModalRoutingModule } from './modal-routing.module';
     DaffButtonModule,
   ],
 })
-export class ModalModule {
+export class DesignLandModalModule {
 }

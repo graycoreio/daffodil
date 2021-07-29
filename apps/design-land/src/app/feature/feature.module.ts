@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FeatureComponent } from './feature.component';
-import { DesignLandFeatureRoutingModule } from './feature-routing.module';
+import { NgModule } from '@angular/core';
 
 import { DaffFeatureModule } from '@daffodil/design';
+
+import { DesignLandFeatureRoutingModule } from './feature-routing.module';
+import { DesignLandFeatureComponent } from './feature.component';
+
 
 
 @NgModule({
   declarations: [
-    FeatureComponent,
+    DesignLandFeatureComponent,
   ],
   imports: [
     CommonModule,
@@ -17,4 +19,4 @@ import { DaffFeatureModule } from '@daffodil/design';
     DaffFeatureModule,
   ],
 })
-export class FeatureModule { }
+export class DesignLandFeatureModule { }

@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar.component';
+import { DesignLandNavbarComponent } from './navbar.component';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('DesignLandNavbarComponent', () => {
+  let component: DesignLandNavbarComponent;
+  let fixture: ComponentFixture<DesignLandNavbarComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ],
+      declarations: [ DesignLandNavbarComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(DesignLandNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

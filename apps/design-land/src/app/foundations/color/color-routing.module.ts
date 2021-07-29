@@ -1,8 +1,9 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
+
 import { DesignLandColorComponent } from './color.component';
 
 export const colorRoutes: Routes = [

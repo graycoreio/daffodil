@@ -4,23 +4,23 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { CalloutComponent } from './callout.component';
+import { DesignLandCalloutComponent } from './callout.component';
 
-describe('CalloutComponent', () => {
-  let component: CalloutComponent;
-  let fixture: ComponentFixture<CalloutComponent>;
+describe('DesignLandCalloutComponent', () => {
+  let component: DesignLandCalloutComponent;
+  let fixture: ComponentFixture<DesignLandCalloutComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CalloutComponent,
+        DesignLandCalloutComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalloutComponent);
+    fixture = TestBed.createComponent(DesignLandCalloutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

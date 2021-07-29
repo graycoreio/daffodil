@@ -1,7 +1,7 @@
 import {
-  async,
   ComponentFixture,
   TestBed,
+  waitForAsync,
 } from '@angular/core/testing';
 
 import { DesignLandMediaGalleryComponent } from './media-gallery.component';
@@ -10,7 +10,7 @@ describe('DesignLandMediaGalleryComponent', () => {
   let component: DesignLandMediaGalleryComponent;
   let fixture: ComponentFixture<DesignLandMediaGalleryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DesignLandMediaGalleryComponent ],
     })

@@ -1,17 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-
-import {
-  DaffArticleModule,
-  DaffMediaGalleryModule,
-  DaffImageModule,
-} from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandMediaGalleryRoutingModule } from './media-gallery-routing-module';
 import { DesignLandMediaGalleryComponent } from './media-gallery.component';
-
 
 @NgModule({
   declarations: [
@@ -23,8 +17,6 @@ import { DesignLandMediaGalleryComponent } from './media-gallery.component';
     DesignLandExampleViewerModule,
 
     DaffArticleModule,
-    DaffMediaGalleryModule,
-    DaffImageModule,
   ],
 })
 export class DesignLandMediaGalleryModule {

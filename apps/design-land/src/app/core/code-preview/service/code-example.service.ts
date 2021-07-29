@@ -1,11 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DesignLandCodeExample } from '../model/code-example';
 import {
   Observable,
   of,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+
+import { DesignLandCodeExample } from '../model/code-example';
 
 /**
  * Example file to of a DesignLandCodeExample to be used for testing.

@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DesignLandContainerComponent } from './container.component';
-import { DesignLandContainerRoutingModule } from './container-routing.module';
+import { NgModule } from '@angular/core';
 
 import { DaffContainerModule } from '@daffodil/design';
+
+import { DesignLandContainerRoutingModule } from './container-routing.module';
+import { DesignLandContainerComponent } from './container.component';
+
 
 
 @NgModule({

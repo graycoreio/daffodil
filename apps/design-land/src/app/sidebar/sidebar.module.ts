@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { SidebarRoutingModule } from './sidebar-routing.module';
-import { SidebarComponent } from './sidebar.component';
 import {
   DaffSidebarModule,
   DaffButtonModule,
   DaffNativeSelectModule,
   DaffFormFieldModule,
 } from '@daffodil/design';
-import { FormsModule } from '@angular/forms';
+
+import { DesignLandSidebarRoutingModule } from './sidebar-routing.module';
+import { DesignLandSidebarComponent } from './sidebar.component';
 
 @NgModule({
-  declarations: [SidebarComponent],
+  declarations: [DesignLandSidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     DaffFormFieldModule,
     DaffButtonModule,
     DaffSidebarModule,
-    SidebarRoutingModule,
+    DesignLandSidebarRoutingModule,
   ],
 })
-export class SidebarModule { }
+export class DesignLandSidebarModule { }

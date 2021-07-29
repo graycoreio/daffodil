@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { ProgressIndicatorComponent } from './progress-indicator.component';
+
+import { DesignLandProgressIndicatorComponent } from './progress-indicator.component';
 
 export const progressIndicatorRoutes: Routes = [
-  { path: '', component: ProgressIndicatorComponent },
+  { path: '', component: DesignLandProgressIndicatorComponent },
 ];
 
 @NgModule({

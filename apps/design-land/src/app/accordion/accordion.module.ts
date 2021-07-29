@@ -1,25 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { AccordionComponent } from './accordion.component';
-import { DesignLandAccordionRoutingModule } from './accordion-routing.module';
+import { DaffArticleModule } from '@daffodil/design';
 
-import { DaffAccordionModule, DaffArticleModule } from '@daffodil/design';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
+import { DesignLandAccordionRoutingModule } from './accordion-routing.module';
+import { DesignLandAccordionComponent } from './accordion.component';
 
 
 @NgModule({
   declarations: [
-    AccordionComponent,
+    DesignLandAccordionComponent,
   ],
   imports: [
     CommonModule,
     DesignLandAccordionRoutingModule,
-		DesignLandExampleViewerModule,
-    DaffAccordionModule,
-		DaffArticleModule
+    DesignLandExampleViewerModule,
+    DaffArticleModule,
   ],
 })
-export class AccordionModule {
+export class DesignLandAccordionModule {
 
 }

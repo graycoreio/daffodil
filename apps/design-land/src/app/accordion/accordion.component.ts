@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
 })
-export class AccordionComponent {}
+export class DesignLandAccordionComponent {}

@@ -1,15 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffCalloutModule,
-  DaffArticleModule,
-} from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandCalloutRoutingModule } from './callout-routing.module';
 import { DesignLandCalloutComponent } from './callout.component';
-
 
 @NgModule({
   declarations: [
@@ -19,7 +15,6 @@ import { DesignLandCalloutComponent } from './callout.component';
     CommonModule,
     DesignLandCalloutRoutingModule,
 
-    DaffCalloutModule,
     DaffArticleModule,
     DesignLandExampleViewerModule,
   ],

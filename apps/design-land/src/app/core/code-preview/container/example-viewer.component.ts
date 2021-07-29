@@ -3,9 +3,10 @@ import {
   OnInit,
   Input,
 } from '@angular/core';
-import { CodeExampleService } from '../service/code-example.service';
-import { DesignLandCodeExample } from '../model/code-example';
 import { Observable } from 'rxjs';
+
+import { DesignLandCodeExample } from '../model/code-example';
+import { CodeExampleService } from '../service/code-example.service';
 
 @Component({
   selector: 'design-land-example-viewer-container',

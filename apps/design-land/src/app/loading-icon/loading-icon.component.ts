@@ -8,4 +8,4 @@ import {
   templateUrl: './loading-icon.component.html',
   styleUrls: ['./loading-icon.component.scss'],
 })
-export class LoadingIconComponent{}
+export class DesignLandLoadingIconComponent{}

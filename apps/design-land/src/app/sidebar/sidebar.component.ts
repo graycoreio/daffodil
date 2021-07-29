@@ -2,6 +2,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+
 import { DaffSidebarMode } from '@daffodil/design';
 
 @Component({
@@ -9,7 +10,7 @@ import { DaffSidebarMode } from '@daffodil/design';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
+export class DesignLandSidebarComponent {
   mode: DaffSidebarMode = 'push';
   open = false;
 }

@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { QtyDropdownComponent } from './qty-dropdown.component';
-import { DesignLandQtyDropdownRoutingModule } from './qty-dropdown-routing.module';
+import { NgModule } from '@angular/core';
 
 import { DaffQtyDropdownModule } from '@daffodil/design';
+
+import { DesignLandQtyDropdownRoutingModule } from './qty-dropdown-routing.module';
+import { DesignLandQtyDropdownComponent } from './qty-dropdown.component';
+
 
 
 @NgModule({
   declarations: [
-    QtyDropdownComponent,
+    DesignLandQtyDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -17,6 +18,6 @@ import { DaffQtyDropdownModule } from '@daffodil/design';
     DaffQtyDropdownModule,
   ],
 })
-export class QtyDropdownModule {
+export class DesignLandQtyDropdownModule {
 
 }

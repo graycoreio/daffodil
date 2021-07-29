@@ -1,15 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
-import {
-  FormControl,
-  FormArray,
-  FormGroup,
-} from '@angular/forms';
-import { DaffCheckboxSetComponent } from '@daffodil/design';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'design-land-checkbox-component',
@@ -17,5 +6,5 @@ import { DaffCheckboxSetComponent } from '@daffodil/design';
   styleUrls: ['./checkbox.component.scss'],
 
 })
-export class CheckboxComponent {
+export class DesignLandCheckboxComponent {
 }

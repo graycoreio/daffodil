@@ -4,23 +4,23 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { LinkSetComponent } from './link-set.component';
+import { DesignLandLinkSetComponent } from './link-set.component';
 
-describe('LinkSetComponent', () => {
-  let component: LinkSetComponent;
-  let fixture: ComponentFixture<LinkSetComponent>;
+describe('DesignLandLinkSetComponent', () => {
+  let component: DesignLandLinkSetComponent;
+  let fixture: ComponentFixture<DesignLandLinkSetComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        LinkSetComponent,
+        DesignLandLinkSetComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LinkSetComponent);
+    fixture = TestBed.createComponent(DesignLandLinkSetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,21 +4,21 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { QtyDropdownComponent } from './qty-dropdown.component';
+import { DesignLandQtyDropdownComponent } from './qty-dropdown.component';
 
-describe('QtyDropdownComponent', () => {
-  let component: QtyDropdownComponent;
-  let fixture: ComponentFixture<QtyDropdownComponent>;
+describe('DesignLandQtyDropdownComponent', () => {
+  let component: DesignLandQtyDropdownComponent;
+  let fixture: ComponentFixture<DesignLandQtyDropdownComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ QtyDropdownComponent ],
+      declarations: [ DesignLandQtyDropdownComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QtyDropdownComponent);
+    fixture = TestBed.createComponent(DesignLandQtyDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
