@@ -1,10 +1,5 @@
-import {
-  NgModule,
-  Injector,
-  ComponentFactoryResolver,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { createCustomElement } from '@angular/elements';
 
 import { DesignLandListRoutingModule } from './list-routing.module';
 
@@ -17,11 +12,6 @@ import {
   DaffListModule,
 } from '@daffodil/design';
 
-import {
-  ListExamplesModule,
-  LIST_EXAMPLES,
-} from '@daffodil/design/list/examples';
-
 @NgModule({
   declarations: [
     DesignLandListComponent,
@@ -33,25 +23,8 @@ import {
     DaffListModule,
 
     DesignLandExampleViewerModule,
-    ListExamplesModule,
   ],
 })
 export class DesignLandListModule {
-  constructor(
-    injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver,
-  ) {
-    LIST_EXAMPLES
-      .map((classConstructor) => ({
-        element: createCustomElement(classConstructor, { injector }),
-        class: classConstructor,
-      }))
-      .map((customElement) => {
-        // Register the custom element with the browser.
-        customElements.define(
-          this.componentFactoryResolver.resolveComponentFactory(customElement.class).selector + '-example',
-          customElement.element,
-        );
-      });
-  }
+
 }

@@ -1,4 +1,4 @@
-import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DesignLandTypographyComponent } from './typography.component';
