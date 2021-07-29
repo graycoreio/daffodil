@@ -33,7 +33,7 @@ export interface DaffProduct extends DaffLocatable, DaffIdentifiable {
   /**
    * An array of images for the product.
    */
-  images?: DaffProductImage[];
+  images: DaffProductImage[];
   /**
    * A list of related products.
    */
