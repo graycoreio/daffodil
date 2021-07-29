@@ -9,7 +9,7 @@
   },
   "scripts": {
     "serve": "ng s design-land & lerna run watch --scope='@daffodil/tools-dgeni'",
-    "lint": "ng lint design-land",
+    "lint": "cd ../.. && ng lint design-land",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test design-land --watch=false --browsers=ChromeHeadless"
   },
