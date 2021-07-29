@@ -13,10 +13,6 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import {
-  DaffBackdropComponent,
-  DaffBackdropModule,
-} from '../../backdrop/public_api';
 import { DaffModalComponent } from './modal.component';
 
 @Component({ template: `
@@ -36,7 +32,6 @@ describe('DaffModalComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffBackdropModule,
       ],
       declarations: [
         WrapperComponent,
