@@ -2,7 +2,7 @@
 	"type": "composite",
 	"id": "22",
 	"url": "/url.html",
-  "canonicalUrl": "/canonical-url.html",
+  "canonicalUrl": "https://domain.com/canonical-url.html",
 	"price": 0,
 	"in_stock": true,
 	"discount": {

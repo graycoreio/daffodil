@@ -13,7 +13,7 @@ export class MockMagentoCoreProduct implements MagentoProduct {
   uid = faker.datatype.uuid();
   url_key = faker.random.alphaNumeric(16);
   url_suffix = '.html';
-  canonical_url = `${faker.random.word()}.html`;
+  canonical_url = faker.internet.url();
   name = faker.random.word();
   meta_title = faker.random.word();
   meta_description = faker.random.words(3);
