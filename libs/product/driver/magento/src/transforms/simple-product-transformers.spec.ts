@@ -36,6 +36,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
       type: DaffProductTypeEnum.Simple,
       id: stubMagentoProduct.sku,
       url: `/${stubMagentoProduct.url_key}${stubMagentoProduct.url_suffix}`,
+      canonicalUrl: stubMagentoProduct.canonical_url,
       name: stubMagentoProduct.name,
       price: stubMagentoProduct.price_range.maximum_price.regular_price.value,
       discount: {

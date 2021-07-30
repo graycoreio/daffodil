@@ -17,6 +17,7 @@ export enum MagentoProductStockStatusEnum {
 export interface MagentoProduct extends MagentoProductPreview {
   meta_title?: string;
   meta_description?: string;
+  canonical_url?: string;
 	stock_status?: MagentoProductStockStatusEnum;
   image?: {
 		url: string;

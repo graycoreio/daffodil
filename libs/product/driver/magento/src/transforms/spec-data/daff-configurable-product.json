@@ -2,6 +2,7 @@
 	"type": "configurable",
 	"id": "22",
 	"url": "/url.html",
+  "canonicalUrl": "/canonical-url.html",
 	"price": 23,
 	"discount": {
 		"amount": null,
