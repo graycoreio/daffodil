@@ -35,6 +35,7 @@ describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriver
       expect(result.uid).toBeDefined();
       expect(result.url_path).toBeDefined();
       expect(result.url_suffix).toBeDefined();
+      expect(result.canonical_url).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.description).toBeDefined();
       expect(result.breadcrumbs).toBeDefined();

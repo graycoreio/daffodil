@@ -4,7 +4,8 @@ export interface MagentoCategory {
   uid: string;
   url_path: string;
   url_suffix: string;
-	name?: string;
+  canonical_url: string;
+  name?: string;
 	description?: string;
 	meta_title?: string;
 	meta_description?: string;

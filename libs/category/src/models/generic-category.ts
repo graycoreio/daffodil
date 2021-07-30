@@ -1,6 +1,7 @@
 import {
   DaffIdentifiable,
   DaffLocatable,
+  DaffCanonicallyLocatable,
 } from '@daffodil/core';
 
 import { DaffCategoryBreadcrumb } from './category-breadcrumb';
@@ -10,7 +11,7 @@ import { DaffCategoryBreadcrumb } from './category-breadcrumb';
  * in Daffodil. As Categories are often considered Trees of Categories,
  * this type is a recursive generic.
  */
-export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends DaffLocatable, DaffIdentifiable {
+export interface DaffGenericCategory<T extends DaffGenericCategory<T>> extends DaffLocatable, DaffIdentifiable, Partial<DaffCanonicallyLocatable> {
 	/**
 	 * The name of the category that can be used as a UI label.
 	 */

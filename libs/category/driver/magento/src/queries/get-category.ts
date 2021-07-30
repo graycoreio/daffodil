@@ -8,6 +8,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME}($filters: CategoryFilterInput){
 		uid
     url_path
     url_suffix
+    canonical_url
 		name
 		level
 		meta_title

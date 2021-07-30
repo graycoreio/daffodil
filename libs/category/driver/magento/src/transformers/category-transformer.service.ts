@@ -19,6 +19,7 @@ export class DaffMagentoCategoryTransformerService {
     return {
       id: category.uid,
       url: `${category.url_path}${category.url_suffix}`,
+      canonicalUrl: category.canonical_url,
       name: category.name,
       description: category.description,
       meta_title: category.meta_title,

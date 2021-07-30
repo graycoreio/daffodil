@@ -7,6 +7,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockCategory implements DaffCategory {
   id = faker.datatype.uuid();
   url = faker.internet.url();
+  canonicalUrl = faker.internet.url();
 	name = faker.commerce.productMaterial();
 	description = faker.random.words(Math.floor(Math.random() * 20));
 	meta_title = faker.commerce.productMaterial();

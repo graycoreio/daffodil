@@ -83,6 +83,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         uid: stubCategory.id,
         url_path: stubCategory.url,
         url_suffix: '.html',
+        canonical_url: stubCategory.canonicalUrl,
         name: stubCategory.name,
         breadcrumbs: [{
           category_uid: stubCategory.breadcrumbs[0].id,

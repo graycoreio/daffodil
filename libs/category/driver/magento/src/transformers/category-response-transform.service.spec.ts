@@ -90,6 +90,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       const category: MagentoCategory = {
         url_path: url,
         url_suffix: '.html',
+        canonical_url: stubCategory.canonicalUrl,
         uid: stubCategory.id,
         name: stubCategory.name,
         breadcrumbs: [{
