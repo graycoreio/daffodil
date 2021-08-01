@@ -1,6 +1,7 @@
 import {
   DaffIdentifiable,
   DaffLocatable,
+  DaffCanonicallyLocatable,
 } from '@daffodil/core';
 
 import { DaffProductImage } from './product-image';
@@ -17,7 +18,7 @@ export enum DaffProductTypeEnum {
 /**
  * An interface for a product usable by the @daffodil/product library.
  */
-export interface DaffProduct extends DaffLocatable, DaffIdentifiable {
+export interface DaffProduct extends DaffLocatable, DaffIdentifiable, Partial<DaffCanonicallyLocatable> {
 	/**
 	 * The type of product.
 	 */
