@@ -5,6 +5,8 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffRelatedProductsFacadeInterface } from '@daffodil/related-products/state';
 
 /**
+ * Mocks the {@link DaffRelatedProductsFacadeInterface} for testing purposes.
+ *
  * @inheritdoc
  */
 @Injectable({ providedIn: 'root' })

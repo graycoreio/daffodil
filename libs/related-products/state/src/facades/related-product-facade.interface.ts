@@ -9,7 +9,7 @@ import { DaffProduct } from '@daffodil/product';
  */
 export interface DaffRelatedProductsFacadeInterface<T extends DaffProduct = DaffProduct> extends DaffStoreFacade<Action> {
 	/**
-	 * A list of related products.
+	 * A list of related products of the current product.
 	 */
 	relatedProducts$: Observable<T[]>;
 }

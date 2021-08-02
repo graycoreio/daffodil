@@ -14,11 +14,11 @@ import {
 import { getDaffRelatedProductsFeatureSelector } from '../feature.selector';
 
 /**
- * An interface for selectors related to the current product page.
+ * An interface for selectors of related products for the current product page.
  */
 export interface DaffRelatedProductsMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	/**
-	 * Selects the id of the current product.
+	 * Selects the IDs of the related products.
 	 */
 	selectRelatedProductIds: MemoizedSelector<DaffRelatedProductStateRootSlice, T['id'][]>;
 
@@ -59,7 +59,7 @@ const createRelatedProductSelectors = <T extends DaffProduct = DaffProduct>(): D
 };
 
 /**
- * A function that returns all selectors related to the product page.
+ * A function that returns all selectors of related products for the current product page.
  * Returns {@link DaffRelatedProductsMemoizedSelectors}.
  */
 export const getDaffRelatedProductsPageSelectors = (() => {
