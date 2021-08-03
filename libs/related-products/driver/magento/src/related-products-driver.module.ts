@@ -34,7 +34,7 @@ export class DaffRelatedProductsMagentoDriverModule {
           multi: true,
           // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
           useFactory() {
-            magentoRelatedProductsFragment(inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS));
+            return magentoRelatedProductsFragment(inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS));
           },
         },
         {
