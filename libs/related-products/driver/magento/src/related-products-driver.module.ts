@@ -32,12 +32,16 @@ export class DaffRelatedProductsMagentoDriverModule {
         {
           provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
           multi: true,
-          useFactory: () => magentoRelatedProductsFragment(inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS)),
+          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+          useFactory() {
+            magentoRelatedProductsFragment(inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS));
+          },
         },
         {
           provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
           multi: true,
-          useFactory: () => {
+          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+          useFactory() {
             const transformerService = inject(DaffMagentoRelatedProductsTransformers);
             return (
               daffProductResponse: DaffProductDriverResponse,
