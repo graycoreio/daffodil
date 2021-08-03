@@ -7,7 +7,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build design",
+    "build": "ng build design --prod",
     "lint": "npm run lint:scss && cd ../.. && ng lint design",
     "lint:scss": "stylelint **/*.scss",
     "lint:fix": "npm run lint -- --fix",
