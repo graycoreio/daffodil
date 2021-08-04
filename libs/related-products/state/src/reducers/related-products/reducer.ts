@@ -3,6 +3,7 @@ import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
 } from '@daffodil/product/state';
+import { DaffRelatedProduct } from '@daffodil/related-products';
 
 import { DaffRelatedProductsReducerState } from './reducer-state.interface';
 
@@ -23,7 +24,7 @@ export function daffRelatedProductsReducer<T extends DaffProduct>(state = initia
 
       return {
         ...state,
-        relatedProductIds: product.related?.map(({ id }) => id) || [],
+        relatedProductIds: (<DaffRelatedProduct><unknown>product).related?.map(({ id }) => id) || [],
       };
     default:
       return state;
