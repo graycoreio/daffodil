@@ -17,6 +17,6 @@ export class MockMagentoProductWithRelated extends MockMagentoCoreProduct implem
 })
 export class MagentoProductWithRelatedFactory extends DaffModelFactory<MagentoProductWithRelated> {
   constructor(){
-    super(MockMagentoCoreProduct);
+    super(MockMagentoProductWithRelated);
   }
 }
