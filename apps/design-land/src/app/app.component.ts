@@ -15,8 +15,11 @@ import { HERO_EXAMPLES } from '@daffodil/design/hero/examples';
 import { LIST_EXAMPLES } from '@daffodil/design/list/examples';
 import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
 import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
+import { MODAL_EXAMPLES } from '@daffodil/design/modal/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
+
+import { createCustomElementFromExample } from './core/elements/create-element-from-example';
 
 @Component({
   selector: 'design-land-app-root',
@@ -39,12 +42,10 @@ export class DesignLandAppComponent {
       ...HERO_EXAMPLES,
       ...LOADING_ICON_EXAMPLES,
       ...MEDIA_GALLERY_EXAMPLES,
+      ...MODAL_EXAMPLES,
       ...QUANTITY_FIELD_EXAMPLES,
       ...LIST_EXAMPLES,
-    ].map((classConstructor) => ({
-      element: createCustomElement(classConstructor, { injector }),
-      class: classConstructor,
-    }))
+    ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.
         customElements.define(

@@ -3,7 +3,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffBackdropModule } from '../backdrop/backdrop.module';
 import { DaffModalActionsComponent } from './modal-actions/modal-actions.component';
 import { DaffModalContentComponent } from './modal-content/modal-content.component';
 import { DaffModalHeaderComponent } from './modal-header/modal-header.component';
@@ -15,7 +14,6 @@ import { DaffModalComponent } from './modal/modal.component';
     CommonModule,
     PortalModule,
     OverlayModule,
-    DaffBackdropModule,
   ],
   exports: [
     DaffModalHeaderComponent,
@@ -29,9 +27,6 @@ import { DaffModalComponent } from './modal/modal.component';
     DaffModalTitleDirective,
     DaffModalContentComponent,
     DaffModalActionsComponent,
-  ],
-  entryComponents: [
-    DaffModalComponent,
   ],
 })
 export class DaffModalModule { }

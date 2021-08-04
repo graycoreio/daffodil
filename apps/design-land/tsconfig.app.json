@@ -1,19 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/app",
-    "paths": {
-      "@daffodil/*": [
-        "libs/*/src"
-      ],
-    },
-    "types": []
-  },
-  "angularCompilerOptions": {
-    "enableIvy": true
+    "outDir": "../../dist/out-tsc/apps/design-land",
   },
   "exclude": [
-    "src/test.ts",
+    "test.ts",
+    "server/*.ts",
     "**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts"
   ]
 }
