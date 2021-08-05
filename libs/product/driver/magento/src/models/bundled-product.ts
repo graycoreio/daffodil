@@ -1,7 +1,5 @@
-import {
-  MagentoProduct,
-  MagentoProductStockStatusEnum,
-} from './magento-product';
+import { MagentoProduct } from './magento-product';
+import { MagentoProductStockStatusEnum } from './product-preview.interface';
 
 export enum MagentoPriceTypeEnum {
 	fixed = 'FIXED',

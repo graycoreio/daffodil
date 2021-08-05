@@ -14,7 +14,7 @@ import {
   MagentoBundledProductItemOption,
   MagentoBundledProductItemOptionProduct,
 } from '../models/bundled-product';
-import { MagentoProductStockStatusEnum } from '../models/magento-product';
+import { MagentoProductStockStatusEnum } from '../models/product-preview.interface';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
