@@ -7,7 +7,7 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { DaffioGuideNavModule } from '../../docs/guide-docs/components/guide-nav/guide-nav.module';
+import { DaffioGuidesNavTreeModule } from '../../guides/components/guides-nav-tree/guides-nav-tree.module';
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
 
@@ -18,7 +18,7 @@ import { DaffioSidebarStateModule } from './sidebar.state.module';
     DaffioSidebarStateModule,
     DaffSidebarModule,
     DaffButtonModule,
-    DaffioGuideNavModule,
+    DaffioGuidesNavTreeModule,
   ],
   declarations: [
     DaffioSidebarViewportContainer,

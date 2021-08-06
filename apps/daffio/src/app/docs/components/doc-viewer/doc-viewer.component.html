@@ -1,0 +1,4 @@
+<div class="daffio-doc-viewer__grid">
+	<daff-article class="daffio-doc-viewer__content" [innerHtml]="sanitizedContent"></daff-article>
+	<daffio-docs-table-of-contents *ngIf="doc.tableOfContents" class="daffio-doc-viewer__table-of-contents" [tableOfContents]="doc.tableOfContents.json"></daffio-docs-table-of-contents>
+</div>

@@ -6,20 +6,19 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { DaffioDoc } from 'apps/daffio/src/app/docs/shared/models/doc';
+import { DaffioDoc } from 'apps/daffio/src/app/docs/models/doc';
+import { DaffioDocsService } from 'apps/daffio/src/app/docs/services/docs.service';
 import { Observable } from 'rxjs';
 
 import { DaffSidebarMode } from '@daffodil/design';
 
-import { DaffioGuideList } from '../../../../docs/shared/models/guide-list';
-import { DaffioDocService } from '../../../../docs/shared/services/docs.service';
+import { DaffioGuideList } from '../../../../docs/models/guide-list';
 import {
   CloseSidebar,
   OpenSidebar,
   SetSidebarState,
 } from '../../actions/sidebar.actions';
 import * as fromDaffioSidebar from '../../reducers/index';
-
 
 @Component({
   selector: 'daffio-sidebar-viewport-container',
@@ -38,7 +37,7 @@ export class DaffioSidebarViewportContainer implements OnInit{
   }
 
   constructor(private store: Store<fromDaffioSidebar.State>,
-    private docService: DaffioDocService<DaffioDoc, DaffioGuideList>) { }
+    private docService: DaffioDocsService<DaffioDoc, DaffioGuideList>) { }
 
   close() {
     this.store.dispatch(new CloseSidebar());

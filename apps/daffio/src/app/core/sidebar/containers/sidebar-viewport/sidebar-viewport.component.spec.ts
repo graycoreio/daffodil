@@ -12,6 +12,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
+import { DaffioGuidesNavTreeModule } from 'apps/daffio/src/app/guides/components/guides-nav-tree/guides-nav-tree.module';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -20,7 +21,6 @@ import {
   DaffSidebarComponent,
 } from '@daffodil/design';
 
-import { DaffioGuideNavModule } from '../../../../docs/guide-docs/components/guide-nav/guide-nav.module';
 import {
   OpenSidebar,
   CloseSidebar,
@@ -47,7 +47,7 @@ describe('DaffioSidebarViewportContainer', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule,
-        DaffioGuideNavModule,
+        DaffioGuidesNavTreeModule,
         HttpClientTestingModule,
       ],
       declarations: [
