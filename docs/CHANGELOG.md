@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.4](https://github.com/graycoreio/daffodil/compare/v0.38.3...v0.38.4) (2021-08-06)
+
+
+### Features
+
+* **category:** add `canonicalUrl` to category ([#1718](https://github.com/graycoreio/daffodil/issues/1718)) ([0ba26dd](https://github.com/graycoreio/daffodil/commit/0ba26dd95cffde963fdff444a9c24bdc3ada380d))
+* **core:** add canonically locatable interface ([#1715](https://github.com/graycoreio/daffodil/issues/1715)) ([a459492](https://github.com/graycoreio/daffodil/commit/a459492117f2f715846932ab6169c725d9856bec))
+* **design:** add quantity field component ([#1307](https://github.com/graycoreio/daffodil/issues/1307)) ([7cf1741](https://github.com/graycoreio/daffodil/commit/7cf1741cbf637b5242e877efe1fa503168efb0f9))
+* **design:** adds docs example for DaffModalComponent ([#1717](https://github.com/graycoreio/daffodil/issues/1717)) ([7942f63](https://github.com/graycoreio/daffodil/commit/7942f6349da1a6abf21b08180ced8101ff29ab19))
+* **design:** define a type for an exported component example ([#1712](https://github.com/graycoreio/daffodil/issues/1712)) ([cecb833](https://github.com/graycoreio/daffodil/commit/cecb833ed3e720c69aaf9997e05abcb5f5d36373))
+* **product:** add `canonicalUrl` to product ([#1719](https://github.com/graycoreio/daffodil/issues/1719)) ([60162c1](https://github.com/graycoreio/daffodil/commit/60162c144b9fb0fcca4b43a14039afce23093dc1))
+* **product:** DaffProduct.images is a required field ([#1713](https://github.com/graycoreio/daffodil/issues/1713)) ([f7a7b8f](https://github.com/graycoreio/daffodil/commit/f7a7b8fc2c5ec587fd2e437fe10ac543c5bdff29))
+* **product:** remove unused magento bundled product field ([#1705](https://github.com/graycoreio/daffodil/issues/1705)) ([8bc77d0](https://github.com/graycoreio/daffodil/commit/8bc77d0656fd036a01b6baafc6d482478f22bfbe))
+* **related-products:** add Magento driver ([#1700](https://github.com/graycoreio/daffodil/issues/1700)) ([30294c3](https://github.com/graycoreio/daffodil/commit/30294c39d801327c52851c171233bf5a2087f746))
+* **related-products:** add reducers and meta-reducers ([#1707](https://github.com/graycoreio/daffodil/issues/1707)) ([ed363c9](https://github.com/graycoreio/daffodil/commit/ed363c94be846bf30705b857009830c6910181a9))
+* **related-products:** add selectors and facade ([#1722](https://github.com/graycoreio/daffodil/issues/1722)) ([b1d251b](https://github.com/graycoreio/daffodil/commit/b1d251b92a33196ea358aefe044a3e112f01c391))
+* **related-products:** cast main product from product response ([#1728](https://github.com/graycoreio/daffodil/issues/1728)) ([ea26b4d](https://github.com/graycoreio/daffodil/commit/ea26b4d4bbcee3eb5aa6b78423c7a1344d1ad10a))
+* **seo:** cache upserted canonical URL and provide in root ([#1710](https://github.com/graycoreio/daffodil/issues/1710)) ([42883b1](https://github.com/graycoreio/daffodil/commit/42883b1fc2f8ed722aacb2a8598102b8e0e46be3))
+
+
+### Bug Fixes
+
+* **product:** magento product previews need to transform stock status ([#1733](https://github.com/graycoreio/daffodil/issues/1733)) ([2c852ee](https://github.com/graycoreio/daffodil/commit/2c852ee0fe8325cffe755cae347b057241ef6f72))
+* **related-products:** arrow functions in provider factory ([#1727](https://github.com/graycoreio/daffodil/issues/1727)) ([72ea8a3](https://github.com/graycoreio/daffodil/commit/72ea8a371040f27ce4f03c82b36845e05ccff543))
+* **related-products:** wrong mock class in factory ([#1729](https://github.com/graycoreio/daffodil/issues/1729)) ([36a0a8b](https://github.com/graycoreio/daffodil/commit/36a0a8b01a3939a47ee386a683a75b4007adcd44))
+
 ### [0.38.3](https://github.com/graycoreio/daffodil/compare/v0.38.2...v0.38.3) (2021-07-28)
 
 
