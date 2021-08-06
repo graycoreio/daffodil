@@ -3,7 +3,10 @@ import {
   Provider,
 } from '@angular/core';
 
-export interface DaffTokenProviderPair<T> {
+/**
+ * A multi token and provider pair.
+ */
+export interface DaffMultiTokenProviderPair<T> {
   token: InjectionToken<T[]>;
   provider: (...values: T[]) => Provider[];
 }

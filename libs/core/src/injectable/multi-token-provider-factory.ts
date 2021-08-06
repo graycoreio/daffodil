@@ -3,9 +3,14 @@ import {
   Provider,
 } from '@angular/core';
 
-import { DaffTokenProviderPair } from './token-provider-pair.interface';
+import { DaffMultiTokenProviderPair } from './multi-token-provider-pair.interface';
 
-export function daffMultiTokenProviderFactory<T>(tokenName: string): DaffTokenProviderPair<T> {
+/**
+ * Creates a multi token and provider pair.
+ *
+ * The token's value is defaulted to an empty array.
+ */
+export function daffMultiTokenProviderFactory<T>(tokenName: string): DaffMultiTokenProviderPair<T> {
   const token = new InjectionToken<T[]>(
     tokenName,
     { factory: () => []},
