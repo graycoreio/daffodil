@@ -1,5 +1,10 @@
+export enum MagentoProductStockStatusEnum {
+	InStock = 'IN_STOCK',
+	OutOfStock = 'OUT_OF_STOCK'
+}
+
 /**
- * An stripped down version of the Magento product for related and upsell products.
+ * A stripped down version of the Magento product for related and upsell products.
  */
 export interface MagentoProductPreview {
 	__typename: string;
@@ -24,4 +29,5 @@ export interface MagentoProductPreview {
 			};
 		};
 	};
+	stock_status?: MagentoProductStockStatusEnum;
 }

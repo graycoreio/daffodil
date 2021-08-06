@@ -16,10 +16,8 @@ import {
   MagentoConfigurableProductOptionsValue,
   MagentoConfigurableProductVariant,
 } from '../models/configurable-product';
-import {
-  MagentoProduct,
-  MagentoProductStockStatusEnum,
-} from '../models/magento-product';
+import { MagentoProduct } from '../models/magento-product';
+import { MagentoProductStockStatusEnum } from '../models/product-preview.interface';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.

@@ -7,10 +7,7 @@ import { DaffProduct } from '@daffodil/product';
 
 import { DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM } from '../injection-tokens/transforms/product-preview/preview.token';
 import { DaffMagentoProductPreviewTransform } from '../interfaces/product-preview-transform.type';
-import {
-  MagentoProduct,
-  MagentoProductStockStatusEnum,
-} from '../models/magento-product';
+import { MagentoProduct } from '../models/magento-product';
 import { transformMagentoProductPreview } from './product-preview';
 
 /**
@@ -31,7 +28,6 @@ export class DaffMagentoSimpleProductTransformers {
     return {
       ...this.productPreviewTransform(product, mediaUrl),
 
-      in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
       description: product.description.html,
       short_description: product.short_description.html,
       meta_title: product.meta_title,

@@ -15,6 +15,7 @@ import {
   MagentoProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 
+import { MagentoProductStockStatusEnum } from '../models/product-preview.interface';
 import { transformMagentoProductPreview } from './product-preview';
 
 
@@ -33,7 +34,9 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
     bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);
     configProductFactory = TestBed.inject(MagentoConfigurableProductFactory);
 
-    stubMagentoProduct = productFactory.create();
+    stubMagentoProduct = productFactory.create({
+      stock_status: MagentoProductStockStatusEnum.InStock,
+    });
 
     result = transformMagentoProductPreview(stubMagentoProduct, mediaUrl);
   });
@@ -43,6 +46,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
     expect(result.url).toEqual(`/${stubMagentoProduct.url_key}${stubMagentoProduct.url_suffix}`);
     expect(result.name).toEqual(stubMagentoProduct.name);
     expect(result.thumbnail).toBeDefined();
+    expect(result.in_stock).toBeTrue();
   });
 
   describe('when the product is a simple product', () => {

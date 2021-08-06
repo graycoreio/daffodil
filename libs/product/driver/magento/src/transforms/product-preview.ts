@@ -11,7 +11,10 @@ import {
   MagentoProduct,
   MagentoProductTypeEnum,
 } from '../models/magento-product';
-import { MagentoProductPreview } from '../models/product-preview.interface';
+import {
+  MagentoProductPreview,
+  MagentoProductStockStatusEnum,
+} from '../models/product-preview.interface';
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
 import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
 
@@ -44,6 +47,7 @@ export function transformMagentoSimpleProductPreview(product: MagentoProductPrev
     price: getPrice(product),
     discount: getDiscount(product),
     images: transformMediaGalleryEntries(product, mediaUrl),
+    in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
   };
 }
 
