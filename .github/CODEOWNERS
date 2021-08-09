@@ -28,7 +28,6 @@
 
 #  damienwebdev - Damien Retzinger
 #  xelaint - Elain Tsai
-#  lderrickable - Luke Derrick
 #  Nolan-Arnold - Nolan Arnold
 #  griest024 - Peter Lauck
 
@@ -57,7 +56,6 @@
 #  @graycore/daff-core
 # ===========================================================
 #
-#   - lderrickable
 #   - damienwebdev
 #   - Nolan-Arnold
 #   - griest024
@@ -73,14 +71,13 @@
 #  @graycore/daff-dev-infra
 # ===========================================================
 #
-#   - lderrickable
 #   - damienwebdev
+#   - griest024
 
 # ===========================================================
 #  @graycore/daff-docs
 # ===========================================================
 #
-#   - lderrickable
 #   - xelaint
 #   - damienwebdev
 #   - Nolan-Arnold
