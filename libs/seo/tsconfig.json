@@ -9,6 +9,9 @@
       "@daffodil/seo": [
         "libs/seo/src"
       ],
+      "@daffodil/seo/state": [
+        "libs/seo/state/src"
+      ],
     }
   }
 }
