@@ -56,9 +56,6 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 
     it('should transform a MagentoConfigurableProductOption to a DaffConfigurableProductAttribute', () => {
       const magentoConfigurableProductOption: MagentoConfigurableProductOption = {
-        attribute_id: null,
-        product_id: null,
-        uid: null,
         position: daffConfigurableProduct.configurableAttributes[0].order,
         attribute_code: daffConfigurableProduct.configurableAttributes[0].code,
         label: daffConfigurableProduct.configurableAttributes[0].label,
@@ -101,17 +98,14 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
         attributes: [
           {
             code: daffConfigurableProduct.configurableAttributes[0].code,
-            label: daffConfigurableProduct.configurableAttributes[0].label,
             value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
           },
           {
             code: daffConfigurableProduct.configurableAttributes[1].code,
-            label: daffConfigurableProduct.configurableAttributes[1].label,
             value_index: parseInt(daffConfigurableProduct.configurableAttributes[1].values[0].value, 10),
           },
           {
             code: daffConfigurableProduct.configurableAttributes[2].code,
-            label: daffConfigurableProduct.configurableAttributes[2].label,
             value_index: parseInt(daffConfigurableProduct.configurableAttributes[2].values[0].value, 10),
           },
         ],
@@ -147,17 +141,14 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
       const magentoAttributeOptions: MagentoConfigurableAttributeOption[] = [
         {
           code: daffConfigurableProduct.configurableAttributes[0].code,
-          label: daffConfigurableProduct.configurableAttributes[0].label,
           value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
         },
         {
           code: daffConfigurableProduct.configurableAttributes[1].code,
-          label: daffConfigurableProduct.configurableAttributes[1].label,
           value_index: parseInt(daffConfigurableProduct.configurableAttributes[1].values[0].value, 10),
         },
         {
           code: daffConfigurableProduct.configurableAttributes[2].code,
-          label: daffConfigurableProduct.configurableAttributes[2].label,
           value_index: parseInt(daffConfigurableProduct.configurableAttributes[2].values[0].value, 10),
         },
       ];
