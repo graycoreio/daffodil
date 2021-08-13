@@ -20,6 +20,11 @@ import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
 
 import { DaffSeoUpdateActionPair } from '../models/public_api';
 
+/**
+ * Hooks into the Angular router to manage SEO data on the page as navigation occurs.
+ *
+ * @docs-private
+ */
 export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableServiceInterface<V>, R extends DaffSeoUpdateActionPair = DaffSeoUpdateActionPair, V = unknown> {
   constructor(
     protected actions$: Actions,
@@ -27,6 +32,11 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
     protected service: T,
   ) {}
 
+  /**
+   * Upserts SEO data according to the provided updates.
+   *
+   * @docs-private
+   */
   getData$ = createEffect(
     () => this.actions$.pipe(
       ofType(...this.updates.map(({ action }) => action)),
@@ -47,6 +57,11 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
     },
   );
 
+  /**
+   * Removes SEO data when navigation starts.
+   *
+   * @docs-private
+   */
   remove$ = createEffect(
     () => this.actions$.pipe(
       ofType(ROUTER_REQUEST),
@@ -59,7 +74,9 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
   );
 
   /**
-   * An effect for readding the most recent canonical URL on navigation cancel or error.
+   * Restores previously removed SEO data when navigation is canceled or fails.
+   *
+   * @docs-private
    */
   restore$ = createEffect(
     () => this.actions$.pipe(
@@ -72,6 +89,11 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
     },
   );
 
+  /**
+   * Empties the SEO data restore cache when navigation completes.
+   *
+   * @docs-private
+   */
   emptyRestoreCache$ = createEffect(
     () => this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
