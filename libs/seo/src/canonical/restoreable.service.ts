@@ -9,6 +9,8 @@ import { DaffSeoRestoreableServiceInterface } from '../models/public_api';
 const CSS_SELECTOR = 'link[rel="canonical"]';
 
 /**
+ * Manages the page's canonical URL.
+ *
  * @inheritdoc
  */
 // TODO(damienwebdev): fix document type and remove casts in Angular 13
