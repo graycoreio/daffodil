@@ -1,20 +1,20 @@
 import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCanonicalService } from './canonical.service';
+import { DaffRestoreableCanonicalService } from './restoreable.service';
 
-describe('@daffodil/seo | DaffCanonicalService', () => {
-  let service: DaffCanonicalService;
+describe('@daffodil/seo | DaffRestoreableCanonicalService', () => {
+  let service: DaffRestoreableCanonicalService;
   let document: Document;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffCanonicalService,
+        DaffRestoreableCanonicalService,
       ],
     });
 
-    service = TestBed.inject(DaffCanonicalService);
+    service = TestBed.inject(DaffRestoreableCanonicalService);
     document = TestBed.inject(DOCUMENT);
   });
 
@@ -50,10 +50,6 @@ describe('@daffodil/seo | DaffCanonicalService', () => {
       it('should update the existing link element', () => {
         expect(link.getAttribute('href')).toEqual(url);
       });
-
-      it('should cache the URL', () => {
-        expect(service.url).toEqual(url);
-      });
     });
 
     describe('when a canonical link tag does not exist', () => {
@@ -65,14 +61,21 @@ describe('@daffodil/seo | DaffCanonicalService', () => {
         const el = document.head.querySelector('link[rel="canonical"]');
         expect(el).toBeTruthy();
       });
+    });
 
-      it('should cache the URL', () => {
-        expect(service.url).toEqual(url);
+    describe('when a falsy url is passed', () => {
+      beforeEach(() => {
+        service.upsert(null);
+      });
+
+      it('should not add a link tag to the document', () => {
+        const el = document.querySelector('link[rel="canonical"]');
+        expect(el).toBeFalsy();
       });
     });
   });
 
-  describe('remove', () => {
+  describe('clear', () => {
     describe('when a canonical link tag exists', () => {
       let link: HTMLLinkElement;
 
@@ -82,12 +85,51 @@ describe('@daffodil/seo | DaffCanonicalService', () => {
         link.setAttribute('href', '');
         document.head.appendChild(link);
 
-        service.remove();
+        service.clear();
       });
 
       it('should remove the existing link element', () => {
         const el = document.querySelector('link[rel="canonical"]');
         expect(el).toBeFalsy();
+      });
+    });
+  });
+
+  describe('restore', () => {
+    describe('when a canonical link tag has been upserted and cleared', () => {
+      let url: string;
+
+      beforeEach(() => {
+        url = 'testing/url';
+        service.upsert(url);
+        service.clear();
+
+        service.restore();
+      });
+
+      it('should add a link tag to the document head', () => {
+        const el = document.head.querySelector('link[rel="canonical"]');
+        expect(el.getAttribute('href')).toEqual(url);
+      });
+    });
+
+    describe('when a canonical link tag has been upserted and cleared and a new URL is upserted', () => {
+      let url: string;
+      let newUrl: string;
+
+      beforeEach(() => {
+        url = 'testing/url';
+        newUrl = 'testing/newurl';
+        service.upsert(url);
+        service.clear();
+        service.upsert(newUrl);
+
+        service.restore();
+      });
+
+      it('should restore the original URL', () => {
+        const el = document.head.querySelector('link[rel="canonical"]');
+        expect(el.getAttribute('href')).toEqual(url);
       });
     });
   });
