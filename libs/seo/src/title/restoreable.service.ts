@@ -4,6 +4,8 @@ import { Title } from '@angular/platform-browser';
 import { DaffSeoRestoreableServiceInterface } from '../models/public_api';
 
 /**
+ * Manages the page's title.
+ *
  * @inheritdoc
  */
 @Injectable({
