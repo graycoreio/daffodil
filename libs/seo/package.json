@@ -21,6 +21,15 @@
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
-    "@angular/core": "0.0.0-PLACEHOLDER"
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/platform-browser": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "@ngrx/router-store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
   }
 }
