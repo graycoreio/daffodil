@@ -1,2 +1,1 @@
-export { DaffCanonicalServiceInterface } from './canonical.interface';
-export { DaffCanonicalService } from './canonical.service';
+export { DaffRestoreableCanonicalService } from './restoreable.service';
