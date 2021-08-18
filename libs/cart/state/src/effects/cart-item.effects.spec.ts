@@ -306,6 +306,22 @@ describe('Daffodil | Cart | CartItemEffects', () => {
           helpers.expectObservable(effects.resetCartItemStateAfterChange$).toBe(expectedMarble, expectedObservable);
         });
       });
+
+      describe('and when DaffCartItemUpdate is dispatched before the state is reset', () => {
+        it('should not dispatch a DaffCartItemStateReset after the specified amount of time', () => {
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(helpers => {
+            const expectedMarble = '4000ms -';
+            const cartItemAddSuccess = new DaffCartItemAddSuccess(mockCart);
+            const cartItemUpdateAction = new DaffCartItemUpdate(mockCartItem.id, mockCartItem);
+            actions$ = helpers.hot('a-b', { a: cartItemAddSuccess, b: cartItemUpdateAction });
+
+            helpers.expectObservable(effects.resetCartItemStateAfterChange$).toBe(expectedMarble);
+          });
+        });
+      });
     });
 
     describe('when a DaffCartItemUpdateSuccess action is dispatched', () => {

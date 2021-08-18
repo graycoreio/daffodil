@@ -14,6 +14,7 @@ import {
   catchError,
   debounceTime,
   mergeMap,
+  mapTo,
 } from 'rxjs/operators';
 
 import {
@@ -117,9 +118,19 @@ export class DaffCartItemEffects<
 
 	@Effect()
   resetCartItemStateAfterChange$ = this.actions$.pipe(
-    ofType(DaffCartItemActionTypes.CartItemAddSuccessAction, DaffCartItemActionTypes.CartItemUpdateSuccessAction),
+    ofType(
+      // these actions will reset the debounce interval
+      DaffCartItemActionTypes.CartItemAddSuccessAction,
+      DaffCartItemActionTypes.CartItemUpdateSuccessAction,
+      DaffCartItemActionTypes.CartItemUpdateAction,
+    ),
     debounceTime(this.cartItemStateDebounceTime),
-    map(() => new DaffCartItemStateReset()),
+    ofType(
+      // these action will cause the cart item state reset
+      DaffCartItemActionTypes.CartItemAddSuccessAction,
+      DaffCartItemActionTypes.CartItemUpdateSuccessAction,
+    ),
+    mapTo(new DaffCartItemStateReset()),
   );
 
   @Effect()
