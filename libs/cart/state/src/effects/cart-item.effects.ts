@@ -126,7 +126,7 @@ export class DaffCartItemEffects<
     ),
     debounceTime(this.cartItemStateDebounceTime),
     ofType(
-      // these action will cause the cart item state reset
+      // these actions will cause the cart item state reset
       DaffCartItemActionTypes.CartItemAddSuccessAction,
       DaffCartItemActionTypes.CartItemUpdateSuccessAction,
     ),
