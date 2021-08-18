@@ -306,6 +306,25 @@ describe('Daffodil | Cart | CartItemEffects', () => {
           helpers.expectObservable(effects.resetCartItemStateAfterChange$).toBe(expectedMarble, expectedObservable);
         });
       });
+
+      describe('and when DaffCartItemUpdate is dispatched before the state is reset', () => {
+        it('should dispatch a DaffCartItemStateReset after the specified amount of time from the final update success', () => {
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(helpers => {
+            const expectedMarble = '4000ms ----a';
+            const cartItemAddSuccess = new DaffCartItemAddSuccess(mockCart);
+            const cartItemUpdateAction = new DaffCartItemUpdate(mockCartItem.id, mockCartItem);
+            const cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.id);
+            const shopCartItemReset = new DaffCartItemStateReset();
+            actions$ = helpers.hot('a-b-c', { a: cartItemAddSuccess, b: cartItemUpdateAction, c: cartItemUpdateSuccessAction });
+            expectedObservable = { a: shopCartItemReset };
+
+            helpers.expectObservable(effects.resetCartItemStateAfterChange$).toBe(expectedMarble, expectedObservable);
+          });
+        });
+      });
     });
 
     describe('when a DaffCartItemUpdateSuccess action is dispatched', () => {
