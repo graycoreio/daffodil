@@ -14,7 +14,7 @@ export { daffProvideRouteResolvableByType } from './token/type-resolvable-routes
 export * from './model/public_api';
 
 export { DaffExternalRouter } from './router/router.service';
-export { daffInsertRouteBeforeWildCardStrategy } from './router/helper/insert-route-before-wildcard';
+export { daffInsertRouteBeforeWildCardStrategy } from './router/strategies/insert-route-before-wildcard';
 
 export { DaffExternalRouterNoWildcardError } from './errors/no-wildcard';
 export { DaffExternalRouterUnknownRouteTypeError } from './errors/unknown-type';
