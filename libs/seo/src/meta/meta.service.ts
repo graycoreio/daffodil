@@ -15,10 +15,20 @@ export class DaffMetaService {
     private meta: Meta,
   ) {}
 
+  /**
+   * Updates or inserts, as needed, a meta tag to the page.
+   *
+   * @param def the meta definition
+   */
   upsert(def: DaffSeoMetaDefinition): void {
     this.meta.updateTag(def);
   }
 
+  /**
+   * Removes the specified meta tag from the page.
+   *
+   * @param def the meta definition
+   */
   remove(def: DaffSeoMetaDefinition): void {
     this.meta.removeTag(getAttrSelector(def));
   }
