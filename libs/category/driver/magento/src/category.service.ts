@@ -3,6 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 import {
   Observable,
   combineLatest,
@@ -23,6 +24,7 @@ import {
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
   DaffProductMagentoDriverConfig,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
 } from '@daffodil/product/driver/magento';
 
@@ -73,6 +75,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
     @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
+    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.
@@ -86,7 +89,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoGetCategoryFilterTypes,
       }),
       this.apollo.query<MagentoGetProductsResponse>({
-        query: MagentoGetProductsQuery,
+        query: MagentoGetProductsQuery(this.extraPreviewFragments),
         variables: this.getProductsQueryVariables(categoryRequest),
       }),
     ]).pipe(
@@ -120,7 +123,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         category,
         filterTypes,
       ]) => this.apollo.query<MagentoGetProductsResponse>({
-        query: MagentoGetProductsQuery,
+        query: MagentoGetProductsQuery(this.extraPreviewFragments),
         variables: this.getProductsQueryVariables({
           ...categoryRequest,
           id: category.data.categoryList[0]?.uid,
