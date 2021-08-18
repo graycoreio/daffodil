@@ -1,19 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  Meta,
-  MetaDefinition,
-} from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 
 import { DaffSeoMetaDefinition } from '../models/public_api';
 import { getAttrSelector } from './get-attr-selector';
 
-interface Subtype {
-  name: string;
-  content: string;
-}
-
 /**
- * @inheritdoc
+ * Manages the meta tags on the current browser page.
  */
 @Injectable({
   providedIn: 'root',
