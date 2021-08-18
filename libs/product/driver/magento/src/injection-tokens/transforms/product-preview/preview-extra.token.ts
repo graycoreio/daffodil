@@ -11,6 +11,8 @@ import { DaffMagentoProductPreviewExtraTransform } from '../../../interfaces/pro
 /**
  * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
  * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil product and the Magento product.
+ *
+ * See {@link MagentoProductPreview} for more info.
  */
 export const DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS = new InjectionToken<DaffMagentoProductPreviewExtraTransform[]>(
   'DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS',

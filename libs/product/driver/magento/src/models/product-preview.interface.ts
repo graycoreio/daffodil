@@ -4,7 +4,10 @@ export enum MagentoProductStockStatusEnum {
 }
 
 /**
- * A stripped down version of the Magento product for related and upsell products.
+ * A stripped down version of the Magento product.
+ * The product preview is intended for loading lists of products
+ * that do not need the full amount of information that would be
+ * necessary for a product page, for example.
  */
 export interface MagentoProductPreview {
 	__typename: string;

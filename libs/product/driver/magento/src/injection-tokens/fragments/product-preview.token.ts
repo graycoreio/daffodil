@@ -10,6 +10,8 @@ import { DocumentNode } from 'graphql';
  * Fragments provided here will also be included in the {@link DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS}.
  * The same fragment should not be provided for both of these tokens.
  *
+ * See {@link MagentoProductPreview} for more info.
+ *
  * Fragment structure is platform-specific and this feature should be used with care.
  *
  * This can increase query complexity above the Magento default of 300.
