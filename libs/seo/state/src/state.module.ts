@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 
+import { DaffSeoCanonicalUrlEffects } from './effects/canonical.effects';
 import { DaffSeoMetaEffects } from './effects/meta.effects';
 import { DaffSeoTitleEffects } from './effects/title.effects';
 
@@ -9,6 +10,7 @@ import { DaffSeoTitleEffects } from './effects/title.effects';
     EffectsModule.forFeature([
       DaffSeoTitleEffects,
       DaffSeoMetaEffects,
+      DaffSeoCanonicalUrlEffects,
     ]),
   ],
 })
