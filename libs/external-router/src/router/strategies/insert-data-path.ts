@@ -35,8 +35,9 @@ const operateOnRoute = (externalRoute: Route): (route: Route) => Route =>
 
 /**
  * Traverse the router config tree, halting after the first match.
- * This traversal is implemented in a pre-order manner, so for large configuration trees,
- * it will be most efficient to place externally routed components at the top of router configuration.
+ * This traversal is implemented in a pre-order manner. As such, for large
+ * configuration trees, it will be most efficient to place externally routed
+ * components at the top of router configuration.
  */
 const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boolean, operate: (route: Route) => Route): Routes => {
   if(routes.length === 0) {
@@ -61,12 +62,12 @@ const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boole
 };
 
 /**
- * A factory function that can be used to get retrieve to generate a "Type Insert" strategy for
- * route insertion. This should be used when you need to route to a lazy-loaded module
- * from multiple externally defined paths.
+ * A route insertion strategy that can be used to append external routes onto
+ * existing Angular routes. This can be useful when you need to route to
+ * an existing lazy-loaded module from multiple externally defined urls.
  *
  * This should be used in combination with the {@link daffDataPathUrlMatcher} to match lazy-loaded modules with
- * the associated external route.
+ * associated external urls.
  *
  * For example, you can provide the insertion strategy in the {@link DaffExternalRouterModule} as below.
  *
@@ -80,7 +81,20 @@ const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boole
  * ],
  * ```
  *
- * Then, you can match it with an associated
+ * Then, you can match it with an associated route defined in your Routing
+ * configuration with the {@link daffDataPathUrlMatcher}.
+ *
+ * ```ts
+ *  export const routes: Routes = [
+ *    {
+ *      matcher: daffDataPathUrlMatcher,
+ *      data: {
+ *        daffExternalRouteType: "CATEGORY",
+ *      },
+ *      loadChildren: () => import('./category/category.module').then((m) => m.ShopCategoryModule),
+ *    }
+ * ]
+ * ```
  *
  * See {@link DaffRouteWithDataPath}
  *

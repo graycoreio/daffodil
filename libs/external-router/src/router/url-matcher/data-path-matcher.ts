@@ -7,6 +7,24 @@ import {
 
 import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 
+/**
+ * A UrlMatcher that does an exact match against a path stored in the special
+ * configuration fields that Daffodil on a Route.
+ *
+ * ```ts
+ *  export const routes: Routes = [
+ *    {
+ *      matcher: daffDataPathUrlMatcher,
+ *      data: {
+ *        daffExternalRouteType: "CATEGORY",
+ *      },
+ *      loadChildren: () => import('./category/category.module').then((m) => m.ShopCategoryModule),
+ *    }
+ * ]
+ * ```
+ * {@link daffInsertDataPathStrategy }
+ * {@link DaffRouteWithDataPath }
+ */
 export const daffDataPathUrlMatcher: UrlMatcher = (segments: UrlSegment[], group: UrlSegmentGroup, route: Route) => {
   const path = daffUriTruncateLeadingSlash(segments.reduce((acc: string, segment) => acc + '/' + segment.path, ''));
   const paths = route?.data?.daffPaths;
