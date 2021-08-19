@@ -7,6 +7,7 @@ import {
   PRIMARY_OUTLET,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DAFF_EXTERNAL_ROUTE_DATA_TYPE } from 'libs/external-router/src/model/route-with-daff-data-path';
 import { of } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
@@ -96,7 +97,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        { path: '/some-resolved/path/with/file-endings.html', component: FakeComponent },
+        { path: '/some-resolved/path/with/file-endings.html', component: FakeComponent, data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: STUB_RESOLVABLE_TYPE }},
         { path: '**', redirectTo: '/' },
       ]);
     });
@@ -195,7 +196,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        { path: 'some-path', component: FakeComponent },
+        { path: 'some-path', component: FakeComponent, data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: STUB_RESOLVABLE_TYPE }},
         { path: '**', redirectTo: '/' },
       ]);
     });
@@ -250,7 +251,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        { path: 'some-path.html', component: FakeComponent },
+        { path: 'some-path.html', component: FakeComponent, data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: STUB_RESOLVABLE_TYPE }},
         { path: '**', redirectTo: '/' },
       ]);
     });

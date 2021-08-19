@@ -5,3 +5,4 @@ export { DaffRouteInfo } from './route-info';
 export { DaffExternalRouteType } from './route-type';
 export { DaffRouteWithoutPath } from './route-without-path';
 export { DaffTypeRoutePair } from './type-route-pair';
+export { DaffRouteWithDataPath } from './route-with-daff-data-path';
