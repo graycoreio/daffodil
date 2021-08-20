@@ -5,11 +5,7 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import {
-  DAFF_EXTERNAL_ROUTE_DATA_TYPE,
-  DAFF_EXTERNAL_ROUTE_DATA_PATHS,
-  DaffRouteWithDataPath,
-} from '../../model/route-with-daff-data-path';
+import { DaffRouteWithDataPath } from '../../model/route-with-data-path';
 import { daffInsertDataPathStrategy } from './insert-data-path';
 
 describe('@daffodil/external-router | daffInsertDataPathOnRouteMatchingType', () => {
@@ -30,7 +26,7 @@ describe('@daffodil/external-router | daffInsertDataPathOnRouteMatchingType', ()
     const externalRoute: Route = {
       path: 'some-wild-path.html',
       data: {
-        [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: type,
+        daffExternalRouteType: type,
       },
     };
     const routes = [];
@@ -45,16 +41,16 @@ describe('@daffodil/external-router | daffInsertDataPathOnRouteMatchingType', ()
     const externalRoute: DaffRouteWithDataPath = {
       path: PATH,
       data: {
-        [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: type,
+        daffExternalRouteType: type,
       },
     };
 
     const routes = [
-      { children: [{}], data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: type }},
+      { children: [{}], data: { daffExternalRouteType: type }},
     ];
 
     expect(daffInsertDataPathStrategy(externalRoute, routes)).toEqual([
-      { children: [{}], data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: type, [DAFF_EXTERNAL_ROUTE_DATA_PATHS]: { [PATH]: PATH }}},
+      { children: [{}], data: { daffExternalRouteType: type, daffPaths: { [PATH]: PATH }}},
     ]);
   });
 });

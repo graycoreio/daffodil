@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
-import { DAFF_EXTERNAL_ROUTE_DATA_TYPE } from '../model/route-with-daff-data-path';
 import { daffTransformResolvedRouteToRoute } from './resolved-route-to-route';
 
 describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => {
@@ -27,7 +26,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
     ).toEqual({
       route: {
         path: 'some-url',
-        data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: 'some-type' },
+        data: { daffExternalRouteType: 'some-type' },
         redirectTo: '/',
       },
       insertionStrategy,

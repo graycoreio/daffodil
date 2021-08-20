@@ -1,7 +1,6 @@
 import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
 import { DaffRouteInfo } from '../model/route-info';
-import { DAFF_EXTERNAL_ROUTE_DATA_TYPE } from '../model/route-with-daff-data-path';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
 
 /**
@@ -25,7 +24,7 @@ export const daffTransformResolvedRouteToRoute = (
       path: resolvedRoute.url,
       ...routeType.route,
       data: {
-        [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: resolvedRoute.type,
+        daffExternalRouteType: resolvedRoute.type,
         ...routeType.route.data,
       },
     },

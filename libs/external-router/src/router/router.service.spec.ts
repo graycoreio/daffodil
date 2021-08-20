@@ -12,7 +12,7 @@ import {
   DaffExternalRouterNoWildcardError,
 } from '@daffodil/external-router';
 
-import { DAFF_EXTERNAL_ROUTE_DATA_TYPE } from '../model/route-with-daff-data-path';
+import { DaffRouteWithDataPath } from '../model/route-with-data-path';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 import { DaffExternalRouter } from './router.service';
@@ -95,7 +95,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     service.add({ url: 'some-path', type: 'type-a', id: 'id', code: 200 });
 
     expect(router.config).toEqual([
-      { path: 'some-path', redirectTo: '/', data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: 'type-a' }},
+      <DaffRouteWithDataPath>{ path: 'some-path', redirectTo: '/', data: { daffExternalRouteType: 'type-a' }},
       { path: '**', redirectTo: 'somewhere-else' },
     ]);
   });

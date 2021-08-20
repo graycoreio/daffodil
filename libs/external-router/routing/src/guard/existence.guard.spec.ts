@@ -7,18 +7,20 @@ import {
   PRIMARY_OUTLET,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DAFF_EXTERNAL_ROUTE_DATA_TYPE } from 'libs/external-router/src/model/route-with-daff-data-path';
 import { of } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffExternalRouterModule } from '@daffodil/external-router';
+import {
+  DaffExternalRouterModule,
+  DaffRouteWithDataPath,
+} from '@daffodil/external-router';
 import {
   DaffExternalRouterDriverInterface,
   DaffExternalRouterDriver,
 } from '@daffodil/external-router/driver';
 import { DaffExternalRouterDriverTestingModule } from '@daffodil/external-router/driver/testing';
 
-import { DaffExternalRouterExistenceGuard } from './existence.guard';
+import { DaffExternalRouterExistenceGuard } from '..';
 
 @Component({})
 export class FakeComponent {}
@@ -97,7 +99,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        { path: '/some-resolved/path/with/file-endings.html', component: FakeComponent, data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: STUB_RESOLVABLE_TYPE }},
+        <DaffRouteWithDataPath>{ path: '/some-resolved/path/with/file-endings.html', component: FakeComponent, data: { daffExternalRouteType: STUB_RESOLVABLE_TYPE }} ,
         { path: '**', redirectTo: '/' },
       ]);
     });
@@ -196,7 +198,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        { path: 'some-path', component: FakeComponent, data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: STUB_RESOLVABLE_TYPE }},
+        <DaffRouteWithDataPath>{ path: 'some-path', component: FakeComponent, data: { daffExternalRouteType: STUB_RESOLVABLE_TYPE }},
         { path: '**', redirectTo: '/' },
       ]);
     });
@@ -251,7 +253,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        { path: 'some-path.html', component: FakeComponent, data: { [DAFF_EXTERNAL_ROUTE_DATA_TYPE]: STUB_RESOLVABLE_TYPE }},
+        <DaffRouteWithDataPath>{ path: 'some-path.html', component: FakeComponent, data: { daffExternalRouteType: STUB_RESOLVABLE_TYPE }},
         { path: '**', redirectTo: '/' },
       ]);
     });

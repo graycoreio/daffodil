@@ -5,18 +5,14 @@ import {
 
 import { DaffExternalRouterInsertionStrategy } from '../../model/insertion-strategy.type';
 import { DaffExternalRouteType } from '../../model/route-type';
-import {
-  DaffRouteWithDataPath,
-  DAFF_EXTERNAL_ROUTE_DATA_PATHS,
-  DAFF_EXTERNAL_ROUTE_DATA_TYPE,
-} from '../../model/route-with-daff-data-path';
+import { DaffRouteWithDataPath } from '../../model/route-with-data-path';
 
 /**
  * Tests whether or not a route matches a specific Daffodil Route type.
  *
  * See {@link DaffRouteWithDataPath}
  */
-const routeMatchesRouteType = (route: DaffRouteWithDataPath, type: DaffExternalRouteType): boolean => route?.data?.[DAFF_EXTERNAL_ROUTE_DATA_TYPE] === type;
+const routeMatchesRouteType = (route: DaffRouteWithDataPath, type: DaffExternalRouteType): boolean => route?.data?.daffExternalRouteType === type;
 
 /**
  * Adds a path to the `daffPaths` of the given route.
@@ -25,8 +21,8 @@ const routeMatchesRouteType = (route: DaffRouteWithDataPath, type: DaffExternalR
  */
 const addRouteToDaffPaths:
   (route: DaffRouteWithDataPath, path: string) => Route =
-  (route: DaffRouteWithDataPath, path: string) => route.data[DAFF_EXTERNAL_ROUTE_DATA_PATHS]  = {
-    ...route.data[DAFF_EXTERNAL_ROUTE_DATA_PATHS],
+  (route: DaffRouteWithDataPath, path: string) => route.data.daffPaths  = {
+    ...route.data.daffPaths,
     [path]: path,
   };
 
@@ -91,7 +87,7 @@ const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boole
  *      data: {
  *        daffExternalRouteType: "CATEGORY",
  *      },
- *      loadChildren: () => import('./category/category.module').then((m) => m.ShopCategoryModule),
+ *      loadChildren: () => import('./category/category.module').then((m) => m.MyCategoryModule),
  *    }
  * ]
  * ```
@@ -101,6 +97,6 @@ const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boole
  */
 export const daffInsertDataPathStrategy: DaffExternalRouterInsertionStrategy = (externalRoute: DaffRouteWithDataPath, routes: Routes) => traverseRouteTree(
   routes,
-  (route) => routeMatchesRouteType(route, externalRoute.data?.[DAFF_EXTERNAL_ROUTE_DATA_TYPE]),
+  (route) => routeMatchesRouteType(route, externalRoute.data?.daffExternalRouteType),
   operateOnRoute(externalRoute),
 );
