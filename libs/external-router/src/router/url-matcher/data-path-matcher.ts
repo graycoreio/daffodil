@@ -2,14 +2,15 @@ import {
   UrlMatcher,
   UrlSegment,
   UrlSegmentGroup,
-  Route,
 } from '@angular/router';
 
 import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 
+import { DaffRouteWithDataPath } from '../../model/public_api';
+
 /**
  * A UrlMatcher that does an exact match against a path stored in the special
- * configuration fields that Daffodil on a Route.
+ * configuration fields that External Router stores on a Route's data.
  *
  * ```ts
  *  export const routes: Routes = [
@@ -25,7 +26,7 @@ import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
  * {@link daffInsertDataPathStrategy }
  * {@link DaffRouteWithDataPath }
  */
-export const daffDataPathUrlMatcher: UrlMatcher = (segments: UrlSegment[], group: UrlSegmentGroup, route: Route) => {
+export const daffDataPathUrlMatcher: UrlMatcher = (segments: UrlSegment[], group: UrlSegmentGroup, route: DaffRouteWithDataPath) => {
   const path = daffUriTruncateLeadingSlash(segments.reduce((acc: string, segment) => acc + '/' + segment.path, ''));
   const paths = route?.data?.daffPaths;
 
