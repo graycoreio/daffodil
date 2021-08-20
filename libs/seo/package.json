@@ -1,6 +1,5 @@
 {
   "name": "@daffodil/seo",
-  "private": true,
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing canonical URLs and other SEO features.",
   "repository": {
