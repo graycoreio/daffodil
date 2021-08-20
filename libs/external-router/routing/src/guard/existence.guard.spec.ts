@@ -20,7 +20,7 @@ import {
 } from '@daffodil/external-router/driver';
 import { DaffExternalRouterDriverTestingModule } from '@daffodil/external-router/driver/testing';
 
-import { DaffExternalRouterExistenceGuard } from '..';
+import { DaffExternalRouterExistenceGuard } from './existence.guard';
 
 @Component({})
 export class FakeComponent {}
