@@ -100,6 +100,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.6.0",
     "lerna": "^4.0.0",
+    "minimist": "^1.2.5",
     "ng-packagr": "^10.0.0",
     "plugin-error": "^1.0.1",
     "prettier": "1.18.2",
