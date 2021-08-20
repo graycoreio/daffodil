@@ -34,8 +34,10 @@ const operateOnRoute = (externalRoute: Route): (route: Route) => Route =>
  * This traversal is implemented in a pre-order manner. As such, for large
  * configuration trees, it will be most efficient to place externally routed
  * components at the top of router configuration.
+ *
+ * Note that
  */
-const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boolean, operate: (route: Route) => Route): Routes => {
+const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boolean, operate: (route: Route) => void): Routes => {
   if(routes.length === 0) {
     return routes;
   }
@@ -45,9 +47,9 @@ const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boole
   stack.push(treeRoot);
 
   while(stack.length) {
-    let route = stack.pop();
+    const route = stack.pop();
     if(matcher(route)) {
-      route = operate(route);
+      operate(route);
       break;
     }
     if(route.children){
