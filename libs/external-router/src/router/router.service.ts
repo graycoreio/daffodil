@@ -13,7 +13,7 @@ import { DaffExternallyResolvableUrl } from '../model/resolvable-route';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
 import { daffTransformResolvedRouteToRoute } from '../transform/resolved-route-to-route';
-import { daffInsertRouteBeforeWildCardStrategy } from './helper/insert-route-before-wildcard';
+import { daffInsertRouteBeforeWildCardStrategy } from './strategies/insert-route-before-wildcard';
 
 @Injectable({
   providedIn: 'root',

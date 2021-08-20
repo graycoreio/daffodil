@@ -23,6 +23,10 @@ export const daffTransformResolvedRouteToRoute = (
     route: {
       path: resolvedRoute.url,
       ...routeType.route,
+      data: {
+        daffExternalRouteType: resolvedRoute.type,
+        ...routeType.route.data,
+      },
     },
     insertionStrategy: routeType.insertionStrategy,
   };
