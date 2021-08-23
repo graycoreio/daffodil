@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.5](https://github.com/griest024/daffodil/compare/v0.38.4...v0.38.5) (2021-08-23)
+
+
+### Features
+
+* **category:** add extra preview fragments to category products query ([#1747](https://github.com/griest024/daffodil/issues/1747)) ([4b760e7](https://github.com/griest024/daffodil/commit/4b760e7dd8ea6c3f7ede5f6abb21bf14e4ff6c20))
+* **docs-gen:** compute the docGroup of an example from the folder path, not the filename ([#1711](https://github.com/griest024/daffodil/issues/1711)) ([c4d2494](https://github.com/griest024/daffodil/commit/c4d249487ba33fa88da1c1c358331dda3cb9aa22))
+* **external-router:** add `daffInsertDataPathStrategy` and `daffDataPathUrlMatcher` ([#1767](https://github.com/griest024/daffodil/issues/1767)) ([d148a51](https://github.com/griest024/daffodil/commit/d148a51967cec4877e0cdc83600be7ea1978c43d))
+* **product:** remove extraneous configurable product fields ([#1738](https://github.com/griest024/daffodil/issues/1738)) ([adcb2ce](https://github.com/griest024/daffodil/commit/adcb2cea86326782087559af0ef8e9ede3b8e3ad))
+* **seo:** add `daffProvideCanonicalUrlUpdates` and `DAFF_SEO_CANONICAL_URL_UPDATES` token ([#1762](https://github.com/griest024/daffodil/issues/1762)) ([da5cb84](https://github.com/griest024/daffodil/commit/da5cb847672eae0c428b2399755bc4d4bd1f0346))
+* **seo:** add `daffProvideMetaUpdates` and `DAFF_SEO_META_UPDATES` token ([#1757](https://github.com/griest024/daffodil/issues/1757)) ([3354033](https://github.com/griest024/daffodil/commit/335403385a08d2cc825a9f04cc30536a598373d1))
+* **seo:** add `DaffSeoCanonicalUrlEffects` ([#1763](https://github.com/griest024/daffodil/issues/1763)) ([04dd8f8](https://github.com/griest024/daffodil/commit/04dd8f8d770a19b2ccfb3f921ab63b869263589d))
+* **seo:** add `DaffSeoMetaEffects` ([#1761](https://github.com/griest024/daffodil/issues/1761)) ([926008d](https://github.com/griest024/daffodil/commit/926008d55c90f4795864c110c4475b7eb2883919))
+* **seo:** add `DaffSeoTitleEffects` ([#1759](https://github.com/griest024/daffodil/issues/1759)) ([fd9f615](https://github.com/griest024/daffodil/commit/fd9f615aaa7a326ded4ca733b37122ff25e63529))
+* **seo:** add canonical URL update model ([#1742](https://github.com/griest024/daffodil/issues/1742)) ([b24e110](https://github.com/griest024/daffodil/commit/b24e11079c458a400788fef3ccc2b01ee1e359c4))
+* **seo:** add meta definition models ([#1744](https://github.com/griest024/daffodil/issues/1744)) ([5c1d735](https://github.com/griest024/daffodil/commit/5c1d735b430e80a9d78179279c1fbee65a49df61))
+* **seo:** add meta update model ([#1739](https://github.com/griest024/daffodil/issues/1739)) ([00c33a5](https://github.com/griest024/daffodil/commit/00c33a5cb4ae981a9a497742c2709061ebb0dd86))
+* **seo:** add page hook effects abstract class ([#1740](https://github.com/griest024/daffodil/issues/1740)) ([9c11f98](https://github.com/griest024/daffodil/commit/9c11f98f0e6c954e66eeda4f3cf0c2c8cc71de46))
+* **seo:** add restoreable meta service ([#1749](https://github.com/griest024/daffodil/issues/1749)) ([b66fe24](https://github.com/griest024/daffodil/commit/b66fe2477ddb2322c5d648f1eaa0fb993b2ad0b9))
+* **seo:** add restoreable service interface ([#1736](https://github.com/griest024/daffodil/issues/1736)) ([f624f00](https://github.com/griest024/daffodil/commit/f624f005b4710a6c57b0b6803dc0430a86edcd96))
+* **seo:** add restoreable title service ([#1743](https://github.com/griest024/daffodil/issues/1743)) ([fde1635](https://github.com/griest024/daffodil/commit/fde1635200c817d09a6557368d2f96c5946c02b0))
+* **seo:** add seo/state and update action pair ([#1708](https://github.com/griest024/daffodil/issues/1708)) ([9fb78cb](https://github.com/griest024/daffodil/commit/9fb78cbeb97628ff43ea3f7f7f3ceed93c9d0217))
+* **seo:** add title update model ([#1741](https://github.com/griest024/daffodil/issues/1741)) ([5fe73fb](https://github.com/griest024/daffodil/commit/5fe73fba9a5f5c1e1ad3ce072e6bc4dca042f1c6))
+* **seo:** add title updates multi token and provider ([#1752](https://github.com/griest024/daffodil/issues/1752)) ([333401a](https://github.com/griest024/daffodil/commit/333401a86e1eae0f35229f525cdac62cdff8ebd3))
+* **seo:** change canonical service to restoreable ([#1745](https://github.com/griest024/daffodil/issues/1745)) ([2f3389d](https://github.com/griest024/daffodil/commit/2f3389d070ae9fe989119aec75aac93cec752acd))
+
+
+### Bug Fixes
+
+* **cart:** cart item state prematurely resetting after update ([#1753](https://github.com/griest024/daffodil/issues/1753)) ([160a7b2](https://github.com/griest024/daffodil/commit/160a7b254f23e14c4465d5301bd9e04919044358))
+* **design-land:** fix design-land tsconfig paths ([#1754](https://github.com/griest024/daffodil/issues/1754)) ([8e68fd4](https://github.com/griest024/daffodil/commit/8e68fd49527f132e85f80cac4a2bb34161b49f65))
+* **tools:** release build task fails ([#1766](https://github.com/griest024/daffodil/issues/1766)) ([2766234](https://github.com/griest024/daffodil/commit/2766234b594a90a9a277d750d611881c9c1e8b38))
+
 ### [0.38.4](https://github.com/graycoreio/daffodil/compare/v0.38.3...v0.38.4) (2021-08-06)
 
 
