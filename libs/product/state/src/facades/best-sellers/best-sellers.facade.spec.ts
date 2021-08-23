@@ -20,6 +20,7 @@ import { DaffBestSellersFacade } from './best-sellers.facade';
 describe('DaffBestSellersFacade', () => {
   let store: Store<DaffProductStateRootSlice>;
   let facade: DaffBestSellersFacade;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,6 +34,7 @@ describe('DaffBestSellersFacade', () => {
       ],
     });
 
+    productFactory = TestBed.inject(DaffProductFactory);
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffBestSellersFacade);
   });
@@ -70,7 +72,7 @@ describe('DaffBestSellersFacade', () => {
     });
 
     it('should be an observable of the list of the best sellers that are added to state', () => {
-      const stubProduct = new DaffProductFactory().create();
+      const stubProduct = productFactory.create();
       const expected = cold('a', { a: [stubProduct]});
       store.dispatch(new DaffBestSellersLoadSuccess([stubProduct]));
       expect(facade.bestSellers$).toBeObservable(expected);

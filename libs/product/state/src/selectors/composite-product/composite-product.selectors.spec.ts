@@ -39,7 +39,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
   let store: Store<DaffProductStateRootSlice>;
   const compositeProductFactory: DaffCompositeProductFactory = new DaffCompositeProductFactory();
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let stubCompositeProduct: DaffCompositeProduct;
   let stubProduct: DaffProduct;
   const {
@@ -68,6 +68,8 @@ describe('Composite Product Selectors | integration tests', () => {
         }),
       ],
     });
+
+    productFactory = TestBed.inject(DaffProductFactory);
 
     stubCompositeProduct = compositeProductFactory.create();
     stubProduct = productFactory.create();

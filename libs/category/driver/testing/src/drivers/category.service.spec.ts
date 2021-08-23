@@ -22,7 +22,7 @@ describe('Driver | Testing | Category | CategoryService', () => {
   const mockCategoryPageMetadataFactory = jasmine.createSpyObj('DaffCategoryPageMetadataFactory', ['create']);
   mockCategoryPageMetadataFactory.create.and.returnValue(categoryPageMetadata);
 
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   const products = productFactory.createMany(3);
   const mockProductFactory = jasmine.createSpyObj('DaffProductFactory', ['createMany']);
   mockProductFactory.createMany.and.returnValue(products);

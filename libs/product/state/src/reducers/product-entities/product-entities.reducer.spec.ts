@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -17,7 +19,7 @@ describe('Product | Product Entities Reducer', () => {
   const initialState = daffProductEntitiesAdapter().getInitialState();
 
   beforeEach(() => {
-    productFactory = new DaffProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   describe('when an unknown action is triggered', () => {
