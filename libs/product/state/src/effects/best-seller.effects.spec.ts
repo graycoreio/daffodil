@@ -15,16 +15,13 @@ import {
   DaffProductDriver,
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
-import { DaffTestingProductService } from '@daffodil/product/driver/testing';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import {
   DaffBestSellersLoad,
   DaffBestSellersLoadSuccess,
   DaffBestSellersLoadFailure,
 } from '@daffodil/product/state';
-import {
-  DaffProductFactory,
-  DaffProductImageFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffBestSellersEffects } from './best-seller.effects';
 
@@ -38,11 +35,10 @@ describe('BestSellersEffects', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingDriverModule.forRoot(),
+      ],
       providers: [
-        {
-          provide: DaffProductDriver,
-          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory()),
-        },
         DaffBestSellersEffects,
         provideMockActions(() => actions$),
       ],

@@ -5,27 +5,23 @@ import {
   cold,
 } from 'jasmine-marbles';
 import {
-  Observable ,
+  Observable,
   of,
 } from 'rxjs';
 
-import { daffArrayToDict } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriver,
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
-import { DaffTestingProductService } from '@daffodil/product/driver/testing';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import {
   DaffProductPageLoad,
   DaffProductPageLoadSuccess,
   DaffProductPageLoadFailure,
 } from '@daffodil/product/state';
-import {
-  DaffProductFactory,
-  DaffProductImageFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductPageLoadByUrl } from '../actions/public_api';
 import { DaffProductPageEffects } from './product-page.effects';
@@ -43,13 +39,12 @@ describe('DaffProductPageEffects', () => {
     productId = 'product id';
 
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingDriverModule.forRoot(),
+      ],
       providers: [
         DaffProductPageEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffProductDriver,
-          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory()),
-        },
       ],
     });
 
