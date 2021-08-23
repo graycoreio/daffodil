@@ -38,13 +38,12 @@ import { IDaffModelFactory } from './factory.interface';
  * ```
  */
 export abstract class DaffModelFactory<T extends Record<string, any>> implements IDaffModelFactory<T> {
-  // TODO: figure out a way to type args (`Parameters<T['new']>`?)
-  _instantiationArgs: unknown[];
+  _instantiationArgs: ConstructorParameters<Constructable<T>>;
 
   constructor(
     public type: Constructable<T>,
-    ...args: unknown[]
-  ){
+    ...args: ConstructorParameters<Constructable<T>>
+  ) {
     this._instantiationArgs = args;
   }
 
