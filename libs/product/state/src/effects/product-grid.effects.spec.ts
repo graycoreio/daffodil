@@ -15,16 +15,13 @@ import {
   DaffProductDriver,
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
-import { DaffTestingProductService } from '@daffodil/product/driver/testing';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import {
   DaffProductGridLoad,
   DaffProductGridLoadSuccess,
   DaffProductGridLoadFailure,
 } from '@daffodil/product/state';
-import {
-  DaffProductFactory,
-  DaffProductImageFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductGridEffects } from './product-grid.effects';
 
@@ -37,13 +34,12 @@ describe('DaffProductGridEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingDriverModule.forRoot(),
+      ],
       providers: [
         DaffProductGridEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffProductDriver,
-          useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory()),
-        },
       ],
     });
 
