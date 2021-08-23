@@ -22,6 +22,6 @@ export class DaffTestingCheckoutService implements DaffCheckoutServiceInterface 
   ) {}
 
   placeOrder(cartId: string): Observable<DaffOrder> {
-    return of(this.orderFactory.create({ items: [this.orderItemFactory.createMany(2)]}));
+    return of(this.orderFactory.create({ items: this.orderItemFactory.createMany(2) }));
   }
 }
