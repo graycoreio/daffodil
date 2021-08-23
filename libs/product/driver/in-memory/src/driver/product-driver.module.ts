@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 
 import { DaffProductDriver } from '@daffodil/product/driver';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffInMemoryProductService } from './product.service';
 
@@ -14,6 +15,7 @@ import { DaffInMemoryProductService } from './product.service';
 @NgModule({
   imports: [
     CommonModule,
+    DaffProductTestingModule,
   ],
 })
 export class DaffProductInMemoryDriverModule {
