@@ -5,6 +5,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffTestingCategoryService } from './category.service';
@@ -23,11 +24,12 @@ describe('Driver | Testing | Category | CategoryService', () => {
   mockCategoryPageMetadataFactory.create.and.returnValue(categoryPageMetadata);
 
   let productFactory: DaffProductFactory;
-  const products = productFactory.createMany(3);
-  const mockProductFactory = jasmine.createSpyObj('DaffProductFactory', ['createMany']);
-  mockProductFactory.createMany.and.returnValue(products);
+  let products: DaffProduct[];
+  let mockProductFactory: jasmine.SpyObj<DaffProductFactory>;
 
   beforeEach(() => {
+    mockProductFactory = jasmine.createSpyObj('DaffProductFactory', ['createMany']);
+
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffCategoryFactory, useValue: mockCategoryFactory },
@@ -36,7 +38,12 @@ describe('Driver | Testing | Category | CategoryService', () => {
         DaffTestingCategoryService,
       ],
     });
+
+    productFactory = TestBed.inject(DaffProductFactory);
     categoryService = TestBed.inject(DaffTestingCategoryService);
+
+    products = productFactory.createMany(3);
+    mockProductFactory.createMany.and.returnValue(products);
   });
 
   it('should be created', () => {
