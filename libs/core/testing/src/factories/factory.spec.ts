@@ -40,10 +40,6 @@ describe('@daffodil/core/testing | DaffModelFactory', () => {
       result = factory.create();
     });
 
-    it('should create an object of type TestMockModel', () => {
-      expect(result).toEqual(jasmine.any(TestMockModel));
-    });
-
     it('should pass args to the TestMockModel constructor', () => {
       expect(result.field).toEqual('field');
     });
