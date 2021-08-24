@@ -47,7 +47,7 @@ export abstract class DaffModelFactory<T extends Record<string, any>> implements
     this._instantiationArgs = args;
   }
 
-  create(partial: Partial<T> = {}): T {
+  create(partial = {}): T {
     // use Object.assign to preserve the object's class
     return Object.assign(new this.type(...this._instantiationArgs), partial);
   }
