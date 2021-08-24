@@ -25,7 +25,7 @@ import { getDaffProductGridSelectors } from './product-grid.selectors';
 describe('selectProductState', () => {
 
   let store: Store<DaffProductStateRootSlice>;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
   const {
     selectProductGridState,
@@ -41,8 +41,10 @@ describe('selectProductState', () => {
       ],
     });
 
-    mockProduct = productFactory.create();
+    productFactory = TestBed.inject(DaffProductFactory);
     store = TestBed.inject(Store);
+
+    mockProduct = productFactory.create();
 
     store.dispatch(new DaffBestSellersReset());
     store.dispatch(new DaffProductGridReset());

@@ -20,6 +20,7 @@ import { DaffProductGridFacade } from './product-grid.facade';
 describe('DaffProductGridFacade', () => {
   let store: Store<DaffProductStateRootSlice>;
   let facade: DaffProductGridFacade;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,6 +34,7 @@ describe('DaffProductGridFacade', () => {
       ],
     });
 
+    productFactory = TestBed.inject(DaffProductFactory);
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffProductGridFacade);
   });
@@ -70,7 +72,7 @@ describe('DaffProductGridFacade', () => {
     });
 
     it('should be an observable of the list of products', () => {
-      const products = new DaffProductFactory().createMany(1);
+      const products = productFactory.createMany(1);
       const expected = cold('a', { a: products });
       store.dispatch(new DaffProductGridLoad());
       store.dispatch(new DaffProductGridLoadSuccess(products));

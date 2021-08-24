@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { daffArrayToDict } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -22,7 +24,7 @@ describe('Product | Product Reducer', () => {
   let productId: string;
 
   beforeEach(() => {
-    productFactory = new DaffProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
 
     product = productFactory.create();
     productId = product.id;

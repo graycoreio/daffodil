@@ -21,7 +21,7 @@ import { getDaffBestSellersSelectors } from './best-sellers.selectors';
 describe('selectBestSellersState', () => {
 
   let store: Store<DaffProductStateRootSlice>;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
   const {
     selectBestSellersProducts,
@@ -39,8 +39,10 @@ describe('selectBestSellersState', () => {
       ],
     });
 
-    mockProduct = productFactory.create();
+    productFactory = TestBed.inject(DaffProductFactory);
     store = TestBed.inject(Store);
+
+    mockProduct = productFactory.create();
 
     store.dispatch(new DaffBestSellersLoadSuccess(new Array(mockProduct)));
   });

@@ -93,7 +93,7 @@ describe('DaffCategoryPageEffects', () => {
     store = TestBed.inject(Store);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
-    productFactory = new DaffProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
 
     stubCategory = categoryFactory.create();
     stubcategoryPageMetadata = categoryPageMetadataFactory.create();

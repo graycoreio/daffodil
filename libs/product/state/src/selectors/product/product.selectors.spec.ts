@@ -22,7 +22,7 @@ import { getDaffProductPageSelectors } from './product.selectors';
 describe('selectProductState', () => {
 
   let store: Store<DaffProductStateRootSlice>;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
   const {
     selectCurrentProductLoadingState,
@@ -40,8 +40,10 @@ describe('selectProductState', () => {
       ],
     });
 
-    mockProduct = productFactory.create();
+    productFactory = TestBed.inject(DaffProductFactory);
     store = TestBed.inject(Store);
+
+    mockProduct = productFactory.create();
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new DaffProductPageLoadSuccess({

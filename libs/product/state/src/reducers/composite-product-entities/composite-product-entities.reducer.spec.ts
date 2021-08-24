@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffProduct,
   DaffCompositeProduct,
@@ -25,7 +27,7 @@ describe('Product | Composite Product Entities Reducer', () => {
   let compositeProduct: DaffCompositeProduct;
 
   beforeEach(() => {
-    productFactory = new DaffProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
     compositeProductFactory = new DaffCompositeProductFactory();
     compositeProduct = compositeProductFactory.create();
   });

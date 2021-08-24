@@ -23,7 +23,7 @@ import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 describe('selectProductEntitiesState', () => {
 
   let store: Store<DaffProductStateRootSlice>;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
   const {
     selectProductIds,
@@ -48,8 +48,10 @@ describe('selectProductEntitiesState', () => {
       ],
     });
 
-    mockProduct = productFactory.create();
     store = TestBed.inject(Store);
+    productFactory = TestBed.inject(DaffProductFactory);
+
+    mockProduct = productFactory.create();
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
   });

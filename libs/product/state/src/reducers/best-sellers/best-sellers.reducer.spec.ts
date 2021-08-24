@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -20,7 +22,7 @@ describe('Product | Best Sellers Reducer', () => {
   let product: DaffProduct;
 
   beforeEach(() => {
-    productFactory = new DaffProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
 
     product = productFactory.create();
   });
