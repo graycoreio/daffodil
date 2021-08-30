@@ -1,0 +1,12 @@
+@import 'daff-util';
+
+:host {
+	$root: '.daff-decorative-icon';
+	display: inline-block;
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	vertical-align: middle;
+	text-align: center;
+	padding: 12px 0;
+}
