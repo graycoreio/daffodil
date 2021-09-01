@@ -327,7 +327,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       });
     });
 
-    fdescribe('when the call to the Magento API is unsuccessful', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
       describe('because of a graphql-no-such-entity error', () => {
         it('should throw a DaffCartNotFoundError', done => {
           service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
