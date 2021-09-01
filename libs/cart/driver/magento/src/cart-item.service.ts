@@ -4,8 +4,14 @@ import {
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
+  map,
+} from 'rxjs/operators';
 
 import {
   DaffCartItem,
@@ -18,6 +24,7 @@ import {
 import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
+import { transformCartMagentoError } from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { MagentoCartItemInput } from './models/requests/cart-item';
@@ -95,6 +102,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.updateCartItems.cart)),
+      catchError(err => throwError(transformCartMagentoError(err))),
     );
   }
 
