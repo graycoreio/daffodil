@@ -1,5 +1,6 @@
 /**
  * Returns a random slice of an array.
+ * An optional length may be specified.
  *
  * @param array
  */
