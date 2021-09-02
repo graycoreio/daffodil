@@ -9,6 +9,7 @@ import {
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterToggleRequestEqualFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
@@ -18,6 +19,7 @@ import { daffToggleRequestOnFilters } from './toggle-request-on-filters';
 describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestToFilters', () => {
 
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
   let colorFilter: DaffCategoryFilterEqual;
   let filters: Dict<DaffCategoryFilterEqual>;
@@ -26,18 +28,20 @@ describe('@daffodil/category | filters | behaviors | toggle | daffApplyRequestTo
     TestBed.configureTestingModule({});
 
     categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
     categoryFilterToggleRequestEqualFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
+
     colorFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'blue',
-        },
+        }),
       },
     });
     filters = {

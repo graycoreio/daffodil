@@ -6,6 +6,7 @@ import {
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterRequestEqualFactory,
 } from '@daffodil/category/testing';
 
@@ -14,13 +15,15 @@ import { daffApplyFilterEqual } from './apply';
 describe('@daffodil/category | filters | type | equal | behaviors | apply', () => {
 
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
-		 categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+    categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
+    categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
   });
 
   let filter: DaffCategoryFilterEqual;
@@ -29,14 +32,14 @@ describe('@daffodil/category | filters | type | equal | behaviors | apply', () =
     filter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'blue',
-        },
+        }),
       },
     });
   });

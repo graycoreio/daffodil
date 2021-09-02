@@ -8,6 +8,7 @@ import {
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterRequestEqualFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
@@ -16,13 +17,15 @@ import { daffRemoveRequestsFromFilters } from './remove-requests-from-filters';
 
 describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequestsFromFilters', () => {
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let categoryFilterRequestEqualFactory: DaffCategoryFilterRequestEqualFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
-		 categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+    categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
+    categoryFilterRequestEqualFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
   });
 
   let colorFilter: DaffCategoryFilterEqual;
@@ -33,27 +36,27 @@ describe('@daffodil/category | filters | behaviors | remove | daffRemoveRequests
     colorFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'blue',
-        },
+        }),
       },
     });
     sizeFilter = categoryFilterEqualFactory.create({
       name: 'size',
       options: {
-        small: {
+        small: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'small',
-        },
-        medium: {
+        }),
+        medium: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'medium',
-        },
+        }),
       },
     });
     filters	= {

@@ -125,7 +125,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
     };
     mockMagentoProduct = magentoProductFactory.create();
     mockMagentoCategory = magentoCategoryFactory.create({
-      id: mockCategory.id,
+      uid: mockCategory.id,
       products: {
         items: [
           mockMagentoProduct,

@@ -8,6 +8,7 @@ import {
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterToggleRequestEqualFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
@@ -16,6 +17,7 @@ import { daffToggleRequestsOnFilters } from './toggle-requests-on-filters';
 
 describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequestsOnFilters', () => {
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
   let colorFilter: DaffCategoryFilterEqual;
   let sizeFilter: DaffCategoryFilterEqual;
@@ -25,31 +27,33 @@ describe('@daffodil/category | filters | behaviors | toggle | daffToggleRequests
     TestBed.configureTestingModule({});
 
     categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
     categoryFilterToggleRequestEqualFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
+
     colorFilter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'blue',
-        },
+        }),
       },
     });
     sizeFilter = categoryFilterEqualFactory.create({
       name: 'size',
       options: {
-        small: {
+        small: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'small',
-        },
-        medium: {
+        }),
+        medium: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'medium',
-        },
+        }),
       },
     });
     filters	= {
