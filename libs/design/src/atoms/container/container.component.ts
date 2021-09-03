@@ -10,7 +10,6 @@ import {
 import {
   DaffSizeAllType,
   DaffSizeable,
-  DaffSizeableEnum,
 } from '../../core/sizeable/sizeable';
 import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
 
@@ -30,11 +29,12 @@ const _daffContainerBase = daffSizeMixin(DaffContainerBase);
   selector: 'daff-container',
   styleUrls: ['./container.component.scss'],
   template: '<ng-content></ng-content>',
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['size'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffContainerComponent extends _daffContainerBase implements DaffSizeable<DaffSizeAllType> {
-
-  @Input() size: DaffSizeAllType;
 
   /**
    * @docs-private

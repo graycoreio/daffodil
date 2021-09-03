@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '../../core/colorable/colorable';
+import { DaffPalette } from '../../core/colorable/public_api';
 import { DaffStatus } from '../../core/statusable/statusable';
 import {
   DaffButtonComponent,

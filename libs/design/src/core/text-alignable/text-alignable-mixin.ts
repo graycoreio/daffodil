@@ -1,5 +1,6 @@
 import {
   ElementRef,
+  Input,
   Renderer2,
 } from '@angular/core';
 
@@ -13,14 +14,17 @@ interface HasElementRef {
 
 export function
 daffTextAlignmentMixin<T extends Constructor<HasElementRef>>(Base: T, defaultTextAlignment?: DaffTextAlignment) {
-  return class extends Base {
+  class DaffTextAlignableMixin extends Base {
     // TODO move this back to private in Typescript 3.1
     _textAlignment: DaffTextAlignment;
 
+    /**
+     * Controls text alignment for component-specific UI
+     */
+    @Input()
     get textAlignment(): DaffTextAlignment {
       return this._textAlignment;
     }
-
     set textAlignment(value: DaffTextAlignment) {
       // Handles the default text alignment
       const incomingTextAlignment = value || defaultTextAlignment;
@@ -46,4 +50,5 @@ daffTextAlignmentMixin<T extends Constructor<HasElementRef>>(Base: T, defaultTex
       this.textAlignment = defaultTextAlignment;
     }
   };
+  return DaffTextAlignableMixin;
 }

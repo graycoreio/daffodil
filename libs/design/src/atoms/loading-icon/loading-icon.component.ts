@@ -11,7 +11,7 @@ import {
   daffColorMixin,
   DaffColorable,
   DaffPalette,
-} from '../../core/colorable/colorable';
+} from '../../core/colorable/public_api';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
@@ -29,11 +29,13 @@ const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary');
   selector: 'daff-loading-icon',
   templateUrl: './loading-icon.component.html',
   styleUrls: ['./loading-icon.component.scss'],
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffLoadingIconComponent extends _daffLoadingIconBase implements DaffColorable {
 
-  @Input() color: DaffPalette;
   /**
    * The (pixel) diameter of the animation
    */

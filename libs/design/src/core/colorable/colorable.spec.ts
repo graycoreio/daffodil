@@ -1,9 +1,7 @@
 import { ElementRef } from '@angular/core';
 
-import {
-  daffColorMixin,
-  colorInPalette,
-} from './colorable';
+import { colorInPalette } from './color-in-palette';
+import { daffColorMixin } from './public_api';
 
 class TestingClass {
   element: HTMLElement = document.createElement('div');

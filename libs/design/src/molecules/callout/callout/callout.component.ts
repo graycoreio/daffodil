@@ -10,9 +10,8 @@ import {
 
 import {
   DaffColorable,
-  DaffPalette,
   daffColorMixin,
-} from '../../../core/colorable/colorable';
+} from '../../../core/colorable/public_api';
 import {
   DaffTextAlignable,
   DaffTextAlignment,
@@ -48,17 +47,14 @@ const _daffCalloutBase = daffColorMixin(daffTextAlignmentMixin(DaffCalloutBase))
   template: '<ng-content></ng-content>',
   styleUrls: ['./callout.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color', 'textAlignment'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable, DaffTextAlignable {
-  @Input() color: DaffPalette;
   @Input() layout: DaffCalloutLayout; // Will be deprecated in v1.0.0
   @Input() size: DaffCalloutSize; // Will be deprecated in v1.0.0
-
-  /**
-   * Controls text alignment for component-specific UI
-   */
-  @Input() textAlignment: DaffTextAlignment;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

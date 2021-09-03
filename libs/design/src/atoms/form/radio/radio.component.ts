@@ -21,7 +21,6 @@ let radioUniqueId = 0;
   styleUrls: ['./radio.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class DaffRadioComponent implements OnInit {
 
   /**
@@ -72,16 +71,18 @@ export class DaffRadioComponent implements OnInit {
 	 * The id of the radio. It is uniquely generated but can be overwritten by the user. Must be unique.
 	 */
 	@Input() id: string = 'daff-radio-' + radioUniqueId;
+
 	/**
 	 * Name of the Radio
 	 */
-	@Input() name: string;
+	@Input() name = '';
 
   /**
    * Used for aria-label. Default to name if user does not input a label.
    */
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('aria-label') label: string = name;
+  @Input('aria-label') label: string = this.name;
+
   /**
    * Used for aria-labelledby.
    */

@@ -1,26 +1,28 @@
 import {
   ElementRef,
+  Input,
   Renderer2,
 } from '@angular/core';
 
 import { Constructor } from '../constructor/constructor';
 import { DaffSizeAllType } from './sizeable';
 
-interface HasElementRef {
+export interface HasElementRef {
 	_elementRef: ElementRef;
 	_renderer: Renderer2;
 }
 
 export function
-daffSizeMixin<T extends Constructor<HasElementRef>>(Base: T, defaultSize?: DaffSizeAllType) {
-  return class extends Base {
+daffSizeMixin<V extends DaffSizeAllType, T extends Constructor<HasElementRef> = Constructor<HasElementRef>>(Base: T, defaultSize?: V) {
+  class DaffSizeMixinClass extends Base {
         //TODO move this back to private in Typescript 3.1
-        _size: DaffSizeAllType;
+        _size: V;
 
-        get size(): DaffSizeAllType{
+        @Input()
+        get size(): V{
           return this._size;
         }
-        set size(value: DaffSizeAllType) {
+        set size(value: V) {
           // Handles the default size
           const incomingSize = value || defaultSize;
 
@@ -43,4 +45,6 @@ daffSizeMixin<T extends Constructor<HasElementRef>>(Base: T, defaultSize?: DaffS
           this.size = defaultSize;
         }
   };
+
+  return DaffSizeMixinClass;
 }

@@ -12,7 +12,7 @@ import {
   DaffPalette,
   daffColorMixin,
   DaffColorable,
-} from '../../../core/colorable/colorable';
+} from '../../../core/colorable/public_api';
 import {
   DaffTextAlignable,
   DaffTextAlignment,
@@ -49,18 +49,15 @@ const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase));
   template: '<ng-content></ng-content>',
   styleUrls: ['./hero.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color', 'textAlignment'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffHeroComponent extends _daffHeroBase implements DaffColorable, DaffTextAlignable {
 
   @Input() layout: DaffHeroLayout; // Will be deprecated in v1.0.0
   @Input() size: DaffHeroSize; // Will be deprecated in v1.0.0
-  @Input() color: DaffPalette;
-
-  /**
-   * Controls text alignment for component-specific UI
-   */
-  @Input() textAlignment: DaffTextAlignment;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

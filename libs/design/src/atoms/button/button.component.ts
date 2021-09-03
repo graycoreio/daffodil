@@ -12,8 +12,7 @@ import {
 import {
   daffColorMixin,
   DaffColorable,
-  DaffPalette,
-} from '../../core/colorable/colorable';
+} from '../../core/colorable/public_api';
 import {
   DaffPrefixable,
   DaffSuffixable,
@@ -27,10 +26,7 @@ import {
   DaffSizeLargeType,
 } from '../../core/sizeable/sizeable';
 import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
-import {
-  DaffStatusable,
-  DaffStatus,
-} from '../../core/statusable/statusable';
+import { DaffStatusable } from '../../core/statusable/statusable';
 import { daffStatusMixin } from '../../core/statusable/statusable-mixin';
 
 /**
@@ -51,7 +47,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin(DaffButtonBase, 'md')))));
+const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md')))));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
@@ -86,15 +82,15 @@ enum DaffButtonTypeEnum {
     'a[daff-underline-button]',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color', 'size', 'status'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffButtonComponent
   extends _daffButtonBase
   implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize>, DaffStatusable {
-    @Input() color: DaffPalette;
-		@Input() size: DaffButtonSize;
-    @Input() status: DaffStatus;
 
     private buttonType: DaffButtonType;
 

@@ -11,7 +11,7 @@ import {
   DaffColorable,
   DaffPalette,
   daffColorMixin,
-} from '../../core/colorable/colorable';
+} from '../../core/colorable/public_api';
 
 /**
  * An _elementRef is needed for the Colorable mixin
@@ -29,14 +29,12 @@ const _daffNavbarBase = daffColorMixin(DaffNavbarBase);
   selector: 'daff-navbar',
   styleUrls: ['./navbar.component.scss'],
   template: '<ng-content></ng-content>',
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffNavbarComponent extends _daffNavbarBase implements DaffColorable {
-
-  /**
-   * The color of the navbar
-   */
-  @Input() color: DaffPalette;
 
   @Input() shadowed = false;
 

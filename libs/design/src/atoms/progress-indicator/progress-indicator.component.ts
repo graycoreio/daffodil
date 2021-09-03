@@ -14,7 +14,7 @@ import {
   daffColorMixin,
   DaffColorable,
   DaffPalette,
-} from '../../core/colorable/colorable';
+} from '../../core/colorable/public_api';
 import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
 
 /**
@@ -34,6 +34,9 @@ const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'pr
   templateUrl: './progress-indicator.component.html',
   styleUrls: ['./progress-indicator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color'],
   animations: [
     daffProgressIndicatorAnimation.fill,
   ],
@@ -44,12 +47,6 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
    * @docs-private
    */
   @HostBinding('class.daff-progress-indicator') class = true;
-
-  /**
-   * The color of the progress indicator
-   * See DaffColorable
-   */
-  @Input() color: DaffPalette;
 
   /**
    * The percentage completion of the progression,

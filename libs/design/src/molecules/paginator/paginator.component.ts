@@ -19,7 +19,7 @@ import {
   daffColorMixin,
   DaffPalette,
   DaffColorable,
-} from '../../core/colorable/colorable';
+} from '../../core/colorable/public_api';
 import {
   DaffPaginatorNumberOfPagesErrorMessage,
   DaffPaginatorPageOutOfRangeErrorMessage,
@@ -43,6 +43,9 @@ const visiblePageRange = 2;
   selector: 'daff-paginator',
   styleUrls: ['./paginator.component.scss'],
   templateUrl: './paginator.component.html',
+  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChanges, DaffColorable {
@@ -65,10 +68,6 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 	 */
   faChevronLeft = faChevronLeft;
 
-  /**
-   * The color theme of the paginator.
-   */
-  @Input() color: DaffPalette;
 	/**
 	 * @docs-private
 	 */

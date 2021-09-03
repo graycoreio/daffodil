@@ -17,7 +17,6 @@ let checkboxIdNum = 0;
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-
 })
 export class DaffCheckboxComponent {
   /**
@@ -59,11 +58,13 @@ export class DaffCheckboxComponent {
    * The id of the checkbox. Must be unique. If not entered by a user then it is generated.
    */
   @Input() id: string = 'daff-checkbox-' + checkboxIdNum;
+
   /**
-   * The aria-label of the checkbox. If not set by user then it defaults to the name of the checkbox.
+   * The aria-label of the checkbox.
    */
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('aria-label') label: string = name;
+  @Input('aria-label') label = '';
+
   /**
    * The aria-labeledby of the checkbox.
    */
