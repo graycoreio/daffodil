@@ -36,7 +36,7 @@
     "@ngrx/schematics": "^11.0.0",
     "@ngrx/store": "^11.0.0",
     "@ngrx/store-devtools": "^11.0.0",
-    "@nguniversal/express-engine": "^10.0.0",
+    "@nguniversal/express-engine": "^11.0.0",
     "angular-in-memory-web-api": "^0.11.0",
     "apollo-angular": "^2.4.0",
     "classlist.js": "^1.1.20150312",
