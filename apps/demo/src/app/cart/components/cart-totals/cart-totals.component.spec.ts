@@ -33,12 +33,8 @@ describe('CartTotalsComponent', () => {
   const cartFactory = new DaffCartFactory();
   const cartItemFactory = new DaffCartItemFactory();
 
-  const itemTaxValue = 3.00;
-
   const mockCart = cartFactory.create({
-    items: cartItemFactory.createMany(2, {
-      tax_amount: itemTaxValue,
-    }),
+    items: cartItemFactory.createMany(2),
   });
 
   beforeEach(waitForAsync(() => {
