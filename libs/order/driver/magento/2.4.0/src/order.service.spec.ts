@@ -200,13 +200,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       sort_order: 4,
     });
     mockDaffOrderInvoice = daffOrderInvoiceFactory.create({
-      totals: jasmine.arrayContaining([
+      totals: [
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
         mockDaffOrderDiscount,
-      ]),
+      ],
       billing_address: mockDaffOrderAddress,
       shipping_address: mockDaffOrderAddress,
       payment: mockDaffOrderPayment,
@@ -216,13 +216,13 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
     mockDaffOrder = daffOrderFactory.create({
       id: '2',
       customer_id: '1',
-      totals: jasmine.arrayContaining([
+      totals: [
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
         mockDaffOrderDiscount,
-      ]),
+      ],
       applied_codes: [mockDaffOrderCoupon],
       items: [mockDaffOrderItem],
       billing_addresses: [mockDaffOrderAddress],
