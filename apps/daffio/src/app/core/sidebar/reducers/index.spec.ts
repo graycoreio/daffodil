@@ -1,7 +1,4 @@
-import {
-  TestBed,
-  async,
-} from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import {
   StoreModule,
   combineReducers,
@@ -16,7 +13,7 @@ describe('selectDaffioSidebarState', () => {
 
   let store: Store<fromSidebar.DaffioSidebarState>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({

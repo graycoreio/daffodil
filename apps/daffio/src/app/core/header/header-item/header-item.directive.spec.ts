@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DaffioHeaderItemDirective } from './header-item.directive';
 
@@ -15,7 +11,7 @@ describe('DaffioHeaderItemComponent', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,

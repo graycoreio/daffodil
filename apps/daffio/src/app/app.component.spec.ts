@@ -1,9 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-  TestBed,
-  async,
-  ComponentFixture,
-} from '@angular/core/testing';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -13,7 +9,7 @@ describe('DaffioAppComponent', () => {
   let fixture: ComponentFixture<DaffioAppComponent>;
   let app: DaffioAppComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -33,7 +29,7 @@ describe('DaffioAppComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the app', async(() => {
+  it('should create the app', waitForAsync(() => {
     expect(app).toBeTruthy();
   }));
 

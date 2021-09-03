@@ -1,9 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffioHomepageComponent } from './homepage.component';
@@ -12,7 +8,7 @@ describe('DaffioHomepageComponent', () => {
   let component: DaffioHomepageComponent;
   let fixture: ComponentFixture<DaffioHomepageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,

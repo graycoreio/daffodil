@@ -1,9 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffioNotFoundComponent } from './not-found.component';
@@ -12,7 +8,7 @@ describe('DaffioNotFoundComponent', () => {
   let component: DaffioNotFoundComponent;
   let fixture: ComponentFixture<DaffioNotFoundComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
