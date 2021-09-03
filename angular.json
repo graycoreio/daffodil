@@ -200,7 +200,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/authorizenet/tsconfig.lib.json",
             "project": "libs/authorizenet/ng-package.json"
@@ -239,7 +239,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/product/tsconfig.lib.json",
             "project": "libs/product/ng-package.json"
@@ -278,7 +278,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/related-products/tsconfig.lib.json",
             "project": "libs/related-products/ng-package.json"
@@ -317,7 +317,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/cart/tsconfig.lib.json",
             "project": "libs/cart/ng-package.json"
@@ -356,7 +356,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/category/tsconfig.lib.json",
             "project": "libs/category/ng-package.json"
@@ -395,7 +395,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/checkout/tsconfig.lib.json",
             "project": "libs/checkout/ng-package.json"
@@ -434,7 +434,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/core/tsconfig.lib.json",
             "project": "libs/core/ng-package.json"
@@ -473,7 +473,7 @@
       "prefix": "daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/driver/tsconfig.lib.json",
             "project": "libs/driver/ng-package.json"
@@ -512,7 +512,7 @@
       "prefix": "daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/design/tsconfig.lib.json",
             "project": "libs/design/ng-package.json"
@@ -958,7 +958,7 @@
       "prefix": "daff-branding",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/branding/tsconfig.lib.json",
             "project": "libs/branding/ng-package.json"
@@ -997,7 +997,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/navigation/tsconfig.lib.json",
             "project": "libs/navigation/ng-package.json"
@@ -1036,7 +1036,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/newsletter/tsconfig.lib.json",
             "project": "libs/newsletter/ng-package.json"
@@ -1075,7 +1075,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/contact/tsconfig.lib.json",
             "project": "libs/contact/ng-package.json"
@@ -1114,7 +1114,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/auth/tsconfig.lib.json",
             "project": "libs/auth/ng-package.json"
@@ -1153,7 +1153,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/geography/tsconfig.lib.json",
             "project": "libs/geography/ng-package.json"
@@ -1192,7 +1192,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/paypal/tsconfig.lib.json",
             "project": "libs/paypal/ng-package.json"
@@ -1230,7 +1230,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/order/tsconfig.lib.json",
             "project": "libs/order/ng-package.json"
@@ -1269,7 +1269,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/external-router/tsconfig.lib.json",
             "project": "libs/external-router/ng-package.json"
@@ -1307,7 +1307,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/seo/tsconfig.lib.json",
             "project": "libs/seo/ng-package.json"
