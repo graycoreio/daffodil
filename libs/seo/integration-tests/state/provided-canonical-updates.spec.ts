@@ -109,34 +109,34 @@ describe('@daffodil/seo/state | Providing Custom Behavior for Canonical URL Upda
         EffectsModule.forRoot(),
         StoreRouterConnectingModule.forRoot(),
         RouterModule.forRoot([
-    {
-        path: '',
-        component: MockComponent,
-    },
-    {
-        path: 'feature1',
-        component: MockComponent,
-        resolve: {
-            test: ResolverFromFeature1,
-        },
-    },
-    {
-        path: 'feature2',
-        component: MockComponent,
-        resolve: {
-            test: ResolverFromFeature2,
-        },
-    },
-    {
-        path: 'fail',
-        component: MockComponent,
-        canActivate: [FailGuard],
-    },
-    {
-        path: 'nourl',
-        component: MockComponent,
-    },
-], { relativeLinkResolution: 'legacy' }),
+          {
+            path: '',
+            component: MockComponent,
+          },
+          {
+            path: 'feature1',
+            component: MockComponent,
+            resolve: {
+              test: ResolverFromFeature1,
+            },
+          },
+          {
+            path: 'feature2',
+            component: MockComponent,
+            resolve: {
+              test: ResolverFromFeature2,
+            },
+          },
+          {
+            path: 'fail',
+            component: MockComponent,
+            canActivate: [FailGuard],
+          },
+          {
+            path: 'nourl',
+            component: MockComponent,
+          },
+        ], { relativeLinkResolution: 'legacy' }),
         DaffSeoStateModule,
       ],
       providers: [
