@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^11.2.14",
     "@angular/platform-browser-dynamic": "^11.2.14",
     "@angular/platform-server": "^11.2.14",
-    "@angular/pwa": "^0.1000.0",
+    "@angular/pwa": "^0.1100.7",
     "@angular/router": "^11.2.14",
     "@angular/service-worker": "^11.2.14",
     "@apollo/client": "^3.0.0",
