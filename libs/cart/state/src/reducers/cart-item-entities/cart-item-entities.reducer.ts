@@ -37,7 +37,7 @@ export function daffCartItemEntitiesReducer<
   const adapter = daffCartItemEntitiesAdapter<T>();
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListSuccessAction:
-      return adapter.addAll(action.payload.map(item => ({
+      return adapter.setAll(action.payload.map(item => ({
         ...item,
         daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
       })), state);
@@ -47,12 +47,12 @@ export function daffCartItemEntitiesReducer<
         daffState: getDaffState(state.entities[action.payload.id]) || DaffCartItemStateEnum.Default,
       }, state);
     case DaffCartItemActionTypes.CartItemAddSuccessAction:
-      return adapter.addAll(
+      return adapter.setAll(
         updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items),
         state,
       );
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
-      return adapter.addAll(
+      return adapter.setAll(
         updateMutatedCartItemState<T>(<T[]>action.payload.items, state.entities, action.itemId),
         state,
       );
@@ -67,12 +67,12 @@ export function daffCartItemEntitiesReducer<
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.ResolveCartSuccessAction:
     case DaffCartActionTypes.CartClearSuccessAction:
-      return adapter.addAll(<T[]><unknown>action.payload.items.map(item => ({
+      return adapter.setAll(<T[]><unknown>action.payload.items.map(item => ({
         ...item,
         daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
       })), state);
     case DaffCartItemActionTypes.CartItemStateResetAction:
-      return adapter.addAll(Object.keys(state.entities).map(key => ({
+      return adapter.setAll(Object.keys(state.entities).map(key => ({
         ...state.entities[key],
         daffState: DaffCartItemStateEnum.Default,
       })), state);
