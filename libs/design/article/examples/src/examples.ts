@@ -7,6 +7,7 @@ import { ArticleLeadComponent } from './article-lead/article-lead.component';
 import { ArticleLinkComponent } from './article-link/article-link.component';
 import { ArticleMetaComponent } from './article-meta/article-meta.component';
 import { ArticleOlComponent } from './article-ol/article-ol.component';
+import { ArticleTableComponent } from './article-table/article-table.component';
 import { ArticleUlComponent } from './article-ul/article-ul.component';
 
 export const ARTICLE_EXAMPLES = [
@@ -20,4 +21,5 @@ export const ARTICLE_EXAMPLES = [
   ArticleMetaComponent,
   ArticleOlComponent,
   ArticleUlComponent,
+  ArticleTableComponent,
 ];

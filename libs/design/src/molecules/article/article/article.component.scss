@@ -124,4 +124,28 @@
 			margin-top: 1rem;
 		}
 	}
+
+	table {
+		display: block;
+		border-collapse: collapse;
+		overflow: auto;
+		width: 100%;
+
+		th {
+			font-weight: 600;
+			outline: 0;
+			padding: 16px;
+			text-align: left;
+			vertical-align: bottom;
+			box-sizing: border-box;
+		}
+
+		td {
+			hyphens: auto;
+			padding: 8px 16px;
+			word-break: break-word;
+			vertical-align: top;
+			box-sizing: border-box;
+		}
+	}
 }
