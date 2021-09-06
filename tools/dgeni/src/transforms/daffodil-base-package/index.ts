@@ -13,6 +13,8 @@ const nunjucksPackage = require('dgeni-packages/nunjucks');
 
 import { PROJECT_ROOT, DOCS_OUTPUT_PATH, TEMPLATES_PATH } from '../config';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
+import { TableOfContentsProcessor } from '../../processors/tableOfContentsProcessor';
+import { HighlightCodeProcessor } from '../../processors/highlightCode';
 
 export const daffodilBasePackage = new Package('daffodil-base', [
 	basePackage,
@@ -21,6 +23,9 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 	.processor('convertToJson', function(log, createDocMessage) {
 		return new ConvertToJsonProcessor(log, createDocMessage);
 	})
+	.processor(new TableOfContentsProcessor())
+	.processor(new HighlightCodeProcessor())
+
 	.factory('packageInfo', function() {
 		return require(path.resolve(PROJECT_ROOT, 'package.json'));
 	})

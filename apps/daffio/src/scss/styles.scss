@@ -18,6 +18,7 @@
 @import '../app/docs/components/table-of-contents/table-of-contents-theme';
 
 @import "theme";
+@import 'highlight.js/styles/github.css';
 
 @include daff-theme($theme);
 

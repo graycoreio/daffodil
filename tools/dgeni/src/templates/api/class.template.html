@@ -5,6 +5,8 @@
 {% endmacro %}
 
 {% block body %}
+<pre><code>{$ doc.classStructure $}</code></pre>
+
 {% if doc.decorators[0].argumentInfo[0].selector %}
 <section class="selectors">
   <span class="selectors__label">Selector:</span>
