@@ -49,10 +49,10 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public cartTransformer: DaffMagentoCartTransformer,
-    public shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
-    public shippingAddressInputTransformer: DaffMagentoShippingAddressInputTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private cartTransformer: DaffMagentoCartTransformer,
+    private shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
+    private shippingAddressInputTransformer: DaffMagentoShippingAddressInputTransformer,
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartAddress> {

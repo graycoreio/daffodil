@@ -13,7 +13,7 @@ import { DaffMagentoCartAddressTransformer } from './cart-address.service';
 })
 export class DaffMagentoBillingAddressTransformer {
   constructor(
-    public addressTransformer: DaffMagentoCartAddressTransformer,
+    private addressTransformer: DaffMagentoCartAddressTransformer,
   ) {}
 
   /**

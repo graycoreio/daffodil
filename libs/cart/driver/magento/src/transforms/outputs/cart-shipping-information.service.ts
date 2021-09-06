@@ -12,7 +12,7 @@ import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.ser
   providedIn: 'root',
 })
 export class DaffMagentoCartShippingInformationTransformer {
-  constructor(public shippingRateTransformer: DaffMagentoCartShippingRateTransformer) {}
+  constructor(private shippingRateTransformer: DaffMagentoCartShippingRateTransformer) {}
   /**
    * Transforms the magento shipping method from the magento cart query into a DaffCartShippingInformation.
    *

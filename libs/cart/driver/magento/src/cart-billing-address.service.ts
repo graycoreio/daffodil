@@ -49,10 +49,10 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public cartTransformer: DaffMagentoCartTransformer,
-    public billingAddressTransformer: DaffMagentoBillingAddressTransformer,
-    public billingAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private cartTransformer: DaffMagentoCartTransformer,
+    private billingAddressTransformer: DaffMagentoBillingAddressTransformer,
+    private billingAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartAddress> {

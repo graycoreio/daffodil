@@ -54,11 +54,11 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    public cartTransformer: DaffMagentoCartTransformer,
-    public paymentTransformer: DaffMagentoCartPaymentTransformer,
-    public paymentInputTransformer: DaffMagentoPaymentMethodInputTransformer,
-    public cartAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
+    private cartTransformer: DaffMagentoCartTransformer,
+    private paymentTransformer: DaffMagentoCartPaymentTransformer,
+    private paymentInputTransformer: DaffMagentoPaymentMethodInputTransformer,
+    private cartAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod> {

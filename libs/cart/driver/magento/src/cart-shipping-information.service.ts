@@ -45,10 +45,10 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public cartTransformer: DaffMagentoCartTransformer,
-    public shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
-    public shippingMethodInputTransformer: DaffMagentoShippingMethodInputTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private cartTransformer: DaffMagentoCartTransformer,
+    private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
+    private shippingMethodInputTransformer: DaffMagentoShippingMethodInputTransformer,
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCartShippingRate> {
