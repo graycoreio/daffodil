@@ -46,6 +46,9 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     'cart-shipping-information',
   ];
 
+  /**
+   * The collection of carts in the backend.
+   */
   public carts: DaffCart[] = [];
 
   constructor(

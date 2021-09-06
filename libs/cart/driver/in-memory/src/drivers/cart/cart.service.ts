@@ -22,7 +22,10 @@ import {
   providedIn: 'root',
 })
 export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCart> {
-  url = '/api/cart';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart';
 
   constructor(private http: HttpClient) {}
 

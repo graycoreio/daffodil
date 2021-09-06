@@ -15,7 +15,10 @@ import { DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryCartPaymentMethodsService implements DaffCartPaymentMethodsServiceInterface<DaffCartPaymentMethod> {
-  url = '/api/cart-payment-methods';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart-payment-methods';
 
   constructor(private http: HttpClient) {}
 

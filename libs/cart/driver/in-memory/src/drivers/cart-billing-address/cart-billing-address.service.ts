@@ -15,7 +15,10 @@ import { DaffCartBillingAddressServiceInterface } from '@daffodil/cart/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryCartBillingAddressService implements DaffCartBillingAddressServiceInterface<DaffCartAddress, DaffCart> {
-  url = '/api/cart-billing-address';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart-billing-address';
 
   constructor(private http: HttpClient) {}
 
