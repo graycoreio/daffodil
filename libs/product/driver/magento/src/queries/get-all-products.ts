@@ -12,7 +12,7 @@ export const DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME = 'MagentoGetAllProducts';
 
 export const getAllProducts = (extraProductFragments: DocumentNode[] = []) => gql`
   query ${DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME}($pageSize: Int) {
-    products(search: "Shirt", pageSize: $pageSize) {
+    products(pageSize: $pageSize) {
       total_count
       items {
         ...product
