@@ -7,5 +7,26 @@
     "watch": "ts-node-dev --watch='../../libs/**/*' --respawn --debounce 100 -r tsconfig-paths/register build",
     "test": "ts-node -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "test:watch": "ts-node-dev --respawn --debounce 100 -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json"
+  },
+  "devDependencies": {
+    "@daffodil/auth": "0.0.0-PLACEHOLDER",
+    "@daffodil/authorizenet": "0.0.0-PLACEHOLDER",
+    "@daffodil/branding": "0.0.0-PLACEHOLDER",
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
+    "@daffodil/category": "0.0.0-PLACEHOLDER",
+    "@daffodil/checkout": "0.0.0-PLACEHOLDER",
+    "@daffodil/contact": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/external-router": "0.0.0-PLACEHOLDER",
+    "@daffodil/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/navigation": "0.0.0-PLACEHOLDER",
+    "@daffodil/newsletter": "0.0.0-PLACEHOLDER",
+    "@daffodil/order": "0.0.0-PLACEHOLDER",
+    "@daffodil/paypal": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER",
+    "@daffodil/related-products": "0.0.0-PLACEHOLDER",
+    "@daffodil/seo": "0.0.0-PLACEHOLDER"
   }
 }
