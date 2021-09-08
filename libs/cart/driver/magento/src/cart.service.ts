@@ -50,13 +50,13 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    public cartTransformer: DaffMagentoCartTransformer,
+    private cartTransformer: DaffMagentoCartTransformer,
     @Inject(DaffCartItemDriver) private cartItemDriver: DaffCartItemServiceInterface<
       DaffCartItem,
       DaffCartItemInput,
       DaffCart
     >,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
   ) {}
 
   get(cartId: DaffCart['id']): Observable<DaffCart> {

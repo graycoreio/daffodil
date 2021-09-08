@@ -29,8 +29,8 @@ import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-pay
 export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMethodsServiceInterface {
   constructor(
     private apollo: Apollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public paymentTransformer: DaffMagentoCartPaymentTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private paymentTransformer: DaffMagentoCartPaymentTransformer,
   ) {}
 
   list(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod[]> {

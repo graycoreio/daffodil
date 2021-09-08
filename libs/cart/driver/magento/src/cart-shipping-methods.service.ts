@@ -29,8 +29,8 @@ import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/car
 export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface {
   constructor(
     private apollo: Apollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
   ) {}
 
   list(cartId: DaffCart['id']): Observable<DaffCartShippingRate[]> {

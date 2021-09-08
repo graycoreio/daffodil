@@ -18,7 +18,10 @@ export class DaffInMemoryCartShippingInformationService implements DaffCartShipp
   DaffCartShippingRate,
   DaffCart
 > {
-  url = '/api/cart-shipping-information';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart-shipping-information';
 
   constructor(private http: HttpClient) {}
 

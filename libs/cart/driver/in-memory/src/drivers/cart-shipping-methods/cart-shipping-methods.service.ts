@@ -15,7 +15,10 @@ import { DaffCartShippingMethodsServiceInterface } from '@daffodil/cart/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface<DaffCartShippingRate> {
-  url = '/api/cart-shipping-methods';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart-shipping-methods';
 
   constructor(private http: HttpClient) {}
 

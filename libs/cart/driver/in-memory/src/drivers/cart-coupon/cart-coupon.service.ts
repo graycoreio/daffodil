@@ -15,7 +15,10 @@ import { DaffCartCouponServiceInterface } from '@daffodil/cart/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryCartCouponService implements DaffCartCouponServiceInterface {
-  url = '/api/cart-coupon';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart-coupon';
 
   constructor(private http: HttpClient) {}
 

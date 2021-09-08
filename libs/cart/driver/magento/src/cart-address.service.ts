@@ -32,7 +32,6 @@ import {
 } from './queries/responses/public_api';
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
-import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -45,10 +44,9 @@ import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/ship
 export class DaffMagentoCartAddressService implements DaffCartAddressServiceInterface {
   constructor(
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public cartTransformer: DaffMagentoCartTransformer,
-    public cartAddressTransformer: DaffMagentoShippingAddressTransformer,
-    public cartAddressInputTransformer: DaffMagentoCartAddressInputTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private cartTransformer: DaffMagentoCartTransformer,
+    private cartAddressInputTransformer: DaffMagentoCartAddressInputTransformer,
   ) {}
 
   update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {

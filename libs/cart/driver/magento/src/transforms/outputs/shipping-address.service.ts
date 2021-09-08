@@ -12,7 +12,7 @@ import { DaffMagentoCartAddressTransformer } from './cart-address.service';
   providedIn: 'root',
 })
 export class DaffMagentoShippingAddressTransformer {
-  constructor(public addressTransformer: DaffMagentoCartAddressTransformer) {}
+  constructor(private addressTransformer: DaffMagentoCartAddressTransformer) {}
 
   /**
    * Transforms the magento MagentoCart from the magento cart query into a DaffCartAddress.

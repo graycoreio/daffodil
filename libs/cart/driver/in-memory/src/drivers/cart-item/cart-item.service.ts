@@ -20,7 +20,10 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
   DaffCartItemInput,
   DaffCart
 > {
-  url = '/api/cart-items';
+  /**
+   * The URL with which the driver makes calls to the backend.
+   */
+  readonly url = '/api/cart-items';
 
   constructor(private http: HttpClient) {}
 

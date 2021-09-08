@@ -46,8 +46,8 @@ import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/c
 export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterface {
   constructor(
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
-    public cartTransformer: DaffMagentoCartCouponResponseTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    private cartTransformer: DaffMagentoCartCouponResponseTransformer,
   ) {}
 
   apply(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {

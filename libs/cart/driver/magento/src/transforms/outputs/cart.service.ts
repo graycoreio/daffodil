@@ -20,11 +20,11 @@ import { DaffMagentoShippingAddressTransformer } from './shipping-address.servic
 })
 export class DaffMagentoCartTransformer {
   constructor(
-    public shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
-    public billingAddressTransformer: DaffMagentoBillingAddressTransformer,
-    public paymentTransformer: DaffMagentoCartPaymentTransformer,
-    public shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
-    public shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
+    private shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
+    private billingAddressTransformer: DaffMagentoBillingAddressTransformer,
+    private paymentTransformer: DaffMagentoCartPaymentTransformer,
+    private shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
+    private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
   ) {}
 
   private transformShippingAddress(cart: MagentoCart): {shipping_address: DaffCart['shipping_address']} {

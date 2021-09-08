@@ -22,7 +22,6 @@ import { transformCartMagentoError } from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 import { placeOrder } from './queries/public_api';
 import { MagentoPlaceOrderResponse } from './queries/responses/public_api';
-import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -35,7 +34,6 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterface {
   constructor(
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    public cartTransformer: DaffMagentoCartTransformer,
   ) {}
 
   placeOrder(cartId: DaffCart['id'], payment?: any): Observable<DaffCartOrderResult> {
