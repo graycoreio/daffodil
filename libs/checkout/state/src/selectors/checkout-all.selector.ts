@@ -8,7 +8,7 @@ import {
 export type DaffCheckoutSelectors<T extends DaffOrder = DaffOrder> = DaffCheckoutPlacedOrderSelectors<T>;
 
 /**
- * Gets all of `@daffodil/order/state` selectors.
+ * Gets all of `@daffodil/checkout/state` selectors.
  */
 export const getDaffCheckoutSelectors = (() => {
   let cache;
