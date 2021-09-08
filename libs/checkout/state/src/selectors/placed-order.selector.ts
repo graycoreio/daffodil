@@ -20,7 +20,7 @@ export interface DaffCheckoutPlacedOrderSelectors<T extends DaffOrder = DaffOrde
   selectHasPlacedOrder: MemoizedSelector<DaffCheckoutStateRootSlice<T>, boolean>;
 }
 
-const createCheckoutPlacedOrderSelectors = <T extends DaffOrder = DaffOrder>() => {
+const createCheckoutPlacedOrderSelectors = <T extends DaffOrder = DaffOrder>(): DaffCheckoutPlacedOrderSelectors<T> => {
   const { selectCartOrderId } = getDaffCartSelectors();
   const { selectOrder, selectOrderEntities } = getDaffOrderSelectors<T>();
 
