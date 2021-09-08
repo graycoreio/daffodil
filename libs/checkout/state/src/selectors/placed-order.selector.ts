@@ -9,6 +9,9 @@ import { getDaffOrderSelectors } from '@daffodil/order/state';
 
 import { DaffCheckoutStateRootSlice } from '../reducers/public_api';
 
+/**
+ * Selectors for the most recently placed order.
+ */
 export interface DaffCheckoutPlacedOrderSelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selector for the most recently placed order (if any).
@@ -41,6 +44,9 @@ const createCheckoutPlacedOrderSelectors = <T extends DaffOrder = DaffOrder>(): 
   };
 };
 
+/**
+ * Gets the placed order selectors.
+ */
 export const getCheckoutPlacedOrderSelectors = (() => {
   let cache;
   return <T extends DaffOrder = DaffOrder>(): DaffCheckoutPlacedOrderSelectors<T> =>
