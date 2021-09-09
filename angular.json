@@ -348,40 +348,40 @@
         }
       }
     },
-    "composite-product": {
-      "root": "libs/composite-product",
-      "sourceRoot": "libs/composite-product/src",
+    "product-composite": {
+      "root": "libs/product-composite",
+      "sourceRoot": "libs/product-composite/src",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/composite-product/tsconfig.lib.json",
-            "project": "libs/composite-product/ng-package.json"
+            "tsConfig": "libs/product-composite/tsconfig.lib.json",
+            "project": "libs/product-composite/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "libs/composite-product/ng-package.prod.json",
-              "tsConfig": "libs/composite-product/tsconfig.lib.prod.json"
+              "project": "libs/product-composite/ng-package.prod.json",
+              "tsConfig": "libs/product-composite/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/composite-product/test.ts",
+            "main": "libs/product-composite/test.ts",
             "codeCoverage": true,
-            "tsConfig": "libs/composite-product/tsconfig.spec.json",
-            "karmaConfig": "libs/composite-product/karma.conf.js"
+            "tsConfig": "libs/product-composite/tsconfig.spec.json",
+            "karmaConfig": "libs/product-composite/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "libs/composite-product/**/*.ts",
-              "libs/composite-product/**/*.html"
+              "libs/product-composite/**/*.ts",
+              "libs/product-composite/**/*.html"
             ]
           }
         }
