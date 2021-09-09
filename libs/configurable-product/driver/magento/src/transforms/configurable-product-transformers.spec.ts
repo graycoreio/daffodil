@@ -37,17 +37,18 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
   delete daffConfigurableProduct.configurableAttributes[0].values[0].swatch;
   delete daffConfigurableProduct.configurableAttributes[0].values[1].swatch;
   delete daffConfigurableProduct.configurableAttributes[0].values[2].swatch;
-  let magentoSimpleProductService: DaffMagentoSimpleProductTransformers;
+  let simpleProductService: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    magentoSimpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
+
+    simpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
   });
 
   describe('transformMagentoConfigurableProduct', () => {
 
     it('should transform a magento configurable product into a daffodil configurable product', () => {
-      expect(transformMagentoConfigurableProduct(magentoSimpleProductService.transformMagentoSimpleProduct(magentoConfigurableProductData, mediaUrl), magentoConfigurableProductData)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
+      expect(transformMagentoConfigurableProduct(simpleProductService.transformMagentoSimpleProduct(magentoConfigurableProductData, mediaUrl), magentoConfigurableProductData)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
     });
   });
 
@@ -55,9 +56,6 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 
     it('should transform a MagentoConfigurableProductOption to a DaffConfigurableProductAttribute', () => {
       const magentoConfigurableProductOption: MagentoConfigurableProductOption = {
-        attribute_id: null,
-        product_id: null,
-        uid: null,
         position: daffConfigurableProduct.configurableAttributes[0].order,
         attribute_code: daffConfigurableProduct.configurableAttributes[0].code,
         label: daffConfigurableProduct.configurableAttributes[0].label,
@@ -100,17 +98,14 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
         attributes: [
           {
             code: daffConfigurableProduct.configurableAttributes[0].code,
-            label: daffConfigurableProduct.configurableAttributes[0].label,
             value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
           },
           {
             code: daffConfigurableProduct.configurableAttributes[1].code,
-            label: daffConfigurableProduct.configurableAttributes[1].label,
             value_index: parseInt(daffConfigurableProduct.configurableAttributes[1].values[0].value, 10),
           },
           {
             code: daffConfigurableProduct.configurableAttributes[2].code,
-            label: daffConfigurableProduct.configurableAttributes[2].label,
             value_index: parseInt(daffConfigurableProduct.configurableAttributes[2].values[0].value, 10),
           },
         ],
@@ -146,17 +141,14 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
       const magentoAttributeOptions: MagentoConfigurableAttributeOption[] = [
         {
           code: daffConfigurableProduct.configurableAttributes[0].code,
-          label: daffConfigurableProduct.configurableAttributes[0].label,
           value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
         },
         {
           code: daffConfigurableProduct.configurableAttributes[1].code,
-          label: daffConfigurableProduct.configurableAttributes[1].label,
           value_index: parseInt(daffConfigurableProduct.configurableAttributes[1].values[0].value, 10),
         },
         {
           code: daffConfigurableProduct.configurableAttributes[2].code,
-          label: daffConfigurableProduct.configurableAttributes[2].label,
           value_index: parseInt(daffConfigurableProduct.configurableAttributes[2].values[0].value, 10),
         },
       ];

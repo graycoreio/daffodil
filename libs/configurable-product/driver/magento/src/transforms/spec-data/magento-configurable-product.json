@@ -12,6 +12,7 @@
   "sku": "22",
   "url_key": "url",
   "url_suffix": ".html",
+  "canonical_url": "https://domain.com/canonical-url.html",
   "description": {
     "html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo."
   },
@@ -119,17 +120,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Blue",
           "value_index": 0
         },
         {
           "code": "size",
-          "label": "Small",
           "value_index": 0
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],
@@ -163,17 +161,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Blue",
           "value_index": 0
         },
         {
           "code": "size",
-          "label": "Medium",
           "value_index": 1
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],
@@ -207,17 +202,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Blue",
           "value_index": 0
         },
         {
           "code": "size",
-          "label": "Medium",
           "value_index": 1
         },
         {
           "code": "material",
-          "label": "Spandex",
           "value_index": 2
         }
       ],
@@ -251,17 +243,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Blue",
           "value_index": 0
         },
         {
           "code": "size",
-          "label": "Large",
           "value_index": 2
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],
@@ -295,17 +284,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Yellow",
           "value_index": 1
         },
         {
           "code": "size",
-          "label": "Small",
           "value_index": 0
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],
@@ -339,17 +325,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Yellow",
           "value_index": 1
         },
         {
           "code": "size",
-          "label": "Small",
           "value_index": 0
         },
         {
           "code": "material",
-          "label": "Spandex",
           "value_index": 2
         }
       ],
@@ -383,17 +366,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Yellow",
           "value_index": 1
         },
         {
           "code": "size",
-          "label": "Large",
           "value_index": 2
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],
@@ -427,17 +407,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Yellow",
           "value_index": 1
         },
         {
           "code": "size",
-          "label": "Large",
           "value_index": 2
         },
         {
           "code": "material",
-          "label": "Polyester",
           "value_index": 1
         }
       ],
@@ -471,17 +448,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Red",
           "value_index": 2
         },
         {
           "code": "size",
-          "label": "Small",
           "value_index": 0
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],
@@ -515,17 +489,14 @@
       "attributes": [
         {
           "code": "color",
-          "label": "Red",
           "value_index": 2
         },
         {
           "code": "size",
-          "label": "Large",
           "value_index": 2
         },
         {
           "code": "material",
-          "label": "Cotton",
           "value_index": 0
         }
       ],

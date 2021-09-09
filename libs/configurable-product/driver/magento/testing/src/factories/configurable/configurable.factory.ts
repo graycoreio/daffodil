@@ -21,11 +21,8 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	configurable_options = [
 	  {
 	    attribute_code: 'color',
-	    attribute_id: faker.random.alphaNumeric(12),
-	    uid: faker.datatype.uuid(),
 	    label: 'Color',
 	    position: 0,
-	    product_id: faker.datatype.number({ min: 1, max: 1000 }),
 	    values: [
 	      {
 	        label: 'Blue',
@@ -47,7 +44,6 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    attributes: [
 	      {
 	        code: 'color',
-	        label: 'Blue',
 	        value_index: 0,
 	      },
 	    ],
@@ -91,7 +87,6 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    attributes: [
 	      {
 	        code: 'color',
-	        label: 'Yellow',
 	        value_index: 1,
 	      },
 	    ],
@@ -134,7 +129,6 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	    attributes: [
 	      {
 	        code: 'color',
-	        label: 'Red',
 	        value_index: 2,
 	      },
 	    ],

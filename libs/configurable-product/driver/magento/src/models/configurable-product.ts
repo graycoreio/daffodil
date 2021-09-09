@@ -10,11 +10,8 @@ export interface MagentoConfigurableProduct extends MagentoProduct {
 
 export interface MagentoConfigurableProductOption {
 	attribute_code:	string;
-	attribute_id:	string;
-	uid:	number;
 	label: string;
 	position:	number;
-	product_id:	number;
 	values:	MagentoConfigurableProductOptionsValue[];
 }
 
@@ -36,6 +33,5 @@ export interface MagentoConfigurableProductVariant {
 
 export interface MagentoConfigurableAttributeOption {
 	code:	string;
-	label: string;
 	value_index: number;
 }
