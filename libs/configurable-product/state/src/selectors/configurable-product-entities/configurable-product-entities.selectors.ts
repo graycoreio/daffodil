@@ -19,7 +19,11 @@ import {
   DaffConfigurableProductEntity,
   DaffConfigurableProductEntityAttribute,
 } from '../../reducers/configurable-product-entities/configurable-product-entity';
-import { DaffConfigurableProductStateRootSlice } from '../../reducers/configurable-product-reducers-state.interface';
+import {
+  DaffConfigurableProductStateRootSlice,
+  DaffConfigurableProductReducersState,
+} from '../../reducers/configurable-product-reducers-state.interface';
+import { getDaffConfigurableProductFeatureSelector } from '../feature.selector';
 
 /**
  * An interface for selectors related to the configurable product applied attributes.
@@ -57,13 +61,13 @@ export interface DaffConfigurableProductEntitiesMemoizedSelectors<T extends Daff
 
 const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends DaffProduct>(): DaffConfigurableProductEntitiesMemoizedSelectors<T> => {
   const {
-    selectProductState,
-  } = getDaffProductFeatureSelector<T>();
+    selectConfigurableProductState,
+  } = getDaffConfigurableProductFeatureSelector();
   const adapterSelectors = daffConfigurableProductAppliedAttributesEntitiesAdapter().getSelectors();
 
   const selectConfigurableProductAppliedAttributesEntitiesState = createSelector(
-    selectProductState,
-    (state: DaffProductReducersState<T>) => state.configurableProductAttributes,
+    selectConfigurableProductState,
+    (state: DaffConfigurableProductReducersState) => state.configurableProductAttributes,
   );
 
   const selectConfigurableProductIds = createSelector(
