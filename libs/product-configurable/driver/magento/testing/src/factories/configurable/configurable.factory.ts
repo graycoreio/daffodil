@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { MagentoConfigurableProduct } from '@daffodil/product-configurable/driver/magento';
 import {
   MagentoProductTypeEnum,
   MagentoProductStockStatusEnum,
 } from '@daffodil/product/driver/magento';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
-import { MagentoConfigurableProduct } from '@daffodil/product-configurable/driver/magento';
 
 export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct implements MagentoConfigurableProduct {
 

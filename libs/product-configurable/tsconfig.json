@@ -9,6 +9,9 @@
       "@daffodil/product-configurable": [
         "libs/product-configurable/src"
       ],
+      "@daffodil/configurable-product/testing": [
+        "libs/configurable-product/testing/src"
+      ],
       "@daffodil/product-configurable/state": [
         "libs/product-configurable/state/src"
       ],
