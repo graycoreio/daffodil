@@ -21,6 +21,9 @@
       "@daffodil/product-composite/driver/magento": [
         "libs/product-composite/driver/magento/src"
       ],
+      "@daffodil/product-composite/driver/magento/testing": [
+        "libs/product-composite/driver/magento/testing/src"
+      ],
     }
   }
 }
