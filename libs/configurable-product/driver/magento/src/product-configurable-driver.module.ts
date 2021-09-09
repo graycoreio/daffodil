@@ -4,10 +4,10 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
+  MagentoProductTypeEnum,
 } from '@daffodil/product/driver/magento';
 
 import { magentoConfigurableProductFragment } from './fragments/configurable-product';
@@ -33,7 +33,7 @@ export class DaffConfigurableProductMagentoDriverModule {
         },
         {
           provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
-          useValue: (daffProduct, magentoProduct) => daffProduct.type === DaffProductTypeEnum.Configurable
+          useValue: (daffProduct, magentoProduct) => magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
             ? transformMagentoConfigurableProduct(daffProduct, magentoProduct)
             : daffProduct,
           multi: true,
