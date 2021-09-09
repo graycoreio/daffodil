@@ -7,8 +7,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct } from '@daffodil/product';
 import { DaffConfigurableProductVariant } from '@daffodil/configurable-product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductStateRootSlice } from '@daffodil/product/state';
 
 import {

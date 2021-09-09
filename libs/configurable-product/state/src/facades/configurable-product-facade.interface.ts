@@ -2,11 +2,11 @@ import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
 import {
   DaffConfigurableProduct,
   DaffConfigurableProductVariant,
 } from '@daffodil/configurable-product';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 /**
  * An interface for a facade that accesses configurable product state.

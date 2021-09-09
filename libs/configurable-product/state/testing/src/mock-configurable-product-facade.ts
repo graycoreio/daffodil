@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Dictionary } from '@ngrx/entity';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffConfigurableProductFacadeInterface } from '@daffodil/configurable-product/state';
 import {
   DaffConfigurableProduct,
   DaffConfigurableProductVariant,
 } from '@daffodil/product';
-import { DaffConfigurableProductFacadeInterface } from '@daffodil/configurable-product/state';
 
 /**
  * @inheritdoc
