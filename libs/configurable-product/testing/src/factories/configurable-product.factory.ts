@@ -6,8 +6,7 @@ import {
   DaffConfigurableProduct,
   DaffProductTypeEnum,
 } from '@daffodil/product';
-
-import { MockProduct } from './product.factory';
+import { MockProduct } from '@daffodil/product/testing';
 
 /**
  * Mocked DaffConfigurableProduct object.
