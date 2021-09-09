@@ -35,12 +35,6 @@ export const magentoProductFragment = gql`
       ...magentoSimpleProduct
       ...magentoConfigurableProduct
     }
-    related_products {
-      ...magentoProductPreview
-      ...magentoBundledProduct
-      ...magentoSimpleProduct
-      ...magentoConfigurableProduct
-    }
 		...magentoBundledProduct
 		...magentoSimpleProduct
 		...magentoConfigurableProduct

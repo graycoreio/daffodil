@@ -33,7 +33,6 @@ export class DaffMagentoSimpleProductTransformers {
       meta_title: product.meta_title,
       meta_description: product.meta_description,
       canonicalUrl: product.canonical_url,
-      related: product.related_products?.map(p => transformMagentoProductPreview(p, mediaUrl)) || [],
       upsell: product.upsell_products?.map(p => transformMagentoProductPreview(p, mediaUrl)) || [],
     };
   }

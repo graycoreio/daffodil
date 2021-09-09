@@ -22,7 +22,7 @@ export class DaffMagentoProductResponseTransformers {
     const daffProduct = this.magentoProductsTransformers.transformMagentoProduct(product, mediaUrl);
     return {
       id: daffProduct.id,
-      products: [daffProduct, ...daffProduct.upsell, ...daffProduct.related],
+      products: [daffProduct, ...daffProduct.upsell],
     };
   }
 }

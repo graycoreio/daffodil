@@ -40,7 +40,6 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	        quantity: faker.datatype.number({ min: 1, max: 9 }),
 	        is_default: true,
 	        in_stock: true,
-	        related: [],
 	        upsell: [],
 	      },
 	      {
@@ -58,7 +57,6 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	        quantity: faker.datatype.number({ min: 1, max: 9 }),
 	        is_default: false,
 	        in_stock: true,
-	        related: [],
 	        upsell: [],
 	      },
 	    ],
@@ -85,7 +83,6 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	        quantity: faker.datatype.number({ min: 1, max: 9 }),
 	        is_default: true,
 	        in_stock: true,
-	        related: [],
 	        upsell: [],
 	      },
 	      {
@@ -103,7 +100,6 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	        quantity: faker.datatype.number({ min: 1, max: 9 }),
 	        is_default: false,
 	        in_stock: true,
-	        related: [],
 	        upsell: [],
 	      },
 	    ],

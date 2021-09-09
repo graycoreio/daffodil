@@ -20,7 +20,6 @@ export class MockMagentoCoreProduct implements MagentoProduct {
 	sku = faker.random.alphaNumeric(16);
 	stock_status = MagentoProductStockStatusEnum.InStock;
   upsell_products = [];
-  related_products = [];
   image = {
     __typename: 'ProductImage',
     label: faker.random.words(3),
