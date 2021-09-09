@@ -8,6 +8,8 @@ import { DaffProduct } from './product';
  * For example, a toolbox bundle might have a primary product of the toolbox. The items could be a hammer and a screw driver,
  * and the options for these items could be two different hammers and two different screwdrivers between which the customer could choose.
  * All of these items could have different prices/discounts/etc which would cause the composite products to have ranged prices.
+ *
+ * @deprecated import from @daffodil/composite-product instead.
  */
 export interface DaffCompositeProduct extends DaffProduct {
 	/**

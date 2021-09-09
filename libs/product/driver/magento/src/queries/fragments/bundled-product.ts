@@ -1,6 +1,8 @@
 import { gql } from 'apollo-angular';
 
-
+/**
+ * @deprecated import from @daffodil/composite-product/driver/magento instead.
+ */
 export const magentoBundledProductFragment = gql`
   fragment magentoBundledProduct on BundleProduct {
 		items {

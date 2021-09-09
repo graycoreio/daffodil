@@ -7,6 +7,8 @@ import {
 
 /**
  * Describes how composite product configurations are stored in rxjs entity state.
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export interface DaffCompositeProductEntity {
 	/**

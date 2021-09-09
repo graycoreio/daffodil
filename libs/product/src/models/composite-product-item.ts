@@ -4,6 +4,8 @@ import { DaffProduct } from './product';
 
 /**
  * An enum for whether a composite product item should be displayed as a radio or select input.
+ *
+ * @deprecated import from @daffodil/composite-product instead.
  */
 export enum DaffCompositeProductItemInputEnum {
 	select = 'select',
@@ -17,6 +19,8 @@ export enum DaffCompositeProductItemInputEnum {
  * For example, if a composite product is a toolbox bundle, a composite product item might be a screw driver, and the options contained in that
  * item might be a phillips head and a flathead. The customer could choose to add either a phillips head or a flathead to the
  * composite product, or neither if the item is optional.
+ *
+ * @deprecated import from @daffodil/composite-product instead.
  */
 export interface DaffCompositeProductItem extends DaffIdentifiable {
 	/**
@@ -39,6 +43,8 @@ export interface DaffCompositeProductItem extends DaffIdentifiable {
 
 /**
  * The composite product item option is a DaffProduct that can be added to a composite product.
+ *
+ * @deprecated import from @daffodil/composite-product instead.
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
 	/**

@@ -1,0 +1,57 @@
+{
+	"type": "composite",
+	"id": "22",
+	"url": "/url.html",
+	"price": 0,
+	"in_stock": true,
+	"discount": {
+		"amount": 0,
+		"percent": 0
+	},
+	"name": "Group of Products",
+	"images": [],
+	"description": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.",
+	"short_description": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut.",
+	"items": [
+		{
+			"id": "1",
+			"required": false,
+			"title": "Options",
+			"input_type": "select",
+			"options": [
+				{
+					"id": "1",
+          "type": "simple",
+          "thumbnail": null,
+          "url": null,
+					"name": "Option 1",
+					"price": 5,
+					"images": [],
+					"discount": {
+						"amount": 1,
+						"percent": 20
+					},
+					"quantity": 1,
+					"is_default": true,
+					"in_stock": true
+				},
+				{
+					"id": "2",
+          "type": "simple",
+          "thumbnail": null,
+          "url": null,
+					"name": "Option 2",
+					"price": 2,
+					"images": [],
+					"discount": {
+						"amount": 1,
+						"percent": 50
+					},
+					"quantity": 1,
+					"is_default": false,
+					"in_stock": true
+				}
+			]
+		}
+	]
+}

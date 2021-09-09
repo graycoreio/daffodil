@@ -28,6 +28,8 @@ import { getDaffProductEntitiesSelectors } from '../product-entities/product-ent
 
 /**
  * An interface describing selectors unique to the composite product, such as pricing and discounts.
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export interface DaffCompositeProductMemoizedSelectors {
 	/**
@@ -160,6 +162,8 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
  * A function that returns all selectors related to the composite product feature.
  *
  * Returns {@link DaffCompositeProductMemoizedSelectors}.
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export const getDaffCompositeProductSelectors = (() => {
   let cache;

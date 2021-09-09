@@ -33,6 +33,8 @@ import { DaffCompositeProductEntity } from './composite-product-entity';
  * @param state current State of the redux store
  * @param action ProductGrid, BestSellers, Product, or Composite Product actions
  * @returns Product entities state
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V extends DaffCompositeProduct>(
   state = daffCompositeProductAppliedOptionsEntitiesAdapter().getInitialState(),

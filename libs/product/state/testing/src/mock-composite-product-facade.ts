@@ -13,6 +13,8 @@ import { DaffCompositeProductFacadeInterface } from '@daffodil/product/state';
 
 /**
  * @inheritdoc
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
