@@ -181,13 +181,13 @@ export class MagentoOrderTestDataFactory {
       sort_order: 4,
     });
     const mockDaffOrderInvoice: DaffOrderInvoice = this.daffOrderInvoiceFactory.create({
-      totals: jasmine.arrayContaining([
+      totals: [
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
         mockDaffOrderDiscount,
-      ]),
+      ],
       billing_address: mockDaffOrderAddress,
       shipping_address: mockDaffOrderAddress,
       payment: mockDaffOrderPayment,
@@ -195,13 +195,13 @@ export class MagentoOrderTestDataFactory {
       shipping_method: null,
     });
     const mockDaffOrder: DaffOrder = this.daffOrderFactory.create({
-      totals: jasmine.arrayContaining([
+      totals: [
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
         mockDaffOrderShippingTotal,
         mockDaffOrderTax,
         mockDaffOrderDiscount,
-      ]),
+      ],
       applied_codes: [mockDaffOrderCoupon],
       items: [
         mockDaffOrderItem,
