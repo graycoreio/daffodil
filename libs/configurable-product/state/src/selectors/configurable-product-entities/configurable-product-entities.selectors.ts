@@ -9,22 +9,20 @@ import {
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProductReducersState,
+  DaffProductStateRootSlice,
+  getDaffProductFeatureSelector,
+} from '@daffodil/product/state';
 
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from '../../reducers/configurable-product-entities/configurable-product-entities-reducer-adapter';
 import {
   DaffConfigurableProductEntity,
   DaffConfigurableProductEntityAttribute,
 } from '../../reducers/configurable-product-entities/configurable-product-entity';
-import {
-  DaffProductReducersState,
-  DaffProductStateRootSlice,
-} from '../../reducers/product-reducers-state.interface';
-import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**
  * An interface for selectors related to the configurable product applied attributes.
- *
- * @deprecated import from @daffodil/configurable-product/state instead.
  */
 export interface DaffConfigurableProductEntitiesMemoizedSelectors {
 	/**
@@ -109,8 +107,6 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
 /**
  * A function that returns all selectors related to configurable product applied attributes.
  * Returns {@link DaffConfigurableProductEntitiesMemoizedSelectors}.
- *
- * @deprecated import from @daffodil/configurable-product/state instead.
  */
 export const getDaffConfigurableProductEntitiesSelectors = (() => {
   let cache;

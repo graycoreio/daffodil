@@ -12,16 +12,16 @@ import {
   DaffConfigurableProduct,
   DaffConfigurableProductAttribute,
 } from '@daffodil/product';
+import {
+  DaffProductStateRootSlice,
+  getDaffProductEntitiesSelectors,
+} from '@daffodil/product/state';
 
 import { DaffConfigurableProductEntityAttribute } from '../../reducers/configurable-product-entities/configurable-product-entity';
-import { DaffProductStateRootSlice } from '../../reducers/public_api';
 import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-product-entities/configurable-product-entities.selectors';
-import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 
 /**
  * An interface describing all selectors unique to configurable products including ranged pricing, configurable attributes, and product variants.
- *
- * @deprecated import from @daffodil/configurable-product/state instead.
  */
 export interface DaffConfigurableProductMemoizedSelectors {
 	/**
@@ -284,8 +284,6 @@ function getSelectableAttributesFromVariants(selectableAttributes: Dictionary<st
 /**
  * A function that returns all configurable product selectors.
  * Returns {@link DaffConfigurableProductMemoizedSelectors}.
- *
- * @deprecated import from @daffodil/configurable-product/state instead.
  */
 export const getDaffConfigurableProductSelectors = (() => {
   let cache;

@@ -6,11 +6,10 @@ import {
   DaffConfigurableProduct,
   DaffConfigurableProductVariant,
 } from '@daffodil/product';
-import { DaffConfigurableProductFacadeInterface } from '@daffodil/product/state';
+import { DaffConfigurableProductFacadeInterface } from '@daffodil/configurable-product/state';
 
 /**
  * @inheritdoc
- * @deprecated import from @daffodil/configurable-product/state/testing instead.
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
