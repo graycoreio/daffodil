@@ -6,7 +6,9 @@ import {
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
 import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import {
   DaffCart,
@@ -16,6 +18,10 @@ import {
   DaffConfigurableCartItemInput,
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
+import {
+  DaffCartNotFoundError,
+  DaffProductOutOfStockError,
+} from '@daffodil/cart/driver';
 import {
   DaffMagentoCartTransformer,
   DaffMagentoCartItemUpdateInputTransformer,
@@ -40,6 +46,7 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffBadInputError } from '@daffodil/driver';
 import { schema } from '@daffodil/driver/magento';
 import {
   DaffProduct,
@@ -296,25 +303,101 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 
 
   describe('update | updates a cart item', () => {
-    let qty;
+    describe('when the call to the Magento API is successful', () => {
+      let qty;
 
-    beforeEach(() => {
-      qty = 5;
+      beforeEach(() => {
+        qty = 5;
 
-      mockMagentoCartItem.quantity = qty;
-      mockDaffCartItem.qty = qty;
-    });
-
-    it('should return the correct value', done => {
-      service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).subscribe(result => {
-        expect(result.items[0].qty).toEqual(qty);
-        done();
+        mockMagentoCartItem.quantity = qty;
+        mockDaffCartItem.qty = qty;
       });
 
-      const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
+      it('should return the correct value', done => {
+        service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).subscribe(result => {
+          expect(result.items[0].qty).toEqual(qty);
+          done();
+        });
 
-      op.flush({
-        data: mockUpdateCartItemResponse,
+        const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
+
+        op.flush({
+          data: mockUpdateCartItemResponse,
+        });
+      });
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      describe('because of a graphql-no-such-entity error', () => {
+        it('should throw a DaffCartNotFoundError', done => {
+          service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
+            catchError(err => {
+              expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
+
+          op.graphqlErrors([new GraphQLError(
+            'Can\'t find a cart with that ID.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          )]);
+        });
+      });
+
+      describe('because of a graphql-input error', () => {
+        it('should throw a DaffBadInputError', done => {
+          service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
+            catchError(err => {
+              expect(err).toEqual(jasmine.any(DaffBadInputError));
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
+
+          op.graphqlErrors([new GraphQLError(
+            'Item ID cannot be empty.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-input' },
+          )]);
+        });
+      });
+
+      describe('because the there is insufficient stock of the requested product', () => {
+        it('should throw a DaffProductOutOfStockError with the coupon code', done => {
+          service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
+            catchError((err: DaffProductOutOfStockError) => {
+              expect(err).toEqual(jasmine.any(DaffProductOutOfStockError));
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
+
+          op.graphqlErrors([new GraphQLError(
+            'The requested qty is not available',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          )]);
+        });
       });
     });
 

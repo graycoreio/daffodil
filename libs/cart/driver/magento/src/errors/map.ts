@@ -14,4 +14,5 @@ export const DaffCartMagentoErrorMap: DaffErrorCodeMap = {
 
 export const DaffCartMagentoErrorMessageRegexMap = {
   [DaffCartDriverErrorCodes.INVALID_COUPON_CODE]: /The coupon code isn\'t valid/,
+  [DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK]: /The requested qty is not available/,
 };
