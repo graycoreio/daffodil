@@ -32,26 +32,22 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
   describe('create', () => {
 
     let result: FormGroup;
-    let expectedResult;
     let paymentInfo;
 
     describe('when paymentInfo is null', () => {
 
       beforeEach(() => {
         paymentInfo = null;
-        expectedResult = paymentFactory.create({
-          name: '',
-          cardnumber: '',
-          month: '',
-          year: '',
-          securitycode: '',
-        });
 
         result = paymentInfoFormFactory.create(paymentInfo);
       });
 
       it('should return the default FormGroup', () => {
-        expect(result.value).toEqual(expectedResult);
+        expect(result.value.name).toEqual('');
+        expect(result.value.cardnumber).toEqual('');
+        expect(result.value.month).toEqual('');
+        expect(result.value.year).toEqual('');
+        expect(result.value.securitycode).toEqual('');
       });
     });
 

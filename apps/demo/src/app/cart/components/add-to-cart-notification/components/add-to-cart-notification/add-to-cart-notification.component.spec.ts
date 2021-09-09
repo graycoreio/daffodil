@@ -106,7 +106,7 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('on demo-product-added', () => {
-    const stubProduct = productFactory.create(1);
+    const stubProduct = productFactory.create();
     const productAddPayload = { productId: stubProduct.id, qty: 1 };
     const stubCart = cartFactory.create();
 
@@ -172,7 +172,7 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('when loading$ is false', () => {
-    const stubProduct = productFactory.create(1);
+    const stubProduct = productFactory.create();
     const productAddPayload = { productId: stubProduct.id, qty: 1 };
     const stubCart = cartFactory.create();
 
@@ -214,7 +214,7 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('when loading$ is true', () => {
-    const stubProduct = productFactory.create(1);
+    const stubProduct = productFactory.create();
     const productAddPayload = { productId: stubProduct.id, qty: 1 };
 
     beforeEach(() => {

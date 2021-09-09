@@ -93,7 +93,7 @@ describe('EmptyCartResolver', () => {
       describe('and cart is not empty', () => {
 
         beforeEach(() => {
-          stubCart = cartFactory.create({ items: cartItemFactory.create() });
+          stubCart = cartFactory.create({ items: cartItemFactory.createMany(1) });
         });
 
         it('should not redirect to the cart page', () => {
