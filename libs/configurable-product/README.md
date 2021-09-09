@@ -10,4 +10,4 @@ provides clear interfaces, models, and factories for the frontend of an ecommerc
 npm install @daffodil/configurable-product
 ```
 
-The `@daffodil/configurable-product` package is intended for use in conjuction with the `@daffodil/product` package. After installing the `@daffodil/product` package, import the `DaffConfigurableProductMagentoDriverModule` and the `DaffConfigurableProductStateModule` into your app. These will add the `DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY` to the app root redux state along with configurable product state.
+The `@daffodil/configurable-product` package is intended for use in conjuction with the `@daffodil/product` package. After installing the `@daffodil/product` package, import the `DaffConfigurableProductStateModule`. This module will add the `DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY` to the app root redux state along with configurable product state.
