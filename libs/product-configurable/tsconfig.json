@@ -21,6 +21,9 @@
       "@daffodil/product-configurable/driver/magento": [
         "libs/product-configurable/driver/magento/src"
       ],
+      "@daffodil/configurable-product/driver/magento/testing": [
+        "libs/configurable-product/driver/magento/testing/src"
+      ],
     }
   }
 }
