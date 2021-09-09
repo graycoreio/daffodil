@@ -21,6 +21,7 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  *
  * @inheritdoc
+ * @deprecated import from @daffodil/configurable-product/state instead.
  */
 @Injectable({
   providedIn: 'root',

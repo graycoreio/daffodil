@@ -2,17 +2,15 @@ import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
 import {
   DaffConfigurableProduct,
   DaffConfigurableProductVariant,
-} from '@daffodil/product';
+} from '@daffodil/configurable-product';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 /**
  * An interface for a facade that accesses configurable product state.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
- *
- * @deprecated import from @daffodil/configurable-product/state instead.
  */
 export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<Action> {
 

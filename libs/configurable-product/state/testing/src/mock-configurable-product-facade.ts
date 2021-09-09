@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { Dictionary } from '@ngrx/entity';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffConfigurableProductFacadeInterface } from '@daffodil/configurable-product/state';
 import {
   DaffConfigurableProduct,
   DaffConfigurableProductVariant,
 } from '@daffodil/product';
-import { DaffConfigurableProductFacadeInterface } from '@daffodil/product/state';
 
 /**
  * @inheritdoc
- * @deprecated import from @daffodil/configurable-product/state/testing instead.
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {

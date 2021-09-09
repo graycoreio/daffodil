@@ -29,7 +29,7 @@ export const magentoProductFragment = gql`
 		description {
 			html
 		}
-    upsell_products {
+		upsell_products {
       ...magentoProductPreview
       ...magentoBundledProduct
       ...magentoSimpleProduct
