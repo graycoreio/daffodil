@@ -28,8 +28,8 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
 })
 export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> implements DaffConfigurableProductFacadeInterface {
 
-	configurableProductSelectors = getDaffConfigurableProductSelectors();
-	configurableProductEntitiesSelectors = getDaffConfigurableProductEntitiesSelectors();
+	configurableProductSelectors = getDaffConfigurableProductSelectors<T>();
+	configurableProductEntitiesSelectors = getDaffConfigurableProductEntitiesSelectors<T>();
 
 	constructor(private store: Store<DaffProductStateRootSlice<T>>) {}
 

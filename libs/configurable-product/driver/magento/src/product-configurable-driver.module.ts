@@ -7,7 +7,6 @@ import {
 import {
   daffProvideProductMagentoExtraProductFragments,
   daffProvideProductMagentoExtraProductPreviewTransforms,
-  daffProvideProductMagentoExtraProductResponseTransforms,
 } from '@daffodil/product/driver/magento';
 
 import { magentoConfigurableProductFragment } from './fragments/configurable-product';
@@ -21,10 +20,10 @@ import { transformMagentoConfigurableProduct } from './transforms/configurable-p
     CommonModule,
   ],
 })
-export class DaffProductMagentoDriverModule {
-  static forRoot(): ModuleWithProviders<DaffProductMagentoDriverModule> {
+export class DaffConfigurableProductMagentoDriverModule {
+  static forRoot(): ModuleWithProviders<DaffConfigurableProductMagentoDriverModule> {
     return {
-      ngModule: DaffProductMagentoDriverModule,
+      ngModule: DaffConfigurableProductMagentoDriverModule,
       providers: [
         ...daffProvideProductMagentoExtraProductFragments(magentoConfigurableProductFragment),
         ...daffProvideProductMagentoExtraProductPreviewTransforms(transformMagentoConfigurableProduct),

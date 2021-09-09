@@ -20,7 +20,7 @@ import {
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
 import { daffConfigurableProductEntitiesReducer } from './configurable-product-entities.reducer';
 
-describe('Product | Product Entities Reducer', () => {
+describe('Configurable Product | Configurable Product Entities Reducer', () => {
 
   let productFactory: DaffProductFactory;
   let configurableProductFactory: DaffConfigurableProductFactory;

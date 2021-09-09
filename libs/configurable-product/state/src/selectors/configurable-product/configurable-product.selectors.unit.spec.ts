@@ -7,6 +7,10 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import {
+  DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY,
+  daffConfigurableProductReducers,
+} from '@daffodil/configurable-product/state';
 import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -47,6 +51,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
+          [DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffConfigurableProductReducers),
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
       ],

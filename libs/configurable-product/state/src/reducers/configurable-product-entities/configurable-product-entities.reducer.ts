@@ -27,7 +27,7 @@ import {
 } from './configurable-product-entity';
 
 /**
- * Reducer function that catches actions and changes/overwrites product entities state.
+ * Reducer function that catches actions and changes/overwrites configurable product entities state.
  *
  * @param state current State of the redux store
  * @param action ProductGrid, BestSellers, Product, or Configurable Product actions
