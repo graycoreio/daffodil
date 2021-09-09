@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import {
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
-  DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
 } from '@daffodil/product/driver/magento';
 
 import { magentoConfigurableProductFragment } from './fragments/configurable-product';
@@ -26,12 +26,12 @@ export class DaffConfigurableProductMagentoDriverModule {
       ngModule: DaffConfigurableProductMagentoDriverModule,
       providers: [
         {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
           useValue: magentoConfigurableProductFragment,
           multi: true,
         },
         {
-          provide: DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
           useValue: transformMagentoConfigurableProduct,
           multi: true,
         },
