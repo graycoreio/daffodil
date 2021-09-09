@@ -7,6 +7,7 @@ import {
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterRangeNumericFactory,
 } from '@daffodil/category/testing';
 
@@ -14,13 +15,15 @@ import { daffClearFilter } from './clear-filter';
 
 describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', () => {
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let categoryFilterRangeNumericFactory: DaffCategoryFilterRangeNumericFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
-		 categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
+    categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
+    categoryFilterRangeNumericFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
   });
 
   it('should clear a given range filter', () => {
@@ -54,14 +57,14 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
     const filter: DaffCategoryFilterEqual = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'blue',
-        },
+        }),
       },
     });
     const expected: DaffCategoryFilterEqual = {
@@ -99,14 +102,14 @@ describe('@daffodil/category | filters | behaviors | clear | daffClearFilter', (
     const filter: DaffCategoryFilterEqual = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: true,
           value: 'blue',
-        },
+        }),
       },
     });
 

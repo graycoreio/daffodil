@@ -5,6 +5,9 @@ import {
   DaffCategoryFilterEqual,
   DaffCategoryFilterEqualOption,
   DaffCategoryFilterOption,
+  daffCategoryFilterEqualOptionArrayToDict,
+  daffCategoryFilterRangePairArrayToDict,
+  DaffCategoryFilterRangePair,
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualOptionFactory,
@@ -23,6 +26,7 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
 
   let appliedRangeFilter: DaffCategoryFilterRangeNumeric;
   let unappliedRangeFilter: DaffCategoryFilterRangeNumeric;
+  let rangeFilterPair: DaffCategoryFilterRangePair<number>;
   let appliedEqualFilter: DaffCategoryFilterEqual;
   let appliedEqualFilterOption0: DaffCategoryFilterEqualOption;
   let appliedEqualFilterOption1: DaffCategoryFilterEqualOption;
@@ -35,28 +39,27 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
     rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
     rangeFilterPairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
 
+    rangeFilterPair = rangeFilterPairFactory.create();
     appliedRangeFilter = rangeFilterFactory.create({
-      options: [
-        rangeFilterPairFactory.create({
-          applied: true,
-        }),
-      ],
+      options: daffCategoryFilterRangePairArrayToDict([
+        rangeFilterPair,
+      ]),
     });
     unappliedRangeFilter = rangeFilterFactory.create({
-      options: [],
+      options: {},
     });
 
     [appliedEqualFilterOption0, appliedEqualFilterOption1] = equalFilterOptionFactory.createMany(2, {
       applied: true,
     });
     appliedEqualFilter = equalFilterFactory.create({
-      options: [appliedEqualFilterOption0, appliedEqualFilterOption1],
+      options: daffCategoryFilterEqualOptionArrayToDict([appliedEqualFilterOption0, appliedEqualFilterOption1]),
     });
     unappliedEqualFilterOption = equalFilterOptionFactory.create({
       applied: false,
     });
     unappliedEqualFilter = equalFilterFactory.create({
-      options: [unappliedEqualFilterOption],
+      options: daffCategoryFilterEqualOptionArrayToDict([unappliedEqualFilterOption]),
     });
   });
 
@@ -69,7 +72,7 @@ describe('@daffodil/category | daffCategoryFindAppliedFilterOptions', () => {
       });
 
       it('should return an array containing the applied option', () => {
-        expect(result).toContain(appliedRangeFilter.options[0]);
+        expect(result).toContain(rangeFilterPair);
       });
     });
 

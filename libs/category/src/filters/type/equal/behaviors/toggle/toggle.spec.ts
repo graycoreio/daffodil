@@ -6,6 +6,7 @@ import {
 } from '@daffodil/category';
 import {
   DaffCategoryFilterEqualFactory,
+  DaffCategoryFilterEqualOptionFactory,
   DaffCategoryFilterToggleRequestEqualFactory,
 } from '@daffodil/category/testing';
 
@@ -13,6 +14,7 @@ import { daffToggleFilterEqual } from './toggle';
 
 describe('@daffodil/category | filters | type | equal | behaviors | toggle', () => {
   let categoryFilterEqualFactory: DaffCategoryFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffCategoryFilterEqualOptionFactory;
   let categoryFilterToggleRequestEqualFactory: DaffCategoryFilterToggleRequestEqualFactory;
   let filter: DaffCategoryFilterEqual;
 
@@ -20,18 +22,20 @@ describe('@daffodil/category | filters | type | equal | behaviors | toggle', () 
     TestBed.configureTestingModule({});
 
     categoryFilterEqualFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
     categoryFilterToggleRequestEqualFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
+
     filter = categoryFilterEqualFactory.create({
       name: 'color',
       options: {
-        red: {
+        red: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'red',
-        },
-        blue: {
+        }),
+        blue: categoryFilterEqualOptionFactory.create({
           applied: false,
           value: 'blue',
-        },
+        }),
       },
     });
   });
