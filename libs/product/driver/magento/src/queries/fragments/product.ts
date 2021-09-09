@@ -1,7 +1,6 @@
 import { gql } from 'apollo-angular';
 
 import { magentoBundledProductFragment } from './bundled-product';
-import { magentoConfigurableProductFragment } from './configurable-product';
 import { magentoProductPreviewFragment } from './product-preview';
 import { magentoSimpleProductFragment } from './simple-product';
 
@@ -33,14 +32,11 @@ export const magentoProductFragment = gql`
       ...magentoProductPreview
       ...magentoBundledProduct
       ...magentoSimpleProduct
-      ...magentoConfigurableProduct
     }
 		...magentoBundledProduct
 		...magentoSimpleProduct
-		...magentoConfigurableProduct
 	}
 	${magentoBundledProductFragment}
 	${magentoSimpleProductFragment}
-	${magentoConfigurableProductFragment}
 	${magentoProductPreviewFragment}
 `;
