@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/product-configurable": [
+        "libs/product-configurable/src"
+      ],
+      "@daffodil/product-configurable/state": [
+        "libs/product-configurable/state/src"
+      ],
+      "@daffodil/product-configurable/state/testing": [
+        "libs/product-configurable/state/testing/src"
+      ],
+      "@daffodil/product-configurable/driver": [
+        "libs/product-configurable/driver/src"
+      ],
+      "@daffodil/product-configurable/driver/magento": [
+        "libs/product-configurable/driver/magento/src"
+      ],
+    }
+  }
+}

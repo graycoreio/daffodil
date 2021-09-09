@@ -309,40 +309,40 @@
         }
       }
     },
-    "configurable-product": {
-      "root": "libs/configurable-product",
-      "sourceRoot": "libs/configurable-product/src",
+    "product-configurable": {
+      "root": "libs/product-configurable",
+      "sourceRoot": "libs/product-configurable/src",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/configurable-product/tsconfig.lib.json",
-            "project": "libs/configurable-product/ng-package.json"
+            "tsConfig": "libs/product-configurable/tsconfig.lib.json",
+            "project": "libs/product-configurable/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "libs/configurable-product/ng-package.prod.json",
-              "tsConfig": "libs/configurable-product/tsconfig.lib.prod.json"
+              "project": "libs/product-configurable/ng-package.prod.json",
+              "tsConfig": "libs/product-configurable/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/configurable-product/test.ts",
+            "main": "libs/product-configurable/test.ts",
             "codeCoverage": true,
-            "tsConfig": "libs/configurable-product/tsconfig.spec.json",
-            "karmaConfig": "libs/configurable-product/karma.conf.js"
+            "tsConfig": "libs/product-configurable/tsconfig.spec.json",
+            "karmaConfig": "libs/product-configurable/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "libs/configurable-product/**/*.ts",
-              "libs/configurable-product/**/*.html"
+              "libs/product-configurable/**/*.ts",
+              "libs/product-configurable/**/*.html"
             ]
           }
         }
