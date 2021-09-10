@@ -5,10 +5,7 @@ import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-mem
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
-import {
-  daffProvideProductExtraFactoryTypes,
-  DaffDefaultProductFactory,
-} from '@daffodil/product/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DemoInMemoryBackendService } from './backend.service';
 
@@ -19,6 +16,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
+        DaffProductTestingModule,
       ],
       providers: [
         DaffInMemoryBackendCartRootService,
@@ -26,7 +24,6 @@ describe('Driver | In Memory | InMemoryService', () => {
         DaffInMemoryBackendCheckoutService,
         DaffInMemoryBackendNavigationService,
         DemoInMemoryBackendService,
-        ...daffProvideProductExtraFactoryTypes(DaffDefaultProductFactory),
       ],
     });
 
