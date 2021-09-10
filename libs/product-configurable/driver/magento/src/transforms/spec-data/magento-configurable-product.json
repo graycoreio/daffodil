@@ -1,0 +1,530 @@
+{
+  "__typename": "ConfigurableProduct",
+  "uid": "213",
+  "image": {
+    "label": "image-label",
+    "url": "image-url"
+  },
+  "thumbnail": {
+    "url": "thumbnail-url",
+    "label": "thumbnail-label"
+  },
+  "sku": "22",
+  "url_key": "url",
+  "url_suffix": ".html",
+  "canonical_url": "https://domain.com/canonical-url.html",
+  "description": {
+    "html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo."
+  },
+	"short_description": {
+		"html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut."
+	},
+  "price_range": {
+    "maximum_price": {
+      "regular_price": {
+        "value": 23,
+        "currency": null
+      },
+      "discount": null
+    }
+  },
+  "name": "Configurable T-Shirt",
+  "configurable_options": [
+    {
+      "position": 0,
+      "attribute_code": "color",
+      "label": "Color",
+      "values": [
+        {
+          "value_index": 0,
+          "label": "Blue",
+          "swatch_data": {
+            "value": "#0000FF",
+            "thumbnail": null
+          }
+        },
+        {
+          "value_index": 1,
+          "label": "Yellow",
+          "swatch_data": {
+            "value": "#FFFF00",
+            "thumbnail": null
+          }
+        },
+        {
+          "value_index": 2,
+          "label": "Red",
+          "swatch_data": {
+            "value": "#FF0000",
+            "thumbnail": null
+          }
+        }
+      ],
+      "attribute_id": null,
+      "product_id": null,
+      "uid": null
+    },
+    {
+      "position": 1,
+      "attribute_code": "size",
+      "label": "Size",
+      "values": [
+        {
+          "value_index": 0,
+          "label": "Small",
+          "swatch_data": null
+        },
+        {
+          "value_index": 1,
+          "label": "Medium",
+          "swatch_data": null
+        },
+        {
+          "value_index": 2,
+          "label": "Large",
+          "swatch_data": null
+        }
+      ],
+      "attribute_id": null,
+      "product_id": null,
+      "uid": null
+    },
+    {
+      "position": 2,
+      "attribute_code": "material",
+      "label": "Material",
+      "values": [
+        {
+          "value_index": 0,
+          "label": "Cotton",
+          "swatch_data": null
+        },
+        {
+          "value_index": 1,
+          "label": "Polyester",
+          "swatch_data": null
+        },
+        {
+          "value_index": 2,
+          "label": "Spandex",
+          "swatch_data": null
+        }
+      ],
+      "attribute_id": null,
+      "product_id": null,
+      "uid": null
+    }
+  ],
+  "variants": [
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 0
+        },
+        {
+          "code": "size",
+          "value_index": 0
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-0",
+          "label": "image-label-0"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-1",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 0
+        },
+        {
+          "code": "size",
+          "value_index": 1
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-01",
+          "label": "image-label-01"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-11",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 0
+        },
+        {
+          "code": "size",
+          "value_index": 1
+        },
+        {
+          "code": "material",
+          "value_index": 2
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-02",
+          "label": "image-label-02"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 25,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 5,
+              "percent_off": 20
+            }
+          }
+        },
+        "sku": "22-12",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 0
+        },
+        {
+          "code": "size",
+          "value_index": 2
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-03",
+          "label": "image-label-03"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-13",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 1
+        },
+        {
+          "code": "size",
+          "value_index": 0
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-1",
+          "label": "image-label-1"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-2",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 1
+        },
+        {
+          "code": "size",
+          "value_index": 0
+        },
+        {
+          "code": "material",
+          "value_index": 2
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-11",
+          "label": "image-label-11"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 25,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 5,
+              "percent_off": 20
+            }
+          }
+        },
+        "sku": "22-21",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 1
+        },
+        {
+          "code": "size",
+          "value_index": 2
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-12",
+          "label": "image-label-12"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-22",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 1
+        },
+        {
+          "code": "size",
+          "value_index": 2
+        },
+        {
+          "code": "material",
+          "value_index": 1
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-13",
+          "label": "image-label-13"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-23",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 2
+        },
+        {
+          "code": "size",
+          "value_index": 0
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-2",
+          "label": "image-label-2"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-3",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    },
+    {
+      "attributes": [
+        {
+          "code": "color",
+          "value_index": 2
+        },
+        {
+          "code": "size",
+          "value_index": 2
+        },
+        {
+          "code": "material",
+          "value_index": 0
+        }
+      ],
+      "product": {
+        "image": {
+          "url": "url-21",
+          "label": "image-label-21"
+        },
+        "price_range": {
+          "maximum_price": {
+            "regular_price": {
+              "value": 20,
+              "currency": null
+            },
+            "discount": {
+              "amount_off": 2,
+              "percent_off": 10
+            }
+          }
+        },
+        "sku": "22-31",
+        "uid": null,
+        "name": null,
+        "__typename": null,
+        "url_key": null,
+        "url_suffix": ".html",
+        "thumbnail": null
+      }
+    }
+  ]
+}

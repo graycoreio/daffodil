@@ -1,0 +1,267 @@
+{
+	"type": "configurable",
+	"id": "22",
+	"url": "/url.html",
+	"price": 23,
+	"discount": {
+		"amount": null,
+		"percent": null
+	},
+	"in_stock": false,
+	"name": "Configurable T-Shirt",
+	"images": [],
+	"description": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.",
+	"short_description": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut.",
+	"configurableAttributes": [
+		{
+			"code": "color",
+			"label": "Color",
+			"order": 0,
+			"values": [
+				{
+					"value": "0",
+					"label": "Blue"
+				},
+				{
+					"value": "1",
+					"label": "Yellow"
+				},
+				{
+					"value": "2",
+					"label": "Red"
+				}
+			]
+		},
+		{
+			"code": "size",
+			"label": "Size",
+			"order": 1,
+			"values": [
+				{
+					"value": "0",
+					"label": "Small"
+				},
+				{
+					"value": "1",
+					"label": "Medium"
+				},
+				{
+					"value": "2",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"code": "material",
+			"label": "Material",
+			"order": 2,
+			"values": [
+				{
+					"value": "0",
+					"label": "Cotton"
+				},
+				{
+					"value": "1",
+					"label": "Polyester"
+				},
+				{
+					"value": "2",
+					"label": "Spandex"
+				}
+			]
+		}
+	],
+	"variants": [
+		{
+			"appliedAttributes": {
+				"color": "0",
+				"size": "0",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-1",
+			"image": {
+				"id": "0",
+				"url": "url-0",
+				"label": "image-label-0"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "0",
+				"size": "1",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-11",
+			"image": {
+				"id": "0",
+				"url": "url-01",
+				"label": "image-label-01"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "0",
+				"size": "1",
+				"material": "2"
+			},
+			"price": 25,
+			"discount": {
+				"amount": 5,
+				"percent": 20
+			},
+			"in_stock": false,
+			"id": "22-12",
+			"image": {
+				"id": "0",
+				"url": "url-02",
+				"label": "image-label-02"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "0",
+				"size": "2",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-13",
+			"image": {
+				"id": "0",
+				"url": "url-03",
+				"label": "image-label-03"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "0",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-2",
+			"image": {
+				"id": "0",
+				"url": "url-1",
+				"label": "image-label-1"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "0",
+				"material": "2"
+			},
+			"price": 25,
+			"discount": {
+				"amount": 5,
+				"percent": 20
+			},
+			"in_stock": false,
+			"id": "22-21",
+			"image": {
+				"id": "0",
+				"url": "url-11",
+				"label": "image-label-11"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "2",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-22",
+			"image": {
+				"id": "0",
+				"url": "url-12",
+				"label": "image-label-12"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "2",
+				"material": "1"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-23",
+			"image": {
+				"id": "0",
+				"url": "url-13",
+				"label": "image-label-13"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "2",
+				"size": "0",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-3",
+			"image": {
+				"id": "0",
+				"url": "url-2",
+				"label": "image-label-2"
+			}
+		},
+
+		{
+			"appliedAttributes": {
+				"color": "2",
+				"size": "2",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"in_stock": false,
+			"id": "22-31",
+			"image": {
+				"id": "0",
+				"url": "url-21",
+				"label": "image-label-21"
+			}
+		}
+	]
+}
