@@ -33,9 +33,12 @@ export class DaffCompositeProductMagentoDriverModule {
         },
         {
           provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
-          useValue: (daffProduct, magentoProduct) => magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
-            ? transformMagentoBundledProduct(daffProduct, magentoProduct)
-            : daffProduct,
+          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+          useValue(daffProduct, magentoProduct) {
+            return magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
+              ? transformMagentoBundledProduct(daffProduct, magentoProduct)
+              : daffProduct;
+          },
           multi: true,
         },
       ],
