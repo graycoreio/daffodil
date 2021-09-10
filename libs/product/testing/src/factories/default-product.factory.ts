@@ -42,8 +42,8 @@ export class MockProduct implements DaffProduct {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffProductFactory extends DaffModelFactory<DaffProduct>{
-  constructor(){
+export class DaffDefaultProductFactory extends DaffModelFactory<DaffProduct> {
+  constructor() {
     super(MockProduct);
   }
 }
