@@ -30,6 +30,9 @@
       "@daffodil/product-configurable/driver/in-memory": [
         "libs/product-configurable/driver/in-memory/src"
       ],
+      "@daffodil/product-configurable/driver/testing": [
+        "libs/product-configurable/driver/testing/src"
+      ],
     }
   }
 }
