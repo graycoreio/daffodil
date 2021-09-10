@@ -37,7 +37,7 @@ export class MockProduct implements DaffProduct {
 }
 
 /**
- * Factory for creating DaffProducts.
+ * Factory for creating simple `DaffProduct`s of no special kind.
  */
 @Injectable({
   providedIn: 'root',

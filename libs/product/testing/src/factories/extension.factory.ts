@@ -11,7 +11,8 @@ import { MockProduct } from './default-product.factory';
 import { DaffProductKindFactory } from './kind.factory';
 
 /**
- * Factory for creating DaffProducts.
+ * Factory for creating `DaffProduct`s with extension fields.
+ * This includes all the extra extension factories that may be provided by optional product packages.
  */
 @Injectable({
   providedIn: 'root',
