@@ -1,0 +1,48 @@
+{
+  "name": "@daffodil/product-composite",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Interfaces built for daffodil/state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/product-composite"
+  },
+  "scripts": {
+    "build": "ng build product-composite --prod",
+    "lint": "cd ../.. && ng lint product-composite",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test product-composite --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/product-composite; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@apollo/client": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "faker": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER"
+  }
+}

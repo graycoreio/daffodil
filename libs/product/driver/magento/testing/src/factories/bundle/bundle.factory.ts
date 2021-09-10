@@ -15,6 +15,8 @@ export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements
 
 /**
  * A factory for creating stub data for {@link MagentoBundledProduct}s.
+ *
+ * @deprecated import from @daffodil/composite-product/driver/magento/testing instead.
  */
 @Injectable({
   providedIn: 'root',

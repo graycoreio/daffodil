@@ -2,6 +2,8 @@ import { ID } from '@daffodil/core';
 
 /**
  * An object to denote the configuration chosen for a particular {@link DaffCompositeProductItem}.
+ *
+ * @deprecated import from @daffodil/composite-product instead.
  */
 export interface DaffCompositeConfigurationItem {
 	/**

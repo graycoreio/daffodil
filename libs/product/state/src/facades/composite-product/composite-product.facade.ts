@@ -26,6 +26,7 @@ import { DaffCompositeProductFacadeInterface } from './composite-product-facade.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  *
  * @inheritdoc
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 @Injectable({
   providedIn: 'root',

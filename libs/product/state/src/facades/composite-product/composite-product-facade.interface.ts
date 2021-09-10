@@ -14,6 +14,8 @@ import {
 /**
  * A facade for interacting with the composite product state.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
