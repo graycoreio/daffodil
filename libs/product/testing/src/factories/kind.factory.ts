@@ -3,7 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 
-import { daffRandomElement } from '@daffodil/core';
+import { randomSlice } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 
@@ -26,7 +26,8 @@ export class DaffProductKindFactory extends DaffModelFactory<DaffProduct> {
   }
 
   private get _randomFactory(): DaffModelFactory<DaffProduct> {
-    return daffRandomElement(this.productTypeFactories);
+    // TODO(griest024): change to `sample`
+    return randomSlice(this.productTypeFactories, 1)[0];
   }
 
   /**
