@@ -8,7 +8,7 @@ import { DAFF_PRODUCT_EXTRA_FACTORIES } from '@daffodil/product/testing';
 import { DaffRelatedProductFactory } from '@daffodil/related-products/testing';
 
 /**
- * Module for providing the related product fields to the product factory.
+ * Module for providing the related product fields to the product extension factory.
  */
 @NgModule({
   imports: [
