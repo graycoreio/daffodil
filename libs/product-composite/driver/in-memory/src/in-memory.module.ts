@@ -8,7 +8,7 @@ import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing
 import { DAFF_PRODUCT_TYPE_FACTORIES } from '@daffodil/product/testing';
 
 /**
- * Module for providing the related product fields to the product factory.
+ * Module for providing the composite product factory to the product kind factory.
  */
 @NgModule({
   imports: [
