@@ -1,6 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
+import {
+  daffProvideProductExtraFactoryTypes,
+  DaffDefaultProductFactory,
+} from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCategoryService } from './category.service';
 
@@ -13,6 +17,7 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
       providers: [
         DaffInMemoryBackendCategoryService,
         DaffInMemoryBackendProductService,
+        ...daffProvideProductExtraFactoryTypes(DaffDefaultProductFactory),
       ],
     });
 
