@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/composite-product",
+    "outDir": "../../dist/out-tsc/libs/product-composite",
     "target": "es2015",
     "module": "es2015",
     "moduleResolution": "node",

@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/composite-product",
+    "outDir": "../../dist/out-tsc/libs/product-composite",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "types": [

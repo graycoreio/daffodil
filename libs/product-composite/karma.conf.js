@@ -4,7 +4,7 @@ module.exports = function (config) {
   baseConfiguration(config);
   config.set({
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../../coverage/libs/composite-product'),
+      dir: require('path').join(__dirname, '../../coverage/libs/product-composite'),
     },
   });
 };

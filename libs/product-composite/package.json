@@ -1,5 +1,5 @@
 {
-  "name": "@daffodil/composite-product",
+  "name": "@daffodil/product-composite",
   "version": "0.0.0-PLACEHOLDER",
   "description": "Interfaces built for daffodil/state",
   "repository": {
@@ -12,14 +12,14 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "publishConfig": {
-    "directory": "../../dist/composite-product"
+    "directory": "../../dist/product-composite"
   },
   "scripts": {
-    "build": "ng build composite-product --prod",
-    "lint": "cd ../.. && ng lint composite-product",
+    "build": "ng build product-composite --prod",
+    "lint": "cd ../.. && ng lint product-composite",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test composite-product --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/composite-product; npm publish --access=public)"
+    "test": "ng test product-composite --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/product-composite; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

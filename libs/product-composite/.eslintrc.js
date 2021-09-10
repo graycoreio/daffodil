@@ -10,8 +10,8 @@ module.exports = {
       ],
       parserOptions: {
         project: [
-          'libs/composite-product/tsconfig.lib.json',
-          'libs/composite-product/tsconfig.spec.json'
+          'libs/product-composite/tsconfig.lib.json',
+          'libs/product-composite/tsconfig.spec.json'
         ],
         createDefaultProgram: true
       },
