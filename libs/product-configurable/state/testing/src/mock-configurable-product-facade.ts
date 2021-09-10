@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import {
   DaffConfigurableProduct,
   DaffConfigurableProductVariant,
-} from '@daffodil/product';
+} from '@daffodil/product-configurable';
 import { DaffConfigurableProductFacadeInterface } from '@daffodil/product-configurable/state';
 
 /**

@@ -1,9 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffConfigurableProduct,
-  DaffProductTypeEnum,
-} from '@daffodil/product';
+import { DaffProductTypeEnum } from '@daffodil/product';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 import { DaffConfigurableProductFactory } from './configurable-product.factory';
 

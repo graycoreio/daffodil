@@ -1,18 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffConfigurableProduct } from '@daffodil/product';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   MagentoConfigurableProduct,
   MagentoConfigurableProductOption,
   MagentoConfigurableProductVariant,
   MagentoConfigurableAttributeOption,
-  DaffMagentoSimpleProductTransformers,
-} from '@daffodil/product/driver/magento';
-import { MagentoConfigurableProductFactory } from '@daffodil/product/driver/magento/testing';
-import {
-  DaffConfigurableProductFactory,
-  DaffProductImageFactory,
-} from '@daffodil/product/testing';
+} from '@daffodil/product-configurable/driver/magento';
+import { MagentoConfigurableProductFactory } from '@daffodil/product-configurable/driver/magento/testing';
+import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
+import { DaffMagentoSimpleProductTransformers } from '@daffodil/product/driver/magento';
+import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 import {
   transformOption,

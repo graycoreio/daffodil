@@ -9,10 +9,6 @@ import {
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
-import {
-  DaffProductReducersState,
-  getDaffProductFeatureSelector,
-} from '@daffodil/product/state';
 
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from '../../reducers/configurable-product-entities/configurable-product-entities-reducer-adapter';
 import {

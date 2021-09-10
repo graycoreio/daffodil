@@ -3,8 +3,8 @@ import { EntityState } from '@ngrx/entity';
 import {
   DaffProduct,
   DaffProductTypeEnum,
-  DaffConfigurableProduct,
 } from '@daffodil/product';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   DaffBestSellersActions,
   DaffBestSellersActionTypes,

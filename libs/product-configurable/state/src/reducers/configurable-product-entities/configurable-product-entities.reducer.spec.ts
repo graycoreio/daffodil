@@ -1,23 +1,21 @@
 
+import { DaffProduct } from '@daffodil/product';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
-  DaffProduct,
-  DaffConfigurableProduct,
-} from '@daffodil/product';
+  DaffConfigurableProductApplyAttribute,
+  DaffConfigurableProductRemoveAttribute,
+  DaffConfigurableProductToggleAttribute,
+  daffConfigurableProductAppliedAttributesEntitiesAdapter,
+} from '@daffodil/product-configurable/state';
+import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 import {
   DaffProductLoadSuccess,
   DaffProductGridLoadSuccess,
   DaffBestSellersLoadSuccess,
-  DaffConfigurableProductApplyAttribute,
-  DaffConfigurableProductRemoveAttribute,
-  DaffConfigurableProductToggleAttribute,
   DaffProductPageLoadSuccess,
 } from '@daffodil/product/state';
-import {
-  DaffProductFactory,
-  DaffConfigurableProductFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
 import { daffConfigurableProductEntitiesReducer } from './configurable-product-entities.reducer';
 
 describe('@daffodil/product-configurable/state | Configurable Product Entities Reducer', () => {

@@ -8,11 +8,13 @@ import {
 import { daffSubtract } from '@daffodil/core';
 import {
   DaffProductTypeEnum,
+  DaffProduct,
+} from '@daffodil/product';
+import {
   DaffConfigurableProductVariant,
   DaffConfigurableProduct,
   DaffConfigurableProductAttribute,
-  DaffProduct,
-} from '@daffodil/product';
+} from '@daffodil/product-configurable';
 import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 
 import { DaffConfigurableProductEntityAttribute } from '../../reducers/configurable-product-entities/configurable-product-entity';

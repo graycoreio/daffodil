@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { DaffConfigurableProduct } from '@daffodil/product';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 /**
  * Action types for Configurable Product Actions.
