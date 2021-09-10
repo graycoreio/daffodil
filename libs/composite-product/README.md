@@ -10,4 +10,4 @@ provides clear interfaces, models, and factories for the frontend of an ecommerc
 npm install @daffodil/composite-product
 ```
 
-The `@daffodil/composite-product` package is intended for use in conjuction with the `@daffodil/product` package. After installing the `@daffodil/product` package, import the `DaffCompositeProductMagentoDriverModule` and the `DaffCompositeProductStateModule` into your app. These will add the `DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY` to the app root redux state along with composite product state.
+The `@daffodil/composite-product` package is intended for use in conjuction with the `@daffodil/product` package. After installing the `@daffodil/product` package, import the `DaffCompositeProductStateModule`. This module will add the `DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY` to the app root redux state along with composite product state.

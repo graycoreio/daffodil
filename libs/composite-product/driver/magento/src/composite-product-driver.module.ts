@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import {
-  daffProvideProductMagentoExtraProductFragments,
-  daffProvideProductMagentoExtraProductPreviewTransforms,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
 } from '@daffodil/product/driver/magento';
 
 import { magentoBundledProductFragment } from './fragments/bundled-product';
@@ -25,8 +25,16 @@ export class DaffCompositeProductMagentoDriverModule {
     return {
       ngModule: DaffCompositeProductMagentoDriverModule,
       providers: [
-        ...daffProvideProductMagentoExtraProductFragments(magentoBundledProductFragment),
-        ...daffProvideProductMagentoExtraProductPreviewTransforms(transformMagentoBundledProduct),
+        {
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+          useValue: magentoBundledProductFragment,
+          multi: true,
+        },
+        {
+          provide: DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
+          useValue: transformMagentoBundledProduct,
+          multi: true,
+        },
       ],
     };
   }
