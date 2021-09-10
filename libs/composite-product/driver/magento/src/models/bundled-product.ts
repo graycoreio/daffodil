@@ -1,6 +1,6 @@
 import {
   MagentoProduct,
-  MagentoSimpleProduct,
+  MagentoProductStockStatusEnum,
 } from '@daffodil/product/driver/magento';
 
 export enum MagentoPriceTypeEnum {
@@ -15,22 +15,32 @@ export interface MagentoBundledProduct extends MagentoProduct {
 
 export interface MagentoBundledProductItem {
 	required: boolean;
-	sku: string;
 	title: string;
 	type: string;
 	options: MagentoBundledProductItemOption[];
 	option_id?: number;
-	position?: number;
 }
 
 export interface MagentoBundledProductItemOption {
 	uid: string;
 	label: string;
-	price: number;
 	quantity: number;
-	can_change_quantity?: boolean;
 	is_default: boolean;
-	position?: number;
-	price_type?: MagentoPriceTypeEnum;
-	product?: MagentoSimpleProduct;
+	product: MagentoBundledProductItemOptionProduct;
+}
+
+export interface MagentoBundledProductItemOptionProduct {
+	stock_status?: MagentoProductStockStatusEnum;
+	price_range: {
+		maximum_price: {
+			regular_price: {
+				value: number;
+				currency: any;
+			};
+			discount: {
+				amount_off: number;
+				percent_off: number;
+			};
+		};
+	};
 }

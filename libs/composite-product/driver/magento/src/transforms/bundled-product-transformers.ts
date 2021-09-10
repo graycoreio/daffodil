@@ -7,15 +7,13 @@ import {
   DaffCompositeProductItemInputEnum,
 } from '@daffodil/product';
 import { DaffProduct } from '@daffodil/product';
-import {
-  MagentoProduct,
-  MagentoProductStockStatusEnum,
-} from '@daffodil/product/driver/magento';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 import {
   MagentoBundledProduct,
   MagentoBundledProductItem,
   MagentoBundledProductItemOption,
+  MagentoBundledProductItemOptionProduct,
 } from '../models/bundled-product';
 
 /**
@@ -29,11 +27,13 @@ export function transformMagentoBundledProduct(
 ): DaffCompositeProduct {
   return {
     ...daffProduct,
-    price: 0,
-    discount: {
-      amount: 0,
-      percent: 0,
-    },
+    ...items.length > 0 ? {
+      price: 0,
+      discount: {
+        amount: 0,
+        percent: 0,
+      },
+    } : {},
     type: DaffProductTypeEnum.Composite,
     items: items.map(transformMagentoBundledProductItem),
   };
@@ -68,11 +68,11 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 /**
  * A function for null checking an object.
  */
-function getPrice(product: MagentoProduct): number {
+function getPrice(product: MagentoBundledProductItemOptionProduct): number {
   return product.price_range?.maximum_price?.regular_price?.value || null;
 }
 
-function getDiscount(product: MagentoProduct): DaffProductDiscount {
+function getDiscount(product: MagentoBundledProductItemOptionProduct): DaffProductDiscount {
   return product.price_range?.maximum_price?.discount
     ? {
       amount: product.price_range.maximum_price.discount.amount_off,
