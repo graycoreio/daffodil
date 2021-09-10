@@ -7,8 +7,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 import { DaffProduct } from '@daffodil/product';
+import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 import { DaffProductStateRootSlice } from '@daffodil/product/state';
 
 import { getDaffConfigurableProductAllSelectors } from '../selectors/public_api';

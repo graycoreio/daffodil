@@ -7,11 +7,11 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY,
   daffConfigurableProductReducers,
 } from '@daffodil/product-configurable/state';
-import { DaffConfigurableProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   DaffProductStateRootSlice,
