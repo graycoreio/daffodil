@@ -9,6 +9,9 @@
       "@daffodil/composite-product": [
         "libs/composite-product/src"
       ],
+      "@daffodil/composite-product/testing": [
+        "libs/composite-product/testing/src"
+      ],
       "@daffodil/composite-product/state": [
         "libs/composite-product/state/src"
       ],
