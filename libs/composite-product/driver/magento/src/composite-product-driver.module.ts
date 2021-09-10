@@ -7,6 +7,7 @@ import {
 import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
+  MagentoProductTypeEnum,
 } from '@daffodil/product/driver/magento';
 
 import { magentoBundledProductFragment } from './fragments/bundled-product';
@@ -32,7 +33,9 @@ export class DaffCompositeProductMagentoDriverModule {
         },
         {
           provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
-          useValue: transformMagentoBundledProduct,
+          useValue: (daffProduct, magentoProduct) => magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
+            ? transformMagentoBundledProduct(daffProduct, magentoProduct)
+            : daffProduct,
           multi: true,
         },
       ],
