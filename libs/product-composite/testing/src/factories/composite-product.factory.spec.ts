@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCompositeProduct } from '@daffodil/product';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
 
 import { DaffCompositeProductFactory } from './composite-product.factory';
 

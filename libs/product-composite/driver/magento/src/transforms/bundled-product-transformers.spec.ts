@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
+import { MagentoBundledProduct } from '@daffodil/product-composite/driver/magento';
 import {
   MagentoProductStockStatusEnum,
-  MagentoBundledProduct,
   DaffMagentoSimpleProductTransformers,
 } from '@daffodil/product/driver/magento';
 

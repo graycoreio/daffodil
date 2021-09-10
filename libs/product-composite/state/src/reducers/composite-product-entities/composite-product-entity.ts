@@ -1,9 +1,7 @@
 import { Dictionary } from '@ngrx/entity';
 
-import {
-  DaffProduct,
-  DaffCompositeConfigurationItem,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
+import { DaffCompositeConfigurationItem } from '@daffodil/product-composite';
 
 /**
  * Describes how composite product configurations are stored in rxjs entity state.

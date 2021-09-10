@@ -3,13 +3,13 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
+import { DaffPriceRange } from '@daffodil/product';
 import {
   DaffCompositeProductItemOption,
   DaffCompositeProductItem,
-  DaffCompositeProduct,
-  DaffPriceRange,
   DaffCompositeConfigurationItem,
-} from '@daffodil/product';
+  DaffCompositeProduct,
+} from '@daffodil/product-composite';
 
 /**
  * A facade for interacting with the composite product state.

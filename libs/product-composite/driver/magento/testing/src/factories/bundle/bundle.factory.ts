@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import {
-  MagentoProductTypeEnum,
-  MagentoBundledProduct,
-} from '@daffodil/product/driver/magento';
+import { MagentoBundledProduct } from '@daffodil/product-composite/driver/magento';
+import { MagentoProductTypeEnum } from '@daffodil/product/driver/magento';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
 
 

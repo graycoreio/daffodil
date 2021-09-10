@@ -1,12 +1,14 @@
 import {
   DaffProductDiscount,
   DaffProductTypeEnum,
+  DaffProduct,
+} from '@daffodil/product';
+import {
   DaffCompositeProduct,
   DaffCompositeProductItemOption,
   DaffCompositeProductItem,
   DaffCompositeProductItemInputEnum,
-} from '@daffodil/product';
-import { DaffProduct } from '@daffodil/product';
+} from '@daffodil/product-composite';
 import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 import {

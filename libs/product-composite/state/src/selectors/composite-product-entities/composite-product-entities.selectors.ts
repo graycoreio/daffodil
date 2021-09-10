@@ -11,10 +11,12 @@ import {
 import {
   DaffProduct,
   DaffProductTypeEnum,
-  DaffCompositeProduct,
+} from '@daffodil/product';
+import {
   DaffCompositeProductItemOption,
   DaffCompositeProductItem,
-} from '@daffodil/product';
+  DaffCompositeProduct,
+} from '@daffodil/product-composite';
 import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from '../../reducers/composite-product-entities/composite-product-entities-reducer-adapter';
@@ -23,7 +25,7 @@ import {
   DaffCompositeProductReducersState,
   DaffCompositeProductStateRootSlice,
 } from '../../reducers/composite-product-reducers-state.interface';
-import { getDaffCompositeProductFeatureSelector } from '../composite-product-feature.selector';
+import { getDaffCompositeProductFeatureSelector } from '../feature.selector';
 
 /**
  * An interface for selectors related to the composite product applied options.

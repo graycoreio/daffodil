@@ -10,15 +10,17 @@ import { Observable } from 'rxjs';
 import {
   DaffProduct,
   DaffPriceRange,
-  DaffCompositeConfigurationItem,
-  DaffCompositeProductItemOption,
-  DaffCompositeProductItem,
   productPriceRangeHasDiscount,
   productPriceRangeHasPriceRange,
 } from '@daffodil/product';
+import {
+  DaffCompositeConfigurationItem,
+  DaffCompositeProductItemOption,
+  DaffCompositeProductItem,
+} from '@daffodil/product-composite';
 
 import { DaffCompositeProductStateRootSlice } from '../../reducers/composite-product-reducers-state.interface';
-import { getDaffCompositeProductSelectors } from '../../selectors/all-selectors.selectors';
+import { getDaffCompositeProductSelectors } from '../../selectors/public_api';
 import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
 
 /**
