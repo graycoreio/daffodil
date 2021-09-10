@@ -11,7 +11,7 @@ import {
   DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY,
   daffCompositeProductReducers,
   DaffCompositeProductStateRootSlice,
-} from '@daffodil/composite-product/state';
+} from '@daffodil/product-composite/state';
 import { DaffCompositeProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,

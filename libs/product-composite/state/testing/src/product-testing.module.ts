@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCompositeProductFacade } from '@daffodil/composite-product/state';
+import { DaffCompositeProductFacade } from '@daffodil/product-composite/state';
 
 import { MockDaffCompositeProductFacade } from './mock-composite-product-facade';
 

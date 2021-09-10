@@ -12,7 +12,7 @@ import { MockProduct } from '@daffodil/product/testing';
 /**
  * Mocked DaffCompositeProduct object.
  *
- * @deprecated import from @daffodil/composite-product/testing instead.
+ * @deprecated import from @daffodil/product-composite/testing instead.
  */
 export class MockCompositeProduct extends MockProduct implements DaffCompositeProduct {
 	type = DaffProductTypeEnum.Composite;

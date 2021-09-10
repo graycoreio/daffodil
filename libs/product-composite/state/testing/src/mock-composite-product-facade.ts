@@ -6,7 +6,7 @@ import {
   DaffCompositeProductItemOption,
   DaffCompositeProduct,
   DaffCompositeProductItem,
-} from '@daffodil/composite-product';
+} from '@daffodil/product-composite';
 import {
   DaffPriceRange,
   DaffCompositeConfigurationItem,

@@ -1,14 +1,14 @@
 import { EntityState } from '@ngrx/entity';
 
 import {
-  DaffCompositeConfigurationItem,
-  DaffCompositeProduct,
-  DaffCompositeProductItem,
-} from '@daffodil/composite-product';
-import {
   DaffProduct,
   DaffProductTypeEnum,
 } from '@daffodil/product';
+import {
+  DaffCompositeConfigurationItem,
+  DaffCompositeProduct,
+  DaffCompositeProductItem,
+} from '@daffodil/product-composite';
 import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
