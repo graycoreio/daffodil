@@ -1,18 +1,14 @@
-import {
-  DaffProduct,
-  DaffCompositeProduct,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
+import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
+import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 import {
   DaffProductLoadSuccess,
   DaffProductGridLoadSuccess,
   DaffBestSellersLoadSuccess,
-  DaffCompositeProductApplyOption,
   DaffProductPageLoadSuccess,
 } from '@daffodil/product/state';
-import {
-  DaffProductFactory,
-  DaffCompositeProductFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
 import { daffCompositeProductEntitiesReducer } from './composite-product-entities.reducer';

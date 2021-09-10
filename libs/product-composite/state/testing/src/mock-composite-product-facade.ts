@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { Dictionary } from '@ngrx/entity';
 import { BehaviorSubject } from 'rxjs';
 
-import {
-  DaffPriceRange,
-  DaffCompositeConfigurationItem,
-} from '@daffodil/product';
+import { DaffPriceRange } from '@daffodil/product';
 import {
   DaffCompositeProductItemOption,
   DaffCompositeProduct,
   DaffCompositeProductItem,
+  DaffCompositeConfigurationItem,
 } from '@daffodil/product-composite';
-import { DaffCompositeProductFacadeInterface } from '@daffodil/product/state';
+import { DaffCompositeProductFacadeInterface } from '@daffodil/product-composite/state';
 
 /**
  * @inheritdoc

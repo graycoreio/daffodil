@@ -4,7 +4,7 @@ import {
   DaffCompositeProduct,
   DaffCompositeProductItem,
   DaffCompositeProductItemOption,
-} from '@daffodil/product';
+} from '@daffodil/product-composite';
 
 /**
  * Action types for Composite Product Actions.

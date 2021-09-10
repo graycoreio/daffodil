@@ -17,13 +17,15 @@ import {
 import {
   DaffProduct,
   DaffProductTypeEnum,
-  DaffCompositeProduct,
-  DaffCompositeProductItem,
-  DaffCompositeProductItemOption,
   DaffProductPrices,
   DaffPriceRange,
-  DaffCompositeConfigurationItem,
 } from '@daffodil/product';
+import {
+  DaffCompositeProduct,
+  DaffCompositeConfigurationItem,
+  DaffCompositeProductItem,
+  DaffCompositeProductItemOption,
+} from '@daffodil/product-composite';
 import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 
 import { DaffCompositeProductStateRootSlice } from '../../reducers/composite-product-reducers-state.interface';

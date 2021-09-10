@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DaffCompositeProduct,
-  DaffProductTypeEnum,
   DaffCompositeProductItemInputEnum,
-} from '@daffodil/product';
+} from '@daffodil/product-composite';
 import { MockProduct } from '@daffodil/product/testing';
 
 /**

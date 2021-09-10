@@ -14,25 +14,25 @@ import {
   daffMultiply,
   daffSubtract,
 } from '@daffodil/core';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffCompositeProduct,
-  DaffProduct,
   DaffCompositeConfigurationItem,
-} from '@daffodil/product';
-import { daffCompositeProductReducers } from '@daffodil/product-composite/state';
+} from '@daffodil/product-composite';
+import {
+  DaffCompositeProductApplyOption,
+  daffCompositeProductReducers,
+} from '@daffodil/product-composite/state';
 import { DaffCompositeProductStateRootSlice } from '@daffodil/product-composite/state';
 import { DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY } from '@daffodil/product-composite/state';
+import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 import {
   DaffProductLoadSuccess,
-  DaffCompositeProductApplyOption,
   DaffProductGridLoad,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
-import {
-  DaffCompositeProductFactory,
-  DaffProductFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { getDaffCompositeProductPriceSelectors } from './composite-product.selectors';
 
