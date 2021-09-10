@@ -4,6 +4,8 @@ import { DaffProductImage } from '@daffodil/product';
 import {
   DaffProductImageFactory,
   isProduct,
+  DAFF_PRODUCT_TYPE_FACTORIES,
+  DaffProductFactory,
 } from '@daffodil/product/testing';
 
 import { DaffTestingProductService } from './product.service';
@@ -16,7 +18,15 @@ describe('Driver | Testing | Product | ProductService', () => {
   beforeEach(() => {
     stubProductImages = new DaffProductImageFactory().createMany(5);
 
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: DAFF_PRODUCT_TYPE_FACTORIES,
+          useExisting: DaffProductFactory,
+          multi: true,
+        },
+      ],
+    });
 
     productService = TestBed.inject(DaffTestingProductService);
     productImageFactory = TestBed.inject(DaffProductImageFactory);

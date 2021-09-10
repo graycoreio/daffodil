@@ -8,8 +8,8 @@ import {
 
 import { DaffProduct } from '@daffodil/product';
 import {
-  DaffProductFactory,
   DaffProductImageFactory,
+  DaffProductExtensionFactory,
 } from '@daffodil/product/testing';
 
 /**
@@ -29,7 +29,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
   products: DaffProduct[];
 
   constructor(
-    private productFactory: DaffProductFactory,
+    private productFactory: DaffProductExtensionFactory,
     private productImageFactory: DaffProductImageFactory) {
     this.products = [
       this.productFactory.create({ id: '1001', url: '1001', images: this.productImageFactory.createMany(5) }),

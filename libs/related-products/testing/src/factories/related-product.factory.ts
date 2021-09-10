@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffProduct } from '@daffodil/product';
 import {
   MockProduct,
-  DaffProductFactory,
+  DaffProductKindFactory,
 } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 
@@ -12,10 +13,14 @@ import { DaffRelatedProduct } from '@daffodil/related-products';
  * Mocked DaffRelatedProduct object.
  */
 export class MockRelatedProduct extends MockProduct implements DaffRelatedProduct {
-  related = this.createProducts();
+  related: DaffProduct[] = [];
 
-  private createProducts() {
-    return (new DaffProductFactory()).createMany(3);
+  constructor(
+    productFactory: DaffProductKindFactory,
+  ) {
+    super();
+
+    this.related = productFactory.createMany(3);
   }
 }
 
@@ -26,7 +31,9 @@ export class MockRelatedProduct extends MockProduct implements DaffRelatedProduc
   providedIn: 'root',
 })
 export class DaffRelatedProductFactory extends DaffModelFactory<DaffRelatedProduct>{
-  constructor(){
-    super(MockRelatedProduct);
+  constructor(
+    productKindFactory: DaffProductKindFactory,
+  ) {
+    super(MockRelatedProduct, productKindFactory);
   }
 }

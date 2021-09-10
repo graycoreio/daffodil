@@ -1,2 +1,1 @@
-// TODO: implement
-export {};
+export { DaffRelatedProductsInMemoryDriverModule } from './in-memory.module';

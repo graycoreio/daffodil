@@ -1,6 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { isProduct } from '@daffodil/product/testing';
+import {
+  isProduct,
+  DAFF_PRODUCT_TYPE_FACTORIES,
+  DaffProductFactory,
+} from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendProductService } from './product.service';
 
@@ -9,7 +13,14 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendProductService],
+      providers: [
+        DaffInMemoryBackendProductService,
+        {
+          provide: DAFF_PRODUCT_TYPE_FACTORIES,
+          useExisting: DaffProductFactory,
+          multi: true,
+        },
+      ],
     });
 
     productTestingService = TestBed.inject(DaffInMemoryBackendProductService);
