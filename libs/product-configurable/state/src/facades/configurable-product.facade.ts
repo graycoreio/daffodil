@@ -7,14 +7,11 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 import { DaffProduct } from '@daffodil/product';
+import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 import { DaffProductStateRootSlice } from '@daffodil/product/state';
 
-import {
-  getDaffConfigurableProductEntitiesSelectors,
-  getDaffConfigurableProductSelectors,
-} from '../selectors/public_api';
+import { getDaffConfigurableProductAllSelectors } from '../selectors/public_api';
 import { DaffConfigurableProductFacadeInterface } from './configurable-product-facade.interface';
 
 /**
@@ -28,8 +25,7 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
 })
 export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> implements DaffConfigurableProductFacadeInterface {
 
-	configurableProductSelectors = getDaffConfigurableProductSelectors<T>();
-	configurableProductEntitiesSelectors = getDaffConfigurableProductEntitiesSelectors<T>();
+	configurableProductSelectors = getDaffConfigurableProductAllSelectors<T>();
 
 	constructor(private store: Store<DaffProductStateRootSlice<T>>) {}
 
@@ -42,7 +38,7 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 	}
 
 	getAppliedAttributes(id: T['id']): Observable<Dictionary<string>> {
-	  return this.store.pipe(select(this.configurableProductEntitiesSelectors.selectConfigurableProductAppliedAttributesAsDictionary(id)));
+	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductAppliedAttributesAsDictionary(id)));
 	}
 
 	getMinimumPrice(id: T['id']): Observable<number> {

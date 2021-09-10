@@ -3,14 +3,14 @@ import { Dictionary } from '@ngrx/entity';
 import { BehaviorSubject } from 'rxjs';
 
 import {
+  DaffPriceRange,
+  DaffCompositeConfigurationItem,
+} from '@daffodil/product';
+import {
   DaffCompositeProductItemOption,
   DaffCompositeProduct,
   DaffCompositeProductItem,
 } from '@daffodil/product-composite';
-import {
-  DaffPriceRange,
-  DaffCompositeConfigurationItem,
-} from '@daffodil/product';
 import { DaffCompositeProductFacadeInterface } from '@daffodil/product/state';
 
 /**
