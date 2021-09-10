@@ -27,6 +27,8 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**
  * An interface for selectors related to the composite product applied options.
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	/**
@@ -135,6 +137,8 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
 /**
  * A function that returns all selectors related to composite product applied option entities.
  * Returns {@link DaffCompositeProductEntitiesMemoizedSelectors}.
+ *
+ * @deprecated import from @daffodil/composite-product/state instead.
  */
 export const getDaffCompositeProductEntitiesSelectors = (() => {
   let cache;

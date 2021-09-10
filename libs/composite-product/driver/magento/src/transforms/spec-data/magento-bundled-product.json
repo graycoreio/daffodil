@@ -1,0 +1,115 @@
+{
+	"__typename": "BundleProduct",
+	"uid": "213",
+	"image": {
+		"label": "image-label",
+		"url": "image-url"
+	},
+	"thumbnail": {
+		"url": "thumbnail-url",
+		"label": "thumbnail-label"
+	},
+	"sku": "22",
+	"url_key": "url",
+  "url_suffix": ".html",
+	"description": {
+		"html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo."
+	},
+	"short_description": {
+		"html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut."
+	},
+	"price_range": {
+		"maximum_price": {
+			"regular_price": {
+				"value": 0,
+				"currency": null
+			},
+			"discount": {
+				"amount_off": 0,
+				"percent_off": 0
+			}
+		}
+	},
+	"name": "Group of Products",
+	"items": [
+		{
+			"option_id": 1,
+			"sku": "22-1",
+			"required": false,
+			"title": "Options",
+			"type": "select",
+			"options": [
+				{
+					"uid": "1",
+					"label": "Option 1",
+					"price": 10,
+					"quantity": 1,
+					"is_default": true,
+					"product": {
+						"__typename": "name",
+						"uid": "14",
+						"name": "name",
+						"image": {
+							"label": "image-label",
+							"url": "image-url"
+						},
+						"thumbnail": {
+							"url": "thumbnail-url",
+							"label": "thumbnail-label"
+						},
+						"sku": "22",
+						"url_key": "url",
+            "url_suffix": ".html",
+						"price_range": {
+							"maximum_price": {
+								"regular_price": {
+									"value": 5,
+									"currency": null
+								},
+								"discount": {
+									"amount_off": 1,
+									"percent_off": 20
+								}
+							}
+						}
+					}
+				},
+				{
+					"uid": "2",
+					"label": "Option 2",
+					"price": 12,
+					"quantity": 1,
+					"is_default": false,
+					"product": {
+						"__typename": "name",
+						"uid": "24",
+						"name": "name",
+						"image": {
+							"label": "image-label",
+							"url": "image-url"
+						},
+						"thumbnail": {
+							"url": "thumbnail-url",
+							"label": "thumbnail-label"
+						},
+						"sku": "22",
+						"url_key": "url",
+            "url_suffix": ".html",
+						"price_range": {
+							"maximum_price": {
+								"regular_price": {
+									"value": 2,
+									"currency": null
+								},
+								"discount": {
+									"amount_off": 1,
+									"percent_off": 50
+								}
+							}
+						}
+					}
+				}
+			]
+		}
+	]
+}

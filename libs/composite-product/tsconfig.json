@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/composite-product": [
+        "libs/composite-product/src"
+      ],
+      "@daffodil/composite-product/state": [
+        "libs/composite-product/state/src"
+      ],
+      "@daffodil/composite-product/state/testing": [
+        "libs/composite-product/state/testing/src"
+      ],
+      "@daffodil/composite-product/driver/magento": [
+        "libs/composite-product/driver/magento/src"
+      ],
+    }
+  }
+}

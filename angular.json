@@ -348,6 +348,45 @@
         }
       }
     },
+    "composite-product": {
+      "root": "libs/composite-product",
+      "sourceRoot": "libs/composite-product/src",
+      "projectType": "library",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/composite-product/tsconfig.lib.json",
+            "project": "libs/composite-product/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/composite-product/ng-package.prod.json",
+              "tsConfig": "libs/composite-product/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/composite-product/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/composite-product/tsconfig.spec.json",
+            "karmaConfig": "libs/composite-product/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/composite-product/**/*.ts",
+              "libs/composite-product/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "cart": {
       "root": "libs/cart",
       "sourceRoot": "libs/cart/src",
