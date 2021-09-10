@@ -1,13 +1,15 @@
 import {
+  DaffProductTypeEnum,
+  DaffProductDiscount,
+  DaffProduct,
+} from '@daffodil/product';
+import {
   DaffConfigurableProduct,
   DaffConfigurableProductAttribute,
   DaffConfigurableProductOptionValue,
   DaffConfigurableProductVariant,
   DaffProductVariantAttributesDictionary,
-  DaffProductTypeEnum,
-  DaffProductDiscount,
-  DaffProduct,
-} from '@daffodil/product';
+} from '@daffodil/product-configurable';
 import {
   MagentoProduct,
   MagentoProductStockStatusEnum,
