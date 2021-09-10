@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffProduct } from '@daffodil/product';
 import {
   MockProduct,
   DaffProductFactory,
@@ -12,7 +13,7 @@ import { DaffRelatedProduct } from '@daffodil/related-products';
  * Mocked DaffRelatedProduct object.
  */
 export class MockRelatedProduct extends MockProduct implements DaffRelatedProduct {
-  related = this.createProducts();
+  related: DaffProduct[] = this.createProducts();
 
   private createProducts() {
     return (new DaffProductFactory()).createMany(3);
