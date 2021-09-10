@@ -12,7 +12,10 @@ import {
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductTestingModule,
+} from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 import {
   daffRelatedProductsReducers,
@@ -41,6 +44,7 @@ describe('selectRelatedProductsState', () => {
           [DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY]: combineReducers(daffRelatedProductsReducers),
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
+        DaffProductTestingModule,
       ],
     });
 

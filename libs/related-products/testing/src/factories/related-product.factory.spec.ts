@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 
 import { DaffRelatedProductFactory } from './related-product.factory';
@@ -10,7 +11,12 @@ describe('@daffodil/related-products/testing | DaffRelatedProductFactory', () =>
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffRelatedProductFactory],
+      imports: [
+        DaffProductTestingModule,
+      ],
+      providers: [
+        DaffRelatedProductFactory,
+      ],
     });
 
     productFactory = TestBed.inject(DaffRelatedProductFactory);
