@@ -37,13 +37,13 @@ export class MockProduct implements DaffProduct {
 }
 
 /**
- * Factory for creating DaffProducts.
+ * Factory for creating simple `DaffProduct`s of no special kind.
  */
 @Injectable({
   providedIn: 'root',
 })
-export class DaffProductFactory extends DaffModelFactory<DaffProduct>{
-  constructor(){
+export class DaffDefaultProductFactory extends DaffModelFactory<DaffProduct> {
+  constructor() {
     super(MockProduct);
   }
 }

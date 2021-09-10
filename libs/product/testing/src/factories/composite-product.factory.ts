@@ -8,7 +8,7 @@ import {
   DaffCompositeProductItemInputEnum,
 } from '@daffodil/product';
 
-import { MockProduct } from './product.factory';
+import { MockProduct } from './default-product.factory';
 
 /**
  * Mocked DaffCompositeProduct object.
