@@ -7,12 +7,6 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
-import {
-  daffCompositeProductReducers,
-  DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY,
-} from '@daffodil/product-composite/state';
-import { DaffCompositeProductStateRootSlice } from '@daffodil/product-composite/state';
 import {
   daffAdd,
   daffDivide,
@@ -23,6 +17,12 @@ import {
   DaffCompositeProduct,
   DaffCompositeConfigurationItem,
 } from '@daffodil/product';
+import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
+import {
+  daffCompositeProductReducers,
+  DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY,
+} from '@daffodil/product-composite/state';
+import { DaffCompositeProductStateRootSlice } from '@daffodil/product-composite/state';
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
