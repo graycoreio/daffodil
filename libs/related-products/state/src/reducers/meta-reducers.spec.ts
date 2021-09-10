@@ -4,7 +4,10 @@ import { DaffRelatedProductFactory } from 'libs/related-products/testing/src/fac
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductTestingModule,
+} from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 
 import { daffRelatedProductsDedupeMetaReducer } from './meta-reducers';
@@ -32,6 +35,12 @@ describe('@daffodil/related-products/state | daffRelatedProductsDedupeMetaReduce
   let result: MockState;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
+    });
+
     productFactory = TestBed.inject(DaffProductFactory);
     relatedProductFactory = TestBed.inject(DaffRelatedProductFactory);
     mockRelatedProduct = relatedProductFactory.create({

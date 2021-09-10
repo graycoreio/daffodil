@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductTestingModule,
+} from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 import { DaffRelatedProductsReducerState } from '@daffodil/related-products/state';
 import { DaffRelatedProductFactory } from '@daffodil/related-products/testing';
@@ -18,6 +21,12 @@ describe('@daffodil/related-products/state | daffRelatedProductsReducer', () => 
   let productId: string;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
+    });
+
     productFactory = TestBed.inject(DaffProductFactory);
     relatedProductFactory = TestBed.inject(DaffRelatedProductFactory);
 

@@ -1,17 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 
 import { DaffRelatedProductFactory } from './related-product.factory';
 
-describe('Product | Testing | Factories | DaffRelatedProductFactory', () => {
+describe('@daffodil/related-products/testing | DaffRelatedProductFactory', () => {
 
   let productFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffRelatedProductFactory],
+      imports: [
+        DaffProductTestingModule,
+      ],
+      providers: [
+        DaffRelatedProductFactory,
+      ],
     });
 
     productFactory = TestBed.inject(DaffRelatedProductFactory);
