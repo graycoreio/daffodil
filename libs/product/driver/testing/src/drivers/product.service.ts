@@ -4,15 +4,16 @@ import {
   of,
 } from 'rxjs';
 
-import { daffArrayToDict } from '@daffodil/core';
+import { randomSubset } from '@daffodil/core';
+import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriverResponse,
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
 import {
-  DaffProductFactory,
   DaffProductImageFactory,
+  DaffProductExtensionFactory,
 } from '@daffodil/product/testing';
 
 /**
@@ -28,8 +29,9 @@ import {
 export class DaffTestingProductService implements DaffProductServiceInterface {
 
   constructor(
-    private productFactory: DaffProductFactory,
-    private productImageFactory: DaffProductImageFactory) {}
+    private productFactory: DaffProductExtensionFactory,
+    private productImageFactory: DaffProductImageFactory,
+  ) {}
 
   getAll(): Observable<DaffProduct[]> {
     return of([
