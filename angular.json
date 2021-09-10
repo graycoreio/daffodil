@@ -316,7 +316,7 @@
       "prefix": "@daffodil",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/product-configurable/tsconfig.lib.json",
             "project": "libs/product-configurable/ng-package.json"
