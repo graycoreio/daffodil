@@ -1,2 +1,1 @@
-// TODO: implement
-export {};
+export { DaffUpsellProductsTestingDriverModule } from './testing.module';
