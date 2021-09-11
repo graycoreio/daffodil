@@ -309,6 +309,45 @@
         }
       }
     },
+    "upsell-products": {
+      "root": "libs/upsell-products",
+      "sourceRoot": "libs/upsell-products/src",
+      "projectType": "library",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/upsell-products/tsconfig.lib.json",
+            "project": "libs/upsell-products/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/upsell-products/ng-package.prod.json",
+              "tsConfig": "libs/upsell-products/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/upsell-products/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/upsell-products/tsconfig.spec.json",
+            "karmaConfig": "libs/upsell-products/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/upsell-products/**/*.ts",
+              "libs/upsell-products/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "product-configurable": {
       "root": "libs/product-configurable",
       "sourceRoot": "libs/product-configurable/src",
