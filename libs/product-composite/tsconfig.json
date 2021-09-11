@@ -24,6 +24,9 @@
       "@daffodil/product-composite/driver/magento/testing": [
         "libs/product-composite/driver/magento/testing/src"
       ],
+      "@daffodil/product-composite/driver/in-memory": [
+        "libs/product-composite/driver/in-memory/src"
+      ],
       "@daffodil/product-composite/driver/testing": [
         "libs/product-composite/driver/testing/src"
       ],
