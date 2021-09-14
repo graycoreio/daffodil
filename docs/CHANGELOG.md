@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.8](https://github.com/griest024/daffodil/compare/v0.38.7...v0.38.8) (2021-09-14)
+
 ### [0.38.7](https://github.com/griest024/daffodil/compare/v0.38.6...v0.38.7) (2021-09-14)
 
 ### [0.38.6](https://github.com/griest024/daffodil/compare/v0.38.5...v0.38.6) (2021-08-23)
