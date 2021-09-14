@@ -12,7 +12,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { DaffioGuidesNavTreeModule } from 'apps/daffio/src/app/guides/components/guides-nav-tree/guides-nav-tree.module';
+import { DaffioGuidesNavModule } from 'apps/daffio/src/app/guides/components/guides-nav/guides-nav.module';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -47,7 +47,7 @@ describe('DaffioSidebarViewportContainer', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule,
-        DaffioGuidesNavTreeModule,
+        DaffioGuidesNavModule,
         HttpClientTestingModule,
       ],
       declarations: [

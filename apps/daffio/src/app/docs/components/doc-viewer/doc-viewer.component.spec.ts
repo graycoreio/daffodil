@@ -5,11 +5,13 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffArticleModule } from '@daffodil/design';
 
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
+import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 import { DaffioDocViewerComponent } from './doc-viewer.component';
 
 @Component({
@@ -26,8 +28,15 @@ describe('DaffioDocViewerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DaffArticleModule],
-      declarations: [WrapperComponent, DaffioDocViewerComponent],
+      imports: [
+        RouterTestingModule,
+        DaffArticleModule,
+        DaffioDocsTableOfContentsModule,
+      ],
+      declarations: [
+        WrapperComponent,
+        DaffioDocViewerComponent,
+      ],
     })
       .compileComponents();
   }));

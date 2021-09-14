@@ -49,7 +49,6 @@ describe('DaffioApiPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioApiPageComponent);
     component = fixture.componentInstance;
-    console.log(doc);
     stubActivatedRoute.data.next({ doc });
     fixture.detectChanges();
   });
