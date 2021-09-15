@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.38.8](https://github.com/graycoreio/daffodil/compare/v0.38.4...v0.38.8) (2021-09-15)
+
+
+### Features
+
+* **cart:** throw out of stock error in the item update call ([#1791](https://github.com/graycoreio/daffodil/issues/1791)) ([faf714b](https://github.com/graycoreio/daffodil/commit/faf714bfd12950584e49b5bc34badcbf649901a5))
+* **category:** add extra preview fragments to category products query ([#1747](https://github.com/graycoreio/daffodil/issues/1747)) ([4b760e7](https://github.com/graycoreio/daffodil/commit/4b760e7dd8ea6c3f7ede5f6abb21bf14e4ff6c20))
+* **category:** fix factory partial types ([#1792](https://github.com/graycoreio/daffodil/issues/1792)) ([3499657](https://github.com/graycoreio/daffodil/commit/3499657f1e6d97e8b80f297e76c7f1c32b49f4d0))
+* **composite-product:** copy composite product features into a new package ([#1690](https://github.com/graycoreio/daffodil/issues/1690)) ([fe5b99d](https://github.com/graycoreio/daffodil/commit/fe5b99d89ffc40f9c37f8a2e79cd6e6e9110c641))
+* **configurable-product:** copy configurable product features into a new package ([#1681](https://github.com/graycoreio/daffodil/issues/1681)) ([0f11fa6](https://github.com/graycoreio/daffodil/commit/0f11fa6bc518e1b7136dc07a8648adbb182e8f3c))
+* **core:** accept mock class instantiation args in constructor ([#1777](https://github.com/graycoreio/daffodil/issues/1777)) ([04c0d37](https://github.com/graycoreio/daffodil/commit/04c0d37cf31ca5de0e5f602d62a1b3da2feb4c0c))
+* **core:** add `sample` ([#1786](https://github.com/graycoreio/daffodil/issues/1786)) ([69706a4](https://github.com/graycoreio/daffodil/commit/69706a4ccd787dc6961f11d59d1300351654f63e))
+* **core:** add length param to `randomSlice` ([#1789](https://github.com/graycoreio/daffodil/issues/1789)) ([0465b21](https://github.com/graycoreio/daffodil/commit/0465b21f8a5762ad1518c83327d00289b7e529bf))
+* **daffio:** update members table in docs to use article tables ([#1687](https://github.com/graycoreio/daffodil/issues/1687)) ([09642d4](https://github.com/graycoreio/daffodil/commit/09642d4e991295b39717f49626b0c0b0db3b3f00))
+* **design:** add article table styles ([#1686](https://github.com/graycoreio/daffodil/issues/1686)) ([02a1f6f](https://github.com/graycoreio/daffodil/commit/02a1f6f4899c0e104e4e609e4548206460468308))
+* **design:** make @daffodil/design compatible with typescript@^4.0.0 ([#1783](https://github.com/graycoreio/daffodil/issues/1783)) ([7ef031e](https://github.com/graycoreio/daffodil/commit/7ef031ee0c25bb7bb8ab8a7c3492aef46f5e092d))
+* **docs-gen:** compute the docGroup of an example from the folder path, not the filename ([#1711](https://github.com/graycoreio/daffodil/issues/1711)) ([c4d2494](https://github.com/graycoreio/daffodil/commit/c4d249487ba33fa88da1c1c358331dda3cb9aa22))
+* **external-router:** add `daffInsertDataPathStrategy` and `daffDataPathUrlMatcher` ([#1767](https://github.com/graycoreio/daffodil/issues/1767)) ([d148a51](https://github.com/graycoreio/daffodil/commit/d148a51967cec4877e0cdc83600be7ea1978c43d))
+* **product:** add kind and extension factories ([#1785](https://github.com/graycoreio/daffodil/issues/1785)) ([0ac027b](https://github.com/graycoreio/daffodil/commit/0ac027b8df6f283152d3137864584fa8f27f105e))
+* **product:** add product factory tokens ([#1781](https://github.com/graycoreio/daffodil/issues/1781)) ([f56e1e1](https://github.com/graycoreio/daffodil/commit/f56e1e109d3fcda01f6e027d8d2fc3a5f863e121))
+* **product:** remove extraneous configurable product fields ([#1738](https://github.com/graycoreio/daffodil/issues/1738)) ([adcb2ce](https://github.com/graycoreio/daffodil/commit/adcb2cea86326782087559af0ef8e9ede3b8e3ad))
+* **product:** use random factory kind in in-memory and testing drivers ([#1811](https://github.com/graycoreio/daffodil/issues/1811)) ([2a4c4ea](https://github.com/graycoreio/daffodil/commit/2a4c4ea5f883875acbd0abf4546f33551f8812eb))
+* **product-composite:** add in-memory driver ([#1816](https://github.com/graycoreio/daffodil/issues/1816)) ([84caaf0](https://github.com/graycoreio/daffodil/commit/84caaf0b66f9efe03e07a6bebb9cd9ce3f8d9d2b))
+* **product-composite:** add testing driver package ([#1815](https://github.com/graycoreio/daffodil/issues/1815)) ([fb2957b](https://github.com/graycoreio/daffodil/commit/fb2957b02d783040b3e7d4a1b3f00db1912b1f2e))
+* **product-configurable:** add feature and all selector ([#1807](https://github.com/graycoreio/daffodil/issues/1807)) ([9eee1d9](https://github.com/graycoreio/daffodil/commit/9eee1d953118ec38fdcca9bec8e5fdb41a775f12))
+* **product-configurable:** add in-memory driver ([#1817](https://github.com/graycoreio/daffodil/issues/1817)) ([5734b91](https://github.com/graycoreio/daffodil/commit/5734b91b03e7506cc60c164efee4004aa9d030f8))
+* **product-configurable:** add testing driver package ([#1818](https://github.com/graycoreio/daffodil/issues/1818)) ([6538e52](https://github.com/graycoreio/daffodil/commit/6538e521e19a6e3f24dedd8e8b8674d435183046))
+* **related-products:** add in-memory driver module ([#1813](https://github.com/graycoreio/daffodil/issues/1813)) ([09d3d5e](https://github.com/graycoreio/daffodil/commit/09d3d5eddc4eaf570fd97fc384a5a69765b3c221))
+* **related-products:** add testing driver module ([#1821](https://github.com/graycoreio/daffodil/issues/1821)) ([9112bfd](https://github.com/graycoreio/daffodil/commit/9112bfdcea391e7ff1cce137937562aa0e1cb3c3))
+* **related-products:** DI product kind factory into related products factory ([#1812](https://github.com/graycoreio/daffodil/issues/1812)) ([998e3e0](https://github.com/graycoreio/daffodil/commit/998e3e065e0dc8669d710b4c1825db4f27aca5ca))
+* **seo:** add `daffProvideCanonicalUrlUpdates` and `DAFF_SEO_CANONICAL_URL_UPDATES` token ([#1762](https://github.com/graycoreio/daffodil/issues/1762)) ([da5cb84](https://github.com/graycoreio/daffodil/commit/da5cb847672eae0c428b2399755bc4d4bd1f0346))
+* **seo:** add `daffProvideMetaUpdates` and `DAFF_SEO_META_UPDATES` token ([#1757](https://github.com/graycoreio/daffodil/issues/1757)) ([3354033](https://github.com/graycoreio/daffodil/commit/335403385a08d2cc825a9f04cc30536a598373d1))
+* **seo:** add `DaffSeoCanonicalUrlEffects` ([#1763](https://github.com/graycoreio/daffodil/issues/1763)) ([04dd8f8](https://github.com/graycoreio/daffodil/commit/04dd8f8d770a19b2ccfb3f921ab63b869263589d))
+* **seo:** add `DaffSeoMetaEffects` ([#1761](https://github.com/graycoreio/daffodil/issues/1761)) ([926008d](https://github.com/graycoreio/daffodil/commit/926008d55c90f4795864c110c4475b7eb2883919))
+* **seo:** add `DaffSeoTitleEffects` ([#1759](https://github.com/graycoreio/daffodil/issues/1759)) ([fd9f615](https://github.com/graycoreio/daffodil/commit/fd9f615aaa7a326ded4ca733b37122ff25e63529))
+* **seo:** add canonical URL update model ([#1742](https://github.com/graycoreio/daffodil/issues/1742)) ([b24e110](https://github.com/graycoreio/daffodil/commit/b24e11079c458a400788fef3ccc2b01ee1e359c4))
+* **seo:** add meta definition models ([#1744](https://github.com/graycoreio/daffodil/issues/1744)) ([5c1d735](https://github.com/graycoreio/daffodil/commit/5c1d735b430e80a9d78179279c1fbee65a49df61))
+* **seo:** add meta update model ([#1739](https://github.com/graycoreio/daffodil/issues/1739)) ([00c33a5](https://github.com/graycoreio/daffodil/commit/00c33a5cb4ae981a9a497742c2709061ebb0dd86))
+* **seo:** add page hook effects abstract class ([#1740](https://github.com/graycoreio/daffodil/issues/1740)) ([9c11f98](https://github.com/graycoreio/daffodil/commit/9c11f98f0e6c954e66eeda4f3cf0c2c8cc71de46))
+* **seo:** add restoreable meta service ([#1749](https://github.com/graycoreio/daffodil/issues/1749)) ([b66fe24](https://github.com/graycoreio/daffodil/commit/b66fe2477ddb2322c5d648f1eaa0fb993b2ad0b9))
+* **seo:** add restoreable service interface ([#1736](https://github.com/graycoreio/daffodil/issues/1736)) ([f624f00](https://github.com/graycoreio/daffodil/commit/f624f005b4710a6c57b0b6803dc0430a86edcd96))
+* **seo:** add restoreable title service ([#1743](https://github.com/graycoreio/daffodil/issues/1743)) ([fde1635](https://github.com/graycoreio/daffodil/commit/fde1635200c817d09a6557368d2f96c5946c02b0))
+* **seo:** add seo/state and update action pair ([#1708](https://github.com/graycoreio/daffodil/issues/1708)) ([9fb78cb](https://github.com/graycoreio/daffodil/commit/9fb78cbeb97628ff43ea3f7f7f3ceed93c9d0217))
+* **seo:** add title update model ([#1741](https://github.com/graycoreio/daffodil/issues/1741)) ([5fe73fb](https://github.com/graycoreio/daffodil/commit/5fe73fba9a5f5c1e1ad3ce072e6bc4dca042f1c6))
+* **seo:** add title updates multi token and provider ([#1752](https://github.com/graycoreio/daffodil/issues/1752)) ([333401a](https://github.com/graycoreio/daffodil/commit/333401a86e1eae0f35229f525cdac62cdff8ebd3))
+* **seo:** change canonical service to restoreable ([#1745](https://github.com/graycoreio/daffodil/issues/1745)) ([2f3389d](https://github.com/graycoreio/daffodil/commit/2f3389d070ae9fe989119aec75aac93cec752acd))
+* **upsell-products:** add upsell products package ([#1820](https://github.com/graycoreio/daffodil/issues/1820)) ([63448ad](https://github.com/graycoreio/daffodil/commit/63448ad4770dc798ac5963c0afc575a3b1286e66))
+
+
+### Bug Fixes
+
+* **cart:** cart item state prematurely resetting after update ([#1753](https://github.com/graycoreio/daffodil/issues/1753)) ([160a7b2](https://github.com/graycoreio/daffodil/commit/160a7b254f23e14c4465d5301bd9e04919044358))
+* **cart:** public class members in magento driver ([#1801](https://github.com/graycoreio/daffodil/issues/1801)) ([e8dd8a1](https://github.com/graycoreio/daffodil/commit/e8dd8a1034eb81b5c9f1b2bd8095c12ed6eff09d))
+* **checkout:** improper creation of partial in testing driver ([#1776](https://github.com/graycoreio/daffodil/issues/1776)) ([62cfc93](https://github.com/graycoreio/daffodil/commit/62cfc9353609d932581239bb82977a7b0aa49dfe))
+* **design-land:** fix design-land tsconfig paths ([#1754](https://github.com/graycoreio/daffodil/issues/1754)) ([8e68fd4](https://github.com/graycoreio/daffodil/commit/8e68fd49527f132e85f80cac4a2bb34161b49f65))
+* **product:** hardcoded search value for getAll query ([#1802](https://github.com/graycoreio/daffodil/issues/1802)) ([e664dbb](https://github.com/graycoreio/daffodil/commit/e664dbbe6f3bd00d2591339aa039c9d3a30ff946))
+* **product-composite:** wrong imports and paths ([#1808](https://github.com/graycoreio/daffodil/issues/1808)) ([e77d255](https://github.com/graycoreio/daffodil/commit/e77d25579b0eb9c63db0937bf3f3dc32dde4c8b3))
+* **product-configurable:** wrong imports and paths ([#1809](https://github.com/graycoreio/daffodil/issues/1809)) ([3203297](https://github.com/graycoreio/daffodil/commit/3203297b84cd56173d0d50acc486fbd71a082c78))
+* **tools:** release build task fails ([#1766](https://github.com/graycoreio/daffodil/issues/1766)) ([2766234](https://github.com/graycoreio/daffodil/commit/2766234b594a90a9a277d750d611881c9c1e8b38))
+* **tools-dgeni:** add devDependencies to package.json ([#1805](https://github.com/graycoreio/daffodil/issues/1805)) ([a1bcbd8](https://github.com/graycoreio/daffodil/commit/a1bcbd869043dcb9438f97820cbe943034b5b31b))
+
 ### [0.38.7](https://github.com/graycoreio/daffodil/compare/v0.38.4...v0.38.7) (2021-09-14)
 
 
