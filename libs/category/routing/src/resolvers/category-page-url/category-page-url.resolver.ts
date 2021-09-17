@@ -31,11 +31,15 @@ import {
 } from '@daffodil/category/state';
 import { DaffRoutingUriNormalizer } from '@daffodil/core/routing';
 
+const getPage = (route: ActivatedRouteSnapshot): string => route.queryParams.p || route.queryParams.page;
+
 /**
  * Resolves category data for category pages, and will only resolve the url
  * after a category request succeeds or fails. This resolver will take a full
  * a url of the form `some/url.html(secondary:outlet)?query=param#fragment` and attempt to resolve a product from it.
  * Assumes that the URL to be resolved is the primary outlet.
+ *
+ * Will check the `p` and `page` query params for a page number value.
  */
 @Injectable({
   providedIn: 'root',
@@ -49,9 +53,14 @@ export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>>
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    const currentPage = getPage(route);
+    console.log(route.queryParams.p);
+
+
     this.store.dispatch(new DaffCategoryPageLoadByUrl({
       url: this.urlNormalizer.normalize(state.url),
       kind: DaffCategoryRequestKind.URL,
+      ...(currentPage ? { current_page: Number(currentPage) } : {}),
     }));
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
