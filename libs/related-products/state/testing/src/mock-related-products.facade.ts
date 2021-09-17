@@ -11,6 +11,6 @@ import { DaffRelatedProductsFacadeInterface } from '@daffodil/related-products/s
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffRelatedProductsFacade implements DaffRelatedProductsFacadeInterface {
-  relatedProducts$: BehaviorSubject<DaffProduct[]>;
+  relatedProducts$ = new BehaviorSubject<DaffProduct[]>([]);
   dispatch(action) {};
 }
