@@ -1,0 +1,8 @@
+@import 'utilities';
+@import 'theme';
+
+.variables {
+	&__custom {
+		background: var(--daff-theme-primary);
+	}
+}

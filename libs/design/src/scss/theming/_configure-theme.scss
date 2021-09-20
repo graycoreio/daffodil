@@ -8,7 +8,7 @@ $daff-light-theme: (
 	'base-contrast': daff-color($daff-gray, 110),
 	'white': daff-color($daff-gray, 0),
 	'black': daff-color($daff-gray, 110),
-	'gray': $daff-gray
+	'gray': daff-configure-palette($daff-gray, 60)
 );
 
 $daff-dark-theme: (
@@ -17,7 +17,7 @@ $daff-dark-theme: (
 	'base-contrast': daff-color($daff-gray, 0),
 	'white': daff-color($daff-gray, 0),
 	'black': daff-color($daff-gray, 110),
-	'gray': $daff-gray
+	'gray': daff-configure-palette($daff-gray, 60)
 );
 
 $supported-theme-types: (
