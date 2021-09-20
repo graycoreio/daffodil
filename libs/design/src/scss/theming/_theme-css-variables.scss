@@ -1,0 +1,29 @@
+@mixin daff-theme-css-variables($theme) {
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-map-deep-get($theme, 'core.gray');
+
+	// @docs
+	//
+	// Global theming css variables
+	:root {
+		--daff-theme-rgb: #{red($base), green($base), blue($base)};
+		--daff-theme-contrast-rgb: #{red($base-contrast), green($base-contrast), blue($base-contrast)};
+		--daff-theme: #{$base};
+		--daff-theme-contrast: #{$base-contrast};
+		--daff-theme-primary: #{daff-color($primary)};
+		--daff-theme-secondary: #{daff-color($secondary)};
+		--daff-theme-tertiary: #{daff-color($tertiary)};
+		--daff-theme-warn: #{daff-color($daff-bronze, 60)};
+		--daff-theme-success: #{daff-color($daff-green, 60)};
+		--daff-theme-danger: #{daff-color($daff-red, 60)};
+		--daff-theme-white: #{$white};
+		--daff-theme-black: #{$black};
+		--daff-theme-gray: #{daff-color($gray)};
+	}
+};

@@ -1,3 +1,5 @@
+@import './theme-css-variables';
+
 @import '../../atoms/button/button-theme';
 @import '../../atoms/form/error-message/error-message-theme';
 @import '../../atoms/form/form-field/form-field/form-field-theme';
@@ -27,7 +29,10 @@
 // @include daff-theme($theme);
 // ```
 @mixin daff-theme($theme) {
-	//Atoms
+	// CSS variables
+	@include daff-theme-css-variables($theme);
+
+	// Atoms
 	@include daff-button-theme($theme);
 	@include daff-error-message-theme($theme);
 	@include daff-form-field-theme($theme);
@@ -36,7 +41,7 @@
 	@include daff-progress-indicator-theme($theme);
 	@include daff-loading-icon-theme($theme);
 
-	//Molecules
+	// Molecules
 	@include daff-accordion-item-theme($theme);
 	@include daff-article-theme($theme);
 	@include daff-callout-theme($theme);
