@@ -19,6 +19,12 @@ The `DaffExternalRouterTestingDriver` of the `@daffodil/external-router/driver/t
 
 You can see a sample usage of the testing driver in the `DaffExternalRouterExistenceGuard` [spec](https://github.com/graycoreio/daffodil/tree/develop/libs/external-router/routing/src/guard/existence.guard.spec.ts).
 
+### `@daffodil/external-router/driver/in-memory`
+
+Working with a fully featured backend can be cumbersome for rapid frontend development. Daffodil therefore provides `@daffodil/external-router/driver/in-memory` as a way to mimic a real backend without the associated burden.
+
+`@daffodil/external-router/driver/in-memory` is thin, deferring most of resolving burden to the app. The app should provide a configuration to `DaffExternalRouterDriverInMemoryModule#forRoot` containing logic for resolving a URL. Daffodil recommends relying on the existing in-memory backends for querying URLs for the entities that the app may attempt to externally resolve.
+
 ## Custom Drivers
 
 If you would like to provide your own driver, simply write a service that meets the `DaffExternalRouterDriverInterface` of `@daffodil/external-router/driver` and provide it.
