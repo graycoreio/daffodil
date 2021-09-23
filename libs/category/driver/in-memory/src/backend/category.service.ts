@@ -25,14 +25,45 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
-  category: DaffCategory;
-  categoryPageMetadata: DaffCategoryPageMetadata;
+  private _categories: DaffCategory[] = [];
+  private _categoryPageMetadata: DaffCategoryPageMetadata;
+
+  /**
+   * The collection of categories in the backend.
+   */
+  get categories(): DaffCategory[] {
+    return this._categories;
+  }
+
+  /**
+   * The metadata associated with the current page.
+   */
+  get categoryPageMetadata(): DaffCategoryPageMetadata {
+    return this._categoryPageMetadata;
+  }
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
     private metadataFactory: DaffCategoryPageMetadataFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
-  ) {}
+  ) {
+    this._categories = [
+      '1001',
+      '1002',
+      '1003',
+      '1004',
+      '1005',
+      '1006',
+      '1007',
+      '1008',
+      '1009',
+      '1010',
+    ].map(id => {
+      const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
+
+      return this.categoryFactory.create({ id, url: id, product_ids: allCategoryProductIds, total_products: allCategoryProductIds.length });
+    });
+  }
 
   /**
    * @docs-private
@@ -45,7 +76,9 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
    * @docs-private
    */
   createDb(): any {
-    return {};
+    return {
+      categories: this.categories,
+    };
   }
 
   /**
@@ -54,29 +87,33 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
    * @param reqInfo
    */
   get(reqInfo: any) {
-    const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
+    const category = this.categories.filter(({ id }) => id === reqInfo.id)[0];
 
-    this.categoryPageMetadata = this.metadataFactory.create({
-      id: reqInfo.id,
-      page_size: this.generatePageSize(reqInfo),
-      current_page: this.getCurrentPageParam(reqInfo),
-      total_pages: this.getTotalPages(allCategoryProductIds, this.generatePageSize(reqInfo)),
-      product_ids: this.trimProductIdsToSinglePage(allCategoryProductIds, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
-    });
+    if (category) {
+      this._categoryPageMetadata = this.metadataFactory.create({
+        id: reqInfo.id,
+        page_size: this.generatePageSize(reqInfo),
+        current_page: this.getCurrentPageParam(reqInfo),
+        total_pages: this.getTotalPages(category.product_ids, this.generatePageSize(reqInfo)),
+        product_ids: this.trimProductIdsToSinglePage(category.product_ids, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
+      });
 
-    this.category = this.categoryFactory.create({
-      id: reqInfo.id,
-      total_products: allCategoryProductIds.length,
-    });
+      return reqInfo.utils.createResponse$(() => ({
+        body: {
+          category,
+          categoryPageMetadata: this._categoryPageMetadata,
+          products: this.productInMemoryBackendService.products,
+        },
+        status: STATUS.OK,
+      }));
+    } else {
+      this._categoryPageMetadata = null;
+      return reqInfo.utils.createResponse$(() => ({
+        body: {},
+        status: STATUS.NOT_FOUND,
+      }));
+    }
 
-    return reqInfo.utils.createResponse$(() => ({
-      body: {
-        category: this.category,
-        categoryPageMetadata: this.categoryPageMetadata,
-        products: this.productInMemoryBackendService.products,
-      },
-      status: STATUS.OK,
-    }));
   }
 
   private getTotalPages(allIds: DaffProduct['id'][], pageSize: number) {
