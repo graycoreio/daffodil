@@ -25,8 +25,8 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
-  private _categories: DaffCategory[] = [];
-  private _categoryPageMetadata: DaffCategoryPageMetadata;
+  protected _categories: DaffCategory[] = [];
+  protected _categoryPageMetadata: DaffCategoryPageMetadata;
 
   /**
    * The collection of categories in the backend.
@@ -116,11 +116,11 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 
   }
 
-  private getTotalPages(allIds: DaffProduct['id'][], pageSize: number) {
+  protected getTotalPages(allIds: DaffProduct['id'][], pageSize: number) {
     return Math.ceil(allIds.length/pageSize);
   }
 
-  private trimProductIdsToSinglePage(allIds: any[], currentPage: number, pageSize: number) {
+  protected trimProductIdsToSinglePage(allIds: any[], currentPage: number, pageSize: number) {
     const tempIds = [...allIds];
     tempIds.splice(0, (currentPage-1) * pageSize);
     tempIds.splice(pageSize, tempIds.length-pageSize);
@@ -128,18 +128,18 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     return tempIds;
   }
 
-  private generateProductIdSubset(products: DaffProduct[]): DaffProduct['id'][] {
+  protected generateProductIdSubset(products: DaffProduct[]): DaffProduct['id'][] {
     return randomSubset(products).map(product => product.id);
   }
 
-  private generatePageSize(reqInfo) {
+  protected generatePageSize(reqInfo) {
     if(reqInfo.req.params.map && reqInfo.req.params.map.get('page_size') && reqInfo.req.params.map.get('page_size')[0]) {
       return parseInt(reqInfo.req.params.map.get('page_size')[0], 10);
     }
     return 10;
   }
 
-  private getCurrentPageParam(reqInfo) {
+  protected getCurrentPageParam(reqInfo) {
     if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page') && reqInfo.req.params.map.get('current_page')[0]) {
       return parseInt(reqInfo.req.params.map.get('current_page')[0], 10);
     }
