@@ -63,22 +63,72 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
   });
 
   describe('getByUrl | getting a single category by URL', () => {
+    let url: string;
+
+    beforeEach(() => {
+      url = 'url';
+    });
+
+    it('should not send an HTTP request containing double slashes', () => {
+      const mockCategory = categoryFactory.create();
+      const mockProducts = productFactory.createMany(3);
+
+      categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe();
+
+      const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
+      expect(req.request.url).not.toContain('//');
+
+      req.flush({ category: mockCategory, products: mockProducts });
+    });
+
+    it('should set current page', () => {
+      const mockCategory = categoryFactory.create();
+      const mockProducts = productFactory.createMany(3);
+
+      categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe();
+
+      const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
+      expect(req.request.params.has('current_page')).toBeTruthy();
+
+      req.flush({ category: mockCategory, products: mockProducts });
+    });
+
+    it('should set page size', () => {
+      const mockCategory = categoryFactory.create();
+      const mockProducts = productFactory.createMany(3);
+
+      categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe();
+
+      const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
+      expect(req.request.params.has('page_size')).toBeTruthy();
+
+      req.flush({ category: mockCategory, products: mockProducts });
+    });
 
     it('should send a get request', () => {
       const mockCategory = categoryFactory.create();
       const mockProducts = productFactory.createMany(3);
 
-      categoryService.getByUrl({ url: mockCategory.url, kind: DaffCategoryRequestKind.URL }).subscribe(categoryResponse => {
+      categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe();
+
+      const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
+      expect(req.request.method).toBe('GET');
+
+      req.flush({ category: mockCategory, products: mockProducts });
+    });
+
+    it('should return the HTTP response', () => {
+      const mockCategory = categoryFactory.create();
+      const mockProducts = productFactory.createMany(3);
+
+      categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe(categoryResponse => {
         expect(categoryResponse).toEqual(jasmine.objectContaining({
           category: mockCategory,
           products: mockProducts,
         }));
       });
 
-      const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(`${categoryService.url}`));
-      expect(req.request.params.has('page_size')).toBeTruthy();
-      expect(req.request.params.has('current_page')).toBeTruthy();
-      expect(req.request.method).toBe('GET');
+      const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
 
       req.flush({ category: mockCategory, products: mockProducts });
     });
