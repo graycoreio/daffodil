@@ -87,7 +87,8 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
    * @param reqInfo
    */
   get(reqInfo: any) {
-    const category = this.categories.filter(({ id }) => id === reqInfo.id)[0];
+    // this method is overloaded for both get by ID and URL so we check both
+    const category = this.categories.filter(({ id, url }) => id === reqInfo.id || url === reqInfo.id)[0];
 
     if (category) {
       this._categoryPageMetadata = this.metadataFactory.create({
