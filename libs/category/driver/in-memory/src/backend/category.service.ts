@@ -97,6 +97,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
         current_page: this.getCurrentPageParam(reqInfo),
         total_pages: this.getTotalPages(category.product_ids, this.generatePageSize(reqInfo)),
         product_ids: this.trimProductIdsToSinglePage(category.product_ids, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
+        total_products: category.total_products,
       });
 
       return reqInfo.utils.createResponse$(() => ({
