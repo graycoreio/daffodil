@@ -23,7 +23,7 @@ import {
   providedIn: 'root',
 })
 export class DaffInMemoryBackendProductService implements InMemoryDbService {
-  private _products: DaffProduct[] = [];
+  protected _products: DaffProduct[] = [];
 
   /**
    * The collection of products in the backend.
