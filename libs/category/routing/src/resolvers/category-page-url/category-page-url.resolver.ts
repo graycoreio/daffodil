@@ -54,8 +54,6 @@ export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>>
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const currentPage = getPage(route);
-    console.log(route.queryParams.p);
-
 
     this.store.dispatch(new DaffCategoryPageLoadByUrl({
       url: this.urlNormalizer.normalize(state.url),
