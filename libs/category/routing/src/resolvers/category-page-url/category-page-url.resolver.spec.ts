@@ -101,6 +101,48 @@ describe('DaffCategoryPageUrlResolver', () => {
       router.initialNavigation();
     }));
 
+    describe('when the path contains a `p` query param', () => {
+      let page: number;
+
+      beforeEach(fakeAsync(() => {
+        page = 4;
+        path = `${path}?p=${page}`;
+
+        const url = `/${path}`;
+        router.navigateByUrl(url);
+        tick();
+      }));
+
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+        spyOn(store, 'dispatch');
+        categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
+        expect(store.dispatch).toHaveBeenCalledWith(
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+        );
+      });
+    });
+
+    describe('when the path contains a `page` query param', () => {
+      let page: number;
+
+      beforeEach(fakeAsync(() => {
+        page = 4;
+        path = `${path}?page=${page}`;
+
+        const url = `/${path}`;
+        router.navigateByUrl(url);
+        tick();
+      }));
+
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+        spyOn(store, 'dispatch');
+        categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
+        expect(store.dispatch).toHaveBeenCalledWith(
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+        );
+      });
+    });
+
     it('should dispatch a DaffCategoryPageLoadByUrl action with the normalized category url', fakeAsync(() => {
       const url = `/${path}(secondary:outlet)`;
       router.navigateByUrl(url);
@@ -189,6 +231,48 @@ describe('DaffCategoryPageUrlResolver', () => {
       router = TestBed.inject(Router);
       router.initialNavigation();
     }));
+
+    describe('when the path contains a `p` query param', () => {
+      let page: number;
+
+      beforeEach(fakeAsync(() => {
+        page = 4;
+        path = `${path}?p=${page}`;
+
+        const url = `/${path}`;
+        router.navigateByUrl(url);
+        tick();
+      }));
+
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+        spyOn(store, 'dispatch');
+        categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
+        expect(store.dispatch).toHaveBeenCalledWith(
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+        );
+      });
+    });
+
+    describe('when the path contains a `page` query param', () => {
+      let page: number;
+
+      beforeEach(fakeAsync(() => {
+        page = 4;
+        path = `${path}?page=${page}`;
+
+        const url = `/${path}`;
+        router.navigateByUrl(url);
+        tick();
+      }));
+
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+        spyOn(store, 'dispatch');
+        categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
+        expect(store.dispatch).toHaveBeenCalledWith(
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+        );
+      });
+    });
 
     it('should dispatch a DaffCategoryPageLoadByUrl action with the correct category id', fakeAsync(() => {
       const url = `/${path}(secondary:outlet)`;
