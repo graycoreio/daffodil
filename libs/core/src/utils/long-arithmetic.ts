@@ -72,6 +72,9 @@ export function daffMultiply(...numbers: number[]): number {
  * This function only guarantees correct answers when the numbers given and the result are each less than 16 significant figures
  * and less than 10^11
  *
+ * Returns NaN when attempting to use Infinity or NaN as an input.
+ * Returns NaN when attempting to divide by 0 or null.
+ *
  * @param numbers
  */
 export function daffDivide(...numbers: number[]): number {
