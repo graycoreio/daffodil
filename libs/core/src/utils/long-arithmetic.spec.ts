@@ -68,6 +68,22 @@ describe('Core | Utils | Long Arithmetic', () => {
 
     it('should treat null values as zero', () => {
       expect(daffDivide(null, 1)).toEqual(0);
+      expect(daffDivide(1, null)).toEqual(NaN);
+    });
+
+    it('should return NaN when attempting to divide by 0', () => {
+      expect(daffDivide(0, 0)).toEqual(NaN);
+      expect(daffDivide(1, 0)).toEqual(NaN);
+    });
+
+    it('should return NaN when attempting to perform division including Infinity', () => {
+      expect(daffDivide(1, Infinity)).toEqual(NaN);
+      expect(daffDivide(Infinity, 1)).toEqual(NaN);
+    });
+
+    it('should return NaN when attempting to perform division including NaN', () => {
+      expect(daffDivide(1, NaN)).toEqual(NaN);
+      expect(daffDivide(NaN, 1)).toEqual(NaN);
     });
   });
 });
