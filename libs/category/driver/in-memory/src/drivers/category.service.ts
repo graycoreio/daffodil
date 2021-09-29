@@ -11,6 +11,7 @@ import {
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
+import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 
 /**
  * The category in memory driver for mocking the {@link DaffCategoryDriver} with in memory data.
@@ -38,6 +39,6 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
       .set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
       .set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);
 
-    return this.http.get<DaffGetCategoryResponse>(`${this.url}${categoryRequest.url}`, { params });
+    return this.http.get<DaffGetCategoryResponse>(`${this.url}${daffUriTruncateLeadingSlash(categoryRequest.url)}`, { params });
   }
 }

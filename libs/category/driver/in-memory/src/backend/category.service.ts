@@ -25,14 +25,45 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
-  category: DaffCategory;
-  categoryPageMetadata: DaffCategoryPageMetadata;
+  protected _categories: DaffCategory[] = [];
+  protected _categoryPageMetadata: DaffCategoryPageMetadata;
+
+  /**
+   * The collection of categories in the backend.
+   */
+  get categories(): DaffCategory[] {
+    return this._categories;
+  }
+
+  /**
+   * The metadata associated with the current page.
+   */
+  get categoryPageMetadata(): DaffCategoryPageMetadata {
+    return this._categoryPageMetadata;
+  }
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
     private metadataFactory: DaffCategoryPageMetadataFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
-  ) {}
+  ) {
+    this._categories = [
+      '1001',
+      '1002',
+      '1003',
+      '1004',
+      '1005',
+      '1006',
+      '1007',
+      '1008',
+      '1009',
+      '1010',
+    ].map(id => {
+      const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
+
+      return this.categoryFactory.create({ id, url: id, product_ids: allCategoryProductIds, total_products: allCategoryProductIds.length });
+    });
+  }
 
   /**
    * @docs-private
@@ -45,7 +76,9 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
    * @docs-private
    */
   createDb(): any {
-    return {};
+    return {
+      categories: this.categories,
+    };
   }
 
   /**
@@ -54,36 +87,42 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
    * @param reqInfo
    */
   get(reqInfo: any) {
-    const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
+    // this method is overloaded for both get by ID and URL so we check both
+    const category = this.categories.filter(({ id, url }) => id === reqInfo.id || url === reqInfo.id)[0];
 
-    this.categoryPageMetadata = this.metadataFactory.create({
-      id: reqInfo.id,
-      page_size: this.generatePageSize(reqInfo),
-      current_page: this.getCurrentPageParam(reqInfo),
-      total_pages: this.getTotalPages(allCategoryProductIds, this.generatePageSize(reqInfo)),
-      product_ids: this.trimProductIdsToSinglePage(allCategoryProductIds, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
-    });
+    if (category) {
+      this._categoryPageMetadata = this.metadataFactory.create({
+        id: reqInfo.id,
+        page_size: this.generatePageSize(reqInfo),
+        current_page: this.getCurrentPageParam(reqInfo),
+        total_pages: this.getTotalPages(category.product_ids, this.generatePageSize(reqInfo)),
+        product_ids: this.trimProductIdsToSinglePage(category.product_ids, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
+        total_products: category.total_products,
+      });
 
-    this.category = this.categoryFactory.create({
-      id: reqInfo.id,
-      total_products: allCategoryProductIds.length,
-    });
+      return reqInfo.utils.createResponse$(() => ({
+        body: {
+          category,
+          categoryPageMetadata: this._categoryPageMetadata,
+          products: this.productInMemoryBackendService.products,
+        },
+        status: STATUS.OK,
+      }));
+    } else {
+      this._categoryPageMetadata = null;
+      return reqInfo.utils.createResponse$(() => ({
+        body: {},
+        status: STATUS.NOT_FOUND,
+      }));
+    }
 
-    return reqInfo.utils.createResponse$(() => ({
-      body: {
-        category: this.category,
-        categoryPageMetadata: this.categoryPageMetadata,
-        products: this.productInMemoryBackendService.products,
-      },
-      status: STATUS.OK,
-    }));
   }
 
-  private getTotalPages(allIds: DaffProduct['id'][], pageSize: number) {
+  protected getTotalPages(allIds: DaffProduct['id'][], pageSize: number) {
     return Math.ceil(allIds.length/pageSize);
   }
 
-  private trimProductIdsToSinglePage(allIds: any[], currentPage: number, pageSize: number) {
+  protected trimProductIdsToSinglePage(allIds: any[], currentPage: number, pageSize: number) {
     const tempIds = [...allIds];
     tempIds.splice(0, (currentPage-1) * pageSize);
     tempIds.splice(pageSize, tempIds.length-pageSize);
@@ -91,18 +130,18 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     return tempIds;
   }
 
-  private generateProductIdSubset(products: DaffProduct[]): DaffProduct['id'][] {
+  protected generateProductIdSubset(products: DaffProduct[]): DaffProduct['id'][] {
     return randomSubset(products).map(product => product.id);
   }
 
-  private generatePageSize(reqInfo) {
+  protected generatePageSize(reqInfo) {
     if(reqInfo.req.params.map && reqInfo.req.params.map.get('page_size') && reqInfo.req.params.map.get('page_size')[0]) {
       return parseInt(reqInfo.req.params.map.get('page_size')[0], 10);
     }
     return 10;
   }
 
-  private getCurrentPageParam(reqInfo) {
+  protected getCurrentPageParam(reqInfo) {
     if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page') && reqInfo.req.params.map.get('current_page')[0]) {
       return parseInt(reqInfo.req.params.map.get('current_page')[0], 10);
     }
