@@ -23,15 +23,19 @@ import {
   providedIn: 'root',
 })
 export class DaffInMemoryBackendProductService implements InMemoryDbService {
+  protected _products: DaffProduct[] = [];
+
   /**
-   * @docs-private
+   * The collection of products in the backend.
    */
-  products: DaffProduct[];
+  get products(): DaffProduct[] {
+    return this._products;
+  };
 
   constructor(
     private productFactory: DaffProductExtensionFactory,
     private productImageFactory: DaffProductImageFactory) {
-    this.products = [
+    this._products = [
       this.productFactory.create({ id: '1001', url: '1001', images: this.productImageFactory.createMany(5) }),
       this.productFactory.create({ id: '1002', url: '1002', images: this.productImageFactory.createMany(5) }),
       this.productFactory.create({ id: '1003', url: '1003', images: this.productImageFactory.createMany(5) }),
@@ -90,7 +94,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
    */
   createDb(): any {
     return {
-      products: this.products,
+      products: this._products,
     };
   }
 
@@ -103,7 +107,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
   get(reqInfo: any) {
     if(reqInfo.id === 'best-sellers') {
       return reqInfo.utils.createResponse$(() => ({
-        body: this.products.slice(0,4),
+        body: this._products.slice(0,4),
         status: STATUS.OK,
       }));
     }
