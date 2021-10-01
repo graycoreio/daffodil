@@ -5,7 +5,7 @@
  *
  * @param number
  */
-function daffPrecision(number: number) {
+function daffPrecision(number: number): number {
   let p = 10000;
   if(number === undefined || number === null) {
     return p;
@@ -23,7 +23,7 @@ function daffPrecision(number: number) {
  *
  * @param numbers
  */
-export function daffAdd(...numbers: number[]) {
+export function daffAdd(...numbers: number[]): number {
   if(numbers.length < 2) {
     throw new Error('Provide at least 2 numbers for daffAdd.');
   }
@@ -38,7 +38,7 @@ export function daffAdd(...numbers: number[]) {
  *
  * @param numbers
  */
-export function daffSubtract(...numbers: number[]) {
+export function daffSubtract(...numbers: number[]): number {
   if(numbers.length < 2) {
     throw new Error('Provide at least 2 numbers for daffSubtract.');
   }
@@ -56,7 +56,7 @@ export function daffSubtract(...numbers: number[]) {
  *
  * @param numbers
  */
-export function daffMultiply(...numbers: number[]) {
+export function daffMultiply(...numbers: number[]): number {
   if(numbers.length < 2) {
     throw new Error('Provide at least 2 numbers for daffMultiply.');
   }
@@ -72,11 +72,20 @@ export function daffMultiply(...numbers: number[]) {
  * This function only guarantees correct answers when the numbers given and the result are each less than 16 significant figures
  * and less than 10^11
  *
+ * Returns NaN when attempting to use NaN as an input.
+ * Returns NaN when attempting to divide by 0 or null.
+ *
  * @param numbers
  */
-export function daffDivide(...numbers: number[]) {
+export function daffDivide(...numbers: number[]): number {
   if(numbers.length < 2) {
     throw new Error('Provide at least 2 numbers for daffDivide.');
+  }
+  // TODO(griest024): use better condition after IE support is dropped
+  const illegalOperation = numbers.filter(isNaN).length > 0
+    || numbers.slice(1).filter(n => n === 0 || n === null).length > 0;
+  if (illegalOperation) {
+    return NaN;
   }
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.slice(1).reduce(
