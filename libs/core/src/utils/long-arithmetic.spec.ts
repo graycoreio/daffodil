@@ -76,9 +76,9 @@ describe('Core | Utils | Long Arithmetic', () => {
       expect(daffDivide(1, 0)).toEqual(NaN);
     });
 
-    it('should return NaN when attempting to perform division including Infinity', () => {
-      expect(daffDivide(1, Infinity)).toEqual(NaN);
-      expect(daffDivide(Infinity, 1)).toEqual(NaN);
+    it('should treat division with Infinity as a mathematical limit', () => {
+      expect(daffDivide(1, Infinity)).toEqual(0);
+      expect(daffDivide(Infinity, 1)).toEqual(Infinity);
     });
 
     it('should return NaN when attempting to perform division including NaN', () => {
