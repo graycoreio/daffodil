@@ -22,7 +22,7 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
   /**
    * @docs-private
    */
-  url = '/api/products/';
+  url = '/api/products';
 
   constructor(private http: HttpClient) {}
 
@@ -31,11 +31,11 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface {
   }
 
   getBestSellers(): Observable<DaffProduct[]> {
-    return this.http.get<DaffProduct[]>(this.url + 'best-sellers');
+    return this.http.get<DaffProduct[]>(`${this.url}/best-sellers`);
   }
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
-    return this.http.get<DaffProduct>(this.url + productId).pipe(
+    return this.http.get<DaffProduct>(`${this.url}/${productId}`).pipe(
       map(product => ({
         id: productId,
         products: [product],

@@ -60,7 +60,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
         expect(products).toEqual(mockProducts);
       });
 
-      const req = httpMock.expectOne(`${productService.url}best-sellers`);
+      const req = httpMock.expectOne(`${productService.url}/best-sellers`);
       expect(req.request.method).toBe('GET');
 
       req.flush(mockProducts);
@@ -77,7 +77,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
         expect(resp.products[0]).toEqual(mockProduct);
       });
 
-      const req = httpMock.expectOne(`${productService.url}${mockProduct.id}`);
+      const req = httpMock.expectOne(`${productService.url}/${mockProduct.id}`);
       expect(req.request.method).toBe('GET');
 
       req.flush(mockProduct);
