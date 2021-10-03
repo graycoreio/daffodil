@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.39.0](https://github.com/graycoreio/daffodil/compare/v0.38.9...v0.39.0) (2021-10-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** removes the writable `category` field on `DaffInMemoryBackendCategoryService` and replaced it with readonly `categories`
+
+* category protected
+
+* overload category get with url check
+
+* truncate leading slash from category request URL
+
+* category  set total products on metadata
+
+### Features
+
+* **category:** create categories on init in in-memory backend ([#1842](https://github.com/graycoreio/daffodil/issues/1842)) ([1e556c3](https://github.com/graycoreio/daffodil/commit/1e556c355742858fd5e0f1444c57ab302cc20959))
+* **category:** pull `current_page` request field from query params ([#1831](https://github.com/graycoreio/daffodil/issues/1831)) ([8b12a4c](https://github.com/graycoreio/daffodil/commit/8b12a4c024aab918b0bbd1e39061c91370f5d604))
+* **design:** create theming CSS custom properties ([#1836](https://github.com/graycoreio/daffodil/issues/1836)) ([1ee580e](https://github.com/graycoreio/daffodil/commit/1ee580ebf1e278c452099a49dfdd496a9b8bac86))
+* **external-router:** add in-memory driver ([#1838](https://github.com/graycoreio/daffodil/issues/1838)) ([9ec846c](https://github.com/graycoreio/daffodil/commit/9ec846ca0579106572befd9570e67f53bf357fc0))
+* **product:** expose products in in-memory backend ([#1841](https://github.com/graycoreio/daffodil/issues/1841)) ([5118892](https://github.com/graycoreio/daffodil/commit/511889293a23a1a9e56a00d2e7fe05df9a53ecbf))
+
+
+### Bug Fixes
+
+* **core:** guard against divide by 0, Infinity, and NaN in `daffDivide` ([#1845](https://github.com/graycoreio/daffodil/issues/1845)) ([03aaca4](https://github.com/graycoreio/daffodil/commit/03aaca4016668a524976cba9cdd97f8ade8f7ca2))
+* **product:** in-memory driver does not allow URLs beginning with slashes ([#1846](https://github.com/graycoreio/daffodil/issues/1846)) ([3b62a26](https://github.com/graycoreio/daffodil/commit/3b62a262fcedb97e14e6228c5d00ce41d9ae42f9))
+* **related-products,upsell-products:** mock facade field not initialized ([#1828](https://github.com/graycoreio/daffodil/issues/1828)) ([ac68012](https://github.com/graycoreio/daffodil/commit/ac680124b8426543431199553a8cb15bbf78e89b))
+
 ### [0.38.9](https://github.com/graycoreio/daffodil/compare/v0.38.4...v0.38.9) (2021-09-15)
 
 
