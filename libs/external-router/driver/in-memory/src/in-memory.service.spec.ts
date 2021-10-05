@@ -32,7 +32,7 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
   });
 
   it('should return a resolved route if the route lookup succeeds', () => {
-    const url = 'test';
+    const url = '/test';
     setupTest({
       resolver: u =>
         u === url ? {
@@ -47,14 +47,14 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
       const { expectObservable } = helpers;
       const expected = '(a|)';
 
-      expectObservable(service.resolve(`/${url}`)).toBe(expected, {
+      expectObservable(service.resolve('/url')).toBe(expected, {
         a: { url, type: 'PRODUCT', id: jasmine.any(String), code: jasmine.any(Number) },
       });
     });
   });
 
   it('should return a DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION if the route lookup fails', () => {
-    const url = 'test';
+    const url = '/test';
     setupTest({
       resolver: u =>
         u === url ? {
