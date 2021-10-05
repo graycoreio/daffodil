@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.1](https://github.com/graycoreio/daffodil/compare/v0.39.0...v0.39.1) (2021-10-05)
+
+
+### Features
+
+* **category:** prefix category URLs with a leading slash ([#1850](https://github.com/graycoreio/daffodil/issues/1850)) ([bc9ca11](https://github.com/graycoreio/daffodil/commit/bc9ca112f7f7e71a6e30d39b27ace90424d17264))
+* **external-router:** don't truncate leading slash for in-memory driver resolution ([#1851](https://github.com/graycoreio/daffodil/issues/1851)) ([94e3392](https://github.com/graycoreio/daffodil/commit/94e3392e1bff383b007bfff380f10e96f6d16006))
+
+
+### Bug Fixes
+
+* **cart:** wrong configurable product import paths ([#1847](https://github.com/graycoreio/daffodil/issues/1847)) ([91a24fe](https://github.com/graycoreio/daffodil/commit/91a24fed15d0a497d2d80b1bc2476522be609a52))
+
 ## [0.39.0](https://github.com/graycoreio/daffodil/compare/v0.38.9...v0.39.0) (2021-10-03)
 
 
