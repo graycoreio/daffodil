@@ -41,7 +41,7 @@ implements DaffExternalRouterDriverInterface {
   ) {}
 
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {
-    const truncatedUrl = daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(url));
+    const truncatedUrl = daffUriTruncateQueryFragment(url);
 
     return of(this.configuration.resolver(truncatedUrl) || DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION);
   }
