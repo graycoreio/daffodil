@@ -47,7 +47,7 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
       const { expectObservable } = helpers;
       const expected = '(a|)';
 
-      expectObservable(service.resolve('/url')).toBe(expected, {
+      expectObservable(service.resolve(url)).toBe(expected, {
         a: { url, type: 'PRODUCT', id: jasmine.any(String), code: jasmine.any(Number) },
       });
     });
