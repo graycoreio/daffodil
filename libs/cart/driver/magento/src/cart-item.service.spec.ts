@@ -48,14 +48,10 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffBadInputError } from '@daffodil/driver';
 import { schema } from '@daffodil/driver/magento';
-import {
-  DaffProduct,
-  DaffConfigurableProduct,
-} from '@daffodil/product';
-import {
-  DaffProductFactory,
-  DaffConfigurableProductFactory,
-} from '@daffodil/product/testing';
+import { DaffProduct } from '@daffodil/product';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
+import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCartItemService } from './cart-item.service';
 
