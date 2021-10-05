@@ -61,7 +61,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     ].map(id => {
       const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 
-      return this.categoryFactory.create({ id, url: id, product_ids: allCategoryProductIds, total_products: allCategoryProductIds.length });
+      return this.categoryFactory.create({ id, url: `/${id}`, product_ids: allCategoryProductIds, total_products: allCategoryProductIds.length });
     });
   }
 

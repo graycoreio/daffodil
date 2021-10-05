@@ -41,17 +41,9 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
       expect(result.product_ids).toBeDefined();
       expect(result.breadcrumbs).toBeDefined();
     });
-  });
 
-  describe('createMany', () => {
-    let result: DaffCategory[];
-
-    it('should create as many categories as desired', () => {
-      result = categoryFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = categoryFactory.createMany(3);
-      expect(result.length).toEqual(3);
+    it('should set a leading slash for the URL', () => {
+      expect(result.url[0]).toEqual('/');
     });
   });
 });

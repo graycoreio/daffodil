@@ -30,7 +30,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
     url = 'url';
     stubCategory = categoryFactory.create({
       id: '1',
-      url: `${url}.html`,
+      url: `/${url}.html`,
     });
   });
 
@@ -123,6 +123,10 @@ describe('DaffMagentoCategoryTransformerService', () => {
       }];
 
       expect(service.transform(magentoCategory).breadcrumbs).toEqual(expectedBreadcrumbs);
+    });
+
+    it('should set a leading slash for the URL', () => {
+      expect(service.transform(magentoCategory).url[0]).toEqual('/');
     });
   });
 });
