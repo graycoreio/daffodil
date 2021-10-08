@@ -10,27 +10,46 @@ Please read the [contributing guidelines here](https://github.com/graycoreio/daf
 * [Node](https://nodejs.org)
 * [Git](https://git-scm.com/)
 
+### Installing Global Dependencies
+```bash
+npm install -g lerna @angular/cli
+```
+
+## Creating Your Own Fork
+[Fork the Daffodil Repository](https://github.com/graycoreio/daffodil/fork)
+
+![GitHub Fork Button](./assets/daff-fork.jpg "Fork Daffodil")
+
+Clone your repository
+```bash
+git clone git@github.com:{username}/daffodil.git && cd daffodil
+git checkout -b new-branch
+```
+
 ### Installing Dependencies
 ```bash
 npm install
-npm install -g lerna @angular/cli
 ```
 
 ### Full Build
 You can run a full build that builds all projects and libraries via:
 
-```
+```bash
 lerna run build
 ```
 
 ### Partial Build
-If you want to build a single project or library, you can run
-```
-ng build libName
-ng build appName
+If you want to build a single project or library, you can run:
 
-e.g.
-ng build core
+```bash
+lerna run build --scope="@daffodil/{library}"
+lerna run build --scope="@daffodil/{app}"
+```
+
+For example,
+
+```bash
+lerna run build --scope="@daffodil/core"
 ```
 
 ## Running unit tests
@@ -56,6 +75,7 @@ You can read more about each library and it's build/testing process in the readm
 ### Apps
 * [daff.io](../apps/daffio/README.md)
 * [demo](../apps/daffio/README.md)
+* [design-land](../apps/design-land/README.md)
 
 ### Libraries
 * [core](../libs/core/README.md)
