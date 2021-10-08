@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { TestScheduler } from 'rxjs/testing';
 
+import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION } from '@daffodil/external-router/driver';
 import {
   DaffExternalRouterDriverInMemoryConfig,
@@ -48,7 +49,7 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
       const expected = '(a|)';
 
       expectObservable(service.resolve(url)).toBe(expected, {
-        a: { url, type: 'PRODUCT', id: jasmine.any(String), code: jasmine.any(Number) },
+        a: { url: daffUriTruncateLeadingSlash(url), type: 'PRODUCT', id: jasmine.any(String), code: jasmine.any(Number) },
       });
     });
   });
