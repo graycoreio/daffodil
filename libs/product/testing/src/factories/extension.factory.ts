@@ -31,11 +31,14 @@ export class DaffProductExtensionFactory extends DaffModelFactory<DaffProduct> {
    * This includes all the extra extension factories that may be provided by optional product packages.
    */
   create(partial = {}): DaffProduct {
+    const kind = this.productKindFactory.create(partial);
+
     return Object.assign(
       {},
+      kind,
       ...this.extraFactories.map(factory => factory.create(partial)),
-      // spread this in last to preserve type
-      this.productKindFactory.create(partial),
+      // spread this in last to preserve kind's type
+      { type: kind.type },
     );
   }
 }

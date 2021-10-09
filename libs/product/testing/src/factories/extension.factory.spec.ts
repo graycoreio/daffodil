@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductTypeEnum,
+} from '@daffodil/product';
 import {
   daffProvideProductExtraProductFactories,
   MockProduct,
   DaffProductKindFactory,
+  daffProvideProductExtraFactoryTypes,
 } from '@daffodil/product/testing';
 
 import { DaffProductExtensionFactory } from './extension.factory';
@@ -21,6 +25,20 @@ class TestMockProduct extends MockProduct {
 class TestProductFactory extends DaffModelFactory<DaffProduct> {
   constructor() {
     super(TestMockProduct);
+  }
+}
+
+class TestMockProductKind extends MockProduct {
+  type = DaffProductTypeEnum.Composite;
+  extraField = 'not extraField';
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+class TestProductKindFactory extends DaffModelFactory<DaffProduct> {
+  constructor() {
+    super(TestMockProductKind);
   }
 }
 
@@ -41,6 +59,10 @@ describe('Product | Testing | Factories | DaffProductExtensionFactory', () => {
         ...daffProvideProductExtraProductFactories(
           TestProductFactory,
         ),
+        {
+          provide: DaffProductKindFactory,
+          useExisting: TestProductKindFactory,
+        },
       ],
     });
 
@@ -59,8 +81,12 @@ describe('Product | Testing | Factories | DaffProductExtensionFactory', () => {
       result = productFactory.create();
     });
 
-    it('should include extra factories', () => {
-      expect((<TestMockProduct>result).extraField).toBeDefined();
+    it('should include extra factories and prefer the extra factory fields, except for type', () => {
+      expect((<TestMockProduct>result).extraField).toEqual('extraField');
+    });
+
+    it('should should not override the type of the product kind factory', () => {
+      expect((<TestMockProduct>result).type).toEqual(DaffProductTypeEnum.Composite);
     });
   });
 });
