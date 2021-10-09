@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.2](https://github.com/graycoreio/daffodil/compare/v0.39.1...v0.39.2) (2021-10-09)
+
+
+### Bug Fixes
+
+* **category:** in-memory driver can't get by URL ([#1856](https://github.com/graycoreio/daffodil/issues/1856)) ([b15af9f](https://github.com/graycoreio/daffodil/commit/b15af9f532d097f47a36c7384d523a6990b8d5f8))
+* **external-router:** in-memory driver returns URLs with leading slashes ([#1854](https://github.com/graycoreio/daffodil/issues/1854)) ([c7aee32](https://github.com/graycoreio/daffodil/commit/c7aee322fb2e7700e4491830e12c4868acbf07c1))
+
 ### [0.39.1](https://github.com/graycoreio/daffodil/compare/v0.39.0...v0.39.1) (2021-10-05)
 
 
