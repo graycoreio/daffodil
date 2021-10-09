@@ -15,6 +15,7 @@ import {
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { randomSubset } from '@daffodil/core';
+import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
@@ -88,7 +89,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
    */
   get(reqInfo: any) {
     // this method is overloaded for both get by ID and URL so we check both
-    const category = this.categories.filter(({ id, url }) => id === reqInfo.id || url === reqInfo.id)[0];
+    const category = this.categories.filter(({ id, url }) => id === reqInfo.id || daffUriTruncateLeadingSlash(url) === reqInfo.id)[0];
 
     if (category) {
       this._categoryPageMetadata = this.metadataFactory.create({
