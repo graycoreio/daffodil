@@ -12,7 +12,7 @@ export const randomSlice = <T>(array: T[], length?: number): T[] => {
     throw new Error('Requested length is longer than array length.');
   }
   const arrayLength = length || Math.floor(Math.random() * array.length);
-  const start = Math.floor(Math.random() * (array.length - arrayLength));
+  const start = Math.floor(Math.random() * (array.length - arrayLength + 1));
   const end = start + arrayLength;
   return array.slice(start, end);
 };
