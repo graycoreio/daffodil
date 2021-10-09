@@ -3,5 +3,5 @@
 ## Writing Documentation
 
 ```bash
-npx lerna run serve --scope="@daffodil/design-land"
+npx lerna run serve --scope="@daffodil/design-land" --stream
 ```
