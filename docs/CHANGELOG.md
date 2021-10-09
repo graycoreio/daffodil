@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.3](https://github.com/graycoreio/daffodil/compare/v0.39.2...v0.39.3) (2021-10-09)
+
+
+### Bug Fixes
+
+* **core:** `randomSlice` doesn't include the last element of the array ([#1857](https://github.com/graycoreio/daffodil/issues/1857)) ([ed67972](https://github.com/graycoreio/daffodil/commit/ed67972684b517a7db8c2192b8e123e19e9cd779))
+* **product:** extra extension factory fields overwritten ([#1859](https://github.com/graycoreio/daffodil/issues/1859)) ([4ac753a](https://github.com/graycoreio/daffodil/commit/4ac753a3ce2c2e3ce9a83287ccc51c0d5c47a497))
+
 ### [0.39.2](https://github.com/graycoreio/daffodil/compare/v0.39.1...v0.39.2) (2021-10-09)
 
 
