@@ -5,7 +5,7 @@ Color is used to help us distinguish and create consistent experiences across pr
 [DYNAMIC]
 
 ## Accessibility
-At Daffodil, we are dedicated to continually improving the accessibility of our application. When considering updating the color palettes, there are some extremely important considerations that are imperative for developers to understand. `@daffodil/design` components has been intentionally designed to meet [Web Content Accessibility Guidelines (WCAG) 2.1 AA compliance](https://www.w3.org/TR/WCAG21) (e.g. ["Distinguishable" contrast](https://www.w3.org/TR/WCAG21/#distinguishable)).
+At Daffodil, we are dedicated to continually improving the accessibility of our application. When considering updating the color palettes, there are some extremely important considerations that are imperative for developers to understand. `@daffodil/design` components have been intentionally designed to meet [Web Content Accessibility Guidelines (WCAG) 2.1 AA compliance](https://www.w3.org/TR/WCAG21) (e.g. ["Distinguishable" contrast](https://www.w3.org/TR/WCAG21/#distinguishable)).
 
 ### Color and Contrast
 We have encoded many of the WCAG requirements into our SASS mixins and functions. This means that if you swap to a color palette that does not meet the requirements of WCAG compliance and try to use it within the components, our code will proactively complain and issue errors. This is entirely intentional and will not be changed. The current state of accessibility is lacking, and as a result, we are enforcing accessibility requirements at development time in order to make it easier for developers to accommodate these issues before they are in the hands of users.

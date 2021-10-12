@@ -2,7 +2,7 @@
 Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first-steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
 
 ## First Steps
-This tutorial is designed to touch upon the very basics of the `@daffodil/design` library. First things first, you will need to [create a new Angular project](`@daffodil/design`) and [install the library](./#installation). By the end of this tutorial, you will have created a basic Angular app that renders a simple `DaffHeroComponent` with a title and subtitle.
+This tutorial is designed to touch upon the very basics of the `@daffodil/design` library. First things first, you will need to [create a new Angular project](https://angular.io/cli) and [install the library](#installation). By the end of this tutorial, you will have created a basic Angular app that renders a simple `DaffHeroComponent` with a title and subtitle.
 
 ## Installation
 `@daffodil/design` is designed to be used with Angular: [if you have not already done so, create a new Angular project](https://angular.io/cli). Afterwards, `@daffodil/design` can be installed using a [package manager](https://www.npmjs.com/package/@daffodil/design).
@@ -14,7 +14,7 @@ npm install @daffodil/design --save
 
 ### Yarn
 ```bash
-yarn install @daffodil/design --save
+yarn add @daffodil/design
 ```
 
 ### Modify Angular.json
@@ -29,7 +29,7 @@ Next, create a `styles.scss` in the root of the Angular app and modify the `angu
 > Note that `@daffodil/design` uses SASS, [so we recommend you learn it!](https://sass-lang.com/)
 
 ### Add the Global Styles
-There is a minimal required global style for `@daffodil/design` to operate effectively in all browsers. Update the `styles.scss` to include the following:
+There is a minimal required global style for `@daffodil/design` to operate effectively in all supported browsers. Update the `styles.scss` to include the following:
 
 ```scss
 @import '@daffodil/design/daff-global';

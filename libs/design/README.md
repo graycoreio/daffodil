@@ -1,13 +1,11 @@
 # @daffodil/design
 `@daffodil/design` is an Angular component library built to support ecommerce use-cases. The library provides turn-key support for various features like:
 
-* [Pre-built components](./#components)
+* [Pre-built components](#components)
 * [Theming](./guides/theming.md)
-  * [Dark & Light Themes](./guides/theming/dark-and-light-theme.md)
-  * [Custom Colors](./guides/theming/custom-colors.md)
 * [Typography] (./guides/typography.md)
 * [Development-time accessibility guidance](./guides/accessibility.md)
-  * [Color](./guides/accessibility/color.md)
+* [Color](./guides/accessibility/color.md)
 
 ## Packages
 | Package | Version | Stability |
