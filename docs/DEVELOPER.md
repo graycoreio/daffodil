@@ -20,7 +20,7 @@ npm install -g lerna @angular/cli
 
 ![GitHub Fork Button](./assets/daff-fork.jpg "Fork Daffodil")
 
-Clone your repository
+## Clone your repository
 ```bash
 git clone git@github.com:{username}/daffodil.git && cd daffodil
 git checkout -b new-branch
