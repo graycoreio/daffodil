@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { Action } from '@ngrx/store';
 import { DaffRelatedProductFactory } from 'libs/related-products/testing/src/factories/public_api';
 
 import { DaffProduct } from '@daffodil/product';
@@ -57,7 +56,7 @@ describe('@daffodil/related-products/state | daffRelatedProductsDedupeMetaReduce
   });
 
   it('should remove the nested related products from the payload', () => {
-    expect(result.product.related).toBeFalsy();
+    expect((<DaffRelatedProduct>result.product).related).toBeFalsy();
   });
 
   it('should not mutate the original product object', () => {

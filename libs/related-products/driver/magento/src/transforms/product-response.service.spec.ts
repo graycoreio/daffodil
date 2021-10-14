@@ -5,8 +5,8 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import { daffProvideProductMagentoExtraProductPreviewTransforms } from '@daffodil/product/driver/magento';
 import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffRelatedProduct } from '@daffodil/related-products';
 import { MagentoProductWithRelatedFactory } from '@daffodil/related-products/driver/magento/testing';
-import { DaffRelatedProductFactory } from '@daffodil/related-products/testing';
 
 import { MagentoProductWithRelated } from '../models/product-with-related.interface';
 import { DaffMagentoRelatedProductsTransformers } from './product-response.service';
@@ -61,7 +61,7 @@ describe('@daffodil/related-products/driver/magento | DaffMagentoRelatedProducts
     });
 
     it('should add related products to the main daff product', () => {
-      expect(result.products[0].related[0].id).toEqual(stubMagentoProduct.related_products[0].sku);
+      expect((<DaffRelatedProduct>result.products[0]).related[0].id).toEqual(stubMagentoProduct.related_products[0].sku);
     });
 
     it('should add related products to the response product list', () => {
