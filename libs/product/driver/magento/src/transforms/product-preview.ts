@@ -5,33 +5,18 @@ import {
   DaffProductDiscount,
 } from '@daffodil/product';
 
-import { MagentoBundledProduct } from '../models/bundled-product';
-import { MagentoConfigurableProduct } from '../models/configurable-product';
-import {
-  MagentoProduct,
-  MagentoProductTypeEnum,
-} from '../models/magento-product';
+import { MagentoProduct } from '../models/magento-product';
 import {
   MagentoProductPreview,
   MagentoProductStockStatusEnum,
 } from '../models/product-preview.interface';
-import { transformMagentoBundledProduct } from './bundled-product-transformers';
-import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
 
 /**
  * Transforms a Magento product into a product preview.
  * Handles all product types.
  */
 export function transformMagentoProductPreview(product: MagentoProduct, mediaUrl: string): DaffProduct {
-  switch(product.__typename) {
-    case MagentoProductTypeEnum.BundledProduct:
-      return transformMagentoBundledProduct(transformMagentoSimpleProductPreview(product, mediaUrl), <MagentoBundledProduct>product);
-    case MagentoProductTypeEnum.ConfigurableProduct:
-      return transformMagentoConfigurableProduct(transformMagentoSimpleProductPreview(product, mediaUrl), <MagentoConfigurableProduct>product);
-    case MagentoProductTypeEnum.SimpleProduct:
-    default:
-      return transformMagentoSimpleProductPreview(product, mediaUrl);
-  }
+  return transformMagentoSimpleProductPreview(product, mediaUrl);
 }
 
 /**

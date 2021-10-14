@@ -5,22 +5,6 @@ import {
   getDaffBestSellersSelectors,
 } from './best-sellers/best-sellers.selectors';
 import {
-  DaffCompositeProductEntitiesMemoizedSelectors,
-  getDaffCompositeProductEntitiesSelectors,
-} from './composite-product-entities/composite-product-entities.selectors';
-import {
-  DaffCompositeProductMemoizedSelectors,
-  getDaffCompositeProductSelectors,
-} from './composite-product/composite-product.selectors';
-import {
-  DaffConfigurableProductEntitiesMemoizedSelectors,
-  getDaffConfigurableProductEntitiesSelectors,
-} from './configurable-product-entities/configurable-product-entities.selectors';
-import {
-  DaffConfigurableProductMemoizedSelectors,
-  getDaffConfigurableProductSelectors,
-} from './configurable-product/configurable-product.selectors';
-import {
   DaffProductEntitiesMemoizedSelectors,
   getDaffProductEntitiesSelectors,
 } from './product-entities/product-entities.selectors';
@@ -45,11 +29,8 @@ export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> ex
 	DaffBestSellersMemoizedSelectors<T>,
 	DaffProductEntitiesMemoizedSelectors<T>,
 	DaffProductGridMemoizedSelectors<T>,
-	DaffProductFeatureMemoizedSelector<T>,
-	DaffConfigurableProductEntitiesMemoizedSelectors,
-	DaffConfigurableProductMemoizedSelectors,
-	DaffCompositeProductEntitiesMemoizedSelectors,
-	DaffCompositeProductMemoizedSelectors { }
+	DaffProductFeatureMemoizedSelector<T>
+{}
 
 /**
  * A function that returns all selectors in the entire product feature area.
@@ -61,8 +42,4 @@ export const getDaffProductSelectors = <T extends DaffProduct = DaffProduct>(): 
   ...getDaffProductGridSelectors<T>(),
   ...getDaffProductEntitiesSelectors<T>(),
   ...getDaffProductFeatureSelector<T>(),
-  ...getDaffConfigurableProductEntitiesSelectors(),
-  ...getDaffConfigurableProductSelectors(),
-  ...getDaffCompositeProductEntitiesSelectors(),
-  ...getDaffCompositeProductSelectors(),
 });

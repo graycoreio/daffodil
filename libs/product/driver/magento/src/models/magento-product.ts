@@ -30,6 +30,4 @@ export interface MagentoProduct extends MagentoProductPreview {
   description?: {
 		html: string;
 	};
-  related_products?: MagentoProductPreview[];
-  upsell_products?: MagentoProductPreview[];
 }
