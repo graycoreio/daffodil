@@ -3,6 +3,8 @@ import {
   FragmentDefinitionNode,
 } from 'graphql';
 
+import { daffFilterDuplicateFragments } from './filter-duplicate-fragments';
+
 const getFragmentNames = (fragment: DocumentNode) =>
   fragment.definitions.filter(def =>
     def.kind === 'FragmentDefinition',
@@ -27,4 +29,4 @@ const daffGetFragmentNames = (...fragments: DocumentNode[]): string[] =>
  * @param fragments A list of GraphQL documents that contain fragments.
  */
 export const daffBuildFragmentNameSpread = (...fragments: DocumentNode[]): string =>
-  daffGetFragmentNames(...fragments).reduce((acc, name) => acc.concat(`...${name}\n`), '');
+  daffGetFragmentNames(...daffFilterDuplicateFragments(...fragments)).reduce((acc, name) => acc.concat(`...${name}\n`), '');
