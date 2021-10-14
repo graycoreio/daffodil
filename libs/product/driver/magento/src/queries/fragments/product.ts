@@ -1,6 +1,5 @@
 import { gql } from 'apollo-angular';
 
-import { magentoBundledProductFragment } from './bundled-product';
 import { magentoProductPreviewFragment } from './product-preview';
 import { magentoSimpleProductFragment } from './simple-product';
 
@@ -30,13 +29,10 @@ export const magentoProductFragment = gql`
 		}
 		upsell_products {
       ...magentoProductPreview
-      ...magentoBundledProduct
       ...magentoSimpleProduct
     }
-		...magentoBundledProduct
 		...magentoSimpleProduct
 	}
-	${magentoBundledProductFragment}
 	${magentoSimpleProductFragment}
 	${magentoProductPreviewFragment}
 `;

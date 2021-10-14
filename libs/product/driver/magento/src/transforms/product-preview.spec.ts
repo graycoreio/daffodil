@@ -4,14 +4,8 @@ import {
   DaffProduct,
   DaffProductTypeEnum,
 } from '@daffodil/product';
-import {
-  MagentoBundledProduct,
-  MagentoProduct,
-} from '@daffodil/product/driver/magento';
-import {
-  MagentoBundledProductFactory,
-  MagentoProductFactory,
-} from '@daffodil/product/driver/magento/testing';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { MagentoProductStockStatusEnum } from '../models/product-preview.interface';
 import { transformMagentoProductPreview } from './product-preview';
@@ -20,7 +14,6 @@ import { transformMagentoProductPreview } from './product-preview';
 describe('@daffodil/product/driver/magento | transformMagentoProductPreview', () => {
   let stubMagentoProduct: MagentoProduct;
   let productFactory: MagentoProductFactory;
-  let bundleProductFactory: MagentoBundledProductFactory;
   const mediaUrl = 'media url';
   let result: DaffProduct;
 
@@ -28,7 +21,6 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
     TestBed.configureTestingModule({});
 
     productFactory = TestBed.inject(MagentoProductFactory);
-    bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);
 
     stubMagentoProduct = productFactory.create({
       stock_status: MagentoProductStockStatusEnum.InStock,
@@ -49,18 +41,6 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
 
     it('should return a simple product', () => {
       expect(transformMagentoProductPreview(stubMagentoProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Simple);
-    });
-  });
-
-  describe('when the product is a bundled product', () => {
-    let magentoBundledProduct: MagentoBundledProduct;
-
-    beforeEach(() => {
-      magentoBundledProduct = bundleProductFactory.create();
-    });
-
-    it('should return a composite product', () => {
-      expect(transformMagentoProductPreview(magentoBundledProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Composite);
     });
   });
 });
