@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.5](https://github.com/graycoreio/daffodil/compare/v0.39.4...v0.39.5) (2021-10-14)
+
+
+### Features
+
+* **core:** filter duplicate fragments in GraphQL functions ([#1867](https://github.com/graycoreio/daffodil/issues/1867)) ([50ecc50](https://github.com/graycoreio/daffodil/commit/50ecc507de00dfb989b7a33a97b49fc1b39fe72b))
+
 ### [0.39.4](https://github.com/graycoreio/daffodil/compare/v0.39.3...v0.39.4) (2021-10-14)
 
 
