@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.4](https://github.com/graycoreio/daffodil/compare/v0.39.3...v0.39.4) (2021-10-14)
+
+
+### Features
+
+* **product,related-products,upsell-products:** add optional products to in-mem driver response ([#1864](https://github.com/graycoreio/daffodil/issues/1864)) ([db4eb60](https://github.com/graycoreio/daffodil/commit/db4eb60d3c268d488c55fc847b3b31202623733c))
+* **product:** remove optional product features ([#1848](https://github.com/graycoreio/daffodil/issues/1848)) ([3a42280](https://github.com/graycoreio/daffodil/commit/3a422803c48839b72bcf36465809f1711550c749))
+
+
+### Bug Fixes
+
+* **cart:** items persisting after order success ([#1866](https://github.com/graycoreio/daffodil/issues/1866)) ([caaf77e](https://github.com/graycoreio/daffodil/commit/caaf77e3e6c1b90068cecbdcfcbd450a27af5d26))
+
 ### [0.39.3](https://github.com/graycoreio/daffodil/compare/v0.39.2...v0.39.3) (2021-10-09)
 
 
