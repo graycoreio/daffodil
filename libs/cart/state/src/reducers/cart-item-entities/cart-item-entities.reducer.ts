@@ -13,6 +13,7 @@ import {
   DaffCartActionTypes,
   DaffCartActions,
   DaffCartItemActions,
+  DaffCartOrderActionTypes,
 } from '../../actions/public_api';
 import {
   DaffCartItemStateEnum,
@@ -82,6 +83,8 @@ export function daffCartItemEntitiesReducer<
         ...state.entities[action.itemId],
         daffState: DaffCartItemStateEnum.Mutating,
       }, state);
+    case DaffCartActionTypes.CartCreateSuccessAction:
+      return adapter.removeAll(state);
     default:
       return state;
   }

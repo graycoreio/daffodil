@@ -16,6 +16,7 @@ import {
   DaffCartItemLoadFailure,
   DaffCartItemDeleteFailure,
   DaffCartItemUpdateFailure,
+  DaffCartCreateSuccess,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -488,6 +489,20 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     it('should reset daffState on the cart item', () => {
       expect(result.entities[statefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Error);
+    });
+  });
+
+  describe('when CartCreateSuccessAction is triggered', () => {
+    let result;
+
+    beforeEach(() => {
+      const cartCreateSuccess = new DaffCartCreateSuccess(<DaffCart>{});
+
+      result = daffCartItemEntitiesReducer(initialState, cartCreateSuccess);
+    });
+
+    it('should remove all cart item entities', () => {
+      expect(result.entities).toEqual({});
     });
   });
 });
