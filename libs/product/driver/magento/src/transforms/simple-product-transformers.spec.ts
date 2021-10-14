@@ -43,7 +43,6 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
       meta_title: stubMagentoProduct.meta_title,
       meta_description: stubMagentoProduct.meta_description,
       in_stock: true,
-      upsell: [],
     };
   });
 

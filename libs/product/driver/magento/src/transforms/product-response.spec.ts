@@ -19,9 +19,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductResponse', (
     service = TestBed.inject(DaffMagentoProductResponseTransformers);
     productFactory = TestBed.inject(MagentoProductFactory);
 
-    stubMagentoProduct = productFactory.create({
-      upsell_products: productFactory.createMany(1),
-    });
+    stubMagentoProduct = productFactory.create();
 
     result = service.transformMagentoProductResponse(stubMagentoProduct, mediaUrl);
   });
@@ -32,9 +30,5 @@ describe('@daffodil/product/driver/magento | transformMagentoProductResponse', (
 
   it('should add the transformed product to the products array', () => {
     expect(result.products).toContain(jasmine.objectContaining({ id: stubMagentoProduct.sku }));
-  });
-
-  it('should add the upsell products to the products array', () => {
-    expect(result.products).toContain(jasmine.objectContaining({ id: stubMagentoProduct.upsell_products[0].sku }));
   });
 });
