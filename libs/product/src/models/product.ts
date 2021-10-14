@@ -36,10 +36,6 @@ export interface DaffProduct extends DaffLocatable, DaffIdentifiable, Partial<Da
    */
   images: DaffProductImage[];
   /**
-   * A list of related products.
-   */
-  related?: DaffProduct[];
-  /**
    * A list of upsell productss.
    */
   upsell?: DaffProduct[];
