@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.6](https://github.com/graycoreio/daffodil/compare/v0.39.5...v0.39.6) (2021-10-14)
+
+
+### Features
+
+* **core:** only ensure uniqueness for GraphQL fragment names ([#1868](https://github.com/graycoreio/daffodil/issues/1868)) ([379ca1f](https://github.com/graycoreio/daffodil/commit/379ca1f246ea023296142a6ed9bf9475929f9b78))
+
 ### [0.39.5](https://github.com/graycoreio/daffodil/compare/v0.39.4...v0.39.5) (2021-10-14)
 
 
