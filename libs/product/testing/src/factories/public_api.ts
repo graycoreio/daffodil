@@ -1,5 +1,4 @@
 export * from './composite-product.factory';
-export * from './configurable-product.factory';
 export * from './product-image.factory';
 export * from './extension.factory';
 export * from './kind.factory';

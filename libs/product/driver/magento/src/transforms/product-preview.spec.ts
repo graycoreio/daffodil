@@ -6,12 +6,10 @@ import {
 } from '@daffodil/product';
 import {
   MagentoBundledProduct,
-  MagentoConfigurableProduct,
   MagentoProduct,
 } from '@daffodil/product/driver/magento';
 import {
   MagentoBundledProductFactory,
-  MagentoConfigurableProductFactory,
   MagentoProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 
@@ -23,7 +21,6 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
   let stubMagentoProduct: MagentoProduct;
   let productFactory: MagentoProductFactory;
   let bundleProductFactory: MagentoBundledProductFactory;
-  let configProductFactory: MagentoConfigurableProductFactory;
   const mediaUrl = 'media url';
   let result: DaffProduct;
 
@@ -32,7 +29,6 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
 
     productFactory = TestBed.inject(MagentoProductFactory);
     bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);
-    configProductFactory = TestBed.inject(MagentoConfigurableProductFactory);
 
     stubMagentoProduct = productFactory.create({
       stock_status: MagentoProductStockStatusEnum.InStock,
@@ -65,18 +61,6 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
 
     it('should return a composite product', () => {
       expect(transformMagentoProductPreview(magentoBundledProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Composite);
-    });
-  });
-
-  describe('when the product is a configurable product', () => {
-    let magentoConfigurableProduct: MagentoConfigurableProduct;
-
-    beforeEach(() => {
-      magentoConfigurableProduct = configProductFactory.create();
-    });
-
-    it('should return a configurable product', () => {
-      expect(transformMagentoProductPreview(magentoConfigurableProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Configurable);
     });
   });
 });

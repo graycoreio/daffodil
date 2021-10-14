@@ -13,14 +13,6 @@ import {
   getDaffCompositeProductSelectors,
 } from './composite-product/composite-product.selectors';
 import {
-  DaffConfigurableProductEntitiesMemoizedSelectors,
-  getDaffConfigurableProductEntitiesSelectors,
-} from './configurable-product-entities/configurable-product-entities.selectors';
-import {
-  DaffConfigurableProductMemoizedSelectors,
-  getDaffConfigurableProductSelectors,
-} from './configurable-product/configurable-product.selectors';
-import {
   DaffProductEntitiesMemoizedSelectors,
   getDaffProductEntitiesSelectors,
 } from './product-entities/product-entities.selectors';
@@ -46,8 +38,6 @@ export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> ex
 	DaffProductEntitiesMemoizedSelectors<T>,
 	DaffProductGridMemoizedSelectors<T>,
 	DaffProductFeatureMemoizedSelector<T>,
-	DaffConfigurableProductEntitiesMemoizedSelectors,
-	DaffConfigurableProductMemoizedSelectors,
 	DaffCompositeProductEntitiesMemoizedSelectors,
 	DaffCompositeProductMemoizedSelectors { }
 
@@ -61,8 +51,6 @@ export const getDaffProductSelectors = <T extends DaffProduct = DaffProduct>(): 
   ...getDaffProductGridSelectors<T>(),
   ...getDaffProductEntitiesSelectors<T>(),
   ...getDaffProductFeatureSelector<T>(),
-  ...getDaffConfigurableProductEntitiesSelectors(),
-  ...getDaffConfigurableProductSelectors(),
   ...getDaffCompositeProductEntitiesSelectors(),
   ...getDaffCompositeProductSelectors(),
 });

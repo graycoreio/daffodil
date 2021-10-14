@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 import { DaffProduct } from '@daffodil/product';
 
 import { MagentoBundledProduct } from '../models/bundled-product';
-import { MagentoConfigurableProduct } from '../models/configurable-product';
 import {
   MagentoProduct,
   MagentoProductTypeEnum,
 } from '../models/magento-product';
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
-import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
 import { DaffMagentoSimpleProductTransformers } from './simple-product-transformers';
 
 /**
@@ -28,8 +26,6 @@ export class DaffMagentoProductsTransformer {
     switch(product.__typename) {
       case MagentoProductTypeEnum.BundledProduct:
         return transformMagentoBundledProduct(this.magentoSimpleProductTransformers.transformMagentoSimpleProduct(product, mediaUrl), <MagentoBundledProduct>product);
-      case MagentoProductTypeEnum.ConfigurableProduct:
-        return transformMagentoConfigurableProduct(this.magentoSimpleProductTransformers.transformMagentoSimpleProduct(product, mediaUrl), <MagentoConfigurableProduct>product);
       case MagentoProductTypeEnum.SimpleProduct:
       default:
         return this.magentoSimpleProductTransformers.transformMagentoSimpleProduct(product, mediaUrl);
