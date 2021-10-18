@@ -1,12 +1,19 @@
 <daff-article>
   <h1 daffArticleTitle>Daff Paginator</h1>
-  <p daffArticleLead>Daffodil's paginator component can be used to navigate between pages of paginated data.</p>
+  <p daffArticleLead>Daffodil's paginator component can be used to navigate between pages of content.</p>
 
   <h2>About</h2>
-  <p>The paginator can be implemented with a color, number of pages, current pages</p>
+  <p>
+    The paginator can be used to break up large amounts of content and enable the user to easily navigate the data. 
+    The paginator also helps with ease of use by displaying the number of pages as well as links for traversal to the "previous" or "next" page.
+  </p>
 
-  <h2>Color</h2>
-  <p>Setting <code>color</code> on the paginator component will change the main color.</p>
+  <h2>Theming</h2>
+  <p>Setting <code>color</code> on the paginator component will change the default background color of the selected page and the hovered page.</p>
+  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
+
+  <h2>Accessibility</h2>
+  <p>Use <code>aria-label</code> or <code>aria-labelledby</code> to label the <code>daff-paginator</code> component.</p>
 
   <daff-paginator color="primary" aria-label="Primary" [numberOfPages]="numberOfPages" [currentPage]="primaryCurrentPage" (notifyPageChange)="onPageChange($event)"></daff-paginator>
   
