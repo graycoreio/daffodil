@@ -1,8 +1,16 @@
 <daff-hero [color]="colorControl.value">
-	<div daffHeroTagline>Hero Tagline</div>
-	<h1 daffHeroTitle>Hero Title</h1>
-	<h2 daffHeroSubtitle>Hero subtitle</h2>
-	<div>Additional Content (i.e. buttons, images)</div>
+	<div class="daff-hero-theming__icon" daffHeroIcon>
+		<fa-icon [icon]="faMobile"></fa-icon>
+	</div>
+	<div daffHeroTagline>Frontend framework for ecommerce PWAs</div>
+	<h1 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h1>
+	<h2 daffHeroSubtitle>
+		<p>Daffodil provides everything you need to create powerful and flexible ecommerce experiences.</p>
+		<p>With Daffodil, ambitious businesses are able to achieve more while minimizing development and maintenance costs.</p>
+	</h2>
+	<div daffHeroBody>
+		<a href="https://www.daff.io" target="_blank" daff-button>Get Started</a>
+	</div>
 </daff-hero>
 
 <select [formControl]="colorControl">

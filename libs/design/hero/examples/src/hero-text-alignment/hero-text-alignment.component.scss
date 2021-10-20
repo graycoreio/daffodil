@@ -1,0 +1,17 @@
+@import 'theme';
+
+$base: daff-map-deep-get($theme, 'core.base');
+
+.daff-hero-text-alignment {
+	&__icon {
+		display: inline-block;
+		background: daff-illuminate($base, $daff-gray, 2);
+		border-radius: 50%;
+		color: daff-illuminate($base, $daff-gray, 6);
+		width: 48px;
+		height: 48px;
+		vertical-align: middle;
+		text-align: center;
+		padding: 12px 0;
+	}
+}

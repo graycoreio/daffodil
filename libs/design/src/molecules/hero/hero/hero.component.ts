@@ -9,14 +9,10 @@ import {
 } from '@angular/core';
 
 import {
-  DaffPalette,
   daffColorMixin,
   DaffColorable,
 } from '../../../core/colorable/public_api';
-import {
-  DaffTextAlignable,
-  DaffTextAlignment,
-} from '../../../core/text-alignable/text-alignable';
+import { DaffTextAlignable } from '../../../core/text-alignable/text-alignable';
 import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
 
 // DaffHeroLayout will be deprecated in v1.0.0

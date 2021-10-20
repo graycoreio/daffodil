@@ -9,6 +9,10 @@
 		padding: 96px 48px;
 	}
 
+	&__icon {
+		margin: 0 0 16px;
+	}
+
 	&__tagline {
 		@include subheading();
 		margin: 0 0 8px;
@@ -29,6 +33,16 @@
 		margin: 16px 0 0;
 		max-width: 672px;
 		width: 100%;
+	}
+
+	&__body {
+		&:not(:last-child) {
+			margin-bottom: 48px;
+		}
+
+		&:not(:first-child) {
+			margin-top: 48px;
+		}
 	}
 
 	// centered will be deprecated in v1.0.0
@@ -55,6 +69,7 @@
 	}
 
 	&.daff-left {
+		#{$root}__icon,
 		#{$root}__tagline,
 		#{$root}__title,
 		#{$root}__subtitle {
@@ -63,6 +78,7 @@
 	}
 
 	&.daff-center {
+		#{$root}__icon,
 		#{$root}__tagline,
 		#{$root}__title,
 		#{$root}__subtitle {
@@ -73,6 +89,7 @@
 	}
 
 	&.daff-right {
+		#{$root}__icon,
 		#{$root}__tagline,
 		#{$root}__title,
 		#{$root}__subtitle {

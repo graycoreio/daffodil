@@ -1,10 +1,16 @@
 <daff-hero [textAlignment]="textAlignControl.value">
 	<daff-container size="md">
+		<div class="daff-hero-text-alignment__icon" daffHeroIcon>
+			<fa-icon [icon]="faMobile"></fa-icon>
+		</div>
 		<div daffHeroTagline>Frontend framework for ecommerce PWAs</div>
-		<h3 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h3>
-		<div daffHeroSubtitle>
+		<h1 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h1>
+		<h2 daffHeroSubtitle>
 			<p>Daffodil provides everything you need to create powerful and flexible ecommerce experiences.</p>
 			<p>With Daffodil, ambitious businesses are able to achieve more while minimizing development and maintenance costs.</p>
+		</h2>
+		<div daffHeroBody>
+			<a href="https://www.daff.io" target="_blank" daff-button>Get Started</a>
 		</div>
 	</daff-container>
 </daff-hero>

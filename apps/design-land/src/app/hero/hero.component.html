@@ -1,15 +1,40 @@
 <daff-article>
   <h1>Hero</h1>
-  <p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used once as the first container on any given page. It supports transclusion of any content and includes predefined <code>tagline</code>, <code>title</code> and <code>subtitle</code> styles.</p>
+  <p>Hero is a top level container that is large and captivating. It should only be used once as the first container on any given page. </p>
 
   <h2>Supported Content Types</h2>
-  A <code>&lt;daff-hero&gt;</code> transcludes:
-  <ul>
-    <li><code>[daffHeroTagline]</code> - Hero tagline</li>
-    <li><code>[daffHeroTitle]</code> - Hero title, used with the <code>&lt;h1&gt;</code> tag</li>
-    <li><code>[daffHeroSubtitle]</code> - Hero subtitle, used with the <code>&lt;h2&gt;</code> tag</li>
-    <li>Any additional components</li>
-  </ul>
+  <p>A <code>&lt;daff-hero&gt;</code> supports transclusion of any content and includes stylized <code>icon</code>, <code>tagline</code>, <code>title</code> and <code>subtitle</code> content containers.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Selector</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>[daffHeroIcon]</code></td>
+        <td>Hero icon, intended for visual or branding reinforcement</td>
+      </tr>
+      <tr>
+        <td><code>[daffHeroTagline]</code></td>
+        <td>Hero tagline</td>
+      </tr>
+      <tr>
+        <td><code>[daffHeroTitle]</code></td>
+        <td>Hero title, used with the <code>&lt;h1&gt;</code> tag</td>
+      </tr>
+      <tr>
+        <td><code>[daffHeroSubtitle]</code></td>
+        <td>Hero subtitle, used with the <code>&lt;h2&gt;</code> tag</td>
+      </tr>
+      <tr>
+        <td><code>[daffHeroBody]</code></td>
+        <td>Container for any additional content, it will not respect the <code>textAlignment</code> property</td>
+      </tr>
+    </tbody>
+  </table>
 
   <h3>Theming</h3>
   <p>The default background color of a hero is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
@@ -18,8 +43,9 @@
   <design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
 
   <h2>Text Alignment</h2>
-  <p>Align hero-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to any additional components or elements that is placed inside of a hero.</p>
+  <p>Align hero-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to <code>[daffHeroBody]</code> or any additional components or elements that are placed inside of a hero.</p>
   <p>Supported alignments: <code>left | center | right</code></p>
+  
   <design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
 
   <h2>Gridded Hero</h2>
