@@ -1,7 +1,4 @@
 @import 'daff-util';
-@import 'theme';
-
-$base: daff-map-deep-get($theme, 'core.base');
 
 .daff-callout-with-grid {
 	&__grid {
