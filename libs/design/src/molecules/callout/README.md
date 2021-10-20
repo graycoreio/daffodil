@@ -1,33 +1,45 @@
 # Callout
-`DaffCalloutComponent` is a versatile component that can be used to easily highlight a piece of content. It supports transclusion of any content and includes predefined `tagline`, `title`, and `subtitle` styles.
+Callout is a versatile component that can be used to easily highlight a piece of content.
 
-## Use Cases
-1. It can be used alongside a product list to highlight a set of products.
-2. It can be used to quickly lay out an accordion.
-3. It can be used to showcase a set of features.
+## Overview
+Callouts can be used multiple times on a page. It's a flexible and extensible component that includes pre-styled content containers. It can be used alongside a product list to highlight a set of products, quickly lay out an accordion, showcase a set of features, etc.
 
 ## Supported Content Types
-A `<daff-callout>` transcludes:
-- `[daffCalloutTagline]` - Callout Tagline
-- `[daffCalloutTitle]` - Callout Title
-- `[daffCalloutSubtitle]` - Callout Subtitle0
-- Any additional components
+A `<daff-callout>` supports transclusion of any content and includes stylized `icon`, `tagline`, `title`, `subtitle`, and `body` content containers.
+
+### Icon
+`[daffCalloutIcon]` is intended for visual or branding reinforcement. It should not be used for actionable icons.
+
+### Tagline
+Callout taglines are used by adding `[daffCalloutTagline]` to a `<p>` tag. It's intended to supplement the title by providing a short, memorable description.
+
+### Title
+Callout titles are used by adding `[daffCalloutTitle]` to a `<h*>` tag.
+
+### Subtitle
+Callout subtitles are used by adding `[daffCalloutSubtitle]` to a `<p>` tag.
+
+### Body
+`[daffCalloutBody]` is a wrapper container that can be used to place all additional components and content within a `<daff-callout>` and should only be used once. The body container allows for a ton of control and customization because it's not affected by any of callout's properties and only serves as a wrapping and spacing container.
 
 ## Theming
 The default background color of a callout is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
 Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
+<design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
+
 ## Text Alignment
-Align callout-specific text with the `textAlignment` property. `textAlignment` will not cascade the alignment styles down to any additional components or elements that is placed inside of a callout.
+Align callout-specific text with the `textAlignment` property. `textAlignment` will not cascade the alignment styles down to `[daffCalloutBody]` or any additional components or elements that is placed inside of a callout. `textAlignment` is set to `left` by default.
 
 Supported alignments: `left | center | right`
+
 <design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
 
 ## Gridded Callout
 Callouts are flexible enough to support grids within them.
 
-### Two Column Grid Callout
+### Callout with Two Columns
 <design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
 
 ## Layout

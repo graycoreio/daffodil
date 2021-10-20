@@ -37,7 +37,7 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(daffTextAlignmentMixin(DaffCalloutBase));
+const _daffCalloutBase = daffColorMixin(daffTextAlignmentMixin(DaffCalloutBase, 'left'));
 
 /**
  * @inheritdoc

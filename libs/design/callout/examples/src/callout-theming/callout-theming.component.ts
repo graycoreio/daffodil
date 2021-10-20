@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-import { DaffPalette } from '@daffodil/design';
+import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'callout-theming',
   templateUrl: './callout-theming.component.html',
+  styleUrls: ['./callout-theming.component.scss'],
 })
 export class CalloutThemingComponent {
+  faMobile = faMobile;
   colorControl: FormControl = new FormControl('');
 
   options = [
