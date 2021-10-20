@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffHeroModule,
   DaffContainerModule,
+  DaffButtonModule,
 } from '@daffodil/design';
 
 import { HeroTextAlignmentComponent } from './hero-text-alignment.component';
@@ -18,6 +20,9 @@ import { HeroTextAlignmentComponent } from './hero-text-alignment.component';
     ReactiveFormsModule,
     DaffHeroModule,
     DaffContainerModule,
+    DaffButtonModule,
+
+    FontAwesomeModule,
   ],
 })
 export class HeroTextAlignmentModule { }

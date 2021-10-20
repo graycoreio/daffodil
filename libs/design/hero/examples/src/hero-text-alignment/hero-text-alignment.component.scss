@@ -1,0 +1,13 @@
+@import 'daff-util';
+
+.daff-hero-text-alignment {
+	&__icon {
+		background: rgba(var(--daff-theme-rgb), 0.2);
+		border-radius: 50%;
+		color: var(--daff-theme-contrast-rgb);
+		width: 48px;
+		height: 48px;
+		vertical-align: middle;
+		padding: 12px 0;
+	}
+}
