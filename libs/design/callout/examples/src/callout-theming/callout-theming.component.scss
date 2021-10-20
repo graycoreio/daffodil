@@ -5,9 +5,9 @@ $base: daff-map-deep-get($theme, 'core.base');
 .daff-callout-theming {
 	&__icon {
 		display: flex;
-		background: daff-illuminate($base, $daff-gray, 2);
+		background: rgba(var(--daff-theme-rgb), 0.2);
 		border-radius: 50%;
-		color: daff-illuminate($base, $daff-gray, 6);
+		color: var(--daff-theme-contrast-rgb);
 		width: 48px;
 		height: 48px;
 		justify-content: center;
