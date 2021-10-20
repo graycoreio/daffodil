@@ -35,7 +35,7 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase));
+const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase, 'left'));
 
 /**
  * @inheritdoc
