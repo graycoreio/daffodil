@@ -18,13 +18,14 @@ import {
 } from './hero.component';
 
 @Component({
-  template: `<daff-hero [layout]="layout" [size]="size" [color]="color" [textAlignment]="textAlignment"></daff-hero>`,
+  template: `<daff-hero [layout]="layout" [size]="size" [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,
 })
 class WrapperComponent {
   layout: DaffHeroLayout;
   size: DaffHeroSize;
   color: DaffPalette;
   textAlignment: DaffTextAlignment;
+  compact = false;
 }
 
 describe('DaffHeroComponent', () => {
@@ -84,10 +85,10 @@ describe('DaffHeroComponent', () => {
     });
 
     describe('when size="small"', () => {
-      it('should add a class of "daff-hero--small" to the host element', () => {
+      it('should add a class of "daff-hero--compact" to the host element', () => {
         wrapper.size = 'small';
         fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-hero--small')).toBeTruthy();
+        expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeTruthy();
       });
     });
 
@@ -158,5 +159,12 @@ describe('DaffHeroComponent', () => {
         expect(de.nativeElement.classList.contains('daff-right')).toBeTruthy();
       });
     });
+  });
+
+  it('should take compact as an input', () => {
+    wrapper.compact = true;
+    fixture.detectChanges();
+
+    expect(component.compact).toEqual(true);
   });
 });
