@@ -26,23 +26,32 @@
 	}
 
 	&__actions {
-		display: grid;
-		grid-template:
-			'daffodil-action'
-			'demo-action' / auto;
-		grid-gap: 24px;
+		display: flex;
+		flex-direction: column;
 
-		@include breakpoint(tablet) {
-			grid-template:
-				'daffodil-action demo-action' / auto;
+		@include breakpoint(mobile) {
+			flex-direction: row;
+			align-items: center;
 		}
 	}
 
 	&__daffodil-action {
-		grid-area: daffodil-action;
+		margin: 0 0 24px;
+
+		@include breakpoint(mobile) {
+			margin: 0 24px 0 0;
+		}
 	}
 
-	&__demo-action {
-		grid-area: demo-action;
+	&__icon {
+		display: flex;
+		background: rgba(var(--daff-theme-rgb), 0.2);
+		border-radius: 50%;
+		color: var(--daff-theme-contrast-rgb);
+		width: 48px;
+		height: 48px;
+		justify-content: center;
+		align-items: center;
+		padding: 12px 0;
 	}
 }

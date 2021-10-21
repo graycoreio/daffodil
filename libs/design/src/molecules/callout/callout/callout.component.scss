@@ -9,8 +9,8 @@
 		padding: 96px 48px;
 	}
 
-	@include breakpoint(big-tablet) {
-		padding: 96px 0;
+	&__icon {
+		margin: 0 0 16px;
 	}
 
 	&__tagline {
@@ -25,6 +25,7 @@
 		line-height: 2rem;
 		margin: 0;
 		max-width: 1040px;
+		overflow-wrap: break-word;
 		padding: 0;
 		width: 100%;
 
@@ -36,9 +37,19 @@
 	&__subtitle {
 		font-size: $medium-font-size;
 		margin: 16px 0 0;
-		max-width: 600px;
+		max-width: 592px;
 		padding: 0;
 		width: 100%;
+	}
+
+	&__body {
+		&:not(:last-child) {
+			margin-bottom: 48px;
+		}
+
+		&:not(:first-child) {
+			margin-top: 48px;
+		}
 	}
 
 	// centered will be deprecated in v1.0.0
@@ -68,6 +79,7 @@
 	}
 
 	&.daff-left {
+		#{$root}__icon,
 		#{$root}__tagline,
 		#{$root}__title,
 		#{$root}__subtitle {
@@ -76,6 +88,7 @@
 	}
 
 	&.daff-center {
+		#{$root}__icon,
 		#{$root}__tagline,
 		#{$root}__title,
 		#{$root}__subtitle {
@@ -86,6 +99,7 @@
 	}
 
 	&.daff-right {
+		#{$root}__icon,
 		#{$root}__tagline,
 		#{$root}__title,
 		#{$root}__subtitle {
