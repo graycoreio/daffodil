@@ -36,14 +36,19 @@ Supported alignments: `left | center | right`
 
 <design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
 
-## Gridded Callout
+## Compact Callouts
+Callouts are available in a `compact` mode, which decreases the overall padding of the callout container to suit UIs that require less negative space. To enable the mode, set the `compact` property on `<daff-callout>`.
+
+<design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>
+
+## Gridded Callouts
 Callouts are flexible enough to support grids within them.
 
 ### Callout with Two Columns
 <design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
 
 ## Layout
-The `layout` property will be deprecated in v1.0.0
+The `layout` property is deprecated and replaced by the [`textAlignment`](#text-alignment) property.
 
 ## Size
-The `size` property will be deprecated in v1.0.0. The `compact` value will be replaced by the `DaffCompactable` interface.
+The `size` property is deprecated and replaced by the [`compact`](#compact-callouts) property.

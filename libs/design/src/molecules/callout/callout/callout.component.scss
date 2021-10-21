@@ -78,6 +78,14 @@
 		}
 	}
 
+	&.daff-compact {
+		padding: 24px;
+
+		@include breakpoint(mobile) {
+			padding: 24px 48px;
+		}
+	}
+
 	&.daff-left {
 		#{$root}__icon,
 		#{$root}__tagline,

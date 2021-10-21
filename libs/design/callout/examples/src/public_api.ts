@@ -4,4 +4,6 @@ export { CalloutTextAlignmentComponent } from './callout-text-alignment/callout-
 export { CalloutTextAlignmentModule } from './callout-text-alignment/callout-text-alignment.module';
 export { CalloutWithGridComponent } from './callout-with-grid/callout-with-grid.component';
 export { CalloutWithGridModule } from './callout-with-grid/callout-with-grid.module';
+export { CompactCalloutComponent } from './compact-callout/compact-callout.component';
+export { CompactCalloutModule } from './compact-callout/compact-callout.module';
 export { CALLOUT_EXAMPLES } from './examples';

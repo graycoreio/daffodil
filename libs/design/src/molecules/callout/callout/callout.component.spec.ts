@@ -19,7 +19,7 @@ import {
 
 @Component ({
   template: `
-    <daff-callout [color]="color" [layout]="layout" [size]="size" [textAlignment]="textAlignment"></daff-callout>
+    <daff-callout [color]="color" [layout]="layout" [size]="size" [textAlignment]="textAlignment" [compact]="compact"></daff-callout>
   `,
 })
 
@@ -28,6 +28,7 @@ class WrapperComponent {
   layout: DaffCalloutLayout;
   size: DaffCalloutSize;
   textAlignment: DaffTextAlignment;
+  compact = false;
 }
 
 describe('DaffCalloutComponent', () => {
@@ -152,5 +153,12 @@ describe('DaffCalloutComponent', () => {
         expect(de.nativeElement.classList.contains('daff-right')).toBeTruthy();
       });
     });
+  });
+
+  it('should take compact as an input', () => {
+    wrapper.compact = true;
+    fixture.detectChanges();
+
+    expect(component.compact).toEqual(true);
   });
 });
