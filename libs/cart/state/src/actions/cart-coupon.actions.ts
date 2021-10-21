@@ -21,7 +21,8 @@ export enum DaffCartCouponActionTypes {
   CartCouponRemoveFailureAction = '[DaffCart] Cart Coupon Remove Failure Action',
   CartCouponRemoveAllAction = '[DaffCart] Cart Coupon Remove All Action',
   CartCouponRemoveAllSuccessAction = '[DaffCart] Cart Coupon Remove All Success Action',
-  CartCouponRemoveAllFailureAction = '[DaffCart] Cart Coupon Remove All Failure Action'
+  CartCouponRemoveAllFailureAction = '[DaffCart] Cart Coupon Remove All Failure Action',
+  CartCouponClearErrorsAction = '[DaffCart] Cart Coupon Clear Errors Action'
 }
 
 /**
@@ -129,6 +130,13 @@ export class DaffCartCouponRemoveAllFailure implements Action {
 }
 
 /**
+ * Removes the errors in cart coupon state.
+ */
+export class DaffCartCouponClearErrors implements Action {
+  readonly type = DaffCartCouponActionTypes.CartCouponClearErrorsAction;
+}
+
+/**
  * A union of all the cart coupon action classes.
  */
 export type DaffCartCouponActions<
@@ -146,4 +154,5 @@ export type DaffCartCouponActions<
   | DaffCartCouponRemoveFailure
   | DaffCartCouponRemoveAll
   | DaffCartCouponRemoveAllSuccess<T>
-  | DaffCartCouponRemoveAllFailure;
+  | DaffCartCouponRemoveAllFailure
+  | DaffCartCouponClearErrors;

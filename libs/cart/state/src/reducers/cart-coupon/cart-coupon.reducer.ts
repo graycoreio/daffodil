@@ -49,6 +49,12 @@ export function cartCouponReducer<T extends DaffCart>(
         ...setLoading(state.loading, DaffState.Complete),
       };
 
+    case DaffCartCouponActionTypes.CartCouponClearErrorsAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+      };
+
     case DaffCartCouponActionTypes.CartCouponListSuccessAction:
       return {
         ...state,

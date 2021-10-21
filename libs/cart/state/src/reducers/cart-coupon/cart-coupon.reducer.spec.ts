@@ -21,6 +21,7 @@ import {
   DaffCartCouponRemoveAllSuccess,
   DaffCartCouponRemoveAllFailure,
   initialState,
+  DaffCartCouponClearErrors,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -356,6 +357,28 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     it('should add an error to the coupon section of state.errors', () => {
       expect(result.errors[DaffCartOperationType.Coupon].length).toEqual(2);
+    });
+  });
+
+  describe('when CartCouponClearErrorsAction is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      const cartCouponRemoveActionSuccess = new DaffCartCouponClearErrors();
+      state = {
+        ...initialState,
+        errors: {
+          ...initialState.errors,
+          [DaffCartOperationType.Coupon]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
+
+      result = reducer(state, cartCouponRemoveActionSuccess);
+    });
+
+    it('should reset the errors in the coupon section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartOperationType.Coupon]).toEqual([]);
     });
   });
 });
