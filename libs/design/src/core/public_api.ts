@@ -7,4 +7,4 @@ export * from './statusable/statusable';
 export * from './skeletonable/skeletonable';
 export * from './mutable/mutable';
 export * from './text-alignable/text-alignable';
-export * from './compactable/compactable';
+export * from './compactable/public_api';

@@ -1,8 +1,11 @@
 import { ElementRef } from '@angular/core';
 
-import { daffCompactableMixin } from './compactable-mixin';
+import {
+  daffCompactableMixin,
+  HasElementRef,
+} from './compactable-mixin';
 
-class TestingClass {
+class TestingClass implements HasElementRef {
   element: HTMLElement = document.createElement('div');
 
   _elementRef = new ElementRef<HTMLElement>(this.element);
@@ -30,7 +33,6 @@ describe('daffCompactableMixin', () => {
   });
 
   it('should set compact to false by default', () => {
-    instance.compact = false;
     expect(instance.element.classList.length).toEqual(0);
   });
 

@@ -5,7 +5,7 @@ import {
 
 import { Constructor } from '../constructor/constructor';
 
-interface HasElementRef {
+export interface HasElementRef {
 	_elementRef: ElementRef;
 	_renderer: Renderer2;
 }
