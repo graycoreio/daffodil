@@ -1,10 +1,10 @@
 # @daffodil/design
 `@daffodil/design` is an Angular component library built to support ecommerce use-cases. The library provides turn-key support for various features like:
 
-* [Pre-built components](#components)
+* [Pre-Built Components](#components)
 * [Theming](./guides/theming.md)
-* [Typography] (./guides/typography.md)
-* [Development-time accessibility guidance](./guides/accessibility.md)
+* [Typography](./guides/typography.md)
+* [Accessibility](./guides/accessibility.md)
 * [Color](./guides/accessibility/color.md)
 
 ## Packages
@@ -15,21 +15,16 @@
 The source for this package is in the [Daffodil repository](https://github.com/graycoreio/daffodil).
 
 ## Getting Started
-Refer to [the getting-started guide](./guides/getting-started.md).
+Refer to the [Getting Started Guide](./guides/getting-started.md).
 
 ## Upgrading
-Refer [to the upgrade guide.](./guides/upgrading.md)
+Refer to the [Upgrade Guide](./guides/upgrading.md).
 
-## Components 
-* [Accordion](./src/molecules/accordion/README.md)
-* [Article](./src/molecules/article/README.md)
-* [Backdrop](./src/molecules/backdrop/README.md)
+## Components
+
+### Atoms
 * [Button](./src/atoms/button/README.md)
-* [Button-Set](./src/molecules/button-set/README.md)
-* [Callout](./src/molecules/callout/README.md)
-* [Card](./src/molecules/card/README.md)
 * [Container](./src/atoms/container/README.md)
-* [Feature](./src/molecules/feature/README.md)
 * [Form](./src/atoms/form/README.md)
   * [Checkbox](./src/atoms/form/checkbox/README.md)
   * [Checkbox Set](./src/atoms/form/checkbox-set/README.md)
@@ -40,20 +35,29 @@ Refer [to the upgrade guide.](./guides/upgrading.md)
   * [Radio](./src/atoms/form/radio/README.md)
   * [Radio Set](./src/atoms/form/radio-set/README.md)
   * [Select](./src/atoms/form/select/README.md)
-  * [Qty Dropdown](./src/molecules/qty-dropdown/README.md)
-* [Hero](./src/molecules/hero/README.md)
+  * [Quantity Field](./src/atoms/form/quantity-field/README.md)
 * [Image](./src/atoms/image/README.md)
+* [Loading Icon](./src/atoms/loading-icon/README.md)
+* [Progress Indicator](./src/atoms/progress-indicator/README.md)
+
+### Molecules
+* [Accordion](./src/molecules/accordion/README.md)
+* [Article](./src/molecules/article/README.md)
+* [Backdrop](./src/molecules/backdrop/README.md)
+* [Button Set](./src/molecules/button-set/README.md)
+* [Callout](./src/molecules/callout/README.md)
+* [Card](./src/molecules/card/README.md)
+* [Feature](./src/molecules/feature/README.md)
+* [Hero](./src/molecules/hero/README.md)
 * [Image Gallery](./src/molecules/image-gallery/README.md)
 * [Image List](./src/molecules/image-list/README.md)
-* [Loading Icon](./src/atoms/loading-icon/README.md)
 * [Link Set](./src/molecules/link-set/README.md)
 * [List](./src/molecules/list/README.md)
 * [Media Gallery](./src/molecules/media-gallery/README.md)
 * [Modal](./src/molecules/modal/README.md)
 * [Navbar](./src/molecules/navbar/README.md)
 * [Paginator](./src/molecules/paginator/README.md)
-* [Progress Indicator](./src/atoms/progress-indicator/README.md)
 * [Sidebar](./src/molecules/sidebar/README.md)
 
 ## Behind the Scenes
-* The Team (https://github.com/graycoreio/daffodil/graphs/contributors)
+* [The Team](https://github.com/graycoreio/daffodil/graphs/contributors)
