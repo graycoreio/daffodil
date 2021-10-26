@@ -36,7 +36,12 @@ Supported alignments: `left | center | right`
 
 <design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
 
-## Gridded Hero
+## Compact Heroes
+Heroes are available in a `compact` mode, which decreases the overall padding of the hero container to suit UIs that require less negative space. To enable the mode, set the `compact` property on `<daff-hero>`.</p>
+
+<design-land-example-viewer-container example="compact-hero"></design-land-example-viewer-container>
+
+## Gridded Heroes
 Heros are flexible enough to support grids within them.
 
 ### Hero with Two Columns

@@ -12,20 +12,28 @@ import {
   daffColorMixin,
   DaffColorable,
 } from '../../../core/colorable/public_api';
+import {
+  DaffCompactable,
+  daffCompactableMixin,
+} from '../../../core/compactable/public_api';
 import { DaffTextAlignable } from '../../../core/text-alignable/text-alignable';
 import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
 
-// DaffHeroLayout will be deprecated in v1.0.0
+/**
+ * @deprecated See {@link DaffTextAlignable}
+ */
 export type DaffHeroLayout = 'centered' | undefined;
 export enum DaffHeroLayoutEnum {
   Centered = 'centered'
 }
 
-// DaffHeroSize will be deprecated in v1.0.0 and replaced with a DaffCompactable interface
+/**
+ * @deprecated See {@link DaffCompactable}
+ */
 export type DaffHeroSize = 'compact' | 'small' | undefined;
 export enum DaffHeroSizeEnum {
   Compact = 'compact',
-  Small = 'small' // Small will be deprecated in v1.0.0
+  Small = 'small'
 }
 
 /**
@@ -35,7 +43,7 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase, 'left'));
+const _daffHeroBase = daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffHeroBase, 'left')));
 
 /**
  * @inheritdoc
@@ -47,13 +55,20 @@ const _daffHeroBase = daffColorMixin(daffTextAlignmentMixin(DaffHeroBase, 'left'
   encapsulation: ViewEncapsulation.None,
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'textAlignment'],
+  inputs: ['color', 'compact', 'textAlignment'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffHeroComponent extends _daffHeroBase implements DaffColorable, DaffTextAlignable {
+export class DaffHeroComponent extends _daffHeroBase implements DaffColorable, DaffTextAlignable, DaffCompactable {
 
-  @Input() layout: DaffHeroLayout; // Will be deprecated in v1.0.0
-  @Input() size: DaffHeroSize; // Will be deprecated in v1.0.0
+  /**
+   * @deprecated See {@link DaffTextAlignable}
+   */
+  @Input() layout: DaffHeroLayout;
+
+  /**
+   * @deprecated See {@link DaffCompactable}
+   */
+  @Input() size: DaffHeroSize;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);
@@ -65,29 +80,16 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable, D
 	@HostBinding('class.daff-hero') class = true;
 
 	/**
-	 * Will be deprecated in v1.0.0
-	 *
-	 * @docs-private
+	 * @deprecated See {@link DaffTextAlignable}
 	 */
 	@HostBinding('class.daff-hero--centered') get centered() {
 	  return this.layout === DaffHeroLayoutEnum.Centered;
 	}
 
 	/**
-	 * Will be deprecated in v1.0.0
-	 *
-	 * @docs-private
+	 * @deprecated See {@link DaffCompactable}
 	 */
-	@HostBinding('class.daff-hero--small') get small() {
-	  return this.size === DaffHeroSizeEnum.Small;
-	}
-
-	/**
-	 * Will be deprecated in v1.0.0
-	 *
-	 * @docs-private
-	 */
-	@HostBinding('class.daff-hero--compact') get compact() {
-	  return this.size === DaffHeroSizeEnum.Compact;
+	@HostBinding('class.daff-hero--compact') get compactClass() {
+	  return this.size === DaffHeroSizeEnum.Compact || this.compact === true || this.size === DaffHeroSizeEnum.Small;
 	}
 }

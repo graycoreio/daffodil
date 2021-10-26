@@ -1,0 +1,15 @@
+@import 'daff-util';
+
+.daff-compact-hero {
+	&__icon {
+		display: flex;
+		background: rgba(var(--daff-theme-rgb), 0.2);
+		border-radius: 50%;
+		color: var(--daff-theme-contrast-rgb);
+		width: 48px;
+		height: 48px;
+		justify-content: center;
+		align-items: center;
+		padding: 12px 0;
+	}
+}
