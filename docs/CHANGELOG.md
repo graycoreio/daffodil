@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.7](https://github.com/graycoreio/daffodil/compare/v0.39.6...v0.39.7) (2021-10-26)
+
+
+### Features
+
+* **cart:** add action to clear coupon errors ([#1875](https://github.com/graycoreio/daffodil/issues/1875)) ([7bcf190](https://github.com/graycoreio/daffodil/commit/7bcf190957ada3055465127c5235a9597365f38e))
+* **design:** add `daffCalloutBody` and `daffCalloutIcon` transcludables ([#1870](https://github.com/graycoreio/daffodil/issues/1870)) ([f7c4318](https://github.com/graycoreio/daffodil/commit/f7c4318ab44cd97df4d89e1d2e0c2223f4ef84a1))
+* **design:** add `daffHeroBody` and `daffHeroIcon` transcludables ([#1806](https://github.com/graycoreio/daffodil/issues/1806)) ([e066eb6](https://github.com/graycoreio/daffodil/commit/e066eb6b5d253f0b863cc2e7224d7bde6738d12d))
+* **design:** create mixin for DaffCompactable interface ([#1874](https://github.com/graycoreio/daffodil/issues/1874)) ([853546d](https://github.com/graycoreio/daffodil/commit/853546dea7276eaccbd2fae053761322e0784d87))
+* **design:** implement DaffCompactable interface for DaffCalloutComponent ([#1878](https://github.com/graycoreio/daffodil/issues/1878)) ([8fbcff9](https://github.com/graycoreio/daffodil/commit/8fbcff9d77c799b4901cc459a1db53708d15335e))
+* **design:** implement DaffCompactable interface for DaffHeroComponent ([#1877](https://github.com/graycoreio/daffodil/issues/1877)) ([77a1157](https://github.com/graycoreio/daffodil/commit/77a11578bab7d83c20d29624a152b78faab949c7))
+* **docs:** update design guides verbiage ([#1879](https://github.com/graycoreio/daffodil/issues/1879)) ([e931718](https://github.com/graycoreio/daffodil/commit/e9317182bb65bf10f3a4bf310f019bf468341e3e))
+
 ### [0.39.6](https://github.com/graycoreio/daffodil/compare/v0.39.5...v0.39.6) (2021-10-14)
 
 
