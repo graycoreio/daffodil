@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design';
 
@@ -13,6 +14,8 @@ import { DesignLandCalloutComponent } from './callout.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
+
     DesignLandCalloutRoutingModule,
 
     DaffArticleModule,
