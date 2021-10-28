@@ -10,7 +10,10 @@ import {
   DaffCart,
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { DaffCartNotFoundError } from '@daffodil/cart/driver';
+import {
+  DaffCartExpiredPaymentTokenError,
+  DaffCartNotFoundError,
+} from '@daffodil/cart/driver';
 import {
   MagentoPlaceOrderResponse,
   placeOrder,
@@ -126,6 +129,30 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
 
           op.graphqlErrors([new GraphQLError(
             'Guest email for cart is missing.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-input' },
+          )]);
+        });
+      });
+
+      describe('because of an expired payment method error', () => {
+        it('should throw a DaffCartExpiredPaymentTokenError', done => {
+          service.placeOrder(cartId, mockDaffCartPayment).pipe(
+            catchError(err => {
+              expect(err).toEqual(jasmine.any(DaffCartExpiredPaymentTokenError));
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(placeOrder);
+
+          op.graphqlErrors([new GraphQLError(
+            'Unable to place order: Authorize.Net CIM Gateway: Invalid token. Please re-enter your payment info. (E00114)',
             null,
             null,
             null,
