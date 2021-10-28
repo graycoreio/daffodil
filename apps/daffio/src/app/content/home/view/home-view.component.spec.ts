@@ -6,11 +6,11 @@ import {
 } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffioHomepageComponent } from './homepage.component';
+import { DaffioHomeViewComponent } from './home-view.component';
 
-describe('DaffioHomepageComponent', () => {
-  let component: DaffioHomepageComponent;
-  let fixture: ComponentFixture<DaffioHomepageComponent>;
+describe('DaffioHomeViewComponent', () => {
+  let component: DaffioHomeViewComponent;
+  let fixture: ComponentFixture<DaffioHomeViewComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -18,7 +18,7 @@ describe('DaffioHomepageComponent', () => {
         RouterTestingModule,
       ],
       declarations: [
-        DaffioHomepageComponent,
+        DaffioHomeViewComponent,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -28,7 +28,7 @@ describe('DaffioHomepageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioHomepageComponent);
+    fixture = TestBed.createComponent(DaffioHomeViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

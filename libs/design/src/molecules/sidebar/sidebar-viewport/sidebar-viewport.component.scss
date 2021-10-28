@@ -11,6 +11,7 @@ $daff-sidebar-viewport-z-index: 1;
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
 	min-height: 100%;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 	z-index: $daff-sidebar-viewport-z-index;

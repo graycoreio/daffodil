@@ -1,0 +1,44 @@
+@import 'utilities';
+
+.daffio-home-hero {
+	&__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+		grid-template-areas:
+			'content';
+		position: relative;
+
+    @include breakpoint(big-tablet) {
+      grid-template-columns: 560px 1fr;
+			grid-template-areas:
+				'content illustration';
+    	grid-gap: 48px;
+    }
+
+    @include breakpoint(small-laptop) {
+			grid-template-columns: 560px 1fr;
+			grid-template-areas:
+				'content illustration';
+    	grid-gap: 48px;
+    }
+  }
+
+	&__content {
+		grid-area: content;
+		align-self: center;
+		z-index: 2;
+	}
+
+	&__illustration {
+		display: none;
+		grid-area: illustration;
+
+		@include breakpoint(big-tablet) {
+			display: block;
+			position: absolute;
+			right: -240px;
+			top: -80px;
+			width: 640px;
+		}
+	}
+}
