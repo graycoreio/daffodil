@@ -15,5 +15,4 @@ export const DaffCartMagentoErrorMap: DaffErrorCodeMap = {
 export const DaffCartMagentoErrorMessageRegexMap = {
   [DaffCartDriverErrorCodes.INVALID_COUPON_CODE]: /The coupon code isn\'t valid/,
   [DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK]: /The requested qty is not available/,
-  [DaffCartDriverErrorCodes.EXPIRED_PAYMENT_METHOD]: /Invalid token\. Please re-enter your payment info\. \(E00114\)/,
 };
