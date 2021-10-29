@@ -15,6 +15,9 @@
     "eslint-plugin-modules-newline": "^0.0.6",
     "eslint-plugin-prefer-arrow": "^1.2.2"
   },
+  "scripts": {
+    "publish": "npm publish --access=public"
+  },
   "keywords": [
     "code checker",
     "code linter",
