@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
 } from '@angular/core';
@@ -7,6 +8,7 @@ import {
   selector: 'daffio-home-callout-pwa',
   templateUrl: './home-callout-pwa.component.html',
   styleUrls: ['./home-callout-pwa.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffioHomeCalloutPwaComponent {

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
 } from '@angular/core';
@@ -7,6 +8,7 @@ import {
   selector: 'daffio-home-callout-platforms',
   templateUrl: './home-callout-platforms.component.html',
   styleUrls: ['./home-callout-platforms.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffioHomeCalloutPlatformsComponent {
