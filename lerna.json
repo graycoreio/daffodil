@@ -2,7 +2,7 @@
   "packages": [
     "apps/*",
     "libs/*",
-    "tools/*"
+    "tools/**"
   ],
   "command": {
     "version": {
