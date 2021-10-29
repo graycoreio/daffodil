@@ -12,6 +12,7 @@ $daff-sidebar-viewport-z-index: 1;
 	display: flex;
 	min-height: 100%;
 	position: relative;
+	overflow: hidden;
 	width: 100%;
 	z-index: $daff-sidebar-viewport-z-index;
 
