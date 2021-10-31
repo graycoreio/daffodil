@@ -20,6 +20,7 @@ import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
 import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
+import { IMAGE_EXAMPLES } from '@daffodil/design/image/examples';
 
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
 
@@ -50,6 +51,7 @@ export class DesignLandAppComponent {
       ...QUANTITY_FIELD_EXAMPLES,
       ...LIST_EXAMPLES,
       ...PAGINATOR_EXAMPLES,
+      ...IMAGE_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.
