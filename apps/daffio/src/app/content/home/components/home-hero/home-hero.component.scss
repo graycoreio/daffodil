@@ -1,5 +1,10 @@
 @import 'utilities';
 
+:host {
+	display: block;
+	overflow: hidden;
+}
+
 .daffio-home-hero {
 	&__grid {
     display: grid;
