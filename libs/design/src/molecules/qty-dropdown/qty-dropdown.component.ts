@@ -7,6 +7,9 @@ import {
   EventEmitter,
 } from '@angular/core';
 
+/**
+ * @deprecated See {@link DaffQuantityFieldComponent}
+ */
 @Component({
   selector: 'daff-qty-dropdown',
   styleUrls: ['./qty-dropdown.component.scss'],
