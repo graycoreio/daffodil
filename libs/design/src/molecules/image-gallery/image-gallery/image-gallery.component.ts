@@ -3,6 +3,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+/**
+ * @deprecated See {@link DaffMediaGalleryComponent}
+ */
 @Component({
   selector: 'daff-image-gallery',
   templateUrl: './image-gallery.component.html',
