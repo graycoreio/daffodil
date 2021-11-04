@@ -4,6 +4,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * @deprecated See {@link DaffThumbnailDirective}
+ */
 @Component({
   selector: 'daff-gallery-image',
   templateUrl: './gallery-image.component.html',

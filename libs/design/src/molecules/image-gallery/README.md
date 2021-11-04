@@ -1,4 +1,5 @@
 # Daff Image Gallery Component
+The Image Gallery component is deprecated.
 
 The daff image gallery component wraps img elements to display them in a gallery. It takes a list of imgs and an active image, and the selected image is controlled by the user. The position of the list of images changes depending on screen size.
 
