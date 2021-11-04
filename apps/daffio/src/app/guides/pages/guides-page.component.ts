@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
@@ -10,6 +11,7 @@ import { DaffioDoc } from '../../docs/models/doc';
 
 @Component({
   templateUrl: './guides-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioGuidesPageComponent implements OnInit {
 

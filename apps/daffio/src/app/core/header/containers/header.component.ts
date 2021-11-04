@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
@@ -8,6 +11,7 @@ import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 @Component({
   selector: 'daffio-header-container',
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioHeaderContainer {
   faBars = faBars;

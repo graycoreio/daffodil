@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
@@ -23,6 +24,7 @@ import * as fromDaffioSidebar from '../../reducers/index';
 @Component({
   selector: 'daffio-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioSidebarViewportContainer implements OnInit{
 

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
 } from '@angular/core';
@@ -13,6 +14,7 @@ import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
   selector: 'daffio-simple-footer',
   templateUrl: './simple-footer.component.html',
   styleUrls: ['./simple-footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioSimpleFooterComponent {
 

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
@@ -14,6 +15,7 @@ interface ApiResolverData {
 
 @Component({
   templateUrl: './api-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioApiPageComponent implements OnInit {
 

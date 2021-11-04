@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
@@ -11,6 +12,7 @@ import { DaffioApiReference } from '../../models/api-reference';
 @Component({
   selector: '<daffio-api-list-page>',
   templateUrl: './api-list-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioApiListPageComponent implements OnInit {
   /**

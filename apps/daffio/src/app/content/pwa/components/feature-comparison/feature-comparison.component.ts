@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import {
   faCheck,
   faTimes,
@@ -8,6 +11,7 @@ import {
   selector: 'daffio-feature-comparison',
   templateUrl: './feature-comparison.component.html',
   styleUrls: ['./feature-comparison.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioFeatureComparisonComponent {
   faCheck = faCheck;

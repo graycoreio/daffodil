@@ -2,6 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
@@ -11,6 +12,7 @@ import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
   templateUrl: './sub-footer.component.html',
   styleUrls: ['./sub-footer.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioSubFooterComponent {
   @HostBinding('class.daffio-sub-footer') class = true;
