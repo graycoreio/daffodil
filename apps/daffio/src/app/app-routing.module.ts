@@ -9,7 +9,7 @@ import { TemplateComponent } from './core/template/template.component';
 export const appRoutes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
-      { path: '', pathMatch: 'full', loadChildren: () => import('./content/homepage/homepage.module').then(m => m.DaffioHomepageModule) },
+      { path: '', pathMatch: 'full', loadChildren: () => import('./content/home/home.module').then(m => m.DaffioHomeModule) },
       { path: 'why-pwa', loadChildren: () => import('./content/pwa/pwa.module').then(m => m.DaffioPwaModule) },
       { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
       { path: 'api', loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule) },

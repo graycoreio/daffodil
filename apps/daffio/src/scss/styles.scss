@@ -10,7 +10,6 @@
 // @daffodil/branding
 @import 'daff-branding-theme';
 
-@import "../app/content/homepage/component/homepage-theme.scss";
 @import "../app/content/pwa/components/feature-comparison/feature-comparison-theme";
 @import "../app/content/pwa/pages/pwa/pwa-theme";
 @import "../app/core/footer/simple-footer/simple-footer-theme";
@@ -23,7 +22,6 @@
 
 @include daff-branding-theme($theme);
 
-@include daffio-homepage-theme($theme);
 @include daffio-pwa-theme($theme);
 @include daffio-simple-footer-theme($theme);
 @include daffio-sub-footer-theme($theme);
