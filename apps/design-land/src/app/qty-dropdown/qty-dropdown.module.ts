@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { DaffQtyDropdownModule } from '@daffodil/design';
 
@@ -14,6 +15,8 @@ import { DesignLandQtyDropdownComponent } from './qty-dropdown.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
+
     DesignLandQtyDropdownRoutingModule,
     DaffQtyDropdownModule,
   ],
