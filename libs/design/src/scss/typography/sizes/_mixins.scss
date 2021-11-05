@@ -61,19 +61,20 @@
 
 @mixin body-xs() {
 	font-size: 0.875rem;
+	font-weight: 400;
 	line-height: 1.25rem;
 }
 
 @mixin subheading() {
-	@include embolden();
 	@include uppercase();
-	font-size: 0.75rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.03125rem;
 	line-height: 1rem;
-	letter-spacing: 1px;
 }
 
 @mixin caption() {
 	font-size: 0.75rem;
 	line-height: 1rem;
-	font-weight: normal;
+	font-weight: 400;
 }
