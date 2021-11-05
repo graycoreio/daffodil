@@ -2,6 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 @Component({
@@ -9,6 +10,7 @@ import {
   template: '<ng-content></ng-content>',
   styleUrls: ['./image-list.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffImageListComponent {
 

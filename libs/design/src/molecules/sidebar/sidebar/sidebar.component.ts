@@ -6,6 +6,7 @@ import {
   Output,
   EventEmitter,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -21,6 +22,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./sidebar.component.scss'],
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffSidebarComponent {
   @HostBinding('class.daff-sidebar') class = true;

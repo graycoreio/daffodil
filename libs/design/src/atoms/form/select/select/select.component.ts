@@ -7,6 +7,7 @@ import {
   ElementRef,
   HostListener,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
@@ -18,6 +19,7 @@ import { DaffFormFieldControl } from '../../form-field/form-field-control';
   template: '<ng-content></ng-content>',
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     { provide: DaffFormFieldControl, useExisting: DaffNativeSelectComponent },

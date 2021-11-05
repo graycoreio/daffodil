@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,6 +9,7 @@ import { FormControl } from '@angular/forms';
   selector: 'custom-range-quantity-field',
   templateUrl: './custom-range-quantity-field.component.html',
   styleUrls: ['./custom-range-quantity-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomRangeQuantityFieldComponent {
   control = new FormControl(5);

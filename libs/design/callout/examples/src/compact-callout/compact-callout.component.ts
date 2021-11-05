@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,6 +9,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
   selector: 'compact-callout',
   templateUrl: './compact-callout.component.html',
   styleUrls: ['./compact-callout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompactCalloutComponent {
   faMobile = faMobile;

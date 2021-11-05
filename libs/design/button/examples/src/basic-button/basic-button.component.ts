@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import {
   faChevronLeft,
   faChevronRight,
@@ -14,6 +17,7 @@ import {
       margin: 4px;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicButtonComponent {
   faChevronLeft = faChevronLeft;

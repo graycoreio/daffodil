@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
@@ -8,6 +9,7 @@ import { FormControl } from '@angular/forms';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-checkbox',
   templateUrl: './basic-checkbox.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicCheckboxComponent implements OnInit {
     checkboxExample = new FormControl();

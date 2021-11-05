@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewEncapsulation,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   faChevronDown,
@@ -18,6 +19,7 @@ import { getAnimationState } from '../animation/accordion-animation-state';
   templateUrl: './accordion-item.component.html',
   styleUrls: ['./accordion-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     daffAccordionAnimations.openAccordion,
   ],

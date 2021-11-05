@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import {
   faExclamation,
   faExclamationTriangle,
@@ -19,6 +22,7 @@ import {
       margin: 4px;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusableButtonComponent {
   faExclamation = faExclamation;

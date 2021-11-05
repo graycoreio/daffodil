@@ -5,6 +5,7 @@ import {
   Self,
   ElementRef,
   HostListener,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
@@ -18,6 +19,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   selector: 'input[daff-input]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     { provide: DaffFormFieldControl, useExisting: DaffInputComponent },

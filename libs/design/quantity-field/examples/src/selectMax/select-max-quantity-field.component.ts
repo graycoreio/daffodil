@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,6 +9,7 @@ import { FormControl } from '@angular/forms';
   selector: 'select-max-quantity-field',
   templateUrl: './select-max-quantity-field.component.html',
   styleUrls: ['./select-max-quantity-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectMaxQuantityFieldComponent {
   control = new FormControl(1);

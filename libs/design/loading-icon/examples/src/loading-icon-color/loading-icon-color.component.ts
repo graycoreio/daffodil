@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -8,6 +11,7 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'loading-icon-color',
   templateUrl: './loading-icon-color.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingIconColorComponent {
   colorGroup = new FormGroup({

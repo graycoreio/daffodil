@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,6 +9,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
   selector: 'callout-with-grid',
   templateUrl: './callout-with-grid.component.html',
   styleUrls: ['./callout-with-grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalloutWithGridComponent {
   faMobile = faMobile;

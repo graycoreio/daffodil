@@ -10,6 +10,8 @@ import {
 /**
  * @deprecated See {@link DaffQuantityFieldComponent}
  */
+// ChangeDetection is ignored because this component is deprecated and will be removed
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'daff-qty-dropdown',
   styleUrls: ['./qty-dropdown.component.scss'],

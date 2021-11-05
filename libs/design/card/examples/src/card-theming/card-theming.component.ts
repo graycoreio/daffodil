@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { DaffPalette } from '@daffodil/design';
@@ -12,6 +15,7 @@ import { DaffPalette } from '@daffodil/design';
       max-width: 400px;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardThemingComponent {
   color: DaffPalette = 'primary';

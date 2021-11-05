@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,6 +9,7 @@ import { FormControl } from '@angular/forms';
   selector: 'basic-quantity-field',
   templateUrl: './basic-quantity-field.component.html',
   styleUrls: ['./basic-quantity-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicQuantityFieldComponent {
   control = new FormControl(1);

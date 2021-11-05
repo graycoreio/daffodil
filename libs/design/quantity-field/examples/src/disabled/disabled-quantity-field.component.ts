@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,6 +9,7 @@ import { FormControl } from '@angular/forms';
   selector: 'disabled-quantity-field',
   templateUrl: './disabled-quantity-field.component.html',
   styleUrls: ['./disabled-quantity-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisabledQuantityFieldComponent {
   control = new FormControl({ value : '' , disabled: true });

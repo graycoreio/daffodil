@@ -13,7 +13,8 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
-
+// ChangeDetection is ignored because this component needs to be refactored
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'daff-form-field',
   templateUrl: './form-field.component.html',

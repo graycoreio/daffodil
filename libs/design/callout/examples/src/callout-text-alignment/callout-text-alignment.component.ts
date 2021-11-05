@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,6 +10,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
   selector: 'callout-text-alignment',
   templateUrl: './callout-text-alignment.component.html',
   styleUrls: ['./callout-text-alignment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalloutTextAlignmentComponent {
   faMobile = faMobile;

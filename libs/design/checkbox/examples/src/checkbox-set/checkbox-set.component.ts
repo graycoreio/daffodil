@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
   ViewChild,
@@ -14,6 +15,7 @@ import { DaffCheckboxSetComponent } from '@daffodil/design';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'checkbox-set',
   templateUrl: './checkbox-set.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxSetComponent implements OnInit {
 

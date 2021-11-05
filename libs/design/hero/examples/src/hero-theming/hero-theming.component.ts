@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,6 +12,7 @@ import { DaffPalette } from '@daffodil/design';
   selector: 'hero-theming',
   templateUrl: './hero-theming.component.html',
   styleUrls: ['./hero-theming.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroThemingComponent {
   faMobile = faMobile;

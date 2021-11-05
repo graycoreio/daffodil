@@ -2,6 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 /**
@@ -12,6 +13,7 @@ import {
   template: '<ng-content></ng-content>',
   styleUrls: ['./article.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffArticleComponent {
 

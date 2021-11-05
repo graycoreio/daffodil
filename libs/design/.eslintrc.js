@@ -16,6 +16,10 @@ module.exports = {
         createDefaultProgram: true
       },
       rules: {
+        // TODO: Remove once the rule is added to the global eslint config
+        '@angular-eslint/prefer-on-push-component-change-detection': [
+          'error'
+        ],
         '@angular-eslint/component-class-suffix': [
           'error',
           {
@@ -39,6 +43,16 @@ module.exports = {
             prefix: 'daff',
             style: 'camelCase'
           }
+        ],
+      }
+    },
+    {
+      files: [
+        '*.spec.ts'
+      ],
+      rules: {
+        '@angular-eslint/prefer-on-push-component-change-detection': [
+          0
         ],
       }
     },

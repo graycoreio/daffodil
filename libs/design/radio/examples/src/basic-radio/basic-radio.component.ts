@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
@@ -11,6 +12,7 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-radio',
   templateUrl: './basic-radio.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicRadioComponent implements OnInit {
 

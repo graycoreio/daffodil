@@ -1,6 +1,6 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,6 +8,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'nav-list',
   templateUrl: './nav-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavListComponent {
   faChevronRight = faChevronRight;

@@ -7,6 +7,7 @@ import {
   Optional,
   ContentChildren,
   QueryList,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   faChevronDown,
@@ -21,6 +22,7 @@ import { getAnimationState } from '../animation/accordion-animation-state';
   selector: 'daff-nav-accordion-item',
   templateUrl: './nav-accordion-item.component.html',
   styleUrls: ['./nav-accordion-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     daffAccordionAnimations.openAccordion,
   ],

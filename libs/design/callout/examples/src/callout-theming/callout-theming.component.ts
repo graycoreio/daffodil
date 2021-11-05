@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,6 +10,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
   selector: 'callout-theming',
   templateUrl: './callout-theming.component.html',
   styleUrls: ['./callout-theming.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalloutThemingComponent {
   faMobile = faMobile;

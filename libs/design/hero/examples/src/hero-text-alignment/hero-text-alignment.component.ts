@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,6 +10,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
   selector: 'hero-text-alignment',
   templateUrl: './hero-text-alignment.component.html',
   styleUrls: ['./hero-text-alignment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroTextAlignmentComponent {
   faMobile = faMobile;
