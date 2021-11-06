@@ -23,9 +23,16 @@
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
     "@angular/core": "0.0.0-PLACEHOLDER",
-    "graphql": "0.0.0-PLACEHOLDER"
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
-    "@angular/router": "0.0.0-PLACEHOLDER"
+    "graphql": "0.0.0-PLACEHOLDER",
+    "@angular/router": "0.0.0-PLACEHOLDER",
+    "@apollo/client": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "faker": "0.0.0-PLACEHOLDER"
   }
 }

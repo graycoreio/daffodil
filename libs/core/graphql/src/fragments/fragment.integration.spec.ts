@@ -1,4 +1,3 @@
-import { mergeSchemas } from '@angular-devkit/core/src/json/schema';
 import { TestBed } from '@angular/core/testing';
 import {
   gql,
