@@ -5,6 +5,7 @@ import { DaffCartInvalidAPIResponseError } from './invalid-api-response';
 import { DaffInvalidCountryError } from './invalid-country';
 import { DaffInvalidCouponCodeError } from './invalid-coupon-code';
 import { DaffInvalidRegionError } from './invalid-region';
+import { DaffCartItemExceedsMaxQtyError } from './item-exceeds-max-qty';
 import { DaffProductNotFoundError } from './product-not-found';
 import { DaffProductOutOfStockError } from './product-out-of-stock';
 
@@ -20,4 +21,5 @@ export const DaffCartDriverErrorMap = {
   [DaffCartDriverErrorCodes.INVALID_REGION]: DaffInvalidRegionError,
   [DaffCartDriverErrorCodes.INVALID_API_RESPONSE]: DaffCartInvalidAPIResponseError,
   [DaffCartDriverErrorCodes.EXPIRED_PAYMENT_METHOD]: DaffCartExpiredPaymentTokenError,
+  [DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY]: DaffCartItemExceedsMaxQtyError,
 };

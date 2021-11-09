@@ -7,10 +7,10 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
 
 /**
  * An error thrown when a cart item's requested quantity
- * exceeds the amount currently in stock.
+ * exceeds the maximum allowed by the platform.
  */
-export class DaffProductOutOfStockError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK;
+export class DaffCartItemExceedsMaxQtyError extends DaffInheritableError implements DaffError {
+	public readonly code: string = DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY;
 
 	constructor(message?: string) {
 	  super(message);
