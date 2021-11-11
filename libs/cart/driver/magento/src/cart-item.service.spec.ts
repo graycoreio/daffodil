@@ -19,6 +19,7 @@ import {
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
 import {
+  DaffCartItemExceedsMaxQtyError,
   DaffCartNotFoundError,
   DaffProductOutOfStockError,
 } from '@daffodil/cart/driver';
@@ -373,7 +374,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       });
 
       describe('because the there is insufficient stock of the requested product', () => {
-        it('should throw a DaffProductOutOfStockError with the coupon code', done => {
+        it('should throw a DaffProductOutOfStockError', done => {
           service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
             catchError((err: DaffProductOutOfStockError) => {
               expect(err).toEqual(jasmine.any(DaffProductOutOfStockError));
@@ -391,7 +392,31 @@ describe('Driver | Magento | Cart | CartItemService', () => {
             null,
             null,
             null,
-            { category: 'graphql-no-such-entity' },
+            { category: 'graphql-input' },
+          )]);
+        });
+      });
+
+      describe('because the requested qty exceeds the max allowed', () => {
+        it('should throw a DaffCartItemExceedsMaxQtyError', done => {
+          service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
+            catchError((err: DaffCartItemExceedsMaxQtyError) => {
+              expect(err).toEqual(jasmine.any(DaffCartItemExceedsMaxQtyError));
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(addTypenameToDocument(updateCartItem([])));
+
+          op.graphqlErrors([new GraphQLError(
+            'The requested qty exceeds the maximum qty allowed in shopping cart.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-input' },
           )]);
         });
       });

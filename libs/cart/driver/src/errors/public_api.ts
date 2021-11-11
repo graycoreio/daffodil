@@ -9,3 +9,4 @@ export { DaffInvalidCouponCodeError } from './invalid-coupon-code';
 export { DaffInvalidRegionError } from './invalid-region';
 export { DaffProductNotFoundError } from './product-not-found';
 export { DaffProductOutOfStockError } from './product-out-of-stock';
+export { DaffCartItemExceedsMaxQtyError } from './item-exceeds-max-qty';
