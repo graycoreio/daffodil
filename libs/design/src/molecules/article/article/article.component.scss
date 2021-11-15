@@ -3,24 +3,6 @@
 .daff-article {
 	display: block;
 
-	&__title {
-		@include headline-lg();
-	}
-
-	&__lead {
-		@include body-md();
-		font-weight: normal;
-		margin: 0;
-
-		code {
-			@include body-md();
-		}
-	}
-
-	&__meta {
-		font-size: $small-font-size;
-	}
-
 	> {
 		h1,
 		h2,
@@ -36,7 +18,7 @@
 		h4,
 		h5,
 		h6 {
-			margin-top: 1.5rem;
+			margin-top: 2rem;
 		}
 
 		h1 {
@@ -44,21 +26,18 @@
 		}
 
 		h2 {
-			@include headline-md();
+			font-size: 2rem;
+			line-height: 2.5rem;
 		}
 
 		h3 {
-			@include headline-sm();
+			font-size: 1.5rem;
+			line-height: 2rem;
 		}
 
 		h4 {
 			font-size: 1.25rem;
 			line-height: 1.5rem;
-
-			@include breakpoint(tablet) {
-				font-size: 1.5rem;
-				line-height: 2rem;
-			}
 		}
 
 		h5 {
@@ -71,14 +50,17 @@
 			line-height: 1.5rem;
 		}
 
-		ul,
-		ol {
-			padding-left: 1rem;
+		p {
+			margin: 0 0 1rem;
 		}
 
 		strong {
 			@include embolden();
 		}
+	}
+
+	a {
+		font-weight: 500;
 	}
 
 	pre {
@@ -102,7 +84,27 @@
 		border-radius: 4px;
 		font-size: $small-font-size;
 		line-height: 1rem;
-		padding: 4px;
+		padding: 0.25rem;
+	}
+
+	&__title {
+		@include headline-lg();
+	}
+
+	&__lead {
+		@include body-md();
+		font-weight: 400;
+		margin: 0;
+
+		code {
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+			font-weight: 400;
+		}
+	}
+
+	&__meta {
+		font-size: $small-font-size;
 	}
 
 	hr {
@@ -112,15 +114,13 @@
 	}
 
 	blockquote {
-		font-size: $medium-font-size;
+		border-radius: 4px;
 		margin: 0;
 		padding: 1rem 1.5rem;
 
 		cite {
-			@include uppercase();
-			@include embolden();
+			@include body-xs();
 			display: block;
-			font-size: $small-font-size;
 			margin-top: 1rem;
 		}
 	}
@@ -128,22 +128,21 @@
 	table {
 		display: block;
 		border-collapse: collapse;
+		margin: 1.5rem 0;
 		overflow: auto;
 		width: 100%;
 
 		th {
 			font-weight: 600;
 			outline: 0;
-			padding: 16px;
+			padding: 1rem;
 			text-align: left;
 			vertical-align: bottom;
 			box-sizing: border-box;
 		}
 
 		td {
-			hyphens: auto;
 			padding: 8px 16px;
-			word-break: break-word;
 			vertical-align: top;
 			box-sizing: border-box;
 		}
