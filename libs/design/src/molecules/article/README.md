@@ -2,18 +2,18 @@
 Article provides styles to common element selectors to create an article in a content page.
 
 ## Overview
-The article component can be used on any content pages that displays large blocks of text-driven information. It's meant to be used as a standalone element and should not be nested inside any other components that may change the background color from the anticipated one. In the event that you must nest the article inside another component, please ensure that you set the article's background color to the default body color.
+Article can be used on any content page that displays large blocks of text-driven information. It's meant to be used as a standalone element and should not be nested inside any other components that may change the background color from the anticipated one. In the event that you must nest an article inside another component, please ensure that you set the article's background color to the default body color.
 
 ## Headings
 <design-land-example-viewer-container example="article-headings"></design-land-example-viewer-container>
 
 ## Article Lead
-Lead is used for the opening paragraph of an article. It should be used to provide a summary or leading information for an article. Lead is a custom directive of article and is not a native element selector. To use it, add `daffArticleLead` to a paragraph (`<p>`)
+Lead is used as the opening paragraph to provide a summary or leading information for an article. Lead is a custom directive of article and is not a native element selector. To use it, add `daffArticleLead` to a paragraph (`<p>`).
 
 <design-land-example-viewer-container example="article-lead"></design-land-example-viewer-container>
 
 ## Article Meta
-Meta is used if there is metadata information about your article (i.e. author name, date, etc). Meta is a custom directive of article and is not a native element selector. To use it, add `daffArticleMeta to a paragraph (`<p>`)
+Meta is used if there is metadata information about your article (i.e. author name, date, etc). Meta is a custom directive of article and is not a native element selector. To use it, add `daffArticleMeta` to a paragraph (`<p>`).
 
 <design-land-example-viewer-container example="article-meta"></design-land-example-viewer-container>
 
