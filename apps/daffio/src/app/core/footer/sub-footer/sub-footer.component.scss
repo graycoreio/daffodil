@@ -3,8 +3,18 @@
 .daffio-sub-footer {
   display: block;
 
-  &__button-set {
-    margin-top: 25px;
-    justify-content: center;
+  &__body {
+    text-align: center;
+  }
+
+  &__actions {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+    
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 16px;
+    }
   }
 }

@@ -1,16 +1,19 @@
-@mixin daffio-sub-footer-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
+@mixin daffio-sub-footer-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
 
+	.daffio-sub-footer {
+		background: linear-gradient(
+			to bottom right,
+			daff-color($secondary, 80),
+			daff-color($secondary, 50)
+		);
+		color: daff-text-contrast(daff-color($secondary));
 
-    .daffio-sub-footer {
-        background: linear-gradient(to bottom right, daff-color($secondary), daff-color($secondary, 30));
-        color: daff-text-contrast(daff-color($secondary));
-
-        &__content {
-            color: daff-text-contrast(daff-color($secondary));
-        }
-    }
+		&__content {
+			color: daff-text-contrast(daff-color($secondary));
+		}
+	}
 }

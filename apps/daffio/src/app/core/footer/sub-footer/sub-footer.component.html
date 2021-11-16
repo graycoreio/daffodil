@@ -1,11 +1,13 @@
-<daff-callout layout="centered" class="daffio-sub-footer">
+<daff-callout textAlignment="center" class="daffio-sub-footer">
   <daff-container size="md">
     <h4 daffCalloutTitle class="daffio-sub-footer__content">
-      Join the community and get involved with Daffodil.
+      Join the community and get involved with Daffodil
     </h4>
-    <daff-button-set class="daffio-sub-footer__button-set">
-      <a [href]="repoLink" target="_blank" rel="noopener noreferrer" daff-raised-button color="secondary">Explore Daffodil</a>
-      <a [href]="discordLink" target="_blank" rel="noopener noreferrer" daff-raised-button color="white">Join the Conversation</a>
-    </daff-button-set>
+    <div daffCalloutBody class="daffio-sub-footer__body">
+      <div class="daffio-sub-footer__actions">
+        <a [href]="repoLink" target="_blank" rel="noopener noreferrer" daff-button color="white">Explore Daffodil</a>
+        <a [href]="discordLink" target="_blank" rel="noopener noreferrer" daff-stroked-button color="white">Join the Conversation</a>
+      </div>
+    </div>
   </daff-container>
 </daff-callout>
