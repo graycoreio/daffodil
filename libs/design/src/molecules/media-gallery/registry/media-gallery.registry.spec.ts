@@ -112,7 +112,6 @@ describe('DaffMediaGalleryRegistry', () => {
   });
 
   describe('remove', () => {
-
     it('should not do anything if the gallery associated with the given thumbnail DNE', () => {
       const newGallery: DaffMediaGalleryRegistration = {
         name: 'newGallery',
@@ -130,13 +129,13 @@ describe('DaffMediaGalleryRegistry', () => {
       expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(1);
     });
 
-    it('should remove a thumbnail', () => {
+    it('should remove the thumbnail from the registry', () => {
       registry.remove(mockThumbnailAlreadyAdded);
 
       expect(registry.galleries[mockGalleryAlreadyAdded.name].getValue().thumbnails.length).toEqual(0);
     });
 
-    it('should remove a gallery', () => {
+    it('should remove the gallery from the registry', () => {
       registry.remove(mockGalleryAlreadyAdded);
 
       expect(registry.galleries[mockGalleryAlreadyAdded.name]).toBeUndefined();
