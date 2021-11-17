@@ -1,5 +1,6 @@
 @import 'utilities';
 
+/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-sub-footer {
   display: block;
 
@@ -10,11 +11,25 @@
   &__actions {
     display: inline-grid;
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'repo'
+      'discord';
     grid-gap: 16px;
     
     @include breakpoint(tablet) {
       grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'repo discord';
       grid-gap: 16px;
+    }
+
+    > * {
+      &:nth-child(1) {
+        grid-area: repo;
+      }
+
+      &:nth-child(2) {
+        grid-area: discord;
+      }
     }
   }
 }
