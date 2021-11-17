@@ -35,6 +35,7 @@ describe('DaffMediaGalleryComponent', () => {
   let de: DebugElement;
   let component: DaffMediaGalleryComponent;
   const stubName = 'some name';
+  let registry: DaffMediaGalleryRegistry;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -55,6 +56,7 @@ describe('DaffMediaGalleryComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     wrapper.nameValue = stubName;
+    registry = TestBed.inject(DaffMediaGalleryRegistry);
     fixture.detectChanges();
 
     de = fixture.debugElement.query(By.css('daff-media-gallery'));
@@ -73,6 +75,13 @@ describe('DaffMediaGalleryComponent', () => {
 
   it('should take a name as input', () => {
     expect(component.name).toEqual(stubName);
+  });
+
+  it('should remove the gallery from the registry when the gallery is destroyed', () => {
+    spyOn(registry, 'remove');
+    component.ngOnDestroy();
+
+    expect(registry.remove).toHaveBeenCalledWith(component);
   });
 });
 

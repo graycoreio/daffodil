@@ -58,7 +58,7 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailR
 	/**
 	 * Adds a click event to trigger selection of the media element.
 	 *
-	 * @param $event
+	 * @param event: MouseEvent
 	 */
 	@HostListener('click', ['$event']) onClick($event: MouseEvent) {
 	  this.registry.select(this);
