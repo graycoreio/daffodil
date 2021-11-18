@@ -1,0 +1,71 @@
+@mixin daff-decorative-theme-variant($background-color, $icon-color) {
+	background: $background-color;
+	color: $icon-color;
+}
+
+
+@mixin daff-decorative-icon-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-configure-palette($daff-gray, 60);
+
+	.daff-decorative-icon {
+		@include daff-decorative-theme-variant(
+			daff-illuminate($base, $daff-gray, 1),
+			daff-illuminate($base, $daff-gray, 7)
+		);
+
+		&.daff-primary {
+			@include daff-decorative-theme-variant(
+				daff-illuminate($base, $primary, 1),
+				daff-color($primary)
+			);
+		}
+
+		&.daff-secondary {
+			@include daff-decorative-theme-variant(
+				daff-illuminate($base, $secondary, 1),
+				daff-color($secondary)
+			);
+		}
+
+		&.daff-tertiary {
+			@include daff-decorative-theme-variant(
+				daff-illuminate($base, $tertiary, 1),
+				daff-color($tertiary)
+			);
+		}
+
+		&.daff-black {
+			@include daff-decorative-theme-variant(
+				$black,
+				daff-text-contrast($black)
+			);
+		}
+
+		&.daff-white {
+			@include daff-decorative-theme-variant(
+				$white,
+				daff-text-contrast($white)
+			);
+		}
+
+		&.daff-theme {
+			@include daff-decorative-theme-variant(
+				$base,
+				daff-text-contrast($base));
+		}
+
+		&.daff-theme-contrast {
+			@include daff-decorative-theme-variant(
+				$base-contrast,
+				daff-text-contrast($base-contrast)
+			);
+		}
+	}
+}
