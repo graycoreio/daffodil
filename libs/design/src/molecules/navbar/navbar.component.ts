@@ -12,6 +12,7 @@ import {
   DaffPalette,
   daffColorMixin,
 } from '../../core/colorable/public_api';
+import { daffManageContainerLayoutMixin } from '../../core/manage-container-layout/public_api';
 
 /**
  * An _elementRef is needed for the Colorable mixin
@@ -20,7 +21,7 @@ class DaffNavbarBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffNavbarBase = daffColorMixin(DaffNavbarBase);
+const _daffNavbarBase = daffManageContainerLayoutMixin(daffColorMixin(DaffNavbarBase));
 
 /**
  * @inheritdoc

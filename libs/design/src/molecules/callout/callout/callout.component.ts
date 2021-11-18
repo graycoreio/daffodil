@@ -8,6 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
+
 import {
   DaffColorable,
   daffColorMixin,
@@ -16,6 +17,7 @@ import {
   DaffCompactable,
   daffCompactableMixin,
 } from '../../../core/compactable/public_api';
+import { daffManageContainerLayoutMixin } from '../../../core/manage-container-layout/public_api';
 import { DaffTextAlignable } from '../../../core/text-alignable/text-alignable';
 import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
 
@@ -42,7 +44,7 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffCalloutBase, 'left')));
+const _daffCalloutBase = daffManageContainerLayoutMixin(daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffCalloutBase, 'left'))));
 
 /**
  * @inheritdoc
