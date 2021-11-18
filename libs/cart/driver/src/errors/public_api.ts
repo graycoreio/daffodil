@@ -6,6 +6,7 @@ export { DaffCartExpiredPaymentTokenError } from './expired-payment-token';
 export { DaffCartInvalidAPIResponseError } from './invalid-api-response';
 export { DaffInvalidCountryError } from './invalid-country';
 export { DaffInvalidCouponCodeError } from './invalid-coupon-code';
+export { DaffInvalidEmailError } from './invalid-email';
 export { DaffInvalidRegionError } from './invalid-region';
 export { DaffProductNotFoundError } from './product-not-found';
 export { DaffProductOutOfStockError } from './product-out-of-stock';
