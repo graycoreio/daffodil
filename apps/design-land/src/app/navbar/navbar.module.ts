@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import {
   DaffNavbarModule,
   DaffButtonModule,
+  DaffContainerModule,
 } from '@daffodil/design';
+
 
 import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
 import { DesignLandNavbarComponent } from './navbar.component';
@@ -17,7 +19,7 @@ import { DesignLandNavbarComponent } from './navbar.component';
   imports: [
     CommonModule,
     DesignLandNavbarRoutingModule,
-
+    DaffContainerModule,
     DaffNavbarModule,
     DaffButtonModule,
   ],

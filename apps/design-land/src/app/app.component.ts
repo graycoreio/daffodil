@@ -11,6 +11,7 @@ import { BUTTON_EXAMPLES } from '@daffodil/design/button/examples';
 import { CALLOUT_EXAMPLES } from '@daffodil/design/callout/examples';
 import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
 import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
+import { CONTAINER_EXAMPLES } from '@daffodil/design/container/examples';
 import { HERO_EXAMPLES } from '@daffodil/design/hero/examples';
 import { LIST_EXAMPLES } from '@daffodil/design/list/examples';
 import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
@@ -39,6 +40,7 @@ export class DesignLandAppComponent {
       ...CARD_EXAMPLES,
       ...CALLOUT_EXAMPLES,
       ...CHECKBOX_EXAMPLES,
+      ...CONTAINER_EXAMPLES,
       ...HERO_EXAMPLES,
       ...LOADING_ICON_EXAMPLES,
       ...MEDIA_GALLERY_EXAMPLES,
