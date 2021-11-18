@@ -8,6 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
+
 import {
   daffColorMixin,
   DaffColorable,
@@ -16,6 +17,7 @@ import {
   DaffCompactable,
   daffCompactableMixin,
 } from '../../../core/compactable/public_api';
+import { daffManageContainerLayoutMixin } from '../../../core/manage-container-layout/public_api';
 import { DaffTextAlignable } from '../../../core/text-alignable/text-alignable';
 import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
 
@@ -43,7 +45,7 @@ class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffHeroBase, 'left')));
+const _daffHeroBase = daffManageContainerLayoutMixin(daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffHeroBase, 'left'))));
 
 /**
  * @inheritdoc

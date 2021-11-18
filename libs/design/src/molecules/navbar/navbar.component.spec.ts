@@ -57,7 +57,7 @@ describe('DaffNavbarComponent', () => {
     });
 
     it('should not set a default color', () => {
-      expect(de.nativeElement.classList.toString()).toEqual('daff-navbar');
+      expect(de.componentInstance.color).toBeUndefined();
     });
   });
 
