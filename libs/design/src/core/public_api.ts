@@ -8,3 +8,4 @@ export * from './skeletonable/skeletonable';
 export * from './mutable/mutable';
 export * from './text-alignable/text-alignable';
 export * from './compactable/public_api';
+export * from './manage-container-layout/public_api';
