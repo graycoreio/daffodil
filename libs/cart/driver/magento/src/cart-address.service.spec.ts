@@ -13,6 +13,7 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
+import { DaffCartDriverErrorCodes } from '@daffodil/cart/driver';
 import {
   MagentoCart,
   MagentoUpdateAddressResponse,
@@ -33,6 +34,7 @@ import {
   DaffCartFactory,
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
+import { DaffError } from '@daffodil/core';
 import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartAddressService } from './cart-address.service';
@@ -233,6 +235,30 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           null,
           { category: 'graphql-no-such-entity' },
         )]);
+      });
+
+      describe('because the email is invalid', () => {
+        it('should throw an invalid email error', done => {
+          service.update(cartId, mockDaffCartAddress).pipe(
+            catchError((err: DaffError) => {
+              expect(err.code).toEqual(DaffCartDriverErrorCodes.INVALID_EMAIL);
+              done();
+              return [];
+            }),
+          ).subscribe();
+
+          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
+
+          op.graphqlErrors([new GraphQLError(
+            'Invalid email format',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-input' },
+          )]);
+        });
       });
     });
 
