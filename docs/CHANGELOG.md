@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.8](https://github.com/graycoreio/daffodil/compare/v0.39.7...v0.39.8) (2021-11-18)
+
+
+### Features
+
+* **cart:** add `DaffCartItemExceedsMaxQtyError` ([#1901](https://github.com/graycoreio/daffodil/issues/1901)) ([94c7ef0](https://github.com/graycoreio/daffodil/commit/94c7ef017914594caa8a87bd0874df7f4879860b))
+* **cart:** add invalid email error ([#1905](https://github.com/graycoreio/daffodil/issues/1905)) ([c149387](https://github.com/graycoreio/daffodil/commit/c1493874a3191bfc4ab7c6169a0d1645c47dac17))
+* **cart:** transform expired payment token error in magento driver ([#1881](https://github.com/graycoreio/daffodil/issues/1881)) ([03e9bbc](https://github.com/graycoreio/daffodil/commit/03e9bbce96af98b95a39648725df814d9b5ca81c))
+* **daffio:** enforce ChangeDetectionStrategy.OnPush ([#1888](https://github.com/graycoreio/daffodil/issues/1888)) ([d009695](https://github.com/graycoreio/daffodil/commit/d00969577fb582ca26ecf17050f2598dee29d33c))
+* **daffio:** update daff.io home page ([#1884](https://github.com/graycoreio/daffodil/issues/1884)) ([41fd407](https://github.com/graycoreio/daffodil/commit/41fd407ffce72c926375c97055704bcdb2f128a2))
+* **design:** deprecate DaffImageGalleryComponent in favor of DaffMediaGalleryComponent ([#1893](https://github.com/graycoreio/daffodil/issues/1893)) ([9b96cc1](https://github.com/graycoreio/daffodil/commit/9b96cc1c412d6e6e85da96f44825197e589d8bde))
+* **design:** deprecate DaffQtyDropdownComponent in favor of DaffQuantityFieldComponent ([#1897](https://github.com/graycoreio/daffodil/issues/1897)) ([0811abc](https://github.com/graycoreio/daffodil/commit/0811abcd3a5b04a047dc45021299c3fe4596c190))
+* **design:** enforce ChangeDetectionStrategy.OnPush ([#1888](https://github.com/graycoreio/daffodil/issues/1888)) ([4f70378](https://github.com/graycoreio/daffodil/commit/4f70378d1a17ed29c9ed9f5371c71516ee5547cd))
+* **design:** update typography size mixins ([#1898](https://github.com/graycoreio/daffodil/issues/1898)) ([20a48ea](https://github.com/graycoreio/daffodil/commit/20a48ea978abf1779a531a7424b36de7dd40520e))
+
+
+### Bug Fixes
+
+* **design:** allow media gallery to be registered when they are initialized ([#1668](https://github.com/graycoreio/daffodil/issues/1668)) ([8fa58b8](https://github.com/graycoreio/daffodil/commit/8fa58b8279dafc01eb6a5508f396e699daf3ffda))
+
 ### [0.39.7](https://github.com/graycoreio/daffodil/compare/v0.39.6...v0.39.7) (2021-10-26)
 
 
