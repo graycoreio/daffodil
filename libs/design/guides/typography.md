@@ -34,7 +34,7 @@ The headline mixins are responsive and will adjust at the `tablet` breakpoint.
 | body-md     | 20px              | 28px                | 20px               | 28px                 | 400         | 0px            |
 | body-sm     | 16px              | 24px                | 16px               | 24px                 | 400         | 0px            |
 | body-xs     | 14px              | 20px                | 14px               | 20px                 | 400         | 0px            |
-| subheading  | 12px              | 16px                | 12px               | 16px                 | 700         | 1px            |
+| subheading  | 14px              | 16px                | 14px               | 16px                 | 700         | 0.5px          |
 | caption     | 12px              | 16px                | 12px               | 16px                 | 400         | 0px            |
 
 ## Formatting Mixins
