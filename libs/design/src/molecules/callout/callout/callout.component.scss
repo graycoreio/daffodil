@@ -50,6 +50,16 @@
 		&:not(:first-child) {
 			margin-top: 48px;
 		}
+
+		p {
+			&:first-of-type {
+				margin-top: 0;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
 	}
 
 	// centered will be deprecated in v1.0.0
