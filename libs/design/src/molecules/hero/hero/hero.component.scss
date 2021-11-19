@@ -21,19 +21,37 @@
 
 	&__title {
 		@include embolden();
-		font-size: 4.5rem;
-		line-height: 4.5rem;
+		font-size: 2.5rem;
+		line-height: 2.5rem;
 		margin: 0;
 		max-width: 1040px;
-		overflow-wrap: break-word;
 		width: 100%;
+
+		@include breakpoint(tablet) {
+			font-size: 4.5rem;
+			line-height: 4.5rem;
+		}
 	}
 
 	&__subtitle {
-		@include body-lg();
+		@include body-md();
 		margin: 16px 0 0;
 		max-width: 672px;
 		width: 100%;
+
+		@include breakpoint(tablet) {
+			@include body-lg();
+		}
+
+		p {
+			&:first-of-type {
+				margin-top: 0;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
 	}
 
 	&__body {
