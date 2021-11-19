@@ -20,7 +20,9 @@
 	}
 
 	&__title {
-		@include headline-xl();
+		@include embolden();
+		font-size: 4.5rem;
+		line-height: 4.5rem;
 		margin: 0;
 		max-width: 1040px;
 		overflow-wrap: break-word;
@@ -29,7 +31,6 @@
 
 	&__subtitle {
 		@include body-lg();
-		font-weight: 400;
 		margin: 16px 0 0;
 		max-width: 672px;
 		width: 100%;
