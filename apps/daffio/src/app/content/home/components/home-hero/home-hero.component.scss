@@ -3,8 +3,17 @@
 :host {
 	display: block;
 	overflow: hidden;
+
+	@include breakpoint(big-tablet) {
+		height: calc(100vh - 64px);
+	}
+
+	@include breakpoint(desktop) {
+		height: 80vh;
+	}
 }
 
+/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-home-hero {
 	&__grid {
     display: grid;
@@ -41,9 +50,13 @@
 		@include breakpoint(big-tablet) {
 			display: block;
 			position: absolute;
-			right: -240px;
-			top: -80px;
-			width: 640px;
+			right: -288px;
+			top: -40px;
+			width: 736px;
+		}
+
+		@include breakpoint(desktop) {
+			top: -60px;
 		}
 	}
 }

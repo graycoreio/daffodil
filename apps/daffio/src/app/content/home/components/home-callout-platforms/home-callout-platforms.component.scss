@@ -1,18 +1,18 @@
 @import 'utilities';
 
+/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-home-callout-platforms {
 	&__logos {
 		display: grid;
 		grid-template-columns: 112px 112px;
 		grid-template-areas: 'magento shopify';
 		grid-gap: 24px;
-		opacity: 0.5;
 		justify-content: center;
 
 		@include breakpoint(mobile) {
 			grid-template-columns: 144px 144px;
 		grid-template-areas: 'magento shopify';
-		grid-gap: 24px;
+		grid-gap: 48px;
 		}
 	}
 
