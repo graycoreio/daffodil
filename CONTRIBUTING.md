@@ -74,7 +74,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 1. Make your changes in a new git branch:
 
      ```shell
-     git checkout -b my-fix-branch master
+     git checkout -b my-fix-branch develop
      ```
 
 1. Create your patch, **including appropriate test cases**.
@@ -96,14 +96,14 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     git push origin my-fix-branch
     ```
 
-1. In GitHub, send a pull request to `daffodil:master`.
+1. In GitHub, send a pull request to `daffodil:develop`.
 * If we suggest changes then:
   * Make the required updates.
   * Re-run the Daffodil test suites to ensure tests are still passing.
   * Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
 
     ```shell
-    git rebase master -i
+    git rebase develop -i
     git push -f
     ```
   * Note: don't squash your branch until after the reviewers comment "lgtm", so they don't need to re-review your entire branch every commit.
@@ -121,10 +121,10 @@ from the main (upstream) repository:
     git push origin --delete my-fix-branch
     ```
 
-* Check out the master branch:
+* Check out the develop branch:
 
     ```shell
-    git checkout master -f
+    git checkout develop -f
     ```
 
 * Delete the local branch:
@@ -133,10 +133,10 @@ from the main (upstream) repository:
     git branch -D my-fix-branch
     ```
 
-* Update your master with the latest upstream version:
+* Update your develop with the latest upstream version:
 
     ```shell
-    git pull --ff upstream master
+    git pull --ff upstream develop
     ```
 
 ## <a name="rules"></a> Coding Rules
@@ -172,7 +172,7 @@ to read on GitHub as well as in various git tools.
 
 The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
-Samples: (even more [samples](https://github.com/graycoreio/daffodil/commits/master))
+Samples: (even more [samples](https://github.com/graycoreio/daffodil/commits/develop))
 
 ```
 docs(changelog): update changelog to beta.5
@@ -241,9 +241,9 @@ reference GitHub issues that this commit **Closes**.
 A detailed explanation can be found in this [document][commit-message-format].
 
 
-[coc]: https://github.com/graycoreio/daffodil/code-of-conduct/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/graycoreio/daffodil/code-of-conduct/blob/develop/CODE_OF_CONDUCT.md
 [commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
-[dev-doc]: https://github.com/graycoreio/daffodil/blob/master/docs/DEVELOPER.md
+[dev-doc]: https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md
 [github]: https://github.com/graycoreio/daffodil
 [gitter]: https://gitter.im/graycoreio/daffodil
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html
