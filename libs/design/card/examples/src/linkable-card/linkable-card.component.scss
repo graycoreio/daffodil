@@ -1,5 +1,7 @@
-a[daff-card],
-a[daff-raised-card],
-a[daff-stroked-card] {
-	max-width: 480px;
+a {
+	daff-card,
+	daff-raised-card,
+	daff-stroked-card {
+		max-width: 480px;
+	}
 }
