@@ -4,21 +4,28 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { DaffPalette } from '@daffodil/design';
-
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'card-theming',
   templateUrl: './card-theming.component.html',
   styles: [`
     daff-card {
-      max-width: 400px;
+      max-width: 480px;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardThemingComponent {
-  color: DaffPalette = 'primary';
-
   colorControl: FormControl = new FormControl('');
+
+  options = [
+    { value: '', label: 'Default' },
+    { value: 'primary', label: 'Primary' },
+    { value: 'secondary', label: 'Secondary' },
+    { value: 'tertiary', label: 'Tertiary' },
+    { value: 'theme', label: 'Theme' },
+    { value: 'theme-contrast', label: 'Theme Contrast' },
+    { value: 'black', label: 'Black' },
+    { value: 'white', label: 'White' },
+  ];
 }

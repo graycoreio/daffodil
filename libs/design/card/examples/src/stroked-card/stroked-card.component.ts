@@ -6,12 +6,12 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'raised-card',
-  templateUrl: './raised-card.component.html',
-  styleUrls: ['./raised-card.component.scss'],
+  selector: 'stroked-card',
+  templateUrl: './stroked-card.component.html',
+  styleUrls: ['./stroked-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RaisedCardComponent {
+export class StrokedCardComponent {
   colorControl: FormControl = new FormControl('');
 
   options = [

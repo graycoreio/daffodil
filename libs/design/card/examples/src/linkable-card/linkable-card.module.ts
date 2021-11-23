@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {
@@ -17,6 +18,7 @@ import { LinkableCardComponent } from './linkable-card.component';
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     DaffCardModule,
     DaffImageModule,
     DaffButtonModule,

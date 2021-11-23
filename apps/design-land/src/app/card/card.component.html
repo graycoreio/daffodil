@@ -1,33 +1,56 @@
 <daff-article>
 	<h1 daffArticleTitle>Card</h1>
-	<p daffArticleLead>The card is a flexibe content container that supports multiple content types used in the context of a single subject.</p>
+	<p daffArticleLead>Cards are versatile content containers that contain content and actions to convey information about a single subject.</p>
+
+	<h2>Overview</h2>
+	<p>There are three types of cards: default (filled), raised, and stroked. Cards can contain anything from images, blocks of text, lists, accordions, and other components.</p>
 
 	<h2>Basic Card</h2>
-	<p>The example below is a basic card with the default color and a fixed width. Cards naturally do not have a fixed width, so they'll fill the full width of its parent element. Widths of cards can be defined by its parent element.</p>
+	<p>The example below is a default, filled card that includes all of a card's pre-styled elements and a fixed width. Cards naturally do not have a fixed width, so they'll be 100% wide by default. The width is changeable with custom CSS.</p>
 	<design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
 
-	<h2>Linkable Card</h2>
-	<p>Cards can be linkable by adding the component selector to the <code>&lt;a&gt;</code> tag.</p>
-	<design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
-
 	<h2>Supported Content Types</h2>
-	<p>A <code>&lt;daff-card&gt;</code> can transclude:</p>
-	<ul>
-		<li><code>[daffCardImage]</code> - Card image</li>
-		<li><code>[daffCardTagline]</code> — Card tagline</li>
-		<li><code>[daffCardTitle]</code>— Card title</li>
-		<li><code>[daffCardActions]</code> — Container for buttons positioned at the bottom of a card</li>
-		<li>Any additional text and components will be placed between title and actions.</li>
-	</ul>
+	<p>A card supports a wide variety of content and includes minimally pre-styled <code>image</code>, <code>icon</code>, <code>tagline</code>, <code>title</code>, <code>content</code>, and <code>actions</code> content containers.</p>
+
+	<h3>Image</h3>
+	<p>Image can be added to a card by using the <code>daffCardImage</code> attribute. It stretches the image to a card's defined width and ensures that its border radius is flush with a card.</p>
+
+	<h3>Icon</h3>
+	<p>Icon can be added to a card by using the <code>daffCardIcon</code> attribute. It's intended for visual or branding reinforcement and should not be used for actionable icons.</p>
+
+	<h3>Tagline</h3>
+	<p>Tagline can be added to a card by using the <code>daffCardTagline</code> attribute. It's intended to supplement the title by providing a short, memorable description.</p>
+
+	<h3>Title</h3>
+	<p>Title can be added to a card by using the <code>daffCardTitle</code> attribute.</p>
+
+	<h3>Content</h3>
+	<p>Content can be added to a card by using the <code>daffCardContent</code> attribute and should only be used once. It's a wrapper container that can be used to place all additional components and text content within a card. The content container allows for a ton of control and customization because it's not affected by any of card's properties and only serves as a wrapping and spacing container.</p>
+
+	<h3>Actions</h3>
+	<p>Buttons can be added to a card by using the <code>daffCardActions</code> attribute. This container will always be positioned at the bottom of a card.</p>
 
 	<h2>Properties</h2>
 
-	<h3>Raised</h3>
-	<p>The raised property adds elevation to a card and can be defined by using the <code>raised</code> property.</p>
+	<h3>Orientation</h3>
+	<p>Orientation dictates how a card's content is stacked — <code>vertical</code> or <code>horizontal</code>. Cards are oriented vertically by default. The orientation of a card can be defined or updated by using the <code>orientation</code> property. Horizontal cards will stack vertically on smaller screens due to size constraints.</p>
+
+	<design-land-example-viewer-container example="card-orientation"></design-land-example-viewer-container>
+
+	<h2>Linkable Card</h2>
+	<p>Cards can be linkable by adding the component selector to the <code>&lt;a&gt;</code> tag. All card types are linkable.</p>
+	<design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
+
+	<h2>Raised Card</h2>
+	<p>A raised card adds elevation to the default card.</p>
 	<design-land-example-viewer-container example="raised-card"></design-land-example-viewer-container>
 
+	<h2>Stroked Card</h2>
+	<p>A stroked card adds a border to the default card.</p>
+	<design-land-example-viewer-container example="stroked-card"></design-land-example-viewer-container>
+
 	<h3>Theming</h3>
-  <p>The color of a card background can be defined by using the <code>color</code> property. There's no default color property defined, and if one is not defined in its usage, the card background will display the base color of the application.</p>
+  <p>Cards will use the base color of your application to display the default background and/or border color. A card's colors can be defined by using the <code>color</code> property.</p>
 
   <p>Supported colors: <code>primary | secondary | tertiary | white | black | theme | theme-contrast</code></p>
 

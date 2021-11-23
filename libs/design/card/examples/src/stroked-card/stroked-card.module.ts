@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import {
   DaffCardModule,
@@ -8,22 +9,23 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { BasicCardComponent } from './basic-card.component';
+import { StrokedCardComponent } from './stroked-card.component';
 
 @NgModule({
   declarations: [
-    BasicCardComponent,
+    StrokedCardComponent,
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+
     DaffCardModule,
     DaffImageModule,
     DaffButtonModule,
-
-    FontAwesomeModule,
   ],
   exports: [
-    BasicCardComponent,
+    StrokedCardComponent,
   ],
 })
-export class BasicCardModule { }
+export class StrokedCardModule { }

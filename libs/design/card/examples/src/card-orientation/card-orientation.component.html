@@ -1,5 +1,5 @@
-<daff-card>
-	<daff-image daffCardImage
+<daff-card [orientation]="orientationControl.value">
+  <daff-image daffCardImage
 		src="https://images.unsplash.com/photo-1593519749347-80f101e93113?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3774&q=80"
 		alt="Bottom up view of Basel exhibition centre"
 		width="1261"
@@ -11,7 +11,11 @@
 	<div daffCardContent>
     <p>This covered, public space not only marks the entrance to the exhibitions, but also functions as a meeting place for locals and visitors. The architects called the prominent hole in the middle the "Fenster zum Himmel" ("window to heaven").</p>
   </div>
-  <div daffCardActions>
+	<div daffCardActions>
     <button daff-button color="theme-contrast">Learn More</button>
   </div>
 </daff-card>
+
+<select [formControl]="orientationControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>
