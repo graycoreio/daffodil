@@ -1,11 +1,53 @@
-<a routerLink="/" daff-card>
+<a daff-card href="https://www.basel.com/en/attractions/basel-exhibition-centre-f45d5dd6f0" target="_blank" [color]="basicColorControl.value">
 	<daff-image daffCardImage
-		src="/assets/card/uber-logo-dark.svg"
-		alt="uber logo"
-		width="340"
-		height="135">
+		src="https://images.unsplash.com/photo-1593519749347-80f101e93113?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3774&q=80"
+		alt="Bottom up view of Basel exhibition centre"
+		width="1261"
+		height="946">
 	</daff-image>
-	<div daffCardTagline>Card Tagline</div>
-	<h4 daffCardTitle>Title</h4>
-	<p>This is a linkable card.</p>
+	<div daffCardTagline>Basel, Switzerland</div>
+	<h4 daffCardTitle>Basel Exhibition Centre</h4>
+	<div daffCardContent>
+		<p>This covered, public space not only marks the entrance to the exhibitions, but also functions as a meeting place for locals and visitors. The architects called the prominent hole in the middle the "Fenster zum Himmel" ("window to heaven").</p>
+	</div>
 </a>
+
+<select [formControl]="basicColorControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>
+
+<a daff-raised-card href="https://www.basel.com/en/attractions/basel-exhibition-centre-f45d5dd6f0" target="_blank" [color]="raisedColorControl.value">
+	<daff-image daffCardImage
+		src="https://images.unsplash.com/photo-1593519749347-80f101e93113?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3774&q=80"
+		alt="Bottom up view of Basel exhibition centre"
+		width="1261"
+		height="946">
+	</daff-image>
+	<div daffCardTagline>Basel, Switzerland</div>
+	<h4 daffCardTitle>Basel Exhibition Centre</h4>
+	<div daffCardContent>
+		<p>This covered, public space not only marks the entrance to the exhibitions, but also functions as a meeting place for locals and visitors. The architects called the prominent hole in the middle the "Fenster zum Himmel" ("window to heaven").</p>
+	</div>
+</a>
+
+<select [formControl]="strokedColorControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>
+
+<a daff-stroked-card href="https://www.basel.com/en/attractions/basel-exhibition-centre-f45d5dd6f0" target="_blank" [color]="strokedColorControl.value">
+	<daff-image daffCardImage
+		src="https://images.unsplash.com/photo-1593519749347-80f101e93113?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3774&q=80"
+		alt="Bottom up view of Basel exhibition centre"
+		width="1261"
+		height="946">
+	</daff-image>
+	<div daffCardTagline>Basel, Switzerland</div>
+	<h4 daffCardTitle>Basel Exhibition Centre</h4>
+	<div daffCardContent>
+		<p>This covered, public space not only marks the entrance to the exhibitions, but also functions as a meeting place for locals and visitors. The architects called the prominent hole in the middle the "Fenster zum Himmel" ("window to heaven").</p>
+	</div>
+</a>
+
+<select [formControl]="strokedColorControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>

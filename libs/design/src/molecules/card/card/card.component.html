@@ -1,7 +1,10 @@
 <ng-content select="[daffCardImage]"></ng-content>
-<div class="daff-card__content">
-	<ng-content select="[daffCardTagline]"></ng-content>
-	<ng-content select="[daffCardTitle]"></ng-content>
-	<ng-content></ng-content>
+<div class="daff-card__wrapper">
+	<div class="daff-card__body">
+		<ng-content select="[daffCardIcon]"></ng-content>
+		<ng-content select="[daffCardTagline]"></ng-content>
+		<ng-content select="[daffCardTitle]"></ng-content>
+		<ng-content select="[daffCardContent]"></ng-content>
+	</div>
+	<ng-content select="[daffCardActions]"></ng-content>
 </div>
-<ng-content select="[daffCardActions]"></ng-content>

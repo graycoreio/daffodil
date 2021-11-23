@@ -1,4 +1,5 @@
-:host {
-	display: block;
-	max-width: 340px;
+a[daff-card],
+a[daff-raised-card],
+a[daff-stroked-card] {
+	max-width: 480px;
 }

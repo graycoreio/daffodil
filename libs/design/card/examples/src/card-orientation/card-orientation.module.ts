@@ -1,29 +1,30 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
+  DaffButtonModule,
   DaffCardModule,
   DaffImageModule,
-  DaffButtonModule,
 } from '@daffodil/design';
 
-import { BasicCardComponent } from './basic-card.component';
+import { CardOrientationComponent } from './card-orientation.component';
 
 @NgModule({
   declarations: [
-    BasicCardComponent,
+    CardOrientationComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     DaffCardModule,
     DaffImageModule,
     DaffButtonModule,
-
     FontAwesomeModule,
   ],
   exports: [
-    BasicCardComponent,
+    CardOrientationComponent,
   ],
 })
-export class BasicCardModule { }
+export class CardOrientationModule { }
