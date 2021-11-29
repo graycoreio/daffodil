@@ -10,7 +10,7 @@ export const appRoutes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
       { path: '', pathMatch: 'full', loadChildren: () => import('./content/home/home.module').then(m => m.DaffioHomeModule) },
-      { path: 'why-pwa', loadChildren: () => import('./content/pwa/pwa.module').then(m => m.DaffioPwaModule) },
+      { path: 'why-pwa', loadChildren: () => import('./content/why-pwa/why-pwa.module').then(m => m.DaffioWhyPwaModule) },
       { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
       { path: 'api', loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule) },
       { path: 'guides', loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule) },

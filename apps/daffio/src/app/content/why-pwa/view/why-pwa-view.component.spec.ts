@@ -6,11 +6,11 @@ import {
 } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffioPwaComponent } from './pwa.component';
+import { DaffioWhyPwaViewComponent } from './why-pwa-view.component';
 
-describe('DaffioPwaComponent', () => {
-  let component: DaffioPwaComponent;
-  let fixture: ComponentFixture<DaffioPwaComponent>;
+describe('DaffioWhyPwaViewComponent', () => {
+  let component: DaffioWhyPwaViewComponent;
+  let fixture: ComponentFixture<DaffioWhyPwaViewComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -18,7 +18,7 @@ describe('DaffioPwaComponent', () => {
         RouterTestingModule,
       ],
       declarations: [
-        DaffioPwaComponent,
+        DaffioWhyPwaViewComponent,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -28,7 +28,7 @@ describe('DaffioPwaComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioPwaComponent);
+    fixture = TestBed.createComponent(DaffioWhyPwaViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

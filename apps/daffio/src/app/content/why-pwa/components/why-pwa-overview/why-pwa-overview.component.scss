@@ -1,0 +1,55 @@
+@import 'utilities';
+
+/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
+.daffio-why-pwa-overview {
+	&__card-grid {
+		display: grid;
+    grid-template-columns: 1fr;
+		grid-template-areas:
+			'a'
+			'b'
+			'c'
+			'd';
+		grid-gap: 16px;
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr 1fr;
+			grid-template-areas:
+				'a  b'
+				'c  d';
+			grid-gap: 16px;
+    }
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+			grid-template-areas: 'a b c d';
+			grid-gap: 16px;
+    }
+
+		> * {
+			&:first-child {
+				grid-area: a;
+			}
+	
+			&:nth-child(2) {
+				grid-area: b;
+			}
+	
+			&:nth-child(3) {
+				grid-area: c;
+			}
+	
+			&:last-child {
+				grid-area: d;
+			}
+		}
+
+		fa-icon {
+			font-size: 1.5rem;
+		}
+	}
+
+	&__card-grid-icon {
+		max-width: 48px;
+	}
+}
