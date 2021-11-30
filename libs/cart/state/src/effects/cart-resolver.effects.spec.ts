@@ -22,6 +22,7 @@ import {
   DaffCartDriver,
   DaffCartNotFoundError,
   DaffCartInvalidAPIResponseError,
+  DaffProductOutOfStockError,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
@@ -34,6 +35,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
   DaffStorageServiceError,
   DaffServerSideStorageError,
+  DaffError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
@@ -149,19 +151,20 @@ describe('DaffCartResolverEffects', () => {
 
       describe('and when creating a cart fails', () => {
         let errorMessage: string;
+        let error: DaffError;
 
         beforeEach(() => {
           errorMessage = 'error';
+          error = new DaffCartInvalidAPIResponseError(errorMessage);
           const response = cold(
             '#',
             {},
-            new DaffCartInvalidAPIResponseError(errorMessage),
+            error,
           );
           driverCreateSpy.and.returnValue(response);
         });
 
         it('should dispatch DaffResolveCartFailure action', () => {
-          const error = new DaffCartResolutionError(errorMessage);
           const resolveCartFailureAction = new DaffResolveCartFailure(
             daffTransformErrorToStateError(error),
           );
@@ -194,19 +197,44 @@ describe('DaffCartResolverEffects', () => {
 
       describe('and the get call fails', () => {
         let errorMessage: string;
+        let error: DaffError;
 
         beforeEach(() => {
           errorMessage = 'error';
+          error = new DaffCartInvalidAPIResponseError(errorMessage);
           const response = cold(
             '#',
             {},
-            new DaffCartInvalidAPIResponseError(errorMessage),
+            error,
           );
           driverGetSpy.and.returnValue(response);
         });
 
+        describe('and a daffodil error is thrown', () => {
+
+          beforeEach(() => {
+            error = new DaffProductOutOfStockError(errorMessage);
+            const response = cold(
+              '#',
+              {},
+              error,
+            );
+            driverGetSpy.and.returnValue(response);
+          });
+
+          it('should indicate failed cart resolution while preserving the original error', () => {
+            const resolveCartFailureAction = new DaffResolveCartFailure(
+              daffTransformErrorToStateError(error),
+            );
+            const expected = cold('--b', {
+              b: resolveCartFailureAction,
+            });
+
+            expect(effects.onResolveCart()).toBeObservable(expected);
+          });
+        });
+
         it('should indicate failed cart resolution', () => {
-          const error = new DaffCartResolutionError(errorMessage);
           const resolveCartFailureAction = new DaffResolveCartFailure(
             daffTransformErrorToStateError(error),
           );
@@ -279,7 +307,7 @@ describe('DaffCartResolverEffects', () => {
           });
         });
 
-        describe('should indicate failed cart resolution after attempting to load and create a cart', () => {
+        describe('after attempting to load and create a cart', () => {
           let errorMessage: string;
 
           beforeEach(() => {
