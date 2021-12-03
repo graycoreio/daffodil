@@ -1,0 +1,67 @@
+@import 'utilities';
+@import 'theme';
+
+:host {
+  $root: '.daffio-header';
+  display: block;
+
+  ::ng-deep {
+    #{$root}__item {
+      color: currentColor;
+      font-size: $medium-font-size;
+      padding: 0 24px;
+      text-decoration: none;
+    }
+  }
+}
+
+.daffio-header {
+  &__navbar {
+    justify-content: space-between;
+    padding: 0 24px;
+
+    @include breakpoint(tablet) {
+      padding: 0;
+    }
+  }
+
+  &__menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint(tablet) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    color: currentColor;
+    font-size: $medium-font-size;
+    padding: 0 24px;
+    text-decoration: none;
+  }
+
+  &__button {
+    display: flex;
+    margin-left: 14px;
+  }
+
+  &__logo {
+    width: 128px;
+
+    @include breakpoint(mobile) {
+      width: 160px;
+    }
+  }
+
+  &__bars {
+    display: flex;
+    margin-right: -13px;
+
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+}
