@@ -17,6 +17,7 @@ import { LIST_EXAMPLES } from '@daffodil/design/list/examples';
 import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
 import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
 import { MODAL_EXAMPLES } from '@daffodil/design/modal/examples';
+import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
 
@@ -45,6 +46,7 @@ export class DesignLandAppComponent {
       ...LOADING_ICON_EXAMPLES,
       ...MEDIA_GALLERY_EXAMPLES,
       ...MODAL_EXAMPLES,
+      ...NAVBAR_EXAMPLES,
       ...QUANTITY_FIELD_EXAMPLES,
       ...LIST_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))

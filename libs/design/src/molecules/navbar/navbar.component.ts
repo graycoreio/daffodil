@@ -9,7 +9,6 @@ import {
 
 import {
   DaffColorable,
-  DaffPalette,
   daffColorMixin,
 } from '../../core/colorable/public_api';
 import { daffManageContainerLayoutMixin } from '../../core/manage-container-layout/public_api';
@@ -27,7 +26,8 @@ const _daffNavbarBase = daffManageContainerLayoutMixin(daffColorMixin(DaffNavbar
  * @inheritdoc
  */
 @Component({
-  selector: 'daff-navbar',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'nav[daff-navbar]',
   styleUrls: ['./navbar.component.scss'],
   template: '<ng-content></ng-content>',
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
@@ -37,13 +37,13 @@ const _daffNavbarBase = daffManageContainerLayoutMixin(daffColorMixin(DaffNavbar
 })
 export class DaffNavbarComponent extends _daffNavbarBase implements DaffColorable {
 
-  @Input() shadowed = false;
+  @Input() raised = false;
 
   /**
    * @docs-private
    */
-  @HostBinding('class.daff-navbar--shadowed') get shadowClass() {
-    return this.shadowed;
+  @HostBinding('class.daff-navbar--raised') get raisedClass() {
+    return this.raised;
   };
 
   /**

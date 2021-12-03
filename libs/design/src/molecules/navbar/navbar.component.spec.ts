@@ -12,11 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffPalette } from '../../core/colorable/public_api';
 import { DaffNavbarComponent } from './navbar.component';
 
-
-@Component({ template: '<daff-navbar [color]="color" [shadowed]="shadowed"></ daff-navbar>' })
+@Component({ template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>' })
 class WrapperComponent {
-  color: DaffPalette = undefined;
-  shadowed = false;
+  color: DaffPalette;
+  raised = false;
 }
 
 describe('DaffNavbarComponent', () => {
@@ -38,19 +37,21 @@ describe('DaffNavbarComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
-    de = fixture.debugElement.query(By.css('daff-navbar'));
+    de = fixture.debugElement.query(By.css('nav[daff-navbar]'));
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a daff-navbar class to the host component', () => {
-    expect(de.nativeElement.classList.contains('daff-navbar')).toBeTruthy();
+  describe('<nav daff-navbar>', () => {
+    it('should add a class of "daff-navbar" to the host element', () => {
+      expect(de.nativeElement.classList.contains('daff-navbar')).toBeTruthy();
+    });
   });
 
-  describe('using a colored variant of a button', () => {
-    it('should set a color class on the button', () => {
+  describe('using the color property of navbar', () => {
+    it('should set a color class on the navbar', () => {
       wrapper.color = 'primary';
       fixture.detectChanges();
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
@@ -61,11 +62,12 @@ describe('DaffNavbarComponent', () => {
     });
   });
 
-  describe('using a shadowed navbar', () => {
-    it('should set `daff-navbar--shadowed` on the host element', () => {
-      wrapper.shadowed = true;
+  describe('using the raised property of navbar', () => {
+    it('should add a class of "daff-navbar--raised" to the host element', () => {
+      wrapper.raised = true;
       fixture.detectChanges();
-      expect(de.componentInstance.shadowClass).toEqual(true);
+
+      expect(de.componentInstance.raisedClass).toEqual(true);
     });
   });
 });

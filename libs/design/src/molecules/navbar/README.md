@@ -1,36 +1,41 @@
 # Navbar
-The navbar is a basic element container that will align the elements horizontally within the container. It utilizes `display: flex;` and expects that its direct children will take advantage of the flexbox model to place themselves.
+Navbar is a flexible and extensible, horizontally stacked component intended for major blocks of navigation links.
 
-## Import 
-1. Import the `DaffNavbarModule` from `@daffodil/design` inside of your `AppModule`;
+## Overview
+The navbar contains minimal layout styles, allowing the content within it to be fluid and customizable. It utilizes the `flex` display and is customizable with all the flexbox properties. It's required to be used with the native HTML `<nav>` element to ensure an accessible experience by default.
 
-```typescript
-import { DaffNavbarModule } from '@daffodil/design';
-```
-
-2. Add the `DaffNavbarModule` to your `imports` array inside of your `AppModule`.
-
-```typescript
-@NgModule({
-  declarations: [
-  ],
-  imports: [
-    DaffNavbarModule,
-  ]
-})
-```
+## Basic Navbar
+<design-land-example-viewer-container example="basic-navbar"></design-land-example-viewer-container>
 
 ## Theming
-The color of a navbar can be changed by using the `color` property. By default, the navbar uses the base color of the theme. This can be changed to one of the supported colors.
-- Supported colors: `primary | secondary | tertiary | black | white`
+The default background color of a navbar is light gray, but it can be updated to one of the supported colors by using the `color` property.
 
-## Usage 
+Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
-`<daff-navbar>` is the template used for the navbar.
+<design-land-example-viewer-container example="navbar-theming"></design-land-example-viewer-container>
 
-### Basic Usage Example
-``` html
-<daff-navbar>
-  <button>Button</button>
-</daff-navbar>
+## Contained Navbar
+A navbar can be contained to a specific width by using `<daff-container>`. [View Container Documentation](/libs/design/src/atoms/container/README.md) The layout styles for the navbar will be passed down to the container by utilizing the `daffManageContainerLayoutMixin`.
+
+<design-land-example-viewer-container example="contained-navbar"></design-land-example-viewer-container>
+
+## Raised Navbar
+The raised property adds elevation to a navbar. To enable it, set the `raised` property on `<nav daff-navbar>`.
+
+<design-land-example-viewer-container example="raised-navbar"></design-land-example-viewer-container>
+
+## Accessibility
+Daffodil enforces the usage of the native `<nav>` HTML element to ensure an accessible experience by default. If more than one navbar is used, every navbar should be given a meaningful label by using the `aria-labelledby` attribute.
+
+### Example
+```html
+<nav daff-navbar aria-labelledby="main-navigation">
+<!--  navigation items -->
+</nav>
+
+<footer>
+  <nav daff-navbar aria-labelledby="footer-navigation">
+  <!--  navigation items -->
+  </nav>
+</footer>
 ```

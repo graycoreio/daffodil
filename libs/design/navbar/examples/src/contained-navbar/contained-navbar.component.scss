@@ -1,0 +1,15 @@
+@import 'daff-util';
+
+.daff-contained-navbar {
+	justify-content: space-between;
+
+	&__links {
+		> * {
+			@include embolden();
+			font-size: 1.125rem;
+			padding: 0 16px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+	}
+}
