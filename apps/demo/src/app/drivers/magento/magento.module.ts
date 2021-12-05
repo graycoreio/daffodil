@@ -17,9 +17,9 @@ import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento
 
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
-import { possibleTypes } from './fragmentTypes.json';
+import possibleTypes from './fragmentTypes.json';
 
-const cache = new InMemoryCache({ possibleTypes });
+const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
 
 @NgModule({
   imports: [
