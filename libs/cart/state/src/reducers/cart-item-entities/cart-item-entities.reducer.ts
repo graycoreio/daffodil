@@ -41,11 +41,13 @@ export function daffCartItemEntitiesReducer<
       return adapter.setAll(action.payload.map(item => ({
         ...item,
         daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
+        errors: [],
       })), state);
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
       return adapter.upsertOne({
         ...action.payload,
         daffState: getDaffState(state.entities[action.payload.id]) || DaffCartItemStateEnum.Default,
+        errors: [],
       }, state);
     case DaffCartItemActionTypes.CartItemAddSuccessAction:
       return adapter.setAll(
@@ -63,6 +65,7 @@ export function daffCartItemEntitiesReducer<
       return adapter.upsertOne({
         ...state.entities[action.itemId],
         daffState: DaffCartItemStateEnum.Error,
+        errors: state.entities[action.itemId]?.errors.concat(action.payload) || [],
       }, state);
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
     case DaffCartActionTypes.CartLoadSuccessAction:
@@ -99,9 +102,9 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
     const oldItem = oldCartItems[newItem.id];
     switch(true) {
       case !oldItem:
-        return { ...newItem, daffState: DaffCartItemStateEnum.New };
+        return { ...newItem, daffState: DaffCartItemStateEnum.New, errors: []};
       case oldItem?.qty !== newItem.qty:
-        return { ...newItem, daffState: DaffCartItemStateEnum.Updated };
+        return { ...newItem, daffState: DaffCartItemStateEnum.Updated, errors: []};
       default:
         return newItem;
     }
@@ -110,6 +113,6 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
 
 function updateMutatedCartItemState<T extends DaffStatefulCartItem>(responseItems: T[], stateItems: Dictionary<T>, itemId: T['id']): T[] {
   return responseItems.map(item => item.id === itemId ?
-    { ...item, daffState: DaffCartItemStateEnum.Updated } :
+    { ...item, daffState: DaffCartItemStateEnum.Updated, errors: []} :
     { ...item, daffState: getDaffState(stateItems[item.id]) || DaffCartItemStateEnum.Default });
 }

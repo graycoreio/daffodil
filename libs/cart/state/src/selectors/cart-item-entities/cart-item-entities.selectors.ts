@@ -17,6 +17,7 @@ import {
   DaffCartItemDiscount,
 } from '@daffodil/cart';
 import { daffAdd } from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
 
 import {
   DaffCartItemStateEnum,
@@ -74,6 +75,10 @@ export interface DaffCartItemEntitiesMemoizedSelectors<
    * Zero by default.
    */
 	selectCartItemTotalDiscount: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
+  /**
+   * Selects the specified item's errors.
+   */
+	selectCartItemErrors: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
 }
 
 const createCartItemEntitiesSelectors = <
@@ -210,6 +215,11 @@ const createCartItemEntitiesSelectors = <
     (discounts: U['discounts']) => discounts?.reduce((acc, { amount }) => daffAdd(acc, amount), 0) || 0,
   )).memoized;
 
+  const selectCartItemErrors = defaultMemoize((itemId: U['id']) => createSelector(
+    selectCartItem(itemId),
+    (cartItem: U) => cartItem?.errors || [],
+  )).memoized;
+
   return {
     selectCartItemEntitiesState,
     selectCartItemIds,
@@ -228,6 +238,7 @@ const createCartItemEntitiesSelectors = <
     selectCartItemQuantity,
     selectCartItemDiscounts,
     selectCartItemTotalDiscount,
+    selectCartItemErrors,
   };
 };
 

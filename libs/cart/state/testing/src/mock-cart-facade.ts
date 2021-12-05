@@ -151,5 +151,9 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 	  return new BehaviorSubject(0);
 	}
 
+	getCartItemErrors(itemId: DaffCartItem['id']): BehaviorSubject<DaffStateError[]> {
+	  return new BehaviorSubject([]);
+	}
+
 	dispatch(action: Action) {};
 }

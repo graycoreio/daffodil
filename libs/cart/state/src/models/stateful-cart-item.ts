@@ -1,4 +1,5 @@
 import { DaffCartItem } from '@daffodil/cart';
+import { DaffStateError } from '@daffodil/core/state';
 
 /**
  * The state of the cart item is intended to enhance the client side UX like indicating when a cart
@@ -8,6 +9,10 @@ import { DaffCartItem } from '@daffodil/cart';
  */
 export interface DaffStatefulCartItem extends DaffCartItem {
 	daffState: DaffCartItemStateEnum;
+  /**
+   * Errors specific to the cart item.
+   */
+  errors: DaffStateError[];
 }
 
 export enum DaffCartItemStateEnum {

@@ -145,6 +145,7 @@ export class DaffCartFacade<
   private _selectCartItemRowTotal: DaffCartMemoizedSelectors<T, V, U>['selectCartItemRowTotal'];
   private _selectCartItemDiscounts: DaffCartMemoizedSelectors<T, V, U>['selectCartItemDiscounts'];
   private _selectCartItemTotalDiscount: DaffCartMemoizedSelectors<T, V, U>['selectCartItemTotalDiscount'];
+  private _selectCartItemErrors: DaffCartMemoizedSelectors<T, V, U>['selectCartItemErrors'];
 
   constructor(
     private store: Store<DaffCartStateRootSlice<T, V, U>>,
@@ -248,6 +249,7 @@ export class DaffCartFacade<
       selectCartItemQuantity,
       selectCartItemDiscounts,
       selectCartItemTotalDiscount,
+      selectCartItemErrors,
     } = getDaffCartSelectors<T, V, U>();
     this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
     this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
@@ -258,6 +260,7 @@ export class DaffCartFacade<
     this._selectCartItemRowTotal = selectCartItemRowTotal;
     this._selectCartItemDiscounts = selectCartItemDiscounts;
     this._selectCartItemTotalDiscount = selectCartItemTotalDiscount;
+    this._selectCartItemErrors = selectCartItemErrors;
 
     this.cart$ = this.store.pipe(select(selectCartValue));
 
@@ -387,6 +390,10 @@ export class DaffCartFacade<
   getCartItemTotalDiscount(itemId: U['id']): Observable<number> {
     return this.store.pipe(select(this._selectCartItemTotalDiscount(itemId)));
   }
+
+  getCartItemErrors(itemId: U['id']): Observable<DaffStateError[]> {
+    return this.store.pipe(select(this._selectCartItemErrors(itemId)));
+  };
 
   dispatch(action: Action) {
     this.store.dispatch(action);

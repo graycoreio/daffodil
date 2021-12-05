@@ -277,4 +277,8 @@ export interface DaffCartFacadeInterface<
    * Zero by default.
    */
 	getCartItemTotalDiscount(itemId: U['id']): Observable<number>;
+  /**
+   * Gets the specified item's errors.
+   */
+	getCartItemErrors(itemId: U['id']): Observable<DaffStateError[]>;
 }
