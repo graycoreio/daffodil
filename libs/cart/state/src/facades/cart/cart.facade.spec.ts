@@ -77,6 +77,7 @@ import {
 import { DaffState } from '@daffodil/core/state';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 import { DaffCartFacade } from './cart.facade';
 
 describe('DaffCartFacade', () => {
@@ -1697,6 +1698,27 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', { a: cart.items[0].discounts.reduce((acc, { amount }) => acc + amount, 0) });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.getCartItemTotalDiscount(cart.items[0].id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getCartItemErrors', () => {
+    let error: DaffStateError;
+
+    beforeEach(() => {
+      error = {
+        code: 'code',
+        message: 'message',
+      };
+    });
+
+    it('should be the cart item\'s sum of all discounts', () => {
+      const cart = cartFactory.create({
+        items: statefulCartItemFactory.createMany(2),
+      });
+      const expected = cold('a', { a: [error]});
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      facade.dispatch(new DaffCartItemUpdateFailure(error, cart.items[0].id));
+      expect(facade.getCartItemErrors(cart.items[0].id)).toBeObservable(expected);
     });
   });
 });

@@ -25,7 +25,9 @@ import {
   DaffStatefulConfigurableCartItemFactory,
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
 
 describe('selectCartItemEntitiesState', () => {
@@ -56,6 +58,7 @@ describe('selectCartItemEntitiesState', () => {
     selectCartItemQuantity,
     selectCartItemDiscounts,
     selectCartItemTotalDiscount,
+    selectCartItemErrors,
   } = getDaffCartItemEntitiesSelectors();
 
   beforeEach(() => {
@@ -426,6 +429,44 @@ describe('selectCartItemEntitiesState', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       const spy = jasmine.createSpy();
       const selector = store.pipe(select(selectCartItemTotalDiscount(mockCartItems[0].id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCartShippingMethodsLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('selectCartItemErrors', () => {
+    let error: DaffStateError;
+
+    beforeEach(() => {
+      error = {
+        code: 'code',
+        message: 'message',
+      };
+    });
+
+    it('should return the errors of the cart item', () => {
+      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+      store.dispatch(new DaffCartItemUpdateFailure(error, mockCartItems[0].id));
+      const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id)));
+      const expected = cold('a', { a: [error]});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should return an empty array if the cart item is not in state', () => {
+      const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id + 'notId')));
+      const expected = cold('a', { a: []});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id)));
 
       selector.subscribe(spy);
 

@@ -84,6 +84,12 @@ export function cartItemReducer<T extends DaffCart>(
         ...setLoading(state.loading, DaffState.Complete),
       };
 
+    case DaffCartItemActionTypes.CartItemUpdateFailureAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffState.Complete),
+      };
+
     default:
       return state;
   }
