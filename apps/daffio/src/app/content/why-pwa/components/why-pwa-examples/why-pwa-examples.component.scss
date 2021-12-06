@@ -1,0 +1,15 @@
+@import 'utilities';
+
+/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
+.daffio-why-pwa-examples {
+	&__card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+
+    @include breakpoint(big-tablet) {
+      grid-template-columns: 1fr 1fr 1fr;
+			grid-gap: 24px;
+    }
+	}
+}

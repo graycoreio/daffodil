@@ -4,13 +4,13 @@ import {
   Routes,
 }  from '@angular/router';
 
-import { DaffioPwaComponent } from './pages/pwa/pwa.component';
+import { DaffioWhyPwaViewComponent } from './view/why-pwa-view.component';
 
 const pwa: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: DaffioPwaComponent,
+    component: DaffioWhyPwaViewComponent,
   },
 ];
 
@@ -22,4 +22,4 @@ const pwa: Routes = [
     RouterModule,
   ],
 })
-export class DaffioPwaRoutingModule {}
+export class DaffioWhyPwaRoutingModule {}

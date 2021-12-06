@@ -60,22 +60,6 @@
   }
 }
 
-.understanding {
-    &__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 30px;
-
-    @include breakpoint(big-tablet) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
-}
-
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;
