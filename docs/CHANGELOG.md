@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.9](https://github.com/graycoreio/daffodil/compare/v0.39.8...v0.39.9) (2021-12-06)
+
+
+### Features
+
+* **cart:** add errors to cart item entity ([#1927](https://github.com/graycoreio/daffodil/issues/1927)) ([3bb32b3](https://github.com/graycoreio/daffodil/commit/3bb32b33bdeb5884e5cd6f19ff390310b068ee77))
+* **cart:** persist driver error in resolver effects ([#1923](https://github.com/graycoreio/daffodil/issues/1923)) ([34f7c25](https://github.com/graycoreio/daffodil/commit/34f7c250bb1240c091f62e16432def22546e89a1))
+* **daffio:** update card usage in daff.io ([#1902](https://github.com/graycoreio/daffodil/issues/1902)) ([0366757](https://github.com/graycoreio/daffodil/commit/0366757dc75adfbe7308aeb75d5a0a92e1fa03d0))
+* **daffio:** update home page copy and UI ([#1918](https://github.com/graycoreio/daffodil/issues/1918)) ([97005b8](https://github.com/graycoreio/daffodil/commit/97005b833443ce57c4f632095c135731e84c267e))
+* **daffio:** update subfooter UI ([#1904](https://github.com/graycoreio/daffodil/issues/1904)) ([e43164b](https://github.com/graycoreio/daffodil/commit/e43164bc04f0aee5d11482d213540d78ae045e2c))
+* **daffio:** update why pwa page ([#1921](https://github.com/graycoreio/daffodil/issues/1921)) ([334cffa](https://github.com/graycoreio/daffodil/commit/334cffaaba778825bc1f09f63f5f2de9d02df179))
+* **design:** create manage container layout mixin ([#1906](https://github.com/graycoreio/daffodil/issues/1906)) ([6aa51b0](https://github.com/graycoreio/daffodil/commit/6aa51b080e5840dbc1d4af1fffd930ac71d11d06))
+* **design:** implement manage container layout mixin in hero, callout, and navbar components ([#1906](https://github.com/graycoreio/daffodil/issues/1906)) ([46f89dd](https://github.com/graycoreio/daffodil/commit/46f89dd704697293d86c2042897c97bfce94a932))
+* **design:** make image component lazy loaded by default ([13db3da](https://github.com/graycoreio/daffodil/commit/13db3da4bd62f0095585cf0dd92c5456100d15b3))
+* **design:** refactor card component ([#1902](https://github.com/graycoreio/daffodil/issues/1902)) ([642c5ce](https://github.com/graycoreio/daffodil/commit/642c5ce64885f3d7051948c758f9e87815fe215b))
+
 ### [0.39.8](https://github.com/graycoreio/daffodil/compare/v0.39.7...v0.39.8) (2021-11-18)
 
 
