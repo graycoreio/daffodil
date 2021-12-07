@@ -1,4 +1,5 @@
 # Feature Component
+The feature component is deprecated.
 
 The `feature` component can be used to display feature-related content on a page.
 

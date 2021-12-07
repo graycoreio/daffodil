@@ -12,6 +12,9 @@ export enum DaffFeatureModeEnum {
   Normal = 'normal'
 }
 
+/**
+ * @deprecated See {@link DaffCardComponent}
+ */
 @Component({
   selector: 'daff-feature',
   templateUrl: './feature.component.html',
