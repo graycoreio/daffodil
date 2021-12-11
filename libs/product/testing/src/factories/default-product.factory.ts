@@ -16,7 +16,7 @@ export class MockProduct implements DaffProduct {
 
 	type = DaffProductTypeEnum.Simple;
 	id = faker.datatype.uuid();
-	url = `/${faker.random.word()}.html`;
+	url = `/${faker.internet.domainWord()}.html`;
 	canonicalUrl = faker.internet.url();
 	price = this.stubPrice;
 	in_stock = true;

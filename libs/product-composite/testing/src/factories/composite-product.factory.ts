@@ -19,7 +19,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	items = [
 	  {
 	    id: faker.datatype.uuid(),
-	    url: `/${faker.random.word()}.html`,
+	    url: `/${faker.internet.domainWord()}.html`,
 	    required: faker.datatype.boolean(),
 	    title: faker.commerce.productName(),
 	    input_type: DaffCompositeProductItemInputEnum.select,
@@ -27,7 +27,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      {
 	        id: faker.datatype.uuid(),
 	        type: DaffProductTypeEnum.Simple,
-	        url: `/${faker.random.word()}.html`,
+	        url: `/${faker.internet.domainWord()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
@@ -45,7 +45,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      {
 	        id: faker.datatype.uuid(),
 	        type: DaffProductTypeEnum.Simple,
-	        url: `/${faker.random.word()}.html`,
+	        url: `/${faker.internet.domainWord()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
@@ -64,7 +64,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	  },
 	  {
 	    id: faker.datatype.uuid(),
-	    url: `/${faker.random.word()}.html`,
+	    url: `/${faker.internet.domainWord()}.html`,
 	    required: faker.datatype.boolean(),
 	    title: faker.commerce.productName(),
 	    input_type: DaffCompositeProductItemInputEnum.select,
@@ -72,7 +72,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      {
 	        id: faker.datatype.uuid(),
 	        type: DaffProductTypeEnum.Simple,
-	        url: `/${faker.random.word()}.html`,
+	        url: `/${faker.internet.domainWord()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
@@ -90,7 +90,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      {
 	        id: faker.datatype.uuid(),
 	        type: DaffProductTypeEnum.Simple,
-	        url: `/${faker.random.word()}.html`,
+	        url: `/${faker.internet.domainWord()}.html`,
 	        name: faker.commerce.productMaterial(),
 	        price: faker.datatype.number({ min: 1, max: 100 }),
 	        images: [],
