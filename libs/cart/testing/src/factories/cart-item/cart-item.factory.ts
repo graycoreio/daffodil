@@ -19,7 +19,7 @@ export class DaffMockCartItem implements DaffCartItem {
 	image = <DaffProductImage>new DaffProductImageFactory().create();
   sku = 'sku';
   name = 'Product Name';
-  url = `/${faker.random.word()}.html`;
+  url = `/${faker.internet.domainWord()}.html`;
   qty = faker.datatype.number({ min: 1, max: 100 });
   price = faker.datatype.number({ min: 1, max: 1500 });
   row_total = this.qty * this.price;
