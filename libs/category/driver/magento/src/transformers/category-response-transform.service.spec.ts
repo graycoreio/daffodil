@@ -129,7 +129,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     it('should call transform on the magentoCategoryTransformerService', () => {
       service.transform(completeCategory, stubMediaUrl);
 
-      expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory.category);
+      expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory.category, completeCategory.products);
     });
 
     it('should call transform on the magentoCategoryPageConfigurationService', () => {

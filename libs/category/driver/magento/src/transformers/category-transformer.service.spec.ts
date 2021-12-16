@@ -6,6 +6,7 @@ import {
 } from '@daffodil/category';
 import { MagentoCategory } from '@daffodil/category/driver/magento';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 
@@ -39,7 +40,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
   });
 
   describe('transform', () => {
-
+    let result: DaffCategory;
     let magentoCategory: MagentoCategory;
 
     beforeEach(() => {
@@ -78,10 +79,38 @@ describe('DaffMagentoCategoryTransformerService', () => {
       };
 
       stubCategory.breadcrumbs[0].url = `/${stubCategory.breadcrumbs[0].url}.html`;
+      result = service.transform(magentoCategory, magentoCategory.products.items);
+    });
+
+    describe('when the products are different than those nested in the category', () => {
+      let newProducts: MagentoProduct[];
+
+      beforeEach(() => {
+        newProducts = [{
+          __typename: 'simple',
+          uid: '1',
+          name: 'name',
+          sku: 'a different SKU',
+          url_key: 'url_key',
+          url_suffix: '.html',
+          image: null,
+          price_range: null,
+          thumbnail: {
+            url: 'url',
+            label: 'label',
+          },
+        }];
+        result = service.transform(magentoCategory, newProducts);
+      });
+
+      it('should set product_ids from the products response, not the category', () => {
+        expect(result.product_ids).toContain(newProducts[0].sku);
+        expect(result.product_ids).not.toContain(magentoCategory.products.items[0].sku);
+      });
     });
 
     it('should return a DaffCategory', () => {
-      expect(service.transform(magentoCategory)).toEqual(stubCategory);
+      expect(result).toEqual(stubCategory);
     });
 
     it('should return breadcrumbs in order of category_level', () => {
@@ -122,11 +151,12 @@ describe('DaffMagentoCategoryTransformerService', () => {
         url: '/urlKey3.html',
       }];
 
-      expect(service.transform(magentoCategory).breadcrumbs).toEqual(expectedBreadcrumbs);
+      result = service.transform(magentoCategory, magentoCategory.products.items);
+      expect(result.breadcrumbs).toEqual(expectedBreadcrumbs);
     });
 
     it('should set a leading slash for the URL', () => {
-      expect(service.transform(magentoCategory).url[0]).toEqual('/');
+      expect(result.url[0]).toEqual('/');
     });
   });
 });

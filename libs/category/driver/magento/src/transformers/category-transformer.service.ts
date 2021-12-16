@@ -4,6 +4,7 @@ import {
   DaffCategory,
   DaffCategoryBreadcrumb,
 } from '@daffodil/category';
+import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import {
   MagentoBreadcrumb,
@@ -15,7 +16,7 @@ import {
 })
 export class DaffMagentoCategoryTransformerService {
 
-  transform(category: MagentoCategory): DaffCategory {
+  transform(category: MagentoCategory, products: MagentoProduct[]): DaffCategory {
     return {
       id: category.uid,
       url: `/${category.url_path}${category.url_suffix}`,
@@ -28,8 +29,8 @@ export class DaffMagentoCategoryTransformerService {
       breadcrumbs: category.breadcrumbs
         ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb, category))
         .sort((a, b) => a.level - b.level) || null,
-      product_ids: category.products.items.map(product => product.sku),
-      total_products: category.products.items.length,
+      product_ids: products.map(product => product.sku),
+      total_products: products.length,
     };
   }
 
