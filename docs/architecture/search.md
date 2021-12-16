@@ -18,4 +18,4 @@ A separate "join package" will take care of providing feature-specific drivers. 
 
 ## Models
 
-Daffodil necessarily cannot fully type the search results. A number of fields are standard for rendering a search result and are therefore guaranteed, e.g. `title` and `id`. To accomodate as many use cases as possible, an `extra_attributes` field is provided on the search result. Individual drivers can expose mechanisms for the app to request additional fields that will be included in `extra_attributes`.
+Daffodil necessarily cannot fully type the search results. A number of fields are standard for rendering a search result and are therefore guaranteed, e.g. `title` and `id`. To accommodate as many use cases as possible, an `extra_attributes` field is provided on the search result. Individual drivers can expose mechanisms for the app to request additional fields that will be included in `extra_attributes`.
