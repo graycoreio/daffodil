@@ -5,6 +5,7 @@ import { MagentoCategory } from '@daffodil/category/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 class MockMagentoCategory implements MagentoCategory {
+  __typename = 'CategoryTree';
   uid = faker.random.alphaNumeric(10);
   url_path = faker.random.word();
   url_suffix = '.html';
