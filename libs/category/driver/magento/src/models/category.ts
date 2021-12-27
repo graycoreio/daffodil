@@ -1,6 +1,7 @@
 import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 export interface MagentoCategory {
+  __typename?: string;
   uid: string;
   url_path: string;
   url_suffix: string;
