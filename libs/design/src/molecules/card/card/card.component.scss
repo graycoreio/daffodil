@@ -63,9 +63,14 @@ $card-img-border-radius: calc(#{$card-border-radius} - 1px);
 
 	&__title {
 		@include embolden();
-		font-size: 1.5rem;
-		line-height: 1.75rem;
+		font-size: 1.375rem;
+		line-height: 1.5rem;
 		margin: 0 0 1rem;
+
+		@include breakpoint(mobile) {
+			font-size: 1.5rem;
+			line-height: 1.75rem;
+		}
 	}
 
 	&__body {

@@ -1,7 +1,7 @@
 a {
-	daff-card,
-	daff-raised-card,
-	daff-stroked-card {
+	&.daff-card,
+	&.daff-raised-card,
+	&.daff-stroked-card {
 		max-width: 480px;
 	}
 }
