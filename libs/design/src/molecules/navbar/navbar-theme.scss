@@ -8,44 +8,44 @@
 	$secondary: map-get($theme, secondary);
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 	$white: daff-map-deep-get($theme, 'core.white');
 	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-configure-palette($daff-gray, 60);
 
 	.daff-navbar {
-		@include daff-navbar-theme-variant($base);
+		@include daff-navbar-theme-variant(daff-illuminate($base, $daff-gray, 1));
 
-		&--shadowed {
-			box-shadow: 0 3px 10px rgba($black, 0.08);
+		&--raised {
+			box-shadow: 0 4px 10px rgba($black, 0.08);
 		}
 
 		&.daff-primary {
-			@include daff-navbar-theme-variant(
-				daff-color($primary)
-			);
+			@include daff-navbar-theme-variant(daff-color($primary));
 		}
 
 		&.daff-secondary {
-			@include daff-navbar-theme-variant(
-				daff-color($secondary)
-			);
+			@include daff-navbar-theme-variant(daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			@include daff-navbar-theme-variant(
-				daff-color($tertiary)
-			);
+			@include daff-navbar-theme-variant(daff-color($tertiary));
 		}
 
 		&.daff-black {
-			@include daff-navbar-theme-variant(
-				$black
-			);
+			@include daff-navbar-theme-variant($black);
 		}
 
 		&.daff-white {
-			@include daff-navbar-theme-variant(
-				$white
-			);
+			@include daff-navbar-theme-variant($white);
+		}
+
+		&.daff-theme {
+			@include daff-navbar-theme-variant($base);
+		}
+
+		&.daff-theme-contrast {
+			@include daff-navbar-theme-variant($base-contrast);
 		}
 	}
 }

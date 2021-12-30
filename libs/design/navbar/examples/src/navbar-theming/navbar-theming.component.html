@@ -1,0 +1,11 @@
+<nav daff-navbar [color]="colorControl.value" class="daff-navbar-theming">
+	<div class="daff-navbar-theming__links">
+		<a href="/">Home</a>
+		<a href="/">About Us</a>
+	</div>
+	<button daff-button>Contact Us</button>
+</nav>
+
+<select [formControl]="colorControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>

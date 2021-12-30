@@ -1,6 +1,5 @@
 import {
   Component,
-  ViewEncapsulation,
   HostBinding,
   ChangeDetectionStrategy,
 } from '@angular/core';
@@ -9,7 +8,6 @@ import {
   selector: 'daffio-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

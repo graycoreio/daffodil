@@ -4,32 +4,24 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffLogoModule } from '@daffodil/branding';
-import {
-  DaffNavbarModule,
-  DaffButtonModule,
-  DaffContainerModule,
-} from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design';
 
-import { DaffioHeaderComponent } from './component/header.component';
-import { DaffioHeaderContainer } from './containers/header.component';
-import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
-
+import { DaffioHeaderComponentModule } from '../components/header.module';
+import { DaffioHeaderContainer } from './header.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
 
-    DaffNavbarModule,
+    DaffioHeaderComponentModule,
     DaffLogoModule,
     DaffButtonModule,
-    DaffContainerModule,
+
     FontAwesomeModule,
   ],
   declarations: [
-    DaffioHeaderComponent,
     DaffioHeaderContainer,
-    DaffioHeaderItemDirective,
   ],
   exports: [
     DaffioHeaderContainer,

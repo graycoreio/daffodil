@@ -1,54 +1,40 @@
-<h1>Daff Navigation Bar</h1>
-<h2>Navigation bar with buttons</h2>
-<daff-navbar class="navbar">
-  <div class="navbar__links">
-    <a href="/" class="navbar__link">Home</a>
-    <a href="/" class="navbar__link">About Us</a>
-  </div>
-  <button daff-button color="primary">Contact Us</button>
-</daff-navbar>
+<daff-article>
+  <h1 daffArticleTitle>Navbar</h1>
+  <p daffArticleLead>Navbar is a flexible and extensible, horizontally stacked component intended for major blocks of navigation links.</p>
 
-<h2>Colorable Navigation Bar</h2>
-<daff-navbar color="primary" class="navbar">
-  <div class="navbar__links">
-    <a href="/" class="navbar__link">Home</a>
-    <a href="/" class="navbar__link">About Us</a>
-  </div>
-  <button daff-button color="secondary">Contact Us</button>
-</daff-navbar>
+  <h2>Overview</h2>
+  <p>The navbar contains minimal layout styles, allowing the content within it to be fluid and customizable. It utilizes the <code>flex</code> display and is customizable with all the flexbox properties. It's required to be used with the native HTML <code>&lt;nav&gt;</code> element to ensure an accessible experience by default.</p>
 
-<daff-navbar color="secondary" class="navbar">
-  <div class="navbar__links">
-    <a href="/" class="navbar__link">Home</a>
-    <a href="/" class="navbar__link">About Us</a>
-  </div>
-  <button daff-button color="primary">Contact Us</button>
-</daff-navbar>
+  <h2>Basic Navbar</h2>
+  <design-land-example-viewer-container example="basic-navbar"></design-land-example-viewer-container>
 
-<daff-navbar color="tertiary" class="navbar">
-  <div class="navbar__links">
-    <a href="/" class="navbar__link">Home</a>
-    <a href="/" class="navbar__link">About Us</a>
-  </div>
-  <button daff-button color="primary">Contact Us</button>
-</daff-navbar>
+  <h2>Theming</h2>
+  <p>The default background color of a navbar is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
+  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
+  <design-land-example-viewer-container example="navbar-theming"></design-land-example-viewer-container>
 
-<h2>Shadowed Navigation Bar</h2>
-<daff-navbar shadowed="true" class="navbar">
-  <div class="navbar__links">
-    <a href="/" class="navbar__link">Home</a>
-    <a href="/" class="navbar__link">About Us</a>
-  </div>
-  <button daff-button color="primary">Contact Us</button>
-</daff-navbar>
+  <h2>Contained Navbar</h2>
+  <p>A navbar can be contained to a specific width by using <code>&lt;daff-container&gt;</code>. <a routerLink="/container">(View Container Documentation)</a> The layout styles for the navbar will be passed down to the container by utilizing the <code>daffManageContainerLayoutMixin</code>.</p>
+  <design-land-example-viewer-container example="contained-navbar"></design-land-example-viewer-container>
 
-<h2>Navigation Bar w/ Container Layout Management</h2>
-<daff-navbar color="black" class="navbar">
-  <daff-container size="sm">
-    <div class="navbar__links">
-      <a href="/" class="navbar__link">Home</a>
-      <a href="/" class="navbar__link">About Us</a>
-    </div>
-    <button daff-button color="primary">Contact Us</button>
-  </daff-container>
-</daff-navbar>
+  <h2>Raised Navbar</h2>
+  <p>The raised property adds elevation to a navbar. To enable it, set the <code>raised</code> property on <code>&lt;nav daff-navbar&gt;</code>.</p>
+  <design-land-example-viewer-container example="raised-navbar"></design-land-example-viewer-container>
+
+  <h2>Accessibility</h2>
+  <p>Daffodil enforces the usage of the native <code>&lt;nav&gt;</code> HTML element to ensure an accessible experience by default. If more than one navbar is used, every navbar should be given a meaningful label by using the <code>aria-lablledby</code> attribute.</p>
+  <h3>Example</h3>
+<pre>
+<code>
+&lt;nav daff-navbar aria-labelledby="main-navigation"&gt;
+  &lt;!-- navigation items --&gt;
+&lt;/nav&gt;   
+
+&lt;footer&gt;
+  &lt;nav daff-navbar aria-labelledby="footer-navigation"&gt;
+    &lt;!-- navigation items --&gt;
+  &lt;/nav&gt;
+&lt;/footer&gt;
+</code>
+</pre>
+</daff-article>
