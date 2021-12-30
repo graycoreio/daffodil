@@ -1,3 +1,18 @@
-daff-hero {
-  text-align: center;
+@import 'utilities';
+
+/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
+.daffio-support {
+  &__body {
+    text-align: center;
+  }
+
+  &__actions {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 }
