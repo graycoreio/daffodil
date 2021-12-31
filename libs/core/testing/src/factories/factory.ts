@@ -11,6 +11,8 @@ import { IDaffModelFactory } from './factory.interface';
  * The mock class is passed as the first constructor arg
  * and any additional args are passed to the mock class constructor.
  *
+ * The constructor args can be omitted if the `create` method is overridden.
+ *
  * The following example demonstrates using this feature to inject
  * a different factory into a mock class.
  *
