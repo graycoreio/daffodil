@@ -13,23 +13,28 @@ class TestMockModel {
   }
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 class TestFactory extends DaffModelFactory<TestMockModel> {
   constructor() {
     super(TestMockModel, 'field');
   }
 }
 
+@Injectable({
+  providedIn: 'root',
+})
+class TestFactoryNoType extends DaffModelFactory<TestMockModel> {
+  constructor() {
+    super();
+  }
+}
+
 describe('@daffodil/core/testing | DaffModelFactory', () => {
-  let factory: TestFactory;
+  let factory: DaffModelFactory<TestMockModel>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        TestFactory,
-      ],
-    });
-
     factory = TestBed.inject(TestFactory);
   });
 
@@ -56,6 +61,16 @@ describe('@daffodil/core/testing | DaffModelFactory', () => {
 
       it('should preferentially set fields from the partial', () => {
         expect(result.field).toEqual(newField);
+      });
+    });
+
+    describe('when not type was passed', () => {
+      beforeEach(() => {
+        factory = TestBed.inject(TestFactoryNoType);
+      });
+
+      it('should throw an error', () => {
+        expect(() => factory.create()).toThrowError('`type` is required if `create` is not overriden.');
       });
     });
   });

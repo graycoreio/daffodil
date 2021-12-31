@@ -11,6 +11,8 @@ import { IDaffModelFactory } from './factory.interface';
  * The mock class is passed as the first constructor arg
  * and any additional args are passed to the mock class constructor.
  *
+ * The constructor args can be omitted if the `create` method is overridden.
+ *
  * The following example demonstrates using this feature to inject
  * a different factory into a mock class.
  *
@@ -41,13 +43,16 @@ export abstract class DaffModelFactory<T extends Record<string, any>> implements
   _instantiationArgs: ConstructorParameters<Constructable<T>>;
 
   constructor(
-    public type: Constructable<T>,
+    public type?: Constructable<T>,
     ...args: ConstructorParameters<Constructable<T>>
   ) {
     this._instantiationArgs = args;
   }
 
   create(partial = {}): T {
+    if (!this.type) {
+      throw new Error('`type` is required if `create` is not overriden.');
+    }
     return {
       ...new this.type(...this._instantiationArgs),
       ...partial,
