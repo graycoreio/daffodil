@@ -1,0 +1,7 @@
+@mixin stopsArticleCascade($selector...) {
+	#{$selector} {
+		&:not(.daff-ae *, .daff-ae) {
+			@content;
+		}
+	}
+}
