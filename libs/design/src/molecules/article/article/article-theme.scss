@@ -1,3 +1,5 @@
+@import './stops-article-cascade';
+
 @mixin daff-article-theme($theme) {
 	$primary: map-get($theme, primary);
 	$secondary: map-get($theme, secondary);
@@ -16,22 +18,15 @@
 			color: daff-illuminate($base-contrast, $gray, 3);
 		}
 
-		a {
+		@include stopsArticleCascade(a) {
 			color: daff-color($primary);
 		}
 
-		> {
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				color: $text-color;
-			}
+		@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
+			color: $text-color;
 		}
 
-		> p {
+		@include stopsArticleCascade(p) {
 			color: $text-color;
 		}
 

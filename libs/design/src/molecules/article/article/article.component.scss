@@ -1,66 +1,61 @@
 @import 'daff-util';
+@import './stops-article-cascade';
 
 .daff-article {
 	display: block;
 
-	> {
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin-bottom: 0.5rem;
-		}
+	@include stopsArticleCascade(a) {
+		font-weight: 600;
+		text-decoration: none;
 
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin-top: 2rem;
-		}
-
-		h1 {
-			@include headline-lg();
-		}
-
-		h2 {
-			font-size: 2rem;
-			line-height: 2.5rem;
-		}
-
-		h3 {
-			font-size: 1.5rem;
-			line-height: 2rem;
-		}
-
-		h4 {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-		}
-
-		h5 {
-			font-size: 1.125rem;
-			line-height: 1.5rem;
-		}
-
-		h6 {
-			font-size: 1rem;
-			line-height: 1.5rem;
-		}
-
-		p {
-			margin: 0 0 1rem;
-		}
-
-		strong {
-			@include embolden();
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 
-	a {
-		font-weight: 500;
+	@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
+		margin-bottom: 0.5rem;
+	}
+
+	@include stopsArticleCascade(h2, h3, h4, h5, h6) {
+		margin-top: 2rem;
+	}
+
+	@include stopsArticleCascade(h1) {
+		@include headline-lg();
+	}
+
+	@include stopsArticleCascade(h2) {
+		font-size: 2rem;
+		line-height: 2.5rem;
+	}
+
+	@include stopsArticleCascade(h3) {
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+
+	@include stopsArticleCascade(h4) {
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+	}
+
+	@include stopsArticleCascade(h5) {
+		font-size: 1.125rem;
+		line-height: 1.5rem;
+	}
+
+	@include stopsArticleCascade(h6) {
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+
+	@include stopsArticleCascade(p) {
+		margin: 0 0 1rem;
+	}
+
+	strong {
+		@include embolden();
 	}
 
 	pre {
@@ -142,7 +137,7 @@
 		}
 
 		td {
-			padding: 8px 16px;
+			padding: 0.5rem 1rem;
 			vertical-align: top;
 			box-sizing: border-box;
 		}
