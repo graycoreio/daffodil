@@ -9,6 +9,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
+import { daffArticleEncapsulatedMixin } from '../../core/article-encapsulated/public_api';
 import {
   daffColorMixin,
   DaffColorable,
@@ -47,7 +48,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md')))));
+const _daffButtonBase = daffArticleEncapsulatedMixin(daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md'))))));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 

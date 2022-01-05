@@ -9,6 +9,7 @@ import {
   OnInit,
 } from '@angular/core';
 
+import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
 import {
   DaffColorable,
   daffColorMixin,
@@ -37,7 +38,7 @@ class DaffCardBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCardBase = daffColorMixin(DaffCardBase);
+const _daffCardBase = daffArticleEncapsulatedMixin(daffColorMixin(DaffCardBase));
 
 /**
  * @inheritdoc
