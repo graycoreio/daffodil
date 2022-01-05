@@ -1,54 +1,52 @@
-<daff-article>
-  <h1>Hero</h1>
-  <p daffArticleLead>Hero is a top level container that is large and captivating. It should only be used once as the first container on any given page.</p>
+<h1 daffArticleTitle>Hero</h1>
+<p daffArticleLead>Hero is a top level container that is large and captivating. It should only be used once as the first container on any given page.</p>
 
-  <h2>Overview</h2>
-  <p>Heros are the first thing users see on a page and are designed to catch their attention. It's a flexible and extensible component that includes pre-styled content containers.</p>
+<h2>Overview</h2>
+<p>Heros are the first thing users see on a page and are designed to catch their attention. It's a flexible and extensible component that includes pre-styled content containers.</p>
 
-  <h2>Supported Content Types</h2>
-  <p>A <code>&lt;daff-hero&gt;</code> supports transclusion of any content and includes stylized <code>icon</code>, <code>tagline</code>, <code>title</code>, <code>subtitle</code>, and <code>body</code> content containers.</p>
+<h2>Supported Content Types</h2>
+<p>A <code>&lt;daff-hero&gt;</code> supports transclusion of any content and includes stylized <code>icon</code>, <code>tagline</code>, <code>title</code>, <code>subtitle</code>, and <code>body</code> content containers.</p>
 
-  <h3>Icon</h3>
-  <p><code>[daffHeroIcon]</code> is intended for visual or branding reinforcement. It should not be used for actionable icons.</p>
+<h3>Icon</h3>
+<p><code>[daffHeroIcon]</code> is intended for visual or branding reinforcement. It should not be used for actionable icons.</p>
 
-  <h3>Tagline</h3>
-  <p>Hero taglines are used by adding <code>[daffHeroTagline]</code> to a <code>&lt;p&gt;</code> tag. It's intended to supplement the title by providing a short, memorable description.</p>
+<h3>Tagline</h3>
+<p>Hero taglines are used by adding <code>[daffHeroTagline]</code> to a <code>&lt;p&gt;</code> tag. It's intended to supplement the title by providing a short, memorable description.</p>
 
-  <h3>Title</h3>
-  <p>Hero titles are used by adding <code>[daffHeroTitle]</code> to a <code>&lt;h1&gt;</code> tag.</p>
+<h3>Title</h3>
+<p>Hero titles are used by adding <code>[daffHeroTitle]</code> to a <code>&lt;h1&gt;</code> tag.</p>
 
-  <h3>Subtitle</h3>
-  <p>Hero subtitles are used by adding <code>[daffHeroSubtitle]</code> to a <code>&lt;h2&gt;</code> tag.</p>
+<h3>Subtitle</h3>
+<p>Hero subtitles are used by adding <code>[daffHeroSubtitle]</code> to a <code>&lt;h2&gt;</code> tag.</p>
 
-  <h3>Body</h3>
-  <p><code>[daffHeroBody]</code> is a wrapper container that can be used to place all additional components and content within a <code>&lt;daff-hero&gt;</code> and should only be used once. The body container allows for a ton of control and customization because it's not affected by any of hero's properties and only serves as a wrapping and spacing container.</p>
+<h3>Body</h3>
+<p><code>[daffHeroBody]</code> is a wrapper container that can be used to place all additional components and content within a <code>&lt;daff-hero&gt;</code> and should only be used once. The body container allows for a ton of control and customization because it's not affected by any of hero's properties and only serves as a wrapping and spacing container.</p>
 
-  <h2>Theming</h2>
-  <p>The default background color of a hero is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
-  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
+<h2>Theming</h2>
+<p>The default background color of a hero is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
+<p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
 
-  <design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
 
-  <h2>Text Alignment</h2>
-  <p>Align hero-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to <code>[daffHeroBody]</code> or any additional components or elements that are placed inside of a hero. <code>textAlignment</code> is set to <code>left</code> by default.</p>
-  <p>Supported alignments: <code>left | center | right</code></p>
-  
-  <design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
+<h2>Text Alignment</h2>
+<p>Align hero-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to <code>[daffHeroBody]</code> or any additional components or elements that are placed inside of a hero. <code>textAlignment</code> is set to <code>left</code> by default.</p>
+<p>Supported alignments: <code>left | center | right</code></p>
 
-  <h2>Compact Heroes</h2>
-  <p>Heroes are available in a <code>compact</code> mode, which decreases the overall padding of the hero container to suit UIs that require less negative space. To enable the mode, set the <code>compact</code> property on <code>&lt;daff-hero&gt;</code>.</p>
+<design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
 
-  <design-land-example-viewer-container example="compact-hero"></design-land-example-viewer-container>
+<h2>Compact Heroes</h2>
+<p>Heroes are available in a <code>compact</code> mode, which decreases the overall padding of the hero container to suit UIs that require less negative space. To enable the mode, set the <code>compact</code> property on <code>&lt;daff-hero&gt;</code>.</p>
 
-  <h2>Gridded Heroes</h2>
-  <p>Heros are flexible enough to support grids within them.</p>
+<design-land-example-viewer-container example="compact-hero"></design-land-example-viewer-container>
 
-  <h3>Hero with Two Columns</h3>
-  <design-land-example-viewer-container example="hero-with-grid"></design-land-example-viewer-container>
+<h2>Gridded Heroes</h2>
+<p>Heros are flexible enough to support grids within them.</p>
 
-  <h2>Size</h2>
-  <p>The <code>size</code> property will be deprecated in v1.0.0. <code>compact</code> will be replaced by the <code>DaffCompactable</code> interface.</p>
+<h3>Hero with Two Columns</h3>
+<design-land-example-viewer-container example="hero-with-grid"></design-land-example-viewer-container>
 
-  <h2>Layout</h2>
-  <p>The <code>layout</code> property will be deprecated in v1.0.0</p>
-</daff-article>
+<h2>Size</h2>
+<p>The <code>size</code> property will be deprecated in v1.0.0. <code>compact</code> will be replaced by the <code>DaffCompactable</code> interface.</p>
+
+<h2>Layout</h2>
+<p>The <code>layout</code> property will be deprecated in v1.0.0</p>

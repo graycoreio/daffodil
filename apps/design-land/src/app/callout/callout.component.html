@@ -1,53 +1,51 @@
-<daff-article>
-  <h1 daffArticleTitle>Callout</h1>
-  <p daffArticleLead>Callout is a versatile component that can be used to easily highlight a piece of content.</p>
+<h1 daffArticleTitle>Callout</h1>
+<p daffArticleLead>Callout is a versatile component that can be used to easily highlight a piece of content.</p>
 
-  <h2>Overview</h2>
-  <p>Callouts can be used multiple times on a page. It's a flexible and extensible component that includes pre-styled content containers. It can be used alongside a product list to highlight a set of products, quickly lay out an accordion, showcase a set of features, etc.</p>
+<h2>Overview</h2>
+<p>Callouts can be used multiple times on a page. It's a flexible and extensible component that includes pre-styled content containers. It can be used alongside a product list to highlight a set of products, quickly lay out an accordion, showcase a set of features, etc.</p>
 
-  <h2>Supported Content Types</h2>
-  <p>A <code>&lt;daff-callout&gt;</code> supports transclusion of any content and includes stylized <code>icon</code>, <code>tagline</code>, <code>title</code>, <code>subtitle</code>, and <code>body</code> content containers.</p>
+<h2>Supported Content Types</h2>
+<p>A <code>&lt;daff-callout&gt;</code> supports transclusion of any content and includes stylized <code>icon</code>, <code>tagline</code>, <code>title</code>, <code>subtitle</code>, and <code>body</code> content containers.</p>
 
-  <h3>Icon</h3>
-  <p><code>[daffCalloutIcon]</code> is intended for visual or branding reinforcement. It should not be used for actionable icons.</p>
+<h3>Icon</h3>
+<p><code>[daffCalloutIcon]</code> is intended for visual or branding reinforcement. It should not be used for actionable icons.</p>
 
-  <h3>Tagline</h3>
-  <p>Callout taglines are used by adding <code>[daffCalloutTagline]</code> to a <code>&lt;p&gt;</code> tag. It's intended to supplement the title by providing a short, memorable description.</p>
+<h3>Tagline</h3>
+<p>Callout taglines are used by adding <code>[daffCalloutTagline]</code> to a <code>&lt;p&gt;</code> tag. It's intended to supplement the title by providing a short, memorable description.</p>
 
-  <h3>Title</h3>
-  <p>Callout titles are used by adding <code>[daffCalloutTitle]</code> to a <code>&lt;h*&gt;</code> tag.</p>
+<h3>Title</h3>
+<p>Callout titles are used by adding <code>[daffCalloutTitle]</code> to a <code>&lt;h*&gt;</code> tag.</p>
 
-  <h3>Subtitle</h3>
-  <p>Callout subtitles are used by adding <code>[daffCalloutSubtitle]</code> to a <code>&lt;p&gt;</code> tag.</p>
+<h3>Subtitle</h3>
+<p>Callout subtitles are used by adding <code>[daffCalloutSubtitle]</code> to a <code>&lt;p&gt;</code> tag.</p>
 
-  <h3>Body</h3>
-  <p><code>[daffCalloutBody]</code> is a wrapper container that can be used to place all additional components and content within a <code>&lt;daff-callout&gt;</code> and should only be used once. The body container allows for a ton of control and customization because it's not affected by any of callout's properties and only serves as a wrapping and spacing container.</p>
+<h3>Body</h3>
+<p><code>[daffCalloutBody]</code> is a wrapper container that can be used to place all additional components and content within a <code>&lt;daff-callout&gt;</code> and should only be used once. The body container allows for a ton of control and customization because it's not affected by any of callout's properties and only serves as a wrapping and spacing container.</p>
 
-  <h2>Theming</h2>
-  <p>The default background color of a callout is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
-  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
+<h2>Theming</h2>
+<p>The default background color of a callout is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
+<p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
 
-  <design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
 
-  <h2>Text Alignment</h2>
-  <p>Align callout-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to <code>[daffCalloutBody]</code> or any additional components or elements that are placed inside of a callout. <code>textAlignment</code> is set to <code>left</code> by default.</p>
-  <p>Supported alignments: <code>left | center | right</code></p>
-  <design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
+<h2>Text Alignment</h2>
+<p>Align callout-specific text with the <code>textAlignment</code> property. <code>textAlignment</code> will not cascade the alignment styles down to <code>[daffCalloutBody]</code> or any additional components or elements that are placed inside of a callout. <code>textAlignment</code> is set to <code>left</code> by default.</p>
+<p>Supported alignments: <code>left | center | right</code></p>
+<design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
 
-  <h2 id="compact-callouts">Compact Callouts</h2>
-  <p>Callouts are available in a <code>compact</code> mode, which decreases the overall padding of the callout container to suit UIs that require less negative space. To enable the mode, set the <code>compact</code> property on <code>&lt;daff-callout&gt;</code>.</p>
+<h2 id="compact-callouts">Compact Callouts</h2>
+<p>Callouts are available in a <code>compact</code> mode, which decreases the overall padding of the callout container to suit UIs that require less negative space. To enable the mode, set the <code>compact</code> property on <code>&lt;daff-callout&gt;</code>.</p>
 
-  <design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>
 
-  <h2>Gridded Callouts</h2>
-  <p>Callouts are flexible enough to support grids within them.</p>
+<h2>Gridded Callouts</h2>
+<p>Callouts are flexible enough to support grids within them.</p>
 
-  <h3>Callout with Two Columns</h3>
-  <design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
+<h3>Callout with Two Columns</h3>
+<design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
 
-  <h2>Layout</h2>
-  <p>The <code>layout</code> property is deprecated and replaced by the <code>textAlignable</code> property.</p>
+<h2>Layout</h2>
+<p>The <code>layout</code> property is deprecated and replaced by the <code>textAlignable</code> property.</p>
 
-  <h2>Size</h2>
-  <p>The <code>size</code> property is deprecated and replaced by the <code>compact</code> property.</p>
-</daff-article>
+<h2>Size</h2>
+<p>The <code>size</code> property is deprecated and replaced by the <code>compact</code> property.</p>
