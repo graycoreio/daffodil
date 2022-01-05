@@ -8,7 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-
+import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
 import {
   daffColorMixin,
   DaffColorable,
@@ -39,13 +39,13 @@ export enum DaffHeroSizeEnum {
 }
 
 /**
- * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the hero mixins
  */
 class DaffHeroBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffHeroBase = daffManageContainerLayoutMixin(daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffHeroBase, 'left'))));
+const _daffHeroBase = daffArticleEncapsulatedMixin(daffManageContainerLayoutMixin(daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffHeroBase, 'left')))));
 
 /**
  * @inheritdoc

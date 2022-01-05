@@ -5,7 +5,10 @@ import {
   Input,
   HostBinding,
   ElementRef,
+  Renderer2,
 } from '@angular/core';
+
+import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
 
 /**
  * @deprecated
@@ -25,6 +28,15 @@ enum DaffListTypeEnum {
   Nav = 'daff-nav-list'
 }
 
+/**
+ * An _elementRef and an instance of renderer2 are needed for the list mixins
+ */
+class DaffListBase {
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
+}
+
+const _daffListBase = daffArticleEncapsulatedMixin((DaffListBase));
+
 @Component({
   selector:
     'daff-list' + ',' +
@@ -35,7 +47,7 @@ enum DaffListTypeEnum {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffListComponent {
+export class DaffListComponent extends _daffListBase {
   /**
    * @deprecated
    * */
@@ -79,7 +91,9 @@ export class DaffListComponent {
     return this._getHostElement().localName;
   }
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
+  }
 
   /**
    * @docs-private

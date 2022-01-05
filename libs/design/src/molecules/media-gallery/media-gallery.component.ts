@@ -5,13 +5,25 @@ import {
   Input,
   OnInit,
   OnDestroy,
+  ElementRef,
+  Renderer2,
 } from '@angular/core';
 
+import { daffArticleEncapsulatedMixin } from '../../core/article-encapsulated/public_api';
 import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from './media-gallery-token';
 import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
 
 let uniqueGalleryId = 0;
+
+/**
+ * An _elementRef and an instance of renderer2 are needed for the link set mixins
+ */
+class DaffMediaGalleryBase {
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
+}
+
+const _daffMediaGalleryBase = daffArticleEncapsulatedMixin((DaffMediaGalleryBase));
 
 @Component({
   selector: 'daff-media-gallery',
@@ -23,7 +35,7 @@ let uniqueGalleryId = 0;
     { provide: DAFF_MEDIA_GALLERY_TOKEN, useExisting: DaffMediaGalleryComponent },
   ],
 })
-export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
+export class DaffMediaGalleryComponent extends _daffMediaGalleryBase implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
 	/**
 	 * Adds a class for styling the media gallery
 	 */
@@ -34,8 +46,13 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
 	 */
 	@Input() name = `${uniqueGalleryId}`;
 
-	constructor(private registry: DaffMediaGalleryRegistry) {
-	  uniqueGalleryId++;
+	constructor(
+		private elementRef: ElementRef,
+		private renderer: Renderer2,
+		private registry: DaffMediaGalleryRegistry,
+	) {
+	  	super(elementRef, renderer);
+	  	uniqueGalleryId++;
 	}
 
 	ngOnInit() {

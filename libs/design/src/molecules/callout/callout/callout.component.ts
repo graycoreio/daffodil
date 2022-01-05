@@ -8,7 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-
+import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
 import {
   DaffColorable,
   daffColorMixin,
@@ -44,7 +44,7 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffManageContainerLayoutMixin(daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffCalloutBase, 'left'))));
+const _daffCalloutBase = daffArticleEncapsulatedMixin(daffManageContainerLayoutMixin(daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffCalloutBase, 'left')))));
 
 /**
  * @inheritdoc
