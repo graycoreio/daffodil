@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from 'faker/locale/en_US';
+import * as faker from '@faker-js/faker/locale/en_US';
 
 import { MagentoCart } from '@daffodil/cart/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
