@@ -26,6 +26,7 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { daffAdd } from '@daffodil/core';
 
+import { MagentoCart } from '../../models/public_api';
 import { DaffMagentoCartTransformer } from './cart.service';
 
 describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
@@ -39,7 +40,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;
 
   let mockDaffCart: DaffCart;
-  let mockMagentoCart;
+  let mockMagentoCart: MagentoCart;
   let mockBillingAddress: MagentoCartAddress;
   let mockShippingAddress: MagentoShippingAddress;
   let mockShippingMethod: MagentoCartShippingMethod;
@@ -135,7 +136,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   });
 
   describe('transform | transforming a cart', () => {
-    let transformedCart;
+    let transformedCart: DaffCart;
 
     describe('when the cart has all its fields defined', () => {
       let id;
@@ -204,18 +205,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
             value: mockMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value,
           },
         ]);
-      });
-
-      it('should call the cart address transformer with the billing address', () => {
-        expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockBillingAddress);
-      });
-
-      it('should call the shipping address transformer with the shipping address', () => {
-        expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining({
-          email: mockShippingAddress.email,
-          street: mockShippingAddress.street,
-          region: mockShippingAddress.region,
-        }));
       });
 
       it('should call the shipping information transformer with the shipping method', () => {
@@ -293,6 +282,21 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
 
       it('should not call the shipping rate transformer', () => {
         expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when the cart items array contains nully values', () => {
+      beforeEach(() => {
+        mockMagentoCart.items = [
+          null,
+          null,
+          mockCartItem,
+        ];
+        transformedCart = service.transform(mockMagentoCart);
+      });
+
+      it('should filter out the nully values', () => {
+        expect(transformedCart.items.length).toEqual(1);
       });
     });
   });

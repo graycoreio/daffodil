@@ -74,16 +74,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       expect(transformedCartItem.discounts[0].amount).toEqual(discount0);
     });
 
-    describe('when the argument is null', () => {
-      beforeEach(() => {
-        transformedCartItem = transformMagentoSimpleCartItem(null);
-      });
-
-      it('should return null and not throw an error', () => {
-        expect(transformedCartItem).toBeNull();
-      });
-    });
-
     describe('when the discounts are null', () => {
       beforeEach(() => {
         mockMagentoCartItem.prices.discounts = null;

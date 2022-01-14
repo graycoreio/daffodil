@@ -22,9 +22,9 @@ function transformBundleCartItemOption(option: MagentoBundleCartItem['bundle_opt
  * @param response the response from a magento cart query.
  */
 export function transformMagentoBundleCartItem(bundleCartItem: MagentoBundleCartItem): DaffCompositeCartItem {
-  return bundleCartItem ? {
+  return {
     ...transformMagentoSimpleCartItem(bundleCartItem),
     type: DaffCartItemInputType.Composite,
     options: bundleCartItem.bundle_options.map(transformBundleCartItemOption),
-  } : null;
+  };
 }
