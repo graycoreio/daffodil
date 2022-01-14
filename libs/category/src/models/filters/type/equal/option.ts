@@ -13,5 +13,8 @@ export interface DaffCategoryFilterEqualOption extends DaffCategoryFilterOptionB
 	 * A label to represent the filter option in the UI.
 	 */
 	label: string;
-	count: number;
+	/**
+	 * The number of products that would be returned after application of this filter.
+	 */
+  count: number;
 }
