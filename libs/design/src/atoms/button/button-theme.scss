@@ -276,7 +276,7 @@
 		&.daff-theme-contrast {
 			@include daff-icon-button-theme-variant(
 				$base-contrast,
-				daff-illuminate($base-contrast, $daff-gray, 1)
+				daff-illuminate($base-contrast, $daff-gray, 1),
 				daff-illuminate($base-contrast, $daff-gray, 2)
 			);
 		}
