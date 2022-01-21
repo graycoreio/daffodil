@@ -30,7 +30,7 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
 
-describe('selectCartItemEntitiesState', () => {
+describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
 
   let store: Store<DaffCartStateRootSlice>;
   const cartFactory: DaffCartFactory = new DaffCartFactory();
@@ -51,6 +51,8 @@ describe('selectCartItemEntitiesState', () => {
     selectCartItemConfiguredAttributes,
     selectCartItemCompositeOptions,
     selectIsCartItemOutOfStock,
+    selectOutOfStockCartItems,
+    selectInStockCartItems,
     selectCartItemMutating,
     selectCartItemState,
     selectCartItemPrice,
@@ -236,6 +238,88 @@ describe('selectCartItemEntitiesState', () => {
     it('should not emit when an unrelated piece of state changes', () => {
       const spy = jasmine.createSpy();
       const selector = store.pipe(select(selectIsCartItemOutOfStock(mockCartItems[0].id)));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCartShippingMethodsLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('selectOutOfStockCartItems', () => {
+    let inStockItem: DaffStatefulCartItem;
+    let outOfStockItem: DaffStatefulCartItem;
+
+    beforeEach(() => {
+      inStockItem = statefulCartItemFactory.create({
+        in_stock: true,
+      });
+      outOfStockItem = statefulCartItemFactory.create({
+        in_stock: false,
+      });
+    });
+
+    it('should return the out of stock cart item', () => {
+      store.dispatch(new DaffCartItemListSuccess([inStockItem, outOfStockItem]));
+      const selector = store.pipe(select(selectOutOfStockCartItems));
+      const expected = cold('a', { a: [outOfStockItem]});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should return an empty array if there are not out of stock cart items', () => {
+      store.dispatch(new DaffCartItemListSuccess([inStockItem]));
+      const selector = store.pipe(select(selectOutOfStockCartItems));
+      const expected = cold('a', { a: []});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectOutOfStockCartItems));
+
+      selector.subscribe(spy);
+
+      store.dispatch(new DaffCartShippingMethodsLoad());
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('selectInStockCartItems', () => {
+    let inStockItem: DaffStatefulCartItem;
+    let outOfStockItem: DaffStatefulCartItem;
+
+    beforeEach(() => {
+      inStockItem = statefulCartItemFactory.create({
+        in_stock: true,
+      });
+      outOfStockItem = statefulCartItemFactory.create({
+        in_stock: false,
+      });
+    });
+
+    it('should return the in stock cart item', () => {
+      store.dispatch(new DaffCartItemListSuccess([inStockItem, outOfStockItem]));
+      const selector = store.pipe(select(selectInStockCartItems));
+      const expected = cold('a', { a: [inStockItem]});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should return an empty array if there are not in stock cart items', () => {
+      store.dispatch(new DaffCartItemListSuccess([outOfStockItem]));
+      const selector = store.pipe(select(selectInStockCartItems));
+      const expected = cold('a', { a: []});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should not emit when an unrelated piece of state changes', () => {
+      const spy = jasmine.createSpy();
+      const selector = store.pipe(select(selectInStockCartItems));
 
       selector.subscribe(spy);
 

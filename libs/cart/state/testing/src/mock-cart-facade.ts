@@ -85,6 +85,8 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   items$: BehaviorSubject<DaffCart['items']> = new BehaviorSubject([]);
   totalItems$: BehaviorSubject<number> = new BehaviorSubject(null);
   hasOutOfStockItems$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  outOfStockItems$: BehaviorSubject<DaffStatefulCartItem[]> = new BehaviorSubject([]);
+  inStockItems$: BehaviorSubject<DaffStatefulCartItem[]> = new BehaviorSubject([]);
   itemDictionary$: BehaviorSubject<Dictionary<DaffStatefulCartItem>> = new BehaviorSubject({});
   billingAddress$: BehaviorSubject<DaffCart['billing_address']> = new BehaviorSubject(null);
   shippingAddress$: BehaviorSubject<DaffCart['shipping_address']> = new BehaviorSubject(null);

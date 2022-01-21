@@ -45,6 +45,14 @@ export interface DaffCartItemEntitiesMemoizedSelectors<
 	selectCartItemConfiguredAttributes: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffConfigurableCartItemAttribute[]>;
 	selectCartItemCompositeOptions: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCompositeCartItemOption[]>;
 	selectIsCartItemOutOfStock: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  /**
+   * Selects all cart items that are out of stock.
+   */
+	selectOutOfStockCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U[]>;
+  /**
+   * Selects all cart items that are in stock.
+   */
+	selectInStockCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U[]>;
 	selectCartItemMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
 	selectCartItemState: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartItemStateEnum>;
   /**
@@ -178,6 +186,15 @@ const createCartItemEntitiesSelectors = <
     (cartItem: U) => cartItem ? !cartItem.in_stock : null,
   )).memoized;
 
+  const selectOutOfStockCartItems = createSelector(
+    selectAllCartItems,
+    items => items.filter(item => !item.in_stock),
+  );
+
+  const selectInStockCartItems = createSelector(
+    selectAllCartItems,
+    items => items.filter(item => item.in_stock),
+  );
 
   const selectCartItemMutating = createSelector(
     selectAllCartItems,
@@ -231,6 +248,8 @@ const createCartItemEntitiesSelectors = <
     selectCartItemConfiguredAttributes,
     selectCartItemCompositeOptions,
     selectIsCartItemOutOfStock,
+    selectInStockCartItems,
+    selectOutOfStockCartItems,
     selectCartItemMutating,
     selectCartItemState,
     selectCartItemPrice,
