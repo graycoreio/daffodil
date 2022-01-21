@@ -14,7 +14,7 @@ export const DaffCartMagentoErrorMap: DaffErrorCodeMap = {
 
 export const DaffCartMagentoErrorMessageRegexMap = {
   [DaffCartDriverErrorCodes.INVALID_COUPON_CODE]: /The coupon code isn\'t valid/,
-  [DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK]: /(The requested qty is not available)|(This product is out of stock)|(Some of the products are out of stock)/,
+  [DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK]: /(The requested qty is not available)|(This product is out of stock)|(Some of the products are out of stock)|(There are no source items with the in stock status)/,
   [DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY]: /The requested qty exceeds the maximum qty allowed in shopping cart/,
   [DaffCartDriverErrorCodes.INVALID_EMAIL]: /Invalid email format/,
 };
