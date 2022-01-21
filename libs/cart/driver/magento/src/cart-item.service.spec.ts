@@ -197,6 +197,29 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   });
 
   describe('list | getting a list of cart items', () => {
+    describe('when the products response contains nully values', () => {
+      beforeEach(() => {
+        mockListCartItemResponse = {
+          cart: {
+            __typename: 'Cart',
+            items: [null, null, mockMagentoCartItem],
+          },
+        };
+      });
+
+      it('should filter out the nully values', done => {
+        service.list(cartId).subscribe(result => {
+          expect(result.length).toEqual(1);
+          done();
+        });
+
+        const op = controller.expectOne(addTypenameToDocument(listCartItems([])));
+
+        op.flush({
+          data: mockListCartItemResponse,
+        });
+      });
+    });
 
     it('should return the correct value', done => {
       service.list(cartId).subscribe(result => {

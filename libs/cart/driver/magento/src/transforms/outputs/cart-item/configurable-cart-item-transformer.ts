@@ -22,9 +22,9 @@ function transformConfigurableCartItemAttribute(
  * @param response the response from a magento cart query.
  */
 export function transformMagentoConfigurableCartItem(configurableCartItem: MagentoConfigurableCartItem): DaffConfigurableCartItem {
-  return configurableCartItem ? {
+  return {
     ...transformMagentoSimpleCartItem(configurableCartItem),
     type: DaffCartItemInputType.Configurable,
     attributes: configurableCartItem.configurable_options.map(transformConfigurableCartItemAttribute),
-  } : null;
+  };
 }

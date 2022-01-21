@@ -69,7 +69,8 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       query: listCartItems(this.extraCartFragments),
       variables: { cartId },
     }).pipe(
-      map(result => result.data.cart.items.map(transformMagentoCartItem)),
+      map(result => result.data.cart.items.filter(item => !!item)),
+      map(items => items.map(transformMagentoCartItem)),
     );
   }
 

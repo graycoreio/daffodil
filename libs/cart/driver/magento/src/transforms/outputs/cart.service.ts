@@ -51,7 +51,7 @@ export class DaffMagentoCartTransformer {
 
   private transformCartItems(cart: MagentoCart): {items: DaffCart['items']} {
     return {
-      items: cart.items.map(transformMagentoCartItem),
+      items: cart.items.filter(item => !!item).map(transformMagentoCartItem),
     };
   }
 

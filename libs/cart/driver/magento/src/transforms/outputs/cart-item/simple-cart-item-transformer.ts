@@ -12,7 +12,7 @@ import { MagentoCartItem } from '../../../models/public_api';
  * @param response the response from a magento cart query.
  */
 export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffCartItem {
-  return cartItem ? {
+  return {
     // base
     type: DaffCartItemInputType.Simple,
     item_id: cartItem.id,
@@ -37,5 +37,5 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 
     // TODO: implement
     parent_item_id: null,
-  } : null;
+  };
 }
