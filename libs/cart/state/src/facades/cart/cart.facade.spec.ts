@@ -1099,6 +1099,28 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('outOfStockItems$', () => {
+    it('should return out of stock items', () => {
+      const statefulCartItems = statefulCartItemFactory.createMany(2, {
+        in_stock: false,
+      });
+      const expected = cold('a', { a: statefulCartItems });
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
+      expect(facade.outOfStockItems$).toBeObservable(expected);
+    });
+  });
+
+  describe('inStockItems$', () => {
+    it('should return in stock items', () => {
+      const statefulCartItems = statefulCartItemFactory.createMany(2, {
+        in_stock: true,
+      });
+      const expected = cold('a', { a: statefulCartItems });
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
+      expect(facade.inStockItems$).toBeObservable(expected);
+    });
+  });
+
   describe('itemDictionary$', () => {
     it('should initially be an empty object', () => {
       const expected = cold('a', { a: {}});

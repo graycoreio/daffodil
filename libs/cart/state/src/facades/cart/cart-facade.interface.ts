@@ -206,6 +206,14 @@ export interface DaffCartFacadeInterface<
 	 */
   totalItems$: Observable<number>;
   hasOutOfStockItems$: Observable<boolean>;
+  /**
+   * All cart items that are out of stock.
+   */
+  outOfStockItems$: Observable<U[]>;
+  /**
+   * All cart items that are in stock.
+   */
+  inStockItems$: Observable<U[]>;
   itemDictionary$: Observable<Dictionary<U>>;
   billingAddress$: Observable<T['billing_address']>;
   shippingAddress$: Observable<T['shipping_address']>;

@@ -110,6 +110,8 @@ export class DaffCartFacade<
   items$: Observable<T['items']>;
   totalItems$: Observable<number>;
   hasOutOfStockItems$: Observable<boolean>;
+  outOfStockItems$: Observable<U[]>;
+  inStockItems$: Observable<U[]>;
   itemDictionary$: Observable<Dictionary<U>>;
   billingAddress$: Observable<T['billing_address']>;
   shippingAddress$: Observable<T['shipping_address']>;
@@ -214,6 +216,8 @@ export class DaffCartFacade<
       selectCartCoupons,
       selectCartItems,
       selectCartHasOutOfStockItems,
+      selectOutOfStockCartItems,
+      selectInStockCartItems,
       selectCartItemEntities,
       selectTotalNumberOfCartItems,
       selectCartItemConfiguredAttributes,
@@ -322,6 +326,8 @@ export class DaffCartFacade<
     this.items$ = this.store.pipe(select(selectCartItems));
     this.totalItems$ = this.store.pipe(select(selectTotalNumberOfCartItems));
     this.hasOutOfStockItems$ = this.store.pipe(select(selectCartHasOutOfStockItems));
+    this.outOfStockItems$ = this.store.pipe(select(selectOutOfStockCartItems));
+    this.inStockItems$ = this.store.pipe(select(selectInStockCartItems));
     this.itemDictionary$ = this.store.pipe(select(selectCartItemEntities));
     this.billingAddress$ = this.store.pipe(select(selectCartBillingAddress));
     this.shippingAddress$ = this.store.pipe(select(selectCartShippingAddress));
