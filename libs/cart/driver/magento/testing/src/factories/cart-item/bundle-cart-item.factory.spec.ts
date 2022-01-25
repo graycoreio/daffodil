@@ -35,6 +35,15 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.bundle_options[0].label).toBeDefined();
       expect(result.bundle_options[0].type).toBeDefined();
       expect(result.bundle_options[0].values).toBeDefined();
+      expect(result.bundle_options[0].uid).toBeDefined();
+      expect(result.product.items[0].uid).toBeDefined();
+      expect(result.product.items[0].options[0].uid).toBeDefined();
+      expect(result.product.items[0].options[0].product.stock_status).toBeDefined();
+    });
+
+    it('should pull product item and option UIDs from the bundle options', () => {
+      expect(result.product.items[0].uid).toEqual(result.bundle_options[0].uid);
+      expect(result.product.items[0].options[0].uid).toEqual(result.bundle_options[0].values[0].uid);
     });
   });
 });

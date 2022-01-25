@@ -29,7 +29,7 @@ export class MockMagentoCartItem implements MagentoCartItem {
   product = this.createProduct();
   quantity = faker.datatype.number({ min: 1, max: 20 });
 
-  private createProduct(): MagentoCartItemProduct {
+  protected createProduct(): MagentoCartItemProduct {
     return {
       __typename: 'SimpleProduct',
       id: faker.datatype.number({ min: 1, max: 1500 }),
@@ -46,11 +46,11 @@ export class MockMagentoCartItem implements MagentoCartItem {
     };
   }
 
-  private money(): MagentoMoney {
+  protected money(): MagentoMoney {
     return (new MagentoMoneyFactory()).create();
   }
 
-  private discounts(number = 2): MagentoDiscount[] {
+  protected discounts(number = 2): MagentoDiscount[] {
     return (new MagentoDiscountFactory()).createMany(number);
   }
 }

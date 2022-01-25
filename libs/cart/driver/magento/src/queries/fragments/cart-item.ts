@@ -48,15 +48,28 @@ export const cartItemFragment = gql`
 		...on BundleCartItem {
 			bundle_options {
 				id
+        uid
 				label
 				type
 				values {
 					id
+          uid
 					label
 					price
 					quantity
 				}
 			}
+      product {
+        items {
+          uid
+          options {
+            uid
+            product {
+              stock_status
+            }
+          }
+        }
+      }
 		}
   }
   ${cartItemProductFragment}

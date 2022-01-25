@@ -25,6 +25,18 @@ export interface MagentoCartItemProduct {
   stock_status: MagentoProductStockStatusEnum;
 }
 
+export interface MagentoCartItemBundleProduct extends MagentoCartItemProduct {
+	items: {
+    uid: string;
+    options: {
+      uid: string;
+      product: {
+        stock_status: MagentoProductStockStatusEnum;
+      };
+    }[];
+  }[];
+}
+
 /**
  * An object for defining what the cart service requests and retrieves from a magento backend.
  */
@@ -46,15 +58,18 @@ export interface MagentoCartItem {
 export interface MagentoBundleCartItem extends MagentoCartItem {
 	bundle_options: {
 		id: number;
+		uid: string;
 		label: string;
 		type: string;
 		values: {
 			id: number;
+			uid: string;
 			label: string;
 			price: number;
 			quantity: number;
 		}[];
 	}[];
+  product: MagentoCartItemBundleProduct;
 }
 
 /**
