@@ -6,31 +6,31 @@ $error: #dd0000;
 // 50 apart passes AA level for any size text (except for 10/60)
 
 $daff-blue: (
-	10: #f1f3fc,
-	20: #e4e7fa,
-	30: #bec7f7,
-	40: #95a6f7,
-	50: #6e89fa,
+	10: #ebf1ff,
+	20: #c4d8ff,
+	30: #9dbeff,
+	40: #79a7ff,
+	50: #548fff,
 	60: #1f66ff,
-	70: #174fc9,
-	80: #183b93,
-	90: #132a68,
-	100: #0d1b45
+	70: #093cf3,
+	80: #001bcb,
+	90: #00098a,
+	100: #000033
 );
 
 $daff-primary: $daff-blue;
 
 $daff-purple: (
-	10: #f3f2fc,
-	20: #e7e6fa,
-	30: #c7c4f7,
-	40: #a7a1f7,
-	50: #8e84fa,
+	10: #ebebff,
+	20: #d4d3ff,
+	30: #b7b4ff,
+	40: #a19bff,
+	50: #8b82ff,
 	60: #6a57ff,
-	70: #4d2df3,
-	80: #391dbe,
-	90: #281885,
-	100: #191057
+	70: #5631f3,
+	80: #3c13bd,
+	90: #2c068a,
+	100: #110033
 );
 
 $daff-accent: $daff-purple;
@@ -75,8 +75,8 @@ $daff-red: (
 );
 
 $daff-bronze: (
-	10: #fbf2ec,
-	20: #f7e1d3,
+	10: #fcf2eb,
+	20: #f7dac6,
 	30: #f2c093,
 	40: #e49d40,
 	50: #d2801a,
@@ -88,14 +88,14 @@ $daff-bronze: (
 );
 
 $daff-green: (
-	10: #dafcde,
-	20: #a9fbb5,
-	30: #4ee56e,
-	40: #35c457,
-	50: #1da943,
+	10: #c4ffcc,
+	20: #6aff86,
+	30: #00db57,
+	40: #13c049,
+	50: #00aa3c,
 	60: #00852e,
-	70: #0e6726,
-	80: #0f4c1e,
+	70: #006b23,
+	80: #004b17,
 	90: #0c3515,
 	100: #07230d,
 );
