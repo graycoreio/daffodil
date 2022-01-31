@@ -5,11 +5,14 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 
-import { DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
-import { DaffCartMagentoCartItemExtraTransform } from '../../interfaces/public_api';
+import { DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
+import { DaffCartMagentoCartItemTransform } from '../../interfaces/public_api';
 import { MagentoCart } from '../../models/responses/cart';
 import { daffMagentoCouponTransform } from './cart-coupon';
-import { transformMagentoCartItem } from './cart-item/cart-item-transformer';
+import {
+  daffTransformMagentoCartItem,
+  transformMagentoCartItem,
+} from './cart-item/cart-item-transformer';
 import { transformCartTotals } from './cart-totals-transformer';
 
 /**
@@ -20,12 +23,13 @@ import { transformCartTotals } from './cart-totals-transformer';
 })
 export class DaffMagentoCartCouponResponseTransformer {
   constructor(
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS) private extraCartItemTransforms: DaffCartMagentoCartItemExtraTransform[],
+    @Inject(DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS) private cartItemTransforms: DaffCartMagentoCartItemTransform[],
   ) {}
 
   private transformCartItems(cart: Partial<MagentoCart>): {items: DaffCart['items']} {
     return {
-      items: cart.items.map(item => transformMagentoCartItem(item, ...this.extraCartItemTransforms)),
+      // TODO: extract into own transforms
+      items: cart.items.filter(item => !!item).map(item => transformMagentoCartItem(daffTransformMagentoCartItem(item), item, this.cartItemTransforms)),
     };
   }
 

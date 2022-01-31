@@ -1,1 +1,1 @@
-export { DaffCartMagentoCartItemExtraTransform } from './cart-item-extra-transform.type';
+export { DaffCartMagentoCartItemTransform } from './cart-item-transform.type';

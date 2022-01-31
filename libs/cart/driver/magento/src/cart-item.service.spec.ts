@@ -38,8 +38,8 @@ import {
   removeCartItem,
   MagentoAddCartItemResponse,
   addCartItem,
-  DaffCartMagentoCartItemExtraTransform,
-  daffProvideCartMagentoExtraCartItemTransforms,
+  DaffCartMagentoCartItemTransform,
+  daffProvideCartMagentoCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -71,8 +71,8 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
 
   let magentoCartTransformer: DaffMagentoCartTransformer;
   let magentoCartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer;
-  let extraTransform: DaffCartMagentoCartItemExtraTransform;
-  let extraTransformName: string;
+  let transform: DaffCartMagentoCartItemTransform;
+  let transformName: string;
 
   let cartTransformerSpy: jasmine.Spy;
   let cartItemUpdateInputTransformerSpy: jasmine.Spy;
@@ -97,10 +97,10 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
   let mockRemoveCartItemResponse: MagentoRemoveCartItemResponse;
 
   beforeEach(() => {
-    extraTransformName = 'extra transform name';
-    extraTransform = (daffItem, magentoItem) => ({
+    transformName = 'transform name';
+    transform = (daffItem, magentoItem) => ({
       ...daffItem,
-      name: extraTransformName,
+      name: transformName,
     });
 
     TestBed.configureTestingModule({
@@ -109,7 +109,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
       ],
       providers: [
         DaffMagentoCartItemService,
-        ...daffProvideCartMagentoExtraCartItemTransforms(extraTransform),
+        ...daffProvideCartMagentoCartItemTransforms(transform),
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
@@ -244,7 +244,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
           },
           product_id: mockMagentoCartItem.product.id.toString(),
           sku: mockMagentoCartItem.product.sku,
-          name: extraTransformName,
+          name: transformName,
           qty: mockMagentoCartItem.quantity,
           price: mockMagentoCartItem.prices.price.value,
           row_total: mockMagentoCartItem.prices.row_total.value,

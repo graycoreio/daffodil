@@ -10,27 +10,49 @@ import {
   MagentoConfigurableCartItemFactory,
 } from '@daffodil/cart/driver/magento/testing';
 
-import { DaffCartMagentoCartItemExtraTransform } from '../../../interfaces/public_api';
-import { transformMagentoCartItem } from './cart-item-transformer';
+import { DaffCartMagentoCartItemTransform } from '../../../interfaces/public_api';
+import {
+  daffTransformMagentoCartItem,
+  transformMagentoCartItem,
+} from './cart-item-transformer';
 
 describe('@daffodil/cart/driver/magento | transformMagentoCartItem', () => {
   let stubMagentoCartItems: MagentoCartItem[];
-  let extraTransform: DaffCartMagentoCartItemExtraTransform;
-  let extraTransformName: string;
+  let transform: DaffCartMagentoCartItemTransform;
+  let transformName: string;
 
   beforeEach(() => {
     stubMagentoCartItems = new MagentoCartItemFactory().createMany(2);
-    extraTransformName = 'extra transform name';
-    extraTransform = (daffItem, magentoItem) => ({
+    transformName = 'transform name';
+    transform = (daffItem, magentoItem) => ({
       ...daffItem,
-      name: extraTransformName,
+      name: transformName,
+    });
+  });
+
+  it('should invoke the passed transforms', () => {
+    expect(transformMagentoCartItem(daffTransformMagentoCartItem(stubMagentoCartItems[0]), stubMagentoCartItems[0], [transform]).name).toEqual(transformName);
+  });
+});
+
+describe('@daffodil/cart/driver/magento | daffTransformMagentoCartItem', () => {
+  let stubMagentoCartItems: MagentoCartItem[];
+  let transform: DaffCartMagentoCartItemTransform;
+  let transformName: string;
+
+  beforeEach(() => {
+    stubMagentoCartItems = new MagentoCartItemFactory().createMany(2);
+    transformName = 'transform name';
+    transform = (daffItem, magentoItem) => ({
+      ...daffItem,
+      name: transformName,
     });
   });
 
   describe('when the product is a simple product', () => {
 
     it('should return a simple product', () => {
-      expect(transformMagentoCartItem(stubMagentoCartItems[0]).type).toEqual(DaffCartItemInputType.Simple);
+      expect(daffTransformMagentoCartItem(stubMagentoCartItems[0]).type).toEqual(DaffCartItemInputType.Simple);
     });
   });
 
@@ -42,7 +64,7 @@ describe('@daffodil/cart/driver/magento | transformMagentoCartItem', () => {
     });
 
     it('should return a composite product', () => {
-      expect(transformMagentoCartItem(magentoBundledCartItem).type).toEqual(DaffCartItemInputType.Composite);
+      expect(daffTransformMagentoCartItem(magentoBundledCartItem).type).toEqual(DaffCartItemInputType.Composite);
     });
   });
 
@@ -54,13 +76,7 @@ describe('@daffodil/cart/driver/magento | transformMagentoCartItem', () => {
     });
 
     it('should return a configurable product', () => {
-      expect(transformMagentoCartItem(magentoConfigurableCartItem).type).toEqual(DaffCartItemInputType.Configurable);
-    });
-  });
-
-  describe('when extra transforms are passed', () => {
-    it('should invoke the extra transforms', () => {
-      expect(transformMagentoCartItem(stubMagentoCartItems[0], extraTransform).name).toEqual(extraTransformName);
+      expect(daffTransformMagentoCartItem(magentoConfigurableCartItem).type).toEqual(DaffCartItemInputType.Configurable);
     });
   });
 });

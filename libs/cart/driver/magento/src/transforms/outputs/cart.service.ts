@@ -5,12 +5,15 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 
-import { DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
-import { DaffCartMagentoCartItemExtraTransform } from '../../interfaces/public_api';
+import { DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
+import { DaffCartMagentoCartItemTransform } from '../../interfaces/public_api';
 import { MagentoCart } from '../../models/responses/cart';
 import { DaffMagentoBillingAddressTransformer } from './billing-address.service';
 import { daffMagentoCouponTransform } from './cart-coupon';
-import { transformMagentoCartItem } from './cart-item/cart-item-transformer';
+import {
+  daffTransformMagentoCartItem,
+  transformMagentoCartItem,
+} from './cart-item/cart-item-transformer';
 import { DaffMagentoCartPaymentTransformer } from './cart-payment.service';
 import { DaffMagentoCartShippingInformationTransformer } from './cart-shipping-information.service';
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
@@ -30,7 +33,7 @@ export class DaffMagentoCartTransformer {
     private paymentTransformer: DaffMagentoCartPaymentTransformer,
     private shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
     private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
-    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS) private extraCartItemTransforms: DaffCartMagentoCartItemExtraTransform[],
+    @Inject(DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS) private cartItemTransforms: DaffCartMagentoCartItemTransform[],
   ) {}
 
   private transformShippingAddress(cart: MagentoCart): {shipping_address: DaffCart['shipping_address']} {
@@ -57,7 +60,8 @@ export class DaffMagentoCartTransformer {
 
   private transformCartItems(cart: MagentoCart): {items: DaffCart['items']} {
     return {
-      items: cart.items.filter(item => !!item).map(item => transformMagentoCartItem(item, ...this.extraCartItemTransforms)),
+      // TODO: extract into own transforms
+      items: cart.items.filter(item => !!item).map(item => transformMagentoCartItem(daffTransformMagentoCartItem(item), item, this.cartItemTransforms)),
     };
   }
 

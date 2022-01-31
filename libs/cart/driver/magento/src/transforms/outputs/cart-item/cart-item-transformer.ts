@@ -1,6 +1,6 @@
 import { DaffCartItem } from '@daffodil/cart';
 
-import { DaffCartMagentoCartItemExtraTransform } from '../../../interfaces/public_api';
+import { DaffCartMagentoCartItemTransform } from '../../../interfaces/public_api';
 import {
   MagentoCartItem,
   MagentoCartItemTypeEnum,
@@ -12,28 +12,25 @@ import { transformMagentoConfigurableCartItem } from './configurable-cart-item-t
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 
 /**
- * Transforms the MagentoCartItem into a DaffCartItem.
- * Accepts extra transforms that are run after the standard Daffodil transforms.
- *
- * @param cartItem a MagentoCartItem
+ * The standard transform for a magento cart item.
  */
-export function transformMagentoCartItem(cartItem: MagentoCartItem, ...extraTransforms: DaffCartMagentoCartItemExtraTransform[]): DaffCartItem {
-  let daffCartItem: DaffCartItem;
-
+export const daffTransformMagentoCartItem = (cartItem: MagentoCartItem) => {
   switch(cartItem.__typename) {
     case MagentoCartItemTypeEnum.Bundle:
-      daffCartItem = transformMagentoBundleCartItem(<MagentoBundleCartItem>cartItem);
-      break;
+      return transformMagentoBundleCartItem(<MagentoBundleCartItem>cartItem);
     case MagentoCartItemTypeEnum.Configurable:
-      daffCartItem = transformMagentoConfigurableCartItem(<MagentoConfigurableCartItem>cartItem);
-      break;
+      return transformMagentoConfigurableCartItem(<MagentoConfigurableCartItem>cartItem);
     case MagentoCartItemTypeEnum.Simple:
     default:
-      daffCartItem = transformMagentoSimpleCartItem(cartItem);
+      return transformMagentoSimpleCartItem(cartItem);
   }
+};
 
-  return extraTransforms.reduce(
+/**
+ * Transforms the MagentoCartItem into a DaffCartItem using the provided transforms.
+ */
+export const transformMagentoCartItem = (daffCartItem: DaffCartItem, cartItem: MagentoCartItem, transforms: DaffCartMagentoCartItemTransform[] = []): DaffCartItem =>
+  transforms.reduce(
     (item, transform) => transform(item, cartItem),
     daffCartItem,
   );
-}

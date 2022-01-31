@@ -15,8 +15,8 @@ import {
   DaffMagentoCartAddressTransformer,
   DaffMagentoCartShippingRateTransformer,
   DaffMagentoShippingAddressTransformer,
-  DaffCartMagentoCartItemExtraTransform,
-  daffProvideCartMagentoExtraCartItemTransforms,
+  DaffCartMagentoCartItemTransform,
+  daffProvideCartMagentoCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -48,8 +48,8 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
   let mockShippingMethod: MagentoCartShippingMethod;
   let mockCartItem: MagentoCartItem;
   let mockPaymentMethod: MagentoCartPaymentMethod;
-  let extraTransform: DaffCartMagentoCartItemExtraTransform;
-  let extraTransformName: string;
+  let transform: DaffCartMagentoCartItemTransform;
+  let transformName: string;
 
   let cartAddressTransformerSpy;
   let shippingAddressTransformerSpy;
@@ -58,10 +58,10 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
   let cartShippingRateTransformerSpy;
 
   beforeEach(() => {
-    extraTransformName = 'extra transform name';
-    extraTransform = (daffItem, magentoItem) => ({
+    transformName = 'transform name';
+    transform = (daffItem, magentoItem) => ({
       ...daffItem,
-      name: extraTransformName,
+      name: transformName,
     });
 
     TestBed.configureTestingModule({
@@ -87,7 +87,7 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
           provide: DaffMagentoShippingAddressTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform']),
         },
-        ...daffProvideCartMagentoExtraCartItemTransforms(extraTransform),
+        ...daffProvideCartMagentoCartItemTransforms(transform),
       ],
     });
 
@@ -152,7 +152,7 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
     it('should invoke the extra cart item transforms', () => {
       transformedCart = service.transform(mockMagentoCart);
       transformedCart.items.forEach(item => {
-        expect(item.name).toEqual(extraTransformName);
+        expect(item.name).toEqual(transformName);
       });
     });
 

@@ -5,8 +5,8 @@ import {
   MagentoCartItem,
   MagentoCart,
   MagentoCartCoupon,
-  DaffCartMagentoCartItemExtraTransform,
-  daffProvideCartMagentoExtraCartItemTransforms,
+  DaffCartMagentoCartItemTransform,
+  daffProvideCartMagentoCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -29,20 +29,20 @@ describe('@daffodil/cart/driver/magento | CartCouponResponse', () => {
   let mockMagentoCart: MagentoCart;
   let mockMagentoCoupon: MagentoCartCoupon;
   let mockCartItem: MagentoCartItem;
-  let extraTransform: DaffCartMagentoCartItemExtraTransform;
-  let extraTransformName: string;
+  let transform: DaffCartMagentoCartItemTransform;
+  let transformName: string;
 
   beforeEach(() => {
-    extraTransformName = 'extra transform name';
-    extraTransform = (daffItem, magentoItem) => ({
+    transformName = 'transform name';
+    transform = (daffItem, magentoItem) => ({
       ...daffItem,
-      name: extraTransformName,
+      name: transformName,
     });
 
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartTransformer,
-        ...daffProvideCartMagentoExtraCartItemTransforms(extraTransform),
+        ...daffProvideCartMagentoCartItemTransforms(transform),
       ],
     });
 
@@ -71,7 +71,7 @@ describe('@daffodil/cart/driver/magento | CartCouponResponse', () => {
     it('should invoke the extra cart item transforms', () => {
       transformedCart = service.transform(mockMagentoCart);
       transformedCart.items.forEach(item => {
-        expect(item.name).toEqual(extraTransformName);
+        expect(item.name).toEqual(transformName);
       });
     });
 
@@ -106,6 +106,21 @@ describe('@daffodil/cart/driver/magento | CartCouponResponse', () => {
 
       it('should return null and not throw an error', () => {
         expect(transformedCart).toBeNull();
+      });
+    });
+
+    describe('when the cart items array contains nully values', () => {
+      beforeEach(() => {
+        mockMagentoCart.items = [
+          null,
+          null,
+          mockCartItem,
+        ];
+        transformedCart = service.transform(mockMagentoCart);
+      });
+
+      it('should filter out the nully values', () => {
+        expect(transformedCart.items.length).toEqual(1);
       });
     });
   });
