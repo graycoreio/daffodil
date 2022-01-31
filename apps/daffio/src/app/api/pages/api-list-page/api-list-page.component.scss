@@ -1,0 +1,13 @@
+@import 'utilities';
+
+:host {
+	display: block;
+	padding: 48px;
+}
+
+.daffio-api-list-page {
+	&__title {
+		@include headline-xl();
+		margin-bottom: 48px;
+	}
+}

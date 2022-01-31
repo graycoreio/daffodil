@@ -1,15 +1,22 @@
 @import 'theme';
 
+$primary: map-get($theme, primary);
+$secondary: map-get($theme, secondary);
+$tertiary: map-get($theme, tertiary);
+$base: daff-map-deep-get($theme, 'core.base');
+$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+
 @mixin type-label() {
-	display: inline-block;
-	border-radius: 2px;
-	color: $white;
-	font-size: 0.875rem;
-	text-transform: uppercase;
+	@include uppercase();
+	border-radius: 4px;
+	font-family: $monospace-font-family;
+	font-size: 0.625rem;
 	box-sizing: border-box;
+	transition: background-color 300ms;
 
 	&.class {
 		background: daff-color($primary);
+		color: daff-text-contrast(daff-color($primary));
 	}
 
 	&.type-alias {
@@ -18,20 +25,27 @@
 	}
 
 	&.interface {
-		background: daff-color($daff-gray, 50);
+		background: daff-color($tertiary);
 		color: $white;
 	}
 
 	&.const {
-		background: daff-color($daff-purple, 40);
+		background: daff-illuminate($base-contrast, $secondary, 3);
+		color: daff-text-contrast(daff-illuminate($base-contrast, $secondary, 3));
 	}
 
 	&.enum {
-		background: daff-color($daff-blue, 80);
+		background: daff-illuminate($base-contrast, $primary, 3);
+		color: daff-text-contrast(daff-illuminate($base-contrast, $primary, 3));
 	}
 
 	&.package {
-		background: daff-color($daff-yellow, 70);
-		color: $black;
+		background: daff-illuminate($base-contrast, $daff-yellow, 3);
+		color: daff-text-contrast(daff-illuminate($base-contrast, $daff-yellow, 3));
+	}
+
+	&.function {
+		background: daff-illuminate($base-contrast, $tertiary, 3);
+		color: daff-text-contrast(daff-illuminate($base-contrast, $tertiary, 3));
 	}
 }

@@ -1,0 +1,23 @@
+@mixin daffio-api-list-theme($theme){
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, "core.base");
+	$base-contrast: daff-map-deep-get($theme, "core.base-contrast");
+
+	.daffio-api-list {
+		&__package-name {
+			a {
+				&:hover {
+					color: daff-illuminate($base-contrast, $daff-gray, 3);
+				}
+			}
+		}
+
+		&__item {
+			&:hover {
+				background: daff-illuminate($base, $daff-gray, 2);
+			}
+		}
+	}
+}

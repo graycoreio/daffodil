@@ -1,50 +1,51 @@
 @import 'utilities';
 
 :host {
-	display: block;
-	padding: 16px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 48px;
+
+	a {
+		text-decoration: none;
+	}
 }
 
-.api-list {
-	&__package {
-		margin: 15px 0 40px 0;
-	}
-
+.daffio-api-list {
 	&__package-name {
-		@include embolden();
 		font-size: 1.25rem;
-		line-height: 1.25em;
-		margin-bottom: 10px;
+		font-weight: 600;
+		line-height: 1.5rem;
+		margin-bottom: 24px;
 	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 8px 24px;
+		
+		@include breakpoint(tablet) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		border-radius: 4px;
+		justify-content: space-between;
+		overflow: hidden;
+		padding: 8px;
+		transition: background-color 300ms;
 }
 
-.api-list-item {
-	margin: 5px 0;
-
-	&__title {
-		align-items: center;
-		display: flex;
+	&__item-name {
+		@include single-line-ellipsis();
 	}
 
-	&__name {
-		width: 100%;
-    display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-	}
-
-	&__label {
+	&__item-label {
 		@include type-label();
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 2em;
-		margin-right: 10px;
-		width: 2em;
-	}
-
-	&__children {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		height: 1.5rem;
+		padding: 4px;
+		margin-left: 16px;
 	}
 }

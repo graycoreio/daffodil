@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
+  HostBinding,
 } from '@angular/core';
 
 import { DaffioApiReference } from '../../models/api-reference';
@@ -13,6 +14,7 @@ import { DaffioApiReference } from '../../models/api-reference';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioApiListComponent {
+  @HostBinding('class.daffio-api-list') class = true;
 
   /**
    * A list of references for API documents.

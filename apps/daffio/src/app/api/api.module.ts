@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffArticleModule } from '@daffodil/design';
+import {
+  DaffArticleModule,
+  DaffContainerModule,
+} from '@daffodil/design';
 
 import { DaffioDocViewerModule } from '../docs/components/doc-viewer/doc-viewer.module';
 import { DaffioDocsApiRoutingModule } from './api-routing.module';
@@ -16,6 +19,8 @@ import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
     DaffioDocsApiRoutingModule,
     DaffioApiListModule,
     DaffioDocViewerModule,
+
+    DaffContainerModule,
   ],
   declarations: [
     DaffioApiListPageComponent,
