@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
 
+import { DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
+import { DaffCartMagentoCartItemExtraTransform } from '../../interfaces/public_api';
 import { MagentoCart } from '../../models/responses/cart';
 import { daffMagentoCouponTransform } from './cart-coupon';
 import { transformMagentoCartItem } from './cart-item/cart-item-transformer';
@@ -14,10 +19,13 @@ import { transformCartTotals } from './cart-totals-transformer';
   providedIn: 'root',
 })
 export class DaffMagentoCartCouponResponseTransformer {
+  constructor(
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS) private extraCartItemTransforms: DaffCartMagentoCartItemExtraTransform[],
+  ) {}
 
   private transformCartItems(cart: Partial<MagentoCart>): {items: DaffCart['items']} {
     return {
-      items: cart.items.map(transformMagentoCartItem),
+      items: cart.items.map(item => transformMagentoCartItem(item, ...this.extraCartItemTransforms)),
     };
   }
 

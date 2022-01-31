@@ -5,6 +5,8 @@ import {
   MagentoCartItem,
   MagentoCart,
   MagentoCartCoupon,
+  DaffCartMagentoCartItemExtraTransform,
+  daffProvideCartMagentoExtraCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -15,7 +17,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartTransformer } from './cart.service';
 
-describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
+describe('@daffodil/cart/driver/magento | CartCouponResponse', () => {
   let service: DaffMagentoCartTransformer;
 
   let daffCartFactory: DaffCartFactory;
@@ -27,11 +29,20 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
   let mockMagentoCart: MagentoCart;
   let mockMagentoCoupon: MagentoCartCoupon;
   let mockCartItem: MagentoCartItem;
+  let extraTransform: DaffCartMagentoCartItemExtraTransform;
+  let extraTransformName: string;
 
   beforeEach(() => {
+    extraTransformName = 'extra transform name';
+    extraTransform = (daffItem, magentoItem) => ({
+      ...daffItem,
+      name: extraTransformName,
+    });
+
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartTransformer,
+        ...daffProvideCartMagentoExtraCartItemTransforms(extraTransform),
       ],
     });
 
@@ -55,7 +66,14 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
   });
 
   describe('transform | transforming a cart coupon response', () => {
-    let transformedCart;
+    let transformedCart: DaffCart;
+
+    it('should invoke the extra cart item transforms', () => {
+      transformedCart = service.transform(mockMagentoCart);
+      transformedCart.items.forEach(item => {
+        expect(item.name).toEqual(extraTransformName);
+      });
+    });
 
     describe('when the cart has all its fields defined', () => {
       let id;

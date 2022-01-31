@@ -1,5 +1,6 @@
 import { DaffCartItem } from '@daffodil/cart';
 
+import { DaffCartMagentoCartItemExtraTransform } from '../../../interfaces/public_api';
 import {
   MagentoCartItem,
   MagentoCartItemTypeEnum,
@@ -12,16 +13,27 @@ import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 
 /**
  * Transforms the MagentoCartItem into a DaffCartItem.
+ * Accepts extra transforms that are run after the standard Daffodil transforms.
  *
  * @param cartItem a MagentoCartItem
  */
-export function transformMagentoCartItem(cartItem: MagentoCartItem): DaffCartItem {
+export function transformMagentoCartItem(cartItem: MagentoCartItem, ...extraTransforms: DaffCartMagentoCartItemExtraTransform[]): DaffCartItem {
+  let daffCartItem: DaffCartItem;
+
   switch(cartItem.__typename) {
     case MagentoCartItemTypeEnum.Bundle:
-      return transformMagentoBundleCartItem(<MagentoBundleCartItem>cartItem);
+      daffCartItem = transformMagentoBundleCartItem(<MagentoBundleCartItem>cartItem);
+      break;
     case MagentoCartItemTypeEnum.Configurable:
-      return transformMagentoConfigurableCartItem(<MagentoConfigurableCartItem>cartItem);
+      daffCartItem = transformMagentoConfigurableCartItem(<MagentoConfigurableCartItem>cartItem);
+      break;
+    case MagentoCartItemTypeEnum.Simple:
     default:
-      return transformMagentoSimpleCartItem(cartItem);
+      daffCartItem = transformMagentoSimpleCartItem(cartItem);
   }
+
+  return extraTransforms.reduce(
+    (item, transform) => transform(item, cartItem),
+    daffCartItem,
+  );
 }

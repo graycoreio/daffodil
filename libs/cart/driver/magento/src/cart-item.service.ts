@@ -26,7 +26,11 @@ import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 import { transformCartMagentoError } from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
-import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
+import {
+  DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
+  DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS,
+} from './injection-tokens/public_api';
+import { DaffCartMagentoCartItemExtraTransform } from './interfaces/public_api';
 import { MagentoCartItemInput } from './models/requests/cart-item';
 import { addCartItem } from './queries/add-cart-item';
 import {
@@ -60,6 +64,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS) private extraCartItemTransforms: DaffCartMagentoCartItemExtraTransform[],
     private cartTransformer: DaffMagentoCartTransformer,
     private cartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer,
   ) {}
@@ -70,7 +75,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       variables: { cartId },
     }).pipe(
       map(result => result.data.cart.items.filter(item => !!item)),
-      map(items => items.map(transformMagentoCartItem)),
+      map(items => items.map(item => transformMagentoCartItem(item, ...this.extraCartItemTransforms))),
     );
   }
 

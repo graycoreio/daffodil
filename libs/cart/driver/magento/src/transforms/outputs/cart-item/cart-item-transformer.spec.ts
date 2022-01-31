@@ -10,13 +10,21 @@ import {
   MagentoConfigurableCartItemFactory,
 } from '@daffodil/cart/driver/magento/testing';
 
+import { DaffCartMagentoCartItemExtraTransform } from '../../../interfaces/public_api';
 import { transformMagentoCartItem } from './cart-item-transformer';
 
-describe('transformMagentoCartItem', () => {
+describe('@daffodil/cart/driver/magento | transformMagentoCartItem', () => {
   let stubMagentoCartItems: MagentoCartItem[];
+  let extraTransform: DaffCartMagentoCartItemExtraTransform;
+  let extraTransformName: string;
 
   beforeEach(() => {
     stubMagentoCartItems = new MagentoCartItemFactory().createMany(2);
+    extraTransformName = 'extra transform name';
+    extraTransform = (daffItem, magentoItem) => ({
+      ...daffItem,
+      name: extraTransformName,
+    });
   });
 
   describe('when the product is a simple product', () => {
@@ -47,6 +55,12 @@ describe('transformMagentoCartItem', () => {
 
     it('should return a configurable product', () => {
       expect(transformMagentoCartItem(magentoConfigurableCartItem).type).toEqual(DaffCartItemInputType.Configurable);
+    });
+  });
+
+  describe('when extra transforms are passed', () => {
+    it('should invoke the extra transforms', () => {
+      expect(transformMagentoCartItem(stubMagentoCartItems[0], extraTransform).name).toEqual(extraTransformName);
     });
   });
 });

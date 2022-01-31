@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
 
+import { DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
+import { DaffCartMagentoCartItemExtraTransform } from '../../interfaces/public_api';
 import { MagentoCart } from '../../models/responses/cart';
 import { DaffMagentoBillingAddressTransformer } from './billing-address.service';
 import { daffMagentoCouponTransform } from './cart-coupon';
@@ -25,6 +30,7 @@ export class DaffMagentoCartTransformer {
     private paymentTransformer: DaffMagentoCartPaymentTransformer,
     private shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
     private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS) private extraCartItemTransforms: DaffCartMagentoCartItemExtraTransform[],
   ) {}
 
   private transformShippingAddress(cart: MagentoCart): {shipping_address: DaffCart['shipping_address']} {
@@ -51,7 +57,7 @@ export class DaffMagentoCartTransformer {
 
   private transformCartItems(cart: MagentoCart): {items: DaffCart['items']} {
     return {
-      items: cart.items.filter(item => !!item).map(transformMagentoCartItem),
+      items: cart.items.filter(item => !!item).map(item => transformMagentoCartItem(item, ...this.extraCartItemTransforms)),
     };
   }
 

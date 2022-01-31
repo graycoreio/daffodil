@@ -1,5 +1,6 @@
 export * from './transforms/public_api';
 export * from './models/public_api';
+export * from './interfaces/public_api';
 export * from './injection-tokens/public_api';
 export * from './queries/public_api';
 

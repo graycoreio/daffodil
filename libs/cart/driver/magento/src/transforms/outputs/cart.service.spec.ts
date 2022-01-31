@@ -15,6 +15,8 @@ import {
   DaffMagentoCartAddressTransformer,
   DaffMagentoCartShippingRateTransformer,
   DaffMagentoShippingAddressTransformer,
+  DaffCartMagentoCartItemExtraTransform,
+  daffProvideCartMagentoExtraCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -29,7 +31,7 @@ import { daffAdd } from '@daffodil/core';
 import { MagentoCart } from '../../models/public_api';
 import { DaffMagentoCartTransformer } from './cart.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
+describe('@daffodil/cart/driver/magento | MagentoCart', () => {
   let service: DaffMagentoCartTransformer;
 
   let daffCartFactory: DaffCartFactory;
@@ -46,6 +48,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let mockShippingMethod: MagentoCartShippingMethod;
   let mockCartItem: MagentoCartItem;
   let mockPaymentMethod: MagentoCartPaymentMethod;
+  let extraTransform: DaffCartMagentoCartItemExtraTransform;
+  let extraTransformName: string;
 
   let cartAddressTransformerSpy;
   let shippingAddressTransformerSpy;
@@ -54,6 +58,12 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let cartShippingRateTransformerSpy;
 
   beforeEach(() => {
+    extraTransformName = 'extra transform name';
+    extraTransform = (daffItem, magentoItem) => ({
+      ...daffItem,
+      name: extraTransformName,
+    });
+
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartTransformer,
@@ -77,6 +87,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
           provide: DaffMagentoShippingAddressTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform']),
         },
+        ...daffProvideCartMagentoExtraCartItemTransforms(extraTransform),
       ],
     });
 
@@ -137,6 +148,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
 
   describe('transform | transforming a cart', () => {
     let transformedCart: DaffCart;
+
+    it('should invoke the extra cart item transforms', () => {
+      transformedCart = service.transform(mockMagentoCart);
+      transformedCart.items.forEach(item => {
+        expect(item.name).toEqual(extraTransformName);
+      });
+    });
 
     describe('when the cart has all its fields defined', () => {
       let id;
