@@ -9,8 +9,8 @@ import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartMagentoCartItemExtraTransform } from '../../../interfaces/public_api';
 
 /**
- * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
- * It is run after the standard transforms and passed both the current transformed Daffodil response and the Magento product response.
+ * A multi-provider injection token for providing extra cart item transform logic in the Magento driver.
+ * It is run after the standard transforms and passed both the current transformed Daffodil cart item and the Magento cart item.
  */
 export const DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS = new InjectionToken<DaffCartMagentoCartItemExtraTransform[]>(
   'DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS',
@@ -18,14 +18,14 @@ export const DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS = new InjectionToken<D
 );
 
 /**
- * Provides extra product transforms for the Magento product driver.
+ * Provides extra cart item transforms for the Magento cart driver.
  *
  * See {@link DAFF_CART_MAGENTO_EXTRA_CART_ITEM_TRANSFORMS}.
  *
  * ```ts
  * providers: [
  *   ...daffProvideCartMagentoExtraCartItemTransforms(
- *     myExtraProductTransform
+ *     myExtraCartItemTransform
  *   )
  * ]
  * ```
