@@ -39,6 +39,6 @@
     "rxjs": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
-    "faker": "0.0.0-PLACEHOLDER"
+    "@faker-js/faker": "0.0.0-PLACEHOLDER"
   }
 }
