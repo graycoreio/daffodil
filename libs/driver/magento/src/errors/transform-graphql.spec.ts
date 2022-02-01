@@ -7,7 +7,7 @@ import {
 } from '@daffodil/core';
 import { DaffDriverMagentoError } from '@daffodil/driver/magento';
 
-import { daffTransformMagentoError } from './transform';
+import { daffMagentoTransformGraphQlError } from './transform-graphql';
 
 class MockError extends DaffInheritableError implements DaffError {
 	public readonly code: string = 'MOCK';
@@ -17,7 +17,7 @@ class MockError extends DaffInheritableError implements DaffError {
 	}
 }
 
-describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
+describe('@daffodil/driver/magento | daffMagentoTransformGraphQlError', () => {
   let unhandledGraphQlError;
   let handledGraphQlError;
   let category;
@@ -26,7 +26,7 @@ describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
   beforeEach(() => {
     category = 'category';
     unhandledGraphQlError = {
-      message: 'A error we dont handle',
+      message: 'An error we don\'t handle',
       extensions: {},
       source: null,
       originalError: null,
@@ -37,7 +37,7 @@ describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
       positions: [],
     };
     handledGraphQlError = {
-      message: 'A error we do handle',
+      message: 'An error we do handle',
       extensions: { category },
       source: null,
       originalError: null,
@@ -54,18 +54,23 @@ describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
   });
 
   it('should be able to process graphql errors and return the relevant error if a mapping exists', () => {
-    const error = new ApolloError({
-      graphQLErrors: [handledGraphQlError],
-    });
-    const result = daffTransformMagentoError(error, map);
+    const result = daffMagentoTransformGraphQlError(handledGraphQlError, map);
 
     expect(result).toEqual(jasmine.any(MockError));
   });
 
-  describe('when there are no GraphQL error', () => {
-    it('should fall back to the generic driver Magento error', () => {
-      const error = new Error('an error');
-      expect(daffTransformMagentoError(error, map)).toEqual(new DaffDriverMagentoError('an error'));
+  it('should not crash if the extension is not defined', () => {
+    const error = { ...unhandledGraphQlError, extensions: {}};
+    expect(() => daffMagentoTransformGraphQlError(error, map)).not.toThrow();
+  });
+
+  describe('when a mapping cannot be found', () => {
+    it('should use the generic error', () => {
+      const error = {
+        ...unhandledGraphQlError,
+        extensions: { category: 'an-unmanaged-error' },
+      };
+      expect(daffMagentoTransformGraphQlError(error, map)).toEqual(new DaffDriverMagentoError(error.message));
     });
   });
 });
