@@ -70,7 +70,7 @@ export class CartResolverEffects {
 
 	private getCartHandler(): Observable<Action> {
 	  return this.driver.get(this.cartStorage.getCartId()).pipe(
-	    map(resp => new ResolveCartSuccess(resp)),
+	    map(resp => new ResolveCartSuccess(resp.response)),
 	    catchError(error => of(new ResolveCartFailure(null))),
 	  );
 	}
