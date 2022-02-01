@@ -6,7 +6,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffTestingCartService } from './cart.service';
 
-describe('Driver | Testing | Cart | CartService', () => {
+describe('@daffodil/cart/driver/testing | DaffTestingCartService', () => {
   let service: DaffTestingCartService;
   let cartFactory: DaffCartFactory;
 

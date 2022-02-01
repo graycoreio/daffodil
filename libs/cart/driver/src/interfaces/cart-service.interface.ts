@@ -2,6 +2,7 @@ import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
+import { DaffDriverResponse } from '@daffodil/driver';
 
 /**
  * The interface responsible for managing a customer's cart.
@@ -10,7 +11,7 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
 	/**
 	 * Retrieve a cart
 	 */
-  get(id: T['id']): Observable<T>;
+  get(id: T['id']): Observable<DaffDriverResponse<T>>;
 
   /**
    * Creates a cart.
