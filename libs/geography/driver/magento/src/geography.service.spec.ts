@@ -9,7 +9,10 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import { schema } from '@daffodil/driver/magento';
+import {
+  DaffDriverMagentoError,
+  schema,
+} from '@daffodil/driver/magento';
 import {
   DaffCountry,
   DaffSubdivision,
@@ -226,11 +229,10 @@ describe('Driver | Magento | Geography | GeographyService', () => {
     });
 
     describe('when the call to the Magento API is unsuccessful', () => {
-      it('should throw an Error with a GraphQLError', done => {
+      it('should throw a general Magento driver error', done => {
         service.list().pipe(
           catchError(err => {
-            expect(err).toEqual(jasmine.any(Error));
-            expect(err.graphQLErrors[0]).toEqual(jasmine.any(GraphQLError));
+            expect(err).toEqual(jasmine.any(DaffDriverMagentoError));
             done();
             return [];
           }),
