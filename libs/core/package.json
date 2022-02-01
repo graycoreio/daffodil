@@ -33,6 +33,6 @@
     "@ngrx/store": "0.0.0-PLACEHOLDER",
     "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
     "apollo-angular": "0.0.0-PLACEHOLDER",
-    "faker": "0.0.0-PLACEHOLDER"
+    "@faker-js/faker": "0.0.0-PLACEHOLDER"
   }
 }
