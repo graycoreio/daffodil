@@ -93,7 +93,10 @@ describe('CartResolverEffects', () => {
       describe('and service call to cartService.get is successful', () => {
 
         beforeEach(() => {
-          spyOn(driver, 'get').and.returnValue(of(stubCart));
+          spyOn(driver, 'get').and.returnValue(of({
+            response: stubCart,
+            errors: [],
+          }));
         });
 
         it('should dispatch a ResolveCartSuccess action', () => {
