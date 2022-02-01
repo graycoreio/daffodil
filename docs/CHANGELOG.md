@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.10](https://github.com/graycoreio/daffodil/compare/v0.39.9...v0.39.10) (2022-02-01)
+
+
+### Features
+
+* **cart:** add `DaffCartInStockItemsGuard` ([#1960](https://github.com/graycoreio/daffodil/issues/1960)) ([9f21c97](https://github.com/graycoreio/daffodil/commit/9f21c97d7e4f2f09be054b7d0f3ff82723f70080))
+* **cart:** add `selectOutOfStockCartItems` and `selectInStockCartItems` ([#1959](https://github.com/graycoreio/daffodil/issues/1959)) ([cb8d8c8](https://github.com/graycoreio/daffodil/commit/cb8d8c8ac67ed0e2a86ab5108d8a117ca90db9d5))
+* **cart:** add extra cart item transforms token ([#1965](https://github.com/graycoreio/daffodil/issues/1965)) ([3a6f98e](https://github.com/graycoreio/daffodil/commit/3a6f98e8c0d6c970528bad457a1441933c18ceaa))
+* **cart:** transform no source items Magento error as OOS error ([#1954](https://github.com/graycoreio/daffodil/issues/1954)) ([2d5ac96](https://github.com/graycoreio/daffodil/commit/2d5ac9686d22698082a4e1e3f4e2a522210c0451))
+* **category:** move magento category query fields to fragment ([#1936](https://github.com/graycoreio/daffodil/issues/1936)) ([a1cbca4](https://github.com/graycoreio/daffodil/commit/a1cbca4b39f1bbe0e3136539707a901200ad3cfe))
+* **core:** add `DaffKindable` interface ([#1941](https://github.com/graycoreio/daffodil/issues/1941)) ([46405fd](https://github.com/graycoreio/daffodil/commit/46405fd390e440bb6a7d2ef6aa55ea82f660e63d))
+* **core:** make the `type` param of `DaffModelFactory` optional ([#1942](https://github.com/graycoreio/daffodil/issues/1942)) ([d0873aa](https://github.com/graycoreio/daffodil/commit/d0873aa8deb74ea8a2dd644e716e19c8b542a4bb))
+* **daffio:** clean up support page UI ([#1938](https://github.com/graycoreio/daffodil/issues/1938)) ([b4d970b](https://github.com/graycoreio/daffodil/commit/b4d970bb5f557b16484ab79d4fc3de360c45c7f4))
+* **design:** clean up color palettes ([#1964](https://github.com/graycoreio/daffodil/issues/1964)) ([a8aa089](https://github.com/graycoreio/daffodil/commit/a8aa089dcafe8c547829ecd23d3a4bc3bb308edd))
+* **design:** create daffArticleEncapsulatedMixin to prevent article styles from cascading down to nested @daffodil/design components ([#1917](https://github.com/graycoreio/daffodil/issues/1917)) ([0e517ff](https://github.com/graycoreio/daffodil/commit/0e517ff54ad0a0033f91e7c4174a1add8c3df153))
+* **design:** deprecate DaffFeatureComponent ([#1928](https://github.com/graycoreio/daffodil/issues/1928)) ([9b398ad](https://github.com/graycoreio/daffodil/commit/9b398ad3ed432c5c65d9861dadbd860dedbc098a))
+* **design:** implement daffArticleEncapsulatedMixin ([#1917](https://github.com/graycoreio/daffodil/issues/1917)) ([cfa4718](https://github.com/graycoreio/daffodil/commit/cfa471844449c69535eda8b30fcf07fa4e0d9c79))
+* **design:** update card title font size on mobile devices ([#1937](https://github.com/graycoreio/daffodil/issues/1937)) ([68eebf3](https://github.com/graycoreio/daffodil/commit/68eebf380198cca24886792e36b8c3f5be8e6c06))
+* **design:** update navbar component ([#1926](https://github.com/graycoreio/daffodil/issues/1926)) ([640141d](https://github.com/graycoreio/daffodil/commit/640141df698a6262c6d016a04020664d987ff001))
+
+
+### Bug Fixes
+
+* **cart,category,product:** unsafe chars in model factory URLs ([#1931](https://github.com/graycoreio/daffodil/issues/1931)) ([753e272](https://github.com/graycoreio/daffodil/commit/753e272284f43a7f4e241f30c9f91ed7ddc5b2d2))
+* **cart:** magento driver returns `null` cart items ([#1953](https://github.com/graycoreio/daffodil/issues/1953)) ([ef0e2bc](https://github.com/graycoreio/daffodil/commit/ef0e2bca3730c028c2efc08d70706c6428446d18))
+* **category:** magento driver misreferencing category products in response ([#1934](https://github.com/graycoreio/daffodil/issues/1934)) ([f084cfa](https://github.com/graycoreio/daffodil/commit/f084cfa0e4f6b1e3be4c303c4dea970e0b3d1efd))
+* **design:** add missing coma to icon button's theme contrast style ([#1957](https://github.com/graycoreio/daffodil/issues/1957)) ([a330107](https://github.com/graycoreio/daffodil/commit/a33010704e8a3c2b5b710af130cc46c861b1a563))
+
 ### [0.39.9](https://github.com/graycoreio/daffodil/compare/v0.39.8...v0.39.9) (2021-12-06)
 
 
