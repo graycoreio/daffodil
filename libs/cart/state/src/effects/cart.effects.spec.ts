@@ -16,6 +16,7 @@ import {
 import {
   DaffCartServiceInterface,
   DaffCartDriver,
+  DaffProductOutOfStockError,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
@@ -33,6 +34,7 @@ import {
   DaffCartCreateFailure,
   DaffCartStorageFailure,
   DaffResolveCartSuccess,
+  DaffCartLoadPartialSuccess,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
@@ -43,7 +45,7 @@ import {
 
 import { DaffCartEffects } from './cart.effects';
 
-describe('Daffodil | Cart | CartEffects', () => {
+describe('@daffodil/cart/state | DaffCartEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartEffects<DaffCart>;
 
@@ -54,10 +56,10 @@ describe('Daffodil | Cart | CartEffects', () => {
   let driver: DaffCartServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverCreateSpy: jasmine.Spy;
-  let driverClearSpy: jasmine.Spy;
-  let driverAddToCartSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartServiceInterface['get']>;
+  let driverCreateSpy: jasmine.Spy<DaffCartServiceInterface['create']>;
+  let driverClearSpy: jasmine.Spy<DaffCartServiceInterface['clear']>;
+  let driverAddToCartSpy: jasmine.Spy<DaffCartServiceInterface['addToCart']>;
   let getCartIdSpy: jasmine.Spy;
   let setCartIdSpy: jasmine.Spy;
 
@@ -103,7 +105,10 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService is successful', () => {
       beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockCart));
+        driverGetSpy.and.returnValue(of({
+          response: mockCart,
+          errors: [],
+        }));
         const cartLoadSuccessAction = new DaffCartLoadSuccess(mockCart);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadSuccessAction });
@@ -114,12 +119,32 @@ describe('Daffodil | Cart | CartEffects', () => {
       });
     });
 
+    describe('and the call to CartService is partially successful', () => {
+      let oosError: DaffProductOutOfStockError;
+
+      beforeEach(() => {
+        oosError = new DaffProductOutOfStockError('Some of the cart items are out of stock');
+        oosError.recoverable = true;
+        driverGetSpy.and.returnValue(of({
+          response: mockCart,
+          errors: [oosError],
+        }));
+        const cartLoadPartialSuccessAction = new DaffCartLoadPartialSuccess(mockCart, [daffTransformErrorToStateError(oosError)]);
+        actions$ = hot('--a', { a: cartLoadAction });
+        expected = cold('--b', { b: cartLoadPartialSuccessAction });
+      });
+
+      it('should dispatch a DaffCartLoadPartialSuccess action', () => {
+        expect(effects.get$).toBeObservable(expected);
+      });
+    });
+
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', message: 'Failed to load cart' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartLoadFailureAction = new DaffCartLoadFailure(error);
+        const cartLoadFailureAction = new DaffCartLoadFailure([error]);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadFailureAction });
       });

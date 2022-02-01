@@ -4,10 +4,10 @@ import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCartErrors } from './cart-errors.type';
 
 export const initializeErrorAdder = (errorSpace: DaffCartOperationType) =>
-  (errors: DaffCartErrors, error: DaffStateError) => ({
+  (errors: DaffCartErrors, ...errorsToAdd: DaffStateError[]) => ({
     errors: {
       ...errors,
-      [errorSpace]: errors[errorSpace].concat(new Array(error)),
+      [errorSpace]: errors[errorSpace].concat(errorsToAdd),
     },
   });
 

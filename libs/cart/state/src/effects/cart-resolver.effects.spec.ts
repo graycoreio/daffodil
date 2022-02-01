@@ -30,6 +30,7 @@ import {
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
   DaffResolveCartServerSide,
+  DaffResolveCartPartialSuccess,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
@@ -37,11 +38,14 @@ import {
   DaffServerSideStorageError,
   DaffError,
 } from '@daffodil/core';
-import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import {
+  DaffStateError,
+  daffTransformErrorToStateError,
+} from '@daffodil/core/state';
 
 import { DaffCartResolverEffects } from './cart-resolver.effects';
 
-describe('DaffCartResolverEffects', () => {
+describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartResolverEffects;
 
@@ -51,8 +55,8 @@ describe('DaffCartResolverEffects', () => {
   let driver: DaffCartServiceInterface;
   let cartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverCreateSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartServiceInterface['get']>;
+  let driverCreateSpy: jasmine.Spy<DaffCartServiceInterface['create']>;
   let getCartIdSpy: jasmine.Spy;
 
   const throwStorageError = message => {
@@ -131,9 +135,9 @@ describe('DaffCartResolverEffects', () => {
 
       it('should indicate cart resolution failure due to cart ID retrieval', () => {
         const error = new DaffCartStorageResolutionError(errorMessage);
-        const resolveCartFailureAction = new DaffResolveCartFailure(
+        const resolveCartFailureAction = new DaffResolveCartFailure([
           daffTransformErrorToStateError(error),
-        );
+        ]);
         const expected = cold('--b', {
           b: resolveCartFailureAction,
         });
@@ -146,7 +150,10 @@ describe('DaffCartResolverEffects', () => {
       beforeEach(() => {
         getCartIdSpy.and.returnValue(undefined);
         driverCreateSpy.and.returnValue(of({ id: stubCart.id }));
-        driverGetSpy.and.returnValue(of(stubCart));
+        driverGetSpy.and.returnValue(of({
+          response: stubCart,
+          errors: [],
+        }));
       });
 
       describe('and when creating a cart fails', () => {
@@ -155,7 +162,7 @@ describe('DaffCartResolverEffects', () => {
 
         beforeEach(() => {
           errorMessage = 'error';
-          error = new DaffCartInvalidAPIResponseError(errorMessage);
+          error = new DaffCartResolutionError(errorMessage);
           const response = cold(
             '#',
             {},
@@ -165,9 +172,9 @@ describe('DaffCartResolverEffects', () => {
         });
 
         it('should dispatch DaffResolveCartFailure action', () => {
-          const resolveCartFailureAction = new DaffResolveCartFailure(
+          const resolveCartFailureAction = new DaffResolveCartFailure([
             daffTransformErrorToStateError(error),
-          );
+          ]);
           const expected = cold('--b', {
             b: resolveCartFailureAction,
           });
@@ -201,7 +208,7 @@ describe('DaffCartResolverEffects', () => {
 
         beforeEach(() => {
           errorMessage = 'error';
-          error = new DaffCartInvalidAPIResponseError(errorMessage);
+          error = new DaffCartResolutionError(errorMessage);
           const response = cold(
             '#',
             {},
@@ -215,17 +222,16 @@ describe('DaffCartResolverEffects', () => {
           beforeEach(() => {
             error = new DaffProductOutOfStockError(errorMessage);
             const response = cold(
-              '#',
-              {},
-              error,
+              'a',
+              { a: { errors: [error]}},
             );
             driverGetSpy.and.returnValue(response);
           });
 
           it('should indicate failed cart resolution while preserving the original error', () => {
-            const resolveCartFailureAction = new DaffResolveCartFailure(
+            const resolveCartFailureAction = new DaffResolveCartFailure([
               daffTransformErrorToStateError(error),
-            );
+            ]);
             const expected = cold('--b', {
               b: resolveCartFailureAction,
             });
@@ -235,9 +241,9 @@ describe('DaffCartResolverEffects', () => {
         });
 
         it('should indicate failed cart resolution', () => {
-          const resolveCartFailureAction = new DaffResolveCartFailure(
+          const resolveCartFailureAction = new DaffResolveCartFailure([
             daffTransformErrorToStateError(error),
-          );
+          ]);
           const expected = cold('--b', {
             b: resolveCartFailureAction,
           });
@@ -250,7 +256,7 @@ describe('DaffCartResolverEffects', () => {
         const newCartId = 'newCartId';
 
         beforeEach(() => {
-          const response = cold('#', {}, new DaffCartNotFoundError('error'));
+          const response = cold('a', { a: { errors: [new DaffCartNotFoundError('error')]}});
           driverGetSpy.withArgs(cartId).and.returnValue(response);
           driverCreateSpy.and.returnValue(of({ id: newCartId }));
         });
@@ -266,7 +272,10 @@ describe('DaffCartResolverEffects', () => {
 
         describe('and the driver calls succeed', () => {
           beforeEach(() => {
-            driverGetSpy.withArgs(newCartId).and.returnValue(of(stubCart));
+            driverGetSpy.withArgs(newCartId).and.returnValue(of({
+              response: stubCart,
+              errors: [],
+            }));
           });
 
           it('should indicate successful cart resolution', () => {
@@ -296,9 +305,9 @@ describe('DaffCartResolverEffects', () => {
 
           it('should indicate failed cart resolution after attempting to load and create a cart', () => {
             const error = new DaffCartNotFoundOrCreatedResolutionError(errorMessage);
-            const resolveCartFailureAction = new DaffResolveCartFailure(
+            const resolveCartFailureAction = new DaffResolveCartFailure([
               daffTransformErrorToStateError(error),
-            );
+            ]);
             const expected = cold('--b', {
               b: resolveCartFailureAction,
             });
@@ -319,9 +328,9 @@ describe('DaffCartResolverEffects', () => {
 
           it('should indicate failed cart resolution', () => {
             const error = new DaffCartNotFoundOrCreatedResolutionError(errorMessage);
-            const resolveCartFailureAction = new DaffResolveCartFailure(
+            const resolveCartFailureAction = new DaffResolveCartFailure([
               daffTransformErrorToStateError(error),
-            );
+            ]);
             const expected = cold('--b', {
               b: resolveCartFailureAction,
             });
@@ -333,7 +342,10 @@ describe('DaffCartResolverEffects', () => {
 
       describe('and the cart loads successfully', () => {
         beforeEach(() => {
-          driverGetSpy.and.returnValue(of(stubCart));
+          driverGetSpy.and.returnValue(of({
+            response: stubCart,
+            errors: [],
+          }));
         });
 
         it('should not attempt to create a cart', () => {
@@ -348,6 +360,44 @@ describe('DaffCartResolverEffects', () => {
 
         it('should indicate that a cart has resolved successfully', () => {
           const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+          const expected = cold('--b', {
+            b: resolveCartSuccessAction,
+          });
+
+          expect(effects.onResolveCart()).toBeObservable(expected);
+        });
+      });
+
+      describe('and the cart loads partially successfully', () => {
+        let oosError: DaffProductOutOfStockError;
+
+        beforeEach(() => {
+          oosError = new DaffProductOutOfStockError('Some of the cart items are out of stock');
+          oosError.recoverable = true;
+          driverGetSpy.and.returnValue(of({
+            response: stubCart,
+            errors: [oosError],
+          }));
+        });
+
+        it('should not attempt to create a cart', () => {
+          const resolveCartSuccessAction = new DaffResolveCartPartialSuccess(
+            stubCart,
+            [daffTransformErrorToStateError(oosError)],
+          );
+          const expected = cold('--b', {
+            b: resolveCartSuccessAction,
+          });
+
+          expect(effects.onResolveCart()).toBeObservable(expected);
+          expect(driverCreateSpy).not.toHaveBeenCalled();
+        });
+
+        it('should indicate that a cart has resolved partially successfully', () => {
+          const resolveCartSuccessAction = new DaffResolveCartPartialSuccess(
+            stubCart,
+            [daffTransformErrorToStateError(oosError)],
+          );
           const expected = cold('--b', {
             b: resolveCartSuccessAction,
           });

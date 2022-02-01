@@ -47,6 +47,7 @@ import {
   DaffResolveCartFailure,
   DaffResolveCartServerSide,
   DaffResolveCart,
+  DaffResolveCartPartialSuccess,
 } from '../actions/public_api';
 
 /**
@@ -80,7 +81,39 @@ implements OnInitEffects {
           cartId ? of({ id: cartId }) : this.driver.create(),
         ),
         switchMap(({ id }) => this.driver.get(id)),
-        map(resp => new DaffResolveCartSuccess(resp)),
+        switchMap(({ response, errors }) => {
+          if (errors.length === 0) {
+            return of(new DaffResolveCartSuccess(response));
+          }
+
+          const hasOnlyRecoverableErrors = errors.reduce((acc, error) => acc && error.recoverable, true);
+
+          if (hasOnlyRecoverableErrors) {
+            return of(new DaffResolveCartPartialSuccess(response, errors.map(error => this.errorMatcher(error))));
+          }
+
+          if (errors.filter(error => error instanceof DaffCartNotFoundError).length > 0) {
+            return this.driver.create().pipe(
+              switchMap(({ id }) => this.driver.get(id)),
+              map(resp => new DaffResolveCartSuccess(resp.response)),
+              catchError((innerError: DaffError) => of(
+                new DaffResolveCartFailure([this.errorMatcher(
+                  new DaffCartNotFoundOrCreatedResolutionError(innerError.message),
+                )]),
+              )),
+            );
+          }
+
+          // there are no special case errors, DaffResolveCartFailure will suffice
+          // just map the errors
+          return of(new DaffResolveCartFailure(errors.map(error => this.errorMatcher(
+            // I wish there was a better way to check this
+            error instanceof DaffInheritableError || !!(<DaffError>error).code
+              ? error
+              : new DaffCartResolutionError(error.message),
+          ))),
+          );
+        }),
         catchError((error: Error) => {
           switch (true) {
             case error instanceof DaffServerSideStorageError:
@@ -88,26 +121,13 @@ implements OnInitEffects {
                 new DaffCartServerSideResolutionError(error.message),
               )));
             case error instanceof DaffStorageServiceError:
-              return of(new DaffResolveCartFailure(this.errorMatcher(
+              return of(new DaffResolveCartFailure([this.errorMatcher(
                 new DaffCartStorageResolutionError(error.message),
-              )));
-            case error instanceof DaffCartNotFoundError:
-              return this.driver.create().pipe(
-                switchMap(({ id }) => this.driver.get(id)),
-                map(resp => new DaffResolveCartSuccess(resp)),
-                catchError((innerError: DaffError) => of(
-                  new DaffResolveCartFailure(this.errorMatcher(
-                    new DaffCartNotFoundOrCreatedResolutionError(innerError.message),
-                  )),
-                )),
-              );
-            // I wish there was a better way to check this
-            case error instanceof DaffInheritableError || !!(<DaffError>error).code:
-              return of(new DaffResolveCartFailure(this.errorMatcher(error)));
+              )]));
             default:
-              return of(new DaffResolveCartFailure(this.errorMatcher(
+              return of(new DaffResolveCartFailure([this.errorMatcher(
                 new DaffCartResolutionError(error.message),
-              )));
+              )]));
           }
         }),
       ),

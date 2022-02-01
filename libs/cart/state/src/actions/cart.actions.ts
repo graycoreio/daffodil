@@ -11,6 +11,7 @@ export enum DaffCartActionTypes {
   CartStorageFailureAction = '[DaffCart] Cart Storage Failure Action',
   CartLoadAction = '[DaffCart] Cart Load Action',
   CartLoadSuccessAction = '[DaffCart] Cart Load Success Action',
+  CartLoadPartialSuccessAction = '[DaffCart] Cart Load Partial Success Action',
   CartLoadFailureAction = '[DaffCart] Cart Load Failure Action',
   CartCreateAction = '[DaffCart] Cart Create Action',
   CartCreateSuccessAction = '[DaffCart] Cart Create Success Action',
@@ -23,6 +24,7 @@ export enum DaffCartActionTypes {
   CartClearFailureAction = '[DaffCart] Cart Reset Failure Action',
   ResolveCartAction = '[DaffCart] Resolve Cart Action',
   ResolveCartSuccessAction = '[DaffCart] Resolve Cart Success Action',
+  ResolveCartPartialSuccessAction = '[DaffCart] Resolve Cart Partial Success Action',
   ResolveCartServerSideAction = '[DaffCart] Resolve Cart Server Side Action',
   ResolveCartFailureAction = '[DaffCart] Resolve Cart Failure Action',
 }
@@ -53,12 +55,24 @@ export class DaffCartLoadSuccess<T extends DaffCart = DaffCart> implements Actio
 }
 
 /**
+ * An action that indicates a user's cart is loaded but recoverable errors occurred.
+ * There should be enough data to render the cart
+ * but the user should probably be shown error messages as well.
+ * A common example is some cart items being out of stock.
+ */
+export class DaffCartLoadPartialSuccess<T extends DaffCart = DaffCart> implements Action {
+  readonly type = DaffCartActionTypes.CartLoadPartialSuccessAction;
+
+  constructor(public payload: T, public errors: DaffStateError[]) {}
+}
+
+/**
  * Indicates the failed load of the cart.
  */
 export class DaffCartLoadFailure implements Action {
   readonly type = DaffCartActionTypes.CartLoadFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -150,12 +164,24 @@ export class DaffResolveCartSuccess<T extends DaffCart = DaffCart> implements Ac
 }
 
 /**
+ * An action that indicates a user's cart is resolved but recoverable errors occurred.
+ * There should be enough data to render the cart
+ * but the user should probably be shown error messages as well.
+ * A common example is some cart items being out of stock.
+ */
+export class DaffResolveCartPartialSuccess<T extends DaffCart = DaffCart> implements Action {
+  readonly type = DaffCartActionTypes.ResolveCartPartialSuccessAction;
+
+  constructor(public payload: T, public errors: DaffStateError[]) {}
+}
+
+/**
  * An action that indicates that a cart failed to resolve.
  */
 export class DaffResolveCartFailure implements Action {
   readonly type = DaffCartActionTypes.ResolveCartFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -175,6 +201,7 @@ export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartStorageFailure
   | DaffCartLoad
   | DaffCartLoadSuccess<T>
+  | DaffCartLoadPartialSuccess<T>
   | DaffCartLoadFailure
   | DaffCartCreate
   | DaffCartCreateSuccess<T>
@@ -187,5 +214,6 @@ export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartClearFailure
   | DaffResolveCart
   | DaffResolveCartSuccess<T>
+  | DaffResolveCartPartialSuccess<T>
   | DaffResolveCartServerSide
   | DaffResolveCartFailure;

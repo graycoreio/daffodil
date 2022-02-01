@@ -46,6 +46,7 @@ import {
   DaffCartCreateSuccess,
   DaffCartCreateFailure,
   DaffCartStorageFailure,
+  DaffCartLoadPartialSuccess,
 } from '../actions/public_api';
 
 @Injectable()
@@ -84,10 +85,22 @@ export class DaffCartEffects<T extends DaffCart> {
     switchMap((action: DaffCartLoad) => of(null).pipe(
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.get(cartId)),
-      map((resp: T) => new DaffCartLoadSuccess(resp)),
+      map(({ response, errors }) => {
+        if (errors.length === 0) {
+          return new DaffCartLoadSuccess(response);
+        }
+
+        const hasOnlyRecoverableErrors = errors.reduce((acc, error) => acc && error.recoverable, true);
+
+        if (hasOnlyRecoverableErrors) {
+          return new DaffCartLoadPartialSuccess(response, errors.map(error => this.errorMatcher(error)));
+        }
+
+        return new DaffCartLoadFailure(errors.map(error => this.errorMatcher(error)));
+      }),
       catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartLoadFailure(this.errorMatcher(error)),
+        : new DaffCartLoadFailure([this.errorMatcher(error)]),
       )),
     )),
   );
