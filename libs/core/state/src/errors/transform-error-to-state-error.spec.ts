@@ -1,9 +1,12 @@
-import { DaffError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffInheritableError,
+} from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { daffTransformErrorToStateError } from './transform-error-to-state-error';
 
-class TestError extends Error implements DaffError {
+class TestError extends DaffInheritableError implements DaffError {
   constructor(public code: string, public message: string) {
     super(message);
   }
