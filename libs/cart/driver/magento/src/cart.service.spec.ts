@@ -6,13 +6,18 @@ import {
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
 import { of } from 'rxjs';
 
 import {
   DaffCart,
   DaffCartItem,
 } from '@daffodil/cart';
-import { DaffCartItemDriver } from '@daffodil/cart/driver';
+import {
+  DaffCartItemDriver,
+  DaffCartNotFoundError,
+  DaffProductOutOfStockError,
+} from '@daffodil/cart/driver';
 import {
   MagentoCart,
   MagentoCartItem,
@@ -34,7 +39,7 @@ import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartService } from './cart.service';
 
-describe('Driver | Magento | Cart | CartService', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
   let service: DaffMagentoCartService;
   let controller: ApolloTestingController;
 
@@ -135,7 +140,7 @@ describe('Driver | Magento | Cart | CartService', () => {
 
     it('should return the correct value', done => {
       service.get(cartId).subscribe(result => {
-        expect(result).toEqual(jasmine.objectContaining(mockDaffCart));
+        expect(result.response).toEqual(jasmine.objectContaining(mockDaffCart));
         done();
       });
 
@@ -146,6 +151,38 @@ describe('Driver | Magento | Cart | CartService', () => {
       });
     });
 
+    describe('when there are graphQL errors', () => {
+      it('should return those errors', done => {
+        service.get(cartId).subscribe(result => {
+          expect(result.errors).toContain(jasmine.any(DaffCartNotFoundError));
+          expect(result.errors).toContain(jasmine.any(DaffProductOutOfStockError));
+          done();
+        });
+
+        const op = controller.expectOne(addTypenameToDocument(getCart([])));
+
+        op.flush({
+          errors: [new GraphQLError(
+            'Can\'t find a cart with that ID.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          ), new GraphQLError(
+            'Some of the products are out of stock.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          )],
+        });
+      });
+    });
+
     afterEach(() => {
       controller.verify();
     });
@@ -153,7 +190,10 @@ describe('Driver | Magento | Cart | CartService', () => {
 
   describe('clear | remove all items from the cart', () => {
     it('should make a delete cart item request for every item in the cart', done => {
-      spyOn(service, 'get').and.returnValue(of(mockDaffCart));
+      spyOn(service, 'get').and.returnValue(of({
+        response: mockDaffCart,
+        errors: [],
+      }));
       service.clear(cartId).subscribe(() => {
         mockDaffCart.items.forEach(item => {
           expect(magentoCartItemSpy.delete).toHaveBeenCalledWith(cartId, item.id);
@@ -163,7 +203,10 @@ describe('Driver | Magento | Cart | CartService', () => {
     });
 
     it('should return the cart from the get cart call', done => {
-      spyOn(service, 'get').and.returnValue(of(mockDaffCart));
+      spyOn(service, 'get').and.returnValue(of({
+        response: mockDaffCart,
+        errors: [],
+      }));
       service.clear(cartId).subscribe(result => {
         expect(result).toEqual(mockDaffCart);
         done();

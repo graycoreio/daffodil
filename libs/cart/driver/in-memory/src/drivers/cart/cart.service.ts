@@ -14,6 +14,7 @@ import {
   DaffCartServiceInterface,
   DaffCartNotFoundError,
 } from '@daffodil/cart/driver';
+import { DaffDriverResponse } from '@daffodil/driver';
 
 /**
  * @inheritdoc
@@ -21,7 +22,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCart> {
+export class DaffInMemoryCartService implements DaffCartServiceInterface {
   /**
    * The URL with which the driver makes calls to the backend.
    */
@@ -29,10 +30,13 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCar
 
   constructor(private http: HttpClient) {}
 
-  get(cartId: DaffCart['id']): Observable<DaffCart> {
+  get(cartId: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
     return this.http.get<DaffCart>(`${this.url}/${cartId}`).pipe(
       catchError((error: Error) => throwError(new DaffCartNotFoundError(error.message))),
-      map(result => result),
+      map(result => ({
+        response: result,
+        errors: [],
+      })),
     );
   }
 
