@@ -77,7 +77,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
         resolved: DaffCartResolveState.Resolving,
       };
 
-      const cartResolveFailure = new DaffResolveCartFailure(error);
+      const cartResolveFailure = new DaffResolveCartFailure([error]);
 
       result = reducer(state, cartResolveFailure);
     });

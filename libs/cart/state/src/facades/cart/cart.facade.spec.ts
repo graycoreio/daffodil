@@ -818,7 +818,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed cart load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartLoadFailure(error));
+      facade.dispatch(new DaffCartLoadFailure([error]));
       expect(facade.cartErrors$).toBeObservable(expected);
     });
   });

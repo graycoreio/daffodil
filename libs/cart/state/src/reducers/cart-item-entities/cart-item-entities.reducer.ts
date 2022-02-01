@@ -71,6 +71,8 @@ export function daffCartItemEntitiesReducer<
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.ResolveCartSuccessAction:
+    case DaffCartActionTypes.CartLoadPartialSuccessAction:
+    case DaffCartActionTypes.ResolveCartPartialSuccessAction:
     case DaffCartActionTypes.CartClearSuccessAction:
       return adapter.setAll(<T[]><unknown>action.payload.items.map(item => ({
         ...item,
