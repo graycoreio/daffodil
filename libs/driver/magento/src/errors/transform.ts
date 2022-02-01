@@ -1,6 +1,7 @@
 import {
   DaffError,
   DaffErrorCodeMap,
+  daffIsError,
 } from '@daffodil/core';
 
 import { DaffDriverMagentoError } from './error.class';
@@ -14,6 +15,8 @@ export function daffTransformMagentoError<T extends DaffErrorCodeMap>(error: any
   // TODO: handle network errors
   if (error.graphQLErrors) {
     return error.graphQLErrors.map(err => daffMagentoTransformGraphQlError<T>(err, map))[0];
+  } else if (daffIsError(error)) {
+    return error;
   } else {
     return new DaffDriverMagentoError(error.message);
   }

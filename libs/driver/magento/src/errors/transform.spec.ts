@@ -53,6 +53,20 @@ describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
     };
   });
 
+  describe('if the passed error is a Daffodil error', () => {
+    let daffError: MockError;
+    let result: DaffError;
+
+    beforeEach(() => {
+      daffError = new MockError('A Daffodil error');
+      result = daffTransformMagentoError(daffError, map);
+    });
+
+    it('should return the passed error', () => {
+      expect(result).toEqual(daffError);
+    });
+  });
+
   it('should be able to process graphql errors and return the relevant error if a mapping exists', () => {
     const error = new ApolloError({
       graphQLErrors: [handledGraphQlError],
