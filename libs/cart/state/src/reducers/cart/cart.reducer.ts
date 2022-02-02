@@ -39,7 +39,6 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.CartClearSuccessAction:
     case DaffCartActionTypes.AddToCartSuccessAction:
-    case DaffCartActionTypes.CartCreateSuccessAction:
     case DaffCartActionTypes.ResolveCartSuccessAction:
       return {
         ...state,
