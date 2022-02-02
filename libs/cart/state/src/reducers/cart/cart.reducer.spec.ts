@@ -280,6 +280,7 @@ describe('Cart | Reducer | Cart', () => {
     beforeEach(() => {
       state = {
         ...initialState,
+        cart: cartFactory.create(),
         loading: {
           ...initialState.loading,
           [DaffCartOperationType.Cart]: DaffState.Resolving,
