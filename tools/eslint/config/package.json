@@ -1,22 +1,23 @@
 {
   "name": "@daffodil/eslint-config",
-  "version": "0.0.1",
+  "version": "0.0.0-PLACEHOLDER",
   "description": "Eslint shareable config for Angular projects using the Daffodil team's in-house style.",
   "main": "./index.js",
   "peerDependencies": {
-    "@angular-eslint/eslint-plugin": "1.1.0",
-    "@angular-eslint/template-parser": "1.1.0",
-    "@typescript-eslint/eslint-plugin": "4.3.0",
-    "@typescript-eslint/parser": "4.3.0",
-    "eslint": "^7.6.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jasmine": "^4.1.2",
-    "eslint-plugin-jsdoc": "^30.7.6",
-    "eslint-plugin-modules-newline": "^0.0.6",
-    "eslint-plugin-prefer-arrow": "^1.2.2"
+    "@angular-eslint/eslint-plugin": "0.0.0-PLACEHOLDER",
+    "@angular-eslint/template-parser": "0.0.0-PLACEHOLDER",
+    "@typescript-eslint/eslint-plugin": "0.0.0-PLACEHOLDER",
+    "@typescript-eslint/parser": "0.0.0-PLACEHOLDER",
+    "eslint": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-import": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-jasmine": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-jsdoc": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-modules-newline": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-prefer-arrow": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
-    "publish": "npm publish --access=public"
+    "publish": "npm publish --access=public",
+    "build": "cp -r . ../../../dist/eslint-config"
   },
   "keywords": [
     "code checker",
