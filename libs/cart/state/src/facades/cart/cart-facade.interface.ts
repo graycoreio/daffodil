@@ -200,7 +200,14 @@ export interface DaffCartFacadeInterface<
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<T['coupons']>;
+  /**
+   * @deprecated use `itemEntities$` instead
+   */
 	items$: Observable<T['items']>;
+  /**
+   * A list of the cart items.
+   */
+  itemEntities$: Observable<U[]>;
 	/**
 	 * The total number of cart items, taking into account the quantity of each cart item.
 	 */
