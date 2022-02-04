@@ -107,6 +107,7 @@ export class DaffCartFacade<
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<T['coupons']>;
+  itemEntities$: Observable<U[]>;
   items$: Observable<T['items']>;
   totalItems$: Observable<number>;
   hasOutOfStockItems$: Observable<boolean>;
@@ -215,6 +216,7 @@ export class DaffCartFacade<
       selectCartShippingTotal,
       selectCartCoupons,
       selectCartItems,
+      selectAllCartItems,
       selectCartHasOutOfStockItems,
       selectOutOfStockCartItems,
       selectInStockCartItems,
@@ -324,6 +326,7 @@ export class DaffCartFacade<
     this.shippingTotal$ = this.store.pipe(select(selectCartShippingTotal));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));
     this.items$ = this.store.pipe(select(selectCartItems));
+    this.itemEntities$ = this.store.pipe(select(selectAllCartItems));
     this.totalItems$ = this.store.pipe(select(selectTotalNumberOfCartItems));
     this.hasOutOfStockItems$ = this.store.pipe(select(selectCartHasOutOfStockItems));
     this.outOfStockItems$ = this.store.pipe(select(selectOutOfStockCartItems));

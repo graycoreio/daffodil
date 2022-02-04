@@ -1075,6 +1075,20 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('itemEntities$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.itemEntities$).toBeObservable(expected);
+    });
+
+    it('should be the cart items upon a successful cart item list', () => {
+      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const expected = cold('a', { a: statefulCartItems });
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
+      expect(facade.itemEntities$).toBeObservable(expected);
+    });
+  });
+
   describe('totalItems$', () => {
     it('should initially be zero', () => {
       const expected = cold('a', { a: 0 });
