@@ -17,7 +17,7 @@
   },
   "scripts": {
     "publish": "npm publish --access=public",
-    "build": "cp -r . ../../../dist/eslint-config"
+    "build": "mkdir -p ../../../dist/eslint-config && cp -r . ../../../dist/eslint-config"
   },
   "keywords": [
     "code checker",
