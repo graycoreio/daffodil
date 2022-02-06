@@ -16,7 +16,7 @@
     "eslint-plugin-prefer-arrow": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
-    "publish": "npm publish --access=public",
+    "publish": "(cd ../../../dist/eslint-config && npm publish --access=public)",
     "build": "mkdir -p ../../../dist/eslint-config && cp -r . ../../../dist/eslint-config"
   },
   "keywords": [
