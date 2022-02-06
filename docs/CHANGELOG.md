@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.11](https://github.com/graycoreio/daffodil/compare/v0.39.10...v0.39.11) (2022-02-06)
+
+
+### Features
+
+* **cart:** add `itemEntities$` field to the cart facade ([#1975](https://github.com/graycoreio/daffodil/issues/1975)) ([9dc15af](https://github.com/graycoreio/daffodil/commit/9dc15af75abb0968a4aaa265cfef660df6ded1eb))
+* **cart:** export magento mock model classes ([#1973](https://github.com/graycoreio/daffodil/issues/1973)) ([c210584](https://github.com/graycoreio/daffodil/commit/c21058430be3bc46c94098a840cd8bf52b307573))
+
+
+### Bug Fixes
+
+* **cart:** creating a cart does not clear the cart in state ([#1972](https://github.com/graycoreio/daffodil/issues/1972)) ([b282b34](https://github.com/graycoreio/daffodil/commit/b282b342bccc655b9ab2dc8a3504d34f70fc74b5))
+* **tools:** release script ignoring dep versions from root dev deps ([#1978](https://github.com/graycoreio/daffodil/issues/1978)) ([86f6432](https://github.com/graycoreio/daffodil/commit/86f6432a84c9742fea370a790b2d195bdbd44618))
+
 ### [0.39.10](https://github.com/graycoreio/daffodil/compare/v0.39.9...v0.39.10) (2022-02-01)
 
 
