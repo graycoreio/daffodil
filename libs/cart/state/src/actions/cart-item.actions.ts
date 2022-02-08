@@ -27,6 +27,9 @@ export enum DaffCartItemActionTypes {
   CartItemDeleteAction = '[DaffCart] Cart Item Remove Action',
   CartItemDeleteSuccessAction = '[DaffCart] Cart Item Remove Success Action',
   CartItemDeleteFailureAction = '[DaffCart] Cart Item Remove Failure Action',
+  CartItemDeleteOutOfStockAction = '[DaffCart] Cart Item Delete Out Of Stock Action',
+  CartItemDeleteOutOfStockSuccessAction = '[DaffCart] Cart Item Delete Out Of Stock Success Action',
+  CartItemDeleteOutOfStockFailureAction = '[DaffCart] Cart Item Delete Out Of Stock Failure Action',
   CartItemStateResetAction = '[DaffCart] Cart Item State Reset Action'
 }
 
@@ -167,6 +170,31 @@ export class DaffCartItemDeleteFailure<T extends DaffStatefulCartItem = DaffStat
 }
 
 /**
+ * Triggers the deletion of all out of stock cart items.
+ */
+export class DaffCartItemDeleteOutOfStock implements Action {
+  readonly type = DaffCartItemActionTypes.CartItemDeleteOutOfStockAction;
+}
+
+/**
+ * Indicates the successful deletion of all out of stock cart items.
+ */
+export class DaffCartItemDeleteOutOfStockSuccess<T extends DaffCart = DaffCart> implements Action {
+  readonly type = DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction;
+
+  constructor(public payload: Partial<T>) {}
+}
+
+/**
+ * Indicates the failed deletion of all out of stock cart items.
+ */
+export class DaffCartItemDeleteOutOfStockFailure implements Action {
+  readonly type = DaffCartItemActionTypes.CartItemDeleteOutOfStockFailureAction;
+
+  constructor(public payload: DaffStateError) {}
+}
+
+/**
  * Resets cart item "new" or "updated" states to default.
  */
 export class DaffCartItemStateReset implements Action {
@@ -196,4 +224,7 @@ export type DaffCartItemActions<
   | DaffCartItemDelete<T>
   | DaffCartItemDeleteSuccess<V>
   | DaffCartItemDeleteFailure<T>
+  | DaffCartItemDeleteOutOfStock
+  | DaffCartItemDeleteOutOfStockSuccess<V>
+  | DaffCartItemDeleteOutOfStockFailure
   | DaffCartItemStateReset;

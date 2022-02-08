@@ -20,6 +20,11 @@ import {
   DaffCartItemListFailure,
   initialState,
   DaffStatefulCartItem,
+  DaffCartItemUpdate,
+  DaffCartItemDelete,
+  DaffCartItemDeleteOutOfStockSuccess,
+  DaffCartItemDeleteOutOfStock,
+  DaffCartItemDeleteOutOfStockFailure,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -30,12 +35,14 @@ import {
 
 import { cartItemReducer } from './cart-item.reducer';
 
-describe('Cart | Reducer | Cart Item', () => {
+describe('@daffodil/cart/state | cartItemUpdate', () => {
   let cartFactory: DaffCartFactory;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
 
   let cart: DaffCart;
   let cartItem: DaffStatefulCartItem;
+
+  let result: DaffCartReducerState;
 
   beforeEach(() => {
     cartFactory = new DaffCartFactory();
@@ -51,14 +58,32 @@ describe('Cart | Reducer | Cart Item', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = cartItemReducer(initialState, action);
+      result = cartItemReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
   });
 
+  describe('when CartItemUpdateAction is triggered', () => {
+    beforeEach(() => {
+      const cartItemUpdate = new DaffCartItemUpdate('itemId', { qty: 4 });
+      result = cartItemReducer(initialState, cartItemUpdate);
+    });
+
+    it('should indicate that the cart is loading', () => {
+      const expectedState: DaffCartReducerState<DaffCart> = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
+        },
+      };
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+
   describe('when CartItemUpdateSuccessAction is triggered', () => {
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -90,7 +115,6 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemUpdateFailureAction is triggered', () => {
     const error: DaffStateError = { code: 'error code', message: 'error message' };
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -116,8 +140,26 @@ describe('Cart | Reducer | Cart Item', () => {
     });
   });
 
+  describe('when CartItemDeleteAction is triggered', () => {
+    beforeEach(() => {
+      const cartItemDelete = new DaffCartItemDelete('itemId');
+      result = cartItemReducer(initialState, cartItemDelete);
+    });
+
+    it('should indicate that the cart is loading', () => {
+      const expectedState: DaffCartReducerState<DaffCart> = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
+        },
+      };
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+
   describe('when CartItemDeleteSuccessAction is triggered', () => {
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -149,7 +191,6 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemDeleteFailureAction is triggered', () => {
     const error: DaffStateError = { code: 'error code', message: 'error message' };
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -179,6 +220,86 @@ describe('Cart | Reducer | Cart Item', () => {
     });
   });
 
+  describe('when CartItemDeleteOutOfStockAction is triggered', () => {
+    beforeEach(() => {
+      const cartItemDeleteOutOfStock = new DaffCartItemDeleteOutOfStock();
+      result = cartItemReducer(initialState, cartItemDeleteOutOfStock);
+    });
+
+    it('should indicate that the cart is loading', () => {
+      const expectedState: DaffCartReducerState<DaffCart> = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
+        },
+      };
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+
+  describe('when CartItemDeleteOutOfStockSuccessAction is triggered', () => {
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
+        },
+      };
+
+      const cartItemRemoveSuccess = new DaffCartItemDeleteOutOfStockSuccess(cart);
+
+      result = cartItemReducer(state, cartItemRemoveSuccess);
+    });
+
+    it('should set cart from action.payload', () => {
+      expect(result.cart.id).toEqual(cart.id);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
+    });
+
+    it('should reset the errors in the item section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartOperationType.Item]).toEqual([]);
+    });
+  });
+
+  describe('when CartItemDeleteOutOfStockFailureAction is triggered', () => {
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Item]: DaffState.Resolving,
+        },
+        errors: {
+          ...initialState.errors,
+          [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
+
+      const cartItemRemoveFailure = new DaffCartItemDeleteOutOfStockFailure(error);
+
+      result = cartItemReducer(state, cartItemRemoveFailure);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
+    });
+
+    it('should add an error to the item section of state.errors', () => {
+      expect(result.errors[DaffCartOperationType.Item].length).toEqual(2);
+    });
+  });
+
   describe('when CartItemAddAction is triggered', () => {
     const type = DaffCartItemInputType.Simple;
     const productId = 'productId';
@@ -187,14 +308,13 @@ describe('Cart | Reducer | Cart Item', () => {
     it('should indicate that the cart item is being added', () => {
       const cartItemAddAction = new DaffCartItemAdd({ type, productId, qty });
 
-      const result = cartItemReducer(initialState, cartItemAddAction);
+      result = cartItemReducer(initialState, cartItemAddAction);
 
       expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Adding);
     });
   });
 
   describe('when CartItemAddActionSuccess is triggered', () => {
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -225,7 +345,6 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemAddFailureAction is triggered', () => {
     let error: DaffStateError;
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -267,14 +386,13 @@ describe('Cart | Reducer | Cart Item', () => {
         },
       };
       const cartItemLoad = new DaffCartItemLoad('itemId');
-      const result = cartItemReducer(initialState, cartItemLoad);
+      result = cartItemReducer(initialState, cartItemLoad);
 
       expect(result).toEqual(expectedState);
     });
   });
 
   describe('when CartItemLoadSuccessAction is triggered', () => {
-    let result;
     let state: DaffCartReducerState<DaffCart>;
     let newCartItem: DaffStatefulCartItem;
 
@@ -311,7 +429,6 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemLoadFailureAction is triggered', () => {
     let error: DaffStateError;
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -353,14 +470,13 @@ describe('Cart | Reducer | Cart Item', () => {
         },
       };
       const cartItemList = new DaffCartItemList();
-      const result = cartItemReducer(initialState, cartItemList);
+      result = cartItemReducer(initialState, cartItemList);
 
       expect(result).toEqual(expectedState);
     });
   });
 
   describe('when CartItemListSuccessAction is triggered', () => {
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -391,7 +507,6 @@ describe('Cart | Reducer | Cart Item', () => {
 
   describe('when CartItemListFailureAction is triggered', () => {
     let error: DaffStateError;
-    let result;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
