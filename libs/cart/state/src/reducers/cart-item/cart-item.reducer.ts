@@ -23,12 +23,16 @@ export function cartItemReducer<T extends DaffCart>(
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListAction:
     case DaffCartItemActionTypes.CartItemLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffState.Resolving),
+      };
     case DaffCartItemActionTypes.CartItemUpdateAction:
     case DaffCartItemActionTypes.CartItemDeleteAction:
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Resolving),
+        ...setLoading(state.loading, DaffState.Mutating),
       };
 
     case DaffCartItemActionTypes.CartItemAddAction:

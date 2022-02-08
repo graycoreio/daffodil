@@ -35,7 +35,7 @@ import {
 
 import { cartItemReducer } from './cart-item.reducer';
 
-describe('@daffodil/cart/state | cartItemUpdate', () => {
+describe('@daffodil/cart/state | cartItemReducer', () => {
   let cartFactory: DaffCartFactory;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
 
@@ -75,7 +75,7 @@ describe('@daffodil/cart/state | cartItemUpdate', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Mutating,
         },
       };
 
@@ -151,7 +151,7 @@ describe('@daffodil/cart/state | cartItemUpdate', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Mutating,
         },
       };
 
@@ -231,7 +231,7 @@ describe('@daffodil/cart/state | cartItemUpdate', () => {
         ...initialState,
         loading: {
           ...initialState.loading,
-          [DaffCartOperationType.Item]: DaffState.Resolving,
+          [DaffCartOperationType.Item]: DaffState.Mutating,
         },
       };
 
