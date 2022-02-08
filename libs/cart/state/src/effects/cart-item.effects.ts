@@ -165,10 +165,11 @@ export class DaffCartItemEffects<
     ),
     switchMap(items => items.length > 0
       ? combineLatest(items.map(item => this.driver.delete(this.storage.getCartId(), item.id))).pipe(
-        map(partialCarts => new DaffCartItemDeleteOutOfStockSuccess(Object.assign({}, ...partialCarts))),
+        map(partialCarts => Object.assign({}, ...partialCarts)),
       )
-      : EMPTY,
+      : this.store.pipe(select(getDaffCartSelectors().selectCartValue)),
     ),
+    map(cart => new DaffCartItemDeleteOutOfStockSuccess(cart)),
     catchError(error => of(new DaffCartItemDeleteOutOfStockFailure(this.errorMatcher(error)))),
   );
 }

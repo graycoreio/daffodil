@@ -59,6 +59,7 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffCartLoadSuccess } from '../actions/public_api';
 import { DaffCartItemEffects } from './cart-item.effects';
 
 describe('@daffodil/cart/state | DaffCartItemEffects', () => {
@@ -428,10 +429,11 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
     describe('and there are no out of stock items in the cart', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartItemListSuccess([]));
+        store.dispatch(new DaffCartLoadSuccess(mockCart));
       });
 
-      it('should dispatch nothing', () => {
-        expected = cold('---');
+      it('should dispatch success with the current cart', () => {
+        expected = cold('--a', { a: cartItemDeleteOutOfStockSuccessAction });
         expect(effects.removeOutOfStock$).toBeObservable(expected);
       });
     });
