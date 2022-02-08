@@ -5,26 +5,27 @@ import {
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffodilOsThemeService } from './os-theme/ostheme.service';
-import { DaffodilThemeStorageService } from './storage/theme-storage.service';
-import { DaffodilThemingService } from './theming.service';
+import { DaffTheme } from '../types/theme';
+import { DaffOsThemeService } from './os-theme/ostheme.service';
+import { DaffThemeStorageService } from './storage/theme-storage.service';
+import { DaffThemingService } from './theming.service';
 
-describe('DaffodilThemingService', () => {
+describe('DaffThemingService', () => {
   let testScheduler: TestScheduler;
 
   const constructThemingService = (
     themePreference: Observable<any>,
-    themeStorageObs: Observable<any>): { service: DaffodilThemingService; osTheme: DaffodilOsThemeService; themeStorage: DaffodilThemeStorageService } => {
-    const osTheme = jasmine.createSpyObj(DaffodilOsThemeService, {
+    themeStorageObs: Observable<any>): { service: DaffThemingService; osTheme: DaffOsThemeService; themeStorage: DaffThemeStorageService } => {
+    const osTheme = jasmine.createSpyObj(DaffOsThemeService, {
       getThemePreference: themePreference,
     });
 
-    const themeStorage = jasmine.createSpyObj(DaffodilThemeStorageService, {
+    const themeStorage = jasmine.createSpyObj(DaffThemeStorageService, {
       getThemeAsObservable: themeStorageObs,
       setTheme: undefined,
     });
 
-    return { service: new DaffodilThemingService(osTheme, themeStorage), osTheme, themeStorage };
+    return { service: new DaffThemingService(osTheme, themeStorage), osTheme, themeStorage };
   };
 
   beforeEach(() => {
@@ -50,7 +51,7 @@ describe('DaffodilThemingService', () => {
       const service = constructThemingService(osThemeMarble, themeStorageMarble).service;
 
       const expectedMarble = 'a';
-      const expectedValue = { a: 'dark' };
+      const expectedValue = { a: DaffTheme.Dark };
       expectObservable(service.getTheme()).toBe(expectedMarble, expectedValue);
     });
   });
@@ -59,12 +60,12 @@ describe('DaffodilThemingService', () => {
 
     testScheduler.run(({ expectObservable, cold }) => {
       const osThemeMarble = cold('a', { a: undefined });
-      const themeStorageMarble = cold('a b', { a: undefined, b: 'light' });
+      const themeStorageMarble = cold('a b', { a: undefined, b: DaffTheme.Light });
 
       const service = constructThemingService(osThemeMarble, themeStorageMarble).service;
 
       const expectedMarble = 'a b';
-      const expectedValue = { a: 'dark', b: 'light' };
+      const expectedValue = { a: DaffTheme.Dark, b: DaffTheme.Light };
       expectObservable(service.getTheme()).toBe(expectedMarble, expectedValue);
     });
   });
@@ -73,12 +74,12 @@ describe('DaffodilThemingService', () => {
 
     testScheduler.run(({ expectObservable, cold }) => {
       const osThemeMarble = cold('a', { a: undefined });
-      const themeStorageMarble = cold('a b', { a: 'light', b: 'dark' });
+      const themeStorageMarble = cold('a b', { a: DaffTheme.Light, b: DaffTheme.Dark });
 
       const service = constructThemingService(osThemeMarble, themeStorageMarble).service;
 
       const expectedMarble = 'a b';
-      const expectedValue = { a: 'light', b: 'dark' };
+      const expectedValue = { a: DaffTheme.Light, b: DaffTheme.Dark };
       expectObservable(service.getTheme()).toBe(expectedMarble, expectedValue);
     });
   });
@@ -92,7 +93,7 @@ describe('DaffodilThemingService', () => {
       const themeStorage = setup.themeStorage;
 
       service.blastMyEyes();
-      expect(themeStorage.setTheme).toHaveBeenCalledWith('light');
+      expect(themeStorage.setTheme).toHaveBeenCalledWith(DaffTheme.Light);
     });
 
     it('should be able to set the theme to dark', () => {
@@ -103,18 +104,18 @@ describe('DaffodilThemingService', () => {
       const themeStorage = setup.themeStorage;
 
       service.goDark();
-      expect(themeStorage.setTheme).toHaveBeenCalledWith('dark');
+      expect(themeStorage.setTheme).toHaveBeenCalledWith(DaffTheme.Dark);
     });
 
     it('should be able to switch themes', () => {
-      const osThemeMarble = new BehaviorSubject('light');
-      const themeStorageMarble = new BehaviorSubject('dark');
+      const osThemeMarble = new BehaviorSubject(DaffTheme.Light);
+      const themeStorageMarble = new BehaviorSubject(DaffTheme.Dark);
       const setup = constructThemingService(osThemeMarble, themeStorageMarble);
       const service = setup.service;
       const themeStorage = setup.themeStorage;
 
       service.switchTheme();
-      expect(themeStorage.setTheme).toHaveBeenCalledWith('light');
+      expect(themeStorage.setTheme).toHaveBeenCalledWith(DaffTheme.Light);
     });
   });
 });

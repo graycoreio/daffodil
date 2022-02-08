@@ -2,39 +2,53 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
+  waitForAsync,
 } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import {
+  FaIconComponent,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
 import {
   faMoon,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
-import { of } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffodilThemingService } from '../../services/theming.service';
-import { DaffodilThemeEnum } from '../../types/theme';
-import { DaffodilThemeSwitchComponent } from './theme-switch.component';
+import { DaffThemingService } from '../../services/theming.service';
+import { DaffTheme } from '../../types/theme';
+import {
+  DaffThemeSwitchComponent,
+  DAFF_THEME_SWITCH_TO_DARK_LABEL,
+  DAFF_THEME_SWITCH_TO_LIGHT_LABEL,
+} from './theme-switch.component';
 
-describe('DaffodilThemeSwitchComponent', () => {
-  let component: DaffodilThemeSwitchComponent;
-  let fixture: ComponentFixture<DaffodilThemeSwitchComponent>;
+describe('DaffThemeSwitchComponent', () => {
+  let component: DaffThemeSwitchComponent;
+  let fixture: ComponentFixture<DaffThemeSwitchComponent>;
 
-  let themeService: jasmine.SpyObj<DaffodilThemingService>;
+  let themeService: jasmine.SpyObj<DaffThemingService>;
+  let theme$: BehaviorSubject<DaffTheme>;
 
-  beforeEach(async () => {
-    themeService = jasmine.createSpyObj(DaffodilThemingService, ['getTheme', 'switchTheme']);
-    themeService.getTheme.and.returnValue(of(DaffodilThemeEnum.Light));
+  beforeEach(waitForAsync(() => {
+    theme$ = new BehaviorSubject(DaffTheme.Light);
+    themeService = jasmine.createSpyObj(DaffThemingService, ['getTheme', 'switchTheme']);
+    themeService.getTheme.and.returnValue(theme$);
 
-    await TestBed.configureTestingModule({
-      declarations: [ DaffodilThemeSwitchComponent ],
+    TestBed.configureTestingModule({
+      imports: [
+        FontAwesomeModule,
+      ],
+      declarations: [ DaffThemeSwitchComponent ],
       providers: [
-        { provide: DaffodilThemingService, useValue: themeService },
+        { provide: DaffThemingService, useValue: themeService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffodilThemeSwitchComponent);
+    fixture = TestBed.createComponent(DaffThemeSwitchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -44,33 +58,53 @@ describe('DaffodilThemeSwitchComponent', () => {
   });
 
   describe('the switch label', () => {
-    it('should change as the theme changes', () => {
-      const testScheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
+    describe('when the theme is dark', () => {
+      beforeEach(() => {
+        theme$.next(DaffTheme.Dark);
+        fixture.detectChanges();
       });
 
-      testScheduler.run((helpers) => {
-        const { cold, expectObservable, hot } = helpers;
+      it('should show the switch to light label', () => {
+        const el: HTMLButtonElement = fixture.debugElement.query(By.css('button[theme-toggle]')).nativeElement;
+        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFF_THEME_SWITCH_TO_LIGHT_LABEL);
+      });
+    });
 
-        themeService.getTheme.and.returnValue(cold('-a--b--c---|', { a: DaffodilThemeEnum.Light, b: DaffodilThemeEnum.Dark, c: DaffodilThemeEnum.Light }));
+    describe('when the theme is light', () => {
+      beforeEach(() => {
+        theme$.next(DaffTheme.Light);
+        fixture.detectChanges();
+      });
 
-        expectObservable(component.ariaLabel$).toBe('-a--b--c---|', { a: 'Enable dark mode', b: 'Enable light mode', c: 'Enable dark mode' });
+      it('should show the switch to dark label', () => {
+        const el: HTMLButtonElement = fixture.debugElement.query(By.css('button[theme-toggle]')).nativeElement;
+        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFF_THEME_SWITCH_TO_DARK_LABEL);
       });
     });
   });
 
   describe('the visual indication of the theme switcher', () => {
-    it('should change as the theme changes', () => {
-      const testScheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
+    describe('when the theme is dark', () => {
+      beforeEach(() => {
+        theme$.next(DaffTheme.Dark);
+        fixture.detectChanges();
       });
 
-      testScheduler.run((helpers) => {
-        const { cold, expectObservable, hot } = helpers;
+      it('should show the sun icon', () => {
+        const el: FaIconComponent = fixture.debugElement.query(By.css('fa-icon')).componentInstance;
+        expect(el.icon).toEqual(faSun);
+      });
+    });
 
-        themeService.getTheme.and.returnValue(cold('-a--b--c---|', { a: DaffodilThemeEnum.Light, b: DaffodilThemeEnum.Dark, c: DaffodilThemeEnum.Light }));
+    describe('when the theme is light', () => {
+      beforeEach(() => {
+        theme$.next(DaffTheme.Light);
+        fixture.detectChanges();
+      });
 
-        expectObservable(component.icon$).toBe('-a--b--c---|', { a: faMoon, b: faSun, c: faMoon });
+      it('should show the moon icon', () => {
+        const el: FaIconComponent = fixture.debugElement.query(By.css('fa-icon')).componentInstance;
+        expect(el.icon).toEqual(faMoon);
       });
     });
   });

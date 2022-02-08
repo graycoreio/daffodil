@@ -13,7 +13,7 @@ import {
   startWith,
 } from 'rxjs/operators';
 
-export type OperatingSystemThemePreference = 'light' | 'dark' | undefined;
+import { DaffTheme } from '../../types/theme';
 
 export const mediaQueryDarkPreference = '(prefers-color-scheme: dark)';
 
@@ -31,12 +31,15 @@ export const removeHandlerFactory = (window: Window) => (handler: any) => {
     : (<MediaQueryList>query).removeListener(handler);
 };
 
+/**
+ * A service for retrieving the OS theme preference.
+ */
 @Injectable({
   providedIn: 'root',
 })
-export class DaffodilOsThemeService {
+export class DaffOsThemeService {
 
-	preference$: Observable<OperatingSystemThemePreference>;
+	preference$: Observable<DaffTheme>;
 
 	constructor(@Inject(DOCUMENT) private doc: Document) {
 	  this.preference$ = this.doc.defaultView?.matchMedia
@@ -47,15 +50,15 @@ export class DaffodilOsThemeService {
 	      .pipe(
 	        startWith(this.doc.defaultView?.matchMedia(mediaQueryDarkPreference)),
 	        map((e: MediaQueryListEvent) => e.matches),
-	        map((val) => val ? 'dark' : 'light'),
+	        map((prefersDark) => prefersDark ? DaffTheme.Dark : DaffTheme.Light),
 	      )
-	    : of(undefined);
+	    : of(DaffTheme.None);
 	}
 
 	/**
 	 * Get the operating system's theme preference.
 	 */
-	public getThemePreference(): Observable<OperatingSystemThemePreference> {
+	public getThemePreference(): Observable<DaffTheme> {
 	  return this.preference$;
 	}
 }

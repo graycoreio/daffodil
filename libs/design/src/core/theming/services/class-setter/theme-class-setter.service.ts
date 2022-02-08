@@ -7,7 +7,11 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { DaffodilThemingService } from '../theming.service';
+import { DaffTheme } from '../../types/theme';
+import { DaffThemingService } from '../theming.service';
+
+export const DAFF_THEME_DARK_CSS_CLASS = 'daff-theme-dark';
+export const DAFF_THEME_LIGHT_CSS_CLASS = 'daff-theme-light';
 
 /**
  * This class updates the body of the app with the appropriate class for the theme.
@@ -15,14 +19,14 @@ import { DaffodilThemingService } from '../theming.service';
  * It is intended to be provided manually during setup.
  */
 @Injectable()
-export class DaffodilThemeClassSetterService {
+export class DaffThemeClassSetterService {
 	private renderer: Renderer2;
 	private subscription: Subscription;
 
 	constructor(
 		@Inject(DOCUMENT) private doc: Document,
 		private rendererFactory: RendererFactory2,
-		private themingService: DaffodilThemingService,
+		private themingService: DaffThemingService,
 	) {
 	  this.renderer = this.rendererFactory.createRenderer(null, null);
 	}
@@ -36,9 +40,9 @@ export class DaffodilThemeClassSetterService {
 	beginThemeSync(): void {
 	  this.subscription = this.themingService.getTheme().subscribe((theme) => {
 	    // For simplicty, remove all previously applied themes.
-	    this.renderer.removeClass(this.doc.body, 'daff-theme-light');
-	    this.renderer.removeClass(this.doc.body, 'daff-theme-dark');
-	    this.renderer.addClass(this.doc.body, 'daff-theme-' + theme);
+	    this.renderer.removeClass(this.doc.body, DAFF_THEME_LIGHT_CSS_CLASS);
+	    this.renderer.removeClass(this.doc.body, DAFF_THEME_DARK_CSS_CLASS);
+	    this.renderer.addClass(this.doc.body, theme === DaffTheme.Dark ? DAFF_THEME_DARK_CSS_CLASS : DAFF_THEME_LIGHT_CSS_CLASS);
 	  });
 	}
 
@@ -46,10 +50,8 @@ export class DaffodilThemeClassSetterService {
 	 * This unsubscribes from the bodyClass subscription it exists.
 	 */
 	destroy(): void {
-	  if (this.subscription) {
-	    this.subscription.unsubscribe();
-	  }
-	  this.renderer.removeClass(this.doc.body, 'daff-theme-light');
-	  this.renderer.removeClass(this.doc.body, 'daff-theme-dark');
+	  this.subscription?.unsubscribe();
+	  this.renderer.removeClass(this.doc.body, DAFF_THEME_LIGHT_CSS_CLASS);
+	  this.renderer.removeClass(this.doc.body, DAFF_THEME_DARK_CSS_CLASS);
 	}
 }

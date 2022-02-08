@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
 } from '@angular/core';
 import {
   faMoon,
@@ -10,35 +11,35 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffodilThemingService } from '../../services/theming.service';
-import {
-  DaffodilTheme,
-  DaffodilThemeEnum,
-} from '../../types/theme';
+import { DaffThemingService } from '../../services/theming.service';
+import { DaffTheme } from '../../types/theme';
+
+export const DAFF_THEME_SWITCH_TO_LIGHT_LABEL = 'Enable light mode';
+export const DAFF_THEME_SWITCH_TO_DARK_LABEL = 'Enable dark mode';
 
 @Component({
   selector: 'daff-theme-switch',
   templateUrl: './theme-switch.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffodilThemeSwitchComponent {
-  theme$: Observable<DaffodilTheme>;
+export class DaffThemeSwitchComponent implements OnInit {
+  theme$: Observable<DaffTheme>;
+  ariaLabel$: Observable<string>;
+  icon$: Observable<IconDefinition>;
 
-  constructor(private themeService: DaffodilThemingService) { }
+  constructor(private themeService: DaffThemingService) { }
+
+  ngOnInit() {
+    this.theme$ = this.themeService.getTheme();
+    this.ariaLabel$ = this.theme$.pipe(
+      map((theme) => theme === DaffTheme.Light ? DAFF_THEME_SWITCH_TO_DARK_LABEL : DAFF_THEME_SWITCH_TO_LIGHT_LABEL),
+    );
+    this.icon$ = this.theme$.pipe(
+      map((theme) => theme === DaffTheme.Light ? faMoon : faSun),
+    );
+  }
 
   onButtonClick() {
     this.themeService.switchTheme();
-  }
-
-  get ariaLabel$(): Observable<string> {
-    return this.themeService.getTheme().pipe(
-      map((theme) =>  theme === DaffodilThemeEnum.Light ? 'Enable dark mode' : 'Enable light mode'),
-    );
-  }
-
-  get icon$(): Observable<IconDefinition> {
-    return this.themeService.getTheme().pipe(
-      map((theme) =>  theme === DaffodilThemeEnum.Light ? faMoon : faSun),
-    );
   }
 }

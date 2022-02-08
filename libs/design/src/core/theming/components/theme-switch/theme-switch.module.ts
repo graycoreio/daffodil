@@ -4,11 +4,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffButtonModule } from '@daffodil/design';
 
-import { DaffodilThemeSwitchComponent } from './theme-switch.component';
+import { DaffThemeSwitchComponent } from './theme-switch.component';
 
 @NgModule({
   declarations: [
-    DaffodilThemeSwitchComponent,
+    DaffThemeSwitchComponent,
   ],
   imports: [
     CommonModule,
@@ -16,7 +16,7 @@ import { DaffodilThemeSwitchComponent } from './theme-switch.component';
     DaffButtonModule,
   ],
   exports: [
-    DaffodilThemeSwitchComponent,
+    DaffThemeSwitchComponent,
   ],
 })
-export class DaffodilThemeSwitchModule { }
+export class DaffThemeSwitchModule { }

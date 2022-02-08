@@ -7,8 +7,9 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffPersistenceService } from '@daffodil/core';
 
+import { DaffTheme } from '../../types/theme';
 import {
-  DaffodilThemeStorageService,
+  DaffThemeStorageService,
   THEME_STORAGE_KEY,
 } from './theme-storage.service';
 
@@ -37,14 +38,14 @@ class DaffMemoryStorageService implements DaffPersistenceService {
   }
 }
 
-describe('DaffodilThemeStorageService', () => {
-  let service: DaffodilThemeStorageService;
+describe('DaffThemeStorageService', () => {
+  let service: DaffThemeStorageService;
   let testScheduler: TestScheduler;
 
   const constructThemeStorageService = (
     document: Document = new Document(),
     storageService = new DaffMemoryStorageService(),
-  ) => new DaffodilThemeStorageService(storageService, document);
+  ) => new DaffThemeStorageService(storageService, document);
 
   it('should be created', () => {
     expect(constructThemeStorageService()).toBeTruthy();
@@ -52,24 +53,24 @@ describe('DaffodilThemeStorageService', () => {
 
   it('should be able to remove the theme from storage', () => {
     service = constructThemeStorageService();
-    service.setTheme('dark');
-    expect(service.getTheme()).toEqual('dark');
+    service.setTheme(DaffTheme.Dark);
+    expect(service.getTheme()).toEqual(DaffTheme.Dark);
     service.removeThemeSetting();
-    expect(service.getTheme()).toEqual(undefined);
+    expect(service.getTheme()).toEqual(DaffTheme.None);
   });
 
   it('should be able to persist values via storage', () => {
     service = constructThemeStorageService();
-    service.setTheme('dark');
-    expect(service.getTheme()).toEqual('dark');
-    service.setTheme('light');
-    expect(service.getTheme()).toEqual('light');
+    service.setTheme(DaffTheme.Dark);
+    expect(service.getTheme()).toEqual(DaffTheme.Dark);
+    service.setTheme(DaffTheme.Light);
+    expect(service.getTheme()).toEqual(DaffTheme.Light);
   });
 
-  it('should store the theme in storage as "GRAYCORE_THEME"', () => {
+  it('should store the theme in storage as "DAFF_THEME"', () => {
     service = constructThemeStorageService();
     expect(THEME_STORAGE_KEY).toEqual(
-      'GRAYCORE_THEME',
+      'DAFF_THEME',
     );
   });
 
@@ -82,14 +83,14 @@ describe('DaffodilThemeStorageService', () => {
 
     it('should be whatever is in storage if document does not have a window', () => {
       const tempStorage = new DaffMemoryStorageService();
-      tempStorage.setItem('GRAYCORE_THEME', 'light');
+      tempStorage.setItem('DAFF_THEME', DaffTheme.Light);
       console.log((new Document().defaultView));
 
       testScheduler.run(({ expectObservable }) => {
         service = constructThemeStorageService(new Document(), tempStorage);
 
         const expectedMarble = '(a)';
-        const expectedValue = { a: 'light' };
+        const expectedValue = { a: DaffTheme.Light };
         expectObservable(service.getThemeAsObservable()).toBe(
           expectedMarble,
           expectedValue,
@@ -100,13 +101,13 @@ describe('DaffodilThemeStorageService', () => {
     describe('in a document that supports storage events', () => {
       it('should be initialized from the theme in storage', () => {
         const tempStorage = new DaffMemoryStorageService();
-        tempStorage.setItem('GRAYCORE_THEME', 'light');
+        tempStorage.setItem('DAFF_THEME', DaffTheme.Light);
 
         testScheduler.run(({ expectObservable }) => {
           service = constructThemeStorageService(document, tempStorage);
 
           const expectedMarble = 'a';
-          const expectedValue = { a: 'light' };
+          const expectedValue = { a: DaffTheme.Light };
           expectObservable(service.getThemeAsObservable()).toBe(
             expectedMarble,
             expectedValue,
@@ -116,7 +117,7 @@ describe('DaffodilThemeStorageService', () => {
 
       it('should be derived from subsequent storage events', () => {
         const tempStorage = new DaffMemoryStorageService();
-        tempStorage.setItem('GRAYCORE_THEME', 'light');
+        tempStorage.setItem('DAFF_THEME', DaffTheme.Light);
 
         const schedulableWindow: any = {
           addEventListener: (eventType: any, listener: any) => {
@@ -126,7 +127,7 @@ describe('DaffodilThemeStorageService', () => {
                   (i) =>
                     new StorageEvent('testevent', {
                       key: THEME_STORAGE_KEY,
-                      newValue: i % 2 === 0 ? 'dark' : 'light',
+                      newValue: i % 2 === 0 ? DaffTheme.Dark : DaffTheme.Light,
                     }),
                 ),
                 take(3),
@@ -146,10 +147,10 @@ describe('DaffodilThemeStorageService', () => {
 
           const expectedMarble = 'a 9ms b 4ms c 4ms d';
           const expectedValue = {
-            a: 'light',
-            b: 'dark',
-            c: 'light',
-            d: 'dark',
+            a: DaffTheme.Light,
+            b: DaffTheme.Dark,
+            c: DaffTheme.Light,
+            d: DaffTheme.Dark,
           };
 
           expectObservable(service.getThemeAsObservable()).toBe(
@@ -159,15 +160,15 @@ describe('DaffodilThemeStorageService', () => {
         });
       });
 
-      it('should have bad storage values coerced to `undefined`', () => {
+      it('should have bad storage values coerced to `none`', () => {
         const tempStorage = new DaffMemoryStorageService();
-        tempStorage.setItem('GRAYCORE_THEME', 'taco');
+        tempStorage.setItem('DAFF_THEME', 'taco');
 
         testScheduler.run(({ expectObservable }) => {
           service = constructThemeStorageService(document, tempStorage);
 
           const expectedMarble = 'a';
-          const expectedValue = { a: undefined };
+          const expectedValue = { a: DaffTheme.None };
 
           expectObservable(service.getThemeAsObservable()).toBe(
             expectedMarble,

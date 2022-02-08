@@ -5,13 +5,13 @@ import {
 } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffodilOsThemeService } from './ostheme.service';
+import { DaffOsThemeService } from './ostheme.service';
 
-describe('DaffodilOsThemeService', () => {
-  let service: DaffodilOsThemeService;
+describe('DaffOsThemeService', () => {
+  let service: DaffOsThemeService;
   let testScheduler: TestScheduler;
 
-  const constructOsThemeService = (document = new Document()): DaffodilOsThemeService => new DaffodilOsThemeService(document);
+  const constructOsThemeService = (document = new Document()): DaffOsThemeService => new DaffOsThemeService(document);
 
   it('should be created', () => {
     expect(constructOsThemeService()).toBeTruthy();

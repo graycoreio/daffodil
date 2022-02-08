@@ -1,23 +1,24 @@
-import { OperatingSystemThemePreference } from '../services/os-theme/ostheme.service';
-import { DaffodilTheme } from '../types/theme';
+import { DaffTheme } from '../types/theme';
 
+/**
+ * Computes the appropriate app theme from the specified values.
+ * Cascades from `storedPreference` to `osPreference` to `defaultTheme`.
+ */
 export const daffComputeThemeSetting = (
-  osPreference: OperatingSystemThemePreference = undefined,
-  storedPreference: DaffodilTheme | undefined = undefined,
-  defaultTheme: DaffodilTheme = 'dark',
-): DaffodilTheme => {
-
+  osPreference?: DaffTheme,
+  storedPreference?: DaffTheme,
+  defaultTheme: DaffTheme = DaffTheme.Dark,
+): DaffTheme => {
   if (storedPreference) {
     return storedPreference;
   }
 
   if (osPreference === 'dark') {
-    return 'dark';
+    return DaffTheme.Dark;
   }
 
-
   if (osPreference === 'light') {
-    return 'light';
+    return DaffTheme.Light;
   }
 
   return defaultTheme;

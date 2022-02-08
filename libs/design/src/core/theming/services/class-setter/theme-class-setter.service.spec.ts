@@ -2,20 +2,20 @@ import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffodilThemingService } from '../theming.service';
-import { DaffodilThemeClassSetterService } from './theme-class-setter.service';
+import { DaffThemingService } from '../theming.service';
+import { DaffThemeClassSetterService } from './theme-class-setter.service';
 
-describe('DaffodilThemeClassSetterService', () => {
-  let service: DaffodilThemeClassSetterService;
+describe('DaffThemeClassSetterService', () => {
+  let service: DaffThemeClassSetterService;
   let doc: Document;
-  let themeService: DaffodilThemingService;
+  let themeService: DaffThemingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffodilThemeClassSetterService,
+        DaffThemeClassSetterService,
         {
-          provide: DaffodilThemingService, useValue: {
+          provide: DaffThemingService, useValue: {
             theme: new BehaviorSubject('dark'),
             getTheme() {
               return this.theme;
@@ -30,8 +30,8 @@ describe('DaffodilThemeClassSetterService', () => {
         },
       ],
     });
-    themeService = TestBed.inject(DaffodilThemingService);
-    service = TestBed.inject(DaffodilThemeClassSetterService);
+    themeService = TestBed.inject(DaffThemingService);
+    service = TestBed.inject(DaffThemeClassSetterService);
     doc = TestBed.inject(DOCUMENT);
   });
 

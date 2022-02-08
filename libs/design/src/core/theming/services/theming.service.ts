@@ -3,29 +3,26 @@ import {
   Observable,
   combineLatest,
 } from 'rxjs';
-import {
-  map,
-  tap,
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { daffComputeThemeSetting } from '../functions/computer';
-import {
-  DaffodilThemeEnum,
-  DaffodilTheme,
-} from '../types/theme';
-import { DaffodilOsThemeService } from './os-theme/ostheme.service';
-import { DaffodilThemeStorageService } from './storage/theme-storage.service';
+import { DaffTheme } from '../types/theme';
+import { DaffOsThemeService } from './os-theme/ostheme.service';
+import { DaffThemeStorageService } from './storage/theme-storage.service';
 
+/**
+ * A service for controlling the current app theme.
+ */
 @Injectable({
   providedIn: 'root',
 })
-export class DaffodilThemingService {
-	private theme$: Observable<DaffodilTheme>;
-	private theme: DaffodilTheme;
+export class DaffThemingService {
+	private theme$: Observable<DaffTheme>;
+	private theme: DaffTheme;
 
 	constructor(
-		private osTheme: DaffodilOsThemeService,
-		private themeStorage: DaffodilThemeStorageService,
+		private osTheme: DaffOsThemeService,
+		private themeStorage: DaffThemeStorageService,
 	) {
 
 	  this.theme$ = combineLatest([
@@ -43,7 +40,7 @@ export class DaffodilThemingService {
 	/**
 	 * Get the current theme
 	 */
-	getTheme(): Observable<DaffodilTheme> {
+	getTheme(): Observable<DaffTheme> {
 	  return this.theme$;
 	}
 
@@ -51,7 +48,7 @@ export class DaffodilThemingService {
 	 * Swap between themes
 	 */
 	switchTheme(): void {
-	  return this.theme === DaffodilThemeEnum.Dark
+	  return this.theme === DaffTheme.Dark
 	    ? this.blastMyEyes()
 	    : this.goDark();
 	}
@@ -61,7 +58,7 @@ export class DaffodilThemingService {
 	 * Really, just set the theme to dark.
 	 */
 	goDark() {
-	  this.themeStorage.setTheme(DaffodilThemeEnum.Dark);
+	  this.themeStorage.setTheme(DaffTheme.Dark);
 	}
 
 	/**
@@ -69,6 +66,6 @@ export class DaffodilThemingService {
 	 * Don't do this.
 	 */
 	blastMyEyes() {
-	  this.themeStorage.setTheme(DaffodilThemeEnum.Light);
+	  this.themeStorage.setTheme(DaffTheme.Light);
 	}
 }

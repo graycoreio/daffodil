@@ -1,6 +1,8 @@
-export type DaffodilTheme = 'light' | 'dark';
-
-export enum DaffodilThemeEnum {
+/**
+ * The possible states of a theme.
+ */
+export enum DaffTheme {
 	Light = 'light',
-	Dark = 'dark'
+	Dark = 'dark',
+  None = 'none'
 }
