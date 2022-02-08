@@ -23,6 +23,7 @@ import {
   debounceTime,
   mergeMap,
   mapTo,
+  take,
 } from 'rxjs/operators';
 
 import {
@@ -167,7 +168,10 @@ export class DaffCartItemEffects<
       ? combineLatest(items.map(item => this.driver.delete(this.storage.getCartId(), item.id))).pipe(
         map(partialCarts => Object.assign({}, ...partialCarts)),
       )
-      : this.store.pipe(select(getDaffCartSelectors().selectCartValue)),
+      : this.store.pipe(
+        select(getDaffCartSelectors().selectCartValue),
+        take(1),
+      ),
     ),
     map(cart => new DaffCartItemDeleteOutOfStockSuccess(cart)),
     catchError(error => of(new DaffCartItemDeleteOutOfStockFailure(this.errorMatcher(error)))),
