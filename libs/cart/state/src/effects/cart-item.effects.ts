@@ -13,6 +13,7 @@ import {
 } from '@ngrx/store';
 import {
   combineLatest,
+  EMPTY,
   of,
 } from 'rxjs';
 import {
@@ -162,10 +163,12 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemDeleteOutOfStock) =>
       this.store.pipe(select(getDaffCartSelectors().selectOutOfStockCartItems)),
     ),
-    switchMap(items =>
-      combineLatest(items.map(item => this.driver.delete(this.storage.getCartId(), item.id))),
+    switchMap(items => items.length > 0
+      ? combineLatest(items.map(item => this.driver.delete(this.storage.getCartId(), item.id))).pipe(
+        map(partialCarts => new DaffCartItemDeleteOutOfStockSuccess(Object.assign({}, ...partialCarts))),
+      )
+      : EMPTY,
     ),
-    map(partialCarts => new DaffCartItemDeleteOutOfStockSuccess(Object.assign({}, ...partialCarts))),
     catchError(error => of(new DaffCartItemDeleteOutOfStockFailure(this.errorMatcher(error)))),
   );
 }

@@ -419,48 +419,64 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
     let outOfStockCartItems: DaffStatefulCartItem[];
 
     beforeEach(() => {
-      outOfStockCartItems = statefulCartItemFactory.createMany(2, {
-        in_stock: false,
-      });
       cartItemDeleteOutOfStockAction = new DaffCartItemDeleteOutOfStock();
       cartItemDeleteOutOfStockSuccessAction = new DaffCartItemDeleteOutOfStockSuccess(mockCart);
       driverDeleteSpy.and.returnValue(of(mockCart));
       actions$ = hot('--a', { a: cartItemDeleteOutOfStockAction });
-
-      store.dispatch(new DaffCartItemListSuccess(outOfStockCartItems));
     });
 
-    it('should send a delete request for each out of stock cart item', () =>
-      effects.removeOutOfStock$.subscribe(() => {
-        outOfStockCartItems.forEach(item => {
-          expect(driverDeleteSpy).toHaveBeenCalledWith(mockCart.id, item.id);
+    describe('and there are no out of stock items in the cart', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemListSuccess([]));
+      });
+
+      it('should dispatch nothing', () => {
+        expected = cold('---');
+        expect(effects.removeOutOfStock$).toBeObservable(expected);
+      });
+    });
+
+    describe('and there are out of stock items in the cart', () => {
+      beforeEach(() => {
+        outOfStockCartItems = statefulCartItemFactory.createMany(2, {
+          in_stock: false,
         });
-      }));
-
-    describe('and the delete calls to the driver is successful', () => {
-      beforeEach(() => {
-        mockCart.items = [];
-        driverDeleteSpy.and.returnValue(of(mockCart));
+        store.dispatch(new DaffCartItemListSuccess(outOfStockCartItems));
       });
 
-      it('should return a DaffCartItemDeleteOutOfStockSucess action', () => {
-        expected = cold('--b', { b: cartItemDeleteOutOfStockSuccessAction });
-        expect(effects.removeOutOfStock$).toBeObservable(expected);
-      });
-    });
+      it('should send a delete request for each out of stock cart item', () =>
+        effects.removeOutOfStock$.subscribe(() => {
+          outOfStockCartItems.forEach(item => {
+            expect(driverDeleteSpy).toHaveBeenCalledWith(mockCart.id, item.id);
+          });
+        }),
+      );
 
-    describe('and the call to CartItemService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
-        const response = cold('#', {}, error);
-        driverDeleteSpy.and.returnValue(response);
-        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);
-        actions$ = hot('--a', { a: cartItemDeleteOutOfStockAction });
-        expected = cold('--(b|)', { b: cartItemRemoveCartFailureAction });
+      describe('and the delete calls to the driver is successful', () => {
+        beforeEach(() => {
+          mockCart.items = [];
+          driverDeleteSpy.and.returnValue(of(mockCart));
+        });
+
+        it('should return a DaffCartItemDeleteOutOfStockSucess action', () => {
+          expected = cold('--b', { b: cartItemDeleteOutOfStockSuccessAction });
+          expect(effects.removeOutOfStock$).toBeObservable(expected);
+        });
       });
 
-      it('should return a DaffCartItemDeleteOutOfStockFailure action', () => {
-        expect(effects.removeOutOfStock$).toBeObservable(expected);
+      describe('and the call to CartItemService fails', () => {
+        beforeEach(() => {
+          const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
+          const response = cold('#', {}, error);
+          driverDeleteSpy.and.returnValue(response);
+          const cartItemRemoveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);
+          actions$ = hot('--a', { a: cartItemDeleteOutOfStockAction });
+          expected = cold('--(b|)', { b: cartItemRemoveCartFailureAction });
+        });
+
+        it('should return a DaffCartItemDeleteOutOfStockFailure action', () => {
+          expect(effects.removeOutOfStock$).toBeObservable(expected);
+        });
       });
     });
   });
