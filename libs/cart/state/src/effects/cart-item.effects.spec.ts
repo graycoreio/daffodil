@@ -1,5 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import {
+  combineReducers,
+  Store,
+  StoreModule,
+} from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
   hot,
@@ -41,6 +46,11 @@ import {
   DaffStatefulCartItem,
   DaffCartItemStateReset,
   DaffCartItemStateDebounceTime,
+  DaffCartItemDeleteOutOfStock,
+  DaffCartItemDeleteOutOfStockFailure,
+  DaffCartItemDeleteOutOfStockSuccess,
+  daffCartReducers,
+  DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -49,11 +59,13 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffCartLoadSuccess } from '../actions/public_api';
 import { DaffCartItemEffects } from './cart-item.effects';
 
-describe('Daffodil | Cart | CartItemEffects', () => {
+describe('@daffodil/cart/state | DaffCartItemEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartItemEffects<DaffStatefulCartItem, DaffCartItemInput, DaffCart>;
+  let store: Store;
 
   let mockCart: DaffCart;
   let mockCartItem: DaffStatefulCartItem;
@@ -76,10 +88,12 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffTestingCartDriverModule.forRoot(),
+        StoreModule.forRoot({
+          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+        }),
       ],
       providers: [
         DaffCartItemEffects,
-        provideMockStore({}),
         provideMockActions(() => actions$),
         {
           provide: DaffCartItemStateDebounceTime,
@@ -93,6 +107,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 			DaffCartItemInput,
 			DaffCart
 		>>(DaffCartItemEffects);
+    store = TestBed.inject(Store);
 
     daffCartItemDriver = TestBed.inject(DaffCartItemDriver);
     daffCartStorageService = TestBed.inject(DaffCartStorageService);
@@ -356,7 +371,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
       cartItemDeleteSuccessAction = new DaffCartItemDeleteSuccess(mockCart);
     });
 
-    describe('and the clear call to driver is successful', () => {
+    describe('and the delete call to driver is successful', () => {
       beforeEach(() => {
         mockCart.items = [];
         driverDeleteSpy.and.returnValue(of(mockCart));
@@ -394,6 +409,76 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
       it('should return a DaffCartItemDeleteFailure action', () => {
         expect(effects.delete$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('when CartItemDeleteOutOfStockAction is triggered', () => {
+    let expected;
+    let cartItemDeleteOutOfStockAction: DaffCartItemDeleteOutOfStock;
+    let cartItemDeleteOutOfStockSuccessAction: DaffCartItemDeleteOutOfStockSuccess;
+    let outOfStockCartItems: DaffStatefulCartItem[];
+
+    beforeEach(() => {
+      cartItemDeleteOutOfStockAction = new DaffCartItemDeleteOutOfStock();
+      cartItemDeleteOutOfStockSuccessAction = new DaffCartItemDeleteOutOfStockSuccess(mockCart);
+      driverDeleteSpy.and.returnValue(of(mockCart));
+      actions$ = hot('--a', { a: cartItemDeleteOutOfStockAction });
+    });
+
+    describe('and there are no out of stock items in the cart', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemListSuccess([]));
+        store.dispatch(new DaffCartLoadSuccess(mockCart));
+      });
+
+      it('should dispatch success with the current cart', () => {
+        expected = cold('--a', { a: cartItemDeleteOutOfStockSuccessAction });
+        expect(effects.removeOutOfStock$).toBeObservable(expected);
+      });
+    });
+
+    describe('and there are out of stock items in the cart', () => {
+      beforeEach(() => {
+        outOfStockCartItems = statefulCartItemFactory.createMany(2, {
+          in_stock: false,
+        });
+        store.dispatch(new DaffCartItemListSuccess(outOfStockCartItems));
+      });
+
+      it('should send a delete request for each out of stock cart item', () =>
+        effects.removeOutOfStock$.subscribe(() => {
+          outOfStockCartItems.forEach(item => {
+            expect(driverDeleteSpy).toHaveBeenCalledWith(mockCart.id, item.id);
+          });
+        }),
+      );
+
+      describe('and the delete calls to the driver is successful', () => {
+        beforeEach(() => {
+          mockCart.items = [];
+          driverDeleteSpy.and.returnValue(of(mockCart));
+        });
+
+        it('should return a DaffCartItemDeleteOutOfStockSucess action', () => {
+          expected = cold('--b', { b: cartItemDeleteOutOfStockSuccessAction });
+          expect(effects.removeOutOfStock$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the call to CartItemService fails', () => {
+        beforeEach(() => {
+          const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
+          const response = cold('#', {}, error);
+          driverDeleteSpy.and.returnValue(response);
+          const cartItemRemoveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);
+          actions$ = hot('--a', { a: cartItemDeleteOutOfStockAction });
+          expected = cold('--(b|)', { b: cartItemRemoveCartFailureAction });
+        });
+
+        it('should return a DaffCartItemDeleteOutOfStockFailure action', () => {
+          expect(effects.removeOutOfStock$).toBeObservable(expected);
+        });
       });
     });
   });

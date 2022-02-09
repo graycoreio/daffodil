@@ -27,6 +27,13 @@ export function cartItemReducer<T extends DaffCart>(
         ...state,
         ...setLoading(state.loading, DaffState.Resolving),
       };
+    case DaffCartItemActionTypes.CartItemUpdateAction:
+    case DaffCartItemActionTypes.CartItemDeleteAction:
+    case DaffCartItemActionTypes.CartItemDeleteOutOfStockAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffState.Mutating),
+      };
 
     case DaffCartItemActionTypes.CartItemAddAction:
       return {
@@ -63,6 +70,7 @@ export function cartItemReducer<T extends DaffCart>(
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
     case DaffCartItemActionTypes.CartItemAddSuccessAction:
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
+    case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
       return {
         ...state,
         ...resetErrors(state.errors),
@@ -78,15 +86,10 @@ export function cartItemReducer<T extends DaffCart>(
     case DaffCartItemActionTypes.CartItemUpdateFailureAction:
     case DaffCartItemActionTypes.CartItemAddFailureAction:
     case DaffCartItemActionTypes.CartItemDeleteFailureAction:
+    case DaffCartItemActionTypes.CartItemDeleteOutOfStockFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
-      };
-
-    case DaffCartItemActionTypes.CartItemUpdateFailureAction:
-      return {
-        ...state,
         ...setLoading(state.loading, DaffState.Complete),
       };
 
