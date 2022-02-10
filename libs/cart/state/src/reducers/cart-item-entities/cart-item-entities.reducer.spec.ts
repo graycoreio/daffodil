@@ -17,6 +17,7 @@ import {
   DaffCartItemDeleteFailure,
   DaffCartItemUpdateFailure,
   DaffCartCreateSuccess,
+  DaffCartItemDeleteOutOfStockSuccess,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
