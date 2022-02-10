@@ -2,6 +2,7 @@ import {
   DaffCart,
   DaffCartItemInputType,
 } from '@daffodil/cart';
+import { DaffCartDriverErrorCodes } from '@daffodil/cart/driver';
 import {
   DaffCartOperationType,
   DaffCartReducerState,
@@ -249,6 +250,11 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
           ...initialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
+        errors: {
+          ...initialState.errors,
+          [DaffCartOperationType.Item]: [{ code: 'code', message: 'message' }],
+          [DaffCartOperationType.Cart]: [{ code: DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK, message: 'message' }],
+        },
       };
 
       const cartItemRemoveSuccess = new DaffCartItemDeleteOutOfStockSuccess(cart);
@@ -266,6 +272,10 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     it('should reset the errors in the item section of state.errors to an empty array', () => {
       expect(result.errors[DaffCartOperationType.Item]).toEqual([]);
+    });
+
+    it('should remove out of stock errors from the cart errors', () => {
+      expect(result.errors[DaffCartOperationType.Cart]).not.toContain(jasmine.objectContaining({ code: DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK }));
     });
   });
 

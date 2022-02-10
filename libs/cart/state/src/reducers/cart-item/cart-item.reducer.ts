@@ -1,4 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
+import { DaffCartDriverErrorCodes } from '@daffodil/cart/driver';
 import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartItemActionTypes } from '../../actions/public_api';
@@ -70,10 +71,25 @@ export function cartItemReducer<T extends DaffCart>(
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
     case DaffCartItemActionTypes.CartItemAddSuccessAction:
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
-    case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
       return {
         ...state,
         ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          ...action.payload,
+        },
+        ...setLoading(state.loading, DaffState.Complete),
+      };
+
+    case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [DaffCartOperationType.Item]: [],
+          // out of stock errors can be in the main cart, remove them here
+          [DaffCartOperationType.Cart]: state.errors[DaffCartOperationType.Cart].filter(({ code }) => code !== DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK),
+        },
         cart: {
           ...state.cart,
           ...action.payload,
