@@ -13,7 +13,6 @@ import {
 } from '@ngrx/store';
 import {
   combineLatest,
-  EMPTY,
   of,
 } from 'rxjs';
 import {
@@ -23,7 +22,6 @@ import {
   debounceTime,
   mergeMap,
   mapTo,
-  take,
 } from 'rxjs/operators';
 
 import {
@@ -36,6 +34,7 @@ import {
   DaffCartItemDriver,
   DaffCartItemServiceInterface,
 } from '@daffodil/cart/driver';
+import { latest } from '@daffodil/core/state';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -161,17 +160,16 @@ export class DaffCartItemEffects<
   @Effect()
   removeOutOfStock$ = this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemDeleteOutOfStockAction),
-    switchMap((action: DaffCartItemDeleteOutOfStock) =>
-      this.store.pipe(select(getDaffCartSelectors().selectOutOfStockCartItems)),
-    ),
-    switchMap(items => items.length > 0
+    switchMap((action: DaffCartItemDeleteOutOfStock) => latest(this.store.pipe(
+      select(getDaffCartSelectors().selectOutOfStockCartItems),
+    ))),
+    switchMap((items) => items.length > 0
       ? combineLatest(items.map(item => this.driver.delete(this.storage.getCartId(), item.id))).pipe(
         map(partialCarts => Object.assign({}, ...partialCarts)),
       )
-      : this.store.pipe(
+      : latest(this.store.pipe(
         select(getDaffCartSelectors().selectCartValue),
-        take(1),
-      ),
+      )),
     ),
     map(cart => new DaffCartItemDeleteOutOfStockSuccess(cart)),
     catchError(error => of(new DaffCartItemDeleteOutOfStockFailure(this.errorMatcher(error)))),
