@@ -18,6 +18,8 @@ import {
   DaffCartItemUpdateFailure,
   DaffCartCreateSuccess,
   DaffCartItemDeleteOutOfStockSuccess,
+  DaffCartLoadPartialSuccess,
+  DaffResolveCartPartialSuccess,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -357,6 +359,93 @@ describe('Cart | Cart Item Entities Reducer', () => {
       const resolveCartSuccess = new DaffResolveCartSuccess(cart);
 
       result = daffCartItemEntitiesReducer(initialState, resolveCartSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(cartItems.length);
+    });
+
+    it('sets expected cart item on state', () => {
+      expect(result.entities[cartItems[0].id]).toEqual(cartItems[0]);
+    });
+
+    it('should reset the cart item errors', () => {
+      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+    });
+  });
+
+  describe('when DeleteOutOfStockSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let cartItems: DaffStatefulCartItem[];
+    let result;
+
+    beforeEach(() => {
+      cartItems = statefulCartItemFactory.createMany(2);
+      cart = new DaffCartFactory().create({
+        items: cartItems,
+      });
+      const deleteOutOfStockSuccess = new DaffCartItemDeleteOutOfStockSuccess(cart);
+
+      result = daffCartItemEntitiesReducer(initialState, deleteOutOfStockSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(cartItems.length);
+    });
+
+    it('sets expected cart item on state', () => {
+      expect(result.entities[cartItems[0].id]).toEqual(cartItems[0]);
+    });
+
+    it('should reset the cart item errors', () => {
+      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+    });
+  });
+
+  describe('when ResolveCartPartialSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let cartItems: DaffStatefulCartItem[];
+    let result;
+
+    beforeEach(() => {
+      cartItems = statefulCartItemFactory.createMany(2);
+      cart = new DaffCartFactory().create({
+        items: cartItems,
+      });
+      const resolveCartPartialSuccess = new DaffResolveCartPartialSuccess(cart, []);
+
+      result = daffCartItemEntitiesReducer(initialState, resolveCartPartialSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(cartItems.length);
+    });
+
+    it('sets expected cart item on state', () => {
+      expect(result.entities[cartItems[0].id]).toEqual(cartItems[0]);
+    });
+
+    it('should reset the cart item errors', () => {
+      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+    });
+  });
+
+  describe('when CartLoadPartialSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let cartItems: DaffStatefulCartItem[];
+    let result;
+
+    beforeEach(() => {
+      cartItems = statefulCartItemFactory.createMany(2);
+      cart = new DaffCartFactory().create({
+        items: cartItems,
+      });
+      const cartLoadPartialSuccess = new DaffCartLoadPartialSuccess(cart, []);
+
+      result = daffCartItemEntitiesReducer(initialState, cartLoadPartialSuccess);
     });
 
     it('sets expected number of cartItems on state', () => {
