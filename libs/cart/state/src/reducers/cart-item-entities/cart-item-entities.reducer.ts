@@ -68,6 +68,7 @@ export function daffCartItemEntitiesReducer<
         errors: state.entities[action.itemId]?.errors?.concat(action.payload) || [action.payload],
       }, state);
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
+    case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.ResolveCartSuccessAction:
     case DaffCartActionTypes.CartClearSuccessAction:
