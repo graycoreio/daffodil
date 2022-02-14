@@ -115,7 +115,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     describe('and the call to CartOrderService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to place order' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to place order' };
         const response = cold('#', {}, error);
         const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure(error);
 

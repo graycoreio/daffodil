@@ -127,7 +127,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the call to CartAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to update cart address' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);

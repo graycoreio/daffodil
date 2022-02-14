@@ -121,7 +121,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
 
     describe('and the call to CartCouponService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to apply coupon to cart' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to apply coupon to cart' };
         const response = cold('#', {}, error);
         driverApplySpy.and.returnValue(response);
         const cartCouponApplyFailureAction = new DaffCartCouponApplyFailure(error);
@@ -167,7 +167,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
 
     describe('and the call to CartCouponService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to list coupons' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list coupons' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
         const cartCouponListFailureAction = new DaffCartCouponListFailure(error);
@@ -213,7 +213,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
 
     describe('and the call to CartCouponService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to remove a coupon from the cart' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove a coupon from the cart' };
         const response = cold('#', {}, error);
         driverRemoveSpy.and.returnValue(response);
         const cartCouponRemoveFailureAction = new DaffCartCouponRemoveFailure(error);
@@ -259,7 +259,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
 
     describe('and the call to CartCouponService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to remove all coupons from the cart' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove all coupons from the cart' };
         const response = cold('#', {}, error);
         driverRemoveAllSpy.and.returnValue(response);
         const cartCouponRemoveAllFailureAction = new DaffCartCouponRemoveAllFailure(error);

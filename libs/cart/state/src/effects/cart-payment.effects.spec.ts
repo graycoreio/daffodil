@@ -119,7 +119,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to load cart payment' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart payment' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartPaymentLoadFailureAction = new DaffCartPaymentLoadFailure(error);
@@ -158,7 +158,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to update cart payment' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure(error);
@@ -197,7 +197,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to update cart payment and billing address' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment and billing address' };
         const response = cold('#', {}, error);
         driverUpdateWithBillingSpy.and.returnValue(response);
         const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure(error);
@@ -230,7 +230,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart payment' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart payment' };
         const response = cold('#', {}, error);
         driverRemoveSpy.and.returnValue(response);
         const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure(error);

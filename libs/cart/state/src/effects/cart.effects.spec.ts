@@ -116,7 +116,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to load cart' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartLoadFailureAction = new DaffCartLoadFailure(error);
@@ -162,7 +162,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to create cart' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to create cart' };
         const response = cold('#', {}, error);
         driverCreateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartCreateFailure(error);
@@ -259,7 +259,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to add item to cart' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add item to cart' };
         const response = cold('#', {}, error);
         driverAddToCartSpy.and.returnValue(response);
         const addToCartFailureAction = new DaffAddToCartFailure(error);
@@ -292,7 +292,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the clear call to driver fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to clear the cart.' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to clear the cart.' };
         const response = cold('#', {}, error);
         driverClearSpy.and.returnValue(response);
         const cartClearFailureAction = new DaffCartClearFailure(error);

@@ -111,7 +111,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to load cart shipping information' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart shipping information' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartShippingInformationLoadFailureAction = new DaffCartShippingInformationLoadFailure(error);
@@ -150,7 +150,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to update cart shipping information' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart shipping information' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingInformationUpdateFailure(error);
@@ -184,7 +184,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to delete the cart shipping information' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to delete the cart shipping information' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
         const cartShippingInformationDeleteFailureAction = new DaffCartShippingInformationDeleteFailure(error);

@@ -103,7 +103,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to load cart shipping address' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart shipping address' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartShippingAddressLoadFailureAction = new DaffCartShippingAddressLoadFailure(error);
@@ -142,7 +142,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to update cart shipping address' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart shipping address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingAddressUpdateFailure(error);

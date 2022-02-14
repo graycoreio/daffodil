@@ -157,7 +157,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to list cart items' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart items' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
         const cartItemListFailureAction = new DaffCartItemListFailure(error);
@@ -194,7 +194,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to load cart item' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart item' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
         const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error, mockCartItem.id);
@@ -233,7 +233,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to add cart item' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add cart item' };
         const response = cold('#', {}, error);
         driverAddSpy.and.returnValue(response);
         const cartItemAddFailureAction = new DaffCartItemAddFailure(error);
@@ -288,7 +288,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to update cart item' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart item' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
         const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error, mockCartItem.id);
@@ -399,7 +399,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart item' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
         const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error, mockCartItem.id);
@@ -468,7 +468,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
 
       describe('and the call to CartItemService fails', () => {
         beforeEach(() => {
-          const error: DaffStateError = { code: 'code', message: 'Failed to remove the cart item' };
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart item' };
           const response = cold('#', {}, error);
           driverDeleteSpy.and.returnValue(response);
           const cartItemRemoveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);

@@ -98,7 +98,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to list cart shipping methods' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart shipping methods' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure(error);
