@@ -314,6 +314,31 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
   });
 
+  describe('when CartItemDeleteOutOfStockSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let cartItems: DaffStatefulCartItem[];
+    let result;
+
+    beforeEach(() => {
+      cartItems = statefulCartItemFactory.createMany(2);
+      cart = new DaffCartFactory().create({
+        items: cartItems,
+      });
+      const cartItemDeleteOutOfStockSuccess = new DaffCartItemDeleteOutOfStockSuccess(cart);
+
+      result = daffCartItemEntitiesReducer(initialState, cartItemDeleteOutOfStockSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(cartItems.length);
+    });
+
+    it('sets expected cart item on state', () => {
+      expect(result.entities[cartItems[0].id]).toEqual(cartItems[0]);
+    });
+  });
+
   describe('when CartLoadSuccessAction is triggered', () => {
 
     let cart: DaffCart;
