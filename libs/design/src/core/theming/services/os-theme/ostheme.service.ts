@@ -32,7 +32,7 @@ export const removeHandlerFactory = (window: Window) => (handler: any) => {
 };
 
 /**
- * A service for retrieving the OS theme preference.
+ * A service for retrieving the operating system's theme preference.
  */
 @Injectable({
   providedIn: 'root',
@@ -41,7 +41,11 @@ export class DaffOsThemeService {
 
 	preference$: Observable<DaffTheme>;
 
-	constructor(@Inject(DOCUMENT) private doc: Document) {
+	private doc?: Document;
+
+	constructor(@Inject(DOCUMENT) _doc: any) {
+	  this.doc = <Document>_doc;
+
 	  this.preference$ = this.doc.defaultView?.matchMedia
 	    ? fromEventPattern<MediaQueryListEvent>(
 	      addHandlerFactory(this.doc.defaultView),

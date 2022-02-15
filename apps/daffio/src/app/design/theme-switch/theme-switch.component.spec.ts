@@ -15,17 +15,20 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffThemingService } from '../../services/theming.service';
-import { DaffTheme } from '../../types/theme';
 import {
-  DaffThemeSwitchComponent,
-  DAFF_THEME_SWITCH_TO_DARK_LABEL,
-  DAFF_THEME_SWITCH_TO_LIGHT_LABEL,
+  DaffTheme,
+  DaffThemingService,
+} from '@daffodil/design';
+
+import {
+  DaffioThemeSwitchComponent,
+  DAFFIO_THEME_SWITCH_TO_DARK_LABEL,
+  DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL,
 } from './theme-switch.component';
 
-describe('DaffThemeSwitchComponent', () => {
-  let component: DaffThemeSwitchComponent;
-  let fixture: ComponentFixture<DaffThemeSwitchComponent>;
+describe('DaffioThemeSwitchComponent', () => {
+  let component: DaffioThemeSwitchComponent;
+  let fixture: ComponentFixture<DaffioThemeSwitchComponent>;
 
   let themeService: jasmine.SpyObj<DaffThemingService>;
   let theme$: BehaviorSubject<DaffTheme>;
@@ -39,7 +42,9 @@ describe('DaffThemeSwitchComponent', () => {
       imports: [
         FontAwesomeModule,
       ],
-      declarations: [ DaffThemeSwitchComponent ],
+      declarations: [
+        DaffioThemeSwitchComponent,
+      ],
       providers: [
         { provide: DaffThemingService, useValue: themeService },
       ],
@@ -48,7 +53,7 @@ describe('DaffThemeSwitchComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffThemeSwitchComponent);
+    fixture = TestBed.createComponent(DaffioThemeSwitchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -66,7 +71,7 @@ describe('DaffThemeSwitchComponent', () => {
 
       it('should show the switch to light label', () => {
         const el: HTMLButtonElement = fixture.debugElement.query(By.css('button[theme-toggle]')).nativeElement;
-        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFF_THEME_SWITCH_TO_LIGHT_LABEL);
+        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL);
       });
     });
 
@@ -78,7 +83,7 @@ describe('DaffThemeSwitchComponent', () => {
 
       it('should show the switch to dark label', () => {
         const el: HTMLButtonElement = fixture.debugElement.query(By.css('button[theme-toggle]')).nativeElement;
-        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFF_THEME_SWITCH_TO_DARK_LABEL);
+        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFFIO_THEME_SWITCH_TO_DARK_LABEL);
       });
     });
   });

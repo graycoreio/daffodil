@@ -1,8 +1,8 @@
 import { DaffTheme } from '../types/theme';
 
 /**
- * Computes the appropriate app theme from the specified values.
- * Cascades from `storedPreference` to `osPreference` to `defaultTheme`.
+ * Computes the appropriate application theme from the specified values.
+ * It cascades from `storedPreference` to `osPreference` to `defaultTheme`.
  */
 export const daffComputeThemeSetting = (
   osPreference?: DaffTheme,

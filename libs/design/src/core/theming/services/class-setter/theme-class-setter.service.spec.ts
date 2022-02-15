@@ -20,10 +20,10 @@ describe('DaffThemeClassSetterService', () => {
             getTheme() {
               return this.theme;
             },
-            goDark() {
+            darkMode() {
               this.theme.next('dark');
             },
-            blastMyEyes() {
+            lightMode() {
               this.theme.next('light');
             },
           },
@@ -55,9 +55,9 @@ describe('DaffThemeClassSetterService', () => {
   it('should only set one theme class on the body at a time', () => {
     service.beginThemeSync();
     expect(doc.body.className).toEqual('daff-theme-dark');
-    themeService.blastMyEyes();
+    themeService.lightMode();
     expect(doc.body.className).toEqual('daff-theme-light');
-    themeService.goDark();
+    themeService.darkMode();
     expect(doc.body.className).toEqual('daff-theme-dark');
   });
 });

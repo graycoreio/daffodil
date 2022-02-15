@@ -11,7 +11,7 @@ import { DaffOsThemeService } from './os-theme/ostheme.service';
 import { DaffThemeStorageService } from './storage/theme-storage.service';
 
 /**
- * A service for controlling the current app theme.
+ * A service for controlling the application's theme.
  */
 @Injectable({
   providedIn: 'root',
@@ -38,34 +38,32 @@ export class DaffThemingService {
 	}
 
 	/**
-	 * Get the current theme
+	 * Get the current theme.
 	 */
 	getTheme(): Observable<DaffTheme> {
 	  return this.theme$;
 	}
 
 	/**
-	 * Swap between themes
+	 * Set the theme to dark mode.
 	 */
-	switchTheme(): void {
-	  return this.theme === DaffTheme.Dark
-	    ? this.blastMyEyes()
-	    : this.goDark();
-	}
-
-	/**
-	 * Set phasers to low light.
-	 * Really, just set the theme to dark.
-	 */
-	goDark() {
+	darkMode() {
 	  this.themeStorage.setTheme(DaffTheme.Dark);
 	}
 
 	/**
 	 * Set the theme to light mode.
-	 * Don't do this.
 	 */
-	blastMyEyes() {
+	lightMode() {
 	  this.themeStorage.setTheme(DaffTheme.Light);
+	}
+
+	/**
+	 * Switch between themes.
+	 */
+	switchTheme(): void {
+	  return this.theme === DaffTheme.Dark
+	    ? this.lightMode()
+	    : this.darkMode();
 	}
 }

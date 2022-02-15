@@ -6,3 +6,4 @@ export {
   DaffPersistenceService,
   DaffPersistenceServiceToken,
 } from './persistence.interface';
+export { DaffServerSafePersistenceServiceToken } from './persistence-server-safe.token';

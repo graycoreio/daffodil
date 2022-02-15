@@ -5,12 +5,15 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 
+import { DaffNoopStorageService } from './noopstorage/noopstorage.service';
 import {
   DaffPersistenceService,
   DaffPersistenceServiceToken,
-  DaffNoopStorageService,
-} from '@daffodil/core';
+} from './persistence.interface';
 
+/**
+ * Provides noop for the persistence service on the server.
+ */
 export const DaffServerSafePersistenceServiceToken = new InjectionToken<
 	DaffPersistenceService
 >('DaffServerSafePersistenceService', {

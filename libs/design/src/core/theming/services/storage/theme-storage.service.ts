@@ -18,9 +18,11 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffPersistenceService } from '@daffodil/core';
+import {
+  DaffPersistenceService,
+  DaffServerSafePersistenceServiceToken,
+} from '@daffodil/core';
 
-import { DaffServerSafePersistenceServiceToken } from '../../../storage/server-safe-persistence.token';
 import { DaffTheme } from '../../types/theme';
 
 export type ThemeStorageEvent = Pick<StorageEvent, 'newValue' | 'key'>;
@@ -43,7 +45,7 @@ const storageEventBuilder = (
 });
 
 /**
- * A service for retrieving and managing the stored app theme.
+ * A service for retrieving and managing the application's stored theme.
  */
 @Injectable({
   providedIn: 'root',
@@ -51,12 +53,14 @@ const storageEventBuilder = (
 export class DaffThemeStorageService {
 	private theme$: Observable<DaffTheme>;
 	private storage$: Subject<ThemeStorageEvent> = new Subject();
+	private doc?: Document;
 
 	constructor(
 		@Inject(DaffServerSafePersistenceServiceToken)
 		private storage: DaffPersistenceService,
-		@Inject(DOCUMENT) private doc: Document,
+		@Inject(DOCUMENT) _doc: any,
 	) {
+	  this.doc = <Document>_doc;
 	  this.theme$ = merge(
 	    this.storage$,
 	    fromEvent<ThemeStorageEvent>(

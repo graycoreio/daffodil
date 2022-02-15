@@ -11,18 +11,20 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffThemingService } from '../../services/theming.service';
-import { DaffTheme } from '../../types/theme';
+import {
+  DaffTheme,
+  DaffThemingService,
+} from '@daffodil/design';
 
-export const DAFF_THEME_SWITCH_TO_LIGHT_LABEL = 'Enable light mode';
-export const DAFF_THEME_SWITCH_TO_DARK_LABEL = 'Enable dark mode';
+export const DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL = 'Enable light mode';
+export const DAFFIO_THEME_SWITCH_TO_DARK_LABEL = 'Enable dark mode';
 
 @Component({
-  selector: 'daff-theme-switch',
+  selector: 'daffio-theme-switch',
   templateUrl: './theme-switch.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffThemeSwitchComponent implements OnInit {
+export class DaffioThemeSwitchComponent implements OnInit {
   theme$: Observable<DaffTheme>;
   ariaLabel$: Observable<string>;
   icon$: Observable<IconDefinition>;
@@ -32,7 +34,7 @@ export class DaffThemeSwitchComponent implements OnInit {
   ngOnInit() {
     this.theme$ = this.themeService.getTheme();
     this.ariaLabel$ = this.theme$.pipe(
-      map((theme) => theme === DaffTheme.Light ? DAFF_THEME_SWITCH_TO_DARK_LABEL : DAFF_THEME_SWITCH_TO_LIGHT_LABEL),
+      map((theme) => theme === DaffTheme.Light ? DAFFIO_THEME_SWITCH_TO_DARK_LABEL : DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL),
     );
     this.icon$ = this.theme$.pipe(
       map((theme) => theme === DaffTheme.Light ? faMoon : faSun),

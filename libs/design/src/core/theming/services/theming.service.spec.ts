@@ -92,7 +92,7 @@ describe('DaffThemingService', () => {
       const service = setup.service;
       const themeStorage = setup.themeStorage;
 
-      service.blastMyEyes();
+      service.lightMode();
       expect(themeStorage.setTheme).toHaveBeenCalledWith(DaffTheme.Light);
     });
 
@@ -103,7 +103,7 @@ describe('DaffThemingService', () => {
       const service = setup.service;
       const themeStorage = setup.themeStorage;
 
-      service.goDark();
+      service.darkMode();
       expect(themeStorage.setTheme).toHaveBeenCalledWith(DaffTheme.Dark);
     });
 

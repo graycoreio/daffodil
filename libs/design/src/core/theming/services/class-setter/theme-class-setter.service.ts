@@ -14,7 +14,7 @@ export const DAFF_THEME_DARK_CSS_CLASS = 'daff-theme-dark';
 export const DAFF_THEME_LIGHT_CSS_CLASS = 'daff-theme-light';
 
 /**
- * This class updates the body of the app with the appropriate class for the theme.
+ * This class updates the body of the application with the theme's appropriate class.
  * Note that this service is not provided tree-shakably by intention.
  * It is intended to be provided manually during setup.
  */
@@ -22,12 +22,14 @@ export const DAFF_THEME_LIGHT_CSS_CLASS = 'daff-theme-light';
 export class DaffThemeClassSetterService {
 	private renderer: Renderer2;
 	private subscription: Subscription;
+	private doc?: Document;
 
 	constructor(
-		@Inject(DOCUMENT) private doc: Document,
+		@Inject(DOCUMENT) _doc: any,
 		private rendererFactory: RendererFactory2,
 		private themingService: DaffThemingService,
 	) {
+	  this.doc = <Document>_doc;
 	  this.renderer = this.rendererFactory.createRenderer(null, null);
 	}
 
@@ -35,7 +37,7 @@ export class DaffThemeClassSetterService {
 	 * This function is intended to only be called once when the service
 	 * is initialized for the very first time. This will mutate the class
 	 * on the body of the document for the appropriate theme as controlled
-	 * by the state of the application theme.
+	 * by the state of the application's theme.
 	 */
 	beginThemeSync(): void {
 	  this.subscription = this.themingService.getTheme().subscribe((theme) => {
@@ -47,7 +49,7 @@ export class DaffThemeClassSetterService {
 	}
 
 	/**
-	 * This unsubscribes from the bodyClass subscription it exists.
+	 * This unsubscribes from the bodyClass subscription that exists.
 	 */
 	destroy(): void {
 	  this.subscription?.unsubscribe();
