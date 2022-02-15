@@ -156,6 +156,7 @@ describe('DaffCategoryPageEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {
           code: 'error code',
+          recoverable: false,
           message: 'Failed to load the category',
         };
         const response = cold('#', {}, error);
@@ -207,6 +208,7 @@ describe('DaffCategoryPageEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {
           code: 'error code',
+          recoverable: false,
           message: 'Failed to load the category',
         };
         const response = cold('#', {}, error);
@@ -270,6 +272,7 @@ describe('DaffCategoryPageEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {
           code: 'error code',
+          recoverable: false,
           message: 'Failed to load the category',
         };
         const response = cold('#', {}, error);

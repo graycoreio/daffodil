@@ -108,7 +108,7 @@ describe('DaffPaypalFacade', () => {
   describe('error$', () => {
 
     it('should be an observable of an array of the current errors', () => {
-      const error: DaffStateError = { code: 'code', message: 'Failed to retrieve token' };
+      const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to retrieve token' };
       const expected = cold('a', { a: error });
       store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
       expect(facade.error$).toBeObservable(expected);

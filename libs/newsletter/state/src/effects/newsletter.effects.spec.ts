@@ -71,7 +71,7 @@ describe('NewsletterEffects', () => {
 
     describe('and the call to NewsletterService fails', () => {
       it('it should dispatch a NewsletterFailedSubscribe', () => {
-        const error = { code: 'code', message: 'Failed to subscribe to newsletter' };
+        const error = { code: 'code', recoverable: false, message: 'Failed to subscribe to newsletter' };
         const response = cold('#', {}, error);
         spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
         const failedAction = new DaffNewsletterFailedSubscribe(error);
@@ -100,7 +100,7 @@ describe('NewsletterEffects', () => {
 
     describe('and the call to NewsletterService fails', () => {
       it('it should dispatch a NewsletterFailedSubscribe', () => {
-        const error = { code: 'code', message: 'Failed to subscribe to newsletter' };
+        const error = { code: 'code', recoverable: false, message: 'Failed to subscribe to newsletter' };
         const response = cold('#', {}, error);
         spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
         const failedAction = new DaffNewsletterFailedSubscribe(error);

@@ -18,10 +18,12 @@
 export class DaffInheritableError extends Error {
 	__proto__: Error;
 
-	constructor(message?: string) {
-	  const trueProto = new.target.prototype;
+  recoverable = false;
+
+  constructor(message?: string) {
 	  super(message);
+	  const trueProto = new.target.prototype;
 
 	  Object.setPrototypeOf(this, trueProto);
-	}
+  }
 }

@@ -139,6 +139,7 @@ describe('DaffAuthorizeNetEffects', () => {
 
         const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure({
           code: error.code,
+          recoverable: false,
           message: error.message,
         });
         actions$ = hot('--a', { a: authorizeNetUpdatePayment });
@@ -171,9 +172,10 @@ describe('DaffAuthorizeNetEffects', () => {
       const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
       const mockCode = 'code';
       const mockErrorMessage = 'Cart payment with billing update failed.';
-      const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure({ code: mockCode, message: mockErrorMessage });
+      const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure({ code: mockCode, recoverable: false, message: mockErrorMessage });
       const authorizeNetPaymentUpdateFailure = new DaffAuthorizeNetUpdatePaymentFailure({
         code: mockCode,
+        recoverable: false,
         message: mockErrorMessage,
       });
       actions$ = hot('--ab', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingFailure });
@@ -212,6 +214,7 @@ describe('DaffAuthorizeNetEffects', () => {
       actions$ = hot('--a', { a: loadAcceptJsAction });
       const expected = cold('--b', { b: new DaffLoadAcceptJsFailure({
         code: mockError.code,
+        recoverable: false,
         message: mockError.message,
       }) });
 

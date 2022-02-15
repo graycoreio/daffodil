@@ -103,7 +103,7 @@ describe('DaffOrderFacade', () => {
     });
 
     it('should contain an error upon a failed load', () => {
-      const error: DaffStateError = { code: 'code', message: 'message' };
+      const error: DaffStateError = { code: 'code', recoverable: false, message: 'message' };
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffOrderLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);

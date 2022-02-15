@@ -87,7 +87,7 @@ describe('DaffProductEffects', () => {
     describe('and the call to ProductService fails', () => {
 
       beforeEach(() => {
-        const error: DaffStateError = { code: 'code', message: 'Failed to load product' };
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
         const response = cold('#', {}, error);
         spyOn(daffProductDriver, 'get').and.returnValue(response);
         const productLoadFailureAction = new DaffProductLoadFailure(error);

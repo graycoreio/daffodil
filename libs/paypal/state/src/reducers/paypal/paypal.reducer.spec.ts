@@ -88,7 +88,7 @@ describe('Paypal | Paypal Reducer', () => {
 
   describe('when GeneratePaypalExpressTokenFailureAction is triggered', () => {
 
-    const error: DaffStateError = { code: 'code', message: 'error message' };
+    const error: DaffStateError = { code: 'code', recoverable: false, message: 'error message' };
     let result: DaffPaypalReducerState<DaffPaypalTokenResponse>;
     let state: DaffPaypalReducerState<DaffPaypalTokenResponse>;
 

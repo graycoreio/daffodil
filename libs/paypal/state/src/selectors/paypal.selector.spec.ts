@@ -85,7 +85,7 @@ describe('Daff Paypal Selectors', () => {
   describe('selectPaypalError', () => {
 
     it('returns any current errors', () => {
-      const error: DaffStateError = { code: 'code', message: 'error message' };
+      const error: DaffStateError = { code: 'code', recoverable: false, message: 'error message' };
       store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
       const selector = store.pipe(select(selectPaypalError));
       const expected = cold('a', { a: error });
