@@ -399,35 +399,6 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
   });
 
-  describe('when DeleteOutOfStockSuccessAction is triggered', () => {
-
-    let cart: DaffCart;
-    let cartItems: DaffStatefulCartItem[];
-    let result;
-
-    beforeEach(() => {
-      cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
-        items: cartItems,
-      });
-      const deleteOutOfStockSuccess = new DaffCartItemDeleteOutOfStockSuccess(cart);
-
-      result = daffCartItemEntitiesReducer(initialState, deleteOutOfStockSuccess);
-    });
-
-    it('sets expected number of cartItems on state', () => {
-      expect(result.ids.length).toEqual(cartItems.length);
-    });
-
-    it('sets expected cart item on state', () => {
-      expect(result.entities[cartItems[0].id]).toEqual(cartItems[0]);
-    });
-
-    it('should reset the cart item errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
-    });
-  });
-
   describe('when ResolveCartPartialSuccessAction is triggered', () => {
 
     let cart: DaffCart;
