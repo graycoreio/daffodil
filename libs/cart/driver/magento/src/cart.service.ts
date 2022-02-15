@@ -28,6 +28,7 @@ import {
   DaffCartServiceInterface,
   DaffCartItemDriver,
   DaffCartItemServiceInterface,
+  DaffProductOutOfStockError,
 } from '@daffodil/cart/driver';
 import { DaffInheritableError } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
@@ -46,6 +47,10 @@ import {
 import { MagentoCreateCartResponse } from './queries/responses/create-cart';
 import { MagentoGetCartResponse } from './queries/responses/get-cart';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
+
+const DAFF_MAGENTO_GET_RECOVERABLE_ERRORS = [
+  DaffProductOutOfStockError,
+];
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -76,7 +81,15 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     }).pipe(
       map(({ data, errors }) => ({
         response: data ? this.cartTransformer.transform(data.cart) : undefined,
-        errors: errors?.map(e => transformMagentoCartGraphQlError(e)) || [],
+        errors: errors?.map(e => {
+          const error = transformMagentoCartGraphQlError(e);
+
+          if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => error instanceof klass).length > 0) {
+            error.recoverable = true;
+          }
+
+          return error;
+        }) || [],
       })),
     );
   }

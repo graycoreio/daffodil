@@ -14,6 +14,7 @@ import {
   DaffCartItem,
 } from '@daffodil/cart';
 import {
+  DaffCartDriverErrorCodes,
   DaffCartItemDriver,
   DaffCartNotFoundError,
   DaffProductOutOfStockError,
@@ -156,6 +157,35 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
         service.get(cartId).subscribe(result => {
           expect(result.errors).toContain(jasmine.any(DaffCartNotFoundError));
           expect(result.errors).toContain(jasmine.any(DaffProductOutOfStockError));
+          done();
+        });
+
+        const op = controller.expectOne(addTypenameToDocument(getCart([])));
+
+        op.flush({
+          errors: [new GraphQLError(
+            'Can\'t find a cart with that ID.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          ), new GraphQLError(
+            'Some of the products are out of stock.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          )],
+        });
+      });
+
+      it('should should set out of stock errors as recoverable', done => {
+        service.get(cartId).subscribe(result => {
+          expect(result.errors.find(error => error.code === DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK).recoverable).toBeTrue();
           done();
         });
 
