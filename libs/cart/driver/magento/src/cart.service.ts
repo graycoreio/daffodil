@@ -2,17 +2,21 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import {
   Observable,
   throwError,
   forkJoin,
+  of,
+  merge,
 } from 'rxjs';
 import {
   map,
   switchMap,
   catchError,
+  tap,
 } from 'rxjs/operators';
 
 import {
@@ -25,9 +29,14 @@ import {
   DaffCartItemDriver,
   DaffCartItemServiceInterface,
 } from '@daffodil/cart/driver';
+import { DaffInheritableError } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
+import { DaffDriverResponse } from '@daffodil/driver';
 
-import { transformCartMagentoError } from './errors/transform';
+import {
+  transformCartMagentoError,
+  transformMagentoCartGraphQlError,
+} from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import {
@@ -59,13 +68,16 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
   ) {}
 
-  get(cartId: DaffCart['id']): Observable<DaffCart> {
+  get(cartId: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
     return this.apollo.query<MagentoGetCartResponse>({
       query: getCart(this.extraCartFragments),
       variables: { cartId },
+      errorPolicy: 'all',
     }).pipe(
-      catchError((error: Error) => throwError(transformCartMagentoError(error))),
-      map(result => this.cartTransformer.transform(result.data.cart)),
+      map(({ data, errors }) => ({
+        response: data ? this.cartTransformer.transform(data.cart) : undefined,
+        errors: errors?.map(e => transformMagentoCartGraphQlError(e)) || [],
+      })),
     );
   }
 
@@ -87,6 +99,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
         )),
       ),
       switchMap(() => this.get(cartId)),
+      map(({ response }) => response),
     );
   }
 }

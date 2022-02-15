@@ -7,6 +7,7 @@ import {
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartServiceInterface } from '@daffodil/cart/driver';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffDriverResponse } from '@daffodil/driver';
 
 /**
  * @inheritdoc
@@ -19,8 +20,11 @@ export class DaffTestingCartService implements DaffCartServiceInterface {
     private cartFactory: DaffCartFactory,
   ) {}
 
-  get(id: DaffCart['id']): Observable<DaffCart> {
-    return of(this.cartFactory.create());
+  get(id: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
+    return of({
+      response: this.cartFactory.create(),
+      errors: [],
+    });
   }
 
   addToCart(productId: string, qty: number): Observable<DaffCart> {

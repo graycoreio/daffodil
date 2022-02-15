@@ -12,7 +12,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCartService } from './cart.service';
 
-describe('Driver | In Memory | Cart | CartService', () => {
+describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
   let cartService: DaffInMemoryCartService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
@@ -47,9 +47,9 @@ describe('Driver | In Memory | Cart | CartService', () => {
   });
 
   describe('get | getting a cart', () => {
-    it('should send a get request and return cart', done => {
-      cartService.get(cartId).subscribe(cart => {
-        expect(cart).toEqual(mockCart);
+    it('should send a get request and return the cart in the response', done => {
+      cartService.get(cartId).subscribe(({ response }) => {
+        expect(response).toEqual(mockCart);
         done();
       });
 

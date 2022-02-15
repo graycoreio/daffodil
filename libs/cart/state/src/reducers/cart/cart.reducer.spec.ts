@@ -21,6 +21,7 @@ import {
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
   DaffResolveCartServerSide,
+  DaffResolveCartPartialSuccess,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
@@ -30,9 +31,10 @@ import {
   daffTransformErrorToStateError,
 } from '@daffodil/core/state';
 
+import { DaffCartLoadPartialSuccess } from '../../actions/public_api';
 import { cartReducer } from './cart.reducer';
 
-describe('Cart | Reducer | Cart', () => {
+describe('@daffodil/cart/state | cartReducer', () => {
   let cartFactory: DaffCartFactory;
   let error: DaffStateError;
   let cart: DaffCart;
@@ -108,6 +110,42 @@ describe('Cart | Reducer | Cart', () => {
     });
   });
 
+  describe('when CartLoadPartialSuccessAction is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Cart]: DaffState.Resolving,
+        },
+        errors: {
+          ...initialState.errors,
+          [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
+
+      const cartListLoadSuccess = new DaffCartLoadPartialSuccess(cart, [error]);
+
+      result = cartReducer(state, cartListLoadSuccess);
+    });
+
+    it('should set cart from action.payload', () => {
+      expect(result.cart).toEqual(cart);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffState.Complete);
+    });
+
+    it('should add an error to the cart section of state.errors', () => {
+      expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Cart]).toContain(error);
+    });
+  });
+
   describe('when ResolveCartSuccessAction is triggered', () => {
     let result;
     let state: DaffCartReducerState<DaffCart>;
@@ -139,6 +177,42 @@ describe('Cart | Reducer | Cart', () => {
     });
   });
 
+  describe('when ResolveCartPartialSuccessAction is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Cart]: DaffState.Resolving,
+        },
+        errors: {
+          ...initialState.errors,
+          [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
+        },
+      };
+
+      const cartListLoadSuccess = new DaffResolveCartPartialSuccess(cart, [error]);
+
+      result = cartReducer(state, cartListLoadSuccess);
+    });
+
+    it('should set cart from action.payload', () => {
+      expect(result.cart).toEqual(cart);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffState.Complete);
+    });
+
+    it('should add an error to the cart section of state.errors', () => {
+      expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Cart]).toContain(error);
+    });
+  });
+
   describe('when CartLoadFailureAction is triggered', () => {
     let result;
     let state: DaffCartReducerState<DaffCart>;
@@ -156,7 +230,7 @@ describe('Cart | Reducer | Cart', () => {
         },
       };
 
-      const cartListLoadFailure = new DaffCartLoadFailure(error);
+      const cartListLoadFailure = new DaffCartLoadFailure([error]);
 
       result = cartReducer(state, cartListLoadFailure);
     });
@@ -187,7 +261,7 @@ describe('Cart | Reducer | Cart', () => {
         },
       };
 
-      const cartListLoadFailure = new DaffResolveCartFailure(error);
+      const cartListLoadFailure = new DaffResolveCartFailure([error]);
 
       result = cartReducer(state, cartListLoadFailure);
     });
@@ -198,6 +272,7 @@ describe('Cart | Reducer | Cart', () => {
 
     it('should add an error to the cart section of state.errors', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Cart]).toContain(error);
     });
   });
 

@@ -243,7 +243,7 @@ describe('Cart | Selector | Cart', () => {
     it('should be failed after cart resolution failure', () => {
       const selector = store.pipe(select(selectCartResolved));
       const expected = cold('a', { a: DaffCartResolveState.Failed });
-      store.dispatch(new DaffResolveCartFailure(error));
+      store.dispatch(new DaffResolveCartFailure([error]));
 
       expect(selector).toBeObservable(expected);
     });
