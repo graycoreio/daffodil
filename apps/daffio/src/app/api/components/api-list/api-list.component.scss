@@ -11,19 +11,33 @@
 }
 
 .daffio-api-list {
+	&__package {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 24px;
+	}
+
 	&__package-name {
 		font-size: 1.25rem;
 		font-weight: 600;
 		line-height: 1.5rem;
-		margin-bottom: 24px;
+		overflow: hidden;
+
+		> * {
+			@include single-line-ellipsis();
+		}
 	}
 
 	&__list {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-gap: 8px 24px;
-		
+
 		@include breakpoint(tablet) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		
+		@include breakpoint(small-laptop) {
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
