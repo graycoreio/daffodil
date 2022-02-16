@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.12](https://github.com/graycoreio/daffodil/compare/v0.39.11...v0.39.12) (2022-02-16)
+
+
+### Features
+
+* **cart,demo:** use DaffDriverResponse for get call and handle partial success ([#1988](https://github.com/graycoreio/daffodil/issues/1988)) ([6ce9b2f](https://github.com/graycoreio/daffodil/commit/6ce9b2fe1d5f8d4389e38d03c1022a54ca228b55))
+* **cart:** add remove out of stock state ([#1956](https://github.com/graycoreio/daffodil/issues/1956)) ([5ac115f](https://github.com/graycoreio/daffodil/commit/5ac115ff9be130a0311789231675a8eed4397194))
+* **cart:** fix infinite recurse on subsequent delete OOS calls ([#1991](https://github.com/graycoreio/daffodil/issues/1991)) ([e2751d1](https://github.com/graycoreio/daffodil/commit/e2751d12c16b6dfb2a7d8b734c9faa23670a2a6f))
+* **cart:** set recoverable on OOS error in Magento get call ([#1990](https://github.com/graycoreio/daffodil/issues/1990)) ([c22f3b5](https://github.com/graycoreio/daffodil/commit/c22f3b54edd2601acb0154f724a2dae8c2fc7851))
+* **core,driver:** return generic error as a fallback ([#1986](https://github.com/graycoreio/daffodil/issues/1986)) ([9a36be1](https://github.com/graycoreio/daffodil/commit/9a36be1406bb5e0f76040f30b3b6bf78e656d049))
+* **core:** add `recoverable` field to `DaffError` and `DaffStateError` ([#1982](https://github.com/graycoreio/daffodil/issues/1982)) ([b7d39b7](https://github.com/graycoreio/daffodil/commit/b7d39b73c5a745cdadd5e377a7b4931bb15c8664))
+* **driver:** add `DaffDriverResponse` ([#1983](https://github.com/graycoreio/daffodil/issues/1983)) ([ef7992c](https://github.com/graycoreio/daffodil/commit/ef7992cd1789b084686bce41e376c834fb2020cb))
+
+
+### Bug Fixes
+
+* **cart:** items removed by delete oos not removed from entity state ([#1981](https://github.com/graycoreio/daffodil/issues/1981)) ([4cfe920](https://github.com/graycoreio/daffodil/commit/4cfe9202360b550b1e71450237dd8195adab9dc1))
+* **cart:** out of stock cart errors persist after successful delete oos ([#1980](https://github.com/graycoreio/daffodil/issues/1980)) ([b064d33](https://github.com/graycoreio/daffodil/commit/b064d3344a532da5bf5788394ac25d5c2bdbffd6))
+
 ### [0.39.11](https://github.com/graycoreio/daffodil/compare/v0.39.10...v0.39.11) (2022-02-06)
 
 
