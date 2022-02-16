@@ -5,7 +5,6 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { provideMockStore } from '@ngrx/store/testing';
 import {
   hot,
   cold,
