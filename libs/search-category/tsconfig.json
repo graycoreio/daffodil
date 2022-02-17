@@ -18,6 +18,9 @@
       "@daffodil/search-category/driver/in-memory": [
         "libs/search-category/driver/in-memory/src"
       ],
+      "@daffodil/search-category/driver/magento": [
+        "libs/search-category/driver/magento/src"
+      ],
       "@daffodil/search-category/testing": [
         "libs/search-category/testing/src"
       ],
