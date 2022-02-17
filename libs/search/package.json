@@ -1,0 +1,35 @@
+{
+  "name": "@daffodil/search",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A client-side Angular package for managing ecommerce orders agnostic to the ecommerce platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build search --prod",
+    "lint": "cd ../.. && ng lint search",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test search --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/search; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER",
+    "schema-dts": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
+  }
+}
