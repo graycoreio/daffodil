@@ -14,6 +14,7 @@ import {
 import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
 import { DaffSearchProductResult } from '@daffodil/search-product';
 import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
+import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 
 import { MagentoSearchForProductsResponse } from './models/get-product-response.interface';
 import { productSearch } from './queries/product-search';
@@ -34,11 +35,12 @@ export class DaffSearchProductMagentoDriver implements DaffSearchProductDriverIn
 
   readonly kind = DAFF_SEARCH_PRODUCT_RESULT_KIND;
 
-  search(query: string): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
+  search(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
     return this.apollo.query<MagentoSearchForProductsResponse>({
       query: productSearch,
       variables: {
         query,
+        pageSize: options.limit,
       },
     }).pipe(
       map(result => result.data.products.items.map(daffSearchMagentoProductResultTransform)),
