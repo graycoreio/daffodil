@@ -8,12 +8,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {
-  MAGENTO_PRODUCT_CONFIG_TOKEN,
-  DaffProductMagentoDriverConfig,
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-  DaffMagentoSimpleProductTransformers,
-} from '@daffodil/product/driver/magento';
-import {
   DaffSearchResultCollection,
   daffSearchTransformResultsToCollection,
 } from '@daffodil/search';
@@ -36,16 +30,13 @@ import { daffSearchMagentoProductResultTransform } from './transforms/search-pro
 export class DaffSearchProductMagentoDriver implements DaffSearchProductDriverInterface {
   constructor(
     private apollo: Apollo,
-    private productTransform: DaffMagentoSimpleProductTransformers,
-    @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
-    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
   ) {}
 
   readonly kind = DAFF_SEARCH_PRODUCT_RESULT_KIND;
 
   search(query: string): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
     return this.apollo.query<MagentoSearchForProductsResponse>({
-      query: productSearch(this.extraPreviewFragments),
+      query: productSearch,
       variables: {
         query,
       },

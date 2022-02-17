@@ -70,7 +70,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(productSearch([])));
+        const op = controller.expectOne(addTypenameToDocument(productSearch));
 
         op.flush({
           data: mockGetProductsResponse,
@@ -88,7 +88,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
           }),
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(productSearch([])));
+        const op = controller.expectOne(addTypenameToDocument(productSearch));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find any products matching that query.',

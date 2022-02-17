@@ -1,9 +1,8 @@
 import { gql } from 'apollo-angular';
-import { DocumentNode } from 'graphql';
 
 import { magentoProductSearchResultFragment } from './fragments/product-result';
 
-export const productSearch = (extraProductFragments: DocumentNode[] = []) => gql`
+export const productSearch = gql`
   query MagentoSearchForProducts($query: String!){
     products(search: $query) {
       items {
