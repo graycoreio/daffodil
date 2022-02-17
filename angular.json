@@ -1490,6 +1490,44 @@
         }
       }
     },
+    "search-category": {
+      "projectType": "library",
+      "root": "libs/search-category",
+      "sourceRoot": "libs/search-category/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/search-category/tsconfig.lib.json",
+            "project": "libs/search-category/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/search-category/ng-package.prod.json",
+              "tsConfig": "libs/search-category/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/search-category/test.ts",
+            "tsConfig": "libs/search-category/tsconfig.spec.json",
+            "karmaConfig": "libs/search-category/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/search-category/**/*.ts",
+              "libs/search-category/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "seo": {
       "projectType": "library",
       "root": "libs/seo",
