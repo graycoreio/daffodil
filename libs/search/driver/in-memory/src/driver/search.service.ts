@@ -8,7 +8,10 @@ import {
   DaffSearchResultCollection,
   daffSearchTransformResultsToCollection,
 } from '@daffodil/search';
-import { DaffSearchDriverInterface } from '@daffodil/search/driver';
+import {
+  DaffSearchDriverInterface,
+  DaffSearchDriverOptions,
+} from '@daffodil/search/driver';
 
 /**
  * The search inmemory driver to mock the search backend service.
@@ -29,7 +32,8 @@ export class DaffInMemorySearchDriver implements DaffSearchDriverInterface {
     private http: HttpClient,
   ) {}
 
-  search(query: string): Observable<DaffSearchResultCollection> {
+  search(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection> {
+    // TODO: handle options
     return this.http.get<DaffSearchResult[]>(`${this.url}?query=${query}`).pipe(
       map(daffSearchTransformResultsToCollection),
     );
