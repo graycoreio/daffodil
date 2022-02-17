@@ -11,20 +11,19 @@ import {
   MAGENTO_PRODUCT_CONFIG_TOKEN,
   DaffProductMagentoDriverConfig,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-  MagentoGetProductResponse,
   DaffMagentoSimpleProductTransformers,
 } from '@daffodil/product/driver/magento';
 import {
-  DaffSearchResult,
   DaffSearchResultCollection,
   daffSearchTransformResultsToCollection,
 } from '@daffodil/search';
-import { daffTransformProductsToSearchResults } from '@daffodil/search-product';
 import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
 import { DaffSearchProductResult } from '@daffodil/search-product';
 import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
 
+import { MagentoSearchForProductsResponse } from './models/get-product-response.interface';
 import { productSearch } from './queries/product-search';
+import { daffSearchMagentoProductResultTransform } from './transforms/search-product-result';
 
 /**
  * A service for searching products in Magento.
@@ -45,14 +44,13 @@ export class DaffSearchProductMagentoDriver implements DaffSearchProductDriverIn
   readonly kind = DAFF_SEARCH_PRODUCT_RESULT_KIND;
 
   search(query: string): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
-    return this.apollo.query<MagentoGetProductResponse>({
+    return this.apollo.query<MagentoSearchForProductsResponse>({
       query: productSearch(this.extraPreviewFragments),
       variables: {
         query,
       },
     }).pipe(
-      map(result => result.data.products.items.map(item => this.productTransform.transformMagentoSimpleProduct(item, this.config.baseMediaUrl))),
-      map(products => daffTransformProductsToSearchResults(products)),
+      map(result => result.data.products.items.map(daffSearchMagentoProductResultTransform)),
       map(searchResults => daffSearchTransformResultsToCollection<DaffSearchProductResult>(searchResults)),
     );
   }
