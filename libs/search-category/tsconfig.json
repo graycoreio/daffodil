@@ -15,6 +15,9 @@
       "@daffodil/search-category/driver/testing": [
         "libs/search-category/driver/testing/src"
       ],
+      "@daffodil/search-category/driver/in-memory": [
+        "libs/search-category/driver/in-memory/src"
+      ],
       "@daffodil/search-category/testing": [
         "libs/search-category/testing/src"
       ],
