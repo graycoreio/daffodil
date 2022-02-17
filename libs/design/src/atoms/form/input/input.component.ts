@@ -6,6 +6,7 @@ import {
   ElementRef,
   HostListener,
   ChangeDetectionStrategy,
+  HostBinding,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
@@ -26,6 +27,8 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   ],
 })
 export class DaffInputComponent implements DaffFormFieldControl {
+
+  @HostBinding('class.daff-input') class = true;
 
 	/**
 	 * Has the form been submitted.

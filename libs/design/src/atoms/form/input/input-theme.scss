@@ -1,13 +1,14 @@
 @mixin daff-input-theme($theme) {
 	$base: daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$text-color: daff-map-deep-get($theme, 'core.font-color');
 
-	:host {
+	.daff-input {
 		background: $base;
-		color: $base-contrast;
-
+		color: $text-color;
+		
 		&::placeholder {
-			color: transparent;
+			color: daff-illuminate($base-contrast, $daff-gray, 5);
 		}
 	}
 }

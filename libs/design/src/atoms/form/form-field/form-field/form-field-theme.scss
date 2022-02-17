@@ -4,23 +4,20 @@
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$border-width: 2px;
 
 	.daff-form-field {
 		&__control {
 			background: $base;
-			border: 1px solid daff-illuminate($base, $daff-gray, 3);
+			outline: 1px solid daff-illuminate($base-contrast, $daff-gray, 4);
 			color: daff-illuminate($base-contrast, $daff-gray, 4);
 
-			&:focus {
-				border: 1px solid $base-contrast;
+			&.daff-focus {
+				outline: $border-width solid daff-color($primary);
 			}
 
 			&.daff-error {
-				border: 1px solid $error;
-
-				&:focus {
-					border: 1px solid $error;
-				}
+				outline: $border-width solid $error;
 			}
 
 			&.daff-valid {
