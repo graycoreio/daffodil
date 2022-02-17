@@ -12,6 +12,9 @@
       "@daffodil/search-category/driver": [
         "libs/search-category/driver/src"
       ],
+      "@daffodil/search-category/driver/testing": [
+        "libs/search-category/driver/testing/src"
+      ],
       "@daffodil/search-category/testing": [
         "libs/search-category/testing/src"
       ],
