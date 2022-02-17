@@ -49,7 +49,7 @@ export class DaffSearchEffects<
   search$ = this.actions$.pipe(
     ofType(DaffSearchActionTypes.SearchLoadAction),
     switchMap((action: DaffSearchLoad) =>
-      this.driver.search(action.query).pipe(
+      this.driver.search(action.query, action.options).pipe(
         map(resp => new DaffSearchLoadSuccess<T>(resp)),
         catchError((error: DaffError) => of(new DaffSearchLoadFailure(this.errorMatcher(error)))),
       ),

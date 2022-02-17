@@ -5,6 +5,7 @@ import {
   DaffSearchResult,
   DaffSearchResultCollection,
 } from '@daffodil/search';
+import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 
 /**
  * The search action types enum.
@@ -23,7 +24,7 @@ export enum DaffSearchActionTypes {
 export class DaffSearchLoad implements Action {
   readonly type = DaffSearchActionTypes.SearchLoadAction;
 
-  constructor(public query: string) {}
+  constructor(public query: string, public options: DaffSearchDriverOptions = {}) {}
 }
 
 /**
