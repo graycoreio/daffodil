@@ -12,6 +12,7 @@ import {
   DAFF_SEARCH_CATEGORY_RESULT_KIND,
 } from '@daffodil/search-category';
 import { DaffSearchCategoryDriverInterface } from '@daffodil/search-category/driver';
+import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 
 import { MagentoSearchForCategoriesResponse } from './models/public_api';
 import { categorySearch } from './queries/category-search';
@@ -32,14 +33,15 @@ export class DaffSearchCategoryMagentoDriver implements DaffSearchCategoryDriver
 
   kind = DAFF_SEARCH_CATEGORY_RESULT_KIND;
 
-  search(query: string): Observable<DaffSearchResultCollection<DaffSearchCategoryResult>> {
+  search(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection<DaffSearchCategoryResult>> {
     return this.apollo.query<MagentoSearchForCategoriesResponse>({
       query: categorySearch(),
       variables: {
         query,
+        pageSize: options.limit,
       },
     }).pipe(
-      map(result => result.data.categoryList.map(category => magentoSearchCategoryResultTransform(category))),
+      map(result => result.data.categories.items.map(category => magentoSearchCategoryResultTransform(category))),
       map(searchResults => daffSearchTransformResultsToCollection(searchResults)),
     );
   }
