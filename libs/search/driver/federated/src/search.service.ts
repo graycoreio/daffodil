@@ -8,13 +8,11 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  DaffSearchResult,
-  DaffSearchResultCollection,
-} from '@daffodil/search';
+import { DaffSearchResultCollection } from '@daffodil/search';
 import {
   DaffSearchDriverInterface,
   DaffSearchDriverKindedInterface,
+  DaffSearchDriverOptions,
 } from '@daffodil/search/driver';
 
 import { DAFF_SEARCH_FEDERATED_DRIVERS } from './injection-tokens/drivers.token';
@@ -32,8 +30,8 @@ export class DaffSearchFederatedDriver implements DaffSearchDriverInterface {
     @Inject(DAFF_SEARCH_FEDERATED_DRIVERS) private drivers: DaffSearchDriverKindedInterface[],
   ) {}
 
-  search(query: string): Observable<DaffSearchResultCollection> {
-    return combineLatest(this.drivers.map(driver => driver.search(query))).pipe(
+  search(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection> {
+    return combineLatest(this.drivers.map(driver => driver.search(query, options))).pipe(
       map(collectionList => Object.assign({}, ...collectionList)),
     );
   }
