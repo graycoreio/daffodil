@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
+import { daffSearchTransformResultsToCollection } from '@daffodil/search';
 import {
-  DaffSearchResult,
-  daffSearchTransformResultsToCollection,
-} from '@daffodil/search';
-import { DaffSearchDriverInterface } from '@daffodil/search/driver';
+  DaffSearchDriverInterface,
+  DaffSearchDriverOptions,
+} from '@daffodil/search/driver';
 import { DaffSearchResultKindFactory } from '@daffodil/search/testing';
 
 /**
@@ -23,7 +23,8 @@ export class DaffTestingSearchDriver implements DaffSearchDriverInterface {
     private searchResultFactory: DaffSearchResultKindFactory,
   ) {}
 
-  search(query: string) {
-    return of(daffSearchTransformResultsToCollection(this.searchResultFactory.createMany(5)));
+  search(query: string, options: DaffSearchDriverOptions = {}) {
+    const limit = options.limit || 5;
+    return of(daffSearchTransformResultsToCollection(this.searchResultFactory.createMany(limit)));
   }
 }
