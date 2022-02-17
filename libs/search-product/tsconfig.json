@@ -21,6 +21,9 @@
       "@daffodil/search-product/driver/magento": [
         "libs/search-product/driver/magento/src"
       ],
+      "@daffodil/search-product/driver/magento/testing": [
+        "libs/search-product/driver/magento/testing/src"
+      ],
       "@daffodil/search-product/testing": [
         "libs/search-product/testing/src"
       ],
