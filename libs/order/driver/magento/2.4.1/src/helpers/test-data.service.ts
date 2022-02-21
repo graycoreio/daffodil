@@ -342,7 +342,7 @@ export class MagentoOrderTestDataFactory {
       telephone: mockDaffOrderAddress.telephone,
       street: [mockDaffOrderAddress.street, mockDaffOrderAddress.street2],
       city: mockDaffOrderAddress.city,
-      region_id: mockDaffOrderAddress.region,
+      region_code: mockDaffOrderAddress.region,
       region: mockDaffOrderAddress.region,
       country_code: mockDaffOrderAddress.country,
       postcode: mockDaffOrderAddress.postcode,
