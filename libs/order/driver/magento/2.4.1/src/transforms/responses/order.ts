@@ -169,7 +169,7 @@ function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): Da
     street: address.street[0],
     street2: address.street[1],
     city: address.city,
-    region: address.region_id,
+    region: address.region_code,
     country: address.country_code,
     postcode: address.postcode,
   };
