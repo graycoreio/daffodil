@@ -26,6 +26,7 @@ export interface MagentoBundledProductItemOption {
 	label: string;
 	quantity: number;
 	is_default: boolean;
+  position: number;
 	product: MagentoBundledProductItemOptionProduct;
 }
 

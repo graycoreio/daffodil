@@ -41,6 +41,7 @@
 				{
 					"uid": "1",
 					"label": "Option 1",
+          "position": 1,
 					"quantity": 1,
 					"is_default": true,
 					"product": {
@@ -62,6 +63,7 @@
 				{
 					"uid": "2",
 					"label": "Option 2",
+          "position": 2,
 					"quantity": 1,
 					"is_default": false,
 					"product": {
