@@ -4,7 +4,7 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import { MagentoBundledProductFactory } from './bundle.factory';
 
-describe('Composite Product | Driver | Magento | Testing | Factories | MagentoBundledProductFactory', () => {
+describe('@daffodil/product-composite/driver/magento/testing | MagentoBundledProductFactory', () => {
   let factory: MagentoBundledProductFactory;
 
   beforeEach(() => {

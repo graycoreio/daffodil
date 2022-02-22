@@ -12,6 +12,7 @@ fragment magentoBundledProduct on BundleProduct {
 			is_default
 			label
 			quantity
+      position
 			product {
 				stock_status
 				price_range {
