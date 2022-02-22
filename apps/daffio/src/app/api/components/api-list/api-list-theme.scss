@@ -7,14 +7,25 @@
 
 	.daffio-api-list {
 		&__package-name {
-			a {
-				&:hover {
-					color: daff-illuminate($base-contrast, $daff-gray, 3);
+			> * {
+				&:focus {
+					border-radius: 4px;
+					box-shadow: 0 0 0 4px rgba($base-contrast, 0.1);
+					outline: none;
 				}
+			}
+
+			&:hover {
+				color: daff-illuminate($base-contrast, $daff-gray, 3);
 			}
 		}
 
 		&__item {
+			&:focus {
+				box-shadow: 0 0 0 4px rgba($base-contrast, 0.1);
+				outline: none;
+			}
+
 			&:hover {
 				background: daff-illuminate($base, $daff-gray, 2);
 			}

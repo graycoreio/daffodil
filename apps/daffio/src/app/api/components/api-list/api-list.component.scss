@@ -1,9 +1,8 @@
 @import 'utilities';
 
 :host {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-gap: 48px;
+	display: flex;
+	flex-direction: column;
 
 	a {
 		text-decoration: none;
@@ -12,19 +11,32 @@
 
 .daffio-api-list {
 	&__package {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 24px;
+		display: flex;
+		flex-direction: column;
+		margin: 0 0 48px;
+
+		&:last-child {
+			margin: 0;
+		}
 	}
 
 	&__package-name {
-		font-size: 1.25rem;
+		font-size: 1.125rem;
 		font-weight: 600;
-		line-height: 1.5rem;
-		overflow: hidden;
+		line-height: 1.375rem;
+		margin: 0 0 24px;
+
+		@include breakpoint(mobile) {
+			font-size: 1.25rem;
+			line-height: 1.75rem;
+		}
 
 		> * {
 			@include single-line-ellipsis();
+
+			@include breakpoint(mobile) {
+				display: inline-block;
+			}
 		}
 	}
 
