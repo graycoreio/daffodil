@@ -1,14 +1,30 @@
 import { Injectable } from '@angular/core';
+import * as faker from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoBundledProduct } from '@daffodil/product-composite/driver/magento';
+import {
+  MagentoBundledProduct,
+  MagentoBundledProductItem,
+} from '@daffodil/product-composite/driver/magento';
 import { MagentoProductTypeEnum } from '@daffodil/product/driver/magento';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
 
+import { MagentoBundledProductItemFactory } from './bundle-item.factory';
+
 
 export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements MagentoBundledProduct {
+  constructor(
+    private bundleItemFactory: MagentoBundledProductItemFactory,
+  ) {
+    super();
+  }
+
   __typename = MagentoProductTypeEnum.BundledProduct;
-  items = [];
+  items = this.createBundleItems();
+
+  protected createBundleItems(): MagentoBundledProductItem[] {
+    return this.bundleItemFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+  }
 }
 
 /**
@@ -18,8 +34,9 @@ export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements
   providedIn: 'root',
 })
 export class MagentoBundledProductFactory extends DaffModelFactory<MagentoBundledProduct> {
-
-  constructor(){
-    super(MockMagentoBundledProduct);
+  constructor(
+    bundleItemFactory: MagentoBundledProductItemFactory,
+  ) {
+    super(MockMagentoBundledProduct, bundleItemFactory);
   }
 }
