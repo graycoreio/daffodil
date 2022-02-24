@@ -47,7 +47,7 @@ function transformMagentoBundledProductItem(item: MagentoBundledProductItem): Da
     required: item.required,
     title: item.title,
     input_type: <DaffCompositeProductItemInputEnum>item.type,
-    options: item.options.sort((a, b) => a.position - b.position).map(transformMagentoBundledProductItemOption),
+    options: Array.from(item.options).sort((a, b) => a.position - b.position).map(transformMagentoBundledProductItemOption),
   };
 }
 
