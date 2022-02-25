@@ -20,9 +20,18 @@
     "@daffodil/core": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
-    "@daffodil/driver": "0.0.0-PLACEHOLDER",
-    "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
-    "@angular/core": "0.0.0-PLACEHOLDER"
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@angular/platform-browser": "0.0.0-PLACEHOLDER",
+    "@angular/router": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@faker-js/faker": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER"
   }
 }
