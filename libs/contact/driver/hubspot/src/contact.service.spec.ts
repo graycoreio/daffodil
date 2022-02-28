@@ -6,9 +6,9 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffContactDriver } from '@daffodil/contact/driver';
-import { DaffHubspotFormsService } from '@daffodil/driver/hubspot';
 
 import { DaffContactHubspotService } from './contact.service';
+import { DAFF_CONTACT_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
 
 describe('DaffContactHubspotService', () => {
   let contactService;
@@ -18,7 +18,7 @@ describe('DaffContactHubspotService', () => {
       providers: [
         { provide: DaffContactDriver, useClass: DaffContactHubspotService },
         {
-          provide: DaffHubspotFormsService,
+          provide: DAFF_CONTACT_HUBSPOT_FORMS_TOKEN,
           useValue: {
             submit: (): Observable<any> => hot('--a', { a: { test: '123' }}),
           },

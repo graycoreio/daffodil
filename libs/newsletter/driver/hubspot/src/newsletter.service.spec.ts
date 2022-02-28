@@ -5,9 +5,8 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import { DaffHubspotFormsService } from '@daffodil/driver/hubspot';
-
 import { DaffNewsletterHubspotService } from './newsletter.service';
+import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
 
 describe('DaffNewsletterHubspotService', () => {
   let newsletterService;
@@ -17,7 +16,7 @@ describe('DaffNewsletterHubspotService', () => {
       providers: [
         DaffNewsletterHubspotService,
         {
-          provide: DaffHubspotFormsService,
+          provide: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
           useValue: {
             submit: (): Observable<any> => hot('--a', { a: { test: '123' }}),
           },

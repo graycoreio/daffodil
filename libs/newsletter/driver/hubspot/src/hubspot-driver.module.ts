@@ -1,20 +1,10 @@
-import {
-  CommonModule,
-  DOCUMENT,
-} from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import {
   ModuleWithProviders,
   NgModule,
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 
-import {
-  DaffHubspotConfig,
-  DaffHubspotFormsService,
-  daffHubspotFormsServiceFactory,
-} from '@daffodil/driver/hubspot';
+import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 import { DaffNewsletterDriver } from '@daffodil/newsletter/driver';
 
 import { DaffNewsletterConfigToken } from './config/newsletter-config.interface';
@@ -37,17 +27,6 @@ export class DaffNewsletterHubSpotDriverModule {
         {
           provide: DaffNewsletterConfigToken,
           useValue: config,
-        },
-        {
-          provide: DaffHubspotFormsService,
-          useFactory: daffHubspotFormsServiceFactory,
-          deps: [
-            HttpClient,
-            DOCUMENT,
-            Router,
-            Title,
-            DaffNewsletterConfigToken,
-          ],
         },
       ],
     };
