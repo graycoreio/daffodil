@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/daffodil",
-  "version": "0.39.12",
+  "version": "0.39.13",
   "license": "MIT",
   "scripts": {
     "release": "cd tools/release; gulp",

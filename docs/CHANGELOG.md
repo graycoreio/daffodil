@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.39.13](https://github.com/graycoreio/daffodil/compare/v0.39.12...v0.39.13) (2022-02-28)
+
+
+### Features
+
+* **core:** add server safe base64 service ([#2007](https://github.com/graycoreio/daffodil/issues/2007)) ([afe000a](https://github.com/graycoreio/daffodil/commit/afe000aed64aa436c23706b49bc57893fa7c205c))
+* **order:** use Magento `region_code` for `region` ([#1995](https://github.com/graycoreio/daffodil/issues/1995)) ([8812417](https://github.com/graycoreio/daffodil/commit/8812417d1280885e911de1692b41b37213a29c83))
+
+
+### Bug Fixes
+
+* **composite-product:** magento item options in wrong order ([#1997](https://github.com/graycoreio/daffodil/issues/1997)) ([04b72fa](https://github.com/graycoreio/daffodil/commit/04b72fa7e350d68895ee3dfb03ec325fe570dc59))
+* **contact, newsletter:** allow hubspot drivers to be used together ([#2002](https://github.com/graycoreio/daffodil/issues/2002)) ([d97179e](https://github.com/graycoreio/daffodil/commit/d97179ec1add4d9fc2efe28be0adcc92dc70b7b1))
+* **contact,newsletter:** correct dependency listings ([#2003](https://github.com/graycoreio/daffodil/issues/2003)) ([736118e](https://github.com/graycoreio/daffodil/commit/736118e75071db80f4152ca40117b2e13191bc25))
+* **product-composite:** magento driver tries to sort immutable array ([#1999](https://github.com/graycoreio/daffodil/issues/1999)) ([e79ccdf](https://github.com/graycoreio/daffodil/commit/e79ccdf65c7ab75c00ec905fbb368f979871b8f1))
+
 ### [0.39.12](https://github.com/graycoreio/daffodil/compare/v0.39.11...v0.39.12) (2022-02-16)
 
 
