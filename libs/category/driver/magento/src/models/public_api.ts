@@ -3,18 +3,16 @@ export {
   MagentoCategory,
   MagentoBreadcrumb,
 } from './category';
-export { MagentoGetACategoryResponse } from './get-category-response';
 export {
   MagentoSortFields,
   MagentoSortOption,
 } from './sort-fields';
 export { MagentoPageInfo } from './page-info';
-export { MagentoGetProductsResponse } from './get-products-response';
 export {
   MagentoAggregation,
   MagentoAggregationOption,
 } from './aggregation';
-export { MagentoGetProductsByCategoriesRequest } from './requests/get-products-by-categories-request';
+export { MagentoGetCategoryAndProductsRequest } from './requests/get-products-by-categories-request';
 export {
   MagentoCategoryFilters,
   MagentoFilterAction,
@@ -26,3 +24,6 @@ export { MagentoCustomMetadataAttribute } from './requests/custom-metadata-attri
 export { MagentoCategoryFilterTypeField } from './filter-type-field.interface';
 export { MagentoCategoryFilterType } from './filter-type.enum';
 export { MagentoGetCategoryFilterTypesResponse } from './get-filter-types-response.interface';
+export { MagentoCategoryUrlResolver } from './url-resolver';
+export { MagentoCategoryUrlResolverResponse } from './url-resolver-response';
+export { MagentoGetCategoryAndProductsResponse } from './get-category-and-products.interface';

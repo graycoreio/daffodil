@@ -34,14 +34,14 @@ import {
 } from './interfaces/public_api';
 import { MagentoGetCategoryFilterTypesResponse } from './models/get-filter-types-response.interface';
 import {
-  MagentoGetACategoryResponse,
-  MagentoGetProductsResponse,
-  MagentoGetProductsByCategoriesRequest,
+  MagentoGetCategoryAndProductsRequest,
+  MagentoGetCategoryAndProductsResponse,
+  MagentoCategoryUrlResolverResponse,
 } from './models/public_api';
 import { MagentoGetCategoryFilterTypes } from './queries/get-filter-types';
 import {
-  MagentoGetProductsQuery,
-  MagentoGetCategoryQuery,
+  MagentoGetCategoryAndProductsQuery,
+  MagentoResolveCategoryUrl,
 } from './queries/public_api';
 import {
   DaffMagentoCategoryResponseTransformService,
@@ -78,26 +78,20 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
   ) {}
 
-  //todo the MagentoGetCategoryQuery needs to get its own product ids.
   get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
-      this.apollo.query<MagentoGetACategoryResponse>({
-        query: MagentoGetCategoryQuery,
-        variables: { filters: { category_uid: { eq: categoryRequest.id }}},
-      }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
         query: MagentoGetCategoryFilterTypes,
       }),
-      this.apollo.query<MagentoGetProductsResponse>({
-        query: MagentoGetProductsQuery(this.extraPreviewFragments),
-        variables: this.getProductsQueryVariables(categoryRequest),
+      this.apollo.query<MagentoGetCategoryAndProductsResponse>({
+        query: MagentoGetCategoryAndProductsQuery(this.extraPreviewFragments),
+        variables: this.getCategoryAndProductsQueryVariables(categoryRequest),
       }),
     ]).pipe(
       map(([
-        category,
         filterTypes,
-        products,
-      ]) => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
+        categoryAndProducts,
+      ]) => this.transformCategory(categoryAndProducts.data, filterTypes.data, this.productConfig.baseMediaUrl)),
       map(result => categoryRequest.filter_requests
         ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
         : result,
@@ -107,13 +101,11 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
   getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
-      this.apollo.query<MagentoGetACategoryResponse>({
-        query: MagentoGetCategoryQuery,
-        variables: { filters: { url_path: {
-          eq: this.config.truncateUrl
-            ? this.config.uriTruncationStrategy(categoryRequest.url)
-            : categoryRequest.url,
-        }}},
+      this.apollo.query<MagentoCategoryUrlResolverResponse>({
+        query: MagentoResolveCategoryUrl,
+        variables: {
+          url: categoryRequest.url,
+        },
       }),
       this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
         query: MagentoGetCategoryFilterTypes,
@@ -122,15 +114,15 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       switchMap(([
         category,
         filterTypes,
-      ]) => this.apollo.query<MagentoGetProductsResponse>({
-        query: MagentoGetProductsQuery(this.extraPreviewFragments),
-        variables: this.getProductsQueryVariables({
+      ]) => this.apollo.query<MagentoGetCategoryAndProductsResponse>({
+        query: MagentoGetCategoryAndProductsQuery(this.extraPreviewFragments),
+        variables: this.getCategoryAndProductsQueryVariables({
           ...categoryRequest,
-          id: category.data.categoryList[0]?.uid,
+          id: category.data.urlResolver?.entity_uid,
           kind: DaffCategoryRequestKind.ID,
         }),
       }).pipe(
-        map(products => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
+        map(categoryAndProducts => this.transformCategory(categoryAndProducts.data, filterTypes.data, this.productConfig.baseMediaUrl)),
         map(result => categoryRequest.filter_requests
           ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
           : result,
@@ -139,9 +131,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     );
   }
 
-  private getProductsQueryVariables(request: DaffCategoryIdRequest): MagentoGetProductsByCategoriesRequest {
+  private getCategoryAndProductsQueryVariables(request: DaffCategoryIdRequest): MagentoGetCategoryAndProductsRequest {
     const queryVariables = {
-      filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.filter_requests),
+      productFilter: this.magentoAppliedFiltersTransformer.transform(request.id, request.filter_requests),
+      categoryFilters: {
+        category_uid: {
+          eq: request.id,
+        },
+      },
     };
     if(request.page_size) {
       queryVariables['pageSize'] = request.page_size;
@@ -157,19 +154,18 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   }
 
   private transformCategory(
-    categoryResponse: MagentoGetACategoryResponse,
+    categoryResponse: MagentoGetCategoryAndProductsResponse,
     filterTypesResponse: MagentoGetCategoryFilterTypesResponse,
-    productsResponse: MagentoGetProductsResponse,
     mediaUrl: string,
   ): DaffGetCategoryResponse {
-    const aggregations = addMetadataTypesToAggregates(filterTypesResponse, productsResponse);
+    const aggregations = addMetadataTypesToAggregates(filterTypesResponse, categoryResponse);
     const completeCategory = {
       category: categoryResponse.categoryList[0],
-      products: productsResponse.products.items,
+      products: categoryResponse.products.items,
       aggregates: aggregations.products.aggregations,
       sort_fields: aggregations.products.sort_fields,
-      total_count: productsResponse.products.total_count,
-      page_info: productsResponse.products.page_info,
+      total_count: categoryResponse.products.total_count,
+      page_info: categoryResponse.products.page_info,
     };
 
     return this.magentoCategoryResponseTransformer.transform(completeCategory, mediaUrl);

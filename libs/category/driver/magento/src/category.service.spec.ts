@@ -22,17 +22,16 @@ import {
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import {
-  MagentoGetACategoryResponse,
   MagentoGetCategoryFilterTypesResponse,
   MagentoCategory,
   MagentoSortFields,
   MagentoAggregation,
   MagentoCategoryFilterTypeField,
   MagentoPageInfo,
-  MagentoGetCategoryQuery,
   MagentoGetCategoryFilterTypes,
-  MagentoGetProductsResponse,
-  MagentoGetProductsQuery,
+  MagentoGetCategoryAndProductsResponse,
+  MagentoGetCategoryAndProductsQuery,
+  MagentoCategoryUrlResolverResponse,
 } from '@daffodil/category/driver/magento';
 import {
   DaffCategoryDriverMagentoCategoryFactory,
@@ -54,8 +53,10 @@ import { MagentoSimpleProductFactory } from '@daffodil/product/driver/magento/te
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
+import { MagentoGetCategoryAndProductsRequest } from './models/public_api';
+import { MagentoResolveCategoryUrl } from './queries/public_api';
 
-describe('Driver | Magento | Category | CategoryService', () => {
+describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () => {
   let categoryService: DaffMagentoCategoryService;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
@@ -86,9 +87,9 @@ describe('Driver | Magento | Category | CategoryService', () => {
   let mockMagentoPriceFilterTypeField: MagentoCategoryFilterTypeField;
   let mockMagentoProduct: MagentoProduct;
   let mockMagentoPageInfo: MagentoPageInfo;
-  let mockGetCategoryResponse: MagentoGetACategoryResponse;
   let mockGetFilterTypesResponse: MagentoGetCategoryFilterTypesResponse;
-  let mockGetProductsResponse: MagentoGetProductsResponse;
+  let mockGetCategoryAndProductsResponse: MagentoGetCategoryAndProductsResponse;
+  let mockCategoryUrlResolverResponse: MagentoCategoryUrlResolverResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -153,11 +154,6 @@ describe('Driver | Magento | Category | CategoryService', () => {
     // transformedCategoryPageMetadata =  categoryPageMetadataFactory.create();
     // transformedProducts =  productFactory.createMany(3);
 
-    mockGetCategoryResponse = {
-      categoryList: [
-        mockMagentoCategory,
-      ],
-    };
     mockGetFilterTypesResponse = {
       __type: {
         inputFields: [
@@ -166,7 +162,10 @@ describe('Driver | Magento | Category | CategoryService', () => {
         ],
       },
     };
-    mockGetProductsResponse = {
+    mockGetCategoryAndProductsResponse = {
+      categoryList: [
+        mockMagentoCategory,
+      ],
       products: {
         // items: [
         //   mockMagentoProduct,
@@ -180,6 +179,11 @@ describe('Driver | Magento | Category | CategoryService', () => {
           mockMagentoSelectAggregation,
         ],
         sort_fields: mockMagentoSortFields,
+      },
+    };
+    mockCategoryUrlResolverResponse = {
+      urlResolver: {
+        entity_uid: mockMagentoCategory.uid,
       },
     };
   });
@@ -202,13 +206,11 @@ describe('Driver | Magento | Category | CategoryService', () => {
         done();
       });
 
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
       const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
+      const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
 
-      categoryOp.flushData(mockGetCategoryResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
-      productsOp.flushData(mockGetProductsResponse);
+      categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
     });
 
     describe('when filters are requested', () => {
@@ -244,13 +246,11 @@ describe('Driver | Magento | Category | CategoryService', () => {
           done();
         });
 
-        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
         const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
-        const productsOp = controller.expectOne(MagentoGetProductsQuery());
+        const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
 
-        categoryOp.flushData(mockGetCategoryResponse);
         filterTypesOp.flushData(mockGetFilterTypesResponse);
-        productsOp.flushData(mockGetProductsResponse);
+        categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
       });
     });
   });
@@ -276,52 +276,34 @@ describe('Driver | Magento | Category | CategoryService', () => {
         flush();
       });
 
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const resolveUrlOp = controller.expectOne(MagentoResolveCategoryUrl);
       const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
 
-      categoryOp.flushData(mockGetCategoryResponse);
+      resolveUrlOp.flushData(mockCategoryUrlResolverResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
 
       tick();
 
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
-      productsOp.flushData(mockGetProductsResponse);
+      const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
+      categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
     }));
 
-    it('should query the category with the truncated URL', fakeAsync(() => {
+    it('should query the category and products with the category ID', fakeAsync(() => {
       result.subscribe();
 
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const resolveUrlOp = controller.expectOne(MagentoResolveCategoryUrl);
       const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
 
-      categoryOp.flushData(mockGetCategoryResponse);
+      resolveUrlOp.flushData(mockCategoryUrlResolverResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
 
       tick();
 
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
-      productsOp.flushData(mockGetProductsResponse);
+      const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
+      categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
 
-      expect(categoryOp.operation.variables.filters.url_path.eq).toEqual('test/url');
-
-      flush();
-    }));
-
-    it('should query the products with the category ID', fakeAsync(() => {
-      result.subscribe();
-
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
-
-      categoryOp.flushData(mockGetCategoryResponse);
-      filterTypesOp.flushData(mockGetFilterTypesResponse);
-
-      tick();
-
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
-      productsOp.flushData(mockGetProductsResponse);
-
-      expect(productsOp.operation.variables.filter.category_uid.eq).toEqual(mockMagentoCategory.uid);
+      expect((<MagentoGetCategoryAndProductsRequest>categoryAndProductsOp.operation.variables).productFilter.category_uid.eq).toEqual(mockMagentoCategory.uid);
+      expect((<MagentoGetCategoryAndProductsRequest>categoryAndProductsOp.operation.variables).categoryFilters.category_uid.eq).toEqual(mockMagentoCategory.uid);
 
       flush();
     }));
@@ -358,16 +340,16 @@ describe('Driver | Magento | Category | CategoryService', () => {
           flush();
         });
 
-        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+        const resolveUrlOp = controller.expectOne(MagentoResolveCategoryUrl);
         const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
 
-        categoryOp.flushData(mockGetCategoryResponse);
+        resolveUrlOp.flushData(mockCategoryUrlResolverResponse);
         filterTypesOp.flushData(mockGetFilterTypesResponse);
 
         tick();
 
-        const productsOp = controller.expectOne(MagentoGetProductsQuery());
-        productsOp.flushData(mockGetProductsResponse);
+        const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
+        categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
       }));
     });
   });

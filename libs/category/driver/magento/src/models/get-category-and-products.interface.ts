@@ -1,13 +1,13 @@
 import { MagentoProduct } from '@daffodil/product/driver/magento';
 
-import {
-  MagentoAggregation,
-  MagentoSortFields,
-} from '../models/public_api';
+import { MagentoAggregation } from './aggregation';
+import { MagentoCategory } from './category';
 import { MagentoPageInfo } from './page-info';
+import { MagentoSortFields } from './sort-fields';
 
-export interface MagentoGetProductsResponse {
-	products: {
+export interface MagentoGetCategoryAndProductsResponse {
+  categoryList: MagentoCategory[];
+  products: {
 		items: MagentoProduct[];
 		page_info: MagentoPageInfo;
 		total_count: number;
