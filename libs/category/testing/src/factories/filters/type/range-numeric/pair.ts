@@ -11,8 +11,20 @@ import { DaffCategoryFilterRangeNumericOptionFactory } from './option';
 
 export class MockDaffCategoryFilterRangeNumericPair implements DaffCategoryFilterRangePair<number> {
   applied: true = true;
-  max: DaffCategoryFilterRangeOption<number>;
-  min: DaffCategoryFilterRangeOption<number>;
+  max: DaffCategoryFilterRangeOption<number> = this.createMaxOption();
+  min: DaffCategoryFilterRangeOption<number> = this.createMinOption();
+
+  constructor(
+    private optionFactory: DaffCategoryFilterRangeNumericOptionFactory,
+  ) {}
+
+  protected createMinOption(): DaffCategoryFilterRangeOption<number> {
+    return this.optionFactory.create({ value: faker.datatype.number({ min: 0, max: 100 }) });
+  }
+
+  protected createMaxOption(): DaffCategoryFilterRangeOption<number> {
+    return this.optionFactory.create({ value: faker.datatype.number({ min: 100, max: 1000 }) });
+  }
 }
 
 /**
@@ -22,17 +34,10 @@ export class MockDaffCategoryFilterRangeNumericPair implements DaffCategoryFilte
   providedIn: 'root',
 })
 export class DaffCategoryFilterRangeNumericPairFactory extends DaffModelFactory<DaffCategoryFilterRangePair<number>>{
-  constructor(private option: DaffCategoryFilterRangeNumericOptionFactory){
-    super(MockDaffCategoryFilterRangeNumericPair);
-  }
-
-  create(partial: Partial<DaffCategoryFilterRangePair<number>> = {}) {
-    return {
-      ...new this.type(),
-      min: this.option.create({ value: faker.datatype.number({ min: 0, max: 100 }) }),
-      max: this.option.create({ value: faker.datatype.number({ min: 100, max: 1000 }) }),
-      ...partial,
-    };
+  constructor(
+    optionFactory: DaffCategoryFilterRangeNumericOptionFactory,
+  ) {
+    super(MockDaffCategoryFilterRangeNumericPair, optionFactory);
   }
 }
 
