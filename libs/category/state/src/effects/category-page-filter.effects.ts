@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   Injectable,
   Inject,
@@ -11,6 +12,7 @@ import {
   of,
   Observable,
   asyncScheduler,
+  EMPTY,
 } from 'rxjs';
 import { AsyncScheduler } from 'rxjs/internal/scheduler/AsyncScheduler';
 import {
@@ -28,13 +30,19 @@ import {
   daffCategoryFiltersToRequests,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
+  DaffCategoryFilterType,
+  DaffCategoryFilter,
+  DaffCategoryFilterRequest,
 } from '@daffodil/category';
 import { DaffCategoryPageMetadata } from '@daffodil/category';
 import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,
 } from '@daffodil/category/driver';
-import { DaffError } from '@daffodil/core';
+import {
+  DaffError,
+  Dict,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
@@ -42,12 +50,37 @@ import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 import {
   DaffCategoryPageFilterActionTypes,
   DaffCategoryPageFilterActions,
+  DaffCategoryPageApplyFilters,
 } from '../actions/category-page-filter.actions';
 import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
+  DaffCategoryPageActionTypes,
 } from '../actions/category-page.actions';
 import { DaffCategoryFacade } from '../facades/category.facade';
+
+/**
+ * IE compatible query params getter.
+ */
+// TODO: replace with URLSearchParams when IE support is dropped
+const getQueryParams = (path: string): Record<string, string> => {
+  const params = {};
+  path.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    (_, key, value) => params[key] = decodeURIComponent(value),
+  );
+  return params;
+};
+
+const getFilterRequestsForQueryParams = (queryParams: Record<string, string>, filters: Dict<DaffCategoryFilter>): DaffCategoryFilterRequest[] =>
+  Object.keys(queryParams).filter(queryParam =>
+  // TODO: refactor when IE support is dropped
+    filters[queryParam] && Object.keys(filters[queryParam].options).filter(optionId => optionId === queryParams[queryParam] && !filters[queryParam].options[optionId].applied).length > 0,
+  ).map(queryParam => ({
+    type: DaffCategoryFilterType.Equal,
+    name: queryParam,
+    value: [queryParams[queryParam]],
+  }));
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
@@ -60,7 +93,27 @@ export class DaffCategoryPageFilterEffects<
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V, W>,
 		@Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private facade: DaffCategoryFacade,
-  ){}
+    private location: Location,
+  ) {}
+
+  /**
+   * Applies category filters from query params.
+   * Currently only works for equal filters.
+   *
+   * Checks if the filters and options exist and are unapplied before applying them.
+   */
+  @Effect()
+  applyFiltersFromQueryParams$: Observable<typeof EMPTY | DaffCategoryPageApplyFilters> = this.actions$.pipe(
+    ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction),
+    switchMap((action: DaffCategoryPageLoadSuccess<V, W>) => {
+      const queryParams = getQueryParams(this.location.path());
+      const filterRequests = getFilterRequestsForQueryParams(queryParams, action.response.categoryPageMetadata.filters);
+
+      return filterRequests.length > 0
+        ? of(new DaffCategoryPageApplyFilters(filterRequests))
+        : EMPTY;
+    }),
+  );
 
   /**
    * Updates the filters applied to the category page. It will take the currently

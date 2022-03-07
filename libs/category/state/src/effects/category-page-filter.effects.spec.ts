@@ -1,6 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import {
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
+import {
+  cold,
+  hot as marbleHot,
+} from 'jasmine-marbles';
 import {
   Observable,
   of,
@@ -15,6 +26,8 @@ import {
   DaffCategoryFilterRequest,
   DaffCategoryFilterToggleRequest,
   DaffCategoryRequestKind,
+  DaffCategoryFilter,
+  DaffCategoryFilterType,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -41,10 +54,12 @@ import {
   DaffCategoryFilterFactory,
   DaffCategoryFilterRequestFactory,
   DaffCategoryFilterToggleRequestFactory,
+  DaffCategoryFilterEqualFactory,
 } from '@daffodil/category/testing';
 import {
   DaffInheritableError,
   DaffError,
+  Dict,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -61,11 +76,16 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
+@Component({ template: '' })
+class TestComponent {}
+
 describe('DaffCategoryPageFilterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageFilterEffects<DaffCategory, DaffProduct>;
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let facade: MockDaffCategoryFacade;
+  let equalFilterFactory: DaffCategoryFilterEqualFactory;
+  let router: Router;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
@@ -73,6 +93,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   let filterFactory: DaffCategoryFilterFactory;
   let filterRequestFactory: DaffCategoryFilterRequestFactory;
   let filterToggleRequestFactory: DaffCategoryFilterToggleRequestFactory;
+  let filters: Dict<DaffCategoryFilter>;
 
   const testDriverSuccess = (cb: () => Action) => {
     describe('throttling the request', () => {
@@ -224,6 +245,10 @@ describe('DaffCategoryPageFilterEffects', () => {
       imports: [
         DaffCategoryTestingDriverModule.forRoot(),
         DaffCategoryTestingModule,
+        RouterTestingModule.withRoutes([{
+          path: '**',
+          component: TestComponent,
+        }]),
       ],
       providers: [
         DaffCategoryPageFilterEffects,
@@ -234,6 +259,8 @@ describe('DaffCategoryPageFilterEffects', () => {
     facade = TestBed.inject(MockDaffCategoryFacade);
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
     effects = TestBed.inject(DaffCategoryPageFilterEffects);
+    equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
+    router = TestBed.inject(Router);
 
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
@@ -241,11 +268,116 @@ describe('DaffCategoryPageFilterEffects', () => {
     filterFactory = TestBed.inject(DaffCategoryFilterFactory);
     filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestFactory);
     filterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestFactory);
+    filters = daffCategoryFilterArrayToDict(equalFilterFactory.createMany(3));
   });
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
   });
+
+  describe('when CategoryPageLoadSuccessAction is dispatched', () => {
+    let categoryLoadSuccessAction: DaffCategoryPageLoadSuccess;
+
+    beforeEach(() => {
+      categoryLoadSuccessAction = new DaffCategoryPageLoadSuccess({
+        category: null,
+        categoryPageMetadata: categoryPageMetadataFactory.create({
+          filters,
+        }),
+        products: [],
+      });
+    });
+
+    describe('when no query params are passed', () => {
+      beforeEach(fakeAsync(() => {
+        router.navigateByUrl('test');
+        tick();
+
+        actions$ = marbleHot('--a', { a: categoryLoadSuccessAction });
+      }));
+
+      it('should not apply any filters', () => {
+        const expected = cold('---');
+        expect(effects.applyFiltersFromQueryParams$).toBeObservable(expected);
+      });
+    });
+
+    describe('when no matching query params are passed', () => {
+      beforeEach(fakeAsync(() => {
+        const nonMatchingFilter = Object.keys(filters).reduce((acc, filter) => acc.concat(filter), '');
+        router.navigateByUrl(`test?${nonMatchingFilter}=777`);
+        tick();
+
+        actions$ = marbleHot('--a', { a: categoryLoadSuccessAction });
+      }));
+
+      it('should not apply any filters', () => {
+        const expected = cold('---');
+        expect(effects.applyFiltersFromQueryParams$).toBeObservable(expected);
+      });
+    });
+
+    describe('when matching query params are passed but no matching options', () => {
+      beforeEach(fakeAsync(() => {
+        const matchingFilter = Object.keys(filters)[0];
+        const nonMatchingFilterOption = Object.keys(filters[matchingFilter].options).reduce((acc, option) => acc.concat(option), '');
+        router.navigateByUrl(`test?${matchingFilter}=${nonMatchingFilterOption}`);
+        tick();
+
+        actions$ = marbleHot('--a', { a: categoryLoadSuccessAction });
+      }));
+
+      it('should not apply any filters', () => {
+        const expected = cold('---');
+        expect(effects.applyFiltersFromQueryParams$).toBeObservable(expected);
+      });
+    });
+
+    describe('when matching query params are passed with applied matching options', () => {
+      let matchingFilter: string;
+      let matchingFilterOption: string;
+
+      beforeEach(fakeAsync(() => {
+        matchingFilter = Object.keys(filters)[0];
+        matchingFilterOption = Object.keys(filters[matchingFilter].options)[0];
+        filters[matchingFilter].options[matchingFilterOption].applied = true;
+        router.navigateByUrl(`test?${matchingFilter}=${matchingFilterOption}`);
+        tick();
+
+        actions$ = marbleHot('--a', { a: categoryLoadSuccessAction });
+      }));
+
+      it('should not apply any filters', () => {
+        const expected = cold('---');
+        expect(effects.applyFiltersFromQueryParams$).toBeObservable(expected);
+      });
+    });
+
+    describe('when matching query params are passed with unapplied matching options', () => {
+      let matchingFilter: string;
+      let matchingFilterOption: string;
+
+      beforeEach(fakeAsync(() => {
+        matchingFilter = Object.keys(filters)[0];
+        matchingFilterOption = Object.keys(filters[matchingFilter].options)[0];
+        filters[matchingFilter].options[matchingFilterOption].applied = false;
+        router.navigateByUrl(`test?${matchingFilter}=${matchingFilterOption}`);
+        tick();
+
+        actions$ = marbleHot('--a', { a: categoryLoadSuccessAction });
+      }));
+
+      it('should apply the specified filters', () => {
+        const expected = cold('--a', { a: new DaffCategoryPageApplyFilters([{
+          type: DaffCategoryFilterType.Equal,
+          name: matchingFilter,
+          value: [matchingFilterOption],
+        }]) });
+        expect(effects.applyFiltersFromQueryParams$).toBeObservable(expected);
+      });
+    });
+  });
+
 
   describe('when ChangeCategoryFiltersAction is triggered', () => {
     let filterRequest: DaffCategoryFilterRequest;
