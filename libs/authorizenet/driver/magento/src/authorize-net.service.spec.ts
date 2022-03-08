@@ -13,6 +13,7 @@ import {
   DaffAuthorizeNetConfigToken,
   DaffAuthorizeNetDriverErrorCodes,
   DaffAuthorizeNetPastCCExpirationError,
+  DaffAuthorizeNeUnconfiguredError,
 } from '@daffodil/authorizenet/driver';
 import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
 
@@ -31,7 +32,8 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
   });
 
   it('should throw a DaffAuthorizeNeUnconfiguredError', () => {
-    expect(() => TestBed.inject(DaffMagentoAuthorizeNetService)).toThrowMatching(({ code }) => code === DaffAuthorizeNetDriverErrorCodes.UNCONFIGURED);
+    const expected = hot('#', {}, new DaffAuthorizeNeUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.'));
+    expect(TestBed.inject(DaffMagentoAuthorizeNetService).generateToken(null)).toBeObservable(expected);
   });
 });
 

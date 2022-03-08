@@ -32,13 +32,14 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
     @Inject(DaffAuthorizeNetConfigToken) public config: DaffAuthorizeNetConfig,
     private acceptJsLoader: DaffAcceptJsLoadingService,
   ) {
-    if (!config?.apiLoginID || !config?.clientKey) {
-      throw new DaffAuthorizeNeUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.');
-    }
+
   }
 
   generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): Observable<MagentoAuthorizeNetPayment> {
-    return new Observable(observer =>
+    return new Observable(observer => {
+      if (!this.config?.apiLoginID || !this.config?.clientKey) {
+        observer.error(new DaffAuthorizeNeUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.'));
+      }
       this.acceptJsLoader.getAccept().dispatchData(
         transformMagentoAuthorizeNetRequest(paymentTokenRequest, this.config),
         (response: AuthorizeNetResponse) => {
@@ -51,7 +52,7 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
             observer.next(transformMagentoAuthorizeNetResponse(response, paymentTokenRequest.creditCard.cardnumber));
           }
         },
-      ),
-    );
+      );
+    });
   }
 }
