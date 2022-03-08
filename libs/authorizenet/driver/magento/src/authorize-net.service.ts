@@ -14,7 +14,7 @@ import {
   DaffAuthorizeNetConfigToken,
   DaffAuthorizeNetConfig,
   DAFF_AUTHORIZE_NET_ERROR_CODE_MAP,
-  DaffAuthorizeNeUnconfiguredError,
+  DaffAuthorizeNetUnconfiguredError,
 } from '@daffodil/authorizenet/driver';
 
 import { MagentoAuthorizeNetPayment } from './models/authorize-net-payment';
@@ -38,7 +38,7 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
   generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): Observable<MagentoAuthorizeNetPayment> {
     return new Observable(observer => {
       if (!this.config?.apiLoginID || !this.config?.clientKey) {
-        observer.error(new DaffAuthorizeNeUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.'));
+        observer.error(new DaffAuthorizeNetUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.'));
       }
       this.acceptJsLoader.getAccept().dispatchData(
         transformMagentoAuthorizeNetRequest(paymentTokenRequest, this.config),
