@@ -14,6 +14,7 @@
 @import "../app/core/footer/simple-footer/simple-footer-theme";
 @import "../app/core/footer/sub-footer/sub-footer-theme";
 @import '../app/docs/components/table-of-contents/table-of-contents-theme';
+@import '../app/api/components/api-list/api-list-theme';
 
 @import "theme";
 
@@ -25,6 +26,7 @@
 @include daffio-sub-footer-theme($theme);
 @include daffio-feature-comparison-theme($theme);
 @include daffio-table-of-contents-theme($theme);
+@include daffio-api-list-theme($theme);
 
 html {
 	scroll-behavior: smooth;
