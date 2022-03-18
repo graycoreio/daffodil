@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DaffLogoModule } from '@daffodil/branding';
 import { DaffButtonModule } from '@daffodil/design';
 
+import { DaffThemeSwitchModule } from '../../../design/theme-switch/theme-switch.module';
 import { DaffioHeaderComponentModule } from '../components/header.module';
 import { DaffioHeaderContainer } from './header.component';
 
@@ -17,6 +18,7 @@ import { DaffioHeaderContainer } from './header.component';
     DaffioHeaderComponentModule,
     DaffLogoModule,
     DaffButtonModule,
+    DaffThemeSwitchModule,
 
     FontAwesomeModule,
   ],
@@ -27,4 +29,4 @@ import { DaffioHeaderContainer } from './header.component';
     DaffioHeaderContainer,
   ],
 })
-export class DaffioHeaderModule {}
+export class DaffioHeaderModule { }
