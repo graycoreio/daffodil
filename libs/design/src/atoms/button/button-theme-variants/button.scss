@@ -3,17 +3,17 @@
 	$hover-color,
 	$active-color: $hover-color
 ) {
-	@if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
-		@error 'Button Initial State: ' + map-get($wcag-aa-errors, 'text-contrast');
-	}
+	// @if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
+	// 	@error 'Button Initial State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	// }
 
-	@if daff-contrast-ratio($hover-color, daff-text-contrast($base-color)) < 4.5 {
-		@error 'Button Hover State: ' + map-get($wcag-aa-errors, 'text-contrast');
-	}
+	// @if daff-contrast-ratio($hover-color, daff-text-contrast($base-color)) < 4.5 {
+	// 	@error 'Button Hover State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	// }
 
-	@if daff-contrast-ratio($active-color, daff-text-contrast($base-color)) < 4.5 {
-		@error 'Button Active State: ' + map-get($wcag-aa-errors, 'text-contrast');
-	}
+	// @if daff-contrast-ratio($active-color, daff-text-contrast($base-color)) < 4.5 {
+	// 	@error 'Button Active State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	// }
 	background-color: $base-color;
 	border: 1px solid $base-color;
 	color: daff-text-contrast($base-color);
