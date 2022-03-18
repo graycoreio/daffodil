@@ -2,15 +2,15 @@
 
 :host {
 	display: block;
-	padding: 50px 10px;
 	font-size: $small-font-size;
+	padding: 48px 24px;
 
 	@include breakpoint(tablet) {
-		padding: 75px 50px;
+		padding: 64px 48px;
 	}
 
-	@include breakpoint(big-tablet) {
-		padding: 75px 0;
+	@include breakpoint(small-laptop) {
+		padding: 64px 0;
 	}
 }
 
@@ -23,12 +23,20 @@
 			'logo'
 			'menu'
 			'social';
-		grid-gap: 15px;
+		grid-gap: 16px;
 
 		@include breakpoint(tablet) {
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas:
+				'logo  logo'
+				'menu  social';
+			grid-gap: 24px;
+		}
+
+		@include breakpoint(big-tablet) {
 			grid-template-columns: 1fr 1fr 1fr;
 			grid-template-areas: 'menu logo social';
-			grid-gap: 50px;
+			grid-gap: 48px;
 		}
 	}
 
@@ -37,7 +45,7 @@
 		display: flex;
 		justify-content: center;
 
-		@include breakpoint(tablet) {
+		@include breakpoint(big-tablet) {
 			justify-content: flex-start;
 		}
 	}
@@ -46,7 +54,7 @@
 		grid-area: logo;
 		display: flex;
 		justify-content: center;
-		width: 50px;
+		width: 48px;
 		margin: 0 auto;
 	}
 
@@ -55,34 +63,31 @@
 		display: flex;
 		justify-content: center;
 
-		@include breakpoint(tablet) {
+		@include breakpoint(big-tablet) {
 			justify-content: flex-end;
 		}
 	}
 
-	&__link,
-	&__social-link {
+	&__link {
 		@include embolden();
 		@include uppercase();
-		padding-right: 30px;
+		padding-right: 32px;
 		text-decoration: none;
 
 		&:last-child {
 			padding-right: 0;
 		}
-
-		span {
-			margin-left: 5px;
-		}
 	}
 
 	&__social-icon {
 		vertical-align: middle;
+
+		margin-right: 8px;
 	}
 
 	&__copyright {
 		display: block;
 		text-align: center;
-		margin-top: 25px;
+		margin-top: 32px;
 	}
 }

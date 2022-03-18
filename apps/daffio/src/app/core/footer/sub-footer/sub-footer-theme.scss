@@ -10,10 +10,10 @@
 			daff-color($secondary, 80),
 			daff-color($secondary, 50)
 		);
-		color: daff-text-contrast(daff-color($secondary));
+		color: $white;
 
 		&__content {
-			color: daff-text-contrast(daff-color($secondary));
+			color: $white;
 		}
 	}
 }
