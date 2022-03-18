@@ -16,17 +16,31 @@
 @import '../app/docs/components/table-of-contents/table-of-contents-theme';
 @import '../app/api/components/api-list/api-list-theme';
 
-@import "theme";
+@import 'theme';
 
-@include daff-theme($theme);
+.daff-theme-light {
+	@include daff-theme($theme);
+	background: #ffffff;
 
-@include daff-branding-theme($theme);
+	@include daff-branding-theme($theme);
+	@include daffio-simple-footer-theme($theme);
+	@include daffio-sub-footer-theme($theme);
+	@include daffio-feature-comparison-theme($theme);
+	@include daffio-table-of-contents-theme($theme);
+	@include daffio-api-list-theme($theme);
+}
 
-@include daffio-simple-footer-theme($theme);
-@include daffio-sub-footer-theme($theme);
-@include daffio-feature-comparison-theme($theme);
-@include daffio-table-of-contents-theme($theme);
-@include daffio-api-list-theme($theme);
+.daff-theme-dark {
+	@include daff-theme($theme-dark);
+	background: #1a1a1a;
+
+	@include daff-branding-theme($theme-dark);
+	@include daffio-simple-footer-theme($theme-dark);
+	@include daffio-sub-footer-theme($theme-dark);
+	@include daffio-feature-comparison-theme($theme-dark);
+	@include daffio-table-of-contents-theme($theme-dark);
+	@include daffio-api-list-theme($theme-dark);
+}
 
 html {
 	scroll-behavior: smooth;

@@ -7,10 +7,15 @@
 
   ::ng-deep {
     #{$root}__item {
+      display: none;
       color: currentColor;
       font-size: $normal-font-size;
       padding: 0.75rem 1.25rem;
       text-decoration: none;
+
+      @include breakpoint(tablet) {
+        display: block;
+      }
     }
   }
 }
@@ -18,15 +23,30 @@
 .daffio-header {
   &__navbar {
     justify-content: space-between;
-    padding: 0 1.5rem;
+    padding: 0 24px;
+
+    @include breakpoint(mobile) {
+      padding: 0 48px;
+    }
+  
+    @include breakpoint(small-laptop) {
+      padding: 0;
+    }  
+  }
+
+  &__theme-toggle {
+    margin-right: 0.25rem;
 
     @include breakpoint(tablet) {
-      padding: 0;
+      margin-right: 1rem;
     }
   }
 
+  &__menu-container {
+    display: flex;
+  }
+
   &__menu {
-    display: none;
     margin: 0;
     padding: 0;
 
@@ -37,8 +57,12 @@
   }
 
   &__button {
-    display: flex;
-    margin-left: 1rem;
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: flex;
+      margin-left: 1rem;
+    }
   }
 
   &__logo {
