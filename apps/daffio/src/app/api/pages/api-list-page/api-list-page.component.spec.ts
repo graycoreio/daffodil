@@ -27,7 +27,7 @@ class ActivatedRouteStub {
   template: '',
   selector: 'daffio-api-list',
 })
-class MockDaffioApiListComponent implements DaffioApiListComponent {
+class MockDaffioApiListComponent {
   @Input() apiList: DaffioApiReference[] = [];
 }
 
