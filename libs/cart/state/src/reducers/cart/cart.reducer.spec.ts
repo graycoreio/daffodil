@@ -276,37 +276,6 @@ describe('@daffodil/cart/state | cartReducer', () => {
     });
   });
 
-  describe('when ResolveCartServerSideAction is triggered', () => {
-    let result;
-    let state: DaffCartReducerState<DaffCart>;
-
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: {
-          ...initialState.loading,
-          [DaffCartOperationType.Cart]: DaffState.Resolving,
-        },
-        errors: {
-          ...initialState.errors,
-          [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
-        },
-      };
-
-      const cartListLoadFailure = new DaffResolveCartServerSide(error);
-
-      result = cartReducer(state, cartListLoadFailure);
-    });
-
-    it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffState.Complete);
-    });
-
-    it('should add an error to the cart section of state.errors', () => {
-      expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
-    });
-  });
-
   describe('when CartStorageFailure is triggered', () => {
     let result;
     let state: DaffCartReducerState<DaffCart>;
