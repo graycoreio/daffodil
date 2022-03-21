@@ -1,4 +1,8 @@
 import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
   ComponentFixture,
   TestBed,
   waitForAsync,
@@ -15,15 +19,21 @@ import { DaffContainerModule } from '@daffodil/design';
 
 import { DaffioSimpleFooterComponent } from './simple-footer.component';
 
-
+@Component({
+  template: `<daffio-simple-footer></daffio-simple-footer>`,
+})
+class WrapperComponent { }
 
 describe('DaffioSimpleFooterComponent', () => {
+  let wrapper: WrapperComponent;
   let component: DaffioSimpleFooterComponent;
-  let fixture: ComponentFixture<DaffioSimpleFooterComponent>;
+  let de: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
+        WrapperComponent,
         DaffioSimpleFooterComponent,
       ],
       imports: [
@@ -38,8 +48,10 @@ describe('DaffioSimpleFooterComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioSimpleFooterComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.debugElement.componentInstance;
+    de = fixture.debugElement.query(By.css('daffio-simple-footer'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -47,10 +59,11 @@ describe('DaffioSimpleFooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of `daffio-simple-footer` to its host', () => {
-    expect(fixture.nativeElement.classList.contains('daffio-simple-footer')).toBeTruthy();
+  it('should add a class of "daffio-simple-footer" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daffio-simple-footer': true,
+    }));
   });
-
 
   it('should show the copyright', () => {
     expect(fixture.debugElement.query(By.css('daff-branding-copyright'))).toBeTruthy();
@@ -64,9 +77,15 @@ describe('DaffioSimpleFooterComponent', () => {
     });
   });
 
-  it('renders a .simple-footer__link for every links defined', () => {
-    const footerLinks = fixture.debugElement.queryAll(By.css('.daffio-simple-footer__link'));
+  it('renders a menu link for every link defined', () => {
+    const footerLinks = fixture.debugElement.queryAll(By.css('.daffio-simple-footer__menu a'));
 
     expect(footerLinks.length).toEqual(component.links.length);
+  });
+
+  it('renders a social link for every link defined', () => {
+    const socialLinks = fixture.debugElement.queryAll(By.css('.daffio-simple-footer__social a'));
+
+    expect(socialLinks.length).toEqual(component.links.length);
   });
 });
