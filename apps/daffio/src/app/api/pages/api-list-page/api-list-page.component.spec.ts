@@ -23,6 +23,14 @@ class ActivatedRouteStub {
   data = new BehaviorSubject({});
 };
 
+@Component({
+  template: '',
+  selector: 'daffio-api-list',
+})
+class MockDaffioApiListComponent {
+  @Input() apiList: DaffioApiReference[] = [];
+}
+
 describe('DaffioApiListPageComponent', () => {
   let component: DaffioApiListPageComponent;
   let fixture: ComponentFixture<DaffioApiListPageComponent>;
