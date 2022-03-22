@@ -22,3 +22,13 @@ export const BUTTON_EXAMPLES = [
   StrokedButtonComponent,
   UnderlineButtonComponent,
 ];
+
+export {
+  BasicButtonComponent,
+  IconButtonComponent,
+  RaisedButtonComponent,
+  SizeableButtonComponent,
+  StatusableButtonComponent,
+  StrokedButtonComponent,
+  UnderlineButtonComponent,
+};
