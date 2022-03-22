@@ -6,8 +6,7 @@
     "release": "cd tools/release; gulp",
     "generate-packages": "cd tools/release; gulp generateReleasablePackages",
     "publish": "lerna run publish",
-    "magento:schema:generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 apollo schema:download --skipSSLValidation --endpoint=https://magento2.test/graphql graphql-schema.json",
-    "postinstall": "ngcc"
+    "magento:schema:generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 apollo schema:download --skipSSLValidation --endpoint=https://magento2.test/graphql graphql-schema.json"
   },
   "private": true,
   "dependencies": {
