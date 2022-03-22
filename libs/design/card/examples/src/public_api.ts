@@ -19,3 +19,12 @@ export const CARD_EXAMPLES = [
   StrokedCardComponent,
   CardOrientationComponent,
 ];
+
+export {
+  BasicCardComponent,
+  CardThemingComponent,
+  LinkableCardComponent,
+  RaisedCardComponent,
+  StrokedCardComponent,
+  CardOrientationComponent,
+};
