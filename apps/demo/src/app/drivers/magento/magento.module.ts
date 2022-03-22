@@ -4,7 +4,10 @@ import {
   ApolloLink,
 } from '@apollo/client/core';
 import { onError } from '@apollo/client/link/error';
-import { Apollo } from 'apollo-angular';
+import {
+  Apollo,
+  ApolloModule,
+} from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
@@ -32,6 +35,7 @@ const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
     DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationMagentoDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
+    ApolloModule,
   ],
 })
 export class DemoMagentoDriverModule {
