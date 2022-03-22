@@ -117,10 +117,13 @@ export class DaffQtyDropdownComponent implements OnInit {
   }
 
   private selectInput() {
+    // TODO: readdress this method
+    // why are we binding `this`?
+    // why use `setTimeout` instead of angular patterns?
     const that = this;
     setTimeout(() => {
       const input = <HTMLInputElement>document.getElementById('input_' + that.id);
-      input.select();
+      input?.select();
     });
   }
 }
