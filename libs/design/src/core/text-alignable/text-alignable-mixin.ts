@@ -21,7 +21,6 @@ daffTextAlignmentMixin<T extends Constructor<HasElementRef>>(Base: T, defaultTex
     /**
      * Controls text alignment for component-specific UI
      */
-    @Input()
     get textAlignment(): DaffTextAlignment {
       return this._textAlignment;
     }
@@ -50,5 +49,9 @@ daffTextAlignmentMixin<T extends Constructor<HasElementRef>>(Base: T, defaultTex
       this.textAlignment = defaultTextAlignment;
     }
   };
+
+  // TODO: ugly workaround for https://github.com/microsoft/TypeScript/issues/7342#issuecomment-624298133
+  Input()(DaffTextAlignableMixin.prototype, 'textAlignment');
+
   return DaffTextAlignableMixin;
 }

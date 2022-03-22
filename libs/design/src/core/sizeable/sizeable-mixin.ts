@@ -18,7 +18,6 @@ daffSizeMixin<V extends DaffSizeAllType, T extends Constructor<HasElementRef> = 
         //TODO move this back to private in Typescript 3.1
         _size: V;
 
-        @Input()
         get size(): V{
           return this._size;
         }
@@ -45,6 +44,9 @@ daffSizeMixin<V extends DaffSizeAllType, T extends Constructor<HasElementRef> = 
           this.size = defaultSize;
         }
   };
+
+  // TODO: ugly workaround for https://github.com/microsoft/TypeScript/issues/7342#issuecomment-624298133
+  Input()(DaffSizeMixinClass.prototype, 'size');
 
   return DaffSizeMixinClass;
 }

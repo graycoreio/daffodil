@@ -18,7 +18,6 @@ daffStatusMixin<T extends Constructor<HasElementRef>>(Base: T, defaultStatus?: D
     // TODO move this back to private in Typescript 3.1
     _status: DaffStatus;
 
-    @Input()
     get status(): DaffStatus {
       return this._status;
     }
@@ -48,6 +47,9 @@ daffStatusMixin<T extends Constructor<HasElementRef>>(Base: T, defaultStatus?: D
       this.status = defaultStatus;
     }
   };
+
+  // TODO: ugly workaround for https://github.com/microsoft/TypeScript/issues/7342#issuecomment-624298133
+  Input()(DaffStatusMixinClass.prototype, 'status');
 
   return DaffStatusMixinClass;
 }
