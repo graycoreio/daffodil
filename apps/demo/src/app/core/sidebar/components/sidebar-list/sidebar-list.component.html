@@ -14,7 +14,7 @@
           daff-link-set-item>{{ child.name }}</a>
         <demo-sidebar-list [tree]="child" [level]="nextLevel"></demo-sidebar-list>
       </ng-container>
-      <a *ngIf="child.children.length == 0" [routerLink]="getNavigationPath(child.id)"
+      <a *ngIf="child.children.length === 0" [routerLink]="getNavigationPath(child.id)"
         daff-link-set-item>{{ child.name }}</a>
     </ng-container>
   </daff-link-set>
