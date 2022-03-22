@@ -1,4 +1,4 @@
-import { gql } from 'apollo-angular';
+import { gql } from '@damienwebdev/apollo-angular';
 
 import { getCategoryNodeFragment } from './fragments/category-node';
 

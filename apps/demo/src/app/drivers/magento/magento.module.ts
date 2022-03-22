@@ -7,8 +7,8 @@ import { onError } from '@apollo/client/link/error';
 import {
   Apollo,
   ApolloModule,
-} from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
+} from '@damienwebdev/apollo-angular';
+import { HttpLink } from '@damienwebdev/apollo-angular/http';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';

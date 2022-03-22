@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import {
   Apollo,
   gql,
-} from 'apollo-angular';
-import { ApolloTestingModule } from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular';
+import { ApolloTestingModule } from '@damienwebdev/apollo-angular/testing';
 import { interval } from 'rxjs';
 import {
   delay,

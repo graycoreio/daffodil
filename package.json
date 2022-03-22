@@ -24,6 +24,7 @@
     "@angular/router": "^13.0.0",
     "@angular/service-worker": "^13.0.0",
     "@apollo/client": "^3.0.0",
+    "@damienwebdev/apollo-angular": "^3.0.1-alpha.1",
     "@faker-js/faker": "^5.5.3",
     "@fortawesome/angular-fontawesome": "^0.10.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

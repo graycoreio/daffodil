@@ -5,7 +5,7 @@ import {
   ApolloTestingModule,
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
-} from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular/testing';
 import { Observable } from 'rxjs';
 
 import { schema } from '@daffodil/driver/magento';

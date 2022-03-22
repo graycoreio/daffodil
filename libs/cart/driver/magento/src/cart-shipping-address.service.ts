@@ -2,7 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo } from '@damienwebdev/apollo-angular';
 import { DocumentNode } from 'graphql';
 import {
   Observable,

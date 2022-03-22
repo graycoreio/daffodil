@@ -1,4 +1,4 @@
-import { gql } from 'apollo-angular';
+import { gql } from '@damienwebdev/apollo-angular';
 
 
 export const createCustomerMutation = gql`

@@ -3,7 +3,7 @@ import {
   MutationOptions,
   FetchResult,
 } from '@apollo/client/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo } from '@damienwebdev/apollo-angular';
 import {
   Observable,
   Subscriber,

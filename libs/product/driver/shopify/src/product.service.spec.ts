@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
-} from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular/testing';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 

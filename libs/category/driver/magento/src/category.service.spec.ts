@@ -7,7 +7,7 @@ import {
 import {
   ApolloTestingModule,
   ApolloTestingController,
-} from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular/testing';
 import { Observable } from 'rxjs';
 
 import {

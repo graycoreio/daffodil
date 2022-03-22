@@ -1,4 +1,4 @@
-import { gql } from 'apollo-angular';
+import { gql } from '@damienwebdev/apollo-angular';
 
 import { orderAddressFragment } from './order-address';
 import { orderPaymentFragment } from './order-payment';

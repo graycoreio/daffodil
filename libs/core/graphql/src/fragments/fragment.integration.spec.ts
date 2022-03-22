@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import {
   gql,
   Apollo,
-} from 'apollo-angular';
+} from '@damienwebdev/apollo-angular';
 import {
   ApolloTestingController,
   ApolloTestingModule,
-} from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular/testing';
 import { DocumentNode } from 'graphql';
 
 import { daffBuildFragmentDefinition } from './build-fragment-definition';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo } from '@damienwebdev/apollo-angular';
 import {
   Observable,
   throwError,

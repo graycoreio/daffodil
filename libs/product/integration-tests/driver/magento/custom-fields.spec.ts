@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { InMemoryCache } from '@apollo/client/core';
-import { gql } from 'apollo-angular';
+import { gql } from '@damienwebdev/apollo-angular';
 import {
   ApolloTestingModule,
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
-} from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular/testing';
 
 import { schema } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';

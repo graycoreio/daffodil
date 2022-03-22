@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   ApolloTestingController,
   ApolloTestingModule,
-} from 'apollo-angular/testing';
+} from '@damienwebdev/apollo-angular/testing';
 import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
