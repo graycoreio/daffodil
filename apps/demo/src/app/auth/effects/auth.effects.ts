@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -23,14 +23,14 @@ export class DemoAuthEffects {
     private router: Router,
   ) {}
 
-  @Effect({
-    dispatch: false,
-  })
-  authSuccess$: Observable<any> = this.actions$.pipe(
+
+  authSuccess$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(
       DaffAuthActionTypes.AuthLoginSuccessAction,
     ),
     tap(() => this.router.navigateByUrl('/')),
     switchMapTo(EMPTY),
-  );
+  ), {
+    dispatch: false,
+  });
 }

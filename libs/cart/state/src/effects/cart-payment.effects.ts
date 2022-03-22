@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -57,8 +57,8 @@ export class DaffCartPaymentEffects<
     private storage: DaffCartStorageService,
   ) {}
 
-  @Effect()
-  get$ = this.actions$.pipe(
+
+  get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentLoadAction),
     switchMap((action: DaffCartPaymentLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
@@ -66,10 +66,10 @@ export class DaffCartPaymentEffects<
         catchError(error => of(new DaffCartPaymentLoadFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  update$ = this.actions$.pipe(
+
+  update$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentUpdateAction),
     switchMap((action: DaffCartPaymentUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
@@ -77,10 +77,10 @@ export class DaffCartPaymentEffects<
         catchError(error => of(new DaffCartPaymentUpdateFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  updateWithBilling$ = this.actions$.pipe(
+
+  updateWithBilling$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction),
     switchMap((action: DaffCartPaymentUpdateWithBilling<T, R>) =>
       this.driver.updateWithBilling(this.storage.getCartId(), action.payment, action.address).pipe(
@@ -88,10 +88,10 @@ export class DaffCartPaymentEffects<
         catchError(error => of(new DaffCartPaymentUpdateWithBillingFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  remove$ = this.actions$.pipe(
+
+  remove$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentRemoveAction),
     switchMap((action: DaffCartPaymentRemove) =>
       this.driver.remove(this.storage.getCartId()).pipe(
@@ -99,5 +99,5 @@ export class DaffCartPaymentEffects<
         catchError(error => of(new DaffCartPaymentRemoveFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 }

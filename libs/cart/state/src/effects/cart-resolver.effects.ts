@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
   OnInitEffects,
 } from '@ngrx/effects';
@@ -71,8 +71,8 @@ implements OnInitEffects {
     return new DaffResolveCart();
   }
 
-  @Effect()
-  onResolveCart = (): Observable<Action> => this.actions$.pipe(
+
+  onResolveCart = createEffect(() => (): Observable<Action> => this.actions$.pipe(
     ofType(DaffCartActionTypes.ResolveCartAction),
     switchMap(() =>
       of(null).pipe(
@@ -132,5 +132,5 @@ implements OnInitEffects {
         }),
       ),
     ),
-  );
+  ));
 }

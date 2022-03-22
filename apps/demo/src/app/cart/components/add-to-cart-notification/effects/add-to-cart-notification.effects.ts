@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
@@ -33,14 +33,14 @@ export class AddToCartNotificationEffects {
     private store$: Store<any>,
   ) {}
 
-  @Effect()
-  addToCart$ = this.actions$.pipe(
+
+  addToCart$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.AddToCartAction),
     map(() => new OpenAddToCartNotification()),
-  );
+  ));
 
-  @Effect({ dispatch: false })
-  openModal$ = this.actions$.pipe(
+
+  openModal$ = createEffect(() => this.actions$.pipe(
     ofType(AddToCartNotificationActionTypes.OpenAddToCartNotificationAction),
     tap(() => this.notification = this.daffModalService.open(AddToCartNotificationComponent, {
       onBackdropClicked: () => {
@@ -48,13 +48,13 @@ export class AddToCartNotificationEffects {
       },
     }),
     ),
-  );
+  ), { dispatch: false });
 
-  @Effect({ dispatch: false })
-  closeModal$ = this.actions$.pipe(
+
+  closeModal$ = createEffect(() => this.actions$.pipe(
     ofType(AddToCartNotificationActionTypes.CloseAddToCartNotificationAction),
     map((action) => {
       this.daffModalService.close(this.notification);
     }),
-  );
+  ), { dispatch: false });
 }

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -58,17 +58,17 @@ export class DaffCartEffects<T extends DaffCart> {
     private storage: DaffCartStorageService,
   ) {}
 
-  @Effect()
-  create$ = this.actions$.pipe(
+
+  create$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartCreateAction),
     switchMap((action: DaffCartCreate) => this.driver.create().pipe(
       map((resp: {id: T['id']}) => new DaffCartCreateSuccess(resp)),
       catchError(error => of(new DaffCartCreateFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 
-  @Effect()
-  storeId$ = this.actions$.pipe(
+
+  storeId$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartCreateSuccessAction, DaffCartActionTypes.ResolveCartSuccessAction),
     switchMap((action: DaffCartCreateSuccess<T>) => of(null).pipe(
       tap(() => {
@@ -77,10 +77,10 @@ export class DaffCartEffects<T extends DaffCart> {
       switchMapTo(EMPTY),
       catchError(error => of(new DaffCartStorageFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 
-  @Effect()
-  get$ = this.actions$.pipe(
+
+  get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartLoadAction),
     switchMap((action: DaffCartLoad) => of(null).pipe(
       map(() => this.storage.getCartId()),
@@ -103,10 +103,10 @@ export class DaffCartEffects<T extends DaffCart> {
         : new DaffCartLoadFailure([this.errorMatcher(error)]),
       )),
     )),
-  );
+  ));
 
-  @Effect()
-  addToCart$ = this.actions$.pipe(
+
+  addToCart$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.AddToCartAction),
     switchMap((action: DaffAddToCart) =>
       this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
@@ -114,10 +114,10 @@ export class DaffCartEffects<T extends DaffCart> {
         catchError(error => of(new DaffAddToCartFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  clear$ = this.actions$.pipe(
+
+  clear$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartClearAction),
     switchMap((action: DaffCartClear) => of(null).pipe(
       map(() => this.storage.getCartId()),
@@ -128,5 +128,5 @@ export class DaffCartEffects<T extends DaffCart> {
         : new DaffCartClearFailure(this.errorMatcher(error)),
       )),
     )),
-  );
+  ));
 }

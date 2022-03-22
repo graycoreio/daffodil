@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -43,21 +43,21 @@ export class DaffGeographyEffects<T extends DaffCountry> {
     @Inject(DAFF_GEOGRAPHY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
-  @Effect()
-  get$ = this.actions$.pipe(
+
+  get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffGeographyActionTypes.CountryLoadAction),
     switchMap((action: DaffCountryLoad<T>) => this.driver.get(action.payload).pipe(
       map(resp => new DaffCountryLoadSuccess(resp)),
       catchError((error: DaffError) => of(new DaffCountryLoadFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 
-  @Effect()
-  list$ = this.actions$.pipe(
+
+  list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffGeographyActionTypes.CountryListAction),
     switchMap((action: DaffCountryList) => this.driver.list().pipe(
       map(resp => new DaffCountryListSuccess(resp)),
       catchError((error: DaffError) => of(new DaffCountryListFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 }

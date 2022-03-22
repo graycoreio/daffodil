@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -50,8 +50,8 @@ export class DaffOrderEffects<
   /**
    * An effect for the loading of an order.
    */
-  @Effect()
-  get$ = this.actions$.pipe(
+
+  get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderLoadAction),
     switchMap((action: DaffOrderLoad<T, V>) =>
       this.driver.get(action.orderId, action.cartId).pipe(
@@ -59,13 +59,13 @@ export class DaffOrderEffects<
         catchError((error: DaffError) => of(new DaffOrderLoadFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
   /**
    * An effect for the listing of orders.
    */
-  @Effect()
-  list$ = this.actions$.pipe(
+
+  list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderListAction),
     switchMap((action: DaffOrderList) =>
       this.driver.list(action.payload).pipe(
@@ -73,5 +73,5 @@ export class DaffOrderEffects<
         catchError((error: DaffError) => of(new DaffOrderListFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 }

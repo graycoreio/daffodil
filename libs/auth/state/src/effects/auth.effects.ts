@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -73,8 +73,8 @@ export class DaffAuthEffects<
     private storage: DaffAuthStorageService,
   ) {}
 
-  @Effect()
-  check$: Observable<DaffAuthCheckSuccess | DaffAuthCheckFailure> = this.actions$.pipe(
+
+  check$: Observable<DaffAuthCheckSuccess | DaffAuthCheckFailure> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthCheckAction),
     switchMap((action: DaffAuthCheck) =>
       this.checkToken().pipe(
@@ -84,10 +84,10 @@ export class DaffAuthEffects<
         ),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  login$: Observable<DaffAuthLoginSuccess<U> | DaffAuthLoginFailure> = this.actions$.pipe(
+
+  login$: Observable<DaffAuthLoginSuccess<U> | DaffAuthLoginFailure> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthLoginAction),
     switchMap((action: DaffAuthLogin<T>) =>
       this.loginDriver.login(action.loginInfo).pipe(
@@ -99,22 +99,22 @@ export class DaffAuthEffects<
         ),
       ),
     ),
-  );
+  ));
 
-  @Effect({
-    dispatch: false,
-  })
-  storeAuthToken$ = this.actions$.pipe(
+
+  storeAuthToken$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthLoginSuccessAction),
     tap((action: DaffAuthLoginSuccess<U>) => {
       this.storage.setAuthToken(action.auth.token);
     }),
     switchMapTo(EMPTY),
     catchError((error: DaffError) => of(new DaffAuthStorageFailure(this.errorMatcher(error)))),
-  );
+  ), {
+    dispatch: false,
+  });
 
-  @Effect()
-  logout$: Observable<DaffAuthLogoutSuccess | DaffAuthLogoutFailure> = this.actions$.pipe(
+
+  logout$: Observable<DaffAuthLogoutSuccess | DaffAuthLogoutFailure> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthLogoutAction),
     switchMap((action: DaffAuthLogout) =>
       this.loginDriver.logout().pipe(
@@ -124,16 +124,16 @@ export class DaffAuthEffects<
         ),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  loginAfterRegister$: Observable<DaffAuthLogin<T>> = this.actions$.pipe(
+
+  loginAfterRegister$: Observable<DaffAuthLogin<T>> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthRegisterSuccessAction),
     map((action: DaffAuthRegisterSuccess<T>) => new DaffAuthLogin(action.loginInfo)),
-  );
+  ));
 
-  @Effect()
-  register$: Observable<any> = this.actions$.pipe(
+
+  register$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthRegisterAction),
     switchMap((action: DaffAuthRegister<S>) =>
       this.registerDriver.register(action.registration).pipe(
@@ -145,10 +145,10 @@ export class DaffAuthEffects<
         ),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  guardCheck$: Observable<DaffAuthGuardCheckCompletion> = this.actions$.pipe(
+
+  guardCheck$: Observable<DaffAuthGuardCheckCompletion> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthGuardCheckAction),
     switchMap((action: DaffAuthGuardCheck) =>
       this.checkToken().pipe(
@@ -158,7 +158,7 @@ export class DaffAuthEffects<
         ),
       ),
     ),
-  );
+  ));
 
   private checkToken() {
     return this.authDriver.check();

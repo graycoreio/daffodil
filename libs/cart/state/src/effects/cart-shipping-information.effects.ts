@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -48,8 +48,8 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     private storage: DaffCartStorageService,
   ) {}
 
-  @Effect()
-  get$ = this.actions$.pipe(
+
+  get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction),
     switchMap((action: DaffCartShippingInformationLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
@@ -57,10 +57,10 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
         catchError(error => of(new DaffCartShippingInformationLoadFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  update$ = this.actions$.pipe(
+
+  update$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction),
     switchMap((action: DaffCartShippingInformationUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
@@ -68,10 +68,10 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
         catchError(error => of(new DaffCartShippingInformationUpdateFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 
-  @Effect()
-  delete$ = this.actions$.pipe(
+
+  delete$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction),
     switchMap((action: DaffCartShippingInformationDelete<V['shipping_information']>) =>
       this.driver.delete(this.storage.getCartId()).pipe(
@@ -79,5 +79,5 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
         catchError(error => of(new DaffCartShippingInformationDeleteFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 }

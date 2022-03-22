@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { Observable } from 'rxjs';
@@ -24,17 +24,17 @@ export class CheckoutEffects {
     private router: Router,
   ) {}
 
-  @Effect()
-  onToggleShowPaymentForm$: Observable<any> = this.actions$.pipe(
+
+  onToggleShowPaymentForm$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(PaymentActionTypes.ToggleShowPaymentFormAction),
     map(() => new ShowReviewView()),
-  );
+  ));
 
-  @Effect({ dispatch: false })
-  onPlaceOrder$: Observable<any> = this.actions$.pipe(
+
+  onPlaceOrder$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(OrderActionTypes.PlaceOrderAction),
     tap(() => {
       this.router.navigateByUrl('/checkout/thank-you');
     }),
-  );
+  ), { dispatch: false });
 }

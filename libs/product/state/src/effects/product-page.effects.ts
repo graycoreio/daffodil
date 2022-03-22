@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -57,8 +57,8 @@ export class DaffProductPageEffects<T extends DaffProduct> {
    *
    * @returns An Observable of a ProductLoadAction
    */
-  @Effect()
-  load$: Observable<any> = this.actions$.pipe(
+
+  load$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffProductPageActionTypes.ProductPageLoadAction),
     switchMap((action: DaffProductPageLoad) =>
       this.driver.get(action.payload)
@@ -67,10 +67,10 @@ export class DaffProductPageEffects<T extends DaffProduct> {
           catchError((error: DaffError) => of(new DaffProductPageLoadFailure(this.errorMatcher(error)))),
         ),
     ),
-  );
+  ));
 
-  @Effect()
-  loadByUrl$: Observable<any> = this.actions$.pipe(
+
+  loadByUrl$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffProductPageActionTypes.ProductPageLoadByUrlAction),
     switchMap((action: DaffProductPageLoadByUrl<T>) =>
       this.driver.getByUrl(action.payload)
@@ -79,5 +79,5 @@ export class DaffProductPageEffects<T extends DaffProduct> {
           catchError((error: DaffError) => of(new DaffProductPageLoadFailure(this.errorMatcher(error)))),
         ),
     ),
-  );
+  ));
 }
