@@ -100,14 +100,14 @@ const createCompositeProductSelectors = <T extends DaffProduct>(): DaffComposite
     },
   )).memoized;
 
-  const selectCompositeProductPricesAsCurrentlyConfigured = defaultMemoize((id: T['id']) => createSelector<DaffCompositeProductStateRootSlice<T>, T, EntityState<DaffCompositeProductEntity>['entities'], DaffPriceRange>(
+  const selectCompositeProductPricesAsCurrentlyConfigured = defaultMemoize((id: T['id']) => createSelector<DaffCompositeProductStateRootSlice<T>, [T, EntityState<DaffCompositeProductEntity>['entities']], DaffPriceRange>(
     selectProduct(id),
     selectCompositeProductAppliedOptionsEntities,
     (product: T, appliedOptionsEntities) =>
       selectCompositeProductRequiredItemPricesForConfiguration(id, appliedOptionsEntities[id]?.items || null).projector(product),
   )).memoized;
 
-  const selectCompositeProductDiscountAmount = defaultMemoize((id: DaffCompositeProduct['id']) => createSelector<DaffCompositeProductStateRootSlice<T>, T, EntityState<DaffCompositeProductEntity>['entities'], number>(
+  const selectCompositeProductDiscountAmount = defaultMemoize((id: DaffCompositeProduct['id']) => createSelector<DaffCompositeProductStateRootSlice<T>, [T, EntityState<DaffCompositeProductEntity>['entities']], number>(
     selectProduct(id),
     selectCompositeProductAppliedOptionsEntities,
     (product: T, appliedOptionsEntities) => {
@@ -126,7 +126,7 @@ const createCompositeProductSelectors = <T extends DaffProduct>(): DaffComposite
     },
   )).memoized;
 
-  const selectCompositeProductDiscountPercent = defaultMemoize((id: DaffCompositeProduct['id']) => createSelector<DaffCompositeProductStateRootSlice<T>, T, EntityState<DaffCompositeProductEntity>['entities'], number>(
+  const selectCompositeProductDiscountPercent = defaultMemoize((id: DaffCompositeProduct['id']) => createSelector<DaffCompositeProductStateRootSlice<T>, [T, EntityState<DaffCompositeProductEntity>['entities']], number>(
     selectProduct(id),
     selectCompositeProductAppliedOptionsEntities,
     (product: T, appliedOptionsEntities) => {

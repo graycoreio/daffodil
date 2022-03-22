@@ -55,7 +55,7 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
     (state: DaffProductReducerState) => state.currentProductId,
   );
 
-  const selectCurrentProduct = createSelector(
+  const selectCurrentProduct = createSelector<DaffProductStateRootSlice, [DaffProductReducersState<T>, string], T>(
     selectProductState,
     selectCurrentProductId,
     (state: DaffProductReducersState<T>, id: T['id']) => state.products.entities[id],

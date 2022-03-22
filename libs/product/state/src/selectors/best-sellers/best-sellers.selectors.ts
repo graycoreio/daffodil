@@ -58,7 +58,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
     (state: DaffBestSellersReducerState) => state.productIds,
   );
 
-  const selectBestSellersProducts = createSelector(
+  const selectBestSellersProducts = createSelector<DaffProductStateRootSlice<T>, [string[], T[]], T[]>(
     selectBestSellersIdsState,
     selectAllProducts,
     (ids: T['id'][], products: T[]) => products.filter(product => ids.indexOf(product.id) > -1),

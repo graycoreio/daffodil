@@ -155,7 +155,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (state: DaffCategoryPageMetadata) => state.product_ids,
   );
 
-  const selectIsCategoryPageEmpty = createSelector(
+  const selectIsCategoryPageEmpty = createSelector<DaffCategoryStateRootSlice<V>, [ V['product_ids']], boolean>(
     selectCategoryPageProductIds,
     (state: V['product_ids']) => !state.length,
   );

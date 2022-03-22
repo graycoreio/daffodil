@@ -124,7 +124,7 @@ const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>
     selectProduct,
   } = getDaffProductEntitiesSelectors<T>();
 
-  const selectAllConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, T, DaffConfigurableProductVariant[]>(
+  const selectAllConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, [T], DaffConfigurableProductVariant[]>(
     selectProduct(productId),
     (product: T) => {
       if(!product || product.type !== DaffProductTypeEnum.Configurable) {
@@ -134,7 +134,7 @@ const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>
     },
   )).memoized;
 
-  const selectMatchingConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, T, DaffConfigurableProductEntityAttribute[], DaffConfigurableProductVariant[]>(
+  const selectMatchingConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, [T, DaffConfigurableProductEntityAttribute[]], DaffConfigurableProductVariant[]>(
     selectProduct(productId),
     selectConfigurableProductAppliedAttributes(productId),
     (product: T, appliedAttributes) => {
