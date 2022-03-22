@@ -4,7 +4,6 @@ import {
   FetchResult,
 } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
-import { EmptyObject } from 'apollo-angular/types';
 import {
   Observable,
   Subscriber,
@@ -36,7 +35,7 @@ export class DaffQueuedApollo {
    *
    * @param options Mutation options.
    */
-  mutate<T, V = EmptyObject>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
+  mutate<T, V = Record<string, any>>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
     return new Observable(subscriber => this.addRequestToQueue(subscriber, this.apollo.mutate(options)));
   }
 
