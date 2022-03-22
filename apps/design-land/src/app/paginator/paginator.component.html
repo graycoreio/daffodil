@@ -1,31 +1,13 @@
-<daff-article>
-  <h1 daffArticleTitle>Daff Paginator</h1>
-  <p daffArticleLead>Daffodil's paginator component can be used to navigate between pages of content.</p>
+<h1 daffArticleTitle>Paginator</h1>
+<p daffArticleLead>Paginator is used to break up large amounts of content into multiple pages, enabling users to easily navigate between pages of content.</p>
 
-  <h2>About</h2>
-  <p>
-    The paginator can be used to break up large amounts of content and enable the user to easily navigate the data. 
-    The paginator also helps with ease of use by displaying the number of pages as well as links for traversal to the "previous" or "next" page.
-  </p>
+<h2>Truncation</h2>
+<p>An ellipsis is used to truncate pages when the number of pages exceed the maximum display limit. Double truncation appears when the current page is separated by more than three pages from both the first and last page.</p>
 
-  <h2>Theming</h2>
-  <p>Setting <code>color</code> on the paginator component will change the default background color of the selected page and the hovered page.</p>
-  <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
+<h2>Accessibility</h2>
+<p>Use <code>aria-label</code> or <code>aria-labelledby</code> to give a meaningful label to <code>daff-paginator</code> that describes the content controlled by the paginator. If more than one paginator component is used on a page, each will need a unique <code>aria-label</code>.</p>
 
-  <h2>Accessibility</h2>
-  <p>Use <code>aria-label</code> or <code>aria-labelledby</code> to label the <code>daff-paginator</code> component.</p>
-
-  <daff-paginator color="primary" aria-label="Primary" [numberOfPages]="numberOfPages" [currentPage]="primaryCurrentPage" (notifyPageChange)="onPageChange($event)"></daff-paginator>
-  
-  <daff-paginator color="secondary" aria-label="Secondary" [numberOfPages]="numberOfPages" [currentPage]="secondaryCurrentPage" (notifyPageChange)="onPageChange1($event)"></daff-paginator>
-  
-  <daff-paginator color="tertiary" aria-label="Tertiary" [numberOfPages]="numberOfPages" [currentPage]="tertiaryCurrentPage" (notifyPageChange)="onPageChange2($event)"></daff-paginator>
-  
-  <daff-paginator color="theme" aria-label="Theme" [numberOfPages]="numberOfPages" [currentPage]="themeCurrentPage" (notifyPageChange)="onPageChange3($event)"></daff-paginator>
-  
-  <daff-paginator color="theme-contrast" aria-label="Theme Contrast" [numberOfPages]="numberOfPages" [currentPage]="themeContrastCurrentPage" (notifyPageChange)="onPageChange4($event)"></daff-paginator>
-  
-  <daff-paginator color="black" aria-label="Black" [numberOfPages]="numberOfPages" [currentPage]="blackCurrentPage" (notifyPageChange)="onPageChange5($event)"></daff-paginator>
-  
-  <daff-paginator color="white" aria-label="White" [numberOfPages]="numberOfPages" [currentPage]="whiteCurrentPage" (notifyPageChange)="onPageChange6($event)"></daff-paginator>
-</daff-article>
+<h2>Usage</h2>
+<design-land-article-encapsulated>
+  <design-land-example-viewer-container example="basic-paginator"></design-land-example-viewer-container>
+</design-land-article-encapsulated>

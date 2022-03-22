@@ -4,6 +4,7 @@ import {
   ComponentFactoryResolver,
 } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
+import { PAGINATOR_EXAMPLES } from 'libs/design/paginator/examples/src';
 
 import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
 import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
@@ -49,6 +50,7 @@ export class DesignLandAppComponent {
       ...NAVBAR_EXAMPLES,
       ...QUANTITY_FIELD_EXAMPLES,
       ...LIST_EXAMPLES,
+      ...PAGINATOR_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.
