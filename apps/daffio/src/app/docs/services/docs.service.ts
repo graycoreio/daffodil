@@ -21,12 +21,10 @@ export class DaffioDocsService<T extends DaffioDoc, V extends DaffioGuideList> i
   ) {}
 
   get(path: string): Observable<T> {
-    console.log(this.docsPath);
-
     return this.http.get<T>(this.docsPath + path + '.json');
   }
+
   getGuideList(): Observable<DaffioGuideList> {
-    console.log(this.docsPath);
     return this.http.get<V>(this.docsPath + 'guides/guide-list.json');
   }
 }
