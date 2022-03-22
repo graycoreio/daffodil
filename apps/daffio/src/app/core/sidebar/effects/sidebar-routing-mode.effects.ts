@@ -2,7 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -37,8 +37,8 @@ export class DaffioSidebarRoutingModeEffects {
     private breakpointsObserver: BreakpointObserver,
   ) { }
 
-  @Effect()
-  changeModeWhenVisitingConfiguredRoute$ = (): Observable<Action> => combineLatest(
+
+  changeModeWhenVisitingConfiguredRoute$ = createEffect(() => (): Observable<Action> => combineLatest(
     this.actions$.pipe<RouterNavigatedAction>(ofType(ROUTER_NAVIGATED)),
     this.breakpointsObserver.observe(DaffBreakpoints.TABLET),
   ).pipe(
@@ -50,5 +50,5 @@ export class DaffioSidebarRoutingModeEffects {
         return new SidebarActions.ResetMode();
       }
     }),
-  );
+  ));
 }

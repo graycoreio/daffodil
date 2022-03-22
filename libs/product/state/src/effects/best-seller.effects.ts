@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -56,8 +56,8 @@ export class DaffBestSellersEffects<T extends DaffProduct> {
    *
    * @returns An Observable of a BestSellersLoad action
    */
-  @Effect()
-  loadBestSellers$: Observable<any> = this.actions$.pipe(
+
+  loadBestSellers$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffBestSellersActionTypes.BestSellersLoadAction),
     switchMap((action: DaffBestSellersLoad) =>
       this.driver.getBestSellers()
@@ -66,5 +66,5 @@ export class DaffBestSellersEffects<T extends DaffProduct> {
           catchError((error: DaffError) => of(new DaffBestSellersLoadFailure(this.errorMatcher(error)))),
         ),
     ),
-  );
+  ));
 }

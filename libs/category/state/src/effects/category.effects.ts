@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -50,8 +50,8 @@ export class DaffCategoryEffects<
 		@Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
-  @Effect()
-  loadCategory$: Observable<any> = this.actions$.pipe(
+
+  loadCategory$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
     mergeMap((action: DaffCategoryLoad) => this.driver.get(action.request).pipe(
       switchMap((resp: DaffGetCategoryResponse<V,W>) => of(
@@ -60,5 +60,5 @@ export class DaffCategoryEffects<
       )),
       catchError((error: DaffError) => of(new DaffCategoryLoadFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 }

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -56,8 +56,8 @@ export class DaffCartCouponEffects<
     private storage: DaffCartStorageService,
   ) {}
 
-  @Effect()
-  apply$ = this.actions$.pipe(
+
+  apply$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponApplyAction),
     switchMap((action: DaffCartCouponApply<V>) => of(null).pipe(
       map(() => this.storage.getCartId()),
@@ -68,10 +68,10 @@ export class DaffCartCouponEffects<
         : new DaffCartCouponApplyFailure(this.errorMatcher(error)),
       )),
     )),
-  );
+  ));
 
-  @Effect()
-  list$ = this.actions$.pipe(
+
+  list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponListAction),
     switchMap((action: DaffCartCouponList) => of(null).pipe(
       map(() => this.storage.getCartId()),
@@ -82,10 +82,10 @@ export class DaffCartCouponEffects<
         : new DaffCartCouponListFailure(this.errorMatcher(error)),
       )),
     )),
-  );
+  ));
 
-  @Effect()
-  remove$ = this.actions$.pipe(
+
+  remove$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponRemoveAction),
     switchMap((action: DaffCartCouponRemove<V>) => of(null).pipe(
       map(() => this.storage.getCartId()),
@@ -96,10 +96,10 @@ export class DaffCartCouponEffects<
         : new DaffCartCouponRemoveFailure(this.errorMatcher(error)),
       )),
     )),
-  );
+  ));
 
-  @Effect()
-  removeAll$ = this.actions$.pipe(
+
+  removeAll$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponRemoveAllAction),
     switchMap((action: DaffCartCouponRemoveAll) => of(null).pipe(
       map(() => this.storage.getCartId()),
@@ -110,5 +110,5 @@ export class DaffCartCouponEffects<
         : new DaffCartCouponRemoveAllFailure(this.errorMatcher(error)),
       )),
     )),
-  );
+  ));
 }

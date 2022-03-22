@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -44,8 +44,8 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
 		@Inject(DAFF_NAVIGATION_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
-  @Effect()
-  loadNavigation$: Observable<any> = this.actions$.pipe(
+
+  loadNavigation$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffNavigationActionTypes.NavigationLoadAction),
     switchMap((action: DaffNavigationLoad) =>
       this.driver.get(action.payload)
@@ -54,5 +54,5 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
           catchError((error: DaffError) => of(new DaffNavigationLoadFailure(this.errorMatcher(error)))),
         ),
     ),
-  );
+  ));
 }

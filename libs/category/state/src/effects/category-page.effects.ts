@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -66,14 +66,14 @@ export class DaffCategoryPageEffects<
 
 	private categorySelectors = getDaffCategorySelectors<V, W>();
 
-  @Effect()
-  loadCategoryPage$: Observable<any> = this.actions$.pipe(
+
+  loadCategoryPage$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageLoadAction),
     switchMap((action: DaffCategoryPageLoad) => this.processCategoryGetRequest(action.request)),
-  );
+  ));
 
-  @Effect()
-  loadCategoryPageByUrl$: Observable<any> = this.actions$.pipe(
+
+  loadCategoryPageByUrl$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction),
     switchMap((action: DaffCategoryPageLoadByUrl) => this.driver.getByUrl(action.request).pipe(
       switchMap((resp: DaffGetCategoryResponse<V, W>) => [
@@ -82,10 +82,10 @@ export class DaffCategoryPageEffects<
       ]),
       catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 
-  @Effect()
-  changeCategoryPageSize$: Observable<any> = this.actions$.pipe(
+
+  changeCategoryPageSize$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageChangeSizeAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
@@ -96,10 +96,10 @@ export class DaffCategoryPageEffects<
       filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       page_size: action.pageSize,
     })),
-  );
+  ));
 
-  @Effect()
-  changeCategoryCurrentPage$: Observable<any> = this.actions$.pipe(
+
+  changeCategoryCurrentPage$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
@@ -110,10 +110,10 @@ export class DaffCategoryPageEffects<
       filter_requests: daffCategoryFiltersToRequests(metadata.filters),
       current_page: action.currentPage,
     })),
-  );
+  ));
 
-  @Effect()
-  changeCategorySort$: Observable<any> = this.actions$.pipe(
+
+  changeCategorySort$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction),
     withLatestFrom(
       this.store.pipe(select(this.categorySelectors.selectCategoryPageMetadata)),
@@ -125,7 +125,7 @@ export class DaffCategoryPageEffects<
       applied_sort_option: action.sort.option,
       applied_sort_direction: action.sort.direction,
     })),
-  );
+  ));
 
   private processCategoryGetRequest(payload: DaffCategoryIdRequest) {
     return this.driver.get(payload).pipe(

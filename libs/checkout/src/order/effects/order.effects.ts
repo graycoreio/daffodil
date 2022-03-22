@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -38,8 +38,8 @@ export class OrderEffects {
     @Inject(DaffCheckoutDriver) private checkoutDriver: DaffCheckoutServiceInterface,
   ) {}
 
-  @Effect()
-  onPlaceOrder$: Observable<any> = this.actions$.pipe(
+
+  onPlaceOrder$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffOrderActionTypes.PlaceOrderAction),
     switchMap((action: DaffPlaceOrder) =>
       this.checkoutDriver.placeOrder(action.payload.id.toString())
@@ -48,5 +48,5 @@ export class OrderEffects {
           catchError(error => of(new DaffPlaceOrderFailure('Failed to place order'))),
         ),
     ),
-  );
+  ));
 }

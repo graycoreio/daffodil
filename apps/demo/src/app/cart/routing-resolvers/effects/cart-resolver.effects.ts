@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -49,8 +49,8 @@ export class CartResolverEffects {
 		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface,
   ) {}
 
-	@Effect()
-	onResolveCart$: Observable<Action> = this.actions$.pipe(
+
+	onResolveCart$: Observable<Action> = createEffect(() => this.actions$.pipe(
 	  ofType(CartResolverActionTypes.ResolveCartAction),
 	  switchMap(() => this.selectStoreCart().pipe(
 	    take(1),
@@ -62,7 +62,7 @@ export class CartResolverEffects {
 	      }
 	    }),
 	  )),
-	);
+	));
 
 	selectStoreCart(): Observable<DaffCart> {
 	  return this.store.pipe(select(daffCartSelectors.selectCartValue));

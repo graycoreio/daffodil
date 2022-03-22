@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -64,8 +64,8 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 		private acceptJsLoadingService: DaffAcceptJsLoadingService,
   ) {}
 
-  @Effect()
-  updatePayment$: Observable<any> = this.actions$.pipe(
+
+  updatePayment$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthorizeNetActionTypes.UpdatePaymentAction),
     switchMap((action: DaffAuthorizeNetUpdatePayment<T>) =>
       this.driver.generateToken(action.tokenRequest).pipe(
@@ -81,19 +81,19 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
         ),
       ),
     ),
-  );
+  ));
 
-	@Effect()
-	updatePaymentSuccessSubstream$: Observable<any> = this.actions$.pipe(
+
+	updatePaymentSuccessSubstream$: Observable<any> = createEffect(() => this.actions$.pipe(
 	  substream(
 	    [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction],
 	    DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction,
 	  ),
 	  mapTo(new DaffAuthorizeNetUpdatePaymentSuccess()),
-	);
+	));
 
-	@Effect()
-	updatePaymentFailureSubstream$: Observable<any> = this.actions$.pipe(
+
+	updatePaymentFailureSubstream$: Observable<any> = createEffect(() => this.actions$.pipe(
 	  substream(
 	    [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction],
 	    DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction,
@@ -101,10 +101,10 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 	  map(([updatePaymentAction, updatePaymentFailureAction]: [DaffAuthorizeNetUpdatePayment, DaffCartPaymentUpdateWithBillingFailure]) =>
 	    new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher(updatePaymentFailureAction.payload)),
 	  ),
-	);
+	));
 
-	@Effect()
-  loadAcceptJs$ = (maxTries = 10, ms = 10): Observable<any> => this.actions$.pipe(
+
+  loadAcceptJs$ = createEffect(() => (maxTries = 10, ms = 10): Observable<any> => this.actions$.pipe(
     ofType(DaffAuthorizeNetActionTypes.LoadAcceptJsAction),
     tap((action: DaffLoadAcceptJs) => this.acceptJsLoadingService.load()),
     switchMap(() => of(null).pipe(
@@ -113,5 +113,5 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
       mapTo(new DaffLoadAcceptJsSuccess()),
       catchError((error: DaffError) => of(new DaffLoadAcceptJsFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 }

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -42,8 +42,8 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
     private storage: DaffCartStorageService,
   ) {}
 
-  @Effect()
-  list$ = this.actions$.pipe(
+
+  list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction),
     switchMap((action: DaffCartPaymentMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
@@ -51,5 +51,5 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
         catchError(error => of(new DaffCartPaymentMethodsLoadFailure(this.errorMatcher(error)))),
       ),
     ),
-  );
+  ));
 }

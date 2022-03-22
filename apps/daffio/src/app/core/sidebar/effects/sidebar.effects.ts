@@ -2,7 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -37,11 +37,11 @@ export class DaffioSidebarEffects {
     private breakpointsObserver: BreakpointObserver,
   ) { }
 
-  @Effect()
-  closeOnPageChange$ =
+
+  closeOnPageChange$ = createEffect(() =>
     (delayTime = 10, scheduler = asyncScheduler): Observable<Action> => this.actions$.pipe(
       ofType(ROUTER_NAVIGATION),
       delay(delayTime, scheduler),
       switchMap(() => of(new SidebarActions.CloseSidebar())),
-    );
+    ));
 }

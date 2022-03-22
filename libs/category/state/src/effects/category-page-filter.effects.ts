@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   Actions,
-  Effect,
+  createEffect,
   ofType,
 } from '@ngrx/effects';
 import {
@@ -70,12 +70,12 @@ export class DaffCategoryPageFilterEffects<
    * @param throttleWindow the amount of time to delay when apply/removing filters
    * in a sequence.
    */
-  @Effect()
+
   updateFilters$: (throttleWindow: number, scheduler: AsyncScheduler) => Observable<
     DaffProductGridLoadSuccess
     | DaffCategoryPageLoadSuccess
     | DaffCategoryPageLoadFailure
-  > = (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
+  > = createEffect(() => (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
       DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
@@ -104,5 +104,5 @@ export class DaffCategoryPageFilterEffects<
       ]),
       catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
     )),
-  );
+  ));
 }
