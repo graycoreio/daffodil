@@ -26,7 +26,6 @@ daffColorMixin<T extends Constructor<HasElementRef>>(Base: T, defaultColor?: Daf
          //TODO move this back to private in Typescript 3.1
          _color: DaffPalette;
 
-         @Input()
          get color(): DaffPalette{
            return this._color;
          }
@@ -57,6 +56,9 @@ daffColorMixin<T extends Constructor<HasElementRef>>(Base: T, defaultColor?: Daf
            this.color = defaultColor;
          }
   };
+
+  // TODO: ugly workaround for https://github.com/microsoft/TypeScript/issues/7342#issuecomment-624298133
+  Input()(DaffColorableMixinClass.prototype, 'color');
 
   return DaffColorableMixinClass;
 }
