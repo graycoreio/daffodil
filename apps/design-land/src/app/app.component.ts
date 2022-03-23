@@ -3,8 +3,6 @@ import {
   Injector,
   ComponentFactoryResolver,
 } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
-import { PAGINATOR_EXAMPLES } from 'libs/design/paginator/examples/src';
 
 import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
 import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
@@ -19,6 +17,7 @@ import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
 import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
 import { MODAL_EXAMPLES } from '@daffodil/design/modal/examples';
 import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
+import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
 
