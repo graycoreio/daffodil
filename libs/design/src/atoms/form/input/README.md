@@ -1,11 +1,24 @@
-# Input Component
+# Input
+Input is a form control element that can be used in forms.
 
-`daff-input`  is a form control element that can be used in forms.
+## Examples
 
-Make sure to use the appropriate `type` attribute on all inputs.
+### Basic
+A basic input without using the `DaffFormFieldComponent`.
 
-## Usage
+<design-land-example-viewer-container example="basic-input"></design-land-example-viewer-container>
 
-```
-<input daff-input type="text" placeholder="Email" name="email" />
-```
+### With `DaffFormFieldComponent`
+An input using `DaffFormField`
+
+<design-land-example-viewer-container example="input-with-form-field"></design-land-example-viewer-container>
+
+### Disabled
+The input in this example is disabled using the native HTML disabled attribute.
+
+<design-land-example-viewer-container example="input-disabled"></design-land-example-viewer-container>
+
+### With Reactive Forms
+The input in this example uses the `ReactiveFormsModule` to display errors.
+
+<design-land-example-viewer-container example="input-error"></design-land-example-viewer-container>

@@ -1,20 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
-import { InputComponent } from './input.component';
+import { DesignLandInputComponent } from './input.component';
 
-describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+describe('DesignLandInputComponent', () => {
+  let component: DesignLandInputComponent;
+  let fixture: ComponentFixture<DesignLandInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputComponent ]
+      declarations: [
+        DesignLandInputComponent,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
+    fixture = TestBed.createComponent(DesignLandInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
