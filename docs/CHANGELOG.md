@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.40.0](https://github.com/graycoreio/daffodil/compare/v0.39.13...v0.40.0) (2022-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* dependents should upgrade to Angular 13, including ngrx 13 and TS 4.4
+
+### Features
+
+* **all:** @angular/cli migration - update-angular-config-v12 ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([6a9aa84](https://github.com/graycoreio/daffodil/commit/6a9aa84ba86e471ea7ab67b0cd3701bded600dba))
+* **all:** @angular/cli migration - update-zonejs ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([dcac357](https://github.com/graycoreio/daffodil/commit/dcac35728792fd70bbbe7579c3f9cb44b9510106)), closes [/github.com/angular/angular/blob/master/packages/zone.js/CHANGELOG.md#breaking-changes-since-zonejs-v0111](https://github.com/graycoreio//github.com/angular/angular/blob/master/packages/zone.js/CHANGELOG.md/issues/breaking-changes-since-zonejs-v0111)
+* **all:** Angular CLI update for packages - @angular/core@^12, @angular/cli@^12, @angular/cdk@^12, @ngrx/store@^12, @angular-devkit/build-angular@^12, @angular-eslint/builder@^12, @fortawesome/angular-fontawesome@^0.9.0, @nguniversal/express-engine@^12, @nguniversal/builders@^12 ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([50db140](https://github.com/graycoreio/daffodil/commit/50db140f64318613b6e3e8b94f2974867a261da0))
+* **all:** replace `apollo-angular` with `@damienwebdev/apollo-angular` ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([700a53c](https://github.com/graycoreio/daffodil/commit/700a53cad809396c53e0e1cb8527361accae1f12))
+* **all:** upgrade dependencies to Angular 13 ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([222b66a](https://github.com/graycoreio/daffodil/commit/222b66a879709580db4d814b16cf351cfc701a44))
+* **category,product,product-composite,product-configurable:** specify selectors type params ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([2589608](https://github.com/graycoreio/daffodil/commit/258960859a9d2a48a5fdf590596afd6e40e92cd6))
+* **core:** remove ref to `EmptyObject` ([#2030](https://github.com/graycoreio/daffodil/issues/2030)) ([66a45f6](https://github.com/graycoreio/daffodil/commit/66a45f6d8923c9cb396afb26027aa8a15685c166))
+* **daffio:** add theme switch functionality to daff.io ([#2016](https://github.com/graycoreio/daffodil/issues/2016)) ([ef415fd](https://github.com/graycoreio/daffodil/commit/ef415fd63ed9de06db9416d6fe848f892a2ae6c5))
+* **daffio:** update footer UI ([#2020](https://github.com/graycoreio/daffodil/issues/2020)) ([84dc80d](https://github.com/graycoreio/daffodil/commit/84dc80d399796aed4ce019aef4d0555d55d7d074))
+* **demo:** default import possible types json ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([bd59a37](https://github.com/graycoreio/daffodil/commit/bd59a373443b82b0d7e8ac23855f43c1fd779491))
+* **demo:** import `ApolloModule` in Magento module ([#2013](https://github.com/graycoreio/daffodil/issues/2013)) ([7093fdb](https://github.com/graycoreio/daffodil/commit/7093fdb8d2b6385f59382cf254b9039badf5eb2b))
+* **design:** add Daffodil theming service ([#1967](https://github.com/graycoreio/daffodil/issues/1967)) ([73658a2](https://github.com/graycoreio/daffodil/commit/73658a2b7941005cb304dbd4f0a8a62e6bbe8918))
+* **design:** export design example components ([#2036](https://github.com/graycoreio/daffodil/issues/2036)) ([b427334](https://github.com/graycoreio/daffodil/commit/b42733463929b69ce7e5df87f10c5048b109db87))
+* **design:** remove wcag requirements on button ([#2021](https://github.com/graycoreio/daffodil/issues/2021)) ([c72a9a3](https://github.com/graycoreio/daffodil/commit/c72a9a3ebd7837b8532dc08f11a584047625e93d))
+* **design:** update icon button sizes to meet wcag touch target requirements ([#2019](https://github.com/graycoreio/daffodil/issues/2019)) ([798453d](https://github.com/graycoreio/daffodil/commit/798453dc088c7eb64ea093dcd5413fdd0be85e6c))
+* **design:** workaround decorator issue in mixins ([#2037](https://github.com/graycoreio/daffodil/issues/2037)) ([07cfb33](https://github.com/graycoreio/daffodil/commit/07cfb339d10f497d1d743d1eb21214204aee50c5))
+* **docs:** clean up api list page ([#1966](https://github.com/graycoreio/daffodil/issues/1966)) ([bf0f68e](https://github.com/graycoreio/daffodil/commit/bf0f68e975acda3e6682377d853de18d0b7448e5))
+* upgrade to Angular 13 ([a791b49](https://github.com/graycoreio/daffodil/commit/a791b4930f8edd29af28793609d5fe0bdea3bbc3))
+
+
+### Bug Fixes
+
+* **cart:** server side cart resolution completes cart loading ([#2027](https://github.com/graycoreio/daffodil/issues/2027)) ([8c01f37](https://github.com/graycoreio/daffodil/commit/8c01f371b51b02b5a3c8e8d527ac4fcb219139ae))
+* **daffio:** broken assets paths on server ([#2028](https://github.com/graycoreio/daffodil/issues/2028)) ([c7c061b](https://github.com/graycoreio/daffodil/commit/c7c061bea6e4cae9efced327b2baed978d898bf9))
+* **design-land:** fix paginator import path ([#2046](https://github.com/graycoreio/daffodil/issues/2046)) ([8cb0325](https://github.com/graycoreio/daffodil/commit/8cb0325aaf3a2894e7145436ac82f79a7c986ef8))
+* **design:** DAFF_THEME_INITIALIZER not exported properly ([cb89c5a](https://github.com/graycoreio/daffodil/commit/cb89c5a841c60d9cd0fcd3c260e7422eb3ff6dce))
+* **design:** NPE when input element cannot be found ([#2043](https://github.com/graycoreio/daffodil/issues/2043)) ([2f7cf39](https://github.com/graycoreio/daffodil/commit/2f7cf39320ee047a0ea90121494c534c9ef9deb2))
+
 ### [0.39.13](https://github.com/graycoreio/daffodil/compare/v0.39.12...v0.39.13) (2022-02-28)
 
 
