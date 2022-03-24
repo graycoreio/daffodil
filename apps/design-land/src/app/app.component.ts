@@ -3,6 +3,7 @@ import {
   Injector,
   ComponentFactoryResolver,
 } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 
 import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
 import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
@@ -12,6 +13,7 @@ import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
 import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
 import { CONTAINER_EXAMPLES } from '@daffodil/design/container/examples';
 import { HERO_EXAMPLES } from '@daffodil/design/hero/examples';
+import { IMAGE_EXAMPLES } from '@daffodil/design/image/examples';
 import { LIST_EXAMPLES } from '@daffodil/design/list/examples';
 import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
 import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
@@ -50,6 +52,7 @@ export class DesignLandAppComponent {
       ...QUANTITY_FIELD_EXAMPLES,
       ...LIST_EXAMPLES,
       ...PAGINATOR_EXAMPLES,
+      ...IMAGE_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.

@@ -1,1 +1,30 @@
-<daff-image src="/assets/card/uber-logo.svg" alt="uber logo" width="300" height="119"></daff-image>
+<h1 daffArticleTitle>Image</h1>
+<p daffArticleLead>Image utilizes the native HTML <code>img</code> element to display responsive images on a page and prevent content jumping while images are loading. <code>daff-image</code> is an opinionated version that encourages friendly end-user usage.</p>
+
+<h2>Attributes</h2>
+<p> The <code>src</code>, <code>width</code>, <code>height</code>, and <code>alt</code> attributes must be defined. An error will be thrown any of these attributes are missing.</p>
+    
+<p><code>width</code> and <code>height</code> are required to calculate the aspect ratio of an image, used for the <a href="https://css-tricks.com/aspect-ratio-boxes/" target="_blank">aspect ratio padding trick</a> that helps to prevent content jumping while images are loading. The <code>width</code> and <code>height</code> values are rendered as pixels.</p>
+
+<h2>Errors</h2>
+<strong>DaffImageComponent must have a defined src attribute.</strong>
+<p>This error appears when <code>&lt;daff-image&gt;</code> is missing a <code>src</code> attribute.</p>
+
+<strong>DaffImageComponent must have a defined alt attribute.</strong>
+<p>This error appears when <code>&lt;daff-image&gt;</code> is missing an <code>alt</code> attribute. The <code>alt</code> tag specifies an alternate text for an image.</p>
+
+<strong>DaffImageComponent must have a defined width attribute.</strong>
+<p>This error appears when <code>&lt;daff-image&gt;</code> is missing a <code>width</code> attribute. The width must be defined in order to correctly calculate the aspect ratio of the image.</p>
+
+<strong>DaffImageComponent must have a defined height attribute.</strong>
+<p>This error appears when <code>&lt;daff-image&gt;</code> is missing a <code>height</code>height attribute. The height must be defined in order to correctly calculate the aspect ratio of the image.</p>
+
+<h2>Accessibility</h2>
+<p>Images should be given a meaningful description using the native <code>alt</code> attribute to ensure an accessible experience by default. An error will be thrown if the <code>alt</code> attribute is missing.</p>
+
+<h2>Usage</h2>
+<h3>Basic Image</h3>
+<design-land-example-viewer-container example="basic-image"></design-land-example-viewer-container>
+
+<h3>Image Load Output</h3>
+<design-land-example-viewer-container example="load-image"></design-land-example-viewer-container>
