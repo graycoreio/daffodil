@@ -7,5 +7,5 @@ import { LoadImageModule } from './load-image/load-image.module';
 
 export const IMAGE_EXAMPLES: ComponentExample[] = [
   { component: BasicImageComponent, module: BasicImageModule },
-  { component: LoadImageComponent, module: LoadImageModule}
+  { component: LoadImageComponent, module: LoadImageModule },
 ];

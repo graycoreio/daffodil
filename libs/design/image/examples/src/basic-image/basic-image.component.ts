@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-image',
   templateUrl: './basic-image.component.html',
-  styles: []
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicImageComponent {
 

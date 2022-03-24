@@ -1,20 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+
+import { DaffImageModule } from '@daffodil/design';
 
 import { LoadImageComponent } from './load-image.component';
 
-import { DaffImageModule } from '@daffodil/design';
-import { CommonModule } from '@angular/common';
-
 @NgModule({
   declarations: [
-    LoadImageComponent
+    LoadImageComponent,
   ],
   exports: [
-    LoadImageComponent
+    LoadImageComponent,
   ],
   imports: [
     CommonModule,
-    DaffImageModule
-  ]
+    DaffImageModule,
+  ],
 })
 export class LoadImageModule { }

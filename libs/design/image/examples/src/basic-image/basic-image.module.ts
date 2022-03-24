@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 
-import { BasicImageComponent } from './basic-image.component';
-
 import { DaffImageModule } from '@daffodil/design';
+
+import { BasicImageComponent } from './basic-image.component';
 
 @NgModule({
   declarations: [
-    BasicImageComponent
+    BasicImageComponent,
   ],
   exports: [
-    BasicImageComponent
+    BasicImageComponent,
   ],
   imports: [
-    DaffImageModule
-  ]
+    DaffImageModule,
+  ],
 })
 export class BasicImageModule { }
