@@ -24,3 +24,13 @@
 		grid-area: shopify;
 	}
 }
+
+:host-context(.daff-theme-dark) {
+	.daffio-home-callout-platforms {
+		&__logos {
+			> * {
+				filter: invert(1);
+			}
+		}
+	}
+}
