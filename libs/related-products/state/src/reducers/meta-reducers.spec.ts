@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 import {
