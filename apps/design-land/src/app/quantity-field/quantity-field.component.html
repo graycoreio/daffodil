@@ -1,5 +1,11 @@
 <h1 daffArticleTitle>Quantity Field</h1>
-<p daffArticleLead>DaffQuantityFieldComponent is a form control element that switches between a native select and input element. The maximum number accepted in a quantity select by default is 10. It will switch to a quantity input if 10+ is selected.</p>
+<p daffArticleLead>Quantity field is a form control element that switches between a native select and input element.</p>
+
+<h2>Overview</h2>
+<p>Quantity field is intended for use with cart items and product quantities. The maximum number accepted in a quantity select is configurable and set to 10 by default. It will switch to a quantity input if 10+ is selected.</p>
+
+<h2>Range Limits</h2>
+The default allowed range of numbers is 1 to 500. This can be changed by passing in the desired min and max values as inputs. Note that this does not validate the actual input. It merely informs the select which options it should generate and sets the input's min and max attributes. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number#min" target="_blank">input min</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number#max" target="_blank">input max</a> for more information.
 
 <h2>Usage</h2>
 <h3>Basic</h3>

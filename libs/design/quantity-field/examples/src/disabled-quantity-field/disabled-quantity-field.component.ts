@@ -12,5 +12,5 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisabledQuantityFieldComponent {
-  control = new FormControl({ value : '' , disabled: true });
+  control = new FormControl({ value : '1' , disabled: true });
 }
