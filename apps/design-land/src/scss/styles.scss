@@ -10,7 +10,15 @@
 @import "theme";
 @import 'highlight.js/styles/github.css';
 
-@include daff-theme($theme);
+.daff-theme-light {
+  @include daff-theme($theme);
+  background: #ffffff;
+}
+
+.daff-theme-dark {
+  @include daff-theme($theme-dark);
+  background: #1a1a1a;
+}
 
 body {
   margin: 0;
