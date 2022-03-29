@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffUpsellProductFactory } from 'libs/upsell-products/testing/src/factories/public_api';
+
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
@@ -8,6 +8,7 @@ import {
   DaffProductTestingModule,
 } from '@daffodil/product/testing';
 import { DaffUpsellProduct } from '@daffodil/upsell-products';
+import { DaffUpsellProductFactory } from '@daffodil/upsell-products/testing';
 
 import { daffUpsellProductsDedupeMetaReducer } from './meta-reducers';
 
