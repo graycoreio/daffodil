@@ -97,7 +97,6 @@ describe('DaffQuantityFieldComponent', () => {
     });
   });
 
-
   describe('when the input value exceeds the selectMax value', () => {
 
     beforeEach(() => {
@@ -116,6 +115,42 @@ describe('DaffQuantityFieldComponent', () => {
     it('should not render the quantity select', () => {
       const el = fixture.debugElement.query(By.css('daff-quantity-select'));
       expect(el).toBeFalsy();
+    });
+
+    describe('and the input is focused', () => {
+      beforeEach(() => {
+        const input: DaffQuantityInputComponent = fixture.debugElement.query(By.css('daff-quantity-input')).componentInstance;
+        input.focus();
+      });
+
+      it('should be focused', () => {
+        expect(component.focused).toBeTrue();
+      });
+    });
+
+    describe('and the input is not focused', () => {
+      it('should not be focused', () => {
+        expect(component.focused).toBeFalse();
+      });
+    });
+  });
+
+  describe('when the select value is less than the selectMax value', () => {
+    describe('and the select is focused', () => {
+      beforeEach(() => {
+        const select: DaffQuantitySelectComponent = fixture.debugElement.query(By.css('daff-quantity-select')).componentInstance;
+        select.focus();
+      });
+
+      it('should be focused', () => {
+        expect(component.focused).toBeTrue();
+      });
+    });
+
+    describe('and the select is not focused', () => {
+      it('should not be focused', () => {
+        expect(component.focused).toBeFalse();
+      });
     });
   });
 });

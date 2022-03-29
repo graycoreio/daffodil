@@ -124,13 +124,12 @@ describe('DaffQuantitySelectComponent', () => {
   });
 
   describe('when the component is focused', () => {
-    beforeEach(() => {
+    it('should focus the select component', () => {
+      const spy = spyOn(selectComponent, 'focus');
       component.focus();
       fixture.detectChanges();
-    });
 
-    it('should focus the select component', () => {
-      expect(selectComponent.focused).toBeTrue();
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });

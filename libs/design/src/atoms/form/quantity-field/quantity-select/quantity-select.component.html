@@ -1,4 +1,7 @@
-<select daff-native-select [formControl]="ngControl.control">
+<select daff-native-select
+  [formControl]="ngControl.control"
+  (focus)="onFocus()"
+>
   <option *ngFor="let item of valueArray" [value]="item">{{ item }}</option>
   <option [value]="max" *ngIf="extendable">{{ max }}+</option>
   <option [value]="max" *ngIf="!extendable">{{ max }}</option>

@@ -44,8 +44,11 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
    * Instead, we listen for the change event and manually patch form control values.
    */
   _inputControl = new FormControl();
-  // TODO: should this not use this.input as the source of truth for focused?
-  focused = false;
+
+  get focused(): boolean {
+    return this.input?.focused;
+  }
+
   _destroyed = new Subject();
 
   get value() {
@@ -82,18 +85,15 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   }
 
   focus() {
-    this.focused = true;
     this.input.focus();
   }
 
   onFocus() {
-    this.focused = true;
     this.ngControl.control.markAsTouched();
   }
 
   onBlur() {
-    // TODO: this.focused = false ?
-    if(this.value === null || this.value === undefined){
+    if (this.value === null || this.value === undefined) {
       this.value = 1;
       this.changeDetectorRef.markForCheck();
     }
