@@ -86,7 +86,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.2",
     "gulp": "^4.0.2",
     "gulp-execa": "^1.1.0",
-    "highlight.js": "^10.7.3",
+    "highlight.js": "^11.0.0",
     "jasmine": "3.6.3",
     "jasmine-core": "~3.6.0",
     "jasmine-marbles": "^0.6.0",
