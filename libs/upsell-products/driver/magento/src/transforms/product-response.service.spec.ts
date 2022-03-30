@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffUpsellProduct } from 'libs/upsell-products/src/models/upsell-product.interface';
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import { daffProvideProductMagentoExtraProductPreviewTransforms } from '@daffodil/product/driver/magento';
 import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffUpsellProduct } from '@daffodil/upsell-products';
 import { MagentoProductWithUpsellFactory } from '@daffodil/upsell-products/driver/magento/testing';
-import { DaffUpsellProductFactory } from '@daffodil/upsell-products/testing';
 
 import { MagentoProductWithUpsell } from '../models/product-with-upsell.interface';
 import { DaffMagentoUpsellProductsTransformers } from './product-response.service';
