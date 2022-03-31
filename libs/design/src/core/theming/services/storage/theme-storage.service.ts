@@ -9,6 +9,7 @@ import {
   Subject,
   merge,
   EMPTY,
+  of,
 } from 'rxjs';
 import {
   map,
@@ -63,17 +64,21 @@ export class DaffThemeStorageService {
 	  this.doc = <Document>_doc;
 	  this.theme$ = merge(
 	    this.storage$,
-	    fromEvent<ThemeStorageEvent>(
-				<Window & typeof globalThis>this.doc.defaultView,
-				'storage',
-	    ).pipe(
-	      startWith(
-	        storageEventBuilder(
-	          this.storage.getItem(THEME_STORAGE_KEY),
+	    this.doc.defaultView
+	      ? fromEvent<ThemeStorageEvent>(
+          <Window & typeof globalThis>this.doc.defaultView,
+          'storage',
+	      ).pipe(
+	        startWith(
+	          storageEventBuilder(
+	            this.storage.getItem(THEME_STORAGE_KEY),
+	          ),
 	        ),
-	      ),
-	      catchError((e) => EMPTY),
-	    ),
+	        catchError((e) => EMPTY),
+	      )
+	      : of(storageEventBuilder(
+	        this.storage.getItem(THEME_STORAGE_KEY),
+	      )),
 	  ).pipe(
 	    filter(
 	      (e: ThemeStorageEvent) => e.key === THEME_STORAGE_KEY,

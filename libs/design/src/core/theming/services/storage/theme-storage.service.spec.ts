@@ -43,9 +43,9 @@ describe('DaffThemeStorageService', () => {
   let testScheduler: TestScheduler;
 
   const constructThemeStorageService = (
-    document: Document = new Document(),
+    doc: Document = document,
     storageService = new DaffMemoryStorageService(),
-  ) => new DaffThemeStorageService(storageService, document);
+  ) => new DaffThemeStorageService(storageService, doc);
 
   it('should be created', () => {
     expect(constructThemeStorageService()).toBeTruthy();
@@ -84,7 +84,6 @@ describe('DaffThemeStorageService', () => {
     it('should be whatever is in storage if document does not have a window', () => {
       const tempStorage = new DaffMemoryStorageService();
       tempStorage.setItem('DAFF_THEME', DaffTheme.Light);
-      console.log((new Document().defaultView));
 
       testScheduler.run(({ expectObservable }) => {
         service = constructThemeStorageService(new Document(), tempStorage);
