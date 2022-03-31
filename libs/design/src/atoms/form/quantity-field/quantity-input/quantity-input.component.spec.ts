@@ -130,13 +130,12 @@ describe('DaffQuantityInputComponent', () => {
   });
 
   describe('when the component is focused', () => {
-    beforeEach(() => {
+    it('should focus the input component', () => {
+      const spy = spyOn(inputComponent, 'focus');
       component.focus();
       fixture.detectChanges();
-    });
 
-    it('should focus the input component', () => {
-      expect(inputComponent.focused).toBeTrue();
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
