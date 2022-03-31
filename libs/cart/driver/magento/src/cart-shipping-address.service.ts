@@ -83,7 +83,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
       },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -100,7 +100,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
         ...resp.data.setShippingAddressesOnCart.cart,
         email: resp.data.setGuestEmailOnCart.cart.email,
       })),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

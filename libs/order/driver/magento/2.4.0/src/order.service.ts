@@ -52,7 +52,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
     }).pipe(
       map(validateGetOrdersResponse),
       map(result => result.data.graycoreGuestOrders.orders.map(daffMagentoTransformOrder)),
-      catchError(err => throwError(transformMagentoOrderError(err))),
+      catchError(err => throwError(() => transformMagentoOrderError(err))),
     );
   }
 

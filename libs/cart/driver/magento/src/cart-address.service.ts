@@ -62,7 +62,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
       },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -76,7 +76,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
       },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

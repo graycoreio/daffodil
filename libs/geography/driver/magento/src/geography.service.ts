@@ -42,7 +42,7 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
     }).pipe(
       map(validateGetCountriesResponse),
       map(result => result.data.countries.map(country => this.countryTransformer.transform(country))),
-      catchError(err => throwError(transformMagentoGeographyError(err))),
+      catchError(err => throwError(() => transformMagentoGeographyError(err))),
     );
   }
 
@@ -54,7 +54,7 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
       },
     }).pipe(
       map(result => this.countryTransformer.transform(result.data.country)),
-      catchError(err => throwError(transformMagentoGeographyError(err))),
+      catchError(err => throwError(() => transformMagentoGeographyError(err))),
     );
   }
 }

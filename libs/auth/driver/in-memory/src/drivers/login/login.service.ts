@@ -30,7 +30,7 @@ export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffL
 
   logout(): Observable<void> {
     return this.http.post<{success: boolean}>(`${this.url}logout`, {}).pipe(
-      switchMap(({ success }) => success ? of(undefined) : throwError(new Error('Logout failed'))),
+      switchMap(({ success }) => success ? of(undefined) : throwError(() => new Error('Logout failed'))),
     );
   }
 }

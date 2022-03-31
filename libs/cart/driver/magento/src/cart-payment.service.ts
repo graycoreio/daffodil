@@ -118,7 +118,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
       },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setPaymentMethodOnCart.cart)),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -137,7 +137,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
       },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

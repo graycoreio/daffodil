@@ -28,7 +28,7 @@ export class DaffInMemoryGeographyService implements DaffGeographyServiceInterfa
 
   get(countryId: DaffCountry['id']): Observable<DaffCountry> {
     return this.http.get<DaffCountry>(`${this.url}/${countryId}`).pipe(
-      catchError((error: Error) => throwError(DaffCountryNotFoundError)),
+      catchError((error: Error) => throwError(() => new DaffCountryNotFoundError('Country could not be found'))),
       map(result => result),
     );
   }
