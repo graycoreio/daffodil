@@ -14,11 +14,11 @@
 	}
 
 	@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
-		margin-bottom: 0.5rem;
+		margin-bottom: 1.5rem;
 	}
 
 	@include stopsArticleCascade(h2, h3, h4, h5, h6) {
-		margin-top: 2rem;
+		margin-top: 2.5rem;
 	}
 
 	@include stopsArticleCascade(h1) {
@@ -63,7 +63,7 @@
 		border-radius: 4px;
 		font-size: $small-font-size;
 		line-height: 1.5rem;
-		margin: 0;
+		margin: 1.5rem 0;
 		padding: 1.5rem;
 		overflow: auto;
 		white-space: pre-wrap;
@@ -71,6 +71,10 @@
 		code {
 			display: block;
 			padding: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 	}
 
@@ -110,13 +114,23 @@
 
 	blockquote {
 		border-radius: 4px;
-		margin: 0;
+		margin: 1.5rem 0;
 		padding: 1rem 1.5rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 
 		cite {
 			@include body-xs();
 			display: block;
 			margin-top: 1rem;
+		}
+
+		p {
+			&:last-of-type {
+				margin: 0;
+			}
 		}
 	}
 
@@ -126,6 +140,10 @@
 		margin: 1.5rem 0;
 		overflow: auto;
 		width: 100%;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 
 		th {
 			font-weight: 600;
