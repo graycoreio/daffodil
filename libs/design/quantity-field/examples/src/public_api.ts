@@ -1,10 +1,23 @@
-export { QUANTITY_FIELD_EXAMPLES } from './examples';
+import { BasicQuantityFieldComponent } from './basic-quantity-field/basic-quantity-field.component';
+import { CustomRangeQuantityFieldComponent } from './custom-range-quantity-field/custom-range-quantity-field.component';
+import { DisabledQuantityFieldComponent } from './disabled-quantity-field/disabled-quantity-field.component';
+import { SelectMaxQuantityFieldComponent } from './select-max-quantity-field/select-max-quantity-field.component';
 
-export { BasicQuantityFieldModule } from './basic/basic-quantity-field.module';
-export { BasicQuantityFieldComponent } from './basic/basic-quantity-field.component';
-export { CustomRangeQuantityFieldModule } from './customRange/custom-range-quantity-field.module';
-export { CustomRangeQuantityFieldComponent } from './customRange/custom-range-quantity-field.component';
-export { DisabledQuantityFieldModule } from './disabled/disabled-quantity-field.module';
-export { DisabledQuantityFieldComponent } from './disabled/disabled-quantity-field.component';
-export { SelectMaxQuantityFieldModule } from './selectMax/select-max-quantity-field.module';
-export { SelectMaxQuantityFieldComponent } from './selectMax/select-max-quantity-field.component';
+export { BasicQuantityFieldModule } from './basic-quantity-field/basic-quantity-field.module';
+export { CustomRangeQuantityFieldModule } from './custom-range-quantity-field/custom-range-quantity-field.module';
+export { DisabledQuantityFieldModule } from './disabled-quantity-field/disabled-quantity-field.module';
+export { SelectMaxQuantityFieldModule } from './select-max-quantity-field/select-max-quantity-field.module';
+
+export const QUANTITY_FIELD_EXAMPLES = [
+  BasicQuantityFieldComponent,
+  CustomRangeQuantityFieldComponent,
+  DisabledQuantityFieldComponent,
+  SelectMaxQuantityFieldComponent,
+];
+
+export {
+  BasicQuantityFieldComponent,
+  CustomRangeQuantityFieldComponent,
+  DisabledQuantityFieldComponent,
+  SelectMaxQuantityFieldComponent,
+};
