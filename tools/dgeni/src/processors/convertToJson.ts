@@ -1,4 +1,7 @@
-import { Processor, Document } from 'dgeni';
+import {
+  Processor,
+  Document,
+} from 'dgeni';
 
 export class ConvertToJsonProcessor implements Processor {
   name = 'convertToJson';
@@ -11,10 +14,10 @@ export class ConvertToJsonProcessor implements Processor {
     const docTypes = this.docTypes;
     docs.forEach((doc) => {
       if (docTypes.indexOf(doc.docType) !== -1) {
-        let contents = doc.renderedContent || '';
+        const contents = doc.renderedContent || '';
 
         let title = doc.title;
-				let tableOfContents = doc.tableOfContents;
+        const tableOfContents = doc.tableOfContents;
 
         // We do allow an empty `title` but if it is `undefined` we resort to `vFile.title` and then `name`
         if (title === undefined) {

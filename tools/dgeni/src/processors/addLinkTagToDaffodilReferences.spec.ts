@@ -1,37 +1,36 @@
-import "jasmine";
 import { AddLinkTagToDaffodilReferencesProcessor } from './addLinkTagToDaffodilReferences';
 
-describe("AddLinkTagToDaffodilReferencesProcessor", () => {
-  let processor: AddLinkTagToDaffodilReferencesProcessor = new AddLinkTagToDaffodilReferencesProcessor();
-	let stubDaffodilDefinedType;
-	let stubNonDaffodilDefinedType;
-	let processedDoc;
+describe('AddLinkTagToDaffodilReferencesProcessor', () => {
+  const processor: AddLinkTagToDaffodilReferencesProcessor = new AddLinkTagToDaffodilReferencesProcessor();
+  let stubDaffodilDefinedType;
+  let stubNonDaffodilDefinedType;
+  let processedDoc;
 
-	beforeEach(() => {
-		stubDaffodilDefinedType = 'DaffSomeModelType';
-		stubNonDaffodilDefinedType = 'boolean';
-		const docs = [
-			{
-				name: 'doc1',
-				typeParams: `<T extends ${stubDaffodilDefinedType}, V extends ${stubNonDaffodilDefinedType}>`,
-				members: [
-					{
-						name: 'member1',
-						type: stubDaffodilDefinedType,
-					},
-					{
-						name: 'member2',
-						type: stubNonDaffodilDefinedType,
-					}
-				],
-			},
-			{
-				name: stubDaffodilDefinedType
-			},
-		];
+  beforeEach(() => {
+    stubDaffodilDefinedType = 'DaffSomeModelType';
+    stubNonDaffodilDefinedType = 'boolean';
+    const docs = [
+      {
+        name: 'doc1',
+        typeParams: `<T extends ${stubDaffodilDefinedType}, V extends ${stubNonDaffodilDefinedType}>`,
+        members: [
+          {
+            name: 'member1',
+            type: stubDaffodilDefinedType,
+          },
+          {
+            name: 'member2',
+            type: stubNonDaffodilDefinedType,
+          },
+        ],
+      },
+      {
+        name: stubDaffodilDefinedType,
+      },
+    ];
 
-		processedDoc = processor.$process(docs)[0];
-	});
+    processedDoc = processor.$process(docs)[0];
+  });
 
   it('should add a {@link } tag around each model reference in the list of docs', () => {
     expect(processedDoc.typeParams).toEqual(`T extends {@link ${stubDaffodilDefinedType}}, V extends ${stubNonDaffodilDefinedType}`);

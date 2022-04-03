@@ -1,5 +1,5 @@
-import { resolve } from 'path';
 import { readdirSync } from 'fs';
+import { resolve } from 'path';
 
 export const PROJECT_ROOT = resolve(__dirname, '../../../..');
 export const DGENI_DIR = resolve(__dirname, '../../');
@@ -20,4 +20,4 @@ export const requireFolder = (dirname, folderPath) => {
   return readdirSync(absolutePath)
     .filter(p => !/[._]spec\.js$/.test(p))  // ignore spec files
     .map(p => require(resolve(absolutePath, p)));
-}
+};

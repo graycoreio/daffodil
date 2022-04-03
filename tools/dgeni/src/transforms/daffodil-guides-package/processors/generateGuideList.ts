@@ -1,14 +1,26 @@
-import { Processor, Document } from 'dgeni';
+import {
+  Processor,
+  Document,
+} from 'dgeni';
+
 import { generateNavigationTrieFromDocuments } from '../helpers/navigation-trie';
 
 
-export type GenerateGuideListConfiguration = {
+export interface GenerateGuideListConfiguration {
   outputFolder: string;
-}
+};
 
-export const DefaultGenerateGuideListConfiguration : GenerateGuideListConfiguration = {
-  outputFolder: 'guides'
-}
+export const DefaultGenerateGuideListConfiguration: GenerateGuideListConfiguration = {
+  outputFolder: 'guides',
+};
+
+export const transformGuideDoc = (doc: Document): TransformedDocument => ({
+  id: doc.id,
+  title: doc.title,
+  path: doc.path,
+  tableOfContents: doc.tableOfContents,
+});
+
 export class GenerateGuideListProcessor implements Processor {
   name = 'generateGuideList';
   $runAfter = ['docs-processed'];
@@ -16,10 +28,10 @@ export class GenerateGuideListProcessor implements Processor {
   config: GenerateGuideListConfiguration;
 
   constructor(config?: GenerateGuideListConfiguration) {
-    this.config = {...DefaultGenerateGuideListConfiguration, ...config};
+    this.config = { ...DefaultGenerateGuideListConfiguration, ...config };
   }
 
-  $process(docs: Document[]) : Document[] {
+  $process(docs: Document[]): Document[] {
     docs.push({
       docType: 'navigation-list',
       template: 'guide-list.template.json',
@@ -39,11 +51,3 @@ export interface TransformedDocument {
 	tableOfContents: string;
 }
 
-export const transformGuideDoc = (doc: Document): TransformedDocument => {
-  return {
-    id: doc.id,
-    title: doc.title,
-    path: doc.path,
-		tableOfContents: doc.tableOfContents
-  }
-}

@@ -1,4 +1,7 @@
-import { Processor, Document } from 'dgeni';
+import {
+  Processor,
+  Document,
+} from 'dgeni';
 
 /**
  * Exchange < for &lt; and > for &gt; so that generic types can be rendered correctly as html.
@@ -9,18 +12,20 @@ export class MakeTypesHtmlCompatibleProcessor implements Processor {
 	$runBefore = ['rendering-docs'];
 
 	$process(docs: Document[]): Document[] {
-		docs.map(doc => {
-			if(!doc.members) return doc;
-			
-			doc.members.map(member => {
-				member.type = fixGenericTypes(member.type);
-			})
-		})
+	  docs.map(doc => {
+	    if(!doc.members) {
+	      return doc;
+	    }
 
-		return docs;
+	    doc.members.map(member => {
+	      member.type = fixGenericTypes(member.type);
+	    });
+	  });
+
+	  return docs;
 	}
 }
 
 function fixGenericTypes(type: string): string {
-	return type.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return type.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }

@@ -1,8 +1,10 @@
-import { Processor, Document } from 'dgeni';
-
+import {
+  Processor,
+  Document,
+} from 'dgeni';
 import hljs from 'highlight.js';
-import typescript from 'highlight.js/lib/languages/typescript';
 import scss from 'highlight.js/lib/languages/scss';
+import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
 
 hljs.registerLanguage('typescript', typescript);
@@ -12,7 +14,7 @@ hljs.registerLanguage('scss', scss);
 
 export class DesignExampleHighlightCodeProcessor implements Processor {
   name = 'highlightCode';
-  $runAfter = ['examples-files']
+  $runAfter = ['examples-files'];
   $runBefore = ['convertToJson'];
   docTypes = [];
 
@@ -22,8 +24,8 @@ export class DesignExampleHighlightCodeProcessor implements Processor {
     docs.map(
       d => d.files.map(
         (file) => file.content =
-          hljs.highlight(file.language, file.content).value
-      )
+          hljs.highlight(file.language, file.content).value,
+      ),
     );
   }
 };

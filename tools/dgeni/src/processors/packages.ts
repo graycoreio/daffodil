@@ -1,4 +1,7 @@
-import { Processor, Document } from 'dgeni';
+import {
+  Processor,
+  Document,
+} from 'dgeni';
 
 export class PackagesProcessor implements Processor {
   name = 'packages';
@@ -9,8 +12,8 @@ export class PackagesProcessor implements Processor {
     return docs.map(doc => {
       if (doc.docType === 'module') {
         doc.id = doc.id
-					.replace(/\/src$/, '')
-					.replace(/^.*libs\//, '');
+          .replace(/\/src$/, '')
+          .replace(/^.*libs\//, '');
         doc.docType = 'package';
         // The name is actually the full id
         doc.name = `@daffodil/${doc.id}`;

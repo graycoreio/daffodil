@@ -1,4 +1,7 @@
-import { Processor, Document } from 'dgeni';
+import {
+  Processor,
+  Document,
+} from 'dgeni';
 
 export class DesignExampleConvertToJsonProcessor implements Processor {
   name = 'convertToJson';
@@ -12,7 +15,7 @@ export class DesignExampleConvertToJsonProcessor implements Processor {
     docs.forEach((doc) => {
       if (docTypes.indexOf(doc.docType) !== -1) {
         doc.renderedContent = JSON.stringify({
-          id: doc.id, 
+          id: doc.id,
           docType: doc.docType,
           name: doc.name,
           files: doc.files,

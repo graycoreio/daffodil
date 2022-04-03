@@ -1,8 +1,6 @@
-export function designExampleReader() {
+export function designExampleReaderFactory() {
   return {
     name: 'designExampleReader',
-    getDocs: function(fileInfo) {
-      return [{}];
-    }
+    getDocs: (fileInfo) => [{}],
   };
 }

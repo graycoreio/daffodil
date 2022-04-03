@@ -14,10 +14,10 @@ export interface NavigationDocument {
  * separated by the `/` character.
  */
 export class NavigationTrie {
-  id: string = '';
+  id = '';
   path?: string;
-  title: string = '';
-	tableOfContents: string = '';
+  title = '';
+	tableOfContents = '';
   children: NavigationTrie[] = [];
 
   constructor(
@@ -25,11 +25,11 @@ export class NavigationTrie {
     title: string = '',
     path: string = '',
   	tableOfContents: string = '',
-	  children: NavigationTrie[] = []
+	  children: NavigationTrie[] = [],
   ) {
     this.id = key;
     this.title = title;
-		this.tableOfContents = '';
+    this.tableOfContents = '';
     if (path) {
       this.path = path;
     }
@@ -49,7 +49,7 @@ export class NavigationTrie {
    */
   insert(path: string = '', doc: NavigationDocument): void {
     //If we've hit a word
-    if (path.indexOf('/') == -1) {
+    if (path.indexOf('/') === -1) {
       this.appendWord(path, doc);
       return;
     }
@@ -74,7 +74,7 @@ export class NavigationTrie {
    * @param doc
    */
   appendWord(path: string, doc: NavigationDocument) {
-    let child = this.getExistingChild(path);
+    const child = this.getExistingChild(path);
 
     //If no child exists, simply append the word
     if (!child) {
@@ -83,9 +83,9 @@ export class NavigationTrie {
     }
 
     //If a child already exists, but that child isn't a word.
-    if (child.children.length != 0) {
+    if (child.children.length !== 0) {
       child.title = doc.title;
-			child.tableOfContents = doc.tableOfContents;
+      child.tableOfContents = doc.tableOfContents;
       child.appendChild(new NavigationTrie('', 'Overview', doc.path, ''));
       return;
     }
@@ -95,7 +95,7 @@ export class NavigationTrie {
     // any documents over time we throw an error.
     if (child.path) {
       throw new Error(
-        'Error: attempted to insert a document with a duplicate path: ' + child.path
+        'Error: attempted to insert a document with a duplicate path: ' + child.path,
       );
     }
   }
@@ -115,28 +115,33 @@ export class NavigationTrie {
     if (!child) {
       child = new NavigationTrie(path, capitalize(path), '');
       this.appendChild(child);
-    }
-
-    //If there is a child, and it is a 'word' node, transform that
-    //node into a true word node.
-    else if (child && child.children.length == 0) {
+    } else if (child && child.children.length === 0) {
+      //If there is a child, and it is a 'word' node, transform that
+      //node into a true word node.
       const node = new NavigationTrie('', 'Overview', child.path, '');
       delete (child.path);
-			child.appendChild(node);
+      child.appendChild(node);
     }
     return child;
   }
 
   /**
    * Generically append a child element to the tree
+   *
    * @param element
    */
   appendChild(element: NavigationTrie) {
     sortedArrayInsert(element, this.children, (a, b) => {
-      if (a.id > b.id) { return 1; }
-      if (a.id == b.id) { return 0; }
-      if (a.id < b.id) { return -1; }
-    })
+      if (a.id > b.id) {
+        return 1;
+      }
+      if (a.id === b.id) {
+        return 0;
+      }
+      if (a.id < b.id) {
+        return -1;
+      }
+    });
   }
 
   /**
@@ -146,7 +151,7 @@ export class NavigationTrie {
    * @param path
    */
   getExistingChild(path: string): NavigationTrie | undefined {
-    return this.children.find((child) => child.id == path);
+    return this.children.find((child) => child.id === path);
   }
 }
 
@@ -154,9 +159,9 @@ export class NavigationTrie {
  * @param items
  */
 export const generateNavigationTrieFromDocuments = (items: NavigationDocument[] = []) => {
-    const tree = new NavigationTrie();
-    for (let doc of items) {
-      tree.insert(doc.id, doc);
-    }
-    return tree;
-}
+  const tree = new NavigationTrie();
+  for (const doc of items) {
+    tree.insert(doc.id, doc);
+  }
+  return tree;
+};

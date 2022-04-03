@@ -1,9 +1,12 @@
-import { Processor, Document } from 'dgeni';
+import {
+  Processor,
+  Document,
+} from 'dgeni';
 
 export class DesignExampleFilterProcessor implements Processor {
   name = 'examples-files';
   $runBefore = ['computing-ids'];
-  $runAfter = ['examples']
+  $runAfter = ['examples'];
   docTypes = ['design-example'];
 
   $process(docs: Document[]): Document[] {
