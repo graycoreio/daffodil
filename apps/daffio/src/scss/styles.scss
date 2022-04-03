@@ -19,6 +19,7 @@
 @import 'theme';
 
 .daff-theme-light {
+	@import 'highlight.js/scss/a11y-light.scss';
 	@include daff-theme($theme);
 	background: #ffffff;
 
@@ -31,6 +32,7 @@
 }
 
 .daff-theme-dark {
+	@import 'highlight.js/scss/a11y-dark.scss';
 	@include daff-theme($theme-dark);
 	background: #1a1a1a;
 

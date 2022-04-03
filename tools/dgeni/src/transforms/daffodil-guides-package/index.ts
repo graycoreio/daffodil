@@ -1,8 +1,13 @@
-import { Package, Processor } from 'dgeni';
+import { Package } from 'dgeni';
+
+import { MarkdownCodeProcessor } from '../../processors/markdown';
+import {
+  API_SOURCE_PATH,
+  GUIDES_TEMPLATES_PATH,
+} from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
-import { guideFileReader } from './reader/guide-file.reader';
-import { API_SOURCE_PATH, GUIDES_TEMPLATES_PATH } from '../config';
 import { GenerateGuideListProcessor } from './processors/generateGuideList';
+import { guideFileReader } from './reader/guide-file.reader';
 
 //List of packages to be left out of Guide generation
 const excludedPackages = ['branding'];
@@ -11,7 +16,9 @@ const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePackage])
   .factory(guideFileReader)
   .processor(new GenerateGuideListProcessor())
-  .config(function (readFilesProcessor, guideFileReader) {
+  .processor(new MarkdownCodeProcessor())
+  .config((markdown: MarkdownCodeProcessor) => markdown.docTypes = ['guide'])
+  .config(function(readFilesProcessor, guideFileReader) {
     readFilesProcessor.$enabled = true;
     readFilesProcessor.fileReaders.push(guideFileReader);
     readFilesProcessor.basePath = API_SOURCE_PATH;
