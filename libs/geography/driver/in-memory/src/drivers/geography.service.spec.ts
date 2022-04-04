@@ -62,7 +62,7 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
     it('should throw a daffodil error when it receives an error', (done) => {
       service.get(countryId).pipe(
         catchError((error) => {
-          expect(error).toEqual(DaffCountryNotFoundError);
+          expect(error).toEqual(jasmine.any(DaffCountryNotFoundError));
           done();
           return of(null);
         }),

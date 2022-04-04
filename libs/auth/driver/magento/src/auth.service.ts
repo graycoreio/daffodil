@@ -32,7 +32,7 @@ export class DaffMagentoAuthService implements DaffAuthServiceInterface {
     return this.apollo.query<MagentoCheckTokenResponse>({ query: checkTokenQuery }).pipe(
       map(validateCheckTokenResponse),
       mapTo(undefined),
-      catchError(err => throwError(transformMagentoAuthError(err))),
+      catchError(err => throwError(() => transformMagentoAuthError(err))),
     );
   }
 }

@@ -111,7 +111,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.updateCartItems.cart)),
-      catchError(err => throwError(transformCartMagentoError(err))),
+      catchError(err => throwError(() => transformCartMagentoError(err))),
     );
   }
 

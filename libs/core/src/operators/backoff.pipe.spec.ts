@@ -42,7 +42,7 @@ describe('Core | Operators | Backoff', () => {
       const expectedError = new Error('error message');
       const source$ = of(value).pipe(
         tap(() => count++),
-        switchMap(() => count < 3 ? throwError(expectedError) : of(value)),
+        switchMap(() => count < 3 ? throwError(() => expectedError) : of(value)),
         backoff(4, 20),
       );
       expectObservable(source$).toBe(expectedMarble, expectedValue, expectedError);

@@ -83,7 +83,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
       },
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setBillingAddressOnCart.cart)),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -100,7 +100,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
         ...resp.data.setBillingAddressOnCart.cart,
         email: resp.data.setGuestEmailOnCart.cart.email,
       })),
-      catchError(error => throwError(transformCartMagentoError(error))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

@@ -42,7 +42,7 @@ export class DaffMagentoRegisterService implements DaffRegisterServiceInterface<
       },
     }).pipe(
       mapTo(this.loginInfoTransformer.transform(registration)),
-      catchError(err => throwError(transformMagentoAuthError(err))),
+      catchError(err => throwError(() => transformMagentoAuthError(err))),
     );
   }
 }

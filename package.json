@@ -44,7 +44,7 @@
     "graphql": "^15.4.0",
     "markdown-toc": "^1.2.0",
     "modern-normalize": "^0.5.0",
-    "rxjs": "6.6.3",
+    "rxjs": "7.5.5",
     "web-animations-js": "^2.3.2",
     "webfontloader": "^1.6.28",
     "zone.js": "~0.11.4"
@@ -89,7 +89,7 @@
     "highlight.js": "^11.0.0",
     "jasmine": "3.6.3",
     "jasmine-core": "~3.6.0",
-    "jasmine-marbles": "^0.6.0",
+    "jasmine-marbles": "^0.9.2",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "^6.3.3",
     "karma-chrome-launcher": "~3.1.0",

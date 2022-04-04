@@ -59,7 +59,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.applyCouponToCart.cart)),
-      catchError(err => throwError(transformCartMagentoError(err, coupon))),
+      catchError(err => throwError(() => transformCartMagentoError(err, coupon))),
     );
   }
 
@@ -71,7 +71,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       },
     }).pipe(
       map(result => result.data.cart.applied_coupons.map(daffMagentoCouponTransform)),
-      catchError(err => throwError(transformCartMagentoError(err))),
+      catchError(err => throwError(() => transformCartMagentoError(err))),
     );
   }
 
@@ -87,7 +87,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.removeCouponFromCart.cart)),
-      catchError(err => throwError(transformCartMagentoError(err))),
+      catchError(err => throwError(() => transformCartMagentoError(err))),
     );
   }
 }

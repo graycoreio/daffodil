@@ -48,7 +48,7 @@ export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterfac
         orderId: result.data.placeOrder.order.order_number,
         cartId,
       })),
-      catchError(err => throwError(transformCartMagentoError(err))),
+      catchError(err => throwError(() => transformCartMagentoError(err))),
     );
   }
 }
