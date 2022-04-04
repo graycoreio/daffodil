@@ -54,25 +54,24 @@ Daffodil's features include the following:
     * IE 11+ Support
 
 ## What do I need before I start using Daffodil? <a name="prereqs"></a>
-Daffodil was developed so you can get started without connecting to a platform. Because of its  driver-like nature, all you need is the following:
+Daffodil was developed so that you can get started working on your ecommerce store without connecting to a platform. As a result of our drivers, all you need is the following:
 
-1. [NodeJS v8+](https://nodejs.org/en/)
+1. [NodeJS v12+](https://nodejs.org/en/)
 2. [NPM](https://www.npmjs.com/)
-3. An Angular project
+3. [An Angular project](https://angular.io/cli)
 
 ## How do I start using Daffodil? <a name="getstarted"></a>
 After installing the [pre-requisites](#prereqs), you can choose the packages that you want and get started using Daffodil with your new or existing Ecommerce store. 
 
 - To use Daffodil to build your own Ecommerce store, follow the steps in the [Installation instructions](./docs/INSTALLATION.md).
-- To view our progress on an example store of contribute one of your own, see the [Developer documentation](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-demo).
 
 ## Who uses Daffodil and why? <a name="whowhydaff"></a>
-The target devopers for Daffodil include, but are not limited to, the following:
+Daffodil is right for you if you are a:
 
-1. Developers who want to explore and experiment with Progressive Web Apps (PWAs).
-2. Developers who are comfortable with Angular and are interested in job opportunities in Ecommerce.
-3. Developers who work with businesses that have existing websites but want a better frontend user experience (UX).
-4. Developers who are forward-thinking, have gone through a re-platforming, and want to deflect future re-platforming. 
+1. Developer who wants to explore and experiment with Progressive Web Apps (PWAs).
+2. Developer who is comfortable with Angular and are interested in job opportunities in Ecommerce.
+3. Developer who works with businesses that have existing websites but want a better frontend user experience (UX).
+4. Developer who is forward-thinking, have gone through a re-platforming, and want to deflect future re-platforming. 
 
 ## What packages do I use? <a name="whatpackages"></a>
 For a basic Ecommerce site, you need all of the most commonly used packages (common packages), which are the following:
@@ -81,38 +80,45 @@ For a basic Ecommerce site, you need all of the most commonly used packages (com
 - [@daffodil/geography](./libs/geography/README.md)
 - [@daffodil/navigation](./libs/navigation/README.md)
 - [@daffodil/product](./libs/product/README.md)
-- [@daffodil/core](./libs/order/README.md)
-- [@daffodil/driver](./libs/driver/README.md)
+- [@daffodil/order](./libs/order/README.md)
 
-**Note:** Both the `core` and `driver` packages are dependencies for most other packages. Developers do not interact with these packages directly.
+**Note:** Both the `@daffodil/core` and `@daffodil/driver` packages are dependencies for most other packages. Developers do not interact with these packages directly.
 
 Referring to the aforementioned [use cases](#whowhydaff), here are some lists and explanations of recommended Daffodil packages.
 
 ### **1. To explore and experiment with PWAs**<a name="pwapackages"></a>
 
- If you don't have a project in mind and want to see something in Daffodil working, then use:
+ If you don't have a project in mind and just want to see something in Daffodil working, then use:
 - [@daffodil/core](./libs/order/README.md)
 - [@daffodil/driver](./libs/driver/README.md)
 - [@daffodil/product](./libs/product/README.md)
 
 ### **2. To expand Ecommerce opportunities**<a name="angularecompackages"></a>
 
-If you want to expand your portfolio for more Ecommerce opportunities, then use the [common packages](#whatpackages) and optionally include:
+If you want to expand your portfolio into more Ecommerce opportunities, then use the [common packages](#whatpackages) and optionally include:
 - [@daffodil/design](./libs/design/README.md) (optional)
 
-You won't need to use more than the aforementioned common packages(pwapackages) until you have a specific business use or requirement. However, if you are design-focused, then you can either use your own design framework or use the `design` package.
+You won't need to use more than the aforementioned common packages(pwapackages) until you have a specific business use or requirement.
 
 ### **3. To improve frontend UX for existing business sites**<a name="frontendpackages"></a>
-If you have an existing site, either your own or backed by a business, then there are a few working assumptions about the site: it has SEO and specific URLs, and the product pages need to show lists of related products.
- So, in addition to the [common packages](#whatpackages), you may need the following packages:
-- @daffodil/external-router](./libs/external-router/README.md)
+
+If you have an existing store, either your own or backed by a business, then there are a few working assumptions about your store:
+  1. It has pre-existing SEO
+    a. You need to support meta-tags, open-graph, schema, etc.
+    b. You need to maintain backwards-compatible URLs. 
+  2. The product pages need to show lists of related products.
+  3. You need a contact form for customers to let you know something went wrong.
+
+So, in addition to the [common packages](#whatpackages), you will likely need the following packages:
+
+- [@daffodil/external-router](./libs/external-router/README.md)
 - [@daffodil/seo](./libs/seo/README.md)
-- [@daffodil/related-products](./libs/related-products/README.md)****
-- [@daffodil/upsell-products](./libs/upsell-products/README.md)
+- [@daffodil/related-products](./libs/related-products/README.md)
 - [@daffodil/design](./libs/design/README.md)
 - [@daffodil/contact](./libs/contact/README.md)
 
 ### **4. To prevent future re-platforming**<a name="replatformpackages"></a>
+
 If you want to prevent future re-platforming of your Ecommerce site, there are a few assumed advanced requirements. For example, the business has complex product configurations and has marketing email campaigns. So, in addition to the [common packages](#whatpackages) and the packages for [improving frontend UX](#frontendpackages), you may also need the following packages:
 
 - [@daffodil/newsletter](./libs/newsletter/README.md)
