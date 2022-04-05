@@ -5,8 +5,8 @@ import {
   ApolloLink,
 } from '@apollo/client/core';
 import { onError } from '@apollo/client/link/error';
-import { Apollo } from '@damienwebdev/apollo-angular';
-import { HttpLink } from '@damienwebdev/apollo-angular/http';
+import { Apollo } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';

@@ -1,4 +1,4 @@
-import { gql } from '@damienwebdev/apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { availablePaymentMethodFragment } from './available-payment-method';
 import { cartAddressFragment } from './cart-address';

@@ -6,12 +6,12 @@ import {
 import {
   gql,
   Apollo,
-} from '@damienwebdev/apollo-angular';
+} from 'apollo-angular';
 import {
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
   ApolloTestingModule,
-} from '@damienwebdev/apollo-angular/testing';
+} from 'apollo-angular/testing';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 

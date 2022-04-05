@@ -1,4 +1,4 @@
-import { gql } from '@damienwebdev/apollo-angular';
+import { gql } from 'apollo-angular';
 
 import { magentoProductPreviewFragment } from './product-preview';
 import { magentoSimpleProductFragment } from './simple-product';

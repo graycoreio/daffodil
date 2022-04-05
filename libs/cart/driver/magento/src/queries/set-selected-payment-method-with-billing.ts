@@ -1,4 +1,4 @@
-import { gql } from '@damienwebdev/apollo-angular';
+import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 import {

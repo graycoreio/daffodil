@@ -4,11 +4,11 @@ import {
   NextLink,
   Operation,
 } from '@apollo/client/core';
-import { Apollo } from '@damienwebdev/apollo-angular';
+import { Apollo } from 'apollo-angular';
 import {
   ApolloTestingController,
   ApolloTestingModule,
-} from '@damienwebdev/apollo-angular/testing';
+} from 'apollo-angular/testing';
 
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from './apollo-cacheable-operations-link-generator';
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token';

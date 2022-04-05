@@ -5,7 +5,7 @@ import {
   ApolloTestingController,
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
-} from '@damienwebdev/apollo-angular/testing';
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
