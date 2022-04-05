@@ -11,7 +11,7 @@ import { DesignLandCodePreviewModule } from './code-preview.module';
 
 @Component({
   template: `
-  <design-land-code-preview title="testTitle" [example]="exampleComponent"></design-land-code-preview>
+  <design-land-code-preview [example]="exampleComponent"></design-land-code-preview>
   `,
 })
 class WrapperComponent {
@@ -61,10 +61,6 @@ describe('CodePreviewComponent', () => {
 
     it('should create', () => {
       expect(component).toBeTruthy();
-    });
-
-    it('should take a title for an input', () => {
-      expect(component.title).toBe('testTitle');
     });
 
     it('should take an example for an input', () => {

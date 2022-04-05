@@ -9,15 +9,22 @@
 
 @import "theme";
 
+@import '../app/core/code-preview/component/code-preview-theme';
+
 .daff-theme-light {
   @import 'highlight.js/scss/a11y-light.scss';
   @include daff-theme($theme);
+  @include code-preview-theme($theme);
+
   background: #ffffff;
+
 }
 
 .daff-theme-dark {
   @import 'highlight.js/scss/a11y-dark.scss';
   @include daff-theme($theme-dark);
+  @include code-preview-theme($theme-dark);
+
   background: #1a1a1a;
 }
 

@@ -1,10 +1,4 @@
-<nav daff-navbar color="primary" *ngIf="title">
-  <div>{{ title }}</div>
-</nav>
-<div #content class="code-example__content">
-  
-</div>
-<div *ngIf="example">
-  <button (click)="selectedFile = file" *ngFor="let file of example.files">{{ file.name }}</button>
-  <pre><code [class]="'hljs' + ' ' +selectedFile.language" [innerHtml]="selectedFile.content"></code></pre>
+<div #content class="design-land-code-preview__content"></div>
+<div *ngIf="example" class="design-land-code-preview__file-container">
+  <pre class="design-land-code-preview__code-block"><code [class]="'hljs' + ' ' +file.language" [innerHtml]="file.content"></code></pre>
 </div>
