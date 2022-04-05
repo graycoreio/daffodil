@@ -80,14 +80,14 @@
 
 		&[disabled] {
 			@include daff-button-theme-variant(
-				daff-color($daff-gray, 30),
-				daff-color($daff-gray, 30),
-				daff-color($daff-gray, 30)
+				daff-illuminate($base, $daff-gray, 3),
+				daff-illuminate($base, $daff-gray, 3),
+				daff-illuminate($base, $daff-gray, 3),
 			);
-			color: daff-color($gray);
+			color: daff-illuminate($base, $daff-gray, 5);
 
 			&:hover {
-				color: daff-color($gray);
+				color: daff-illuminate($base, $daff-gray, 5);
 			}
 		}
 
@@ -181,15 +181,15 @@
 
 		&[disabled] {
 			@include daff-raised-button-theme-variant(
-				daff-color($daff-gray, 30),
-				daff-color($daff-gray, 30),
-				daff-color($gray)
+				daff-illuminate($base, $daff-gray, 3),
+				daff-illuminate($base, $daff-gray, 3),
+				daff-illuminate($base, $daff-gray, 6),
 			);
-			color: daff-color($gray);
+			color: daff-illuminate($base, $daff-gray, 5);
 
 			&:hover {
 				box-shadow: 0 3px 5px rgba($black, 0.12), 0 1px 3px rgba($black, 0.08);
-				color: daff-color($gray);
+				color: daff-illuminate($base, $daff-gray, 5),;
 			}
 		}
 
@@ -393,14 +393,14 @@
 
 		&[disabled] {
 			@include daff-stroked-button-theme-variant(
-				daff-color($daff-gray, 30),
-				daff-color($gray),
+				daff-illuminate($base, $daff-gray, 3),
+				daff-illuminate($base, $daff-gray, 5),
 				transparent
 			);
 
 			&:hover {
 				background-color: transparent;
-				color: daff-color($gray);
+				color: daff-illuminate($base, $daff-gray, 5);
 			}
 		}
 
