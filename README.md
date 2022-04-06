@@ -53,7 +53,7 @@ Daffodil's features include the following:
     * Fantastic Performance
     * IE 11+ Support
 
-## What do I need before I start using Daffodil? <a name="prereqs"></a>
+## What do I need before I start using Daffodil? <a id="prereqs"></a>
 Daffodil was developed so you can get started without connecting to a platform. Because of its  driver-like nature, all you need is the following:
 
 1. [NodeJS v8+](https://nodejs.org/en/)
