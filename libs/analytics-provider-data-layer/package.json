@@ -1,0 +1,33 @@
+{
+  "name": "@daffodil/analytics-provider-data-layer",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Provides interfaces and services for pushing analytics events using the data layer schema.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build analytics-provider-data-layer --prod",
+    "lint": "cd ../.. && ng lint analytics-provider-data-layer",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test analytics-provider-data-layer --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/analytics-provider-data-layer; npm publish --access=public)"
+  },
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER",
+    "@daffodil/analytics": "0.0.0-PLACEHOLDER"
+  },
+  "dependencies": {
+    "tslib": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/analytics": "0.0.0-PLACEHOLDER"
+  }
+}
