@@ -24,9 +24,6 @@
     "rxjs": "0.0.0-PLACEHOLDER",
     "@daffodil/analytics": "0.0.0-PLACEHOLDER"
   },
-  "dependencies": {
-    "tslib": "0.0.0-PLACEHOLDER"
-  },
   "devDependencies": {
     "@daffodil/analytics": "0.0.0-PLACEHOLDER"
   }
