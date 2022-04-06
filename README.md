@@ -18,7 +18,7 @@
   - [Less Re-Platforming](#replatformpackages)
   - [Table of Packages](#packages) 
 
-## What is Daffodil? <a name="whatisdaff"></a>
+## What is Daffodil? <a id="whatisdaff"></a>
 In general, Daffodil is a frontend Ecommerce framework that allows developers to build complex Ecommerce stores. 
 
 Specifically, Daffodil is a frontend toolkit that accomplishes three things:
