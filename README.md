@@ -113,7 +113,7 @@ If you have an existing site, either your own or backed by a business, then ther
 - [@daffodil/contact](./libs/contact/README.md)
 
 ### **4. To prevent future re-platforming**<a id="replatformpackages"></a>
-If you want to prevent future re-platforming of your Ecommerce site, there are a few assumed advanced requirements. For example, the business has complex product configurations and has marketing email campaigns. So, in addition to the [common packages](#whatpackages) and the packages for [improving frontend UX](#frontendpackages), you may also need the following packages:
+If you want to prevent future re-platforming of your Ecommerce site, there are a few assumed advanced requirements. For example, the business has complex product configurations and has marketing email campaigns. So, in addition to the [common packages](#whatpackages) and the packages for [improving user experiences](#frontendpackages), you may also need the following packages:
 
 - [@daffodil/newsletter](./libs/newsletter/README.md)
 - [@daffodil/product-composite](./libs/product-composite/README.md)
