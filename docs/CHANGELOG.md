@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.41.0](https://github.com/graycoreio/daffodil/compare/v0.40.1...v0.41.0) (2022-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **all:** `apollo-angular` is now required for graphql drivers instead of `@damienwebdev/apollo-angular`
+* rxjs v7 is now a peer dependency
+
+### Features
+
+* **analytics:** add `@daffodil/analytics` and `@daffodil/analytics-provider-data-layer` ([#2076](https://github.com/graycoreio/daffodil/issues/2076)) ([ada398f](https://github.com/graycoreio/daffodil/commit/ada398fd9ea69d778ac99e3db43f44544e7d8917))
+* **daffio:** clean up 404 page ([#2060](https://github.com/graycoreio/daffodil/issues/2060)) ([cf4c6a3](https://github.com/graycoreio/daffodil/commit/cf4c6a309271a29889a9ac9faee158567f575e37))
+* **design-land:** add highlight.js a11y themes to dark and light mode ([#2064](https://github.com/graycoreio/daffodil/issues/2064)) ([4d20670](https://github.com/graycoreio/daffodil/commit/4d206708064500d63d3fe9ecd35073ad69b0e43c))
+* **design-land:** add theme switch functionality to design land ([#2059](https://github.com/graycoreio/daffodil/issues/2059)) ([c51d9b4](https://github.com/graycoreio/daffodil/commit/c51d9b4f7231c110c09c9e317c83268192cf7f7f))
+* **design:** clean up article styles ([#2062](https://github.com/graycoreio/daffodil/issues/2062)) ([309e4c6](https://github.com/graycoreio/daffodil/commit/309e4c689a0ebfea573cb900386a3078348ccc96))
+* **design:** update disabled button colors to switch correctly in dark mode ([#2074](https://github.com/graycoreio/daffodil/issues/2074)) ([49e4baf](https://github.com/graycoreio/daffodil/commit/49e4baf3af7012a2bf74cf93a4ead8dc62cd91f2))
+* **design:** update quantity field focus functionality ([#1716](https://github.com/graycoreio/daffodil/issues/1716)) ([f312c35](https://github.com/graycoreio/daffodil/commit/f312c355ac3aedaf28d30a554b26a480c229b941))
+* **tools-dgeni:** add a markdown processor that highlights code blocks ([d1b442d](https://github.com/graycoreio/daffodil/commit/d1b442dfce81dea6d40572cf4f6b1541041410e3))
+
+
+### Bug Fixes
+
+* **daffio:** update platform logos to work in dark mode ([#2054](https://github.com/graycoreio/daffodil/issues/2054)) ([8a43fb8](https://github.com/graycoreio/daffodil/commit/8a43fb808dfd36443c5bab47a1dc9ee7f58d012b))
+
+
+* **all:** use new `apollo-angular` version and replace workaround p… ([#2071](https://github.com/graycoreio/daffodil/issues/2071)) ([f54d537](https://github.com/graycoreio/daffodil/commit/f54d537da780ead108eaa0faa7bdb6d4f6c9d27b))
+* upgrade `rxjs` and `jasmine-marbles` ([#2065](https://github.com/graycoreio/daffodil/issues/2065)) ([c0781be](https://github.com/graycoreio/daffodil/commit/c0781be05de38132540e64cffdb2257a75fa2468)), closes [/github.com/ReactiveX/rxjs/blob/467c4e89ce6f3fcedcf6127ea38d7ce79d32d0f6/spec/observables/fromEvent-spec.ts#L183-L192](https://github.com/graycoreio//github.com/ReactiveX/rxjs/blob/467c4e89ce6f3fcedcf6127ea38d7ce79d32d0f6/spec/observables/fromEvent-spec.ts/issues/L183-L192)
+
 ### [0.40.1](https://github.com/graycoreio/daffodil/compare/v0.40.0...v0.40.1) (2022-03-23)
 
 ## [0.40.0](https://github.com/graycoreio/daffodil/compare/v0.39.13...v0.40.0) (2022-03-23)
