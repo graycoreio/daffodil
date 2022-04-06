@@ -88,7 +88,7 @@ For a basic Ecommerce site, you need all of the most commonly used packages (com
 
 Referring to the aforementioned [use cases](#whowhydaff), here are some lists and explanations of recommended Daffodil packages.
 
-### **1. To explore and experiment with PWAs**<a name="pwapackages"></a>
+### **1. To explore and experiment with PWAs**<a id="pwapackages"></a>
 
  If you don't have a project in mind and want to see something in Daffodil working, then use:
 - [@daffodil/core](./libs/order/README.md)
