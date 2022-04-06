@@ -8,7 +8,7 @@
 ## Table of contents
 - [Introduction](#whatisdaff)
   - [Features](#features)
-  - [Pre-requisites](#prereqs)
+  - [Prerequisites](#prereqs)
   - [Getting started](#getstarted)
 - [Uses](#whowhydaff)
 - [Packages](#whatpackages)
