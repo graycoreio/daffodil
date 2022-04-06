@@ -95,7 +95,7 @@ Referring to the aforementioned [use cases](#whowhydaff), here are some lists an
 - [@daffodil/driver](./libs/driver/README.md)
 - [@daffodil/product](./libs/product/README.md)
 
-### **2. To expand Ecommerce opportunities**<a name="angularecompackages"></a>
+### **2. To expand Ecommerce opportunities**<a id="angularecompackages"></a>
 
 If you want to expand your portfolio for more Ecommerce opportunities, then use the [common packages](#whatpackages) and optionally include:
 - [@daffodil/design](./libs/design/README.md) (optional)
