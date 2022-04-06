@@ -3,7 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
-import { Apollo } from '@damienwebdev/apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import {
   Observable,

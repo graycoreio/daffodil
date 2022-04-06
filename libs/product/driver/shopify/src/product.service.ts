@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   Apollo,
   gql,
-} from '@damienwebdev/apollo-angular';
+} from 'apollo-angular';
 import {
   Observable,
   of,

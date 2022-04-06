@@ -5,7 +5,7 @@ import {
   ApolloTestingModule,
   ApolloTestingController,
   APOLLO_TESTING_CACHE,
-} from '@damienwebdev/apollo-angular/testing';
+} from 'apollo-angular/testing';
 
 import { schema } from '@daffodil/driver/magento';
 import { DaffNavigationTransformer } from '@daffodil/navigation/driver';

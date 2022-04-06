@@ -5,7 +5,7 @@ import {
   ApolloTestingController,
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
-} from '@damienwebdev/apollo-angular/testing';
+} from 'apollo-angular/testing';
 
 import { DaffCartPaymentMethod } from '@daffodil/cart';
 import {

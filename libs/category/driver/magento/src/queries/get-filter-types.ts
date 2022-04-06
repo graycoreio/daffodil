@@ -1,4 +1,4 @@
-import { gql } from '@damienwebdev/apollo-angular';
+import { gql } from 'apollo-angular';
 
 export const DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME = 'MagentoGetFilterFieldTypesForCategory';
 

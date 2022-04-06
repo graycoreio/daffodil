@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from '@damienwebdev/apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

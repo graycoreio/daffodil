@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
-} from '@damienwebdev/apollo-angular/testing';
+} from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
