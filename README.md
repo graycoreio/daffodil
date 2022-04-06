@@ -74,7 +74,7 @@ The target devopers for Daffodil include, but are not limited to, the following:
 3. Developers who work with businesses that have existing websites but want a better user interface and experience.
 4. Developers who are forward-thinking, have gone through a re-platforming, and want to deflect future re-platforming. 
 
-## What packages do I use? <a name="whatpackages"></a>
+## What packages do I use? <a id="whatpackages"></a>
 For a basic Ecommerce site, you need all of the most commonly used packages (common packages), which are the following:
 - [@daffodil/cart](./libs/cart/README.md)
 - [@daffodil/category](./libs/category/README.md)
