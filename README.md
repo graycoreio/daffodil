@@ -119,7 +119,7 @@ If you want to prevent future re-platforming of your Ecommerce site, there are a
 - [@daffodil/product-composite](./libs/product-composite/README.md)
 - [@daffodil/product-configurable](./libs/product-configurable/README.md)
 
-## Packages <a name="packages"></a>
+## Packages <a id="packages"></a>
 Below is a table of currently available Daffodil packages.
 | Project | Package | Version | Stability |
 |---|---|---|---|
