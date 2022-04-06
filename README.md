@@ -100,7 +100,7 @@ Referring to the aforementioned [use cases](#whowhydaff), here are some lists an
 If you want to expand your portfolio for more Ecommerce opportunities, then use the [common packages](#whatpackages) and optionally include:
 - [@daffodil/design](./libs/design/README.md) (optional)
 
-You won't need to use more than the aforementioned common packages(pwapackages) until you have a specific business use or requirement. However, if you are design-focused, then you can either use your own design framework or use the `design` package.
+You won't need to use more than the aforementioned common packages(#pwapackages) until you have a specific business use or requirement. However, if you are design-focused, then you can either use your own design framework or use the `design` package.
 
 ### **3. To improve frontend UX for existing business sites**<a name="frontendpackages"></a>
 If you have an existing site, either your own or backed by a business, then there are a few working assumptions about the site: it has SEO and specific URLs, and the product pages need to show lists of related products.
