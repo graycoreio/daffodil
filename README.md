@@ -23,7 +23,7 @@ In general, Daffodil is a frontend Ecommerce framework that allows developers to
 
 Specifically, Daffodil is a frontend toolkit that accomplishes three things:
 
-1. Improve developer workflow when writing frontend software for online, Ecommerce stores.
+1. Improve developer workflow when writing frontend software for Ecommerce stores.
 2. Provide a consistent frontend developer tool-chain regardless of a business's chosen ecommerce platform.
 3. Drastically improve the end-user experience of online-shopping.
 
