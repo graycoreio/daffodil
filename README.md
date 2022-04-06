@@ -35,7 +35,7 @@ Daffodil's features include the following:
     * Magento 2
     * In-Memory Backend
         * Prebuilt
-        * :zap: Great for lightning fast iteration and concepting.
+        * :zap: Great for lightning fast iteration and concepting
 * :cake: Decoupled and Composable Packages for your use case
     * Product
     * Cart
@@ -49,15 +49,15 @@ Daffodil's features include the following:
     * Themeable
     * Accessible
     * Supports Server-side Rendering
-    * Well-tested
+    * Well Tested
     * Fantastic Performance
     * IE 11+ Support
 
 ## What do I need before I start using Daffodil? <a id="prereqs"></a>
 Daffodil was developed so you can get started without connecting to a platform. Because of its driver-like nature, all you need is the following:
 
-1. [NodeJS v8+](https://nodejs.org/en/)
-2. [NPM](https://www.npmjs.com/)
+1. [Node.js v8+](https://nodejs.org/en/)
+2. [npm](https://www.npmjs.com/)
 3. An Angular project
 
 ## How do I start using Daffodil? <a id="getstarted"></a>
@@ -102,7 +102,7 @@ If you want to expand your portfolio for more Ecommerce opportunities, then use 
 
 You won't need to use more than the aforementioned common packages(#pwapackages) until you have a specific business use or requirement. However, if you are design-focused, then you can either use your own design framework or use the `design` package.
 
-### **3. To improve frontend UX for existing business sites**<a id="frontendpackages"></a>
+### **3. To improve the user experience for existing business sites**<a id="frontendpackages"></a>
 If you have an existing site, either your own or backed by a business, then there are a few working assumptions about the site: it has SEO and specific URLs, and the product pages need to show lists of related products.
  So, in addition to the [common packages](#whatpackages), you may need the following packages:
 - @daffodil/external-router](./libs/external-router/README.md)
