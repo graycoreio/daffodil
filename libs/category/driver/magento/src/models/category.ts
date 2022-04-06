@@ -7,15 +7,15 @@ export interface MagentoCategory {
   url_suffix: string;
   canonical_url: string;
   name?: string;
-	description?: string;
-	meta_title?: string;
-	meta_description?: string;
+  description?: string;
+  meta_title?: string;
+  meta_description?: string;
   breadcrumbs?: MagentoBreadcrumb[];
   level?: number;
-	children_count?: number;
-	products?: {
-		items?: MagentoProduct[];
-	};
+  children_count?: number;
+  products?: {
+    items?: MagentoProduct[];
+  };
   children?: MagentoCategory[];
 }
 

@@ -69,17 +69,17 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() backdropIsVisible: boolean = true;
 
-	/**
-	 * Property for the "opened" state of the sidebar
-	 */
-	@Input()
+  /**
+   * Property for the "opened" state of the sidebar
+   */
+  @Input()
   get opened(): boolean {
     return this._opened;
   }
-	set opened(value: boolean) {
+  set opened(value: boolean) {
 	  this._opened = value;
 	  this._animationState = getAnimationState(value, this.animationsEnabled);
-	}
+  }
   /**
    * Event fired when the backdrop is clicked
    * This is often used to close the sidebar

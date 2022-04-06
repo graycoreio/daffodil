@@ -31,8 +31,8 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   isPageMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isPageResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   currentPage$: BehaviorSubject<number> = new BehaviorSubject(null);
-	totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
-	totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
+  totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
+  totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
   pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
   filters$: BehaviorSubject<Dict<DaffCategoryFilter>> = new BehaviorSubject({});
   sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
@@ -42,17 +42,17 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
   categoryLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   productsLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
-	isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
+  isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-	getCategoryById(id: DaffCategory['id']): BehaviorSubject<DaffCategory> {
+  getCategoryById(id: DaffCategory['id']): BehaviorSubject<DaffCategory> {
 	  return new BehaviorSubject(null);
-	};
-	getProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<DaffProduct[]> {
+  };
+  getProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<DaffProduct[]> {
 	  return new BehaviorSubject([]);
-	};
-	getTotalProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<number> {
+  };
+  getTotalProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(null);
-	};
-	dispatch(action: Action) {};
+  };
+  dispatch(action: Action) {};
 }

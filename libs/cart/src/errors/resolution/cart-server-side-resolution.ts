@@ -13,9 +13,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * @inheritdoc
  */
 export class DaffCartServerSideResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_SERVER_SIDE_RESOLUTION;
+  public readonly code: string = DaffCartErrorCodes.CART_SERVER_SIDE_RESOLUTION;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

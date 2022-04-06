@@ -47,7 +47,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraFragments: DocumentNode[],
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
-		private magentoProductsTransformer: DaffMagentoProductsTransformer,
+    private magentoProductsTransformer: DaffMagentoProductsTransformer,
   ) {}
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {

@@ -11,40 +11,40 @@ import {
  * The interface responsible for managing the items of a cart.
  */
 export interface DaffCartItemServiceInterface<
-	T extends DaffCartItem = DaffCartItem,
-	U extends DaffCartItemInput = DaffCartItemInput,
-	V extends DaffCart = DaffCart
+  T extends DaffCartItem = DaffCartItem,
+  U extends DaffCartItemInput = DaffCartItemInput,
+  V extends DaffCart = DaffCart
 > {
-	/**
-	 * List all of the available items of a cart
-	 */
-	list(cartId: V['id']): Observable<T[]>;
+  /**
+   * List all of the available items of a cart
+   */
+  list(cartId: V['id']): Observable<T[]>;
 
-	/**
-	 * Get a specific cart item of a cart.
-	 */
-	get(cartId: V['id'], item_id: DaffCartItem['id']): Observable<T>;
+  /**
+   * Get a specific cart item of a cart.
+   */
+  get(cartId: V['id'], item_id: DaffCartItem['id']): Observable<T>;
 
-	/**
-	 * Add something to a cart.
-	 */
-	add(id: V['id'], product: U): Observable<Partial<V>>;
+  /**
+   * Add something to a cart.
+   */
+  add(id: V['id'], product: U): Observable<Partial<V>>;
 
-	/**
-	 * Update an existing item in a cart
-	 */
-	update(
-		cartId: V['id'],
-		itemId: T['id'],
-		changes: Partial<T>,
-	): Observable<Partial<V>>;
+  /**
+   * Update an existing item in a cart
+   */
+  update(
+    cartId: V['id'],
+    itemId: T['id'],
+    changes: Partial<T>,
+  ): Observable<Partial<V>>;
 
-	/**
-	 * Remove an item from a cart.
-	 */
-	delete(cartId: V['id'], itemId: T['id']): Observable<Partial<V>>;
+  /**
+   * Remove an item from a cart.
+   */
+  delete(cartId: V['id'], itemId: T['id']): Observable<Partial<V>>;
 }
 
 export const DaffCartItemDriver = new InjectionToken<
-	DaffCartItemServiceInterface
+DaffCartItemServiceInterface
 >('DaffCartItemDriver');

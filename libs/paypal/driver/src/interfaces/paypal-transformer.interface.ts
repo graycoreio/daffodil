@@ -6,11 +6,11 @@ import {
 } from '@daffodil/paypal';
 
 export interface DaffPaypalTransformerInterface<
-T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
-V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
+  T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
+  V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
 > {
   transformOut(tokenRequest: T, config?: any): any;
-	transformIn(tokenResponse: any): V;
+  transformIn(tokenResponse: any): V;
 }
 
 export const DaffPaypalTransformer = new InjectionToken<DaffPaypalTransformerInterface>('DaffPaypalTransformer');

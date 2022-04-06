@@ -20,7 +20,7 @@ const routeMatchesRouteType = (route: DaffRouteWithDataPath, type: DaffExternalR
  * See {@link DaffRouteWithDataPath}
  */
 const addRouteToDaffPaths:
-  (route: DaffRouteWithDataPath, path: string) => Route =
+(route: DaffRouteWithDataPath, path: string) => Route =
   (route: DaffRouteWithDataPath, path: string) => route.data.daffPaths  = {
     ...route.data.daffPaths,
     [path]: path,

@@ -7,11 +7,11 @@ import {
 import { MagentoPageInfo } from './page-info';
 
 export interface MagentoGetProductsResponse {
-	products: {
-		items: MagentoProduct[];
-		page_info: MagentoPageInfo;
-		total_count: number;
+  products: {
+    items: MagentoProduct[];
+    page_info: MagentoPageInfo;
+    total_count: number;
     aggregations: MagentoAggregation[];
     sort_fields: MagentoSortFields;
-	};
+  };
 }

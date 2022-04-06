@@ -27,9 +27,9 @@ import { DaffCartShippingMethodGuardRedirectUrl } from './shipping-method-guard-
 })
 export class DaffShippingMethodGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DaffCartShippingMethodGuardRedirectUrl) private redirectUrl: string,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DaffCartShippingMethodGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

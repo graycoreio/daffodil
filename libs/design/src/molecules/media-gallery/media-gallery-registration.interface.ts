@@ -1,3 +1,3 @@
 export interface DaffMediaGalleryRegistration {
-	name: string;
+  name: string;
 }

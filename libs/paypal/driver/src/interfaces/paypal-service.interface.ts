@@ -7,8 +7,8 @@ import {
 } from '@daffodil/paypal';
 
 export interface DaffPaypalServiceInterface<
-T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
-V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
+  T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest,
+  V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
 > {
   generateToken(generateTokenRequest: T): Observable<V>;
 }

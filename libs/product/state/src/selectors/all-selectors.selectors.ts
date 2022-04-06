@@ -25,11 +25,11 @@ import {
  * An interface for all selectors in the entire product feature area.
  */
 export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> extends
-	DaffProductPageMemoizedSelectors<T>,
-	DaffBestSellersMemoizedSelectors<T>,
-	DaffProductEntitiesMemoizedSelectors<T>,
-	DaffProductGridMemoizedSelectors<T>,
-	DaffProductFeatureMemoizedSelector<T>
+  DaffProductPageMemoizedSelectors<T>,
+  DaffBestSellersMemoizedSelectors<T>,
+  DaffProductEntitiesMemoizedSelectors<T>,
+  DaffProductGridMemoizedSelectors<T>,
+  DaffProductFeatureMemoizedSelector<T>
 {}
 
 /**

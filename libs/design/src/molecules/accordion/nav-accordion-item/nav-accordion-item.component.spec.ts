@@ -149,7 +149,7 @@ describe('DaffNavAccordionItemComponent', () => {
     });
   });
 
-	@Component({ template: `
+  @Component({ template: `
 	<daff-accordion>
 		<daff-nav-accordion-item>
 			<daff-accordion>
@@ -162,10 +162,10 @@ describe('DaffNavAccordionItemComponent', () => {
 	</daff-accordion>
 	` })
   class FirstChildNavWrapperComponent {
-		initiallyActiveValue: boolean;
-	}
+    initiallyActiveValue: boolean;
+  }
 
-	describe('when it is the first child nav-accordion-item', () => {
+  describe('when it is the first child nav-accordion-item', () => {
 	  let fixture: ComponentFixture<FirstChildNavWrapperComponent>;
 
 	  beforeEach(waitForAsync(() => {
@@ -195,9 +195,9 @@ describe('DaffNavAccordionItemComponent', () => {
 
 	    expect(navAccordionItemUnderTest._level).toEqual(0);
 	  });
-	});
+  });
 
-	@Component({ template: `
+  @Component({ template: `
 		<daff-accordion>
 			<daff-nav-accordion-item [initiallyActive]="initiallyActiveValue">
 				<h3 daffAccordionItemTitle>Size and Fit</h3>
@@ -207,11 +207,11 @@ describe('DaffNavAccordionItemComponent', () => {
 			</daff-nav-accordion-item>
 		</daff-accordion>
 	` })
-	class NotFirstChildNavWrapperComponent {
-		initiallyActiveValue: boolean;
-	}
+  class NotFirstChildNavWrapperComponent {
+    initiallyActiveValue: boolean;
+  }
 
-	describe('when it is not the first child nav-accordion-item', () => {
+  describe('when it is not the first child nav-accordion-item', () => {
 	  let fixture: ComponentFixture<NotFirstChildNavWrapperComponent>;
 
 	  beforeEach(waitForAsync(() => {
@@ -241,9 +241,9 @@ describe('DaffNavAccordionItemComponent', () => {
 
 	    expect(navAccordionItemUnderTest._level).toEqual(1);
 	  });
-	});
+  });
 
-	@Component({ template: `
+  @Component({ template: `
 		<daff-accordion>
 			<daff-nav-accordion-item [initiallyActive]="initiallyActiveValue">
 				<h3 daffAccordionItemTitle>Size and Fit</h3>
@@ -253,11 +253,11 @@ describe('DaffNavAccordionItemComponent', () => {
 			</daff-nav-accordion-item>
 		</daff-accordion>
 	` })
-	class HasChildNavWrapperComponent {
-		initiallyActiveValue: boolean;
-	}
+  class HasChildNavWrapperComponent {
+    initiallyActiveValue: boolean;
+  }
 
-	describe('when it has a child nav-accordion-item', () => {
+  describe('when it has a child nav-accordion-item', () => {
 	  let fixture: ComponentFixture<HasChildNavWrapperComponent>;
 
 	  beforeEach(waitForAsync(() => {
@@ -286,20 +286,20 @@ describe('DaffNavAccordionItemComponent', () => {
 
 	    expect(suffix).toBeDefined();
 	  });
-	});
+  });
 
-	@Component({ template: `
+  @Component({ template: `
 		<daff-accordion>
 			<daff-nav-accordion-item [initiallyActive]="initiallyActiveValue">
 				<h3 daffAccordionItemTitle>Size and Fit</h3>
 			</daff-nav-accordion-item>
 		</daff-accordion>
 	` })
-	class HasNoChildNavWrapperComponent {
-		initiallyActiveValue: boolean;
-	}
+  class HasNoChildNavWrapperComponent {
+    initiallyActiveValue: boolean;
+  }
 
-	describe('when it does not have a child nav-accordion-item', () => {
+  describe('when it does not have a child nav-accordion-item', () => {
 	  let fixture: ComponentFixture<HasNoChildNavWrapperComponent>;
 
 	  beforeEach(waitForAsync(() => {
@@ -328,6 +328,6 @@ describe('DaffNavAccordionItemComponent', () => {
 
 	    expect(suffix).toBeNull();
 	  });
-	});
+  });
 });
 

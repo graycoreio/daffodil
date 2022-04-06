@@ -9,9 +9,9 @@ import {
  */
 export class DaffExternalRouterPermanentRedirectError extends DaffInheritableError
   implements DaffError {
-	public readonly code: string = '302_PERMANENT_REDIRECT';
+  public readonly code: string = '302_PERMANENT_REDIRECT';
 
-	constructor(public redirectUrl: string, message?: string) {
+  constructor(public redirectUrl: string, message?: string) {
 	  super(message);
-	}
+  }
 }

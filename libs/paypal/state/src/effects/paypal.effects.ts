@@ -43,7 +43,7 @@ export class DaffPaypalEffects<T extends DaffPaypalTokenRequest, V extends DaffP
   constructor(
     private actions$: Actions,
     @Inject(DaffPaypalDriver) private driver: DaffPaypalServiceInterface<T, V>,
-		@Inject(DAFF_PAYPAL_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_PAYPAL_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) { }
 
   generatePaypalExpressToken$: Observable<Action> = createEffect(() => this.actions$.pipe(

@@ -10,7 +10,7 @@ import { DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY } from './composite-product-st
  * Interface for the redux store of the composite product feature area.
  */
 export interface DaffCompositeProductReducersState {
-	compositeProductOptions: EntityState<DaffCompositeProductEntity>;
+  compositeProductOptions: EntityState<DaffCompositeProductEntity>;
 }
 
 export interface DaffCompositeProductStateRootSlice<T extends DaffProduct = DaffProduct> extends DaffProductStateRootSlice<T> {

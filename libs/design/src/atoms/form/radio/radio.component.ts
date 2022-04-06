@@ -53,29 +53,29 @@ export class DaffRadioComponent implements OnInit {
   /**
    * The checked property of the radio
    */
-	@Input()
+  @Input()
   get checked() {
     return this._checked;
   }
-	set checked(value: boolean) {
+  set checked(value: boolean) {
 	  if (this._checked !== value) {
 	    this._checked = value;
 	    this.selectionChange.emit(this.value);
 	  }
-	}
-	/**
-	 * The value of the radio
-	 */
-	@Input() value: any;
-	/**
-	 * The id of the radio. It is uniquely generated but can be overwritten by the user. Must be unique.
-	 */
-	@Input() id: string = 'daff-radio-' + radioUniqueId;
+  }
+  /**
+   * The value of the radio
+   */
+  @Input() value: any;
+  /**
+   * The id of the radio. It is uniquely generated but can be overwritten by the user. Must be unique.
+   */
+  @Input() id: string = 'daff-radio-' + radioUniqueId;
 
-	/**
-	 * Name of the Radio
-	 */
-	@Input() name = '';
+  /**
+   * Name of the Radio
+   */
+  @Input() name = '';
 
   /**
    * Used for aria-label. Default to name if user does not input a label.

@@ -44,7 +44,7 @@ export class DaffOrderEffects<
   constructor(
     private actions$: Actions,
     @Inject(DaffOrderDriver) private driver: DaffOrderServiceInterface<T>,
-		@Inject(DAFF_ORDER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_ORDER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
   /**

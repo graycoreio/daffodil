@@ -67,14 +67,14 @@ import { getDaffCartSelectors } from '../selectors/public_api';
 export class DaffCartItemEffects<
   T extends DaffStatefulCartItem,
   U extends DaffCartItemInput,
-	V extends DaffCart,
+  V extends DaffCart,
 > {
   constructor(
     private actions$: Actions,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
-		private storage: DaffCartStorageService,
-		@Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number,
+    private storage: DaffCartStorageService,
+    @Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number,
     private store: Store,
   ) {}
 

@@ -17,8 +17,8 @@ export declare let Accept: AcceptType;
 })
 export class DaffAcceptJsLoadingService {
   constructor(
-		@Inject(DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION) private production: boolean,
-		@Inject(DOCUMENT) private doc,
+    @Inject(DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION) private production: boolean,
+    @Inject(DOCUMENT) private doc,
   ) {}
 
   load(): void {

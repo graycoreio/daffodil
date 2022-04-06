@@ -17,22 +17,22 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  * An interface for the available best sellers selectors.
  */
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * Selector for best sellers feature state
-	 */
-	selectBestSellersState: MemoizedSelector<DaffProductStateRootSlice<T>, DaffBestSellersReducerState>;
-	/**
-	 * Selector for the loading state of best selling products.
-	 */
-	selectBestSellersLoadingState: MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
-	/**
-	 * Selector for the IDs of best selling products.
-	 */
-	selectBestSellersIdsState: MemoizedSelector<DaffProductStateRootSlice<T>, T['id'][]>;
-	/**
-	 * Selector for the best selling products.
-	 */
-	selectBestSellersProducts: MemoizedSelector<DaffProductStateRootSlice<T>, T[]>;
+  /**
+   * Selector for best sellers feature state
+   */
+  selectBestSellersState: MemoizedSelector<DaffProductStateRootSlice<T>, DaffBestSellersReducerState>;
+  /**
+   * Selector for the loading state of best selling products.
+   */
+  selectBestSellersLoadingState: MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
+  /**
+   * Selector for the IDs of best selling products.
+   */
+  selectBestSellersIdsState: MemoizedSelector<DaffProductStateRootSlice<T>, T['id'][]>;
+  /**
+   * Selector for the best selling products.
+   */
+  selectBestSellersProducts: MemoizedSelector<DaffProductStateRootSlice<T>, T[]>;
 }
 
 const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => {

@@ -51,9 +51,9 @@ import { DaffAuthEffects } from './auth.effects';
 describe('DaffAuthEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthEffects<
-    DaffLoginInfo,
-    DaffAuthToken,
-    DaffAccountRegistration
+  DaffLoginInfo,
+  DaffAuthToken,
+  DaffAccountRegistration
   >;
 
   let daffLoginDriver;

@@ -30,14 +30,14 @@ export interface DaffCartItemDiscount {
  * They hold information about the product to which they correspond and how many of said product is in the cart.
  */
 export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
-	/**
-	 * @deprecated use id instead.
-	 */
-	item_id: ID;
+  /**
+   * @deprecated use id instead.
+   */
+  item_id: ID;
   /**
    * The type of cart item.
    */
-	type: DaffCartItemInputType;
+  type: DaffCartItemInputType;
   /**
    * The image or thumbnail of the corresponding product.
    */
@@ -71,7 +71,7 @@ export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
   /**
    * Whether or not the specified quantity of the corresponding product is in stock.
    */
-	in_stock: boolean;
+  in_stock: boolean;
   /**
    * A list of discounts applied to the cart item row.
    */

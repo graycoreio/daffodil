@@ -3,5 +3,5 @@
  * In order to be mutable, our class must implement this property.
  */
 export interface DaffMutable {
-	mutating: boolean;
+  mutating: boolean;
 }

@@ -16,9 +16,9 @@ import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface<
-  DaffCartItem,
-  DaffCartItemInput,
-  DaffCart
+DaffCartItem,
+DaffCartItemInput,
+DaffCart
 > {
   /**
    * The URL with which the driver makes calls to the backend.

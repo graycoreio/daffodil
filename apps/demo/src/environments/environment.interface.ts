@@ -9,24 +9,24 @@ export const DemoDriverVariantEnum = {
 };
 
 export interface InMemoryEnviromentDriverConfiguration {
-	variant: typeof DemoDriverVariantEnum.IN_MEMORY;
+  variant: typeof DemoDriverVariantEnum.IN_MEMORY;
 }
 
 export interface MagentoEnvironmentDriverConfiguration {
-	variant: typeof DemoDriverVariantEnum.MAGENTO;
-	domain: string;
+  variant: typeof DemoDriverVariantEnum.MAGENTO;
+  domain: string;
 }
 
 export interface ShopifyEnviromentDriverConfiguration {
-	variant: typeof DemoDriverVariantEnum.SHOPIFY;
-	domain: string;
-	publicAccessToken: string;
+  variant: typeof DemoDriverVariantEnum.SHOPIFY;
+  domain: string;
+  publicAccessToken: string;
 }
 
 export interface EnvironmentConfiguration {
-	production: boolean;
-	driver:
-		| InMemoryEnviromentDriverConfiguration
-		| MagentoEnvironmentDriverConfiguration
-		| ShopifyEnviromentDriverConfiguration;
+  production: boolean;
+  driver:
+  | InMemoryEnviromentDriverConfiguration
+  | MagentoEnvironmentDriverConfiguration
+  | ShopifyEnviromentDriverConfiguration;
 }

@@ -14,7 +14,7 @@ export type DaffExternalRouterDriverInMemoryResolver = (url: string) => DaffExte
  * The configuration for the in-memory driver.
  */
 export interface DaffExternalRouterDriverInMemoryConfig {
-	resolver: DaffExternalRouterDriverInMemoryResolver;
+  resolver: DaffExternalRouterDriverInMemoryResolver;
 }
 
 const defaultConfig: DaffExternalRouterDriverInMemoryConfig = {
@@ -27,7 +27,7 @@ const defaultConfig: DaffExternalRouterDriverInMemoryConfig = {
  * @docs-private
  */
 export const DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG = new InjectionToken<
-	DaffExternalRouterDriverInMemoryConfig
+DaffExternalRouterDriverInMemoryConfig
 >('DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG', {
   providedIn: 'root',
   factory: () => defaultConfig,

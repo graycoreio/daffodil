@@ -18,9 +18,9 @@ export function daffAuthReducer<
 >(
   state = daffAuthInitialState,
   action: DaffAuthActions<
-    T,
-    U,
-    S
+  T,
+  U,
+  S
   >,
 ): DaffAuthReducerState {
   switch (action.type) {

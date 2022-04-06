@@ -7,11 +7,11 @@ import {
  * Convert selectors with ticks, commas, newlines, spaces, and quotes to a clean array of selector options.
  */
 export class CleanSelectorsProcessor implements Processor {
-	name = 'cleanSelectors';
-	$runAfter = ['filterContainedDocs'];
-	$runBefore = ['docs-processed'];
+  name = 'cleanSelectors';
+  $runAfter = ['filterContainedDocs'];
+  $runBefore = ['docs-processed'];
 
-	$process(docs: Document[]): Document[] {
+  $process(docs: Document[]): Document[] {
 	  const removeTicks = new RegExp('[^`]*[^`]');
 	  const removeQuotes = new RegExp('[^\']*[^\']');
 
@@ -26,13 +26,13 @@ export class CleanSelectorsProcessor implements Processor {
 	    });
 
 	  return docs;
-	}
+  }
 
-	private hasSelector(doc) {
+  private hasSelector(doc) {
 	  return (
 	    doc.decorators &&
 			doc.decorators[0].argumentInfo.length &&
 			doc.decorators[0].argumentInfo[0].selector
 	  );
-	}
+  }
 }

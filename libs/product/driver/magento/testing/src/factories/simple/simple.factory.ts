@@ -9,7 +9,7 @@ import {
 import { MockMagentoCoreProduct } from '../core/product.factory';
 
 export class MockMagentoSimpleProduct extends MockMagentoCoreProduct implements MagentoSimpleProduct {
-	__typename = MagentoProductTypeEnum.SimpleProduct;
+  __typename = MagentoProductTypeEnum.SimpleProduct;
 }
 
 /**

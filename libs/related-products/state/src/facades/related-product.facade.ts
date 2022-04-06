@@ -21,13 +21,13 @@ import { DaffRelatedProductsFacadeInterface } from './related-product-facade.int
 export class DaffRelatedProductsFacade<T extends DaffProduct = DaffProduct> implements DaffRelatedProductsFacadeInterface<T> {
   relatedProducts$: Observable<T[]>;
 
-	private readonly selectors = getDaffRelatedProductsSelectors<T>();
+  private readonly selectors = getDaffRelatedProductsSelectors<T>();
 
-	constructor(private store: Store<DaffRelatedProductStateRootSlice<T>>) {
+  constructor(private store: Store<DaffRelatedProductStateRootSlice<T>>) {
 	  this.relatedProducts$ = this.store.pipe(select(this.selectors.selectRelatedProducts));
-	}
+  }
 
-	dispatch(action: Action) {
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

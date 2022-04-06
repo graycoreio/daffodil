@@ -8,19 +8,19 @@ import {
  * so that they don't get rendered as files in themselves.
  */
 export class FilterContainedDocsProcessor implements Processor {
-	name = 'filterContainedDocs';
-	docTypes = [
+  name = 'filterContainedDocs';
+  docTypes = [
 	  'member',
 	  'function-overload',
 	  'get-accessor-info',
 	  'set-accessor-info',
 	  'parameter',
-	];
-	$runBefore = ['docs-processed'];
+  ];
+  $runBefore = ['docs-processed'];
 
-	$process(docs: Document[]): Document[] {
+  $process(docs: Document[]): Document[] {
 	  docs = docs.filter(doc => this.docTypes.indexOf(doc.docType) === -1);
 
 	  return docs;
-	}
+  }
 }

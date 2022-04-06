@@ -15,8 +15,8 @@ import { MockProduct } from '@daffodil/product/testing';
  * @deprecated import from @daffodil/product-composite/testing instead.
  */
 export class MockCompositeProduct extends MockProduct implements DaffCompositeProduct {
-	type = DaffProductTypeEnum.Composite;
-	items = [
+  type = DaffProductTypeEnum.Composite;
+  items = [
 	  {
 	    id: faker.datatype.uuid(),
 	    url: `/${faker.internet.domainWord()}.html`,
@@ -107,7 +107,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 	      },
 	    ],
 	  },
-	];
+  ];
 }
 
 /**

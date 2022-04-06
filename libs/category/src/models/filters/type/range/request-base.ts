@@ -6,16 +6,16 @@ import { DaffCategoryFilterRangeRequestOption } from '../range/public_api';
  * single defining the min and max values between which to filter.
  */
 export interface DaffCategoryFilterRangeRequestBase<T> {
-	/**
-	 * The type of filter.
-	 */
-	type: DaffCategoryFilterType;
-	/**
-	 * The name/code of the filter; e.g. price.
-	 */
-	name: string;
-	/**
-	 * The value of the filter range.
-	 */
-	value: DaffCategoryFilterRangeRequestOption<T>;
+  /**
+   * The type of filter.
+   */
+  type: DaffCategoryFilterType;
+  /**
+   * The name/code of the filter; e.g. price.
+   */
+  name: string;
+  /**
+   * The value of the filter range.
+   */
+  value: DaffCategoryFilterRangeRequestOption<T>;
 }

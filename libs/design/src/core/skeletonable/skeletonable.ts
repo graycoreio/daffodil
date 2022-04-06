@@ -3,5 +3,5 @@
  * In order to be skeletonable, our class must implement this property.
  */
 export interface DaffSkeletonable {
-	skeleton: boolean;
+  skeleton: boolean;
 }

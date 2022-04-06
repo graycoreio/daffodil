@@ -1,4 +1,4 @@
 export interface ShippingOption {
-    id: string;
-    text: string;
+  id: string;
+  text: string;
 }

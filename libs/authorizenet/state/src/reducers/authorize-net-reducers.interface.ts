@@ -2,7 +2,7 @@ import { DaffAuthorizeNetReducerState } from './authorize-net/authorize-net-redu
 import { DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from './authorizenet-store-feature-key';
 
 export interface DaffAuthorizeNetReducersState {
-	authorizeNet: DaffAuthorizeNetReducerState;
+  authorizeNet: DaffAuthorizeNetReducerState;
 }
 
 export interface DaffAuthorizeNetStateRootSlice {

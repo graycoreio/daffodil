@@ -20,8 +20,8 @@ import { DaffRegisterServiceInterface } from '@daffodil/auth/driver';
   providedIn: 'root',
 })
 export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
-  DaffAccountRegistration,
-  DaffLoginInfo
+DaffAccountRegistration,
+DaffLoginInfo
 > {
   register(registration: DaffAccountRegistration): Observable<DaffLoginInfo> {
     return of({

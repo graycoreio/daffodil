@@ -69,7 +69,7 @@ export class DaffAuthEffects<
     @Inject(DaffRegisterDriver) private registerDriver: DaffRegisterServiceInterface<S, T>,
     @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<T, U>,
     @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface,
-		@Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
   ) {}
 

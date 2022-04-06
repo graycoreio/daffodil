@@ -42,7 +42,7 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
   constructor(
     private actions$: Actions,
     @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface<T, V>,
-		@Inject(DAFF_NEWSLETTER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_NEWSLETTER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) { }
 
   trySubmission$: Observable<Action> = createEffect(() => this.actions$.pipe(

@@ -5,8 +5,8 @@ import { DaffProduct } from '@daffodil/product';
  * An enum for whether a composite product item should be displayed as a radio or select input.
  */
 export enum DaffCompositeProductItemInputEnum {
-	select = 'select',
-	radio = 'radio'
+  select = 'select',
+  radio = 'radio'
 }
 
 /**
@@ -18,34 +18,34 @@ export enum DaffCompositeProductItemInputEnum {
  * composite product, or neither if the item is optional.
  */
 export interface DaffCompositeProductItem extends DaffIdentifiable {
-	/**
-	 * Whether the item is required or optional.
-	 */
-	required: boolean;
-	/**
-	 * The title label for the item.
-	 */
-	title: string;
-	/**
-	 * Describes how the item should be displayed.
-	 */
-	input_type: DaffCompositeProductItemInputEnum;
-	/**
-	 * The options that may be chosen for the item.
-	 */
-	options: DaffCompositeProductItemOption[];
+  /**
+   * Whether the item is required or optional.
+   */
+  required: boolean;
+  /**
+   * The title label for the item.
+   */
+  title: string;
+  /**
+   * Describes how the item should be displayed.
+   */
+  input_type: DaffCompositeProductItemInputEnum;
+  /**
+   * The options that may be chosen for the item.
+   */
+  options: DaffCompositeProductItemOption[];
 }
 
 /**
  * The composite product item option is a DaffProduct that can be added to a composite product.
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
-	/**
-	 * Whether the option is the default option for its parent {@link DaffCompositeProductItem}.
-	 */
-	is_default: boolean;
-	/**
-	 * The quantity chosen for the option.
-	 */
-	quantity: number;
+  /**
+   * Whether the option is the default option for its parent {@link DaffCompositeProductItem}.
+   */
+  is_default: boolean;
+  /**
+   * The quantity chosen for the option.
+   */
+  quantity: number;
 }

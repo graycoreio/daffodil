@@ -4,7 +4,7 @@ import {
 } from 'dgeni';
 
 export interface GenerateApiListConfiguration {
-	outputFolder: string;
+  outputFolder: string;
 }
 
 export const DefaultGenerateApiListConfiguration: GenerateApiListConfiguration = {
@@ -12,16 +12,16 @@ export const DefaultGenerateApiListConfiguration: GenerateApiListConfiguration =
 };
 
 export class GenerateApiListProcessor implements Processor {
-	name = 'generateApiList';
-	$runAfter = ['docs-processed'];
-	$runBefore = ['rendering-docs'];
-	config: GenerateApiListConfiguration;
+  name = 'generateApiList';
+  $runAfter = ['docs-processed'];
+  $runBefore = ['rendering-docs'];
+  config: GenerateApiListConfiguration;
 
-	constructor(config?: GenerateApiListConfiguration) {
+  constructor(config?: GenerateApiListConfiguration) {
 	  this.config = { ...DefaultGenerateApiListConfiguration, ...config };
-	}
+  }
 
-	$process(docs: Document[]): Document[] {
+  $process(docs: Document[]): Document[] {
 	  docs.push({
 	    docType: 'api-list-data',
 	    template: 'api-list.template.json',
@@ -33,7 +33,7 @@ export class GenerateApiListProcessor implements Processor {
 	  });
 
 	  return docs;
-	}
+  }
 }
 
 function getPackageInfo(packageDoc) {

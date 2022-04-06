@@ -102,10 +102,10 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
     });
 
     effects = TestBed.inject<DaffCartItemEffects<
-			DaffStatefulCartItem,
-			DaffCartItemInput,
-			DaffCart
-		>>(DaffCartItemEffects);
+    DaffStatefulCartItem,
+    DaffCartItemInput,
+    DaffCart
+    >>(DaffCartItemEffects);
     store = TestBed.inject(Store);
 
     daffCartItemDriver = TestBed.inject(DaffCartItemDriver);

@@ -20,7 +20,7 @@ import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
 	</daff-media-gallery>`,
 })
 class WrapperComponent {
-	nameValue: string;
+  nameValue: string;
 }
 
 @Component({

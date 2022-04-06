@@ -6,9 +6,9 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffCategoryFilterEqualOption implements DaffCategoryFilterEqualOption {
   applied = false;
-	value = faker.datatype.uuid();
-	label = faker.random.word();
-	count = faker.datatype.number({ min: 1, max: 1000 });
+  value = faker.datatype.uuid();
+  label = faker.random.word();
+  count = faker.datatype.number({ min: 1, max: 1000 });
 }
 
 /**

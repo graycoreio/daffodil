@@ -22,9 +22,9 @@ import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.t
 })
 export class DaffPlacedOrderGuard implements CanActivate {
   constructor(
-		private facade: DaffOrderFacade,
-		private router: Router,
-		@Inject(DaffPlacedOrderGuardRedirectUrl) private redirectUrl: string,
+    private facade: DaffOrderFacade,
+    private router: Router,
+    @Inject(DaffPlacedOrderGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

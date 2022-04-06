@@ -21,12 +21,12 @@ import { DaffContactFacadeInterface } from './contact-facade.interface';
  */
 @Injectable({ providedIn: DaffContactStateModule })
 export class DaffContactFacade implements DaffContactFacadeInterface {
-	success$: Observable<boolean> = this.store.select(selectDaffContactSuccess);
-	error$: Observable<DaffStateError[]> = this.store.select(selectDaffContactError);
-	loading$: Observable<boolean> = this.store.select(selectDaffContactLoading);
+  success$: Observable<boolean> = this.store.select(selectDaffContactSuccess);
+  error$: Observable<DaffStateError[]> = this.store.select(selectDaffContactError);
+  loading$: Observable<boolean> = this.store.select(selectDaffContactLoading);
 
-	constructor(private store: Store<DaffContactStateRootSlice>) { }
-	dispatch(action: Action) {
+  constructor(private store: Store<DaffContactStateRootSlice>) { }
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

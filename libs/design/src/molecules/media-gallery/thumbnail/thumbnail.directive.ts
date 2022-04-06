@@ -26,62 +26,62 @@ import { DaffThumbnailRegistration } from './thumbnail-registration.interface';
 })
 export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailRegistration {
 
-	/**
-	 * Adds a class for styling a selected thumbnail
-	 */
-	@HostBinding('class.daff-thumbnail--selected') get selectedClass() {
+  /**
+   * Adds a class for styling a selected thumbnail
+   */
+  @HostBinding('class.daff-thumbnail--selected') get selectedClass() {
     return this.selected;
   };
 
-	constructor(
-		@Inject(daffThumbnailCompatToken) public component: Type<unknown>,
-		private cd: ChangeDetectorRef,
-		private registry: DaffMediaGalleryRegistry,
+  constructor(
+    @Inject(daffThumbnailCompatToken) public component: Type<unknown>,
+    private cd: ChangeDetectorRef,
+    private registry: DaffMediaGalleryRegistry,
     @Inject(DAFF_MEDIA_GALLERY_TOKEN) public gallery: DaffMediaGalleryRegistration,
-	) {}
+  ) {}
 
-	/**
-	 * Adds a class for styling a thumbnail
-	 */
-	@HostBinding('class.daff-thumbnail') class = true;
+  /**
+   * Adds a class for styling a thumbnail
+   */
+  @HostBinding('class.daff-thumbnail') class = true;
 
-	/**
-	 * A prop for determining whether or not the media element is selected.
-	 */
-	selected = false;
+  /**
+   * A prop for determining whether or not the media element is selected.
+   */
+  selected = false;
 
-	/**
-	 * An event that fires after the media element becomes selected.
-	 */
-	@Output() becameSelected: EventEmitter<void> = new EventEmitter<void>();
+  /**
+   * An event that fires after the media element becomes selected.
+   */
+  @Output() becameSelected: EventEmitter<void> = new EventEmitter<void>();
 
-	/**
-	 * Adds a click event to trigger selection of the media element.
-	 *
-	 * @param event: MouseEvent
-	 */
-	@HostListener('click', ['$event']) onClick($event: MouseEvent) {
+  /**
+   * Adds a click event to trigger selection of the media element.
+   *
+   * @param event: MouseEvent
+   */
+  @HostListener('click', ['$event']) onClick($event: MouseEvent) {
 	  this.registry.select(this);
-	}
+  }
 
-	ngOnInit(): void {
+  ngOnInit(): void {
 	  this.registry.add(this.gallery, this);
-	}
+  }
 
-	ngOnDestroy(): void {
+  ngOnDestroy(): void {
 	  this.registry.remove(this);
-	}
+  }
 
-	select() {
+  select() {
 	  this.selected = true;
 	  this.becameSelected.emit();
 	  this.cd.markForCheck();
 	  return this;
-	}
+  }
 
-	deselect() {
+  deselect() {
 	  this.selected = false;
 	  this.cd.markForCheck();
 	  return this;
-	}
+  }
 }

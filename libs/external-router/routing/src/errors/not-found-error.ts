@@ -7,9 +7,9 @@ import { DaffExternalRouterClientError } from './client-error';
  */
 export class DaffExternalRouterNotFoundError extends DaffExternalRouterClientError
   implements DaffError {
-	public readonly code: string = '404_NOT_FOUND';
+  public readonly code: string = '404_NOT_FOUND';
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

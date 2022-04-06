@@ -19,15 +19,15 @@ import { DaffCheckboxSetComponent } from '@daffodil/design';
 })
 export class CheckboxSetComponent implements OnInit {
 
-    @ViewChild(DaffCheckboxSetComponent)
-    private checkboxSet: DaffCheckboxSetComponent;
-    checkboxArray = new FormArray([new FormControl(), new FormControl(), new FormControl()]);
-    selectedValues = [];
+  @ViewChild(DaffCheckboxSetComponent)
+  private checkboxSet: DaffCheckboxSetComponent;
+  checkboxArray = new FormArray([new FormControl(), new FormControl(), new FormControl()]);
+  selectedValues = [];
 
-    ngOnInit() {
-      this.checkboxArray.setValue([false, false, false]);
-    }
-    displayList() {
-      this.selectedValues = this.checkboxSet.getValues();
-    }
+  ngOnInit() {
+    this.checkboxArray.setValue([false, false, false]);
+  }
+  displayList() {
+    this.selectedValues = this.checkboxSet.getValues();
+  }
 }

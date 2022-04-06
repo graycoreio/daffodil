@@ -15,7 +15,7 @@ export class DaffMagentoCategoryResponseTransformService {
   constructor(
     private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
-		private magentoProductsTransformService: DaffMagentoProductsTransformer,
+    private magentoProductsTransformService: DaffMagentoProductsTransformer,
   ) {}
 
   transform(completeCategory: MagentoCompleteCategoryResponse, mediaUrl: string): DaffGetCategoryResponse {

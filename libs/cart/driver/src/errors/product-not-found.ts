@@ -10,9 +10,9 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
  * for a product that cannot be found.
  */
 export class DaffProductNotFoundError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartDriverErrorCodes.PRODUCT_NOT_FOUND;
+  public readonly code: string = DaffCartDriverErrorCodes.PRODUCT_NOT_FOUND;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

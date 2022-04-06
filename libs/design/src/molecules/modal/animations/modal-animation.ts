@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 export const daffFadeAnimations: {
-	readonly fade: AnimationTriggerMetadata;
+  readonly fade: AnimationTriggerMetadata;
 } = {
   fade: trigger('fade', [
     state('open', style({ opacity: 1 })),

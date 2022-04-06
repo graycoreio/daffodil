@@ -14,7 +14,7 @@ export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   products: EntityState<T>;
   productGrid: DaffProductGridReducerState<T>;
   product: DaffProductReducerState;
-	bestSellers: DaffBestSellersReducerState;
+  bestSellers: DaffBestSellersReducerState;
 }
 
 export interface DaffProductStateRootSlice<T extends DaffProduct = DaffProduct> {

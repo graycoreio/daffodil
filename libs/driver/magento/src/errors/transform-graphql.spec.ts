@@ -10,11 +10,11 @@ import { DaffDriverMagentoError } from '@daffodil/driver/magento';
 import { daffMagentoTransformGraphQlError } from './transform-graphql';
 
 class MockError extends DaffInheritableError implements DaffError {
-	public readonly code: string = 'MOCK';
+  public readonly code: string = 'MOCK';
 
-	constructor(public message: string) {
+  constructor(public message: string) {
 	  super(message);
-	}
+  }
 }
 
 describe('@daffodil/driver/magento | daffMagentoTransformGraphQlError', () => {

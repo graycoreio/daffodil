@@ -36,8 +36,8 @@ import {
 export class DaffExternalRouterInMemoryDriver
 implements DaffExternalRouterDriverInterface {
   constructor(
-		@Inject(DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG)
-		private configuration: DaffExternalRouterDriverInMemoryConfig,
+    @Inject(DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG)
+    private configuration: DaffExternalRouterDriverInMemoryConfig,
   ) {}
 
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {

@@ -18,7 +18,7 @@ import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token'
 })
 export class DaffMagentoApolloCacheableOperationsLinkGenerator implements DaffApolloCacheableOperationLinkGenerator {
   constructor(
-		@Inject(DAFF_MAGENTO_CACHEABLE_OPERATIONS) private apolloGetRequests: string[],
+    @Inject(DAFF_MAGENTO_CACHEABLE_OPERATIONS) private apolloGetRequests: string[],
   ) {}
 
   getLink(): ApolloLink {

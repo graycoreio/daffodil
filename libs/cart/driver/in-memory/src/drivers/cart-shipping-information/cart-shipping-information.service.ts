@@ -15,8 +15,8 @@ import { DaffCartShippingInformationServiceInterface } from '@daffodil/cart/driv
   providedIn: 'root',
 })
 export class DaffInMemoryCartShippingInformationService implements DaffCartShippingInformationServiceInterface<
-  DaffCartShippingRate,
-  DaffCart
+DaffCartShippingRate,
+DaffCart
 > {
   /**
    * The URL with which the driver makes calls to the backend.

@@ -10,9 +10,9 @@ import { DaffCartDriverErrorCodes } from './codes.enum';
  * exceeds the maximum allowed by the platform.
  */
 export class DaffCartItemExceedsMaxQtyError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY;
+  public readonly code: string = DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

@@ -37,9 +37,9 @@ import {
 })
 export class DaffResolvedCartGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DAFF_CART_ROUTING_CONFIG) private config: DaffCartRoutingConfiguration,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DAFF_CART_ROUTING_CONFIG) private config: DaffCartRoutingConfiguration,
   ) {}
 
   canActivate(): Observable<boolean | UrlTree> {

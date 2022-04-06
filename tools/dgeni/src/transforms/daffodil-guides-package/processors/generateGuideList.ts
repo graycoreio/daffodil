@@ -48,6 +48,6 @@ export interface TransformedDocument {
   id: string;
   title: string;
   path: string;
-	tableOfContents: string;
+  tableOfContents: string;
 }
 

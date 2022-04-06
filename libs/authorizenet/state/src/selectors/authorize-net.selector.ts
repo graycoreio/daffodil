@@ -15,12 +15,12 @@ import {
 
 
 export interface DaffAuthorizeNetMemoizedSelectors {
-	selectAuthorizeNetFeatureState: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducersState>;
-	selectAuthorizeNetState: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducerState> ;
-	selectLoading: MemoizedSelector<DaffAuthorizeNetStateRootSlice, boolean>;
-	selectPaymentError: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffStateError>;
-	selectAcceptJsLoadError: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffStateError>;
-	selectIsAcceptJsLoaded: MemoizedSelector<DaffAuthorizeNetStateRootSlice, boolean>;
+  selectAuthorizeNetFeatureState: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducersState>;
+  selectAuthorizeNetState: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffAuthorizeNetReducerState> ;
+  selectLoading: MemoizedSelector<DaffAuthorizeNetStateRootSlice, boolean>;
+  selectPaymentError: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffStateError>;
+  selectAcceptJsLoadError: MemoizedSelector<DaffAuthorizeNetStateRootSlice, DaffStateError>;
+  selectIsAcceptJsLoaded: MemoizedSelector<DaffAuthorizeNetStateRootSlice, boolean>;
 }
 
 const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {

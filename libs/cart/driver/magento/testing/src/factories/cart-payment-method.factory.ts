@@ -5,9 +5,9 @@ import { MagentoCartPaymentMethod } from '@daffodil/cart/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartPaymentMethod implements MagentoCartPaymentMethod {
-	code = faker.random.word();
-	title = faker.random.word();
-	purchase_order_number = faker.random.word();
+  code = faker.random.word();
+  title = faker.random.word();
+  purchase_order_number = faker.random.word();
 }
 
 @Injectable({

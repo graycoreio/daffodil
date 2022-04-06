@@ -17,9 +17,9 @@ export const daffRemoveFilterRange = <T, U extends DaffCategoryFilterRangeBase<T
   request: DaffCategoryFilterRangeRequestBase<T>,
   filter: U,
 ): U =>
-    filter.options[daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]
-      ? ({
-        ...filter,
-        options: {},
-      })
-      : filter;
+  filter.options[daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]
+    ? ({
+      ...filter,
+      options: {},
+    })
+    : filter;

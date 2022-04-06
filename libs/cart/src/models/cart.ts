@@ -14,13 +14,13 @@ import { DaffCartTotal } from './cart-total';
  * Contains payment and shipping info used for checkout.
  */
 export interface DaffCart extends DaffIdentifiable {
-	/**
-	 * @deprecated use totals instead
-	 */
-	subtotal: number;
-	/**
-	 * @deprecated use totals instead
-	 */
+  /**
+   * @deprecated use totals instead
+   */
+  subtotal: number;
+  /**
+   * @deprecated use totals instead
+   */
   grand_total: number;
   /**
    * A list of coupons applied to the cart.

@@ -23,38 +23,38 @@ interface HasElementRef {
 export function
 daffColorMixin<T extends Constructor<HasElementRef>>(Base: T, defaultColor?: DaffPalette) {
   class DaffColorableMixinClass extends Base {
-         //TODO move this back to private in Typescript 3.1
-         _color: DaffPalette;
+    //TODO move this back to private in Typescript 3.1
+    _color: DaffPalette;
 
-         get color(): DaffPalette{
-           return this._color;
-         }
-         set color(value: DaffPalette) {
-           //Handle the default color
-           const incomingColor = value || defaultColor;
+    get color(): DaffPalette{
+      return this._color;
+    }
+    set color(value: DaffPalette) {
+      //Handle the default color
+      const incomingColor = value || defaultColor;
 
-           if(incomingColor !== undefined && !colorInPalette(incomingColor)){
-             throw new TypeError(incomingColor + ' is not a valid color for the DaffPalette');
-           }
+      if(incomingColor !== undefined && !colorInPalette(incomingColor)){
+        throw new TypeError(incomingColor + ' is not a valid color for the DaffPalette');
+      }
 
-           if(incomingColor !== this._color){ //Only run the dom-render if a change occurs
-             //Remove the old color
-             if(this._color){
-               this._renderer.removeClass(this._elementRef.nativeElement, `daff-${this._color}`);
-             }
+      if(incomingColor !== this._color){ //Only run the dom-render if a change occurs
+        //Remove the old color
+        if(this._color){
+          this._renderer.removeClass(this._elementRef.nativeElement, `daff-${this._color}`);
+        }
 
-             if(incomingColor){
-               this._renderer.addClass(this._elementRef.nativeElement, `daff-${incomingColor}`);
-             }
+        if(incomingColor){
+          this._renderer.addClass(this._elementRef.nativeElement, `daff-${incomingColor}`);
+        }
 
-             this._color = incomingColor;
-           }
-         }
+        this._color = incomingColor;
+      }
+    }
 
-         constructor(...args: any[]) {
-           super(...args);
-           this.color = defaultColor;
-         }
+    constructor(...args: any[]) {
+      super(...args);
+      this.color = defaultColor;
+    }
   };
 
   // TODO: ugly workaround for https://github.com/microsoft/TypeScript/issues/7342#issuecomment-624298133

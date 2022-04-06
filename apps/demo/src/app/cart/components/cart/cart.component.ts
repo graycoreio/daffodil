@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   isCartEmpty$: Observable<boolean>;
 
   constructor(
-		private facade: DaffCartFacade,
+    private facade: DaffCartFacade,
   ) {}
 
   ngOnInit(): void {

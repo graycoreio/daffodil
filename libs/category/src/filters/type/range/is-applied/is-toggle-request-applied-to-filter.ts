@@ -11,4 +11,4 @@ export const daffIsRangeToggleRequestAppliedToFilter = <T>(
   request: DaffCategoryFilterRangeRequestBase<T>,
   filter: DaffCategoryFilterRangeBase<T>,
 ): boolean =>
-    daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max) in filter.options;
+  daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max) in filter.options;

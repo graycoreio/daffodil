@@ -7,11 +7,11 @@ import {
  * Exchange < for &lt; and > for &gt; so that generic types can be rendered correctly as html.
  */
 export class MakeTypesHtmlCompatibleProcessor implements Processor {
-	name = 'makeTypesHtmlCompatible';
-	$runAfter = ['docs-processed'];
-	$runBefore = ['rendering-docs'];
+  name = 'makeTypesHtmlCompatible';
+  $runAfter = ['docs-processed'];
+  $runBefore = ['rendering-docs'];
 
-	$process(docs: Document[]): Document[] {
+  $process(docs: Document[]): Document[] {
 	  docs.map(doc => {
 	    if(!doc.members) {
 	      return doc;
@@ -23,7 +23,7 @@ export class MakeTypesHtmlCompatibleProcessor implements Processor {
 	  });
 
 	  return docs;
-	}
+  }
 }
 
 function fixGenericTypes(type: string): string {

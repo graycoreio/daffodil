@@ -3,9 +3,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
- @Directive({
-   selector: '[daffCalloutSubtitle]',
- })
+@Directive({
+  selector: '[daffCalloutSubtitle]',
+})
 
 export class DaffCalloutSubtitleDirective {
 

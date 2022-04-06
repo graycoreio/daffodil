@@ -18,9 +18,9 @@ export function daffAuthLoginReducer<
 >(
   state = daffAuthLoginInitialState,
   action: DaffAuthActions<
-    T,
-    U,
-    S
+  T,
+  U,
+  S
   >,
 ): DaffAuthLoginReducerState<U> {
   switch (action.type) {

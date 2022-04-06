@@ -109,11 +109,11 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selects the specified order's discount total.
    */
-	selectOrderDiscountTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
-	/**
-	 * Selects whether the specified order has a discount.
-	 */
-	selectOrderHasDiscount: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, boolean>;
+  selectOrderDiscountTotal: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderTotal>;
+  /**
+   * Selects whether the specified order has a discount.
+   */
+  selectOrderHasDiscount: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, boolean>;
   /**
    * Selects the specified order's tax total.
    */

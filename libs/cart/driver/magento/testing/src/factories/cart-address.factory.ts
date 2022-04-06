@@ -5,7 +5,7 @@ import { MagentoCartAddress } from '@daffodil/cart/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartAddress implements MagentoCartAddress {
-	__typename = 'BillingCartAddress';
+  __typename = 'BillingCartAddress';
   region = {
     __typename: 'CartAddressRegion',
     code: faker.address.stateAbbr(),

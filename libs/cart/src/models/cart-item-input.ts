@@ -6,9 +6,9 @@ import { DaffProduct } from '@daffodil/product';
  */
 // TODO: remove "input" designation
 export enum DaffCartItemInputType {
-	Simple = 'simple',
-	Composite = 'composite',
-	Configurable = 'configurable'
+  Simple = 'simple',
+  Composite = 'composite',
+  Configurable = 'configurable'
 }
 
 /**
@@ -18,7 +18,7 @@ export interface DaffCartItemInput {
   /**
    * The type of cart item that corresponds to the product being added to the cart.
    */
-	type: DaffCartItemInputType;
+  type: DaffCartItemInputType;
   /**
    * The ID of the product to add to the cart.
    */
@@ -26,25 +26,25 @@ export interface DaffCartItemInput {
   /**
    * How many of the product should be added to the cart.
    */
-	qty: number;
+  qty: number;
 }
 
 /**
  * A more constrained cart item input for simple products.
  */
 export interface DaffSimpleCartItemInput extends DaffCartItemInput {
-	type: DaffCartItemInputType.Simple;
+  type: DaffCartItemInputType.Simple;
 }
 
 /**
  * A cart item input for composite products.
  */
 export interface DaffCompositeCartItemInput extends DaffCartItemInput {
-	type: DaffCartItemInputType.Composite;
+  type: DaffCartItemInputType.Composite;
   /**
    * The selected options for the composite product to be added to the cart.
    */
-	options: DaffCompositeCartItemInputOption[];
+  options: DaffCompositeCartItemInputOption[];
 }
 
 /**
@@ -55,24 +55,24 @@ export interface DaffCompositeCartItemInputOption {
    * An identifier of the option for which a value has been chosen.
    */
   // TODO: change to ID type?
-	code: string | number;
+  code: string | number;
   /**
    * How many of the specified option should be added to the cart.
    */
-	quantity: number;
+  quantity: number;
   /**
    * The value identifying the chosen composite product option.
    */
-	value: string;
+  value: string;
 }
 
 /**
  * Designates a particular configurable product variant to add to the cart.
  */
 export interface DaffConfigurableCartItemInput extends DaffCartItemInput {
-	type: DaffCartItemInputType.Configurable;
+  type: DaffCartItemInputType.Configurable;
   /**
    * The value identifying the particular configurable product variant.
    */
-	variantId: ID;
+  variantId: ID;
 }

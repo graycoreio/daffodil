@@ -6,9 +6,9 @@ import {
 import { DaffOrder } from './order';
 
 export interface DaffOrderCreditCardPayment extends DaffIdentifiable {
-	/**
-	 * @deprecated use id instead.
-	 */
+  /**
+   * @deprecated use id instead.
+   */
   payment_id: ID;
   order_id: DaffOrder['id'];
   created_at: string;

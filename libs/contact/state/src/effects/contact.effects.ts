@@ -39,13 +39,13 @@ import {
 @Injectable()
 export class DaffContactEffects<T, V> {
   constructor(
-		private actions$: Actions,
-		@Inject(DaffContactDriver)
-		private driver: DaffContactServiceInterface<T, V>,
-		@Inject(DAFF_CONTACT_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    private actions$: Actions,
+    @Inject(DaffContactDriver)
+    private driver: DaffContactServiceInterface<T, V>,
+    @Inject(DAFF_CONTACT_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
-	trySubmission$: Observable<Action> = createEffect(() =>
+  trySubmission$: Observable<Action> = createEffect(() =>
 	  this.actions$.pipe(
 	    ofType(
 	      DaffContactActionTypes.ContactSubmitAction,
@@ -55,9 +55,9 @@ export class DaffContactEffects<T, V> {
 	    switchMap(
 	      (
 	        action:
-						| DaffContactSubmit<T>
-						| DaffContactRetry<T>
-						| DaffContactCancel,
+          | DaffContactSubmit<T>
+          | DaffContactRetry<T>
+          | DaffContactCancel,
 	      ) => {
 	        if (action instanceof DaffContactCancel) {
 	          return EMPTY;
@@ -67,12 +67,12 @@ export class DaffContactEffects<T, V> {
 	      },
 	    ),
 	  ),
-	);
+  );
 
-	private submitContact(contact: T): Observable<Action> {
+  private submitContact(contact: T): Observable<Action> {
 	  return this.driver.send(contact).pipe(
 	    map((resp: V) => new DaffContactSuccessSubmit()),
 	    catchError((error: DaffError) => of(new DaffContactFailedSubmit([this.errorMatcher(error)]))),
 	  );
-	}
+  }
 }

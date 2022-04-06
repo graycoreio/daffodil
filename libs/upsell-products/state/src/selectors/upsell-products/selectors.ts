@@ -17,15 +17,15 @@ import { getDaffUpsellProductsFeatureSelector } from '../feature.selector';
  * An interface for selectors of upsell products for the current product page.
  */
 export interface DaffUpsellProductsMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * Selects the IDs of the upsell products.
-	 */
-	selectUpsellProductIds: MemoizedSelector<DaffUpsellProductStateRootSlice, T['id'][]>;
+  /**
+   * Selects the IDs of the upsell products.
+   */
+  selectUpsellProductIds: MemoizedSelector<DaffUpsellProductStateRootSlice, T['id'][]>;
 
   /**
    * Selects the upsell products.
    */
-	selectUpsellProducts: MemoizedSelector<DaffUpsellProductStateRootSlice, T[]>;
+  selectUpsellProducts: MemoizedSelector<DaffUpsellProductStateRootSlice, T[]>;
 }
 
 const createUpsellProductSelectors = <T extends DaffProduct = DaffProduct>(): DaffUpsellProductsMemoizedSelectors<T> => {

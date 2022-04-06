@@ -43,7 +43,7 @@ export class DemoMagentoDriverModule {
   constructor(
     apollo: Apollo,
     httpLink: HttpLink,
-		private magentoLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator,
+    private magentoLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator,
   ) {
 
     apollo.create({

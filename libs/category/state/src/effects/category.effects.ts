@@ -40,14 +40,14 @@ import {
 
 @Injectable()
 export class DaffCategoryEffects<
-	V extends DaffGenericCategory<V>,
-	W extends DaffProduct
+  V extends DaffGenericCategory<V>,
+  W extends DaffProduct
 > {
 
   constructor(
     private actions$: Actions,
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V,W>,
-		@Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
 

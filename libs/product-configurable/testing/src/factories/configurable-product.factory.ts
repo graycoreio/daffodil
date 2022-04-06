@@ -10,15 +10,15 @@ import { MockProduct } from '@daffodil/product/testing';
  * Mocked DaffConfigurableProduct object.
  */
 export class MockConfigurableProduct extends MockProduct implements DaffConfigurableProduct {
-	private stubPriceVariant1 = faker.datatype.number({ min: 1, max: 1500 });
-	private stubDiscountVariant1 = faker.datatype.number({ min: 0, max: this.stubPriceVariant1 - 1 });
-	private stubPriceVariant2 = faker.datatype.number({ min: 1, max: 1500 });
-	private stubDiscountVariant2 = faker.datatype.number({ min: 0, max: this.stubPriceVariant2 - 1 });
-	private stubPriceVariant3 = faker.datatype.number({ min: 1, max: 1500 });
-	private stubDiscountVariant3 = faker.datatype.number({ min: 0, max: this.stubPriceVariant3 - 1 });
+  private stubPriceVariant1 = faker.datatype.number({ min: 1, max: 1500 });
+  private stubDiscountVariant1 = faker.datatype.number({ min: 0, max: this.stubPriceVariant1 - 1 });
+  private stubPriceVariant2 = faker.datatype.number({ min: 1, max: 1500 });
+  private stubDiscountVariant2 = faker.datatype.number({ min: 0, max: this.stubPriceVariant2 - 1 });
+  private stubPriceVariant3 = faker.datatype.number({ min: 1, max: 1500 });
+  private stubDiscountVariant3 = faker.datatype.number({ min: 0, max: this.stubPriceVariant3 - 1 });
 
-	type = DaffProductTypeEnum.Configurable;
-	configurableAttributes = [
+  type = DaffProductTypeEnum.Configurable;
+  configurableAttributes = [
 	  {
 	    code: 'color',
 	    label: 'Color',
@@ -94,8 +94,8 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
 	      },
 	    ],
 	  },
-	];
-	variants = [
+  ];
+  variants = [
 	  {
 	    appliedAttributes: {
 	      color: '0',
@@ -236,7 +236,7 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
 	    id: faker.datatype.uuid(),
 	    in_stock: true,
 	  },
-	];
+  ];
 }
 
 /**

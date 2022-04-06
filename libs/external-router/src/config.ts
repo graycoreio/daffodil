@@ -10,7 +10,7 @@ export const daffExternalRouterConfigurationDefault: DaffExternalRouterConfigura
  * `@daffodil/external-router` package.
  */
 export const DAFF_EXTERNAL_ROUTER_CONFIG = new InjectionToken<
-	DaffExternalRouterConfiguration
+DaffExternalRouterConfiguration
 >('DAFF_EXTERNAL_ROUTER_CONFIG', {
   providedIn: 'root',
   factory: () => daffExternalRouterConfigurationDefault,
@@ -20,13 +20,13 @@ export const DAFF_EXTERNAL_ROUTER_CONFIG = new InjectionToken<
  * The configuration object for the external router package.
  */
 export interface DaffExternalRouterConfiguration {
-	/**
-	 * The path to redirect to when external route resolution fails.
-	 */
-	failedResolutionPath: string;
+  /**
+   * The path to redirect to when external route resolution fails.
+   */
+  failedResolutionPath: string;
 
-	/**
-	 * The path to redirect to when the requested URL is not found.
-	 */
-	notFoundResolutionPath: string;
+  /**
+   * The path to redirect to when the requested URL is not found.
+   */
+  notFoundResolutionPath: string;
 }

@@ -7,7 +7,7 @@ import {
 } from '@daffodil/core/state';
 
 export interface DaffContactFacadeInterface extends DaffStoreFacade<Action> {
-	success$: Observable<boolean>;
-	error$: Observable<DaffStateError[]>;
-	loading$: Observable<boolean>;
+  success$: Observable<boolean>;
+  error$: Observable<DaffStateError[]>;
+  loading$: Observable<boolean>;
 }

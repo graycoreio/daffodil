@@ -7,10 +7,10 @@ import { DaffStateError } from '@daffodil/core/state';
 export enum DaffAuthorizeNetActionTypes {
   UpdatePaymentAction = '[Daff-Authorize-Net] Update Payment',
   UpdatePaymentSuccessAction = '[Daff-Authorize-Net] Update Payment Success',
-	UpdatePaymentFailureAction = '[Daff-Authorize-Net] Update Payment Failure',
-	LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js',
-	LoadAcceptJsSuccessAction = '[Daff-Authorize-Net] Load Accept Js Success',
-	LoadAcceptJsFailureAction = '[Daff-Authorize-Net] Load Accept Js Failure'
+  UpdatePaymentFailureAction = '[Daff-Authorize-Net] Update Payment Failure',
+  LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js',
+  LoadAcceptJsSuccessAction = '[Daff-Authorize-Net] Load Accept Js Success',
+  LoadAcceptJsFailureAction = '[Daff-Authorize-Net] Load Accept Js Failure'
 }
 
 /**
@@ -19,12 +19,12 @@ export enum DaffAuthorizeNetActionTypes {
  * @param payload - An DaffAuthorizeNetRequestData object.
  */
 export class DaffAuthorizeNetUpdatePayment<
-	T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest,
-	V extends DaffCartAddress = DaffCartAddress
+  T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest,
+  V extends DaffCartAddress = DaffCartAddress
 > implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.UpdatePaymentAction;
+  readonly type = DaffAuthorizeNetActionTypes.UpdatePaymentAction;
 
-	constructor(public tokenRequest: T, public address: V) { }
+  constructor(public tokenRequest: T, public address: V) { }
 }
 
 /**
@@ -42,33 +42,33 @@ export class DaffAuthorizeNetUpdatePaymentSuccess implements Action {
  * @param payload - A string that is an error message.
  */
 export class DaffAuthorizeNetUpdatePaymentFailure implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction;
+  readonly type = DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction;
 
-	constructor(public payload: DaffStateError) { }
+  constructor(public payload: DaffStateError) { }
 }
 
 export class DaffLoadAcceptJs implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsAction;
+  readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsAction;
 }
 
 /**
  * Indicates that the AcceptJs library has loaded successfully.
  */
 export class DaffLoadAcceptJsSuccess implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction;
+  readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction;
 }
 
 /**
  * Indicates that the AcceptJs library has failed to load
  */
 export class DaffLoadAcceptJsFailure implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction;
+  readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction;
 
-	constructor(public payload: DaffStateError) {};
+  constructor(public payload: DaffStateError) {};
 }
 
 export type DaffAuthorizeNetActions<
-	T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest
+  T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest
 > =
 	| DaffAuthorizeNetUpdatePayment<T>
 	| DaffAuthorizeNetUpdatePaymentSuccess

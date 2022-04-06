@@ -11,20 +11,20 @@ import {
  * Mocked DaffProduct object.
  */
 export class MockProduct implements DaffProduct {
-	private stubPrice = faker.datatype.number({ min: 1, max: 1500 });
-	private stubDiscount = faker.datatype.number({ min: 0, max: this.stubPrice - 1 });
+  private stubPrice = faker.datatype.number({ min: 1, max: 1500 });
+  private stubDiscount = faker.datatype.number({ min: 0, max: this.stubPrice - 1 });
 
-	type = DaffProductTypeEnum.Simple;
-	id = faker.datatype.uuid();
-	url = `/${faker.internet.domainWord()}.html`;
-	canonicalUrl = faker.internet.url();
-	price = this.stubPrice;
-	in_stock = true;
-	discount = {
+  type = DaffProductTypeEnum.Simple;
+  id = faker.datatype.uuid();
+  url = `/${faker.internet.domainWord()}.html`;
+  canonicalUrl = faker.internet.url();
+  price = this.stubPrice;
+  in_stock = true;
+  discount = {
 	  amount: this.stubDiscount,
 	  percent: Math.floor((this.stubDiscount/this.stubPrice) * 100),
-	};
-	images = [];
+  };
+  images = [];
   thumbnail = null;
   name = faker.commerce.productName();
   brand = faker.company.companyName();

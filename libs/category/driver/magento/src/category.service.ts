@@ -70,9 +70,9 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
   constructor(
     private apollo: Apollo,
-		private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
-		private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
-		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
+    private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
+    private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
+    private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
     @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],

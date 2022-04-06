@@ -198,7 +198,7 @@ export class DaffCartItemDeleteOutOfStockFailure implements Action {
  * Resets cart item "new" or "updated" states to default.
  */
 export class DaffCartItemStateReset implements Action {
-	readonly type = DaffCartItemActionTypes.CartItemStateResetAction;
+  readonly type = DaffCartItemActionTypes.CartItemStateResetAction;
 }
 
 /**

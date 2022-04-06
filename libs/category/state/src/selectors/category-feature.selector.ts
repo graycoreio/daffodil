@@ -18,9 +18,9 @@ import {
  * An interface for the entire category feature state.
  */
 export interface DaffCategoryFeatureMemoizedSelectors<
-	V extends DaffGenericCategory<V> = DaffCategory,
+  V extends DaffGenericCategory<V> = DaffCategory,
 > {
-	selectCategoryFeatureState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducersState<V>>;
+  selectCategoryFeatureState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducersState<V>>;
 }
 
 /**

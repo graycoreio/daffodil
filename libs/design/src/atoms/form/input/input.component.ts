@@ -27,10 +27,10 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
 })
 export class DaffInputComponent implements DaffFormFieldControl {
 
-	/**
-	 * Has the form been submitted.
-	 */
-	@Input() formSubmitted: boolean;
+  /**
+   * Has the form been submitted.
+   */
+  @Input() formSubmitted: boolean;
 
   focused = false;
 
@@ -49,11 +49,11 @@ export class DaffInputComponent implements DaffFormFieldControl {
   }
 
   constructor(
-		/**
-		 * @docs-private
-		 */
-		@Optional() @Self() public ngControl: NgControl,
-		private _elementRef: ElementRef<HTMLInputElement>,
+    /**
+     * @docs-private
+     */
+    @Optional() @Self() public ngControl: NgControl,
+    private _elementRef: ElementRef<HTMLInputElement>,
   ) {}
 
   onFocus() {

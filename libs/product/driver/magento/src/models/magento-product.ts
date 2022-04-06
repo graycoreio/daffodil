@@ -1,9 +1,9 @@
 import { MagentoProductPreview } from './product-preview.interface';
 
 export enum MagentoProductTypeEnum {
-	BundledProduct = 'BundleProduct',
-	ConfigurableProduct = 'ConfigurableProduct',
-	SimpleProduct = 'SimpleProduct'
+  BundledProduct = 'BundleProduct',
+  ConfigurableProduct = 'ConfigurableProduct',
+  SimpleProduct = 'SimpleProduct'
 }
 
 /**
@@ -14,20 +14,20 @@ export interface MagentoProduct extends MagentoProductPreview {
   meta_description?: string;
   canonical_url?: string;
   image?: {
-		url: string;
-		label: string;
+    url: string;
+    label: string;
   };
   media_gallery_entries?: {
-		label: string;
-		file: string;
-		position: number;
-		disabled: boolean;
-		uid: string;
-	}[];
+    label: string;
+    file: string;
+    position: number;
+    disabled: boolean;
+    uid: string;
+  }[];
   short_description?: {
-		html: string;
-	};
+    html: string;
+  };
   description?: {
-		html: string;
-	};
+    html: string;
+  };
 }

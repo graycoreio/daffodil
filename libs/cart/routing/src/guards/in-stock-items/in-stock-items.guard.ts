@@ -29,9 +29,9 @@ import { DaffCartInStockItemsGuardRedirectUrl } from './in-stock-items-guard-red
 })
 export class DaffCartInStockItemsGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DaffCartInStockItemsGuardRedirectUrl) private redirectUrl: string,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DaffCartInStockItemsGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

@@ -41,7 +41,7 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
   constructor(
     private actions$: Actions,
     @Inject(DaffNavigationDriver) private driver: DaffNavigationServiceInterface<T>,
-		@Inject(DAFF_NAVIGATION_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_NAVIGATION_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
 

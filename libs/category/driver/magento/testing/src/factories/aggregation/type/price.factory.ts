@@ -9,10 +9,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 class MockMagentoAggregationPrice implements MagentoAggregation {
   attribute_code = 'price';
-	type = MagentoCategoryFilterType.Range;
-	count = faker.datatype.number();
-	label = 'Price';
-	options = [
+  type = MagentoCategoryFilterType.Range;
+  count = faker.datatype.number();
+  label = 'Price';
+  options = [
 	  {
 	    value: '0-10',
 	    count: faker.datatype.number(),
@@ -33,7 +33,7 @@ class MockMagentoAggregationPrice implements MagentoAggregation {
 	    count: faker.datatype.number(),
 	    label: '30-40',
 	  },
-	];
+  ];
 }
 
 @Injectable({

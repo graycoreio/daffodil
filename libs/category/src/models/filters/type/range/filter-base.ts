@@ -11,16 +11,16 @@ import { DaffCategoryFilterRangePair } from './pair';
  * Note that this is the generic base allowing for stricter type implementations.
  */
 export interface DaffCategoryFilterRangeBase<T> extends DaffCategoryFilterBase {
-	/**
-	 * The minimum value for the filter range.
-	 */
-	min: T;
-	/**
-	 * The maximum value for the filter range.
-	 */
-	max: T;
-	/**
-	 * A dictionary of filter range options.
-	 */
-	options: Dict<DaffCategoryFilterRangePair<T>>;
+  /**
+   * The minimum value for the filter range.
+   */
+  min: T;
+  /**
+   * The maximum value for the filter range.
+   */
+  max: T;
+  /**
+   * A dictionary of filter range options.
+   */
+  options: Dict<DaffCategoryFilterRangePair<T>>;
 }

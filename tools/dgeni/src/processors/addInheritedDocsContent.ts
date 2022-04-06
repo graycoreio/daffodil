@@ -9,11 +9,11 @@ import {
  * Usage: @inheritdoc
  */
 export class AddInheritedDocsContentProcessor implements Processor {
-	name = 'addInheritedDocsContent';
-	$runAfter = ['docs-processed'];
-	$runBefore = ['rendering-docs'];
+  name = 'addInheritedDocsContent';
+  $runAfter = ['docs-processed'];
+  $runBefore = ['rendering-docs'];
 
-	$process(docs: Document[]): Document[] {
+  $process(docs: Document[]): Document[] {
 	  return docs.map(doc => {
 	    if(!doc.members || !doc.tags.tags.filter(tag => tag.tagName === 'inheritdoc').length) {
 	      return doc;
@@ -35,5 +35,5 @@ export class AddInheritedDocsContentProcessor implements Processor {
 
 	    return doc;
 	  });
-	}
+  }
 }

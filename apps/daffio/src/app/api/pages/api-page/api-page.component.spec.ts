@@ -19,7 +19,7 @@ import { DaffioApiPageComponent } from './api-page.component';
 
 @Component({ selector: 'daffio-doc-viewer', template: '' })
 class MockDaffioDocViewerComponent {
-	@Input() doc: DaffioDoc;
+  @Input() doc: DaffioDoc;
 }
 
 describe('DaffioApiPageComponent', () => {

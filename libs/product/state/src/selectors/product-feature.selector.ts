@@ -12,7 +12,7 @@ import { DAFF_PRODUCT_STORE_FEATURE_KEY } from '../reducers/product-store-featur
  * An interface for the entire product feature state.
  */
 export interface DaffProductFeatureMemoizedSelector<T extends DaffProduct = DaffProduct> {
-	selectProductState: MemoizedSelector<Record<string, any>, DaffProductReducersState<T>>;
+  selectProductState: MemoizedSelector<Record<string, any>, DaffProductReducersState<T>>;
 }
 
 /**

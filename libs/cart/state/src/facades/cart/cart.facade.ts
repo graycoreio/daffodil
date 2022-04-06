@@ -139,10 +139,10 @@ export class DaffCartFacade<
   orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	private _selectCartItemConfiguredAttributes: DaffCartMemoizedSelectors<T, V, U>['selectCartItemConfiguredAttributes'];
-	private _selectCartItemCompositeOptions: DaffCartMemoizedSelectors<T, V, U>['selectCartItemCompositeOptions'];
-	private _selectIsCartItemOutOfStock: DaffCartMemoizedSelectors<T, V, U>['selectIsCartItemOutOfStock'];
-	private _selectCartItemState: DaffCartMemoizedSelectors<T, V, U>['selectCartItemState'];
+  private _selectCartItemConfiguredAttributes: DaffCartMemoizedSelectors<T, V, U>['selectCartItemConfiguredAttributes'];
+  private _selectCartItemCompositeOptions: DaffCartMemoizedSelectors<T, V, U>['selectCartItemCompositeOptions'];
+  private _selectIsCartItemOutOfStock: DaffCartMemoizedSelectors<T, V, U>['selectIsCartItemOutOfStock'];
+  private _selectCartItemState: DaffCartMemoizedSelectors<T, V, U>['selectCartItemState'];
   private _selectCartItemPrice: DaffCartMemoizedSelectors<T, V, U>['selectCartItemPrice'];
   private _selectCartItemQuantity: DaffCartMemoizedSelectors<T, V, U>['selectCartItemQuantity'];
   private _selectCartItemRowTotal: DaffCartMemoizedSelectors<T, V, U>['selectCartItemRowTotal'];

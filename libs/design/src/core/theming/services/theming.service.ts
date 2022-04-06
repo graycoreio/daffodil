@@ -17,13 +17,13 @@ import { DaffThemeStorageService } from './storage/theme-storage.service';
   providedIn: 'root',
 })
 export class DaffThemingService {
-	private theme$: Observable<DaffTheme>;
-	private theme: DaffTheme;
+  private theme$: Observable<DaffTheme>;
+  private theme: DaffTheme;
 
-	constructor(
-		private osTheme: DaffOsThemeService,
-		private themeStorage: DaffThemeStorageService,
-	) {
+  constructor(
+    private osTheme: DaffOsThemeService,
+    private themeStorage: DaffThemeStorageService,
+  ) {
 
 	  this.theme$ = combineLatest([
 	    this.osTheme.getThemePreference(),
@@ -35,35 +35,35 @@ export class DaffThemingService {
 	  this.theme$.subscribe((theme) => {
 	    this.theme = theme;
 	  });
-	}
+  }
 
-	/**
-	 * Get the current theme.
-	 */
-	getTheme(): Observable<DaffTheme> {
+  /**
+   * Get the current theme.
+   */
+  getTheme(): Observable<DaffTheme> {
 	  return this.theme$;
-	}
+  }
 
-	/**
-	 * Set the theme to dark mode.
-	 */
-	darkMode() {
+  /**
+   * Set the theme to dark mode.
+   */
+  darkMode() {
 	  this.themeStorage.setTheme(DaffTheme.Dark);
-	}
+  }
 
-	/**
-	 * Set the theme to light mode.
-	 */
-	lightMode() {
+  /**
+   * Set the theme to light mode.
+   */
+  lightMode() {
 	  this.themeStorage.setTheme(DaffTheme.Light);
-	}
+  }
 
-	/**
-	 * Switch between themes.
-	 */
-	switchTheme(): void {
+  /**
+   * Switch between themes.
+   */
+  switchTheme(): void {
 	  return this.theme === DaffTheme.Dark
 	    ? this.lightMode()
 	    : this.darkMode();
-	}
+  }
 }

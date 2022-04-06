@@ -48,7 +48,7 @@ export class DaffProductPageEffects<T extends DaffProduct> {
   constructor(
     private actions$: Actions,
     @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>,
-		@Inject(DAFF_PRODUCT_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_PRODUCT_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) {}
 
   /**
