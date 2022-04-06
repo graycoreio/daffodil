@@ -102,7 +102,7 @@ If you want to expand your portfolio for more Ecommerce opportunities, then use 
 
 You won't need to use more than the aforementioned common packages(#pwapackages) until you have a specific business use or requirement. However, if you are design-focused, then you can either use your own design framework or use the `design` package.
 
-### **3. To improve frontend UX for existing business sites**<a name="frontendpackages"></a>
+### **3. To improve frontend UX for existing business sites**<a id="frontendpackages"></a>
 If you have an existing site, either your own or backed by a business, then there are a few working assumptions about the site: it has SEO and specific URLs, and the product pages need to show lists of related products.
  So, in addition to the [common packages](#whatpackages), you may need the following packages:
 - @daffodil/external-router](./libs/external-router/README.md)
