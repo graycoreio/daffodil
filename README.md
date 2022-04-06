@@ -27,7 +27,7 @@ Specifically, Daffodil is a frontend toolkit that accomplishes three things:
 2. Provide a consistent frontend developer tool-chain regardless of a business's chosen ecommerce platform.
 3. Drastically improve the end-user experience of online-shopping.
 
-## What are Daffodil's features? <a name="features"></a>
+## What are Daffodil's features? <a id="features"></a>
 Daffodil's features include the following:
 * :free: Forever Free, Open Source, and MIT Licensed
 * :hammer: Platform Agnostic Drivers for your platform of choice
