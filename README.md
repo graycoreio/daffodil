@@ -66,7 +66,7 @@ After installing the [prerequisites](#prereqs), you can choose the packages that
 - To use Daffodil to build your own Ecommerce store, follow the steps in the [Installation instructions](./docs/INSTALLATION.md).
 - To view our progress of an example store or contribute one of your own, see the [Developer documentation](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-demo).
 
-## Who uses Daffodil and why? <a name="whowhydaff"></a>
+## Who uses Daffodil and why? <a id="whowhydaff"></a>
 The target devopers for Daffodil include, but are not limited to, the following:
 
 1. Developers who want to explore and experiment with Progressive Web Apps (PWAs).
