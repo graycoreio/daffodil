@@ -30,7 +30,8 @@ module.exports = {
     'import/no-unassigned-import': ['error'],
     'modules-newline/import-declaration-newline': 'warn',
     'modules-newline/export-declaration-newline': 'warn',
-    indent: [
+    'indent': 'off',
+    '@typescript-eslint/indent': [
       'error',
       2,
       {
