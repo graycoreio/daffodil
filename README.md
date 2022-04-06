@@ -61,7 +61,7 @@ Daffodil was developed so you can get started without connecting to a platform. 
 3. An Angular project
 
 ## How do I start using Daffodil? <a id="getstarted"></a>
-After installing the [pre-requisites](#prereqs), you can choose the packages that you want and get started using Daffodil with your new or existing Ecommerce store. 
+After installing the [prerequisites](#prereqs), you can choose the packages that you want and get started using Daffodil with your new or existing Ecommerce store. 
 
 - To use Daffodil to build your own Ecommerce store, follow the steps in the [Installation instructions](./docs/INSTALLATION.md).
 - To view our progress on an example store of contribute one of your own, see the [Developer documentation](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-demo).
