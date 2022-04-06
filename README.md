@@ -71,7 +71,7 @@ The target devopers for Daffodil include, but are not limited to, the following:
 
 1. Developers who want to explore and experiment with Progressive Web Apps (PWAs).
 2. Developers who are comfortable with Angular and are interested in job opportunities in Ecommerce.
-3. Developers who work with businesses that have existing websites but want a better frontend user experience (UX).
+3. Developers who work with businesses that have existing websites but want a better user interface and experience.
 4. Developers who are forward-thinking, have gone through a re-platforming, and want to deflect future re-platforming. 
 
 ## What packages do I use? <a name="whatpackages"></a>
