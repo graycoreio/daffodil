@@ -7,7 +7,7 @@ export interface DaffConfigurableCartItem extends DaffCartItem {
   /**
    * A list of the chosen configurable attributes.
    */
-	attributes: DaffConfigurableCartItemAttribute[];
+  attributes: DaffConfigurableCartItemAttribute[];
 }
 
 /**
@@ -17,9 +17,9 @@ export interface DaffConfigurableCartItemAttribute {
   /**
    * A human-readable label for the attribute.
    */
-	attribute_label: string;
+  attribute_label: string;
   /**
    * A human-readable label for the particular value chosen for the attribute.
    */
-	value_label: string;
+  value_label: string;
 }

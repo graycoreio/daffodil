@@ -25,9 +25,9 @@ import { DaffCartOrderResultGuardRedirectUrl } from './order-result-guard-redire
 })
 export class DaffOrderResultGuard implements CanActivate {
   constructor(
-		private facade: DaffCartFacade,
-		private router: Router,
-		@Inject(DaffCartOrderResultGuardRedirectUrl) private redirectUrl: string,
+    private facade: DaffCartFacade,
+    private router: Router,
+    @Inject(DaffCartOrderResultGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

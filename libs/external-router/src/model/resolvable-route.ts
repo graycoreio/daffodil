@@ -20,8 +20,8 @@ export interface DaffExternallyResolvableUrl extends DaffIdentifiable {
    * into the Angular routing config.
    * Should not contain URL fragments, query parameters, or leading slashes.
    */
-	url: string;
-	type: DaffExternalRouteType;
+  url: string;
+  type: DaffExternalRouteType;
   /**
    * The HTTP status code for the resolvable route.
    */

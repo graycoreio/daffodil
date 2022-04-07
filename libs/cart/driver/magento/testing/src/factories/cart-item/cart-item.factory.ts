@@ -18,7 +18,7 @@ import {
 import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 export class MockMagentoCartItem implements MagentoCartItem {
-	__typename = MagentoCartItemTypeEnum.Simple;
+  __typename = MagentoCartItemTypeEnum.Simple;
   id = faker.datatype.uuid();
   prices = {
     __typename: 'CartItemPrices',

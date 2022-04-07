@@ -5,7 +5,7 @@ export interface NavigationDocument {
   id: string;
   title: string;
   path: string;
-	tableOfContents: string;
+  tableOfContents: string;
 }
 
 /**
@@ -17,7 +17,7 @@ export class NavigationTrie {
   id = '';
   path?: string;
   title = '';
-	tableOfContents = '';
+  tableOfContents = '';
   children: NavigationTrie[] = [];
 
   constructor(

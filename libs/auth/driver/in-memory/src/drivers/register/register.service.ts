@@ -17,8 +17,8 @@ import { DaffRegisterServiceInterface } from '@daffodil/auth/driver';
   providedIn: 'root',
 })
 export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface<
-  DaffAccountRegistration,
-  DaffLoginInfo
+DaffAccountRegistration,
+DaffLoginInfo
 > {
   url = '/api/auth/';
 

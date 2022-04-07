@@ -16,11 +16,11 @@ export class BestSellersComponent implements OnInit {
 
   constructor(private facade: DaffBestSellersFacade<DaffProduct>) {}
 
-	bestSellers$: Observable<DaffProduct[]>;
-	loading$: Observable<boolean>;
+  bestSellers$: Observable<DaffProduct[]>;
+  loading$: Observable<boolean>;
 
-	ngOnInit() {
+  ngOnInit() {
 	  this.bestSellers$ = this.facade.bestSellers$;
 	  this.loading$ = this.facade.loading$;
-	}
+  }
 }

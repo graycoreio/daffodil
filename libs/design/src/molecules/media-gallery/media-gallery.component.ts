@@ -36,30 +36,30 @@ const _daffMediaGalleryBase = daffArticleEncapsulatedMixin((DaffMediaGalleryBase
   ],
 })
 export class DaffMediaGalleryComponent extends _daffMediaGalleryBase implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
-	/**
-	 * Adds a class for styling the media gallery
-	 */
-	@HostBinding('class.daff-media-gallery') class = true;
+  /**
+   * Adds a class for styling the media gallery
+   */
+  @HostBinding('class.daff-media-gallery') class = true;
 
-	/**
-	 * The name of the gallery
-	 */
-	@Input() name = `${uniqueGalleryId}`;
+  /**
+   * The name of the gallery
+   */
+  @Input() name = `${uniqueGalleryId}`;
 
-	constructor(
-		private elementRef: ElementRef,
-		private renderer: Renderer2,
-		private registry: DaffMediaGalleryRegistry,
-	) {
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private registry: DaffMediaGalleryRegistry,
+  ) {
 	  	super(elementRef, renderer);
 	  	uniqueGalleryId++;
-	}
+  }
 
-	ngOnInit() {
+  ngOnInit() {
 	  this.registry.add(this);
-	}
+  }
 
-	ngOnDestroy() {
+  ngOnDestroy() {
 	  this.registry.remove(this);
-	}
+  }
 }

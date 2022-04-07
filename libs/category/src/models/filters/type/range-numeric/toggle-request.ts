@@ -6,8 +6,8 @@ import { DaffCategoryFilterRangeRequestBase } from '../range/request-base';
  * toggle a price filter for the "10-20" range.
  */
 export interface DaffCategoryFilterRangeNumericToggleRequest extends DaffCategoryFilterRangeRequestBase<number> {
-	/**
-	 * The filter type.
-	 */
-	type: DaffCategoryFilterType.RangeNumeric;
+  /**
+   * The filter type.
+   */
+  type: DaffCategoryFilterType.RangeNumeric;
 }

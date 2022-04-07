@@ -23,41 +23,41 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
 export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
   loading$: Observable<boolean>;
 
-	private selectors = getDaffProductSelectors<T>();
+  private selectors = getDaffProductSelectors<T>();
 
-	constructor(private store: Store<DaffProductStateRootSlice<T>>) {
+  constructor(private store: Store<DaffProductStateRootSlice<T>>) {
 	  this.loading$ = this.store.pipe(select(this.selectors.selectCurrentProductLoadingState));
-	}
+  }
 
-	getProduct(id: T['id']): Observable<T> {
+  getProduct(id: T['id']): Observable<T> {
 	  return this.store.pipe(select(this.selectors.selectProduct(id)));
-	}
+  }
 
-	getPrice(id: T['id']): Observable<number> {
+  getPrice(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectProductPrice(id)));
-	}
+  }
 
-	hasDiscount(id: T['id']): Observable<boolean> {
+  hasDiscount(id: T['id']): Observable<boolean> {
 	  return this.store.pipe(select(this.selectors.selectProductHasDiscount(id)));
-	}
+  }
 
-	getDiscountAmount(id: T['id']): Observable<number> {
+  getDiscountAmount(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectProductDiscountAmount(id)));
-	}
+  }
 
-	getDiscountedPrice(id: T['id']): Observable<number> {
+  getDiscountedPrice(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectProductDiscountedPrice(id)));
-	}
+  }
 
-	getDiscountPercent(id: T['id']): Observable<number> {
+  getDiscountPercent(id: T['id']): Observable<number> {
 	  return this.store.pipe(select(this.selectors.selectProductDiscountPercent(id)));
-	}
+  }
 
-	isOutOfStock(id: T['id']): Observable<boolean> {
+  isOutOfStock(id: T['id']): Observable<boolean> {
 	  return this.store.pipe(select(this.selectors.selectIsProductOutOfStock(id)));
-	}
+  }
 
-	dispatch(action: Action) {
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

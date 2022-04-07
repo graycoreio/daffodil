@@ -11,8 +11,8 @@ import { DaffTestingRegisterService } from './register.service';
 
 describe('Driver | Testing | Auth | RegisterService', () => {
   let registerService: DaffRegisterServiceInterface<
-    DaffAccountRegistration,
-    DaffLoginInfo
+  DaffAccountRegistration,
+  DaffLoginInfo
   >;
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();

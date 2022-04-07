@@ -21,13 +21,13 @@ import { DaffUpsellProductsFacadeInterface } from './upsell-product-facade.inter
 export class DaffUpsellProductsFacade<T extends DaffProduct = DaffProduct> implements DaffUpsellProductsFacadeInterface<T> {
   upsellProducts$: Observable<T[]>;
 
-	private readonly selectors = getDaffUpsellProductsSelectors<T>();
+  private readonly selectors = getDaffUpsellProductsSelectors<T>();
 
-	constructor(private store: Store<DaffUpsellProductStateRootSlice<T>>) {
+  constructor(private store: Store<DaffUpsellProductStateRootSlice<T>>) {
 	  this.upsellProducts$ = this.store.pipe(select(this.selectors.selectUpsellProducts));
-	}
+  }
 
-	dispatch(action: Action) {
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

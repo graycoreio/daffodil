@@ -20,28 +20,28 @@ import { DaffModalComponent } from '../modal/modal.component';
   providedIn: DaffModalModule,
 })
 export class DaffModalService {
-	private _modals: DaffModal[] = [];
+  private _modals: DaffModal[] = [];
 
-	constructor(private overlay: Overlay) {}
+  constructor(private overlay: Overlay) {}
 
-	private defaultConfiguration: DaffModalConfiguration = {};
+  private defaultConfiguration: DaffModalConfiguration = {};
 
-	private _attachModal(
+  private _attachModal(
 	  overlayRef: OverlayRef,
-	): ComponentRef<DaffModalComponent> {
+  ): ComponentRef<DaffModalComponent> {
 	  const modal = overlayRef.attach(new ComponentPortal(DaffModalComponent));
 	  modal.instance.open = true;
 	  return modal;
-	}
+  }
 
-	private _attachModalContent(
+  private _attachModalContent(
 	  component: Type<any>,
 	  modal: ComponentRef<DaffModalComponent>,
-	): void {
+  ): void {
 	  modal.instance.attachContent(new ComponentPortal(component));
-	}
+  }
 
-	private _createOverlayRef(): OverlayRef {
+  private _createOverlayRef(): OverlayRef {
 	  return this.overlay.create({
 	    hasBackdrop: true,
 	    positionStrategy: new GlobalPositionStrategy()
@@ -49,9 +49,9 @@ export class DaffModalService {
 	      .centerVertically(),
 	    scrollStrategy: this.overlay.scrollStrategies.block(),
 	  });
-	}
+  }
 
-	private _removeModal(modal: DaffModal) {
+  private _removeModal(modal: DaffModal) {
 	  const index = this._modals.indexOf(modal);
 	  if (index === -1) {
 	    throw new Error(
@@ -62,12 +62,12 @@ export class DaffModalService {
 	  modal.overlay.dispose();
 
 	  this._modals = this._modals.filter(m => m !== modal);
-	}
+  }
 
-	open(
+  open(
 	  component: Type<any>,
 	  configuration?: Partial<DaffModalConfiguration>,
-	): DaffModal {
+  ): DaffModal {
 	  const config = { ...this.defaultConfiguration, ...configuration };
 	  const _ref = this._createOverlayRef();
 	  const _modal = this._attachModal(_ref);
@@ -88,13 +88,13 @@ export class DaffModalService {
 	        : this.close(modal),
 	    );
 	  return modal;
-	}
+  }
 
-	close(modal: DaffModal): void {
+  close(modal: DaffModal): void {
 	  modal.modal.instance.open = false;
 	  modal.overlay.detachBackdrop();
 	  modal.modal.instance.closedAnimationCompleted.subscribe(
 	    (e: AnimationEvent) => this._removeModal(modal),
 	  );
-	}
+  }
 }

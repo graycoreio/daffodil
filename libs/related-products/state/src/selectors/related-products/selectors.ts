@@ -17,15 +17,15 @@ import { getDaffRelatedProductsFeatureSelector } from '../feature.selector';
  * An interface for selectors of related products for the current product page.
  */
 export interface DaffRelatedProductsMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * Selects the IDs of the related products.
-	 */
-	selectRelatedProductIds: MemoizedSelector<DaffRelatedProductStateRootSlice, T['id'][]>;
+  /**
+   * Selects the IDs of the related products.
+   */
+  selectRelatedProductIds: MemoizedSelector<DaffRelatedProductStateRootSlice, T['id'][]>;
 
   /**
    * Selects the related products.
    */
-	selectRelatedProducts: MemoizedSelector<DaffRelatedProductStateRootSlice, T[]>;
+  selectRelatedProducts: MemoizedSelector<DaffRelatedProductStateRootSlice, T[]>;
 }
 
 const createRelatedProductSelectors = <T extends DaffProduct = DaffProduct>(): DaffRelatedProductsMemoizedSelectors<T> => {

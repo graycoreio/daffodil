@@ -12,7 +12,7 @@ import {
  * An interface for the entire configurable product feature state.
  */
 export interface DaffConfigurableProductFeatureMemoizedSelector {
-	selectConfigurableProductState: MemoizedSelector<Record<string, any>, DaffConfigurableProductReducersState>;
+  selectConfigurableProductState: MemoizedSelector<Record<string, any>, DaffConfigurableProductReducersState>;
 }
 
 /**

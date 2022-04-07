@@ -14,7 +14,7 @@ import {
 } from '../reducers/contact.reducer';
 
 export const selectContactFeatureState:
-  MemoizedSelector<DaffContactStateRootSlice, DaffContactState> = createFeatureSelector<DaffContactState>(DAFF_CONTACT_STORE_FEATURE_KEY);
+MemoizedSelector<DaffContactStateRootSlice, DaffContactState> = createFeatureSelector<DaffContactState>(DAFF_CONTACT_STORE_FEATURE_KEY);
 
 export const selectDaffContactLoading = createSelector(
   selectContactFeatureState, (state: DaffContactState) => state.loading,

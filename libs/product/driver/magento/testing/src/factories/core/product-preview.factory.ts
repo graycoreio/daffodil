@@ -9,13 +9,13 @@ import {
 } from '@daffodil/product/driver/magento';
 
 export class MockMagentoProductPreview implements MagentoProductPreview {
-	__typename = MagentoProductTypeEnum.SimpleProduct;
+  __typename = MagentoProductTypeEnum.SimpleProduct;
   uid = faker.datatype.uuid();
   url_key = faker.random.alphaNumeric(16);
   url_suffix = '.html';
   name = faker.random.word();
-	sku = faker.random.alphaNumeric(16);
-	stock_status = MagentoProductStockStatusEnum.InStock;
+  sku = faker.random.alphaNumeric(16);
+  stock_status = MagentoProductStockStatusEnum.InStock;
   thumbnail = {
     __typename: 'ProductImage',
     label: faker.random.words(3),

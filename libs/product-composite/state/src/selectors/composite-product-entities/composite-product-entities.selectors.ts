@@ -31,35 +31,35 @@ import { getDaffCompositeProductFeatureSelector } from '../feature.selector';
  * An interface for selectors related to the composite product applied options.
  */
 export interface DaffCompositeProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * The ngrx entities state for composite product applied options.
-	 */
-	selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, EntityState<DaffCompositeProductEntity>>;
-	/**
-	 * A selector for all composite product ids in state.
-	 */
-	selectCompositeProductIds: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, EntityState<DaffCompositeProductEntity>['ids']>;
-	/**
-	 * The ngrx entities for the composite product appllied options.
-	 */
-	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, EntityState<DaffCompositeProductEntity>['entities']>;
-	/**
-	 * The total number of composite products in state.
-	 */
-	selectCompositeProductTotal: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, number>;
-	/**
-	 * Selects the applied options for a composite product.
-	 *
-	 * @param id the id of the composite product.
-	 */
-	selectCompositeProductAppliedOptions: (id: T['id']) => MemoizedSelector<DaffCompositeProductStateRootSlice<T>, Dictionary<DaffCompositeProductItemOption>>;
-	/**
-	 * Selects whether the particular item of a composite product is required in order for the product to be valid, i.e. addable to the cart.
-	 *
-	 * @param id the id of the composite product.
-	 * @param item_id the id of the composite product item.
-	 */
-	selectIsCompositeProductItemRequired: (id: T['id'], item_id: DaffCompositeProductItem['id']) => MemoizedSelector<DaffCompositeProductStateRootSlice<T>, boolean>;
+  /**
+   * The ngrx entities state for composite product applied options.
+   */
+  selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, EntityState<DaffCompositeProductEntity>>;
+  /**
+   * A selector for all composite product ids in state.
+   */
+  selectCompositeProductIds: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, EntityState<DaffCompositeProductEntity>['ids']>;
+  /**
+   * The ngrx entities for the composite product appllied options.
+   */
+  selectCompositeProductAppliedOptionsEntities: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, EntityState<DaffCompositeProductEntity>['entities']>;
+  /**
+   * The total number of composite products in state.
+   */
+  selectCompositeProductTotal: MemoizedSelector<DaffCompositeProductStateRootSlice<T>, number>;
+  /**
+   * Selects the applied options for a composite product.
+   *
+   * @param id the id of the composite product.
+   */
+  selectCompositeProductAppliedOptions: (id: T['id']) => MemoizedSelector<DaffCompositeProductStateRootSlice<T>, Dictionary<DaffCompositeProductItemOption>>;
+  /**
+   * Selects whether the particular item of a composite product is required in order for the product to be valid, i.e. addable to the cart.
+   *
+   * @param id the id of the composite product.
+   * @param item_id the id of the composite product item.
+   */
+  selectIsCompositeProductItemRequired: (id: T['id'], item_id: DaffCompositeProductItem['id']) => MemoizedSelector<DaffCompositeProductStateRootSlice<T>, boolean>;
 }
 
 const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors<T> => {

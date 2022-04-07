@@ -19,68 +19,68 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  * An interface for selectors related to product entities and prices for simple products.
  */
 export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * Selects the ngrx entities state for products.
-	 */
-	selectProductEntitiesState: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>>;
-	/**
-	 * Selects all ids for products in state.
-	 */
-	selectProductIds: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>['ids']>;
-	/**
-	 * Selects the ngrx entities for all products in state.
-	 */
-	selectProductEntities: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>['entities']>;
-	/**
-	 * Selects all products in state as an array.
-	 */
-	selectAllProducts: MemoizedSelector<DaffProductStateRootSlice<T>, T[]>;
-	/**
-	 * Selects the total number of products in state.
-	 */
-	selectProductTotal: MemoizedSelector<DaffProductStateRootSlice<T>, number>;
-	/**
-	 * Selects a product by id.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectProduct: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, T>;
-	/**
-	 * Selects the price of a product.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectProductPrice: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
-	/**
-	 * Selects the discount of a product as some amount of currency.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
-	/**
-	 * Selects the discounted price of a product.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
-	/**
-	 * Selects the discount of a product as a percent of the original price.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
-	/**
-	 * Selects whether or not the product has a discount.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
-	/**
-	 * Selects whether or not a product is out of stock.
-	 *
-	 * @param productId the id of the product.
-	 */
-	selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
+  /**
+   * Selects the ngrx entities state for products.
+   */
+  selectProductEntitiesState: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>>;
+  /**
+   * Selects all ids for products in state.
+   */
+  selectProductIds: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>['ids']>;
+  /**
+   * Selects the ngrx entities for all products in state.
+   */
+  selectProductEntities: MemoizedSelector<DaffProductStateRootSlice<T>, EntityState<T>['entities']>;
+  /**
+   * Selects all products in state as an array.
+   */
+  selectAllProducts: MemoizedSelector<DaffProductStateRootSlice<T>, T[]>;
+  /**
+   * Selects the total number of products in state.
+   */
+  selectProductTotal: MemoizedSelector<DaffProductStateRootSlice<T>, number>;
+  /**
+   * Selects a product by id.
+   *
+   * @param productId the id of the product.
+   */
+  selectProduct: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, T>;
+  /**
+   * Selects the price of a product.
+   *
+   * @param productId the id of the product.
+   */
+  selectProductPrice: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
+  /**
+   * Selects the discount of a product as some amount of currency.
+   *
+   * @param productId the id of the product.
+   */
+  selectProductDiscountAmount: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
+  /**
+   * Selects the discounted price of a product.
+   *
+   * @param productId the id of the product.
+   */
+  selectProductDiscountedPrice: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
+  /**
+   * Selects the discount of a product as a percent of the original price.
+   *
+   * @param productId the id of the product.
+   */
+  selectProductDiscountPercent: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, number>;
+  /**
+   * Selects whether or not the product has a discount.
+   *
+   * @param productId the id of the product.
+   */
+  selectProductHasDiscount: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
+  /**
+   * Selects whether or not a product is out of stock.
+   *
+   * @param productId the id of the product.
+   */
+  selectIsProductOutOfStock: (productId: T['id']) => MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {

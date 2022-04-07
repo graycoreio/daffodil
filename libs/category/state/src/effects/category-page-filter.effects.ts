@@ -51,14 +51,14 @@ import { DaffCategoryFacade } from '../facades/category.facade';
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
-	V extends DaffGenericCategory<V>,
-	W extends DaffProduct
+  V extends DaffGenericCategory<V>,
+  W extends DaffProduct
 > {
 
   constructor(
     private actions$: Actions,
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V, W>,
-		@Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private facade: DaffCategoryFacade,
   ){}
 
@@ -72,9 +72,9 @@ export class DaffCategoryPageFilterEffects<
    */
 
   updateFilters$: (throttleWindow: number, scheduler: AsyncScheduler) => Observable<
-    DaffProductGridLoadSuccess
-    | DaffCategoryPageLoadSuccess
-    | DaffCategoryPageLoadFailure
+  DaffProductGridLoadSuccess
+  | DaffCategoryPageLoadSuccess
+  | DaffCategoryPageLoadFailure
   > = createEffect(() => (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType(
       DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,

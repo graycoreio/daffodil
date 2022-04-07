@@ -7,7 +7,7 @@ import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
  * The token for the `@daffodil/external-router` driver.
  */
 export const DaffExternalRouterDriver = new InjectionToken<
-	DaffExternalRouterDriverInterface
+DaffExternalRouterDriverInterface
 >('DaffExternalRouterDriver');
 
 /**
@@ -23,5 +23,5 @@ export interface DaffExternalRouterDriverInterface {
    *
    * @param url The full URL path qualified with file extension and leading slash but without domain. i.e. /full/path/to/thing.html
    */
-	resolve(url: string): Observable<DaffExternallyResolvableUrl>;
+  resolve(url: string): Observable<DaffExternallyResolvableUrl>;
 }

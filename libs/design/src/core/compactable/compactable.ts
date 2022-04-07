@@ -3,5 +3,5 @@
  * In order to be compactable, the class must implement this property.
  */
 export interface DaffCompactable {
-	compact: boolean;
+  compact: boolean;
 }

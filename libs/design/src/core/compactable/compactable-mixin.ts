@@ -6,8 +6,8 @@ import {
 import { Constructor } from '../constructor/constructor';
 
 export interface HasElementRef {
-	_elementRef: ElementRef;
-	_renderer: Renderer2;
+  _elementRef: ElementRef;
+  _renderer: Renderer2;
 }
 
 export function

@@ -11,12 +11,12 @@ import { DaffCartReducerState } from './cart-state.interface';
 import { DAFF_CART_STORE_FEATURE_KEY } from './cart-store-feature-key';
 
 export interface DaffCartReducersState<
-	T extends DaffCart = DaffCart,
+  T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
   U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-	cart: DaffCartReducerState<T>;
-	cartItems: EntityState<U>;
+  cart: DaffCartReducerState<T>;
+  cartItems: EntityState<U>;
   order: DaffCartOrderReducerState<V>;
 }
 

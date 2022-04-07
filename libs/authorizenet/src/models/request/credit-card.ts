@@ -1,6 +1,6 @@
 export interface DaffAuthorizeNetCreditCard {
-	cardnumber: string;
-	month: string;
-	year: string;
-	securitycode: string;
+  cardnumber: string;
+  month: string;
+  year: string;
+  securitycode: string;
 }

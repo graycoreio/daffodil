@@ -2,7 +2,7 @@
  * In order to be colorable, our class must implement this property
  */
 export interface DaffColorable {
-    color: DaffPalette;
+  color: DaffPalette;
 }
 
 /**

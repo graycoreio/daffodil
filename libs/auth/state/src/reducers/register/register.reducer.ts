@@ -18,9 +18,9 @@ export function daffAuthRegisterReducer<
 >(
   state = daffAuthRegisterInitialState,
   action: DaffAuthActions<
-    T,
-    U,
-    S
+  T,
+  U,
+  S
   >,
 ): DaffAuthRegisterReducerState {
   switch (action.type) {

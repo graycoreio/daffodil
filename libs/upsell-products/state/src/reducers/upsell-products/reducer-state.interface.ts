@@ -5,8 +5,8 @@ import { ID } from '@daffodil/core';
  * Stores the upsell product IDs for the current product that is loaded for a product page.
  */
 export interface DaffUpsellProductsReducerState {
-	/**
-	 * The upsell product IDs.
-	 */
+  /**
+   * The upsell product IDs.
+   */
   upsellProductIds: ID[];
 }

@@ -17,7 +17,7 @@ import {
  * Feature State Selector
  */
 const selectNewsletterFeatureState:
-  MemoizedSelector<DaffNewsletterStateRootSlice, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>(DAFF_NEWSLETTER_STORE_FEATURE_KEY);
+MemoizedSelector<DaffNewsletterStateRootSlice, DaffNewsletterState> = createFeatureSelector<DaffNewsletterState>(DAFF_NEWSLETTER_STORE_FEATURE_KEY);
 
 
 /**

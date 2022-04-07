@@ -10,7 +10,7 @@ import { DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY } from './configurable-prod
  * Interface for the redux store of the configurable product feature area.
  */
 export interface DaffConfigurableProductReducersState {
-	configurableProductAttributes: EntityState<DaffConfigurableProductEntity>;
+  configurableProductAttributes: EntityState<DaffConfigurableProductEntity>;
 }
 
 export interface DaffConfigurableProductStateRootSlice<T extends DaffProduct = DaffProduct> extends DaffProductStateRootSlice<T> {

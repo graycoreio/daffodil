@@ -15,7 +15,7 @@ import { DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY } from '../reducers/store-featu
  * An interface for the entire related products feature state.
  */
 export interface DaffRelatedProductsFeatureMemoizedSelector<T extends DaffProduct = DaffProduct> {
-	selectRelatedProductsState: MemoizedSelector<DaffRelatedProductStateRootSlice<T>, DaffRelatedProductsReducersState>;
+  selectRelatedProductsState: MemoizedSelector<DaffRelatedProductStateRootSlice<T>, DaffRelatedProductsReducersState>;
 }
 
 /**

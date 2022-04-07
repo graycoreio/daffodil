@@ -30,60 +30,60 @@ import { getAnimationState } from '../animation/accordion-animation-state';
 export class DaffNavAccordionItemComponent implements OnInit {
 
   constructor(
-		private accordion: DaffAccordionComponent,
-		@SkipSelf() @Optional() private navAccordionItemParent: DaffNavAccordionItemComponent,
+    private accordion: DaffAccordionComponent,
+    @SkipSelf() @Optional() private navAccordionItemParent: DaffNavAccordionItemComponent,
   ) {}
-	/**
-	 * @docs-private
-	 */
-	faChevronDown = faChevronDown;
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
+  faChevronDown = faChevronDown;
+  /**
+   * @docs-private
+   */
   faChevronUp = faChevronUp;
 
   /**
    * @docs-private
    */
-	@HostBinding('class') get classes() {
+  @HostBinding('class') get classes() {
     return [
       'daff-nav-accordion-item',
       'daff-nav-accordion-item--level-' + this._level,
     ];
   }
 
-	@Input() initiallyActive: boolean;
+  @Input() initiallyActive: boolean;
 
-	@ContentChildren(DaffNavAccordionItemComponent, { descendants: true })
-	_navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
+  @ContentChildren(DaffNavAccordionItemComponent, { descendants: true })
+  _navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
 
-	/**
-	 * @docs-private
-	 */
-	_open = false;
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
+  _open = false;
+  /**
+   * @docs-private
+   */
   _animationState: string;
 
-	/**
-	 * @docs-private
-	 */
-	_level = 0;
+  /**
+   * @docs-private
+   */
+  _level = 0;
 
-	/**
-	 * @docs-private
-	 */
-	ngOnInit() {
+  /**
+   * @docs-private
+   */
+  ngOnInit() {
 	  if(this.navAccordionItemParent && this.accordion === this.navAccordionItemParent.accordion) {
 	    this._level = this.navAccordionItemParent._level + 1;
 	  }
 	  this._open = this.initiallyActive ? this.initiallyActive : this._open;
 	  this._animationState = getAnimationState(this._open);
-	}
+  }
 
-	toggleActive() {
+  toggleActive() {
 	  this._open = !this._open;
 	  this._animationState = getAnimationState(this._open);
-	}
+  }
 }

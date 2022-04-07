@@ -5,8 +5,8 @@ import { ID } from '@daffodil/core';
  * Stores the related product IDs for the current product that is loaded for a product page.
  */
 export interface DaffRelatedProductsReducerState {
-	/**
-	 * The related product IDs.
-	 */
+  /**
+   * The related product IDs.
+   */
   relatedProductIds: ID[];
 }

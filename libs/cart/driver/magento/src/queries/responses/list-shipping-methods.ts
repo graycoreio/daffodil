@@ -6,7 +6,7 @@ export interface MagentoListShippingMethodsResponse {
     __typename: string;
     id: MagentoCart['id'];
     shipping_addresses: {
-			__typename: string;
+      __typename: string;
       available_shipping_methods: MagentoCartShippingMethod[];
     }[];
   };

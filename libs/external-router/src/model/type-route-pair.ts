@@ -18,10 +18,10 @@ import { DaffRouteWithoutPath } from './route-without-path';
  * @docs-private
  */
 export interface DaffTypeRoutePair {
-	type: DaffExternalRouteType;
-	route: DaffRouteWithoutPath;
+  type: DaffExternalRouteType;
+  route: DaffRouteWithoutPath;
   /**
    * An optional function to provide route insertion behavior.
    */
-	insertionStrategy?: DaffExternalRouterInsertionStrategy;
+  insertionStrategy?: DaffExternalRouterInsertionStrategy;
 }

@@ -37,29 +37,29 @@ export interface DaffCategoryMemoizedSelectors<
   /**
    * Selects the current category
    */
-	selectCurrentCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  selectCurrentCategory: MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
   /**
    * Selects the products of the current category.
    */
-	selectCategoryPageProducts: MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
+  selectCategoryPageProducts: MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
   /**
    * Selects a category by id.
    *
    * @param categoryId a category id.
    */
-	selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
+  selectCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, V>;
   /**
    * Selects products by category id.
    *
    * @param categoryId a category id.
    */
-	selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
+  selectProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V, W>, W[]>;
   /**
    * Selects the total number of products in a category.
    *
    * @param categoryId a category id.
    */
-	selectTotalProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
+  selectTotalProductsByCategory: (categoryId: V['id']) => MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
 }
 
 const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends DaffProduct>(): DaffCategoryMemoizedSelectors<V, W> => {

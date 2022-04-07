@@ -15,14 +15,14 @@ import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-
 import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 
 export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> {
-	selectPaypalFeatureState: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffPaypalReducersState<T>>;
-	selectPaypalState: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffPaypalReducerState<T>>;
-	selectPaypalTokenResponse: MemoizedSelector<DaffPaypalStateRootSlice<T>, T>;
-	selectPaypalLoading: MemoizedSelector<DaffPaypalStateRootSlice<T>, boolean>;
-	selectPaypalError: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffStateError>;
-	selectPaypalToken: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
-	selectPaypalStartUrl: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
-	selectPaypalEditUrl: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
+  selectPaypalFeatureState: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffPaypalReducersState<T>>;
+  selectPaypalState: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffPaypalReducerState<T>>;
+  selectPaypalTokenResponse: MemoizedSelector<DaffPaypalStateRootSlice<T>, T>;
+  selectPaypalLoading: MemoizedSelector<DaffPaypalStateRootSlice<T>, boolean>;
+  selectPaypalError: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffStateError>;
+  selectPaypalToken: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
+  selectPaypalStartUrl: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
+  selectPaypalEditUrl: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
 }
 
 const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => {

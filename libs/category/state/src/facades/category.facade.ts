@@ -37,11 +37,11 @@ import { DaffCategoryFacadeInterface } from './category-facade.interface';
   providedIn: 'root',
 })
 export class DaffCategoryFacade<
-	V extends DaffGenericCategory<V> = DaffCategory,
-	W extends DaffProduct = DaffProduct
+  V extends DaffGenericCategory<V> = DaffCategory,
+  W extends DaffProduct = DaffProduct
 > implements DaffCategoryFacadeInterface<V,W> {
 
-	private categorySelectors = getDaffCategorySelectors<V,W>();
+  private categorySelectors = getDaffCategorySelectors<V,W>();
 
   category$: Observable<V>;
 
@@ -55,9 +55,9 @@ export class DaffCategoryFacade<
 
   currentPage$: Observable<number>;
 
-	totalPages$: Observable<number>;
+  totalPages$: Observable<number>;
 
-	totalProducts$: Observable<number>;
+  totalProducts$: Observable<number>;
 
   pageSize$: Observable<number>;
 
@@ -77,23 +77,23 @@ export class DaffCategoryFacade<
 
   productsLoading$: Observable<boolean>;
 
-	errors$: Observable<DaffStateError[]>;
+  errors$: Observable<DaffStateError[]>;
 
-	isCategoryEmpty$: Observable<boolean>;
+  isCategoryEmpty$: Observable<boolean>;
 
-	getCategoryById(id: V['id']): Observable<V> {
+  getCategoryById(id: V['id']): Observable<V> {
 	  return this.store.pipe(select(this.categorySelectors.selectCategory(id)));
-	}
+  }
 
-	getProductsByCategory(categoryId: V['id']): Observable<W[]> {
+  getProductsByCategory(categoryId: V['id']): Observable<W[]> {
 	  return this.store.pipe(select(this.categorySelectors.selectProductsByCategory(categoryId)));
-	}
+  }
 
-	getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
+  getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
 	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory(categoryId)));
-	}
+  }
 
-	constructor(private store: Store<DaffCategoryStateRootSlice<V, W>>) {
+  constructor(private store: Store<DaffCategoryStateRootSlice<V, W>>) {
 	  this.category$ = this.store.pipe(select(this.categorySelectors.selectCurrentCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 	  this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));
@@ -113,14 +113,14 @@ export class DaffCategoryFacade<
 	  this.productsLoading$ = this.store.pipe(select(this.categorySelectors.selectCategoryProductsLoading));
 	  this.errors$ = this.store.pipe(select(this.categorySelectors.selectCategoryErrors));
 	  this.isCategoryEmpty$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageEmpty));
-	}
+  }
 
-	/**
-	 * Dispatches the given action.
-	 *
-	 * @param action action to dispatch.
-	 */
-	dispatch(action: Action) {
+  /**
+   * Dispatches the given action.
+   *
+   * @param action action to dispatch.
+   */
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

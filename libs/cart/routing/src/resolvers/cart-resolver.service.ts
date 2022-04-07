@@ -37,8 +37,8 @@ export class DaffCartResolver implements Resolve<Observable<Action>> {
   constructor(
     private store: Store<DaffCartStateRootSlice>,
     private dispatcher: ActionsSubject,
-		private router: Router,
-		@Inject(DaffCartResolverRedirectUrl) private redirectUrl: string,
+    private router: Router,
+    @Inject(DaffCartResolverRedirectUrl) private redirectUrl: string,
   ) {}
 
   resolve(): Observable<Action> {

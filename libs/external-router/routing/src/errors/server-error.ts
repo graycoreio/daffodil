@@ -8,9 +8,9 @@ import {
  */
 export class DaffExternalRouterServerError extends DaffInheritableError
   implements DaffError {
-	public readonly code: string = '5xx_SERVER_ERROR';
+  public readonly code: string = '5xx_SERVER_ERROR';
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

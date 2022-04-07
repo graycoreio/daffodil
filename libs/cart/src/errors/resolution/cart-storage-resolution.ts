@@ -12,9 +12,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * @inheritdoc
  */
 export class DaffCartStorageResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_STORAGE_RESOLUTION;
+  public readonly code: string = DaffCartErrorCodes.CART_STORAGE_RESOLUTION;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

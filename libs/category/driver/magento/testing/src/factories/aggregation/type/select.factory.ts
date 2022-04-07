@@ -9,10 +9,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 class MockMagentoAggregationSelect implements MagentoAggregation {
   attribute_code = 'select';
-	type = MagentoCategoryFilterType.Equal;
-	count = faker.datatype.number();
-	label = faker.random.word();
-	options =  [
+  type = MagentoCategoryFilterType.Equal;
+  count = faker.datatype.number();
+  label = faker.random.word();
+  options =  [
 	  {
 	    count: faker.datatype.number(),
 	    label: faker.random.word(),
@@ -28,7 +28,7 @@ class MockMagentoAggregationSelect implements MagentoAggregation {
 	    label: faker.random.word(),
 	    value: faker.datatype.uuid(),
 	  },
-	];
+  ];
 }
 
 @Injectable({

@@ -15,7 +15,7 @@ import { DAFF_UPSELL_PRODUCTS_STORE_FEATURE_KEY } from '../reducers/store-featur
  * An interface for the entire upsell products feature state.
  */
 export interface DaffUpsellProductsFeatureMemoizedSelector<T extends DaffProduct = DaffProduct> {
-	selectUpsellProductsState: MemoizedSelector<DaffUpsellProductStateRootSlice<T>, DaffUpsellProductsReducersState>;
+  selectUpsellProductsState: MemoizedSelector<DaffUpsellProductStateRootSlice<T>, DaffUpsellProductsReducersState>;
 }
 
 /**

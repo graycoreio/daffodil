@@ -9,7 +9,7 @@ export class MockDoc implements DaffioDoc {
   id = String(faker.datatype.number(1000));
   title = faker.lorem.words();
   contents = faker.lorem.paragraph();
-	tableOfContents = {
+  tableOfContents = {
 	  json: [
 	    {
 	      content: faker.lorem.words(),
@@ -37,7 +37,7 @@ export class MockDoc implements DaffioDoc {
 	      slug: faker.random.word(),
 	    },
 	  ],
-	};
+  };
 };
 
 @Injectable({

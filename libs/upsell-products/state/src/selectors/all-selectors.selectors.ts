@@ -13,8 +13,8 @@ import {
  * An interface for all selectors in the entire upsell products feature area.
  */
 export interface DaffUpsellProductsAllSelectors<T extends DaffProduct = DaffProduct> extends
-	DaffUpsellProductsMemoizedSelectors<T>,
-	DaffUpsellProductsFeatureMemoizedSelector<T>
+  DaffUpsellProductsMemoizedSelectors<T>,
+  DaffUpsellProductsFeatureMemoizedSelector<T>
 {}
 
 /**

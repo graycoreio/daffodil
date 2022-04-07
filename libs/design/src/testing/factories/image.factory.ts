@@ -4,8 +4,8 @@ import * as faker from '@faker-js/faker/locale/en_US';
 import { Image } from '../../interfaces/image';
 
 export class MockImage implements Image {
-    label = faker.image.nature();
-    url = faker.image.imageUrl();
+  label = faker.image.nature();
+  url = faker.image.imageUrl();
 };
 
 @Injectable()

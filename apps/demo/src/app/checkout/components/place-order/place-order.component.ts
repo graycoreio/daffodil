@@ -26,8 +26,8 @@ export class PlaceOrderComponent implements OnInit {
   cart$: Observable<DaffCart>;
 
   constructor(
-		private store: Store<any>,
-		private cartFacade: DaffCartFacade,
+    private store: Store<any>,
+    private cartFacade: DaffCartFacade,
   ) { }
 
   ngOnInit() {

@@ -17,8 +17,8 @@ import {
  * An interface for all selectors in the configurable product feature area.
  */
 export interface DaffConfigurableProductAllSelectors<T extends DaffProduct = DaffProduct> extends
-	DaffConfigurableProductEntitiesMemoizedSelectors<T>,
-	DaffConfigurableProductMemoizedSelectors<T>,
+  DaffConfigurableProductEntitiesMemoizedSelectors<T>,
+  DaffConfigurableProductMemoizedSelectors<T>,
   DaffConfigurableProductFeatureMemoizedSelector
 {}
 

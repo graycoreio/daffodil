@@ -14,18 +14,18 @@ export const daffApplyFilterRange = <T, U extends DaffCategoryFilterRangeRequest
   request: U,
   filter: V,
 ): V => ({
-    ...filter,
-    options: {
-      [daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]: {
-        min: {
-          value: request.value.min,
-          label: String(request.value.min),
-        },
-        max: {
-          value: request.value.max,
-          label: String(request.value.max),
-        },
-        applied: true,
+  ...filter,
+  options: {
+    [daffCategoryComputeFilterRangePairLabel(request.value.min, request.value.max)]: {
+      min: {
+        value: request.value.min,
+        label: String(request.value.min),
       },
+      max: {
+        value: request.value.max,
+        label: String(request.value.max),
+      },
+      applied: true,
     },
-  });
+  },
+});

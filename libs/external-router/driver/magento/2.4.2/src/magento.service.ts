@@ -24,17 +24,17 @@ import { transformResolutionToResolvableUrlv242 } from './transforms/resolution-
 export class DaffExternalRouterMagentoDriver
 implements DaffExternalRouterDriverInterface {
   constructor(
-		private apollo: Apollo,
+    private apollo: Apollo,
   ) {}
 
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {
     return this.apollo
       .query<MagentoUrlResolverResponse>({
-        query: MagentoResolveUrlv242,
-        variables: {
-          url,
-        },
-      })
+      query: MagentoResolveUrlv242,
+      variables: {
+        url,
+      },
+    })
       .pipe(map(response => transformResolutionToResolvableUrlv242(response.data.urlResolver)));
   }
 }

@@ -5,5 +5,5 @@
  * Disambiguation: This is does not relate to ecommerce "Orders", e.g. a purchase.
  */
 export interface DaffOrderable {
-	order: number;
+  order: number;
 }

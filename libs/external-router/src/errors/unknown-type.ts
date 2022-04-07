@@ -9,9 +9,9 @@ import {
  */
 export class DaffExternalRouterUnknownRouteTypeError extends DaffInheritableError
   implements DaffError {
-	public readonly code: string = 'UNKNOWN_ROUTE_TYPE';
+  public readonly code: string = 'UNKNOWN_ROUTE_TYPE';
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

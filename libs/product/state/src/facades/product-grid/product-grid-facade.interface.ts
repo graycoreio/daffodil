@@ -8,9 +8,9 @@ export interface DaffProductGridFacadeInterface<T extends DaffProduct = DaffProd
   /**
    * The loading state for retrieving a list of products.
    */
-	loading$: Observable<boolean>;
-	/**
-	 * The state for a list of products.
-	 */
-	products$: Observable<T[]>;
+  loading$: Observable<boolean>;
+  /**
+   * The state for a list of products.
+   */
+  products$: Observable<T[]>;
 }

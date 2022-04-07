@@ -39,7 +39,7 @@ import { schema } from '@daffodil/driver/magento';
 import { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
 
 interface MagentoCartSelectedShippingMethod extends MagentoCartShippingMethod {
-	__typename: string;
+  __typename: string;
 }
 
 describe('Driver | Magento | Cart | CartShippingInformationService', () => {

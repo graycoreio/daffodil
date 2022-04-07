@@ -21,26 +21,26 @@ import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
  * An interface to describe all selectors related to category ngrx entities state.
  */
 export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCategory<V> = DaffCategory> {
-	/**
-	 * Selects ngrx category entities state.
-	 */
-	selectCategoryEntitiesState: MemoizedSelector<DaffCategoryStateRootSlice<V>, EntityState<V>>;
-	/**
-	 * Selects the ids of all categories in state.
-	 */
-	selectCategoryIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, string[] | number[]>;
-	/**
-	 * Selects all categories in state as a dictionary.
-	 */
-	selectCategoryEntities: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dictionary<V>>;
-	/**
-	 * Selects all categories in state as an array.
-	 */
-	selectAllCategories: MemoizedSelector<DaffCategoryStateRootSlice<V>, V[]>;
-	/**
-	 * Selects the total number of categories in state.
-	 */
-	selectCategoryTotal: MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
+  /**
+   * Selects ngrx category entities state.
+   */
+  selectCategoryEntitiesState: MemoizedSelector<DaffCategoryStateRootSlice<V>, EntityState<V>>;
+  /**
+   * Selects the ids of all categories in state.
+   */
+  selectCategoryIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, string[] | number[]>;
+  /**
+   * Selects all categories in state as a dictionary.
+   */
+  selectCategoryEntities: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dictionary<V>>;
+  /**
+   * Selects all categories in state as an array.
+   */
+  selectAllCategories: MemoizedSelector<DaffCategoryStateRootSlice<V>, V[]>;
+  /**
+   * Selects the total number of categories in state.
+   */
+  selectCategoryTotal: MemoizedSelector<DaffCategoryStateRootSlice<V>, number>;
 }
 
 const createCategoryFeatureSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryEntitiesMemoizedSelectors<V> => {

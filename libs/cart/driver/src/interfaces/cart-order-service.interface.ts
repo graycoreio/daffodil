@@ -15,9 +15,9 @@ export interface DaffCartOrderServiceInterface<
   V extends DaffCartPaymentMethod = DaffCartPaymentMethod,
   R extends DaffCartOrderResult = DaffCartOrderResult
 > {
-	/**
-	 * Place an order and return the order ID.
-	 */
+  /**
+   * Place an order and return the order ID.
+   */
   placeOrder(id: T['id'], payment?: V): Observable<R>;
 }
 

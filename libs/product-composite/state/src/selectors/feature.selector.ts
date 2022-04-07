@@ -10,7 +10,7 @@ import { DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY } from '../reducers/composite-
  * An interface for the composite product feature state.
  */
 export interface DaffCompositeProductFeatureMemoizedSelector {
-	selectCompositeProductState: MemoizedSelector<Record<string, any>, DaffCompositeProductReducersState>;
+  selectCompositeProductState: MemoizedSelector<Record<string, any>, DaffCompositeProductReducersState>;
 }
 
 /**

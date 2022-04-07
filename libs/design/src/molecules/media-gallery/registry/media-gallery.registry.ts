@@ -5,25 +5,25 @@ import { DaffMediaGalleryRegistration } from '../media-gallery-registration.inte
 import { DaffThumbnailRegistration } from '../thumbnail/thumbnail-registration.interface';
 
 export interface DaffMediaGalleryDict {
-	[galleryName: string]: BehaviorSubject<DaffMediaGallery>;
+  [galleryName: string]: BehaviorSubject<DaffMediaGallery>;
 }
 
 export interface DaffMediaGallery {
-	gallery: DaffMediaGalleryRegistration;
-	thumbnails: DaffThumbnailRegistration[];
+  gallery: DaffMediaGalleryRegistration;
+  thumbnails: DaffThumbnailRegistration[];
 }
 
 export const isGallery = (element: DaffThumbnailRegistration | DaffMediaGalleryRegistration): element is DaffMediaGalleryRegistration => !('gallery' in element);
 
 @Injectable({ providedIn: 'root' })
 export class DaffMediaGalleryRegistry {
-	galleries: DaffMediaGalleryDict = {};
+  galleries: DaffMediaGalleryDict = {};
 
-	/**
-	 * @description
-	 * Adds a media element to the internal registry.
-	 */
-	add(gallery: DaffMediaGalleryRegistration, thumbnail?: DaffThumbnailRegistration) {
+  /**
+   * @description
+   * Adds a media element to the internal registry.
+   */
+  add(gallery: DaffMediaGalleryRegistration, thumbnail?: DaffThumbnailRegistration) {
 	  if(this.galleries[gallery.name]) {
 	    let newGallery = this.galleries[gallery.name].getValue();
 
@@ -48,21 +48,21 @@ export class DaffMediaGalleryRegistry {
 	  if(this.galleries[gallery.name].getValue().thumbnails.length === 1) {
 	    thumbnail.select();
 	  }
-	}
+  }
 
-	/**
-	 * @description
-	 * Removes a thumbnail or gallery from the internal registry.
-	 */
-	remove(element: DaffThumbnailRegistration | DaffMediaGalleryRegistration) {
+  /**
+   * @description
+   * Removes a thumbnail or gallery from the internal registry.
+   */
+  remove(element: DaffThumbnailRegistration | DaffMediaGalleryRegistration) {
 	  if(isGallery(element)) {
 	    this.removeGallery(element);
 	  } else {
 	    this.removeThumbnail(element);
 	  }
-	}
+  }
 
-	private removeThumbnail(thumbnail: DaffThumbnailRegistration) {
+  private removeThumbnail(thumbnail: DaffThumbnailRegistration) {
 	  if(!this.galleries[thumbnail.gallery.name]) {
 	    return;
 	  }
@@ -80,17 +80,17 @@ export class DaffMediaGalleryRegistry {
 	      ...gallery.thumbnails.slice(index + 1),
 	    ],
 	  });
-	}
+  }
 
-	private removeGallery(gallery: DaffMediaGalleryRegistration) {
+  private removeGallery(gallery: DaffMediaGalleryRegistration) {
 	  delete this.galleries[gallery.name];
-	}
+  }
 
-	/**
-	 * @description
-	 * Selects a media element for a given gallery.
-	 */
-	select(thumbnail: DaffThumbnailRegistration) {
+  /**
+   * @description
+   * Selects a media element for a given gallery.
+   */
+  select(thumbnail: DaffThumbnailRegistration) {
 	  if(!this.galleries[thumbnail.gallery.name]) {
 	    return;
 	  }
@@ -109,5 +109,5 @@ export class DaffMediaGalleryRegistry {
 	      thumbnail.select(),
 	    ],
 	  });
-	}
+  }
 }

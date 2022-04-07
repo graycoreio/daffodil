@@ -16,7 +16,7 @@ export interface DaffProductMagentoDriverConfig {
    * The fully-qualified base URL for media assets, such as product images.
    * e.g. https://api.daff.io/media/
    */
-	baseMediaUrl: string;
+  baseMediaUrl: string;
   /**
    * Whether or not to attempt to truncate the product URL
    * during the {@link DaffMagentoProductService#getByUrl} call.

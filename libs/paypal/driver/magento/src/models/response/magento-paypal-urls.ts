@@ -1,4 +1,4 @@
 export interface MagentoPaypalUrlsResponse {
-	start: string;
-	edit: string;
+  start: string;
+  edit: string;
 }

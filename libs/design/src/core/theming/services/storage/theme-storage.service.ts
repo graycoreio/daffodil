@@ -52,15 +52,15 @@ const storageEventBuilder = (
   providedIn: 'root',
 })
 export class DaffThemeStorageService {
-	private theme$: Observable<DaffTheme>;
-	private storage$: Subject<ThemeStorageEvent> = new Subject();
-	private doc?: Document;
+  private theme$: Observable<DaffTheme>;
+  private storage$: Subject<ThemeStorageEvent> = new Subject();
+  private doc?: Document;
 
-	constructor(
-		@Inject(DaffServerSafePersistenceServiceToken)
-		private storage: DaffPersistenceService,
-		@Inject(DOCUMENT) _doc: any,
-	) {
+  constructor(
+    @Inject(DaffServerSafePersistenceServiceToken)
+    private storage: DaffPersistenceService,
+    @Inject(DOCUMENT) _doc: any,
+  ) {
 	  this.doc = <Document>_doc;
 	  this.theme$ = merge(
 	    this.storage$,
@@ -86,31 +86,31 @@ export class DaffThemeStorageService {
 	    map((e) => coerceValue(e.newValue)),
 	    shareReplay(1),
 	  );
-	}
+  }
 
-	/**
-	 * Given that Safari doesn't respect in-tab storage events, we have to manually
-	 * fire storage events in the open tab on Webkit based browsers.
-	 */
-	private progressStorageEvent(theme: DaffTheme) {
+  /**
+   * Given that Safari doesn't respect in-tab storage events, we have to manually
+   * fire storage events in the open tab on Webkit based browsers.
+   */
+  private progressStorageEvent(theme: DaffTheme) {
 	  this.storage$.next(storageEventBuilder(theme));
-	}
+  }
 
-	getThemeAsObservable(): Observable<DaffTheme> {
+  getThemeAsObservable(): Observable<DaffTheme> {
 	  return this.theme$;
-	}
+  }
 
-	getTheme(): DaffTheme {
+  getTheme(): DaffTheme {
 	  return coerceValue(this.storage.getItem(THEME_STORAGE_KEY));
-	}
+  }
 
-	setTheme(theme: DaffTheme): void {
+  setTheme(theme: DaffTheme): void {
 	  this.progressStorageEvent(theme);
 	  this.storage.setItem(THEME_STORAGE_KEY, theme);
-	}
+  }
 
-	removeThemeSetting(): void {
+  removeThemeSetting(): void {
 	  this.progressStorageEvent(DaffTheme.None);
 	  this.storage.removeItem(THEME_STORAGE_KEY);
-	}
+  }
 }

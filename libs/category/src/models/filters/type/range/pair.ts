@@ -6,16 +6,16 @@ import { DaffCategoryFilterRangeOption } from './option';
  * Specifies a pair of min and max values.
  */
 export interface DaffCategoryFilterRangePair<T> extends DaffCategoryFilterOptionBase {
-	/**
-	 * The range pair is always set to applied, because a filter range pair exists if it is applied and does not exist if it is not applied.
-	 */
-	applied: true;
-	/**
-	 * The minimum range option of the filter range pair.
-	 */
-	min: DaffCategoryFilterRangeOption<T>;
-	/**
-	 * The maximum range option of the filter range pair.
-	 */
-	max: DaffCategoryFilterRangeOption<T>;
+  /**
+   * The range pair is always set to applied, because a filter range pair exists if it is applied and does not exist if it is not applied.
+   */
+  applied: true;
+  /**
+   * The minimum range option of the filter range pair.
+   */
+  min: DaffCategoryFilterRangeOption<T>;
+  /**
+   * The maximum range option of the filter range pair.
+   */
+  max: DaffCategoryFilterRangeOption<T>;
 }

@@ -24,14 +24,14 @@ export class DaffProductPageFacade<T extends DaffProduct = DaffProduct> implemen
   loading$: Observable<boolean>;
   product$: Observable<T>;
 
-	private selectors = getDaffProductSelectors<T>();
+  private selectors = getDaffProductSelectors<T>();
 
-	constructor(private store: Store<DaffProductStateRootSlice<T>>) {
+  constructor(private store: Store<DaffProductStateRootSlice<T>>) {
 	  this.loading$ = this.store.pipe(select(this.selectors.selectCurrentProductLoadingState));
 	  this.product$ = this.store.pipe(select(this.selectors.selectCurrentProduct));
-	}
+  }
 
-	dispatch(action: Action) {
+  dispatch(action: Action) {
 	  this.store.dispatch(action);
-	}
+  }
 }

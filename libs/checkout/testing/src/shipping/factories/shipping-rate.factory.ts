@@ -5,13 +5,13 @@ import { ShippingRate } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockShippingRate implements ShippingRate {
-    rate_id = faker.datatype.number({ min: 1, max: 1000 });
-    price = faker.datatype.number({ min: 1, max: 1000 });
-    carrier = 'Birds Inc.';
-    code = 'code';
-    method = 'swallow';
-    method_description = 'efficient';
-    method_title = 'laden';
+  rate_id = faker.datatype.number({ min: 1, max: 1000 });
+  price = faker.datatype.number({ min: 1, max: 1000 });
+  carrier = 'Birds Inc.';
+  code = 'code';
+  method = 'swallow';
+  method_description = 'efficient';
+  method_title = 'laden';
 }
 
 @Injectable({

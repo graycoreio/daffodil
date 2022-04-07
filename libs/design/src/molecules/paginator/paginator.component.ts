@@ -50,34 +50,34 @@ const visiblePageRange = 2;
 })
 export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChanges, DaffColorable {
 
-	/**
-	 * @docs-private
-	 */
-	@HostBinding('class.daff-paginator') class = true;
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-paginator') class = true;
+  /**
+   * @docs-private
+   */
   @HostBinding('attr.role') role = 'navigation';
 
-	/**
-	 * @docs-private
-	 */
-	faChevronRight = faChevronRight;
-	/**
-	 * @docs-private
-	 */
+  /**
+   * @docs-private
+   */
+  faChevronRight = faChevronRight;
+  /**
+   * @docs-private
+   */
   faChevronLeft = faChevronLeft;
 
-	/**
-	 * @docs-private
-	 */
-	_paginatorId: string;
+  /**
+   * @docs-private
+   */
+  _paginatorId: string;
 
-	constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
 	  super(elementRef, renderer);
 	  const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
 	  this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
-	}
+  }
 
   /**
    * The total number of pages the paginator tracks. This number can change dynamically, but the end user is responsible for keeping numberOfPages

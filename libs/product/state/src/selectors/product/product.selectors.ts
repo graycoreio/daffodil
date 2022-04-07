@@ -16,22 +16,22 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  * An interface for selectors related to the current product page.
  */
 export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * Selects the entire state object for the product page feature area.
-	 */
-	selectCurrentProductState: MemoizedSelector<DaffProductStateRootSlice, DaffProductReducerState>;
-	/**
-	 * Selects the loading state of the current product.
-	 */
-	selectCurrentProductLoadingState: MemoizedSelector<DaffProductStateRootSlice, boolean>;
-	/**
-	 * Selects the id of the current product.
-	 */
-	selectCurrentProductId: MemoizedSelector<DaffProductStateRootSlice, T['id']>;
+  /**
+   * Selects the entire state object for the product page feature area.
+   */
+  selectCurrentProductState: MemoizedSelector<DaffProductStateRootSlice, DaffProductReducerState>;
+  /**
+   * Selects the loading state of the current product.
+   */
+  selectCurrentProductLoadingState: MemoizedSelector<DaffProductStateRootSlice, boolean>;
+  /**
+   * Selects the id of the current product.
+   */
+  selectCurrentProductId: MemoizedSelector<DaffProductStateRootSlice, T['id']>;
   /**
    * Selects the current product, which is the product loaded for a product page.
    */
-	selectCurrentProduct: MemoizedSelector<DaffProductStateRootSlice, T>;
+  selectCurrentProduct: MemoizedSelector<DaffProductStateRootSlice, T>;
 }
 
 const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductPageMemoizedSelectors<T> => {

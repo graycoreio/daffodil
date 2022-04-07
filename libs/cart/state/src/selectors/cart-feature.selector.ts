@@ -17,18 +17,18 @@ import {
 
 export interface DaffCartFeatureMemoizedSelectors<
   T extends DaffCart = DaffCart,
-	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffStatefulCartItem = DaffStatefulCartItem
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-	selectCartFeatureState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducersState<T, V, U>>;
+  selectCartFeatureState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducersState<T, V, U>>;
 }
 
 export const getDaffCartFeatureSelector = (() => {
   let cache;
   return <
     T extends DaffCart = DaffCart,
-		V extends DaffCartOrderResult = DaffCartOrderResult,
-		U extends DaffStatefulCartItem = DaffStatefulCartItem
+    V extends DaffCartOrderResult = DaffCartOrderResult,
+    U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartFeatureMemoizedSelectors<T, V, U> => cache = cache
     ? cache
     : {

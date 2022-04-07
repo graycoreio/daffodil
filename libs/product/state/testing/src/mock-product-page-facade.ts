@@ -9,7 +9,7 @@ import { DaffProductPageFacadeInterface } from '@daffodil/product/state';
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductPageFacade implements DaffProductPageFacadeInterface {
-	loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
-	dispatch(action) {};
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
+  dispatch(action) {};
 }

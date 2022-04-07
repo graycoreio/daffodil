@@ -10,8 +10,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffMockCartItem } from './cart-item.factory';
 
 export class DaffMockConfigurableCartItem extends DaffMockCartItem implements DaffConfigurableCartItem {
-	type = DaffCartItemInputType.Configurable;
-	attributes = [
+  type = DaffCartItemInputType.Configurable;
+  attributes = [
 	  {
 	    attribute_label: 'Color',
 	    value_label: 'Red',
@@ -20,7 +20,7 @@ export class DaffMockConfigurableCartItem extends DaffMockCartItem implements Da
 	    attribute_label: 'Size',
 	    value_label: 'M',
 	  },
-	];
+  ];
 }
 
 @Injectable({

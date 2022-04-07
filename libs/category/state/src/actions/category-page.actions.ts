@@ -58,7 +58,7 @@ export class DaffCategoryPageLoadByUrl implements Action {
 export class DaffCategoryPageLoadSuccess<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct
-  > implements Action {
+> implements Action {
   readonly type = DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction;
 
   constructor(public response: DaffGetCategoryResponse<V, W>) { }
@@ -116,7 +116,7 @@ export class DaffCategoryPageChangeSortingOption implements Action {
 export type DaffCategoryPageActions<
   U extends DaffGenericCategory<U> = DaffCategory,
   W extends DaffProduct = DaffProduct
-  > =
+> =
   | DaffCategoryPageLoad
   | DaffCategoryPageLoadByUrl
   | DaffCategoryPageLoadSuccess<U, W>

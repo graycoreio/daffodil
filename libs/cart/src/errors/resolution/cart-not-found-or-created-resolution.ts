@@ -12,9 +12,9 @@ import { DaffCartErrorCodes } from '../codes.enum';
  * @inheritdoc
  */
 export class DaffCartNotFoundOrCreatedResolutionError extends DaffInheritableError implements DaffError {
-	public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION;
+  public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION;
 
-	constructor(message?: string) {
+  constructor(message?: string) {
 	  super(message);
-	}
+  }
 }

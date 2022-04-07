@@ -7,7 +7,7 @@ import { DaffSubdivision } from '@daffodil/geography';
 export class MockSubdivision implements DaffSubdivision {
   id = faker.datatype.uuid();
   name = faker.random.word();
-	iso_3166_2 = faker.random.alphaNumeric(2);
+  iso_3166_2 = faker.random.alphaNumeric(2);
 }
 
 @Injectable({

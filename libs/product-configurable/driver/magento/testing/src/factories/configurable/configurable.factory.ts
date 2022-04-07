@@ -11,14 +11,14 @@ import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing
 
 export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct implements MagentoConfigurableProduct {
 
-	private priceVariant1 = faker.datatype.number({ min: 1, max: 1000 });
-	private discountVariant1 = faker.datatype.number({ min: 0, max: this.priceVariant1 - 1 });
-	private priceVariant2 = faker.datatype.number({ min: 1, max: 1000 });
-	private discountVariant2 = faker.datatype.number({ min: 0, max: this.priceVariant2 - 1 });
-	private priceVariant3 = faker.datatype.number({ min: 1, max: 1000 });
-	private discountVariant3 = faker.datatype.number({ min: 0, max: this.priceVariant3 - 1 });
+  private priceVariant1 = faker.datatype.number({ min: 1, max: 1000 });
+  private discountVariant1 = faker.datatype.number({ min: 0, max: this.priceVariant1 - 1 });
+  private priceVariant2 = faker.datatype.number({ min: 1, max: 1000 });
+  private discountVariant2 = faker.datatype.number({ min: 0, max: this.priceVariant2 - 1 });
+  private priceVariant3 = faker.datatype.number({ min: 1, max: 1000 });
+  private discountVariant3 = faker.datatype.number({ min: 0, max: this.priceVariant3 - 1 });
   __typename = MagentoProductTypeEnum.ConfigurableProduct;
-	configurable_options = [
+  configurable_options = [
 	  {
 	    attribute_code: 'color',
 	    label: 'Color',
@@ -38,8 +38,8 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	      },
 	    ],
 	  },
-	];
-	variants = [
+  ];
+  variants = [
 	  {
 	    attributes: [
 	      {
@@ -167,7 +167,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 	      },
 	    },
 	  },
-	];
+  ];
 }
 
 /**

@@ -9,9 +9,9 @@ import {
  */
 export class DaffExternalRouterTemporaryRedirectError extends DaffInheritableError
   implements DaffError {
-	public readonly code: string = 'TEMPORARY_REDIRECT';
+  public readonly code: string = 'TEMPORARY_REDIRECT';
 
-	constructor(public redirectUrl: string, message?: string) {
+  constructor(public redirectUrl: string, message?: string) {
 	  super(message);
-	}
+  }
 }

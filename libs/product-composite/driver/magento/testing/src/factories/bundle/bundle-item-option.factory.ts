@@ -12,7 +12,7 @@ export class MockMagentoBundledProductItemOption implements MagentoBundledProduc
     private simpleFactory: MagentoSimpleProductFactory,
   ) {}
 
-	uid = faker.datatype.uuid();
+  uid = faker.datatype.uuid();
   label = faker.random.word();
   quantity = faker.datatype.number({ min: 1, max: 20 });
   is_default = faker.random.boolean();

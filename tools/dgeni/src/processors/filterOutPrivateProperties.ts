@@ -7,11 +7,11 @@ import {
  * Filter out properties that are marked as @docs-private
  */
 export class FilterOutPrivatePropertiesProcessor implements Processor {
-	name = 'filterOutPrivateProperties';
-	$runAfter = ['docs-processed'];
-	$runBefore = ['rendering-docs'];
+  name = 'filterOutPrivateProperties';
+  $runAfter = ['docs-processed'];
+  $runBefore = ['rendering-docs'];
 
-	$process(docs: Document[]): Document[] {
+  $process(docs: Document[]): Document[] {
 	  return docs.map(doc => {
 	    if(!doc.members) {
 	      return doc;
@@ -22,7 +22,7 @@ export class FilterOutPrivatePropertiesProcessor implements Processor {
 	      members: filterOutPrivateProperties(doc.members),
 	    } : doc;
 	  });
-	}
+  }
 }
 
 function filterOutPrivateProperties(members): any {

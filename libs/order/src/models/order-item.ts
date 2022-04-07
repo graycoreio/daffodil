@@ -14,9 +14,9 @@ export enum DaffOrderItemType {
 
 export interface DaffOrderItem extends DaffIdentifiable {
   type: DaffOrderItemType;
-	/**
-	 * @deprecated use id instead.
-	 */
+  /**
+   * @deprecated use id instead.
+   */
   item_id: ID;
   qty_ordered: number;
   qty_canceled: number;

@@ -66,9 +66,9 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     private cartTransformer: DaffMagentoCartTransformer,
     @Inject(DaffCartItemDriver) private cartItemDriver: DaffCartItemServiceInterface<
-      DaffCartItem,
-      DaffCartItemInput,
-      DaffCart
+    DaffCartItem,
+    DaffCartItemInput,
+    DaffCart
     >,
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
   ) {}

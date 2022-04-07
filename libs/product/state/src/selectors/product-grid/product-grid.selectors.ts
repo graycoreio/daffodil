@@ -16,14 +16,14 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
  * An interface for selectors related to loading a grid of products.
  */
 export interface DaffProductGridMemoizedSelectors<T extends DaffProduct = DaffProduct> {
-	/**
-	 * Selects the redux state for the product grid feature area. Returns {@link DaffProductGridReducerState}.
-	 */
-	selectProductGridState: MemoizedSelector<DaffProductStateRootSlice<T>, DaffProductGridReducerState<T>>;
-	/**
-	 * Selects whether any product grid requests are loading.
-	 */
-	selectProductGridLoadingState: MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
+  /**
+   * Selects the redux state for the product grid feature area. Returns {@link DaffProductGridReducerState}.
+   */
+  selectProductGridState: MemoizedSelector<DaffProductStateRootSlice<T>, DaffProductGridReducerState<T>>;
+  /**
+   * Selects whether any product grid requests are loading.
+   */
+  selectProductGridLoadingState: MemoizedSelector<DaffProductStateRootSlice<T>, boolean>;
 }
 
 const createProductGridSelectors = <T extends DaffProduct>(): DaffProductGridMemoizedSelectors<T> => {

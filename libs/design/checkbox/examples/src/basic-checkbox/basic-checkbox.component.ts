@@ -12,15 +12,15 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicCheckboxComponent implements OnInit {
-    checkboxExample = new FormControl();
+  checkboxExample = new FormControl();
 
-    ngOnInit() {
-      this.checkboxExample.setValue(true);
-    }
-    setFalse() {
-      this.checkboxExample.setValue(false);
-    }
-    setTrue() {
-      this.checkboxExample.setValue(true);
-    }
+  ngOnInit() {
+    this.checkboxExample.setValue(true);
+  }
+  setFalse() {
+    this.checkboxExample.setValue(false);
+  }
+  setTrue() {
+    this.checkboxExample.setValue(true);
+  }
 }

@@ -31,13 +31,13 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
   /**
    * Private tracker for indicating when the component is destroyed.
    */
-   private _destroy$ = new Subject();
+  private _destroy$ = new Subject();
 
-   constructor(
+  constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private registry: DaffMediaGalleryRegistry,
     @Inject(DAFF_MEDIA_GALLERY_TOKEN) private gallery: DaffMediaGalleryRegistration,
-   ) {}
+  ) {}
 
   /**
    * The slot that the "component" is rendered into.

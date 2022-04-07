@@ -14,15 +14,15 @@ import { DaffCategoryReducerState } from './category/category-reducer-state.inte
  * An interface to describe all of category state.
  */
 export interface DaffCategoryReducersState<
-	V extends DaffGenericCategory<V> = DaffCategory
+  V extends DaffGenericCategory<V> = DaffCategory
 > {
-	/**
-	 * Redux state for category page metadata, category loading state, and errors associated with loading a category.
-	 */
+  /**
+   * Redux state for category page metadata, category loading state, and errors associated with loading a category.
+   */
   category: DaffCategoryReducerState;
-	/**
-	 * Redux state for category entities.
-	 */
+  /**
+   * Redux state for category entities.
+   */
   categoryEntities: EntityState<V>;
 }
 

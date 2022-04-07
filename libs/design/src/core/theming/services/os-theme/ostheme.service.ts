@@ -39,11 +39,11 @@ export const removeHandlerFactory = (window: Window) => (handler: any) => {
 })
 export class DaffOsThemeService {
 
-	preference$: Observable<DaffTheme>;
+  preference$: Observable<DaffTheme>;
 
-	private doc?: Document;
+  private doc?: Document;
 
-	constructor(@Inject(DOCUMENT) _doc: any) {
+  constructor(@Inject(DOCUMENT) _doc: any) {
 	  this.doc = <Document>_doc;
 
 	  this.preference$ = this.doc.defaultView?.matchMedia
@@ -57,12 +57,12 @@ export class DaffOsThemeService {
 	        map((prefersDark) => prefersDark ? DaffTheme.Dark : DaffTheme.Light),
 	      )
 	    : of(DaffTheme.None);
-	}
+  }
 
-	/**
-	 * Get the operating system's theme preference.
-	 */
-	public getThemePreference(): Observable<DaffTheme> {
+  /**
+   * Get the operating system's theme preference.
+   */
+  public getThemePreference(): Observable<DaffTheme> {
 	  return this.preference$;
-	}
+  }
 }

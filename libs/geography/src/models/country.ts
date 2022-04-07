@@ -7,10 +7,10 @@ import { DaffSubdivision } from './subdivision';
  * See: ISO-3166
  */
 export interface DaffCountry extends DaffIdentifiable {
-	name: string;
-	name_en: string;
-	alpha2: string;
-	alpha3: string;
+  name: string;
+  name_en: string;
+  alpha2: string;
+  alpha3: string;
   subdivisions: DaffSubdivision[];
   /**
    * Whether or not the country has been fully loaded.

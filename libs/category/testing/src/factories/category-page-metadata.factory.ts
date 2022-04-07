@@ -27,7 +27,7 @@ export class MockCategoryPageMetadata implements DaffCategoryPageMetadata {
   	],
   };
   applied_sort_option = 'position';
-	applied_sort_direction = null;
+  applied_sort_direction = null;
 
   current_page = 1;
   total_pages = faker.datatype.number({ min: 1, max: 4 });

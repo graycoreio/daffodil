@@ -43,14 +43,14 @@ import {
 @Injectable()
 export class CartResolverEffects {
   constructor(
-		private actions$: Actions,
-		private store: Store<DaffCartStateRootSlice>,
-		private cartStorage: DaffCartStorageService,
-		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface,
+    private actions$: Actions,
+    private store: Store<DaffCartStateRootSlice>,
+    private cartStorage: DaffCartStorageService,
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface,
   ) {}
 
 
-	onResolveCart$: Observable<Action> = createEffect(() => this.actions$.pipe(
+  onResolveCart$: Observable<Action> = createEffect(() => this.actions$.pipe(
 	  ofType(CartResolverActionTypes.ResolveCartAction),
 	  switchMap(() => this.selectStoreCart().pipe(
 	    take(1),
@@ -62,16 +62,16 @@ export class CartResolverEffects {
 	      }
 	    }),
 	  )),
-	));
+  ));
 
-	selectStoreCart(): Observable<DaffCart> {
+  selectStoreCart(): Observable<DaffCart> {
 	  return this.store.pipe(select(daffCartSelectors.selectCartValue));
-	}
+  }
 
-	private getCartHandler(): Observable<Action> {
+  private getCartHandler(): Observable<Action> {
 	  return this.driver.get(this.cartStorage.getCartId()).pipe(
 	    map(resp => new ResolveCartSuccess(resp.response)),
 	    catchError(error => of(new ResolveCartFailure(null))),
 	  );
-	}
+  }
 }
