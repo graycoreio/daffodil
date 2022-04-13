@@ -3,6 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 import {
+  act,
   Actions,
   createEffect,
   ofType,
@@ -10,11 +11,15 @@ import {
 import {
   of,
   Observable,
+  asyncScheduler,
 } from 'rxjs';
 import {
   switchMap,
   map,
   catchError,
+  groupBy,
+  mergeMap,
+  throttleTime,
 } from 'rxjs/operators';
 
 import { DaffError } from '@daffodil/core';
@@ -42,17 +47,27 @@ export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
     private actions$: Actions,
     @Inject(DaffNavigationDriver) private driver: DaffNavigationServiceInterface<T>,
     @Inject(DAFF_NAVIGATION_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-  ) {}
+  ) { }
 
-
-  loadNavigation$: Observable<any> = createEffect(() => this.actions$.pipe(
-    ofType(DaffNavigationActionTypes.NavigationLoadAction),
-    switchMap((action: DaffNavigationLoad) =>
-      this.driver.get(action.payload)
-        .pipe(
-          map((resp) => new DaffNavigationLoadSuccess(resp)),
-          catchError((error: DaffError) => of(new DaffNavigationLoadFailure(this.errorMatcher(error)))),
+  loadNavigation$:
+  (throttleWindow: number, scheduler: typeof asyncScheduler) => Observable<DaffNavigationLoadSuccess<T> | DaffNavigationLoadFailure>
+  = createEffect(
+    () => (throttleWindow = 50, scheduler = asyncScheduler) =>
+      this.actions$.pipe(
+        ofType(DaffNavigationActionTypes.NavigationLoadAction),
+        groupBy((action: DaffNavigationLoad) => action.payload),
+        mergeMap(group$ => group$.pipe(
+          throttleTime(throttleWindow, scheduler),
+          switchMap((action: DaffNavigationLoad) =>
+            this.driver.get(action.payload)
+              .pipe(
+                map((resp) => new DaffNavigationLoadSuccess(resp)),
+                catchError((error: DaffError) => of(new DaffNavigationLoadFailure(this.errorMatcher(error)))),
+              ),
+          )),
         ),
-    ),
-  ));
+      ),
+  );
 }
+
+
