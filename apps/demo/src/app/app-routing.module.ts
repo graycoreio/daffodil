@@ -4,6 +4,8 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DaffProductPageIdResolver } from '@daffodil/product/routing';
+
 import { EmptyCartResolver } from './cart/routing-resolvers/resolvers/empty-cart-resolver.service';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
@@ -22,7 +24,13 @@ export const appRoutes: Routes = [
     path: '', component: TemplateComponent, children: [
       { path: 'product-grid', component: ProductGridViewComponent },
       { path: 'cart',       loadChildren: () => import('./cart/cart.module').then(m => m.DemoCartModule) },
-      { path: 'product/:id', component: ProductViewComponent },
+      {
+        path: 'product/:id',
+        component: ProductViewComponent,
+        resolve: {
+          product: DaffProductPageIdResolver,
+        },
+      },
       {
         path: 'checkout',
         children: [
