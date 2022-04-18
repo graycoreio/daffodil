@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.42.0](https://github.com/graycoreio/daffodil/compare/v0.41.0...v0.42.0) (2022-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **external-router:** previously, the value of an individual daffPath key was a string. This was nonsensical, so we broke it.
+
+### Features
+
+* **external-router:** add a new Magento v2.4.3 driver ([#2085](https://github.com/graycoreio/daffodil/issues/2085)) ([802bb79](https://github.com/graycoreio/daffodil/commit/802bb79956a1e3623da463bda8884ff42419716f))
+* **external-router:** allow for additional data to be stored on daffPaths in externally routed Routes. ([#2084](https://github.com/graycoreio/daffodil/issues/2084)) ([aecf893](https://github.com/graycoreio/daffodil/commit/aecf893e94277f236a05e96521dde4afe53dc739))
+* **seo:** add a native @angular/router tracking layer ([#2083](https://github.com/graycoreio/daffodil/issues/2083)) ([ae4e4a0](https://github.com/graycoreio/daffodil/commit/ae4e4a0dae862770a345c2e382e528e444a2ad65))
+
 ## [0.41.0](https://github.com/graycoreio/daffodil/compare/v0.40.1...v0.41.0) (2022-04-06)
 
 
