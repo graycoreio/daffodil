@@ -1,35 +1,43 @@
 import {
-  Actions,
-  createEffect,
-  ofType,
-} from '@ngrx/effects';
-import {
-  ROUTER_REQUEST,
-  ROUTER_CANCEL,
-  ROUTER_ERROR,
-  ROUTER_NAVIGATED,
-} from '@ngrx/router-store';
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  Event,
+  ActivatedRoute,
+} from '@angular/router';
+import { createEffect } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import {
   map,
   tap,
   switchMapTo,
+  filter,
 } from 'rxjs/operators';
 
 import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
 
-import { DaffSeoUpdateActionPair } from '../models/public_api';
+import { DaffSeoUpdateEventPair } from '../../models/update-event-pair.interface';
+
+export const shouldHandleEvent = <T extends DaffSeoUpdateEventPair>(routingEvent: Event, operators: T[]): boolean =>
+  !!operators.find((trackableEvents) => routingEvent instanceof trackableEvents.event);
 
 /**
  * Hooks into the Angular router to manage SEO data on the page as navigation occurs.
  *
  * @docs-private
  */
-export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableServiceInterface<V>, R extends DaffSeoUpdateActionPair = DaffSeoUpdateActionPair, V = unknown> {
+export abstract class DaffSeoPageHookRouterEffects<
+  T extends DaffSeoRestoreableServiceInterface<V>,
+  R extends DaffSeoUpdateEventPair = DaffSeoUpdateEventPair,
+  V = unknown> {
+
   constructor(
-    protected actions$: Actions,
+    protected router: Router,
     protected updates: R[],
     protected service: T,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   /**
@@ -38,12 +46,12 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
    * @docs-private
    */
   getData$ = createEffect(
-    () => this.actions$.pipe(
-      ofType(...this.updates.map(({ action }) => action)),
-      map(action => this.updates.filter(update =>
-        action.type === update.action,
+    () => this.router.events.pipe(
+      filter((e) => shouldHandleEvent(e, this.updates)),
+      map(event => this.updates.filter(update =>
+        event instanceof update.event,
       ).map(({ getData }) =>
-        getData(action),
+        getData(event, this.activatedRoute),
       )),
       tap((data: V[]) => data.forEach(datum => {
         if (datum) {
@@ -63,8 +71,8 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
    * @docs-private
    */
   remove$ = createEffect(
-    () => this.actions$.pipe(
-      ofType(ROUTER_REQUEST),
+    () => this.router.events.pipe(
+      filter((e) => e instanceof NavigationStart),
       tap(() => this.service.clear()),
       switchMapTo(EMPTY),
     ),
@@ -79,8 +87,8 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
    * @docs-private
    */
   restore$ = createEffect(
-    () => this.actions$.pipe(
-      ofType(ROUTER_CANCEL, ROUTER_ERROR),
+    () => this.router.events.pipe(
+      filter((e) => e instanceof NavigationCancel || e instanceof NavigationError),
       tap(() => this.service.restore()),
       switchMapTo(EMPTY),
     ),
@@ -95,8 +103,8 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
    * @docs-private
    */
   emptyRestoreCache$ = createEffect(
-    () => this.actions$.pipe(
-      ofType(ROUTER_NAVIGATED),
+    () => this.router.events.pipe(
+      filter((e) => e instanceof NavigationEnd),
       tap(() => this.service.emptyRestoreCache()),
       switchMapTo(EMPTY),
     ),
