@@ -21,8 +21,7 @@ import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
 import { DaffSeoUpdateEventPair } from '../../models/update-event-pair.interface';
 
 export const shouldHandleEvent = <T extends DaffSeoUpdateEventPair>(routingEvent: Event, operators: T[]): boolean =>
-  operators
-    .find((trackableEvents) => routingEvent instanceof trackableEvents.event) ? true : false;
+  !!operators.find((trackableEvents) => routingEvent instanceof trackableEvents.event);
 
 /**
  * Hooks into the Angular router to manage SEO data on the page as navigation occurs.
