@@ -18,7 +18,7 @@ import {
 
 import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
 
-import { DaffSeoUpdateActionPair } from '../models/public_api';
+import { DaffSeoUpdateActionPair } from '../../models/public_api';
 
 /**
  * Hooks into the Angular router to manage SEO data on the page as navigation occurs.

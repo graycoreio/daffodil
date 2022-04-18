@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 
-import { DaffSeoCanonicalUrlEffects } from './effects/canonical.effects';
-import { DaffSeoMetaEffects } from './effects/meta.effects';
-import { DaffSeoTitleEffects } from './effects/title.effects';
+import { DaffSeoCanonicalUrlEffects } from './effects/ngrx-router/canonical.effects';
+import { DaffSeoMetaEffects } from './effects/ngrx-router/meta.effects';
+import { DaffSeoTitleEffects } from './effects/ngrx-router/title.effects';
 
 @NgModule({
   imports: [
