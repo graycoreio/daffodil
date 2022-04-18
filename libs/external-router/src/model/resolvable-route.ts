@@ -1,5 +1,6 @@
 import { DaffIdentifiable } from '@daffodil/core';
 
+import { DaffRouteData } from './route-data';
 import { DaffExternalRouteType } from './route-type';
 
 /**
@@ -21,9 +22,22 @@ export interface DaffExternallyResolvableUrl extends DaffIdentifiable {
    * Should not contain URL fragments, query parameters, or leading slashes.
    */
   url: string;
+
+  /**
+   * The type of the route
+   *
+   * @see {@link DaffExternalRouteType}
+   */
   type: DaffExternalRouteType;
+
   /**
    * The HTTP status code for the resolvable route.
    */
   code: number;
+
+  /**
+   * Additional route data. Note that this is not guaranteed to come from
+   * the driver, its only available when the driver makes it available.
+   */
+  data?: DaffRouteData;
 }

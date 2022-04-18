@@ -6,28 +6,36 @@ import {
 import { DaffExternalRouterInsertionStrategy } from '../../model/insertion-strategy.type';
 import { DaffExternalRouteType } from '../../model/route-type';
 import { DaffRouteWithDataPath } from '../../model/route-with-data-path';
+import { DaffRouteWithSeoData } from '../../model/route-with-seo-data';
+import { DaffRouteWithType } from '../../model/route-with-type';
+
+type RouteOperator = (route: Route) => Route;
+type ExternalRouteOperator = (route: DaffRouteWithDataPath, externalRoute: Route) => Route;
+type InsertionOperatorFactory = (externalRoute: Route) => RouteOperator;
 
 /**
  * Tests whether or not a route matches a specific Daffodil Route type.
  *
  * See {@link DaffRouteWithDataPath}
  */
-const routeMatchesRouteType = (route: DaffRouteWithDataPath, type: DaffExternalRouteType): boolean => route?.data?.daffExternalRouteType === type;
+const routeMatchesRouteType = (route: Route, type: DaffExternalRouteType): boolean => route?.data?.daffExternalRouteType === type;
 
 /**
  * Adds a path to the `daffPaths` of the given route.
  *
  * See {@link DaffRouteWithDataPath}
  */
-const addRouteToDaffPaths:
-(route: DaffRouteWithDataPath, path: string) => Route =
-  (route: DaffRouteWithDataPath, path: string) => route.data.daffPaths  = {
-    ...route.data.daffPaths,
-    [path]: path,
+const addRouteToDaffPaths: ExternalRouteOperator =
+  (route: DaffRouteWithDataPath, externalRoute: Route) => {
+    route.data.daffPaths = {
+      ...route.data.daffPaths,
+      [externalRoute.path]: externalRoute.data,
+    };
+    return route;
   };
 
-const operateOnRoute = (externalRoute: Route): (route: Route) => Route =>
-  (route: DaffRouteWithDataPath) => addRouteToDaffPaths(route, externalRoute.path);
+const operateOnRoute: InsertionOperatorFactory =
+  (externalRoute: Route) => (route: DaffRouteWithDataPath) => addRouteToDaffPaths(route, externalRoute);
 
 /**
  * Traverse the router config tree, halting after the first match.
@@ -35,7 +43,7 @@ const operateOnRoute = (externalRoute: Route): (route: Route) => Route =>
  * configuration trees, it will be most efficient to place externally routed
  * components at the top of router configuration.
  */
-const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boolean, operate: (route: Route) => void): Routes => {
+const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boolean, operate: RouteOperator): Routes => {
   if(routes.length === 0) {
     return routes;
   }
@@ -95,8 +103,8 @@ const traverseRouteTree = (routes: Routes = [], matcher: (route: Route) => boole
  * See {@link DaffRouteWithDataPath}
  *
  */
-export const daffInsertDataPathStrategy: DaffExternalRouterInsertionStrategy = (externalRoute: DaffRouteWithDataPath, routes: Routes) => traverseRouteTree(
+export const daffInsertDataPathStrategy: DaffExternalRouterInsertionStrategy = (externalRoute: DaffRouteWithType & DaffRouteWithSeoData, routes: Routes) => traverseRouteTree(
   routes,
-  (route) => routeMatchesRouteType(route, externalRoute.data?.daffExternalRouteType),
+  (route) => routeMatchesRouteType(route, externalRoute.daffExternalRouteType),
   operateOnRoute(externalRoute),
 );

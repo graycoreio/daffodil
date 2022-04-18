@@ -1,9 +1,6 @@
-import {
-  Data,
-  Route,
-} from '@angular/router';
+import { Route } from '@angular/router';
 
-import { DaffRouteData } from './route-data';
+import { DaffExternalRouteType } from './route-type';
 
 /**
  * A type that describes the special data that Daffodil will look for when attempting
@@ -12,8 +9,6 @@ import { DaffRouteData } from './route-data';
  * {@link daffDataPathUrlMatcher}
  * {@link daffInsertDataPathStrategy}
  */
-export type DaffRouteWithDataPath = Route & {
-  data?: {
-    daffPaths?: Record<string, DaffRouteData | Data>;
-  };
+export type DaffRouteWithType = Route & {
+  daffExternalRouteType: DaffExternalRouteType;
 };

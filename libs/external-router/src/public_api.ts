@@ -21,3 +21,5 @@ export { daffDataPathUrlMatcher } from './router/url-matcher/data-path-matcher';
 
 export { DaffExternalRouterNoWildcardError } from './errors/no-wildcard';
 export { DaffExternalRouterUnknownRouteTypeError } from './errors/unknown-type';
+
+export { daffExtractDaffPathData } from './util/extract-daff-path-data';
