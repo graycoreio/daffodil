@@ -95,7 +95,7 @@ describe('@daffodil/external-router | DaffExternalRouter', () => {
     service.add({ url: 'some-path', type: 'type-a', id: 'id', code: 200 });
 
     expect(router.config).toEqual([
-      <DaffRouteWithDataPath>{ path: 'some-path', redirectTo: '/', data: { daffExternalRouteType: 'type-a' }},
+      <DaffRouteWithDataPath>{ path: 'some-path', redirectTo: '/', daffExternalRouteType: 'type-a', data: { }},
       { path: '**', redirectTo: 'somewhere-else' },
     ]);
   });

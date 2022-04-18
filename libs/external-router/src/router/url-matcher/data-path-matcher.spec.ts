@@ -46,7 +46,7 @@ describe('@daffodil/external-router | daffPathUrlMatcher', () => {
         path: '',
         data: {
           daffPaths: {
-            [path]: path,
+            [path]: {},
           },
         },
       };

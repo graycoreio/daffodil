@@ -26,8 +26,9 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
     ).toEqual({
       route: {
         path: 'some-url',
-        data: { daffExternalRouteType: 'some-type' },
+        daffExternalRouteType: 'some-type',
         redirectTo: '/',
+        data: {},
       },
       insertionStrategy,
     });
