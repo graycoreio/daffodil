@@ -9,10 +9,10 @@ import {
   DaffArticleModule,
   DAFF_THEME_INITIALIZER,
 } from '@daffodil/design';
+import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';
 import { DesignLandAppComponent } from './app.component';
-import { DesignLandThemeSwitchModule } from './core/theme-switch/theme-switch.module';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { DesignLandThemeSwitchModule } from './core/theme-switch/theme-switch.mo
     DaffSidebarModule,
     DaffLinkSetModule,
     DaffArticleModule,
-    DesignLandThemeSwitchModule,
+    DaffThemeSwitchButtonModule,
   ],
   declarations: [
     DesignLandAppComponent,
