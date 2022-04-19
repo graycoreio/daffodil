@@ -2,13 +2,18 @@
 @import 'utilities';
 
 :host {
-	border: 1px solid gray;
 	display: block;
 }
 
-.code-example {
+.design-land-code-preview {
 	&__content {
-		padding: 8px;
-		min-height: 20px;
+		display: block;
+    padding: 48px 24px;
+		border-radius: 8px 8px 0 0;
+	}
+
+	&__code-block {
+		margin-top: 0;
+		border-radius: 0 0 8px 8px;
 	}
 }

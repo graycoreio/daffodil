@@ -1,0 +1,17 @@
+@mixin code-preview-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-configure-palette($daff-gray, 60);
+
+	.design-land-code-preview {
+		&__content {
+			border: 1px solid rgba(daff-illuminate($base, $daff-gray, 2), 0.6);
+			border-bottom: 0;
+		}
+	}
+}
