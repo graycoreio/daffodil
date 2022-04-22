@@ -3,6 +3,7 @@ import {
   DaffCartAddress,
   DaffCartCoupon,
   DaffCartItemInput,
+  DaffCartOrderResult,
   DaffCartPaymentMethod,
   DaffCartShippingRate,
 } from '@daffodil/cart';
@@ -18,6 +19,7 @@ import {
   DaffCartPaymentMethodsActions,
   DaffCartCouponActions,
   DaffCartAddressActions,
+  DaffCartOrderActions,
 } from '../actions/public_api';
 import { DaffStatefulCartItem } from '../models/public_api';
 
@@ -28,7 +30,8 @@ export type ActionTypes<
   W extends DaffCartAddress = DaffCartAddress,
   X extends DaffCartShippingRate = DaffCartShippingRate,
   Y extends DaffCartPaymentMethod = DaffCartPaymentMethod,
-  Z extends DaffCartCoupon = DaffCartCoupon
+  Z extends DaffCartCoupon = DaffCartCoupon,
+  TOrderResult extends DaffCartOrderResult = DaffCartOrderResult,
 > = DaffCartActions<T>
 | DaffCartItemActions<V, U, T>
 | DaffCartBillingAddressActions<W, T>
@@ -38,4 +41,5 @@ export type ActionTypes<
 | DaffCartShippingInformationActions<X, T>
 | DaffCartPaymentActions<Y, T, W>
 | DaffCartPaymentMethodsActions<Y>
+| DaffCartOrderActions<TOrderResult>
 | DaffCartCouponActions<T, Z>;
