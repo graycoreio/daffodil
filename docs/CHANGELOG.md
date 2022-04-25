@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.42.1](https://github.com/graycoreio/daffodil/compare/v0.42.0...v0.42.1) (2022-04-25)
+
+
+### Features
+
+* **cart:** reset order errors when cart is successfully mutated ([#2089](https://github.com/graycoreio/daffodil/issues/2089)) ([18335e4](https://github.com/graycoreio/daffodil/commit/18335e441a303b64a979c58caa05bfca226ce1b0))
+* **demo:** add product ID resolver ([#2087](https://github.com/graycoreio/daffodil/issues/2087)) ([0810ef5](https://github.com/graycoreio/daffodil/commit/0810ef57f2def17046f72bb8abd931bb99e3dddc))
+* **design-land:** update code preview UI ([#2072](https://github.com/graycoreio/daffodil/issues/2072)) ([af8465b](https://github.com/graycoreio/daffodil/commit/af8465ba5cbd7320635f05d7a732da16d33253bb))
+* **driver:** export error codes ([#2091](https://github.com/graycoreio/daffodil/issues/2091)) ([4781400](https://github.com/graycoreio/daffodil/commit/478140065514decc1861747556d3f7d8febbd6f5))
+
 ## [0.42.0](https://github.com/graycoreio/daffodil/compare/v0.41.0...v0.42.0) (2022-04-18)
 
 
