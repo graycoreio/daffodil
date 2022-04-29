@@ -3,16 +3,14 @@
   The button is used for making actions apparent to the end-user. It can be used to navigate users to a different page or to perform an action. Buttons can contain text, icons, or both.
 </p>
 
-<h3>About</h3>
-<p>
-  Native <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> elements are always used in order to provide an easy, accessible experience for users.
-</p>
+<h2>Overview</h2>
+<p>Native <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> elements are always used in order to provide an easy, accessible experience for users.</p>
 <ul>
-  <li><code>&lt;button&gt;</code> should be used when a clickable action is performed within the same page.</li>
   <li><code>&lt;a&gt;</code> should be used for interactions that will navigate users to a new page or to a different target on the same page.</li>
+  <li><code>&lt;button&gt;</code> should be used when a clickable action is performed within the same page.</li>
 </ul>
 
-<h3>Types</h3>
+<h2>Types</h2>
 <p><code>daff-button</code> — Rectangular contained button with background color</p>
 <p><code>daff-icon-button</code> — Icon button used with icon fonts</p>
 <p><code>daff-raised-button</code> — Rectangular contained button with background color and elevation</p>
@@ -23,12 +21,14 @@
 
 <h3>Stroked Button</h3>
 <design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
+<blockquote><code>black</code>, <code>white</code>, and <code>theme</code> should be used with caution to ensure that there is sufficient contrast.</blockquote>
 
 <h3>Raised Button</h3>
 <design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
 
 <h3>Icon Button</h3>
 <design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
+<blockquote><code>black</code>, <code>white</code>, and <code>theme</code> should be used with caution to ensure that there is sufficient contrast.</blockquote>
 
 <h3>Underline Button</h3>
 <design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
@@ -42,7 +42,7 @@
 <h3>Theming</h3>
 <p>The default color of a button is light gray, but it can be updated to one of the supported colors by using the <code>color</code> property.</p>
 <p>Supported colors: <code>primary | secondary | tertiary | black | white | theme | theme-contrast</code></p>
-<p><code>white</code> and <code>theme</code> should be used on a darker background in order to have sufficient contrast for certain button types.</p>
+<blockquote>For select button types, <code>black</code> and <code>white</code> should be used on a darker background in order to have sufficient contrast.</blockquote>
 
 <h3>Status Indicators</h3>
 <p>Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context.</p>

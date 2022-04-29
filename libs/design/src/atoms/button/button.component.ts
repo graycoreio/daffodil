@@ -4,7 +4,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
-  Input,
   HostBinding,
   Renderer2,
 } from '@angular/core';

@@ -323,7 +323,8 @@
 		border: 1px solid daff-illuminate($base, $daff-gray, 5);
 		color: daff-text-contrast($base);
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: daff-illuminate($base, $daff-gray, 2);
 			border: 1px solid daff-illuminate($base, $daff-gray, 2);
 			color: daff-text-contrast(daff-illuminate($base, $daff-gray, 2));
@@ -508,7 +509,7 @@
 		}
 
 		&.daff-theme-contrast {
-			@include daff-button-focus-theme-variant($base-contrast);
+			@include daff-button-focus-theme-variant(daff-color($gray));
 		}
 
 		&.daff-warn {
