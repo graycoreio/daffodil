@@ -17,23 +17,18 @@ import { DaffCartResolverRedirectUrl } from '@daffodil/cart/routing';
 import {
   daffCartReducers,
   DaffCartStateRootSlice,
-  DaffCartLoadSuccess,
-  DaffCartLoadFailure,
-  DaffCartCreateFailure,
-  DaffCartStorageFailure,
+  DaffResolveCartSuccess,
+  DaffResolveCartFailure,
+  DaffResolveCartServerSide,
   DaffResolveCart,
   DAFF_CART_STORE_FEATURE_KEY,
+  DaffResolveCartPartialSuccess,
 }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffStorageServiceError } from '@daffodil/core';
-import {
-  DaffStateError,
-  daffTransformErrorToStateError,
-} from '@daffodil/core/state';
 
 import { DaffCartResolver } from './cart-resolver.service';
 
-describe('DaffCartResolver', () => {
+describe('@daffodil/cart/routing | DaffCartResolver', () => {
   const actions$: Observable<any> = null;
   let cartResolver: DaffCartResolver;
   let store: Store<DaffCartStateRootSlice>;
@@ -78,80 +73,87 @@ describe('DaffCartResolver', () => {
       expect(store.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
     });
 
-    describe('when DaffCartLoadSuccess is dispatched', () => {
+    describe('when DaffResolveCartSuccess is dispatched', () => {
 
-      it('should resolve with a DaffCartLoadSuccess action', () => {
+      it('should resolve with the cart payload', done => {
         cartResolver.resolve().subscribe((returnedValue) => {
-          expect(returnedValue).toEqual(new DaffCartLoadSuccess(stubCart));
+          expect(returnedValue).toEqual(stubCart);
+          done();
         });
 
-        store.dispatch(new DaffCartLoadSuccess(stubCart));
+        store.dispatch(new DaffResolveCartSuccess(stubCart));
       });
 
-      it('should not redirect to the provided DaffCartResolverRedirectUrl', () => {
+      it('should not redirect to the provided DaffCartResolverRedirectUrl', done => {
         cartResolver.resolve().subscribe(() => {
           expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
+          done();
         });
 
-        store.dispatch(new DaffCartLoadSuccess(stubCart));
+        store.dispatch(new DaffResolveCartSuccess(stubCart));
       });
     });
 
-    describe('when DaffCartLoadFailure is dispatched', () => {
+    describe('when DaffResolveCartPartialSuccess is dispatched', () => {
 
-      it('should resolve with a DaffCartLoadFailure action', () => {
-        cartResolver.resolve().subscribe((resolvedValue) => {
-          expect(resolvedValue).toEqual(new DaffCartLoadFailure([]));
+      it('should resolve with the cart payload', done => {
+        cartResolver.resolve().subscribe((returnedValue) => {
+          expect(returnedValue).toEqual(stubCart);
+          done();
         });
 
-        store.dispatch(new DaffCartLoadFailure([]));
+        store.dispatch(new DaffResolveCartPartialSuccess(stubCart, []));
       });
 
-      it('should redirect to the provided DaffCartResolverRedirectUrl', () => {
+      it('should not redirect to the provided DaffCartResolverRedirectUrl', done => {
         cartResolver.resolve().subscribe(() => {
-          expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+          expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
+          done();
         });
 
-        store.dispatch(new DaffCartLoadFailure([]));
+        store.dispatch(new DaffResolveCartPartialSuccess(stubCart, []));
       });
     });
 
-    describe('when DaffCartCreateFailure is dispatched', () => {
+    describe('when DaffResolveCartFailure is dispatched', () => {
 
-      it('should resolve with a DaffCartCreateFailure action', () => {
+      it('should resolve with null', done => {
         cartResolver.resolve().subscribe((resolvedValue) => {
-          expect(resolvedValue).toEqual(new DaffCartCreateFailure(null));
+          expect(resolvedValue).toBeNull();
+          done();
         });
 
-        store.dispatch(new DaffCartCreateFailure(null));
+        store.dispatch(new DaffResolveCartFailure([]));
       });
 
-      it('should redirect to the provided DaffCartResolverRedirectUrl', () => {
+      it('should redirect to the provided DaffCartResolverRedirectUrl', done => {
         cartResolver.resolve().subscribe(() => {
           expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+          done();
         });
 
-        store.dispatch(new DaffCartCreateFailure(null));
+        store.dispatch(new DaffResolveCartFailure([]));
       });
     });
 
-    describe('when DaffCartStorageFailure is dispatched', () => {
-      const error: DaffStateError = daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'));
+    describe('when DaffResolveCartServerSide is dispatched', () => {
 
-      it('should resolve with a DaffCartStorageFailure action', () => {
+      it('should resolve with null', done => {
         cartResolver.resolve().subscribe((resolvedValue) => {
-          expect(resolvedValue).toEqual(new DaffCartStorageFailure(error));
+          expect(resolvedValue).toBeNull();
+          done();
         });
 
-        store.dispatch(new DaffCartStorageFailure(error));
+        store.dispatch(new DaffResolveCartServerSide(null));
       });
 
-      it('should redirect to the provided DaffCartResolverRedirectUrl', () => {
+      it('should redirect to the provided DaffCartResolverRedirectUrl', done => {
         cartResolver.resolve().subscribe(() => {
           expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+          done();
         });
 
-        store.dispatch(new DaffCartStorageFailure(error));
+        store.dispatch(new DaffResolveCartServerSide(null));
       });
     });
   });

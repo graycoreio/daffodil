@@ -9,10 +9,14 @@ import {
   StoreModule,
   Store,
 } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  Subject,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import {
+  DaffCartResolver,
   DaffCartResolverRedirectUrl,
   DaffEmptyCartResolverRedirectUrl,
 }  from '@daffodil/cart/routing';
@@ -33,8 +37,12 @@ describe('DaffEmptyCartResolver', () => {
   let stubCart: DaffCart;
   let router: Router;
   const stubUrl = '/cart';
+  let cartResolverSubject: Subject<DaffCart>;
+  let cartResolver: jasmine.SpyObj<DaffCartResolver>;
 
   beforeEach(waitForAsync(() => {
+    cartResolver = jasmine.createSpyObj('DaffCartResolver', ['resolve']);
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
@@ -44,15 +52,19 @@ describe('DaffEmptyCartResolver', () => {
         provideMockActions(() => actions$),
         { provide: DaffEmptyCartResolverRedirectUrl, useValue: stubUrl },
         { provide: DaffCartResolverRedirectUrl, useValue: stubUrl },
+        { provide: DaffCartResolver, useValue: cartResolver },
       ],
     });
 
     emptyCartResolver = TestBed.inject(DaffEmptyCartResolver);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
-    stubCart = cartFactory.create();
     store = TestBed.inject(Store);
     router = TestBed.inject(Router);
+
+    cartResolverSubject = new Subject();
+    cartResolver.resolve.and.returnValue(cartResolverSubject);
+    stubCart = cartFactory.create();
 
     spyOn(router, 'navigateByUrl');
   }));
@@ -65,33 +77,38 @@ describe('DaffEmptyCartResolver', () => {
 
     describe('when a cart is loaded', () => {
 
-      it('should resolve with a DaffCartLoadSuccess action', () => {
+      it('should resolve with the cart', done => {
         emptyCartResolver.resolve().subscribe((resolvedValue) => {
-          expect(resolvedValue).toEqual(new DaffCartLoadSuccess(stubCart));
+          expect(resolvedValue).toEqual(stubCart);
+          done();
         });
 
-        store.dispatch(new DaffCartLoadSuccess(stubCart));
+        cartResolverSubject.next(stubCart);
       });
 
       describe('and cart is empty', () => {
 
-        it('should redirect to the provided DaffEmptyCartRedirectUrl', () => {
-          stubCart.items = [];
+        it('should redirect to the provided DaffEmptyCartRedirectUrl', done => {
+          emptyCartResolver.resolve().subscribe(() => {
+            expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+            done();
+          });
 
-          emptyCartResolver.resolve().subscribe();
-          store.dispatch(new DaffCartLoadSuccess(stubCart));
-          expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+          stubCart.items = [];
+          cartResolverSubject.next(stubCart);
         });
       });
 
       describe('and cart is not empty', () => {
 
-        it('should not redirect to the provided DaffEmptyCartRedirectUrl', () => {
-          stubCart = cartFactory.create({ items: cartItemFactory.create() });
+        it('should not redirect to the provided DaffEmptyCartRedirectUrl', done => {
+          emptyCartResolver.resolve().subscribe(() => {
+            expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
+            done();
+          });
 
-          emptyCartResolver.resolve().subscribe();
-          store.dispatch(new DaffCartLoadSuccess(stubCart));
-          expect(router.navigateByUrl).not.toHaveBeenCalledWith(stubUrl);
+          stubCart = cartFactory.create({ items: cartItemFactory.create() });
+          cartResolverSubject.next(stubCart);
         });
       });
     });
