@@ -6,13 +6,13 @@ import {
   Resolve,
   Router,
 } from '@angular/router';
-import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
   filter,
   map,
 } from 'rxjs/operators';
 
+import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartLoadSuccess,
   DaffCartActionTypes,
@@ -30,21 +30,20 @@ import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-r
 @Injectable({
   providedIn: 'root',
 })
-export class DaffEmptyCartResolver implements Resolve<Observable<Action>> {
+export class DaffEmptyCartResolver implements Resolve<Observable<DaffCart>> {
   constructor(
     private cartResolver: DaffCartResolver,
     private router: Router,
     @Inject(DaffEmptyCartResolverRedirectUrl) private redirectUrl: string,
   ) {}
 
-  resolve(): Observable<Action> {
+  resolve(): Observable<DaffCart> {
     return this.cartResolver.resolve().pipe(
-      filter(action => action.type === DaffCartActionTypes.CartLoadSuccessAction),
-      map((action: DaffCartLoadSuccess) => {
-        if(!action.payload || action.payload.items.length === 0) {
+      map((cart: DaffCart) => {
+        if (cart.items.length === 0) {
           this.router.navigateByUrl(this.redirectUrl);
         }
-        return action;
+        return cart;
       }),
     );
   }
