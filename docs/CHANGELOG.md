@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.42.2](https://github.com/graycoreio/daffodil/compare/v0.42.1...v0.42.2) (2022-05-03)
+
+
+### Features
+
+* **analytics:** add cart pageview type ([#2094](https://github.com/graycoreio/daffodil/issues/2094)) ([fb717ee](https://github.com/graycoreio/daffodil/commit/fb717ee6f69b8ef68310f4804a82fb2c27badfdb))
+
+
+### Bug Fixes
+
+* **cart:** cart resolver not listening for new resolve actions ([#2093](https://github.com/graycoreio/daffodil/issues/2093)) ([769c4fe](https://github.com/graycoreio/daffodil/commit/769c4fec5b0c43f49c7aa633d08007d6e95164f6))
+
 ### [0.42.1](https://github.com/graycoreio/daffodil/compare/v0.42.0...v0.42.1) (2022-04-25)
 
 
