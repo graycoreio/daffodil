@@ -1,0 +1,1 @@
+export { cmsBlockFragment } from './block';

@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/content": [
+        "libs/content/src"
+      ],
+      "@daffodil/content/testing": [
+        "libs/content/testing/src"
+      ],
+      "@daffodil/content/driver": [
+        "libs/content/driver/src"
+      ],
+      "@daffodil/content/driver/testing": [
+        "libs/content/driver/testing/src"
+      ],
+      "@daffodil/content/driver/magento": [
+        "libs/content/driver/magento/src"
+      ],
+      "@daffodil/content/driver/magento/testing": [
+        "libs/content/driver/magento/testing/src"
+      ],
+    }
+  }
+}
