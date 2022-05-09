@@ -1,0 +1,32 @@
+{
+  "name": "@daffodil/content",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A client-side Angular package for fetching static content provided by the platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build content --prod",
+    "lint": "cd ../.. && ng lint content",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test content --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/content; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  }
+}
