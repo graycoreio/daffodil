@@ -97,7 +97,7 @@ describe('@daffodil/content/driver/magento | MagentoContentService', () => {
       describe('and the response passes validation', () => {
         it('should return the correct Daffodil content', done => {
           service.getBlocks(blockId).subscribe(result => {
-            expect(result[0].id).toEqual(mockMagentoBlock.identifier);
+            expect(result[blockId].id).toEqual(mockMagentoBlock.identifier);
             done();
           });
 

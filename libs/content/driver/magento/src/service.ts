@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import {
-  Observable,
-  throwError,
-} from 'rxjs';
+import { throwError } from 'rxjs';
 import {
   map,
   catchError,
 } from 'rxjs/operators';
 
-import { DaffContentBlock } from '@daffodil/content';
+import {
+  DaffContentBlock,
+  daffContentBlockArrayToCollection,
+} from '@daffodil/content';
 import { DaffContentServiceInterface } from '@daffodil/content/driver';
 
 import { transformMagentoContentError } from './errors/transform';
@@ -31,7 +31,7 @@ export class MagentoContentService implements DaffContentServiceInterface {
     private apollo: Apollo,
   ) {}
 
-  getBlocks(...blockIds: DaffContentBlock['id'][]): Observable<DaffContentBlock[]> {
+  getBlocks(...blockIds: DaffContentBlock['id'][]) {
     return this.apollo.query<MagentoGetBlocksResponse>({
       query: getCmsBlocks,
       variables: {
@@ -39,7 +39,7 @@ export class MagentoContentService implements DaffContentServiceInterface {
       },
     }).pipe(
       map(validateGetBlocksResponse),
-      map(result => result.data.cmsBlocks.items.map(magentoContentBlockTransform)),
+      map(result => daffContentBlockArrayToCollection(result.data.cmsBlocks.items.map(magentoContentBlockTransform))),
       catchError(err => throwError(() => transformMagentoContentError(err))),
     );
   }

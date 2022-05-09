@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { of } from 'rxjs';
 
-import { DaffContentBlock } from '@daffodil/content';
+import {
+  DaffContentBlock,
+  daffContentBlockArrayToCollection,
+} from '@daffodil/content';
 import { DaffContentServiceInterface } from '@daffodil/content/driver';
 import { DaffContentBlockFactory } from '@daffodil/content/testing';
 
@@ -20,7 +20,7 @@ export class DaffTestingContentService implements DaffContentServiceInterface {
     private blockFactory: DaffContentBlockFactory,
   ) {}
 
-  getBlocks(...blockIds: DaffContentBlock['id'][]): Observable<DaffContentBlock[]> {
-    return of(blockIds.map(id => this.blockFactory.create({ id })));
+  getBlocks(...blockIds: DaffContentBlock['id'][]) {
+    return of(daffContentBlockArrayToCollection(blockIds.map(id => this.blockFactory.create({ id }))));
   }
 }

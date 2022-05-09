@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffContentBlock } from '@daffodil/content';
+import {
+  DaffContentBlock,
+  DaffContentBlockCollection,
+} from '@daffodil/content';
 
 export const DaffContentDriver = new InjectionToken<DaffContentServiceInterface>('DaffContentDriver');
 
@@ -14,5 +17,5 @@ export interface DaffContentServiceInterface<
   /**
    * Get an content object with the specified content ID.
    */
-  getBlocks(...blockIds: T['id'][]): Observable<T[]>;
+  getBlocks(...blockIds: T['id'][]): Observable<DaffContentBlockCollection<T>>;
 }

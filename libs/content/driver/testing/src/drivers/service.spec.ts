@@ -45,7 +45,7 @@ describe('@daffodil/content/driver/testing | DaffTestingContentService', () => {
 
   describe('get', () => {
     it('should return a DaffContent', () => {
-      const expected = cold('(a|)', { a: [mockBlock]});
+      const expected = cold('(a|)', { a: { [mockBlock.id]: mockBlock }});
       expect(service.getBlocks(contentId)).toBeObservable(expected);
     });
   });
