@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.42.4](https://github.com/graycoreio/daffodil/compare/v0.42.3...v0.42.4) (2022-05-11)
+
 ### [0.42.3](https://github.com/graycoreio/daffodil/compare/v0.42.2...v0.42.3) (2022-05-11)
 
 
