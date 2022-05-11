@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.42.3](https://github.com/graycoreio/daffodil/compare/v0.42.2...v0.42.3) (2022-05-11)
+
+
+### Features
+
+* **content:** add `@daffodil/content` ([#2097](https://github.com/graycoreio/daffodil/issues/2097)) ([d22e91c](https://github.com/graycoreio/daffodil/commit/d22e91c4058c996a0b1f337696fe5547d0f38288))
+* **content:** send Magento blocks request as GET ([#2098](https://github.com/graycoreio/daffodil/issues/2098)) ([89ee013](https://github.com/graycoreio/daffodil/commit/89ee0139ee4e4ec87c4a662cf9c80b66253a4100))
+* **design:** clean up button styles and update docs ([#2092](https://github.com/graycoreio/daffodil/issues/2092)) ([18a5306](https://github.com/graycoreio/daffodil/commit/18a5306f8cf14b9b1b8ab2b410f24fe44585bc8e))
+
 ### [0.42.2](https://github.com/graycoreio/daffodil/compare/v0.42.1...v0.42.2) (2022-05-03)
 
 
