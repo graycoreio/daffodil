@@ -59,6 +59,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
     return this.apollo.query<MagentoGetShippingAddressResponse>({
       query: getShippingAddress(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.shipping_addresses[0]
         ? this.shippingAddressTransformer.transform({
@@ -81,6 +82,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
         cartId,
         address: this.shippingAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
       catchError(error => throwError(() => transformCartMagentoError(error))),
@@ -95,6 +97,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
         email: address.email,
         address: this.shippingAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform({
         ...resp.data.setShippingAddressesOnCart.cart,

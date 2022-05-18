@@ -65,6 +65,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     return this.apollo.query<MagentoGetSelectedPaymentMethodResponse>({
       query: getSelectedPaymentMethod(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.paymentTransformer.transform(result.data.cart.selected_payment_method)),
     );
@@ -77,6 +78,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
         cartId,
         payment: this.paymentInputTransformer.transform(payment),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.setPaymentMethodOnCart.cart)),
     );
@@ -99,6 +101,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
         cartId,
         payment: { code: '' },
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       mapTo(undefined),
     );
@@ -116,6 +119,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
         payment: this.paymentInputTransformer.transform(payment),
         address: this.cartAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setPaymentMethodOnCart.cart)),
       catchError(error => throwError(() => transformCartMagentoError(error))),
@@ -135,6 +139,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
         payment: this.paymentInputTransformer.transform(payment),
         address: this.cartAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
       catchError(error => throwError(() => transformCartMagentoError(error))),

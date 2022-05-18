@@ -42,6 +42,7 @@ export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterfac
       variables: {
         cartId,
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => ({
         id: result.data.placeOrder.order.order_number,

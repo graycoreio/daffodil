@@ -75,6 +75,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
 
   get(cartId: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
     return this.apollo.query<MagentoGetCartResponse>({
+      fetchPolicy: 'network-only',
       query: getCart(this.extraCartFragments),
       variables: { cartId },
       errorPolicy: 'all',

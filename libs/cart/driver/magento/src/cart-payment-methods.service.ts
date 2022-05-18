@@ -37,6 +37,7 @@ export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMeth
     return this.apollo.query<MagentoListPaymentMethodsResponse>({
       query: listPaymentMethods(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.available_payment_methods.map(item => this.paymentTransformer.transform(item))),
     );

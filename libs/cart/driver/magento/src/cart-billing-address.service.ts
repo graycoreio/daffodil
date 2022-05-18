@@ -59,6 +59,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
     return this.apollo.query<MagentoGetBillingAddressResponse>({
       query: getBillingAddress(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.billing_address
         ? this.billingAddressTransformer.transform({
@@ -81,6 +82,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
         cartId,
         address: this.billingAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setBillingAddressOnCart.cart)),
       catchError(error => throwError(() => transformCartMagentoError(error))),
@@ -95,6 +97,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
         email: address.email,
         address: this.billingAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform({
         ...resp.data.setBillingAddressOnCart.cart,
