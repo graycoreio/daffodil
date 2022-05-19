@@ -57,6 +57,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
         cartId,
         couponCode: coupon.code,
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.applyCouponToCart.cart)),
       catchError(err => throwError(() => transformCartMagentoError(err, coupon))),
@@ -69,6 +70,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       variables: {
         cartId,
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.applied_coupons.map(daffMagentoCouponTransform)),
       catchError(err => throwError(() => transformCartMagentoError(err))),
@@ -85,6 +87,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
       variables: {
         cartId,
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.removeCouponFromCart.cart)),
       catchError(err => throwError(() => transformCartMagentoError(err))),

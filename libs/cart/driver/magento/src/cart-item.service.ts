@@ -76,6 +76,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     return this.apollo.query<MagentoListCartItemsResponse>({
       query: listCartItems(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.items.filter(item => !!item)),
       map(items => items.map(item => transformMagentoCartItem(daffTransformMagentoCartItem(item), item, this.cartItemTransforms))),
@@ -109,6 +110,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
           id: itemId,
         }),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.updateCartItems.cart)),
       catchError(err => throwError(() => transformCartMagentoError(err))),
@@ -122,6 +124,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
         cartId,
         itemId,
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.removeItemFromCart.cart)),
     );
@@ -146,6 +149,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
         cartId,
         input,
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.addProductsToCart.cart)),
     );

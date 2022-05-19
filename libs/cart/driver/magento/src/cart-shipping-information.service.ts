@@ -55,6 +55,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
     return this.apollo.query<MagentoGetSelectedShippingMethodResponse>({
       query: getSelectedShippingMethod(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.shipping_addresses[0]
         ? this.shippingRateTransformer.transform(result.data.cart.shipping_addresses[0].selected_shipping_method)
@@ -70,6 +71,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
         cartId,
         method: this.shippingMethodInputTransformer.transform(shippingInfo),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       switchMap(result =>
         // because Magento only returns the selected shipping method for the mutation

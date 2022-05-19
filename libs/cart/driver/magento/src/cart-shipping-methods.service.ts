@@ -37,6 +37,7 @@ export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMe
     return this.apollo.query<MagentoListShippingMethodsResponse>({
       query: listShippingMethods(this.extraCartFragments),
       variables: { cartId },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.shipping_addresses[0].available_shipping_methods.map(item =>
         this.shippingRateTransformer.transform(item),

@@ -60,6 +60,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
         cartId,
         address: this.cartAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
       catchError(error => throwError(() => transformCartMagentoError(error))),
@@ -74,6 +75,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
         email: address.email,
         address: this.cartAddressInputTransformer.transform(address),
       },
+      fetchPolicy: 'network-only',
     }).pipe(
       map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
       catchError(error => throwError(() => transformCartMagentoError(error))),
