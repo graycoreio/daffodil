@@ -3,8 +3,6 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/upsell-products",
     "declarationMap": true,
-    "target": "es2015",
-    "module": "es2015",
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
@@ -13,11 +11,6 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "types": [],
-    "lib": [
-      "dom",
-      "es2015",
-      "esnext.asynciterable"
-    ]
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
