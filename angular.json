@@ -785,6 +785,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "libs/theme-switch/src/assets/",
+                "output": "/assets/daff-theme-switch/"
+              },
+              {
+                "glob": "**/*",
                 "input": "dist/docs",
                 "output": "/assets/daffio/docs"
               }
@@ -796,7 +801,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "libs/design/src/scss",
-                "libs/branding/src/scss"
+                "libs/branding/src/scss",
+                "libs/theme-switch/src/scss"
               ]
             },
             "scripts": [],
@@ -867,7 +873,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "libs/design/src/scss",
-                "libs/branding/src/scss"
+                "libs/branding/src/scss",
+                "libs/theme-switch/src/scss"
               ]
             },
             "scripts": [],
@@ -879,6 +886,11 @@
                 "glob": "**/*",
                 "input": "libs/branding/src/assets/",
                 "output": "/assets/daff-branding/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/theme-switch/src/assets/",
+                "output": "/assets/daff-theme-switch/"
               }
             ]
           }
@@ -902,7 +914,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "libs/design/src/scss",
-                "libs/branding/src/scss"
+                "libs/branding/src/scss",
+                "libs/theme-switch/src/scss"
               ]
             },
             "sourceMap": true,
@@ -998,6 +1011,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "libs/theme-switch/src/assets/",
+                "output": "/assets/daff-theme-switch/"
+              },
+              {
+                "glob": "**/*",
                 "input": "dist/docs",
                 "output": "/assets/daffio/docs"
               }
@@ -1009,7 +1027,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "libs/design/src/scss",
-                "libs/branding/src/scss"
+                "libs/branding/src/scss",
+                "libs/theme-switch/src/scss"
               ]
             },
             "scripts": [],
@@ -1220,6 +1239,45 @@
             "lintFilePatterns": [
               "libs/branding/**/*.ts",
               "libs/branding/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "theme-switch": {
+      "root": "libs/theme-switch",
+      "sourceRoot": "libs/theme-switch/src",
+      "projectType": "library",
+      "prefix": "daff-theme-switch",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/theme-switch/tsconfig.lib.json",
+            "project": "libs/theme-switch/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/theme-switch/ng-package.prod.json",
+              "tsConfig": "libs/theme-switch/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/theme-switch/src/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/theme-switch/tsconfig.spec.json",
+            "karmaConfig": "libs/theme-switch/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/theme-switch/**/*.ts",
+              "libs/theme-switch/**/*.html"
             ]
           }
         }

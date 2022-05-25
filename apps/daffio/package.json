@@ -30,6 +30,7 @@
     "@daffodil/branding": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/design": "0.0.0-PLACEHOLDER",
-    "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER"
+    "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER",
+    "@daffodil/theme-switch": "0.0.0-PLACEHOLDER"
   }
 }

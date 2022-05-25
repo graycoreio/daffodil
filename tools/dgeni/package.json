@@ -30,6 +30,7 @@
     "@daffodil/product": "0.0.0-PLACEHOLDER",
     "@daffodil/related-products": "0.0.0-PLACEHOLDER",
     "@daffodil/seo": "0.0.0-PLACEHOLDER",
+    "@daffodil/theme-switch": "0.0.0-PLACEHOLDER",
     "@daffodil/upsell-products": "0.0.0-PLACEHOLDER"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "name": "@daffodil/theme-switch",
+  "version": "0.0.0-PLACEHOLDER",
+  "private": true,
+  "scripts": {
+    "build": "ng build theme-switch --prod",
+    "lint": "cd ../.. && ng lint theme-switch",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test theme-switch --watch=false --browsers=ChromeHeadless"
+  },
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
+  }
+}
