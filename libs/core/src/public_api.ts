@@ -12,5 +12,6 @@ export * from './operators/public_api';
 export * from './types/public_api';
 export * from './kindable/public_api';
 export * from './base64/public_api';
+export * from './collection/public_api';
 
 export { DaffOrderable } from './orderable/orderable';
