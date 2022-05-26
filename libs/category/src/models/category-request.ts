@@ -2,7 +2,7 @@ import {
   ID,
   DaffLocatable,
 } from '@daffodil/core';
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
+import { DaffSortDirectionEnum } from '@daffodil/core';
 
 import { DaffCategory } from './category';
 import { DaffCategoryFilterRequest } from './filters/public_api';

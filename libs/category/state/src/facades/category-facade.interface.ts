@@ -7,11 +7,13 @@ import {
   DaffCategoryFilter,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
-import { Dict } from '@daffodil/core';
 import {
-  DaffStoreFacade,
   DaffSortDirectionEnum,
   DaffSortOption,
+  Dict,
+} from '@daffodil/core';
+import {
+  DaffStoreFacade,
   DaffStateError,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';

@@ -42,10 +42,8 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import {
-  DaffSortDirectionEnum,
-  DaffStateError,
-} from '@daffodil/core/state';
+import { DaffSortDirectionEnum } from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,

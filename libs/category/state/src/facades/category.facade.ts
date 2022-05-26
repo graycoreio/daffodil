@@ -12,12 +12,12 @@ import {
   DaffCategoryFilter,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
-import { Dict } from '@daffodil/core';
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
-  DaffStateError,
-} from '@daffodil/core/state';
+  Dict,
+} from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import {

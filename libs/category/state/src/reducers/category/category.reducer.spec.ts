@@ -51,8 +51,8 @@ import {
   DaffCategoryFilterToggleRequestEqualFactory,
   DaffCategoryFilterToggleRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
+import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
-  DaffSortDirectionEnum,
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';

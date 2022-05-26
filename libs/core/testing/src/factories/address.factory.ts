@@ -3,7 +3,7 @@ import * as faker from '@faker-js/faker/locale/en_US';
 
 import { DaffAddress } from '@daffodil/core';
 
-import { DaffModelFactory } from '../../factories/factory';
+import { DaffModelFactory } from './factory';
 
 /**
  * @deprecated
