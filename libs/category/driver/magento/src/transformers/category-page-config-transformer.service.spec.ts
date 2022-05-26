@@ -3,29 +3,32 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCategory,
   DaffCategoryPageMetadata,
-  DaffCategoryFilterType,
 } from '@daffodil/category';
 import {
   MagentoCompleteCategoryResponse,
   MagentoCategory,
-  MagentoAggregation,
-  MagentoPageInfo,
-  MagentoSortFields,
 } from '@daffodil/category/driver/magento';
-import {
-  DaffCategoryDriverMagentoAggregationSelectFactory,
-  DaffCategoryDriverMagentoAggregationPriceFactory,
-} from '@daffodil/category/driver/magento/testing';
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { DaffProductFilterType } from '@daffodil/product';
+import {
+  MagentoAggregation,
+  MagentoProduct,
+  MagentoProductPageInfo,
+  MagentoProductSortFields,
+} from '@daffodil/product/driver/magento';
+import {
+  MagentoProductAggregationSelectFactory,
+  MagentoProductAggregationPriceFactory,
+} from '@daffodil/product/driver/magento/testing';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 
-describe('DaffMagentoCategoryPageConfigTransformerService', () => {
+
+describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTransformerService', () => {
 
   let service: DaffMagentoCategoryPageConfigTransformerService;
 
@@ -34,8 +37,8 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   let stubCategoryPageMetadata: DaffCategoryPageMetadata;
   let aggregation: MagentoAggregation;
 
-  let priceAggregateFactory: DaffCategoryDriverMagentoAggregationPriceFactory;
-  let selectAggregateFactory: DaffCategoryDriverMagentoAggregationSelectFactory;
+  let priceAggregateFactory: MagentoProductAggregationPriceFactory;
+  let selectAggregateFactory: MagentoProductAggregationSelectFactory;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
 
@@ -49,8 +52,8 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
     service = TestBed.inject(DaffMagentoCategoryPageConfigTransformerService);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
-    selectAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationSelectFactory);
-    priceAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationPriceFactory);
+    selectAggregateFactory = TestBed.inject(MagentoProductAggregationSelectFactory);
+    priceAggregateFactory = TestBed.inject(MagentoProductAggregationPriceFactory);
 
     url = 'url';
     stubCategory = categoryFactory.create({
@@ -73,8 +76,8 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
     let completeCategoryResponse: MagentoCompleteCategoryResponse;
     let category: MagentoCategory;
     let aggregates: MagentoAggregation[];
-    let page_info: MagentoPageInfo;
-    let sort_fields: MagentoSortFields;
+    let page_info: MagentoProductPageInfo;
+    let sort_fields: MagentoProductSortFields;
     let products: MagentoProduct[];
     let result: DaffCategoryPageMetadata;
 
@@ -153,7 +156,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       });
 
       it('should return a DaffCategoryPageMetadata with an equal filter type', () => {
-        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffCategoryFilterType.Equal);
+        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffProductFilterType.Equal);
       });
     });
 
@@ -167,7 +170,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
       });
 
       it('should return a DaffCategoryPageMetadata with a range filter type', () => {
-        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffCategoryFilterType.RangeNumeric);
+        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffProductFilterType.RangeNumeric);
       });
     });
   });

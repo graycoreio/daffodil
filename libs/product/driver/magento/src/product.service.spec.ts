@@ -130,7 +130,7 @@ describe('Product | Magento | ProductService', () => {
       });
     });
 
-    it('should query the category with the truncated URL', () => {
+    it('should query the product with the truncated URL', () => {
       result.subscribe();
 
       const op = controller.expectOne(addTypenameToDocument(getProductByUrl()));

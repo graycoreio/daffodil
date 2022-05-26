@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryFilter,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
@@ -18,7 +17,10 @@ import {
   Dict,
 } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductFilter,
+} from '@daffodil/product';
 
 import {
   DaffCategoryStateRootSlice,
@@ -61,11 +63,11 @@ export class DaffCategoryFacade<
 
   pageSize$: Observable<number>;
 
-  filters$: Observable<Dict<DaffCategoryFilter>>;
+  filters$: Observable<Dict<DaffProductFilter>>;
 
   sortOptions$: Observable<DaffSortOption[]>;
 
-  appliedFilters$: Observable<Dict<DaffCategoryFilter>>;
+  appliedFilters$: Observable<Dict<DaffProductFilter>>;
 
   appliedSortOption$: Observable<string>;
 

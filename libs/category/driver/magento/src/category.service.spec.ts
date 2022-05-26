@@ -13,81 +13,87 @@ import { Observable } from 'rxjs';
 import {
   DaffCategoryIdRequest,
   DaffCategory,
-  DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterRangeRequestOption,
-  daffCategoryComputeFilterRangePairLabel,
   DaffGetCategoryResponse,
   DaffCategoryRequestKind,
-  DaffCategoryFilterRangeNumericRequest,
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import {
   MagentoGetACategoryResponse,
-  MagentoGetCategoryFilterTypesResponse,
   MagentoCategory,
-  MagentoSortFields,
-  MagentoAggregation,
-  MagentoCategoryFilterTypeField,
-  MagentoPageInfo,
   MagentoGetCategoryQuery,
-  MagentoGetCategoryFilterTypes,
   MagentoGetProductsResponse,
   MagentoGetProductsQuery,
 } from '@daffodil/category/driver/magento';
-import {
-  DaffCategoryDriverMagentoCategoryFactory,
-  DaffCategoryDriverMagentoSortFieldsFactory,
-  DaffCategoryDriverMagentoCategoryFilterTypeFieldFactory,
-  DaffCategoryDriverMagentoPageInfoFactory,
-  DaffCategoryDriverMagentoAggregationPriceFactory,
-  DaffCategoryDriverMagentoAggregationSelectFactory,
-} from '@daffodil/category/driver/magento/testing';
+import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/testing';
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
-  DaffCategoryFilterRequestEqualFactory,
-  DaffCategoryFilterRequestRangeNumericFactory,
-  DaffCategoryFilterRangeNumericRequestOptionFactory,
 } from '@daffodil/category/testing';
-import { MagentoProduct } from '@daffodil/product/driver/magento';
-import { MagentoSimpleProductFactory } from '@daffodil/product/driver/magento/testing';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFilterEqualRequest,
+  DaffProductFilterRangeNumericRequest,
+  DaffProductFilterRangeRequestOption,
+  daffProductComputeFilterRangePairLabel,
+} from '@daffodil/product';
+import {
+  MagentoAggregation,
+  MagentoProduct,
+  MagentoProductFilterTypeField,
+  MagentoProductGetFilterTypes,
+  MagentoProductGetFilterTypesResponse,
+  MagentoProductPageInfo,
+  MagentoProductSortFields,
+} from '@daffodil/product/driver/magento';
+import {
+  MagentoProductFilterTypeFieldFactory,
+  MagentoProductAggregationPriceFactory,
+  MagentoProductAggregationSelectFactory,
+  MagentoProductSortFieldsFactory,
+  MagentoProductPageInfoFactory,
+  MagentoSimpleProductFactory,
+} from '@daffodil/product/driver/magento/testing';
+import {
+  DaffProductFactory,
+  DaffProductFilterRangeNumericRequestOptionFactory,
+  DaffProductFilterRequestEqualFactory,
+  DaffProductFilterRequestRangeNumericFactory,
+} from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
 
-describe('Driver | Magento | Category | CategoryService', () => {
+describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () => {
   let categoryService: DaffMagentoCategoryService;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let controller: ApolloTestingController;
   let productFactory: DaffProductFactory;
-  let equalFilterRequestFactory: DaffCategoryFilterRequestEqualFactory;
-  let rangeFilterRequestFactory: DaffCategoryFilterRequestRangeNumericFactory;
-  let rangeFilterRequestOptionFactory: DaffCategoryFilterRangeNumericRequestOptionFactory;
+  let equalFilterRequestFactory: DaffProductFilterRequestEqualFactory;
+  let rangeFilterRequestFactory: DaffProductFilterRequestRangeNumericFactory;
+  let rangeFilterRequestOptionFactory: DaffProductFilterRangeNumericRequestOptionFactory;
   let magentoCategoryFactory: DaffCategoryDriverMagentoCategoryFactory;
-  let magentoSortFieldsFactory: DaffCategoryDriverMagentoSortFieldsFactory;
-  let priceAggregateFactory: DaffCategoryDriverMagentoAggregationPriceFactory;
-  let selectAggregateFactory: DaffCategoryDriverMagentoAggregationSelectFactory;
-  let magentoFilterTypeFieldFactory: DaffCategoryDriverMagentoCategoryFilterTypeFieldFactory;
+  let magentoSortFieldsFactory: MagentoProductSortFieldsFactory;
+  let priceAggregateFactory: MagentoProductAggregationPriceFactory;
+  let selectAggregateFactory: MagentoProductAggregationSelectFactory;
+  let magentoFilterTypeFieldFactory: MagentoProductFilterTypeFieldFactory;
   let magentoProductFactory: MagentoSimpleProductFactory;
-  let magentoPageInfoFactory: DaffCategoryDriverMagentoPageInfoFactory;
+  let magentoPageInfoFactory: MagentoProductPageInfoFactory;
 
   let mockCategoryRequest: DaffCategoryIdRequest;
   let mockCategory: DaffCategory;
-  let equalFilterRequest: DaffCategoryFilterEqualRequest;
-  let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
-  let rangeFilterRequestOption: DaffCategoryFilterRangeRequestOption<number>;
+  let equalFilterRequest: DaffProductFilterEqualRequest;
+  let rangeFilterRequest: DaffProductFilterRangeNumericRequest;
+  let rangeFilterRequestOption: DaffProductFilterRangeRequestOption<number>;
   let rangeFilterRequestOptionLabel: string;
   let mockMagentoCategory: MagentoCategory;
-  let mockMagentoSortFields: MagentoSortFields;
+  let mockMagentoProductSortFields: MagentoProductSortFields;
   let mockMagentoSelectAggregation: MagentoAggregation;
   let mockMagentoPriceAggregation: MagentoAggregation;
-  let mockMagentoSelectFilterTypeField: MagentoCategoryFilterTypeField;
-  let mockMagentoPriceFilterTypeField: MagentoCategoryFilterTypeField;
+  let mockMagentoSelectFilterTypeField: MagentoProductFilterTypeField;
+  let mockMagentoPriceFilterTypeField: MagentoProductFilterTypeField;
   let mockMagentoProduct: MagentoProduct;
-  let mockMagentoPageInfo: MagentoPageInfo;
+  let mockMagentoProductPageInfo: MagentoProductPageInfo;
   let mockGetCategoryResponse: MagentoGetACategoryResponse;
-  let mockGetFilterTypesResponse: MagentoGetCategoryFilterTypesResponse;
+  let mockGetFilterTypesResponse: MagentoProductGetFilterTypesResponse;
   let mockGetProductsResponse: MagentoGetProductsResponse;
 
   beforeEach(() => {
@@ -106,17 +112,17 @@ describe('Driver | Magento | Category | CategoryService', () => {
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
-    equalFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
-    rangeFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
-    rangeFilterRequestOptionFactory = TestBed.inject(DaffCategoryFilterRangeNumericRequestOptionFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffProductFilterRequestEqualFactory);
+    rangeFilterRequestFactory = TestBed.inject(DaffProductFilterRequestRangeNumericFactory);
+    rangeFilterRequestOptionFactory = TestBed.inject(DaffProductFilterRangeNumericRequestOptionFactory);
     magentoCategoryFactory = TestBed.inject(DaffCategoryDriverMagentoCategoryFactory);
-    magentoSortFieldsFactory = TestBed.inject(DaffCategoryDriverMagentoSortFieldsFactory);
-    selectAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationSelectFactory);
-    priceAggregateFactory = TestBed.inject(DaffCategoryDriverMagentoAggregationPriceFactory);
-    rangeFilterRequestOptionFactory = TestBed.inject(DaffCategoryFilterRangeNumericRequestOptionFactory);
+    magentoSortFieldsFactory = TestBed.inject(MagentoProductSortFieldsFactory);
+    selectAggregateFactory = TestBed.inject(MagentoProductAggregationSelectFactory);
+    priceAggregateFactory = TestBed.inject(MagentoProductAggregationPriceFactory);
+    rangeFilterRequestOptionFactory = TestBed.inject(DaffProductFilterRangeNumericRequestOptionFactory);
     magentoProductFactory = TestBed.inject(MagentoSimpleProductFactory);
-    magentoPageInfoFactory = TestBed.inject(DaffCategoryDriverMagentoPageInfoFactory);
-    magentoFilterTypeFieldFactory = TestBed.inject(DaffCategoryDriverMagentoCategoryFilterTypeFieldFactory);
+    magentoPageInfoFactory = TestBed.inject(MagentoProductPageInfoFactory);
+    magentoFilterTypeFieldFactory = TestBed.inject(MagentoProductFilterTypeFieldFactory);
 
     mockCategory = categoryFactory.create();
     mockCategoryRequest = {
@@ -132,7 +138,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         ],
       },
     });
-    mockMagentoSortFields = magentoSortFieldsFactory.create();
+    mockMagentoProductSortFields = magentoSortFieldsFactory.create();
     mockMagentoPriceAggregation = priceAggregateFactory.create();
     mockMagentoSelectAggregation = selectAggregateFactory.create();
     mockMagentoSelectFilterTypeField = magentoFilterTypeFieldFactory.create({
@@ -147,7 +153,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         name: mockMagentoPriceAggregation.type,
       },
     });
-    mockMagentoPageInfo = magentoPageInfoFactory.create();
+    mockMagentoProductPageInfo = magentoPageInfoFactory.create();
 
     // transformedCategory = categoryFactory.create();
     // transformedCategoryPageMetadata =  categoryPageMetadataFactory.create();
@@ -174,12 +180,12 @@ describe('Driver | Magento | Category | CategoryService', () => {
         // TODO: fixme
         items: [],
         total_count: 1,
-        page_info: mockMagentoPageInfo,
+        page_info: mockMagentoProductPageInfo,
         aggregations: [
           mockMagentoPriceAggregation,
           mockMagentoSelectAggregation,
         ],
-        sort_fields: mockMagentoSortFields,
+        sort_fields: mockMagentoProductSortFields,
       },
     };
   });
@@ -203,7 +209,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       });
 
       const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+      const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
       const productsOp = controller.expectOne(MagentoGetProductsQuery());
 
       categoryOp.flushData(mockGetCategoryResponse);
@@ -222,7 +228,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
           name: mockMagentoPriceFilterTypeField.name,
           value: rangeFilterRequestOption,
         });
-        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         mockCategoryRequest = {
           ...mockCategoryRequest,
           kind: DaffCategoryRequestKind.ID,
@@ -245,7 +251,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         });
 
         const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-        const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+        const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
         const productsOp = controller.expectOne(MagentoGetProductsQuery());
 
         categoryOp.flushData(mockGetCategoryResponse);
@@ -277,7 +283,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       });
 
       const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+      const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
       categoryOp.flushData(mockGetCategoryResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
@@ -292,7 +298,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       result.subscribe();
 
       const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+      const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
       categoryOp.flushData(mockGetCategoryResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
@@ -311,7 +317,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
       result.subscribe();
 
       const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+      const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
       categoryOp.flushData(mockGetCategoryResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
@@ -337,7 +343,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
           name: mockMagentoPriceFilterTypeField.name,
           value: rangeFilterRequestOption,
         });
-        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         mockCategoryUrlRequest = {
           ...mockCategoryUrlRequest,
           filter_requests: [
@@ -359,7 +365,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         });
 
         const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-        const filterTypesOp = controller.expectOne(MagentoGetCategoryFilterTypes);
+        const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
         categoryOp.flushData(mockGetCategoryResponse);
         filterTypesOp.flushData(mockGetFilterTypesResponse);

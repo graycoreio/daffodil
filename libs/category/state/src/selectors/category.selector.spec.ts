@@ -9,7 +9,6 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
-  DaffCategoryFilterType,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
@@ -23,7 +22,10 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductFilterType,
+} from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
@@ -70,7 +72,7 @@ describe('DaffCategorySelectors', () => {
     stubMetadata.filters = {
       name: {
         name: 'name',
-        type: DaffCategoryFilterType.Equal,
+        type: DaffProductFilterType.Equal,
         label: 'label',
         options: {
           value: {
@@ -83,7 +85,7 @@ describe('DaffCategorySelectors', () => {
       },
       name2: {
         name: 'name2',
-        type: DaffCategoryFilterType.Equal,
+        type: DaffProductFilterType.Equal,
         label: 'label2',
         options: {
           value2: {

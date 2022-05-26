@@ -1,8 +1,10 @@
-import { MagentoCategoryFilters } from './filters';
-import { MagentoSortFieldAction } from './sort';
+import {
+  MagentoProductFilters,
+  MagentoSortFieldAction,
+} from '@daffodil/product/driver/magento';
 
 export interface MagentoGetProductsByCategoriesRequest {
-  filter: MagentoCategoryFilters;
+  filter: MagentoProductFilters;
   search?: string;
   pageSize?: number;
   currentPage?: number;

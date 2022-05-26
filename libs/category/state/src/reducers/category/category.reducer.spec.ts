@@ -2,22 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCategory,
-  DaffCategoryFilterEqualRequest,
-  DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterEqualToggleRequest,
-  DaffCategoryFilterEqual,
-  DaffCategoryFilterEqualOption,
-  DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterRangeRequestOption,
   DaffCategoryPageMetadata,
-  DaffCategoryFilterRangePair,
-  daffCategoryFilterRangePairArrayToDict,
-  daffCategoryFilterArrayToDict,
-  daffCategoryFilterEqualOptionArrayToDict,
-  DaffCategoryFilterRangeNumericToggleRequest,
-  daffCategoryComputeFilterRangePairLabel,
-  daffCategoryFiltersToRequests,
-  daffIsFilterApplied,
   DaffCategoryIdRequest,
   DaffCategoryRequestKind,
   DaffCategoryUrlRequest,
@@ -40,22 +25,41 @@ import {
 } from '@daffodil/category/state';
 import {
   DaffCategoryFactory,
-  DaffCategoryFilterEqualFactory,
-  DaffCategoryFilterEqualOptionFactory,
-  DaffCategoryFilterRangeNumericFactory,
-  DaffCategoryFilterRangeNumericPairFactory,
-  DaffCategoryFilterRequestEqualFactory,
-  DaffCategoryFilterRequestRangeNumericFactory,
-  DaffCategoryFilterRangeNumericRequestOptionFactory,
   DaffCategoryPageMetadataFactory,
-  DaffCategoryFilterToggleRequestEqualFactory,
-  DaffCategoryFilterToggleRequestRangeNumericFactory,
 } from '@daffodil/category/testing';
 import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
+import {
+  DaffProductFilterEqual,
+  DaffProductFilterEqualOption,
+  DaffProductFilterRangeNumeric,
+  DaffProductFilterRangePair,
+  DaffProductFilterEqualRequest,
+  DaffProductFilterEqualToggleRequest,
+  DaffProductFilterRangeNumericRequest,
+  DaffProductFilterRangeNumericToggleRequest,
+  DaffProductFilterRangeRequestOption,
+  daffProductFilterArrayToDict,
+  daffProductFilterEqualOptionArrayToDict,
+  daffProductFilterRangePairArrayToDict,
+  daffProductComputeFilterRangePairLabel,
+  daffIsFilterApplied,
+  daffProductFiltersToRequests,
+} from '@daffodil/product';
+import {
+  DaffProductFilterEqualFactory,
+  DaffProductFilterEqualOptionFactory,
+  DaffProductFilterRangeNumericFactory,
+  DaffProductFilterRangeNumericPairFactory,
+  DaffProductFilterRequestEqualFactory,
+  DaffProductFilterRequestRangeNumericFactory,
+  DaffProductFilterRangeNumericRequestOptionFactory,
+  DaffProductFilterToggleRequestEqualFactory,
+  DaffProductFilterToggleRequestRangeNumericFactory,
+} from '@daffodil/product/testing';
 
 import {
   daffCategoryReducer,
@@ -66,44 +70,44 @@ describe('Category | Category Reducer', () => {
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
-  let equalFilterFactory: DaffCategoryFilterEqualFactory;
-  let equalOptionFactory: DaffCategoryFilterEqualOptionFactory;
-  let rangeFilterFactory: DaffCategoryFilterRangeNumericFactory;
-  let rangePairFactory: DaffCategoryFilterRangeNumericPairFactory;
-  let equalFilterRequestFactory: DaffCategoryFilterRequestEqualFactory;
-  let equalFilterToggleRequestFactory: DaffCategoryFilterToggleRequestEqualFactory;
-  let rangeFilterRequestFactory: DaffCategoryFilterRequestRangeNumericFactory;
-  let rangeFilterToggleRequestFactory: DaffCategoryFilterToggleRequestRangeNumericFactory;
-  let rangeFilterRequestOptionFactory: DaffCategoryFilterRangeNumericRequestOptionFactory;
+  let equalFilterFactory: DaffProductFilterEqualFactory;
+  let equalOptionFactory: DaffProductFilterEqualOptionFactory;
+  let rangeFilterFactory: DaffProductFilterRangeNumericFactory;
+  let rangePairFactory: DaffProductFilterRangeNumericPairFactory;
+  let equalFilterRequestFactory: DaffProductFilterRequestEqualFactory;
+  let equalFilterToggleRequestFactory: DaffProductFilterToggleRequestEqualFactory;
+  let rangeFilterRequestFactory: DaffProductFilterRequestRangeNumericFactory;
+  let rangeFilterToggleRequestFactory: DaffProductFilterToggleRequestRangeNumericFactory;
+  let rangeFilterRequestOptionFactory: DaffProductFilterRangeNumericRequestOptionFactory;
 
   let categoryPageMetadata: DaffCategoryPageMetadata;
   let category: DaffCategory;
-  let currentEqualFilter: DaffCategoryFilterEqual;
-  let currentAppliedEqualFilterOption: DaffCategoryFilterEqualOption;
-  let currentUnappliedEqualFilterOption: DaffCategoryFilterEqualOption;
-  let currentRangeFilter: DaffCategoryFilterRangeNumeric;
-  let currentRangeFilterPair: DaffCategoryFilterRangePair<number>;
+  let currentEqualFilter: DaffProductFilterEqual;
+  let currentAppliedEqualFilterOption: DaffProductFilterEqualOption;
+  let currentUnappliedEqualFilterOption: DaffProductFilterEqualOption;
+  let currentRangeFilter: DaffProductFilterRangeNumeric;
+  let currentRangeFilterPair: DaffProductFilterRangePair<number>;
   let currentRangeFilterPairLabel: string;
-  let equalFilterRequest: DaffCategoryFilterEqualRequest;
-  let equalFilterToggleRequest: DaffCategoryFilterEqualToggleRequest;
-  let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
-  let rangeFilterToggleRequest: DaffCategoryFilterRangeNumericToggleRequest;
-  let rangeFilterRequestOption: DaffCategoryFilterRangeRequestOption<number>;
+  let equalFilterRequest: DaffProductFilterEqualRequest;
+  let equalFilterToggleRequest: DaffProductFilterEqualToggleRequest;
+  let rangeFilterRequest: DaffProductFilterRangeNumericRequest;
+  let rangeFilterToggleRequest: DaffProductFilterRangeNumericToggleRequest;
+  let rangeFilterRequestOption: DaffProductFilterRangeRequestOption<number>;
   let rangeFilterRequestOptionLabel: string;
   let categoryId: string;
 
   beforeEach(() => {
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
-    equalFilterFactory = TestBed.inject(DaffCategoryFilterEqualFactory);
-    equalOptionFactory = TestBed.inject(DaffCategoryFilterEqualOptionFactory);
-    rangeFilterFactory = TestBed.inject(DaffCategoryFilterRangeNumericFactory);
-    rangePairFactory = TestBed.inject(DaffCategoryFilterRangeNumericPairFactory);
-    equalFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
-    equalFilterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestEqualFactory);
-    rangeFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
-    rangeFilterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestRangeNumericFactory);
-    rangeFilterRequestOptionFactory = TestBed.inject(DaffCategoryFilterRangeNumericRequestOptionFactory);
+    equalFilterFactory = TestBed.inject(DaffProductFilterEqualFactory);
+    equalOptionFactory = TestBed.inject(DaffProductFilterEqualOptionFactory);
+    rangeFilterFactory = TestBed.inject(DaffProductFilterRangeNumericFactory);
+    rangePairFactory = TestBed.inject(DaffProductFilterRangeNumericPairFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffProductFilterRequestEqualFactory);
+    equalFilterToggleRequestFactory = TestBed.inject(DaffProductFilterToggleRequestEqualFactory);
+    rangeFilterRequestFactory = TestBed.inject(DaffProductFilterRequestRangeNumericFactory);
+    rangeFilterToggleRequestFactory = TestBed.inject(DaffProductFilterToggleRequestRangeNumericFactory);
+    rangeFilterRequestOptionFactory = TestBed.inject(DaffProductFilterRangeNumericRequestOptionFactory);
 
     category = categoryFactory.create();
     categoryPageMetadata = categoryPageMetadataFactory.create();
@@ -219,7 +223,7 @@ describe('Category | Category Reducer', () => {
         ...initialState,
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
-          filters: daffCategoryFilterArrayToDict([
+          filters: daffProductFilterArrayToDict([
             currentEqualFilter,
           ]),
         },
@@ -234,7 +238,7 @@ describe('Category | Category Reducer', () => {
           applied: true,
         });
         currentEqualFilter = equalFilterFactory.create({
-          options: daffCategoryFilterEqualOptionArrayToDict([
+          options: daffProductFilterEqualOptionArrayToDict([
             currentAppliedEqualFilterOption,
           ]),
         });
@@ -246,7 +250,7 @@ describe('Category | Category Reducer', () => {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentEqualFilter,
             ]),
           },
@@ -266,7 +270,7 @@ describe('Category | Category Reducer', () => {
       beforeEach(() => {
         currentRangeFilterPair = rangePairFactory.create();
         currentRangeFilter = rangeFilterFactory.create({
-          options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+          options: daffProductFilterRangePairArrayToDict([currentRangeFilterPair]),
         });
         rangeFilterToggleRequest = rangeFilterToggleRequestFactory.create({
           name: currentRangeFilter.name,
@@ -279,7 +283,7 @@ describe('Category | Category Reducer', () => {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentRangeFilter,
             ]),
           },
@@ -301,7 +305,7 @@ describe('Category | Category Reducer', () => {
           applied: false,
         });
         currentEqualFilter = equalFilterFactory.create({
-          options: daffCategoryFilterEqualOptionArrayToDict([
+          options: daffProductFilterEqualOptionArrayToDict([
             currentUnappliedEqualFilterOption,
           ]),
         });
@@ -313,7 +317,7 @@ describe('Category | Category Reducer', () => {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentEqualFilter,
             ]),
           },
@@ -337,12 +341,12 @@ describe('Category | Category Reducer', () => {
           value: rangeFilterRequestOption,
           name: currentRangeFilter.name,
         });
-        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         stateUnderTest = {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentRangeFilter,
             ]),
           },
@@ -381,14 +385,14 @@ describe('Category | Category Reducer', () => {
         applied: false,
       });
       currentEqualFilter = equalFilterFactory.create({
-        options: daffCategoryFilterEqualOptionArrayToDict([
+        options: daffProductFilterEqualOptionArrayToDict([
           currentAppliedEqualFilterOption,
           currentUnappliedEqualFilterOption,
         ]),
       });
       currentRangeFilterPair = rangePairFactory.create();
       currentRangeFilter = rangeFilterFactory.create({
-        options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+        options: daffProductFilterRangePairArrayToDict([currentRangeFilterPair]),
       });
 
       equalFilterRequest = equalFilterRequestFactory.create({
@@ -400,13 +404,13 @@ describe('Category | Category Reducer', () => {
         value: rangeFilterRequestOption,
         name: currentRangeFilter.name,
       });
-      currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
-      rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+      currentRangeFilterPairLabel = daffProductComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
+      rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
       stateUnderTest = {
         ...initialState,
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
-          filters: daffCategoryFilterArrayToDict([
+          filters: daffProductFilterArrayToDict([
             currentEqualFilter,
             currentRangeFilter,
           ]),
@@ -458,14 +462,14 @@ describe('Category | Category Reducer', () => {
         applied: false,
       });
       currentEqualFilter = equalFilterFactory.create({
-        options: daffCategoryFilterEqualOptionArrayToDict([
+        options: daffProductFilterEqualOptionArrayToDict([
           currentAppliedEqualFilterOption,
           currentUnappliedEqualFilterOption,
         ]),
       });
       currentRangeFilterPair = rangePairFactory.create();
       currentRangeFilter = rangeFilterFactory.create({
-        options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+        options: daffProductFilterRangePairArrayToDict([currentRangeFilterPair]),
       });
 
       equalFilterRequest = equalFilterRequestFactory.create({
@@ -477,12 +481,12 @@ describe('Category | Category Reducer', () => {
         value: rangeFilterRequestOption,
         name: currentRangeFilter.name,
       });
-      rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+      rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
       stateUnderTest = {
         ...initialState,
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
-          filters: daffCategoryFilterArrayToDict([
+          filters: daffProductFilterArrayToDict([
             currentEqualFilter,
             currentRangeFilter,
           ]),
@@ -510,14 +514,14 @@ describe('Category | Category Reducer', () => {
         expect(result.categoryPageMetadata.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
       });
       expect(result.categoryPageMetadata.filters[rangeFilterRequest.name].options[
-        daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max)
+        daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max)
       ].applied).toBeTrue();
     });
 
     it('should remove the existing options', () => {
       expect(result.categoryPageMetadata.filters[currentEqualFilter.name].options[currentAppliedEqualFilterOption.value].applied).toBeFalse();
       expect(result.categoryPageMetadata.filters[rangeFilterRequest.name].options[
-        daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value)
+        daffProductComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value)
       ]).toBeFalsy();
     });
 
@@ -539,7 +543,7 @@ describe('Category | Category Reducer', () => {
         ...initialState,
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
-          filters: daffCategoryFilterArrayToDict([
+          filters: daffProductFilterArrayToDict([
             currentEqualFilter,
           ]),
         },
@@ -557,7 +561,7 @@ describe('Category | Category Reducer', () => {
           applied: false,
         });
         currentEqualFilter = equalFilterFactory.create({
-          options: daffCategoryFilterEqualOptionArrayToDict([
+          options: daffProductFilterEqualOptionArrayToDict([
             currentAppliedEqualFilterOption,
             currentUnappliedEqualFilterOption,
           ]),
@@ -570,7 +574,7 @@ describe('Category | Category Reducer', () => {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentEqualFilter,
             ]),
           },
@@ -594,20 +598,20 @@ describe('Category | Category Reducer', () => {
       beforeEach(() => {
         currentRangeFilterPair = rangePairFactory.create();
         currentRangeFilter = rangeFilterFactory.create({
-          options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+          options: daffProductFilterRangePairArrayToDict([currentRangeFilterPair]),
         });
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterRequest = rangeFilterRequestFactory.create({
           value: rangeFilterRequestOption,
           name: currentRangeFilter.name,
         });
-        currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
-        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        currentRangeFilterPairLabel = daffProductComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
+        rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         stateUnderTest = {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentRangeFilter,
             ]),
           },
@@ -631,7 +635,7 @@ describe('Category | Category Reducer', () => {
           applied: false,
         });
         currentEqualFilter = equalFilterFactory.create({
-          options: daffCategoryFilterEqualOptionArrayToDict([
+          options: daffProductFilterEqualOptionArrayToDict([
             currentUnappliedEqualFilterOption,
           ]),
         });
@@ -646,12 +650,12 @@ describe('Category | Category Reducer', () => {
           name: currentRangeFilter.name,
           value: rangeFilterRequestOption,
         });
-        rangeFilterRequestOptionLabel = daffCategoryComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
+        rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         stateUnderTest = {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentEqualFilter,
               currentRangeFilter,
             ]),
@@ -697,20 +701,20 @@ describe('Category | Category Reducer', () => {
         applied: false,
       });
       currentEqualFilter = equalFilterFactory.create({
-        options: daffCategoryFilterEqualOptionArrayToDict([
+        options: daffProductFilterEqualOptionArrayToDict([
           currentAppliedEqualFilterOption,
           currentUnappliedEqualFilterOption,
         ]),
       });
       currentRangeFilterPair = rangePairFactory.create();
       currentRangeFilter = rangeFilterFactory.create({
-        options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+        options: daffProductFilterRangePairArrayToDict([currentRangeFilterPair]),
       });
       stateUnderTest = {
         ...initialState,
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
-          filters: daffCategoryFilterArrayToDict([
+          filters: daffProductFilterArrayToDict([
             currentEqualFilter,
             currentRangeFilter,
           ]),
@@ -753,7 +757,7 @@ describe('Category | Category Reducer', () => {
         ...initialState,
         categoryPageMetadata: {
           ...initialState.categoryPageMetadata,
-          filters: daffCategoryFilterArrayToDict([currentEqualFilter]),
+          filters: daffProductFilterArrayToDict([currentEqualFilter]),
         },
       };
 
@@ -767,7 +771,7 @@ describe('Category | Category Reducer', () => {
           applied: true,
         });
         currentEqualFilter = equalFilterFactory.create({
-          options: daffCategoryFilterEqualOptionArrayToDict([
+          options: daffProductFilterEqualOptionArrayToDict([
             currentAppliedEqualFilterOption,
           ]),
         });
@@ -779,7 +783,7 @@ describe('Category | Category Reducer', () => {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentEqualFilter,
             ]),
           },
@@ -797,7 +801,7 @@ describe('Category | Category Reducer', () => {
       beforeEach(() => {
         currentRangeFilterPair = rangePairFactory.create();
         currentRangeFilter = rangeFilterFactory.create({
-          options: daffCategoryFilterRangePairArrayToDict([currentRangeFilterPair]),
+          options: daffProductFilterRangePairArrayToDict([currentRangeFilterPair]),
         });
         rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
         rangeFilterRequest = rangeFilterRequestFactory.create({
@@ -807,12 +811,12 @@ describe('Category | Category Reducer', () => {
             max: currentRangeFilterPair.max.value,
           },
         });
-        currentRangeFilterPairLabel = daffCategoryComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
+        currentRangeFilterPairLabel = daffProductComputeFilterRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
         stateUnderTest = {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentRangeFilter,
             ]),
           },
@@ -832,7 +836,7 @@ describe('Category | Category Reducer', () => {
           applied: false,
         });
         currentEqualFilter = equalFilterFactory.create({
-          options: daffCategoryFilterEqualOptionArrayToDict([
+          options: daffProductFilterEqualOptionArrayToDict([
             currentUnappliedEqualFilterOption,
           ]),
         });
@@ -851,7 +855,7 @@ describe('Category | Category Reducer', () => {
           ...initialState,
           categoryPageMetadata: {
             ...initialState.categoryPageMetadata,
-            filters: daffCategoryFilterArrayToDict([
+            filters: daffProductFilterArrayToDict([
               currentEqualFilter,
               currentRangeFilter,
             ]),
@@ -891,7 +895,7 @@ describe('Category | Category Reducer', () => {
         kind: DaffCategoryRequestKind.ID,
         id: categoryId,
         page_size: categoryPageMetadata.page_size,
-        filter_requests: daffCategoryFiltersToRequests(categoryPageMetadata.filters),
+        filter_requests: daffProductFiltersToRequests(categoryPageMetadata.filters),
         applied_sort_option: categoryPageMetadata.applied_sort_option,
         applied_sort_direction: categoryPageMetadata.applied_sort_direction,
         current_page: categoryPageMetadata.current_page,
@@ -961,7 +965,7 @@ describe('Category | Category Reducer', () => {
         kind: DaffCategoryRequestKind.URL,
         url: category.url,
         page_size: categoryPageMetadata.page_size,
-        filter_requests: daffCategoryFiltersToRequests(categoryPageMetadata.filters),
+        filter_requests: daffProductFiltersToRequests(categoryPageMetadata.filters),
         applied_sort_option: categoryPageMetadata.applied_sort_option,
         applied_sort_direction: categoryPageMetadata.applied_sort_direction,
         current_page: categoryPageMetadata.current_page,

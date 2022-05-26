@@ -1,12 +1,12 @@
-import {
-  DaffGenericCategory,
-  daffApplyRequestsToFilters,
-  daffRemoveRequestsFromFilters,
-  daffClearFilters,
-  daffToggleRequestOnFilters,
-} from '@daffodil/category';
+import { DaffGenericCategory } from '@daffodil/category';
 import { DaffState } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  daffApplyRequestsToFilters,
+  daffClearFilters,
+  DaffProduct,
+  daffRemoveRequestsFromFilters,
+  daffToggleRequestOnFilters,
+} from '@daffodil/product';
 
 import {
   DaffCategoryPageFilterActionTypes,

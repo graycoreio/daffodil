@@ -10,10 +10,6 @@ import { TestScheduler } from 'rxjs/testing';
 import {
   DaffCategory,
   DaffGetCategoryResponse,
-  daffCategoryFilterArrayToDict,
-  daffCategoryFiltersToRequests,
-  DaffCategoryFilterRequest,
-  DaffCategoryFilterToggleRequest,
   DaffCategoryRequestKind,
 } from '@daffodil/category';
 import {
@@ -38,18 +34,26 @@ import {
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
-  DaffCategoryFilterFactory,
-  DaffCategoryFilterRequestFactory,
-  DaffCategoryFilterToggleRequestFactory,
 } from '@daffodil/category/testing';
 import {
   DaffInheritableError,
   DaffError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  daffProductFilterArrayToDict,
+  DaffProductFilterRequest,
+  daffProductFiltersToRequests,
+  DaffProductFilterToggleRequest,
+} from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductFilterFactory,
+  DaffProductFilterRequestFactory,
+  DaffProductFilterToggleRequestFactory,
+} from '@daffodil/product/testing';
 
 import { DaffCategoryPageFilterEffects } from './category-page-filter.effects';
 
@@ -70,9 +74,9 @@ describe('DaffCategoryPageFilterEffects', () => {
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let productFactory: DaffProductFactory;
-  let filterFactory: DaffCategoryFilterFactory;
-  let filterRequestFactory: DaffCategoryFilterRequestFactory;
-  let filterToggleRequestFactory: DaffCategoryFilterToggleRequestFactory;
+  let filterFactory: DaffProductFilterFactory;
+  let filterRequestFactory: DaffProductFilterRequestFactory;
+  let filterToggleRequestFactory: DaffProductFilterToggleRequestFactory;
 
   const testDriverSuccess = (cb: () => Action) => {
     describe('throttling the request', () => {
@@ -82,7 +86,7 @@ describe('DaffCategoryPageFilterEffects', () => {
         });
 
         const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
-          filters: daffCategoryFilterArrayToDict(filterFactory.createMany(3)),
+          filters: daffProductFilterArrayToDict(filterFactory.createMany(3)),
         });
         const stubCategory = categoryFactory.create({
           id: stubCategoryPageMetadata.id,
@@ -120,7 +124,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
           current_page: stubCategoryPageMetadata.current_page,
           page_size: stubCategoryPageMetadata.page_size,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
+          filter_requests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
         });
       });
     });
@@ -132,7 +136,7 @@ describe('DaffCategoryPageFilterEffects', () => {
         });
 
         const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
-          filters: daffCategoryFilterArrayToDict(filterFactory.createMany(3)),
+          filters: daffProductFilterArrayToDict(filterFactory.createMany(3)),
         });
         const stubCategory = categoryFactory.create({
           id: stubCategoryPageMetadata.id,
@@ -170,7 +174,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
           current_page: stubCategoryPageMetadata.current_page,
           page_size: stubCategoryPageMetadata.page_size,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
+          filter_requests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
         });
       });
     });
@@ -184,7 +188,7 @@ describe('DaffCategoryPageFilterEffects', () => {
         });
 
         const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
-          filters: daffCategoryFilterArrayToDict(filterFactory.createMany(3)),
+          filters: daffProductFilterArrayToDict(filterFactory.createMany(3)),
         });
 
         facade.metadata$.next(stubCategoryPageMetadata);
@@ -213,7 +217,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
           current_page: stubCategoryPageMetadata.current_page,
           page_size: stubCategoryPageMetadata.page_size,
-          filter_requests: daffCategoryFiltersToRequests(stubCategoryPageMetadata.filters),
+          filter_requests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
         });
       });
     });
@@ -238,9 +242,9 @@ describe('DaffCategoryPageFilterEffects', () => {
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
-    filterFactory = TestBed.inject(DaffCategoryFilterFactory);
-    filterRequestFactory = TestBed.inject(DaffCategoryFilterRequestFactory);
-    filterToggleRequestFactory = TestBed.inject(DaffCategoryFilterToggleRequestFactory);
+    filterFactory = TestBed.inject(DaffProductFilterFactory);
+    filterRequestFactory = TestBed.inject(DaffProductFilterRequestFactory);
+    filterToggleRequestFactory = TestBed.inject(DaffProductFilterToggleRequestFactory);
   });
 
   it('should be created', () => {
@@ -248,7 +252,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when ChangeCategoryFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequest;
+    let filterRequest: DaffProductFilterRequest;
     let action: Action;
 
     beforeEach(() => {
@@ -261,7 +265,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageReplaceFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequest;
+    let filterRequest: DaffProductFilterRequest;
     let action: Action;
 
     beforeEach(() => {
@@ -274,7 +278,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageApplyFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequest;
+    let filterRequest: DaffProductFilterRequest;
     let action: Action;
 
 
@@ -288,7 +292,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageClearFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequest;
+    let filterRequest: DaffProductFilterRequest;
     let action: Action;
 
 
@@ -302,7 +306,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageRemoveFiltersAction is triggered', () => {
-    let filterRequest: DaffCategoryFilterRequest;
+    let filterRequest: DaffProductFilterRequest;
     let action: Action;
 
 
@@ -316,7 +320,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   });
 
   describe('when CategoryPageToggleFilterAction is triggered', () => {
-    let toggleRequest: DaffCategoryFilterToggleRequest;
+    let toggleRequest: DaffProductFilterToggleRequest;
     let action: Action;
 
     beforeEach(() => {
