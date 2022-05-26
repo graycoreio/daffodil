@@ -20,7 +20,6 @@ import {
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
   DaffCategoryUrlRequest,
-  daffCategoryFiltersToRequests,
 } from '@daffodil/category';
 import {
   DaffCategoryServiceInterface,
@@ -44,7 +43,10 @@ import {
 } from '@daffodil/category/testing';
 import { DaffSortDirectionEnum } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  daffProductFiltersToRequests,
+} from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
@@ -317,7 +319,7 @@ describe('DaffCategoryPageEffects', () => {
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
         page_size: 3,
-        filter_requests: daffCategoryFiltersToRequests(stubcategoryPageMetadata.filters),
+        filter_requests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });
@@ -341,7 +343,7 @@ describe('DaffCategoryPageEffects', () => {
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
         current_page: 3,
-        filter_requests: daffCategoryFiltersToRequests(stubcategoryPageMetadata.filters),
+        filter_requests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });
@@ -369,7 +371,7 @@ describe('DaffCategoryPageEffects', () => {
         kind: DaffCategoryRequestKind.ID,
         applied_sort_direction: DaffSortDirectionEnum.Ascending,
         applied_sort_option: 'option',
-        filter_requests: daffCategoryFiltersToRequests(stubcategoryPageMetadata.filters),
+        filter_requests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });

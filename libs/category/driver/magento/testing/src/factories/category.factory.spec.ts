@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  MagentoAggregation,
-  MagentoCategory,
-} from '@daffodil/category/driver/magento';
+import { MagentoCategory } from '@daffodil/category/driver/magento';
 
 import { DaffCategoryDriverMagentoCategoryFactory } from './category.factory';
 
-describe('Category | Driver | Magento | Testing | Factories | DaffCategoryDriverMagentoCategoryFactory', () => {
+describe('@daffodil/category/driver/magento/testing | DaffCategoryDriverMagentoCategoryFactory', () => {
 
   let factory: DaffCategoryDriverMagentoCategoryFactory;
 

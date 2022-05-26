@@ -1,26 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffCategoryFilterRequest,
-  DaffCategoryFilterType,
-  DaffCategoryFilterRangeNumeric,
-  DaffCategoryFilterRangeNumericRequest,
-  DaffCategoryFilterEqualRequest,
-} from '@daffodil/category';
+  DaffProductFilterRequest,
+  DaffProductFilterType,
+  DaffProductFilterRangeNumeric,
+  DaffProductFilterRangeNumericRequest,
+  DaffProductFilterEqualRequest,
+} from '@daffodil/product';
 import {
-  MagentoCategoryFilters,
-  MagentoCategoryFilterActionEnum,
-} from '@daffodil/category/driver/magento';
+  MagentoProductFilters,
+  MagentoProductFilterActionEnum,
+} from '@daffodil/product/driver/magento';
 import {
-  DaffCategoryFilterRequestRangeNumericFactory,
-  DaffCategoryFilterRequestEqualFactory,
-} from '@daffodil/category/testing';
+  DaffProductFilterRequestRangeNumericFactory,
+  DaffProductFilterRequestEqualFactory,
+} from '@daffodil/product/testing';
 
 import { DaffMagentoAppliedFiltersTransformService } from './applied-filter-transformer.service';
 
 describe('DaffMagentoAppliedFiltersTransformService', () => {
-  let rangeFilterRequestFactory: DaffCategoryFilterRequestRangeNumericFactory;
-  let equalFilterRequestFactory: DaffCategoryFilterRequestEqualFactory;
+  let rangeFilterRequestFactory: DaffProductFilterRequestRangeNumericFactory;
+  let equalFilterRequestFactory: DaffProductFilterRequestEqualFactory;
   let service: DaffMagentoAppliedFiltersTransformService;
   const categoryId = 'id';
 
@@ -31,8 +31,8 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
       ],
     });
     service = TestBed.inject(DaffMagentoAppliedFiltersTransformService);
-    rangeFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestRangeNumericFactory);
-    equalFilterRequestFactory = TestBed.inject(DaffCategoryFilterRequestEqualFactory);
+    rangeFilterRequestFactory = TestBed.inject(DaffProductFilterRequestRangeNumericFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffProductFilterRequestEqualFactory);
   });
 
   it('should be created', () => {
@@ -42,7 +42,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
   describe('transform', () => {
 
     it('should return only a category filter when there are no additional filters', () => {
-      const expectedReturn: MagentoCategoryFilters = {
+      const expectedReturn: MagentoProductFilters = {
         category_uid: {
           eq: 'id',
         },
@@ -52,7 +52,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
     });
 
     describe('when the filter type is Range', () => {
-      let rangeFilterRequest: DaffCategoryFilterRangeNumericRequest;
+      let rangeFilterRequest: DaffProductFilterRangeNumericRequest;
 
       beforeEach(() => {
         rangeFilterRequest = rangeFilterRequestFactory.create({
@@ -64,13 +64,13 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
       });
 
       it('should transform a range filter request into a valid magento FromTo filter', () => {
-        const expectedReturn: MagentoCategoryFilters = {
+        const expectedReturn: MagentoProductFilters = {
           category_uid: {
             eq: 'id',
           },
           [rangeFilterRequest.name]: {
-            [MagentoCategoryFilterActionEnum.From]: '30',
-            [MagentoCategoryFilterActionEnum.To]: '40',
+            [MagentoProductFilterActionEnum.From]: '30',
+            [MagentoProductFilterActionEnum.To]: '40',
           },
         };
 
@@ -79,19 +79,19 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
     });
 
     describe('when the filter type is not Range', () => {
-      let equalFilterRequest: DaffCategoryFilterEqualRequest;
+      let equalFilterRequest: DaffProductFilterEqualRequest;
 
       beforeEach(() => {
         equalFilterRequest = equalFilterRequestFactory.create();
       });
 
-      it('should transform an array of DaffCategoryFilterRequest into a MagentoCategoryFilters', () => {
-        const expectedReturn: MagentoCategoryFilters = {
+      it('should transform an array of DaffProductFilterRequest into a MagentoProductFilters', () => {
+        const expectedReturn: MagentoProductFilters = {
           category_uid: {
             eq: 'id',
           },
           [equalFilterRequest.name]: {
-            [MagentoCategoryFilterActionEnum.In]: equalFilterRequest.value,
+            [MagentoProductFilterActionEnum.In]: equalFilterRequest.value,
           },
         };
         expect(service.transform(categoryId, [equalFilterRequest])).toEqual(expectedReturn);

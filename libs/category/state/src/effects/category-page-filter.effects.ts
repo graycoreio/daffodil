@@ -25,7 +25,6 @@ import {
   DaffGenericCategory,
   DaffGetCategoryResponse,
   DAFF_CATEGORY_ERROR_MATCHER,
-  daffCategoryFiltersToRequests,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
 } from '@daffodil/category';
@@ -36,7 +35,10 @@ import {
 } from '@daffodil/category/driver';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  daffProductFiltersToRequests,
+} from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
@@ -90,7 +92,7 @@ export class DaffCategoryPageFilterEffects<
     ): DaffCategoryIdRequest => ({
       kind: DaffCategoryRequestKind.ID,
       id: metadata.id,
-      filter_requests: daffCategoryFiltersToRequests(metadata.filters),
+      filter_requests: daffProductFiltersToRequests(metadata.filters),
       applied_sort_option: metadata.applied_sort_option,
       applied_sort_direction: metadata.applied_sort_direction,
       current_page: metadata.current_page,

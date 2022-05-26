@@ -5,9 +5,15 @@ import {
   daffBuildFragmentDefinition,
   daffBuildFragmentNameSpread,
 } from '@daffodil/core/graphql';
-import { magentoProductFragment } from '@daffodil/product/driver/magento';
+import {
+  magentoProductAggregationsFragment,
+  magentoProductFragment,
+  magentoProductPageInfoFragment,
+  magentoProductSortFieldsFragment,
+} from '@daffodil/product/driver/magento';
 
 export const DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME = 'MagentoGetProducts';
+// TODO(griest024): should this be using the product preview fragment instead?
 /**
  * This query only exists because products and their associated aggregations/filter cannot
  * be retrieved through a category call.
@@ -23,29 +29,19 @@ query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInp
       ${daffBuildFragmentNameSpread(...extraProductFragments)}
 		}
 		page_info {
-			page_size
-			current_page
-			total_pages
+			...magentoProductPageInfo
 		}
 		aggregations {
-			label
-			count
-			attribute_code
-      options {
-        count
-        label
-        value
-			}
+			...magentoProductAggregations
 		}
 		sort_fields {
-			default
-			options {
-				label
-				value
-			}
+			...magentoProductSortFields
 		}
 	}
 }
 ${magentoProductFragment}
+${magentoProductPageInfoFragment}
+${magentoProductSortFieldsFragment}
+${magentoProductAggregationsFragment}
 ${daffBuildFragmentDefinition(...extraProductFragments)}
 `;

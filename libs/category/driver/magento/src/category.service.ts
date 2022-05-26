@@ -15,30 +15,33 @@ import {
 
 import {
   DaffGetCategoryResponse,
-  daffApplyRequestsToFilters,
   DaffCategoryUrlRequest,
   DaffCategoryRequestKind,
-  DaffCategoryFilterRequest,
   DaffCategoryIdRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
+  daffApplyRequestsToFilters,
+  DaffProductFilterRequest,
+} from '@daffodil/product';
+import {
   DaffProductMagentoDriverConfig,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
+  MagentoProductGetFilterTypes,
+  MagentoProductGetFilterTypesResponse,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
+  magentoAppliedSortOptionTransform,
 } from '@daffodil/product/driver/magento';
 
 import {
   MAGENTO_CATEGORY_CONFIG_TOKEN,
   DaffCategoryMagentoDriverConfig,
 } from './interfaces/public_api';
-import { MagentoGetCategoryFilterTypesResponse } from './models/get-filter-types-response.interface';
 import {
   MagentoGetACategoryResponse,
   MagentoGetProductsResponse,
   MagentoGetProductsByCategoriesRequest,
 } from './models/public_api';
-import { MagentoGetCategoryFilterTypes } from './queries/get-filter-types';
 import {
   MagentoGetProductsQuery,
   MagentoGetCategoryQuery,
@@ -46,11 +49,10 @@ import {
 import {
   DaffMagentoCategoryResponseTransformService,
   DaffMagentoAppliedFiltersTransformService,
-  DaffMagentoAppliedSortOptionTransformService,
 } from './transformers/public_api';
-import { addMetadataTypesToAggregates } from './transformers/pure/aggregate/add-metadata-types-to-aggregates';
+import { addMetadataTypesToProductsResponse } from './transformers/pure/add-metadata-types-to-aggregates';
 
-const applyFiltersOnResponse = (requests: DaffCategoryFilterRequest[], response: DaffGetCategoryResponse): DaffGetCategoryResponse => ({
+const applyFiltersOnResponse = (requests: DaffProductFilterRequest[], response: DaffGetCategoryResponse): DaffGetCategoryResponse => ({
   ...response,
   categoryPageMetadata: {
     ...response.categoryPageMetadata,
@@ -72,7 +74,6 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private apollo: Apollo,
     private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
     private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
-    private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
     @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
@@ -85,8 +86,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoGetCategoryQuery,
         variables: { filters: { category_uid: { eq: categoryRequest.id }}},
       }),
-      this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
-        query: MagentoGetCategoryFilterTypes,
+      this.apollo.query<MagentoProductGetFilterTypesResponse>({
+        query: MagentoProductGetFilterTypes,
       }),
       this.apollo.query<MagentoGetProductsResponse>({
         query: MagentoGetProductsQuery(this.extraPreviewFragments),
@@ -115,8 +116,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
             : categoryRequest.url,
         }}},
       }),
-      this.apollo.query<MagentoGetCategoryFilterTypesResponse>({
-        query: MagentoGetCategoryFilterTypes,
+      this.apollo.query<MagentoProductGetFilterTypesResponse>({
+        query: MagentoProductGetFilterTypes,
       }),
     ]).pipe(
       switchMap(([
@@ -150,7 +151,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       queryVariables['currentPage'] = request.current_page;
     }
     if(request.applied_sort_option && request.applied_sort_direction) {
-      queryVariables['sort'] = this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction);
+      queryVariables['sort'] = magentoAppliedSortOptionTransform(request.applied_sort_option, request.applied_sort_direction);
     }
 
     return queryVariables;
@@ -158,11 +159,11 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
   private transformCategory(
     categoryResponse: MagentoGetACategoryResponse,
-    filterTypesResponse: MagentoGetCategoryFilterTypesResponse,
+    filterTypesResponse: MagentoProductGetFilterTypesResponse,
     productsResponse: MagentoGetProductsResponse,
     mediaUrl: string,
   ): DaffGetCategoryResponse {
-    const aggregations = addMetadataTypesToAggregates(filterTypesResponse, productsResponse);
+    const aggregations = addMetadataTypesToProductsResponse(filterTypesResponse, productsResponse);
     const completeCategory = {
       category: categoryResponse.categoryList[0],
       products: productsResponse.products.items,

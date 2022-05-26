@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryFilter,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
@@ -16,7 +15,10 @@ import {
   DaffStoreFacade,
   DaffStateError,
 } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductFilter,
+} from '@daffodil/product';
 
 import { DaffCategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 
@@ -67,7 +69,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The filters available for the products of the current category.
    */
-  filters$: Observable<Dict<DaffCategoryFilter>>;
+  filters$: Observable<Dict<DaffProductFilter>>;
   /**
    * The sort options available for the products of the current category.
    */
@@ -75,7 +77,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The sort options available for the products of the current category.
    */
-  appliedFilters$: Observable<Dict<DaffCategoryFilter>>;
+  appliedFilters$: Observable<Dict<DaffProductFilter>>;
   /**
    * The sort options available for the products of the current category.
    */

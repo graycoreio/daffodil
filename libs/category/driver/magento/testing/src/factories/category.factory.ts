@@ -12,6 +12,8 @@ class MockMagentoCategory implements MagentoCategory {
   canonical_url = faker.internet.url();
   name? = faker.random.word();
   description? = faker.random.words(40);
+  meta_title? = faker.random.words(2);
+  meta_description? = faker.random.words(40);
   breadcrumbs? =  [];
   level? =  faker.datatype.number(15);
   children_count? = faker.datatype.number(15);

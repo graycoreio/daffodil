@@ -6,15 +6,17 @@ import {
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryFilter,
   DaffCategoryPageMetadata,
-  daffCategoryComputeAppliedFilters,
 } from '@daffodil/category';
 import { Dict } from '@daffodil/core';
 import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
+import {
+  daffProductComputeAppliedFilters,
+  DaffProductFilter,
+} from '@daffodil/product';
 
 import {
   DaffCategoryReducerState,
@@ -73,7 +75,7 @@ export interface DaffCategoryPageMemoizedSelectors<
    * Returns a dict of filters and only their applied options.
    * Filters with no applied options will be omitted.
    */
-  selectCategoryPageAppliedFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dict<DaffCategoryFilter>>;
+  selectCategoryPageAppliedFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dict<DaffProductFilter>>;
   /**
    * Selects the applied sorting option if one is applied.
    */
@@ -89,7 +91,7 @@ export interface DaffCategoryPageMemoizedSelectors<
   /**
    * Selects the id of the current category.
    */
-	 selectCurrentCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
+  selectCurrentCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
   /**
    * @deprecated Use selectIsCategoryPageResolving instead
    */
@@ -167,7 +169,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategoryPageAppliedFilters = createSelector(
     selectCategoryFilters,
-    (filters: Dict<DaffCategoryFilter>): Dict<DaffCategoryFilter> => daffCategoryComputeAppliedFilters(filters),
+    (filters: Dict<DaffProductFilter>): Dict<DaffProductFilter> => daffProductComputeAppliedFilters(filters),
   );
 
   const selectCategoryPageAppliedSortOption = createSelector(

@@ -11,9 +11,6 @@ import {
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
-import { setup } from '@daffodil/jasmine';
-setup();
-
 declare const require: any;
 
 // First, initialize the Angular testing environment.

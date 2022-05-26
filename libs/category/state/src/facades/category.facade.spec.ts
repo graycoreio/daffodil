@@ -8,9 +8,7 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
-  DaffCategoryFilter,
   DaffCategoryPageMetadata,
-  daffCategoryFilterArrayToDict,
   DaffCategoryRequestKind,
 } from '@daffodil/category';
 import {
@@ -24,20 +22,26 @@ import {
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
-  DaffCategoryFilterFactory,
 } from '@daffodil/category/testing';
 import { Dict } from '@daffodil/core';
 import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
-import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductFilter,
+  daffProductFilterArrayToDict,
+} from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductFilterFactory,
+} from '@daffodil/product/testing';
 
 import { DaffCategoryFacade } from './category.facade';
 
@@ -46,7 +50,7 @@ describe('DaffCategoryFacade', () => {
   let facade: DaffCategoryFacade<DaffCategory, DaffProduct>;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
-  let categoryFilterFactory: DaffCategoryFilterFactory;
+  let categoryFilterFactory: DaffProductFilterFactory;
   let productFactory: DaffProductFactory;
   let stubCategory: DaffCategory;
   let stubCategoryMetadata: DaffCategoryPageMetadata;
@@ -68,11 +72,11 @@ describe('DaffCategoryFacade', () => {
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
-    categoryFilterFactory = TestBed.inject(DaffCategoryFilterFactory);
+    categoryFilterFactory = TestBed.inject(DaffProductFilterFactory);
 
     stubCategory = categoryFactory.create();
     stubCategoryMetadata = categoryPageMetadataFactory.create();
-    stubCategoryMetadata.filters = daffCategoryFilterArrayToDict(categoryFilterFactory.createMany());
+    stubCategoryMetadata.filters = daffProductFilterArrayToDict(categoryFilterFactory.createMany());
     stubProduct = productFactory.create();
     stubCategoryMetadata.id = stubCategory.id;
     stubCategoryMetadata.product_ids = [stubProduct.id];
@@ -207,7 +211,7 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the current category', () => {
-      const expectedFilters: Dict<DaffCategoryFilter> = {};
+      const expectedFilters: Dict<DaffProductFilter> = {};
 
       const expected = cold('a', { a: expectedFilters });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
