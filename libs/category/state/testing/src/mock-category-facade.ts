@@ -9,12 +9,12 @@ import {
 } from '@daffodil/category';
 import { DaffCategoryFacadeInterface } from '@daffodil/category/state';
 import { DaffCategoryReducerState } from '@daffodil/category/state';
-import { Dict } from '@daffodil/core';
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
-  DaffStateError,
-} from '@daffodil/core/state';
+  Dict,
+} from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 /**

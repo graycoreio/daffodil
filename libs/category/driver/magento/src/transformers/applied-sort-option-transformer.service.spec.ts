@@ -4,7 +4,7 @@ import {
   MagentoSortFieldAction,
   MagentoSortDirectionEnum,
 } from '@daffodil/category/driver/magento';
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
+import { DaffSortDirectionEnum } from '@daffodil/core';
 
 
 import { DaffMagentoAppliedSortOptionTransformService } from './applied-sort-option-transformer.service';

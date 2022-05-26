@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DaffSortDirectionEnum } from '@daffodil/core/state';
+import { DaffSortDirectionEnum } from '@daffodil/core';
 
 import {
   MagentoSortFieldAction,

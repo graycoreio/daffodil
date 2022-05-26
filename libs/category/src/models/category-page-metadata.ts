@@ -5,7 +5,7 @@ import {
 import {
   DaffSortable,
   DaffNumericallyPaginable,
-} from '@daffodil/core/state';
+} from '@daffodil/core';
 
 import { DaffCategoryFilterable } from './filters/public_api';
 
