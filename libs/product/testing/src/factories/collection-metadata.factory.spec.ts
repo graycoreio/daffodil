@@ -1,54 +1,42 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffProductCollectionMetadata } from '@daffodil/product';
 
-import { DaffDefaultProductFactory } from './default-product.factory';
+import { DaffProductCollectionMetadataFactory } from './collection-metadata.factory';
 
-describe('Product | Testing | Factories | DaffDefaultProductFactory', () => {
-
-  let productFactory;
+describe('@daffodil/product/testing | DaffProductCollectionMetadataFactory', () => {
+  let factory: DaffProductCollectionMetadataFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffDefaultProductFactory,
+        DaffProductCollectionMetadataFactory,
       ],
     });
 
-    productFactory = TestBed.inject(DaffDefaultProductFactory);
+    factory = TestBed.inject(DaffProductCollectionMetadataFactory);
   });
 
   it('should be created', () => {
-    expect(productFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
-
-    let result: DaffProduct;
+    let result: DaffProductCollectionMetadata;
 
     beforeEach(() => {
-      result = productFactory.create();
+      result = factory.create();
     });
 
-    it('should return a Product with all required fields defined', () => {
-      expect(result.type).toBeDefined();
-      expect(result.id).toBeDefined();
-      expect(result.url).toBeDefined();
-      expect(result.canonicalUrl).toBeDefined();
-      expect(result.price).toBeDefined();
-      expect(result.images).toBeDefined();
-      expect(result.discount).toBeDefined();
-      expect(result.name).toBeDefined();
-      expect(result.brand).toBeDefined();
-      expect(result.description).toBeDefined();
-      expect(result.short_description).toBeDefined();
-      expect(result.meta_title).toBeDefined();
-      expect(result.meta_description).toBeDefined();
-      expect(result.in_stock).toBeDefined();
-    });
-
-    it('should the percentage as a whole number', () => {
-      expect(result.discount.percent % 1).toEqual(0);
+    it('should return a DaffProductCollectionMetadata with all required fields defined', () => {
+      expect(result.total_products).toBeDefined();
+      expect(result.current_page).toBeDefined();
+      expect(result.total_pages).toBeDefined();
+      expect(result.page_size).toBeDefined();
+      expect(result.applied_sort_direction).toBeDefined();
+      expect(result.applied_sort_option).toBeDefined();
+      expect(result.sort_options).toBeDefined();
+      expect(result.filters).toBeDefined();
     });
   });
 });

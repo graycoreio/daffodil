@@ -4,7 +4,7 @@ import { DaffProductImage } from '@daffodil/product';
 
 import { DaffProductImageFactory } from './product-image.factory';
 
-describe('Product | Testing | Factories | DaffProductImageFactory', () => {
+describe('@daffodil/product/testing | DaffProductImageFactory', () => {
 
   let productImageFactory;
 

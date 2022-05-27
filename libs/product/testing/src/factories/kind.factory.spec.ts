@@ -23,7 +23,7 @@ class TestProductFactory extends DaffModelFactory<DaffProduct> {
   }
 }
 
-describe('Product | Testing | Factories | DaffProductKindFactory', () => {
+describe('@daffodil/product/testing | DaffProductKindFactory', () => {
 
   let productFactory;
 

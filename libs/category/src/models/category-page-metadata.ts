@@ -9,11 +9,6 @@ import { DaffProductCollectionMetadata } from '@daffodil/product';
  */
 export interface DaffCategoryPageMetadata extends DaffProductCollectionMetadata, DaffIdentifiable {
   /**
-   * The total number of products in the currently visible category.
-   */
-  total_products: number;
-
-  /**
    * The identifiers of the products currently visible in the category.
    */
   product_ids: ID[];

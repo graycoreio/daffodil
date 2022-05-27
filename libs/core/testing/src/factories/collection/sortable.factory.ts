@@ -29,7 +29,7 @@ class MockDaffSortable implements DaffSortable {
 })
 export class DaffSortableFactory extends DaffModelFactory<DaffSortable> {
   constructor(
-    private optionFactory: DaffSortOptionsFactory,
+    optionFactory: DaffSortOptionsFactory,
   ) {
     super(MockDaffSortable, optionFactory);
   }
