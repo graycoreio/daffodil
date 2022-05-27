@@ -4,7 +4,7 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import { MagentoSimpleProductFactory } from './simple.factory';
 
-describe('Product | Testing | Factories | MagentoSimpleProductFactory', () => {
+describe('@daffodil/product/testing | MagentoSimpleProductFactory', () => {
   let factory: MagentoSimpleProductFactory;
 
   beforeEach(() => {

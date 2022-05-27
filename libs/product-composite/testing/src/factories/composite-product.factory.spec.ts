@@ -4,7 +4,7 @@ import { DaffCompositeProduct } from '@daffodil/product-composite';
 
 import { DaffCompositeProductFactory } from './composite-product.factory';
 
-describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
+describe('@daffodil/product-composite/testing | DaffCompositeProductFactory', () => {
 
   let compositeProductFactory;
 

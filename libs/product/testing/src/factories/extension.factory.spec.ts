@@ -42,7 +42,7 @@ class TestProductKindFactory extends DaffModelFactory<DaffProduct> {
   }
 }
 
-describe('Product | Testing | Factories | DaffProductExtensionFactory', () => {
+describe('@daffodil/product/testing | DaffProductExtensionFactory', () => {
   let productKindFactorySpy: jasmine.SpyObj<DaffProductKindFactory>;
   let productFactory;
 

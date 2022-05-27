@@ -9,7 +9,8 @@ import {
 import { magentoProductTransformAggregate } from './aggregate/public_api';
 import { coerceDefaultSortOptionFirst } from './sort-options/sort-default-option-first';
 
-export const magentoProductCollectionMetadataTransform = (aggregates: MagentoAggregation[], pageInfo: MagentoProductPageInfo, sortFields: MagentoProductSortFields): DaffProductCollectionMetadata => ({
+export const magentoProductCollectionMetadataTransform = (aggregates: MagentoAggregation[], pageInfo: MagentoProductPageInfo, sortFields: MagentoProductSortFields, productCount: number): DaffProductCollectionMetadata => ({
+  total_products: productCount,
   page_size: pageInfo.page_size,
   current_page: pageInfo.current_page,
   total_pages: pageInfo.total_pages,

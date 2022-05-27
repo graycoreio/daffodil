@@ -4,7 +4,7 @@ import { DaffProduct } from '@daffodil/product';
 
 import { DaffDefaultProductFactory } from './default-product.factory';
 
-describe('Product | Testing | Factories | DaffDefaultProductFactory', () => {
+describe('@daffodil/product/testing | DaffDefaultProductFactory', () => {
 
   let productFactory;
 

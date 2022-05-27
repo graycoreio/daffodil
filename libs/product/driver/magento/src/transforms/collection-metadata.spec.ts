@@ -26,6 +26,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
   let aggregates: MagentoAggregation[];
   let pageInfo: MagentoProductPageInfo;
   let sortFields: MagentoProductSortFields;
+  let count: number;
   let result: DaffProductCollectionMetadata;
 
   beforeEach(() => {
@@ -37,8 +38,9 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
     pageInfo = pageInfoFactory.create();
     sortFields = sortFieldsFactory.create();
     aggregates = [];
+    count = 5;
 
-    result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields);
+    result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count);
   });
 
   it('should transform page info', () => {
@@ -52,20 +54,24 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
     expect(result.sort_options.options).toEqual(jasmine.arrayContaining(sortFields.options.map(option => jasmine.objectContaining(option))));
   });
 
+  it('should transform count', () => {
+    expect(result.total_products).toEqual(count);
+  });
+
   describe('when the sort options are immutable', () => {
     beforeEach(() => {
       Object.freeze(sortFields.options);
     });
 
     it('should complete successfully', () => {
-      expect(magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields)).toBeTruthy();
+      expect(magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count)).toBeTruthy();
     });
   });
 
   describe('when the aggregate is a select', () => {
     beforeEach(() => {
       aggregates = selectAggregateFactory.createMany(1);
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count);
     });
 
     it('should return a DaffProductCollectionMetadata with an equal filter type', () => {
@@ -76,7 +82,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
   describe('when the aggregate is a price', () => {
     beforeEach(() => {
       aggregates = priceAggregateFactory.createMany(1);
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count);
     });
 
     it('should return a DaffProductCollectionMetadata with a range filter type', () => {

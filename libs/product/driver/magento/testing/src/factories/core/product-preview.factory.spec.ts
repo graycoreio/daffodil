@@ -4,7 +4,7 @@ import { MagentoProductPreview } from '@daffodil/product/driver/magento';
 
 import { MagentoProductPreviewFactory } from './product-preview.factory';
 
-describe('Product | Testing | Factories | MagentoProductPreviewFactory', () => {
+describe('@daffodil/product/testing | MagentoProductPreviewFactory', () => {
   let factory: MagentoProductPreviewFactory;
 
   beforeEach(() => {

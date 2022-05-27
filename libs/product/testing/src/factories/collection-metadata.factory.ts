@@ -20,11 +20,13 @@ import {
 import { DaffProductFilterFactory } from './filters/public_api';
 
 /**
- * Mocked DaffProductCollectionMetadata object.
+ * Mocked {@link DaffProductCollectionMetadata} object.
  */
 export class MockProductCollectionMetadata implements DaffProductCollectionMetadata {
   _pageInfo = this.createPageInfo();
   _sortFields = this.createSortFields();
+
+  total_products = faker.datatype.number({ min: 1, max: 10 });
 
   current_page = this._pageInfo.current_page;
   total_pages = this._pageInfo.total_pages;
