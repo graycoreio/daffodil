@@ -2,7 +2,7 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ParamMap } from '@angular/router';
 
 import { DaffProductCollectionRequest } from '@daffodil/product';
 
@@ -38,11 +38,11 @@ export class DaffProductGetCollectionRequestFromRoute {
     @Inject(DAFF_PRODUCT_COLLECTION_QUERY_PARAM_TRANSFORMS) private transforms: DaffProductCollectionRequestQueryParamTransforms,
   ) {}
 
-  getRequest(route: ActivatedRouteSnapshot): DaffProductCollectionRequest {
+  getRequest(queryParamMap: ParamMap): DaffProductCollectionRequest {
     return DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffProductCollectionRequest>((acc, field) => {
       const qp = this.queryParams[field] || field;
-      if (route.queryParamMap.has(qp)) {
-        const qpVal = route.queryParamMap.get(qp);
+      if (queryParamMap.has(qp)) {
+        const qpVal = queryParamMap.get(qp);
         acc[field] = this.transforms[field]?.(qpVal) || qpVal;
       }
       return acc;
