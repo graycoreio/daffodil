@@ -72,7 +72,7 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
       pageSizeValue = 5;
       router.navigateByUrl(`/test?${customPageSizeQp}=${pageSizeValue}`);
       tick();
-      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot);
+      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
     }));
 
     it('should set the request field from that custom query param', () => {
@@ -87,7 +87,7 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
       sortOptionValue = 'name';
       router.navigateByUrl(`/test?applied_sort_option=${sortOptionValue}`);
       tick();
-      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot);
+      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
     }));
 
     it('should set the request field from that default query param without performing a transform', () => {
@@ -102,7 +102,7 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
       value = 'anything';
       router.navigateByUrl(`/test?ignore_me=${value}`);
       tick();
-      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot);
+      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
     }));
 
     it('should not set a request field from that query param', () => {
@@ -118,7 +118,7 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
       currentPageValue = '2';
       router.navigateByUrl(`/test?current_page=${currentPageValue}`);
       tick();
-      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot);
+      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
     }));
 
     it('should set the request field to the value returned by the custom transform', () => {
