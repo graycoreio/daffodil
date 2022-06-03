@@ -1,3 +1,4 @@
+import { DaffSortDirectionEnum } from '@daffodil/core';
 import { DaffProductCollectionMetadata } from '@daffodil/product';
 import { daffProductFilterArrayToDict } from '@daffodil/product';
 
@@ -9,7 +10,18 @@ import {
 import { magentoProductTransformAggregate } from './aggregate/public_api';
 import { coerceDefaultSortOptionFirst } from './sort-options/sort-default-option-first';
 
-export const magentoProductCollectionMetadataTransform = (aggregates: MagentoAggregation[], pageInfo: MagentoProductPageInfo, sortFields: MagentoProductSortFields, productCount: number): DaffProductCollectionMetadata => ({
+/**
+ * Builds a product collection metadata object.
+ */
+// TODO: make a single param?
+export const magentoProductCollectionMetadataTransform = (
+  aggregates: MagentoAggregation[],
+  pageInfo: MagentoProductPageInfo,
+  sortFields: MagentoProductSortFields,
+  productCount: number,
+  applied_sort_option?: string,
+  applied_sort_direction?: DaffSortDirectionEnum,
+): DaffProductCollectionMetadata => ({
   total_products: productCount,
   page_size: pageInfo.page_size,
   current_page: pageInfo.current_page,
@@ -19,7 +31,6 @@ export const magentoProductCollectionMetadataTransform = (aggregates: MagentoAgg
     default: sortFields.default,
     options: coerceDefaultSortOptionFirst(sortFields).options,
   },
-  // TODO: implement?
-  applied_sort_direction: null,
-  applied_sort_option: null,
+  applied_sort_direction,
+  applied_sort_option: applied_sort_option || sortFields.default,
 });

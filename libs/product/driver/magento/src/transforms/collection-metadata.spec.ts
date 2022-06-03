@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffSortDirectionEnum } from '@daffodil/core';
 import { DaffProductCollectionMetadata } from '@daffodil/product';
 import { DaffProductFilterType } from '@daffodil/product';
 import {
@@ -15,7 +16,6 @@ import {
 } from '@daffodil/product/driver/magento/testing';
 
 import { magentoProductCollectionMetadataTransform } from './collection-metadata';
-
 
 describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTransform', () => {
   let priceAggregateFactory: MagentoProductAggregationPriceFactory;
@@ -87,6 +87,42 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
 
     it('should return a DaffProductCollectionMetadata with a range filter type', () => {
       expect(result.filters[aggregates[0].attribute_code].type).toEqual(DaffProductFilterType.RangeNumeric);
+    });
+  });
+
+  describe('when the applied sort direction is passed', () => {
+    let sortDirection: DaffSortDirectionEnum;
+
+    beforeEach(() => {
+      sortDirection = DaffSortDirectionEnum.Descending;
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count, undefined, sortDirection);
+    });
+
+    it('should set that value', () => {
+      expect(result.applied_sort_direction).toEqual(sortDirection);
+    });
+  });
+
+  describe('when the applied sort option is not passed', () => {
+    beforeEach(() => {
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count, undefined);
+    });
+
+    it('should set that value to the default sort option', () => {
+      expect(result.applied_sort_option).toEqual(sortFields.default);
+    });
+  });
+
+  describe('when the applied sort option is passed', () => {
+    let sortOption: string;
+
+    beforeEach(() => {
+      sortOption = 'option';
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, count, sortOption);
+    });
+
+    it('should set that value', () => {
+      expect(result.applied_sort_option).toEqual(sortOption);
     });
   });
 });
