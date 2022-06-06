@@ -13,7 +13,7 @@ Dark and light modes are supported in all `@daffodil/design` components. When a 
 Configure your application to support light and dark modes by adding the following to the `theme.scss` file:
 
 ```scss
-@import '@daffodil/design/daff-theme';
+@import '@daffodil/design/scss/daff-theme';
 
 // These palettes describe the colors that make up the "theme" of the components.
 
@@ -39,7 +39,7 @@ $gray: daff-configure-palette($daff-gray, 60);
 Import `theme.scss` into the `styles.scss` file.
 
 ```scss
-@import '@daffodil/design/daff-global';
+@import '@daffodil/design/scss/daff-global';
 @import 'theme';
 ```
 
