@@ -1,7 +1,0 @@
-{
-    "bundlerOptions": {
-        "entryFile": "./src/scss/daff-util.scss",
-        "outFile": "../../dist/design/daff-util.scss",
-        "project": "../../../"
-    }
-}

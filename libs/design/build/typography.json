@@ -1,7 +1,0 @@
-{
-    "bundlerOptions": {
-        "entryFile": "./src/scss/daff-typography.scss",
-        "outFile": "../../dist/design/daff-typography.scss",
-        "project": "../../../"
-    }
-}
