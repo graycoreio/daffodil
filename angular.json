@@ -784,11 +784,6 @@
               },
               {
                 "glob": "**/*",
-                "input": "libs/theme-switch/src/assets/",
-                "output": "/assets/daff-theme-switch/"
-              },
-              {
-                "glob": "**/*",
                 "input": "dist/docs",
                 "output": "/assets/daffio/docs"
               }
@@ -800,8 +795,7 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "libs/branding/src/scss",
-                "libs/theme-switch/src/scss"
+                "dist/branding/src/scss"
               ]
             },
             "scripts": [],
@@ -872,8 +866,7 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "libs/branding/src/scss",
-                "libs/theme-switch/src/scss"
+                "dist/branding/src/scss"
               ]
             },
             "scripts": [],
@@ -885,11 +878,6 @@
                 "glob": "**/*",
                 "input": "libs/branding/src/assets/",
                 "output": "/assets/daff-branding/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/theme-switch/src/assets/",
-                "output": "/assets/daff-theme-switch/"
               }
             ]
           }
@@ -913,8 +901,7 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "libs/branding/src/scss",
-                "libs/theme-switch/src/scss"
+                "dist/branding/src/scss"
               ]
             },
             "sourceMap": true,
@@ -1010,11 +997,6 @@
               },
               {
                 "glob": "**/*",
-                "input": "libs/theme-switch/src/assets/",
-                "output": "/assets/daff-theme-switch/"
-              },
-              {
-                "glob": "**/*",
                 "input": "dist/docs",
                 "output": "/assets/daffio/docs"
               }
@@ -1026,8 +1008,7 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "libs/design/scss",
-                "libs/branding/src/scss",
-                "libs/theme-switch/src/scss"
+                "libs/branding/src/scss"
               ]
             },
             "scripts": [],
@@ -1218,7 +1199,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/branding/ng-package.prod.json",
               "tsConfig": "libs/branding/tsconfig.lib.prod.json"
             }
           }

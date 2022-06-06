@@ -3,5 +3,8 @@
   "dest": "../../dist/branding",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "assets": [
+    "**/!(*.component)*.scss"
+  ]
 }
