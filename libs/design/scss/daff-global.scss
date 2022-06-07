@@ -1,1 +1,49 @@
+// @docs
+
+// `daff-global` holds boilerplate code for the project. It includes
+// standard styles such as resets and typographic rules, which are
+// commonly used throughout your project.
+//
+// @note This should only be imported once in your `styles.scss` file.
+//
+// @usage
+// ```scss
+// @import '@daffodil/design/scss/daff-global';
+// ```
+
+@use 'typography' as t;
+
 @import '~@angular/cdk/overlay-prebuilt.css';
+@import '~modern-normalize/modern-normalize.css';
+
+body,
+html {
+	font-family: t.$body-font-family;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+a {
+	color: currentColor;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
+}

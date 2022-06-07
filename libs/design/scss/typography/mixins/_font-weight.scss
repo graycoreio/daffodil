@@ -1,0 +1,14 @@
+//
+// @docs
+//
+// Changes the weight (boldness) of text to 700
+//
+// @usage
+// ```
+// @include embolden(500);
+// ```
+//
+
+@mixin embolden($weight: 700) {
+	font-weight: $weight;
+}

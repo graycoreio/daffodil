@@ -1,46 +1,50 @@
+@use '../../layout' as layout;
+@use 'font-weight';
+
 @mixin headline-xl() {
-	@include embolden();
+	@include font-weight.embolden;
 	font-size: 2.5rem;
 	line-height: 2.75rem;
 
-	@include breakpoint(tablet) {
+	@include layout.breakpoint(tablet) {
 		font-size: 3.5rem;
 		line-height: 4rem;
 	}
 }
 
 @mixin headline-lg() {
-	@include embolden();
+	@include font-weight.embolden;
 	font-size: 2rem;
 	line-height: 2.25rem;
 
-	@include breakpoint(tablet) {
+	@include layout.breakpoint(tablet) {
 		font-size: 3rem;
 		line-height: 3.5rem;
 	}
 }
 
 @mixin headline-md() {
-	@include embolden();
+	@include font-weight.embolden;
 	font-size: 1.5rem;
 	line-height: 1.75rem;
 
-	@include breakpoint(tablet) {
+	@include layout.breakpoint(tablet) {
 		font-size: 2rem;
 		line-height: 2.5rem;
 	}
 }
 
 @mixin headline-sm() {
-	@include embolden();
+	@include font-weight.embolden;
 	font-size: 1.25rem;
 	line-height: 1.5rem;
 
-	@include breakpoint(tablet) {
+	@include layout.breakpoint(tablet) {
 		font-size: 1.5rem;
 		line-height: 2rem;
 	}
 }
+
 @mixin body-lg() {
 	font-size: 1.5rem;
 	font-weight: 400;
@@ -66,11 +70,11 @@
 }
 
 @mixin subheading() {
-	@include uppercase();
 	font-size: 0.875rem;
 	font-weight: 600;
 	letter-spacing: 0.03125rem;
 	line-height: 1rem;
+	text-transform: uppercase;
 }
 
 @mixin caption() {

@@ -1,6 +1,12 @@
 //
 // @docs
 //
+// @deprecated in v1.0.0
+// `daff-typography` will be deprecated in v1.0.0 in favor
+// of the typography module. Check out the [typography
+// documentation](libs/design/scss/typography/README.md)
+// for more information.
+//
 // `daff-typography` is a generic typography library that
 // sets common typography settings for the daffodil design
 // package. It IS NOT necessary, but can be used.
@@ -11,14 +17,11 @@
 //
 // @usage
 // ```
-// @import "daff-typography";
+// @import '@daffodil/design/scss/daff-typography';
 // ```
 
-@import './responsive/variables';
-@import './responsive/breakpoint';
-@import './typography/variables';
-@import './typography/mixins';
-@import './typography/sizes/mixins';
+@forward 'typography';
+@import 'typography';
 
 @import '~modern-normalize/modern-normalize.css';
 
