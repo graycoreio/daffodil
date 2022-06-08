@@ -13,7 +13,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
 import { daffCompositeProductEntitiesReducer } from './composite-product-entities.reducer';
 
-describe('Product | Composite Product Entities Reducer', () => {
+describe('@daffodil/product-composite/state | daffCompositeProductEntitiesReducer', () => {
 
   let productFactory: DaffProductFactory;
   let compositeProductFactory: DaffCompositeProductFactory;

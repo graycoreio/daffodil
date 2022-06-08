@@ -1,4 +1,6 @@
 
+import { EntityState } from '@ngrx/entity';
+
 import { DaffProduct } from '@daffodil/product';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
@@ -6,6 +8,7 @@ import {
   DaffConfigurableProductRemoveAttribute,
   DaffConfigurableProductToggleAttribute,
   daffConfigurableProductAppliedAttributesEntitiesAdapter,
+  DaffConfigurableProductEntity,
 } from '@daffodil/product-configurable/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 import {
@@ -16,140 +19,57 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { daffConfigurableProductEntitiesReducer } from './configurable-product-entities.reducer';
+import { DaffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
 
-describe('@daffodil/product-configurable/state | daffConfigurableProductEntitiesReducer', () => {
-
+describe('@daffodil/product-configurable/state | DaffConfigurableProductAppliedAttributesEntitiesAdapter', () => {
+  let adapter: DaffConfigurableProductAppliedAttributesEntitiesAdapter;
   let productFactory: DaffProductFactory;
   let configurableProductFactory: DaffConfigurableProductFactory;
   const initialState = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState();
   let configurableProduct: DaffConfigurableProduct;
 
   beforeEach(() => {
+    adapter = new DaffConfigurableProductAppliedAttributesEntitiesAdapter();
     productFactory = new DaffProductFactory();
     configurableProductFactory = new DaffConfigurableProductFactory();
+
     configurableProduct = configurableProductFactory.create();
   });
 
-  describe('when an unknown action is triggered', () => {
-
-    it('should return the current state', () => {
-      const action = <any>{};
-
-      const result = daffConfigurableProductEntitiesReducer(initialState, action);
-
-      expect(result).toEqual(initialState);
-    });
-  });
-
-  describe('when ProductGridLoadSuccessAction is triggered', () => {
-
+  describe('upsertProducts', () => {
     let products: DaffProduct[];
+    let simpleProducts: DaffProduct[];
     let configurableProducts: DaffConfigurableProduct[];
-    let result;
+    let result: EntityState<DaffConfigurableProductEntity>;
 
     beforeEach(() => {
-      products = productFactory.createMany(2);
+      simpleProducts = productFactory.createMany(2);
       configurableProducts = configurableProductFactory.createMany(2);
 
       products = [
-        ...products,
+        ...simpleProducts,
         ...configurableProducts,
       ];
-      const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
 
-      result = daffConfigurableProductEntitiesReducer(initialState, productGridLoadSuccess);
+      result = adapter.upsertProducts(initialState, ...<DaffConfigurableProduct[]>products);
     });
 
     it('sets a configurable product entity for each configurable product', () => {
       expect(result.ids.length).toEqual(configurableProducts.length);
+      configurableProducts.forEach(({ id }) => {
+        expect(result.ids).toContain(id);
+      });
+    });
+
+    it('does not upsert products that are not configurable', () => {
+      simpleProducts.forEach(({ id }) => {
+        expect(result.ids).not.toContain(id);
+      });
     });
   });
 
-  describe('when BestSellersLoadSuccessAction is triggered', () => {
-
-    let products: DaffProduct[];
-    let configurableProducts: DaffConfigurableProduct[];
-    let result;
-
-    beforeEach(() => {
-      products = productFactory.createMany(2);
-      configurableProducts = configurableProductFactory.createMany(2);
-
-      products = [
-        ...products,
-        ...configurableProducts,
-      ];
-
-      const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
-
-      result = daffConfigurableProductEntitiesReducer(initialState, bestSellersLoadSuccess);
-    });
-
-    it('sets a configurable product entity for each configurable product', () => {
-      expect(result.ids.length).toEqual(configurableProducts.length);
-    });
-  });
-
-  describe('when ProductLoadSuccessAction is triggered', () => {
-
-    let product: DaffProduct;
-    let result;
-
-    beforeEach(() => {
-      product = productFactory.create();
-    });
-
-    it('sets a configurable product entity when the given product is configurable', () => {
-      const productLoadSuccess = new DaffProductLoadSuccess({
-        id: configurableProduct.id,
-        products: [configurableProduct],
-      });
-      result = daffConfigurableProductEntitiesReducer(initialState, productLoadSuccess);
-      expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id, attributes: []});
-    });
-
-    it('does not set a configurable product entity when the given product is not configurable', () => {
-      const productLoadSuccess = new DaffProductLoadSuccess({
-        id: product.id,
-        products: [product],
-      });
-      result = daffConfigurableProductEntitiesReducer(initialState, productLoadSuccess);
-      expect(result.entities[product.id]).toBeUndefined();
-    });
-  });
-
-  describe('when ProductPageLoadSuccessAction is triggered', () => {
-
-    let product: DaffProduct;
-    let result;
-
-    beforeEach(() => {
-      product = productFactory.create();
-    });
-
-    it('sets a configurable product entity when the given product is configurable', () => {
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
-        id: configurableProduct.id,
-        products: [configurableProduct],
-      });
-      result = daffConfigurableProductEntitiesReducer(initialState, productPageLoadSuccess);
-      expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id, attributes: []});
-    });
-
-    it('does not set a configurable product entity when the given product is not configurable', () => {
-      const productPageLoadSuccess = new DaffProductPageLoadSuccess({
-        id: product.id,
-        products: [product],
-      });
-      result = daffConfigurableProductEntitiesReducer(initialState, productPageLoadSuccess);
-      expect(result.entities[product.id]).toBeUndefined();
-    });
-  });
-
-  describe('when ConfigurableProductApplyAttributeAction is triggered', () => {
-
-    let result;
+  describe('applyAttribute', () => {
+    let result: EntityState<DaffConfigurableProductEntity>;
 
     beforeEach(() => {
       const specInitialState = {
@@ -162,13 +82,12 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
         },
       };
 
-      const configurableProductApplyAttribute = new DaffConfigurableProductApplyAttribute(
+      result = adapter.applyAttribute(
+        specInitialState,
         configurableProduct.id,
         configurableProduct.configurableAttributes[0].code,
         configurableProduct.configurableAttributes[0].values[0].value,
       );
-
-      result = daffConfigurableProductEntitiesReducer(specInitialState, configurableProductApplyAttribute);
     });
 
     it('adds a configurable product attribute to its corresponding entity', () => {
@@ -182,9 +101,8 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
     });
   });
 
-  describe('when ConfigurableProductRemoveAttributeAction is triggered', () => {
-
-    let result;
+  describe('removeAttribute', () => {
+    let result: EntityState<DaffConfigurableProductEntity>;
 
     beforeEach(() => {
       const specInitialState = {
@@ -200,12 +118,11 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
         },
       };
 
-      const configurableProductRemoveAttribute = new DaffConfigurableProductRemoveAttribute(
+      result = adapter.removeAttribute(
+        specInitialState,
         configurableProduct.id,
         configurableProduct.configurableAttributes[0].code,
       );
-
-      result = daffConfigurableProductEntitiesReducer(specInitialState, configurableProductRemoveAttribute);
     });
 
     it('removes a configurable product attribute from its corresponding entity', () => {
@@ -216,11 +133,10 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
     });
   });
 
-  describe('when ConfigurableProductToggleAttributeAction is triggered', () => {
-    let result;
+  describe('toggleAttribute', () => {
+    let result: EntityState<DaffConfigurableProductEntity>;
 
-    describe('and the attribute type of the same value is already selected', () => {
-
+    describe('when the attribute type of the same value is already selected', () => {
       beforeEach(() => {
         const specInitialState = {
           ids: [configurableProduct.id],
@@ -235,13 +151,12 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
           },
         };
 
-        const configurableProductToggleAttribute = new DaffConfigurableProductToggleAttribute(
+        result = adapter.toggleAttribute(
+          specInitialState,
           configurableProduct.id,
           configurableProduct.configurableAttributes[0].code,
           configurableProduct.configurableAttributes[0].values[0].value,
         );
-
-        result = daffConfigurableProductEntitiesReducer(specInitialState, configurableProductToggleAttribute);
       });
 
       it('removes a configurable product attribute from its corresponding entity', () => {
@@ -252,8 +167,7 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
       });
     });
 
-    describe('and the attribute type does not have a value selected', () => {
-
+    describe('when the attribute type does not have a value selected', () => {
       beforeEach(() => {
         const specInitialState = {
           ids: [configurableProduct.id],
@@ -265,13 +179,12 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
           },
         };
 
-        const configurableProductToggleAttribute = new DaffConfigurableProductToggleAttribute(
+        result = adapter.toggleAttribute(
+          specInitialState,
           configurableProduct.id,
           configurableProduct.configurableAttributes[0].code,
           configurableProduct.configurableAttributes[0].values[0].value,
         );
-
-        result = daffConfigurableProductEntitiesReducer(specInitialState, configurableProductToggleAttribute);
       });
 
       it('adds a configurable product attribute to its corresponding entity', () => {
@@ -285,8 +198,7 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
       });
     });
 
-    describe('and the attribute type is selected with a different value', () => {
-
+    describe('when the attribute type is selected with a different value', () => {
       beforeEach(() => {
         const specInitialState = {
           ids: [configurableProduct.id],
@@ -301,13 +213,12 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
           },
         };
 
-        const configurableProductToggleAttribute = new DaffConfigurableProductToggleAttribute(
+        result = adapter.toggleAttribute(
+          specInitialState,
           configurableProduct.id,
           configurableProduct.configurableAttributes[0].code,
           configurableProduct.configurableAttributes[0].values[1].value,
         );
-
-        result = daffConfigurableProductEntitiesReducer(specInitialState, configurableProductToggleAttribute);
       });
 
       it('adds a configurable product attribute to its corresponding entity', () => {
