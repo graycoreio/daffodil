@@ -1,5 +1,5 @@
-@import 'daff-util';
-@import 'daff-theme';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/interactions';
 
 .daff-link-set {
 	display: block;
@@ -7,7 +7,7 @@
 	padding: 0;
 
 	&__heading {
-		@include embolden();
+		@include t.embolden;
 		display: block;
 		font-size: 1rem;
 		line-height: 1em;
@@ -22,7 +22,7 @@
 	}
 
 	&__item {
-		@include clickable();
+		@include interactions.clickable;
 		color: currentColor;
 		display: block;
 		font-size: 1em;

@@ -1,4 +1,5 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/layout';
 
 :host {
 	display: block;
@@ -11,13 +12,13 @@
 	margin-bottom: 24px;
 
 	.daff-modal-title {
-		@include embolden();
-		font-size: $medium-font-size;
+		@include t.embolden;
+		font-size: t.$medium-font-size;
 		margin: 0;
 		padding: 0;
 
-		@include breakpoint(mobile) {
-			font-size: $large-font-size;
+		@include layout.breakpoint(mobile) {
+			font-size: t.$large-font-size;
 		}
 	}
 }

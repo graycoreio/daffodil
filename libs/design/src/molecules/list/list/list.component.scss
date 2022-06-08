@@ -1,5 +1,6 @@
-@import 'daff-util';
-@import 'daff-theme';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/interactions';
+@use '../../../../scss/theming' as c;
 
 @mixin daff-list() {
 	$root: &;
@@ -16,15 +17,15 @@
 			flex-grow: 1;
 
 			*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
-				@include embolden();
-				font-size: $normal-font-size;
+				@include t.embolden;
+				font-size: t.$normal-font-size;
 				line-height: 1.5em;
 				margin: 0;
 				padding: 0;
 			}
 
 			*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
-				font-size: $normal-font-size;
+				font-size: t.$normal-font-size;
 				margin: 0;
 				padding: 0;
 			}
@@ -51,8 +52,8 @@
 
 	// .daff-list__subheader deprecated in v1.0.0
 	&__subheader {
-		@include embolden();
-		@include uppercase();
+		@include t.embolden;
+		@include t.uppercase;
 		font-size: 1rem;
 		padding: 0 0 25px;
 	}
@@ -64,7 +65,7 @@
 			text-decoration: none;
 
 			&:hover {
-				color: daff-color($daff-gray, 80);
+				color: c.daff-color(c.$daff-gray, 80);
 			}
 		}
 	}
@@ -84,7 +85,7 @@
 
 			&__content {
 				*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
-					@include embolden();
+					@include t.embolden;
 					font-size: 1rem;
 					line-height: 1.5rem;
 					margin: 0 0 10px;
@@ -104,7 +105,7 @@
 	@include daff-list();
 
 	.daff-list-item {
-		@include clickable();
+		@include interactions.clickable();
 		outline: none;
 		text-decoration: none;
 	}

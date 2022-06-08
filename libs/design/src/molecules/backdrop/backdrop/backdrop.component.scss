@@ -1,9 +1,10 @@
-@import 'daff-util';
+@use '../../../../scss/interactions';
+
 $bg-color: rgba(0, 0, 0, 0.3);
 $highlight-color: rgba(0, 0, 0, 0);
 
 :host {
-	@include clickable();
+	@include interactions.clickable;
 	display: block;
 	-webkit-tap-highlight-color: $highlight-color;
 }

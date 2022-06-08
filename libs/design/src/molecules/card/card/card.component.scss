@@ -1,4 +1,5 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/layout';
 
 $card-border-radius: 8px;
 $card-img-border-radius: calc(#{$card-border-radius} - 1px);
@@ -30,7 +31,7 @@ $card-img-border-radius: calc(#{$card-border-radius} - 1px);
 	&--horizontal {
 		flex-wrap: wrap;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			flex-direction: row;
 			flex-wrap: nowrap;
 		}
@@ -56,18 +57,18 @@ $card-img-border-radius: calc(#{$card-border-radius} - 1px);
 	}
 
 	&__tagline {
-		@include subheading();
+		@include t.subheading;
 		padding: 0;
 		margin: 0 0 0.25rem;
 	}
 
 	&__title {
-		@include embolden();
+		@include t.embolden;
 		font-size: 1.375rem;
 		line-height: 1.5rem;
 		margin: 0 0 1rem;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			font-size: 1.5rem;
 			line-height: 1.75rem;
 		}
