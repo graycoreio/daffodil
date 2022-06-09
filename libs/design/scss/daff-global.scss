@@ -12,9 +12,8 @@
 // ```
 
 @use 'typography' as t;
-
-@import '~@angular/cdk/overlay-prebuilt.css';
-@import '~modern-normalize/modern-normalize.css';
+@use '~@angular/cdk/overlay-prebuilt';
+@use '~modern-normalize/modern-normalize';
 
 body,
 html {

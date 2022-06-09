@@ -20,11 +20,11 @@
 // @use '@daffodil/design/scss/daff-typography';
 // ```
 
+@use '~modern-normalize/modern-normalize';
+
 @use 'typography' as t;
 @forward 'typography';
 @import 'typography';
-
-@import '~modern-normalize/modern-normalize.css';
 
 body,
 html {
