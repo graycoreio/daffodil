@@ -1686,6 +1686,44 @@
         }
       }
     },
+    "search-product-configurable": {
+      "projectType": "library",
+      "root": "libs/search-product-configurable",
+      "sourceRoot": "libs/search-product-configurable/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/search-product-configurable/tsconfig.lib.json",
+            "project": "libs/search-product-configurable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/search-product-configurable/ng-package.prod.json",
+              "tsConfig": "libs/search-product-configurable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/search-product-configurable/test.ts",
+            "tsConfig": "libs/search-product-configurable/tsconfig.spec.json",
+            "karmaConfig": "libs/search-product-configurable/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/search-product-configurable/**/*.ts",
+              "libs/search-product-configurable/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "search-category": {
       "projectType": "library",
       "root": "libs/search-category",
