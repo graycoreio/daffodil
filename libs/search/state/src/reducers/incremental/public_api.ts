@@ -1,0 +1,1 @@
+export { daffSearchIncrementalReducer } from './reducer';

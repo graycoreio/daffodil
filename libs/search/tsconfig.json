@@ -12,6 +12,9 @@
       "@daffodil/search/testing": [
         "libs/search/testing/src"
       ],
+      "@daffodil/search/state": [
+        "libs/search/state/src"
+      ],
       "@daffodil/search/driver": [
         "libs/search/driver/src"
       ],
