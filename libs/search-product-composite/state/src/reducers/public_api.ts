@@ -1,0 +1,1 @@
+export { daffSearchProductCompositeReducers } from './reducers';
