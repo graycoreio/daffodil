@@ -33,9 +33,7 @@ describe('@daffodil/search/testing | DaffSearchResultFactory', () => {
     it('should define all the required fields', () => {
       expect(result.id).toBeDefined();
       expect(result.url).toBeDefined();
-      expect(result.name).toBeDefined();
       expect(result.kind).toBeDefined();
-      expect(result.description).toBeDefined();
     });
   });
 });
