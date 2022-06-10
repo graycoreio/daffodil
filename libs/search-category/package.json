@@ -1,0 +1,45 @@
+{
+  "name": "@daffodil/search-category",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Interfaces built for daffodil/state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/search-category"
+  },
+  "scripts": {
+    "build": "ng build search-category --prod",
+    "lint": "cd ../.. && ng lint search-category",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test search-category --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/search-category; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/category": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER",
+    "schema-dts": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@apollo/client": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "faker": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/category": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER"
+  }
+}
