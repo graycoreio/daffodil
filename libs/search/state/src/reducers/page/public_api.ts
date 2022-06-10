@@ -1,0 +1,1 @@
+export { daffSearchPageReducer } from './reducer';
