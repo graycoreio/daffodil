@@ -58,6 +58,11 @@ export interface DaffProductCollectionMemoizedSelectors<
   selectProductCollectionAppliedSortDirection: MemoizedSelector<TState, TMetadata['applied_sort_direction']>;
 }
 
+/**
+ * Creates product collection selectors.
+ *
+ * @param selectProductCollectionState A selector for the particular product collection state upon which the returned selectors should operate.
+ */
 export const daffProductCollectionSelectorFactory = <
   TState,
   TMetadata extends DaffProductCollectionMetadata = DaffProductCollectionMetadata

@@ -20,6 +20,11 @@ import { DaffProductCollectionMemoizedSelectors } from '../../selectors/public_a
 import { DaffProductCollectionFacadeInterface } from './facade.interface';
 
 /**
+ * An abstract class for a product collection facade.
+ * It is configurable via its constructor parameters.
+ * The particular product collection state from which
+ * this facade will read is determined by the selectors passed.
+ *
  * @inheritdoc
  */
 export abstract class DaffProductCollectionFacade<

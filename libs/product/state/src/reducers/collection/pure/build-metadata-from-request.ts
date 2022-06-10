@@ -12,6 +12,9 @@ const allowedMetadataKeys: MetadataRequestIntersection[] = [
   'page_size',
 ];
 
+/**
+ * Extracts the part of the product collection request that should be directly set in metadata state.
+ */
 export const buildMetadataFromRequest = (request: DaffProductCollectionRequest): Partial<DaffProductCollectionMetadata> =>
   allowedMetadataKeys.reduce(<K extends MetadataRequestIntersection>(acc: Partial<DaffProductCollectionMetadata>, key: K) => {
     if (request[key]) {

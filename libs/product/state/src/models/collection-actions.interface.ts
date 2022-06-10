@@ -11,6 +11,9 @@ import {
   DaffProductCollectionToggleFilter,
 } from '../actions/public_api';
 
+/**
+ * A collection of the product collection action types.
+ */
 export interface DaffProductCollectionActionKinds {
   replaceFilters: DaffProductCollectionReplaceFilters;
   applyFilters: DaffProductCollectionApplyFilters;
@@ -25,6 +28,9 @@ export interface DaffProductCollectionActionKinds {
   load: Action;
 };
 
+/**
+ * A union of all the product collection action types.
+ */
 export type DaffProductCollectionActions<T extends DaffProductCollectionActionKinds = DaffProductCollectionActionKinds> =
   | T['replaceFilters']
   | T['applyFilters']
