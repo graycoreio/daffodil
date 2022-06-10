@@ -23,7 +23,14 @@ export const daffProductCollectionReducerInitialState: DaffProductCollectionRedu
   },
 };
 
+/**
+ * Provides an abstracted way to manage a product collection state.
+ */
 export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionReducerState = DaffProductCollectionReducerState> {
+  /**
+   * Stores a product collection request in state.
+   * This is useful when you want to preemptively reduce a request before waiting for a response.
+   */
   storeRequest(request: DaffProductCollectionRequest, state: T): T {
     return {
       ...state,
@@ -31,6 +38,9 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
     };
   }
 
+  /**
+   * Sets the page size.
+   */
   setPageSize(size: number, state: T): T {
     return {
       ...state,
@@ -38,6 +48,9 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
     };
   }
 
+  /**
+   * Sets the current page.
+   */
   setCurrentPage(page: number, state: T): T {
     return {
       ...state,
@@ -45,6 +58,9 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
     };
   }
 
+  /**
+   * Sets the sorting option and direction.
+   */
   setSort(option: string, direction: string, state: T): T {
     return {
       ...state,
@@ -53,6 +69,9 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
     };
   }
 
+  /**
+   * Sets the product collection filters.
+   */
   setFilters(filters: Record<string, DaffProductFilter>, state: T): T {
     return {
       ...state,
@@ -60,6 +79,9 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
     };
   }
 
+  /**
+   * Set the entire product collection metadata at once.
+   */
   setMetadata(metadata: DaffProductCollectionMetadata, state: T): T {
     return {
       ...state,
@@ -75,4 +97,7 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
   }
 }
 
+/**
+ * Create the adapter for the product collection state.
+ */
 export const getProductCollectionStateAdapter: () => DaffProductCollectionStateAdapter = defaultMemoize(() => new DaffProductCollectionStateAdapter()).memoized;
