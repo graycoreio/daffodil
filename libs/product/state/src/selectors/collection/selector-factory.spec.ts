@@ -16,6 +16,7 @@ import {
   daffProductFilterEqualOptionArrayToDict,
   daffProductFilterArrayToDict,
   DaffProductCollectionMetadata,
+  daffProductFiltersToRequests,
 } from '@daffodil/product';
 import {
   daffProductCollectionReducerInitialState,
@@ -75,6 +76,20 @@ describe('@daffodil/product/state | daffProductCollectionSelectorFactory', () =>
     it('selects the product collection metadata', () => {
       const selector = store.pipe(select(selectors.selectProductCollectionMetadata));
       const expected = cold('a', { a: stubProductCollectionMetadata });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectProductCollectionRequest', () => {
+    it('builds a product collection request', () => {
+      const selector = store.pipe(select(selectors.selectProductCollectionRequest));
+      const expected = cold('a', { a: {
+        filter_requests: daffProductFiltersToRequests(stubProductCollectionMetadata.filters),
+        applied_sort_option: stubProductCollectionMetadata.applied_sort_option,
+        applied_sort_direction: stubProductCollectionMetadata.applied_sort_direction,
+        current_page: stubProductCollectionMetadata.current_page,
+        page_size: stubProductCollectionMetadata.page_size,
+      }});
       expect(selector).toBeObservable(expected);
     });
   });

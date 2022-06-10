@@ -115,8 +115,8 @@ export const daffProductCollectionReducerFactory = <
           filters: response.productCollectionMetadata.filters,
           sort_options: response.productCollectionMetadata.sort_options,
           total_pages: response.productCollectionMetadata.total_pages,
-          applied_sort_option: response.productCollectionMetadata.applied_sort_option || state.applied_sort_option,
-          applied_sort_direction: response.productCollectionMetadata.applied_sort_direction || state.applied_sort_direction,
+          applied_sort_option: response.productCollectionMetadata.applied_sort_option,
+          applied_sort_direction: response.productCollectionMetadata.applied_sort_direction,
         };
 
       default:

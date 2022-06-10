@@ -823,40 +823,16 @@ describe('@daffodil/product/state | daffProductCollectionReducerFactory', () => 
       state = {
         ...initialState,
       };
+      const loadSuccess = new TestProductCollectionSuccess({ productCollectionMetadata });
+      result = reducer(state, loadSuccess);
     });
 
-    describe('when an applied_sort_option is not set in state', () => {
-      beforeEach(() => {
-        state = {
-          ...state,
-          applied_sort_option: null,
-        };
-      });
-
-      it('sets productCollectionMetadata with the default sorting option', () => {
-        const loadSuccess = new TestProductCollectionSuccess({ productCollectionMetadata });
-        result = reducer(state, loadSuccess);
-
-        expect(result.applied_sort_option).toEqual(productCollectionMetadata.sort_options.default);
-      });
+    it('sets productCollectionMetadata with the response sorting option', () => {
+      expect(result.applied_sort_option).toEqual(productCollectionMetadata.applied_sort_option);
     });
 
-    describe('when an applied_sort_option is set in state', () => {
-      let selectedOption;
-
-      beforeEach(() => {
-        selectedOption = 'selectedOption';
-        state = {
-          ...state,
-          applied_sort_option: selectedOption,
-        };
-      });
-
-      it('sets the product collection metadata with the applied_sort_option', () => {
-        const loadSuccess = new TestProductCollectionSuccess({ productCollectionMetadata });
-        result = reducer(state, loadSuccess);
-        expect(result.applied_sort_option).toEqual(selectedOption);
-      });
+    it('sets productCollectionMetadata with the response sorting direction', () => {
+      expect(result.applied_sort_direction).toEqual(productCollectionMetadata.applied_sort_direction);
     });
   });
 });
