@@ -1,0 +1,44 @@
+{
+  "name": "@daffodil/search-product-composite",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Interfaces built for daffodil/state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/search-product-composite"
+  },
+  "scripts": {
+    "build": "ng build search-product-composite --prod",
+    "lint": "cd ../.. && ng lint search-product-composite",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test search-product-composite --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/search-product-composite; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product-composite": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/search-product": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product-composite": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/search-product": "0.0.0-PLACEHOLDER"
+  }
+}
