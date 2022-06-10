@@ -12,14 +12,8 @@ import {
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
+import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
-  DaffInheritableError,
-  DaffError,
-  DaffSortDirectionEnum,
-} from '@daffodil/core';
-import { daffTransformErrorToStateError } from '@daffodil/core/state';
-import {
-  DaffProduct,
   DaffProductCollectionResponse,
   daffProductFilterArrayToDict,
   DaffProductFilterRequest,
@@ -27,7 +21,6 @@ import {
   DaffProductFilterToggleRequest,
 } from '@daffodil/product';
 import {
-  DaffProductCollectionActionTypes,
   DaffProductCollectionApplyFilters,
   DaffProductCollectionChangeCurrentPage,
   DaffProductCollectionChangePageSize,
@@ -36,7 +29,6 @@ import {
   DaffProductCollectionRemoveFilters,
   DaffProductCollectionReplaceFilters,
   DaffProductCollectionToggleFilter,
-  DaffProductGridLoadSuccess,
 } from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
@@ -44,7 +36,6 @@ import {
 } from '@daffodil/product/state/testing';
 import {
   DaffProductCollectionMetadataFactory,
-  DaffProductFactory,
   DaffProductFilterFactory,
   DaffProductFilterRequestFactory,
   DaffProductFilterToggleRequestFactory,
@@ -69,19 +60,19 @@ enum TestProductCollectionActionTypes {
   TestProductLoadAction = 'Test Product Load Action',
 }
 
-const daffTestProductCollectionActionTypes: DaffProductCollectionActionTypes = {
-  replaceFilters: [TestProductCollectionActionTypes.TestProductReplaceFiltersAction],
-  applyFilters: [TestProductCollectionActionTypes.TestProductApplyFiltersAction],
-  removeFilters: [TestProductCollectionActionTypes.TestProductRemoveFiltersAction],
-  clearFilters: [TestProductCollectionActionTypes.TestProductClearFiltersAction],
-  toggleFilter: [TestProductCollectionActionTypes.TestProductToggleFiltersAction],
-  changeSize: [TestProductCollectionActionTypes.TestProductChangePageSizeAction],
-  changePage: [TestProductCollectionActionTypes.TestProductChangeCurrentPageAction],
-  changeSort: [TestProductCollectionActionTypes.TestProductChangeSortingOptionAction],
-  success: [TestProductCollectionActionTypes.TestProductSuccessAction],
-  failure: [TestProductCollectionActionTypes.TestProductFailureAction],
-  load: [TestProductCollectionActionTypes.TestProductLoadAction],
-};
+const daffTestProductCollectionActionTypes = [
+  TestProductCollectionActionTypes.TestProductReplaceFiltersAction,
+  TestProductCollectionActionTypes.TestProductApplyFiltersAction,
+  TestProductCollectionActionTypes.TestProductRemoveFiltersAction,
+  TestProductCollectionActionTypes.TestProductClearFiltersAction,
+  TestProductCollectionActionTypes.TestProductToggleFiltersAction,
+  TestProductCollectionActionTypes.TestProductChangePageSizeAction,
+  TestProductCollectionActionTypes.TestProductChangeCurrentPageAction,
+  TestProductCollectionActionTypes.TestProductChangeSortingOptionAction,
+  TestProductCollectionActionTypes.TestProductSuccessAction,
+  TestProductCollectionActionTypes.TestProductFailureAction,
+  TestProductCollectionActionTypes.TestProductLoadAction,
+];
 
 class TestProductSuccess implements Action {
   public type = TestProductCollectionActionTypes.TestProductSuccessAction;
