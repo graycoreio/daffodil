@@ -12,6 +12,9 @@
       "@daffodil/search-product/driver": [
         "libs/search-product/driver/src"
       ],
+      "@daffodil/search-product/driver/testing": [
+        "libs/search-product/driver/testing/src"
+      ],
       "@daffodil/search-product/testing": [
         "libs/search-product/testing/src"
       ],
