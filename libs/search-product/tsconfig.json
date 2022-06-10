@@ -15,6 +15,9 @@
       "@daffodil/search-product/driver/testing": [
         "libs/search-product/driver/testing/src"
       ],
+      "@daffodil/search-product/driver/in-memory": [
+        "libs/search-product/driver/in-memory/src"
+      ],
       "@daffodil/search-product/testing": [
         "libs/search-product/testing/src"
       ],
