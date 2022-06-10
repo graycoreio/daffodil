@@ -21,6 +21,9 @@
       "@daffodil/search/driver/testing": [
         "libs/search/driver/testing/src"
       ],
+      "@daffodil/search/driver/federated": [
+        "libs/search/driver/federated/src"
+      ],
     }
   }
 }
