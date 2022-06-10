@@ -9,6 +9,9 @@
       "@daffodil/search-product-configurable": [
         "libs/search-product-configurable/src"
       ],
+      "@daffodil/search-product-configurable/state": [
+        "libs/search-product-configurable/state/src"
+      ],
     }
   }
 }
