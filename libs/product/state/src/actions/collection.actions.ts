@@ -1,8 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
 import {
-  DaffProductCollectionResponse,
   DaffProductCollectionRequest,
   DaffProductFilterRequest,
   DaffProductFilterToggleRequest,
