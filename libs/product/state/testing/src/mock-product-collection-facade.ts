@@ -21,9 +21,10 @@ import { DaffProductCollectionFacadeInterface } from '@daffodil/product/state';
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductCollectionFacade implements DaffProductCollectionFacadeInterface {
   metadata$: BehaviorSubject<DaffProductCollectionMetadata> = new BehaviorSubject(null);
-  currentPage$: BehaviorSubject<number> = new BehaviorSubject(null);
-  totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
-  pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
+  totalProducts$: BehaviorSubject<number> = new BehaviorSubject(0);
+  currentPage$: BehaviorSubject<number> = new BehaviorSubject(0);
+  totalPages$: BehaviorSubject<number> = new BehaviorSubject(0);
+  pageSize$: BehaviorSubject<number> = new BehaviorSubject(0);
   filters$: BehaviorSubject<Dict<DaffProductFilter>> = new BehaviorSubject({});
   sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
   appliedFilters$: BehaviorSubject<Dict<DaffProductFilter>> = new BehaviorSubject({});

@@ -18,6 +18,7 @@ import { buildMetadataFromRequest } from './pure/build-metadata-from-request';
 import { DaffProductCollectionReducerState } from './state.interface';
 
 export const daffProductCollectionReducerInitialState: DaffProductCollectionReducerState = {
+  total_products: 0,
   applied_sort_option: null,
   applied_sort_direction: null,
   current_page: null,
@@ -108,6 +109,7 @@ export const daffProductCollectionReducerFactory = <
         const response = getResponseFromSuccess(action);
         return {
           ...state,
+          total_products: response.productCollectionMetadata.total_products,
           current_page: response.productCollectionMetadata.current_page,
           page_size: response.productCollectionMetadata.page_size,
           filters: response.productCollectionMetadata.filters,

@@ -79,6 +79,14 @@ describe('@daffodil/product/state | daffProductCollectionSelectorFactory', () =>
     });
   });
 
+  describe('selectProductCollectionTotalProducts', () => {
+    it('selects the current page of the product collection', () => {
+      const selector = store.pipe(select(selectors.selectProductCollectionTotalProducts));
+      const expected = cold('a', { a: stubProductCollectionMetadata.total_products });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
   describe('selectProductCollectionCurrentPage', () => {
     it('selects the current page of the product collection', () => {
       const selector = store.pipe(select(selectors.selectProductCollectionCurrentPage));

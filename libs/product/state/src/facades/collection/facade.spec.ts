@@ -111,6 +111,13 @@ describe('@daffodil/product/state | DaffProductCollectionFacade', () => {
     });
   });
 
+  describe('totalProducts$', () => {
+    it('should return an observable of the total number of products', () => {
+      const expected = cold('a', { a: productCollectionMetadata.total_products });
+      expect(facade.totalProducts$).toBeObservable(expected);
+    });
+  });
+
   describe('pageSize$', () => {
     it('should return an observable of the page size', () => {
       const expected = cold('a', { a: productCollectionMetadata.page_size });

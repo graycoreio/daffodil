@@ -32,6 +32,7 @@ export abstract class DaffProductCollectionFacade<
   TMetadata extends DaffProductCollectionMetadata = DaffProductCollectionMetadata
 > implements DaffProductCollectionFacadeInterface<TMetadata> {
   metadata$: Observable<TMetadata>;
+  totalProducts$: Observable<number>;
   currentPage$: Observable<number>;
   totalPages$: Observable<number>;
   pageSize$: Observable<number>;
@@ -46,6 +47,7 @@ export abstract class DaffProductCollectionFacade<
     private selectors: DaffProductCollectionMemoizedSelectors<TState, TMetadata>,
   ) {
 	  this.metadata$ = this.store.pipe(select(this.selectors.selectProductCollectionMetadata));
+	  this.totalProducts$ = this.store.pipe(select(this.selectors.selectProductCollectionTotalProducts));
 	  this.currentPage$ = this.store.pipe(select(this.selectors.selectProductCollectionCurrentPage));
 	  this.totalPages$ = this.store.pipe(select(this.selectors.selectProductCollectionTotalPages));
 	  this.pageSize$ = this.store.pipe(select(this.selectors.selectProductCollectionSize));

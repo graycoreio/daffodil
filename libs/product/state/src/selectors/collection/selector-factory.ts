@@ -24,6 +24,10 @@ export interface DaffProductCollectionMemoizedSelectors<
    */
   selectProductCollectionMetadata: MemoizedSelector<TState, TMetadata>;
   /**
+   * Selects the total number of products of the product collection.
+   */
+  selectProductCollectionTotalProducts: MemoizedSelector<TState, TMetadata['total_products']>;
+  /**
    * Selects the current page of products of the product collection.
    */
   selectProductCollectionCurrentPage: MemoizedSelector<TState, TMetadata['current_page']>;
@@ -75,6 +79,11 @@ export const daffProductCollectionSelectorFactory = <
     state => state,
   );
 
+  const selectProductCollectionTotalProducts = createSelector(
+    selectProductCollectionMetadata,
+    state => state.total_products,
+  );
+
   const selectProductCollectionCurrentPage = createSelector(
     selectProductCollectionMetadata,
     state => state.current_page,
@@ -117,6 +126,7 @@ export const daffProductCollectionSelectorFactory = <
 
   return {
     selectProductCollectionMetadata,
+    selectProductCollectionTotalProducts,
     selectProductCollectionCurrentPage,
     selectProductCollectionTotalPages,
     selectProductCollectionSize,

@@ -23,6 +23,10 @@ export interface DaffProductCollectionFacadeInterface<
    */
   metadata$: Observable<TMetadata>;
   /**
+   * The number of products in the product collection.
+   */
+  totalProducts$: Observable<number>;
+  /**
    * The current page of products for the product collection.
    */
   currentPage$: Observable<number>;
