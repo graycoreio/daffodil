@@ -1,9 +1,6 @@
 import { EntityState } from '@ngrx/entity';
 
-import {
-  DaffProduct,
-  DaffProductTypeEnum,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   DaffBestSellersActions,
@@ -21,10 +18,7 @@ import {
   DaffConfigurableProductActionTypes,
 } from '../../actions/public_api';
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
-import {
-  DaffConfigurableProductEntity,
-  DaffConfigurableProductEntityAttribute,
-} from './configurable-product-entity';
+import { DaffConfigurableProductEntity } from './configurable-product-entity';
 
 /**
  * Reducer function that catches actions and changes/overwrites configurable product entities state.
@@ -40,80 +34,22 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-      return adapter.upsertMany(
-        mapEntities(<V[]><unknown>action.payload),
-        state,
-      );
+      return adapter.upsertProducts(state, ...(<V[]><unknown>action.payload));
+
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      return adapter.upsertMany(
-        mapEntities(<V[]><unknown>action.payload.products),
-        state,
-      );
+      return adapter.upsertProducts(state, ...(<V[]><unknown>action.payload.products));
+
     case DaffConfigurableProductActionTypes.ConfigurableProductApplyAttributeAction:
-      return adapter.upsertOne(
-        {
-          id: action.id,
-          attributes: applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
-        },
-        state,
-      );
+      return adapter.applyAttribute(state, action.id, action.attributeId, action.attributeValue);
+
     case DaffConfigurableProductActionTypes.ConfigurableProductRemoveAttributeAction:
-      return adapter.upsertOne(
-        {
-          id: action.id,
-          attributes: removeAttribute(state.entities[action.id].attributes, action.attributeId),
-        },
-        state,
-      );
+      return adapter.removeAttribute(state, action.id, action.attributeId);
+
     case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
-      return adapter.upsertOne(
-        {
-          id: action.id,
-          attributes: isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue) ?
-            removeAttribute(state.entities[action.id].attributes, action.attributeId) :
-            applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
-        },
-        state,
-      );
+      return adapter.toggleAttribute(state, action.id, action.attributeId, action.attributeValue);
+
     default:
       return state;
   }
-}
-
-function mapEntities(products: DaffConfigurableProduct[]): DaffConfigurableProductEntity[] {
-  return products.filter(product => product.type === DaffProductTypeEnum.Configurable)
-    .map(product => buildConfigurableProductAppliedAttributesEntity(product));
-}
-
-function buildConfigurableProductAppliedAttributesEntity(product: DaffProduct): DaffConfigurableProductEntity {
-  return {
-    id: product.id,
-    attributes: [],
-  };
-}
-
-function applyAttribute(currentAttributes: DaffConfigurableProductEntityAttribute[], appliedAttributeCode: string, appliedAttributeValue: string): DaffConfigurableProductEntityAttribute[] {
-  const attributeIndex = currentAttributes.findIndex(attribute => attribute.code === appliedAttributeCode);
-  const retainedAttributes = attributeIndex > -1 ? currentAttributes.slice(0, attributeIndex) : currentAttributes;
-
-  return [
-    ...retainedAttributes,
-    {
-      code: appliedAttributeCode,
-      value: appliedAttributeValue,
-    },
-  ];
-}
-
-function removeAttribute(currentAttributes: DaffConfigurableProductEntityAttribute[], appliedAttributeCode: string): DaffConfigurableProductEntityAttribute[] {
-  const index = currentAttributes.findIndex(attribute => attribute.code === appliedAttributeCode);
-
-  return index > -1 ? currentAttributes.slice(0, index) : currentAttributes;
-}
-
-function isAttributeSelected(currentAttributes: DaffConfigurableProductEntityAttribute[], attributeCode: string, attributeValue: string): boolean {
-  const index = currentAttributes.findIndex(attribute => attribute.code === attributeCode);
-
-  return index > -1 && currentAttributes[index].value === attributeValue;
 }

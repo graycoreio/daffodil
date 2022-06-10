@@ -1,14 +1,7 @@
 import { EntityState } from '@ngrx/entity';
 
-import {
-  DaffProduct,
-  DaffProductTypeEnum,
-} from '@daffodil/product';
-import {
-  DaffCompositeConfigurationItem,
-  DaffCompositeProduct,
-  DaffCompositeProductItem,
-} from '@daffodil/product-composite';
+import { DaffProduct } from '@daffodil/product';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
@@ -41,66 +34,16 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-      return adapter.upsertMany(
-        mapOptionsEntities(<V[]><unknown>action.payload),
-        state,
-      );
+      return adapter.upsertProducts(state, ...(<V[]><unknown>action.payload));
+
     case DaffProductActionTypes.ProductLoadSuccessAction:
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      return adapter.upsertMany(
-        mapOptionsEntities(<V[]><unknown>action.payload.products),
-        state,
-      );
+      return adapter.upsertProducts(state, ...(<V[]><unknown>action.payload.products));
+
     case DaffCompositeProductActionTypes.CompositeProductApplyOptionAction:
-      return adapter.upsertOne(
-        {
-          id: action.id,
-          items: {
-            ...state.entities[action.id].items,
-            [action.itemId]: {
-              value: action.optionId,
-              qty: action.qty ? action.qty : 1,
-            },
-          },
-        },
-        state,
-      );
+      return adapter.applyOption(state, action.id, action.itemId, action.optionId, action.qty);
+
     default:
       return state;
-  }
-}
-
-function mapOptionsEntities(products: DaffCompositeProduct[]): DaffCompositeProductEntity[] {
-  return products.filter(product => product.type === DaffProductTypeEnum.Composite)
-    .map(product => buildCompositeProductAppliedOptionsEntity(product));
-}
-
-function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct): DaffCompositeProductEntity {
-  return {
-    id: product.id,
-    items: product.items.reduce((acc, item) => ({
-      ...acc,
-      [item.id]: getDefaultOption(item),
-    }), {}),
-  };
-}
-
-/**
- * Sets the default item option to the specified default option if it is in stock.
- * Does not set a default option if a default is not specified.
- * Does not set a default option but does set a default qty if the default is out of stock.
- *
- * @param item a DaffCompositeProductItem
- */
-function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeConfigurationItem {
-  const defaultOptionIndex = item.options.findIndex(option => option.is_default);
-
-  if(defaultOptionIndex > -1) {
-    return {
-      value: item.options[defaultOptionIndex].in_stock ? item.options[defaultOptionIndex].id : null,
-      qty: item.options[defaultOptionIndex].quantity,
-    };
-  } else {
-    return { value: null, qty: null };
   }
 }
