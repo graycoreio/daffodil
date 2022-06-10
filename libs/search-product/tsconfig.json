@@ -24,6 +24,9 @@
       "@daffodil/search-product/testing": [
         "libs/search-product/testing/src"
       ],
+      "@daffodil/search-product/state": [
+        "libs/search-product/state/src"
+      ],
     }
   }
 }
