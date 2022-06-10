@@ -1,0 +1,44 @@
+{
+  "name": "@daffodil/search-product-configurable",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Interfaces built for daffodil/state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/search-product-configurable"
+  },
+  "scripts": {
+    "build": "ng build search-product-configurable --prod",
+    "lint": "cd ../.. && ng lint search-product-configurable",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test search-product-configurable --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/search-product-configurable; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product-configurable": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/search-product": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/product-configurable": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/search-product": "0.0.0-PLACEHOLDER"
+  }
+}
