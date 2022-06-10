@@ -6,8 +6,10 @@ import {
 import { Dict } from '@daffodil/core';
 import {
   DaffProductCollectionMetadata,
+  DaffProductCollectionRequest,
   daffProductComputeAppliedFilters,
   DaffProductFilter,
+  daffProductFiltersToRequests,
 } from '@daffodil/product';
 
 import { DaffProductCollectionReducerState } from '../../reducers/collection/state.interface';
@@ -23,6 +25,10 @@ export interface DaffProductCollectionMemoizedSelectors<
    * Selects the metadata for the product collection.
    */
   selectProductCollectionMetadata: MemoizedSelector<TState, TMetadata>;
+  /**
+   * Builds a request that matches the current product collection.
+   */
+  selectProductCollectionRequest: MemoizedSelector<TState, DaffProductCollectionRequest>;
   /**
    * Selects the total number of products of the product collection.
    */
@@ -79,6 +85,17 @@ export const daffProductCollectionSelectorFactory = <
     state => state,
   );
 
+  const selectProductCollectionRequest = createSelector(
+    selectProductCollectionMetadata,
+    metadata => ({
+      filter_requests: daffProductFiltersToRequests(metadata.filters),
+      applied_sort_option: metadata.applied_sort_option,
+      applied_sort_direction: metadata.applied_sort_direction,
+      current_page: metadata.current_page,
+      page_size: metadata.page_size,
+    }),
+  );
+
   const selectProductCollectionTotalProducts = createSelector(
     selectProductCollectionMetadata,
     state => state.total_products,
@@ -126,6 +143,7 @@ export const daffProductCollectionSelectorFactory = <
 
   return {
     selectProductCollectionMetadata,
+    selectProductCollectionRequest,
     selectProductCollectionTotalProducts,
     selectProductCollectionCurrentPage,
     selectProductCollectionTotalPages,

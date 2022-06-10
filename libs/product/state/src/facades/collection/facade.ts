@@ -13,6 +13,7 @@ import {
 } from '@daffodil/core';
 import {
   DaffProductCollectionMetadata,
+  DaffProductCollectionRequest,
   DaffProductFilter,
 } from '@daffodil/product';
 
@@ -32,6 +33,7 @@ export abstract class DaffProductCollectionFacade<
   TMetadata extends DaffProductCollectionMetadata = DaffProductCollectionMetadata
 > implements DaffProductCollectionFacadeInterface<TMetadata> {
   metadata$: Observable<TMetadata>;
+  request$: Observable<DaffProductCollectionRequest>;
   totalProducts$: Observable<number>;
   currentPage$: Observable<number>;
   totalPages$: Observable<number>;
@@ -47,6 +49,7 @@ export abstract class DaffProductCollectionFacade<
     private selectors: DaffProductCollectionMemoizedSelectors<TState, TMetadata>,
   ) {
 	  this.metadata$ = this.store.pipe(select(this.selectors.selectProductCollectionMetadata));
+	  this.request$ = this.store.pipe(select(this.selectors.selectProductCollectionRequest));
 	  this.totalProducts$ = this.store.pipe(select(this.selectors.selectProductCollectionTotalProducts));
 	  this.currentPage$ = this.store.pipe(select(this.selectors.selectProductCollectionCurrentPage));
 	  this.totalPages$ = this.store.pipe(select(this.selectors.selectProductCollectionTotalPages));

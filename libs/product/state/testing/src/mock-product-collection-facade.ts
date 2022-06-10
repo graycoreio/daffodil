@@ -9,6 +9,7 @@ import {
 } from '@daffodil/core';
 import {
   DaffProductCollectionMetadata,
+  DaffProductCollectionRequest,
   DaffProductFilter,
 } from '@daffodil/product';
 import { DaffProductCollectionFacadeInterface } from '@daffodil/product/state';
@@ -21,6 +22,7 @@ import { DaffProductCollectionFacadeInterface } from '@daffodil/product/state';
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductCollectionFacade implements DaffProductCollectionFacadeInterface {
   metadata$: BehaviorSubject<DaffProductCollectionMetadata> = new BehaviorSubject(null);
+  request$: BehaviorSubject<DaffProductCollectionRequest> = new BehaviorSubject(null);
   totalProducts$: BehaviorSubject<number> = new BehaviorSubject(0);
   currentPage$: BehaviorSubject<number> = new BehaviorSubject(0);
   totalPages$: BehaviorSubject<number> = new BehaviorSubject(0);

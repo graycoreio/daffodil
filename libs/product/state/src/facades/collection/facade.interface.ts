@@ -9,6 +9,7 @@ import {
 import { DaffStoreFacade } from '@daffodil/core/state';
 import {
   DaffProductCollectionMetadata,
+  DaffProductCollectionRequest,
   DaffProductFilter,
 } from '@daffodil/product';
 
@@ -22,6 +23,10 @@ export interface DaffProductCollectionFacadeInterface<
    * The page metadata for the product collection.
    */
   metadata$: Observable<TMetadata>;
+  /**
+   * Builds a request that matches the current product collection.
+   */
+  request$: Observable<DaffProductCollectionRequest>;
   /**
    * The number of products in the product collection.
    */
