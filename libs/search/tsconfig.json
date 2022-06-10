@@ -9,6 +9,9 @@
       "@daffodil/search": [
         "libs/search/src"
       ],
+      "@daffodil/search/testing": [
+        "libs/search/testing/src"
+      ],
     }
   }
 }
