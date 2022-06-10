@@ -8,13 +8,9 @@ import { DaffSearchResult } from '@daffodil/search';
  * Mock class for {@link DaffSearchResult}.
  */
 export class MockSearchResult implements DaffSearchResult {
-  '@type': 'Thing' = 'Thing';
-  '@context': 'https://schema.org' = 'https://schema.org';
   kind = 'Thing';
   id = faker.datatype.uuid();
-	url = `/${faker.internet.domainWord()}.html`;
-  name = faker.internet.domainWord();
-  description = faker.random.words(10);
+  url = `/${faker.internet.domainWord()}.html`;
 };
 
 /**
