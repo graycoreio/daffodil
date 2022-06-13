@@ -1,7 +1,7 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
 
 :host {
 	display: block;
-	font-size: $small-font-size;
+	font-size: t.$small-font-size;
 	margin-top: 5px;
 }

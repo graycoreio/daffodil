@@ -1,4 +1,4 @@
-@import 'daff-util';
+@use '../../../scss/interactions';
 
 :host {
 	display: flex;
@@ -7,7 +7,7 @@
 .daff-paginator {
 	&__previous,
 	&__next {
-		@include clickable();
+		@include interactions.clickable;
 		align-items: center;
 		appearance: none;
 		background: transparent;
@@ -35,7 +35,7 @@
 	}
 
 	&__page-link {
-		@include clickable();
+		@include interactions.clickable;
 		appearance: none;
 		background-color: transparent;
 		border: 0;
@@ -43,6 +43,6 @@
 		display: inline-block;
 		margin: 0 5px;
 		padding: 5px 10px;
-		transition: background 150ms ease;
+		transition: background-color 150ms ease;
 	}
 }

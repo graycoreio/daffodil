@@ -1,11 +1,11 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
 
 .daff-navbar-theming {
 	justify-content: space-between;
 
 	&__links {
 		> * {
-			@include embolden();
+			@include t.embolden;
 			font-size: 1.125rem;
 			padding: 0 16px;
 			text-decoration: none;

@@ -1,0 +1,23 @@
+// @docs
+//
+// Forces a line of text to ellipsis once it reaches the
+// width of its container. It should only be used if the element
+// is `display: block` or `display: inline-block`.
+// @usage
+// ```scss
+// @use '@daffodil/design/scss/typography;'
+//
+// @include typography.text-truncate;
+// ```
+
+// @deprecated in v1.0 in favor of text-truncate
+@mixin single-line-ellipsis() {
+	@include text-truncate();
+}
+
+@mixin text-truncate() {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

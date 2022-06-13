@@ -1,4 +1,5 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/layout';
 
 .daff-feature {
 	$root: &;
@@ -9,24 +10,24 @@
 		display: inline-block;
 		max-width: 30px;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			max-width: 50px;
 		}
 	}
 
 	&__subheader {
-		@include uppercase();
+		@include t.uppercase;
 		font-size: 0.75rem;
 		letter-spacing: 0.075rem;
 		line-height: 1rem;
 
-		@include breakpoint(mobile) {
-			font-size: $small-font-size;
+		@include layout.breakpoint(mobile) {
+			font-size: t.$small-font-size;
 		}
 	}
 
 	&__title {
-		@include embolden();
+		@include t.embolden;
 		margin: 0 0 15px;
 		padding: 0;
 	}
@@ -42,7 +43,7 @@
 		flex-direction: column;
 		padding: 25px;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			align-items: center;
 			flex-direction: row;
 			padding: 50px;
@@ -51,7 +52,7 @@
 		#{$root}__icon {
 			margin: 0 0 15px;
 
-			@include breakpoint(mobile) {
+			@include layout.breakpoint(mobile) {
 				margin: 0 25px 0 0;
 			}
 		}
@@ -59,7 +60,7 @@
 		#{$root}__subheader {
 			margin: 0 0 15px;
 
-			@include breakpoint(mobile) {
+			@include layout.breakpoint(mobile) {
 				margin: 0 0 30px;
 			}
 		}
@@ -68,7 +69,7 @@
 			font-size: 1.25rem;
 			line-height: 1.25rem;
 
-			@include breakpoint(mobile) {
+			@include layout.breakpoint(mobile) {
 				font-size: 2rem;
 				line-height: 2rem;
 			}
@@ -92,7 +93,7 @@
 			font-size: 1.25rem;
 			line-height: 1.25rem;
 
-			@include breakpoint(mobile) {
+			@include layout.breakpoint(mobile) {
 				font-size: 1.5rem;
 				line-height: 1.5rem;
 			}

@@ -1,0 +1,20 @@
+@use './mixins/text-transform' as *;
+@use './mixins/font-weight' as *;
+@use './mixins/text-truncate' as *;
+
+.embolden { /* stylelint-disable-line selector-class-pattern */
+	@include embolden();
+}
+
+.uppercase { /* stylelint-disable-line selector-class-pattern */
+	text-transform: uppercase;
+}
+
+// deprecate in v1.0
+.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
+	@include single-line-ellipsis();
+}
+
+.text-truncate { /* stylelint-disable-line selector-class-pattern */
+	@include text-truncate();
+}

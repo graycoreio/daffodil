@@ -1,4 +1,4 @@
-@import 'daff-util';
+@use '../../../../scss/layout';
 
 .daff-callout-with-grid {
 	&__grid {
@@ -10,7 +10,7 @@
 			'content' / 1fr;
 		grid-gap: 24px;
 
-		@include breakpoint(tablet) {
+		@include layout.breakpoint(tablet) {
 			grid-template:
 				'image content' / 1fr 1fr;
 			grid-gap: 48px;
@@ -29,7 +29,7 @@
 		display: flex;
 		flex-direction: column;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			flex-direction: row;
 			align-items: center;
 		}
@@ -38,7 +38,7 @@
 	&__daffodil-action {
 		margin: 0 0 24px;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			margin: 0 24px 0 0;
 		}
 	}

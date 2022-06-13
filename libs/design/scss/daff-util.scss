@@ -1,7 +1,7 @@
 // @docs
 //
 // `daff-util` is a utility library that contains common functions,
-// mixins and variables that make writing SCSS style-sheets a bit
+// mixins and variables that make writing SCSS stylesheets a bit
 // easier.
 //
 //
@@ -10,22 +10,12 @@
 // compiled stylesheet size.
 //
 // @usage
+// ```scss
+// @use '@daffodil/design/scss/daff-util';
 // ```
-// @import "daff-util";
-// ```
 
-// Variables
-@import 'typography/variables';
-@import 'responsive/variables';
-
-// Daffodil SASS Core
-@import 'core/core';
-
-// Sass Mixins & Functions
-@import 'interaction/mouse/clickable';
-@import 'responsive/breakpoint';
-@import 'typography/mixins';
-@import 'typography/sizes/mixins';
-
-// Accessibility
-@import 'accessibility/errors';
+@forward 'core';
+@forward 'typography';
+@forward 'layout';
+@forward 'interactions';
+@forward 'accessibility';

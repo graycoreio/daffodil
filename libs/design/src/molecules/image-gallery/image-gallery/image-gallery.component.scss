@@ -1,4 +1,4 @@
-@import 'daff-util';
+@use '../../../../scss/layout';
 
 .daff-image-gallery {
 	display: grid;
@@ -6,7 +6,7 @@
 	grid-template-areas: 'active-image' 'image-list';
 	max-height: 100%;
 
-	@include breakpoint(big-tablet) {
+	@include layout.breakpoint(big-tablet) {
 		grid-template-areas: 'image-list active-image';
 		max-height: min-content;
 	}
@@ -25,7 +25,7 @@
 		margin: 5px 0 0;
 		max-height: 100%;
 
-		@include breakpoint(big-tablet) {
+		@include layout.breakpoint(big-tablet) {
 			margin: 0 25px 0 0;
 			max-height: -webkit-fill-available;
 		}

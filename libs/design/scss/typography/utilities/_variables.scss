@@ -4,11 +4,9 @@ $base-font-family: $body-font-family;
 $monospace-font-family: ui-monospace, 'SFMono-Regular', SF Mono, Menlo, Consolas,
 	'Liberation Mono', monospace;
 
-// deprecated
-$desktop-font-size: 16px;
-$mobile-font-size: 16px;
-
 $large-font-size: 1.5rem;
 $medium-font-size: 1.25rem;
 $normal-font-size: 1rem;
 $small-font-size: 0.875rem;
+
+$bold-font-weight: bold;

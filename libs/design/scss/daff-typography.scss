@@ -1,6 +1,12 @@
 //
 // @docs
 //
+// @deprecated in v1.0.0
+// `daff-typography` will be deprecated in v1.0.0 in favor
+// of the typography module. Check out the [typography
+// documentation](libs/design/scss/typography/README.md)
+// for more information.
+//
 // `daff-typography` is a generic typography library that
 // sets common typography settings for the daffodil design
 // package. It IS NOT necessary, but can be used.
@@ -10,21 +16,19 @@
 // and will effect your final compiled stylesheet size.
 //
 // @usage
-// ```
-// @import "daff-typography";
+// ```scss
+// @use '@daffodil/design/scss/daff-typography';
 // ```
 
-@import './responsive/variables';
-@import './responsive/breakpoint';
-@import './typography/variables';
-@import './typography/mixins';
-@import './typography/sizes/mixins';
+@use '~modern-normalize/modern-normalize';
 
-@import '~modern-normalize/modern-normalize.css';
+@use 'typography' as t;
+@forward 'typography';
+@forward 'typography/classes';
 
 body,
 html {
-	font-family: $body-font-family;
+	font-family: t.$body-font-family;
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.5;
@@ -48,16 +52,4 @@ h5,
 h6 {
 	margin: 0;
 	padding: 0;
-}
-
-.embolden { /* stylelint-disable-line selector-class-pattern */
-	@include embolden();
-}
-
-.uppercase { /* stylelint-disable-line selector-class-pattern */
-	@include uppercase();
-}
-
-.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
-	@include single-line-ellipsis();
 }

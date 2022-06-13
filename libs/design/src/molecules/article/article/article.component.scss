@@ -1,5 +1,5 @@
-@import 'daff-util';
-@import './stops-article-cascade';
+@use '../../../../scss/typography' as t;
+@use 'stops-article-cascade' as *;
 
 .daff-article {
 	display: block;
@@ -22,7 +22,7 @@
 	}
 
 	@include stopsArticleCascade(h1) {
-		@include headline-lg();
+		@include t.headline-lg;
 	}
 
 	@include stopsArticleCascade(h2) {
@@ -55,13 +55,13 @@
 	}
 
 	strong {
-		@include embolden();
+		@include t.embolden;
 	}
 
 	pre {
 		display: block;
 		border-radius: 4px;
-		font-size: $small-font-size;
+		font-size: t.$small-font-size;
 		line-height: 1.5rem;
 		margin: 1.5rem 0;
 		padding: 1.5rem;
@@ -81,17 +81,17 @@
 	code {
 		display: inline-block;
 		border-radius: 4px;
-		font-size: $small-font-size;
+		font-size: t.$small-font-size;
 		line-height: 1rem;
 		padding: 0.25rem;
 	}
 
 	&__title {
-		@include headline-lg();
+		@include t.headline-lg;
 	}
 
 	&__lead {
-		@include body-md();
+		@include t.body-md;
 		font-weight: 400;
 		margin: 0;
 
@@ -103,7 +103,7 @@
 	}
 
 	&__meta {
-		font-size: $small-font-size;
+		font-size: t.$small-font-size;
 	}
 
 	hr {
@@ -122,7 +122,7 @@
 		}
 
 		cite {
-			@include body-xs();
+			@include t.body-xs;
 			display: block;
 			margin-top: 1rem;
 		}

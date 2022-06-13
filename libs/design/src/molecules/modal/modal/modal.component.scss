@@ -1,4 +1,4 @@
-@import 'daff-util';
+@use '../../../../scss/layout';
 
 :host {
 	display: block;
@@ -9,7 +9,7 @@
 	padding: 24px;
 	z-index: 3;
 
-	@include breakpoint(mobile) {
+	@include layout.breakpoint(mobile) {
 		height: auto;
 	}
 }

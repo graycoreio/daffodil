@@ -1,11 +1,11 @@
-@import 'daff-util';
+@use '../../../scss/layout';
 
 .daff-button-set {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 
-	@include breakpoint(mobile) {
+	@include layout.breakpoint(mobile) {
 		flex-direction: row;
 	}
 
@@ -16,7 +16,7 @@
 			margin: 0;
 		}
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			margin: 0 5px 0 0;
 
 			&:last-child {

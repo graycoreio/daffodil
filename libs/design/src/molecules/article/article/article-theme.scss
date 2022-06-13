@@ -1,4 +1,4 @@
-@import './stops-article-cascade';
+@use 'stops-article-cascade' as *;
 
 @mixin daff-article-theme($theme) {
 	$primary: map-get($theme, primary);

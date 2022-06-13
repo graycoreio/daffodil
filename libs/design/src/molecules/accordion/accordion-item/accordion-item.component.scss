@@ -1,16 +1,18 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/interactions';
+@use '../../../../scss/layout';
 
 .daff-accordion-item {
 	display: block;
 	padding: 15px 0;
 	width: 100%;
 
-	@include breakpoint(tablet) {
+	@include layout.breakpoint(tablet) {
 		padding: 30px 0;
 	}
 
 	&__header {
-		@include clickable();
+		@include interactions.clickable;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -22,8 +24,8 @@
 	}
 
 	&__title {
-		@include embolden();
-		@include uppercase();
+		@include t.embolden;
+		@include t.uppercase;
 		font-size: 1rem;
 		margin: 0;
 	}
@@ -31,7 +33,7 @@
 	&__content {
 		padding-top: 15px;
 
-		@include breakpoint(tablet) {
+		@include layout.breakpoint(tablet) {
 			padding-top: 30px;
 		}
 	}

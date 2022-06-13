@@ -1,11 +1,12 @@
-@import 'daff-util';
+@use '../../../../scss/typography' as t;
+@use '../../../../scss/layout';
 
 .daff-callout {
 	$root: &;
 	display: block;
 	padding: 64px 24px;
 
-	@include breakpoint(mobile) {
+	@include layout.breakpoint(mobile) {
 		padding: 96px 48px;
 	}
 
@@ -14,13 +15,13 @@
 	}
 
 	&__tagline {
-		@include subheading();
+		@include t.subheading;
 		margin: 0 0 8px;
 		padding: 0;
 	}
 
 	&__title {
-		@include embolden();
+		@include t.embolden;
 		font-size: 1.75rem;
 		line-height: 2rem;
 		margin: 0;
@@ -29,13 +30,13 @@
 		padding: 0;
 		width: 100%;
 
-		@include breakpoint(mobile) {
-			@include headline-lg();
+		@include layout.breakpoint(mobile) {
+			@include t.headline-lg;
 		}
 	}
 
 	&__subtitle {
-		font-size: $medium-font-size;
+		font-size: t.$medium-font-size;
 		margin: 16px 0 0;
 		max-width: 592px;
 		padding: 0;
@@ -73,7 +74,7 @@
 			margin: 10px auto 0;
 			text-align: center;
 
-			@include breakpoint(mobile) {
+			@include layout.breakpoint(mobile) {
 				margin: 25px auto 0;
 			}
 		}
@@ -83,7 +84,7 @@
 	&--compact {
 		padding: 25px;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			padding: 25px 50px;
 		}
 	}
@@ -91,7 +92,7 @@
 	&.daff-compact {
 		padding: 48px 24px;
 
-		@include breakpoint(mobile) {
+		@include layout.breakpoint(mobile) {
 			padding: 48px;
 		}
 	}
