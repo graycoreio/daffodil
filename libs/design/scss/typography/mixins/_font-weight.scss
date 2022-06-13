@@ -1,14 +1,18 @@
+@use '../utilities/variables';
+
 //
 // @docs
 //
-// Changes the weight (boldness) of text to 700
+// Changes the weight of text to bold
 //
 // @usage
-// ```
-// @include embolden(500);
+// ```scss
+// @use '@daffodil/design/scss/typography;
+//
+// @include typography.embolden;
 // ```
 //
 
-@mixin embolden($weight: 700) {
-	font-weight: $weight;
+@mixin embolden() {
+	font-weight: variables.$bold-font-weight;
 }

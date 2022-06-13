@@ -10,7 +10,7 @@
 // compiled stylesheet size.
 //
 // @usage
-// ```
+// ```scss
 // @use '@daffodil/design/scss/daff-util';
 // ```
 
@@ -19,10 +19,3 @@
 @forward 'layout';
 @forward 'interactions';
 @forward 'accessibility';
-
-// @deprecated `@import` is deprecated and will be removed in v1.0.0
-@import 'core';
-@import 'typography';
-@import 'layout';
-@import 'interactions';
-@import 'accessibility';

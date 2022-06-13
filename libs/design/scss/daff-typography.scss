@@ -16,7 +16,7 @@
 // and will effect your final compiled stylesheet size.
 //
 // @usage
-// ```
+// ```scss
 // @use '@daffodil/design/scss/daff-typography';
 // ```
 
@@ -24,7 +24,7 @@
 
 @use 'typography' as t;
 @forward 'typography';
-@import 'typography';
+@forward 'typography/classes';
 
 body,
 html {
@@ -52,16 +52,4 @@ h5,
 h6 {
 	margin: 0;
 	padding: 0;
-}
-
-.embolden { /* stylelint-disable-line selector-class-pattern */
-	@include embolden();
-}
-
-.uppercase { /* stylelint-disable-line selector-class-pattern */
-	@include uppercase();
-}
-
-.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
-	@include single-line-ellipsis();
 }

@@ -4,16 +4,15 @@
 // width of its container. It should only be used if the element
 // is `display: block` or `display: inline-block`.
 // @usage
-// ```
-// @include single-line-ellipsis();
+// ```scss
+// @use '@daffodil/design/scss/typography;'
+//
+// @include typography.text-truncate;
 // ```
 
 // @deprecated in v1.0 in favor of text-truncate
 @mixin single-line-ellipsis() {
-	display: block;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	@include text-truncate();
 }
 
 @mixin text-truncate() {

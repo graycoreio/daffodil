@@ -1,35 +1,12 @@
-@use '../mixins/text-transform' as *;
-@use '../mixins/font-weight' as *;
-@use '../mixins/text-truncate' as *;
-
 $body-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
 	Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 $base-font-family: $body-font-family;
 $monospace-font-family: ui-monospace, 'SFMono-Regular', SF Mono, Menlo, Consolas,
 	'Liberation Mono', monospace;
 
-// deprecated
-$desktop-font-size: 16px;
-$mobile-font-size: 16px;
-
 $large-font-size: 1.5rem;
 $medium-font-size: 1.25rem;
 $normal-font-size: 1rem;
 $small-font-size: 0.875rem;
 
-.embolden { /* stylelint-disable-line selector-class-pattern */
-	@include embolden();
-}
-
-.uppercase { /* stylelint-disable-line selector-class-pattern */
-	@include uppercase();
-}
-
-// deprecate in v1.0
-.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
-	@include single-line-ellipsis();
-}
-
-.text-truncate { /* stylelint-disable-line selector-class-pattern */
-	@include text-truncate();
-}
+$bold-font-weight: bold;
