@@ -9,7 +9,7 @@ import { DaffProductReducerState } from './product-reducer-state.interface';
 /**
  * Initial values of the product state.
  */
-export const initialState: DaffProductReducerState = {
+export const daffProductReducerInitialState: DaffProductReducerState = {
   currentProductId: null,
   qty: 1,
   loading: false,
@@ -23,7 +23,7 @@ export const initialState: DaffProductReducerState = {
  * @param action a product action
  * @returns product state
  */
-export function daffProductReducer<T extends DaffProduct>(state = initialState, action: DaffProductPageActions<T>): DaffProductReducerState {
+export function daffProductReducer<T extends DaffProduct>(state = daffProductReducerInitialState, action: DaffProductPageActions<T>): DaffProductReducerState {
   switch (action.type) {
     case DaffProductPageActionTypes.ProductPageLoadAction:
     case DaffProductPageActionTypes.ProductPageLoadByUrlAction:

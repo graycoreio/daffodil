@@ -8,7 +8,10 @@ export { daffProductGridReducer } from './product-grid/product-grid.reducer';
 export { daffProductEntitiesAdapter } from './product-entities/product-entities-reducer-adapter';
 export { daffProductEntitiesReducer } from './product-entities/product-entities.reducer';
 export { DaffProductReducerState } from './product/product-reducer-state.interface';
-export { daffProductReducer } from './product/product.reducer';
+export {
+  daffProductReducer,
+  daffProductReducerInitialState,
+} from './product/product.reducer';
 export { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer-state.interface';
 export { daffBestSellersReducer } from './best-sellers/best-sellers.reducer';
 export { DAFF_PRODUCT_STORE_FEATURE_KEY } from './product-store-feature-key';

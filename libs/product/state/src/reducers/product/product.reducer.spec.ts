@@ -13,11 +13,11 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductPageLoadByUrl } from '../../actions/public_api';
 import {
-  initialState,
+  daffProductReducerInitialState,
   daffProductReducer,
 } from './product.reducer';
 
-describe('Product | Product Reducer', () => {
+describe('@daffodil/product/state | daffProductReducer', () => {
 
   let productFactory: DaffProductFactory;
   let product: DaffProduct;
@@ -35,9 +35,9 @@ describe('Product | Product Reducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = daffProductReducer(initialState, action);
+      const result = daffProductReducer(daffProductReducerInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffProductReducerInitialState);
     });
   });
 
@@ -47,7 +47,7 @@ describe('Product | Product Reducer', () => {
     beforeEach(() => {
       const productLoadAction = new DaffProductPageLoadByUrl(product.url);
 
-      result = daffProductReducer(initialState, productLoadAction);
+      result = daffProductReducer(daffProductReducerInitialState, productLoadAction);
     });
 
     it('sets loading state to true', () => {
@@ -65,7 +65,7 @@ describe('Product | Product Reducer', () => {
     beforeEach(() => {
       const productLoadAction: DaffProductPageLoad = new DaffProductPageLoad(productId);
 
-      result = daffProductReducer(initialState, productLoadAction);
+      result = daffProductReducer(daffProductReducerInitialState, productLoadAction);
     });
 
     it('sets loading state to true', () => {
@@ -84,7 +84,7 @@ describe('Product | Product Reducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffProductReducerInitialState,
         loading: true,
       };
 
@@ -115,7 +115,7 @@ describe('Product | Product Reducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffProductReducerInitialState,
         loading: true,
         errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
@@ -143,7 +143,7 @@ describe('Product | Product Reducer', () => {
       givenQty = 3;
       const productLoadFailure = new DaffProductPageUpdateQty(givenQty);
 
-      result = daffProductReducer(initialState, productLoadFailure);
+      result = daffProductReducer(daffProductReducerInitialState, productLoadFailure);
     });
 
     it('sets qty to payload', () => {
