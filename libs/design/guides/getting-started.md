@@ -32,7 +32,7 @@ Next, create a `styles.scss` in the root of the Angular app and modify the `angu
 There is a minimal required global style for `@daffodil/design` to operate effectively in all supported browsers. Update the `styles.scss` to include the following:
 
 ```scss
-@import '@daffodil/design/scss/daff-global';
+@forward '@daffodil/design/scss/daff-global';
 ```
 
 > Note that this import changes the output CSS and should only ever be imported once!
@@ -47,7 +47,7 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 Next, create a file called `theme.scss` that is sibling to `styles.scss` and put the following content in it.
 
 ```scss
-@import '@daffodil/design/scss/daff-theme';
+@forward '@daffodil/design/scss/daff-theme';
 
 // These palettes describe the colors that make up the "theme" of the components.
 
@@ -60,8 +60,8 @@ $theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
 Then, import the new `theme.scss` into the `styles.scss` file.
 
 ```scss
-@import '@daffodil/design/scss/daff-global';
-@import 'theme';
+@use '@daffodil/design/scss/daff-global';
+@use 'theme';
 
 @include daff-theme($theme);
 ```
@@ -110,7 +110,7 @@ At this point, there is some extra padding around the body of the `DaffHeroCompo
 To give the final result that extra "pizzaz", simply add the following to the imports of `styles.scss`.
 
 ```scss
-@import '@daffodil/design/scss/daff-typography';
+@use '@daffodil/design/scss/typography';
 ```
 
 [View this example in Stackblitz](https://stackblitz.com/edit/daffodil-design-angular-10).
