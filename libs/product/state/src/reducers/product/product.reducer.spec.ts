@@ -17,7 +17,7 @@ import {
   daffProductReducer,
 } from './product.reducer';
 
-describe('Product | Product Reducer', () => {
+describe('@daffodil/product/state | daffProductReducer', () => {
 
   let productFactory: DaffProductFactory;
   let product: DaffProduct;

@@ -8,7 +8,7 @@ import {
   DAFF_PRODUCT_EXTRA_REDUCERS,
 } from './extra.token';
 
-describe('daffProductProvideExtraReducers', () => {
+describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
   let reducers: ActionReducer<DaffProductReducersState>[];
   let result: ActionReducer<DaffProductReducersState>[];
 
