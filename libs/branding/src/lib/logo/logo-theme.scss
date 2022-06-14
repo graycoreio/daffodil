@@ -1,6 +1,8 @@
+@use '../../scss/branding-theme';
+
 @mixin daff-logo-theme($theme) {
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$base: branding-theme.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: branding-theme.daff-map-deep-get($theme, 'core.base-contrast');
 
 	.daff-logo {
 		&--full {
