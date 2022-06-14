@@ -1,0 +1,17 @@
+@use 'sass:map';
+@use 'dl-theme';
+
+@mixin typography-theme($theme) {
+	$gray: dl-theme.daff-map-deep-get($theme, 'core.gray');
+
+	.dl-typography {
+		&__typescale-card {
+			border: 1px solid dl-theme.daff-color($gray, 20);
+		}
+		
+		&__desktop-subheading,
+		&__mobile-subheading {
+			color: dl-theme.daff-color($gray);
+		}
+	}	
+}

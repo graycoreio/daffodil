@@ -1,9 +1,7 @@
-@import 'utilities';
-@import 'theme';
+@use 'utilities' as *;
 
 .dl-typography {
 	&__typescale-card {
-		border: 1px solid daff-color($gray, 20);
 		border-radius: 8px;
 		padding: 24px;
 		margin: 24px 0;
@@ -12,7 +10,6 @@
 	&__desktop-subheading,
 	&__mobile-subheading {
 		@include subheading();
-		color: daff-color($gray);
 		margin: 0 0 8px;
 		padding: 0;
 	}

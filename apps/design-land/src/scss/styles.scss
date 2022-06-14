@@ -2,37 +2,26 @@
 * DO NOT IMPORT THIS FILE ANYWHERE ELSE
 ************************************/
 
-// Imports
-@import 'daff-global';
-@import 'daff-typography';
-@import 'daff-theme';
+@use 'daff-global';
 
-@import "theme";
-
-@import '../app/core/code-preview/component/code-preview-theme';
+@use 'dl-theme';
+@use 'theme' as daff-theme;
+@use './component-themes' as dl-components;
 
 .daff-theme-light {
   @import 'highlight.js/scss/a11y-light.scss';
-  @include daff-theme($theme);
-  @include code-preview-theme($theme);
+  @include daff-theme.daff-theme(dl-theme.$theme);
+  @include dl-components.component-themes(dl-theme.$theme);
 
-  background: #ffffff;
-
+  background: dl-theme.$white;
+	color: dl-theme.daff-text-contrast(daffio-theme.$white);
 }
 
 .daff-theme-dark {
   @import 'highlight.js/scss/a11y-dark.scss';
-  @include daff-theme($theme-dark);
-  @include code-preview-theme($theme-dark);
+  @include daff-theme.daff-theme(dl-theme.$theme-dark);
+  @include dl-components.component-themes(dl-theme.$theme-dark);
 
-  background: #1a1a1a;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-* {
-  box-sizing: border-box;
+  background: dl-theme.$black;
+	color: dl-theme.daff-text-contrast(daffio-theme.$black);
 }

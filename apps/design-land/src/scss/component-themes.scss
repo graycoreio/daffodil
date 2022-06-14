@@ -1,0 +1,9 @@
+@use '../app/core/code-preview/component/code-preview-theme' as code-preview;
+@use '../app/typography/typography-theme' as typography;
+@use '../app/foundations/color/color-theme' as color;
+
+@mixin component-themes($theme) {
+	@include code-preview.code-preview-theme($theme);
+  @include typography.typography-theme($theme);
+  @include color.color-theme($theme);
+}

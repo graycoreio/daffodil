@@ -1,5 +1,4 @@
-@import 'utilities';
-@import 'theme';
+@use 'utilities' as *;
 
 .dl-color {
 	&__grid {
@@ -68,10 +67,6 @@
 				border-bottom-left-radius: 8px;
 				border-bottom-right-radius: 8px;
 			}
-
-			&:nth-child(n+6) {
-        color: $white;
-			}
 			
 			&:nth-child(6) {
 				height: 4rem;
@@ -92,14 +87,6 @@
 
 		&.brand-yellow {
 			grid-area: brand-yellow;
-
-			> * {
-				color: $black;
-				
-				&:last-child {
-					color: $white;
-				}
-			}
 		}
 
 		&.red {
