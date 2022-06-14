@@ -1,7 +1,6 @@
-@import './variables';
-@import './color';
-@import './contrast';
-@import './illuminate/illuminate';
-@import './configure-palette';
-@import './configure-theme';
-@import './theme';
+@forward 'color-palettes';
+@forward 'get-color';
+@forward 'contrast';
+@forward 'illuminate/illuminate';
+@forward 'configure-palette';
+@forward 'configure-theme';

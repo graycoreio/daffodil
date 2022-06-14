@@ -1,21 +1,25 @@
+@use 'sass:map';
+@use '../../../scss/core';
+@use '../../../scss/theming';
+
 @mixin daff-paginator-theme-variant($active-color) {
 	color: currentColor;
 
 	&:hover,
 	&.selected { /* stylelint-disable-line selector-class-pattern */
 		background: $active-color;
-		color: daff-text-contrast($active-color);
+		color: theming.daff-text-contrast($active-color);
 	}
 }
 
 @mixin daff-paginator-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-paginator {
 		&__previous,
@@ -25,19 +29,19 @@
 
 		&.daff-primary {
 			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant(daff-color($primary));
+				@include daff-paginator-theme-variant(theming.daff-color($primary));
 			}
 		}
 
 		&.daff-secondary {
 			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant(daff-color($secondary));
+				@include daff-paginator-theme-variant(theming.daff-color($secondary));
 			}
 		}
 
 		&.daff-tertiary {
 			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant(daff-color($tertiary));
+				@include daff-paginator-theme-variant(theming.daff-color($tertiary));
 			}
 		}
 

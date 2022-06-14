@@ -1,13 +1,12 @@
+@use 'sass:map';
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
+
 @mixin daff-accordion-item-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base: core.daff-map-deep-get($theme, 'core.base');
 
 	.daff-accordion-item {
-		border-bottom: 1px solid daff-illuminate($base, $daff-gray, 2);
+		border-bottom: 1px solid theming.daff-illuminate($base, $gray, 2);
 	}
 }

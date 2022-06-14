@@ -1,9 +1,14 @@
+@use 'sass:map';
+@use '../../../../../scss/core';
+@use '../../../../../scss/theming';
+
 @mixin daff-select-theme($theme) {
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-native-select {
-		color: daff-illuminate($base-contrast, $daff-gray, 4);
+		color: theming.daff-illuminate($base-contrast, $gray, 4);
 
 		// removes dotted border on in FF
 		&:-moz-focusring {

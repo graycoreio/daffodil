@@ -1,23 +1,24 @@
-@import './variables';
-@import './color';
-@import './configure-palette';
+@use 'sass:map';
+@use 'configure-palette';
+@use 'color-palettes' as palette;
+@use 'get-color';
 
 $daff-light-theme: (
-	'font-color': daff-color($daff-gray, 110),
-	'base': daff-color($daff-gray, 0),
-	'base-contrast': daff-color($daff-gray, 110),
-	'white': daff-color($daff-gray, 0),
-	'black': daff-color($daff-gray, 110),
-	'gray': daff-configure-palette($daff-gray, 60)
+	'font-color': get-color.daff-color(palette.$daff-gray, 110),
+	'base': get-color.daff-color(palette.$daff-gray, 0),
+	'base-contrast': get-color.daff-color(palette.$daff-gray, 110),
+	'white': get-color.daff-color(palette.$daff-gray, 0),
+	'black': get-color.daff-color(palette.$daff-gray, 110),
+	'gray': configure-palette.daff-configure-palette(palette.$daff-gray, 60),
 );
 
 $daff-dark-theme: (
-	'font-color': daff-color($daff-gray, 0),
-	'base': daff-color($daff-gray, 100),
-	'base-contrast': daff-color($daff-gray, 0),
-	'white': daff-color($daff-gray, 0),
-	'black': daff-color($daff-gray, 110),
-	'gray': daff-configure-palette($daff-gray, 60)
+	'font-color': get-color.daff-color(palette.$daff-gray, 0),
+	'base': get-color.daff-color(palette.$daff-gray, 100),
+	'base-contrast': get-color.daff-color(palette.$daff-gray, 0),
+	'white': get-color.daff-color(palette.$daff-gray, 0),
+	'black': get-color.daff-color(palette.$daff-gray, 110),
+	'gray': configure-palette.daff-configure-palette(palette.$daff-gray, 50),
 );
 
 $supported-theme-types: (
@@ -59,9 +60,9 @@ $supported-theme-types: (
 // ```
 @function daff-build-theme-core($type: 'light') {
 	$error-msg: 'is not a valid theme type - valid types:';
-	@if (not map-has-key($supported-theme-types, $type)) {
+	@if (not map.has-key($supported-theme-types, $type)) {
 		@error '`#{$type}` `#{$error-msg}` `#{map-keys($supported-theme-types)}`';
 	}
 
-	@return map-get($supported-theme-types, $type);
+	@return map.get($supported-theme-types, $type);
 }

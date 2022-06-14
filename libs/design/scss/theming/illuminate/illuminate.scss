@@ -1,7 +1,7 @@
-@import '../color';
-@import '../contrast/luminance/luminance';
+@use 'sass:map';
+@use '../contrast/luminance/luminance';
 
-//
+// @docs
 // Take a numeric map and sort it.
 //
 // https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
@@ -37,7 +37,7 @@
 		// Add smallest pair to sorted map
 		$key: nth($smallest-pair, 1);
 		$value: nth($smallest-pair, 2);
-		$sorted-map: map-merge(
+		$sorted-map: map.merge(
 			$sorted-map,
 			(
 				$key: $value
@@ -89,17 +89,17 @@
 	//Validate
 	@each $key, $palette-color in $palette {
 		@if (type-of($key) == 'string') {
-			$palette: map-remove($palette, $key);
+			$palette: map.remove($palette, $key);
 		}
 	}
 
 	//Transform into usable values
 	@each $key, $palette-color in $palette {
-		$luminance-map: map-merge(
+		$luminance-map: map.merge(
 			$luminance-map,
 			(
 				$key: (
-					daff-luminance($palette-color) - daff-luminance($color)
+					luminance.daff-luminance($palette-color) - luminance.daff-luminance($color)
 				)
 			)
 		);
@@ -112,7 +112,7 @@
 
 	@each $key, $luminance in $luminance-map {
 		@if ($luminance > 0) {
-			$brighter-colors: map-merge(
+			$brighter-colors: map.merge(
 				$brighter-colors,
 				(
 					$key: $luminance
@@ -121,7 +121,7 @@
 		}
 
 		@if ($luminance < 0) {
-			$darker-colors: map-merge(
+			$darker-colors: map.merge(
 				$darker-colors,
 				(
 					$key: abs($luminance)
@@ -132,7 +132,7 @@
 
 	$key: null;
 
-	@if (daff-luminance($color) >= 0.5) {
+	@if (luminance.daff-luminance($color) >= 0.5) {
 		//If the color is bright
 		$key: _daff-illuminate-get-key($darker-colors, $nth);
 	}
@@ -141,5 +141,5 @@
 		$key: _daff-illuminate-get-key($brighter-colors, $nth);
 	}
 
-	@return map-get($palette, $key);
+	@return map.get($palette, $key);
 }

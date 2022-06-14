@@ -1,14 +1,13 @@
+@use '../../../../scss/core';
+
 @mixin daff-sidebar-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$font-color: daff-map-deep-get($theme, 'core.font-color');
-	$shadow-color: rgba(128, 128, 128, 0.1);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, "core.base-contrast");
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-sidebar {
 		background: $base;
-		box-shadow: 6px 1px 9px 0 $shadow-color;
-		color: $font-color;
+		box-shadow: 6px 1px 9px 0 rgba($black, 0.1);
+		color: $base-contrast;
 	}
 }

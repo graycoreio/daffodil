@@ -1,0 +1,77 @@
+// @docs
+
+// `theme` is a utility library for theming the daffodil
+// design library. It contains many useful mixins, functions,
+// and variables.
+
+// @note You can use this as often as you like, as it only contains SCSS
+// variables, mixins, and functions; thus it won't effect your final
+// compiled stylesheet size.
+
+// @usage
+// ```
+// @use '@daffodil/design/scss/theme';
+// ```
+
+@forward 'core';
+@forward 'accessibility';
+@forward 'theming';
+
+// @daffodil/design components
+@use './theming/theme-css-variables' as variables;
+@use '../src/atoms/button/button-theme' as button;
+@use '../src/atoms/form/error-message/error-message-theme' as error-message;
+@use '../src/atoms/form/form-field/form-field/form-field-theme' as form-field;
+@use '../src/atoms/form/input/input-theme' as input;
+@use '../src/atoms/form/select/select/select-theme' as select;
+@use '../src/atoms/loading-icon/loading-icon-theme' as loading-icon;
+@use '../src/atoms/progress-indicator/progress-indicator-theme' as progress-indicator;
+@use '../src/molecules/accordion/accordion-item/accordion-item-theme' as accordion-item;
+@use '../src/molecules/article/article/article-theme' as article;
+@use '../src/molecules/callout/callout-theme' as callout;
+@use '../src/molecules/card/card/card-theme' as card;
+@use '../src/molecules/hero/hero-theme' as hero;
+@use '../src/molecules/list/list/list-theme' as list;
+@use '../src/molecules/media-gallery/media-gallery-theme' as media-gallery;
+@use '../src/molecules/modal/modal-theme' as modal;
+@use '../src/molecules/navbar/navbar-theme' as navbar;
+@use '../src/molecules/paginator/paginator-theme' as paginator;
+@use '../src/molecules/sidebar/sidebar/sidebar-theme' as sidebar;
+@use '../src/molecules/sidebar/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;
+
+//
+// Generates the styles of a @daffodil/design theme.
+//
+// Usage:
+// ```scss
+// @use '@daffodil/design/scss/theme';
+//
+// @include daff-theme($theme);
+// ```
+@mixin daff-theme($theme) {
+	// CSS variables
+	@include variables.daff-theme-css-variables($theme);
+
+	// Atoms
+	@include button.daff-button-theme($theme);
+	@include error-message.daff-error-message-theme($theme);
+	@include form-field.daff-form-field-theme($theme);
+	@include input.daff-input-theme($theme);
+	@include select.daff-select-theme($theme);
+	@include loading-icon.daff-loading-icon-theme($theme);
+	@include progress-indicator.daff-progress-indicator-theme($theme);
+
+	// Molecules
+	@include accordion-item.daff-accordion-item-theme($theme);
+	@include article.daff-article-theme($theme);
+	@include callout.daff-callout-theme($theme);
+	@include card.daff-card-theme($theme);
+	@include hero.daff-hero-theme($theme);
+	@include list.daff-list-theme($theme);
+	@include media-gallery.daff-media-gallery-theme($theme);
+	@include modal.daff-modal-theme($theme);
+	@include navbar.daff-navbar-theme($theme);
+	@include paginator.daff-paginator-theme($theme);
+	@include sidebar.daff-sidebar-theme($theme);
+	@include sidebar-viewport.daff-sidebar-viewport-theme($theme);
+}

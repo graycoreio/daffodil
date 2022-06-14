@@ -1,4 +1,4 @@
-@import './string/split/string-split';
+@forward 'string/split/string-split';
 
-@import './map/map-deep-check/map-deep-check';
-@import './map/map-deep-get/map-deep-get';
+@forward 'map/map-deep-check/map-deep-check';
+@forward 'map/map-deep-get/map-deep-get';

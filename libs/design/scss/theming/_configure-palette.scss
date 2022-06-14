@@ -1,19 +1,20 @@
-@import './color';
+@use 'sass:map';
+@use 'get-color';
 
 // @docs
 //
-// Takes a color palette configures some sane defaults
-// Will set the "default" to 60 if $hue isn't specified
+// Configures the default color of a palette. It will set the
+// "default" to 60 if $hue isn't specified.
 //
 // @usage
-// ```
-// daff-configure-palette($daff-yellow, $hue);
+// ```scss
+// daff-configure-palette($daff-yellow, 50);
 // ```
 @function daff-configure-palette($color-palette, $hue: 60) {
-	@return map-merge(
+	@return map.merge(
 		$color-palette,
 		(
-			'default': daff-color($color-palette, $hue)
+			'default': get-color.daff-color($color-palette, $hue)
 		)
 	);
 }

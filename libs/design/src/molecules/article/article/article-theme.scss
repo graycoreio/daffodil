@@ -1,25 +1,28 @@
+@use 'sass:map';
 @use 'stops-article-cascade' as *;
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
 
 @mixin daff-article-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
-	$gray: daff-configure-palette($daff-gray, 60);
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
 
-	$text-color: daff-illuminate($base-contrast, $gray, 2);
-	$table-border-color: daff-illuminate($base, $gray, 2);
+	$text-color: theming.daff-illuminate($base-contrast, $gray, 2);
+	$table-border-color: theming.daff-illuminate($base, $gray, 2);
 
 	.daff-article {
 		&__meta {
-			color: daff-illuminate($base-contrast, $gray, 3);
+			color: theming.daff-illuminate($base-contrast, $gray, 3);
 		}
 
 		@include stopsArticleCascade(a) {
-			color: daff-color($primary);
+			color: theming.daff-color($primary);
 		}
 
 		@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
@@ -31,8 +34,8 @@
 		}
 
 		pre {
-			background: rgba(daff-illuminate($base, $daff-gray, 2), 0.3);
-			border: 1px solid rgba(daff-illuminate($base, $daff-gray, 2), 0.6);
+			background: rgba(theming.daff-illuminate($base, $gray, 2), 0.3);
+			border: 1px solid rgba(theming.daff-illuminate($base, $gray, 2), 0.6);
 			color: $base-contrast;
 
 			code {
@@ -42,28 +45,28 @@
 		}
 
 		code {
-			background: rgba(daff-illuminate($base, $daff-gray, 2), 0.5);
+			background: rgba(theming.daff-illuminate($base, $gray, 2), 0.5);
 			color: $base-contrast;
 		}
 
 		hr {
-			background: daff-illuminate($base, $gray, 2);
+			background: theming.daff-illuminate($base, $gray, 2);
 		}
 
 		blockquote {
-			background: rgba(daff-color($primary), 0.1);
-			border-left: 4px solid daff-illuminate($base, $primary, 5);
+			background: rgba(theming.daff-color($primary), 0.1);
+			border-left: 4px solid theming.daff-illuminate($base, $primary, 5);
 			color: $base-contrast;
 
 			code {
-				background: rgba(daff-color($primary), 0.15);
+				background: rgba(theming.daff-color($primary), 0.15);
 				color: $base-contrast;
 			}
 		}
 
 		table {
 			th {
-				background: daff-illuminate($base, $gray, 1);
+				background: theming.daff-illuminate($base, $gray, 1);
 				border: 1px solid $table-border-color;
 			}
 

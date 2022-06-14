@@ -1,6 +1,6 @@
-@import '../contrast-ratio/contrast-ratio';
-@import '../../color';
-@import '../../variables';
+@use '../contrast-ratio/contrast-ratio' as cr;
+@use '../../get-color';
+@use '../../color-palettes' as palette;
 
 // @docs
 //
@@ -19,11 +19,11 @@
 // ```
 @function daff-text-contrast(
 	$color,
-	$black: daff-color($daff-gray, 110),
-	$white: $daff-white
+	$black: get-color.daff-color(palette.$daff-gray, 110),
+	$white: palette.$daff-white
 ) {
-	$light-contrast: daff-contrast-ratio($color, $white);
-	$dark-contrast: daff-contrast-ratio($color, $black);
+	$light-contrast: cr.daff-contrast-ratio($color, $white);
+	$dark-contrast: cr.daff-contrast-ratio($color, $black);
 
 	@if ($light-contrast > $dark-contrast) {
 		@return $white;

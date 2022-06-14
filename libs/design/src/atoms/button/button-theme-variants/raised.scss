@@ -1,25 +1,32 @@
+@use 'sass:map';
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
+@use '../../../../scss/accessibility' as a11y;
+
+$black: theming.daff-color(theming.$daff-gray, 110);
+
 @mixin daff-raised-button-theme-variant(
 	$base-color,
 	$active-color,
 	$focus-shadow
 ) {
-	@if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
-		@error 'Button Initial State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
+		@error 'Button Initial State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
-	@if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
-		@error 'Button Hover State: '+ map-get($wcag-aa-errors, 'text-contrast');
+	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
+		@error 'Button Hover State: '+ map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
-	@if daff-contrast-ratio($active-color, daff-text-contrast($active-color)) < 4.5 {
-		@error 'Button Active State: ' + map-get($wcag-aa-errors, 'text-contrast');
+	@if theming.daff-contrast-ratio($active-color, theming.daff-text-contrast($active-color)) < 4.5 {
+		@error 'Button Active State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 	background-color: $base-color;
 	border: 1px solid $base-color;
 	box-shadow:
 		0 3px 5px rgba($black, 0.12),
 		0 1px 3px rgba($black, 0.08);
-	color: daff-text-contrast($base-color);
+	color: theming.daff-text-contrast($base-color);
 
 	&:hover {
 		background-color: $base-color;
@@ -44,6 +51,6 @@
 	&:active {
 		background-color: $active-color;
 		border: 1px solid $active-color;
-		color: daff-text-contrast($active-color);
+		color: theming.daff-text-contrast($active-color);
 	}
 }

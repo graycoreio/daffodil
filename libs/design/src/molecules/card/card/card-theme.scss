@@ -1,48 +1,58 @@
-@import './card-theme-variants/basic-card';
-@import './card-theme-variants/stroked-card';
+@use 'sass:map';
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
+@use './card-theme-variants/basic-card' as basic;
+@use './card-theme-variants/stroked-card' as stroked;
+@use './card-theme-variants//linkable-card' as linkable;
 
 @mixin daff-card-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
-	$gray: daff-configure-palette($daff-gray, 60);
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
 
 	.daff-card {
 		$root: &;
-		@include daff-basic-card-theme-variant(
-			daff-illuminate($base, $daff-gray, 1)
+		@include basic.daff-basic-card-theme-variant(
+			theming.daff-illuminate($base, $gray, 1)
 		);
 
 		&.daff-primary {
-			@include daff-basic-card-theme-variant(daff-color($primary));
+			@include basic.daff-basic-card-theme-variant(
+				theming.daff-color($primary)
+			);
 		}
 
 		&.daff-secondary {
-			@include daff-basic-card-theme-variant(daff-color($secondary));
+			@include basic.daff-basic-card-theme-variant(
+				theming.daff-color($secondary)
+			);
 		}
 
 		&.daff-tertiary {
-			@include daff-basic-card-theme-variant(daff-color($tertiary));
+			@include basic.daff-basic-card-theme-variant(
+				theming.daff-color($tertiary)
+			);
 		}
 
 		&.daff-theme {
-			@include daff-basic-card-theme-variant($base);
+			@include basic.daff-basic-card-theme-variant($base);
 		}
 
 		&.daff-theme-contrast {
-			@include daff-basic-card-theme-variant($base-contrast);
+			@include basic.daff-basic-card-theme-variant($base-contrast);
 		}
 
 		&.daff-black {
-			@include daff-basic-card-theme-variant($black);
+			@include basic.daff-basic-card-theme-variant($black);
 		}
 
 		&.daff-white {
-			@include daff-basic-card-theme-variant($white);
+			@include basic.daff-basic-card-theme-variant($white);
 		}
 	}
 
@@ -52,110 +62,114 @@
 	}
 
 	.daff-stroked-card {
-		@include daff-stroked-card-theme-variant(
-			daff-illuminate($base, $daff-gray, 2)
+		@include stroked.daff-stroked-card-theme-variant(
+			theming.daff-illuminate($base, $gray, 2)
 		);
 
 		&.daff-primary {
-			@include daff-stroked-card-theme-variant(
-				daff-illuminate($base-contrast, $primary, 3)
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-illuminate($base-contrast, $primary, 3)
 			);
 		}
 
 		&.daff-secondary {
-			@include daff-stroked-card-theme-variant(
-				daff-illuminate($base-contrast, $secondary, 3)
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-illuminate($base-contrast, $secondary, 3)
 			);
 		}
 
 		&.daff-tertiary {
-			@include daff-stroked-card-theme-variant(
-				daff-illuminate($base-contrast, $tertiary, 3)
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-illuminate($base-contrast, $tertiary, 3)
 			);
 		}
 
 		&.daff-theme {
-			@include daff-stroked-card-theme-variant(
-				daff-illuminate($base, $daff-gray, 2)
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-illuminate($base, $gray, 2)
 			);
 		}
 
 		&.daff-theme-contrast {
-			@include daff-stroked-card-theme-variant(
-				daff-illuminate($base-contrast, $daff-gray, 2)
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-illuminate($base-contrast, $gray, 2)
 			);
 		}
 
 		&.daff-black {
-			@include daff-stroked-card-theme-variant(daff-color($gray, 90));
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-color($gray, 90)
+			);
 		}
 
 		&.daff-white {
-			@include daff-stroked-card-theme-variant(daff-color($gray, 20));
+			@include stroked.daff-stroked-card-theme-variant(
+				theming.daff-color($gray, 20)
+			);
 		}
 	}
 
 	a {
 		&.daff-card {
-			@include daff-linkable-basic-card-theme-variant(
-				daff-illuminate($base, $daff-gray, 2),
-				daff-illuminate($base, $daff-gray, 3),
-				daff-color($gray)
+			@include linkable.daff-linkable-card-theme-variant(
+				theming.daff-illuminate($base, $gray, 2),
+				theming.daff-illuminate($base, $gray, 3),
+				theming.daff-color($gray)
 			);
 
 			&.daff-primary {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-color($primary, 70),
-					daff-color($primary, 80),
-					daff-color($primary)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-color($primary, 70),
+					theming.daff-color($primary, 80),
+					theming.daff-color($primary)
 				);
 			}
 
 			&.daff-secondary {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-color($secondary, 70),
-					daff-color($secondary, 80),
-					daff-color($secondary)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-color($secondary, 70),
+					theming.daff-color($secondary, 80),
+					theming.daff-color($secondary)
 				);
 			}
 
 			&.daff-tertiary {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-color($tertiary, 70),
-					daff-color($tertiary, 80),
-					daff-color($tertiary)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-color($tertiary, 70),
+					theming.daff-color($tertiary, 80),
+					theming.daff-color($tertiary)
 				);
 			}
 
 			&.daff-theme {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-illuminate($base, $daff-gray, 1),
-					daff-illuminate($base, $daff-gray, 2),
-					daff-color($gray)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-illuminate($base, $gray, 1),
+					theming.daff-illuminate($base, $gray, 2),
+					theming.daff-color($gray)
 				);
 			}
 
 			&.daff-theme-contrast {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-illuminate($base-contrast, $daff-gray, 1),
-					daff-illuminate($base-contrast, $daff-gray, 2),
-					daff-color($gray)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-illuminate($base-contrast, $gray, 1),
+					theming.daff-illuminate($base-contrast, $gray, 2),
+					theming.daff-color($gray)
 				);
 			}
 
 			&.daff-black {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-color($gray, 100),
-					daff-color($gray, 90),
-					daff-color($gray)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-color($gray, 100),
+					theming.daff-color($gray, 90),
+					theming.daff-color($gray)
 				);
 			}
 
 			&.daff-white {
-				@include daff-linkable-basic-card-theme-variant(
-					daff-color($gray, 10),
-					daff-color($gray, 20),
-					daff-color($gray)
+				@include linkable.daff-linkable-card-theme-variant(
+					theming.daff-color($gray, 10),
+					theming.daff-color($gray, 20),
+					theming.daff-color($gray)
 				);
 			}
 		}

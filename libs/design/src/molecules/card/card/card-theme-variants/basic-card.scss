@@ -1,26 +1,6 @@
+@use '../../../../../scss/theming';
+
 @mixin daff-basic-card-theme-variant($color) {
 	background: $color;
-	color: daff-text-contrast($color);
-}
-
-@mixin daff-linkable-basic-card-theme-variant(
-	$hover-color,
-	$active-color,
-	$shadow-color
-) {
-	&:hover,
-	&:focus {
-		background: $hover-color;
-		color: daff-text-contrast($hover-color);
-	}
-
-	&:focus {
-		outline: none;
-		box-shadow: 0 0 0 4px rgba($shadow-color, 0.3);
-	}
-
-	&:active {
-		background: $active-color;
-		color: daff-text-contrast($active-color);
-	}
+	color: theming.daff-text-contrast($color);
 }

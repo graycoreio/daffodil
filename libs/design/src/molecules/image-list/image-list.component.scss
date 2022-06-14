@@ -1,33 +1,33 @@
-@use '../../../scss/interactions';
-@use '../../../scss/layout';
-@use '../../../scss/theming' as c;
+// @use '../../../scss/interactions';
+// @use '../../../scss/layout';
+// @use '../../../scss/theming' as c;
 
-.daff-image-list {
-	overflow: scroll;
-	white-space: nowrap;
+// .daff-image-list {
+// 	overflow: scroll;
+// 	white-space: nowrap;
 
-	> * {
-		@include interactions.clickable;
-		display: inline-block;
-		margin: 0 5px 0 0;
+// 	> * {
+// 		@include interactions.clickable;
+// 		display: inline-block;
+// 		margin: 0 5px 0 0;
 
-		@include layout.breakpoint(big-tablet) {
-			display: block;
-			margin: 0 0 5px;
-		}
+// 		@include layout.breakpoint(big-tablet) {
+// 			display: block;
+// 			margin: 0 0 5px;
+// 		}
 
-		&:last-child {
-			margin: 0;
-		}
-	}
-}
+// 		&:last-child {
+// 			margin: 0;
+// 		}
+// 	}
+// }
 
-::-webkit-scrollbar {
-	height: 2px;
-	width: 2px;
-}
+// ::-webkit-scrollbar {
+// 	height: 2px;
+// 	width: 2px;
+// }
 
-::-webkit-scrollbar-thumb {
-	box-shadow: inset 0 0 3px c.daff-color(c.$daff-gray, 40);
-	-webkit-box-shadow: inset 0 0 3px c.daff-color(c.$daff-gray, 40);
-}
+// ::-webkit-scrollbar-thumb {
+// 	box-shadow: inset 0 0 3px c.daff-color(c.$daff-gray, 40);
+// 	-webkit-box-shadow: inset 0 0 3px c.daff-color(c.$daff-gray, 40);
+// }

@@ -1,5 +1,7 @@
+@use '../../../../scss/theming';
+
 @mixin daff-error-message-theme($theme) {
 	.daff-error-message {
-		color: $error;
+		color: theming.daff-color(theming.$daff-red, 60);
 	}
 }

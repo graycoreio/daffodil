@@ -1,5 +1,5 @@
-@import 'true';
-@import './string-split';
+@use 'true' as *;
+@use './string-split' as *;
 
 @include describe('daff-string-split') {
 	@include it(

@@ -1,11 +1,9 @@
+@use 'sass:map';
+@use '../../../scss/theming';
+@use '../../../scss/core';
+
 @mixin daff-media-gallery-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
-	$gray: daff-configure-palette($daff-gray, 60);
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
 
 	.daff-media-gallery {
 		$root: &;
@@ -15,7 +13,7 @@
 			transition: border 150ms;
 
 			&--selected {
-				border: 1px solid daff-color($gray);
+				border: 1px solid theming.daff-color($gray);
 			}
 		}
 	}

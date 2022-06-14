@@ -1,3 +1,5 @@
+@use '../../../../scss/theming';
+
 @mixin daff-button-theme-variant(
 	$base-color,
 	$hover-color,
@@ -16,18 +18,18 @@
 	// }
 	background-color: $base-color;
 	border: 1px solid $base-color;
-	color: daff-text-contrast($base-color);
+	color: theming.daff-text-contrast($base-color);
 
 	&:hover,
 	&:focus {
 		background-color: $hover-color;
 		border: 1px solid $hover-color;
-		color: daff-text-contrast($hover-color);
+		color: theming.daff-text-contrast($hover-color);
 	}
 
 	&:active {
 		background-color: $active-color;
 		border: 1px solid $active-color;
-		color: daff-text-contrast($active-color);
+		color: theming.daff-text-contrast($active-color);
 	}
 }

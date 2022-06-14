@@ -1,6 +1,4 @@
-@import 'true';
-@import '../variables';
-@import './illuminate.scss';
+@use 'true' as *;
 
 @include describe('illuminate') {
 	//stylelint-disable

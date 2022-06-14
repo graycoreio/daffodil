@@ -1,30 +1,43 @@
+@use 'sass:map';
+@use '../../../scss/core';
+@use '../../../scss/theming';
+
 @mixin daff-callout-theme-variant($color) {
 	background: $color;
-	color: daff-text-contrast($color);
+	color: theming.daff-text-contrast($color);
 }
 
 @mixin daff-callout-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-callout {
-		@include daff-callout-theme-variant(daff-illuminate($base, $daff-gray, 1));
+		@include daff-callout-theme-variant(
+			theming.daff-illuminate($base, $gray, 1)
+		);
 
 		&.daff-primary {
-			@include daff-callout-theme-variant(daff-color($primary));
+			@include daff-callout-theme-variant(
+				theming.daff-color($primary)
+			);
 		}
 
 		&.daff-secondary {
-			@include daff-callout-theme-variant(daff-color($secondary));
+			@include daff-callout-theme-variant(
+				theming.daff-color($secondary)
+			);
 		}
 
 		&.daff-tertiary {
-			@include daff-callout-theme-variant(daff-color($tertiary));
+			@include daff-callout-theme-variant(
+				theming.daff-color($tertiary)
+			);
 		}
 
 		&.daff-theme {

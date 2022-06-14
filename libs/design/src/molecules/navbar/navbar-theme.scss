@@ -1,35 +1,41 @@
+@use 'sass:map';
+@use '../../../scss/core';
+@use '../../../scss/theming';
+
 @mixin daff-navbar-theme-variant($color) {
 	background: $color;
-	color: daff-text-contrast($color);
+	color: theming.daff-text-contrast($color);
 }
 
 @mixin daff-navbar-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
-	$gray: daff-configure-palette($daff-gray, 60);
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-navbar {
-		@include daff-navbar-theme-variant(daff-illuminate($base, $daff-gray, 1));
+		@include daff-navbar-theme-variant(
+			theming.daff-illuminate($base, $gray, 1)
+		);
 
 		&--raised {
 			box-shadow: 0 4px 10px rgba($black, 0.08);
 		}
 
 		&.daff-primary {
-			@include daff-navbar-theme-variant(daff-color($primary));
+			@include daff-navbar-theme-variant(theming.daff-color($primary));
 		}
 
 		&.daff-secondary {
-			@include daff-navbar-theme-variant(daff-color($secondary));
+			@include daff-navbar-theme-variant(theming.daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			@include daff-navbar-theme-variant(daff-color($tertiary));
+			@include daff-navbar-theme-variant(theming.daff-color($tertiary));
 		}
 
 		&.daff-black {

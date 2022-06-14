@@ -1,28 +1,32 @@
+@use 'sass:map';
+@use '../../../scss/core';
+@use '../../../scss/theming';
+
 @mixin daff-loading-icon-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-loading-icon {
 		&.daff-primary {
 			circle {
-				stroke: daff-color($primary);
+				stroke: theming.daff-color($primary);
 			}
 		}
 
 		&.daff-secondary {
 			circle {
-				stroke: daff-color($secondary);
+				stroke: theming.daff-color($secondary);
 			}
 		}
 
 		&.daff-tertiary {
 			circle {
-				stroke: daff-color($tertiary);
+				stroke: theming.daff-color($tertiary);
 			}
 		}
 

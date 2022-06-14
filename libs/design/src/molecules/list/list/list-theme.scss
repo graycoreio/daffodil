@@ -1,6 +1,11 @@
+@use 'sass:map';
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
+
 @mixin daff-list-theme($theme) {
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 
 	.daff-list {
 		.daff-list-item {
@@ -10,7 +15,17 @@
 				}
 
 				*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
-					color: daff-illuminate($base-contrast, $daff-gray, 3);
+					color: theming.daff-illuminate($base-contrast, $gray, 3);
+				}
+			}
+		}
+
+		// link and navigation deprecated in v1.0.0
+		&--link,
+		&--navigation {
+			a {
+				&:hover {
+					color: theming.daff-color($gray, 80);
 				}
 			}
 		}
@@ -19,7 +34,7 @@
 		&--navigation {
 			.daff-list-item {
 				&:hover {
-					background-color: daff-illuminate($base, $daff-gray, 1);
+					background-color: theming.daff-illuminate($base, $gray, 1);
 				}
 			}
 		}
@@ -33,7 +48,7 @@
 					}
 
 					*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
-						color: daff-illuminate($base-contrast, $daff-gray, 3);
+						color: theming.daff-illuminate($base-contrast, $gray, 3);
 					}
 				}
 			}
@@ -46,7 +61,7 @@
 			transition: background-color 150ms;
 
 			&:hover {
-				background-color: daff-illuminate($base, $daff-gray, 1);
+				background-color: theming.daff-illuminate($base, $gray, 1);
 			}
 		}
 	}

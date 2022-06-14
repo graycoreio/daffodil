@@ -1,11 +1,15 @@
+@use 'sass:map';
+@use '../../../scss/core';
+@use '../../../scss/theming';
+
 @mixin daff-progress-indicator-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
-	$white: daff-map-deep-get($theme, 'core.white');
-	$black: daff-map-deep-get($theme, 'core.black');
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-progress-indicator {
 		$root: &;
@@ -13,19 +17,19 @@
 
 		&.daff-primary {
 			#{$root}__fill {
-				background: daff-color($primary);
+				background: theming.daff-color($primary);
 			}
 		}
 
 		&.daff-secondary {
 			#{$root}__fill {
-				background: daff-color($secondary);
+				background: theming.daff-color($secondary);
 			}
 		}
 
 		&.daff-tertiary {
 			#{$root}__fill {
-				background: daff-color($tertiary);
+				background: theming.daff-color($tertiary);
 			}
 		}
 

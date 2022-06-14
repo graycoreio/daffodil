@@ -1,6 +1,6 @@
-@import './_variables';
+@use 'variables' as v;
 
-// Calculate the luminance for a color.
+// Calculate the luminance of a color.
 // Luminance is defined as a decimal value between 0 and 1
 // with "0" corresponding to "no brightness"
 // and "1" corresponding to "full brightness".
@@ -12,8 +12,8 @@
 	$green-index: green($color) + 1;
 	$blue-index: blue($color) + 1;
 
-	$red: nth($linear-channel-values, $red-index);
-	$green: nth($linear-channel-values, $green-index);
-	$blue: nth($linear-channel-values, $blue-index);
+	$red: nth(v.$linear-channel-values, $red-index);
+	$green: nth(v.$linear-channel-values, $green-index);
+	$blue: nth(v.$linear-channel-values, $blue-index);
 	@return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }

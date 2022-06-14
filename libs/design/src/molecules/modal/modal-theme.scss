@@ -1,6 +1,7 @@
+@use '../../../scss/core';
+
 @mixin daff-modal-theme($theme) {
-	$base: daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$base: core.daff-map-deep-get($theme, 'core.base');
 
 	.daff-modal {
 		background: $base;

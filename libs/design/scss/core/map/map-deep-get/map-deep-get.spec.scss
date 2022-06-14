@@ -1,5 +1,5 @@
-@import 'true';
-@import './map-deep-get';
+@use 'true' as *;
+@use './map-deep-get' as *;
 
 @include describe('map-deep-get') {
 	$nested-map: (

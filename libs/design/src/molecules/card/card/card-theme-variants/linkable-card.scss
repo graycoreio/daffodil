@@ -1,0 +1,23 @@
+@use '../../../../../scss/theming';
+
+@mixin daff-linkable-card-theme-variant(
+	$hover-color,
+	$active-color,
+	$shadow-color
+) {
+	&:hover,
+	&:focus {
+		background: $hover-color;
+		color: theming.daff-text-contrast($hover-color);
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 4px rgba($shadow-color, 0.3);
+	}
+
+	&:active {
+		background: $active-color;
+		color: theming.daff-text-contrast($active-color);
+	}
+}

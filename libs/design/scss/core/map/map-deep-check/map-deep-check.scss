@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 //
 // Checks whether or not a map has a nested key
 //
@@ -13,11 +15,11 @@
 	}
 
 	@each $key in $keys {
-		@if (not map-has-key($map, $key)) {
+		@if (not map.has-key($map, $key)) {
 			@return false;
 		}
 
-		$map: map-get($map, $key);
+		$map: map.get($map, $key);
 	}
 
 	@return true;
