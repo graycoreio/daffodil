@@ -2,20 +2,8 @@
 // If you do, you will increase the final size of the css
 // footprint for each import. Obviously, this is undesirable.
 
-// Imports
-@import 'daff-typography';
-@import 'daff-theme';
-@import 'daff-global';
+@use 'daff-global';
+@use 'demo-theme';
+@use 'theme' as daff-theme;
 
-@import 'theme';
-
-@include daff-theme($theme);
-
-body {
-	margin: 0;
-	padding: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
+@include daff-theme.daff-theme(demo-theme.$theme);

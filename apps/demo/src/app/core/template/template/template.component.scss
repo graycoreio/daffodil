@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'demo-theme';
 
 .demo-template {
 	height: 100vh;
@@ -7,6 +7,6 @@
 	&__modal {
 		height: 200px;
 		width: 200px;
-		background-color: $white;
+		background-color: demo-theme.$white;
 	}
 }

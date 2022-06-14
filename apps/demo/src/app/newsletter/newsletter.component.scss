@@ -1,10 +1,10 @@
+@use 'demo-theme';
 @import 'utilities';
-@import 'theme';
 
 :host {
 	display: block;
-	background: daff-color($daff-gray, 100);
-	color: $white;
+	background: demo-theme.daff-color(demo-theme.$gray, 100);
+	color: demo-theme.$white;
 	padding: 50px 25px;
 	margin: 0;
 
@@ -46,7 +46,7 @@
 
 	&__input {
 		width: 60%;
-		border: 1px solid $white;
+		border: 1px solid demo-theme.$white;
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 
@@ -55,7 +55,7 @@
 		}
 
 		&:focus, &:hover {
-			border: 1px solid $white;
+			border: 1px solid demo-theme.$white;
 		}
 	}
 

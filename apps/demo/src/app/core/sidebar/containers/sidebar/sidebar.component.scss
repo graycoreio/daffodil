@@ -1,3 +1,4 @@
+@use 'demo-theme';
 @import 'utilities';
 
 .demo-sidebar {
@@ -12,6 +13,6 @@
 	}
 
 	&__error {
-		color: $error;
+		color: demo-theme.$error;
 	}
 }

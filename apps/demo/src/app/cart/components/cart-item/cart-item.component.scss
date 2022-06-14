@@ -1,5 +1,5 @@
+@use 'demo-theme';
 @import 'utilities';
-@import 'theme';
 
 .demo-cart-item {
 	display: grid;
@@ -30,7 +30,7 @@
 
 	&__price {
 		font-size: 1rem;
-		color: daff-color($secondary);
+		color: demo-theme.daff-color(demo-theme.$secondary);
 		margin-bottom: 15px;
 
 		@include breakpoint(big-tablet) {
@@ -56,7 +56,7 @@
 	}
 
 	&__change {
-		color: daff-color($daff-gray, 80);
+		color: demo-theme.daff-color(demo-theme.$gray, 80);
 		margin-top: 15px;
 
 		> a {

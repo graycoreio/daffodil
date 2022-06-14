@@ -1,5 +1,5 @@
+@use 'demo-theme';
 @import 'utilities';
-@import 'theme';
 
 :host {
 	display: grid;
@@ -26,13 +26,13 @@
 
 	&__price {
 		font-size: 1rem;
-		color: daff-color($secondary);
+		color: demo-theme.daff-color(demo-theme.$secondary);
 		margin-bottom: 15px;
 	}
 
 	&__info {
 		font-size: $small-font-size;
-		color: daff-color($daff-gray, 90);
+		color: demo-theme.daff-color(demo-theme.$gray, 90);
 		line-height: 1.25rem;
 	}
 
@@ -46,7 +46,7 @@
 
 		> * {
 			font-size: $small-font-size;
-			color: daff-color($gray);
+			color: demo-theme.daff-color(demo-theme.$gray);
 			text-decoration: underline;
 
 			&:last-child {

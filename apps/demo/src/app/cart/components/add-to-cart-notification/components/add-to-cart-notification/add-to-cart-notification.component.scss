@@ -1,8 +1,8 @@
+@use 'demo-theme';
 @import 'utilities';
-@import 'theme';
 
 .demo-add-to-cart-notification {
-	background-color: $white;
+	background-color: demo-theme.$white;
 	padding: 25px;
 	position: relative;
 	width: 100vw;

@@ -1,5 +1,5 @@
+@use 'demo-theme';
 @import 'utilities';
-@import 'theme';
 
 .demo-product-added {
 	display: grid;
@@ -24,7 +24,7 @@
 
 	&__price {
 		font-size: $medium-font-size;
-		color: daff-color($secondary);
+		color: demo-theme.daff-color(demo-theme.$secondary);
 		margin-bottom: 15px;
 	}
 
