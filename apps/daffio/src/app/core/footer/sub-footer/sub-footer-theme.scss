@@ -1,19 +1,19 @@
+@use 'sass:map';
+@use 'daffio-theme' as theme;
+
 @mixin daffio-sub-footer-theme($theme) {
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, 'core.base');
+	$secondary: map.get($theme, secondary);
 
 	.daffio-sub-footer {
 		background: linear-gradient(
 			to bottom right,
-			daff-color($secondary, 80),
-			daff-color($secondary, 50)
+			theme.daff-color($secondary, 80),
+			theme.daff-color($secondary, 50)
 		);
-		color: $white;
+		color: theme.$white;
 
 		&__content {
-			color: $white;
+			color: theme.$white;
 		}
 	}
 }

@@ -1,26 +1,25 @@
-@mixin daffio-simple-footer-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $base-contrast: daff-map-deep-get($theme, "core.base-contrast");
+@use 'theme' as theme;
 
-    daffio-simple-footer {
-        border-top: 1px solid daff-illuminate($base, $daff-gray, 2);
-    }
+@mixin daffio-simple-footer-theme($theme) {
+	$gray: theme.daff-map-deep-get($theme, 'core.gray');
+	$base: theme.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: theme.daff-map-deep-get($theme, 'core.base-contrast');
 
-    .daffio-simple-footer {
-        &__copyright {
-            color: daff-text-contrast($base);
-        }
+	.daffio-simple-footer {
+		border-top: 1px solid theme.daff-illuminate($base, $gray, 2);
 
-        &__link, &__social-link {
-            color: daff-text-contrast($base);
-            transition: color 0.3s;
+		&__copyright {
+			color: theme.daff-text-contrast($base);
+		}
 
-            &:hover {
-                color: daff-illuminate($base-contrast, $daff-gray, 3);
-            }
-        }
-    }
+		&__link,
+		&__social-link {
+			color: theme.daff-text-contrast($base);
+			transition: color 0.3s;
+
+			&:hover {
+				color: theme.daff-illuminate($base-contrast, $gray, 3);
+			}
+		}
+	}
 }

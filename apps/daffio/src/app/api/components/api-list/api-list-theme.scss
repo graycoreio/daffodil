@@ -1,9 +1,9 @@
-@mixin daffio-api-list-theme($theme){
-	$primary: map-get($theme, primary);
-	$secondary: map-get($theme, secondary);
-	$tertiary: map-get($theme, tertiary);
-	$base: daff-map-deep-get($theme, "core.base");
-	$base-contrast: daff-map-deep-get($theme, "core.base-contrast");
+@use 'daffio-theme' as theme;
+
+@mixin daffio-api-list-theme($theme) {
+	$gray: theme.daff-map-deep-get($theme, 'core.gray');
+	$base: theme.daff-map-deep-get($theme, "core.base");
+	$base-contrast: theme.daff-map-deep-get($theme, "core.base-contrast");
 
 	.daffio-api-list {
 		&__package-name {
@@ -16,7 +16,7 @@
 			}
 
 			&:hover {
-				color: daff-illuminate($base-contrast, $daff-gray, 3);
+				color: theme.daff-illuminate($base-contrast, $gray, 3);
 			}
 		}
 
@@ -27,7 +27,7 @@
 			}
 
 			&:hover {
-				background: daff-illuminate($base, $daff-gray, 2);
+				background: theme.daff-illuminate($base, $gray, 2);
 			}
 		}
 	}

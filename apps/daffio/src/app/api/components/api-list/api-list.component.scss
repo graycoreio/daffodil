@@ -1,3 +1,4 @@
+@use '../../../../scss/type-descriptors/mixins' as type-mixin;
 @import 'utilities';
 
 :host {
@@ -69,7 +70,7 @@
 	}
 
 	&__item-label {
-		@include type-label();
+		@include type-mixin.type-label();
 		height: 1.5rem;
 		padding: 4px;
 		margin-left: 16px;

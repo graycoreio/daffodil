@@ -2,57 +2,34 @@
 * DO NOT IMPORT THIS FILE ANYWHERE ELSE
 ************************************/
 
-// Imports
-// @daffodil/design
-@import 'daff-typography';
-@import 'daff-theme';
+@use 'daff-global';
+
+@use 'daffio-theme';
+@use 'theme' as daff-theme;
+@use './component-themes' as daffio-components;
 
 // @daffodil/branding
-@import 'daff-branding-theme';
-
-@import "../app/content/why-pwa/components/feature-comparison/feature-comparison-theme";
-@import "../app/core/footer/simple-footer/simple-footer-theme";
-@import "../app/core/footer/sub-footer/sub-footer-theme";
-@import '../app/docs/components/table-of-contents/table-of-contents-theme';
-@import '../app/api/components/api-list/api-list-theme';
-
-@import 'theme';
+@use 'daff-branding-theme' as branding;
 
 .daff-theme-light {
 	@import 'highlight.js/scss/a11y-light.scss';
-	@include daff-theme($theme);
-	background: #ffffff;
 
-	@include daff-branding-theme($theme);
-	@include daffio-simple-footer-theme($theme);
-	@include daffio-sub-footer-theme($theme);
-	@include daffio-feature-comparison-theme($theme);
-	@include daffio-table-of-contents-theme($theme);
-	@include daffio-api-list-theme($theme);
+	@include branding.daff-branding-theme(daffio-theme.$theme);
+	@include daff-theme.daff-theme(daffio-theme.$theme);
+  @include daffio-components.component-themes(daffio-theme.$theme);
+
+	background: daffio-theme.$white;
+	color: daffio-theme.daff-text-contrast(daffio-theme.$white);
 }
 
 .daff-theme-dark {
 	@import 'highlight.js/scss/a11y-dark.scss';
-	@include daff-theme($theme-dark);
-	background: #1a1a1a;
 
-	@include daff-branding-theme($theme-dark);
-	@include daffio-simple-footer-theme($theme-dark);
-	@include daffio-sub-footer-theme($theme-dark);
-	@include daffio-feature-comparison-theme($theme-dark);
-	@include daffio-table-of-contents-theme($theme-dark);
-	@include daffio-api-list-theme($theme-dark);
-}
+	@include branding.daff-branding-theme(daffio-theme.$theme-dark);
+	@include daff-theme.daff-theme(daffio-theme.$theme-dark);
+  @include daffio-components.component-themes(daffio-theme.$theme-dark);
 
-html {
-	scroll-behavior: smooth;
-}
+	background: daffio-theme.$black;
+	color: daffio-theme.daff-text-contrast(daffio-theme.$black);
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
-* {
-  box-sizing: border-box;
 }

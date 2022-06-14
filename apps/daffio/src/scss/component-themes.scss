@@ -1,0 +1,15 @@
+@use '../app/content/why-pwa/components/feature-comparison/feature-comparison-theme' as feature-comparison;
+@use '../app/core/footer/simple-footer/simple-footer-theme' as simple-footer;
+@use '../app/core/footer/sub-footer/sub-footer-theme' as sub-footer;
+@use '../app/docs/components/table-of-contents/table-of-contents-theme' as toc;
+@use '../app/api/components/api-list/api-list-theme' as api-list;
+@use '../app/newsletter/newsletter-theme' as newsletter;
+
+@mixin component-themes($theme) {
+	@include simple-footer.daffio-simple-footer-theme($theme);
+	@include sub-footer.daffio-sub-footer-theme($theme);
+	@include feature-comparison.daffio-feature-comparison-theme($theme);
+	@include toc.daffio-table-of-contents-theme($theme);
+	@include api-list.daffio-api-list-theme($theme);
+	@include newsletter.daffio-newsletter-theme($theme);
+}

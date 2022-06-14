@@ -1,5 +1,4 @@
 @import 'utilities';
-@import 'theme';
 
 .newsletter {
   &__header {
@@ -21,7 +20,6 @@
 
   &__input {
     width: 60%;
-    border-color: daff-color($daff-gray, 30);
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 

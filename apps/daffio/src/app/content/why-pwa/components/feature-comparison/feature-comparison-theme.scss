@@ -1,9 +1,10 @@
+@use 'sass:map';
+@use 'daffio-theme' as theme;
+
 @mixin daffio-feature-comparison-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $base-contrast: daff-map-deep-get($theme, "core.base-contrast");
+    $secondary: map.get($theme, secondary);
+    $base: theme.daff-map-deep-get($theme, "core.base");
+    $base-contrast: theme.daff-map-deep-get($theme, "core.base-contrast");
     
     .feature-comparison {
         background: $base;
@@ -11,8 +12,8 @@
         
         > * {
             &:nth-child(4n-2) {
-                background: daff-color($secondary);
-                color: daff-text-contrast(daff-color($secondary));
+                background: theme.daff-color($secondary);
+                color: theme.daff-text-contrast(theme.daff-color($secondary));
             }
         }
     }
