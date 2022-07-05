@@ -4,7 +4,7 @@ import * as faker from '@faker-js/faker/locale/en_US';
 import {
   DaffNumericallyPaginable,
   DaffSortable,
-  Dict,
+
 } from '@daffodil/core';
 import {
   DaffModelFactory,
@@ -52,7 +52,7 @@ export class MockProductCollectionMetadata implements DaffProductCollectionMetad
     return this.sortFieldsFactory.create();
   }
 
-  private createFilters(): Dict<DaffProductFilter> {
+  private createFilters(): Record<DaffProductFilter['name'], DaffProductFilter> {
     return daffProductFilterArrayToDict(this.filterFactory.createMany(faker.random.number({ min: 1, max: 5 })));
   }
 }

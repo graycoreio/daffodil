@@ -11,7 +11,7 @@ import { DaffCategoryReducerState } from '@daffodil/category/state';
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
-  Dict,
+
 } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import {
@@ -36,9 +36,9 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
   totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
   totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
   pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
-  filters$: BehaviorSubject<Dict<DaffProductFilter>> = new BehaviorSubject({});
+  filters$: BehaviorSubject<Record<DaffProductFilter['name'], DaffProductFilter>> = new BehaviorSubject({});
   sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
-  appliedFilters$: BehaviorSubject<Dict<DaffProductFilter>> = new BehaviorSubject({});
+  appliedFilters$: BehaviorSubject<Record<DaffProductFilter['name'], DaffProductFilter>> = new BehaviorSubject({});
   appliedSortOption$: BehaviorSubject<string> = new BehaviorSubject(null);
   appliedSortDirection$: BehaviorSubject<DaffSortDirectionEnum> = new BehaviorSubject(null);
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);

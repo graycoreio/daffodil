@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 
-import { Dict } from '@daffodil/core';
+
 import { DaffProductFilterEqualOption } from '@daffodil/product';
 import { DaffProductFilterEqualOptionFactory } from '@daffodil/product/testing';
 
@@ -17,7 +17,7 @@ describe('@daffodil/product | daffProductFilterEqualOptionArrayToDict', () => {
   });
 
   describe('transforming an array of equal options into a dict', () => {
-    let dict: Dict<DaffProductFilterEqualOption>;
+    let dict: Record<DaffProductFilterEqualOption['value'], DaffProductFilterEqualOption>;
 
     beforeEach(() => {
       dict = daffProductFilterEqualOptionArrayToDict([equalOption]);

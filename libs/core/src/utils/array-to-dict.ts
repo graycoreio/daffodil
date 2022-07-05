@@ -1,10 +1,10 @@
-import { Dict } from '../types/public_api';
+type Dictionary = Record<string | number | symbol, any>;
 
 /**
  * Converts an array into a dictionary.
- * Dictionary values are keyed by the return of the specified getKey, or `'key'` by default.
+ * Dictionary values are keyed by the return of the specified `getKey`.
  */
-export const daffArrayToDict = <T>(array: T[], getKey = (val: T) => (<any>val).key): Dict<T> =>
+export const daffArrayToDict = <T extends Dictionary>(array: T[], getKey: (val: T) => keyof Dictionary): Record<keyof Dictionary, T> =>
   array.reduce(
     (dict, val) => {
       dict[getKey(val)] = val;

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilterEqual,
   DaffProductFilterEqualRequest,
@@ -21,7 +21,7 @@ describe('@daffodil/product | filters | behaviors | apply | daffApplyRequestsToF
   let productFilterRequestEqualFactory: DaffProductFilterRequestEqualFactory;
   let colorFilter: DaffProductFilterEqual;
   let sizeFilter: DaffProductFilterEqual;
-  let filters: Dict<DaffProductFilterEqual>;
+  let filters: Record<DaffProductFilterEqual['name'], DaffProductFilterEqual>;
   let colorRequest: DaffProductFilterEqualRequest;
   let sizeRequest: DaffProductFilterEqualRequest;
 
@@ -93,7 +93,7 @@ describe('@daffodil/product | filters | behaviors | apply | daffApplyRequestsToF
 
   it('should apply a filter if there is a request that matches', () => {
     const requests: DaffProductFilterEqualRequest[] = [ colorRequest ];
-    const expected: Dict<DaffProductFilter> = {
+    const expected: Record<DaffProductFilter['name'], DaffProductFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -115,7 +115,7 @@ describe('@daffodil/product | filters | behaviors | apply | daffApplyRequestsToF
       colorRequest,
       sizeRequest,
     ];
-    const expected: Dict<DaffProductFilter> = {
+    const expected: Record<DaffProductFilter['name'], DaffProductFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -148,6 +148,6 @@ describe('@daffodil/product | filters | behaviors | apply | daffApplyRequestsToF
       sizeRequest,
     ];
 
-    expect((idempotentArg?: Dict<DaffProductFilterEqual>) => (daffApplyRequestsToFilters(requests, idempotentArg || filters))).toBeIdempotent();
+    expect((idempotentArg?: Record<DaffProductFilterEqual['name'], DaffProductFilterEqual>) => (daffApplyRequestsToFilters(requests, idempotentArg || filters))).toBeIdempotent();
   });
 });

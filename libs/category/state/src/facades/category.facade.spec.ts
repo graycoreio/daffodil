@@ -23,7 +23,6 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { Dict } from '@daffodil/core';
 import {
   DaffState,
   DaffStateError,
@@ -211,7 +210,7 @@ describe('DaffCategoryFacade', () => {
   describe('appliedFilters$', () => {
 
     it('should return an observable of the applied filters on the current category', () => {
-      const expectedFilters: Dict<DaffProductFilter> = {};
+      const expectedFilters: Record<DaffProductFilter['name'], DaffProductFilter> = {};
 
       const expected = cold('a', { a: expectedFilters });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));

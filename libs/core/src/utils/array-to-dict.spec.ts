@@ -1,6 +1,6 @@
 import { daffArrayToDict } from './array-to-dict';
 
-describe('daffArrayToDict', () => {
+describe('@daffodil/core | daffArrayToDict', () => {
   let array;
   let notKeyArray;
 
@@ -15,17 +15,6 @@ describe('daffArrayToDict', () => {
       { notkey: '2', val: 2 },
       { notkey: '3', val: 3 },
     ];
-  });
-
-  describe('when getKey is not provided', () => {
-    it('should convert the array to a dict, keying by the key field', () => {
-      const expected = {
-        1: { key: '1', val: 1 },
-        2: { key: '2', val: 2 },
-        3: { key: '3', val: 3 },
-      };
-      expect(daffArrayToDict<typeof array[0]>(array)).toEqual(expected);
-    });
   });
 
   describe('when getKey is provided', () => {

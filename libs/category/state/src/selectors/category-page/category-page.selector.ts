@@ -8,7 +8,7 @@ import {
   DaffCategory,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
-import { Dict } from '@daffodil/core';
+
 import {
   DaffState,
   DaffStateError,
@@ -75,7 +75,7 @@ export interface DaffCategoryPageMemoizedSelectors<
    * Returns a dict of filters and only their applied options.
    * Filters with no applied options will be omitted.
    */
-  selectCategoryPageAppliedFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, Dict<DaffProductFilter>>;
+  selectCategoryPageAppliedFilters: MemoizedSelector<DaffCategoryStateRootSlice<V>, Record<DaffProductFilter['name'], DaffProductFilter>>;
   /**
    * Selects the applied sorting option if one is applied.
    */
@@ -169,7 +169,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategoryPageAppliedFilters = createSelector(
     selectCategoryFilters,
-    (filters: Dict<DaffProductFilter>): Dict<DaffProductFilter> => daffProductComputeAppliedFilters(filters),
+    (filters: Record<DaffProductFilter['name'], DaffProductFilter>): Record<DaffProductFilter['name'], DaffProductFilter> => daffProductComputeAppliedFilters(filters),
   );
 
   const selectCategoryPageAppliedSortOption = createSelector(

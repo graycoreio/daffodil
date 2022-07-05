@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import { DaffProductFilterBase } from '../../filter-base';
 import { DaffProductFilterRangePair } from './pair';
@@ -22,5 +22,5 @@ export interface DaffProductFilterRangeBase<T> extends DaffProductFilterBase {
   /**
    * A dictionary of filter range options.
    */
-  options: Dict<DaffProductFilterRangePair<T>>;
+  options: Record<string, DaffProductFilterRangePair<T>>;
 }
