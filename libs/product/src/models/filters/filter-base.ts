@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import { DaffProductFilterOptionBase } from './filter-option-base';
 import { DaffProductFilterType } from './type/filter-type';
@@ -26,5 +26,5 @@ export interface DaffProductFilterBase {
    * The available options by which to filter a product, e.g. "red", "blue", or "green".
    * The type of options changes per type of filter.
    */
-  options: Dict<DaffProductFilterOptionBase>;
+  options: Record<string, DaffProductFilterOptionBase>;
 }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilterEqual,
   DaffProductFilterEqualRequest,
@@ -20,7 +20,7 @@ describe('@daffodil/product | filters | behaviors | remove | daffRemoveRequestFr
   let productFilterEqualOptionFactory: DaffProductFilterEqualOptionFactory;
   let productFilterRequestEqualFactory: DaffProductFilterRequestEqualFactory;
   let colorFilter: DaffProductFilterEqual;
-  let filters: Dict<DaffProductFilterEqual>;
+  let filters: Record<DaffProductFilterEqual['name'], DaffProductFilterEqual>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -52,7 +52,7 @@ describe('@daffodil/product | filters | behaviors | remove | daffRemoveRequestFr
       name: 'color',
       value: ['red'],
     });
-    const expected: Dict<DaffProductFilter> = {
+    const expected: Record<DaffProductFilter['name'], DaffProductFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -86,6 +86,6 @@ describe('@daffodil/product | filters | behaviors | remove | daffRemoveRequestFr
       value: ['red'],
     });
 
-    expect((idempotentArg?: Dict<DaffProductFilter>) => (daffRemoveRequestFromFilters(request, idempotentArg || filters))).toBeIdempotent();
+    expect((idempotentArg?: Record<DaffProductFilter['name'], DaffProductFilter>) => (daffRemoveRequestFromFilters(request, idempotentArg || filters))).toBeIdempotent();
   });
 });

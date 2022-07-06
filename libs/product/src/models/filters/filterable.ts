@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import { DaffProductFilter } from './filter';
 
@@ -9,5 +9,5 @@ export interface DaffProductFilterable {
   /**
    * The filters available on the product.
    */
-  filters: Dict<DaffProductFilter>;
+  filters: Record<DaffProductFilter['name'], DaffProductFilter>;
 }

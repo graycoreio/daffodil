@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import { DaffProductFilter } from '@daffodil/product';
 import {
   DaffProductFilterEqualFactory,
@@ -55,11 +55,11 @@ describe('@daffodil/product | filters | behaviors | clear | daffClearFilters', (
         },
       },
     });
-    const filters: Dict<DaffProductFilter> = {
+    const filters: Record<DaffProductFilter['name'], DaffProductFilter> = {
       color: colorFilter,
       price: priceFilter,
     };
-    const expected: Dict<DaffProductFilter> = {
+    const expected: Record<DaffProductFilter['name'], DaffProductFilter> = {
       ...filters,
       color: {
         ...colorFilter,
@@ -117,11 +117,11 @@ describe('@daffodil/product | filters | behaviors | clear | daffClearFilters', (
       },
     });
 
-    const filters: Dict<DaffProductFilter> = {
+    const filters: Record<DaffProductFilter['name'], DaffProductFilter> = {
       color: colorFilter,
       price: priceFilter,
     };
 
-    expect((idempotentArg?: Dict<DaffProductFilter>) => (daffClearFilters(idempotentArg || filters))).toBeIdempotent();
+    expect((idempotentArg?: Record<DaffProductFilter['name'], DaffProductFilter>) => (daffClearFilters(idempotentArg || filters))).toBeIdempotent();
   });
 });

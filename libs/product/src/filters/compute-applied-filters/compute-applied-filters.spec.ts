@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilterEqual,
   DaffProductFilterEqualOption,
@@ -36,7 +36,7 @@ describe('@daffodil/product/state | daffProductComputeAppliedFilters', () => {
   let rangeFilterPair: DaffProductFilterRangePair<number>;
   let rangeFilterPairLabel: string;
 
-  let result: Dict<DaffProductFilter>;
+  let result: Record<DaffProductFilter['name'], DaffProductFilter>;
 
   beforeEach(() => {
     equalFilterFactory = TestBed.inject(DaffProductFilterEqualFactory);

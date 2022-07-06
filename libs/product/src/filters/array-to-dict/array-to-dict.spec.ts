@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import { DaffProductFilter } from '@daffodil/product';
 import { DaffProductFilterFactory } from '@daffodil/product/testing';
 
@@ -10,7 +10,7 @@ describe('@daffodil/product | filters | daffProductFilterArrayToDict', () => {
   let filterFactory: DaffProductFilterFactory;
   let filters: DaffProductFilter[];
 
-  let result: Dict<DaffProductFilter>;
+  let result: Record<DaffProductFilter['name'], DaffProductFilter>;
 
   beforeEach(() => {
     filterFactory = TestBed.inject(DaffProductFilterFactory);

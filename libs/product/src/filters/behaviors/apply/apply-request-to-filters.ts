@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import {
   DaffProductFilterRequest,
@@ -7,12 +7,12 @@ import {
 import { daffApplyFilter } from './apply-filter';
 
 /**
- * Applies a {@link DaffProductFilterRequest} to a {@link Dict} of {@link DaffProductFilter}
- * returning the updated {@link Dict}.
+ * Applies a {@link DaffProductFilterRequest} to a dictionary of {@link DaffProductFilter}
+ * returning the updated dictionary.
  *
  * @idempotent {filters}
  */
-export const daffApplyRequestToFilters = (request: DaffProductFilterRequest, filters: Dict<DaffProductFilter>):  Dict<DaffProductFilter> => ({
+export const daffApplyRequestToFilters = (request: DaffProductFilterRequest, filters: Record<DaffProductFilter['name'], DaffProductFilter>):  Record<DaffProductFilter['name'], DaffProductFilter> => ({
   ...filters,
   [request.name]: daffApplyFilter(request, filters[request.name]),
 });

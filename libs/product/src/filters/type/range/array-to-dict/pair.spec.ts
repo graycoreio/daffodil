@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilterRangePair,
   daffProductComputeFilterRangePairLabel,
@@ -19,7 +19,7 @@ describe('@daffodil/product | daffProductFilterRangePairArrayToDict', () => {
   });
 
   describe('transforming numeric pairs to a dict', () => {
-    let dict: Dict<DaffProductFilterRangePair<number>>;
+    let dict: Record<string, DaffProductFilterRangePair<number>>;
 
     beforeEach(() => {
       dict = daffProductFilterRangePairArrayToDict([rangeFilterPair]);

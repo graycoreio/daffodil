@@ -14,7 +14,7 @@ import {
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
-  Dict,
+
 } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import {
@@ -63,11 +63,11 @@ export class DaffCategoryFacade<
 
   pageSize$: Observable<number>;
 
-  filters$: Observable<Dict<DaffProductFilter>>;
+  filters$: Observable<Record<DaffProductFilter['name'], DaffProductFilter>>;
 
   sortOptions$: Observable<DaffSortOption[]>;
 
-  appliedFilters$: Observable<Dict<DaffProductFilter>>;
+  appliedFilters$: Observable<Record<DaffProductFilter['name'], DaffProductFilter>>;
 
   appliedSortOption$: Observable<string>;
 

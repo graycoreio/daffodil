@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilterEqual,
   DaffProductFilterEqualToggleRequest,
@@ -22,7 +22,7 @@ describe('@daffodil/product | filters | behaviors | toggle | daffApplyRequestToF
   let productFilterEqualOptionFactory: DaffProductFilterEqualOptionFactory;
   let productFilterToggleRequestEqualFactory: DaffProductFilterToggleRequestEqualFactory;
   let colorFilter: DaffProductFilterEqual;
-  let filters: Dict<DaffProductFilterEqual>;
+  let filters: Record<DaffProductFilterEqual['name'], DaffProductFilterEqual>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -55,7 +55,7 @@ describe('@daffodil/product | filters | behaviors | toggle | daffApplyRequestToF
       name: 'color',
       value: 'red',
     });
-    const expected: Dict<DaffProductFilter> = {
+    const expected: Record<DaffProductFilter['name'], DaffProductFilter> = {
       ...filters,
       color: {
         ...colorFilter,

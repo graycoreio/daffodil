@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import { DaffProductFilterBase } from '../../filter-base';
 import { DaffProductFilterType } from '../filter-type';
@@ -23,5 +23,5 @@ export interface DaffProductFilterEqual extends DaffProductFilterBase {
   /**
    * A dictionary of filter options.
    */
-  options: Dict<DaffProductFilterEqualOption>;
+  options: Record<DaffProductFilterEqualOption['value'], DaffProductFilterEqualOption>;
 }

@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilterEqual,
   DaffProductFilterType,
@@ -19,5 +19,5 @@ export const transformAggregateEqual = (aggregate: MagentoAggregation): DaffProd
       value: option.value,
     };
     return acc;
-  }, <Dict<DaffProductFilterEqualOption>>{}),
+  }, <Record<DaffProductFilterEqualOption['value'], DaffProductFilterEqualOption>>{}),
 });

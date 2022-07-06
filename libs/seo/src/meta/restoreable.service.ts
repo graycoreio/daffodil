@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Dict } from '@daffodil/core';
+
 
 import {
   DaffSeoRestoreableServiceInterface,
@@ -15,13 +15,13 @@ import { DaffMetaService } from './meta.service';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffRestoreableMetaService implements DaffSeoRestoreableServiceInterface<DaffSeoMetaDefinition, Dict<DaffSeoMetaDefinition>> {
+export class DaffRestoreableMetaService implements DaffSeoRestoreableServiceInterface<DaffSeoMetaDefinition, Record<string, DaffSeoMetaDefinition>> {
   /**
    * Accumulates meta defs added by upsert.
    *
    * @docs-private
    */
-  private _upsertCache: Dict<DaffSeoMetaDefinition> = {};
+  private _upsertCache: Record<string, DaffSeoMetaDefinition> = {};
 
   /**
    * Stores a page's meta tags by definition.
@@ -29,13 +29,13 @@ export class DaffRestoreableMetaService implements DaffSeoRestoreableServiceInte
    *
    * @docs-private
    */
-  private _restoreCache: Dict<DaffSeoMetaDefinition> = {};
+  private _restoreCache: Record<string, DaffSeoMetaDefinition> = {};
 
-  get upsertCache(): Dict<DaffSeoMetaDefinition> {
+  get upsertCache(): Record<string, DaffSeoMetaDefinition> {
     return this._upsertCache;
   }
 
-  get restoreCache(): Dict<DaffSeoMetaDefinition> {
+  get restoreCache(): Record<string, DaffSeoMetaDefinition> {
     return this._restoreCache;
   }
 

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Dict } from '@daffodil/core';
+
 import {
   DaffProductFilter,
   DaffProductFilterRangeNumeric,
@@ -33,7 +33,7 @@ describe('@daffodil/product | filters | daffProductFiltersToRequests', () => {
   let productFilterFactory: DaffProductFilterFactory;
 
   let filters: DaffProductFilter[];
-  let filterDict: Dict<DaffProductFilter>;
+  let filterDict: Record<DaffProductFilter['name'], DaffProductFilter>;
   let appliedRangeFilter: DaffProductFilterRangeNumeric;
   let unappliedRangeFilter: DaffProductFilterRangeNumeric;
   let rangeFilterPair: DaffProductFilterRangePair<number>;

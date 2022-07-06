@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import {
   DaffProductFilter,
@@ -11,10 +11,10 @@ import { daffProductFilterEqualOptionArrayToDict } from '../type/equal/public_ap
 import { daffProductFilterRangePairArrayToDict } from '../type/range/public_api';
 
 /**
- * Returns a {@link Dict<DaffProductFilter>} and only their applied options.
+ * Returns a {@link Record<DaffProductFilter['name'], DaffProductFilter>} and only their applied options.
  * {@link DaffProductFilter} that have no applied options will be omitted.
  */
-export const daffProductComputeAppliedFilters = (filters: Dict<DaffProductFilter>): Dict<DaffProductFilter> =>
+export const daffProductComputeAppliedFilters = (filters: Record<DaffProductFilter['name'], DaffProductFilter>): Record<DaffProductFilter['name'], DaffProductFilter> =>
   Object.keys(filters).map(key => filters[key]).reduce((acc, filter) => {
     const appliedOptions = daffProductFindAppliedFilterOptions(filter);
 

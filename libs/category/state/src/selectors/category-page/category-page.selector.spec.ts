@@ -24,7 +24,6 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { Dict } from '@daffodil/core';
 import { DaffState } from '@daffodil/core/state';
 import {
   DaffProductFilter,
@@ -141,7 +140,7 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectCategoryPageAppliedFilters', () => {
 
     it('sets applied filters to {} if there are no applied filters', () => {
-      const expectedAppliedFilters: Dict<DaffProductFilter> = {};
+      const expectedAppliedFilters: Record<DaffProductFilter['name'], DaffProductFilter> = {};
 
       store.dispatch(new DaffCategoryPageLoadSuccess({
         products: [],
@@ -200,7 +199,7 @@ describe('DaffCategoryPageSelectors', () => {
         filterEqual,
       ]);
 
-      const expectedAppliedFilters: Dict<DaffProductFilter> = daffProductFilterArrayToDict([filterEqual]);
+      const expectedAppliedFilters: Record<DaffProductFilter['name'], DaffProductFilter> = daffProductFilterArrayToDict([filterEqual]);
 
       store.dispatch(new DaffCategoryPageLoadSuccess({ products: [],
         category: {

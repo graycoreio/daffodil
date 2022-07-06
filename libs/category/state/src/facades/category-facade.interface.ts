@@ -9,7 +9,6 @@ import {
 import {
   DaffSortDirectionEnum,
   DaffSortOption,
-  Dict,
 } from '@daffodil/core';
 import {
   DaffStoreFacade,
@@ -69,7 +68,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The filters available for the products of the current category.
    */
-  filters$: Observable<Dict<DaffProductFilter>>;
+  filters$: Observable<Record<DaffProductFilter['name'], DaffProductFilter>>;
   /**
    * The sort options available for the products of the current category.
    */
@@ -77,7 +76,7 @@ export interface DaffCategoryFacadeInterface<
   /**
    * The sort options available for the products of the current category.
    */
-  appliedFilters$: Observable<Dict<DaffProductFilter>>;
+  appliedFilters$: Observable<Record<DaffProductFilter['name'], DaffProductFilter>>;
   /**
    * The sort options available for the products of the current category.
    */

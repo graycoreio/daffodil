@@ -1,4 +1,4 @@
-import { Dict } from '@daffodil/core';
+
 
 import {
   DaffProductFilter,
@@ -10,7 +10,7 @@ import { daffProductFilterToRequest } from './filter-to-request';
  * Builds a list of filter requests from a list of filters.
  * Requests are only built for the filters that have at least one applied option.
  */
-export function daffProductFiltersToRequests(filters: Dict<DaffProductFilter>): DaffProductFilterRequest[] {
+export function daffProductFiltersToRequests(filters: Record<DaffProductFilter['name'], DaffProductFilter>): DaffProductFilterRequest[] {
   return Object.keys(filters).map((key) => filters[key]).reduce((acc: DaffProductFilterRequest[], filter) => {
     const request = daffProductFilterToRequest(filter);
 
