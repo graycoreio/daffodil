@@ -8,7 +8,6 @@ import {
   DaffCategory,
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
-
 import {
   DaffState,
   DaffStateError,

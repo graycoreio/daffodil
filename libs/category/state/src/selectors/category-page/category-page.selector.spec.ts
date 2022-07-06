@@ -24,7 +24,6 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-
 import { DaffState } from '@daffodil/core/state';
 import {
   DaffProductFilter,
