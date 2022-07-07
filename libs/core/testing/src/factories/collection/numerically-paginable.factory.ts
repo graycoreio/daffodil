@@ -6,9 +6,9 @@ import { DaffNumericallyPaginable } from '@daffodil/core';
 import { DaffModelFactory } from '../factory';
 
 class MockDaffNumericallyPaginable implements DaffNumericallyPaginable {
-  total_pages = faker.datatype.number({ min: 1, max: 100 });
-  current_page = faker.datatype.number(this.total_pages);
-  page_size = faker.datatype.number({ min: 1, max: 100 });
+  totalPages = faker.datatype.number({ min: 1, max: 100 });
+  currentPage = faker.datatype.number(this.totalPages);
+  pageSize = faker.datatype.number({ min: 1, max: 100 });
 }
 
 @Injectable({

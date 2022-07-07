@@ -3,8 +3,12 @@ import * as faker from '@faker-js/faker/locale/en_US';
 
 import {
   DaffCollectionMetadata,
+  DaffIdentifiable,
   DaffNumericallyPaginable,
   DaffSortable,
+  DaffSortDirectionEnum,
+  DaffSortOption,
+  DaffSortOptions,
 } from '@daffodil/core';
 
 import { DaffModelFactory } from '../factory';
@@ -15,31 +19,32 @@ import { DaffSortableFactory } from './sortable.factory';
  * Mocked {@link DaffCollectionMetadata} object.
  */
 export class MockCollectionMetadata implements DaffCollectionMetadata {
-  _pageInfo = this.createPageInfo();
-  _sortFields = this.createSortFields();
-
-  count = faker.datatype.number({ min: 1, max: 1000 });
-  ids = new Array(this.count).fill(null).map<string>(() => faker.datatype.uuid());
-
-  current_page = this._pageInfo.current_page;
-  total_pages = this._pageInfo.total_pages;
-  page_size = this._pageInfo.page_size;
-
-  applied_sort_direction = this._sortFields.applied_sort_direction;
-  applied_sort_option = this._sortFields.applied_sort_option;
-  sort_options = this._sortFields.sort_options;
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
+  sortOptions: DaffSortOptions;
+  appliedSortOption: DaffSortOption['value'];
+  appliedSortDirection: DaffSortDirectionEnum;
+  count: number;
+  ids: DaffIdentifiable['id'][];
 
   constructor(
-    private pageInfoFactory: DaffNumericallyPaginableFactory,
-    private sortFieldsFactory: DaffSortableFactory,
-  ) {}
+    pageInfoFactory: DaffNumericallyPaginableFactory,
+    sortFieldsFactory: DaffSortableFactory,
+  ) {
+    const _pageInfo = pageInfoFactory.create();
+    const _sortFields = sortFieldsFactory.create();
 
-  private createPageInfo(): DaffNumericallyPaginable {
-    return this.pageInfoFactory.create();
-  }
+    this.count = faker.datatype.number({ min: 1, max: 1000 });
+    this.ids = new Array(this.count).fill(null).map<string>(() => faker.datatype.uuid());
 
-  private createSortFields(): DaffSortable {
-    return this.sortFieldsFactory.create();
+    this.currentPage = _pageInfo.currentPage;
+    this.totalPages = _pageInfo.totalPages;
+    this.pageSize = _pageInfo.pageSize;
+
+    this.appliedSortDirection = _sortFields.appliedSortDirection;
+    this.appliedSortOption = _sortFields.appliedSortOption;
+    this.sortOptions = _sortFields.sortOptions;
   }
 }
 

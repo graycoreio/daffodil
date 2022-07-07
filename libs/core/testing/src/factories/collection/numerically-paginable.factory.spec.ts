@@ -29,13 +29,13 @@ describe('@daffodil/core/testing | DaffNumericallyPaginableFactory', () => {
     });
 
     it('should return', () => {
-      expect(result.current_page).toBeDefined();
-      expect(result.page_size).toBeDefined();
-      expect(result.total_pages).toBeDefined();
+      expect(result.currentPage).toBeDefined();
+      expect(result.pageSize).toBeDefined();
+      expect(result.totalPages).toBeDefined();
     });
 
     it('should set current page to be less than or equal to total pages', () => {
-      expect(result.current_page).toBeLessThanOrEqual(result.total_pages);
+      expect(result.currentPage).toBeLessThanOrEqual(result.totalPages);
     });
   });
 });

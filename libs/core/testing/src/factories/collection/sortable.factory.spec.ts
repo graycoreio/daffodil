@@ -27,13 +27,13 @@ describe('@daffodil/core/testing | DaffSortableFactory', () => {
     });
 
     it('should return', () => {
-      expect(result.sort_options).toBeDefined();
-      expect(result.applied_sort_direction).toBeDefined();
-      expect(result.applied_sort_option).toBeDefined();
+      expect(result.sortOptions).toBeDefined();
+      expect(result.appliedSortDirection).toBeDefined();
+      expect(result.appliedSortOption).toBeDefined();
     });
 
     it('should pull the applied value from its list of options', () => {
-      expect(result.sort_options.options.find(option => option.value === result.applied_sort_option)).toBeTruthy();
+      expect(result.sortOptions.options.find(option => option.value === result.appliedSortOption)).toBeTruthy();
     });
   });
 });
