@@ -4,7 +4,7 @@
  *
  */
 export interface DaffNumericallyPaginable {
-  current_page: number;
-  total_pages: number;
-  page_size: number;
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
 }

@@ -34,15 +34,15 @@ export interface DaffSortable {
   /**
    * The available options by which to sort the collection.
    */
-  sort_options: DaffSortOptions;
+  sortOptions: DaffSortOptions;
 
   /**
    * The currently applied sorting option.
    */
-  applied_sort_option: DaffSortOption['value'];
+  appliedSortOption: DaffSortOption['value'];
 
   /**
    * The currently applied sort direction.
    */
-  applied_sort_direction: DaffSortDirectionEnum;
+  appliedSortDirection: DaffSortDirectionEnum;
 }
