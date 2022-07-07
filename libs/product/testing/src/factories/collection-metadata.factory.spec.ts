@@ -29,13 +29,14 @@ describe('@daffodil/product/testing | DaffProductCollectionMetadataFactory', () 
     });
 
     it('should return a DaffProductCollectionMetadata with all required fields defined', () => {
-      expect(result.total_products).toBeDefined();
-      expect(result.current_page).toBeDefined();
-      expect(result.total_pages).toBeDefined();
-      expect(result.page_size).toBeDefined();
-      expect(result.applied_sort_direction).toBeDefined();
-      expect(result.applied_sort_option).toBeDefined();
-      expect(result.sort_options).toBeDefined();
+      expect(result.ids).toBeDefined();
+      expect(result.count).toBeDefined();
+      expect(result.currentPage).toBeDefined();
+      expect(result.totalPages).toBeDefined();
+      expect(result.pageSize).toBeDefined();
+      expect(result.appliedSortDirection).toBeDefined();
+      expect(result.appliedSortOption).toBeDefined();
+      expect(result.sortOptions).toBeDefined();
       expect(result.filters).toBeDefined();
     });
   });

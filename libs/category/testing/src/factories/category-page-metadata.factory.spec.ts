@@ -30,13 +30,13 @@ describe('Category | Testing | Factories | DaffCategoryPageMetadataFactory', () 
 
     it('should return a DaffCategoryPageMetadata with all required fields defined', () => {
       expect(result.id).toBeDefined();
-      expect(result.sort_options.default).toBeDefined();
-      expect(result.sort_options.options[0].label).toBeDefined();
-      expect(result.sort_options.options[0].value).toBeDefined();
-      expect(result.total_pages).toBeDefined();
+      expect(result.sortOptions.default).toBeDefined();
+      expect(result.sortOptions.options[0].label).toBeDefined();
+      expect(result.sortOptions.options[0].value).toBeDefined();
+      expect(result.totalPages).toBeDefined();
       expect(result.filters).toBeDefined();
-      expect(result.product_ids).toBeDefined();
-      expect(result.total_products).toBeDefined();
+      expect(result.ids).toBeDefined();
+      expect(result.count).toBeDefined();
     });
   });
 });

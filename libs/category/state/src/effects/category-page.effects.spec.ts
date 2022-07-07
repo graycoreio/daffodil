@@ -318,8 +318,8 @@ describe('DaffCategoryPageEffects', () => {
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
-        page_size: 3,
-        filter_requests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
+        pageSize: 3,
+        filterRequests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });
@@ -342,8 +342,8 @@ describe('DaffCategoryPageEffects', () => {
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
-        current_page: 3,
-        filter_requests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
+        currentPage: 3,
+        filterRequests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });
@@ -369,9 +369,9 @@ describe('DaffCategoryPageEffects', () => {
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
-        applied_sort_direction: DaffSortDirectionEnum.Ascending,
-        applied_sort_option: 'option',
-        filter_requests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
+        appliedSortDirection: DaffSortDirectionEnum.Ascending,
+        appliedSortOption: 'option',
+        filterRequests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });

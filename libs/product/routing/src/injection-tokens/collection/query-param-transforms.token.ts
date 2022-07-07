@@ -26,7 +26,7 @@ export const DAFF_PRODUCT_COLLECTION_QUERY_PARAM_TRANSFORMS = new InjectionToken
  * ```ts
  * providers: [
  *   daffProvideProductCollectionQueryParamTransforms({
- *     filter_requests: (base64Val: string) => JSON.parse(atob(base64Val))
+ *     filterRequests: (base64Val: string) => JSON.parse(atob(base64Val))
  *   })
  * ]
  * ```

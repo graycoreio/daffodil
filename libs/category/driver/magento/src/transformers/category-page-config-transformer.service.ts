@@ -14,9 +14,8 @@ export class DaffMagentoCategoryPageConfigTransformerService {
     const aggregatesWithoutCategories = categoryResponse.aggregates.filter(aggregate => aggregate.attribute_code !== 'category_id');
 
     return {
-      ...magentoProductCollectionMetadataTransform(aggregatesWithoutCategories, categoryResponse.page_info, categoryResponse.sort_fields, categoryResponse.total_count),
+      ...magentoProductCollectionMetadataTransform(aggregatesWithoutCategories, categoryResponse.page_info, categoryResponse.sort_fields, categoryResponse.products),
       id: categoryResponse.category.uid,
-      product_ids: categoryResponse.products.map(product => product.sku),
     };
   }
 }

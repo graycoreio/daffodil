@@ -67,7 +67,7 @@ describe('DaffCategorySelectors', () => {
     product = productFactory.create();
     stubMetadata = metadataFactory.create();
     stubMetadata.id = stubCategory.id;
-    stubMetadata.product_ids = [product.id];
+    stubMetadata.ids = [product.id];
     stubCategory.product_ids = [product.id];
     stubMetadata.filters = {
       name: {
@@ -133,7 +133,7 @@ describe('DaffCategorySelectors', () => {
         },
         categoryPageMetadata: {
           ...stubMetadata,
-          product_ids: [productA.id, productB.id],
+          ids: [productA.id, productB.id],
         },
         products: [productA, productB],
       });
@@ -154,7 +154,7 @@ describe('DaffCategorySelectors', () => {
         },
         categoryPageMetadata: {
           ...stubMetadata,
-          product_ids: [productB.id, productA.id],
+          ids: [productB.id, productA.id],
         },
         products: [productA, productB],
       });

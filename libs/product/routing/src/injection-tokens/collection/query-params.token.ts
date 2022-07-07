@@ -25,8 +25,8 @@ export const DAFF_PRODUCT_COLLECTION_QUERY_PARAMS = new InjectionToken<DaffProdu
  * ```ts
  * providers: [
  *   daffProvideProductCollectionQueryParams({
- *     current_page: 'page',
- *     page_size: 'size'
+ *     currentPage: 'page',
+ *     pageSize: 'size'
  *   })
  * ]
  * ```

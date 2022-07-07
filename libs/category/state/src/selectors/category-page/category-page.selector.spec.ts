@@ -67,7 +67,6 @@ describe('DaffCategoryPageSelectors', () => {
     categoryFilterEqualFactory = TestBed.inject(DaffProductFilterEqualFactory);
     categoryFilterEqualOptionFactory = TestBed.inject(DaffProductFilterEqualOptionFactory);
 
-
     stubCategory = categoryFactory.create();
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();
     stubCategoryPageMetadata.id = stubCategory.id;
@@ -87,7 +86,7 @@ describe('DaffCategoryPageSelectors', () => {
         errors: [],
       };
       const selector = store.pipe(select(categorySelectors.selectCategoryState));
-      const expected = cold('a', { a: expectedFeatureState });
+      const expected = cold('a', { a: jasmine.objectContaining(expectedFeatureState) });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -96,7 +95,17 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the category page metadata', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageMetadata));
-      const expected = cold('a', { a: stubCategoryPageMetadata });
+      const expected = cold('a', { a: jasmine.objectContaining(<DaffCategoryPageMetadata>{
+        appliedSortOption: stubCategoryPageMetadata.appliedSortOption,
+        appliedSortDirection: stubCategoryPageMetadata.appliedSortDirection,
+        currentPage: stubCategoryPageMetadata.currentPage,
+        count: stubCategoryPageMetadata.count,
+        id: stubCategoryPageMetadata.id,
+        ids: stubCategoryPageMetadata.ids,
+        filters: stubCategoryPageMetadata.filters,
+        totalPages: stubCategoryPageMetadata.totalPages,
+        pageSize: stubCategoryPageMetadata.pageSize,
+      }) });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -105,7 +114,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the current page of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryCurrentPage));
-      const expected = cold('a', { a: stubCategoryPageMetadata.current_page });
+      const expected = cold('a', { a: stubCategoryPageMetadata.currentPage });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -114,7 +123,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the total pages of products of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryTotalPages));
-      const expected = cold('a', { a: stubCategoryPageMetadata.total_pages });
+      const expected = cold('a', { a: stubCategoryPageMetadata.totalPages });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -123,7 +132,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the page size of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageSize));
-      const expected = cold('a', { a: stubCategoryPageMetadata.page_size });
+      const expected = cold('a', { a: stubCategoryPageMetadata.pageSize });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -222,7 +231,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the category sort options of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategorySortOptions));
-      const expected = cold('a', { a: stubCategoryPageMetadata.sort_options.options });
+      const expected = cold('a', { a: stubCategoryPageMetadata.sortOptions.options });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -231,7 +240,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the product_ids of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageProductIds));
-      const expected = cold('a', { a: stubCategoryPageMetadata.product_ids });
+      const expected = cold('a', { a: stubCategoryPageMetadata.ids });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -240,7 +249,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects whether the current category page is empty of products', () => {
       const selector = store.pipe(select(categorySelectors.selectIsCategoryPageEmpty));
-      const expected = cold('a', { a: !stubCategoryPageMetadata.product_ids.length });
+      const expected = cold('a', { a: !stubCategoryPageMetadata.ids.length });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -249,7 +258,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the total number of products of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageTotalProducts));
-      const expected = cold('a', { a: stubCategoryPageMetadata.total_products });
+      const expected = cold('a', { a: stubCategoryPageMetadata.count });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -258,7 +267,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the applied sort option of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedSortOption));
-      const expected = cold('a', { a: stubCategoryPageMetadata.applied_sort_option });
+      const expected = cold('a', { a: stubCategoryPageMetadata.appliedSortOption });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -267,7 +276,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('selects the applied sort direction of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageAppliedSortDirection));
-      const expected = cold('a', { a: stubCategoryPageMetadata.applied_sort_direction });
+      const expected = cold('a', { a: stubCategoryPageMetadata.appliedSortDirection });
       expect(selector).toBeObservable(expected);
     });
   });

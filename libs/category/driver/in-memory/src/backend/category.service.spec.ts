@@ -44,8 +44,8 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryBackendCategoryServi
     describe('when the category with the requested ID exists', () => {
       beforeEach(() => {
         const paramsMap = new Map()
-          .set('page_size', [stubPageSize])
-          .set('current_page', [stubCurrentPage]);
+          .set('pageSize', [stubPageSize])
+          .set('currentPage', [stubCurrentPage]);
         id = '1001';
         reqInfoStub = {
           id,
@@ -70,30 +70,30 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryBackendCategoryServi
         });
       });
 
-      it('should set total_pages', () => {
-        const totalProducts = result.body.category.total_products;
-        const pageSize = result.body.categoryPageMetadata.page_size;
-        expect(result.body.categoryPageMetadata.total_pages).toEqual(Math.ceil(totalProducts/pageSize));
+      it('should set totalPages', () => {
+        const totalProducts = result.body.category.count;
+        const pageSize = result.body.categoryPageMetadata.pageSize;
+        expect(result.body.categoryPageMetadata.totalPages).toEqual(Math.ceil(totalProducts/pageSize));
       });
 
-      it('should set no more products on the category than the page_size', () => {
-        expect(result.body.categoryPageMetadata.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageMetadata.page_size);
+      it('should set no more products on the category than the pageSize', () => {
+        expect(result.body.categoryPageMetadata.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageMetadata.pageSize);
       });
 
-      it('should set page_size when the page_size is provided', () => {
-        expect(result.body.categoryPageMetadata.page_size).toEqual(stubPageSize);
+      it('should set pageSize when the pageSize is provided', () => {
+        expect(result.body.categoryPageMetadata.pageSize).toEqual(stubPageSize);
       });
 
-      it('should set current_page when the current_page is provided', () => {
-        expect(result.body.categoryPageMetadata.current_page).toEqual(stubCurrentPage);
+      it('should set currentPage when the currentPage is provided', () => {
+        expect(result.body.categoryPageMetadata.currentPage).toEqual(stubCurrentPage);
       });
     });
 
     describe('when the category with the requested ID does not exist', () => {
       beforeEach(() => {
         const paramsMap = new Map()
-          .set('page_size', [stubPageSize])
-          .set('current_page', [stubCurrentPage]);
+          .set('pageSize', [stubPageSize])
+          .set('currentPage', [stubCurrentPage]);
         id = 'does not exist';
         reqInfoStub = {
           id,

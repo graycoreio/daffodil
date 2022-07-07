@@ -49,13 +49,13 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
         {
           provide: DAFF_PRODUCT_COLLECTION_QUERY_PARAMS,
           useValue: {
-            page_size: customPageSizeQp,
+            pageSize: customPageSizeQp,
           },
         },
         {
           provide: DAFF_PRODUCT_COLLECTION_QUERY_PARAM_TRANSFORMS,
           useValue: {
-            current_page: customCurrentPageTransform,
+            currentPage: customCurrentPageTransform,
           },
         },
       ],
@@ -76,7 +76,7 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
     }));
 
     it('should set the request field from that custom query param', () => {
-      expect(Number(result.page_size)).toEqual(pageSizeValue);
+      expect(Number(result.pageSize)).toEqual(pageSizeValue);
     });
   });
 
@@ -85,13 +85,13 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
 
     beforeEach(fakeAsync(() => {
       sortOptionValue = 'name';
-      router.navigateByUrl(`/test?applied_sort_option=${sortOptionValue}`);
+      router.navigateByUrl(`/test?appliedSortOption=${sortOptionValue}`);
       tick();
       result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
     }));
 
     it('should set the request field from that default query param without performing a transform', () => {
-      expect(result.applied_sort_option).toEqual(sortOptionValue);
+      expect(result.appliedSortOption).toEqual(sortOptionValue);
     });
   });
 
@@ -116,13 +116,13 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
 
     beforeEach(fakeAsync(() => {
       currentPageValue = '2';
-      router.navigateByUrl(`/test?current_page=${currentPageValue}`);
+      router.navigateByUrl(`/test?currentPage=${currentPageValue}`);
       tick();
       result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
     }));
 
     it('should set the request field to the value returned by the custom transform', () => {
-      expect(result.current_page).toEqual(customCurrentPageTransform(currentPageValue));
+      expect(result.currentPage).toEqual(customCurrentPageTransform(currentPageValue));
     });
   });
 });

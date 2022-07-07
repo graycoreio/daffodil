@@ -95,8 +95,8 @@ export class DaffCategoryPageEffects<
     switchMap(([action, metadata]: [DaffCategoryPageChangePageSize, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
       ...metadata,
       kind: DaffCategoryRequestKind.ID,
-      filter_requests: daffProductFiltersToRequests(metadata.filters),
-      page_size: action.pageSize,
+      filterRequests: daffProductFiltersToRequests(metadata.filters),
+      pageSize: action.pageSize,
     })),
   ));
 
@@ -109,8 +109,8 @@ export class DaffCategoryPageEffects<
     switchMap(([action, metadata]: [DaffCategoryPageChangeCurrentPage, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
       ...metadata,
       kind: DaffCategoryRequestKind.ID,
-      filter_requests: daffProductFiltersToRequests(metadata.filters),
-      current_page: action.currentPage,
+      filterRequests: daffProductFiltersToRequests(metadata.filters),
+      currentPage: action.currentPage,
     })),
   ));
 
@@ -123,9 +123,9 @@ export class DaffCategoryPageEffects<
     switchMap(([action, metadata]: [DaffCategoryPageChangeSortingOption, DaffCategoryPageMetadata]) => this.processCategoryGetRequest({
       ...metadata,
       kind: DaffCategoryRequestKind.ID,
-      filter_requests: daffProductFiltersToRequests(metadata.filters),
-      applied_sort_option: action.sort.option,
-      applied_sort_direction: action.sort.direction,
+      filterRequests: daffProductFiltersToRequests(metadata.filters),
+      appliedSortOption: action.sort.option,
+      appliedSortDirection: action.sort.direction,
     })),
   ));
 

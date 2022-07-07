@@ -13,8 +13,8 @@ describe('@daffodil/product/routing | daffProvideProductCollectionQueryParams', 
 
   beforeEach(() => {
     queryParams = {
-      current_page: 'page',
-      page_size: 'size',
+      currentPage: 'page',
+      pageSize: 'size',
     };
 
     TestBed.configureTestingModule({

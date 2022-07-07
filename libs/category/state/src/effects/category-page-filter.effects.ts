@@ -92,11 +92,11 @@ export class DaffCategoryPageFilterEffects<
     ): DaffCategoryIdRequest => ({
       kind: DaffCategoryRequestKind.ID,
       id: metadata.id,
-      filter_requests: daffProductFiltersToRequests(metadata.filters),
-      applied_sort_option: metadata.applied_sort_option,
-      applied_sort_direction: metadata.applied_sort_direction,
-      current_page: metadata.current_page,
-      page_size: metadata.page_size,
+      filterRequests: daffProductFiltersToRequests(metadata.filters),
+      appliedSortOption: metadata.appliedSortOption,
+      appliedSortDirection: metadata.appliedSortDirection,
+      currentPage: metadata.currentPage,
+      pageSize: metadata.pageSize,
     })),
     throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
     switchMap(payload => this.driver.get(payload).pipe(

@@ -232,7 +232,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
         mockCategoryRequest = {
           ...mockCategoryRequest,
           kind: DaffCategoryRequestKind.ID,
-          filter_requests: [
+          filterRequests: [
             equalFilterRequest,
             rangeFilterRequest,
           ],
@@ -346,7 +346,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
         rangeFilterRequestOptionLabel = daffProductComputeFilterRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         mockCategoryUrlRequest = {
           ...mockCategoryUrlRequest,
-          filter_requests: [
+          filterRequests: [
             equalFilterRequest,
             rangeFilterRequest,
           ],

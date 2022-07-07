@@ -58,7 +58,7 @@ export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>>
     this.store.dispatch(new DaffCategoryPageLoadByUrl({
       url: this.urlNormalizer.normalize(state.url),
       kind: DaffCategoryRequestKind.URL,
-      ...(currentPage ? { current_page: Number(currentPage) } : {}),
+      ...(currentPage ? { currentPage: Number(currentPage) } : {}),
     }));
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(

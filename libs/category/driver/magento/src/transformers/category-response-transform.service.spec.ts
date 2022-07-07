@@ -106,14 +106,14 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryResponseTransfo
       const aggregates: MagentoAggregation[] = aggregateFactory.createMany(1);
 
       const page_info: MagentoProductPageInfo = {
-        page_size: stubCategoryPageMetadata.page_size,
-        current_page: stubCategoryPageMetadata.current_page,
-        total_pages: stubCategoryPageMetadata.total_pages,
+        page_size: stubCategoryPageMetadata.pageSize,
+        current_page: stubCategoryPageMetadata.currentPage,
+        total_pages: stubCategoryPageMetadata.totalPages,
       };
 
       const sort_fields: MagentoProductSortFields = {
-        default: stubCategoryPageMetadata.sort_options.options[0].value,
-        options: stubCategoryPageMetadata.sort_options.options,
+        default: stubCategoryPageMetadata.sortOptions.options[0].value,
+        options: stubCategoryPageMetadata.sortOptions.options,
       };
 
       const products = magentoProductFactory.createMany(1);

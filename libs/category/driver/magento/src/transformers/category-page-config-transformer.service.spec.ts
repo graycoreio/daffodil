@@ -63,8 +63,8 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();
 
     delete stubCategoryPageMetadata.filters;
-    delete stubCategoryPageMetadata.applied_sort_direction;
-    delete stubCategoryPageMetadata.applied_sort_option;
+    delete stubCategoryPageMetadata.appliedSortDirection;
+    delete stubCategoryPageMetadata.appliedSortOption;
     stubCategoryPageMetadata.id = stubCategory.id;
   });
 
@@ -98,17 +98,17 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
       };
 
       page_info = {
-        page_size: stubCategoryPageMetadata.page_size,
-        current_page: stubCategoryPageMetadata.current_page,
-        total_pages: stubCategoryPageMetadata.total_pages,
+        page_size: stubCategoryPageMetadata.pageSize,
+        current_page: stubCategoryPageMetadata.currentPage,
+        total_pages: stubCategoryPageMetadata.totalPages,
       };
 
       sort_fields = {
-        default: stubCategoryPageMetadata.sort_options.options[0].value,
-        options: stubCategoryPageMetadata.sort_options.options,
+        default: stubCategoryPageMetadata.sortOptions.options[0].value,
+        options: stubCategoryPageMetadata.sortOptions.options,
       };
 
-      products = [new MagentoProductFactory().create({ sku: stubCategoryPageMetadata.product_ids[0] })];
+      products = [new MagentoProductFactory().create({ sku: stubCategoryPageMetadata.ids[0] })];
 
       completeCategoryResponse = {
         category,
@@ -116,7 +116,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
         page_info,
         sort_fields,
         products,
-        total_count: stubCategoryPageMetadata.total_products,
+        total_count: stubCategoryPageMetadata.count,
       };
     });
 
