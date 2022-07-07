@@ -120,11 +120,11 @@ describe('DaffCategoryPageFilterEffects', () => {
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
           kind: DaffCategoryRequestKind.ID,
           id: stubCategoryPageMetadata.id,
-          applied_sort_option: stubCategoryPageMetadata.applied_sort_option,
-          applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
-          current_page: stubCategoryPageMetadata.current_page,
-          page_size: stubCategoryPageMetadata.page_size,
-          filter_requests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
+          appliedSortOption: stubCategoryPageMetadata.appliedSortOption,
+          appliedSortDirection: stubCategoryPageMetadata.appliedSortDirection,
+          currentPage: stubCategoryPageMetadata.currentPage,
+          pageSize: stubCategoryPageMetadata.pageSize,
+          filterRequests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
         });
       });
     });
@@ -170,11 +170,11 @@ describe('DaffCategoryPageFilterEffects', () => {
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
           kind: DaffCategoryRequestKind.ID,
           id: stubCategoryPageMetadata.id,
-          applied_sort_option: stubCategoryPageMetadata.applied_sort_option,
-          applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
-          current_page: stubCategoryPageMetadata.current_page,
-          page_size: stubCategoryPageMetadata.page_size,
-          filter_requests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
+          appliedSortOption: stubCategoryPageMetadata.appliedSortOption,
+          appliedSortDirection: stubCategoryPageMetadata.appliedSortDirection,
+          currentPage: stubCategoryPageMetadata.currentPage,
+          pageSize: stubCategoryPageMetadata.pageSize,
+          filterRequests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
         });
       });
     });
@@ -213,11 +213,11 @@ describe('DaffCategoryPageFilterEffects', () => {
         expect(daffCategoryDriver.get).toHaveBeenCalledWith({
           kind: DaffCategoryRequestKind.ID,
           id: stubCategoryPageMetadata.id,
-          applied_sort_option: stubCategoryPageMetadata.applied_sort_option,
-          applied_sort_direction: stubCategoryPageMetadata.applied_sort_direction,
-          current_page: stubCategoryPageMetadata.current_page,
-          page_size: stubCategoryPageMetadata.page_size,
-          filter_requests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
+          appliedSortOption: stubCategoryPageMetadata.appliedSortOption,
+          appliedSortDirection: stubCategoryPageMetadata.appliedSortDirection,
+          currentPage: stubCategoryPageMetadata.currentPage,
+          pageSize: stubCategoryPageMetadata.pageSize,
+          filterRequests: daffProductFiltersToRequests(stubCategoryPageMetadata.filters),
         });
       });
     });

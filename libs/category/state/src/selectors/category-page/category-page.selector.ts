@@ -41,15 +41,15 @@ export interface DaffCategoryPageMemoizedSelectors<
   /**
    * Selects the current page of products of the current category.
    */
-  selectCategoryCurrentPage: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['current_page']>;
+  selectCategoryCurrentPage: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['currentPage']>;
   /**
    * Selects the total number of pages of products that exist in the current category.
    */
-  selectCategoryTotalPages: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['total_pages']>;
+  selectCategoryTotalPages: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['totalPages']>;
   /**
    * Selects the number of products on each category page.
    */
-  selectCategoryPageSize: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['page_size']>;
+  selectCategoryPageSize: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['pageSize']>;
   /**
    * Selects the filters that may be applied to the current category.
    */
@@ -57,11 +57,11 @@ export interface DaffCategoryPageMemoizedSelectors<
   /**
    * Selects the sort options that may be applied to the current category.
    */
-  selectCategorySortOptions: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['sort_options']['options']>;
+  selectCategorySortOptions: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['sortOptions']['options']>;
   /**
    * Selects the ids of all products in the current category page.
    */
-  selectCategoryPageProductIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['product_ids']>;
+  selectCategoryPageProductIds: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['ids']>;
   /**
    * Selects whether the category page has no products.
    */
@@ -69,7 +69,7 @@ export interface DaffCategoryPageMemoizedSelectors<
   /**
    * Selects the total number of products for the current category.
    */
-  selectCategoryPageTotalProducts: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['total_products']>;
+  selectCategoryPageTotalProducts: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['count']>;
   /**
    * Returns a dict of filters and only their applied options.
    * Filters with no applied options will be omitted.
@@ -78,11 +78,11 @@ export interface DaffCategoryPageMemoizedSelectors<
   /**
    * Selects the applied sorting option if one is applied.
    */
-  selectCategoryPageAppliedSortOption: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_option']>;
+  selectCategoryPageAppliedSortOption: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['appliedSortOption']>;
   /**
    * Selects the applied sorting direction if a sorting option is applied.
    */
-  selectCategoryPageAppliedSortDirection: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['applied_sort_direction']>;
+  selectCategoryPageAppliedSortDirection: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['appliedSortDirection']>;
   /**
    * Selects the loading state of the current category; e.g. mutating, resolving, stable.
    */
@@ -128,17 +128,17 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategoryCurrentPage = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.current_page,
+    (state: DaffCategoryPageMetadata) => state.currentPage,
   );
 
   const selectCategoryTotalPages = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.total_pages,
+    (state: DaffCategoryPageMetadata) => state.totalPages,
   );
 
   const selectCategoryPageSize = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.page_size,
+    (state: DaffCategoryPageMetadata) => state.pageSize,
   );
 
   const selectCategoryFilters = createSelector(
@@ -148,12 +148,12 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategorySortOptions = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.sort_options.options,
+    (state: DaffCategoryPageMetadata) => state.sortOptions.options,
   );
 
   const selectCategoryPageProductIds = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.product_ids,
+    (state: DaffCategoryPageMetadata) => state.ids,
   );
 
   const selectIsCategoryPageEmpty = createSelector<DaffCategoryStateRootSlice<V>, [ V['product_ids']], boolean>(
@@ -163,7 +163,7 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategoryPageTotalProducts = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.total_products,
+    (state: DaffCategoryPageMetadata) => state.count,
   );
 
   const selectCategoryPageAppliedFilters = createSelector(
@@ -173,12 +173,12 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
 
   const selectCategoryPageAppliedSortOption = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.applied_sort_option,
+    (state: DaffCategoryPageMetadata) => state.appliedSortOption,
   );
 
   const selectCategoryPageAppliedSortDirection = createSelector(
     selectCategoryPageMetadata,
-    (state: DaffCategoryPageMetadata) => state.applied_sort_direction,
+    (state: DaffCategoryPageMetadata) => state.appliedSortDirection,
   );
 
   const selectCategoryPageState = createSelector(

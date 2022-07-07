@@ -19,11 +19,11 @@ import {
  * A list of request fields that can be seeded from query params.
  */
 export const DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS = [
-  'filter_requests',
-  'applied_sort_option',
-  'applied_sort_direction',
-  'current_page',
-  'page_size',
+  'filterRequests',
+  'appliedSortOption',
+  'appliedSortDirection',
+  'currentPage',
+  'pageSize',
 ];
 
 /**

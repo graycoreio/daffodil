@@ -13,7 +13,7 @@ describe('@daffodil/product/routing | daffProvideProductCollectionQueryParamTran
 
   beforeEach(() => {
     transforms = {
-      filter_requests: (base64Val: string) => JSON.parse(atob(base64Val)),
+      filterRequests: (base64Val: string) => JSON.parse(atob(base64Val)),
     };
 
     TestBed.configureTestingModule({

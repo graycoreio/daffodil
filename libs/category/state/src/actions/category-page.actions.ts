@@ -107,8 +107,8 @@ export class DaffCategoryPageChangeSortingOption implements Action {
 
   constructor(
     public sort: {
-      option: DaffCategoryRequest['applied_sort_option'];
-      direction: DaffCategoryRequest['applied_sort_direction'];
+      option: DaffCategoryRequest['appliedSortOption'];
+      direction: DaffCategoryRequest['appliedSortDirection'];
     },
   ) { }
 }

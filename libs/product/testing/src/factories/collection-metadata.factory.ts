@@ -26,15 +26,16 @@ export class MockProductCollectionMetadata implements DaffProductCollectionMetad
   _pageInfo = this.createPageInfo();
   _sortFields = this.createSortFields();
 
-  total_products = faker.datatype.number({ min: 1, max: 10 });
+  ids = [];
+  count = faker.datatype.number({ min: 1, max: 10 });
 
-  current_page = this._pageInfo.current_page;
-  total_pages = this._pageInfo.total_pages;
-  page_size = this._pageInfo.page_size;
+  currentPage = this._pageInfo.currentPage;
+  totalPages = this._pageInfo.totalPages;
+  pageSize = this._pageInfo.pageSize;
 
-  applied_sort_direction = this._sortFields.applied_sort_direction;
-  applied_sort_option = this._sortFields.applied_sort_option;
-  sort_options = this._sortFields.sort_options;
+  appliedSortDirection = this._sortFields.appliedSortDirection;
+  appliedSortOption = this._sortFields.appliedSortOption;
+  sortOptions = this._sortFields.sortOptions;
 
   filters = this.createFilters();
 

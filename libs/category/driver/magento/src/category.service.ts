@@ -99,8 +99,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         filterTypes,
         products,
       ]) => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
-      map(result => categoryRequest.filter_requests
-        ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
+      map(result => categoryRequest.filterRequests
+        ? applyFiltersOnResponse(categoryRequest.filterRequests, result)
         : result,
       ),
     );
@@ -132,8 +132,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         }),
       }).pipe(
         map(products => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
-        map(result => categoryRequest.filter_requests
-          ? applyFiltersOnResponse(categoryRequest.filter_requests, result)
+        map(result => categoryRequest.filterRequests
+          ? applyFiltersOnResponse(categoryRequest.filterRequests, result)
           : result,
         ),
       )),
@@ -142,16 +142,16 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
   private getProductsQueryVariables(request: DaffCategoryIdRequest): MagentoGetProductsByCategoriesRequest {
     const queryVariables = {
-      filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.filter_requests),
+      filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.filterRequests),
     };
-    if(request.page_size) {
-      queryVariables['pageSize'] = request.page_size;
+    if(request.pageSize) {
+      queryVariables['pageSize'] = request.pageSize;
     }
-    if(request.current_page) {
-      queryVariables['currentPage'] = request.current_page;
+    if(request.currentPage) {
+      queryVariables['currentPage'] = request.currentPage;
     }
-    if(request.applied_sort_option && request.applied_sort_direction) {
-      queryVariables['sort'] = magentoAppliedSortOptionTransform(request.applied_sort_option, request.applied_sort_direction);
+    if(request.appliedSortOption && request.appliedSortDirection) {
+      queryVariables['sort'] = magentoAppliedSortOptionTransform(request.appliedSortOption, request.appliedSortDirection);
     }
 
     return queryVariables;

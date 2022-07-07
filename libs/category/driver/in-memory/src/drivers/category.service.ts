@@ -28,16 +28,16 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
 
   get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse> {
     const params = new HttpParams()
-      .set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
-      .set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);
+      .set('pageSize', categoryRequest.pageSize ? categoryRequest.pageSize.toString() : null)
+      .set('currentPage', categoryRequest.currentPage ? categoryRequest.currentPage.toString() : null);
 
     return this.http.get<DaffGetCategoryResponse>(this.url + categoryRequest.id, { params });
   }
 
   getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse> {
     const params = new HttpParams()
-      .set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
-      .set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);
+      .set('pageSize', categoryRequest.pageSize ? categoryRequest.pageSize.toString() : null)
+      .set('currentPage', categoryRequest.currentPage ? categoryRequest.currentPage.toString() : null);
 
     return this.http.get<DaffGetCategoryResponse>(`${this.url}${daffUriTruncateLeadingSlash(categoryRequest.url)}`, { params });
   }

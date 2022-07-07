@@ -54,8 +54,8 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
       });
 
       const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(`${categoryService.url}`));
-      expect(req.request.params.has('page_size')).toBeTruthy();
-      expect(req.request.params.has('current_page')).toBeTruthy();
+      expect(req.request.params.has('pageSize')).toBeTruthy();
+      expect(req.request.params.has('currentPage')).toBeTruthy();
       expect(req.request.method).toBe('GET');
 
       req.flush({ category: mockCategory, products: mockProducts });
@@ -88,7 +88,7 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
       categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe();
 
       const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
-      expect(req.request.params.has('current_page')).toBeTruthy();
+      expect(req.request.params.has('currentPage')).toBeTruthy();
 
       req.flush({ category: mockCategory, products: mockProducts });
     });
@@ -100,7 +100,7 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
       categoryService.getByUrl({ url: `/${url}`, kind: DaffCategoryRequestKind.URL }).subscribe();
 
       const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(categoryService.url));
-      expect(req.request.params.has('page_size')).toBeTruthy();
+      expect(req.request.params.has('pageSize')).toBeTruthy();
 
       req.flush({ category: mockCategory, products: mockProducts });
     });

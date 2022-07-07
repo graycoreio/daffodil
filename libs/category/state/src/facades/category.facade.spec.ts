@@ -78,7 +78,7 @@ describe('DaffCategoryFacade', () => {
     stubCategoryMetadata.filters = daffProductFilterArrayToDict(categoryFilterFactory.createMany());
     stubProduct = productFactory.create();
     stubCategoryMetadata.id = stubCategory.id;
-    stubCategoryMetadata.product_ids = [stubProduct.id];
+    stubCategoryMetadata.ids = [stubProduct.id];
     stubCategory.product_ids = [stubProduct.id];
 
     store = TestBed.inject(Store);
@@ -136,7 +136,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the current page for the current category', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.current_page });
+      const expected = cold('a', { a: stubCategoryMetadata.currentPage });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.currentPage$).toBeObservable(expected);
     });
@@ -149,7 +149,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the total number of pages for the current category', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.total_pages });
+      const expected = cold('a', { a: stubCategoryMetadata.totalPages });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.totalPages$).toBeObservable(expected);
     });
@@ -162,7 +162,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the total number of pages for the current category', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.total_products });
+      const expected = cold('a', { a: stubCategoryMetadata.count });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.totalProducts$).toBeObservable(expected);
     });
@@ -175,7 +175,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the page size for the current category page configuration', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.page_size });
+      const expected = cold('a', { a: stubCategoryMetadata.pageSize });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.pageSize$).toBeObservable(expected);
     });
@@ -201,7 +201,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the sort options for the current category', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.sort_options.options });
+      const expected = cold('a', { a: stubCategoryMetadata.sortOptions.options });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.sortOptions$).toBeObservable(expected);
     });
@@ -225,7 +225,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the applied sort option on the current category', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.applied_sort_option });
+      const expected = cold('a', { a: stubCategoryMetadata.appliedSortOption });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.appliedSortOption$).toBeObservable(expected);
     });
@@ -238,7 +238,7 @@ describe('DaffCategoryFacade', () => {
     });
 
     it('should return an observable of the applied sort direction on the current category', () => {
-      const expected = cold('a', { a: stubCategoryMetadata.applied_sort_direction });
+      const expected = cold('a', { a: stubCategoryMetadata.appliedSortDirection });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       expect(facade.appliedSortDirection$).toBeObservable(expected);
     });
@@ -342,8 +342,8 @@ describe('DaffCategoryFacade', () => {
 
     it('should return true when the category has no products', () => {
       const expected = cold('a', { a: true });
-      stubCategoryMetadata.product_ids = [];
-      stubCategoryMetadata.total_products = 0;
+      stubCategoryMetadata.ids = [];
+      stubCategoryMetadata.count = 0;
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: []}));
       expect(facade.isCategoryEmpty$).toBeObservable(expected);
     });

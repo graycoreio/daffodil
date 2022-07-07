@@ -21,18 +21,18 @@ import { buildMetadataFromRequest } from './pure/build-metadata-from-request';
 export const initialState: DaffCategoryReducerState = {
   categoryPageMetadata: {
     id: null,
-    applied_sort_option: null,
-    applied_sort_direction: null,
-    current_page: null,
-    page_size: null,
-    total_pages: null,
+    appliedSortOption: null,
+    appliedSortDirection: null,
+    currentPage: null,
+    pageSize: null,
+    totalPages: null,
     filters: {},
-    sort_options: {
+    sortOptions: {
       default: null,
       options: [],
     },
-    total_products: null,
-    product_ids: [],
+    count: null,
+    ids: [],
   },
   daffState: DaffState.Stable,
   categoryLoading: false,
@@ -69,7 +69,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         daffState: DaffState.Mutating,
         categoryPageMetadata: {
           ...state.categoryPageMetadata,
-          page_size: action.pageSize,
+          pageSize: action.pageSize,
         },
       };
 
@@ -80,7 +80,7 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         daffState: DaffState.Mutating,
         categoryPageMetadata: {
           ...state.categoryPageMetadata,
-          current_page: action.currentPage,
+          currentPage: action.currentPage,
         },
       };
 
@@ -91,8 +91,8 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         daffState: DaffState.Mutating,
         categoryPageMetadata: {
           ...state.categoryPageMetadata,
-          applied_sort_option: action.sort.option,
-          applied_sort_direction: action.sort.direction,
+          appliedSortOption: action.sort.option,
+          appliedSortDirection: action.sort.direction,
         },
       };
 
@@ -161,14 +161,15 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
         categoryPageMetadata: {
           ...state.categoryPageMetadata,
           id: action.response.categoryPageMetadata.id,
-          current_page: action.response.categoryPageMetadata.current_page,
-          page_size: action.response.categoryPageMetadata.page_size,
+          currentPage: action.response.categoryPageMetadata.currentPage,
+          pageSize: action.response.categoryPageMetadata.pageSize,
           filters: action.response.categoryPageMetadata.filters,
-          sort_options: action.response.categoryPageMetadata.sort_options,
-          total_pages: action.response.categoryPageMetadata.total_pages,
-          total_products: action.response.categoryPageMetadata.total_products,
-          product_ids: action.response.categoryPageMetadata.product_ids,
-          applied_sort_option: state.categoryPageMetadata.applied_sort_option || action.response.categoryPageMetadata.sort_options.default,
+          sortOptions: action.response.categoryPageMetadata.sortOptions,
+          totalPages: action.response.categoryPageMetadata.totalPages,
+          count: action.response.categoryPageMetadata.count,
+          ids: action.response.categoryPageMetadata.ids,
+          appliedSortOption: action.response.categoryPageMetadata.appliedSortOption || action.response.categoryPageMetadata.sortOptions.default,
+          appliedSortDirection: action.response.categoryPageMetadata.appliedSortDirection,
         },
       };
 

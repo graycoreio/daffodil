@@ -52,8 +52,11 @@ describe('DaffCategoryPageUrlResolver', () => {
   const actions$: Observable<any> = null;
   let categoryResolver: DaffCategoryPageUrlResolver;
   let store: Store<DaffCategoryReducersState>;
+
   let categoryFactory: DaffCategoryFactory;
   let productFactory: DaffProductFactory;
+  let categoryMetadataFactory: DaffCategoryPageMetadataFactory;
+
   let stubCategory: DaffCategory;
   let route: ActivatedRoute;
   let router: Router;
@@ -93,6 +96,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       categoryResolver = TestBed.inject(DaffCategoryPageUrlResolver);
       categoryFactory = TestBed.inject(DaffCategoryFactory);
       productFactory = TestBed.inject(DaffProductFactory);
+      categoryMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
       stubCategory = categoryFactory.create();
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
@@ -112,11 +116,11 @@ describe('DaffCategoryPageUrlResolver', () => {
         tick();
       }));
 
-      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
         spyOn(store, 'dispatch');
         categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
         expect(store.dispatch).toHaveBeenCalledWith(
-          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
         );
       });
     });
@@ -133,11 +137,11 @@ describe('DaffCategoryPageUrlResolver', () => {
         tick();
       }));
 
-      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
         spyOn(store, 'dispatch');
         categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
         expect(store.dispatch).toHaveBeenCalledWith(
-          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
         );
       });
     });
@@ -165,7 +169,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       store.dispatch(new DaffCategoryPageLoadSuccess({
         products: [productFactory.create()],
         category: stubCategory,
-        categoryPageMetadata: new DaffCategoryPageMetadataFactory().create(),
+        categoryPageMetadata: categoryMetadataFactory.create(),
       }));
     }));
 
@@ -243,11 +247,11 @@ describe('DaffCategoryPageUrlResolver', () => {
         tick();
       }));
 
-      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
         spyOn(store, 'dispatch');
         categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
         expect(store.dispatch).toHaveBeenCalledWith(
-          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
         );
       });
     });
@@ -264,11 +268,11 @@ describe('DaffCategoryPageUrlResolver', () => {
         tick();
       }));
 
-      it('should dispatch a DaffCategoryPageLoadByUrl action with the current_page', () => {
+      it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
         spyOn(store, 'dispatch');
         categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
         expect(store.dispatch).toHaveBeenCalledWith(
-          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, current_page: page }),
+          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
         );
       });
     });

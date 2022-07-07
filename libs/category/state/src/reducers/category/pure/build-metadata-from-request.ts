@@ -7,10 +7,10 @@ import {
 type MetadataRequestIntersection = keyof DaffCategoryPageMetadata & keyof DaffCategoryRequest;
 
 const allowedMetadataKeys: MetadataRequestIntersection[] = [
-  'applied_sort_option',
-  'applied_sort_direction',
-  'current_page',
-  'page_size',
+  'appliedSortOption',
+  'appliedSortDirection',
+  'currentPage',
+  'pageSize',
 ];
 
 export const buildMetadataFromRequest = (request: DaffCategoryRequest): Partial<DaffCategoryPageMetadata> =>

@@ -6,10 +6,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageMetadata implements DaffCategoryPageMetadata {
   id = faker.datatype.uuid();
-  total_products = faker.datatype.number({ min: 1, max: 3 });
-  product_ids = [faker.datatype.number({ min: 1, max: 100 }).toString()];
+  count = faker.datatype.number({ min: 1, max: 3 });
+  ids = [faker.datatype.number({ min: 1, max: 100 }).toString()];
 
-  sort_options = {
+  sortOptions = {
     default: 'position',
     options: [
       {
@@ -26,12 +26,12 @@ export class MockCategoryPageMetadata implements DaffCategoryPageMetadata {
       },
   	],
   };
-  applied_sort_option = 'position';
-  applied_sort_direction = null;
+  appliedSortOption = 'position';
+  appliedSortDirection = null;
 
-  current_page = 1;
-  total_pages = faker.datatype.number({ min: 1, max: 4 });
-  page_size = 20;
+  currentPage = 1;
+  totalPages = faker.datatype.number({ min: 1, max: 4 });
+  pageSize = 20;
 
   filters = {};
 }
