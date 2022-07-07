@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffProductCollectionMetadata } from '@daffodil/product';
 
-import { DaffProductCollectionMetadataFactory } from './collection-metadata.factory';
+import { DaffProductCollectionMetadataFactory } from './metadata.factory';
 
 describe('@daffodil/product/testing | DaffProductCollectionMetadataFactory', () => {
   let factory: DaffProductCollectionMetadataFactory;
@@ -29,14 +29,6 @@ describe('@daffodil/product/testing | DaffProductCollectionMetadataFactory', () 
     });
 
     it('should return a DaffProductCollectionMetadata with all required fields defined', () => {
-      expect(result.ids).toBeDefined();
-      expect(result.count).toBeDefined();
-      expect(result.currentPage).toBeDefined();
-      expect(result.totalPages).toBeDefined();
-      expect(result.pageSize).toBeDefined();
-      expect(result.appliedSortDirection).toBeDefined();
-      expect(result.appliedSortOption).toBeDefined();
-      expect(result.sortOptions).toBeDefined();
       expect(result.filters).toBeDefined();
     });
   });
