@@ -12,12 +12,9 @@ import {
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffProductCollectionRequest } from '@daffodil/product';
-import {
-  DaffProductCollectionRequestQueryParamTransform,
-  DAFF_PRODUCT_COLLECTION_QUERY_PARAMS,
-  DAFF_PRODUCT_COLLECTION_QUERY_PARAM_TRANSFORMS,
-} from '@daffodil/product/routing';
+import { DaffProductCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
 
+import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetCollectionRequestFromRoute } from './get-request-from-route.service';
 
 @Component({ template: '' })
@@ -33,8 +30,10 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
   let result: DaffProductCollectionRequest;
 
   beforeEach(() => {
-    customPageSizeQp = 'custom_page_size';
-    customCurrentPageTransform = val => Number(val);
+    customPageSizeQp = 'custom_pageSize';
+    customCurrentPageTransform = {
+      request: val => Number(val),
+    };
 
     TestBed.configureTestingModule({
       imports: [
@@ -46,16 +45,16 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
         ]),
       ],
       providers: [
+        DaffProductGetCollectionRequestFromRoute,
         {
-          provide: DAFF_PRODUCT_COLLECTION_QUERY_PARAMS,
+          provide: DAFF_PRODUCT_ROUTING_CONFIG,
           useValue: {
-            pageSize: customPageSizeQp,
-          },
-        },
-        {
-          provide: DAFF_PRODUCT_COLLECTION_QUERY_PARAM_TRANSFORMS,
-          useValue: {
-            currentPage: customCurrentPageTransform,
+            params: {
+              pageSize: customPageSizeQp,
+            },
+            transforms:  {
+              currentPage: customCurrentPageTransform,
+            },
           },
         },
       ],
@@ -122,7 +121,7 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
     }));
 
     it('should set the request field to the value returned by the custom transform', () => {
-      expect(result.currentPage).toEqual(customCurrentPageTransform(currentPageValue));
+      expect(result.currentPage).toEqual(customCurrentPageTransform.request(currentPageValue));
     });
   });
 });
