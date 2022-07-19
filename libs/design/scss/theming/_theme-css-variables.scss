@@ -2,7 +2,7 @@
 @use '../core';
 @use 'theming';
 
-@mixin daff-theme-css-variables($theme) {
+@mixin daff-root($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$primary: map.get($theme, primary);
@@ -12,22 +12,32 @@
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
+	--daff-theme-rgb: #{red($base), green($base), blue($base)};
+	--daff-theme-contrast-rgb: #{red($base-contrast), green($base-contrast),
+		blue($base-contrast)};
+	--daff-theme: #{$base};
+	--daff-theme-contrast: #{$base-contrast};
+	--daff-theme-primary: #{theming.daff-color($primary)};
+	--daff-theme-secondary: #{theming.daff-color($secondary)};
+	--daff-theme-tertiary: #{theming.daff-color($tertiary)};
+	--daff-theme-warn: #{theming.daff-color(theming.$daff-bronze, 60)};
+	--daff-theme-success: #{theming.daff-color(theming.$daff-green, 60)};
+	--daff-theme-danger: #{theming.daff-color(theming.$daff-red, 60)};
+	--daff-theme-white: #{$white};
+	--daff-theme-black: #{$black};
+	--daff-theme-gray: #{theming.daff-color($gray)};
+}
+
+@mixin daff-theme-css-variables($theme, $asRoot: true) {
 	// @docs
 	//
 	// Global theming css variables
-	:root {
-		--daff-theme-rgb: #{red($base), green($base), blue($base)};
-		--daff-theme-contrast-rgb: #{red($base-contrast), green($base-contrast), blue($base-contrast)};
-		--daff-theme: #{$base};
-		--daff-theme-contrast: #{$base-contrast};
-		--daff-theme-primary: #{theming.daff-color($primary)};
-		--daff-theme-secondary: #{theming.daff-color($secondary)};
-		--daff-theme-tertiary: #{theming.daff-color($tertiary)};
-		--daff-theme-warn: #{theming.daff-color(theming.$daff-bronze, 60)};
-		--daff-theme-success: #{theming.daff-color(theming.$daff-green, 60)};
-		--daff-theme-danger: #{theming.daff-color(theming.$daff-red, 60)};
-		--daff-theme-white: #{$white};
-		--daff-theme-black: #{$black};
-		--daff-theme-gray: #{theming.daff-color($gray)};
+	@if ($asRoot) {
+		:root {
+			@include daff-root($theme);
+		}
+		else {
+			@include daff-root($theme);
+		}
 	}
-};
+}
