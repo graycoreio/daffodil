@@ -2,48 +2,56 @@ import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
 import {
+  DaffCategory,
+  DaffCategoryPageMetadata,
+  DaffCategoryRequestKind,
+} from '@daffodil/category';
+import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import {
+  DaffProductFactory,
+  DaffProductTestingModule,
+} from '@daffodil/product/testing';
 
 import { DaffTestingCategoryService } from './category.service';
 
-describe('Driver | Testing | Category | CategoryService', () => {
-  let categoryService;
+describe('@daffodil/category/driver/testing | DaffTestingCategoryService', () => {
+  let categoryService: DaffTestingCategoryService;
 
-  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
-  const category = categoryFactory.create();
-  const mockCategoryFactory = jasmine.createSpyObj('DaffCategoryFactory', ['create']);
-  mockCategoryFactory.create.and.returnValue(category);
-
-  const categoryPageMetadataFactory: DaffCategoryPageMetadataFactory = new DaffCategoryPageMetadataFactory();
-  const categoryPageMetadata = categoryPageMetadataFactory.create();
-  const mockCategoryPageMetadataFactory = jasmine.createSpyObj('DaffCategoryPageMetadataFactory', ['create']);
-  mockCategoryPageMetadataFactory.create.and.returnValue(categoryPageMetadata);
-
+  let categoryFactory: DaffCategoryFactory;
   let productFactory: DaffProductFactory;
+  let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
+
+  let categoryPageMetadata: DaffCategoryPageMetadata;
+  let category: DaffCategory;
   let products: DaffProduct[];
-  let mockProductFactory: jasmine.SpyObj<DaffProductFactory>;
 
   beforeEach(() => {
-    mockProductFactory = jasmine.createSpyObj('DaffProductFactory', ['createMany']);
-
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
       providers: [
-        { provide: DaffCategoryFactory, useValue: mockCategoryFactory },
-        { provide: DaffCategoryPageMetadataFactory, useValue: mockCategoryPageMetadataFactory },
-        { provide: DaffProductFactory, useValue: mockProductFactory },
         DaffTestingCategoryService,
       ],
     });
 
-    productFactory = TestBed.inject(DaffProductFactory);
     categoryService = TestBed.inject(DaffTestingCategoryService);
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
 
     products = productFactory.createMany(3);
-    mockProductFactory.createMany.and.returnValue(products);
+    category = categoryFactory.create();
+    categoryPageMetadata = categoryPageMetadataFactory.create();
+
+    spyOn(categoryPageMetadataFactory, 'create').and.returnValue(categoryPageMetadata);
+    spyOn(categoryFactory, 'create').and.returnValue(category);
+    spyOn(productFactory, 'createMany').and.returnValue(products);
   });
 
   it('should be created', () => {
@@ -54,7 +62,10 @@ describe('Driver | Testing | Category | CategoryService', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
       const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.get('id')).toBeObservable(expected);
+      expect(categoryService.get({
+        kind: DaffCategoryRequestKind.ID,
+        id: 'id',
+      })).toBeObservable(expected);
     });
   });
 
@@ -62,7 +73,10 @@ describe('Driver | Testing | Category | CategoryService', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
       const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.getByUrl('url')).toBeObservable(expected);
+      expect(categoryService.getByUrl({
+        kind: DaffCategoryRequestKind.URL,
+        url: 'url',
+      })).toBeObservable(expected);
     });
   });
 });
