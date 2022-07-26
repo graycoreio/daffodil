@@ -6,3 +6,5 @@ export * from './metadata.interface';
 export * from './page-out-of-bounds.error';
 export * from './error-map';
 export * from './request.interface';
+export * from './build-metadata';
+export * from './build-request';
