@@ -30,7 +30,7 @@ export class MockCategory implements DaffCategory {
   providedIn: 'root',
 })
 export class DaffCategoryFactory extends DaffModelFactory<DaffCategory>{
-  constructor(){
+  constructor() {
     super(MockCategory);
   }
 }
