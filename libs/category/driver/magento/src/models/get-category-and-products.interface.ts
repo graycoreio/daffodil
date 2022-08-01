@@ -5,11 +5,14 @@ import {
   MagentoProductSortFields,
 } from '@daffodil/product/driver/magento';
 
-export interface MagentoGetProductsResponse {
+import { MagentoCategory } from './category';
+
+export interface MagentoGetCategoryAndProductsResponse {
+  categoryList: MagentoCategory[];
   products: {
     items: MagentoProduct[];
-    total_count: number;
     page_info: MagentoProductPageInfo;
+    total_count: number;
     aggregations: MagentoAggregation[];
     sort_fields: MagentoProductSortFields;
   };

@@ -12,16 +12,17 @@ import {
   magentoProductSortFieldsFragment,
 } from '@daffodil/product/driver/magento';
 
-export const DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME = 'MagentoGetProducts';
-// TODO(griest024): should this be using the product preview fragment instead?
-/**
- * This query only exists because products and their associated aggregations/filter cannot
- * be retrieved through a category call.
- */
-export const MagentoGetProductsQuery = (extraProductFragments: DocumentNode[] = []) => gql`
-query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)
+import { magentoCategoryTreeFragment } from './fragments/public_api';
+
+export const DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME = 'MagentoGetCategoryAndProducts';
+
+export const MagentoGetCategoryAndProductsQuery = (extraProductFragments: DocumentNode[] = []) => gql`
+query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: CategoryFilterInput, $productFilter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)
 {
-	products(filter: $filter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)
+  categoryList(filters: $categoryFilters) {
+		...categoryTree
+	}
+	products(filter: $productFilter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)
 	{
 		total_count
 		items {
@@ -39,6 +40,7 @@ query ${DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME}($filter: ProductAttributeFilterInp
 		}
 	}
 }
+${magentoCategoryTreeFragment}
 ${magentoProductFragment}
 ${magentoProductPageInfoFragment}
 ${magentoProductSortFieldsFragment}

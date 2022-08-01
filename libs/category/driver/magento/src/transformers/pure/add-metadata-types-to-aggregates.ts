@@ -3,12 +3,12 @@ import {
   magentoProductGetMatchedAttributeType,
 } from '@daffodil/product/driver/magento';
 
-import { MagentoGetProductsResponse } from '../../models/public_api';
+import { MagentoGetCategoryAndProductsResponse } from '../../models/public_api';
 
 export function addMetadataTypesToProductsResponse(
   attributeResponse: MagentoProductGetFilterTypesResponse,
-  aggregationResponse: MagentoGetProductsResponse,
-): MagentoGetProductsResponse {
+  aggregationResponse: MagentoGetCategoryAndProductsResponse,
+): MagentoGetCategoryAndProductsResponse {
   return {
     ...aggregationResponse,
     products: {

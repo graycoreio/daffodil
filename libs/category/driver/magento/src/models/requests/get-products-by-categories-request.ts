@@ -3,8 +3,9 @@ import {
   MagentoSortFieldAction,
 } from '@daffodil/product/driver/magento';
 
-export interface MagentoGetProductsByCategoriesRequest {
-  filter: MagentoProductFilters;
+export interface MagentoGetCategoryAndProductsRequest {
+  productFilter: MagentoProductFilters;
+  categoryFilters: MagentoProductFilters;
   search?: string;
   pageSize?: number;
   currentPage?: number;

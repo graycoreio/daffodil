@@ -18,8 +18,10 @@ import {
   DaffCategoryMagentoDriverConfig,
   MAGENTO_CATEGORY_CONFIG_TOKEN,
 } from './interfaces/public_api';
-import { DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME } from './queries/get-category';
-import { DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME } from './queries/get-products';
+import {
+  DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
+  DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME,
+} from './queries/public_api';
 import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 import { DaffMagentoCategoryPageConfigTransformerService } from './transformers/category-page-config-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
@@ -49,17 +51,12 @@ export class DaffCategoryMagentoDriverModule {
         DaffMagentoAppliedFiltersTransformService,
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_CATEGORY_QUERY_NAME,
+          useValue: DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
           multi: true,
         },
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME,
-          multi: true,
-        },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_PRODUCTS_QUERY_NAME,
+          useValue: DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME,
           multi: true,
         },
         {
