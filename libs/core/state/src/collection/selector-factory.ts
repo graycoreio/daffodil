@@ -9,38 +9,38 @@ import {
 } from '@daffodil/core';
 
 /**
- * An interface to describe all selectors related to the product collection metadata.
+ * An interface to describe all selectors related to the collection metadata.
  */
 export interface DaffCollectionMemoizedSelectors<
   TState,
   TMetadata extends DaffCollectionMetadata = DaffCollectionMetadata
 > {
   /**
-   * Selects the metadata for the product collection.
+   * Selects the metadata for the collection.
    */
   selectCollectionMetadata: MemoizedSelector<TState, TMetadata>;
   /**
-   * Builds a request that matches the current product collection.
+   * Builds a request that matches the current collection.
    */
   selectCollectionRequest: MemoizedSelector<TState, DaffCollectionRequest>;
   /**
-   * Selects the total number of products of the product collection.
+   * Selects the total number of items of the collection.
    */
   selectCollectionCount: MemoizedSelector<TState, TMetadata['count']>;
   /**
-   * Selects the current page of products of the product collection.
+   * Selects the current page of items of the collection.
    */
   selectCollectionCurrentPage: MemoizedSelector<TState, TMetadata['currentPage']>;
   /**
-   * Selects the total number of pages of products that exist in the product collection.
+   * Selects the total number of pages of items that exist in the collection.
    */
   selectCollectionTotalPages: MemoizedSelector<TState, TMetadata['totalPages']>;
   /**
-   * Selects the number of products on each product collection.
+   * Selects the number of items on each collection.
    */
   selectCollectionPageSize: MemoizedSelector<TState, TMetadata['pageSize']>;
   /**
-   * Selects the sort options that may be applied to the product collection.
+   * Selects the sort options that may be applied to the collection.
    */
   selectCollectionSortOptions: MemoizedSelector<TState, TMetadata['sortOptions']['options']>;
   /**
@@ -58,9 +58,9 @@ export interface DaffCollectionMemoizedSelectors<
 }
 
 /**
- * Creates product collection selectors.
+ * Creates collection selectors.
  *
- * @param selectCollectionState A selector for the particular product collection state upon which the returned selectors should operate.
+ * @param selectCollectionState A selector for the particular collection state upon which the returned selectors should operate.
  */
 export const daffCollectionSelectorFactory = <
   TState,

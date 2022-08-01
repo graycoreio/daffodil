@@ -24,7 +24,7 @@ const featureSelector = createFeatureSelector<DaffCollectionMetadata>('test');
 describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
 
   let store: MockStore<State>;
-  let productCollectionMetadataFactory: DaffCollectionMetadataFactory;
+  let collectionMetadataFactory: DaffCollectionMetadataFactory;
 
   let stubCollectionMetadata: DaffCollectionMetadata;
   const selectors = daffCollectionSelectorFactory(featureSelector);
@@ -41,9 +41,9 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
     });
 
     store = TestBed.inject(MockStore);
-    productCollectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
+    collectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
 
-    stubCollectionMetadata = productCollectionMetadataFactory.create();
+    stubCollectionMetadata = collectionMetadataFactory.create();
 
     store.setState({
       test: stubCollectionMetadata,
@@ -51,7 +51,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionMetadata', () => {
-    it('selects the product collection metadata', () => {
+    it('selects the collection metadata', () => {
       const selector = store.pipe(select(selectors.selectCollectionMetadata));
       const expected = cold('a', { a: stubCollectionMetadata });
       expect(selector).toBeObservable(expected);
@@ -59,7 +59,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionRequest', () => {
-    it('builds a product collection request', () => {
+    it('builds a collection request', () => {
       const selector = store.pipe(select(selectors.selectCollectionRequest));
       const expected = cold('a', { a: {
         appliedSortOption: stubCollectionMetadata.appliedSortOption,
@@ -72,7 +72,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionCount', () => {
-    it('selects the current page of the product collection', () => {
+    it('selects the current page of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionCount));
       const expected = cold('a', { a: stubCollectionMetadata.count });
       expect(selector).toBeObservable(expected);
@@ -80,7 +80,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionCurrentPage', () => {
-    it('selects the current page of the product collection', () => {
+    it('selects the current page of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionCurrentPage));
       const expected = cold('a', { a: stubCollectionMetadata.currentPage });
       expect(selector).toBeObservable(expected);
@@ -88,7 +88,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionTotalPages', () => {
-    it('selects the total pages of products of the product collection', () => {
+    it('selects the total pages of items of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionTotalPages));
       const expected = cold('a', { a: stubCollectionMetadata.totalPages });
       expect(selector).toBeObservable(expected);
@@ -96,7 +96,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionPageSize', () => {
-    it('selects the page size of the product collection', () => {
+    it('selects the page size of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionPageSize));
       const expected = cold('a', { a: stubCollectionMetadata.pageSize });
       expect(selector).toBeObservable(expected);
@@ -104,7 +104,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionSortOptions', () => {
-    it('selects the sort options of the product collection', () => {
+    it('selects the sort options of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionSortOptions));
       const expected = cold('a', { a: stubCollectionMetadata.sortOptions.options });
       expect(selector).toBeObservable(expected);
@@ -112,7 +112,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionAppliedSortOption', () => {
-    it('selects the applied sort option of the product collection page', () => {
+    it('selects the applied sort option of the collection page', () => {
       const selector = store.pipe(select(selectors.selectCollectionAppliedSortOption));
       const expected = cold('a', { a: stubCollectionMetadata.appliedSortOption });
       expect(selector).toBeObservable(expected);
@@ -120,7 +120,7 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   });
 
   describe('selectCollectionAppliedSortDirection', () => {
-    it('selects the applied sort direction of the product collection page', () => {
+    it('selects the applied sort direction of the collection page', () => {
       const selector = store.pipe(select(selectors.selectCollectionAppliedSortDirection));
       const expected = cold('a', { a: stubCollectionMetadata.appliedSortDirection });
       expect(selector).toBeObservable(expected);
