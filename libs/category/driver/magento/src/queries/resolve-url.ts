@@ -8,8 +8,11 @@ export const DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME = 'MagentoResolveCateg
  */
 export const MagentoResolveCategoryUrl = gql`
 	query ${DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME}($url: String!) {
-		urlResolver(url: $url) {
-			entity_uid
+		route(url: $url) {
+      __typename
+			... on CategoryInterface {
+				uid
+			}
 		}
 	}
 `;

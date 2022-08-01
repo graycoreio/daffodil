@@ -188,8 +188,8 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
       },
     };
     mockCategoryUrlResolverResponse = {
-      urlResolver: {
-        entity_uid: mockMagentoCategory.uid,
+      route: {
+        uid: mockMagentoCategory.uid,
       },
     };
   });

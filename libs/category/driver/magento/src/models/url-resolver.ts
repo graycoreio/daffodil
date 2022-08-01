@@ -1,3 +1,4 @@
 export interface MagentoCategoryUrlResolver {
-	entity_uid?: string;
+  __typename?: string;
+  uid: string;
 }

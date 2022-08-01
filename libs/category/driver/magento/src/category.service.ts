@@ -129,7 +129,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         ]),
         variables: this.getCategoryAndProductsQueryVariables({
           ...categoryRequest,
-          id: category.data.urlResolver?.entity_uid,
+          id: category.data.route?.uid,
           kind: DaffCategoryRequestKind.ID,
         }),
       }).pipe(
