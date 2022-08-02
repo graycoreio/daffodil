@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffProductCollectionRequest,
   DaffProductFilterRequest,
   DaffProductFilterToggleRequest,
 } from '@daffodil/product';
@@ -50,37 +49,4 @@ export interface DaffProductCollectionToggleFilter extends Action {
    * Filter to be toggled on the product collection.
    */
   readonly filter: DaffProductFilterToggleRequest;
-}
-
-/**
- * An action for changing the number of products shown on each page for this product collection.
- */
-export interface DaffProductCollectionChangePageSize extends Action {
-  /**
-   * The number of products per page.
-   */
-  readonly pageSize: number;
-}
-
-/**
- * An action for changing the current page of products for this product collection.
- */
-export interface DaffProductCollectionChangeCurrentPage extends Action {
-  /**
-   * The current page of products for this product collection.
-   */
-  readonly currentPage: number;
-}
-
-/**
- * An action for changing the sorting option for this product collection.
- */
-export interface DaffProductCollectionChangeSortingOption extends Action {
-  /**
-   * The sort option to be applied.
-   */
-  readonly sort: {
-    option: DaffProductCollectionRequest['appliedSortOption'];
-    direction: DaffProductCollectionRequest['appliedSortDirection'];
-  };
 }
