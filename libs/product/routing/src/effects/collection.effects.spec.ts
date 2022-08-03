@@ -23,6 +23,11 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
+  DaffCollectionChangePageSize,
+  DaffCollectionChangeCurrentPage,
+  DaffCollectionChangeSortingOption,
+} from '@daffodil/core/state';
+import {
   DaffProductCollectionRequest,
   DaffProductCollection,
   daffProductFilterArrayToDict,
@@ -33,9 +38,6 @@ import {
 import { DaffProductGetQueryParamsFromRequest } from '@daffodil/product/routing';
 import {
   DaffProductCollectionApplyFilters,
-  DaffProductCollectionChangeCurrentPage,
-  DaffProductCollectionChangePageSize,
-  DaffProductCollectionChangeSortingOption,
   DaffProductCollectionClearFilters,
   DaffProductCollectionRemoveFilters,
   DaffProductCollectionReplaceFilters,
@@ -266,7 +268,7 @@ describe('@daffodil/product/routing | DaffProductRoutingCollectionEffects', () =
 
   describe('when changePageSize is triggered', () => {
     let toggleRequest: DaffProductFilterToggleRequest;
-    let action: DaffProductCollectionChangePageSize;
+    let action: DaffCollectionChangePageSize;
 
     beforeEach(() => {
       toggleRequest = filterToggleRequestFactory.create();
@@ -281,7 +283,7 @@ describe('@daffodil/product/routing | DaffProductRoutingCollectionEffects', () =
 
   describe('when changeCurrentPage is triggered', () => {
     let toggleRequest: DaffProductFilterToggleRequest;
-    let action: DaffProductCollectionChangeCurrentPage;
+    let action: DaffCollectionChangeCurrentPage;
 
     beforeEach(() => {
       toggleRequest = filterToggleRequestFactory.create();
@@ -296,7 +298,7 @@ describe('@daffodil/product/routing | DaffProductRoutingCollectionEffects', () =
 
   describe('when changeSorting is triggered', () => {
     let toggleRequest: DaffProductFilterToggleRequest;
-    let action: DaffProductCollectionChangeSortingOption;
+    let action: DaffCollectionChangeSortingOption;
 
     beforeEach(() => {
       toggleRequest = filterToggleRequestFactory.create();
