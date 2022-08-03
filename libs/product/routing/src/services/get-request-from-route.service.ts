@@ -10,17 +10,7 @@ import {
   DaffProductRoutingConfig,
   DAFF_PRODUCT_ROUTING_CONFIG,
 } from '../config/public_api';
-
-/**
- * A list of request fields that can be seeded from query params.
- */
-export const DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS = [
-  'filterRequests',
-  'appliedSortOption',
-  'appliedSortDirection',
-  'currentPage',
-  'pageSize',
-];
+import { DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS } from '../constants/public_api';
 
 /**
  * Builds a {@link DaffProductCollectionRequest} from the query params of the passed route.
@@ -38,7 +28,8 @@ export class DaffProductGetCollectionRequestFromRoute {
       const qp = this.config.params[field] || field;
       if (queryParamMap.has(qp)) {
         const qpVal = queryParamMap.get(qp);
-        acc[field] = this.config.transforms?.[field]?.request?.(qpVal) || qpVal;
+        // no idea why field needs to be typecasted
+        acc[(<string>field)] = this.config.transforms?.[field]?.request?.(qpVal) || qpVal;
       }
       return acc;
     }, {});
