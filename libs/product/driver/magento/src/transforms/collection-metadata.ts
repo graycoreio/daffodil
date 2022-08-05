@@ -20,11 +20,12 @@ export const magentoProductCollectionMetadataTransform = (
   pageInfo: MagentoProductPageInfo,
   sortFields: MagentoProductSortFields,
   products: MagentoProduct[],
+  count: number,
   appliedSortOption?: string,
   appliedSortDirection?: DaffSortDirectionEnum,
 ): DaffProductCollectionMetadata => ({
   ids: products.map(({ sku }) => sku),
-  count: products.length,
+  count,
   pageSize: pageInfo.page_size,
   currentPage: pageInfo.current_page,
   totalPages: pageInfo.total_pages,

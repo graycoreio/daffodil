@@ -44,9 +44,9 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
     sortFields = sortFieldsFactory.create();
     aggregates = [];
     products = productFactory.createMany(3);
-    count = products.length;
+    count = 54;
 
-    result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products);
+    result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count);
   });
 
   it('should transform page info', () => {
@@ -70,14 +70,14 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
     });
 
     it('should complete successfully', () => {
-      expect(magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products)).toBeTruthy();
+      expect(magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count)).toBeTruthy();
     });
   });
 
   describe('when the aggregate is a select', () => {
     beforeEach(() => {
       aggregates = selectAggregateFactory.createMany(1);
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count);
     });
 
     it('should return a DaffProductCollectionMetadata with an equal filter type', () => {
@@ -88,7 +88,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
   describe('when the aggregate is a price', () => {
     beforeEach(() => {
       aggregates = priceAggregateFactory.createMany(1);
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count);
     });
 
     it('should return a DaffProductCollectionMetadata with a range filter type', () => {
@@ -101,7 +101,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
 
     beforeEach(() => {
       sortDirection = DaffSortDirectionEnum.Descending;
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, undefined, sortDirection);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count, undefined, sortDirection);
     });
 
     it('should set that value', () => {
@@ -111,7 +111,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
 
   describe('when the applied sort option is not passed', () => {
     beforeEach(() => {
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, undefined);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count, undefined);
     });
 
     it('should set that value to the default sort option', () => {
@@ -124,7 +124,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
 
     beforeEach(() => {
       sortOption = 'option';
-      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, sortOption);
+      result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count, sortOption);
     });
 
     it('should set that value', () => {
