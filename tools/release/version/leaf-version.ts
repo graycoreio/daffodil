@@ -12,16 +12,16 @@ import { RELEASE_CONFIG } from '../config';
 interface PackageJson {
   name: string;
   version: string;
-  devDependencies: {
+  devDependencies?: {
     [key: string]: string;
   };
-  optionalDependencies: {
+  optionalDependencies?: {
     [key: string]: string;
   };
-  peerDependencies: {
+  peerDependencies?: {
     [key: string]: string;
   };
-  dependencies: {
+  dependencies?: {
     [key: string]: string;
   };
 }
@@ -131,9 +131,23 @@ const updateDaffodilOptionalDependenciesFromNewVersion = (lib: PackageJson, root
 };
 
 const validateNoRemainingPlaceholders = (lib: PackageJson) => {
-  if(JSON.stringify(lib).includes('0.0.0-PLACEHOLDER')) {
-    throw new Error(`Placeholder found in distributable package ${lib.name} after transformation`);
+  const placeholders = [
+    'devDependencies',
+    'optionalDependencies',
+    'peerDependencies',
+    'dependencies',
+  ].reduce((acc, depType) => {
+    if (lib[depType]) {
+      return acc.concat(Object.keys(lib[depType]).filter(dep => lib[depType][dep] === '0.0.0-PLACEHOLDER'));
+    }
+
+    return acc;
+  }, []);
+
+  if (placeholders.length > 0) {
+    throw new Error(`Placeholder found in distributable package ${lib.name} after transformation; deps: ${placeholders}`);
   };
+
   return lib;
 };
 
