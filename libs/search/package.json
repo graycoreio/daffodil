@@ -27,6 +27,12 @@
     "@ngrx/store": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
   },
+  "optionalDependencies": {
+    "@apollo/client": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "@faker-js/faker": "0.0.0-PLACEHOLDER"
+  },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER"
   }
