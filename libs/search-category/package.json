@@ -28,8 +28,7 @@
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/category": "0.0.0-PLACEHOLDER",
     "@daffodil/search": "0.0.0-PLACEHOLDER",
-    "rxjs": "0.0.0-PLACEHOLDER",
-    "schema-dts": "0.0.0-PLACEHOLDER"
+    "rxjs": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
     "@apollo/client": "0.0.0-PLACEHOLDER",
