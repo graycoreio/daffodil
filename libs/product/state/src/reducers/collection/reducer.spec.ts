@@ -52,10 +52,35 @@ describe('@daffodil/product/state | getProductCollectionStateAdapter', () => {
     it('should reset current page', () => {
       expect(result.currentPage).toEqual(1);
     });
+
+    describe('when null is passed', () => {
+      beforeEach(() => {
+        result = adapter.setFilters(null, initialState);
+      });
+
+      it('should set the filters to an empty object', () => {
+        expect(result.filters).toEqual({});
+      });
+    });
   });
 
   describe('setMetadata', () => {
     let result: DaffProductCollectionReducerState;
+
+    describe('when null filters are passed', () => {
+      beforeEach(() => {
+        productCollectionMetadata = {
+          ...productCollectionMetadata,
+          filters: null,
+        };
+
+        result = adapter.setMetadata(productCollectionMetadata, initialState);
+      });
+
+      it('should set the filters to an empty object', () => {
+        expect(result.filters).toEqual({});
+      });
+    });
 
     describe('when an appliedSortOption is not supplied', () => {
       beforeEach(() => {

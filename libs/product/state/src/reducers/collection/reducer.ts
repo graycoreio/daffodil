@@ -30,7 +30,7 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
     return {
       ...state,
       currentPage: 1,
-      filters,
+      filters: filters || {},
     };
   }
 
@@ -40,7 +40,7 @@ export class DaffProductCollectionStateAdapter<T extends DaffProductCollectionRe
   setMetadata(metadata: DaffProductCollectionMetadata, state: T): T {
     return {
       ...super.setMetadata(metadata, state),
-      filters: metadata.filters,
+      filters: metadata.filters || {},
     };
   }
 }
