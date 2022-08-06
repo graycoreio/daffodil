@@ -2,6 +2,104 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.43.0](https://github.com/graycoreio/daffodil/compare/v0.42.4...v0.43.0) (2022-08-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** removes `DaffProductCollectionResponse`
+* **category,product:** `DaffProductCollectionRequest` and `DaffProductCollectionMetadata` now extend from collection interfaces in `@daffodil/core`. snake_cased keys have been changed to camelCase and `total_products` has been changed to `count`. A required `ids` field has been added to `DaffProductCollectionMetadata`. `DaffCategoryPageMetadata#product_ids` has been removed; use the extended `DaffCollectionMetadata#ids`.
+* **core:** collection related fields have been changed from snake_case to camelCase
+* **design:** dependents must use the new `@forward` and `@use` syntax of sass.
+
+See https://sass-lang.com/documentation/at-rules/use#:~:text=Sass%20also%20provides%20built%2Din,times%20those%20styles%20are%20loaded.
+* **design:** sass import path has changed from @daffodil/design/* to @daffodil/design/scss/*
+* **category,product:** all product filter, sorting, and pagination related features have been renamed and moved to `@daffodil/product`
+* **core,category:** `DaffNumericallyPaginable`, `DaffSortable`, `DaffSortOption`, `DaffSortOptions`, and `DaffSortDirectionEnum` have all been moved to `@daffodil/core`
+
+* feat(category): fix breaking changes
+
+### Features
+
+* **all:** remove `Dict` and replace with `Record` ([#2120](https://github.com/graycoreio/daffodil/issues/2120)) ([590b5e1](https://github.com/graycoreio/daffodil/commit/590b5e19d6f6b376c4566b3a4d5a41a67cba57e3))
+* **branding:** update  to sass module system ([#2117](https://github.com/graycoreio/daffodil/issues/2117)) ([ddf8e78](https://github.com/graycoreio/daffodil/commit/ddf8e78eea634de72afb31d39ac2a2db28f0f27b))
+* **cart,product:** add `DaffProductNotFoundError` ([#2136](https://github.com/graycoreio/daffodil/issues/2136)) ([ba56a15](https://github.com/graycoreio/daffodil/commit/ba56a15ae65ec2ee163097d75eda5855eefcd1f3))
+* **cart:** do not cache magento driver apollo queries ([#2099](https://github.com/graycoreio/daffodil/issues/2099)) ([ab6bb46](https://github.com/graycoreio/daffodil/commit/ab6bb464e3ade6cbfd5982311a188f092e77d7f8))
+* **category,product:** add `total_products` to `DaffProductCollectionMetadata` ([#2107](https://github.com/graycoreio/daffodil/issues/2107)) ([8f71ae8](https://github.com/graycoreio/daffodil/commit/8f71ae8d974f19e75e2b36edded8c806693e0f36))
+* **category,product:** move product collection to `@daffodil/product` ([#2053](https://github.com/graycoreio/daffodil/issues/2053)) ([7a571b7](https://github.com/graycoreio/daffodil/commit/7a571b7dfc792541029451f98333eb33bd23bd5a))
+* **category,product:** use collection models and fix breaking changes ([#2123](https://github.com/graycoreio/daffodil/issues/2123)) ([04c9627](https://github.com/graycoreio/daffodil/commit/04c9627b294e4ede67e382010e07eef9642e14d5))
+* **category:** use parent factories ([#2134](https://github.com/graycoreio/daffodil/issues/2134)) ([3caf02e](https://github.com/graycoreio/daffodil/commit/3caf02eb11fd24be0353be2fd41ff415a6268ecc))
+* **core,category:** move collection models to root and add factories ([#2103](https://github.com/graycoreio/daffodil/issues/2103)) ([5df3bb8](https://github.com/graycoreio/daffodil/commit/5df3bb8dd64975ca536a0c45dd4e924bf540c807))
+* **core:** add `DaffCollectionPageOutOfBoundsError` ([#2118](https://github.com/graycoreio/daffodil/issues/2118)) ([a6cba18](https://github.com/graycoreio/daffodil/commit/a6cba18a96f129a731b07e8b4b97f7b8f2e30651))
+* **core:** add `daffIdentifiableArrayToDict` ([#2119](https://github.com/graycoreio/daffodil/issues/2119)) ([eba0ce7](https://github.com/graycoreio/daffodil/commit/eba0ce7342a4c03b10b85d17747d324f331d79d4))
+* **core:** add `daffIdentityReducer` ([#2100](https://github.com/graycoreio/daffodil/issues/2100)) ([4459ea0](https://github.com/graycoreio/daffodil/commit/4459ea095a7d5ffc1b894580147f2009568b2316))
+* **core:** add additional collection interfaces and factories ([#2122](https://github.com/graycoreio/daffodil/issues/2122)) ([d1bc9b3](https://github.com/graycoreio/daffodil/commit/d1bc9b357233a4f9d18e2aede0b67f45f22a0a66))
+* **core:** add collection action interfaces ([#2133](https://github.com/graycoreio/daffodil/issues/2133)) ([a6d1eb2](https://github.com/graycoreio/daffodil/commit/a6d1eb280ba089cd93bb820623526a2f5768bb7d))
+* **core:** add collection facade ([#2142](https://github.com/graycoreio/daffodil/issues/2142)) ([6a84c2b](https://github.com/graycoreio/daffodil/commit/6a84c2bbd6038bf732477d447e2c84174dcbe1ce))
+* **core:** add collection initial state and adapter ([#2137](https://github.com/graycoreio/daffodil/issues/2137)) ([93a6757](https://github.com/graycoreio/daffodil/commit/93a67577d4f0bed47c3052fc95a8e9bfd7b56e51))
+* **core:** add collection metadata and request builders ([#2135](https://github.com/graycoreio/daffodil/issues/2135)) ([3033abd](https://github.com/graycoreio/daffodil/commit/3033abd96853944607a736f1af83bf1c2c74ac06))
+* **core:** add collection selector factory ([#2140](https://github.com/graycoreio/daffodil/issues/2140)) ([23aa4ac](https://github.com/graycoreio/daffodil/commit/23aa4ac26666e190fd520c9414286400236cd895))
+* **core:** camelCase `DaffNumericallyPaginable` and `DaffSortable` fields ([#2123](https://github.com/graycoreio/daffodil/issues/2123)) ([e429279](https://github.com/graycoreio/daffodil/commit/e429279b16acd91c47fe01c837fe3da808230788))
+* **daffio, design-land:** update daff.io and design-land to use the theme switch package ([#2073](https://github.com/graycoreio/daffodil/issues/2073)) ([0956adc](https://github.com/graycoreio/daffodil/commit/0956adc23d1b8cc63d00bac6a5e13fda2bfe29eb))
+* **daffio:** update  to sass module system ([#2117](https://github.com/graycoreio/daffodil/issues/2117)) ([1b38d66](https://github.com/graycoreio/daffodil/commit/1b38d66ddaff1fdc1096bd1b669c912331638f78))
+* **demo:** update  to sass module system ([#2117](https://github.com/graycoreio/daffodil/issues/2117)) ([3142bea](https://github.com/graycoreio/daffodil/commit/3142bea6956ac7ea8d22d9de7f5d97f6bd5981ed))
+* **design-land:** update design land to sass module system ([#2117](https://github.com/graycoreio/daffodil/issues/2117)) ([6436b2f](https://github.com/graycoreio/daffodil/commit/6436b2fc263e1f5bfb87e51af53ad09f6b7fb6be))
+* **design:** allow root css variables to be used with or without theme switching ([#2126](https://github.com/graycoreio/daffodil/issues/2126)) ([a7c3493](https://github.com/graycoreio/daffodil/commit/a7c3493e18e70e8af8510ed27af8386c7c5a5c61))
+* **design:** change import path for daffodil sass files ([b79dfe1](https://github.com/graycoreio/daffodil/commit/b79dfe1c32b6ba687111d9e4bca25a719e1324a5))
+* **design:** update theming to sass module system ([#2117](https://github.com/graycoreio/daffodil/issues/2117)) ([421288d](https://github.com/graycoreio/daffodil/commit/421288da9476a37a1afd5c7155e491b829a63949))
+* **design:** use sass module system ([#2113](https://github.com/graycoreio/daffodil/issues/2113)) ([5dbec30](https://github.com/graycoreio/daffodil/commit/5dbec304757fcdbe13be8a3135ff45de9fc7bed5))
+* **product-composite,configurable:** change reducers to adapter pattern ([#2114](https://github.com/graycoreio/daffodil/issues/2114)) ([35cb6e9](https://github.com/graycoreio/daffodil/commit/35cb6e9419d638fb78b134485ca8b82e17f12d91))
+* **product:** add `DaffProductCollectionRequestFactory` ([#2130](https://github.com/graycoreio/daffodil/issues/2130)) ([a8d4ef6](https://github.com/graycoreio/daffodil/commit/a8d4ef6d91fb8db648be1188d3d8772a221e7ade))
+* **product:** add `DaffProductGetCollectionRequestFromRoute` ([#2106](https://github.com/graycoreio/daffodil/issues/2106)) ([147142d](https://github.com/graycoreio/daffodil/commit/147142db686bf3e6f6dbd7d808bf47877440cff7))
+* **product:** add `DaffProductRoutingCollectionEffects` ([#2147](https://github.com/graycoreio/daffodil/issues/2147)) ([f836fb0](https://github.com/graycoreio/daffodil/commit/f836fb00e104cea8951eada17a28e72c936d7491))
+* **product:** add `DaffProductRoutingModule` ([#2148](https://github.com/graycoreio/daffodil/issues/2148)) ([0d5d06b](https://github.com/graycoreio/daffodil/commit/0d5d06bdd0d1d6e7628589b60160101801eae897))
+* **product:** add collection metadata and request builders and organize ([#2138](https://github.com/graycoreio/daffodil/issues/2138)) ([c684cc0](https://github.com/graycoreio/daffodil/commit/c684cc00c68b11955de3ee87fa2043e90acae1aa))
+* **product:** add collection metadata state ([#2105](https://github.com/graycoreio/daffodil/issues/2105)) ([1c2205b](https://github.com/graycoreio/daffodil/commit/1c2205b8728188b9e3c4b3720a295212a3fe6afd))
+* **product:** add support for injectable reducers ([#2116](https://github.com/graycoreio/daffodil/issues/2116)) ([a18ae31](https://github.com/graycoreio/daffodil/commit/a18ae316d6823aab2f2fb468fcf2bf005b9661ab))
+* **product:** default filters to `{}` in collection adapter ([#2150](https://github.com/graycoreio/daffodil/issues/2150)) ([1932bcf](https://github.com/graycoreio/daffodil/commit/1932bcfc357cb7553130dfdd2ff4ade9ffbeaea9))
+* **product:** move collection request fields to constant ([#2145](https://github.com/graycoreio/daffodil/issues/2145)) ([ef1fadb](https://github.com/graycoreio/daffodil/commit/ef1fadb71cb52856742b51d0e1fd3566c31af420))
+* **product:** replace `DaffProductCollectionResponse` with `DaffProductCollection` ([#2132](https://github.com/graycoreio/daffodil/issues/2132)) ([59f6f50](https://github.com/graycoreio/daffodil/commit/59f6f50c21c38163c7cabd3cbb88b5319e561447))
+* **product:** replace query param tokens with config ([#2144](https://github.com/graycoreio/daffodil/issues/2144)) ([0003e65](https://github.com/graycoreio/daffodil/commit/0003e65d02640894b382661f189d3a145c78e4af))
+* **product:** transform sort option and direction in Magento driver ([#2108](https://github.com/graycoreio/daffodil/issues/2108)) ([d33cf62](https://github.com/graycoreio/daffodil/commit/d33cf62c2c8d774c9e0a23ce78c4f0bf4273969b))
+* **product:** use `MockCollectionMetadata` in factory ([#2129](https://github.com/graycoreio/daffodil/issues/2129)) ([59f1783](https://github.com/graycoreio/daffodil/commit/59f178345ef731bdda493b178427bef14c1f1e86))
+* **release:** list remaining placeholder deps in leaf version error ([#2154](https://github.com/graycoreio/daffodil/issues/2154)) ([c9097cd](https://github.com/graycoreio/daffodil/commit/c9097cdbfc96f7b2a1c248f32ba875fd0ce7c37b))
+* **search-category:** add `@daffodil/search-category/driver/in-memory` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([708348d](https://github.com/graycoreio/daffodil/commit/708348d63274f75c6529205a54dbcc473c29f66e))
+* **search-category:** add `@daffodil/search-category/driver/magento` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([50a6f8c](https://github.com/graycoreio/daffodil/commit/50a6f8cde240fedcf4259b9dea61cd04c433c08e))
+* **search-category:** add `@daffodil/search-category/driver/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([6687a8d](https://github.com/graycoreio/daffodil/commit/6687a8d7619d91c857fef0c99c2273441519abf8))
+* **search-category:** add `@daffodil/search-category/driver` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([7218809](https://github.com/graycoreio/daffodil/commit/721880904fcfab38ecb4631e32f551f7582f8274))
+* **search-category:** add `@daffodil/search-category/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([498b3ff](https://github.com/graycoreio/daffodil/commit/498b3ffe5f4fe12b99fe84140ce27d038ba4bf45))
+* **search-category:** add `@daffodil/search-category` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([9e4eb3f](https://github.com/graycoreio/daffodil/commit/9e4eb3fdddae2b420f834d895a566a9fb22d3d5c))
+* **search-product-composite:** add `@daffodil/search-product-composite/state` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([43ea26f](https://github.com/graycoreio/daffodil/commit/43ea26f426ad34e6501abb91fd56ad442fe24026))
+* **search-product-composite:** add `@daffodil/search-product-composite` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([3e2b395](https://github.com/graycoreio/daffodil/commit/3e2b39504043b1824065ffea27568a46b2c463cb))
+* **search-product-configurable:** add `@daffodil/search-product-configurable/state` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([93d9c20](https://github.com/graycoreio/daffodil/commit/93d9c209f8d223564c92041d28b205adadb64c64))
+* **search-product-configurable:** add `@daffodil/search-product-configurable` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([f17caad](https://github.com/graycoreio/daffodil/commit/f17caadd24aec24464c55f489909d30e7a35154b))
+* **search-product:** add `@daffodil/search-product/driver/in-memory` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([212b3e6](https://github.com/graycoreio/daffodil/commit/212b3e649e5fa1a47c064c2a8b260bc273ce53a4))
+* **search-product:** add `@daffodil/search-product/driver/magento` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([0ab53dc](https://github.com/graycoreio/daffodil/commit/0ab53dc3ff202e6533daf546bfa7b8aabdb11794))
+* **search-product:** add `@daffodil/search-product/driver/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([3612e99](https://github.com/graycoreio/daffodil/commit/3612e99aa6fb06a7cf668dd6294964fa669ef155))
+* **search-product:** add `@daffodil/search-product/driver` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([d995677](https://github.com/graycoreio/daffodil/commit/d9956777ffb36cbe6d193942f310eb26dd26f0ac))
+* **search-product:** add `@daffodil/search-product/routing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([9e549a8](https://github.com/graycoreio/daffodil/commit/9e549a880c3e5fbfcae51f1066ed9dc8aa465f0a))
+* **search-product:** add `@daffodil/search-product/state/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([42b0cf8](https://github.com/graycoreio/daffodil/commit/42b0cf8e0fe039aaf94e10b2ba8bd865907cfd65))
+* **search-product:** add `@daffodil/search-product/state` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([a5a84ee](https://github.com/graycoreio/daffodil/commit/a5a84ee288db4c14f788a0c66114ba196fcca3b5))
+* **search-product:** add `@daffodil/search-product/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([5a837ca](https://github.com/graycoreio/daffodil/commit/5a837ca36e66107b253a84fd736af8903f54d50d))
+* **search-product:** add `@daffodil/search-product` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([b3ec86d](https://github.com/graycoreio/daffodil/commit/b3ec86d1f62d8b7899337c3bc0fd552f86d0be10))
+* **search:** add `@daffodil/search/driver/federated` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([703db7a](https://github.com/graycoreio/daffodil/commit/703db7afdfb8a22737c7bc9c88d83350366a6594))
+* **search:** add `@daffodil/search/driver/in-memory` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([282d6e4](https://github.com/graycoreio/daffodil/commit/282d6e4c5098483a491c24fd0b4cd8b99131a5f1))
+* **search:** add `@daffodil/search/driver/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([aba5790](https://github.com/graycoreio/daffodil/commit/aba579041ee3ceb0974524ebac67c41d626a121c))
+* **search:** add `@daffodil/search/driver` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([7b00ccc](https://github.com/graycoreio/daffodil/commit/7b00ccc33485be776723bba83fff170e623c72c5))
+* **search:** add `@daffodil/search/routing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([01652e3](https://github.com/graycoreio/daffodil/commit/01652e3a195652792bac8bd5e7f8fda020382ada))
+* **search:** add `@daffodil/search/state/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([7f096b0](https://github.com/graycoreio/daffodil/commit/7f096b05af0feee5cd195ecfb18a8636656dbbf0))
+* **search:** add `@daffodil/search/state` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([a4fb2a8](https://github.com/graycoreio/daffodil/commit/a4fb2a84bfcfbc021d4317aa74090688843174cc))
+* **search:** add `@daffodil/search/testing` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([b95f944](https://github.com/graycoreio/daffodil/commit/b95f944018b6552725b8df0dfaa9557434b74741))
+* **search:** add `@daffodil/search` ([#2149](https://github.com/graycoreio/daffodil/issues/2149)) ([021d74b](https://github.com/graycoreio/daffodil/commit/021d74b6659a1c71c3a2372c3cc7482ab4deb5c7))
+* **theme-switch:** create theme switch package ([#2073](https://github.com/graycoreio/daffodil/issues/2073)) ([db0e6aa](https://github.com/graycoreio/daffodil/commit/db0e6aad51f4e60e8bdda177533a5c7bfbee883a))
+
+
+### Bug Fixes
+
+* **cart:** magento driver not passing street2 value ([#2127](https://github.com/graycoreio/daffodil/issues/2127)) ([28da523](https://github.com/graycoreio/daffodil/commit/28da523cf827763345009bce0ad27826182bd1a3))
+* **category,product:** magento driver setting wrong collection count ([#2151](https://github.com/graycoreio/daffodil/issues/2151)) ([231e33d](https://github.com/graycoreio/daffodil/commit/231e33df9b7f2bb1ed3ca18c7358ef46eccd4f0e))
+* **design-land:** fix style file variable ([#2124](https://github.com/graycoreio/daffodil/issues/2124)) ([aee9d2d](https://github.com/graycoreio/daffodil/commit/aee9d2d1dfadf0490b046ec12315a15f1f03e47a))
+
 ### [0.42.4](https://github.com/graycoreio/daffodil/compare/v0.42.3...v0.42.4) (2022-05-11)
 
 ### [0.42.3](https://github.com/graycoreio/daffodil/compare/v0.42.2...v0.42.3) (2022-05-11)
