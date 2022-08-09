@@ -17,6 +17,7 @@ export class DaffSearchStateReducerAdapter<T extends DaffSearchResult = DaffSear
   /**
    * Begins the search operation flow.
    * Sets loading to true and stores the query in the list of recent searches.
+   * Resets the collection of results.
    */
   search(query: string): DaffSearchReducerState<T> {
     // get unique values
@@ -28,6 +29,7 @@ export class DaffSearchStateReducerAdapter<T extends DaffSearchResult = DaffSear
       ...this.state,
       loading: true,
       recent,
+      results: <Record<T['kind'], T['id'][]>>{},
     };
   }
 

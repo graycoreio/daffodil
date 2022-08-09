@@ -42,6 +42,10 @@ describe('@daffodil/search/state | DaffSearchStateReducerAdapter', () => {
     it('sets loading state to true', () => {
       expect(result.loading).toEqual(true);
     });
+
+    it('should reset the results', () => {
+      expect(result.results).toEqual({});
+    });
   });
 
   describe('storeResults', () => {
