@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.43.1](https://github.com/graycoreio/daffodil/compare/v0.43.0...v0.43.1) (2022-08-09)
+
+
+### Features
+
+* **search:** reset results state when a search begins ([#2155](https://github.com/graycoreio/daffodil/issues/2155)) ([2394f16](https://github.com/graycoreio/daffodil/commit/2394f167a48a85aceb4f69d518306c435ff1738d))
+
 ## [0.43.0](https://github.com/graycoreio/daffodil/compare/v0.42.4...v0.43.0) (2022-08-06)
 
 
