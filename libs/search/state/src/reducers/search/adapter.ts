@@ -28,6 +28,7 @@ export class DaffSearchStateReducerAdapter<T extends DaffSearchResult = DaffSear
       ...this.state,
       loading: true,
       recent,
+      results: <Record<T['kind'], T['id'][]>>{},
     };
   }
 
