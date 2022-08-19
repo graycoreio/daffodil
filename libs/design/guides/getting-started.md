@@ -35,8 +35,6 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 @forward '@daffodil/design/scss/global';
 ```
 
-> Note that this import changes the output CSS and should only ever be imported once!
-
 > For more information on our approach to these kinds of styles, see the ["Global Styles" guide.](./global-styles.md)
 
 ### Add a Theme
@@ -44,30 +42,7 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 
 > Are you excited by themes? So are we.
 
-Next, create a file called `theme.scss` that is sibling to `styles.scss` and put the following content in it.
-
-```scss
-@forward '@daffodil/design/scss/theme';
-
-// These palettes describe the colors that make up the "theme" of the components.
-
-$primary: daff-configure-palette($daff-yellow, 60);
-$secondary: daff-configure-palette($daff-purple, 60);
-$tertiary: daff-configure-palette($daff-blue, 60);
-$theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
-```
-
-Then, import the new `theme.scss` into the `styles.scss` file.
-
-```scss
-@use '@daffodil/design/scss/global';
-@use 'theme';
-
-@include daff-theme($theme);
-```
-
-> These lines include theme variables and functions and then generate the theme CSS that will style the components.
-> Note that this import changes the output CSS and should only ever be imported once!
+See the [Theming Docs](../scss/theming/README.md)
 
 ### Use a Component
 In the `AppModule` of your Angular app, import the `DaffHeroModule` into the `NgModule`'s `imports` array.
@@ -84,8 +59,12 @@ import { DaffHeroModule } from '@daffodil/design';
     BrowserModule,
     DaffHeroModule
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {}
 ```
