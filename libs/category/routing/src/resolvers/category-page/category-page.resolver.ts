@@ -14,9 +14,7 @@ import { DaffCategoryPageIdResolver } from '../category-page-id/category-page-id
  * @deprecated
  * @see DaffCategoryPageIdResolver
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
   constructor(
     private categoryPageIdResolver: DaffCategoryPageIdResolver,
