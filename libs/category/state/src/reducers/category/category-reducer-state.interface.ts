@@ -1,4 +1,4 @@
-import { DaffCategoryPageMetadata } from '@daffodil/category';
+import { DaffCategory } from '@daffodil/category';
 import {
   DaffStateError,
   DaffMutableLoadingState,
@@ -7,10 +7,6 @@ import {
 
 
 export interface DaffCategoryReducerState extends DaffStateable<DaffMutableLoadingState> {
-  /**
-   * The metadata for the current category page.
-   */
-  categoryPageMetadata: DaffCategoryPageMetadata;
   /**
    * @deprecated
    */
@@ -23,4 +19,9 @@ export interface DaffCategoryReducerState extends DaffStateable<DaffMutableLoadi
    * Errors associated with loading categories.
    */
   errors: DaffStateError[];
+
+  /**
+   * The ID of the currently loaded category.
+   */
+  id: DaffCategory['id'];
 }

@@ -9,6 +9,7 @@ import { DaffProductStateRootSlice } from '@daffodil/product/state';
 
 import { DAFF_CATEGORY_STORE_FEATURE_KEY } from './category-store-feature-key';
 import { DaffCategoryReducerState } from './category/category-reducer-state.interface';
+import { DaffCategoryPageMetadataReducerState } from './page-metadata/state.interface';
 
 /**
  * An interface to describe all of category state.
@@ -24,6 +25,10 @@ export interface DaffCategoryReducersState<
    * Redux state for category entities.
    */
   categoryEntities: EntityState<V>;
+  /**
+   * The product collection metadata for the category page.
+   */
+  pageMetadata: DaffCategoryPageMetadataReducerState;
 }
 
 export interface DaffCategoryStateRootSlice<
