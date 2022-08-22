@@ -18,6 +18,7 @@ import {
   DaffCategoryUrlRequest,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
+  DaffCategoryRequest,
 } from '@daffodil/category';
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
@@ -41,6 +42,7 @@ import {
   MagentoGetACategoryResponse,
   MagentoGetProductsResponse,
   MagentoGetProductsByCategoriesRequest,
+  MagentoCompleteCategoryResponse,
 } from './models/public_api';
 import {
   MagentoGetProductsQuery,
@@ -98,7 +100,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         category,
         filterTypes,
         products,
-      ]) => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
+      ]) => this.transformCategory(category.data, filterTypes.data, products.data, categoryRequest, this.productConfig.baseMediaUrl)),
       map(result => categoryRequest.filterRequests
         ? applyFiltersOnResponse(categoryRequest.filterRequests, result)
         : result,
@@ -131,7 +133,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
           kind: DaffCategoryRequestKind.ID,
         }),
       }).pipe(
-        map(products => this.transformCategory(category.data, filterTypes.data, products.data, this.productConfig.baseMediaUrl)),
+        map(products => this.transformCategory(category.data, filterTypes.data, products.data, categoryRequest, this.productConfig.baseMediaUrl)),
         map(result => categoryRequest.filterRequests
           ? applyFiltersOnResponse(categoryRequest.filterRequests, result)
           : result,
@@ -161,16 +163,19 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     categoryResponse: MagentoGetACategoryResponse,
     filterTypesResponse: MagentoProductGetFilterTypesResponse,
     productsResponse: MagentoGetProductsResponse,
+    request: DaffCategoryRequest,
     mediaUrl: string,
   ): DaffGetCategoryResponse {
     const aggregations = addMetadataTypesToProductsResponse(filterTypesResponse, productsResponse);
-    const completeCategory = {
+    const completeCategory: MagentoCompleteCategoryResponse = {
       category: categoryResponse.categoryList[0],
       products: productsResponse.products.items,
       aggregates: aggregations.products.aggregations,
       sort_fields: aggregations.products.sort_fields,
       total_count: productsResponse.products.total_count,
       page_info: productsResponse.products.page_info,
+      appliedSortOption: request.appliedSortOption,
+      appliedSortDirection: request.appliedSortDirection,
     };
 
     return this.magentoCategoryResponseTransformer.transform(completeCategory, mediaUrl);

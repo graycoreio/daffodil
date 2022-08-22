@@ -62,9 +62,6 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
     });
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();
 
-    delete stubCategoryPageMetadata.filters;
-    delete stubCategoryPageMetadata.appliedSortDirection;
-    delete stubCategoryPageMetadata.appliedSortOption;
     stubCategoryPageMetadata.id = stubCategory.id;
   });
 
@@ -117,7 +114,16 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
         sort_fields,
         products,
         total_count: stubCategoryPageMetadata.count,
+        appliedSortOption: stubCategoryPageMetadata.appliedSortOption,
+        appliedSortDirection: stubCategoryPageMetadata.appliedSortDirection,
       };
+    });
+
+    it('should transform applied sorting', () => {
+      result = service.transform(completeCategoryResponse);
+
+      expect(result.appliedSortOption).toEqual(stubCategoryPageMetadata.appliedSortOption);
+      expect(result.appliedSortDirection).toEqual(stubCategoryPageMetadata.appliedSortDirection);
     });
 
     describe('when the sort options are immutable', () => {

@@ -20,6 +20,8 @@ export class DaffMagentoCategoryPageConfigTransformerService {
         categoryResponse.sort_fields,
         categoryResponse.products,
         categoryResponse.total_count,
+        categoryResponse.appliedSortOption,
+        categoryResponse.appliedSortDirection,
       ),
       id: categoryResponse.category.uid,
     };
