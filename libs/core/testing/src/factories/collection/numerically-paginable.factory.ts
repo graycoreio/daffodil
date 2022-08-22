@@ -7,7 +7,7 @@ import { DaffModelFactory } from '../factory';
 
 class MockDaffNumericallyPaginable implements DaffNumericallyPaginable {
   totalPages = faker.datatype.number({ min: 1, max: 100 });
-  currentPage = faker.datatype.number(this.totalPages);
+  currentPage = faker.datatype.number({ min: 1, max: this.totalPages });
   pageSize = faker.datatype.number({ min: 1, max: 100 });
 }
 
