@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.44.0](https://github.com/graycoreio/daffodil/compare/v0.43.1...v0.44.0) (2022-08-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** - `DaffCategoryPageFilterActionTypes` has been renamed to `DaffCategoryPageProductCollectionActionTypes`
+- `CategoryPageChangeSizeAction`, `CategoryPageChangeCurrentPageAction`, and `CategoryPageChangeSortingOptionAction` have been moved to `DaffCategoryPageProductCollectionActionTypes`
+- all product collection related selectors and facade fields have been moved to `DaffCategoryPageProductCollectionSelectors` and `DaffCategoryProductCollectionFacade` repsectively
+
+### Features
+
+* **category:** set applied sort option and direction ([#2160](https://github.com/graycoreio/daffodil/issues/2160)) ([5ed70ae](https://github.com/graycoreio/daffodil/commit/5ed70ae7886c67d14fb8b9ca5119af82016c278e))
+* **category:** use product collection routing ([#2162](https://github.com/graycoreio/daffodil/issues/2162)) ([597ab41](https://github.com/graycoreio/daffodil/commit/597ab4132f0e679fdc4975dca19a376d42fd17bc))
+* **category:** use product collection state ([#2161](https://github.com/graycoreio/daffodil/issues/2161)) ([9eb3089](https://github.com/graycoreio/daffodil/commit/9eb30895bde6427e35793461833353e285e2d2dc))
+* **core:** ensure `currentPage` value is greater than 0 ([#2159](https://github.com/graycoreio/daffodil/issues/2159)) ([0d8c4aa](https://github.com/graycoreio/daffodil/commit/0d8c4aa9ca2333ab0de47b0c08f9024a7d15fd9b))
+* **reviews:** add `@daffodil/reviews/driver/in-memory` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([1ca8e80](https://github.com/graycoreio/daffodil/commit/1ca8e809c0e6498bedb4bdb922c0a568051aef57))
+* **reviews:** add `@daffodil/reviews/driver/magento/testing` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([89ea154](https://github.com/graycoreio/daffodil/commit/89ea154fe3615bdc20a70b49ad37b3d9a3824fe3))
+* **reviews:** add `@daffodil/reviews/driver/magento` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([85d8eef](https://github.com/graycoreio/daffodil/commit/85d8eeffeaa7b5c4ed67470fc1c21601753879f8))
+* **reviews:** add `@daffodil/reviews/driver/testing` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([a2ce36b](https://github.com/graycoreio/daffodil/commit/a2ce36b58c1530a00d9abf54e3eb7f1c9df24ab4))
+* **reviews:** add `@daffodil/reviews/driver` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([e8c2865](https://github.com/graycoreio/daffodil/commit/e8c2865466e546cd13159654cf2084b816751dfa))
+* **reviews:** add `@daffodil/reviews/state/testing` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([3977744](https://github.com/graycoreio/daffodil/commit/3977744d05aaf1082fe24eb18606c5dbdb9fb05a))
+* **reviews:** add `@daffodil/reviews/state` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([0a201c5](https://github.com/graycoreio/daffodil/commit/0a201c5a9bbf37947216cda04213f0905d5192f6))
+* **reviews:** add `@daffodil/reviews/testing` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([9b7d9cc](https://github.com/graycoreio/daffodil/commit/9b7d9ccbca801a4c070f72924a0911e0b3a09472))
+* **reviews:** add `@daffodil/reviews` ([#2139](https://github.com/graycoreio/daffodil/issues/2139)) ([bb95672](https://github.com/graycoreio/daffodil/commit/bb956724dc7fe0f06ffcf1173cfe4ca5367bb187))
+
 ### [0.43.1](https://github.com/graycoreio/daffodil/compare/v0.43.0...v0.43.1) (2022-08-09)
 
 
