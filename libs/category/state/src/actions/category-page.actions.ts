@@ -19,9 +19,6 @@ export enum DaffCategoryPageActionTypes {
   CategoryPageLoadByUrlAction = '[@daffodil/category] Category Page Load By URL Action',
   CategoryPageLoadSuccessAction = '[@daffodil/category] Category Page Load Success Action',
   CategoryPageLoadFailureAction = '[@daffodil/category] Category Page Load Failure Action',
-  CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
-  CategoryPageChangeCurrentPageAction = '[@daffodil/category] Category Page Change Current Page Action',
-  CategoryPageChangeSortingOptionAction = '[@daffodil/category] Category Page Change Sorting Option Action',
 }
 
 /**
@@ -75,43 +72,6 @@ export class DaffCategoryPageLoadFailure implements Action {
   constructor(public errorMessage: DaffStateError) { }
 }
 
-/**
- * An action for changing the number of products shown on each page for the selected category.
- *
- * @param pageSize - The number of products per page.
- */
-export class DaffCategoryPageChangePageSize implements Action {
-  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeSizeAction;
-
-  constructor(public pageSize: number) { }
-}
-
-/**
- * An action for changing the current page of products for the selected category.
- *
- * @param currentPage - The current page of products for the selected category.
- */
-export class DaffCategoryPageChangeCurrentPage implements Action {
-  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeCurrentPageAction;
-
-  constructor(public currentPage: number) { }
-}
-
-/**
- * An action for changing the sorting option for the selected category.
- *
- * @param sort - The sort option to be applied.
- */
-export class DaffCategoryPageChangeSortingOption implements Action {
-  readonly type = DaffCategoryPageActionTypes.CategoryPageChangeSortingOptionAction;
-
-  constructor(
-    public sort: {
-      option: DaffCategoryRequest['appliedSortOption'];
-      direction: DaffCategoryRequest['appliedSortDirection'];
-    },
-  ) { }
-}
 
 export type DaffCategoryPageActions<
   U extends DaffGenericCategory<U> = DaffCategory,
@@ -120,7 +80,4 @@ export type DaffCategoryPageActions<
   | DaffCategoryPageLoad
   | DaffCategoryPageLoadByUrl
   | DaffCategoryPageLoadSuccess<U, W>
-  | DaffCategoryPageLoadFailure
-  | DaffCategoryPageChangePageSize
-  | DaffCategoryPageChangeCurrentPage
-  | DaffCategoryPageChangeSortingOption;
+  | DaffCategoryPageLoadFailure;

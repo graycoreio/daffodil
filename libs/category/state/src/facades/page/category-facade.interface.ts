@@ -4,22 +4,14 @@ import { Observable } from 'rxjs';
 import {
   DaffGenericCategory,
   DaffCategory,
-  DaffCategoryPageMetadata,
 } from '@daffodil/category';
-import {
-  DaffSortDirectionEnum,
-  DaffSortOption,
-} from '@daffodil/core';
 import {
   DaffStoreFacade,
   DaffStateError,
 } from '@daffodil/core/state';
-import {
-  DaffProduct,
-  DaffProductFilter,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
-import { DaffCategoryReducerState } from '../reducers/category/category-reducer-state.interface';
+import { DaffCategoryReducerState } from '../../reducers/category/category-reducer-state.interface';
 
 /**
  * A facade for interacting with the category state.
@@ -34,10 +26,6 @@ export interface DaffCategoryFacadeInterface<
    */
   category$: Observable<V>;
   /**
-   * The page metadata for the current category.
-   */
-  metadata$: Observable<DaffCategoryPageMetadata>;
-  /**
    * The loading state of the current category page.
    */
   pageLoadingState$: Observable<DaffCategoryReducerState['daffState']>;
@@ -49,42 +37,6 @@ export interface DaffCategoryFacadeInterface<
    * Whether the current category is in a resolving state.
    */
   isPageResolving$: Observable<boolean>;
-  /**
-   * The current page of products for the current category.
-   */
-  currentPage$: Observable<number>;
-  /**
-   * The number of pages of products available in the current category.
-   */
-  totalPages$: Observable<number>;
-  /**
-   * The total number of products for the filters applied.
-   */
-  totalProducts$: Observable<number>;
-  /**
-   * The number of products per page for the current category.
-   */
-  pageSize$: Observable<number>;
-  /**
-   * The filters available for the products of the current category.
-   */
-  filters$: Observable<Record<DaffProductFilter['name'], DaffProductFilter>>;
-  /**
-   * The sort options available for the products of the current category.
-   */
-  sortOptions$: Observable<DaffSortOption[]>;
-  /**
-   * The sort options available for the products of the current category.
-   */
-  appliedFilters$: Observable<Record<DaffProductFilter['name'], DaffProductFilter>>;
-  /**
-   * The sort options available for the products of the current category.
-   */
-  appliedSortOption$: Observable<string>;
-  /**
-   * The sort options available for the products of the current category.
-   */
-  appliedSortDirection$: Observable<DaffSortDirectionEnum>;
   /**
    * Products of the current category.
    */

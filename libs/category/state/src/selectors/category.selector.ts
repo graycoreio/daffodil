@@ -23,6 +23,10 @@ import {
   DaffCategoryPageMemoizedSelectors,
   getDaffCategoryPageSelectors,
 } from './category-page/category-page.selector';
+import {
+  DaffCategoryPageProductCollectionSelectors,
+  getCategoryProductCollectionSelectors,
+} from './collection/selectors';
 
 /**
  * An interface for selectors that combine category metadata and category entities selectors.
@@ -33,6 +37,7 @@ export interface DaffCategoryMemoizedSelectors<
 > extends
   DaffCategoryFeatureMemoizedSelectors<V>,
   DaffCategoryPageMemoizedSelectors<V>,
+  DaffCategoryPageProductCollectionSelectors,
   DaffCategoryEntitiesMemoizedSelectors<V> {
   /**
    * Selects the current category
@@ -110,6 +115,7 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
     ...getDaffCategoryFeatureSelector<V>(),
     ...getDaffCategoryEntitiesSelectors<V>(),
     ...getDaffCategoryPageSelectors<V>(),
+    ...getCategoryProductCollectionSelectors(),
     selectCurrentCategory,
     selectCategoryPageProducts,
     selectCategory,
