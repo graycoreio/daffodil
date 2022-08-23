@@ -18,6 +18,9 @@
       "@daffodil/reviews/driver/in-memory": [
         "libs/reviews/driver/in-memory/src"
       ],
+      "@daffodil/reviews/driver/magento": [
+        "libs/reviews/driver/magento/src"
+      ],
       "@daffodil/reviews/testing": [
         "libs/reviews/testing/src"
       ],
