@@ -5,6 +5,7 @@ import {
 import {
   PLATFORM_ID,
   Component,
+  inject,
 } from '@angular/core';
 import {
   TestBed,
@@ -14,6 +15,7 @@ import {
 } from '@angular/core/testing';
 import {
   ActivatedRoute,
+  ActivatedRouteSnapshot,
   Router,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -29,6 +31,7 @@ import {
   DaffCategory,
   DaffCategoryRequestKind,
 } from '@daffodil/category';
+import { DaffCategoryRoutingRequestBuilder } from '@daffodil/category/routing';
 import {
   daffCategoryReducers,
   DaffCategoryPageLoadByUrl,
@@ -41,8 +44,13 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
+import {
+  DaffProductGetCollectionRequestFromRoute,
+  DaffProductRoutingModule,
+} from '@daffodil/product/routing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
+import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/request/builder.token';
 import { DaffCategoryPageUrlResolver } from './category-page-url.resolver';
 
 @Component({ template: '' })
@@ -68,6 +76,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       path = '123';
       TestBed.configureTestingModule({
         imports: [
+          DaffProductRoutingModule,
           StoreModule.forRoot({
             [DAFF_CATEGORY_STORE_FEATURE_KEY]: combineReducers(daffCategoryReducers),
           }),
@@ -88,8 +97,17 @@ describe('DaffCategoryPageUrlResolver', () => {
           ]),
         ],
         providers: [
+          DaffCategoryPageUrlResolver,
           provideMockActions(() => actions$),
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID },
+          {
+            provide: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER,
+            useFactory: () => {
+              const service = inject(DaffProductGetCollectionRequestFromRoute);
+              const builder: DaffCategoryRoutingRequestBuilder = r => service.getRequest(r.queryParamMap);
+              return builder;
+            },
+          },
         ],
       });
 
@@ -103,27 +121,6 @@ describe('DaffCategoryPageUrlResolver', () => {
       router = TestBed.inject(Router);
       router.initialNavigation();
     }));
-
-    describe('when the path contains a `p` query param', () => {
-      let page: number;
-
-      beforeEach(fakeAsync(() => {
-        page = 4;
-        path = `${path}?p=${page}`;
-
-        const url = `/${path}`;
-        router.navigateByUrl(url);
-        tick();
-      }));
-
-      it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
-        spyOn(store, 'dispatch');
-        categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
-        expect(store.dispatch).toHaveBeenCalledWith(
-          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
-        );
-      });
-    });
 
     describe('when the path contains a `page` query param', () => {
       let page: number;
@@ -201,6 +198,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       path = '123';
       TestBed.configureTestingModule({
         imports: [
+          DaffProductRoutingModule,
           StoreModule.forRoot({
             [DAFF_CATEGORY_STORE_FEATURE_KEY]: combineReducers(daffCategoryReducers),
           }),
@@ -221,8 +219,17 @@ describe('DaffCategoryPageUrlResolver', () => {
           ]),
         ],
         providers: [
+          DaffCategoryPageUrlResolver,
           provideMockActions(() => actions$),
           { provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID },
+          {
+            provide: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER,
+            useFactory: () => {
+              const service = inject(DaffProductGetCollectionRequestFromRoute);
+              const builder: DaffCategoryRoutingRequestBuilder = r => service.getRequest(r.queryParamMap);
+              return builder;
+            },
+          },
         ],
       });
 
@@ -234,27 +241,6 @@ describe('DaffCategoryPageUrlResolver', () => {
       router = TestBed.inject(Router);
       router.initialNavigation();
     }));
-
-    describe('when the path contains a `p` query param', () => {
-      let page: number;
-
-      beforeEach(fakeAsync(() => {
-        page = 4;
-        path = `${path}?p=${page}`;
-
-        const url = `/${path}`;
-        router.navigateByUrl(url);
-        tick();
-      }));
-
-      it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
-        spyOn(store, 'dispatch');
-        categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
-        expect(store.dispatch).toHaveBeenCalledWith(
-          new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
-        );
-      });
-    });
 
     describe('when the path contains a `page` query param', () => {
       let page: number;

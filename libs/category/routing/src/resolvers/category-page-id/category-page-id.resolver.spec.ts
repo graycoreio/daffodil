@@ -56,6 +56,7 @@ describe('DaffCategoryPageIdResolver', () => {
           }),
         ],
         providers: [
+          DaffCategoryPageIdResolver,
           provideMockActions(() => actions$),
           {
             provide: ActivatedRoute,
@@ -121,6 +122,7 @@ describe('DaffCategoryPageIdResolver', () => {
           }),
         ],
         providers: [
+          DaffCategoryPageIdResolver,
           provideMockActions(() => actions$),
           {
             provide: ActivatedRoute,
