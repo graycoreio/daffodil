@@ -15,6 +15,9 @@
       "@daffodil/reviews/driver/testing": [
         "libs/reviews/driver/testing/src"
       ],
+      "@daffodil/reviews/driver/in-memory": [
+        "libs/reviews/driver/in-memory/src"
+      ],
       "@daffodil/reviews/testing": [
         "libs/reviews/testing/src"
       ],
