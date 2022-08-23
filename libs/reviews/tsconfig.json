@@ -9,6 +9,9 @@
       "@daffodil/reviews": [
         "libs/reviews/src"
       ],
+      "@daffodil/reviews/testing": [
+        "libs/reviews/testing/src"
+      ],
     }
   }
 }
