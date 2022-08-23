@@ -12,6 +12,9 @@
       "@daffodil/reviews/driver": [
         "libs/reviews/driver/src"
       ],
+      "@daffodil/reviews/driver/testing": [
+        "libs/reviews/driver/testing/src"
+      ],
       "@daffodil/reviews/testing": [
         "libs/reviews/testing/src"
       ],
