@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffCategoryRequest } from '@daffodil/category';
 import {
   DaffProductFilterRequest,
   DaffProductFilterToggleRequest,
@@ -8,13 +9,16 @@ import {
 /**
  * The possible types of category page filter actions.
  */
-export enum DaffCategoryPageFilterActionTypes {
+export enum DaffCategoryPageProductCollectionActionTypes {
   CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
   CategoryPageReplaceFiltersAction = '[@daffodil/category] Category Page Replace Filters Action',
   CategoryPageApplyFiltersAction = '[@daffodil/category] Category Page Apply Filters Action',
   CategoryPageRemoveFiltersAction = '[@daffodil/category] Category Page Remove Filters Action',
   CategoryPageClearFiltersAction = '[@daffodil/category] Category Page Clear Filters Action',
-  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action'
+  CategoryPageToggleFilterAction = '[@daffodil/category] Category Page Toggle Filter Action',
+  CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
+  CategoryPageChangeCurrentPageAction = '[@daffodil/category] Category Page Change Current Page Action',
+  CategoryPageChangeSortingOptionAction = '[@daffodil/category] Category Page Change Sorting Option Action',
 }
 
 /**
@@ -24,7 +28,7 @@ export enum DaffCategoryPageFilterActionTypes {
  * @deprecated use {@link DaffCategoryPageReplaceFilters} or {@link DaffCategoryPageApplyFilters}
  */
 export class DaffCategoryPageChangeFilters implements Action {
-  readonly type = DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction;
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction;
 
   constructor(public filters: DaffProductFilterRequest[]) { }
 }
@@ -36,7 +40,7 @@ export class DaffCategoryPageChangeFilters implements Action {
  * @param filters - Filters to be set on the current category.
  */
 export class DaffCategoryPageReplaceFilters implements Action {
-  readonly type = DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction;
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction;
 
   constructor(public filters: DaffProductFilterRequest[]) { }
 }
@@ -47,7 +51,7 @@ export class DaffCategoryPageReplaceFilters implements Action {
  * @param filters - Filters to be applied to the current category.
  */
 export class DaffCategoryPageApplyFilters implements Action {
-  readonly type = DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction;
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction;
 
   constructor(public filters: DaffProductFilterRequest[]) { }
 }
@@ -58,7 +62,7 @@ export class DaffCategoryPageApplyFilters implements Action {
  * @param filters - Filters to be removed from the current category.
  */
 export class DaffCategoryPageRemoveFilters implements Action {
-  readonly type = DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction;
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction;
 
   constructor(public filters: DaffProductFilterRequest[]) { }
 }
@@ -67,7 +71,7 @@ export class DaffCategoryPageRemoveFilters implements Action {
  * An action for removing all the filters for the current category.
  */
 export class DaffCategoryPageClearFilters implements Action {
-  readonly type = DaffCategoryPageFilterActionTypes.CategoryPageClearFiltersAction;
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction;
 }
 
 /**
@@ -76,15 +80,57 @@ export class DaffCategoryPageClearFilters implements Action {
  * @param filter - Filter to be toggled on the current category.
  */
 export class DaffCategoryPageToggleFilter implements Action {
-  readonly type = DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction;
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction;
 
   constructor(public filter: DaffProductFilterToggleRequest) { }
 }
 
-export type DaffCategoryPageFilterActions =
+
+/**
+ * An action for changing the number of products shown on each page for the selected category.
+ *
+ * @param pageSize - The number of products per page.
+ */
+export class DaffCategoryPageChangePageSize implements Action {
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSizeAction;
+
+  constructor(public pageSize: number) { }
+}
+
+/**
+ * An action for changing the current page of products for the selected category.
+ *
+ * @param currentPage - The current page of products for the selected category.
+ */
+export class DaffCategoryPageChangeCurrentPage implements Action {
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeCurrentPageAction;
+
+  constructor(public currentPage: number) { }
+}
+
+/**
+ * An action for changing the sorting option for the selected category.
+ *
+ * @param sort - The sort option to be applied.
+ */
+export class DaffCategoryPageChangeSortingOption implements Action {
+  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSortingOptionAction;
+
+  constructor(
+    public sort: {
+      option: DaffCategoryRequest['appliedSortOption'];
+      direction: DaffCategoryRequest['appliedSortDirection'];
+    },
+  ) { }
+}
+
+export type DaffCategoryPageProductCollectionActions =
   | DaffCategoryPageChangeFilters
   | DaffCategoryPageReplaceFilters
   | DaffCategoryPageApplyFilters
   | DaffCategoryPageRemoveFilters
   | DaffCategoryPageClearFilters
-  | DaffCategoryPageToggleFilter;
+  | DaffCategoryPageToggleFilter
+  | DaffCategoryPageChangePageSize
+  | DaffCategoryPageChangeCurrentPage
+  | DaffCategoryPageChangeSortingOption;

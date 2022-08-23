@@ -48,6 +48,7 @@ import {
   DaffProductFilterToggleRequest,
 } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
+import { MockDaffProductCollectionFacade } from '@daffodil/product/state/testing';
 import {
   DaffProductFactory,
   DaffProductFilterFactory,
@@ -69,7 +70,7 @@ describe('DaffCategoryPageFilterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageFilterEffects<DaffCategory, DaffProduct>;
   let daffCategoryDriver: DaffCategoryServiceInterface;
-  let facade: MockDaffCategoryFacade;
+  let facade: MockDaffProductCollectionFacade;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
@@ -235,7 +236,7 @@ describe('DaffCategoryPageFilterEffects', () => {
       ],
     });
 
-    facade = TestBed.inject(MockDaffCategoryFacade);
+    facade = TestBed.inject(MockDaffProductCollectionFacade);
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
     effects = TestBed.inject(DaffCategoryPageFilterEffects);
 

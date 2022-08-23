@@ -42,14 +42,14 @@ import {
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
-  DaffCategoryPageFilterActionTypes,
-  DaffCategoryPageFilterActions,
+  DaffCategoryPageProductCollectionActionTypes,
+  DaffCategoryPageProductCollectionActions,
 } from '../actions/category-page-filter.actions';
 import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
 } from '../actions/category-page.actions';
-import { DaffCategoryFacade } from '../facades/category.facade';
+import { DaffCategoryProductCollectionFacade } from '../facades/public_api';
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
@@ -61,7 +61,7 @@ export class DaffCategoryPageFilterEffects<
     private actions$: Actions,
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<V, W>,
     @Inject(DAFF_CATEGORY_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    private facade: DaffCategoryFacade,
+    private facade: DaffCategoryProductCollectionFacade,
   ){}
 
   /**
@@ -79,16 +79,16 @@ export class DaffCategoryPageFilterEffects<
   | DaffCategoryPageLoadFailure
   > = createEffect(() => (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType(
-      DaffCategoryPageFilterActionTypes.CategoryPageChangeFiltersAction,
-      DaffCategoryPageFilterActionTypes.CategoryPageReplaceFiltersAction,
-      DaffCategoryPageFilterActionTypes.CategoryPageApplyFiltersAction,
-      DaffCategoryPageFilterActionTypes.CategoryPageClearFiltersAction,
-      DaffCategoryPageFilterActionTypes.CategoryPageRemoveFiltersAction,
-      DaffCategoryPageFilterActionTypes.CategoryPageToggleFilterAction,
+      DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction,
+      DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction,
+      DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction,
+      DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction,
+      DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction,
+      DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction,
     ),
     withLatestFrom(this.facade.metadata$),
     map((
-      [action, metadata]: [DaffCategoryPageFilterActions, DaffCategoryPageMetadata],
+      [action, metadata]: [DaffCategoryPageProductCollectionActions, DaffCategoryPageMetadata],
     ): DaffCategoryIdRequest => ({
       kind: DaffCategoryRequestKind.ID,
       id: metadata.id,
