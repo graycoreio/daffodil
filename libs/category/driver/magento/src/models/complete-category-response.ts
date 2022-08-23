@@ -1,3 +1,4 @@
+import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
   MagentoAggregation,
   MagentoProduct,
@@ -14,4 +15,6 @@ export interface MagentoCompleteCategoryResponse {
   sort_fields: MagentoProductSortFields;
   page_info: MagentoProductPageInfo;
   total_count: number;
+  appliedSortOption?: string;
+  appliedSortDirection?: DaffSortDirectionEnum;
 }
