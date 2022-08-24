@@ -28,19 +28,9 @@ import {
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);
-  metadata$: BehaviorSubject<DaffCategoryPageMetadata> = new BehaviorSubject(null);
   pageLoadingState$: BehaviorSubject<DaffCategoryReducerState['daffState']> = new BehaviorSubject(null);
   isPageMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isPageResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  currentPage$: BehaviorSubject<number> = new BehaviorSubject(null);
-  totalPages$: BehaviorSubject<number> = new BehaviorSubject(null);
-  totalProducts$: BehaviorSubject<number> = new BehaviorSubject(null);
-  pageSize$: BehaviorSubject<number> = new BehaviorSubject(null);
-  filters$: BehaviorSubject<Record<DaffProductFilter['name'], DaffProductFilter>> = new BehaviorSubject({});
-  sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
-  appliedFilters$: BehaviorSubject<Record<DaffProductFilter['name'], DaffProductFilter>> = new BehaviorSubject({});
-  appliedSortOption$: BehaviorSubject<string> = new BehaviorSubject(null);
-  appliedSortDirection$: BehaviorSubject<DaffSortDirectionEnum> = new BehaviorSubject(null);
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
   categoryLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   productsLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
