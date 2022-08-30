@@ -17,12 +17,12 @@ import { DaffProductKindFactory } from './kind.factory';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffProductExtensionFactory extends DaffModelFactory<DaffProduct> {
+export class DaffProductExtensionFactory<T extends DaffProduct = DaffProduct> extends DaffModelFactory<T> {
   constructor(
-    @Inject(DAFF_PRODUCT_EXTRA_FACTORIES) private extraFactories: DaffModelFactory<DaffProduct>[],
+    @Inject(DAFF_PRODUCT_EXTRA_FACTORIES) private extraFactories: DaffModelFactory<T>[],
     private productKindFactory: DaffProductKindFactory,
   ) {
-    super(MockProduct);
+    super(null);
   }
 
   /**
@@ -30,7 +30,7 @@ export class DaffProductExtensionFactory extends DaffModelFactory<DaffProduct> {
    * Includes extra product types that may be provided by optional product packages.
    * This includes all the extra extension factories that may be provided by optional product packages.
    */
-  create(partial = {}): DaffProduct {
+  create(partial = {}): T {
     const kind = this.productKindFactory.create(partial);
 
     return Object.assign(
