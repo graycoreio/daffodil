@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../core';
+@use 'core';
 @use 'theming';
 
 @mixin daff-root($theme) {
@@ -26,17 +26,22 @@
 	--daff-theme-white: #{$white};
 	--daff-theme-black: #{$black};
 	--daff-theme-gray: #{theming.daff-color($gray)};
+	--daff-base-background: #{$base};
+	--daff-base-text: #{theming.daff-text-contrast($base)};
 }
 
-@mixin daff-theme-css-variables($theme, $asRoot: true) {
+@mixin daff-theme-css-variables($theme) {
 	// @docs
 	//
 	// Global theming css variables
-	@if ($asRoot) {
-		:root {
-			@include daff-root($theme);
-		}
-		else {
+	@each $selector in & {
+		$l: length($selector);
+
+		@if ($l == 1) {
+			:root {
+				@include daff-root($theme);
+			}
+		} @else {
 			@include daff-root($theme);
 		}
 	}
