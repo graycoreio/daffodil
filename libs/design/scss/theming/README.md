@@ -4,29 +4,27 @@ Daffodil's theming capabilities enables you to customize `@daffodil/design` comp
 ## Custom Colors
 :stop: Before you begin, read the [accessibility guide on color in `@daffodil/design`](../../guides/color#accessibility.md).
 
-[validate palette function]
-
 ## Themes
 Dark and light modes are supported in all `@daffodil/design` components. When a theme is not specified, Daffodil defaults to the `light` mode.
 
 ## Palettes
-A palette is a collection of perceptually uniform colors with consistent contrast ratios. `@daffodil/design`'s color palettes are represented by a Sass map, with each value in a palette called a **hue**.
+A palette is a collection of [perceptually uniform colors](https://programmingdesignsystems.com/color/perceptually-uniform-color-spaces/) with consistent contrast ratios. `@daffodil/design`'s color palettes are represented by a Sass map, with each value in a palette called a **hue**.
 
 ## Predefined palettes
 `@daffodil/design` offers predefined palettes based on our brand guidelines. You can choose to use our palettes or define your own. No further configuration is needed in your `app-theme.scss` file if you choose to use `@daffodil/design`'s palettes. Below is an example of the structure of a predefined `@daffodil/design` palette.
 
 ```scss
 $daff-blue: (
-	10: #ebf1ff,
-	20: #c4d8ff,
-	30: #9dbeff,
-	40: #79a7ff,
-	50: #548fff,
-	60: #1f66ff,
-	70: #093cf3,
-	80: #001bcb,
-	90: #00098a,
-	100: #000033
+  10: #ebf1ff,
+  20: #c4d8ff,
+  30: #9dbeff,
+  40: #79a7ff,
+  50: #548fff,
+  60: #1f66ff,
+  70: #093cf3,
+  80: #001bcb,
+  90: #00098a,
+  100: #000033
 );
 ```
 
@@ -97,10 +95,10 @@ Create classes in the `styles.scss` file to include the `theme` module for `$the
 @use 'app-theme';
 
 .daff-theme-light {
-	@include daff-theme.daff-theme(app-theme.$theme);
+  @include daff-theme.daff-theme(app-theme.$theme);
 }
 
 .daff-theme-dark {
-	@include daff-theme.daff-theme(app-theme.$theme-dark);
+  @include daff-theme.daff-theme(app-theme.$theme-dark);
 }
 ```

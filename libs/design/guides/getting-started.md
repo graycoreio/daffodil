@@ -83,16 +83,5 @@ With the module imported, the `AppComponent` template can be updated to render t
 </daff-hero>
 ```
 
-### Add Typographic Styles
-At this point, there is some extra padding around the body of the `DaffHeroComponent`. This is intentional, and is driven by our "minimal modification" principle as described in the ["Global Styles" guide](./global-styles.md).
-
-To give the final result that extra "pizzaz", simply add the following to the imports of `styles.scss`.
-
-```scss
-@use '@daffodil/design/scss/typography';
-```
-
-[View this example in Stackblitz](https://stackblitz.com/edit/daffodil-design-angular-10).
-
 ## Next Steps
 We've just walked through the basics of setting up the `@daffodil/design` library. There is much more to it than just the `DaffHeroComponent`. Check out the full list of available components, try and add them to your sample app, and imagine all the wonderful things you can now build!
