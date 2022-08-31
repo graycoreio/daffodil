@@ -1,8 +1,11 @@
 @use 'sass:map';
-@use 'core';
-@use 'theming';
+@use '../core';
+@use '../theming';
 
-@mixin daff-root($theme) {
+// @docs
+//
+// Global theme tokens
+@mixin daff-root-theme-tokens($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$primary: map.get($theme, primary);
@@ -31,18 +34,15 @@
 }
 
 @mixin daff-theme-css-variables($theme) {
-	// @docs
-	//
-	// Global theming css variables
 	@each $selector in & {
 		$l: length($selector);
 
 		@if ($l == 1) {
 			:root {
-				@include daff-root($theme);
+				@include daff-root-theme-tokens($theme);
 			}
 		} @else {
-			@include daff-root($theme);
+			@include daff-root-theme-tokens($theme);
 		}
 	}
 }
