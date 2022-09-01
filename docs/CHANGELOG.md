@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.44.1](https://github.com/graycoreio/daffodil/compare/v0.44.0...v0.44.1) (2022-09-01)
+
+
+### Features
+
+* **category:** remove old fields from  `MockDaffCategoryFacade` ([#2163](https://github.com/graycoreio/daffodil/issues/2163)) ([df175b0](https://github.com/graycoreio/daffodil/commit/df175b07f929aeb176fe9efa5683eb47c3c91852))
+* **design:** update root theme css variables implmentation ([#2164](https://github.com/graycoreio/daffodil/issues/2164)) ([79ae505](https://github.com/graycoreio/daffodil/commit/79ae505ec15ebb070cfef43e5ddcaa8f0bc844d1))
+* **reviews:** provide `DaffReviewedProductFactory` in product factory ([#2165](https://github.com/graycoreio/daffodil/issues/2165)) ([2ef135c](https://github.com/graycoreio/daffodil/commit/2ef135c7d9d86a6b2c739f5d1e912ff326bf2752))
+
+
+### Bug Fixes
+
+* **design:** fix module path in theme-css-variables and update token mixin name ([#2167](https://github.com/graycoreio/daffodil/issues/2167)) ([cccd94b](https://github.com/graycoreio/daffodil/commit/cccd94bcb135b47502b1d206b4e21ec8f29c6636))
+
 ## [0.44.0](https://github.com/graycoreio/daffodil/compare/v0.43.1...v0.44.0) (2022-08-23)
 
 
