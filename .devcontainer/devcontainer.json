@@ -1,0 +1,23 @@
+// Reference: https://code.visualstudio.com/docs/remote/containers#_devcontainerjson-reference
+{
+	"name": "www.graycore.io",
+	"dockerFile": "Dockerfile",
+	"onCreateCommand": [
+		"/bin/bash",
+		".devcontainer/onCreateCommand.sh"
+	],
+	"extensions": [
+		"apollographql.vscode-apollo",
+		"bierner.markdown-preview-github-styles",
+		"dbaeumer.vscode-eslint",
+		"mrmlnc.vscode-scss",
+		"naumovs.color-highlight",
+		"stylelint.vscode-stylelint",
+		"tehnix.vscode-tidymarkdown"
+	],
+	"remoteUser": "node",
+	"hostRequirements": {
+		"cpus": 4,
+		"memory": "8gb"
+	}
+}
