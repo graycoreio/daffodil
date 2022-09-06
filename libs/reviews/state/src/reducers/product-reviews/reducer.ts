@@ -3,6 +3,8 @@ import { DaffProductReview } from '@daffodil/reviews';
 import {
   DaffReviewsProductActionTypes,
   DaffReviewsProductActions,
+  DaffProductReviewsCollectionActionTypes,
+  DaffProductReviewsCollectionActions,
 } from '../../actions/public_api';
 import { DaffProductPageReviewsReducerState } from './state.interface';
 
@@ -21,7 +23,7 @@ export const daffProductReviewsReducerInitialState: DaffProductPageReviewsReduce
  * @param action a product action
  * @returns product state
  */
-export function daffProductPageReviewsReducer<T extends DaffProductReview = DaffProductReview>(state = daffProductReviewsReducerInitialState, action: DaffReviewsProductActions<T>): DaffProductPageReviewsReducerState {
+export function daffProductPageReviewsReducer<T extends DaffProductReview = DaffProductReview>(state = daffProductReviewsReducerInitialState, action: DaffReviewsProductActions<T> | DaffProductReviewsCollectionActions): DaffProductPageReviewsReducerState {
   switch (action.type) {
     case DaffReviewsProductActionTypes.ListAction:
     case DaffProductReviewsCollectionActionTypes.ChangePageSizeAction:
