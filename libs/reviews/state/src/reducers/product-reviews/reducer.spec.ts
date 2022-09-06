@@ -13,6 +13,7 @@ import {
   DaffReviewsCollectionChangePageSize,
   DaffReviewsCollectionChangeCurrentPage,
   DaffReviewsCollectionChangeSortingOption,
+  DaffReviewsCollectionChangeFilter,
 } from '@daffodil/reviews/state';
 import { DaffProductReviewFactory } from '@daffodil/reviews/testing';
 
@@ -91,6 +92,20 @@ describe('@daffodil/reviews/state | daffProductPageReviewsReducer', () => {
 
     beforeEach(() => {
       const action = new DaffReviewsCollectionChangeSortingOption(null);
+
+      result = daffProductPageReviewsReducer(daffProductReviewsReducerInitialState, action);
+    });
+
+    it('sets loading state to true', () => {
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when ChangeFilterAction is triggered', () => {
+    let result: DaffProductPageReviewsReducerState;
+
+    beforeEach(() => {
+      const action = new DaffReviewsCollectionChangeFilter(null);
 
       result = daffProductPageReviewsReducer(daffProductReviewsReducerInitialState, action);
     });

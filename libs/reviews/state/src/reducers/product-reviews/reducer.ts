@@ -23,11 +23,15 @@ export const daffProductReviewsReducerInitialState: DaffProductPageReviewsReduce
  * @param action a product action
  * @returns product state
  */
-export function daffProductPageReviewsReducer<T extends DaffProductReview = DaffProductReview>(state = daffProductReviewsReducerInitialState, action: DaffReviewsProductActions<T> | DaffProductReviewsCollectionActions): DaffProductPageReviewsReducerState {
+export function daffProductPageReviewsReducer<T extends DaffProductReview = DaffProductReview>(
+  state = daffProductReviewsReducerInitialState,
+  action: DaffReviewsProductActions<T> | DaffProductReviewsCollectionActions,
+): DaffProductPageReviewsReducerState {
   switch (action.type) {
     case DaffReviewsProductActionTypes.ListAction:
     case DaffProductReviewsCollectionActionTypes.ChangePageSizeAction:
     case DaffProductReviewsCollectionActionTypes.ChangeCurrentPageAction:
+    case DaffProductReviewsCollectionActionTypes.ChangeFilterAction:
     case DaffProductReviewsCollectionActionTypes.ChangeSortingAction:
       return { ...state, loading: true };
     case DaffReviewsProductActionTypes.ListSuccessAction:

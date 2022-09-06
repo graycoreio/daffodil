@@ -13,7 +13,6 @@ import {
   DaffSortDirectionEnum,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
-import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateTestingModule,
@@ -36,6 +35,7 @@ import {
   DaffReviewsProductListFailure,
   DaffReviewsProductListSuccess,
 } from '@daffodil/reviews/state';
+import { MockDaffProductPageReviewsCollectionFacade } from '@daffodil/reviews/state/testing';
 import { DaffReviewsStateTestingModule } from '@daffodil/reviews/state/testing';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
@@ -52,7 +52,7 @@ class MockError extends DaffInheritableError implements DaffError {
 describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffProductReviewCollectionEffects;
-  let collectionFacade: MockDaffCollectionFacade;
+  let collectionFacade: MockDaffProductPageReviewsCollectionFacade;
   let facade: MockDaffProductPageFacade;
   let driverSpy: jasmine.Spy<DaffProductReviewsServiceInterface['list']>;
 
@@ -91,6 +91,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           appliedSortDirection: mockReviews.metadata.appliedSortDirection,
           currentPage: mockReviews.metadata.currentPage,
           pageSize: mockReviews.metadata.pageSize,
+          filter: mockReviews.metadata.filter,
         });
       });
     });
@@ -123,6 +124,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           appliedSortDirection: mockReviews.metadata.appliedSortDirection,
           currentPage: mockReviews.metadata.currentPage,
           pageSize: mockReviews.metadata.pageSize,
+          filter: mockReviews.metadata.filter,
         });
       });
     });
@@ -158,6 +160,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           appliedSortDirection: mockReviews.metadata.appliedSortDirection,
           currentPage: mockReviews.metadata.currentPage,
           pageSize: mockReviews.metadata.pageSize,
+          filter: mockReviews.metadata.filter,
         });
       });
     });
@@ -178,7 +181,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
       ],
     });
 
-    collectionFacade = TestBed.inject(MockDaffCollectionFacade);
+    collectionFacade = TestBed.inject(MockDaffProductPageReviewsCollectionFacade);
     facade = TestBed.inject(MockDaffProductPageFacade);
     effects = TestBed.inject(DaffProductReviewCollectionEffects);
 

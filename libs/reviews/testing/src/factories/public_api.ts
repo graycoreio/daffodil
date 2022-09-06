@@ -1,5 +1,7 @@
-export { DaffProductReviewCustomerFactory } from './product-review-customer.factory';
-export { DaffProductReviewFactory } from './product-review.factory';
-export { DaffProductReviewsFactory } from './product-reviews.factory';
-export { DaffReviewRatingFactory } from './rating.factory';
-export { DaffReviewedProductFactory } from './reviewed-product.factory';
+export * from './product-review-customer.factory';
+export * from './product-review.factory';
+export * from './product-reviews.factory';
+export * from './rating.factory';
+export * from './reviewed-product.factory';
+export * from './product-reviews-metadata.factory';
+export * from './product-reviews-request.factory';

@@ -1,7 +1,4 @@
-import {
-  daffCollectionReducerInitialState,
-  getCollectionStateAdapter,
-} from '@daffodil/core/state';
+import { daffCollectionReducerInitialState } from '@daffodil/core/state';
 import { DaffProductReview } from '@daffodil/reviews';
 
 import {
@@ -10,9 +7,13 @@ import {
   DaffProductReviewsCollectionActions,
   DaffProductReviewsCollectionActionTypes,
 } from '../../actions/public_api';
+import { daffGetReviewsCollectionStateAdapter } from './adapter';
 import { DaffReviewsCollectionReducerState } from './state.interface';
 
-export const daffReviewsCollectionReducerInitialState: DaffReviewsCollectionReducerState = daffCollectionReducerInitialState;
+export const daffReviewsCollectionReducerInitialState: DaffReviewsCollectionReducerState = {
+  ...daffCollectionReducerInitialState,
+  filter: null,
+};
 
 /**
  * Handles the reduction of review actions into the collection metadata state.
@@ -21,7 +22,7 @@ export function daffReviewsCollectionReducer<T extends DaffProductReview = DaffP
   state = daffReviewsCollectionReducerInitialState,
   action: DaffReviewsProductActions<T> | DaffProductReviewsCollectionActions,
 ): DaffReviewsCollectionReducerState {
-  const adapter = getCollectionStateAdapter<DaffReviewsCollectionReducerState>();
+  const adapter = daffGetReviewsCollectionStateAdapter();
 
   switch (action.type) {
     case DaffReviewsProductActionTypes.ListAction:
@@ -41,6 +42,9 @@ export function daffReviewsCollectionReducer<T extends DaffProductReview = DaffP
 
     case DaffProductReviewsCollectionActionTypes.ChangeSortingAction:
       return adapter.setSort(action.sort.option, action.sort.direction, state);
+
+    case DaffProductReviewsCollectionActionTypes.ChangeFilterAction:
+      return adapter.setFilter(action.filter, state);
 
     default:
       return state;
