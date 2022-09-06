@@ -1,3 +1,3 @@
 export * from './fragments/public_api';
 
-export { getProductReviews } from './get-product-reviews';
+export * from './get-product-reviews';
