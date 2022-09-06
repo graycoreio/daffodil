@@ -10,6 +10,9 @@ import {
   DaffReviewsProductListSuccess,
   DaffReviewsProductListFailure,
   DaffProductPageReviewsReducerState,
+  DaffReviewsCollectionChangePageSize,
+  DaffReviewsCollectionChangeCurrentPage,
+  DaffReviewsCollectionChangeSortingOption,
 } from '@daffodil/reviews/state';
 import { DaffProductReviewFactory } from '@daffodil/reviews/testing';
 
@@ -48,6 +51,48 @@ describe('@daffodil/reviews/state | daffProductPageReviewsReducer', () => {
       const productLoadAction: DaffReviewsProductList = new DaffReviewsProductList(productId);
 
       result = daffProductPageReviewsReducer(daffProductReviewsReducerInitialState, productLoadAction);
+    });
+
+    it('sets loading state to true', () => {
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when ChangePageSizeAction is triggered', () => {
+    let result: DaffProductPageReviewsReducerState;
+
+    beforeEach(() => {
+      const action = new DaffReviewsCollectionChangePageSize(0);
+
+      result = daffProductPageReviewsReducer(daffProductReviewsReducerInitialState, action);
+    });
+
+    it('sets loading state to true', () => {
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when ChangeCurrentPageAction is triggered', () => {
+    let result: DaffProductPageReviewsReducerState;
+
+    beforeEach(() => {
+      const action = new DaffReviewsCollectionChangeCurrentPage(0);
+
+      result = daffProductPageReviewsReducer(daffProductReviewsReducerInitialState, action);
+    });
+
+    it('sets loading state to true', () => {
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when ChangeSortingAction is triggered', () => {
+    let result: DaffProductPageReviewsReducerState;
+
+    beforeEach(() => {
+      const action = new DaffReviewsCollectionChangeSortingOption(null);
+
+      result = daffProductPageReviewsReducer(daffProductReviewsReducerInitialState, action);
     });
 
     it('sets loading state to true', () => {

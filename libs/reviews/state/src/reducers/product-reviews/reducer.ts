@@ -24,6 +24,9 @@ export const daffProductReviewsReducerInitialState: DaffProductPageReviewsReduce
 export function daffProductPageReviewsReducer<T extends DaffProductReview = DaffProductReview>(state = daffProductReviewsReducerInitialState, action: DaffReviewsProductActions<T>): DaffProductPageReviewsReducerState {
   switch (action.type) {
     case DaffReviewsProductActionTypes.ListAction:
+    case DaffProductReviewsCollectionActionTypes.ChangePageSizeAction:
+    case DaffProductReviewsCollectionActionTypes.ChangeCurrentPageAction:
+    case DaffProductReviewsCollectionActionTypes.ChangeSortingAction:
       return { ...state, loading: true };
     case DaffReviewsProductActionTypes.ListSuccessAction:
       return { ...state, loading: false };
