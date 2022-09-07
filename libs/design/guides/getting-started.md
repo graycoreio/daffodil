@@ -10,14 +10,14 @@ This tutorial is designed to touch upon the very basics of the `@daffodil/design
 ### npm
 ```bash
 npm install --save @daffodil/design @daffodil/core \
-@angular/animatio@^13.0.0 \
-@angular/cdk@^13.0.0 \
-@fortawesome/angular-fontawesome@^0.10.0 \
-@fortawesome/fontawesome-svg-core@^1.0.0 \
-@fortawesome/free-solid-svg-icons@^5.2.0 \
-@fortawesome/free-brands-svg-icons@^5.2.0 \
-@fortawesome/free-regular-svg-icons@^5.2.0 \
-modern-normalize@^0.5.0
+  @angular/animatio@^13.0.0 \
+  @angular/cdk@^13.0.0 \
+  @fortawesome/angular-fontawesome@^0.10.0 \
+  @fortawesome/fontawesome-svg-core@^1.0.0 \
+  @fortawesome/free-solid-svg-icons@^5.2.0 \
+  @fortawesome/free-brands-svg-icons@^5.2.0 \
+  @fortawesome/free-regular-svg-icons@^5.2.0 \
+  modern-normalize@^0.5.0
 ```
 
 > If you are using Node.js v14 or higher, you can simply run: `npm install --save @daffodil/design`
@@ -25,14 +25,14 @@ modern-normalize@^0.5.0
 ### Yarn
 ```bash
 yarn add @daffodil/design @daffodil/core \
-@angular/animatio@^13.0.0 \
-@angular/cdk@^13.0.0 \
-@fortawesome/angular-fontawesome@^0.10.0 \
-@fortawesome/fontawesome-svg-core@^1.0.0 \
-@fortawesome/free-solid-svg-icons@^5.2.0 \
-@fortawesome/free-brands-svg-icons@^5.2.0 \
-@fortawesome/free-regular-svg-icons@^5.2.0 \
-modern-normalize@^0.5.0
+  @angular/animatio@^13.0.0 \
+  @angular/cdk@^13.0.0 \
+  @fortawesome/angular-fontawesome@^0.10.0 \
+  @fortawesome/fontawesome-svg-core@^1.0.0 \
+  @fortawesome/free-solid-svg-icons@^5.2.0 \
+  @fortawesome/free-brands-svg-icons@^5.2.0 \
+  @fortawesome/free-regular-svg-icons@^5.2.0 \
+  modern-normalize@^0.5.0
 ```
 
 > If you are using Node.js v14 or higher, you can simply run: `yarn add @daffodil/design`
