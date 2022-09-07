@@ -20,6 +20,8 @@ npm install --save @daffodil/design @daffodil/core \
   modern-normalize
 ```
 
+> If you are using Node.js v14 or higher, you can simply run: `npm install --save @daffodil/design`
+
 ### Yarn
 ```bash
 yarn add @daffodil/design @daffodil/core \
@@ -32,6 +34,8 @@ yarn add @daffodil/design @daffodil/core \
   @fortawesome/free-regular-svg-icons \
   modern-normalize
 ```
+
+> If you are using Node.js v14 or higher, you can simply run: `yarn add @daffodil/design`
 
 ### Modify Angular.json
 Next, create a `styles.scss` in the root of the Angular app and modify the `angular.json`'s `projects.[my-app].architect.build.options.styles` to look as below. If SASS is already in use in the application and the stylesheet already exists, this step can be skipped.
