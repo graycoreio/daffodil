@@ -2,7 +2,7 @@
 Daffodil's theming capabilities enables you to customize `@daffodil/design` components to reflect your brand. A theme consists of custom color configurations that will work in dark and light themes.
 
 ## Custom Colors
-:stop: Before you begin, read the [accessibility guide on color in `@daffodil/design`](../../guides/color#accessibility.md).
+:stop: Before you begin, read the [accessibility guide on color in `@daffodil/design`](../../guides/color.md#accessibility).
 
 ## Themes
 Dark and light modes are supported in all `@daffodil/design` components. When a theme is not specified, Daffodil defaults to the `light` mode.
