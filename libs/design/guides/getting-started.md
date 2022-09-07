@@ -1,5 +1,5 @@
 # Introduction
-Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first-steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
+Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
 
 ## First Steps
 This tutorial is designed to touch upon the very basics of the `@daffodil/design` library. First things first, you will need to [create a new Angular project](https://angular.io/cli) and [install the library](#installation). By the end of this tutorial, you will have created a basic Angular app that renders a simple `DaffHeroComponent` with a title and subtitle.
@@ -9,13 +9,33 @@ This tutorial is designed to touch upon the very basics of the `@daffodil/design
 
 ### npm
 ```bash
-npm install @daffodil/design --save
+npm install --save @daffodil/design @daffodil/core \
+@angular/animatio@^13.0.0 \
+@angular/cdk@^13.0.0 \
+@fortawesome/angular-fontawesome@^0.10.0 \
+@fortawesome/fontawesome-svg-core@^1.0.0 \
+@fortawesome/free-solid-svg-icons@^5.2.0 \
+@fortawesome/free-brands-svg-icons@^5.2.0 \
+@fortawesome/free-regular-svg-icons@^5.2.0 \
+modern-normalize@^0.5.0
 ```
+
+> If you are using Node.js v14 or higher, you can simply run: `npm install --save @daffodil/design`
 
 ### Yarn
 ```bash
-yarn add @daffodil/design
+yarn add @daffodil/design @daffodil/core \
+@angular/animatio@^13.0.0 \
+@angular/cdk@^13.0.0 \
+@fortawesome/angular-fontawesome@^0.10.0 \
+@fortawesome/fontawesome-svg-core@^1.0.0 \
+@fortawesome/free-solid-svg-icons@^5.2.0 \
+@fortawesome/free-brands-svg-icons@^5.2.0 \
+@fortawesome/free-regular-svg-icons@^5.2.0 \
+modern-normalize@^0.5.0
 ```
+
+> If you are using Node.js v14 or higher, you can simply run: `yarn add @daffodil/design`
 
 ### Modify Angular.json
 Next, create a `styles.scss` in the root of the Angular app and modify the `angular.json`'s `projects.[my-app].architect.build.options.styles` to look as below. If SASS is already in use in the application and the stylesheet already exists, this step can be skipped.
