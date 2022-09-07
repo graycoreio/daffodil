@@ -1,5 +1,5 @@
 # Introduction
-Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first-steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
+Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
 
 ## First Steps
 This tutorial is designed to touch upon the very basics of the `@daffodil/design` library. First things first, you will need to [create a new Angular project](https://angular.io/cli) and [install the library](#installation). By the end of this tutorial, you will have created a basic Angular app that renders a simple `DaffHeroComponent` with a title and subtitle.
@@ -9,12 +9,28 @@ This tutorial is designed to touch upon the very basics of the `@daffodil/design
 
 ### npm
 ```bash
-npm install @daffodil/design --save
+npm install --save @daffodil/design @daffodil/core \
+  @angular/animations \
+  @angular/cdk \
+  @fortawesome/angular-fontawesome \
+  @fortawesome/fontawesome-svg-core \
+  @fortawesome/free-solid-svg-icons \
+  @fortawesome/free-brands-svg-icons \
+  @fortawesome/free-regular-svg-icons \
+  modern-normalize
 ```
 
 ### Yarn
 ```bash
-yarn add @daffodil/design
+yarn add @daffodil/design @daffodil/core \
+  @angular/animations \
+  @angular/cdk \
+  @fortawesome/angular-fontawesome \
+  @fortawesome/fontawesome-svg-core \
+  @fortawesome/free-solid-svg-icons \
+  @fortawesome/free-brands-svg-icons \
+  @fortawesome/free-regular-svg-icons \
+  modern-normalize
 ```
 
 ### Modify Angular.json
