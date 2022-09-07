@@ -38,5 +38,19 @@
   },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER"
+  },
+  "exports": {
+    "./scss/daff-global": {
+      "sass": "./scss/daff-global.scss"
+    },
+    "./scss/theme": {
+      "sass": "./scss/theme.scss"
+    },
+    "./scss/daff-util": {
+      "sass": "./scss/daff-util.scss"
+    },
+    "./scss/daff-typography": {
+      "sass": "./scss/daff-typography.scss"
+    }
   }
 }
