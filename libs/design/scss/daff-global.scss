@@ -1,49 +1,5 @@
-// @docs
-
-// `daff-global` holds boilerplate code for the project. It includes
-// standard styles such as resets and typographic rules, which are
-// commonly used throughout your project.
+// @deprecated
 //
-// @note This should only be imported once in your `styles.scss` file.
-//
-// @usage
-// ```scss
-// @use '@daffodil/design/scss/daff-global';
-// ```
+// `daff-global` will be deprecated in v1.0.0
 
-@use 'typography' as t;
-@use '~@angular/cdk/overlay-prebuilt';
-@use '~modern-normalize/modern-normalize';
-@forward './theming/theme-css-variables';
-
-body,
-html {
-	font-family: t.$body-font-family;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 1.5;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-html {
-	scroll-behavior: smooth;
-}
-
-a {
-	color: currentColor;
-
-	&:hover {
-		text-decoration: none;
-	}
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0;
-	padding: 0;
-}
+@forward 'global';
