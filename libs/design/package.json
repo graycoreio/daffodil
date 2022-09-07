@@ -28,9 +28,13 @@
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/forms": "0.0.0-PLACEHOLDER",
     "@angular/cdk": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@fortawesome/angular-fontawesome": "0.0.0-PLACEHOLDER",
     "@fortawesome/fontawesome-svg-core": "0.0.0-PLACEHOLDER",
     "@fortawesome/free-solid-svg-icons": "0.0.0-PLACEHOLDER",
+    "@fortawesome/free-brands-svg-icons": "0.0.0-PLACEHOLDER",
+    "@fortawesome/free-regular-svg-icons": "0.0.0-PLACEHOLDER",
+    "modern-normalize": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
