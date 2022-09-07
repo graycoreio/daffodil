@@ -12,8 +12,8 @@
 // ```
 
 @use 'typography' as t;
-@use '~@angular/cdk/overlay-prebuilt';
-@use '~modern-normalize/modern-normalize';
+@use '@angular/cdk/overlay-prebuilt';
+@use 'modern-normalize/modern-normalize';
 @forward './theming/theme-css-variables';
 
 body,
