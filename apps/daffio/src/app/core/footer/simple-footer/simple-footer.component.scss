@@ -1,15 +1,15 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 :host {
 	display: block;
-	font-size: $small-font-size;
+	font-size: daff.$small-font-size;
 	padding: 48px 24px;
 
-	@include breakpoint(tablet) {
+	@include daff.breakpoint(tablet) {
 		padding: 64px 48px;
 	}
 
-	@include breakpoint(small-laptop) {
+	@include daff.breakpoint(small-laptop) {
 		padding: 64px 0;
 	}
 }
@@ -25,7 +25,7 @@
 			'social';
 		grid-gap: 16px;
 
-		@include breakpoint(tablet) {
+		@include daff.breakpoint(tablet) {
 			grid-template-columns: 1fr 1fr;
 			grid-template-areas:
 				'logo  logo'
@@ -33,7 +33,7 @@
 			grid-gap: 24px;
 		}
 
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: 1fr 1fr 1fr;
 			grid-template-areas: 'menu logo social';
 			grid-gap: 48px;
@@ -45,7 +45,7 @@
 		display: flex;
 		justify-content: center;
 
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			justify-content: flex-start;
 		}
 	}
@@ -63,14 +63,14 @@
 		display: flex;
 		justify-content: center;
 
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			justify-content: flex-end;
 		}
 	}
 
 	&__link {
-		@include embolden();
-		@include uppercase();
+		@include daff.embolden();
+		@include daff.uppercase();
 		padding-right: 32px;
 		text-decoration: none;
 

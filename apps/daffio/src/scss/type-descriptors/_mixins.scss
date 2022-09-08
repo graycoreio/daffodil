@@ -1,51 +1,51 @@
 @use 'sass:map';
-@use 'daffio-theme' as theme;
-@use 'typography';
+@use 'theme' as daff-theme;
+@use 'utilities' as daff;
 
-$primary: map.get(theme.$theme, primary);
-$secondary: map.get(theme.$theme, secondary);
-$tertiary: map.get(theme.$theme, tertiary);
-$base: theme.daff-map-deep-get(theme.$theme, 'core.base');
-$base-contrast: theme.daff-map-deep-get(theme.$theme, 'core.base-contrast');
+$primary: map.get(daff-theme.$theme, primary);
+$secondary: map.get(daff-theme.$theme, secondary);
+$tertiary: map.get(daff-theme.$theme, tertiary);
+$base: daff-theme.daff-map-deep-get(daff-theme.$theme, 'core.base');
+$base-contrast: daff-theme.daff-map-deep-get(daff-theme.$theme, 'core.base-contrast');
 
 @mixin type-theming($color) {
 	background: $color;
-	color: theme.daff-text-contrast($color);
+	color: daff-theme.daff-text-contrast($color);
 }
 
 @mixin type-label() {
 	border-radius: 4px;
-	font-family: typography.$monospace-font-family;
+	font-family: daff.$monospace-font-family;
 	font-size: 0.625rem;
 	box-sizing: border-box;
 	text-transform: uppercase;
 	transition: background-color 300ms;
 
 	&.class {
-		@include type-theming(theme.daff-color($primary));
+		@include type-theming(daff-theme.daff-color($primary));
 	}
 
 	&.type-alias {
-		@include type-theming(theme.daff-color($secondary));
+		@include type-theming(daff-theme.daff-color($secondary));
 	}
 
 	&.interface {
-		@include type-theming(theme.daff-color($tertiary));
+		@include type-theming(daff-theme.daff-color($tertiary));
 	}
 
 	&.const {
-		@include type-theming(theme.daff-illuminate($base-contrast, $secondary, 3));
+		@include type-theming(daff-theme.daff-illuminate($base-contrast, $secondary, 3));
 	}
 
 	&.enum {
-		@include type-theming(theme.daff-illuminate($base-contrast, $primary, 3));
+		@include type-theming(daff-theme.daff-illuminate($base-contrast, $primary, 3));
 	}
 
 	&.package {
-		@include type-theming(theme.daff-illuminate($base-contrast, theme.$daff-yellow, 3));
+		@include type-theming(daff-theme.daff-illuminate($base-contrast, daff-theme.$daff-yellow, 3));
 	}
 
 	&.function {
-		@include type-theming(theme.daff-illuminate($base-contrast, $tertiary, 3));
+		@include type-theming(daff-theme.daff-illuminate($base-contrast, $tertiary, 3));
 	}
 }

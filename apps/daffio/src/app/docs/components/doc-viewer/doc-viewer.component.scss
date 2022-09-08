@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 :host {
 	display: block;
@@ -12,7 +12,7 @@
 			'content';
 		padding: 48px;
 		
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: minmax(0px, 960px) 240px;
 			grid-template-areas:
 				'content table-of-contents';
@@ -28,7 +28,7 @@
 	&__table-of-contents {
 		display: none;
 		
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			display: block;
 			grid-area: table-of-contents;
 		}

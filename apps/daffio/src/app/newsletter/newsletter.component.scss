@@ -1,8 +1,8 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 .newsletter {
   &__header {
-    @include embolden();
+    @include daff.embolden();
     text-transform: uppercase;
     font-size: 1rem;
     padding: 0 0 25px 0;
@@ -23,7 +23,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 
-    @include breakpoint(laptop) {
+    @include daff.breakpoint(laptop) {
       width: 60%;
     }
   }
@@ -35,11 +35,11 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 
-    @include breakpoint(tablet) {
+    @include daff.breakpoint(tablet) {
       font-size: 1rem;
     }
 
-    @include breakpoint(laptop) {
+    @include daff.breakpoint(laptop) {
       width: 30%;
     }
   }

@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 /* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-sub-footer {
@@ -16,7 +16,7 @@
       'discord';
     grid-gap: 16px;
     
-    @include breakpoint(tablet) {
+    @include daff.breakpoint(tablet) {
       grid-template-columns: 1fr 1fr;
       grid-template-areas: 'repo discord';
       grid-gap: 16px;

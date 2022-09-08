@@ -1,14 +1,14 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 :host {
 	display: block;
 	overflow: hidden;
 
-	@include breakpoint(big-tablet) {
+	@include daff.breakpoint(big-tablet) {
 		height: calc(100vh - 64px);
 	}
 
-	@include breakpoint(desktop) {
+	@include daff.breakpoint(desktop) {
 		height: 80vh;
 	}
 }
@@ -22,14 +22,14 @@
 			'content';
 		position: relative;
 
-    @include breakpoint(big-tablet) {
+    @include daff.breakpoint(big-tablet) {
       grid-template-columns: 560px 1fr;
 			grid-template-areas:
 				'content illustration';
     	grid-gap: 48px;
     }
 
-    @include breakpoint(small-laptop) {
+    @include daff.breakpoint(small-laptop) {
 			grid-template-columns: 560px 1fr;
 			grid-template-areas:
 				'content illustration';
@@ -47,7 +47,7 @@
 		display: none;
 		grid-area: illustration;
 
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			display: block;
 			position: absolute;
 			right: -288px;
@@ -55,7 +55,7 @@
 			width: 736px;
 		}
 
-		@include breakpoint(desktop) {
+		@include daff.breakpoint(desktop) {
 			top: -60px;
 		}
 	}

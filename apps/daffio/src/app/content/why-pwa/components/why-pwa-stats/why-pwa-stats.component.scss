@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 /* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-why-pwa-stats {
@@ -10,7 +10,7 @@
 			'b';
     grid-gap: 24px;
 
-    @include breakpoint(big-tablet) {
+    @include daff.breakpoint(big-tablet) {
       grid-template-columns: 1fr 1fr;
 			grid-template-areas: 'a b';
 			grid-gap: 24px;

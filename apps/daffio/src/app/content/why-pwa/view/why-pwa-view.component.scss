@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 .hero {
   &__grid {
@@ -6,7 +6,7 @@
     grid-template-columns: 1fr;
     align-items: center;
 
-    @include breakpoint(big-tablet) {
+    @include daff.breakpoint(big-tablet) {
       grid-template-columns: 1fr 1fr;
     }
   }
@@ -15,7 +15,7 @@
     z-index: 2;
     text-align: center;
 
-    @include breakpoint(big-tablet) {
+    @include daff.breakpoint(big-tablet) {
       text-align: left;
     }
 
@@ -23,7 +23,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @include breakpoint(big-tablet) {
+      @include daff.breakpoint(big-tablet) {
         margin-left: 0;
         margin-right: 0;
       }
@@ -35,7 +35,7 @@
     max-width: 400px;
     margin: 0 auto;
 
-    @include breakpoint(big-tablet) {
+    @include daff.breakpoint(big-tablet) {
       width: 100%;
       max-width: none;
       margin: auto;
@@ -50,11 +50,11 @@
     margin-left: -25px;
     margin-right: -25px;
 
-    @include breakpoint(mobile) {
+    @include daff.breakpoint(mobile) {
       grid-template-columns: 1fr 1fr;
     }
 
-    @include breakpoint(tablet) {
+    @include daff.breakpoint(tablet) {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
@@ -65,7 +65,7 @@
   grid-template-columns: 1fr;
   grid-gap: 30px;
 
-  @include breakpoint(tablet) {
+  @include daff.breakpoint(tablet) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
@@ -81,7 +81,7 @@
     grid-gap: 50px;
     align-items: center;
 
-    @include breakpoint(big-tablet) {
+    @include daff.breakpoint(big-tablet) {
       grid-template-columns: 1fr 1fr;
     }
   }

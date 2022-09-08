@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 :host {
 	display: block;
@@ -14,7 +14,7 @@
 		display: block;
 
 		&:first-of-type {
-			@include embolden();
+			@include daff.embolden();
 			padding: 0 0 8px;
 			margin: 0 0 16px;
 		}

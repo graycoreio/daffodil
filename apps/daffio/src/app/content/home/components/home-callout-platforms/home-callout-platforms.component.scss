@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 /* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-home-callout-platforms {
@@ -9,7 +9,7 @@
 		grid-gap: 24px;
 		justify-content: center;
 
-		@include breakpoint(mobile) {
+		@include daff.breakpoint(mobile) {
 			grid-template-columns: 144px 144px;
 		grid-template-areas: 'magento shopify';
 		grid-gap: 48px;
