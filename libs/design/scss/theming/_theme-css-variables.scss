@@ -35,9 +35,7 @@
 
 @mixin daff-theme-css-variables($theme) {
 	@each $selector in & {
-		$l: length($selector);
-
-		@if ($l == 1) {
+		@if ($selector == null) {
 			:root {
 				@include daff-root-theme-tokens($theme);
 			}
