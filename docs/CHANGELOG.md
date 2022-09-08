@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.45.0](https://github.com/graycoreio/daffodil/compare/v0.44.1...v0.45.0) (2022-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **reviews:** `DaffProductReviews#metadata` has a new required field: `filter`
+* We have upgraded our build deps to Node 16. This may
+have downstream side-effects to consumers that we can't predict.
+
+### Features
+
+* **design:** add default theme and update getting started ([#2157](https://github.com/graycoreio/daffodil/issues/2157)) ([db2d002](https://github.com/graycoreio/daffodil/commit/db2d0027e7d35ad0f102d47fc255fa5eabfbc176))
+* **design:** remove `daff-` prefix from main scss files ([#2175](https://github.com/graycoreio/daffodil/issues/2175)) ([8d15b3b](https://github.com/graycoreio/daffodil/commit/8d15b3b039e8f2c51bb37afb02d2a3a8ae276dfc))
+* **reviews:** add filter support ([#2171](https://github.com/graycoreio/daffodil/issues/2171)) ([5dac268](https://github.com/graycoreio/daffodil/commit/5dac2686b3ec97783ca9381d945c8ae9b55ea048))
+* **reviews:** export validators and errors from Magento driver ([#2182](https://github.com/graycoreio/daffodil/issues/2182)) ([bd890ee](https://github.com/graycoreio/daffodil/commit/bd890ee5cecd0ec5830f646a05f29171c4d89e47))
+
+
+### Bug Fixes
+
+* **core:** change base64 type for Node 16 ([4cd0780](https://github.com/graycoreio/daffodil/commit/4cd07805e93d3c81fcabf2681435844c583b145c))
+* **design:** add exports for external usage ([#2173](https://github.com/graycoreio/daffodil/issues/2173)) ([5e2700c](https://github.com/graycoreio/daffodil/commit/5e2700cb5f4157d197c848eb199f5a4d00858850))
+* **design:** add missing peer dependencies ([#2174](https://github.com/graycoreio/daffodil/issues/2174)) ([ba9c582](https://github.com/graycoreio/daffodil/commit/ba9c58256deea73dc891617fcfc54d5b4a6f20a6))
+* **design:** handle root theme variables ([#2179](https://github.com/graycoreio/daffodil/issues/2179)) ([fb54393](https://github.com/graycoreio/daffodil/commit/fb54393abdd451332dd3377c5a8e12f16a38b9d6))
+* **design:** remove tilde from cdk and modern normalize module imports ([#2178](https://github.com/graycoreio/daffodil/issues/2178)) ([9c956c8](https://github.com/graycoreio/daffodil/commit/9c956c8eeb5d9a9025155c0fe8e1f1aaeb8ce7da))
+* **reviews:** collection actions don't change loading state ([#2170](https://github.com/graycoreio/daffodil/issues/2170)) ([5e15933](https://github.com/graycoreio/daffodil/commit/5e15933010ececa068b0c4ce49717193b306576a))
+* **reviews:** magento query not cacheable ([#2169](https://github.com/graycoreio/daffodil/issues/2169)) ([bec37a0](https://github.com/graycoreio/daffodil/commit/bec37a0e7317c71328e39d44aae2dfc827e74bb9))
+
+
+* feat!(deps): upgrade to node16 ([89fbede](https://github.com/graycoreio/daffodil/commit/89fbedec35479ae2fe13081ab718e1dc4cde5d05))
+
 ### [0.44.1](https://github.com/graycoreio/daffodil/compare/v0.44.0...v0.44.1) (2022-09-01)
 
 
