@@ -14,4 +14,5 @@ export const magentoProductReviewCollectionMetadataTransform = (productReviews: 
   sortOptions: null,
   appliedSortDirection: null,
   appliedSortOption: null,
+  appliedFilter: null,
 });

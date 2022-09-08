@@ -27,6 +27,7 @@ import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffProductPageFacade } from '@daffodil/product/state';
 import {
   DaffProductReview,
+  daffReviewsCollectionBuildRequestFromMetadata,
   DAFF_REVIEWS_ERROR_MATCHER,
 } from '@daffodil/reviews';
 import {
@@ -46,6 +47,7 @@ export const DAFF_PRODUCT_REVIEW_COLLECTION_ACTION_TYPES = [
   DaffProductReviewsCollectionActionTypes.ChangeCurrentPageAction,
   DaffProductReviewsCollectionActionTypes.ChangePageSizeAction,
   DaffProductReviewsCollectionActionTypes.ChangeSortingAction,
+  DaffProductReviewsCollectionActionTypes.ChangeFilterAction,
 ];
 
 @Injectable()
@@ -78,7 +80,7 @@ export class DaffProductReviewCollectionEffects<
     throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
     switchMap(([action, metadata, product]) => this.driver.list(
       product.id,
-      daffCollectionBuildRequestFromMetadata(metadata),
+      daffReviewsCollectionBuildRequestFromMetadata(metadata),
     ).pipe(
       map(resp => new DaffReviewsProductListSuccess<T>(resp)),
       catchError((error: DaffError) => of(new DaffReviewsProductListFailure(this.errorMatcher(error)))),

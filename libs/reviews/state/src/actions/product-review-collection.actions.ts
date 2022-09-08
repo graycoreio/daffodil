@@ -5,6 +5,7 @@ import {
   DaffCollectionChangeCurrentPage,
   DaffCollectionChangeSortingOption,
 } from '@daffodil/core/state';
+import { DaffProductReviews } from '@daffodil/reviews';
 
 /**
  * Action types for Product Review Actions.
@@ -13,6 +14,7 @@ export enum DaffProductReviewsCollectionActionTypes {
   ChangePageSizeAction = '[@daffodil/reviews/state] Change Product Reviews Collection Page Size Action',
   ChangeCurrentPageAction = '[@daffodil/reviews/state] Change Product Reviews Collection Current Page Action',
   ChangeSortingAction = '[@daffodil/reviews/state] Change Product Reviews Collection Sorting Action',
+  ChangeFilterAction = '[@daffodil/reviews/state] Change Product Reviews Collection Filter Action',
 }
 
 /**
@@ -51,7 +53,19 @@ export class DaffReviewsCollectionChangeSortingOption implements DaffCollectionC
   ) {}
 }
 
+/**
+ * An action for filtering the collection by an overall rating value.
+ */
+export class DaffReviewsCollectionChangeFilter {
+  readonly type = DaffProductReviewsCollectionActionTypes.ChangeFilterAction;
+
+  constructor(
+    public filter: DaffProductReviews['metadata']['appliedFilter'],
+  ) {}
+}
+
 export type DaffProductReviewsCollectionActions =
   | DaffReviewsCollectionChangePageSize
   | DaffReviewsCollectionChangeCurrentPage
-  | DaffReviewsCollectionChangeSortingOption;
+  | DaffReviewsCollectionChangeSortingOption
+  | DaffReviewsCollectionChangeFilter;

@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
 import * as faker from '@faker-js/faker/locale/en_US';
 
-import {
-  daffIdentifiableArrayToDict,
-  DaffCollectionMetadata,
-} from '@daffodil/core';
-import {
-  DaffModelFactory,
-  DaffCollectionMetadataFactory,
-} from '@daffodil/core/testing';
+import { daffIdentifiableArrayToDict } from '@daffodil/core';
+import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   DaffProductReview,
   DaffProductReviews,
 } from '@daffodil/reviews';
 
 import { DaffProductReviewFactory } from './product-review.factory';
+import { DaffProductReviewsMetadataFactory } from './product-reviews-metadata.factory';
 
 /**
  * Mocked {@link DaffProductReviews} object.
@@ -25,7 +20,7 @@ export class MockProductReviews implements DaffProductReviews {
 
   constructor(
     private reviewFactory: DaffProductReviewFactory,
-    private metadataFactory: DaffCollectionMetadataFactory,
+    private metadataFactory: DaffProductReviewsMetadataFactory,
   ) {
     this.data = this.createReviews();
 
@@ -50,7 +45,7 @@ export class MockProductReviews implements DaffProductReviews {
 export class DaffProductReviewsFactory extends DaffModelFactory<DaffProductReviews>{
   constructor(
     reviewFactory: DaffProductReviewFactory,
-    metadataFactory: DaffCollectionMetadataFactory,
+    metadataFactory: DaffProductReviewsMetadataFactory,
   ) {
     super(MockProductReviews, reviewFactory, metadataFactory);
   }

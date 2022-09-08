@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  daffArrayToDict,
-  DaffCollectionRequest,
-} from '@daffodil/core';
-import { DaffCollectionRequestFactory } from '@daffodil/core/testing';
+import { DaffProductReviewsCollectionRequest } from '@daffodil/reviews';
 import {
   DaffProductReview,
   DaffProductReviews,
@@ -15,6 +11,7 @@ import {
   DaffReviewsProductListFailure,
   DaffReviewsCollectionReducerState,
 } from '@daffodil/reviews/state';
+import { DaffProductReviewsCollectionRequestFactory } from '@daffodil/reviews/testing';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
 import {
@@ -23,16 +20,16 @@ import {
 } from './reducer';
 
 describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
-  let collectionRequestFactory: DaffCollectionRequestFactory;
+  let collectionRequestFactory: DaffProductReviewsCollectionRequestFactory;
   let productReviewsFactory: DaffProductReviewsFactory;
   let mockProductReviews: DaffProductReviews;
   let mockProductReview: DaffProductReview;
-  let mockCollectionRequest: DaffCollectionRequest;
+  let mockCollectionRequest: DaffProductReviewsCollectionRequest;
   let productId: string;
 
   beforeEach(() => {
     productReviewsFactory = TestBed.inject(DaffProductReviewsFactory);
-    collectionRequestFactory = TestBed.inject(DaffCollectionRequestFactory);
+    collectionRequestFactory = TestBed.inject(DaffProductReviewsCollectionRequestFactory);
 
     mockProductReviews = productReviewsFactory.create();
     mockCollectionRequest = collectionRequestFactory.create();
@@ -46,6 +43,20 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
       const result = daffReviewsCollectionReducer(daffReviewsCollectionReducerInitialState, action);
 
       expect(result).toBe(daffReviewsCollectionReducerInitialState);
+    });
+  });
+
+  describe('when ChangeFilterAction is triggered', () => {
+    let result: DaffReviewsCollectionReducerState;
+
+    beforeEach(() => {
+      const action = new DaffReviewsProductList(productId, mockCollectionRequest);
+
+      result = daffReviewsCollectionReducer(daffReviewsCollectionReducerInitialState, action);
+    });
+
+    it('stores the filter', () => {
+      expect(result.appliedFilter).toEqual(mockCollectionRequest.appliedFilter);
     });
   });
 
