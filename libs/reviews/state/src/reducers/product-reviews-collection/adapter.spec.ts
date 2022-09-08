@@ -33,14 +33,14 @@ describe('@daffodil/core/state | daffGetReviewsCollectionStateAdapter', () => {
 
     beforeEach(() => {
       collectionRequest = {
-        filter: collectionMetadata.filter,
+        appliedFilter: collectionMetadata.appliedFilter,
       };
 
       result = adapter.storeRequest(collectionRequest, initialState);
     });
 
     it('sets the included parameters on collectionMetadata from the request', () => {
-      expect(result.filter).toEqual(collectionRequest.filter);
+      expect(result.appliedFilter).toEqual(collectionRequest.appliedFilter);
     });
   });
 
@@ -52,7 +52,7 @@ describe('@daffodil/core/state | daffGetReviewsCollectionStateAdapter', () => {
     });
 
     it('sets filter', () => {
-      expect(result.filter).toEqual(collectionMetadata.filter);
+      expect(result.appliedFilter).toEqual(collectionMetadata.appliedFilter);
     });
   });
 
@@ -66,7 +66,7 @@ describe('@daffodil/core/state | daffGetReviewsCollectionStateAdapter', () => {
     });
 
     it('sets filter', () => {
-      expect(result.filter).toEqual(filter);
+      expect(result.appliedFilter).toEqual(filter);
     });
 
     it('resets currentPage', () => {

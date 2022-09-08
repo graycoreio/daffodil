@@ -12,7 +12,7 @@ import { DaffReviewsCollectionReducerState } from './state.interface';
 
 export const daffReviewsCollectionReducerInitialState: DaffReviewsCollectionReducerState = {
   ...daffCollectionReducerInitialState,
-  filter: null,
+  appliedFilter: null,
 };
 
 /**

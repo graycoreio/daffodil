@@ -13,7 +13,7 @@ import { DaffReviewsStateRootSlice } from '../../reducers/public_api';
 import { getDaffReviewsFeatureSelector } from '../feature.selector';
 
 export interface DaffProductReviewsCollectionMemoizedSelectors extends DaffCollectionMemoizedSelectors<DaffReviewsStateRootSlice, DaffProductReviews['metadata']> {
-  selectSelectedFilter: MemoizedSelector<DaffReviewsStateRootSlice, DaffProductReviews['metadata']['filter']>;
+  selectSelectedFilter: MemoizedSelector<DaffReviewsStateRootSlice, DaffProductReviews['metadata']['appliedFilter']>;
 };
 
 const {
@@ -27,7 +27,7 @@ const selectProductReviewsCollectionState = createSelector(
 
 const selectSelectedFilter = createSelector(
   selectProductReviewsCollectionState,
-  metadata => metadata.filter,
+  metadata => metadata.appliedFilter,
 );
 
 export const getDaffProductReviewsCollectionSelectors = (() => {

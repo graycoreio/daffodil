@@ -5,7 +5,7 @@ import { DaffCollectionMetadata } from '@daffodil/core';
  */
 export interface DaffProductReviewsMetadata extends DaffCollectionMetadata {
   /**
-   * Filter by the rating.
+   * The applied rating filter.
    */
-  filter: number;
+  appliedFilter: number;
 };

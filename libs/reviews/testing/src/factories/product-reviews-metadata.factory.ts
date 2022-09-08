@@ -13,7 +13,7 @@ import { DaffProductReviewsMetadata } from '@daffodil/reviews';
  * Mocked {@link DaffProductReviewsMetadata} object.
  */
 export class MockProductReviewsMetadata extends MockCollectionMetadata implements DaffProductReviewsMetadata {
-  filter = faker.datatype.number({ min: 1, max: 100 });
+  appliedFilter = faker.datatype.number({ min: 1, max: 100 });
 }
 
 /**

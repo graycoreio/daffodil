@@ -60,7 +60,7 @@ export class DaffReviewsCollectionChangeFilter {
   readonly type = DaffProductReviewsCollectionActionTypes.ChangeFilterAction;
 
   constructor(
-    public filter: DaffProductReviews['metadata']['filter'],
+    public filter: DaffProductReviews['metadata']['appliedFilter'],
   ) {}
 }
 

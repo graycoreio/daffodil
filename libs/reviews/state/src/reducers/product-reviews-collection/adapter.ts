@@ -7,10 +7,10 @@ import { DaffProductReviewsCollectionRequest } from '@daffodil/reviews';
 import { DaffReviewsCollectionReducerState } from './state.interface';
 
 export class DaffReviewsCollectionStateAdapter extends DaffCollectionStateAdapter<DaffReviewsCollectionReducerState> {
-  setFilter(filter: DaffProductReviews['metadata']['filter'], state: DaffReviewsCollectionReducerState): DaffReviewsCollectionReducerState {
+  setFilter(appliedFilter: DaffProductReviews['metadata']['appliedFilter'], state: DaffReviewsCollectionReducerState): DaffReviewsCollectionReducerState {
     return {
       ...state,
-      filter,
+      appliedFilter,
       currentPage: 1,
     };
   }
@@ -18,14 +18,14 @@ export class DaffReviewsCollectionStateAdapter extends DaffCollectionStateAdapte
   storeRequest(request: DaffProductReviewsCollectionRequest, state: DaffReviewsCollectionReducerState): DaffReviewsCollectionReducerState {
     return {
       ...super.storeRequest(request, state),
-      filter: request.filter,
+      appliedFilter: request.appliedFilter,
     };
   }
 
   setMetadata(metadata: DaffProductReviews['metadata'], state: DaffReviewsCollectionReducerState): DaffReviewsCollectionReducerState {
     return {
       ...super.setMetadata(metadata, state),
-      filter: metadata.filter,
+      appliedFilter: metadata.appliedFilter,
     };
   };
 }

@@ -11,8 +11,8 @@ import {
 export const daffReviewsCollectionBuildMetadataFromRequest = (request: DaffProductReviewsCollectionRequest): Partial<DaffProductReviewsMetadata> => {
   const metadata = <DaffProductReviewsMetadata>daffCollectionBuildMetadataFromRequest(request);
 
-  if (request.filter) {
-    metadata.filter = request.filter;
+  if (request.appliedFilter) {
+    metadata.appliedFilter = request.appliedFilter;
   }
 
   return metadata;

@@ -30,7 +30,7 @@ describe('@daffodil/reviews/testing | DaffProductReviewsMetadataFactory', () => 
     });
 
     it('should define all required fields', () => {
-      expect(result.filter).toBeDefined();
+      expect(result.appliedFilter).toBeDefined();
     });
   });
 });

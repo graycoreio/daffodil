@@ -91,7 +91,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           appliedSortDirection: mockReviews.metadata.appliedSortDirection,
           currentPage: mockReviews.metadata.currentPage,
           pageSize: mockReviews.metadata.pageSize,
-          filter: mockReviews.metadata.filter,
+          appliedFilter: mockReviews.metadata.appliedFilter,
         });
       });
     });
@@ -124,7 +124,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           appliedSortDirection: mockReviews.metadata.appliedSortDirection,
           currentPage: mockReviews.metadata.currentPage,
           pageSize: mockReviews.metadata.pageSize,
-          filter: mockReviews.metadata.filter,
+          appliedFilter: mockReviews.metadata.appliedFilter,
         });
       });
     });
@@ -160,7 +160,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           appliedSortDirection: mockReviews.metadata.appliedSortDirection,
           currentPage: mockReviews.metadata.currentPage,
           pageSize: mockReviews.metadata.pageSize,
-          filter: mockReviews.metadata.filter,
+          appliedFilter: mockReviews.metadata.appliedFilter,
         });
       });
     });

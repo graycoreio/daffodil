@@ -25,6 +25,6 @@ describe('@daffodil/core | daffReviewsCollectionBuildMetadataFromRequest', () =>
     expect(result.appliedSortOption).toEqual(request.appliedSortOption);
     expect(result.currentPage).toEqual(request.currentPage);
     expect(result.pageSize).toEqual(request.pageSize);
-    expect(result.filter).toEqual(request.filter);
+    expect(result.appliedFilter).toEqual(request.appliedFilter);
   });
 });

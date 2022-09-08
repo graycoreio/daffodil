@@ -11,7 +11,7 @@ import { DaffProductReviewsCollectionRequest } from '@daffodil/reviews';
  * Mocked {@link DaffProductReviewsCollectionRequest} object.
  */
 export class MockProductReviewsRequest extends MockCollectionRequest implements DaffProductReviewsCollectionRequest {
-  filter = faker.datatype.number({ min: 1, max: 100 });
+  appliedFilter = faker.datatype.number({ min: 1, max: 100 });
 }
 
 /**

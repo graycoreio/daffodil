@@ -56,7 +56,7 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
     });
 
     it('stores the filter', () => {
-      expect(result.filter).toEqual(mockCollectionRequest.filter);
+      expect(result.appliedFilter).toEqual(mockCollectionRequest.appliedFilter);
     });
   });
 

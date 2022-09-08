@@ -27,7 +27,7 @@ import { DaffProductPageReviewsCollectionFacadeInterface } from './interface';
 export class DaffProductPageReviewsCollectionFacade<T extends DaffProductReview = DaffProductReview>
   extends DaffCollectionFacade<DaffReviewsStateRootSlice<T>, DaffProductReviews['metadata']>
   implements DaffProductPageReviewsCollectionFacadeInterface {
-  selectedFilter$: Observable<DaffProductReviews['metadata']['filter']>;
+  appliedFilter$: Observable<DaffProductReviews['metadata']['appliedFilter']>;
 
   constructor(store: Store<DaffReviewsStateRootSlice<T>>) {
     const selectors = getDaffProductReviewsCollectionSelectors();
@@ -37,6 +37,6 @@ export class DaffProductPageReviewsCollectionFacade<T extends DaffProductReview 
       getDaffProductReviewsCollectionSelectors(),
     );
 
-    this.selectedFilter$ = this.store.pipe(select(selectors.selectSelectedFilter));
+    this.appliedFilter$ = this.store.pipe(select(selectors.selectSelectedFilter));
   }
 }

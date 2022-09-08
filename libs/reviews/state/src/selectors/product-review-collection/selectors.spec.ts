@@ -49,7 +49,7 @@ describe('selectProductEntitiesState', () => {
   describe('selectSelectedFilter', () => {
     it('should select the product of the given id', () => {
       const selector = store.pipe(select(selectSelectedFilter));
-      const expected = cold('a', { a: mockProductReviews.metadata.filter });
+      const expected = cold('a', { a: mockProductReviews.metadata.appliedFilter });
 
       expect(selector).toBeObservable(expected);
     });

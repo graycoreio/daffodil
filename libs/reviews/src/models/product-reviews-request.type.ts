@@ -7,5 +7,5 @@ export interface DaffProductReviewsCollectionRequest extends DaffCollectionReque
   /**
    * The rating filter.
    */
-  filter?: number;
+  appliedFilter?: number;
 }

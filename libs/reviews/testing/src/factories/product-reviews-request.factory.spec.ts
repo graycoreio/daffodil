@@ -30,7 +30,7 @@ describe('@daffodil/reviews/testing | DaffProductReviewsCollectionRequestFactory
     });
 
     it('should define all required fields', () => {
-      expect(result.filter).toBeDefined();
+      expect(result.appliedFilter).toBeDefined();
     });
   });
 });

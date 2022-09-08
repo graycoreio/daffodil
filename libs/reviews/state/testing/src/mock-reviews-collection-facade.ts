@@ -10,6 +10,6 @@ import { DaffProductPageReviewsCollectionFacadeInterface } from '@daffodil/revie
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductPageReviewsCollectionFacade extends MockDaffCollectionFacade implements DaffProductPageReviewsCollectionFacadeInterface {
-  selectedFilter$ = new BehaviorSubject<DaffProductReviews['metadata']['filter']>(null);
+  appliedFilter$ = new BehaviorSubject<DaffProductReviews['metadata']['appliedFilter']>(null);
   metadata$ = new BehaviorSubject<DaffProductReviews['metadata']>(null);
 }
