@@ -1,5 +1,5 @@
 # Introduction
-Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first-steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
+Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
 
 ## First Steps
 This tutorial is designed to touch upon the very basics of the `@daffodil/design` library. First things first, you will need to [create a new Angular project](https://angular.io/cli) and [install the library](#installation). By the end of this tutorial, you will have created a basic Angular app that renders a simple `DaffHeroComponent` with a title and subtitle.
@@ -9,13 +9,33 @@ This tutorial is designed to touch upon the very basics of the `@daffodil/design
 
 ### npm
 ```bash
-npm install @daffodil/design --save
+npm install --save @daffodil/design @daffodil/core \
+  @angular/animatio@^13.0.0 \
+  @angular/cdk@^13.0.0 \
+  @fortawesome/angular-fontawesome@^0.10.0 \
+  @fortawesome/fontawesome-svg-core@^1.0.0 \
+  @fortawesome/free-solid-svg-icons@^5.2.0 \
+  @fortawesome/free-brands-svg-icons@^5.2.0 \
+  @fortawesome/free-regular-svg-icons@^5.2.0 \
+  modern-normalize@^0.5.0
 ```
+
+> If you are using Node.js v14 or higher, you can simply run: `npm install --save @daffodil/design`
 
 ### Yarn
 ```bash
-yarn add @daffodil/design
+yarn add @daffodil/design @daffodil/core \
+  @angular/animatio@^13.0.0 \
+  @angular/cdk@^13.0.0 \
+  @fortawesome/angular-fontawesome@^0.10.0 \
+  @fortawesome/fontawesome-svg-core@^1.0.0 \
+  @fortawesome/free-solid-svg-icons@^5.2.0 \
+  @fortawesome/free-brands-svg-icons@^5.2.0 \
+  @fortawesome/free-regular-svg-icons@^5.2.0 \
+  modern-normalize@^0.5.0
 ```
+
+> If you are using Node.js v14 or higher, you can simply run: `yarn add @daffodil/design`
 
 ### Modify Angular.json
 Next, create a `styles.scss` in the root of the Angular app and modify the `angular.json`'s `projects.[my-app].architect.build.options.styles` to look as below. If SASS is already in use in the application and the stylesheet already exists, this step can be skipped.
@@ -35,8 +55,6 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 @forward '@daffodil/design/scss/global';
 ```
 
-> Note that this import changes the output CSS and should only ever be imported once!
-
 > For more information on our approach to these kinds of styles, see the ["Global Styles" guide.](./global-styles.md)
 
 ### Add a Theme
@@ -44,30 +62,7 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 
 > Are you excited by themes? So are we.
 
-Next, create a file called `theme.scss` that is sibling to `styles.scss` and put the following content in it.
-
-```scss
-@forward '@daffodil/design/scss/theme';
-
-// These palettes describe the colors that make up the "theme" of the components.
-
-$primary: daff-configure-palette($daff-yellow, 60);
-$secondary: daff-configure-palette($daff-purple, 60);
-$tertiary: daff-configure-palette($daff-blue, 60);
-$theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
-```
-
-Then, import the new `theme.scss` into the `styles.scss` file.
-
-```scss
-@use '@daffodil/design/scss/global';
-@use 'theme';
-
-@include daff-theme($theme);
-```
-
-> These lines include theme variables and functions and then generate the theme CSS that will style the components.
-> Note that this import changes the output CSS and should only ever be imported once!
+See the [Theming Docs](../scss/theming/README.md)
 
 ### Use a Component
 In the `AppModule` of your Angular app, import the `DaffHeroModule` into the `NgModule`'s `imports` array.
@@ -84,8 +79,12 @@ import { DaffHeroModule } from '@daffodil/design';
     BrowserModule,
     DaffHeroModule
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {}
 ```
@@ -103,17 +102,6 @@ With the module imported, the `AppComponent` template can be updated to render t
   </h2>
 </daff-hero>
 ```
-
-### Add Typographic Styles
-At this point, there is some extra padding around the body of the `DaffHeroComponent`. This is intentional, and is driven by our "minimal modification" principle as described in the ["Global Styles" guide](./global-styles.md).
-
-To give the final result that extra "pizzaz", simply add the following to the imports of `styles.scss`.
-
-```scss
-@use '@daffodil/design/scss/typography';
-```
-
-[View this example in Stackblitz](https://stackblitz.com/edit/daffodil-design-angular-10).
 
 ## Next Steps
 We've just walked through the basics of setting up the `@daffodil/design` library. There is much more to it than just the `DaffHeroComponent`. Check out the full list of available components, try and add them to your sample app, and imagine all the wonderful things you can now build!

@@ -9,12 +9,11 @@
 // compiled stylesheet size.
 
 // @usage
-// ```
+// ```scss
 // @use '@daffodil/design/scss/theme';
 // ```
 
 @forward 'core';
-@forward 'accessibility';
 @forward 'theming';
 
 // @daffodil/design components
