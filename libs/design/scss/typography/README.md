@@ -5,7 +5,7 @@ Daffodil uses typography to establish hierarchy and create clear visual patterns
 To include typography in your project, you can add the following in your Sass file:
 
 ```scss
-@use '@daffodil/design/scss/typography';
+@use '@daffodil/design/scss/utilities';
 ```
 
 ## Type Scale
@@ -46,10 +46,10 @@ The headline mixins are responsive and will adjust at the `tablet` breakpoint.
 
 **Example:**
 ```scss
-@use '@daffodil/design/scss/typography';
+@use '@daffodil/design/scss/utilities';
 
 .title {
-	@include typography.headline-xl;
+	@include utilities.headline-xl;
 }
 ```
 
@@ -64,19 +64,16 @@ The headline mixins are responsive and will adjust at the `tablet` breakpoint.
 
 > `text-truncate` should only be used if the element is `display: block;` or `display: inline-block;`
 
-**Examples:**
-```html
-<div class="title"><span class="embolden">Daffodil</span> is a frontend Ecommerce framework that allows developers to build complex Ecommerce stores.</div>
-```
+You can include the typography utility classes in your project by writing the following in your Sass file:
 
 ```scss
-@use '@daffodil/design/scss/typography';
+@use '@daffodil/design/scss/typography/classes';
+```
 
-.title {
-	span {
-		@include typography.embolden;
-	}
-}
+Otherwise, you can use the mixins in your project by using the following module in your Sass file:
+
+```scss
+@use '@daffodil/design/scss/utilities';
 ```
 
 ## Typography Variables
