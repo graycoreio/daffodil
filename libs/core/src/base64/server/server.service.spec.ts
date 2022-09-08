@@ -33,8 +33,8 @@ describe('DaffServerBase64Service', () => {
 
       service = TestBed.inject(DaffServerBase64Service);
 
-      (<NodeJS.Global><unknown>window).Buffer = jasmine.createSpyObj('Buffer', ['from']);
-      (<jasmine.Spy>(<NodeJS.Global><unknown>window).Buffer.from).and.returnValue({ toString: () => {} });
+      (<typeof globalThis><unknown>window).Buffer = jasmine.createSpyObj('Buffer', ['from']);
+      (<jasmine.Spy>(<typeof globalThis><unknown>window).Buffer.from).and.returnValue({ toString: () => {} });
       ascii = 'test ascii string';
       base64 = 'dGVzdCBhc2NpaSBzdHJpbmc=';
     });
@@ -45,12 +45,12 @@ describe('DaffServerBase64Service', () => {
 
     it('should invoke Buffer with the ASCII string', () => {
       service.encode(ascii);
-      expect(<jasmine.Spy>(<NodeJS.Global><unknown>window).Buffer.from).toHaveBeenCalledWith(ascii);
+      expect(<jasmine.Spy>(<typeof globalThis><unknown>window).Buffer.from).toHaveBeenCalledWith(ascii);
     });
 
     it('should invoke Buffer with the base64 string', () => {
       service.decode(base64);
-      expect(<jasmine.Spy>(<NodeJS.Global><unknown>window).Buffer.from).toHaveBeenCalledWith(base64, 'base64');
+      expect(<jasmine.Spy>(<typeof globalThis><unknown>window).Buffer.from).toHaveBeenCalledWith(base64, 'base64');
     });
   });
 });
