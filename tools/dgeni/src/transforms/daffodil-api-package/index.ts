@@ -3,6 +3,7 @@ import { Package } from 'dgeni';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
+import { CrossEnvSafeNameProcessor } from '../../processors/cross-env-safe-name';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
 import { GenerateApiListProcessor } from '../../processors/generateApiList';
@@ -26,6 +27,7 @@ export const apiDocs =  new Package('checkout', [
   typescriptPackage,
   linksPackage,
 ])
+  .processor(new CrossEnvSafeNameProcessor())
   //Register Processors for this package
   .processor(new FilterContainedDocsProcessor())
   .processor(new CleanSelectorsProcessor())
@@ -72,7 +74,7 @@ export const apiDocs =  new Package('checkout', [
     computePathsProcessor.pathTemplates.push({
       docTypes: EXPORT_DOC_TYPES,
       pathTemplate: '${moduleDoc.moduleFolder}/${name}',
-      outputPathTemplate: '${moduleDoc.moduleFolder}/${name}.json',
+      outputPathTemplate: '${moduleDoc.moduleFolder}/${safeName}.json',
     });
   })
   .config((parseTagsProcessor: any) => {
