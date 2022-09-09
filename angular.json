@@ -163,7 +163,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build"
+            "browserTarget": "demo:build",
+            "allowedHosts": [
+              ".githubpreview.dev"
+            ]
           },
           "configurations": {
             "production": {
@@ -837,7 +840,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "daffio:build"
+            "browserTarget": "daffio:build",
+            "allowedHosts": [
+              ".githubpreview.dev"
+            ]
           },
           "configurations": {
             "production": {
@@ -1111,7 +1117,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "design-land:build"
+            "browserTarget": "design-land:build",
+            "allowedHosts": [
+              ".githubpreview.dev"
+            ]
           },
           "configurations": {
             "production": {
