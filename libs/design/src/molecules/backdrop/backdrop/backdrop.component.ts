@@ -1,3 +1,4 @@
+import { AnimationEvent } from '@angular/animations';
 import {
   Component,
   Output,
@@ -6,9 +7,12 @@ import {
   ChangeDetectionStrategy,
   HostListener,
   HostBinding,
+  ElementRef,
+  OnInit,
 } from '@angular/core';
 
 import { daffBackdropAnimations } from '../animation/backdrop-animation';
+import { getAnimationState } from '../animation/backdrop-animation-state';
 
 @Component({
   selector: 'daff-backdrop',
@@ -19,13 +23,18 @@ import { daffBackdropAnimations } from '../animation/backdrop-animation';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffBackdropComponent {
+export class DaffBackdropComponent implements OnInit {
 
   /**
    * Determines whether or not the backdrop is transparent.
    */
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() transparent: boolean = false;
+
+  /**
+   * Determines whether or not the backdrop is interactable.
+   */
+  @Input() interactable = true;
 
   /**
    * Boolean property that determines whether or not the
@@ -39,11 +48,31 @@ export class DaffBackdropComponent {
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
+  @HostBinding('class.interactable') interactableClass = true;
+
+  ngOnInit(): void {
+    this.interactableClass = this.interactable;
+  }
+
   /**
    * Animation hook for that controls the backdrops
    * entrance and fade animations.
    */
-  @HostBinding('@fadeBackdrop')
+  @HostBinding('@fadeBackdrop') get fadeBackdropTrigger() {
+    return getAnimationState(this.interactable);
+  }
+
+  @HostListener('@fadeBackdrop.done', ['$event'])
+  animationDone(e: AnimationEvent) {
+	  this.interactableClass = !(e.toState === ':leave' || e.toState === 'non-interactable');
+  }
+
+  @HostListener('@fadeBackdrop.start', ['$event'])
+  animationStart(e: AnimationEvent) {
+	  if(e.toState === ':enter' || e.toState === 'interactable'){
+	    this.interactableClass = true;
+	  }
+  }
 
   /**
    * @deprecated
@@ -51,6 +80,6 @@ export class DaffBackdropComponent {
    */
   @HostListener('click')
   onBackdropClicked(): void {
-    this.backdropClicked.emit();
+	  this.backdropClicked.emit();
   }
 }

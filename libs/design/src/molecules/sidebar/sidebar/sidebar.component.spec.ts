@@ -5,6 +5,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarComponent } from './sidebar.component';
 
@@ -14,6 +15,7 @@ describe('DaffSidebarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule],
       declarations: [
         DaffSidebarComponent,
       ],
@@ -60,11 +62,17 @@ describe('DaffSidebarComponent', () => {
 
 @Component({ template: `
   <div class="host-element">
-    <daff-sidebar (escapePressed)="pressed()"></daff-sidebar>
+    <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
   </div>
 ` })
 class WrapperComponent {
   escapePressedCount = 0;
+
+  open = false;
+
+  side = 'left';
+
+  mode = 'side';
 
   pressed(): void{
     this.escapePressedCount++;
@@ -78,6 +86,7 @@ describe('DaffSidebarComponent | usage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule],
       declarations: [
         WrapperComponent,
         DaffSidebarComponent,
@@ -104,5 +113,21 @@ describe('DaffSidebarComponent | usage', () => {
     fixture.detectChanges();
 
     expect(wrapper.escapePressedCount).toEqual(1);
+  });
+
+  it('should be able to bind to the input `mode`', () => {
+    expect(component.mode).toEqual('side');
+  });
+
+  it('should be able to bind to the input `side`', () => {
+    expect(component.side).toEqual('left');
+  });
+
+  it('should be able to bind to the input `open`', () => {
+    expect(component.open).toEqual(false);
+  });
+
+  it('should have a width of 240px by default', () => {
+    expect(component.width).toEqual(240);
   });
 });

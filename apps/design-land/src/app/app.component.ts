@@ -1,10 +1,21 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Component,
   Injector,
   ComponentFactoryResolver,
 } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+  Observable,
+  map,
+  tap,
+} from 'rxjs';
 
+import {
+  DaffBreakpoints,
+  DaffSidebarMode,
+  DaffSidebarModeEnum,
+} from '@daffodil/design';
 import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
 import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
 import { BUTTON_EXAMPLES } from '@daffodil/design/button/examples';
@@ -24,8 +35,11 @@ import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
 import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
+import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
+
+
 
 @Component({
   selector: 'design-land-app-root',
@@ -33,9 +47,16 @@ import { createCustomElementFromExample } from './core/elements/create-element-f
   styleUrls: ['./app.component.scss'],
 })
 export class DesignLandAppComponent {
+  faBars = faBars;
+
+  public mode$: Observable<DaffSidebarMode>;
+
+  public open = false;
+
   constructor(
     injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
+    private breakpoint: BreakpointObserver,
   ) {
     [
       ...ARTICLE_EXAMPLES,
@@ -57,6 +78,7 @@ export class DesignLandAppComponent {
       ...PAGINATOR_EXAMPLES,
       ...IMAGE_EXAMPLES,
       ...INPUT_EXAMPLES,
+      ...SIDEBAR_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.
@@ -65,5 +87,13 @@ export class DesignLandAppComponent {
           customElement.element,
         );
       });
+    this.open = this.breakpoint.isMatched(DaffBreakpoints.BIG_TABLET);
+    this.mode$ = this.breakpoint.observe(DaffBreakpoints.BIG_TABLET).pipe(
+      map((match) => match.matches ? DaffSidebarModeEnum.SideFixed : DaffSidebarModeEnum.Under),
+    );
+  }
+
+  toggleOpen() {
+    this.open = !this.open;
   }
 }

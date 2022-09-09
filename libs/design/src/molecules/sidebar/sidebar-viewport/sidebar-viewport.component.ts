@@ -2,136 +2,148 @@ import {
   Component,
   Output,
   EventEmitter,
-  Input,
   ChangeDetectionStrategy,
-  OnInit,
-  ContentChild,
   ChangeDetectorRef,
-  AfterViewInit,
+  ContentChildren,
+  QueryList,
+  AfterContentChecked,
 } from '@angular/core';
 
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
 import { getAnimationState } from '../animation/sidebar-animation-state';
+import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
+import { sidebarViewportContentPadding } from './content-pad';
+import {
+  isViewportContentShifted,
+  sidebarViewportContentShift,
+} from './content-shift';
 
+/**
+ * The DaffSidebarViewport is the "holder" of sidebars throughout an entire application.
+ * It's generally only used once, like
+ *
+ * ```html
+ * <daff-sidebar-viewport>
+ *    <daff-sidebar></daff-sidebar>
+ *    <p>Some Content</p>
+ * </daff-sidebar-viewport>
+ * ```
+ *
+ * Importantly, its possible for there to be multiple sidebars of many modes
+ * at the same time. @see {@link DaffSidebarMode }
+ *
+ * Since this is a functional component, it's possible to have multiple "open" sidebars
+ * within at the same time. As a result, this component attempts to
+ * gracefully handle these situations. However, importantly, this sidebar
+ * has a constraint, there's only allowed to be one sidebar,
+ * of each mode, on each side, at any given time. If this is violated,
+ * this component will throw an exception.
+ */
 @Component({
   selector: 'daff-sidebar-viewport',
   templateUrl: './sidebar-viewport.component.html',
   styleUrls: ['./sidebar-viewport.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    daffSidebarAnimations.transformSidebar,
     daffSidebarAnimations.transformContent,
   ],
 })
-export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
+export class DaffSidebarViewportComponent implements AfterContentChecked {
 
-  constructor(private ref: ChangeDetectorRef) {
-  }
-  /**
-   * @docs-private
-   */
-  _animationState: string;
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   /**
-   * @docs-private
-   */
-  @ContentChild(DaffSidebarComponent) sidebar: DaffSidebarComponent;
-  /**
-   * Internal tracking variable for the state of sidebar viewport.
+   * The list of sidebars in the viewport.
    *
    * @docs-private
    */
-  _opened = false;
+  @ContentChildren(DaffSidebarComponent, { descendants: false }) private sidebars: QueryList<DaffSidebarComponent>;
 
   /**
-   * @docs-private
+   * The number of pixels that the main content of the page should be shifted to
+   * right when there are child sidebars.
    */
-  _mode: DaffSidebarMode = 'side';
+  private _shift = '0px';
 
   /**
-   * The mode to put the sidebar in
+   * The left padding on the content when left side-fixed sidebars are open.
    */
-  @Input()
-  get mode(): DaffSidebarMode {
-    return this._mode;
-  }
-  set mode(value: DaffSidebarMode) {
-    this._mode = value;
-    this._animationState = getAnimationState(this.opened, this.animationsEnabled);
-  }
+  public _contentPadLeft = 0;
 
   /**
-   * Input state for whether or not the backdrop is
-   * "visible" to the human eye
+   * The right padding on the content when right side-fixed sidebars are open.
    */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() backdropIsVisible: boolean = true;
+  public _contentPadRight = 0;
 
   /**
-   * Property for the "opened" state of the sidebar
+   * Whether or not the backdrop is interactable
    */
-  @Input()
-  get opened(): boolean {
-    return this._opened;
-  }
-  set opened(value: boolean) {
-	  this._opened = value;
-	  this._animationState = getAnimationState(value, this.animationsEnabled);
-  }
+  _backdropInteractable = false;
+
+  /**
+   * The animation state
+   */
+  _animationState: DaffSidebarViewportAnimationState = { value: 'closed', params: { shift: '0px' }};
+
   /**
    * Event fired when the backdrop is clicked
    * This is often used to close the sidebar
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  /**
-   * @docs-private
-   */
-  get animationsEnabled(): boolean {
-    return (this.mode === 'over' || this.mode === 'push') ? true : false;
-  }
+  ngAfterContentChecked() {
+    const nextShift = sidebarViewportContentShift(this.sidebars) + 'px';
+    if (this._shift !== nextShift) {
+      this._shift = nextShift;
+      this.updateAnimationState();
+      this.cdRef.markForCheck();
+    }
 
-  /**
-   * @docs-private
-   */
-  ngOnInit() {
-    this._animationState = getAnimationState(this.opened, this.animationsEnabled);
-  }
+    const nextBackdropInteractable = sidebarViewportBackdropInteractable(this.sidebars);
+    if (this._backdropInteractable !== nextBackdropInteractable) {
+      this._backdropInteractable = nextBackdropInteractable;
+      this.updateAnimationState();
+      this.cdRef.markForCheck();
+    };
 
-  /**
-   * @docs-private
-   */
-  ngAfterViewInit() {
-    if (this.sidebar) {
-      this.sidebar.escapePressed.subscribe(() => {
-        this.onEscape();
-      });
+    const nextLeftPadding = sidebarViewportContentPadding(this.sidebars, 'left');
+    if(this._contentPadLeft !== nextLeftPadding) {
+      this._contentPadLeft = nextLeftPadding;
+      this.updateAnimationState();
+      this.cdRef.markForCheck();
+    }
+
+    const nextRightPadding = sidebarViewportContentPadding(this.sidebars, 'right');
+    if(this._contentPadRight !== nextRightPadding) {
+      this._contentPadRight = nextRightPadding;
+      this.updateAnimationState();
+      this.cdRef.markForCheck();
     }
   }
 
   /**
    * @docs-private
+   *
+   * Updates the animation state of the viewport depending upon the state
+   * of all sidebars within the viewport.
+   */
+  private updateAnimationState() {
+    this._animationState = {
+      value: getAnimationState(
+        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open), false),
+      ),
+      params: { shift: this._shift },
+    };
+  }
+
+  /**
+   * @docs-private
+   * The called when the backdrop of the viewport is clicked upon.
    */
   _backdropClicked(): void {
     this.backdropClicked.emit();
-  }
-
-  /**
-   * @docs-private
-   */
-  get hasBackdrop(): boolean {
-    return (this.mode === 'over' || this.mode === 'push');
-  }
-
-  /**
-   * @docs-private
-   */
-  onEscape() {
-    if (this.hasBackdrop) {
-      this.opened = false;
-      this.ref.markForCheck();
-    }
   }
 }

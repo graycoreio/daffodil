@@ -1,17 +1,22 @@
 .design-land {
   &__theme-switch {
-    display: flex;
-    justify-content: right;
-    margin-bottom: 24px;
+    margin-left: auto;
   }
-
+  
   &__sidebar {
+    --daff-sidebar-side-fixed-top-shift: 64px;
     padding: 24px;
   }
 
   &__content {
     padding: 24px 48px 48px;
   }
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 daff-link-set {

@@ -1,22 +1,21 @@
+<h1 daffArticleTitle>Sidebar</h1>
+
 <design-land-article-encapsulated>
-  <daff-form-field>
-    <select daff-native-select [(ngModel)]="mode">
-      <option value="push">Push (push)</option>
-      <option value="side">Side (side)</option>
-      <option value="over">Over (over)</option>
-      <option value="fixed">Fixed (fixed)</option>
-    </select>
-  </daff-form-field>
-  
-  <button daff-button (click)="open = !open">{{ open ? "Close" : "Open" }}</button>
-  
-  <daff-sidebar-viewport [mode]="mode" [opened]="open">
-      <daff-sidebar>
-        <a daff-link-set-item routerLink="accordion">Accordion</a><br>
-        <a daff-link-set-item routerLink="article">Article</a><br>
-      </daff-sidebar>
-      <p>Some Content</p>
-  </daff-sidebar-viewport>
-  <h1>Outside Focus   </h1>
-  <input>    <input>     
+  <design-land-example-viewer-container example="basic-sidebar"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
+
+<design-land-article-encapsulated>
+  <design-land-example-viewer-container example="sidebar-with-sticky"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
+
+<design-land-article-encapsulated>
+  <design-land-example-viewer-container example="two-fixed-sidebars-either-side"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
+
+<design-land-article-encapsulated>
+  <design-land-example-viewer-container example="fixed-and-over-sidebar"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
+
+<design-land-article-encapsulated>
+  <design-land-example-viewer-container example="under-sidebar"></design-land-example-viewer-container>
 </design-land-article-encapsulated>

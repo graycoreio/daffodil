@@ -1,6 +1,8 @@
-export const getAnimationState = (open: boolean, enabled: boolean = true) => {
+export type DaffSidebarAnimationState = 'open' | 'closed' | 'none';
+
+export const getAnimationState = (open: boolean, enabled: boolean = true): DaffSidebarAnimationState => {
   if(!enabled){
-    return 'open';
+    return 'none';
   }
   if(open && enabled){
     return 'open';

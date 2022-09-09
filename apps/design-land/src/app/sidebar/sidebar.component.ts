@@ -1,16 +1,8 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
-
-import { DaffSidebarMode } from '@daffodil/design';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'design-land-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class DesignLandSidebarComponent {
-  mode: DaffSidebarMode = 'push';
-  open = false;
-}
+export class DesignLandSidebarComponent {}

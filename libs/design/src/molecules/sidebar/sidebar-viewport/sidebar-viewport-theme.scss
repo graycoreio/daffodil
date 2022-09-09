@@ -7,5 +7,10 @@
 	.daff-sidebar-viewport {
 		background: $base;
 		color: $base-contrast;
+
+		&__content {
+			background: $base;
+			color: $base-contrast;
+		}
 	}
 }

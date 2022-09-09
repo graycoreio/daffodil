@@ -1,8 +1,54 @@
+@use '../helper/variables';
+
 :host {
 	display: block;
+	width: 240px;
+	flex-shrink: 0;
+	overflow: auto;
+
+	&.side-fixed {
+		position: fixed;
+		top: var(--daff-sidebar-side-fixed-top-shift);
+		bottom: 0;
+		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
+		height: calc(100dvh - var(--daff-sidebar-side-fixed-top-shift));
+
+		&.left {
+			left: 0;
+		}
+
+		&.right {
+			right: 0;
+		}
+	}
+
+	&.over,
+	&.under {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+
+		&.left {
+			left: 0;
+		}
+
+		&.right {
+			right: 0;
+		}
+	}
+
+
+	&.over {
+		z-index: variables.$daff-sidebar-sidebar-over-z-index;
+	}
+
+	&.under {
+		z-index: variables.$daff-sidebar-sidebar-under-z-index;
+	}
 }
 
-.daff-sidebar {
-	display: block;
-	height: 100%;
+:host-context(daff-sidebar-viewport daff-sidebar-viewport > ) {
+	&.side-fixed {
+		position: sticky;
+	}
 }

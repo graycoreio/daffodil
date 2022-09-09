@@ -1,15 +1,16 @@
-<div class="daff-sidebar-viewport {{ mode }}">
-  <div class="daff-sidebar-viewport__sidebar" [@transformSidebar]="_animationState" [cdkTrapFocus]="opened && (mode === 'over' || mode === 'push')">
-    <ng-content select="daff-sidebar" (escapePressed)="onEscape($event)"></ng-content>
-  </div>
+<ng-content select="daff-sidebar:not([side=right])"></ng-content>
 
-  <daff-backdrop 
-  class="daff-sidebar-viewport__backdrop" 
-  *ngIf="hasBackdrop && _opened"
-  [transparent]="!backdropIsVisible" 
+<daff-backdrop
+  [@transformContent]="_animationState"
+  class="daff-sidebar-viewport__backdrop"
+  [interactable]="_backdropInteractable"
   (backdropClicked)="_backdropClicked()"></daff-backdrop>
 
-  <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
+<div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
+  <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
+  <div class="daff-sidebar-viewport__inner" [style.padding-left.px]="_contentPadLeft" [style.padding-right.px]="_contentPadRight">
     <ng-content></ng-content>
   </div>
 </div>
+
+<ng-content select="daff-sidebar[side=right]"></ng-content>
