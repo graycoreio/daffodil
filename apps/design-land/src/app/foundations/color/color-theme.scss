@@ -1,23 +1,23 @@
-@use '../../../scss/dl-theme';
+@use 'theme' as daff-theme;
 
 @mixin color-theme($theme) {
-	$white: dl-theme.daff-map-deep-get($theme, 'core.white');
-	$black: dl-theme.daff-map-deep-get($theme, 'core.black');
+	$white: daff-theme.daff-map-deep-get($theme, 'core.white');
+	$black: daff-theme.daff-map-deep-get($theme, 'core.black');
 
 	.dl-color {
 		&__palette {
 			> * {
 				&:nth-child(n+6) {
-					color: dl-theme.$white;
+					color: daff-theme.$white;
 				}
 			}
 	
 			&.brand-yellow {
 				> * {
-					color: dl-theme.$black;
+					color: daff-theme.$black;
 					
 					&:last-child {
-						color: dl-theme.$white;
+						color: daff-theme.$white;
 					}
 				}
 			}

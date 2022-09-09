@@ -2,26 +2,27 @@
 * DO NOT IMPORT THIS FILE ANYWHERE ELSE
 ************************************/
 
-@use 'daff-global';
+@use 'global';
 
-@use 'dl-theme';
 @use 'theme' as daff-theme;
 @use './component-themes' as dl-components;
 
 .daff-theme-light {
   @import 'highlight.js/scss/a11y-light.scss';
-  @include daff-theme.daff-theme(dl-theme.$theme);
-  @include dl-components.component-themes(dl-theme.$theme);
 
-  background: dl-theme.$white;
-	color: dl-theme.daff-text-contrast(dl-theme.$white);
+  @include daff-theme.daff-theme(daff-theme.$theme);
+  @include dl-components.component-themes(daff-theme.$theme);
+
+  background: var(--daff-base-background);
+	color: var(--daff-base-text);
 }
 
 .daff-theme-dark {
   @import 'highlight.js/scss/a11y-dark.scss';
-  @include daff-theme.daff-theme(dl-theme.$theme-dark);
-  @include dl-components.component-themes(dl-theme.$theme-dark);
 
-  background: dl-theme.$black;
-	color: dl-theme.daff-text-contrast(dl-theme.$black);
+  @include daff-theme.daff-theme(daff-theme.$theme-dark);
+  @include dl-components.component-themes(daff-theme.$theme-dark);
+
+  background: var(--daff-base-background);
+	color: var(--daff-base-text);
 }
