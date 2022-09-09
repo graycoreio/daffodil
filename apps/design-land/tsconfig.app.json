@@ -1,18 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/design-land",
-    "paths": {
-      "@daffodil/*": [
-        "dist/*"
-      ],
-      "@daffodil/design": [
-        "libs/design/src"
-      ],
-      "@daffodil/design/*": [
-        "libs/design/*/src"
-      ],
-    }
+    "outDir": "../../dist/out-tsc/apps/design-land"
   },
   "exclude": [
     "test.ts",

@@ -1058,11 +1058,6 @@
                 "glob": "**/*",
                 "input": "dist/docs/",
                 "output": "/assets/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/design/assets/",
-                "output": "/assets/design"
               }
             ],
             "styles": [
@@ -1071,7 +1066,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/design-land/src/scss",
-                "libs/design/scss"
+                "dist/design/scss"
               ]
             },
             "scripts": [],
@@ -1145,7 +1140,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/design-land/src/scss",
-                "libs/design/scss"
+                "dist/design/scss"
               ]
             },
             "scripts": [],
@@ -1159,8 +1154,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "apps/design-land//**/*.ts",
-              "apps/design-land//**/*.html"
+              "apps/design-land/**/*.ts",
+              "apps/design-land/**/*.html"
             ]
           }
         }
