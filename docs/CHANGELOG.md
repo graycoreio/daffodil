@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.45.1](https://github.com/graycoreio/daffodil/compare/v0.45.0...v0.45.1) (2022-09-09)
+
+
+### Features
+
+* **design:** export typography classes for external usage and update usage documentation ([#2180](https://github.com/graycoreio/daffodil/issues/2180)) ([ef4bb96](https://github.com/graycoreio/daffodil/commit/ef4bb9623f5463efb7a5b05432ae36c436a2cf6e))
+* **reviews:** export testing module ([#2183](https://github.com/graycoreio/daffodil/issues/2183)) ([0a4fa9a](https://github.com/graycoreio/daffodil/commit/0a4fa9a60de48786c61d156c5517b21dc3c28d5c))
+
+
+### Bug Fixes
+
+* **design:** remove double slash in card theme module imports ([#2185](https://github.com/graycoreio/daffodil/issues/2185)) ([f14ff9e](https://github.com/graycoreio/daffodil/commit/f14ff9efd1e716bb30e972659c2367ab818ea7c5))
+
 ## [0.45.0](https://github.com/graycoreio/daffodil/compare/v0.44.1...v0.45.0) (2022-09-08)
 
 
