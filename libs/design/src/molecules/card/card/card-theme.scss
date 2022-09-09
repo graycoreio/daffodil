@@ -3,7 +3,7 @@
 @use '../../../../scss/theming';
 @use './card-theme-variants/basic-card' as basic;
 @use './card-theme-variants/stroked-card' as stroked;
-@use './card-theme-variants//linkable-card' as linkable;
+@use './card-theme-variants/linkable-card' as linkable;
 
 @mixin daff-card-theme($theme) {
 	$primary: map.get($theme, primary);
