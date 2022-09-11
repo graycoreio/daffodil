@@ -15,6 +15,10 @@
 		"stylelint.vscode-stylelint",
 		"tehnix.vscode-tidymarkdown"
 	],
+	"runArgs": [
+		"--security-opt",
+		"seccomp=.devcontainer/seccomp/chrome.json"
+	],
 	"remoteUser": "node",
 	"hostRequirements": {
 		"cpus": 4,

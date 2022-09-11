@@ -21,6 +21,8 @@ RUN apt update && apt install -y \
   htop \
   && rm -rf /var/lib/apt/lists/*
 
+ENV CHROME_BIN=/usr/bin/chromium
+
 EXPOSE 4200 9876
 
 RUN npm install -g @angular/cli nx
