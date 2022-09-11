@@ -405,7 +405,31 @@
                 "waitid",
                 "waitpid",
                 "write",
-                "writev"
+                "writev",
+                "bpf",
+                "clone",
+                "clone3",
+                "fanotify_init",
+                "fsconfig",
+                "fsmount",
+                "fsopen",
+                "fspick",
+                "lookup_dcookie",
+                "mount",
+                "mount_setattr",
+                "move_mount",
+                "name_to_handle_at",
+                "open_tree",
+                "perf_event_open",
+                "quotactl",
+                "quotactl_fd",
+                "setdomainname",
+                "sethostname",
+                "setns",
+                "syslog",
+                "umount",
+                "umount2",
+                "unshare"
             ],
             "action": "SCMP_ACT_ALLOW"
         },
@@ -572,40 +596,6 @@
             "includes": {
                 "caps": [
                     "CAP_DAC_READ_SEARCH"
-                ]
-            }
-        },
-        {
-            "names": [
-                "bpf",
-                "clone",
-                "clone3",
-                "fanotify_init",
-                "fsconfig",
-                "fsmount",
-                "fsopen",
-                "fspick",
-                "lookup_dcookie",
-                "mount",
-                "mount_setattr",
-                "move_mount",
-                "name_to_handle_at",
-                "open_tree",
-                "perf_event_open",
-                "quotactl",
-                "quotactl_fd",
-                "setdomainname",
-                "sethostname",
-                "setns",
-                "syslog",
-                "umount",
-                "umount2",
-                "unshare"
-            ],
-            "action": "SCMP_ACT_ALLOW",
-            "includes": {
-                "caps": [
-                    "CAP_SYS_ADMIN"
                 ]
             }
         },
