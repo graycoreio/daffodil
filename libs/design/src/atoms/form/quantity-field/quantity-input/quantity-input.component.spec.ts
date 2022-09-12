@@ -19,10 +19,10 @@ import {
   Subject,
 } from 'rxjs';
 
-
-import { DaffInputComponent } from '@daffodil/design/public_api';
-
-import { DaffInputModule } from '../../input/public_api';
+import {
+  DaffInputModule,
+  DaffInputComponent,
+} from '../../input/public_api';
 import { DaffQuantityInputComponent } from './quantity-input.component';
 
 @Component({
