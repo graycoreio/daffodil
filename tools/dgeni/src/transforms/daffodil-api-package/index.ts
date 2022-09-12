@@ -19,7 +19,7 @@ const linksPackage = require('dgeni-packages/links');
 const typescriptPackage = require('dgeni-packages/typescript');
 
 //List of packages to be left out of API generation
-const excludedPackages = ['branding'];
+const excludedPackages = ['branding', 'docs-utils'];
 const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 
 export const apiDocs =  new Package('checkout', [

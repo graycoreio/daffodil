@@ -10,7 +10,7 @@ import { GenerateGuideListProcessor } from './processors/generateGuideList';
 import { guideFileReaderFactory } from './reader/guide-file.reader';
 
 //List of packages to be left out of Guide generation
-const excludedPackages = ['branding'];
+const excludedPackages = ['branding', 'docs-utils'];
 const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 
 export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePackage])
