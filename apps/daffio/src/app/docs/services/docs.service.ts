@@ -3,8 +3,9 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { crossOsFilename } from '@daffodil/docs-utils';
 import { Observable } from 'rxjs';
+
+import { crossOsFilename } from '@daffodil/docs-utils';
 
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
