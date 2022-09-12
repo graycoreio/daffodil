@@ -1,4 +1,4 @@
-<daff-sidebar-viewport (backdropClicked)="close()" mode="over" [opened]="showSidebar$ | async">
-    <demo-sidebar ngProjectAs="daff-sidebar"></demo-sidebar>
+<daff-sidebar-viewport (backdropClicked)="close()">
+    <demo-sidebar ngProjectAs="daff-sidebar:not([side='right'])" side="left" mode="under" [open]="showSidebar$ | async"></demo-sidebar>
     <ng-content></ng-content>
 </daff-sidebar-viewport>

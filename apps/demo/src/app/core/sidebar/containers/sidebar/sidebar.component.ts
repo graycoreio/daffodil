@@ -1,12 +1,21 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  forwardRef,
+  Input,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffSidebarSide,
+  DaffSidebarMode,
+  DaffSidebarComponent,
+} from '@daffodil/design';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationFacade,
@@ -20,8 +29,23 @@ import * as fromDemoSidebar from '../../reducers/index';
   selector: 'demo-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  providers: [{ provide: DaffSidebarComponent, useExisting: forwardRef(() => SidebarContainer ) }],
 })
 export class SidebarContainer implements OnInit {
+
+  @Input() side: DaffSidebarSide;
+
+  @Input() mode: DaffSidebarMode;
+
+  @Input() open: boolean;
+
+  @ViewChild(DaffSidebarComponent) sidebar: DaffSidebarComponent;
+
+  get width() {
+    return this.sidebar.width;
+  }
+
   faTimes = faTimes;
   tree$: Observable<DaffNavigationTree>;
   treeLoading$: Observable<boolean>;

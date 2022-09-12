@@ -1,4 +1,4 @@
-<daff-sidebar class="demo-sidebar" (escapePressed)="onClose()">
+<daff-sidebar class="demo-sidebar" [side]="side" [mode]="mode" (escapePressed)="onClose()" [open]="open">
   <span class="demo-sidebar__close" (click)="onClose()"><fa-icon [icon]="faTimes"></fa-icon></span>
   <demo-sidebar-list [tree]="tree$ | async" *ngIf="(treeLoading$ | async) === false"></demo-sidebar-list>
   <div class="demo-sidebar__error" *ngFor="let error of (treeErrors$ | async)"> {{ error }}</div>

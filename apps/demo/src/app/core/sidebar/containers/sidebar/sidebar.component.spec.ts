@@ -5,6 +5,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
@@ -49,6 +50,7 @@ describe('SidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
+        NoopAnimationsModule,
         DaffSidebarModule,
         FontAwesomeModule,
         DaffLoadingIconModule,
