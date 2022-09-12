@@ -24,7 +24,10 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { DaffBreakpoints } from '@daffodil/design';
+import {
+  DaffBreakpoints,
+  DaffSidebarModeEnum,
+} from '@daffodil/design';
 
 import * as SidebarActions from '../actions/sidebar.actions';
 import { computeDeepestSidebarMode } from '../helpers/computeDeepestSidebarMode';
@@ -45,9 +48,9 @@ export class DaffioSidebarRoutingModeEffects {
     map(([action, state]) => {
       const mode = computeDeepestSidebarMode(action.payload.routerState.root);
       if(state.matches && mode){
-        return new SidebarActions.SetSidebarMode(mode);
+        return new SidebarActions.SetSidebarState({ mode, open: mode === DaffSidebarModeEnum.SideFixed ? true : false });
       } else {
-        return new SidebarActions.ResetMode();
+        return new SidebarActions.SetSidebarState({ mode: 'under', open: false });
       }
     }),
   ));

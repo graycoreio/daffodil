@@ -50,6 +50,6 @@ export class DaffioSidebarViewportContainer implements OnInit{
   }
 
   setVisibility(state: boolean) {
-    this.store.dispatch(new SetSidebarState(state));
+    this.store.dispatch(new SetSidebarState({ open: state }));
   }
 }

@@ -68,7 +68,7 @@ describe('Sidebar | Sidebar Reducer', () => {
   describe('when SetSidebarState is triggered', () => {
     it('sets showSidebar to actions payload', () => {
       const stubShowSidebar = true;
-      const action = new SetSidebarState(stubShowSidebar);
+      const action = new SetSidebarState({ open: stubShowSidebar });
       const result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(stubShowSidebar);
     });

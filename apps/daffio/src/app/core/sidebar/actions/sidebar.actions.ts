@@ -6,6 +6,7 @@ export enum SidebarActionTypes {
   ToggleSidebarAction = '[Daffio-Sidebar] Toggle Sidebar Action',
   OpenSidebarAction = '[Daffio-Sidebar] Open Sidebar Action',
   CloseSidebarAction = '[Daffio-Sidebar] Close Sidebar Action',
+  SetSidebarVisibilityAction = '[Daffio-Sidebar] Set Sidebar Visibility Action',
   SetSidebarStateAction = '[Daffio-Sidebar] Set Sidebar State Action',
   SetSidebarModeAction = '[Daffio-Sidebar] Set Sidebar Mode Action',
   ResetModeAction = '[Daffio-Sidebar] Reset Mode Action'
@@ -23,10 +24,16 @@ export class CloseSidebar implements Action {
   readonly type = SidebarActionTypes.CloseSidebarAction;
 }
 
+export class SetSidebarVisibility implements Action {
+  readonly type = SidebarActionTypes.SetSidebarVisibilityAction;
+
+  constructor(public payload: boolean){}
+}
+
 export class SetSidebarState implements Action {
   readonly type = SidebarActionTypes.SetSidebarStateAction;
 
-  constructor(public payload: boolean){}
+  constructor(public payload: { mode?: DaffSidebarMode; open?: boolean }){}
 }
 
 export class SetSidebarMode implements Action {
@@ -44,6 +51,7 @@ export type SidebarActions =
     | ToggleSidebar
     | OpenSidebar
     | CloseSidebar
+    | SetSidebarVisibility
     | SetSidebarState
     | SetSidebarMode
     | ResetMode;
