@@ -13,9 +13,10 @@ import {
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
-import { DaffNativeSelectComponent } from '@daffodil/design';
-
-import { DaffNativeSelectModule } from '../../select/public_api';
+import {
+  DaffNativeSelectModule,
+  DaffNativeSelectComponent,
+} from '../../select/public_api';
 import { DaffQuantitySelectComponent } from './quantity-select.component';
 
 @Component({
