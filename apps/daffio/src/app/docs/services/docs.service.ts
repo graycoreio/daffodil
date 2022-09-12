@@ -3,14 +3,13 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
+import { crossOsFilename } from '@daffodil/docs-utils';
 import { Observable } from 'rxjs';
 
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
 import { DaffioDocsServiceInterface } from './docs-service.interface';
-
-export const computeCrossEnvSafePath = (path: string) => path.replace(/[A-Z]/g, (a) => a.toLocaleLowerCase().concat('_'));
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +22,7 @@ export class DaffioDocsService<T extends DaffioDoc, V extends DaffioGuideList> i
   ) {}
 
   get(path: string): Observable<T> {
-    return this.http.get<T>(this.docsPath + computeCrossEnvSafePath(path) + '.json');
+    return this.http.get<T>(this.docsPath + crossOsFilename(path) + '.json');
   }
 
   getGuideList(): Observable<DaffioGuideList> {

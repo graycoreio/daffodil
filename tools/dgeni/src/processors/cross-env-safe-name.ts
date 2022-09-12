@@ -3,6 +3,7 @@ import {
   Document,
 } from 'dgeni';
 
+import { crossOsFilename } from '@daffodil/docs-utils';
 export class CrossEnvSafeNameProcessor implements Processor {
   name = 'crossEnvSafeName';
   $runBefore = ['computePathsProcessor'];
@@ -11,7 +12,7 @@ export class CrossEnvSafeNameProcessor implements Processor {
   $process(docs: Document[]): Document[] {
     const docTypes = this.docTypes;
     docs.forEach((doc: Document) => {
-      doc.safeName = (<string>doc.name).replace(/[A-Z]/g, (a) => a.toLocaleLowerCase().concat('_'));
+      doc.safeName = crossOsFilename(<string>doc.name);
     });
     return docs;
   }
