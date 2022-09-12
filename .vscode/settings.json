@@ -38,5 +38,6 @@
         "typescript",
         "typescriptreact",
         "html"
-    ]
+    ],
+    "eslint.format.enable": true
 }
