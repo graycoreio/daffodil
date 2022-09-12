@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/docs-utils",
+    "rootDir": ".",
+    "module": "commonjs",
+    "target": "es2020",
+    "types": [
+      "jasmine",
+      "node"
+    ],
+    "esModuleInterop": true
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}
