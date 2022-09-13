@@ -64,7 +64,7 @@ Use `@daffodil/design`'s theme module to the `styles.scss` file:
 @use '@daffodil/design/scss/theme' as daff-theme;
 ```
 
-Create classes in the `styles.scss` file to include the `theme` module for `$theme` and `$theme-dark` variables. This will allow you to set a click event on a button to switch between modes. [View this setup in Stackblitz](https://stackblitz.com/edit/daffodil-design-theming-angular-10)
+Create classes in the `styles.scss` file to include the `theme` module for `$theme` and `$theme-dark` variables. This will allow you to set a click event on a button to switch between modes. [View this setup in Stackblitz](https://stackblitz.com/edit/ng11-daffodil-design-pdr8k3?file=src/app/home/home.component.ts)
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
