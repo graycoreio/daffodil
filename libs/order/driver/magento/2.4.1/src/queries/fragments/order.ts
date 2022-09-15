@@ -16,6 +16,7 @@ export const orderFragment = gql`
     carrier
     number
     shipping_method
+    email
     items {
       ...orderItem
     }
