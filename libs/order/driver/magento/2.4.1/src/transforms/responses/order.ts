@@ -165,7 +165,7 @@ function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): Da
     middlename: address.middlename,
     lastname: address.lastname,
     telephone: address.telephone,
-    email: null,
+    email: order.email,
     street: address.street[0],
     street2: address.street[1],
     city: address.city,

@@ -70,9 +70,7 @@ export class MagentoOrderTestDataFactory {
   ) {}
 
   create(): MagentoOrderTestData {
-    const mockDaffOrderAddress: DaffOrderAddress = this.daffOrderAddressFactory.create({
-      email: null,
-    });
+    const mockDaffOrderAddress: DaffOrderAddress = this.daffOrderAddressFactory.create();
     const mockDaffOrderCoupon: DaffOrderCoupon = this.daffOrderCouponFactory.create();
     const mockDaffOrderPayment: DaffOrderPayment = this.daffOrderPaymentFactory.create({
       created_at: null,
@@ -486,6 +484,7 @@ export class MagentoOrderTestDataFactory {
       order_date: mockDaffOrder.created_at,
       carrier: mockDaffOrderShipment.carrier,
       shipping_method: mockDaffOrderShipment.method,
+      email: mockDaffOrderAddress.email,
       total: {
         __typename: 'OrderTotal',
         grand_total: {
