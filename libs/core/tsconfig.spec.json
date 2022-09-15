@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/core",
+    "allowSyntheticDefaultImports": true,
     "types": [
       "jasmine",
       "node"
