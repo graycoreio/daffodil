@@ -27,7 +27,6 @@ import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffProductPageFacade } from '@daffodil/product/state';
 import {
   DaffProductReview,
-  daffReviewsCollectionBuildRequestFromMetadata,
   DAFF_REVIEWS_ERROR_MATCHER,
 } from '@daffodil/reviews';
 import {
@@ -80,7 +79,7 @@ export class DaffProductReviewCollectionEffects<
     throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
     switchMap(([action, metadata, product]) => this.driver.list(
       product.id,
-      daffReviewsCollectionBuildRequestFromMetadata(metadata),
+      daffCollectionBuildRequestFromMetadata(metadata),
     ).pipe(
       map(resp => new DaffReviewsProductListSuccess<T>(resp)),
       catchError((error: DaffError) => of(new DaffReviewsProductListFailure(this.errorMatcher(error)))),

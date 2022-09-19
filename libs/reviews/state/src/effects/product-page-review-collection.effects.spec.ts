@@ -8,11 +8,14 @@ import {
 import { TestScheduler } from 'rxjs/testing';
 
 import {
+  daffCollectionBuildRequestFromMetadata,
+  DaffCollectionRequest,
   DaffError,
   DaffInheritableError,
   DaffSortDirectionEnum,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateTestingModule,
@@ -35,7 +38,6 @@ import {
   DaffReviewsProductListFailure,
   DaffReviewsProductListSuccess,
 } from '@daffodil/reviews/state';
-import { MockDaffProductPageReviewsCollectionFacade } from '@daffodil/reviews/state/testing';
 import { DaffReviewsStateTestingModule } from '@daffodil/reviews/state/testing';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
@@ -52,7 +54,7 @@ class MockError extends DaffInheritableError implements DaffError {
 describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffProductReviewCollectionEffects;
-  let collectionFacade: MockDaffProductPageReviewsCollectionFacade;
+  let collectionFacade: MockDaffCollectionFacade;
   let facade: MockDaffProductPageFacade;
   let driverSpy: jasmine.Spy<DaffProductReviewsServiceInterface['list']>;
 
@@ -68,6 +70,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
+        const request = daffCollectionBuildRequestFromMetadata(mockReviews.metadata);
 
         driverSpy.and.returnValue(of(mockReviews));
 
@@ -86,13 +89,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           ).toBe(expectedMarble, expectedValue);
         });
 
-        expect(driverSpy).toHaveBeenCalledWith(mockProduct.id, {
-          appliedSortOption: mockReviews.metadata.appliedSortOption,
-          appliedSortDirection: mockReviews.metadata.appliedSortDirection,
-          currentPage: mockReviews.metadata.currentPage,
-          pageSize: mockReviews.metadata.pageSize,
-          appliedFilter: mockReviews.metadata.appliedFilter,
-        });
+        expect(driverSpy).toHaveBeenCalledWith(mockProduct.id, request);
       });
     });
 
@@ -101,6 +98,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
+        const request = daffCollectionBuildRequestFromMetadata(mockReviews.metadata);
 
         driverSpy.and.returnValue(of(mockReviews));
 
@@ -119,13 +117,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           ).toBe(expectedMarble, expectedValue);
         });
 
-        expect(driverSpy).toHaveBeenCalledWith(mockProduct.id, {
-          appliedSortOption: mockReviews.metadata.appliedSortOption,
-          appliedSortDirection: mockReviews.metadata.appliedSortDirection,
-          currentPage: mockReviews.metadata.currentPage,
-          pageSize: mockReviews.metadata.pageSize,
-          appliedFilter: mockReviews.metadata.appliedFilter,
-        });
+        expect(driverSpy).toHaveBeenCalledWith(mockProduct.id, request);
       });
     });
   };
@@ -136,6 +128,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
+        const request = daffCollectionBuildRequestFromMetadata(mockReviews.metadata);
 
         collectionFacade.metadata$.next(mockReviews.metadata);
 
@@ -155,13 +148,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
           ).toBe(expectedMarble, expectedValue);
         });
 
-        expect(driverSpy).toHaveBeenCalledWith(mockProduct.id, {
-          appliedSortOption: mockReviews.metadata.appliedSortOption,
-          appliedSortDirection: mockReviews.metadata.appliedSortDirection,
-          currentPage: mockReviews.metadata.currentPage,
-          pageSize: mockReviews.metadata.pageSize,
-          appliedFilter: mockReviews.metadata.appliedFilter,
-        });
+        expect(driverSpy).toHaveBeenCalledWith(mockProduct.id, request);
       });
     });
   };
@@ -181,7 +168,7 @@ describe('@daffodil/reviews/state | DaffProductReviewCollectionEffects', () => {
       ],
     });
 
-    collectionFacade = TestBed.inject(MockDaffProductPageReviewsCollectionFacade);
+    collectionFacade = TestBed.inject(MockDaffCollectionFacade);
     facade = TestBed.inject(MockDaffProductPageFacade);
     effects = TestBed.inject(DaffProductReviewCollectionEffects);
 

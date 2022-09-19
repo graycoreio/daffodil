@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  select,
-  Store,
-} from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import {
   DaffCollectionFacadeInterface,
@@ -16,7 +12,6 @@ import {
 
 import { DaffReviewsStateRootSlice } from '../../reducers/reducers-state.interface';
 import { getDaffProductReviewsCollectionSelectors } from '../../selectors/public_api';
-import { DaffProductPageReviewsCollectionFacadeInterface } from './interface';
 
 /**
  * @inheritdoc
@@ -26,17 +21,11 @@ import { DaffProductPageReviewsCollectionFacadeInterface } from './interface';
 })
 export class DaffProductPageReviewsCollectionFacade<T extends DaffProductReview = DaffProductReview>
   extends DaffCollectionFacade<DaffReviewsStateRootSlice<T>, DaffProductReviews['metadata']>
-  implements DaffProductPageReviewsCollectionFacadeInterface {
-  appliedFilter$: Observable<DaffProductReviews['metadata']['appliedFilter']>;
-
+  implements DaffCollectionFacadeInterface<DaffProductReviews['metadata']> {
   constructor(store: Store<DaffReviewsStateRootSlice<T>>) {
-    const selectors = getDaffProductReviewsCollectionSelectors();
-
 	  super(
       store,
       getDaffProductReviewsCollectionSelectors(),
     );
-
-    this.appliedFilter$ = this.store.pipe(select(selectors.selectSelectedFilter));
   }
 }

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
+import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductReviews } from '@daffodil/reviews';
-import { DaffProductReviewsMetadataFactory } from '@daffodil/reviews/testing';
 import {
   DaffProductReviewFactory,
   DaffProductReviewsFactory,
@@ -34,7 +34,7 @@ describe('@daffodil/reviews/driver/testing | DaffReviewsTestingService', () => {
 
     reviewsFactory = new DaffProductReviewsFactory(
       TestBed.inject(DaffProductReviewFactory),
-      TestBed.inject(DaffProductReviewsMetadataFactory),
+      TestBed.inject(DaffCollectionMetadataFactory),
     );
 
     mockReviews = reviewsFactory.create();

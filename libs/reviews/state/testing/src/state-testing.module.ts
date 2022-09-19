@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
 import {
   DaffProductPageReviewsCollectionFacade,
   DaffProductPageReviewsFacade,
@@ -8,14 +9,13 @@ import {
 
 import { MockDaffProductPageReviewsFacade } from './mock-product-page-reviews-facade';
 import { MockDaffProductReviewsFacade } from './mock-product-reviews-facade';
-import { MockDaffProductPageReviewsCollectionFacade } from './mock-reviews-collection-facade';
 
 
 @NgModule({
   providers: [
     { provide: DaffProductPageReviewsFacade, useExisting: MockDaffProductPageReviewsFacade },
     { provide: DaffProductReviewsFacade, useExisting: MockDaffProductReviewsFacade },
-    { provide: DaffProductPageReviewsCollectionFacade, useExisting: MockDaffProductPageReviewsCollectionFacade },
+    { provide: DaffProductPageReviewsCollectionFacade, useExisting: MockDaffCollectionFacade },
   ],
 })
 export class DaffReviewsStateTestingModule {}

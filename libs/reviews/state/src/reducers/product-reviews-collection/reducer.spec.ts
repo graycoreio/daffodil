@@ -1,6 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffProductReviewsCollectionRequest } from '@daffodil/reviews';
+import {
+  DaffCollectionRequest,
+  daffFilterArrayToDict,
+  DaffFilterEqual,
+  DaffFilterEqualOption,
+  daffFilterEqualOptionArrayToDict,
+  DaffFilterEqualRequest,
+} from '@daffodil/core';
+import { daffCollectionReducerInitialState } from '@daffodil/core/state';
+import {
+  DaffCollectionRequestFactory,
+  DaffFilterEqualFactory,
+  DaffFilterEqualOptionFactory,
+  DaffFilterRequestEqualFactory,
+} from '@daffodil/core/testing';
 import {
   DaffProductReview,
   DaffProductReviews,
@@ -10,26 +24,31 @@ import {
   DaffReviewsProductListSuccess,
   DaffReviewsProductListFailure,
   DaffReviewsCollectionReducerState,
+  DaffReviewsCollectionChangeFilter,
 } from '@daffodil/reviews/state';
-import { DaffProductReviewsCollectionRequestFactory } from '@daffodil/reviews/testing';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
-import {
-  daffReviewsCollectionReducerInitialState,
-  daffReviewsCollectionReducer,
-} from './reducer';
+import { daffReviewsCollectionReducer } from './reducer';
+
 
 describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
-  let collectionRequestFactory: DaffProductReviewsCollectionRequestFactory;
+  let collectionRequestFactory: DaffCollectionRequestFactory;
   let productReviewsFactory: DaffProductReviewsFactory;
+  let equalFilterFactory: DaffFilterEqualFactory;
+  let equalOptionFactory: DaffFilterEqualOptionFactory;
+  let equalFilterRequestFactory: DaffFilterRequestEqualFactory;
+
   let mockProductReviews: DaffProductReviews;
   let mockProductReview: DaffProductReview;
-  let mockCollectionRequest: DaffProductReviewsCollectionRequest;
+  let mockCollectionRequest: DaffCollectionRequest;
   let productId: string;
 
   beforeEach(() => {
     productReviewsFactory = TestBed.inject(DaffProductReviewsFactory);
-    collectionRequestFactory = TestBed.inject(DaffProductReviewsCollectionRequestFactory);
+    collectionRequestFactory = TestBed.inject(DaffCollectionRequestFactory);
+    equalFilterFactory = TestBed.inject(DaffFilterEqualFactory);
+    equalOptionFactory = TestBed.inject(DaffFilterEqualOptionFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffFilterRequestEqualFactory);
 
     mockProductReviews = productReviewsFactory.create();
     mockCollectionRequest = collectionRequestFactory.create();
@@ -40,23 +59,58 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = daffReviewsCollectionReducer(daffReviewsCollectionReducerInitialState, action);
+      const result = daffReviewsCollectionReducer(daffCollectionReducerInitialState, action);
 
-      expect(result).toBe(daffReviewsCollectionReducerInitialState);
+      expect(result).toBe(daffCollectionReducerInitialState);
     });
   });
 
   describe('when ChangeFilterAction is triggered', () => {
+    let currentEqualFilter: DaffFilterEqual;
+    let currentAppliedEqualFilterOption: DaffFilterEqualOption;
+    let currentUnappliedEqualFilterOption: DaffFilterEqualOption;
+    let equalFilterRequest: DaffFilterEqualRequest;
     let result: DaffReviewsCollectionReducerState;
+    let stateUnderTest: DaffReviewsCollectionReducerState;
 
     beforeEach(() => {
-      const action = new DaffReviewsProductList(productId, mockCollectionRequest);
+      currentAppliedEqualFilterOption = equalOptionFactory.create({
+        applied: true,
+      });
+      currentUnappliedEqualFilterOption = equalOptionFactory.create({
+        applied: false,
+      });
+      currentEqualFilter = equalFilterFactory.create({
+        options: daffFilterEqualOptionArrayToDict([
+          currentAppliedEqualFilterOption,
+          currentUnappliedEqualFilterOption,
+        ]),
+      });
+      equalFilterRequest = equalFilterRequestFactory.create({
+        name: currentEqualFilter.name,
+        value: [currentUnappliedEqualFilterOption.value],
+      });
+      stateUnderTest = {
+        ...daffCollectionReducerInitialState,
+        filters: daffFilterArrayToDict([
+          currentEqualFilter,
+        ]),
+      };
+      const action = new DaffReviewsCollectionChangeFilter([
+        equalFilterRequest,
+      ]);
 
-      result = daffReviewsCollectionReducer(daffReviewsCollectionReducerInitialState, action);
+      result = daffReviewsCollectionReducer(stateUnderTest, action);
     });
 
-    it('stores the filter', () => {
-      expect(result.appliedFilter).toEqual(mockCollectionRequest.appliedFilter);
+    it('should apply the requested options', () => {
+      equalFilterRequest.value.forEach(option => {
+        expect(result.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
+      });
+    });
+
+    it('should remove the existing options', () => {
+      expect(result.filters[currentEqualFilter.name].options[currentAppliedEqualFilterOption.value].applied).toBeFalse();
     });
   });
 
@@ -66,7 +120,7 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
     beforeEach(() => {
       const productLoadAction: DaffReviewsProductList = new DaffReviewsProductList(productId, mockCollectionRequest);
 
-      result = daffReviewsCollectionReducer(daffReviewsCollectionReducerInitialState, productLoadAction);
+      result = daffReviewsCollectionReducer(daffCollectionReducerInitialState, productLoadAction);
     });
 
     it('stores the request', () => {
@@ -83,7 +137,7 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...daffReviewsCollectionReducerInitialState,
+        ...daffCollectionReducerInitialState,
       };
 
       const productLoadSuccess = new DaffReviewsProductListSuccess(mockProductReviews);
@@ -113,7 +167,7 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...daffReviewsCollectionReducerInitialState,
+        ...daffCollectionReducerInitialState,
         ids: ['an ID'],
       };
 
@@ -123,7 +177,7 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
     });
 
     it('resets state', () => {
-      expect(result).toEqual(daffReviewsCollectionReducerInitialState);
+      expect(result).toEqual(daffCollectionReducerInitialState);
     });
   });
 });

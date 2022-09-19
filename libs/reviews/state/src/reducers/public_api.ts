@@ -6,10 +6,7 @@ export {
 export { daffProductReviewEntitiesAdapter } from './product-review-entities/product-entities-reducer-adapter';
 export { daffReviewsProductEntitiesReducer } from './product-review-entities/product-entities.reducer';
 export { DaffProductPageReviewsReducerState } from './product-reviews/state.interface';
-export {
-  daffReviewsCollectionReducer,
-  daffReviewsCollectionReducerInitialState,
-} from './product-reviews-collection/reducer';
+export { daffReviewsCollectionReducer } from './product-reviews-collection/reducer';
 export { DaffReviewsCollectionReducerState } from './product-reviews-collection/state.interface';
 export {
   daffProductPageReviewsReducer,

@@ -1,11 +1,14 @@
 
-import { DaffCollectionMetadata } from '@daffodil/core';
+import {
+  DaffCollectionMetadata,
+  DaffFilterRequest,
+} from '@daffodil/core';
 import {
   DaffCollectionChangePageSize,
   DaffCollectionChangeCurrentPage,
   DaffCollectionChangeSortingOption,
+  DaffCollectionReplaceFilters,
 } from '@daffodil/core/state';
-import { DaffProductReviews } from '@daffodil/reviews';
 
 /**
  * Action types for Product Review Actions.
@@ -56,11 +59,11 @@ export class DaffReviewsCollectionChangeSortingOption implements DaffCollectionC
 /**
  * An action for filtering the collection by an overall rating value.
  */
-export class DaffReviewsCollectionChangeFilter {
+export class DaffReviewsCollectionChangeFilter implements DaffCollectionReplaceFilters {
   readonly type = DaffProductReviewsCollectionActionTypes.ChangeFilterAction;
 
   constructor(
-    public filter: DaffProductReviews['metadata']['appliedFilter'],
+    public filters: DaffFilterRequest[],
   ) {}
 }
 

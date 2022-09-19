@@ -1,6 +1,2 @@
-export {
-  daffReviewsCollectionReducer,
-  daffReviewsCollectionReducerInitialState,
-} from './reducer';
+export { daffReviewsCollectionReducer } from './reducer';
 export { DaffReviewsCollectionReducerState } from './state.interface';
-export * from './adapter';

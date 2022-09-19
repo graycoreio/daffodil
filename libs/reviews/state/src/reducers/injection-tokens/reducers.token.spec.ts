@@ -4,13 +4,15 @@ import {
   combineReducers,
 } from '@ngrx/store';
 
-import { daffIdentityReducer } from '@daffodil/core/state';
+import {
+  daffCollectionReducerInitialState,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 import { DaffProductReviews } from '@daffodil/reviews';
 import {
   DaffReviewsProductListSuccess,
   daffReviewsProvideExtraReducers,
   DaffReviewsReducersState,
-  daffReviewsCollectionReducerInitialState,
   daffProductReviewEntitiesAdapter,
   daffProductReviewsReducerInitialState,
 } from '@daffodil/reviews/state';
@@ -30,7 +32,7 @@ describe('@daffodil/reviews/state | DAFF_REVIEWS_REDUCERS', () => {
   beforeEach(() => {
     injectedId = 'the injected ID';
     const initialState: DaffReviewsReducersState = {
-      productReviewsCollection: daffReviewsCollectionReducerInitialState,
+      productReviewsCollection: daffCollectionReducerInitialState,
       productReviewEntities: daffProductReviewEntitiesAdapter().getInitialState(),
       productReviews: daffProductReviewsReducerInitialState,
     };
