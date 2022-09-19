@@ -4,6 +4,7 @@ import {
   daffCollectionBuildMetadataFromRequest,
   DaffCollectionMetadata,
   DaffCollectionRequest,
+  DaffFilters,
 } from '@daffodil/core';
 
 /**
@@ -54,6 +55,17 @@ export class DaffCollectionStateAdapter<T extends DaffCollectionMetadata = DaffC
   }
 
   /**
+   * Sets the collection filters.
+   */
+  setFilters(filters: DaffFilters, state: T): T {
+    return {
+      ...state,
+      currentPage: 1,
+      filters: filters || {},
+    };
+  }
+
+  /**
    * Set the entire collection metadata at once.
    */
   setMetadata(metadata: DaffCollectionMetadata, state: T): T {
@@ -67,6 +79,7 @@ export class DaffCollectionStateAdapter<T extends DaffCollectionMetadata = DaffC
       totalPages: metadata.totalPages,
       appliedSortOption: metadata.appliedSortOption || state.appliedSortOption,
       appliedSortDirection: metadata.appliedSortDirection || state.appliedSortDirection,
+      filters: metadata.filters || {},
     };
   }
 }

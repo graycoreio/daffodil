@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import {
   DaffCollectionMetadata,
   DaffCollectionRequest,
+  DaffFilters,
   DaffSortDirectionEnum,
   DaffSortOption,
 } from '@daffodil/core';
@@ -26,6 +27,8 @@ export class MockDaffCollectionFacade implements DaffCollectionFacadeInterface {
   sortOptions$: BehaviorSubject<DaffSortOption[]> = new BehaviorSubject([]);
   appliedSortOption$: BehaviorSubject<string> = new BehaviorSubject(null);
   appliedSortDirection$: BehaviorSubject<DaffSortDirectionEnum> = new BehaviorSubject(null);
+  filters$: BehaviorSubject<DaffFilters> = new BehaviorSubject({});
+  appliedFilters$: BehaviorSubject<DaffFilters> = new BehaviorSubject({});
 
   dispatch(action: Action) {};
 }

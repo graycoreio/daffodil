@@ -3,15 +3,16 @@ import * as faker from '@faker-js/faker/locale/en_US';
 
 import {
   DaffCollectionMetadata,
+  DaffFilters,
+  daffFilterArrayToDict,
   DaffIdentifiable,
-  DaffNumericallyPaginable,
-  DaffSortable,
   DaffSortDirectionEnum,
   DaffSortOption,
   DaffSortOptions,
 } from '@daffodil/core';
 
 import { DaffModelFactory } from '../factory';
+import { DaffFilterFactory } from '../filters/public_api';
 import { DaffNumericallyPaginableFactory } from './numerically-paginable.factory';
 import { DaffSortableFactory } from './sortable.factory';
 
@@ -27,10 +28,12 @@ export class MockCollectionMetadata implements DaffCollectionMetadata {
   appliedSortDirection: DaffSortDirectionEnum;
   count: number;
   ids: DaffIdentifiable['id'][];
+  filters: DaffFilters;
 
   constructor(
     pageInfoFactory: DaffNumericallyPaginableFactory,
     sortFieldsFactory: DaffSortableFactory,
+    filterFactory: DaffFilterFactory,
   ) {
     const _pageInfo = pageInfoFactory.create();
     const _sortFields = sortFieldsFactory.create();
@@ -45,6 +48,7 @@ export class MockCollectionMetadata implements DaffCollectionMetadata {
     this.appliedSortDirection = _sortFields.appliedSortDirection;
     this.appliedSortOption = _sortFields.appliedSortOption;
     this.sortOptions = _sortFields.sortOptions;
+    this.filters = daffFilterArrayToDict(filterFactory.createMany(faker.random.number({ min: 1, max: 5 })));
   }
 }
 
@@ -58,7 +62,8 @@ export class DaffCollectionMetadataFactory extends DaffModelFactory<DaffCollecti
   constructor(
     pageInfoFactory: DaffNumericallyPaginableFactory,
     sortFieldsFactory: DaffSortableFactory,
+    filterFactory: DaffFilterFactory,
   ) {
-    super(MockCollectionMetadata, pageInfoFactory, sortFieldsFactory);
+    super(MockCollectionMetadata, pageInfoFactory, sortFieldsFactory, filterFactory);
   }
 }

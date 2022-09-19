@@ -1,7 +1,8 @@
+import { DaffFilterRequest } from '../filterable/public_api';
 import { DaffSortDirectionEnum } from './sortable';
 
 /**
- * A collection of items that is paginable and sortable.
+ * A collection of items that is paginable, sortable, and filterable.
  */
 export interface DaffCollectionRequest {
   /**
@@ -23,4 +24,8 @@ export interface DaffCollectionRequest {
    * The number of items per-page to request.
    */
   pageSize?: number;
+  /**
+   * The properties by which to filter the items of the collection being requested.
+   */
+  filterRequests?: DaffFilterRequest[];
 }

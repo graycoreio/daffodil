@@ -6,6 +6,8 @@ import {
 import {
   DaffCollectionMetadata,
   DaffCollectionRequest,
+  daffComputeAppliedFilters,
+  DaffFilters,
 } from '@daffodil/core';
 
 /**
@@ -55,6 +57,15 @@ export interface DaffCollectionMemoizedSelectors<
    * Selects the applied sorting direction if a sorting option is applied.
    */
   selectCollectionIds: MemoizedSelector<TState, TMetadata['ids']>;
+  /**
+   * Selects the filters that may be applied to the collection.
+   */
+  selectCollectionFilters: MemoizedSelector<TState, TMetadata['filters']>;
+  /**
+   * Returns a dict of filters and only their applied options.
+   * Filters with no applied options will be omitted.
+   */
+  selectCollectionAppliedFilters: MemoizedSelector<TState, DaffFilters>;
 }
 
 /**
@@ -124,6 +135,16 @@ export const daffCollectionSelectorFactory = <
     state => state.ids,
   );
 
+  const selectCollectionFilters = createSelector(
+    selectCollectionMetadata,
+    state => state.filters,
+  );
+
+  const selectCollectionAppliedFilters = createSelector(
+    selectCollectionFilters,
+    filters => daffComputeAppliedFilters(filters),
+  );
+
   return {
     selectCollectionMetadata,
     selectCollectionRequest,
@@ -135,5 +156,7 @@ export const daffCollectionSelectorFactory = <
     selectCollectionAppliedSortOption,
     selectCollectionAppliedSortDirection,
     selectCollectionIds,
+    selectCollectionFilters,
+    selectCollectionAppliedFilters,
   };
 };

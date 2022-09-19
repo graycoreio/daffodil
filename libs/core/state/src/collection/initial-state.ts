@@ -12,4 +12,5 @@ export const daffCollectionReducerInitialState: DaffCollectionMetadata = {
     options: [],
   },
   ids: [],
+  filters: {},
 };

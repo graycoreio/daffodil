@@ -1,3 +1,4 @@
+import { daffFiltersToRequests } from '../filters/public_api';
 import { DaffCollectionMetadata } from './metadata.interface';
 import { DaffCollectionRequest } from './request.interface';
 
@@ -9,4 +10,5 @@ export const daffCollectionBuildRequestFromMetadata = (metadata: DaffCollectionM
   appliedSortDirection: metadata.appliedSortDirection,
   currentPage: metadata.currentPage,
   pageSize: metadata.pageSize,
+  filterRequests: daffFiltersToRequests(metadata.filters),
 });

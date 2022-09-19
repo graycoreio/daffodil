@@ -37,6 +37,7 @@ describe('@daffodil/core/testing | DaffCollectionMetadataFactory', () => {
       expect(result.appliedSortOption).toBeDefined();
       expect(result.sortOptions).toBeDefined();
       expect(result.ids).toBeDefined();
+      expect(result.filters).toBeDefined();
     });
   });
 });

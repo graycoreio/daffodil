@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCollectionRequest,
   DaffCollectionMetadata,
+  daffFiltersToRequests,
 } from '@daffodil/core';
 import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
 
@@ -25,5 +26,6 @@ describe('@daffodil/core | daffCollectionBuildRequestFromMetadata', () => {
     expect(result.appliedSortOption).toEqual(metadata.appliedSortOption);
     expect(result.currentPage).toEqual(metadata.currentPage);
     expect(result.pageSize).toEqual(metadata.pageSize);
+    expect(result.filterRequests).toEqual(daffFiltersToRequests(metadata.filters));
   });
 });

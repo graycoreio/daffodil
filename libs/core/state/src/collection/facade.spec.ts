@@ -10,7 +10,10 @@ import {
 } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCollectionMetadata } from '@daffodil/core';
+import {
+  DaffCollectionMetadata,
+  DaffFilters,
+} from '@daffodil/core';
 import {
   daffCollectionReducerInitialState,
   daffCollectionSelectorFactory,
@@ -38,8 +41,8 @@ class TestFacade extends DaffCollectionFacade<State> {
 describe('@daffodil/core/state | DaffCollectionFacade', () => {
   let store: MockStore<State>;
   let facade: DaffCollectionFacade<State>;
-  let productCollectionMetadataFactory: DaffCollectionMetadataFactory;
-  let productCollectionMetadata: DaffCollectionMetadata;
+  let collectionMetadataFactory: DaffCollectionMetadataFactory;
+  let collectionMetadata: DaffCollectionMetadata;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -56,12 +59,12 @@ describe('@daffodil/core/state | DaffCollectionFacade', () => {
     store = TestBed.inject(MockStore);
     facade = TestBed.inject(TestFacade);
 
-    productCollectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
+    collectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
 
-    productCollectionMetadata = productCollectionMetadataFactory.create();
+    collectionMetadata = collectionMetadataFactory.create();
 
     store.setState({
-      test: productCollectionMetadata,
+      test: collectionMetadata,
     });
   });
 
@@ -80,25 +83,25 @@ describe('@daffodil/core/state | DaffCollectionFacade', () => {
 
   describe('currentPage$', () => {
     it('should return an observable of the current page', () => {
-      const expected = cold('a', { a: productCollectionMetadata.currentPage });
+      const expected = cold('a', { a: collectionMetadata.currentPage });
       expect(facade.currentPage$).toBeObservable(expected);
     });
   });
 
   describe('metadata$', () => {
-    it('should return an observable of the product collection metadata', () => {
-      const expected = cold('a', { a: productCollectionMetadata });
+    it('should return an observable of the collection metadata', () => {
+      const expected = cold('a', { a: collectionMetadata });
       expect(facade.metadata$).toBeObservable(expected);
     });
   });
 
   describe('request$', () => {
-    it('should return an observable of the product collection request', () => {
+    it('should return an observable of the collection request', () => {
       const expected = cold('a', { a: {
-        appliedSortOption: productCollectionMetadata.appliedSortOption,
-        appliedSortDirection: productCollectionMetadata.appliedSortDirection,
-        currentPage: productCollectionMetadata.currentPage,
-        pageSize: productCollectionMetadata.pageSize,
+        appliedSortOption: collectionMetadata.appliedSortOption,
+        appliedSortDirection: collectionMetadata.appliedSortDirection,
+        currentPage: collectionMetadata.currentPage,
+        pageSize: collectionMetadata.pageSize,
       }});
       expect(facade.request$).toBeObservable(expected);
     });
@@ -106,43 +109,59 @@ describe('@daffodil/core/state | DaffCollectionFacade', () => {
 
   describe('totalPages$', () => {
     it('should return an observable of the total number of pages', () => {
-      const expected = cold('a', { a: productCollectionMetadata.totalPages });
+      const expected = cold('a', { a: collectionMetadata.totalPages });
       expect(facade.totalPages$).toBeObservable(expected);
     });
   });
 
   describe('count$', () => {
-    it('should return an observable of the total number of products', () => {
-      const expected = cold('a', { a: productCollectionMetadata.count });
+    it('should return an observable of the total number of entities', () => {
+      const expected = cold('a', { a: collectionMetadata.count });
       expect(facade.count$).toBeObservable(expected);
     });
   });
 
   describe('pageSize$', () => {
     it('should return an observable of the page size', () => {
-      const expected = cold('a', { a: productCollectionMetadata.pageSize });
+      const expected = cold('a', { a: collectionMetadata.pageSize });
       expect(facade.pageSize$).toBeObservable(expected);
     });
   });
 
   describe('sortOptions$', () => {
     it('should return an observable of the sort options', () => {
-      const expected = cold('a', { a: productCollectionMetadata.sortOptions.options });
+      const expected = cold('a', { a: collectionMetadata.sortOptions.options });
       expect(facade.sortOptions$).toBeObservable(expected);
     });
   });
 
   describe('appliedSortOption$', () => {
     it('should return an observable of the applied sort option', () => {
-      const expected = cold('a', { a: productCollectionMetadata.appliedSortOption });
+      const expected = cold('a', { a: collectionMetadata.appliedSortOption });
       expect(facade.appliedSortOption$).toBeObservable(expected);
     });
   });
 
   describe('appliedSortDirection$', () => {
     it('should return an observable of the applied sort direction', () => {
-      const expected = cold('a', { a: productCollectionMetadata.appliedSortDirection });
+      const expected = cold('a', { a: collectionMetadata.appliedSortDirection });
       expect(facade.appliedSortDirection$).toBeObservable(expected);
+    });
+  });
+
+  describe('filters$', () => {
+    it('should return an observable of the filters', () => {
+      const expected = cold('a', { a: collectionMetadata.filters });
+      expect(facade.filters$).toBeObservable(expected);
+    });
+  });
+
+  describe('appliedFilters$', () => {
+    it('should return an observable of the applied filters', () => {
+      const expectedFilters: DaffFilters = {};
+
+      const expected = cold('a', { a: expectedFilters });
+      expect(facade.appliedFilters$).toBeObservable(expected);
     });
   });
 });

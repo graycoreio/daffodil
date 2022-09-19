@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import {
   DaffCollectionMetadata,
   DaffCollectionRequest,
+  DaffFilters,
   DaffSortDirectionEnum,
   DaffSortOption,
 } from '@daffodil/core';
@@ -36,6 +37,8 @@ export abstract class DaffCollectionFacade<
   sortOptions$: Observable<DaffSortOption[]>;
   appliedSortOption$: Observable<string>;
   appliedSortDirection$: Observable<DaffSortDirectionEnum>;
+  filters$: Observable<DaffFilters>;
+  appliedFilters$: Observable<DaffFilters>;
 
   constructor(
     protected store: Store<TState>,
@@ -50,6 +53,8 @@ export abstract class DaffCollectionFacade<
 	  this.sortOptions$ = this.store.pipe(select(selectors.selectCollectionSortOptions));
 	  this.appliedSortOption$ = this.store.pipe(select(selectors.selectCollectionAppliedSortOption));
 	  this.appliedSortDirection$ = this.store.pipe(select(selectors.selectCollectionAppliedSortDirection));
+    this.filters$ = this.store.pipe(select(selectors.selectCollectionFilters));
+	  this.appliedFilters$ = this.store.pipe(select(selectors.selectCollectionAppliedFilters));
   }
 
   /**

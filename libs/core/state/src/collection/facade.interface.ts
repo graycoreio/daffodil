@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import {
+  DaffFilters,
   DaffSortDirectionEnum,
   DaffSortOption,
 } from '@daffodil/core';
@@ -54,4 +55,13 @@ export interface DaffCollectionFacadeInterface<
    * The sort options available for the items of the collection.
    */
   appliedSortDirection$: Observable<DaffSortDirectionEnum>;
+  /**
+   * The filters available for the entities of the collection.
+   */
+  filters$: Observable<DaffFilters>;
+
+  /**
+   * The sort options available for the entities of the collection.
+   */
+  appliedFilters$: Observable<DaffFilters>;
 }

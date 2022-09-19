@@ -9,9 +9,20 @@ import {
 } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCollectionMetadata } from '@daffodil/core';
+import {
+  DaffCollectionMetadata,
+  DaffFilters,
+  daffFilterArrayToDict,
+  daffFilterEqualOptionArrayToDict,
+  DaffFilterType,
+} from '@daffodil/core';
 import { daffCollectionReducerInitialState } from '@daffodil/core/state';
-import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
+import {
+  DaffCollectionMetadataFactory,
+  DaffFilterEqualFactory,
+  DaffFilterEqualOptionFactory,
+  DaffFilterFactory,
+} from '@daffodil/core/testing';
 
 import { daffCollectionSelectorFactory } from './selector-factory';
 
@@ -25,6 +36,9 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
 
   let store: MockStore<State>;
   let collectionMetadataFactory: DaffCollectionMetadataFactory;
+  let filterFactory: DaffFilterFactory;
+  let filterEqualFactory: DaffFilterEqualFactory;
+  let filterEqualOptionFactory: DaffFilterEqualOptionFactory;
 
   let stubCollectionMetadata: DaffCollectionMetadata;
   const selectors = daffCollectionSelectorFactory(featureSelector);
@@ -42,11 +56,92 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
 
     store = TestBed.inject(MockStore);
     collectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
+    filterFactory = TestBed.inject(DaffFilterFactory);
+    filterEqualFactory = TestBed.inject(DaffFilterEqualFactory);
+    filterEqualOptionFactory = TestBed.inject(DaffFilterEqualOptionFactory);
 
     stubCollectionMetadata = collectionMetadataFactory.create();
 
     store.setState({
       test: stubCollectionMetadata,
+    });
+  });
+
+  describe('selectCollectionFilters', () => {
+    it('selects filters of the collection', () => {
+      const selector = store.pipe(select(selectors.selectCollectionFilters));
+      const expected = cold('a', { a: stubCollectionMetadata.filters });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCollectionAppliedFilters', () => {
+    it('sets applied filters to {} if there are no applied filters', () => {
+      const expectedAppliedFilters: DaffFilters = {};
+
+      store.setState({
+        test: {
+          ...stubCollectionMetadata,
+          filters: {
+            name: {
+              name: 'name',
+              type: DaffFilterType.Equal,
+              label: 'labelRDaffFilterRequest',
+              options: {
+                value: {
+                  applied: false,
+                  label: 'optionLabel',
+                  value: 'value',
+                  count: 2,
+                },
+              },
+            },
+            name2: {
+              name: 'name2',
+              type: DaffFilterType.Equal,
+              label: 'label2RDaffFilterRequest',
+              options: {
+                value2: {
+                  applied: false,
+                  label: 'optionLabel2',
+                  value: 'value2',
+                  count: 2,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const selector = store.pipe(select(selectors.selectCollectionAppliedFilters));
+      const expected = cold('a', { a: expectedAppliedFilters });
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('selects the applied filters of the collection', () => {
+      const filters = filterFactory.createMany(5);
+      const filterEqual = filterEqualFactory.create({
+        options: daffFilterEqualOptionArrayToDict(filterEqualOptionFactory.createMany(2, {
+          applied: true,
+        })),
+      });
+      const filterDict = daffFilterArrayToDict([
+        ...filters,
+        filterEqual,
+      ]);
+
+      const expectedAppliedFilters: DaffFilters = daffFilterArrayToDict([filterEqual]);
+
+      store.setState({
+        test: {
+          ...stubCollectionMetadata,
+          filters: filterDict,
+        },
+      });
+
+      const selector = store.pipe(select(selectors.selectCollectionAppliedFilters));
+      const expected = cold('a', { a: expectedAppliedFilters });
+      expect(selector).toBeObservable(expected);
     });
   });
 

@@ -33,6 +33,7 @@ describe('@daffodil/core/testing | DaffCollectionRequestFactory', () => {
       expect(result.appliedSortOption).toBeDefined();
       expect(result.currentPage).toBeDefined();
       expect(result.pageSize).toBeDefined();
+      expect(result.filterRequests).toBeDefined();
     });
   });
 });
