@@ -1,20 +1,18 @@
 import {
+  DaffCollectionRequest,
+  DaffFilterRequest,
+  DaffFilterToggleRequest,
+} from '@daffodil/core';
+import {
   DaffCollectionChangePageSize,
   DaffCollectionChangeCurrentPage,
   DaffCollectionChangeSortingOption,
+  DaffCollectionReplaceFilters,
+  DaffCollectionApplyFilters,
+  DaffCollectionRemoveFilters,
+  DaffCollectionToggleFilter,
+  DaffCollectionClearFilters,
 } from '@daffodil/core/state';
-import {
-  DaffProductCollectionRequest,
-  DaffProductFilterRequest,
-  DaffProductFilterToggleRequest,
-} from '@daffodil/product';
-import {
-  DaffProductCollectionReplaceFilters,
-  DaffProductCollectionApplyFilters,
-  DaffProductCollectionRemoveFilters,
-  DaffProductCollectionToggleFilter,
-  DaffProductCollectionClearFilters,
-} from '@daffodil/product/state';
 
 /**
  * The search action types enum.
@@ -33,44 +31,44 @@ export enum DaffSearchProductCollectionActionTypes {
 /**
  * @inheritdoc
  */
-export class DaffSearchProductCollectionReplaceFilters implements DaffProductCollectionReplaceFilters {
+export class DaffSearchProductCollectionReplaceFilters implements DaffCollectionReplaceFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductReplaceFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) {}
+  constructor(public filters: DaffFilterRequest[]) {}
 }
 
 /**
  * @inheritdoc
  */
-export class DaffSearchProductCollectionApplyFilters implements DaffProductCollectionApplyFilters {
+export class DaffSearchProductCollectionApplyFilters implements DaffCollectionApplyFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductApplyFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) {}
+  constructor(public filters: DaffFilterRequest[]) {}
 }
 
 /**
  * @inheritdoc
  */
-export class DaffSearchProductCollectionRemoveFilters implements DaffProductCollectionRemoveFilters {
+export class DaffSearchProductCollectionRemoveFilters implements DaffCollectionRemoveFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductRemoveFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) {}
+  constructor(public filters: DaffFilterRequest[]) {}
 }
 
 /**
  * @inheritdoc
  */
-export class DaffSearchProductCollectionClearFilters implements DaffProductCollectionClearFilters {
+export class DaffSearchProductCollectionClearFilters implements DaffCollectionClearFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductClearFiltersAction;
 }
 
 /**
  * @inheritdoc
  */
-export class DaffSearchProductCollectionToggleFilter implements DaffProductCollectionToggleFilter {
+export class DaffSearchProductCollectionToggleFilter implements DaffCollectionToggleFilter {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductToggleFiltersAction;
 
-  constructor(public filter: DaffProductFilterToggleRequest) {}
+  constructor(public filter: DaffFilterToggleRequest) {}
 }
 
 /**
@@ -98,8 +96,8 @@ export class DaffSearchProductCollectionChangeSortingOption implements DaffColle
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductChangeSortingOptionAction;
 
   constructor(public sort: {
-    option: DaffProductCollectionRequest['appliedSortOption'];
-    direction: DaffProductCollectionRequest['appliedSortDirection'];
+    option: DaffCollectionRequest['appliedSortOption'];
+    direction: DaffCollectionRequest['appliedSortDirection'];
   }) {}
 }
 

@@ -1,16 +1,15 @@
 import {
   daffApplyRequestsToFilters,
   daffClearFilters,
-  DaffProductCollectionMetadata,
-  DaffProductCollectionRequest,
+  DaffCollectionMetadata,
+  DaffCollectionRequest,
   daffRemoveRequestsFromFilters,
   daffToggleRequestOnFilters,
-} from '@daffodil/product';
+} from '@daffodil/core';
 import {
-  daffProductCollectionReducerInitialState,
-  DaffProductCollectionReducerState,
-  getProductCollectionStateAdapter,
-} from '@daffodil/product/state';
+  daffCollectionReducerInitialState,
+  getCollectionStateAdapter,
+} from '@daffodil/core/state';
 import {
   DaffSearchActions,
   DaffSearchActionTypes,
@@ -22,42 +21,42 @@ import {
 } from '../../actions/product-collection.actions';
 
 export const daffSearchProductCollectionReducer = (
-  state: DaffProductCollectionReducerState = daffProductCollectionReducerInitialState,
+  state: DaffCollectionMetadata = daffCollectionReducerInitialState,
   action: DaffSearchActions | DaffSearchProductCollectionActions,
-): DaffProductCollectionReducerState => {
+): DaffCollectionMetadata => {
   switch (action.type) {
     case DaffSearchActionTypes.SearchLoadAction:
-      return getProductCollectionStateAdapter().storeRequest(<DaffProductCollectionRequest>action.options, state);
+      return getCollectionStateAdapter().storeRequest(<DaffCollectionRequest>action.options, state);
 
     case DaffSearchActionTypes.SearchLoadSuccessAction:
-      return getProductCollectionStateAdapter().setMetadata(<DaffProductCollectionMetadata>action.payload.metadata, state);
+      return getCollectionStateAdapter().setMetadata(<DaffCollectionMetadata>action.payload.metadata, state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductChangePageSizeAction:
-      return getProductCollectionStateAdapter().setPageSize(action.pageSize, state);
+      return getCollectionStateAdapter().setPageSize(action.pageSize, state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductChangeCurrentPageAction:
-      return getProductCollectionStateAdapter().setCurrentPage(action.currentPage, state);
+      return getCollectionStateAdapter().setCurrentPage(action.currentPage, state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductChangeSortingOptionAction:
-      return getProductCollectionStateAdapter().setSort(action.sort.option, action.sort.direction, state);
+      return getCollectionStateAdapter().setSort(action.sort.option, action.sort.direction, state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductReplaceFiltersAction:
-      return getProductCollectionStateAdapter().setFilters(daffApplyRequestsToFilters(action.filters, daffClearFilters(state.filters)), state);
+      return getCollectionStateAdapter().setFilters(daffApplyRequestsToFilters(action.filters, daffClearFilters(state.filters)), state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductApplyFiltersAction:
-      return getProductCollectionStateAdapter().setFilters(daffApplyRequestsToFilters(action.filters, state.filters), state);
+      return getCollectionStateAdapter().setFilters(daffApplyRequestsToFilters(action.filters, state.filters), state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductClearFiltersAction:
-      return getProductCollectionStateAdapter().setFilters(daffClearFilters(state.filters), state);
+      return getCollectionStateAdapter().setFilters(daffClearFilters(state.filters), state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductRemoveFiltersAction:
-      return getProductCollectionStateAdapter().setFilters(daffRemoveRequestsFromFilters(action.filters, state.filters), state);
+      return getCollectionStateAdapter().setFilters(daffRemoveRequestsFromFilters(action.filters, state.filters), state);
 
     case DaffSearchProductCollectionActionTypes.SearchProductToggleFiltersAction:
-      return getProductCollectionStateAdapter().setFilters(daffToggleRequestOnFilters(action.filter, state.filters), state);
+      return getCollectionStateAdapter().setFilters(daffToggleRequestOnFilters(action.filter, state.filters), state);
 
     case DaffSearchActionTypes.SearchLoadFailureAction:
-      return daffProductCollectionReducerInitialState;
+      return daffCollectionReducerInitialState;
 
     default:
       return state;

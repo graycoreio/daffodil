@@ -1,4 +1,4 @@
-import { DaffProductCollectionRequest } from '@daffodil/product';
+import { DaffCollectionRequest } from '@daffodil/core';
 import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 
-export interface DaffSearchProductDriverOptions extends DaffSearchDriverOptions, DaffProductCollectionRequest {}
+export interface DaffSearchProductDriverOptions extends DaffSearchDriverOptions, DaffCollectionRequest {}

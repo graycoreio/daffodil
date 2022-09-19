@@ -14,15 +14,11 @@ import {
   map,
 } from 'rxjs/operators';
 
-import {
-  daffApplyRequestsToFilters,
-  daffProductFilterArrayToDict,
-} from '@daffodil/product';
+import { daffApplyRequestsToFilters } from '@daffodil/core';
 import {
   magentoProductAddMetadataTypesToAggregates,
   MagentoProductGetFilterTypes,
   MagentoProductGetFilterTypesResponse,
-  magentoProductTransformAggregate,
   MagentoProductAppliedFiltersTransformService,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DaffMagentoProductsTransformer,

@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
-import {
-  DaffProduct,
-  DaffProductFilter,
-} from '@daffodil/product';
+import { DaffFilters } from '@daffodil/core';
+import { DaffProduct } from '@daffodil/product';
 import { DaffSearchProductFacadeInterface } from '@daffodil/search-product/state';
 
 /**
@@ -15,8 +13,8 @@ import { DaffSearchProductFacadeInterface } from '@daffodil/search-product/state
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffSearchProductFacade implements DaffSearchProductFacadeInterface {
-  filters$ = new BehaviorSubject<Record<DaffProductFilter['name'], DaffProductFilter>>({});
-  appliedFilters$ = new BehaviorSubject<Record<DaffProductFilter['name'], DaffProductFilter>>({});
+  filters$ = new BehaviorSubject<DaffFilters>({});
+  appliedFilters$ = new BehaviorSubject<DaffFilters>({});
   productResults$ = new BehaviorSubject<DaffProduct[]>([]);
 
   dispatch(action: Action) {};

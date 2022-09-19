@@ -1,7 +1,5 @@
-import {
-  DaffProductStateRootSlice,
-  DaffProductCollectionReducerState,
-} from '@daffodil/product/state';
+import { DaffCollectionMetadata } from '@daffodil/core';
+import { DaffProductStateRootSlice } from '@daffodil/product/state';
 import { DaffSearchStateRootSlice } from '@daffodil/search/state';
 
 import { DAFF_SEARCH_PRODUCT_STORE_FEATURE_KEY } from './store-feature-key';
@@ -10,7 +8,7 @@ import { DAFF_SEARCH_PRODUCT_STORE_FEATURE_KEY } from './store-feature-key';
  * The feature state for search.
  */
 export interface DaffSearchProductReducersState {
-  productCollection: DaffProductCollectionReducerState;
+  productCollection: DaffCollectionMetadata;
 }
 
 /**

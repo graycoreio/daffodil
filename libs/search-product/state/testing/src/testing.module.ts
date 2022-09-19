@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MockDaffProductCollectionFacade } from '@daffodil/product/state/testing';
+import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
 import {
   DaffSearchProductCollectionFacade,
   DaffSearchProductIncrementalFacade,
@@ -16,7 +16,7 @@ import { MockDaffSearchProductFacade } from './mock-search-facade';
   providers: [
     { provide: DaffSearchProductPageFacade, useExisting: MockDaffSearchProductFacade },
     { provide: DaffSearchProductIncrementalFacade, useExisting: MockDaffSearchProductFacade },
-    { provide: DaffSearchProductCollectionFacade, useExisting: MockDaffProductCollectionFacade },
+    { provide: DaffSearchProductCollectionFacade, useExisting: MockDaffCollectionFacade },
   ],
 })
 export class DaffSearchProductStateTestingModule {}

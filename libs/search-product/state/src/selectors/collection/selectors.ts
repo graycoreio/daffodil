@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 
 import {
-  DaffProductCollectionMemoizedSelectors,
-  daffProductCollectionSelectorFactory,
-} from '@daffodil/product/state';
+  DaffCollectionMemoizedSelectors,
+  daffCollectionSelectorFactory,
+} from '@daffodil/core/state';
 
 import { DaffSearchProductStateRootSlice } from '../../reducers/public_api';
 import { getDaffSearchProductReducersStateSelector } from '../search-feature.selector';
@@ -19,6 +19,6 @@ const selectSearchProductCollectionState = createSelector(
 
 export const getSearchProductCollectionSelectors = (() => {
   let cache;
-  return (): DaffProductCollectionMemoizedSelectors<DaffSearchProductStateRootSlice> =>
-    cache = cache || daffProductCollectionSelectorFactory<DaffSearchProductStateRootSlice>(selectSearchProductCollectionState);
+  return (): DaffCollectionMemoizedSelectors<DaffSearchProductStateRootSlice> =>
+    cache = cache || daffCollectionSelectorFactory<DaffSearchProductStateRootSlice>(selectSearchProductCollectionState);
 })();

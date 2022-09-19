@@ -20,11 +20,11 @@ import {
 } from 'rxjs/operators';
 
 import { DaffError } from '@daffodil/core';
-import { ErrorTransformer } from '@daffodil/core/state';
 import {
-  DaffProductCollectionRequest,
-  daffProductCollectionBuildRequestFromMetadata,
-} from '@daffodil/product';
+  DaffCollectionRequest,
+  daffCollectionBuildRequestFromMetadata,
+} from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
 import { DAFF_SEARCH_ERROR_MATCHER } from '@daffodil/search';
 import { DaffSearchProductResult } from '@daffodil/search-product';
 import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
@@ -77,9 +77,9 @@ export class DaffSearchProductCollectionEffects<
       this.collectionFacade.metadata$,
       this.searchFacade.recent$,
     ),
-    map(([action, metadata, recent]): [string, DaffProductCollectionRequest] => [
+    map(([action, metadata, recent]): [string, DaffCollectionRequest] => [
       recent[0],
-      daffProductCollectionBuildRequestFromMetadata(metadata),
+      daffCollectionBuildRequestFromMetadata(metadata),
     ]),
     throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
     switchMap(([recent, request]) => this.driver.search(recent, request).pipe(

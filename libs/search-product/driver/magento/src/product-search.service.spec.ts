@@ -9,8 +9,8 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
+import { DaffCollectionMetadata } from '@daffodil/core';
 import { schema } from '@daffodil/driver/magento';
-import { DaffProductCollectionMetadata } from '@daffodil/product';
 import {
   MagentoAggregation,
   MagentoProduct,
@@ -135,7 +135,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
       it('should return a collection of product search results', done => {
         service.search('query').subscribe(result => {
           expect(result.collection[DAFF_SEARCH_PRODUCT_RESULT_KIND][0].id).toEqual(mockSimpleProduct.sku);
-          expect((<DaffProductCollectionMetadata>result.metadata).count).toEqual(mockSearchProductsResponse.products.total_count);
+          expect((<DaffCollectionMetadata>result.metadata).count).toEqual(mockSearchProductsResponse.products.total_count);
           done();
         });
 

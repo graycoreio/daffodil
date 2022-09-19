@@ -16,36 +16,30 @@ import {
   DaffError,
   DaffInheritableError,
   DaffSortDirectionEnum,
+  daffFilterArrayToDict,
+  DaffFilterRequest,
+  daffFiltersToRequests,
+  DaffFilterToggleRequest,
 } from '@daffodil/core';
 import {
   DaffCollectionChangeCurrentPage,
   DaffCollectionChangePageSize,
   DaffCollectionChangeSortingOption,
   daffTransformErrorToStateError,
+  DaffCollectionApplyFilters,
+  DaffCollectionClearFilters,
+  DaffCollectionRemoveFilters,
+  DaffCollectionReplaceFilters,
+  DaffCollectionToggleFilter,
 } from '@daffodil/core/state';
+import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
 import {
-  daffProductFilterArrayToDict,
-  DaffProductFilterRequest,
-  daffProductFiltersToRequests,
-  DaffProductFilterToggleRequest,
-} from '@daffodil/product';
-import {
-  DaffProductCollectionApplyFilters,
-  DaffProductCollectionClearFilters,
-  DaffProductCollectionRemoveFilters,
-  DaffProductCollectionReplaceFilters,
-  DaffProductCollectionToggleFilter,
-} from '@daffodil/product/state';
-import {
-  DaffProductStateTestingModule,
-  MockDaffProductCollectionFacade,
-} from '@daffodil/product/state/testing';
-import {
-  DaffProductCollectionMetadataFactory,
-  DaffProductFilterFactory,
-  DaffProductFilterRequestFactory,
-  DaffProductFilterToggleRequestFactory,
-} from '@daffodil/product/testing';
+  DaffCollectionMetadataFactory,
+  DaffFilterFactory,
+  DaffFilterRequestFactory,
+  DaffFilterToggleRequestFactory,
+} from '@daffodil/core/testing';
+import { DaffProductStateTestingModule } from '@daffodil/product/state/testing';
 import { DaffSearchProductDriverResponse } from '@daffodil/search-product/driver';
 import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
 import { DaffSearchProductTestingDriverModule } from '@daffodil/search-product/driver/testing';
@@ -75,14 +69,14 @@ class MockError extends DaffInheritableError implements DaffError {
 describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffSearchProductCollectionEffects;
-  let collectionFacade: MockDaffProductCollectionFacade;
+  let collectionFacade: MockDaffCollectionFacade;
   let facade: MockDaffSearchFacade;
   let driverSpy: jasmine.Spy<DaffSearchProductDriverInterface['search']>;
 
-  let productCollectionMetadataFactory: DaffProductCollectionMetadataFactory;
-  let filterFactory: DaffProductFilterFactory;
-  let filterRequestFactory: DaffProductFilterRequestFactory;
-  let filterToggleRequestFactory: DaffProductFilterToggleRequestFactory;
+  let productCollectionMetadataFactory: DaffCollectionMetadataFactory;
+  let filterFactory: DaffFilterFactory;
+  let filterRequestFactory: DaffFilterRequestFactory;
+  let filterToggleRequestFactory: DaffFilterToggleRequestFactory;
   let query: string;
 
   const testDriverSuccess = (cb: () => Action) => {
@@ -92,17 +86,17 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
           expect(actual).toEqual(expected);
         });
 
-        const stubProductCollectionMetadata = productCollectionMetadataFactory.create({
-          filters: daffProductFilterArrayToDict(filterFactory.createMany(3)),
+        const stubCollectionMetadata = productCollectionMetadataFactory.create({
+          filters: daffFilterArrayToDict(filterFactory.createMany(3)),
         });
         const response: DaffSearchProductDriverResponse = {
-          metadata: stubProductCollectionMetadata,
+          metadata: stubCollectionMetadata,
           collection: {},
         };
 
         driverSpy.and.returnValue(of(response));
 
-        collectionFacade.metadata$.next(stubProductCollectionMetadata);
+        collectionFacade.metadata$.next(stubCollectionMetadata);
 
         testScheduler.run(({ hot, expectObservable }) => {
           actions$ = hot('--a-a-a-a-a', { a: cb() });
@@ -118,11 +112,11 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
         });
 
         expect(driverSpy).toHaveBeenCalledWith(query, {
-          appliedSortOption: stubProductCollectionMetadata.appliedSortOption,
-          appliedSortDirection: stubProductCollectionMetadata.appliedSortDirection,
-          currentPage: stubProductCollectionMetadata.currentPage,
-          pageSize: stubProductCollectionMetadata.pageSize,
-          filterRequests: daffProductFiltersToRequests(stubProductCollectionMetadata.filters),
+          appliedSortOption: stubCollectionMetadata.appliedSortOption,
+          appliedSortDirection: stubCollectionMetadata.appliedSortDirection,
+          currentPage: stubCollectionMetadata.currentPage,
+          pageSize: stubCollectionMetadata.pageSize,
+          filterRequests: daffFiltersToRequests(stubCollectionMetadata.filters),
         });
       });
     });
@@ -133,17 +127,17 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
           expect(actual).toEqual(expected);
         });
 
-        const stubProductCollectionMetadata = productCollectionMetadataFactory.create({
-          filters: daffProductFilterArrayToDict(filterFactory.createMany(3)),
+        const stubCollectionMetadata = productCollectionMetadataFactory.create({
+          filters: daffFilterArrayToDict(filterFactory.createMany(3)),
         });
         const response: DaffSearchProductDriverResponse = {
-          metadata: stubProductCollectionMetadata,
+          metadata: stubCollectionMetadata,
           collection: {},
         };
 
         driverSpy.and.returnValue(of(response));
 
-        collectionFacade.metadata$.next(stubProductCollectionMetadata);
+        collectionFacade.metadata$.next(stubCollectionMetadata);
 
         testScheduler.run(({ hot, expectObservable }) => {
           actions$ = hot('--a', { a: cb() });
@@ -159,11 +153,11 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
         });
 
         expect(driverSpy).toHaveBeenCalledWith(query, {
-          appliedSortOption: stubProductCollectionMetadata.appliedSortOption,
-          appliedSortDirection: stubProductCollectionMetadata.appliedSortDirection,
-          currentPage: stubProductCollectionMetadata.currentPage,
-          pageSize: stubProductCollectionMetadata.pageSize,
-          filterRequests: daffProductFiltersToRequests(stubProductCollectionMetadata.filters),
+          appliedSortOption: stubCollectionMetadata.appliedSortOption,
+          appliedSortDirection: stubCollectionMetadata.appliedSortDirection,
+          currentPage: stubCollectionMetadata.currentPage,
+          pageSize: stubCollectionMetadata.pageSize,
+          filterRequests: daffFiltersToRequests(stubCollectionMetadata.filters),
         });
       });
     });
@@ -176,11 +170,11 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
           expect(actual).toEqual(expected);
         });
 
-        const stubProductCollectionMetadata = productCollectionMetadataFactory.create({
-          filters: daffProductFilterArrayToDict(filterFactory.createMany(3)),
+        const stubCollectionMetadata = productCollectionMetadataFactory.create({
+          filters: daffFilterArrayToDict(filterFactory.createMany(3)),
         });
 
-        collectionFacade.metadata$.next(stubProductCollectionMetadata);
+        collectionFacade.metadata$.next(stubCollectionMetadata);
 
         testScheduler.run(({ hot, expectObservable }) => {
           actions$ = hot('--a', { a: cb() });
@@ -199,11 +193,11 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
         });
 
         expect(driverSpy).toHaveBeenCalledWith(query, {
-          appliedSortOption: stubProductCollectionMetadata.appliedSortOption,
-          appliedSortDirection: stubProductCollectionMetadata.appliedSortDirection,
-          currentPage: stubProductCollectionMetadata.currentPage,
-          pageSize: stubProductCollectionMetadata.pageSize,
-          filterRequests: daffProductFiltersToRequests(stubProductCollectionMetadata.filters),
+          appliedSortOption: stubCollectionMetadata.appliedSortOption,
+          appliedSortDirection: stubCollectionMetadata.appliedSortDirection,
+          currentPage: stubCollectionMetadata.currentPage,
+          pageSize: stubCollectionMetadata.pageSize,
+          filterRequests: daffFiltersToRequests(stubCollectionMetadata.filters),
         });
       });
     });
@@ -225,16 +219,16 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
       ],
     });
 
-    collectionFacade = TestBed.inject(MockDaffProductCollectionFacade);
+    collectionFacade = TestBed.inject(MockDaffCollectionFacade);
     facade = TestBed.inject(MockDaffSearchFacade);
     effects = TestBed.inject(DaffSearchProductCollectionEffects);
 
     driverSpy = spyOn(TestBed.inject(DaffSearchDriver), 'search');
 
-    productCollectionMetadataFactory = TestBed.inject(DaffProductCollectionMetadataFactory);
-    filterFactory = TestBed.inject(DaffProductFilterFactory);
-    filterRequestFactory = TestBed.inject(DaffProductFilterRequestFactory);
-    filterToggleRequestFactory = TestBed.inject(DaffProductFilterToggleRequestFactory);
+    productCollectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
+    filterFactory = TestBed.inject(DaffFilterFactory);
+    filterRequestFactory = TestBed.inject(DaffFilterRequestFactory);
+    filterToggleRequestFactory = TestBed.inject(DaffFilterToggleRequestFactory);
 
     query = 'query';
     facade.recent$.next([query]);
@@ -245,8 +239,8 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when replaceFilters is triggered', () => {
-    let filterRequest: DaffProductFilterRequest;
-    let action: DaffProductCollectionReplaceFilters;
+    let filterRequest: DaffFilterRequest;
+    let action: DaffCollectionReplaceFilters;
 
     beforeEach(() => {
       filterRequest = filterRequestFactory.create();
@@ -260,8 +254,8 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when applyFilters is triggered', () => {
-    let filterRequest: DaffProductFilterRequest;
-    let action: DaffProductCollectionApplyFilters;
+    let filterRequest: DaffFilterRequest;
+    let action: DaffCollectionApplyFilters;
 
 
     beforeEach(() => {
@@ -276,7 +270,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when clearFilters is triggered', () => {
-    let action: DaffProductCollectionClearFilters;
+    let action: DaffCollectionClearFilters;
 
 
     beforeEach(() => {
@@ -289,8 +283,8 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when removeFilters is triggered', () => {
-    let filterRequest: DaffProductFilterRequest;
-    let action: DaffProductCollectionRemoveFilters;
+    let filterRequest: DaffFilterRequest;
+    let action: DaffCollectionRemoveFilters;
 
 
     beforeEach(() => {
@@ -305,8 +299,8 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when toggleFilter is triggered', () => {
-    let toggleRequest: DaffProductFilterToggleRequest;
-    let action: DaffProductCollectionToggleFilter;
+    let toggleRequest: DaffFilterToggleRequest;
+    let action: DaffCollectionToggleFilter;
 
     beforeEach(() => {
       toggleRequest = filterToggleRequestFactory.create();
@@ -320,7 +314,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when changePageSize is triggered', () => {
-    let toggleRequest: DaffProductFilterToggleRequest;
+    let toggleRequest: DaffFilterToggleRequest;
     let action: DaffCollectionChangePageSize;
 
     beforeEach(() => {
@@ -335,7 +329,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when changeCurrentPage is triggered', () => {
-    let toggleRequest: DaffProductFilterToggleRequest;
+    let toggleRequest: DaffFilterToggleRequest;
     let action: DaffCollectionChangeCurrentPage;
 
     beforeEach(() => {
@@ -350,7 +344,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   });
 
   describe('when changeSorting is triggered', () => {
-    let toggleRequest: DaffProductFilterToggleRequest;
+    let toggleRequest: DaffFilterToggleRequest;
     let action: DaffCollectionChangeSortingOption;
 
     beforeEach(() => {
