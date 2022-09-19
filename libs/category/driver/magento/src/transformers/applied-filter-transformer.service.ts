@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DaffCategory } from '@daffodil/category';
-import { DaffProductFilterRequest } from '@daffodil/product';
+import { DaffFilterRequest } from '@daffodil/core';
 import {
   MagentoProductFilterActionEnum,
   MagentoProductFilters,
@@ -17,7 +17,7 @@ export class DaffMagentoAppliedFiltersTransformService {
     private productFilterRequestsTransformer: MagentoProductAppliedFiltersTransformService,
   ) {}
 
-  transform(categoryId: DaffCategory['id'], daffFilters: DaffProductFilterRequest[]): MagentoProductFilters {
+  transform(categoryId: DaffCategory['id'], daffFilters: DaffFilterRequest[]): MagentoProductFilters {
     const magentoFilters: MagentoProductFilters = {
       category_uid: {
         [MagentoProductFilterActionEnum.Equal]: categoryId,

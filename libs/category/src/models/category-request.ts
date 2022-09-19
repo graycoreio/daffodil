@@ -2,7 +2,7 @@ import {
   ID,
   DaffLocatable,
 } from '@daffodil/core';
-import { DaffProductCollectionRequest } from '@daffodil/product';
+import { DaffCollectionRequest } from '@daffodil/core';
 
 import { DaffCategory } from './category';
 
@@ -23,7 +23,7 @@ export type DaffCategoryRequest = DaffCategoryIdRequest | DaffCategoryUrlRequest
 /**
  * A request used to retrieve a category by its uid.
  */
-export interface DaffCategoryIdRequest extends DaffProductCollectionRequest {
+export interface DaffCategoryIdRequest extends DaffCollectionRequest {
   id: DaffCategory['id'];
   kind: DaffCategoryRequestKind.ID;
 }
@@ -33,6 +33,6 @@ export interface DaffCategoryIdRequest extends DaffProductCollectionRequest {
  * The qualified URL without domain.
  * e.g. a/path/to/the/category.html
  */
-export interface DaffCategoryUrlRequest extends DaffProductCollectionRequest, DaffLocatable {
+export interface DaffCategoryUrlRequest extends DaffCollectionRequest, DaffLocatable {
   kind: DaffCategoryRequestKind.URL;
 };

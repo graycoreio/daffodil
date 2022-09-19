@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
-  DaffProductCollectionFacade,
-  DaffProductCollectionFacadeInterface,
-} from '@daffodil/product/state';
+  DaffCollectionFacade,
+  DaffCollectionFacadeInterface,
+} from '@daffodil/core/state';
 
 import { DaffCategoryStateRootSlice } from '../../reducers/public_api';
 import { getCategoryProductCollectionSelectors } from '../../selectors/collection/selectors';
@@ -12,7 +12,7 @@ import { getCategoryProductCollectionSelectors } from '../../selectors/collectio
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCategoryProductCollectionFacade extends DaffProductCollectionFacade<DaffCategoryStateRootSlice> implements DaffProductCollectionFacadeInterface {
+export class DaffCategoryProductCollectionFacade extends DaffCollectionFacade<DaffCategoryStateRootSlice> implements DaffCollectionFacadeInterface {
   constructor(
     store: Store<DaffCategoryStateRootSlice>,
   ) {

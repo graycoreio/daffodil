@@ -22,10 +22,8 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import {
-  DaffProduct,
-  DaffProductFilterType,
-} from '@daffodil/product';
+import { DaffFilterType } from '@daffodil/core';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
@@ -72,7 +70,7 @@ describe('DaffCategorySelectors', () => {
     stubMetadata.filters = {
       name: {
         name: 'name',
-        type: DaffProductFilterType.Equal,
+        type: DaffFilterType.Equal,
         label: 'label',
         options: {
           value: {
@@ -85,7 +83,7 @@ describe('DaffCategorySelectors', () => {
       },
       name2: {
         name: 'name2',
-        type: DaffProductFilterType.Equal,
+        type: DaffFilterType.Equal,
         label: 'label2',
         options: {
           value2: {

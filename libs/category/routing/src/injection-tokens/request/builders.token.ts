@@ -4,10 +4,10 @@ import {
 } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
-import { DaffProductCollectionRequest } from '@daffodil/product';
+import { DaffCollectionRequest } from '@daffodil/core';
 
 
-export type DaffCategoryRoutingRequestBuilder<T extends DaffProductCollectionRequest = DaffProductCollectionRequest> = (route: ActivatedRouteSnapshot) => T;
+export type DaffCategoryRoutingRequestBuilder<T extends DaffCollectionRequest = DaffCollectionRequest> = (route: ActivatedRouteSnapshot) => T;
 
 /**
  * A multi-provider injection token for category request builders.

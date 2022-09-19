@@ -26,16 +26,10 @@ import {
 } from '@daffodil/category/testing';
 import { DaffState } from '@daffodil/core/state';
 import {
-  DaffProductFilter,
-  DaffProductFilterType,
-  daffProductFilterEqualOptionArrayToDict,
-  daffProductFilterArrayToDict,
-} from '@daffodil/product';
-import {
-  DaffProductFilterFactory,
-  DaffProductFilterEqualFactory,
-  DaffProductFilterEqualOptionFactory,
-} from '@daffodil/product/testing';
+  DaffFilterFactory,
+  DaffFilterEqualFactory,
+  DaffFilterEqualOptionFactory,
+} from '@daffodil/core/testing';
 
 import { DaffCategoryReducerState } from '../../reducers/public_api';
 import { getDaffCategoryPageSelectors } from './category-page.selector';
@@ -44,9 +38,9 @@ describe('DaffCategoryPageSelectors', () => {
 
   let store: Store<DaffCategoryStateRootSlice>;
   let categoryFactory: DaffCategoryFactory;
-  let categoryFilterFactory: DaffProductFilterFactory;
-  let categoryFilterEqualFactory: DaffProductFilterEqualFactory;
-  let categoryFilterEqualOptionFactory: DaffProductFilterEqualOptionFactory;
+  let categoryFilterFactory: DaffFilterFactory;
+  let categoryFilterEqualFactory: DaffFilterEqualFactory;
+  let categoryFilterEqualOptionFactory: DaffFilterEqualOptionFactory;
 
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
@@ -63,9 +57,9 @@ describe('DaffCategoryPageSelectors', () => {
     });
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
-    categoryFilterFactory = TestBed.inject(DaffProductFilterFactory);
-    categoryFilterEqualFactory = TestBed.inject(DaffProductFilterEqualFactory);
-    categoryFilterEqualOptionFactory = TestBed.inject(DaffProductFilterEqualOptionFactory);
+    categoryFilterFactory = TestBed.inject(DaffFilterFactory);
+    categoryFilterEqualFactory = TestBed.inject(DaffFilterEqualFactory);
+    categoryFilterEqualOptionFactory = TestBed.inject(DaffFilterEqualOptionFactory);
 
     stubCategory = categoryFactory.create();
     stubCategoryPageMetadata = categoryPageMetadataFactory.create();

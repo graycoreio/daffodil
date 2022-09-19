@@ -23,24 +23,19 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
+import { daffFilterArrayToDict } from '@daffodil/core';
 import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
-import {
-  DaffProduct,
-  DaffProductFilter,
-  daffProductFilterArrayToDict,
-} from '@daffodil/product';
+import { DaffFilterFactory } from '@daffodil/core/testing';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product/state';
-import {
-  DaffProductFactory,
-  DaffProductFilterFactory,
-} from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryFacade } from './category.facade';
 
@@ -49,7 +44,7 @@ describe('DaffCategoryFacade', () => {
   let facade: DaffCategoryFacade<DaffCategory, DaffProduct>;
   let categoryFactory: DaffCategoryFactory;
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
-  let categoryFilterFactory: DaffProductFilterFactory;
+  let categoryFilterFactory: DaffFilterFactory;
   let productFactory: DaffProductFactory;
   let stubCategory: DaffCategory;
   let stubCategoryMetadata: DaffCategoryPageMetadata;
@@ -71,11 +66,11 @@ describe('DaffCategoryFacade', () => {
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
     productFactory = TestBed.inject(DaffProductFactory);
-    categoryFilterFactory = TestBed.inject(DaffProductFilterFactory);
+    categoryFilterFactory = TestBed.inject(DaffFilterFactory);
 
     stubCategory = categoryFactory.create();
     stubCategoryMetadata = categoryPageMetadataFactory.create();
-    stubCategoryMetadata.filters = daffProductFilterArrayToDict(categoryFilterFactory.createMany());
+    stubCategoryMetadata.filters = daffFilterArrayToDict(categoryFilterFactory.createMany());
     stubProduct = productFactory.create();
     stubCategoryMetadata.id = stubCategory.id;
     stubCategoryMetadata.ids = [stubProduct.id];

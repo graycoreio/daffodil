@@ -33,12 +33,12 @@ import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,
 } from '@daffodil/category/driver';
-import { DaffError } from '@daffodil/core';
-import { ErrorTransformer } from '@daffodil/core/state';
 import {
-  DaffProduct,
-  daffProductFiltersToRequests,
-} from '@daffodil/product';
+  DaffError,
+  daffFiltersToRequests,
+} from '@daffodil/core';
+import { ErrorTransformer } from '@daffodil/core/state';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 
 import {
@@ -92,7 +92,7 @@ export class DaffCategoryPageFilterEffects<
     ): DaffCategoryIdRequest => ({
       kind: DaffCategoryRequestKind.ID,
       id: metadata.id,
-      filterRequests: daffProductFiltersToRequests(metadata.filters),
+      filterRequests: daffFiltersToRequests(metadata.filters),
       appliedSortOption: metadata.appliedSortOption,
       appliedSortDirection: metadata.appliedSortDirection,
       currentPage: metadata.currentPage,

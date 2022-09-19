@@ -2,22 +2,11 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
-import {
-  DaffCategory,
-  DaffCategoryPageMetadata,
-} from '@daffodil/category';
+import { DaffCategory } from '@daffodil/category';
 import { DaffCategoryFacadeInterface } from '@daffodil/category/state';
 import { DaffCategoryReducerState } from '@daffodil/category/state';
-import {
-  DaffSortDirectionEnum,
-  DaffSortOption,
-
-} from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
-import {
-  DaffProduct,
-  DaffProductFilter,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 /**
  * Can be used to mock out the {@link DaffCategoryFacade} in testing environments.

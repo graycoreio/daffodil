@@ -1,26 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffProductFilterRequest,
-  DaffProductFilterType,
-  DaffProductFilterRangeNumeric,
-  DaffProductFilterRangeNumericRequest,
-  DaffProductFilterEqualRequest,
-} from '@daffodil/product';
+  DaffFilterRangeNumericRequest,
+  DaffFilterEqualRequest,
+} from '@daffodil/core';
+import {
+  DaffFilterRequestRangeNumericFactory,
+  DaffFilterRequestEqualFactory,
+} from '@daffodil/core/testing';
 import {
   MagentoProductFilters,
   MagentoProductFilterActionEnum,
 } from '@daffodil/product/driver/magento';
-import {
-  DaffProductFilterRequestRangeNumericFactory,
-  DaffProductFilterRequestEqualFactory,
-} from '@daffodil/product/testing';
 
 import { DaffMagentoAppliedFiltersTransformService } from './applied-filter-transformer.service';
 
 describe('DaffMagentoAppliedFiltersTransformService', () => {
-  let rangeFilterRequestFactory: DaffProductFilterRequestRangeNumericFactory;
-  let equalFilterRequestFactory: DaffProductFilterRequestEqualFactory;
+  let rangeFilterRequestFactory: DaffFilterRequestRangeNumericFactory;
+  let equalFilterRequestFactory: DaffFilterRequestEqualFactory;
   let service: DaffMagentoAppliedFiltersTransformService;
   const categoryId = 'id';
 
@@ -31,8 +28,8 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
       ],
     });
     service = TestBed.inject(DaffMagentoAppliedFiltersTransformService);
-    rangeFilterRequestFactory = TestBed.inject(DaffProductFilterRequestRangeNumericFactory);
-    equalFilterRequestFactory = TestBed.inject(DaffProductFilterRequestEqualFactory);
+    rangeFilterRequestFactory = TestBed.inject(DaffFilterRequestRangeNumericFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffFilterRequestEqualFactory);
   });
 
   it('should be created', () => {
@@ -52,7 +49,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
     });
 
     describe('when the filter type is Range', () => {
-      let rangeFilterRequest: DaffProductFilterRangeNumericRequest;
+      let rangeFilterRequest: DaffFilterRangeNumericRequest;
 
       beforeEach(() => {
         rangeFilterRequest = rangeFilterRequestFactory.create({
@@ -79,13 +76,13 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
     });
 
     describe('when the filter type is not Range', () => {
-      let equalFilterRequest: DaffProductFilterEqualRequest;
+      let equalFilterRequest: DaffFilterEqualRequest;
 
       beforeEach(() => {
         equalFilterRequest = equalFilterRequestFactory.create();
       });
 
-      it('should transform an array of DaffProductFilterRequest into a MagentoProductFilters', () => {
+      it('should transform an array of DaffFilterRequest into a MagentoProductFilters', () => {
         const expectedReturn: MagentoProductFilters = {
           category_uid: {
             eq: 'id',

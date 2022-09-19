@@ -2,14 +2,14 @@ import { DaffGenericCategory } from '@daffodil/category';
 import {
   daffApplyRequestsToFilters,
   daffClearFilters,
-  DaffProduct,
   daffRemoveRequestsFromFilters,
   daffToggleRequestOnFilters,
-} from '@daffodil/product';
+} from '@daffodil/core';
 import {
-  daffProductCollectionReducerInitialState,
-  getProductCollectionStateAdapter,
-} from '@daffodil/product/state';
+  daffCollectionReducerInitialState,
+  getCollectionStateAdapter,
+} from '@daffodil/core/state';
+import { DaffProduct } from '@daffodil/product';
 
 import {
   DaffCategoryPageProductCollectionActionTypes,
@@ -21,7 +21,7 @@ import { DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryPageMetadataReducerState } from './state.interface';
 
 export const initialState: DaffCategoryPageMetadataReducerState = {
-  ...daffProductCollectionReducerInitialState,
+  ...daffCollectionReducerInitialState,
   id: null,
 };
 
@@ -32,7 +32,7 @@ export function daffCategoryPageMetadataReducer<U extends DaffGenericCategory<U>
   state = initialState,
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageProductCollectionActions,
 ): DaffCategoryPageMetadataReducerState {
-  const adapter = getProductCollectionStateAdapter<DaffCategoryPageMetadataReducerState>();
+  const adapter = getCollectionStateAdapter<DaffCategoryPageMetadataReducerState>();
   switch (action.type) {
     case DaffCategoryPageActionTypes.CategoryPageLoadAction:
     case DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction:

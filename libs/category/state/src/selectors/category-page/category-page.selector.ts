@@ -12,10 +12,6 @@ import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
-import {
-  daffProductComputeAppliedFilters,
-  DaffProductFilter,
-} from '@daffodil/product';
 
 import {
   DaffCategoryReducerState,

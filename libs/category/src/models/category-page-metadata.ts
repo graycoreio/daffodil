@@ -2,9 +2,9 @@ import {
   DaffIdentifiable,
   ID,
 } from '@daffodil/core';
-import { DaffProductCollectionMetadata } from '@daffodil/product';
+import { DaffCollectionMetadata } from '@daffodil/core';
 
 /**
  * The DaffCategoryPageMetadata describes the properties of a Category Page.
  */
-export interface DaffCategoryPageMetadata extends DaffProductCollectionMetadata, DaffIdentifiable {}
+export interface DaffCategoryPageMetadata extends DaffCollectionMetadata, DaffIdentifiable {}

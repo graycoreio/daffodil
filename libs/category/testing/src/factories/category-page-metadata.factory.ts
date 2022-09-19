@@ -8,11 +8,11 @@ import {
   DaffSortableFactory,
 } from '@daffodil/core/testing';
 import {
-  DaffProductFilterFactory,
-  MockProductCollectionMetadata,
-} from '@daffodil/product/testing';
+  DaffFilterFactory,
+  MockCollectionMetadata,
+} from '@daffodil/core/testing';
 
-export class MockCategoryPageMetadata extends MockProductCollectionMetadata implements DaffCategoryPageMetadata {
+export class MockCategoryPageMetadata extends MockCollectionMetadata implements DaffCategoryPageMetadata {
   id = faker.datatype.uuid();
 }
 
@@ -26,7 +26,7 @@ export class DaffCategoryPageMetadataFactory extends DaffModelFactory<DaffCatego
   constructor(
     pageInfoFactory: DaffNumericallyPaginableFactory,
     sortFieldsFactory: DaffSortableFactory,
-    filterFactory: DaffProductFilterFactory,
+    filterFactory: DaffFilterFactory,
   ) {
     super(MockCategoryPageMetadata, pageInfoFactory, sortFieldsFactory, filterFactory);
   }

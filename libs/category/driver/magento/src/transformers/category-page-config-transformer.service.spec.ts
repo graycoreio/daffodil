@@ -12,7 +12,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { DaffProductFilterType } from '@daffodil/product';
+import { DaffFilterType } from '@daffodil/core';
 import {
   MagentoAggregation,
   MagentoProduct,
@@ -162,7 +162,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
       });
 
       it('should return a DaffCategoryPageMetadata with an equal filter type', () => {
-        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffProductFilterType.Equal);
+        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffFilterType.Equal);
       });
     });
 
@@ -176,7 +176,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryPageConfigTrans
       });
 
       it('should return a DaffCategoryPageMetadata with a range filter type', () => {
-        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffProductFilterType.RangeNumeric);
+        expect(result.filters[aggregation.attribute_code].type).toEqual(DaffFilterType.RangeNumeric);
       });
     });
   });

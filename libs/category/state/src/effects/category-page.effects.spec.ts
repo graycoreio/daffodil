@@ -41,12 +41,12 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { DaffSortDirectionEnum } from '@daffodil/core';
-import { DaffStateError } from '@daffodil/core/state';
 import {
-  DaffProduct,
-  daffProductFiltersToRequests,
-} from '@daffodil/product';
+  daffFiltersToRequests,
+  DaffSortDirectionEnum,
+} from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
@@ -319,7 +319,7 @@ describe('DaffCategoryPageEffects', () => {
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
         pageSize: 3,
-        filterRequests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
+        filterRequests: daffFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });
@@ -343,7 +343,7 @@ describe('DaffCategoryPageEffects', () => {
         ...stubcategoryPageMetadata,
         kind: DaffCategoryRequestKind.ID,
         currentPage: 3,
-        filterRequests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
+        filterRequests: daffFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });
@@ -371,7 +371,7 @@ describe('DaffCategoryPageEffects', () => {
         kind: DaffCategoryRequestKind.ID,
         appliedSortDirection: DaffSortDirectionEnum.Ascending,
         appliedSortOption: 'option',
-        filterRequests: daffProductFiltersToRequests(stubcategoryPageMetadata.filters),
+        filterRequests: daffFiltersToRequests(stubcategoryPageMetadata.filters),
       });
     });
   });

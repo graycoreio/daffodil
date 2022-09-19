@@ -23,8 +23,8 @@ import {
 import { DaffCategoryServiceInterface } from '@daffodil/category/driver';
 import {
   daffApplyRequestsToFilters,
-  DaffProductFilterRequest,
-} from '@daffodil/product';
+  DaffFilterRequest,
+} from '@daffodil/core';
 import {
   DaffProductMagentoDriverConfig,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
@@ -55,7 +55,7 @@ import {
 } from './transformers/public_api';
 import { addMetadataTypesToProductsResponse } from './transformers/pure/add-metadata-types-to-aggregates';
 
-const applyFiltersOnResponse = (requests: DaffProductFilterRequest[], response: DaffGetCategoryResponse): DaffGetCategoryResponse => ({
+const applyFiltersOnResponse = (requests: DaffFilterRequest[], response: DaffGetCategoryResponse): DaffGetCategoryResponse => ({
   ...response,
   categoryPageMetadata: {
     ...response.categoryPageMetadata,

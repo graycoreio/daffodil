@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store';
 
 import { DaffCategoryRequest } from '@daffodil/category';
 import {
-  DaffProductFilterRequest,
-  DaffProductFilterToggleRequest,
-} from '@daffodil/product';
+  DaffFilterRequest,
+  DaffFilterToggleRequest,
+} from '@daffodil/core';
 
 /**
  * The possible types of category page filter actions.
@@ -30,7 +30,7 @@ export enum DaffCategoryPageProductCollectionActionTypes {
 export class DaffCategoryPageChangeFilters implements Action {
   readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) { }
+  constructor(public filters: DaffFilterRequest[]) { }
 }
 
 /**
@@ -42,7 +42,7 @@ export class DaffCategoryPageChangeFilters implements Action {
 export class DaffCategoryPageReplaceFilters implements Action {
   readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) { }
+  constructor(public filters: DaffFilterRequest[]) { }
 }
 
 /**
@@ -53,7 +53,7 @@ export class DaffCategoryPageReplaceFilters implements Action {
 export class DaffCategoryPageApplyFilters implements Action {
   readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) { }
+  constructor(public filters: DaffFilterRequest[]) { }
 }
 
 /**
@@ -64,7 +64,7 @@ export class DaffCategoryPageApplyFilters implements Action {
 export class DaffCategoryPageRemoveFilters implements Action {
   readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction;
 
-  constructor(public filters: DaffProductFilterRequest[]) { }
+  constructor(public filters: DaffFilterRequest[]) { }
 }
 
 /**
@@ -82,7 +82,7 @@ export class DaffCategoryPageClearFilters implements Action {
 export class DaffCategoryPageToggleFilter implements Action {
   readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction;
 
-  constructor(public filter: DaffProductFilterToggleRequest) { }
+  constructor(public filter: DaffFilterToggleRequest) { }
 }
 
 
