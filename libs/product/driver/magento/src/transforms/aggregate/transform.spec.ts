@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffProductFilter,
-  DaffProductFilterType,
-} from '@daffodil/product';
+  DaffFilter,
+  DaffFilterType,
+} from '@daffodil/core';
 import { MagentoAggregation } from '@daffodil/product/driver/magento';
 import {
   MagentoProductAggregationPriceFactory,
@@ -17,7 +17,7 @@ describe('@daffodil/product/driver/magento | magentoProductTransformAggregate', 
   let selectAggregateFactory: MagentoProductAggregationSelectFactory;
   let aggregation: MagentoAggregation;
 
-  let result: DaffProductFilter;
+  let result: DaffFilter;
 
   beforeEach(() => {
     selectAggregateFactory = TestBed.inject(MagentoProductAggregationSelectFactory);
@@ -35,7 +35,7 @@ describe('@daffodil/product/driver/magento | magentoProductTransformAggregate', 
     });
 
     it('should return a range filter', () => {
-      expect(result.type).toEqual(DaffProductFilterType.RangeNumeric);
+      expect(result.type).toEqual(DaffFilterType.RangeNumeric);
     });
   });
 
@@ -46,7 +46,7 @@ describe('@daffodil/product/driver/magento | magentoProductTransformAggregate', 
     });
 
     it('should return an equal filter', () => {
-      expect(result.type).toEqual(DaffProductFilterType.Equal);
+      expect(result.type).toEqual(DaffFilterType.Equal);
     });
   });
 });

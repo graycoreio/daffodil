@@ -17,4 +17,3 @@ export { daffBestSellersReducer } from './best-sellers/best-sellers.reducer';
 export { DAFF_PRODUCT_STORE_FEATURE_KEY } from './product-store-feature-key';
 
 export * from './injection-tokens/public_api';
-export * from './collection/public_api';

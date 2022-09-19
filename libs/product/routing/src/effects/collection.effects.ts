@@ -17,10 +17,10 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffProductCollectionRequest,
-  daffProductFiltersToRequests,
-} from '@daffodil/product';
-import { DaffProductCollectionFacadeInterface } from '@daffodil/product/state';
+  DaffCollectionRequest,
+  daffFiltersToRequests,
+} from '@daffodil/core';
+import { DaffCollectionFacadeInterface } from '@daffodil/core/state';
 
 import { DaffProductGetQueryParamsFromRequest } from '../services/public_api';
 
@@ -32,7 +32,7 @@ export abstract class DaffProductRoutingCollectionEffects {
     private actions$: Actions,
     private router: Router,
     private actionTypes: string[],
-    private facade: DaffProductCollectionFacadeInterface,
+    private facade: DaffCollectionFacadeInterface,
     private getQueryParams: DaffProductGetQueryParamsFromRequest,
     private route: ActivatedRoute,
   ) {}
@@ -43,10 +43,10 @@ export abstract class DaffProductRoutingCollectionEffects {
   update$ = createEffect(() => this.actions$.pipe(
     ofType(...this.actionTypes),
     withLatestFrom(this.facade.metadata$),
-    map(([action, metadata]): [Action, DaffProductCollectionRequest] => [
+    map(([action, metadata]): [Action, DaffCollectionRequest] => [
       action,
       {
-        filterRequests: daffProductFiltersToRequests(metadata.filters),
+        filterRequests: daffFiltersToRequests(metadata.filters),
         appliedSortOption: metadata.appliedSortOption,
         appliedSortDirection: metadata.appliedSortDirection,
         currentPage: metadata.currentPage,

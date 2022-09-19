@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffProductFilterRangeBase,
-  DaffProductFilterType,
-} from '@daffodil/product';
+  DaffFilterRangeBase,
+  DaffFilterType,
+} from '@daffodil/core';
 import { MagentoAggregation } from '@daffodil/product/driver/magento';
 import { MagentoProductAggregationPriceFactory } from '@daffodil/product/driver/magento/testing';
 
@@ -15,7 +15,7 @@ describe('@daffodil/product/driver/magento | transformAggregateRange', () => {
   let min: number;
   let max: number;
 
-  let result: DaffProductFilterRangeBase<number>;
+  let result: DaffFilterRangeBase<number>;
 
   beforeEach(() => {
     priceAggregateFactory = TestBed.inject(MagentoProductAggregationPriceFactory);
@@ -45,8 +45,8 @@ describe('@daffodil/product/driver/magento | transformAggregateRange', () => {
     result = transformAggregateRange(aggregation);
   });
 
-  it('should return a DaffProductFilterRangeBase<number> with the transformed fields', () => {
-    expect(result.type).toEqual(DaffProductFilterType.RangeNumeric);
+  it('should return a DaffFilterRangeBase<number> with the transformed fields', () => {
+    expect(result.type).toEqual(DaffFilterType.RangeNumeric);
     expect(result.name).toEqual(aggregation.attribute_code);
     expect(result.label).toEqual(aggregation.label);
     expect(result.min).toEqual(min);

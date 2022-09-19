@@ -5,5 +5,3 @@ export { DaffProductPageFacadeInterface } from './product-page/facade.interface'
 export { DaffProductPageFacade } from './product-page/facade';
 export { DaffProductGridFacadeInterface } from './product-grid/product-grid-facade.interface';
 export { DaffProductGridFacade } from './product-grid/product-grid.facade';
-export { DaffProductCollectionFacadeInterface } from './collection/facade.interface';
-export { DaffProductCollectionFacade } from './collection/facade';

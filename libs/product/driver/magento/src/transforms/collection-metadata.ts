@@ -1,6 +1,6 @@
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { DaffProductCollectionMetadata } from '@daffodil/product';
-import { daffProductFilterArrayToDict } from '@daffodil/product';
+import { DaffCollectionMetadata } from '@daffodil/core';
+import { daffFilterArrayToDict } from '@daffodil/core';
 
 import {
   MagentoAggregation,
@@ -23,13 +23,13 @@ export const magentoProductCollectionMetadataTransform = (
   count: number,
   appliedSortOption?: string,
   appliedSortDirection?: DaffSortDirectionEnum,
-): DaffProductCollectionMetadata => ({
+): DaffCollectionMetadata => ({
   ids: products.map(({ sku }) => sku),
   count,
   pageSize: pageInfo.page_size,
   currentPage: pageInfo.current_page,
   totalPages: pageInfo.total_pages,
-  filters: daffProductFilterArrayToDict(aggregates.map(magentoProductTransformAggregate)),
+  filters: daffFilterArrayToDict(aggregates.map(magentoProductTransformAggregate)),
   sortOptions: {
     default: sortFields.default,
     options: coerceDefaultSortOptionFirst(sortFields).options,

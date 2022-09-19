@@ -1,15 +1,15 @@
 
 import {
-  DaffProductFilterEqual,
-  DaffProductFilterType,
-  DaffProductFilterEqualOption,
-} from '@daffodil/product';
+  DaffFilterEqual,
+  DaffFilterType,
+  DaffFilterEqualOption,
+} from '@daffodil/core';
 
 import { MagentoAggregation } from '../../../models/public_api';
 
-export const transformAggregateEqual = (aggregate: MagentoAggregation): DaffProductFilterEqual => ({
+export const transformAggregateEqual = (aggregate: MagentoAggregation): DaffFilterEqual => ({
   label: aggregate.label,
-  type: DaffProductFilterType.Equal,
+  type: DaffFilterType.Equal,
   name: aggregate.attribute_code,
   options: aggregate.options.reduce((acc, option) => {
     acc[option.value] = {
@@ -19,5 +19,5 @@ export const transformAggregateEqual = (aggregate: MagentoAggregation): DaffProd
       value: option.value,
     };
     return acc;
-  }, <Record<DaffProductFilterEqualOption['value'], DaffProductFilterEqualOption>>{}),
+  }, <Record<DaffFilterEqualOption['value'], DaffFilterEqualOption>>{}),
 });

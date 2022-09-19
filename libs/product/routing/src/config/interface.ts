@@ -1,6 +1,6 @@
 import {
-  DaffProductCollectionRequestQueryParams,
-  DaffProductCollectionRequestQueryParamTransforms,
+  DaffCollectionRequestQueryParams,
+  DaffCollectionRequestQueryParamTransforms,
 } from '../models/public_api';
 
 /**
@@ -10,13 +10,13 @@ export interface DaffProductRoutingConfig {
   /**
    * The query params transforms for each product collection request field.
    *
-   * See {@link DaffProductCollectionRequestQueryParamTransforms}.
+   * See {@link DaffCollectionRequestQueryParamTransforms}.
    */
-  transforms?: DaffProductCollectionRequestQueryParamTransforms;
+  transforms?: DaffCollectionRequestQueryParamTransforms;
   /**
    * The mapping of query param fields.
    *
-   * See {@link DaffProductCollectionRequestQueryParams}.
+   * See {@link DaffCollectionRequestQueryParams}.
    */
-  params?: DaffProductCollectionRequestQueryParams;
+  params?: DaffCollectionRequestQueryParams;
 }

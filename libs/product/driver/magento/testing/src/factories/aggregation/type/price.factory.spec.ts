@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffProductFilter } from '@daffodil/product';
+import { DaffFilter } from '@daffodil/core';
 import {
   MagentoAggregation,
   MagentoProductFilterType,

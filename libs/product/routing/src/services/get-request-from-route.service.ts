@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ParamMap } from '@angular/router';
 
-import { DaffProductCollectionRequest } from '@daffodil/product';
+import { DaffCollectionRequest } from '@daffodil/core';
 
 import {
   DaffProductRoutingConfig,
@@ -13,7 +13,7 @@ import {
 import { DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS } from '../constants/public_api';
 
 /**
- * Builds a {@link DaffProductCollectionRequest} from the query params of the passed route.
+ * Builds a {@link DaffCollectionRequest} from the query params of the passed route.
  * Its behavior can be configured via the {@link DAFF_PRODUCT_COLLECTION_QUERY_PARAMS} and
  * {@link DAFF_PRODUCT_COLLECTION_QUERY_PARAM_TRANSFORMS} injection tokens.
  */
@@ -23,8 +23,8 @@ export class DaffProductGetCollectionRequestFromRoute {
     @Inject(DAFF_PRODUCT_ROUTING_CONFIG) private config: DaffProductRoutingConfig,
   ) {}
 
-  getRequest(queryParamMap: ParamMap): DaffProductCollectionRequest {
-    return DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffProductCollectionRequest>((acc, field) => {
+  getRequest(queryParamMap: ParamMap): DaffCollectionRequest {
+    return DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffCollectionRequest>((acc, field) => {
       const qp = this.config.params[field] || field;
       if (queryParamMap.has(qp)) {
         const qpVal = queryParamMap.get(qp);

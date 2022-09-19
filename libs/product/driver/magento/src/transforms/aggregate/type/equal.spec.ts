@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffProductFilterEqual,
-  DaffProductFilterType,
-} from '@daffodil/product';
+  DaffFilterEqual,
+  DaffFilterType,
+} from '@daffodil/core';
 import { MagentoAggregation } from '@daffodil/product/driver/magento';
 import { MagentoProductAggregationSelectFactory } from '@daffodil/product/driver/magento/testing';
 
@@ -13,7 +13,7 @@ describe('@daffodil/product/driver/magento | transformAggregateEqual', () => {
   let selectAggregateFactory: MagentoProductAggregationSelectFactory;
   let aggregation: MagentoAggregation;
 
-  let result: DaffProductFilterEqual;
+  let result: DaffFilterEqual;
 
   beforeEach(() => {
     selectAggregateFactory = TestBed.inject(MagentoProductAggregationSelectFactory);
@@ -23,8 +23,8 @@ describe('@daffodil/product/driver/magento | transformAggregateEqual', () => {
     result = transformAggregateEqual(aggregation);
   });
 
-  it('should return a DaffProductFilterEqual with the transformed fields', () => {
-    expect(result.type).toEqual(DaffProductFilterType.Equal);
+  it('should return a DaffFilterEqual with the transformed fields', () => {
+    expect(result.type).toEqual(DaffFilterType.Equal);
     expect(result.name).toEqual(aggregation.attribute_code);
     expect(result.label).toEqual(aggregation.label);
     aggregation.options.forEach(option => {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import {
-  DaffProductFilterRequest,
-  DaffProductFilterType,
-} from '@daffodil/product';
+  DaffFilterRequest,
+  DaffFilterType,
+} from '@daffodil/core';
 
 import {
   MagentoProductFilterActionEnum,
@@ -16,7 +16,7 @@ import {
 })
 export class MagentoProductAppliedFiltersTransformService {
 
-  transform(daffFilters: DaffProductFilterRequest[]): MagentoProductFilters {
+  transform(daffFilters: DaffFilterRequest[]): MagentoProductFilters {
     const magentoFilters: MagentoProductFilters = {};
 
     if (!daffFilters) {
@@ -26,7 +26,7 @@ export class MagentoProductAppliedFiltersTransformService {
     daffFilters.forEach(filter => {
       // The FromTo filter needs special treatment, because Magento accepts the "from" and "to" filters
       // separately (it also outputs FromTo filter pairs together)
-      if(filter.type === DaffProductFilterType.RangeNumeric) {
+      if(filter.type === DaffFilterType.RangeNumeric) {
         magentoFilters[filter.name] = {
           ...magentoFilters[filter.name],
           ...this.getRangeFromValue(filter.value.min.toString()),
@@ -46,8 +46,8 @@ export class MagentoProductAppliedFiltersTransformService {
   /**
    * Returns an In action for Equal type and a Match action for Match type.
    */
-  private getFilterAction(type: DaffProductFilterType): MagentoProductFilterActionEnum {
-    return type === DaffProductFilterType.Equal
+  private getFilterAction(type: DaffFilterType): MagentoProductFilterActionEnum {
+    return type === DaffFilterType.Equal
       ? MagentoProductFilterActionEnum.In
       : MagentoProductFilterActionEnum.Match;
   }
@@ -55,8 +55,8 @@ export class MagentoProductAppliedFiltersTransformService {
   /**
    * Returns an array for Equal type and a string for Match type.
    */
-  private getFilterValue(type: DaffProductFilterType, value: DaffProductFilterRequest['value']): string | string[] {
-    return type === DaffProductFilterType.Equal ? value : value[0];
+  private getFilterValue(type: DaffFilterType, value: DaffFilterRequest['value']): string | string[] {
+    return type === DaffFilterType.Equal ? value : value[0];
   }
 
   private getRangeFromValue(fromValue: string) {

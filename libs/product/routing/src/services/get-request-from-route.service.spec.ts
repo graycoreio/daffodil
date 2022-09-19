@@ -10,8 +10,8 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffProductCollectionRequest } from '@daffodil/product';
-import { DaffProductCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
+import { DaffCollectionRequest } from '@daffodil/core';
+import { DaffCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
 
 import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetCollectionRequestFromRoute } from './get-request-from-route.service';
@@ -21,12 +21,12 @@ class TestComponent {}
 
 describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute', () => {
   let customPageSizeQp: string;
-  let customCurrentPageTransform: DaffProductCollectionRequestQueryParamTransform<number>;
+  let customCurrentPageTransform: DaffCollectionRequestQueryParamTransform<number>;
 
   let service: DaffProductGetCollectionRequestFromRoute;
   let router: Router;
 
-  let result: DaffProductCollectionRequest;
+  let result: DaffCollectionRequest;
 
   beforeEach(() => {
     customPageSizeQp = 'custom_pageSize';

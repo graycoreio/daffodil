@@ -1,23 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DaffProductFilterRangeNumericRequest,
-  DaffProductFilterEqualRequest,
-} from '@daffodil/product';
+  DaffFilterRangeNumericRequest,
+  DaffFilterEqualRequest,
+} from '@daffodil/core';
+import {
+  DaffFilterRequestRangeNumericFactory,
+  DaffFilterRequestEqualFactory,
+} from '@daffodil/core/testing';
 import {
   MagentoProductFilters,
   MagentoProductFilterActionEnum,
 } from '@daffodil/product/driver/magento';
-import {
-  DaffProductFilterRequestRangeNumericFactory,
-  DaffProductFilterRequestEqualFactory,
-} from '@daffodil/product/testing';
 
 import { MagentoProductAppliedFiltersTransformService } from './applied-filter-transformer.service';
 
 describe('@daffodil/product/driver/magento | MagentoProductAppliedFiltersTransformService', () => {
-  let rangeFilterRequestFactory: DaffProductFilterRequestRangeNumericFactory;
-  let equalFilterRequestFactory: DaffProductFilterRequestEqualFactory;
+  let rangeFilterRequestFactory: DaffFilterRequestRangeNumericFactory;
+  let equalFilterRequestFactory: DaffFilterRequestEqualFactory;
   let service: MagentoProductAppliedFiltersTransformService;
 
   beforeEach(() => {
@@ -27,8 +27,8 @@ describe('@daffodil/product/driver/magento | MagentoProductAppliedFiltersTransfo
       ],
     });
     service = TestBed.inject(MagentoProductAppliedFiltersTransformService);
-    rangeFilterRequestFactory = TestBed.inject(DaffProductFilterRequestRangeNumericFactory);
-    equalFilterRequestFactory = TestBed.inject(DaffProductFilterRequestEqualFactory);
+    rangeFilterRequestFactory = TestBed.inject(DaffFilterRequestRangeNumericFactory);
+    equalFilterRequestFactory = TestBed.inject(DaffFilterRequestEqualFactory);
   });
 
   it('should be created', () => {
@@ -44,7 +44,7 @@ describe('@daffodil/product/driver/magento | MagentoProductAppliedFiltersTransfo
     });
 
     describe('when the filter type is Range', () => {
-      let rangeFilterRequest: DaffProductFilterRangeNumericRequest;
+      let rangeFilterRequest: DaffFilterRangeNumericRequest;
 
       beforeEach(() => {
         rangeFilterRequest = rangeFilterRequestFactory.create({
@@ -68,13 +68,13 @@ describe('@daffodil/product/driver/magento | MagentoProductAppliedFiltersTransfo
     });
 
     describe('when the filter type is not Range', () => {
-      let equalFilterRequest: DaffProductFilterEqualRequest;
+      let equalFilterRequest: DaffFilterEqualRequest;
 
       beforeEach(() => {
         equalFilterRequest = equalFilterRequestFactory.create();
       });
 
-      it('should transform an array of DaffProductFilterRequest into a MagentoProductFilters', () => {
+      it('should transform an array of DaffFilterRequest into a MagentoProductFilters', () => {
         const expectedReturn: MagentoProductFilters = {
           [equalFilterRequest.name]: {
             [MagentoProductFilterActionEnum.In]: equalFilterRequest.value,

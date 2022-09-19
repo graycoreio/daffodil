@@ -1,29 +1,24 @@
-import { Component } from '@angular/core';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Params } from '@angular/router';
 
 import {
-  DaffProductCollectionRequest,
-  daffProductFiltersToRequests,
-} from '@daffodil/product';
-import { DaffProductCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
-import { DaffProductCollectionMetadataFactory } from '@daffodil/product/testing';
+  DaffCollectionRequest,
+  daffFiltersToRequests,
+} from '@daffodil/core';
+import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
+import { DaffCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
 
 import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetQueryParamsFromRequest } from './get-query-params-from-request.service';
 
 describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () => {
   let customPageSizeQp: string;
-  let customCurrentPageTransform: DaffProductCollectionRequestQueryParamTransform<number>;
+  let customCurrentPageTransform: DaffCollectionRequestQueryParamTransform<number>;
 
   let service: DaffProductGetQueryParamsFromRequest;
-  let productCollectionMetadataFactory: DaffProductCollectionMetadataFactory;
+  let productCollectionMetadataFactory: DaffCollectionMetadataFactory;
 
-  let mockRequest: DaffProductCollectionRequest;
+  let mockRequest: DaffCollectionRequest;
   let result: Params;
 
   beforeEach(() => {
@@ -50,7 +45,7 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       ],
     });
 
-    productCollectionMetadataFactory = TestBed.inject(DaffProductCollectionMetadataFactory);
+    productCollectionMetadataFactory = TestBed.inject(DaffCollectionMetadataFactory);
     service = TestBed.inject(DaffProductGetQueryParamsFromRequest);
 
     const metadata = productCollectionMetadataFactory.create();
@@ -59,7 +54,7 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       appliedSortDirection: metadata.appliedSortDirection,
       currentPage: metadata.currentPage,
       pageSize: metadata.pageSize,
-      filterRequests: daffProductFiltersToRequests(metadata.filters),
+      filterRequests: daffFiltersToRequests(metadata.filters),
     };
   });
 

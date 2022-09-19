@@ -1,7 +1,7 @@
 import {
-  DaffProductFilterType,
-  DaffProductFilterRangeNumeric,
-} from '@daffodil/product';
+  DaffFilterType,
+  DaffFilterRangeNumeric,
+} from '@daffodil/core';
 
 import { MagentoAggregation } from '../../../models/public_api';
 
@@ -11,9 +11,9 @@ import { MagentoAggregation } from '../../../models/public_api';
  */
 export const magentoBucketSeparator = '-';
 
-export const transformAggregateRange = (aggregate: MagentoAggregation): DaffProductFilterRangeNumeric => ({
+export const transformAggregateRange = (aggregate: MagentoAggregation): DaffFilterRangeNumeric => ({
   label: aggregate.label,
-  type: DaffProductFilterType.RangeNumeric,
+  type: DaffFilterType.RangeNumeric,
   name: aggregate.attribute_code,
   min: parseInt(aggregate.options[0].value.split('-')[0], 10),
   max: parseInt(aggregate.options[aggregate.options.length - 1].value.split(magentoBucketSeparator)[1], 10),

@@ -1,11 +1,11 @@
-import { DaffProductCollectionRequest } from '@daffodil/product';
+import { DaffCollectionRequest } from '@daffodil/core';
 
-type DaffProductCollectionRequestValue = DaffProductCollectionRequest[keyof DaffProductCollectionRequest];
+type DaffCollectionRequestValue = DaffCollectionRequest[keyof DaffCollectionRequest];
 
 /**
- * Transforms for storing and retrieving {@link DaffProductCollectionRequest} values in a route's query params.
+ * Transforms for storing and retrieving {@link DaffCollectionRequest} values in a route's query params.
  */
-export interface DaffProductCollectionRequestQueryParamTransform<T extends DaffProductCollectionRequestValue = DaffProductCollectionRequestValue> {
+export interface DaffCollectionRequestQueryParamTransform<T extends DaffCollectionRequestValue = DaffCollectionRequestValue> {
   /**
    * A function that is given the value of a query param and
    * returns the value that will be set to the product collection request.
@@ -19,6 +19,6 @@ export interface DaffProductCollectionRequestQueryParamTransform<T extends DaffP
 }
 
 /**
- * A collection of optional {@link DaffProductCollectionRequestQueryParamTransform}s.
+ * A collection of optional {@link DaffCollectionRequestQueryParamTransform}s.
  */
-export type DaffProductCollectionRequestQueryParamTransforms = Partial<Record<keyof DaffProductCollectionRequest, DaffProductCollectionRequestQueryParamTransform>>;
+export type DaffCollectionRequestQueryParamTransforms = Partial<Record<keyof DaffCollectionRequest, DaffCollectionRequestQueryParamTransform>>;

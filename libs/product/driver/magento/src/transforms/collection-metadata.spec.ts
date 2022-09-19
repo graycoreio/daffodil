@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { DaffProductCollectionMetadata } from '@daffodil/product';
-import { DaffProductFilterType } from '@daffodil/product';
+import { DaffCollectionMetadata } from '@daffodil/core';
+import { DaffFilterType } from '@daffodil/core';
 import {
   MagentoProduct,
   MagentoProductPageInfo,
@@ -31,7 +31,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
   let sortFields: MagentoProductSortFields;
   let count: number;
   let products: MagentoProduct[];
-  let result: DaffProductCollectionMetadata;
+  let result: DaffCollectionMetadata;
 
   beforeEach(() => {
     productFactory = TestBed.inject(MagentoProductFactory);
@@ -80,8 +80,8 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
       result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count);
     });
 
-    it('should return a DaffProductCollectionMetadata with an equal filter type', () => {
-      expect(result.filters[aggregates[0].attribute_code].type).toEqual(DaffProductFilterType.Equal);
+    it('should return a DaffCollectionMetadata with an equal filter type', () => {
+      expect(result.filters[aggregates[0].attribute_code].type).toEqual(DaffFilterType.Equal);
     });
   });
 
@@ -91,8 +91,8 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
       result = magentoProductCollectionMetadataTransform(aggregates, pageInfo, sortFields, products, count);
     });
 
-    it('should return a DaffProductCollectionMetadata with a range filter type', () => {
-      expect(result.filters[aggregates[0].attribute_code].type).toEqual(DaffProductFilterType.RangeNumeric);
+    it('should return a DaffCollectionMetadata with a range filter type', () => {
+      expect(result.filters[aggregates[0].attribute_code].type).toEqual(DaffFilterType.RangeNumeric);
     });
   });
 

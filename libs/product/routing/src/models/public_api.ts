@@ -1,5 +1,5 @@
 export {
-  DaffProductCollectionRequestQueryParamTransform,
-  DaffProductCollectionRequestQueryParamTransforms,
+  DaffCollectionRequestQueryParamTransform,
+  DaffCollectionRequestQueryParamTransforms,
 } from './collection-request-query-param-transforms.interface';
-export { DaffProductCollectionRequestQueryParams } from './collection-request-query-params.interface';
+export { DaffCollectionRequestQueryParams } from './collection-request-query-params.interface';
