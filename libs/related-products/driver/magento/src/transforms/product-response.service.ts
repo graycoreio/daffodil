@@ -5,7 +5,7 @@ import {
 
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
-  DaffMagentoProductPreviewTransform,
+  DaffMagentoProductTransform,
   DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
 } from '@daffodil/product/driver/magento';
 
@@ -19,7 +19,7 @@ import { MagentoProductWithRelated } from '../models/product-with-related.interf
 })
 export class DaffMagentoRelatedProductsTransformers {
   constructor(
-    @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM) private productPreviewTransform: DaffMagentoProductPreviewTransform,
+    @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM) private productPreviewTransform: DaffMagentoProductTransform,
   ) {}
 
   /**

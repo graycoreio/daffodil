@@ -5,7 +5,10 @@ import {
   DaffProductDiscount,
 } from '@daffodil/product';
 
-import { MagentoProduct } from '../models/magento-product';
+import {
+  MagentoProduct,
+  MagentoProductTypeEnum,
+} from '../models/magento-product';
 import {
   MagentoProductPreview,
   MagentoProductStockStatusEnum,
@@ -19,12 +22,26 @@ export function transformMagentoProductPreview(product: MagentoProduct, mediaUrl
   return transformMagentoSimpleProductPreview(product, mediaUrl);
 }
 
+const getType = (product: MagentoProductPreview): DaffProductTypeEnum => {
+  switch (product.__typename) {
+    case MagentoProductTypeEnum.BundledProduct:
+      return DaffProductTypeEnum.Composite;
+
+    case MagentoProductTypeEnum.ConfigurableProduct:
+      return DaffProductTypeEnum.Configurable;
+
+    case MagentoProductTypeEnum.ConfigurableProduct:
+    default:
+      return DaffProductTypeEnum.Simple;
+  }
+};
+
 /**
  * Transforms a Magento simple product into a product preview.
  */
 export function transformMagentoSimpleProductPreview(product: MagentoProductPreview, mediaUrl: string): DaffProduct {
   return {
-    type: DaffProductTypeEnum.Simple,
+    type: getType(product),
     id: product.sku,
     url: `/${product.url_key}${product.url_suffix}`,
     name: product.name,

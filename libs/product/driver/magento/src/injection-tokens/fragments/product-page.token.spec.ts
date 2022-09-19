@@ -3,11 +3,11 @@ import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 import {
-  daffProvideProductMagentoExtraProductPreviewFragments,
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-} from './product-preview.token';
+  daffProvideProductMagentoExtraProductPageFragments,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
+} from './product-page.token';
 
-describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProductPreviewFragments', () => {
+describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProductPageFragments', () => {
   let fragments: DocumentNode[];
   let result: DocumentNode[];
 
@@ -27,11 +27,11 @@ describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProdu
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductMagentoExtraProductPreviewFragments(...fragments),
+        ...daffProvideProductMagentoExtraProductPageFragments(...fragments),
       ],
     });
 
-    result = TestBed.inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS);
+    result = TestBed.inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS);
   });
 
   it('should provide the fragments to the token', () => {

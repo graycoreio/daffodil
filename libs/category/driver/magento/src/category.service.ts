@@ -27,11 +27,12 @@ import {
 } from '@daffodil/product';
 import {
   DaffProductMagentoDriverConfig,
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
   MagentoProductGetFilterTypes,
   MagentoProductGetFilterTypesResponse,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
   magentoAppliedSortOptionTransform,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
 } from '@daffodil/product/driver/magento';
 
 import {
@@ -78,7 +79,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
     @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
-    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
+    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraProductFragments: DocumentNode[],
+    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraProductPreviewFragments: DocumentNode[],
   ) {}
 
   //todo the MagentoGetCategoryQuery needs to get its own product ids.
@@ -92,7 +94,10 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoProductGetFilterTypes,
       }),
       this.apollo.query<MagentoGetProductsResponse>({
-        query: MagentoGetProductsQuery(this.extraPreviewFragments),
+        query: MagentoGetProductsQuery([
+          ...this.extraProductFragments,
+          ...this.extraProductPreviewFragments,
+        ]),
         variables: this.getProductsQueryVariables(categoryRequest),
       }),
     ]).pipe(
@@ -126,7 +131,10 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         category,
         filterTypes,
       ]) => this.apollo.query<MagentoGetProductsResponse>({
-        query: MagentoGetProductsQuery(this.extraPreviewFragments),
+        query: MagentoGetProductsQuery([
+          ...this.extraProductFragments,
+          ...this.extraProductPreviewFragments,
+        ]),
         variables: this.getProductsQueryVariables({
           ...categoryRequest,
           id: category.data.categoryList[0]?.uid,

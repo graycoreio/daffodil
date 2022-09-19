@@ -1,11 +1,12 @@
 import { gql } from 'apollo-angular';
 
 import { magentoProductPreviewFragment } from './product-preview';
-import { magentoSimpleProductFragment } from './simple-product';
 
 export const magentoProductFragment = gql`
   fragment product on ProductInterface {
-		...magentoProductPreview
+    ...magentoProductPreview
+    __typename
+    name
     meta_title
 		meta_description
     canonical_url
@@ -27,8 +28,6 @@ export const magentoProductFragment = gql`
 		description {
 			html
 		}
-		...magentoSimpleProduct
 	}
-	${magentoSimpleProductFragment}
-	${magentoProductPreviewFragment}
+  ${magentoProductPreviewFragment}
 `;

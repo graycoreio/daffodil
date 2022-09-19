@@ -7,7 +7,7 @@ import {
 
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
 } from '@daffodil/product/driver/magento';
@@ -30,7 +30,7 @@ export class DaffUpsellProductsMagentoDriverModule {
       ngModule: DaffUpsellProductsMagentoDriverModule,
       providers: [
         {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
           multi: true,
           // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
           useFactory() {
@@ -47,7 +47,10 @@ export class DaffUpsellProductsMagentoDriverModule {
               daffProductResponse: DaffProductDriverResponse,
               magentoProduct: MagentoProductWithUpsell,
               mediaUrl: string,
-            ) => transformerService.transformMagentoUpsellProducts(daffProductResponse, magentoProduct, mediaUrl);
+            ) =>
+              magentoProduct.upsell_products
+                ? transformerService.transformMagentoUpsellProducts(daffProductResponse, magentoProduct, mediaUrl)
+                : daffProductResponse;
           },
         },
       ],

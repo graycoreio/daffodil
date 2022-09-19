@@ -8,6 +8,7 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 import { DaffMagentoProductResponseExtraTransform } from '../../../interfaces/public_api';
+import { MagentoProduct } from '../../../models/public_api';
 
 /**
  * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
@@ -31,7 +32,7 @@ export const DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS = new Inject
  * ]
  * ```
  */
-export function daffProvideProductMagentoExtraProductResponseTransforms(...transforms: DaffMagentoProductResponseExtraTransform[]): Provider[] {
+export function daffProvideProductMagentoExtraProductResponseTransforms<T extends MagentoProduct = MagentoProduct, V extends DaffProductDriverResponse = DaffProductDriverResponse>(...transforms: DaffMagentoProductResponseExtraTransform<T, V>[]): Provider[] {
   return transforms.map(transform => ({
     provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
     useValue: transform,
