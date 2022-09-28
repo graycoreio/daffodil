@@ -7,8 +7,7 @@ import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
 } from './product.token';
 
-
-describe('daffProvideProductMagentoExtraProductFragments', () => {
+describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProductFragments', () => {
   let fragments: DocumentNode[];
   let result: DocumentNode[];
 

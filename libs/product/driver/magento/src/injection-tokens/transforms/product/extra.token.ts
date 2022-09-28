@@ -13,29 +13,29 @@ import { MagentoProduct } from '../../../models/public_api';
  * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
  * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil product and the Magento product.
  *
- * See {@link MagentoProductPreview} for more info.
+ * See {@link MagentoProduct} for more info.
  */
-export const DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS = new InjectionToken<DaffMagentoProductExtraTransform[]>(
-  'DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS',
+export const DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS = new InjectionToken<DaffMagentoProductExtraTransform[]>(
+  'DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS',
   { factory: () => []},
 );
 
 /**
  * Provides extra product preview transforms for the Magento product driver.
  *
- * See {@link DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS}.
+ * See {@link DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS}.
  *
  * ```ts
  * providers: [
- *   ...daffProvideProductMagentoExtraProductPreviewTransforms(
+ *   ...daffProvideProductMagentoExtraProductTransforms(
  *     myExtraProductTransform
  *   )
  * ]
  * ```
  */
-export function daffProvideProductMagentoExtraProductPreviewTransforms<T extends MagentoProduct = MagentoProduct, V extends DaffProduct = DaffProduct>(...transforms: DaffMagentoProductExtraTransform<T, V>[]): Provider[] {
+export function daffProvideProductMagentoExtraProductTransforms<T extends MagentoProduct = MagentoProduct, V extends DaffProduct = DaffProduct>(...transforms: DaffMagentoProductExtraTransform<T, V>[]): Provider[] {
   return transforms.map(transform => ({
-    provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
+    provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
     useValue: transform,
     multi: true,
   }));

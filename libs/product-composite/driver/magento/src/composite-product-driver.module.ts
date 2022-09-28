@@ -5,12 +5,14 @@ import {
 } from '@angular/core';
 
 import {
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
+  daffProvideProductMagentoExtraProductTransforms,
   MagentoProductTypeEnum,
+  daffProvideProductMagentoExtraProductFragments,
+  daffProvideProductMagentoExtraProductPreviewTransforms,
 } from '@daffodil/product/driver/magento';
 
 import { magentoBundledProductFragment } from './fragments/bundled-product';
+import { MagentoBundledProduct } from './public_api';
 import { transformMagentoBundledProduct } from './transforms/bundled-product-transformers';
 
 /**
@@ -26,21 +28,23 @@ export class DaffCompositeProductMagentoDriverModule {
     return {
       ngModule: DaffCompositeProductMagentoDriverModule,
       providers: [
-        {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-          useValue: magentoBundledProductFragment,
-          multi: true,
-        },
-        {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
-          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-          useValue(daffProduct, magentoProduct) {
-            return magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
+        ...daffProvideProductMagentoExtraProductFragments(magentoBundledProductFragment),
+        ...daffProvideProductMagentoExtraProductTransforms<MagentoBundledProduct>(
+          (daffProduct, magentoProduct) =>
+            magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
               ? transformMagentoBundledProduct(daffProduct, magentoProduct)
-              : daffProduct;
-          },
-          multi: true,
-        },
+              : daffProduct,
+        ),
+        // stub out composite fields for a preview
+        ...daffProvideProductMagentoExtraProductPreviewTransforms<MagentoBundledProduct>(
+          (daffProduct, magentoProduct) =>
+            magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
+              ? {
+                ...daffProduct,
+                items: [],
+              }
+              : daffProduct,
+        ),
       ],
     };
   }

@@ -6,7 +6,7 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 import { DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM } from '../injection-tokens/transforms/product-preview/preview.token';
-import { DaffMagentoProductPreviewTransform } from '../interfaces/product-preview-transform.type';
+import { DaffMagentoProductTransform } from '../interfaces/product-preview-transform.type';
 import { MagentoProduct } from '../models/magento-product';
 import { transformMagentoProductPreview } from './product-preview';
 
@@ -21,7 +21,7 @@ import { transformMagentoProductPreview } from './product-preview';
 export class DaffMagentoSimpleProductTransformers {
 
   constructor(
-    @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM) private productPreviewTransform: DaffMagentoProductPreviewTransform,
+    @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM) private productPreviewTransform: DaffMagentoProductTransform,
   ) {}
 
   transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl: string): DaffProduct {

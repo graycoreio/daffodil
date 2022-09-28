@@ -6,7 +6,11 @@ import {
 
 import { DaffCategoryDriver } from '@daffodil/category/driver';
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
-import { DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME } from '@daffodil/product/driver/magento';
+import {
+  daffProvideProductMagentoExtraProductPreviewFragments,
+  DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME,
+  magentoProductPreviewFragment,
+} from '@daffodil/product/driver/magento';
 
 import { DaffMagentoCategoryService } from './category.service';
 import { MAGENTO_CATEGORY_CONFIG_DEFAULT } from './config/default';

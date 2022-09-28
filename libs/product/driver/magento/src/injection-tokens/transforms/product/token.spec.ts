@@ -4,14 +4,14 @@ import { DaffProduct } from '@daffodil/product';
 import {
   DaffMagentoProductExtraTransform,
   DaffMagentoProductTransform,
-  daffProvideProductMagentoExtraProductPreviewTransforms,
+  daffProvideProductMagentoExtraProductTransforms,
   MagentoProduct,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
-import { DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM } from './preview.token';
+import { DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM } from './token';
 
-describe('DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM', () => {
+describe('@daffodil/product/driver/magento | DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM', () => {
   let magentoProductFactory: MagentoProductFactory;
   let magentoProduct: MagentoProduct;
   let result: DaffProduct;
@@ -33,12 +33,12 @@ describe('DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductMagentoExtraProductPreviewTransforms(...transforms),
+        ...daffProvideProductMagentoExtraProductTransforms(...transforms),
       ],
     });
 
     magentoProductFactory = TestBed.inject(MagentoProductFactory);
-    productTransform = TestBed.inject(DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM);
+    productTransform = TestBed.inject(DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM);
 
     magentoProduct = magentoProductFactory.create();
     result = productTransform(magentoProduct, 'test');

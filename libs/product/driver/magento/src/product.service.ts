@@ -18,6 +18,7 @@ import {
 
 import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM,
 } from './injection-tokens/public_api';
@@ -45,6 +46,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     private apollo: Apollo,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private config: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM) private responseTransform: DaffMagentoProductResponseTransform,
+    @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS) private extraPageFragments: DocumentNode[],
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraFragments: DocumentNode[],
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraPreviewFragments: DocumentNode[],
     private magentoProductsTransformer: DaffMagentoProductsTransformer,
@@ -55,6 +57,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
       query: getProduct([
         ...this.extraPreviewFragments,
         ...this.extraFragments,
+        ...this.extraPageFragments,
       ]),
       variables: {
         sku: productId,
@@ -69,6 +72,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
       query: getProductByUrl([
         ...this.extraPreviewFragments,
         ...this.extraFragments,
+        ...this.extraPageFragments,
       ]),
       variables: {
         url: this.config.urlTruncationStrategy(url),
@@ -83,6 +87,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
       query: getAllProducts([
         ...this.extraPreviewFragments,
         ...this.extraFragments,
+        ...this.extraPageFragments,
       ]),
     }).pipe(
       map(result => this.magentoProductsTransformer.transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),

@@ -7,9 +7,10 @@ import {
 
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
+  MagentoProduct,
 } from '@daffodil/product/driver/magento';
 
 import { MagentoProductWithRelated } from './models/product-with-related.interface';
@@ -30,7 +31,7 @@ export class DaffRelatedProductsMagentoDriverModule {
       ngModule: DaffRelatedProductsMagentoDriverModule,
       providers: [
         {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
           multi: true,
           // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
           useFactory() {
@@ -47,7 +48,10 @@ export class DaffRelatedProductsMagentoDriverModule {
               daffProductResponse: DaffProductDriverResponse,
               magentoProduct: MagentoProductWithRelated,
               mediaUrl: string,
-            ) => transformerService.transformMagentoRelatedProducts(daffProductResponse, magentoProduct, mediaUrl);
+            ) =>
+              magentoProduct.related_products
+                ? transformerService.transformMagentoRelatedProducts(daffProductResponse, magentoProduct, mediaUrl)
+                : daffProductResponse;
           },
         },
       ],

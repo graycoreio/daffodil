@@ -1,7 +1,13 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 
 import { DaffGetCategoryResponse } from '@daffodil/category';
-import { DaffMagentoProductsTransformer } from '@daffodil/product/driver/magento';
+import {
+  DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM,
+  DaffMagentoProductTransform,
+} from '@daffodil/product/driver/magento';
 
 import { MagentoCompleteCategoryResponse } from '../models/public_api';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
@@ -15,7 +21,7 @@ export class DaffMagentoCategoryResponseTransformService {
   constructor(
     private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
-    private magentoProductsTransformService: DaffMagentoProductsTransformer,
+    @Inject(DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM) private magentoProductsTransform: DaffMagentoProductTransform,
   ) {}
 
   transform(completeCategory: MagentoCompleteCategoryResponse, mediaUrl: string): DaffGetCategoryResponse {
@@ -23,7 +29,7 @@ export class DaffMagentoCategoryResponseTransformService {
       ...{ magentoCompleteCategoryResponse: completeCategory },
       category: this.magentoCategoryTransformerService.transform(completeCategory.category, completeCategory.products),
       categoryPageMetadata: this.magentoCategoryPageConfigurationTransformerService.transform(completeCategory),
-      products: this.magentoProductsTransformService.transformManyMagentoProducts(completeCategory.products, mediaUrl),
+      products: completeCategory.products.map(product => this.magentoProductsTransform(product, mediaUrl)),
     };
   }
 }

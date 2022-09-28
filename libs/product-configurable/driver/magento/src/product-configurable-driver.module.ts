@@ -5,12 +5,14 @@ import {
 } from '@angular/core';
 
 import {
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
-  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
+  daffProvideProductMagentoExtraProductFragments,
+  daffProvideProductMagentoExtraProductPreviewTransforms,
+  daffProvideProductMagentoExtraProductTransforms,
   MagentoProductTypeEnum,
 } from '@daffodil/product/driver/magento';
 
 import { magentoConfigurableProductFragment } from './fragments/configurable-product';
+import { MagentoConfigurableProduct } from './models/configurable-product';
 import { transformMagentoConfigurableProduct } from './transforms/configurable-product-transformers';
 
 /**
@@ -26,21 +28,24 @@ export class DaffConfigurableProductMagentoDriverModule {
     return {
       ngModule: DaffConfigurableProductMagentoDriverModule,
       providers: [
-        {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-          useValue: magentoConfigurableProductFragment,
-          multi: true,
-        },
-        {
-          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS,
-          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-          useValue(daffProduct, magentoProduct) {
-            return magentoProduct.__typename === MagentoProductTypeEnum.ConfigurableProduct
+        ...daffProvideProductMagentoExtraProductFragments(magentoConfigurableProductFragment),
+        ...daffProvideProductMagentoExtraProductTransforms<MagentoConfigurableProduct>(
+          (daffProduct, magentoProduct) =>
+            magentoProduct.__typename === MagentoProductTypeEnum.ConfigurableProduct
               ? transformMagentoConfigurableProduct(daffProduct, magentoProduct)
-              : daffProduct;
-          },
-          multi: true,
-        },
+              : daffProduct,
+        ),
+        // stub out configurable fields for a preview
+        ...daffProvideProductMagentoExtraProductPreviewTransforms<MagentoConfigurableProduct>(
+          (daffProduct, magentoProduct) =>
+            magentoProduct.__typename === MagentoProductTypeEnum.ConfigurableProduct
+              ? {
+                ...daffProduct,
+                variants: [],
+                configurableAttributes: [],
+              }
+              : daffProduct,
+        ),
       ],
     };
   }
