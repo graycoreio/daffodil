@@ -88,7 +88,7 @@ Add `app-theme.scss` to the `styles.scss` file:
 
 > These lines include theme variables and functions that will generate the theme CSS and style the components.
 
-Create classes in the `styles.scss` file to include the `theme` module for `$theme` and `$theme-dark` variables. This will allow you to set a click event on a button to switch between modes. [View this setup in Stackblitz](https://stackblitz.com/edit/ng13-daffodil-design-is6yyl)
+Create classes in the `styles.scss` file to include the `theme` module for `$theme` and `$theme-dark` variables. This will allow you to set a click event on a button to switch between modes. [View this setup in Stackblitz](https://stackblitz.com/edit/ng13-daffodil-design-custom-theme)
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
