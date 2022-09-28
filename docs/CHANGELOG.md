@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.46.0](https://github.com/graycoreio/daffodil/compare/v0.45.1...v0.46.0) (2022-09-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product*,category,reviews:** `DaffMagentoProductPreviewExtraTransform` -> `DaffMagentoProductExtraTransform`, `DaffMagentoProductPreviewTransform` -> `DaffMagentoProductTransform`
+
+### Features
+
+* **core:** add collection filters ([#2197](https://github.com/graycoreio/daffodil/issues/2197)) ([a2ee656](https://github.com/graycoreio/daffodil/commit/a2ee656680682e2069bd29f725eb2d7c64c5c6d5))
+* **product*,category,reviews:** rework product previews ([#2199](https://github.com/graycoreio/daffodil/issues/2199)) ([716e340](https://github.com/graycoreio/daffodil/commit/716e340dc9d2b7f8b90dd5605f0854cfcb5e6ed6))
+
+
+### Bug Fixes
+
+* **order:** magento driver not setting `email` ([#2196](https://github.com/graycoreio/daffodil/issues/2196)) ([e289a77](https://github.com/graycoreio/daffodil/commit/e289a77505bba97f2902d68986cfc5857e8e2bd8))
+
 ### [0.45.1](https://github.com/graycoreio/daffodil/compare/v0.45.0...v0.45.1) (2022-09-09)
 
 
