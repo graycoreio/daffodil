@@ -12,7 +12,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoCartRootModule } from './cart/cart-root.module';
-import { CheckoutModule } from './checkout/checkout.module';
 import { TemplateModule } from './core/template/template/template.module';
 import { DemoDriverMap } from './drivers/map';
 import { NotFoundModule } from './misc/not-found/not-found.module';
@@ -44,7 +43,6 @@ import { ThankYouModule } from './thank-you/thank-you.module';
     DemoRoutingComponentModule,
     DemoCartRootModule,
     ProductModule,
-    CheckoutModule,
     ThankYouModule,
     TemplateModule,
     NotFoundModule,
