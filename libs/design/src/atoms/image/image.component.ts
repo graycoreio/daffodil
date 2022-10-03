@@ -3,12 +3,18 @@ import {
   ChangeDetectionStrategy,
   Input,
   EventEmitter,
+  OnInit,
+  ElementRef,
+  Renderer2,
   Output,
   HostBinding,
-  OnInit,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import {
+  daffSkeletonableMixin,
+  DaffSkeletonable,
+} from '../../core/skeletonable/public_api';
 import { daffThumbnailCompatToken } from '../../molecules/media-gallery/public_api';
 
 const validateProperty = (object: Record<string, any>, prop: string) => {
@@ -32,6 +38,15 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   }
 };
 
+/**
+ * An _elementRef is needed for the GolfGhostable mixin
+ */
+class DaffImageBase {
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) { }
+}
+
+const _daffImageBase = daffSkeletonableMixin(DaffImageBase);
+
 @Component({
   selector: 'daff-image',
   templateUrl: './image.component.html',
@@ -43,8 +58,11 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
 			 provide: daffThumbnailCompatToken, useExisting: DaffImageComponent,
     },
   ],
+  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['skeleton'],
 })
-export class DaffImageComponent implements OnInit {
+export class DaffImageComponent extends _daffImageBase implements OnInit, DaffSkeletonable {
 
   private _src: string;
 
@@ -101,7 +119,13 @@ export class DaffImageComponent implements OnInit {
 	  validateProperties(this, ['src', 'alt', 'width', 'height']);
   }
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) {
+	  super(elementRef, renderer);
+  }
 
   /**
    * @docs-private
