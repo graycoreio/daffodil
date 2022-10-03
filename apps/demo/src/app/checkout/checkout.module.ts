@@ -10,6 +10,7 @@ import {
 } from '@daffodil/design';
 
 import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
+import { CheckoutRoutingModule } from './checkout-routing.module';
 import { DemoCheckoutStateModule } from './checkout-state.module';
 import { PaymentModule } from './components/payment/payment/payment.module';
 import { PlaceOrderModule } from './components/place-order/place-order.module';
@@ -27,9 +28,9 @@ import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.compo
     ShippingModule,
     PaymentModule,
     PlaceOrderModule,
-
     DaffAccordionModule,
     DaffContainerModule,
+    CheckoutRoutingModule,
   ],
   declarations: [
     CheckoutViewComponent,
