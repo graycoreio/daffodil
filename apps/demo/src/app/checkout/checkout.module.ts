@@ -28,10 +28,9 @@ import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.compo
     ShippingModule,
     PaymentModule,
     PlaceOrderModule,
-
     DaffAccordionModule,
     DaffContainerModule,
-    CheckoutRoutingModule
+    CheckoutRoutingModule,
   ],
   declarations: [
     CheckoutViewComponent,

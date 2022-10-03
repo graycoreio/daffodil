@@ -33,7 +33,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'checkout',
-        loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)
+        loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule),
       },
       { path: '404', component: NotFoundComponent },
     ],
