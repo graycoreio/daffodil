@@ -41,6 +41,12 @@ module.exports = {
             style: 'camelCase'
           }
         ],
+        'no-restricted-imports': ['error', {
+          'patterns': [{
+            'group': ['libs/*'],
+            'message': 'Usage of private modules not allowed. Did you mean to import from @daffodil/*?'
+          }],
+        }],
       }
     },
     {
