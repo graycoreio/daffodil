@@ -16,5 +16,13 @@
 				border: 1px solid theming.daff-color($gray);
 			}
 		}
+
+		&.daff-skeleton {
+			.daff-thumbnail {
+				&--selected {
+					border: none;
+				}
+			}
+		}
 	}
 }

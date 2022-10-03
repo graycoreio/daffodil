@@ -15,12 +15,13 @@ import { daffThumbnailCompatToken } from './thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
 
 @Component({
-  template: `<daff-media-gallery [name]="nameValue">
+  template: `<daff-media-gallery [name]="nameValue" [skeleton]="skeleton">
 		<div daffThumbnail></div>
 	</daff-media-gallery>`,
 })
 class WrapperComponent {
   nameValue: string;
+  skeleton = false;
 }
 
 @Component({
@@ -75,6 +76,10 @@ describe('DaffMediaGalleryComponent', () => {
 
   it('should take a name as input', () => {
     expect(component.name).toEqual(stubName);
+  });
+
+  it('should take a skeleton as input', () => {
+    expect(component.skeleton).toEqual(wrapper.skeleton);
   });
 
   it('should remove the gallery from the registry when the gallery is destroyed', () => {

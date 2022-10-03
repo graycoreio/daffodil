@@ -1,5 +1,6 @@
 @use '../../../scss/interactions';
 @use '../../../scss/layout';
+@use '../../../scss/state';
 
 :host(.daff-media-gallery) {
 	// stylelint-disable-next-line scss/comment-no-loud
@@ -14,7 +15,7 @@
 
 	::ng-deep {
 		.daff-thumbnail {
-			@include interactions.clickable;
+			@include interactions.clickable();
 			display: inline-block;
 			height: 64px;
 			width: 64px;
@@ -36,6 +37,26 @@
 			}
 		}
 	}
+
+	&.daff-skeleton {
+		::ng-deep {
+			.daff-thumbnail {
+				@include state.skeleton-screen(72px, 72px);
+
+				@include layout.breakpoint(big-tablet) {
+					@include state.skeleton-screen(80px, 80px);
+				}
+			}
+
+			img {
+				opacity: 0;
+			}
+		}
+
+		#{$root}__selected-thumbnail {
+			@include state.skeleton-screen(100%, 100%);
+		}
+	}
 }
 
 .daff-media-gallery {
@@ -54,6 +75,7 @@
 		display: block;
 		flex-grow: 1;
 		order: 1;
+		position: relative;
 
 		@include layout.breakpoint(big-tablet) {
 			order: 2;
