@@ -1,13 +1,19 @@
 import { Action } from '@ngrx/store';
 
-import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import {
+  DaffAuthorizenetPaymentRequest,
+  DaffAuthorizeNetTokenRequest,
+} from '@daffodil/authorizenet';
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
+import { DaffPersonalAddress } from '@daffodil/geography';
+import { DaffPaymentGenerateToken } from '@daffodil/payment/state';
 
 export enum DaffAuthorizeNetActionTypes {
   UpdatePaymentAction = '[Daff-Authorize-Net] Update Payment',
   UpdatePaymentSuccessAction = '[Daff-Authorize-Net] Update Payment Success',
   UpdatePaymentFailureAction = '[Daff-Authorize-Net] Update Payment Failure',
+  ApplyPaymentAction = '[@daffodil/authorizenet] Apply Payment',
   LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js',
   LoadAcceptJsSuccessAction = '[Daff-Authorize-Net] Load Accept Js Success',
   LoadAcceptJsFailureAction = '[Daff-Authorize-Net] Load Accept Js Failure'
@@ -67,12 +73,25 @@ export class DaffLoadAcceptJsFailure implements Action {
   constructor(public payload: DaffStateError) {};
 }
 
+/**
+ * Triggers the application of an authorize.net payment.
+ */
+export class DaffAuthorizenetApplyPayment implements DaffPaymentGenerateToken<DaffAuthorizenetPaymentRequest> {
+  readonly type = DaffAuthorizeNetActionTypes.ApplyPaymentAction;
+
+  constructor(
+    public request: DaffAuthorizenetPaymentRequest,
+    public address?: DaffPersonalAddress,
+  ) {};
+}
+
 export type DaffAuthorizeNetActions<
   T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest
 > =
 	| DaffAuthorizeNetUpdatePayment<T>
 	| DaffAuthorizeNetUpdatePaymentSuccess
 	| DaffAuthorizeNetUpdatePaymentFailure
+	| DaffAuthorizenetApplyPayment
 	| DaffLoadAcceptJsSuccess
 	| DaffLoadAcceptJsFailure
 	| DaffLoadAcceptJs;
