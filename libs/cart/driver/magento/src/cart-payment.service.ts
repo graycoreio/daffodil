@@ -71,17 +71,23 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     );
   }
 
-  update(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>): Observable<Partial<DaffCart>> {
-    return this.mutationQueue.mutate<MagentoSetSelectedPaymentMethodResponse>({
-      mutation: setSelectedPaymentMethod(this.extraCartFragments),
-      variables: {
-        cartId,
-        payment: this.paymentInputTransformer.transform(payment),
-      },
-      fetchPolicy: 'network-only',
-    }).pipe(
-      map(result => this.cartTransformer.transform(result.data.setPaymentMethodOnCart.cart)),
-    );
+  update(
+    cartId: DaffCart['id'],
+    payment: Partial<DaffCartPaymentMethod>,
+    billingAddress?: Partial<DaffCartAddress>,
+  ): Observable<Partial<DaffCart>> {
+    return billingAddress
+      ? this.updateWithBilling(cartId, payment, billingAddress)
+      : this.mutationQueue.mutate<MagentoSetSelectedPaymentMethodResponse>({
+        mutation: setSelectedPaymentMethod(this.extraCartFragments),
+        variables: {
+          cartId,
+          payment: this.paymentInputTransformer.transform(payment),
+        },
+        fetchPolicy: 'network-only',
+      }).pipe(
+        map(result => this.cartTransformer.transform(result.data.setPaymentMethodOnCart.cart)),
+      );
   }
 
   updateWithBilling(

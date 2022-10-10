@@ -22,11 +22,15 @@ export interface DaffCartPaymentServiceInterface<
 
   /**
    * Update the payment method applied to a cart.
+   *
+   * If a billing address is provided, the driver will update that simultaneously.
    */
-  update(cartId: V['id'], payment: Partial<T>): Observable<Partial<V>>;
+  update(cartId: V['id'], payment: Partial<T>, billingAddress?: Partial<R>): Observable<Partial<V>>;
 
   /**
    * Update the billing address and payment method applied to a cart.
+   *
+   * @deprecated use `update` with the `billingAddress` parameter instead.
    */
   updateWithBilling(cartId: V['id'], payment: Partial<T>, address: Partial<R>): Observable<Partial<V>>;
 
