@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffPaypalDriver } from '@daffodil/paypal/driver';
+import { DaffPaypalExpressDriver } from '@daffodil/paypal/driver';
 
 import { DaffTestingPaypalService } from './paypal.service';
 
@@ -19,7 +19,7 @@ export class DaffPaypalTestingDriverModule {
       ngModule: DaffPaypalTestingDriverModule,
       providers: [
         {
-          provide: DaffPaypalDriver,
+          provide: DaffPaypalExpressDriver,
           useExisting: DaffTestingPaypalService,
         },
       ],

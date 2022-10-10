@@ -5,12 +5,15 @@ import {
 } from '@angular/core';
 
 import {
-  DaffPaypalDriver,
-  DaffPaypalTransformer,
+  DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
+  DaffPaypalExpressDriverConfig,
+  DaffPaypalExpressDriver,
+  DaffPaypalExpressPaymentDriver,
 } from '@daffodil/paypal/driver';
 
+import { MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT } from './config/default';
+import { DaffMagentoPaypalPaymentService } from './paypal-payment.service';
 import { DaffMagentoPaypalService } from './paypal.service';
-import { DaffMagentoPaypalTransformerService } from './transformers/magento-paypal-transformer.service';
 
 @NgModule({
   imports: [
@@ -18,17 +21,21 @@ import { DaffMagentoPaypalTransformerService } from './transformers/magento-payp
   ],
 })
 export class DaffPaypalMagentoDriverModule {
-  static forRoot(): ModuleWithProviders<DaffPaypalMagentoDriverModule> {
+  static forRoot(config: DaffPaypalExpressDriverConfig = MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT): ModuleWithProviders<DaffPaypalMagentoDriverModule> {
     return {
       ngModule: DaffPaypalMagentoDriverModule,
       providers: [
         {
-          provide: DaffPaypalDriver,
+          provide: DaffPaypalExpressDriver,
           useExisting: DaffMagentoPaypalService,
         },
         {
-          provide: DaffPaypalTransformer,
-          useExisting: DaffMagentoPaypalTransformerService,
+          provide: DaffPaypalExpressPaymentDriver,
+          useExisting: DaffMagentoPaypalPaymentService,
+        },
+        {
+          provide: DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
+          useValue: config,
         },
       ],
     };

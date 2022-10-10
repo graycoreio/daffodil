@@ -4,14 +4,14 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
+import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
 import { DaffInMemoryPaypalService } from './paypal.service';
 
-describe('Testing | Drivers | InMemory | PaypalService', () => {
+describe('@daffodil/paypal/driver/in-memory | DaffInMemoryPaypalService', () => {
   let paypalService;
   let httpMock: HttpTestingController;
-  let paypalTokenResponseFactory: DaffPaypalTokenResponseFactory;
+  let paypalTokenResponseFactory: DaffPaypalExpressTokenResponseFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('Testing | Drivers | InMemory | PaypalService', () => {
 
     httpMock = TestBed.inject(HttpTestingController);
     paypalService = TestBed.inject(DaffInMemoryPaypalService);
-    paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalExpressTokenResponseFactory);
   });
 
   afterEach(() => {
@@ -45,7 +45,7 @@ describe('Testing | Drivers | InMemory | PaypalService', () => {
         expect(paypalTokenResponse).toEqual(stubPaypalTokenResponse);
       });
 
-      const req = httpMock.expectOne(`${paypalService.url}cartId`);
+      const req = httpMock.expectOne(paypalService.url);
       expect(req.request.method).toBe('GET');
 
       req.flush(stubPaypalTokenResponse);

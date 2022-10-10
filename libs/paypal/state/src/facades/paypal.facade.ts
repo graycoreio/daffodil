@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffPaypalTokenResponse } from '@daffodil/paypal';
+import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
 import { DaffPaypalStateRootSlice } from '../reducers/paypal-reducers.interface';
@@ -19,15 +19,7 @@ import { getDaffPaypalSelectors } from '../selectors/paypal.selector';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> implements DaffPaypalFacadeInterface<T> {
-  /**
-   * The entire DaffPaypalTokenResponse object.
-   */
-  paypalTokenResponse$: Observable<T>;
-  /**
-   * The paypal token nonce.
-   */
-  paypalToken$: Observable<string>;
+export class DaffPaypalFacade implements DaffPaypalFacadeInterface {
   /**
    * A URL for the PayPal login page.
    */
@@ -45,18 +37,14 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalToke
    */
   error$: Observable<DaffStateError>;
 
-  constructor(private store: Store<DaffPaypalStateRootSlice<T>>) {
+  constructor(private store: Store<DaffPaypalStateRootSlice>) {
     const {
-      selectPaypalTokenResponse,
-      selectPaypalToken,
       selectPaypalStartUrl,
       selectPaypalEditUrl,
       selectPaypalLoading,
       selectPaypalError,
-    } = getDaffPaypalSelectors<T>();
+    } = getDaffPaypalSelectors();
 
-    this.paypalTokenResponse$ = this.store.pipe(select(selectPaypalTokenResponse));
-    this.paypalToken$ = this.store.pipe(select(selectPaypalToken));
     this.paypalStartUrl$ = this.store.pipe(select(selectPaypalStartUrl));
     this.paypalEditUrl$ = this.store.pipe(select(selectPaypalEditUrl));
     this.loading$ = this.store.pipe(select(selectPaypalLoading));

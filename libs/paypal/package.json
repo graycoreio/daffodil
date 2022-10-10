@@ -39,6 +39,7 @@
     "@apollo/client": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
+    "@daffodil/payment": "0.0.0-PLACEHOLDER",
     "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER"
   }

@@ -7,44 +7,45 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {
-  DaffPaypalTokenRequest,
-  DaffPaypalTokenResponse,
+  DaffPaypalExpressTokenRequest,
+  DaffPaypalExpressTokenResponse,
 } from '@daffodil/paypal';
 import {
-  DaffPaypalServiceInterface,
-  DaffPaypalTransformer,
-  DaffPaypalTransformerInterface,
-  DaffPaypalConfig,
+  DaffPaypalExpressServiceInterface,
+  DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
+  DaffPaypalExpressDriverConfig,
 } from '@daffodil/paypal/driver';
 
 import {
   DaffMagentoPaypalConfig,
   MagentoPaypalTokenResponse,
 } from './models/public_api';
-import { GenerateTokenMutation } from './mutations/generate-token';
+import { magentoGenerateTokenMutation } from './mutations/generate-token';
+import { magentoPaypalExpressResponseTransform } from './transformers/public_api';
 
 /**
  * @inheritdoc
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
-export class DaffMagentoPaypalService implements DaffPaypalServiceInterface {
-
+export class DaffMagentoPaypalService implements DaffPaypalExpressServiceInterface {
   constructor(
     private apollo: Apollo,
-    @Inject(DaffPaypalTransformer) private transformer: DaffPaypalTransformerInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>,
-    @Inject(DaffPaypalConfig) private config: DaffMagentoPaypalConfig,
+    @Inject(DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG) private config: DaffPaypalExpressDriverConfig,
   ) {}
 
-  generateToken(tokenRequest: DaffPaypalTokenRequest): Observable<DaffPaypalTokenResponse> {
+  generateToken(cartId: string, tokenRequest: DaffPaypalExpressTokenRequest): Observable<DaffPaypalExpressTokenResponse> {
     return this.apollo.mutate<MagentoPaypalTokenResponse>({
-      mutation: GenerateTokenMutation,
+      mutation: magentoGenerateTokenMutation,
       variables: {
-        input: this.transformer.transformOut(tokenRequest, this.config),
+        cartId,
+        button: tokenRequest.button,
+        returnUrl: this.config.urls.return,
+        cancelUrl: this.config.urls.cancel,
       },
     }).pipe(
-      map(result => this.transformer.transformIn(result.data.createPaypalExpressToken)),
+      map(result => magentoPaypalExpressResponseTransform(result.data)),
     );
   }
 }

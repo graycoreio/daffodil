@@ -5,11 +5,11 @@ import {
 } from 'rxjs';
 
 import {
-  DaffPaypalTokenRequest,
-  DaffPaypalTokenResponse,
+  DaffPaypalExpressTokenRequest,
+  DaffPaypalExpressTokenResponse,
 } from '@daffodil/paypal';
-import { DaffPaypalServiceInterface } from '@daffodil/paypal/driver';
-import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
+import { DaffPaypalExpressServiceInterface } from '@daffodil/paypal/driver';
+import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
 /**
  * @inheritdoc
@@ -17,12 +17,12 @@ import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffTestingPaypalService implements DaffPaypalServiceInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse> {
+export class DaffTestingPaypalService implements DaffPaypalExpressServiceInterface<DaffPaypalExpressTokenRequest, DaffPaypalExpressTokenResponse> {
 
   constructor(
-    private paypalTokenResponseFactory: DaffPaypalTokenResponseFactory) {}
+    private paypalTokenResponseFactory: DaffPaypalExpressTokenResponseFactory) {}
 
-  generateToken(tokenRequest: DaffPaypalTokenRequest): Observable<DaffPaypalTokenResponse> {
+  generateToken(cartId: string, tokenRequest: DaffPaypalExpressTokenRequest): Observable<DaffPaypalExpressTokenResponse> {
     return of(this.paypalTokenResponseFactory.create());
   }
 }

@@ -8,27 +8,28 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffPaypalTokenResponse } from '@daffodil/paypal';
+import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 import {
   DaffPaypalStateRootSlice,
   DAFF_PAYPAL_STORE_FEATURE_KEY,
   daffPaypalReducers,
   DaffGeneratePaypalExpressTokenSuccess,
   DaffGeneratePaypalExpressTokenFailure,
+  DaffPaypalReducerState,
 } from '@daffodil/paypal/state';
-import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
+import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
+import { DaffPaypalExpressReducerState } from '../public_api';
 import { getDaffPaypalSelectors } from './paypal.selector';
 
-describe('Daff Paypal Selectors', () => {
+describe('@daffodil/paypal/state | getDaffPaypalSelectors', () => {
 
   let store: Store<DaffPaypalStateRootSlice>;
-  const navigationTreeFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
-  let stubPaypalTokenResponse: DaffPaypalTokenResponse;
+  let paypalTokenResponseFactory: DaffPaypalExpressTokenResponseFactory;
+  let stubPaypalTokenResponse: DaffPaypalExpressTokenResponse;
   const {
     selectPaypalState,
-    selectPaypalTokenResponse,
-    selectPaypalToken,
+    selectPaypalExpressState,
     selectPaypalStartUrl,
     selectPaypalEditUrl,
     selectPaypalLoading,
@@ -44,8 +45,10 @@ describe('Daff Paypal Selectors', () => {
       ],
     });
 
-    stubPaypalTokenResponse = navigationTreeFactory.create();
     store = TestBed.inject(Store);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalExpressTokenResponseFactory);
+
+    stubPaypalTokenResponse = paypalTokenResponseFactory.create();
 
     store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
   });
@@ -53,8 +56,7 @@ describe('Daff Paypal Selectors', () => {
   describe('selectPaypalState', () => {
 
     it('selects the paypal state', () => {
-      const expectedState = {
-        paypalTokenResponse: stubPaypalTokenResponse,
+      const expectedState: DaffPaypalReducerState = {
         loading: false,
         error: null,
       };
@@ -64,11 +66,14 @@ describe('Daff Paypal Selectors', () => {
     });
   });
 
-  describe('selectPaypalTokenResponse', () => {
-
-    it('returns the paypal token response', () => {
-      const selector = store.pipe(select(selectPaypalTokenResponse));
-      const expected = cold('a', { a: stubPaypalTokenResponse });
+  describe('selectPaypalExpressState', () => {
+    it('selects the paypal express state', () => {
+      const expectedState: DaffPaypalExpressReducerState = {
+        startUrl: stubPaypalTokenResponse.urls.start,
+        editUrl: stubPaypalTokenResponse.urls.edit,
+      };
+      const selector = store.pipe(select(selectPaypalExpressState));
+      const expected = cold('a', { a: expectedState });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -89,15 +94,6 @@ describe('Daff Paypal Selectors', () => {
       store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
       const selector = store.pipe(select(selectPaypalError));
       const expected = cold('a', { a: error });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectPaypalToken', () => {
-
-    it('returns the paypal token nonce', () => {
-      const selector = store.pipe(select(selectPaypalToken));
-      const expected = cold('a', { a: stubPaypalTokenResponse.token });
       expect(selector).toBeObservable(expected);
     });
   });

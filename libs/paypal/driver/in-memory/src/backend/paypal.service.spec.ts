@@ -24,7 +24,7 @@ describe('Testing | Driver | InMemoryBackend | DaffInMemoryBackendPaypalService'
       result = paypalTestingService.createDb();
     });
 
-    it('should return an object with a DaffPaypalTokenResponse', () => {
+    it('should return an object with a DaffPaypalExpressTokenResponse', () => {
       expect(result.paypalTokenResponse.token).toBeTruthy();
       expect(result.paypalTokenResponse.urls).toBeTruthy();
     });
