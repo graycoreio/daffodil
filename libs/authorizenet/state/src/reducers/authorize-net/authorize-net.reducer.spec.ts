@@ -1,3 +1,4 @@
+import { DAFF_AUTHORIZENET_PAYMENT_KIND } from '@daffodil/authorizenet';
 import {
   DaffAuthorizeNetUpdatePaymentSuccess,
   DaffAuthorizeNetUpdatePaymentFailure,
@@ -5,6 +6,7 @@ import {
   DaffLoadAcceptJsSuccess,
   DaffLoadAcceptJsFailure,
   DaffAuthorizeNetReducerState,
+  DaffAuthorizenetApplyPayment,
 } from '@daffodil/authorizenet/state';
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
@@ -12,7 +14,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 
-describe('AuthorizeNet | AuthorizeNet Reducer', () => {
+describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
 
   let stubPaymentNonce;
   let initialState: DaffAuthorizeNetReducerState;
@@ -37,6 +39,22 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
       const result = daffAuthorizeNetReducer(initialState, action);
 
       expect(result).toBe(initialState);
+    });
+  });
+
+  describe('when DaffAuthorizenetApplyPayment is triggered', () => {
+    let result: DaffAuthorizeNetReducerState;
+
+    beforeEach(() => {
+      const tokenLoad = new DaffAuthorizenetApplyPayment({
+        kind: DAFF_AUTHORIZENET_PAYMENT_KIND,
+      }, stubAddress);
+
+      result = daffAuthorizeNetReducer(initialState, tokenLoad);
+    });
+
+    it('indicates that the request is loading', () => {
+      expect(result.loading).toBeTruthy();
     });
   });
 
