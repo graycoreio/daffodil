@@ -47,7 +47,7 @@ import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartPaymentService } from './cart-payment.service';
 
-describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoCartPaymentService', () => {
   let service: DaffMagentoCartPaymentService;
   let controller: ApolloTestingController;
 
@@ -229,6 +229,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
 
   describe('update | updates the cart\'s selected payment method', () => {
     let method;
+    let street;
 
     beforeEach(() => {
       method = 'method';
@@ -250,12 +251,34 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
       });
     });
 
+    describe('when a billing address is passed', () => {
+      beforeEach(() => {
+        street = 'updatedStreet';
+        mockMagentoBillingAddress.street = [street];
+        mockDaffCartAddress.street = street;
+      });
+
+      it('should send the address', done => {
+        service.update(cartId, mockDaffCartPaymentMethod, mockDaffCartAddress).subscribe(result => {
+          expect(result.payment.method).toEqual(method);
+          expect(result.billing_address.street).toEqual(street);
+          done();
+        });
+
+        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([])));
+
+        op.flush({
+          data: mockSetSelectedPaymentMethodWithBillingAndEmailResponse,
+        });
+      });
+    });
+
     afterEach(() => {
       controller.verify();
     });
   });
 
-  describe('update | updates the cart\'s selected payment method, email, and billing address', () => {
+  describe('updateWithBilling | updates the cart\'s selected payment method, email, and billing address', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('when the email is included', () => {
         let method;
