@@ -18,16 +18,17 @@ import {
   catchError,
 } from 'rxjs/operators';
 
+import { DaffCartStorageService } from '@daffodil/cart';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import {
-  DaffPaypalTokenRequest,
-  DaffPaypalTokenResponse,
+  DaffPaypalExpressTokenRequest,
+  DaffPaypalExpressTokenResponse,
   DAFF_PAYPAL_ERROR_MATCHER,
 } from '@daffodil/paypal';
 import {
-  DaffPaypalDriver,
-  DaffPaypalServiceInterface,
+  DaffPaypalExpressDriver,
+  DaffPaypalExpressServiceInterface,
 } from '@daffodil/paypal/driver';
 
 import {
@@ -38,17 +39,20 @@ import {
 } from '../actions/paypal.actions';
 
 @Injectable()
-export class DaffPaypalEffects<T extends DaffPaypalTokenRequest, V extends DaffPaypalTokenResponse>{
+export class DaffPaypalEffects<T extends DaffPaypalExpressTokenRequest, V extends DaffPaypalExpressTokenResponse>{
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffPaypalDriver) private driver: DaffPaypalServiceInterface<T, V>,
+    @Inject(DaffPaypalExpressDriver) private driver: DaffPaypalExpressServiceInterface<T, V>,
     @Inject(DAFF_PAYPAL_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    private storage: DaffCartStorageService,
   ) { }
 
   generatePaypalExpressToken$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(DaffPaypalActionTypes.GeneratePaypalExpressTokenAction),
-    switchMap((action: DaffGeneratePaypalExpressToken<T>) => this.driver.generateToken(action.payload).pipe(
+    switchMap((action: DaffGeneratePaypalExpressToken<T>) => of(null).pipe(
+      map(() => this.storage.getCartId()),
+      switchMap(cartId => this.driver.generateToken(cartId, action.payload)),
       map((resp: V) => new DaffGeneratePaypalExpressTokenSuccess(resp)),
       catchError((error: DaffError) => of(new DaffGeneratePaypalExpressTokenFailure(this.errorMatcher(error)))),
     )),

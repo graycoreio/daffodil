@@ -1,1 +1,1 @@
-export { DaffPaypalTokenResponseFactory } from './factories/paypal-token-response.factory';
+export * from './factories/public_api';

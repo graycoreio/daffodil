@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
-  DaffPaypalTokenRequest,
-  DaffPaypalTokenResponse,
+  DaffPaypalExpressTokenRequest,
+  DaffPaypalExpressTokenResponse,
 } from '@daffodil/paypal';
-import { DaffPaypalServiceInterface } from '@daffodil/paypal/driver';
+import { DaffPaypalExpressServiceInterface } from '@daffodil/paypal/driver';
 
 /**
  * @inheritdoc
@@ -14,12 +14,12 @@ import { DaffPaypalServiceInterface } from '@daffodil/paypal/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryPaypalService implements DaffPaypalServiceInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse> {
+export class DaffInMemoryPaypalService implements DaffPaypalExpressServiceInterface<DaffPaypalExpressTokenRequest, DaffPaypalExpressTokenResponse> {
   url = '/api/paypal/';
 
   constructor(private http: HttpClient) {}
 
-  generateToken(tokenRequest: DaffPaypalTokenRequest): Observable<DaffPaypalTokenResponse> {
-    return this.http.get<DaffPaypalTokenResponse>(this.url + tokenRequest.cartId);
+  generateToken(cartId: string, tokenRequest: DaffPaypalExpressTokenRequest): Observable<DaffPaypalExpressTokenResponse> {
+    return this.http.get<DaffPaypalExpressTokenResponse>(this.url);
   }
 }

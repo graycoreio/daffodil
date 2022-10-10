@@ -5,8 +5,8 @@ import {
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 
+import { DaffPaypalExpressReducerState } from '../reducers/express/public_api';
 import {
   DaffPaypalReducersState,
   DaffPaypalStateRootSlice,
@@ -14,48 +14,43 @@ import {
 import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-key';
 import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 
-export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> {
-  selectPaypalFeatureState: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffPaypalReducersState<T>>;
-  selectPaypalState: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffPaypalReducerState<T>>;
-  selectPaypalTokenResponse: MemoizedSelector<DaffPaypalStateRootSlice<T>, T>;
-  selectPaypalLoading: MemoizedSelector<DaffPaypalStateRootSlice<T>, boolean>;
-  selectPaypalError: MemoizedSelector<DaffPaypalStateRootSlice<T>, DaffStateError>;
-  selectPaypalToken: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
-  selectPaypalStartUrl: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
-  selectPaypalEditUrl: MemoizedSelector<DaffPaypalStateRootSlice<T>, string>;
+export interface DaffPaypalMemoizedSelectors {
+  selectPaypalFeatureState: MemoizedSelector<DaffPaypalStateRootSlice, DaffPaypalReducersState>;
+  selectPaypalState: MemoizedSelector<DaffPaypalStateRootSlice, DaffPaypalReducerState>;
+  selectPaypalExpressState: MemoizedSelector<DaffPaypalStateRootSlice, DaffPaypalExpressReducerState>;
+  selectPaypalLoading: MemoizedSelector<DaffPaypalStateRootSlice, boolean>;
+  selectPaypalError: MemoizedSelector<DaffPaypalStateRootSlice, DaffStateError>;
+  selectPaypalStartUrl: MemoizedSelector<DaffPaypalStateRootSlice, string>;
+  selectPaypalEditUrl: MemoizedSelector<DaffPaypalStateRootSlice, string>;
 }
 
-const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => {
+const createPaypalSelectors = (): DaffPaypalMemoizedSelectors => {
 
   /**
    * Paypal Feature State
    */
-  const selectPaypalFeatureState = createFeatureSelector<DaffPaypalReducersState<T>>(DAFF_PAYPAL_STORE_FEATURE_KEY);
+  const selectPaypalFeatureState = createFeatureSelector<DaffPaypalReducersState>(DAFF_PAYPAL_STORE_FEATURE_KEY);
 
   /**
    * Paypal State
    */
-  const selectPaypalState = createSelector(selectPaypalFeatureState, (state: DaffPaypalReducersState<T>) => state.paypal);
+  const selectPaypalState = createSelector(selectPaypalFeatureState, (state: DaffPaypalReducersState) => state.paypal);
+  const selectPaypalExpressState = createSelector(selectPaypalFeatureState, state => state.express);
 
-  const selectPaypalTokenResponse = createSelector(selectPaypalState,(state: DaffPaypalReducerState<T>) => state.paypalTokenResponse);
+  const selectPaypalLoading = createSelector<DaffPaypalStateRootSlice, any[], boolean>(selectPaypalState, (state: DaffPaypalReducerState) => state.loading);
 
-  const selectPaypalLoading = createSelector(selectPaypalState,(state: DaffPaypalReducerState<T>) => state.loading);
+  const selectPaypalError = createSelector<DaffPaypalStateRootSlice, any[], DaffStateError>(selectPaypalState, (state: DaffPaypalReducerState) => state.error);
 
-  const selectPaypalError = createSelector(selectPaypalState,(state: DaffPaypalReducerState<T>) => state.error);
+  const selectPaypalStartUrl = createSelector(selectPaypalExpressState, state => state.startUrl);
 
-  const selectPaypalToken = createSelector(selectPaypalTokenResponse,(state: T) => state.token);
-
-  const selectPaypalStartUrl = createSelector(selectPaypalTokenResponse,(state: T) => state.urls.start);
-
-  const selectPaypalEditUrl = createSelector(selectPaypalTokenResponse,(state: T) => state.urls.edit);
+  const selectPaypalEditUrl = createSelector(selectPaypalExpressState, state => state.editUrl);
 
   return {
     selectPaypalFeatureState,
     selectPaypalState,
-    selectPaypalTokenResponse,
+    selectPaypalExpressState,
     selectPaypalLoading,
     selectPaypalError,
-    selectPaypalToken,
     selectPaypalStartUrl,
     selectPaypalEditUrl,
   };
@@ -63,7 +58,7 @@ const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalM
 
 export const getDaffPaypalSelectors = (() => {
   let cache;
-  return <T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => cache = cache
+  return (): DaffPaypalMemoizedSelectors => cache = cache
     ? cache
-    : createPaypalSelectors<T>();
+    : createPaypalSelectors();
 })();

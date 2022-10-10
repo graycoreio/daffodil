@@ -6,16 +6,16 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
-import { DaffPaypalTokenResponse } from '@daffodil/paypal';
-import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
+import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
+import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendPaypalService implements InMemoryDbService {
-  paypalTokenResponse: DaffPaypalTokenResponse;
+  paypalTokenResponse: DaffPaypalExpressTokenResponse;
 
-  constructor(private paypalTokenResponseFactory: DaffPaypalTokenResponseFactory) {
+  constructor(private paypalTokenResponseFactory: DaffPaypalExpressTokenResponseFactory) {
     this.paypalTokenResponse = this.paypalTokenResponseFactory.create();
   }
 

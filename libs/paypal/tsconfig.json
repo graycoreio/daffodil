@@ -30,6 +30,9 @@
       "@daffodil/paypal/testing": [
         "libs/paypal/testing/src"
       ],
+      "@daffodil/paypal/routing": [
+        "libs/paypal/routing/src"
+      ],
     }
   }
 }

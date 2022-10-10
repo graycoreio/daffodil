@@ -5,12 +5,9 @@ import {
   DaffStoreFacade,
   DaffStateError,
 } from '@daffodil/core/state';
-import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 
-export interface DaffPaypalFacadeInterface<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> extends DaffStoreFacade<Action> {
+export interface DaffPaypalFacadeInterface extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  paypalTokenResponse$: Observable<T>;
-  paypalToken$: Observable<string>;
   paypalStartUrl$: Observable<string>;
   paypalEditUrl$: Observable<string>;
   error$: Observable<DaffStateError>;

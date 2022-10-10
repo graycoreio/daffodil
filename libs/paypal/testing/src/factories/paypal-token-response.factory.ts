@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import * as faker from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffPaypalTokenResponse } from '@daffodil/paypal';
+import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 
-export class MockPaypalTokenResponse implements DaffPaypalTokenResponse {
-  token = 'tokenstring';
+export class MockPaypalTokenResponse implements DaffPaypalExpressTokenResponse {
+  token = faker.random.word();
   urls = {
     start: faker.internet.url(),
     edit: faker.internet.url(),
@@ -15,8 +15,8 @@ export class MockPaypalTokenResponse implements DaffPaypalTokenResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaypalTokenResponseFactory extends DaffModelFactory<DaffPaypalTokenResponse>{
-  constructor(){
+export class DaffPaypalExpressTokenResponseFactory extends DaffModelFactory<DaffPaypalExpressTokenResponse>{
+  constructor() {
     super(MockPaypalTokenResponse);
   }
 }

@@ -1,7 +1,9 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffStateError } from '@daffodil/core/state';
 import {
-  DaffPaypalTokenResponse,
-  DaffPaypalTokenRequest,
+  DaffPaypalExpressTokenResponse,
+  DaffPaypalExpressTokenRequest,
 } from '@daffodil/paypal';
 import {
   DaffPaypalReducerState,
@@ -9,28 +11,29 @@ import {
   DaffGeneratePaypalExpressTokenSuccess,
   DaffGeneratePaypalExpressTokenFailure,
 } from '@daffodil/paypal/state';
-import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
+import {
+  DaffPaypalExpressTokenRequestFactory,
+  DaffPaypalExpressTokenResponseFactory,
+} from '@daffodil/paypal/testing';
 
 import { daffPaypalReducer } from './paypal.reducer';
 
-describe('Paypal | Paypal Reducer', () => {
-
-  let paypalTokenResponseFactory: DaffPaypalTokenResponseFactory;
-  let paypalTokenResponse: DaffPaypalTokenResponse;
-  let paypalRequest: DaffPaypalTokenRequest;
+describe('@daffodil/paypal/state | daffPaypalReducer', () => {
+  let paypalTokenResponseFactory: DaffPaypalExpressTokenResponseFactory;
+  let paypalTokenRequestFactory: DaffPaypalExpressTokenRequestFactory;
+  let paypalTokenResponse: DaffPaypalExpressTokenResponse;
+  let paypalRequest: DaffPaypalExpressTokenRequest;
   const initialState: DaffPaypalReducerState = {
-    paypalTokenResponse: null,
     loading: false,
     error: null,
   };
 
   beforeEach(() => {
-    paypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalExpressTokenResponseFactory);
+    paypalTokenRequestFactory = TestBed.inject(DaffPaypalExpressTokenRequestFactory);
 
     paypalTokenResponse = paypalTokenResponseFactory.create();
-    paypalRequest = {
-      cartId: 'cartId',
-    };
+    paypalRequest = paypalTokenRequestFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {
@@ -45,7 +48,7 @@ describe('Paypal | Paypal Reducer', () => {
   });
 
   describe('when a GeneratePaypalExpressTokenAction is triggered', () => {
-    let result;
+    let result: DaffPaypalReducerState;
 
     beforeEach(() => {
       const generatePaypalExpressTokenAction = new DaffGeneratePaypalExpressToken(paypalRequest);
@@ -59,9 +62,8 @@ describe('Paypal | Paypal Reducer', () => {
   });
 
   describe('when a GeneratePaypalExpressTokenSuccessAction is triggered', () => {
-
-    let result: DaffPaypalReducerState<DaffPaypalTokenResponse>;
-    let state: DaffPaypalReducerState<DaffPaypalTokenResponse>;
+    let result: DaffPaypalReducerState;
+    let state: DaffPaypalReducerState;
 
     beforeEach(() => {
       state = {
@@ -77,20 +79,15 @@ describe('Paypal | Paypal Reducer', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('sets paypalTokenResponse to the payload', () => {
-      expect(result.paypalTokenResponse).toEqual(paypalTokenResponse);
-    });
-
     it('sets error to null', () => {
       expect(result.error).toBeNull();
     });
   });
 
   describe('when GeneratePaypalExpressTokenFailureAction is triggered', () => {
-
     const error: DaffStateError = { code: 'code', recoverable: false, message: 'error message' };
-    let result: DaffPaypalReducerState<DaffPaypalTokenResponse>;
-    let state: DaffPaypalReducerState<DaffPaypalTokenResponse>;
+    let result: DaffPaypalReducerState;
+    let state: DaffPaypalReducerState;
 
     beforeEach(() => {
       state = {
@@ -106,10 +103,6 @@ describe('Paypal | Paypal Reducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
-    });
-
-    it('sets paypalTokenResponse to the null', () => {
-      expect(result.paypalTokenResponse).toBeNull();
     });
 
     it('sets the error', () => {
