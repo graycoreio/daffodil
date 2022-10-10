@@ -34,6 +34,7 @@
 	},
 	"devDependencies": {
 		"@daffodil/core": "0.0.0-PLACEHOLDER",
+		"@daffodil/payment": "0.0.0-PLACEHOLDER",
 		"@daffodil/cart": "0.0.0-PLACEHOLDER"
 	}
 }

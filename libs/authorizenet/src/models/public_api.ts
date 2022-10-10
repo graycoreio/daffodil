@@ -3,3 +3,5 @@ export { DaffAuthorizeNetTokenRequest } from './request/authorize-net-token-requ
 export * from './request/authorize-net-request';
 export * from './response/authorize-net-response';
 export { AcceptType } from './acceptJs/accept';
+export { DaffAuthorizenetPaymentRequest } from './request.type';
+export { DaffAuthorizenetPaymentResponse } from './response.type';
