@@ -8,11 +8,13 @@ import {
   DaffAuthorizeNetConfig,
   DaffAuthorizeNetConfigToken,
   DaffAuthorizeNetDriver,
+  DaffAuthorizeNetPaymentDriver,
   DaffAuthorizeNetPaymentId,
 } from '@daffodil/authorizenet/driver';
 
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from './authorize-net-payment-id';
 import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
+import { DaffMagentoAuthorizeNetPaymentService } from './payment.service';
 
 @NgModule({
   imports: [
@@ -35,6 +37,10 @@ export class DaffMagentoAuthorizeNetDriverModule {
         {
           provide: DaffAuthorizeNetDriver,
           useExisting: DaffMagentoAuthorizeNetService,
+        },
+        {
+          provide: DaffAuthorizeNetPaymentDriver,
+          useExisting: DaffMagentoAuthorizeNetPaymentService,
         },
         {
           provide: DaffAuthorizeNetPaymentId,
