@@ -13,7 +13,7 @@
     "build:server": "ng run daffio:server:production",
     "build:serverless": "npm run build:serverless:compile && npm run build:serverless:vercel",
     "build:serverless:compile": "webpack-cli --config serverless/webpack.serverless.config.js",
-    "build:serverless:vercel": "cp -r ./serverless/vercel/. ../../dist/apps/daffio/",
+    "build:serverless:vercel": "shx cp -r ./serverless/vercel/. ../../dist/apps/daffio/",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
     "lint": "cd ../.. && ng lint daffio",
     "lint:fix": "npm run lint -- --fix",

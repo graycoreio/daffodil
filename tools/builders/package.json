@@ -4,12 +4,12 @@
   "description": "Custom Angular builders for Daffodil projects.",
   "builders": "builders.json",
   "scripts": {
-    "build:copy-schema": "cp src/generate-fragment-types/schema.json ../../dist/builders/generate-fragment-types/schema.json",
-    "build:copy-builders": "cp builders.json ../../dist/builders/builders.json",
-    "build:copy-package": "cp package.json ../../dist/builders/package.json",
+    "build:copy-schema": "shx cp src/generate-fragment-types/schema.json ../../dist/builders/generate-fragment-types/schema.json",
+    "build:copy-builders": "shx cp builders.json ../../dist/builders/builders.json",
+    "build:copy-package": "shx cp package.json ../../dist/builders/package.json",
     "build:copy-static": "npm run build:copy-schema && npm run build:copy-builders && npm run build:copy-package",
     "build": "tsc && npm run build:copy-static",
-    "postbuild": "mkdir -p ../../node_modules/@daffodil/builders && cp -r ../../dist/builders/* ../../node_modules/@daffodil/builders"
+    "postbuild": "shx mkdir -p ../../node_modules/@daffodil/builders && shx cp -r ../../dist/builders/* ../../node_modules/@daffodil/builders"
   },
   "main": "./index.js"
 }
