@@ -97,7 +97,7 @@
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
-    "lerna": "^4.0.0",
+    "lerna": "^6.0.0",
     "minimist": "^1.2.5",
     "ng-packagr": "^13.0.0",
     "plugin-error": "^1.0.1",
