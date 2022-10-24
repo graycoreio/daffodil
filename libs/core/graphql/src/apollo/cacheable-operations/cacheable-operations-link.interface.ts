@@ -1,5 +1,5 @@
 import { ApolloLink } from '@apollo/client/core';
 
-export interface DaffApolloCacheableOperationLinkGenerator {
+export interface DaffApolloLinkGenerator {
   getLink(): ApolloLink;
 }

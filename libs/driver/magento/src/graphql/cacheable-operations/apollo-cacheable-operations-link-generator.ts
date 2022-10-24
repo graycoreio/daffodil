@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ApolloLink } from '@apollo/client/core';
 
-import { DaffApolloCacheableOperationLinkGenerator } from '@daffodil/core/graphql';
+import { DaffApolloLinkGenerator } from '@daffodil/core/graphql';
 
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token';
 
@@ -16,7 +16,7 @@ import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token'
 @Injectable({
   providedIn: 'root',
 })
-export class DaffMagentoApolloCacheableOperationsLinkGenerator implements DaffApolloCacheableOperationLinkGenerator {
+export class DaffMagentoApolloCacheableOperationsLinkGenerator implements DaffApolloLinkGenerator {
   constructor(
     @Inject(DAFF_MAGENTO_CACHEABLE_OPERATIONS) private apolloGetRequests: string[],
   ) {}
