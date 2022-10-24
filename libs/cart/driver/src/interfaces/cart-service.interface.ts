@@ -30,6 +30,11 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
    * Remove all items from a cart.
    */
   clear(id: T['id']): Observable<Partial<T>>;
+
+  /**
+   * Merge a guest cart into a customer cart.
+   */
+  merge(guestCart: T['id'], customerCart?: T['id']): Observable<DaffDriverResponse<T>>;
 }
 
 export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface>(

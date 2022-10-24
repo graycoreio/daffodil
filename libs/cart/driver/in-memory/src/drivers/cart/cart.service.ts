@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Observable,
+  of,
   throwError,
 } from 'rxjs';
 import {
@@ -50,5 +51,18 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface {
 
   create(): Observable<{id: DaffCart['id']}> {
     return this.http.post<{id: DaffCart['id']}>(this.url, {});
+  }
+
+  merge(guestCart: DaffCart['id'], customerCart?: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
+    return this.http.post<DaffCart>(`${this.url}/${guestCart}/merge`, {
+      source: guestCart,
+      destination: customerCart,
+    }).pipe(
+      catchError((error: Error) => throwError(() => new DaffCartNotFoundError(error.message))),
+      map(result => ({
+        response: result,
+        errors: [],
+      })),
+    );
   }
 }

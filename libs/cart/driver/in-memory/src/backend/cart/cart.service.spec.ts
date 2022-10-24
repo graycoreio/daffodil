@@ -143,6 +143,68 @@ describe('DaffInMemoryBackendCartService', () => {
     });
   });
 
+  describe('processing a merge request', () => {
+    let result;
+
+    beforeEach(() => {
+      mockCart.items.push(mockCartItem);
+      reqInfoStub.url = `${cartUrl}merge`;
+    });
+
+    describe('when the destination is not specified', () => {
+      beforeEach(() => {
+        reqInfoStub.req.body = { source: mockCart.id };
+
+        result = service.post(reqInfoStub);
+      });
+
+      it('should create a new cart', () => {
+        expect(result.body.id).not.toEqual(mockCart.id);
+      });
+
+      it('should add the items to the new cart', () => {
+        expect(result.body.items).toEqual(jasmine.arrayContaining(mockCart.items));
+      });
+    });
+
+    describe('when the destination is specified', () => {
+      let destinationCart: DaffCart;
+
+      beforeEach(() => {
+        destinationCart = cartFactory.create();
+        reqInfoStub.req.body = { source: mockCart.id, destination: destinationCart.id };
+      });
+
+      describe('and in the collection', () => {
+        beforeEach(() => {
+          collection.push(destinationCart);
+
+          result = service.post(reqInfoStub);
+        });
+
+        it('should return the destination cart', () => {
+          expect(result.body.id).toEqual(destinationCart.id);
+        });
+
+        it('should add the source items to the destination cart', () => {
+          mockCart.items.forEach(item => {
+            expect(result.body.items).toContain(item);
+          });
+        });
+      });
+
+      describe('and not in the collection', () => {
+        beforeEach(() => {
+          result = service.post(reqInfoStub);
+        });
+
+        it('should return not found', () => {
+          expect(result.status).toEqual(STATUS.NOT_FOUND);
+        });
+      });
+    });
+  });
+
   describe('processing an addToCart request', () => {
     let result;
 

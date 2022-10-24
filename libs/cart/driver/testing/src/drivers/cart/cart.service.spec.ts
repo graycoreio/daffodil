@@ -39,6 +39,13 @@ describe('@daffodil/cart/driver/testing | DaffTestingCartService', () => {
     });
   });
 
+  describe('merge', () => {
+    it('should return an object and not throw an error', () => {
+      const expected = cold('(a|)', { a: jasmine.any(Object) });
+      expect(service.merge(cartId)).toBeObservable(expected);
+    });
+  });
+
   describe('create | creating a cart', () => {
     it('should return a cart ID and not throw an error', () => {
       const expected = cold('(a|)', { a: jasmine.objectContaining({

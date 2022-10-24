@@ -121,6 +121,21 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
     });
   });
 
+  describe('merge', () => {
+    it('should send a post request and return the cart', done => {
+      cartService.merge(cartId).subscribe(result => {
+        expect(result.response).toEqual(mockCart);
+        done();
+      });
+
+      const req = httpMock.expectOne(`${cartService.url}/${cartId}/merge`);
+
+      expect(req.request.method).toBe('POST');
+
+      req.flush(mockCart);
+    });
+  });
+
   describe('create | creating a cart', () => {
     it('should send a post request and return the cart', done => {
       cartService.create().subscribe(result => {

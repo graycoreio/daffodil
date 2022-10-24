@@ -9,6 +9,7 @@ import { DaffInvalidRegionError } from './invalid-region';
 import { DaffCartItemExceedsMaxQtyError } from './item-exceeds-max-qty';
 import { DaffProductNotFoundError } from './product-not-found';
 import { DaffProductOutOfStockError } from './product-out-of-stock';
+import { DaffUnauthorizedForCartError } from './unauthorized-for-cart';
 
 /**
  * A mapping from error codes to error class constructors.
@@ -24,4 +25,5 @@ export const DaffCartDriverErrorMap = {
   [DaffCartDriverErrorCodes.INVALID_API_RESPONSE]: DaffCartInvalidAPIResponseError,
   [DaffCartDriverErrorCodes.EXPIRED_PAYMENT_METHOD]: DaffCartExpiredPaymentTokenError,
   [DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY]: DaffCartItemExceedsMaxQtyError,
+  [DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART]: DaffUnauthorizedForCartError,
 };
