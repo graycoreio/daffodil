@@ -8,7 +8,10 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import { of } from 'rxjs';
+import {
+  defer,
+  of,
+} from 'rxjs';
 import {
   switchMap,
   map,
@@ -66,21 +69,20 @@ export class DaffCartPaymentProcessorEffects<
     switchMap((action: DaffPaymentGenerateToken) =>
       // create a new inner observable to prevent the effects obs
       // from completing on outer catch error
-      of(null).pipe(
-        switchMap(() =>
-          this.injector.get(this.processors[action.request.kind].driver).generateToken(action.request).pipe(
-            map(e => [e, action]),
-            switchMap(([response, act]: [DaffPaymentResponse<any>, DaffPaymentGenerateToken]) =>
-              this.driver.update(this.storage.getCartId(), <T>{
-                method: response.method,
-                payment_info: response.data,
-              }, <R>act.address).pipe(
-                map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
-                catchError(error => of(new DaffCartPaymentUpdateFailure(this.errorMatcher(error)))),
-              ),
+      defer(() =>
+        this.injector.get(this.processors[action.request.kind].driver).generateToken(action.request).pipe(
+          map(e => [e, action]),
+          switchMap(([response, act]: [DaffPaymentResponse<any>, DaffPaymentGenerateToken]) =>
+            this.driver.update(this.storage.getCartId(), <T>{
+              method: response.method,
+              payment_info: response.data,
+            }, <R>act.address).pipe(
+              map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
+              catchError(error => of(new DaffCartPaymentUpdateFailure(this.errorMatcher(error)))),
             ),
-            catchError(error => of(new DaffPaymentGenerateTokenFailure(this.paymentErrorMatcher(error)))),
-          )),
+          ),
+          catchError(error => of(new DaffPaymentGenerateTokenFailure(this.paymentErrorMatcher(error)))),
+        ),
       ),
     ),
   ));

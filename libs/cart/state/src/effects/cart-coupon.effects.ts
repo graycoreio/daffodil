@@ -7,7 +7,10 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import { of } from 'rxjs';
+import {
+  defer,
+  of,
+} from 'rxjs';
 import {
   switchMap,
   map,
@@ -59,8 +62,7 @@ export class DaffCartCouponEffects<
 
   apply$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponApplyAction),
-    switchMap((action: DaffCartCouponApply<V>) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartCouponApply<V>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.apply(cartId, action.payload)),
       map(resp => new DaffCartCouponApplySuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
@@ -73,8 +75,7 @@ export class DaffCartCouponEffects<
 
   list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponListAction),
-    switchMap((action: DaffCartCouponList) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartCouponList) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.list(cartId)),
       map(resp => new DaffCartCouponListSuccess<V>(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
@@ -87,8 +88,7 @@ export class DaffCartCouponEffects<
 
   remove$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponRemoveAction),
-    switchMap((action: DaffCartCouponRemove<V>) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartCouponRemove<V>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.remove(cartId, action.payload)),
       map(resp => new DaffCartCouponRemoveSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
@@ -101,8 +101,7 @@ export class DaffCartCouponEffects<
 
   removeAll$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartCouponActionTypes.CartCouponRemoveAllAction),
-    switchMap((action: DaffCartCouponRemoveAll) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartCouponRemoveAll) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.removeAll(cartId)),
       map(resp => new DaffCartCouponRemoveAllSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError

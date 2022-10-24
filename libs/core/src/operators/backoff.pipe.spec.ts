@@ -1,4 +1,5 @@
 import {
+  defer,
   of,
   throwError,
 } from 'rxjs';
@@ -25,8 +26,7 @@ describe('Core | Operators | Backoff', () => {
       const expectedMarble = '10ms 20ms 40ms 80ms #';
       const expectedValue = null;
       const expectedError = new Error('error message');
-      const source$ = of(null).pipe(
-        switchMap(() => throwError(expectedError)),
+      const source$ = defer(() => throwError(expectedError)).pipe(
         backoff(4, 10),
       );
       expectObservable(source$).toBe(expectedMarble, expectedValue, expectedError);

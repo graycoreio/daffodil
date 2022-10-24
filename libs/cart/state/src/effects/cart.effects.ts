@@ -10,12 +10,12 @@ import {
 import {
   of,
   EMPTY,
+  defer,
 } from 'rxjs';
 import {
   switchMap,
   map,
   catchError,
-  switchMapTo,
   tap,
 } from 'rxjs/operators';
 
@@ -74,7 +74,7 @@ export class DaffCartEffects<T extends DaffCart> {
       tap(() => {
         this.storage.setCartId(action.payload.id);
       }),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
       catchError(error => of(new DaffCartStorageFailure(this.errorMatcher(error)))),
     )),
   ));
@@ -82,8 +82,7 @@ export class DaffCartEffects<T extends DaffCart> {
 
   get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartLoadAction),
-    switchMap((action: DaffCartLoad) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartLoad) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.get(cartId)),
       map(({ response, errors }) => {
         if (errors.length === 0) {
@@ -119,8 +118,7 @@ export class DaffCartEffects<T extends DaffCart> {
 
   clear$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartClearAction),
-    switchMap((action: DaffCartClear) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartClear) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.clear(cartId)),
       map((resp: T) => new DaffCartClearSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
