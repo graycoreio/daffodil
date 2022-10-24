@@ -1,2 +1,2 @@
 export { DaffQueuedApollo } from './queued-apollo/queued-apollo.service';
-export { DaffApolloCacheableOperationLinkGenerator } from './cacheable-operations/cacheable-operations-link.interface';
+export { DaffApolloLinkGenerator } from './cacheable-operations/cacheable-operations-link.interface';
