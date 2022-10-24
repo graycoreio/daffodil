@@ -38,6 +38,7 @@
 		"@daffodil/driver": "0.0.0-PLACEHOLDER"
 	},
   "devDependencies": {
+    "@daffodil/auth": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/payment": "0.0.0-PLACEHOLDER",
     "@daffodil/product": "0.0.0-PLACEHOLDER",
