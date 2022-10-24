@@ -8,11 +8,13 @@ import {
   DaffRegisterDriver,
   DaffLoginDriver,
   DaffAuthDriver,
+  DaffResetPasswordDriver,
 } from '@daffodil/auth/driver';
 
 import { DaffMagentoAuthService } from './auth.service';
 import { DaffMagentoLoginService } from './login.service';
 import { DaffMagentoRegisterService } from './register.service';
+import { DaffMagentoResetPasswordService } from './reset-password.service';
 
 @NgModule({
   imports: [
@@ -35,6 +37,10 @@ export class DaffAuthMagentoDriverModule {
         {
           provide: DaffAuthDriver,
           useExisting: DaffMagentoAuthService,
+        },
+        {
+          provide: DaffResetPasswordDriver,
+          useExisting: DaffMagentoResetPasswordService,
         },
       ],
     };

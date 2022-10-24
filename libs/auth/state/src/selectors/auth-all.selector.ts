@@ -14,10 +14,15 @@ import {
   getDaffAuthRegisterSelectors,
   DaffAuthRegisterSelectors,
 } from './register/register.selector';
+import {
+  DaffAuthResetPasswordSelectors,
+  getDaffAuthResetPasswordSelectors,
+} from './reset-password/selector';
 
 export interface DaffAuthSelectors extends
   DaffAuthRegisterSelectors,
   DaffAuthLoginSelectors,
+  DaffAuthResetPasswordSelectors,
   AuthSelectors {
   selectAuthFeatureState: MemoizedSelector<Record<string, any>, DaffAuthFeatureState>;
 }
@@ -29,6 +34,7 @@ export const getDaffAuthSelectors = (() => {
       ...getAuthSelectors(),
       ...getDaffAuthLoginSelectors(),
       ...getDaffAuthRegisterSelectors(),
+      ...getDaffAuthResetPasswordSelectors(),
       selectAuthFeatureState: getDaffAuthFeatureStateSelector(),
     };
 })();

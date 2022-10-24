@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { DaffAuthEffects } from './effects/auth.effects';
 import { DaffAuthLoginEffects } from './effects/login.effects';
 import { DaffAuthRegisterEffects } from './effects/register.effects';
+import { DaffAuthResetPasswordEffects } from './effects/reset-password.effects';
 import {
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
@@ -17,6 +18,7 @@ import {
       DaffAuthEffects,
       DaffAuthLoginEffects,
       DaffAuthRegisterEffects,
+      DaffAuthResetPasswordEffects,
     ]),
   ],
 })

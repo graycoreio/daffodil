@@ -8,11 +8,13 @@ import {
   DaffLoginDriver,
   DaffRegisterDriver,
   DaffAuthDriver,
+  DaffResetPasswordDriver,
 } from '@daffodil/auth/driver';
 
 import { DaffInMemoryAuthService } from './auth/auth.service';
 import { DaffInMemoryLoginService } from './login/login.service';
 import { DaffInMemoryRegisterService } from './register/register.service';
+import { DaffInMemoryResetPasswordService } from './reset-password/service';
 
 @NgModule({
   imports: [
@@ -35,6 +37,10 @@ export class DaffAuthInMemoryDriverModule {
         {
           provide: DaffAuthDriver,
           useExisting: DaffInMemoryAuthService,
+        },
+        {
+          provide: DaffResetPasswordDriver,
+          useExisting: DaffInMemoryResetPasswordService,
         },
       ],
     };
