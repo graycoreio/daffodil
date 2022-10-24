@@ -35,6 +35,10 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
       return this.logout(reqInfo);
     } else if (reqInfo.id === 'check') {
       return this.check(reqInfo);
+    } else if (reqInfo.id === 'resetPassword') {
+      return this.resetPassword(reqInfo);
+    } else if (reqInfo.id === 'sendResetEmail') {
+      return this.sendResetEmail(reqInfo);
     }
   }
 
@@ -93,6 +97,32 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   }
 
   private check(reqInfo) {
+    return reqInfo.utils.createResponse$(() => ({
+      body: {},
+      status: STATUS.OK,
+    }));
+  }
+
+  private resetPassword(reqInfo) {
+    const {
+      email,
+      password,
+    } = reqInfo.utils.getJsonBody(reqInfo.req);
+
+    if (this.customers[email]) {
+      this.customers[email].password = password;
+
+      return reqInfo.utils.createResponse$(() => ({
+        status: STATUS.OK,
+      }));
+    }
+
+    return reqInfo.utils.createResponse$(() => ({
+      status: STATUS.UNAUTHORIZED,
+    }));
+  }
+
+  private sendResetEmail(reqInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: {},
       status: STATUS.OK,
