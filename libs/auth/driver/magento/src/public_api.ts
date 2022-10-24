@@ -6,7 +6,7 @@ export { DaffMagentoRegisterService } from './register.service';
 
 export { DaffMagentoAuthTransformerService } from './transforms/auth-transformer.service';
 
-export { MagentoAuth } from './models/response/auth';
+export { MagentoAuthApolloBearerTokenLinkGenerator } from './apollo-bearer-token-link-generator';
 
 export * from './queries/public_api';
 export * from './models/public_api';
