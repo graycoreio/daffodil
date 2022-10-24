@@ -14,7 +14,7 @@ import {
   switchMapTo,
 } from 'rxjs/operators';
 
-import { DaffAuthActionTypes } from '@daffodil/auth/state';
+import { DaffAuthLoginActionTypes } from '@daffodil/auth/state';
 
 @Injectable()
 export class DemoAuthEffects {
@@ -26,7 +26,7 @@ export class DemoAuthEffects {
 
   authSuccess$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(
-      DaffAuthActionTypes.AuthLoginSuccessAction,
+      DaffAuthLoginActionTypes.LoginSuccessAction,
     ),
     tap(() => this.router.navigateByUrl('/')),
     switchMapTo(EMPTY),
