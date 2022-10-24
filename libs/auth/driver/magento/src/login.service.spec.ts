@@ -11,13 +11,16 @@ import {
   DaffAuthToken,
   DaffLoginInfo,
   DaffAccountRegistration,
-  DaffAuthInvalidAPIResponseError,
-  DaffAuthenticationFailedError,
-  DaffUnauthorizedError,
 } from '@daffodil/auth';
+import {
+  DaffAuthenticationFailedError,
+  DaffAuthInvalidAPIResponseError,
+  DaffUnauthorizedError,
+} from '@daffodil/auth/driver';
 import {
   DaffMagentoAuthTransformerService,
   generateTokenMutation,
+  MagentoGenerateTokenResponse,
   MagentoRevokeCustomerTokenResponse,
   revokeCustomerTokenMutation,
 } from '@daffodil/auth/driver/magento';
@@ -28,13 +31,13 @@ import {
 
 import { DaffMagentoLoginService } from './login.service';
 
-describe('Driver | Magento | Auth | LoginService', () => {
+describe('@daffodil/auth/driver/magento | LoginService', () => {
   let controller: ApolloTestingController;
   let service: DaffMagentoLoginService;
 
   const authTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoAuthTransformerService', ['transform']);
 
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+  let registrationFactory: DaffAccountRegistrationFactory;
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
   let mockAuth: DaffAuthToken;
@@ -42,8 +45,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
   let token: string;
   let email: string;
   let password: string;
-  let firstName: string;
-  let lastName: string;
   let mockRegistration: DaffAccountRegistration;
 
   beforeEach(() => {
@@ -62,14 +63,13 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
     service = TestBed.inject(DaffMagentoLoginService);
     controller = TestBed.inject(ApolloTestingController);
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
     token = mockAuth.token;
-    firstName = mockRegistration.customer.firstName;
-    lastName = mockRegistration.customer.lastName;
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
     mockLoginInfo = { email, password };
   });
@@ -80,7 +80,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
   describe('login | logging the user in and getting an auth token', () => {
     describe('when the call to the Magento API is successful', () => {
-      let response;
+      let response: MagentoGenerateTokenResponse;
 
       beforeEach(() => {
         response = {

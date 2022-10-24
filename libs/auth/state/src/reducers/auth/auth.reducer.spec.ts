@@ -9,8 +9,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthReducer as reducer } from './auth.reducer';
 
-
-describe('Auth | Reducer | Auth', () => {
+describe('@daffodil/auth/state | daffAuthReducer', () => {
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
       const action = <any>{};

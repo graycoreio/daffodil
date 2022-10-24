@@ -3,8 +3,6 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { DaffAuthToken } from '@daffodil/auth';
-
 import {
   DaffAuthFeatureState,
   DAFF_AUTH_STORE_FEATURE_KEY,
@@ -15,6 +13,6 @@ import {
  */
 export const getDaffAuthFeatureStateSelector = (() => {
   let cache;
-  return <T extends DaffAuthToken = DaffAuthToken>(): MemoizedSelector<Record<string, any>, DaffAuthFeatureState<T>> =>
-    cache = cache || createFeatureSelector<DaffAuthFeatureState<T>>(DAFF_AUTH_STORE_FEATURE_KEY);
+  return (): MemoizedSelector<Record<string, any>, DaffAuthFeatureState> =>
+    cache = cache || createFeatureSelector<DaffAuthFeatureState>(DAFF_AUTH_STORE_FEATURE_KEY);
 })();

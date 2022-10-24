@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffLoginInfo,
   DaffAccountRegistration,
@@ -14,24 +16,20 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthRegisterReducer as reducer } from './register.reducer';
 
-describe('Auth | Reducer | Register', () => {
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+describe('@daffodil/auth/state | daffAuthRegisterReducer', () => {
+  let registrationFactory: DaffAccountRegistrationFactory;
 
-  let mockLoginInfo: DaffLoginInfo;
   let mockRegistration: DaffAccountRegistration;
   let email: string;
   let password: string;
-  let firstName: string;
-  let lastName: string;
 
   beforeEach(() => {
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
+
     mockRegistration = registrationFactory.create();
 
-    firstName = mockRegistration.customer.firstName;
-    lastName = mockRegistration.customer.lastName;
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
-    mockLoginInfo = { email, password };
   });
 
   describe('when an unknown action is triggered', () => {
@@ -68,7 +66,7 @@ describe('Auth | Reducer | Register', () => {
         loading: true,
       };
 
-      const authRegisterSuccess = new DaffAuthRegisterSuccess(mockLoginInfo);
+      const authRegisterSuccess = new DaffAuthRegisterSuccess();
       result = reducer(state, authRegisterSuccess);
     });
 

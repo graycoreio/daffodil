@@ -9,23 +9,23 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffAuthToken } from '@daffodil/auth';
 import {
-  DaffAuthFeatureState,
   DaffAuthLoginReducerState,
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
   DaffAuthLoginSuccess,
+  DaffAuthStateRootSlice,
 } from '@daffodil/auth/state';
 import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { getDaffAuthLoginSelectors } from './login.selector';
 
-describe('Auth | Selector | Login', () => {
-  let store: Store<DaffAuthFeatureState<DaffAuthToken>>;
+describe('@daffodil/auth/state | getDaffAuthLoginSelectors', () => {
+  let store: Store<DaffAuthStateRootSlice>;
 
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
-  let state: DaffAuthLoginReducerState<DaffAuthToken>;
+  let state: DaffAuthLoginReducerState;
   let loading: boolean;
   let errors: DaffStateError[];
   let token: string;
@@ -33,8 +33,6 @@ describe('Auth | Selector | Login', () => {
 
   const {
     selectAuthLoginState,
-    selectAuthLoginToken,
-    selectAuthLoginTokenValue,
     selectAuthLoginLoading,
     selectAuthLoginErrors,
   } = getDaffAuthLoginSelectors();
@@ -58,7 +56,6 @@ describe('Auth | Selector | Login', () => {
     state = {
       loading,
       errors,
-      auth: mockAuthToken,
     };
 
     // init store to desired state
@@ -69,22 +66,6 @@ describe('Auth | Selector | Login', () => {
     it('selects the login state', () => {
       const selector = store.pipe(select(selectAuthLoginState));
       const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectAuthLoginToken', () => {
-    it('selects the auth token', () => {
-      const selector = store.pipe(select(selectAuthLoginToken));
-      const expected = cold('a', { a: mockAuthToken });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectAuthLoginTokenValue', () => {
-    it('selects the auth token value', () => {
-      const selector = store.pipe(select(selectAuthLoginTokenValue));
-      const expected = cold('a', { a: token });
       expect(selector).toBeObservable(expected);
     });
   });

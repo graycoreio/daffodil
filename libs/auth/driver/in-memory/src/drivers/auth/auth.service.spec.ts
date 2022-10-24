@@ -9,7 +9,7 @@ import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 
 import { DaffInMemoryAuthService } from './auth.service';
 
-describe('Driver | InMemory | Auth | AuthService', () => {
+describe('@daffodil/auth/driver/in-memory | AuthService', () => {
   let service;
   let httpMock: HttpTestingController;
 

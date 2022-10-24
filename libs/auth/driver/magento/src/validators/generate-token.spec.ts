@@ -1,11 +1,11 @@
 import { ApolloQueryResult } from '@apollo/client/core';
 
-import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth';
+import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
 import { MagentoGenerateTokenResponse } from '@daffodil/auth/driver/magento';
 
 import { validateGenerateTokenResponse as validator } from './generate-token';
 
-describe('Driver | Magento | Auth | Validator | GenerateToken', () => {
+describe('@daffodil/auth/driver/magento | GenerateToken', () => {
   let response: ApolloQueryResult<MagentoGenerateTokenResponse>;
 
   beforeEach(() => {

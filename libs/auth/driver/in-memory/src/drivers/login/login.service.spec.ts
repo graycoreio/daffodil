@@ -15,18 +15,16 @@ import {
 
 import { DaffInMemoryLoginService } from './login.service';
 
-describe('Driver | InMemory | Auth | LoginService', () => {
+describe('@daffodil/auth/driver/in-memory | LoginService', () => {
   let loginService;
   let httpMock: HttpTestingController;
 
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+  let registrationFactory: DaffAccountRegistrationFactory;
   const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
   let token: string;
   let email: string;
   let password: string;
-  let firstName: string;
-  let lastName: string;
   let mockRegistration: DaffAccountRegistration;
   let mockAuth: DaffAuthToken;
 
@@ -42,14 +40,13 @@ describe('Driver | InMemory | Auth | LoginService', () => {
 
     httpMock = TestBed.inject(HttpTestingController);
     loginService = TestBed.inject(DaffInMemoryLoginService);
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();
 
     token = mockAuth.token;
-    firstName = mockRegistration.customer.firstName;
-    lastName = mockRegistration.customer.lastName;
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
   });
 

@@ -1,27 +1,13 @@
 import {
-  DaffLoginInfo,
-  DaffAuthToken,
-  DaffAccountRegistration,
-} from '@daffodil/auth';
-
-import {
   DaffAuthActionTypes,
   DaffAuthActions,
-} from '../../actions/auth.actions';
+} from '../../actions/public_api';
 import { daffAuthInitialState } from './auth-initial-state';
 import { DaffAuthReducerState } from './auth-reducer-state.interface';
 
-export function daffAuthReducer<
-  T extends DaffLoginInfo,
-  U extends DaffAuthToken,
-  S extends DaffAccountRegistration,
->(
+export function daffAuthReducer(
   state = daffAuthInitialState,
-  action: DaffAuthActions<
-  T,
-  U,
-  S
-  >,
+  action: DaffAuthActions,
 ): DaffAuthReducerState {
   switch (action.type) {
     case DaffAuthActionTypes.AuthCheckAction:

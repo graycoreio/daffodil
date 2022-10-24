@@ -7,7 +7,6 @@ import {
 import {
   map,
   catchError,
-  mapTo,
 } from 'rxjs/operators';
 
 import {
@@ -35,7 +34,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffMagentoLoginService implements DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken> {
+export class DaffMagentoLoginService implements DaffLoginServiceInterface {
   constructor(
     private apollo: Apollo,
     public authTransformer: DaffMagentoAuthTransformerService,
@@ -58,7 +57,7 @@ export class DaffMagentoLoginService implements DaffLoginServiceInterface<DaffLo
   logout() {
     return this.apollo.mutate<MagentoRevokeCustomerTokenResponse>({ mutation: revokeCustomerTokenMutation }).pipe(
       map(validateRevokeTokenResponse),
-      mapTo(undefined),
+      map(() => undefined),
       catchError(err => throwError(() => transformMagentoAuthError(err))),
     );
   }

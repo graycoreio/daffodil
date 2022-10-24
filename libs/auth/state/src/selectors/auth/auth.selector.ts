@@ -17,7 +17,7 @@ export interface AuthSelectors {
 
 const createAuthSelectors = <T extends DaffAuthToken = DaffAuthToken>() => {
   const selectAuthState = createSelector(
-    getDaffAuthFeatureStateSelector<T>(),
+    getDaffAuthFeatureStateSelector(),
     state => state.auth,
   );
 

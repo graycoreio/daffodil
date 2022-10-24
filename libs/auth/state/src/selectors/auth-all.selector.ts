@@ -1,7 +1,5 @@
 import { MemoizedSelector } from '@ngrx/store';
 
-import { DaffAuthToken } from '@daffodil/auth';
-
 import { DaffAuthFeatureState } from '../reducers/public_api';
 import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';
 import {
@@ -17,20 +15,20 @@ import {
   DaffAuthRegisterSelectors,
 } from './register/register.selector';
 
-export interface DaffAuthSelectors<T extends DaffAuthToken = DaffAuthToken> extends
+export interface DaffAuthSelectors extends
   DaffAuthRegisterSelectors,
-  DaffAuthLoginSelectors<T>,
+  DaffAuthLoginSelectors,
   AuthSelectors {
-  selectAuthFeatureState: MemoizedSelector<Record<string, any>, DaffAuthFeatureState<T>>;
+  selectAuthFeatureState: MemoizedSelector<Record<string, any>, DaffAuthFeatureState>;
 }
 
 export const getDaffAuthSelectors = (() => {
   let cache;
-  return <T extends DaffAuthToken = DaffAuthToken>(): DaffAuthSelectors<T> =>
+  return (): DaffAuthSelectors =>
     cache = cache || {
-      ...getAuthSelectors<T>(),
-      ...getDaffAuthLoginSelectors<T>(),
-      ...getDaffAuthRegisterSelectors<T>(),
-      selectAuthFeatureState: getDaffAuthFeatureStateSelector<T>(),
+      ...getAuthSelectors(),
+      ...getDaffAuthLoginSelectors(),
+      ...getDaffAuthRegisterSelectors(),
+      selectAuthFeatureState: getDaffAuthFeatureStateSelector(),
     };
 })();

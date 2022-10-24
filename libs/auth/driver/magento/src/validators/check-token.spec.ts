@@ -1,11 +1,11 @@
 import { ApolloQueryResult } from '@apollo/client/core';
 
-import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth';
+import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
 import { MagentoCheckTokenResponse } from '@daffodil/auth/driver/magento';
 
 import { validateCheckTokenResponse as validator } from './check-token';
 
-describe('Driver | Magento | Auth | Validator | CheckToken', () => {
+describe('@daffodil/auth/driver/magento | CheckToken', () => {
   let response: ApolloQueryResult<MagentoCheckTokenResponse>;
 
   beforeEach(() => {

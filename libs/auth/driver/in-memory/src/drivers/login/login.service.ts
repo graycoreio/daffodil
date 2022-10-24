@@ -19,7 +19,7 @@ import { DaffLoginServiceInterface } from '@daffodil/auth/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken> {
+export class DaffInMemoryLoginService implements DaffLoginServiceInterface {
   url = '/api/auth/';
 
   constructor(private http: HttpClient) {}

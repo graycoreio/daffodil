@@ -1,42 +1,32 @@
-import {
-  DaffLoginInfo,
-  DaffAuthToken,
-  DaffAccountRegistration,
-} from '@daffodil/auth';
+import { DaffAccountRegistration } from '@daffodil/auth';
 
 import {
-  DaffAuthActionTypes,
-  DaffAuthActions,
-} from '../../actions/auth.actions';
+  DaffAuthRegisterActionTypes,
+  DaffAuthRegisterActions,
+} from '../../actions/public_api';
 import { daffAuthRegisterInitialState } from './register-initial-state';
 import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
 
 export function daffAuthRegisterReducer<
-  T extends DaffLoginInfo,
-  U extends DaffAuthToken,
-  S extends DaffAccountRegistration,
+  T extends DaffAccountRegistration,
 >(
   state = daffAuthRegisterInitialState,
-  action: DaffAuthActions<
-  T,
-  U,
-  S
-  >,
+  action: DaffAuthRegisterActions<T>,
 ): DaffAuthRegisterReducerState {
   switch (action.type) {
-    case DaffAuthActionTypes.AuthRegisterAction:
+    case DaffAuthRegisterActionTypes.RegisterAction:
       return {
         ...state,
         loading: true,
       };
 
-    case DaffAuthActionTypes.AuthRegisterSuccessAction:
+    case DaffAuthRegisterActionTypes.RegisterSuccessAction:
       return {
         ...state,
         loading: false,
       };
 
-    case DaffAuthActionTypes.AuthRegisterFailureAction:
+    case DaffAuthRegisterActionTypes.RegisterFailureAction:
       return {
         ...state,
         loading: false,

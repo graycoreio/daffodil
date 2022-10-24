@@ -5,19 +5,21 @@ import {
   throwError,
 } from 'rxjs';
 import {
-  mapTo,
+  map,
   catchError,
+  switchMap,
 } from 'rxjs/operators';
 
+import { DaffAccountRegistration } from '@daffodil/auth';
 import {
-  DaffAccountRegistration,
-  DaffLoginInfo,
-} from '@daffodil/auth';
-import { DaffRegisterServiceInterface } from '@daffodil/auth/driver';
+  DaffRegisterServiceInterface,
+  DaffRegistrationFailedError,
+} from '@daffodil/auth/driver';
 
 import { transformMagentoAuthError } from './errors/transform';
+import { DaffMagentoLoginService } from './login.service';
+import { MagentoRegisterResponse } from './models/public_api';
 import { createCustomerMutation } from './queries/public_api';
-import { DaffMagentoLoginInfoTransformerService } from './transforms/login-info-transformer.service';
 
 /**
  * @inheritdoc
@@ -25,23 +27,36 @@ import { DaffMagentoLoginInfoTransformerService } from './transforms/login-info-
 @Injectable({
   providedIn: 'root',
 })
-export class DaffMagentoRegisterService implements DaffRegisterServiceInterface<DaffAccountRegistration, DaffLoginInfo> {
+export class DaffMagentoRegisterService implements DaffRegisterServiceInterface {
   constructor(
     private apollo: Apollo,
-    private loginInfoTransformer: DaffMagentoLoginInfoTransformerService,
+    private loginService: DaffMagentoLoginService,
   ) {}
 
-  register(registration: DaffAccountRegistration): Observable<DaffLoginInfo> {
-    return this.apollo.mutate({
+  register(registration: DaffAccountRegistration): Observable<string> {
+    return this.registerOnly(registration).pipe(
+      switchMap(() => this.loginService.login({ email: registration.email, password: registration.password })),
+      map(({ token }) => token),
+    );
+  }
+
+  registerOnly({ email, password }: DaffAccountRegistration): Observable<void> {
+    return this.apollo.mutate<MagentoRegisterResponse>({
       mutation: createCustomerMutation,
       variables: {
-        email: registration.customer.email,
-        password: registration.password,
-        firstname: registration.customer.firstName,
-        lastname: registration.customer.lastName,
+        email,
+        password,
+        firstname: 'temp',
+        lastname: 'temp',
       },
     }).pipe(
-      mapTo(this.loginInfoTransformer.transform(registration)),
+      map((resp) => {
+        if (!resp.data.createCustomerV2.customer.email) {
+          throw new DaffRegistrationFailedError(`The account for email ${email} was not successful.`);
+        }
+
+        return;
+      }),
       catchError(err => throwError(() => transformMagentoAuthError(err))),
     );
   }

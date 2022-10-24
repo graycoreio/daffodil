@@ -7,9 +7,8 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffAuthToken } from '@daffodil/auth';
 import {
-  DaffAuthFeatureState,
+  DaffAuthStateRootSlice,
   DaffAuthReducerState,
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
@@ -18,8 +17,8 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { getAuthSelectors } from './auth.selector';
 
-describe('Auth | Selector | Auth', () => {
-  let store: Store<DaffAuthFeatureState<DaffAuthToken>>;
+describe('@daffodil/auth/state | getAuthSelectors', () => {
+  let store: Store<DaffAuthStateRootSlice>;
 
   let state: DaffAuthReducerState;
   let loading: boolean;

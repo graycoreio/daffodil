@@ -3,6 +3,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { DaffAuthEffects } from './effects/auth.effects';
+import { DaffAuthLoginEffects } from './effects/login.effects';
+import { DaffAuthRegisterEffects } from './effects/register.effects';
 import {
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
@@ -11,7 +13,11 @@ import {
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_AUTH_STORE_FEATURE_KEY, daffAuthReducers),
-    EffectsModule.forFeature([DaffAuthEffects]),
+    EffectsModule.forFeature([
+      DaffAuthEffects,
+      DaffAuthLoginEffects,
+      DaffAuthRegisterEffects,
+    ]),
   ],
 })
 export class DaffAuthStateModule {}

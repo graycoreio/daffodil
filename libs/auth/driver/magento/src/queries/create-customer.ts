@@ -8,11 +8,15 @@ export const createCustomerMutation = gql`
     $firstname: String!,
     $lastname: String!,
   ) {
-    createCustomer(input: {
+    createCustomerV2(input: {
       firstname: $firstname,
       lastname: $lastname,
       email: $email,
       password: $password
-    })
+    }) {
+      customer {
+        email
+      }
+    }
   }
 `;

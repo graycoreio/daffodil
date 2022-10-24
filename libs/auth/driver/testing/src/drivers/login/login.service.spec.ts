@@ -10,10 +10,10 @@ import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
 import { DaffTestingLoginService } from './login.service';
 
-describe('Driver | Testing | Auth | LoginService', () => {
+describe('@daffodil/auth/driver/testing | DaffTestingLoginService', () => {
   let loginService: DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken>;
 
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+  let registrationFactory: DaffAccountRegistrationFactory;
 
   let email: string;
   let password: string;
@@ -27,10 +27,11 @@ describe('Driver | Testing | Auth | LoginService', () => {
     });
 
     loginService = TestBed.inject(DaffTestingLoginService);
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
 
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
   });
 
