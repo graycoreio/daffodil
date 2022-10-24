@@ -4,8 +4,8 @@ import { DaffAccountRegistration } from '@daffodil/auth';
 
 import { DaffAccountRegistrationFactory } from './account-registration.factory';
 
-describe('Auth | Testing | Factories | DaffAccountRegistrationFactory', () => {
-  let accountRegistrationFactory;
+describe('@daffodil/auth/testing | DaffAccountRegistrationFactory', () => {
+  let accountRegistrationFactory: DaffAccountRegistrationFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,20 +27,8 @@ describe('Auth | Testing | Factories | DaffAccountRegistrationFactory', () => {
     });
 
     it('should return an AccountRegistration with all required fields defined', () => {
-      expect(result.customer).toBeDefined();
+      expect(result.email).toBeDefined();
       expect(result.password).toBeDefined();
-    });
-  });
-
-  describe('createMany', () => {
-    let result: DaffAccountRegistration[];
-
-    it('should create as many AccountRegistrations as desired', () => {
-      result = accountRegistrationFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = accountRegistrationFactory.createMany(3);
-      expect(result.length).toEqual(3);
     });
   });
 });

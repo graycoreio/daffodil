@@ -17,7 +17,7 @@ export interface DaffAuthRegisterSelectors {
 
 const createRegisterSelectors = <T extends DaffAuthToken = DaffAuthToken>() => {
   const selectAuthRegisterState = createSelector(
-    getDaffAuthFeatureStateSelector<T>(),
+    getDaffAuthFeatureStateSelector(),
     state => state.register,
   );
 

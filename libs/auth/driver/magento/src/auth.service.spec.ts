@@ -11,9 +11,11 @@ import {
   DaffAuthToken,
   DaffLoginInfo,
   DaffAccountRegistration,
+} from '@daffodil/auth';
+import {
   DaffAuthInvalidAPIResponseError,
   DaffUnauthorizedError,
-} from '@daffodil/auth';
+} from '@daffodil/auth/driver';
 import { checkTokenQuery } from '@daffodil/auth/driver/magento';
 import {
   DaffAccountRegistrationFactory,
@@ -22,11 +24,11 @@ import {
 
 import { DaffMagentoAuthService } from './auth.service';
 
-describe('Driver | Magento | Auth | AuthService', () => {
+describe('@daffodil/auth/driver/magento | AuthService', () => {
   let controller: ApolloTestingController;
   let service: DaffMagentoAuthService;
 
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+  let registrationFactory: DaffAccountRegistrationFactory;
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
   let mockAuth: DaffAuthToken;
@@ -34,8 +36,6 @@ describe('Driver | Magento | Auth | AuthService', () => {
   let token: string;
   let email: string;
   let password: string;
-  let firstName: string;
-  let lastName: string;
   let mockRegistration: DaffAccountRegistration;
 
   beforeEach(() => {
@@ -50,14 +50,13 @@ describe('Driver | Magento | Auth | AuthService', () => {
 
     service = TestBed.inject(DaffMagentoAuthService);
     controller = TestBed.inject(ApolloTestingController);
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
     token = mockAuth.token;
-    firstName = mockRegistration.customer.firstName;
-    lastName = mockRegistration.customer.lastName;
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
     mockLoginInfo = { email, password };
   });

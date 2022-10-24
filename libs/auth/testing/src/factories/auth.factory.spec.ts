@@ -4,7 +4,7 @@ import { DaffAuthToken } from '@daffodil/auth';
 
 import { DaffAuthTokenFactory } from './auth-token.factory';
 
-describe('Auth | Testing | Factories | DaffAuthTokenFactory', () => {
+describe('@daffodil/auth/testing | DaffAuthTokenFactory', () => {
   let accountRegistrationFactory;
 
   beforeEach(() => {

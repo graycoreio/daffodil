@@ -3,6 +3,7 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import {
   DaffAccountRegistration,
@@ -10,41 +11,47 @@ import {
 } from '@daffodil/auth';
 import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
+import { DaffInMemoryLoginService } from '../login/login.service';
 import { DaffInMemoryRegisterService } from './register.service';
 
-describe('Driver | InMemory | Auth | RegisterService', () => {
-  let registerService;
+describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => {
+  let service: DaffInMemoryRegisterService;
   let httpMock: HttpTestingController;
+  let loginServiceSpy: jasmine.SpyObj<DaffInMemoryLoginService>;
 
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+  let registrationFactory: DaffAccountRegistrationFactory;
 
   let email: string;
   let password: string;
-  let firstName: string;
-  let lastName: string;
+  let token: string;
   let mockRegistration: DaffAccountRegistration;
   let mockLoginInfo: DaffLoginInfo;
 
   beforeEach(() => {
+    loginServiceSpy = jasmine.createSpyObj('DaffInMemoryLoginService', ['login']);
+
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
       ],
       providers: [
         DaffInMemoryRegisterService,
+        {
+          provide: DaffInMemoryLoginService,
+          useValue: loginServiceSpy,
+        },
       ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    registerService = TestBed.inject(DaffInMemoryRegisterService);
+    service = TestBed.inject(DaffInMemoryRegisterService);
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
 
-    firstName = mockRegistration.customer.firstName;
-    lastName = mockRegistration.customer.lastName;
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
-
+    token = 'token';
     mockLoginInfo = {
       email,
       password,
@@ -52,33 +59,55 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
   });
 
   it('should be created', () => {
-    expect(registerService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('register | creating a new user', () => {
+    beforeEach(() => {
+      loginServiceSpy.login.withArgs({ email: mockRegistration.email, password: mockRegistration.password }).and.returnValue(of({ token }));
+    });
+
     afterEach(() => {
       httpMock.verify();
     });
 
     it('should send a post request', () => {
-      registerService.register(mockRegistration).subscribe(auth => {});
+      service.register(mockRegistration).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${registerService.url}register`);
+      const req = httpMock.expectOne(`${service.url}register`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockRegistration);
 
-      req.flush(mockRegistration.customer);
+      req.flush({});
     });
 
-    it('should return a DaffLoginInfo', () => {
-      registerService.register(mockRegistration).subscribe(loginInfo => {
-        expect(loginInfo).toEqual(mockLoginInfo);
+    it('should return a token', done => {
+      service.register(mockRegistration).subscribe(resp => {
+        expect(resp).toEqual(token);
+        done();
       });
 
-      const req = httpMock.expectOne(`${registerService.url}register`);
+      const req = httpMock.expectOne(`${service.url}register`);
 
-      req.flush(mockRegistration.customer);
+      req.flush({});
+    });
+  });
+
+  describe('registerOnly | creating a new user', () => {
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('should send a post request', () => {
+      service.registerOnly(mockRegistration).subscribe(auth => {});
+
+      const req = httpMock.expectOne(`${service.url}register`);
+
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual(mockRegistration);
+
+      req.flush({});
     });
   });
 });

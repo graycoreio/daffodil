@@ -1,6 +1,6 @@
 import { ApolloError } from '@apollo/client/core';
 
-import { DaffUnauthorizedError } from '@daffodil/auth';
+import { DaffUnauthorizedError } from '@daffodil/auth/driver';
 
 import { MagentoAuthGraphQlErrorCode } from './codes';
 import { transformMagentoAuthError } from './transform';

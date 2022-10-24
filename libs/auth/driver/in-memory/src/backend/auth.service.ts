@@ -5,6 +5,8 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
+import { DaffInMemoryDbCustomer } from '../models/db-customer.type';
+
 /**
  * @inheritdoc
  */
@@ -12,19 +14,15 @@ import {
   providedIn: 'root',
 })
 export class DaffInMemoryBackendAuthService implements InMemoryDbService {
-  constructor() {}
+  customers: Record<DaffInMemoryDbCustomer['email'], DaffInMemoryDbCustomer> = {};
 
   private generateToken(): string {
     return faker.random.alphaNumeric(16);
   }
 
-  private generateId(): string {
-    return faker.datatype.uuid();
-  }
-
   createDb() {
     return {
-      auth: {},
+      auth: this.customers,
     };
   }
 
@@ -41,30 +39,53 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   }
 
   private login(reqInfo: any) {
+    const {
+      email,
+      password,
+    } = reqInfo.utils.getJsonBody(reqInfo.req);
+    const customer = this.customers[email];
+
+    if (password && customer?.password === password) {
+      this.customers[email].token = this.generateToken();
+
+      return reqInfo.utils.createResponse$(() => ({
+        body: {
+          token: customer.token,
+        },
+        status: STATUS.OK,
+      }));
+    }
+
     return reqInfo.utils.createResponse$(() => ({
-      body: {
-        token: this.generateToken(),
-      },
-      status: STATUS.OK,
+      status: STATUS.UNAUTHORIZED,
     }));
   }
 
   private register(reqInfo) {
     const {
-      customer,
+      email,
       password,
     } = reqInfo.utils.getJsonBody(reqInfo.req);
 
+    this.customers[email] = {
+      email,
+      password,
+    };
+
     return reqInfo.utils.createResponse$(() => ({
-      body: {
-        email: customer.email,
-        password,
-      },
       status: STATUS.CREATED,
     }));
   }
 
   private logout(reqInfo) {
+    const {
+      email,
+    } = reqInfo.utils.getJsonBody(reqInfo.req);
+
+    if (this.customers[email]) {
+      this.customers[email].token = null;
+    }
+
     return reqInfo.utils.createResponse$(() => ({
       body: { success: true },
       status: STATUS.OK,

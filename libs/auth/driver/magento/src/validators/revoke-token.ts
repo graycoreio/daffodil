@@ -1,6 +1,6 @@
 import { ApolloQueryResult } from '@apollo/client/core';
 
-import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth';
+import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
 
 import { MagentoRevokeCustomerTokenResponse } from '../queries/public_api';
 

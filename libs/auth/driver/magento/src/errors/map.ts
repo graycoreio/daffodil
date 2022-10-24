@@ -1,7 +1,7 @@
 import {
   DaffUnauthorizedError,
   DaffAuthenticationFailedError,
-} from '@daffodil/auth';
+} from '@daffodil/auth/driver';
 import { DaffErrorCodeMap } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
 

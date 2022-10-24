@@ -1,3 +1,2 @@
-export * from './interfaces/auth-service.interface';
-export * from './interfaces/login-service.interface';
-export * from './interfaces/register-service.interface';
+export * from './interfaces/public_api';
+export * from './errors/public_api';

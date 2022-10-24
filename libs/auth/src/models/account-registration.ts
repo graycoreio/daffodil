@@ -1,6 +1,3 @@
-import { DaffCustomerRegistration } from './customer-registration';
+import { DaffLoginInfo } from './login-info';
 
-export interface DaffAccountRegistration {
-  customer: DaffCustomerRegistration;
-  password: string;
-}
+export type DaffAccountRegistration = DaffLoginInfo;

@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mapTo } from 'rxjs/operators';
-
 import {
-  DaffCustomerRegistration,
-  DaffAccountRegistration,
-  DaffLoginInfo,
-} from '@daffodil/auth';
+  map,
+  switchMap,
+} from 'rxjs/operators';
+
+import { DaffAccountRegistration } from '@daffodil/auth';
 import { DaffRegisterServiceInterface } from '@daffodil/auth/driver';
+
+import { DaffInMemoryLoginService } from '../login/login.service';
 
 /**
  * @inheritdoc
@@ -16,22 +17,22 @@ import { DaffRegisterServiceInterface } from '@daffodil/auth/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface<
-DaffAccountRegistration,
-DaffLoginInfo
-> {
+export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface {
   url = '/api/auth/';
 
   constructor(
     private http: HttpClient,
+    private loginService: DaffInMemoryLoginService,
   ) {}
 
-  register(registration: DaffAccountRegistration): Observable<DaffLoginInfo> {
-    return this.http.post<DaffCustomerRegistration>(`${this.url}register`, registration).pipe(
-      mapTo({
-        email: registration.customer.email,
-        password: registration.password,
-      }),
+  register(registration: DaffAccountRegistration): Observable<string> {
+    return this.registerOnly(registration).pipe(
+      switchMap(() => this.loginService.login({ email: registration.email, password: registration.password })),
+      map(({ token }) => token),
     );
+  }
+
+  registerOnly(registration: DaffAccountRegistration): Observable<void> {
+    return this.http.post<void>(`${this.url}register`, registration);
   }
 }

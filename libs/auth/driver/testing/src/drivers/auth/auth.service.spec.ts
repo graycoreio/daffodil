@@ -6,7 +6,7 @@ import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 
 import { DaffTestingAuthService } from './auth.service';
 
-describe('Driver | Testing | Auth | AuthService', () => {
+describe('@daffodil/auth/driver/testing | AuthService', () => {
   let service: DaffAuthServiceInterface;
 
   const authFactory = new DaffAuthTokenFactory();

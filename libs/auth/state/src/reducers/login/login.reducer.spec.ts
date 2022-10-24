@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffAuthToken,
   DaffLoginInfo,
@@ -21,8 +23,8 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthLoginReducer as reducer } from './login.reducer';
 
-describe('Auth | Reducer | Login', () => {
-  const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
+describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
+  let registrationFactory: DaffAccountRegistrationFactory;
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
   let mockAuthToken: DaffAuthToken;
@@ -30,16 +32,14 @@ describe('Auth | Reducer | Login', () => {
   let mockRegistration: DaffAccountRegistration;
   let email: string;
   let password: string;
-  let firstName: string;
-  let lastName: string;
 
   beforeEach(() => {
+    registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
+
     mockRegistration = registrationFactory.create();
     mockAuthToken = authTokenFactory.create();
 
-    firstName = mockRegistration.customer.firstName;
-    lastName = mockRegistration.customer.lastName;
-    email = mockRegistration.customer.email;
+    email = mockRegistration.email;
     password = mockRegistration.password;
     mockLoginInfo = { email, password };
   });
@@ -55,7 +55,7 @@ describe('Auth | Reducer | Login', () => {
   });
 
   describe('when AuthLoginAction is triggered', () => {
-    let result;
+    let result: DaffAuthLoginReducerState;
 
     beforeEach(() => {
       const authLoginAction: DaffAuthLogin<DaffLoginInfo> = new DaffAuthLogin(mockLoginInfo);
@@ -69,8 +69,8 @@ describe('Auth | Reducer | Login', () => {
   });
 
   describe('when AuthLoginSuccessAction is triggered', () => {
-    let result;
-    let state: DaffAuthLoginReducerState<DaffAuthToken>;
+    let result: DaffAuthLoginReducerState;
+    let state: DaffAuthLoginReducerState;
 
     beforeEach(() => {
       state = {
@@ -85,10 +85,6 @@ describe('Auth | Reducer | Login', () => {
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
     });
-
-    it('sets auth to the payload auth', () => {
-      expect(result.auth).toEqual(mockAuthToken);
-    });
   });
 
   describe('when AuthLoginFailureAction is triggered', () => {
@@ -96,8 +92,8 @@ describe('Auth | Reducer | Login', () => {
       code: 'error code',
       message: 'error message',
     };
-    let result;
-    let state: DaffAuthLoginReducerState<DaffAuthToken>;
+    let result: DaffAuthLoginReducerState;
+    let state: DaffAuthLoginReducerState;
 
     beforeEach(() => {
       state = {
@@ -121,7 +117,7 @@ describe('Auth | Reducer | Login', () => {
   });
 
   describe('when AuthLogoutAction is triggered', () => {
-    let result;
+    let result: DaffAuthLoginReducerState;
 
     beforeEach(() => {
       const authLogoutAction = new DaffAuthLogout();
@@ -135,14 +131,13 @@ describe('Auth | Reducer | Login', () => {
   });
 
   describe('when AuthLogoutSuccessAction is triggered', () => {
-    let result;
-    let state: DaffAuthLoginReducerState<DaffAuthToken>;
+    let result: DaffAuthLoginReducerState;
+    let state: DaffAuthLoginReducerState;
 
     beforeEach(() => {
       state = {
         ...initialState,
         loading: true,
-        auth: mockAuthToken,
       };
 
       const authLogoutSuccess = new DaffAuthLogoutSuccess();
@@ -152,10 +147,6 @@ describe('Auth | Reducer | Login', () => {
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
     });
-
-    it('sets auth state to null', () => {
-      expect(result.auth).toBeNull();
-    });
   });
 
   describe('when AuthLogoutFailureAction is triggered', () => {
@@ -163,8 +154,8 @@ describe('Auth | Reducer | Login', () => {
       code: 'error code',
       message: 'error message',
     };
-    let result;
-    let state: DaffAuthLoginReducerState<DaffAuthToken>;
+    let result: DaffAuthLoginReducerState;
+    let state: DaffAuthLoginReducerState;
 
     beforeEach(() => {
       state = {
