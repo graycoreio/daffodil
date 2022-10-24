@@ -1,6 +1,7 @@
 import {
   DaffCartNotFoundError,
   DaffCartDriverErrorCodes,
+  DaffUnauthorizedForCartError,
 } from '@daffodil/cart/driver';
 import { DaffErrorCodeMap } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
@@ -10,6 +11,7 @@ import { MagentoCartGraphQlErrorCode } from './codes';
 export const DaffCartMagentoErrorMap: DaffErrorCodeMap = {
   [MagentoCartGraphQlErrorCode.CART_NOT_FOUND]: DaffCartNotFoundError,
   [MagentoCartGraphQlErrorCode.BAD_INPUT]: DaffBadInputError,
+  [MagentoCartGraphQlErrorCode.AUTHORIZATION]: DaffUnauthorizedForCartError,
 };
 
 export const DaffCartMagentoErrorMessageRegexMap = {

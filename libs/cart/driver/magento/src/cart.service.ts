@@ -43,6 +43,8 @@ import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/publi
 import {
   getCart,
   createCart,
+  magentoMergeCartsMutation,
+  MagentoMergeCartResponse,
 } from './queries/public_api';
 import { MagentoCreateCartResponse } from './queries/responses/create-cart';
 import { MagentoGetCartResponse } from './queries/responses/get-cart';
@@ -116,4 +118,27 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
       map(({ response }) => response),
     );
   }
+
+  merge(guestCart: DaffCart['id'], customerCart?: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
+    return this.mutationQueue.mutate<MagentoMergeCartResponse>({
+      mutation: magentoMergeCartsMutation(this.extraCartFragments),
+      variables: {
+        source: guestCart,
+        destination: customerCart,
+      },
+    }).pipe(
+      map(({ data, errors }) => ({
+        response: data ? this.cartTransformer.transform(data.mergeCarts) : undefined,
+        errors: errors?.map(e => {
+          const error = transformMagentoCartGraphQlError(e);
+
+          if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => error instanceof klass).length > 0) {
+            error.recoverable = true;
+          }
+
+          return error;
+        }) || [],
+      })),
+    );
+  };
 }

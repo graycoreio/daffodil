@@ -27,3 +27,4 @@ export { placeOrder } from './place-order';
 export { applyCoupon } from './apply-coupon';
 export { listCartCoupons } from './list-cart-coupons';
 export { removeAllCoupons } from './remove-all-coupons';
+export { magentoMergeCartsMutation } from './merge-carts';

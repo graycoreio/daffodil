@@ -25,3 +25,4 @@ export { MagentoPlaceOrderResponse } from './place-order';
 export { MagentoListCartCouponsResponse } from './list-cart-coupons';
 export { MagentoApplyCouponResponse } from './apply-coupon';
 export { MagentoRemoveAllCouponsResponse } from './remove-all-coupons';
+export { MagentoMergeCartResponse } from './merge-carts.type';

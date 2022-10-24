@@ -5,6 +5,7 @@ import {
 import {
   STATUS,
   RequestInfo,
+  ResponseOptions,
 } from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
@@ -29,34 +30,29 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
   ) {}
 
   get(reqInfo: RequestInfo) {
-    const cart = this.getCart(reqInfo);
-    return reqInfo.utils.createResponse$(() => ({
-      body: cart ? {
-        ...cart,
-        extra_attributes: this.extraFieldsHook(reqInfo, cart),
-      } : cart,
-      status: cart ? STATUS.OK : STATUS.NOT_FOUND,
-    }));
+    return reqInfo.utils.createResponse$(() => this.getCart(reqInfo));
   }
 
   post(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => {
-      let body;
+      let ret;
       const action = this.getAction(reqInfo);
 
       if (reqInfo.id === 'addToCart') {
         // deprecated
-        body = {};
+        ret = {
+          body: {},
+          status: STATUS.OK,
+        };
       } else if (action === 'clear') {
-        body = this.clear(reqInfo);
+        ret = this.clear(reqInfo);
+      } else if (action === 'merge') {
+        ret = this.merge(reqInfo);
       } else {
-        body = this.create(reqInfo);
+        ret = this.create(reqInfo);
       }
 
-      return {
-        body,
-        status: STATUS.OK,
-      };
+      return ret;
     });
   }
 
@@ -67,28 +63,79 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
     return reqInfo.url.replace(`/${reqInfo.resourceUrl}${reqInfo.id}/`, '');
   }
 
-  private clear(reqInfo: RequestInfo): DaffCart {
-    const cart = this.getCart(reqInfo);
+  private clear(reqInfo: RequestInfo): ResponseOptions {
+    const cart = (<DaffCart>this.getCart(reqInfo).body);
 
     cart.items = [];
 
     return {
-      ...cart,
-      extra_attributes: this.extraFieldsHook(reqInfo, cart),
+      body: {
+        ...cart,
+        extra_attributes: this.extraFieldsHook(reqInfo, cart),
+      },
+      status: STATUS.OK,
     };
   }
 
-  private create(reqInfo: RequestInfo): Partial<{id: DaffCart['id']}> {
+  private create(reqInfo: RequestInfo): ResponseOptions {
     const cart = this.cartFactory.create();
 
     reqInfo.collection.push(cart);
 
     return {
-      id: cart.id,
+      body:{
+        id: cart.id,
+      },
+      status: STATUS.OK,
     };
   }
 
-  private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
+  private merge(reqInfo: RequestInfo): ResponseOptions {
+    const {
+      source,
+      destination,
+    } = reqInfo.utils.getJsonBody(reqInfo.req);
+    const sourceCart = reqInfo.utils.findById<DaffCart>(reqInfo.collection, source);
+
+    if (!sourceCart) {
+      return {
+        status: STATUS.NOT_FOUND,
+      };
+    }
+
+    const destinationCart = reqInfo.utils.findById<DaffCart>(reqInfo.collection, destination ? destination : (<{id: DaffCart['id']}>this.create(reqInfo).body).id);
+
+    if (!destinationCart) {
+      return {
+        status: STATUS.NOT_FOUND,
+      };
+    }
+
+    destinationCart.items.push(...sourceCart.items);
+    reqInfo.collection.push(destinationCart);
+
+    return {
+      body: {
+        ...destinationCart,
+        extra_attributes: this.extraFieldsHook(reqInfo, destinationCart),
+      },
+      status: STATUS.OK,
+    };
+  }
+
+  private getCart(reqInfo: RequestInfo): ResponseOptions {
+    const cart = reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
+
+    return cart
+      ? {
+        body: {
+          ...cart,
+          extra_attributes: this.extraFieldsHook(reqInfo, <DaffCart>cart),
+        },
+        status: STATUS.OK,
+      }
+      : {
+        status: STATUS.NOT_FOUND,
+      };
   }
 }

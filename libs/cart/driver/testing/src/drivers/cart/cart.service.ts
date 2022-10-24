@@ -40,4 +40,11 @@ export class DaffTestingCartService implements DaffCartServiceInterface {
       id: this.cartFactory.create().id,
     });
   }
+
+  merge(guestCart: DaffCart['id'], customerCart?: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
+    return of({
+      response: this.cartFactory.create(),
+      errors: [],
+    });
+  }
 }
