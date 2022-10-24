@@ -97,18 +97,6 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
     );
   });
 
-  describe('onResolveCart() | when DaffResolveCartSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffResolveCartSuccess(stubCart) });
-    });
-
-    it('should emit nothing', () => {
-      const expected = cold('---');
-
-      expect(effects.onResolveCart()).toBeObservable(expected);
-    });
-  });
-
   describe('onResolveCart() | when DaffResolveCart is dispatched', () => {
     beforeEach(() => {
       actions$ = hot('--a', { a: new DaffResolveCart() });
