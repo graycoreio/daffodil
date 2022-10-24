@@ -11,6 +11,7 @@ import { Action } from '@ngrx/store';
 import {
   of,
   Observable,
+  defer,
 } from 'rxjs';
 import {
   switchMap,
@@ -50,8 +51,7 @@ export class DaffPaypalEffects<T extends DaffPaypalExpressTokenRequest, V extend
 
   generatePaypalExpressToken$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(DaffPaypalActionTypes.GeneratePaypalExpressTokenAction),
-    switchMap((action: DaffGeneratePaypalExpressToken<T>) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffGeneratePaypalExpressToken<T>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.generateToken(cartId, action.payload)),
       map((resp: V) => new DaffGeneratePaypalExpressTokenSuccess(resp)),
       catchError((error: DaffError) => of(new DaffGeneratePaypalExpressTokenFailure(this.errorMatcher(error)))),

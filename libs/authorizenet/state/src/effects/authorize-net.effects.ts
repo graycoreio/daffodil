@@ -8,6 +8,7 @@ import {
   ofType,
 } from '@ngrx/effects';
 import {
+  defer,
   Observable,
   of,
 } from 'rxjs';
@@ -16,7 +17,6 @@ import {
   catchError,
   map,
   tap,
-  mapTo,
 } from 'rxjs/operators';
 
 import {
@@ -89,7 +89,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 	    [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction],
 	    DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction,
 	  ),
-	  mapTo(new DaffAuthorizeNetUpdatePaymentSuccess()),
+	  map(() => new DaffAuthorizeNetUpdatePaymentSuccess()),
   ));
 
 
@@ -107,10 +107,9 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
   loadAcceptJs$ = createEffect(() => (maxTries = 10, ms = 10): Observable<any> => this.actions$.pipe(
     ofType(DaffAuthorizeNetActionTypes.LoadAcceptJsAction),
     tap((action: DaffLoadAcceptJs) => this.acceptJsLoadingService.load()),
-    switchMap(() => of(null).pipe(
-      map(() => this.acceptJsLoadingService.getAccept()),
+    switchMap(() => defer(() => of(this.acceptJsLoadingService.getAccept())).pipe(
       backoff(maxTries, ms),
-      mapTo(new DaffLoadAcceptJsSuccess()),
+      map(() => new DaffLoadAcceptJsSuccess()),
       catchError((error: DaffError) => of(new DaffLoadAcceptJsFailure(this.errorMatcher(error)))),
     )),
   ));

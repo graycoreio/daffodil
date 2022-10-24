@@ -7,7 +7,10 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import { of } from 'rxjs';
+import {
+  defer,
+  of,
+} from 'rxjs';
 import {
   switchMap,
   map,
@@ -54,8 +57,7 @@ export class DaffCartOrderEffects<
 
   placeOrder$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartOrderActionTypes.CartPlaceOrderAction),
-    switchMap((action: DaffCartPlaceOrder<V>) => of(null).pipe(
-      map(() => this.storage.getCartId()),
+    switchMap((action: DaffCartPlaceOrder<V>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.placeOrder(cartId, action.payload)),
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
