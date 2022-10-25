@@ -15,7 +15,6 @@ import {
   switchMap,
   map,
   catchError,
-  mapTo,
 } from 'rxjs/operators';
 
 import {
@@ -70,6 +69,6 @@ export class DaffCartOrderEffects<
 
   resetCart$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartOrderActionTypes.CartPlaceOrderSuccessAction),
-    mapTo(new DaffCartCreate()),
+    map(() => new DaffCartCreate()),
   ));
 }

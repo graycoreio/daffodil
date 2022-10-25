@@ -5,9 +5,8 @@ import {
   throwError,
 } from 'rxjs';
 import {
-  map,
   catchError,
-  mapTo,
+  map,
 } from 'rxjs/operators';
 
 import { DaffAuthServiceInterface } from '@daffodil/auth/driver';
@@ -31,7 +30,7 @@ export class DaffMagentoAuthService implements DaffAuthServiceInterface {
   check(): Observable<void> {
     return this.apollo.query<MagentoCheckTokenResponse>({ query: checkTokenQuery }).pipe(
       map(validateCheckTokenResponse),
-      mapTo(undefined),
+      map(() => undefined),
       catchError(err => throwError(() => transformMagentoAuthError(err))),
     );
   }

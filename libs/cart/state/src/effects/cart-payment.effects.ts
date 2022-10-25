@@ -12,7 +12,6 @@ import {
   switchMap,
   map,
   catchError,
-  mapTo,
 } from 'rxjs/operators';
 
 import {
@@ -95,7 +94,7 @@ export class DaffCartPaymentEffects<
     ofType(DaffCartPaymentActionTypes.CartPaymentRemoveAction),
     switchMap((action: DaffCartPaymentRemove) =>
       this.driver.remove(this.storage.getCartId()).pipe(
-        mapTo(new DaffCartPaymentRemoveSuccess()),
+        map(() => new DaffCartPaymentRemoveSuccess()),
         catchError(error => of(new DaffCartPaymentRemoveFailure(this.errorMatcher(error)))),
       ),
     ),

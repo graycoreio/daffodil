@@ -18,7 +18,7 @@ import {
   of,
 } from 'rxjs';
 import {
-  mapTo,
+  map,
   take,
 } from 'rxjs/operators';
 
@@ -54,7 +54,7 @@ export class DaffCategoryPageIdResolver implements Resolve<Observable<boolean>> 
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
       ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),
-      mapTo(true),
+      map(() => true),
       take(1),
     );
   }

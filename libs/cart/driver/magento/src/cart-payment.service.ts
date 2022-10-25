@@ -10,7 +10,6 @@ import {
 } from 'rxjs';
 import {
   map,
-  mapTo,
   catchError,
 } from 'rxjs/operators';
 
@@ -109,7 +108,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
       },
       fetchPolicy: 'network-only',
     }).pipe(
-      mapTo(undefined),
+      map(() => undefined),
     );
   }
 
