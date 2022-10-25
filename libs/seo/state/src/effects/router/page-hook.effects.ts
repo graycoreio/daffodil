@@ -12,7 +12,7 @@ import { EMPTY } from 'rxjs';
 import {
   map,
   tap,
-  switchMapTo,
+  switchMap,
   filter,
 } from 'rxjs/operators';
 
@@ -58,7 +58,7 @@ export abstract class DaffSeoPageHookRouterEffects<
           this.service.upsert(datum);
         };
       })),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,
@@ -74,7 +74,7 @@ export abstract class DaffSeoPageHookRouterEffects<
     () => this.router.events.pipe(
       filter((e) => e instanceof NavigationStart),
       tap(() => this.service.clear()),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,
@@ -90,7 +90,7 @@ export abstract class DaffSeoPageHookRouterEffects<
     () => this.router.events.pipe(
       filter((e) => e instanceof NavigationCancel || e instanceof NavigationError),
       tap(() => this.service.restore()),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,
@@ -106,7 +106,7 @@ export abstract class DaffSeoPageHookRouterEffects<
     () => this.router.events.pipe(
       filter((e) => e instanceof NavigationEnd),
       tap(() => this.service.emptyRestoreCache()),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,

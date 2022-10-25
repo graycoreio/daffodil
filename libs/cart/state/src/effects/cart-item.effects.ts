@@ -21,7 +21,6 @@ import {
   catchError,
   debounceTime,
   mergeMap,
-  mapTo,
   take,
 } from 'rxjs/operators';
 
@@ -143,7 +142,7 @@ export class DaffCartItemEffects<
       DaffCartItemActionTypes.CartItemAddSuccessAction,
       DaffCartItemActionTypes.CartItemUpdateSuccessAction,
     ),
-    mapTo(new DaffCartItemStateReset()),
+    map(() => new DaffCartItemStateReset()),
   ));
 
 

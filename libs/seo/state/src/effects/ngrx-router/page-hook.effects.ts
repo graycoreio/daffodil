@@ -13,7 +13,7 @@ import { EMPTY } from 'rxjs';
 import {
   map,
   tap,
-  switchMapTo,
+  switchMap,
 } from 'rxjs/operators';
 
 import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
@@ -50,7 +50,7 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
           this.service.upsert(datum);
         };
       })),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,
@@ -66,7 +66,7 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
     () => this.actions$.pipe(
       ofType(ROUTER_REQUEST),
       tap(() => this.service.clear()),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,
@@ -82,7 +82,7 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
     () => this.actions$.pipe(
       ofType(ROUTER_CANCEL, ROUTER_ERROR),
       tap(() => this.service.restore()),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,
@@ -98,7 +98,7 @@ export abstract class DaffSeoPageHookEffects<T extends DaffSeoRestoreableService
     () => this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
       tap(() => this.service.emptyRestoreCache()),
-      switchMapTo(EMPTY),
+      switchMap(() => EMPTY),
     ),
     {
       dispatch: false,

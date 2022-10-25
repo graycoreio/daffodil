@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 import {
   tap,
-  switchMapTo,
+  switchMap,
 } from 'rxjs/operators';
 
 import { DaffAuthLoginActionTypes } from '@daffodil/auth/state';
@@ -29,7 +29,7 @@ export class DemoAuthEffects {
       DaffAuthLoginActionTypes.LoginSuccessAction,
     ),
     tap(() => this.router.navigateByUrl('/')),
-    switchMapTo(EMPTY),
+    switchMap(() => EMPTY),
   ), {
     dispatch: false,
   });
