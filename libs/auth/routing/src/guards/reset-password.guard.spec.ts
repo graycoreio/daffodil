@@ -1,83 +1,116 @@
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs';
 
-import { MemberOnlyGuard } from '@daffodil/auth/routing';
+import { DAFF_AUTH_ROUTING_CONFIG } from '@daffodil/auth/routing';
 import {
-  DaffAuthFacade,
   DaffAuthGuardCheck,
+  DaffResetPasswordLanding,
 } from '@daffodil/auth/state';
+import {
+  DaffAuthTestingModule,
+  MockDaffAuthFacade,
+} from '@daffodil/auth/state/testing';
 
-import { GuestOnlyGuard } from './guest-only.guard';
+import { DaffAuthResetPasswordGuard } from './reset-password.guard';
 
-describe('Demo | Auth | GuestOnlyGuard', () => {
-  let guard: GuestOnlyGuard;
+@Component({ template: '' })
+class TestComponent {}
 
-  let mockFacade;
-  let mockGuard;
+describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
+  let guard: DaffAuthResetPasswordGuard;
+
+  let mockFacade: MockDaffAuthFacade;
+  let router: Router;
+
+  let param: string;
+  let token: string;
 
   beforeEach(() => {
+    param = 'token';
+    token = '290384runfei9usnrg0ew9rgm';
+
     TestBed.configureTestingModule({
+      imports: [
+        DaffAuthTestingModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: 'reset',
+            component: TestComponent,
+          },
+          {
+            path: '**',
+            component: TestComponent,
+          },
+        ]),
+      ],
       providers: [
         {
-          provide: MemberOnlyGuard,
-          useValue: jasmine.createSpyObj('MemberOnlyGuard', ['isAuthenticated']),
-        },
-        {
-          provide: DaffAuthFacade,
-          useValue: jasmine.createSpyObj('DaffAuthFacade', ['dispatch']),
+          provide: DAFF_AUTH_ROUTING_CONFIG,
+          useValue: {
+            resetPasswordTokenParam: param,
+          },
         },
       ],
     });
 
-    guard = TestBed.inject(GuestOnlyGuard);
-    mockGuard = TestBed.inject(MemberOnlyGuard);
-    mockFacade = TestBed.inject(DaffAuthFacade);
-  });
+    guard = TestBed.inject(DaffAuthResetPasswordGuard);
+    mockFacade = TestBed.inject(MockDaffAuthFacade);
+    router = TestBed.inject(Router);
 
-  describe('isUnauthenticated | checking if the user is not authenticated', () => {
-    let expected;
-    let result;
-
-    describe('when the user is not authenticated', () => {
-      beforeEach(() => {
-        expected = cold('--b', { b: true });
-        mockGuard.isAuthenticated.and.returnValue(hot('--a', { a: false }));
-        result = guard.isUnauthenticated();
-      });
-
-      it('should return true', () => {
-        expect(result).toBeObservable(expected);
-      });
-    });
-
-    describe('when the user is authenticated', () => {
-      beforeEach(() => {
-        expected = cold('--b', { b: false });
-        mockGuard.isAuthenticated.and.returnValue(hot('--a', { a: true }));
-        result = guard.isUnauthenticated();
-      });
-
-      it('should return false', () => {
-        expect(result).toBeObservable(expected);
-      });
-    });
+    spyOn(mockFacade, 'dispatch');
   });
 
   describe('canActivate | checking if the route can be activated', () => {
-    let result;
+    let result: Observable<boolean>;
 
-    const mockAuthCheckAction = new DaffAuthGuardCheck();
+    describe('when there is a token set to the param', () => {
+      beforeEach(fakeAsync(() => {
+        router.navigateByUrl(`/reset?${param}=${token}`);
+        tick();
+        result = guard.canActivate(TestBed.inject(ActivatedRoute).snapshot);
+      }));
 
-    beforeEach(() => {
-      mockGuard.isAuthenticated.and.returnValue(hot('--a', { a: false }));
-      result = guard.canActivate();
+      it('should allow activation', done => {
+        result.subscribe(res => {
+          expect(res).toBeTrue();
+          done();
+        });
+      });
+
+      it('should dispatch DaffResetPasswordLanding with the token', () => {
+        result.subscribe();
+        expect(mockFacade.dispatch).toHaveBeenCalledWith(new DaffResetPasswordLanding(token));
+      });
     });
 
-    it('should initiate an auth check', () => {
-      expect(mockFacade.dispatch).toHaveBeenCalledWith(mockAuthCheckAction);
+    describe('when there is a token not set to the param', () => {
+      beforeEach(fakeAsync(() => {
+        router.navigateByUrl(`/reset?not${param}=${token}`);
+        tick();
+        result = guard.canActivate(TestBed.inject(ActivatedRoute).snapshot);
+      }));
+
+      it('should not allow activation', done => {
+        result.subscribe(res => {
+          expect(res).toBeFalse();
+          done();
+        });
+      });
+
+      it('should not dispatch DaffResetPasswordLanding with the token', () => {
+        result.subscribe();
+        expect(mockFacade.dispatch).not.toHaveBeenCalledWith(new DaffResetPasswordLanding(token));
+      });
     });
   });
 });

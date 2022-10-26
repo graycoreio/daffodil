@@ -1,83 +1,105 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Actions } from '@ngrx/effects';
+import { provideMockActions } from '@ngrx/effects/testing';
 import {
   hot,
   cold,
 } from 'jasmine-marbles';
+import { Observable } from 'rxjs';
 
-import { MemberOnlyGuard } from '@daffodil/auth/routing';
 import {
-  DaffAuthFacade,
+  DaffAuthGuardCheckCompletion,
   DaffAuthGuardCheck,
 } from '@daffodil/auth/state';
+import {
+  DaffAuthTestingModule,
+  MockDaffAuthFacade,
+} from '@daffodil/auth/state/testing';
 
+import { DaffAuthGuestOnlyGuardRedirectUrl } from './guest-only-guard-redirect.token';
 import { GuestOnlyGuard } from './guest-only.guard';
 
-describe('Demo | Auth | GuestOnlyGuard', () => {
+describe('@daffodil/auth/routing | GuestOnlyGuard', () => {
   let guard: GuestOnlyGuard;
+  let actions$: Actions;
 
-  let mockFacade;
-  let mockGuard;
+  let mockFacade: MockDaffAuthFacade;
+  let router: Router;
+
+  let redirectUrl: string;
 
   beforeEach(() => {
+    redirectUrl = 'redirectUrl';
+
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        DaffAuthTestingModule,
+      ],
       providers: [
+        provideMockActions(() => actions$),
         {
-          provide: MemberOnlyGuard,
-          useValue: jasmine.createSpyObj('MemberOnlyGuard', ['isAuthenticated']),
-        },
-        {
-          provide: DaffAuthFacade,
-          useValue: jasmine.createSpyObj('DaffAuthFacade', ['dispatch']),
+          provide: DaffAuthGuestOnlyGuardRedirectUrl,
+          useValue: redirectUrl,
         },
       ],
     });
 
     guard = TestBed.inject(GuestOnlyGuard);
-    mockGuard = TestBed.inject(MemberOnlyGuard);
-    mockFacade = TestBed.inject(DaffAuthFacade);
-  });
+    router = TestBed.inject(Router);
+    mockFacade = TestBed.inject(MockDaffAuthFacade);
 
-  describe('isUnauthenticated | checking if the user is not authenticated', () => {
-    let expected;
-    let result;
-
-    describe('when the user is not authenticated', () => {
-      beforeEach(() => {
-        expected = cold('--b', { b: true });
-        mockGuard.isAuthenticated.and.returnValue(hot('--a', { a: false }));
-        result = guard.isUnauthenticated();
-      });
-
-      it('should return true', () => {
-        expect(result).toBeObservable(expected);
-      });
-    });
-
-    describe('when the user is authenticated', () => {
-      beforeEach(() => {
-        expected = cold('--b', { b: false });
-        mockGuard.isAuthenticated.and.returnValue(hot('--a', { a: true }));
-        result = guard.isUnauthenticated();
-      });
-
-      it('should return false', () => {
-        expect(result).toBeObservable(expected);
-      });
-    });
+    spyOn(mockFacade, 'dispatch');
+    spyOn(router, 'navigateByUrl');
   });
 
   describe('canActivate | checking if the route can be activated', () => {
-    let result;
+    let expected;
+    let result: Observable<boolean>;
 
     const mockAuthCheckAction = new DaffAuthGuardCheck();
 
     beforeEach(() => {
-      mockGuard.isAuthenticated.and.returnValue(hot('--a', { a: false }));
       result = guard.canActivate();
     });
 
     it('should initiate an auth check', () => {
       expect(mockFacade.dispatch).toHaveBeenCalledWith(mockAuthCheckAction);
+    });
+
+    describe('when the user is authenticated', () => {
+      const mockAuthGuardCheckCompletionAction = new DaffAuthGuardCheckCompletion(true);
+
+      beforeEach(() => {
+        actions$ = hot('--a', { a: mockAuthGuardCheckCompletionAction });
+        expected = cold('--b', { b: false });
+        result = guard.canActivate();
+      });
+
+      it('should return false', () => {
+        expect(result).toBeObservable(expected);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        expect(result).toBeObservable(expected);
+        expect(router.navigateByUrl).toHaveBeenCalledWith(redirectUrl);
+      });
+    });
+
+    describe('when the user is not authenticated', () => {
+      const mockAuthGuardCheckCompletionAction = new DaffAuthGuardCheckCompletion(false);
+
+      beforeEach(() => {
+        actions$ = hot('--a', { a: mockAuthGuardCheckCompletionAction });
+        expected = cold('--b', { b: true });
+        result = guard.canActivate();
+      });
+
+      it('should return true', () => {
+        expect(result).toBeObservable(expected);
+      });
     });
   });
 });
