@@ -86,6 +86,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();
     setAuthTokenSpy = spyOn(daffAuthStorageService, 'setAuthToken');
+    spyOn(daffAuthStorageService, 'removeAuthToken');
 
     token = mockAuth.token;
     email = mockRegistration.email;
@@ -179,6 +180,11 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
       it('should notify state that the logout succeeded', () => {
         expect(effects.logout$).toBeObservable(expected);
+      });
+
+      it('should remove the auth token from storage', () => {
+        expect(effects.logout$).toBeObservable(expected);
+        expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
       });
     });
 
