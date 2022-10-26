@@ -24,6 +24,7 @@ import {
   DaffAuthRegister,
   DaffAuthRegisterSuccess,
   DaffAuthRegisterFailure,
+  DaffAuthComplete,
 } from '@daffodil/auth/state';
 import {
   DaffAccountRegistrationFactory,
@@ -43,6 +44,7 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
   let registrationFactory: DaffAccountRegistrationFactory;
   const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
+  let setAuthTokenSpy: jasmine.Spy;
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
   let token: string;
@@ -57,7 +59,7 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffRegisterDriver,
-          useValue: jasmine.createSpyObj('DaffRegisterService', ['register']),
+          useValue: jasmine.createSpyObj('DaffRegisterService', ['register', 'registerOnly']),
         },
       ],
     });
@@ -65,11 +67,13 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
     effects = TestBed.inject(DaffAuthRegisterEffects);
 
     daffRegisterDriver = TestBed.inject<jasmine.SpyObj<DaffRegisterServiceInterface>>(DaffRegisterDriver);
+    daffAuthStorageService = TestBed.inject(DaffAuthStorageService);
     registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();
 
+    setAuthTokenSpy = spyOn(daffAuthStorageService, 'setAuthToken');
     token = mockAuth.token;
     email = mockRegistration.email;
     password = mockRegistration.password;
@@ -82,36 +86,83 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
 
   describe('register$ | when the user registers an account', () => {
     let expected;
+    let mockAuthRegisterAction: DaffAuthRegister;
 
-    const mockAuthRegisterAction = new DaffAuthRegister(mockRegistration);
-
-    describe('and the registration is successful', () => {
+    describe('when autoLogin is true', () => {
       beforeEach(() => {
-        daffRegisterDriver.register.and.returnValue(of(undefined));
-        const mockAuthRegisterSuccessAction = new DaffAuthRegisterSuccess();
-
-        actions$ = hot('--a', { a: mockAuthRegisterAction });
-        expected = cold('--b', { b: mockAuthRegisterSuccessAction });
+        mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, true);
       });
 
-      it('should notify state that the registration succeeded', () => {
-        expect(effects.register$).toBeObservable(expected);
+      describe('and the register is successful', () => {
+        beforeEach(() => {
+          daffRegisterDriver.register.and.returnValue(of(token));
+          const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess();
+          const mockAuthCompleteAction = new DaffAuthComplete();
+
+          actions$ = hot('--a', { a: mockAuthRegisterAction });
+          expected = cold('--(ba)', { a: mockAuthCompleteAction, b: mockAuthResetPasswordSuccessAction });
+        });
+
+        it('should notify state that the register was successful', () => {
+          expect(effects.register$).toBeObservable(expected);
+        });
+
+        it('should store the auth token', () => {
+          expect(effects.register$).toBeObservable(expected);
+          expect(setAuthTokenSpy).toHaveBeenCalledWith(token);
+        });
+      });
+
+      describe('and the register fails', () => {
+        beforeEach(() => {
+          const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
+          const response = cold('#', {}, error);
+          daffRegisterDriver.register.and.returnValue(response);
+          const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
+
+          actions$ = hot('--a', { a: mockAuthRegisterAction });
+          expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
+        });
+
+        it('should notify state that the register failed', () => {
+          expect(effects.register$).toBeObservable(expected);
+        });
       });
     });
 
-    describe('and the registration fails', () => {
+    describe('when autoLogin is false', () => {
       beforeEach(() => {
-        const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
-        const response = cold('#', {}, error);
-        daffRegisterDriver.register.and.returnValue(response);
-        const mockAuthLoginFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
-
-        actions$ = hot('--a', { a: mockAuthRegisterAction });
-        expected = cold('--b', { b: mockAuthLoginFailureAction });
+        mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, false);
       });
 
-      it('should notify state that the registration failed', () => {
-        expect(effects.register$).toBeObservable(expected);
+      describe('and the register is successful', () => {
+        beforeEach(() => {
+          daffRegisterDriver.registerOnly.and.returnValue(of(undefined));
+          const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess();
+
+          actions$ = hot('--a', { a: mockAuthRegisterAction });
+          expected = cold('--b', { b: mockAuthResetPasswordSuccessAction });
+        });
+
+        it('should notify state that the register was successful', () => {
+          expect(effects.register$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the register fails', () => {
+        beforeEach(() => {
+          const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
+          const response = cold('#', {}, error);
+          daffRegisterDriver.registerOnly.and.returnValue(response);
+          const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
+
+          actions$ = hot('--a', { a: mockAuthRegisterAction });
+          expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
+        });
+
+        it('should notify state that the register failed', () => {
+          expect(effects.register$).toBeObservable(expected);
+        });
       });
     });
   });
