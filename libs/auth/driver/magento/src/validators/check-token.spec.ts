@@ -5,14 +5,14 @@ import { MagentoCheckTokenResponse } from '@daffodil/auth/driver/magento';
 
 import { validateCheckTokenResponse as validator } from './check-token';
 
-describe('@daffodil/auth/driver/magento | CheckToken', () => {
+describe('@daffodil/auth/driver/magento | validateCheckTokenResponse', () => {
   let response: ApolloQueryResult<MagentoCheckTokenResponse>;
 
   beforeEach(() => {
     response = {
       data: {
         customer: {
-          id: 5,
+          email: 'email',
         },
       },
       loading: null,
@@ -20,7 +20,7 @@ describe('@daffodil/auth/driver/magento | CheckToken', () => {
     };
   });
 
-  describe('when the response has a customer ID defined', () => {
+  describe('when the response has a customer email defined', () => {
     it('should return the response and not throw an error', () => {
       const result = validator(response);
 
@@ -28,9 +28,9 @@ describe('@daffodil/auth/driver/magento | CheckToken', () => {
     });
   });
 
-  describe('when the response does not have a customer ID defined', () => {
+  describe('when the response does not have a customer email defined', () => {
     beforeEach(() => {
-      response.data.customer.id = null;
+      response.data.customer.email = null;
     });
 
     it('should throw a DaffAuthInvalidAPIResponseError', () => {
