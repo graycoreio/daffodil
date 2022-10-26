@@ -1,5 +1,5 @@
 export interface MagentoCheckTokenResponse {
   customer: {
-    id?: number;
+    email?: string;
   };
 }
