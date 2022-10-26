@@ -13,6 +13,7 @@ import {
   DaffAuthResetPasswordInfo,
   DaffAuthToken,
   DaffAccountRegistration,
+  DaffAuthStorageService,
 } from '@daffodil/auth';
 import {
   DaffResetPasswordDriver,
@@ -27,6 +28,7 @@ import {
   DaffSendResetEmail,
   DaffSendResetEmailSuccess,
   DaffSendResetEmailFailure,
+  DaffAuthComplete,
 } from '@daffodil/auth/state';
 import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
@@ -38,9 +40,11 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
   let effects: DaffAuthResetPasswordEffects;
 
   let daffResetPasswordDriver: jasmine.SpyObj<DaffResetPasswordServiceInterface>;
+  let daffAuthStorageService: DaffAuthStorageService;
 
   let registrationFactory: DaffAccountRegistrationFactory;
 
+  let setAuthTokenSpy: jasmine.Spy;
   let mockResetInfo: DaffAuthResetPasswordInfo;
   let token: string;
   let email: string;
@@ -61,10 +65,12 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
 
     effects = TestBed.inject(DaffAuthResetPasswordEffects);
     registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
+    daffAuthStorageService = TestBed.inject(DaffAuthStorageService);
     daffResetPasswordDriver = TestBed.inject<jasmine.SpyObj<DaffResetPasswordServiceInterface>>(DaffResetPasswordDriver);
 
     mockRegistration = registrationFactory.create();
 
+    setAuthTokenSpy = spyOn(daffAuthStorageService, 'setAuthToken');
     token = 'token';
     email = mockRegistration.email;
     password = mockRegistration.password;
@@ -87,13 +93,19 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
         beforeEach(() => {
           daffResetPasswordDriver.resetPassword.and.returnValue(of(token));
           const mockAuthResetPasswordSuccessAction = new DaffResetPasswordSuccess();
+          const mockAuthCompleteAction = new DaffAuthComplete();
 
           actions$ = hot('--a', { a: mockAuthResetPasswordAction });
-          expected = cold('--b', { b: mockAuthResetPasswordSuccessAction });
+          expected = cold('--(ba)', { a: mockAuthCompleteAction, b: mockAuthResetPasswordSuccessAction });
         });
 
         it('should notify state that the resetPassword was successful', () => {
           expect(effects.resetPassword$).toBeObservable(expected);
+        });
+
+        it('should store the auth token', () => {
+          expect(effects.resetPassword$).toBeObservable(expected);
+          expect(setAuthTokenSpy).toHaveBeenCalledWith(token);
         });
       });
 
@@ -149,7 +161,6 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
         });
       });
     });
-
   });
 
   describe('sendResetEmail$ | when the user registers an account', () => {

@@ -37,6 +37,7 @@ import {
   DaffAuthRegister,
   DaffAuthRegisterSuccess,
   DaffAuthRegisterFailure,
+  DaffAuthComplete,
 } from '../actions/public_api';
 
 @Injectable()
@@ -57,10 +58,12 @@ export class DaffAuthRegisterEffects<
         () => action.autoLogin,
         defer(() => this.registerDriver.register(action.registration).pipe(
           tap(token => this.storage.setAuthToken(token)),
+          switchMap(() => of(new DaffAuthRegisterSuccess(), new DaffAuthComplete())),
         )),
-        defer(() => this.registerDriver.registerOnly(action.registration)),
+        defer(() => this.registerDriver.registerOnly(action.registration).pipe(
+          map(() => new DaffAuthRegisterSuccess()),
+        )),
       ).pipe(
-        map(() => new DaffAuthRegisterSuccess()),
         catchError((error: DaffError) =>
           of(new DaffAuthRegisterFailure(this.errorMatcher(error))),
         ),

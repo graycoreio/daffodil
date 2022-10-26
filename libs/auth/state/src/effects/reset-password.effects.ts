@@ -40,6 +40,7 @@ import {
   DaffSendResetEmail,
   DaffSendResetEmailSuccess,
   DaffSendResetEmailFailure,
+  DaffAuthComplete,
 } from '../actions/public_api';
 
 @Injectable()
@@ -74,10 +75,12 @@ export class DaffAuthResetPasswordEffects<
         () => action.autoLogin,
         defer(() => this.driver.resetPassword(action.info).pipe(
           tap(token => this.storage.setAuthToken(token)),
+          switchMap(() => of(new DaffResetPasswordSuccess(), new DaffAuthComplete())),
         )),
-        defer(() => this.driver.resetPasswordOnly(action.info)),
+        defer(() => this.driver.resetPasswordOnly(action.info).pipe(
+          map(() => new DaffResetPasswordSuccess()),
+        )),
       ).pipe(
-        map(() => new DaffResetPasswordSuccess()),
         catchError((error: DaffError) =>
           of(new DaffResetPasswordFailure(this.errorMatcher(error))),
         ),
