@@ -10,6 +10,7 @@ import {
 import { of } from 'rxjs';
 import {
   catchError,
+  filter,
   map,
   switchMap,
 } from 'rxjs/operators';
@@ -25,14 +26,18 @@ import {
 } from '@daffodil/cart';
 import {
   DaffCartDriver,
+  DaffCartDriverErrorCodes,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
+  DaffCartActionTypes,
+  DaffCartCreate,
   DaffCartCreateFailure,
   DaffCartCreateSuccess,
+  DaffCartLoadFailure,
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
 } from '../actions/public_api';
@@ -64,11 +69,12 @@ export class DaffCartAuthEffects<T extends DaffCart = DaffCart> {
 
   createAfterLogout$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthLoginActionTypes.LogoutSuccessAction),
-    switchMap(() => this.driver.create().pipe(
-      map(resp => new DaffCartCreateSuccess(resp)),
-      catchError((innerError: DaffError) => of(
-        new DaffCartCreateFailure(this.errorMatcher(innerError)),
-      )),
-    )),
+    map(() => new DaffCartCreate()),
+  ));
+
+  createWhenUnathorized$ = createEffect(() => this.actions$.pipe(
+    ofType<DaffResolveCartFailure | DaffCartLoadFailure>(DaffCartActionTypes.ResolveCartFailureAction, DaffCartActionTypes.CartLoadFailureAction),
+    filter(action => !!action.payload.find(err => err.code === DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART)),
+    map(() => new DaffCartCreate()),
   ));
 }
