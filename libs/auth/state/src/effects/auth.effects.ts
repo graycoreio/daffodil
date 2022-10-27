@@ -17,7 +17,10 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { DAFF_AUTH_ERROR_MATCHER } from '@daffodil/auth';
+import {
+  DaffAuthStorageService,
+  DAFF_AUTH_ERROR_MATCHER,
+} from '@daffodil/auth';
 import {
   DaffAuthDriver,
   DaffAuthServiceInterface,
@@ -40,6 +43,7 @@ export class DaffAuthEffects {
     private actions$: Actions,
     @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface,
     @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    private storage: DaffAuthStorageService,
   ) {}
 
   check$: Observable<DaffAuthCheckSuccess | DaffAuthCheckFailure> = createEffect(() => this.actions$.pipe(
@@ -47,9 +51,10 @@ export class DaffAuthEffects {
     switchMap((action: DaffAuthCheck) =>
       this.checkToken().pipe(
         map(() => new DaffAuthCheckSuccess()),
-        catchError((error: DaffError) =>
-          of(new DaffAuthCheckFailure(this.errorMatcher(error))),
-        ),
+        catchError((error: DaffError) => {
+          this.storage.removeAuthToken();
+          return of(new DaffAuthCheckFailure(this.errorMatcher(error)));
+        }),
       ),
     ),
   ));
@@ -59,9 +64,10 @@ export class DaffAuthEffects {
     switchMap((action: DaffAuthGuardCheck) =>
       this.checkToken().pipe(
         map(() => new DaffAuthGuardCheckCompletion(true)),
-        catchError((error: DaffError) =>
-          of(new DaffAuthGuardCheckCompletion(false)),
-        ),
+        catchError((error: DaffError) => {
+          this.storage.removeAuthToken();
+          return of(new DaffAuthGuardCheckCompletion(false));
+        }),
       ),
     ),
   ));

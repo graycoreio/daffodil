@@ -9,6 +9,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffAuthDriver,
   DaffAuthServiceInterface,
@@ -29,6 +30,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthEffects;
 
+  let daffAuthStorageService: DaffAuthStorageService;
   let daffAuthDriver: jasmine.SpyObj<DaffAuthServiceInterface>;
 
   beforeEach(() => {
@@ -46,6 +48,9 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     effects = TestBed.inject(DaffAuthEffects);
 
     daffAuthDriver = TestBed.inject<jasmine.SpyObj<DaffAuthServiceInterface>>(DaffAuthDriver);
+    daffAuthStorageService = TestBed.inject(DaffAuthStorageService);
+
+    spyOn(daffAuthStorageService, 'removeAuthToken');
   });
 
   it('should be created', () => {
@@ -84,6 +89,11 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
       it('should notify state that the check failed', () => {
         expect(effects.guardCheck$).toBeObservable(expected);
       });
+
+      it('should remove the auth token from storage', () => {
+        expect(effects.guardCheck$).toBeObservable(expected);
+        expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
+      });
     });
   });
 
@@ -119,6 +129,11 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
       it('should notify state that the check failed', () => {
         expect(effects.check$).toBeObservable(expected);
+      });
+
+      it('should remove the auth token from storage', () => {
+        expect(effects.check$).toBeObservable(expected);
+        expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
       });
     });
   });
