@@ -4,7 +4,7 @@ module.exports = function (config) {
   baseConfiguration(config);
   config.set({
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../../coverage/libs/cart'),
+      dir: require('path').join(__dirname, '../../coverage/libs/cart-customer'),
     },
   });
 };

@@ -12,11 +12,11 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build cart --prod",
-    "lint": "cd ../.. && ng lint cart",
+    "build": "ng build cart-customer --prod",
+    "lint": "cd ../.. && ng lint cart-customer",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test cart --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/cart; npm publish --access=public)"
+    "test": "ng test cart-customer --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/cart-customer; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

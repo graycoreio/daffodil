@@ -10,8 +10,8 @@ module.exports = {
       ],
       parserOptions: {
         project: [
-          'libs/cart/tsconfig.lib.json',
-          'libs/cart/tsconfig.spec.json'
+          'libs/cart-customer/tsconfig.lib.json',
+          'libs/cart-customer/tsconfig.spec.json'
         ],
         createDefaultProgram: true
       },
