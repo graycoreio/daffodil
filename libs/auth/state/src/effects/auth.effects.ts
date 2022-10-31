@@ -53,11 +53,6 @@ export class DaffAuthEffects {
     @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
   ) {}
 
-  authCheckInterval$ = createEffect(() => of(new DaffAuthCheck()).pipe(
-    repeat({ delay: this.config.checkInterval }),
-    filter(() => !!this.storage.getAuthToken()),
-  ));
-
   check$: Observable<DaffAuthCheckSuccess | DaffAuthCheckFailure> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthCheckAction),
     switchMap((action: DaffAuthCheck) =>
@@ -82,5 +77,11 @@ export class DaffAuthEffects {
         }),
       ),
     ),
+  ));
+
+  // this needs to be defined after `check$` or else the driver call won't be run
+  authCheckInterval$ = createEffect(() => of(new DaffAuthCheck()).pipe(
+    repeat({ delay: this.config.checkInterval }),
+    filter(() => !!this.storage.getAuthToken()),
   ));
 }
