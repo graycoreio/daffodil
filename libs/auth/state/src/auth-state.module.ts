@@ -1,7 +1,14 @@
-import { NgModule } from '@angular/core';
+import {
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import {
+  DaffAuthStateConfig,
+  provideDaffAuthStateConfig,
+} from './config/public_api';
 import { DaffAuthEffects } from './effects/auth.effects';
 import { DaffAuthLoginEffects } from './effects/login.effects';
 import { DaffAuthRegisterEffects } from './effects/register.effects';
@@ -22,4 +29,13 @@ import {
     ]),
   ],
 })
-export class DaffAuthStateModule {}
+export class DaffAuthStateModule {
+  static withConfig(config: DaffAuthStateConfig): ModuleWithProviders<DaffAuthStateModule> {
+    return {
+      ngModule: DaffAuthStateModule,
+      providers: [
+        provideDaffAuthStateConfig(config),
+      ],
+    };
+  }
+}
