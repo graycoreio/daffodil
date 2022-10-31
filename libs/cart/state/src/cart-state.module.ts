@@ -7,7 +7,6 @@ import {
 
 import { daffPaymentProvideExtraReducers } from '@daffodil/payment/state';
 
-import { DaffCartAuthEffects } from './effects/auth.effects';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartBillingAddressEffects } from './effects/cart-billing-address.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
@@ -43,7 +42,6 @@ import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
       DaffCartOrderEffects,
       DaffCartCouponEffects,
       DaffCartResolverEffects,
-      DaffCartAuthEffects,
     ]),
   ],
   providers: [
