@@ -16,43 +16,26 @@ import {
 import {
   DaffCart,
   DaffCartStorageService,
-  DaffCartNotFoundOrCreatedResolutionError,
 } from '@daffodil/cart';
-import { DaffCartResolutionError } from '@daffodil/cart';
-import { DaffCartStorageResolutionError } from '@daffodil/cart';
-import { DaffCartServerSideResolutionError } from '@daffodil/cart';
 import {
   DaffCartServiceInterface,
   DaffCartDriver,
-  DaffCartNotFoundError,
-  DaffCartInvalidAPIResponseError,
-  DaffProductOutOfStockError,
   DaffCartDriverErrorCodes,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
-  DaffResolveCart,
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
-  DaffResolveCartServerSide,
-  DaffResolveCartPartialSuccess,
   DaffCartCreate,
   DaffCartLoadFailure,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import {
-  DaffStorageServiceError,
-  DaffServerSideStorageError,
-  DaffError,
-} from '@daffodil/core';
-import {
-  DaffStateError,
-  daffTransformErrorToStateError,
-} from '@daffodil/core/state';
+import { DaffStorageServiceError } from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartCustomerAuthEffects } from './auth.effects';
 
-describe('@daffodil/cart/state | DaffCartCustomerAuthEffects', () => {
+describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartCustomerAuthEffects;
 
