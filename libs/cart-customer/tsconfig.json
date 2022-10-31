@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/cart-customer": [
+        "libs/cart-customer/src"
+      ],
+      "@daffodil/cart-customer/state": [
+        "libs/cart-customer/state/src"
+      ],
+    }
+  }
+}

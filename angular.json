@@ -562,6 +562,45 @@
         }
       }
     },
+    "cart-customer": {
+      "root": "libs/cart-customer",
+      "sourceRoot": "libs/cart-customer/src",
+      "projectType": "library",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/cart-customer/tsconfig.lib.json",
+            "project": "libs/cart-customer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/cart-customer/ng-package.prod.json",
+              "tsConfig": "libs/cart-customer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/cart-customer/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/cart-customer/tsconfig.spec.json",
+            "karmaConfig": "libs/cart-customer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/cart-customer/**/*.ts",
+              "libs/cart-customer/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "category": {
       "root": "libs/category",
       "sourceRoot": "libs/category/src",
