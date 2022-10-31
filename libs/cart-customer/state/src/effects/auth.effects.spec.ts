@@ -16,45 +16,28 @@ import {
 import {
   DaffCart,
   DaffCartStorageService,
-  DaffCartNotFoundOrCreatedResolutionError,
 } from '@daffodil/cart';
-import { DaffCartResolutionError } from '@daffodil/cart';
-import { DaffCartStorageResolutionError } from '@daffodil/cart';
-import { DaffCartServerSideResolutionError } from '@daffodil/cart';
 import {
   DaffCartServiceInterface,
   DaffCartDriver,
-  DaffCartNotFoundError,
-  DaffCartInvalidAPIResponseError,
-  DaffProductOutOfStockError,
   DaffCartDriverErrorCodes,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
-  DaffResolveCart,
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
-  DaffResolveCartServerSide,
-  DaffResolveCartPartialSuccess,
   DaffCartCreate,
   DaffCartLoadFailure,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import {
-  DaffStorageServiceError,
-  DaffServerSideStorageError,
-  DaffError,
-} from '@daffodil/core';
-import {
-  DaffStateError,
-  daffTransformErrorToStateError,
-} from '@daffodil/core/state';
+import { DaffStorageServiceError } from '@daffodil/core';
+import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffCartAuthEffects } from './auth.effects';
+import { DaffCartCustomerAuthEffects } from './auth.effects';
 
-describe('@daffodil/cart/state | DaffCartAuthEffects', () => {
+describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartAuthEffects;
+  let effects: DaffCartCustomerAuthEffects;
 
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
@@ -76,12 +59,12 @@ describe('@daffodil/cart/state | DaffCartAuthEffects', () => {
         DaffTestingCartDriverModule.forRoot(),
       ],
       providers: [
-        DaffCartAuthEffects,
+        DaffCartCustomerAuthEffects,
         provideMockActions(() => actions$),
       ],
     });
 
-    effects = TestBed.inject(DaffCartAuthEffects);
+    effects = TestBed.inject(DaffCartCustomerAuthEffects);
     driver = TestBed.inject(DaffCartDriver);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartStorageService = TestBed.inject(DaffCartStorageService);

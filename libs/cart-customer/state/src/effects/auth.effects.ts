@@ -20,36 +20,33 @@ import {
   DaffAuthLoginActionTypes,
 } from '@daffodil/auth/state';
 import {
-  DAFF_CART_ERROR_MATCHER,
-  DaffCartStorageService,
   DaffCart,
+  DaffCartStorageService,
 } from '@daffodil/cart';
+import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '@daffodil/cart-customer';
 import {
   DaffCartDriver,
   DaffCartDriverErrorCodes,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
+import {
+  DaffResolveCartSuccess,
+  DaffResolveCartFailure,
+  DaffCartCreate,
+  DaffCartLoadFailure,
+  DaffCartActionTypes,
+} from '@daffodil/cart/state';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
-import {
-  DaffCartActionTypes,
-  DaffCartCreate,
-  DaffCartCreateFailure,
-  DaffCartCreateSuccess,
-  DaffCartLoadFailure,
-  DaffResolveCartFailure,
-  DaffResolveCartSuccess,
-} from '../actions/public_api';
-
 /**
+ * Handles merging and creating carts in response to auth actions.
  */
-// TODO: move to `@daffodil/cart-auth`?
 @Injectable()
-export class DaffCartAuthEffects<T extends DaffCart = DaffCart> {
+export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
   constructor(
     private actions$: Actions,
-    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_CART_CUSTOMER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private cartStorage: DaffCartStorageService,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
   ) {}
