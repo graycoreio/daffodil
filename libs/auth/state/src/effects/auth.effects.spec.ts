@@ -21,6 +21,8 @@ import {
   DaffAuthCheck,
   DaffAuthCheckSuccess,
   DaffAuthCheckFailure,
+  DAFF_AUTH_STATE_CONFIG,
+  DaffAuthStateConfig,
 } from '@daffodil/auth/state';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
@@ -32,6 +34,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
   let daffAuthStorageService: DaffAuthStorageService;
   let daffAuthDriver: jasmine.SpyObj<DaffAuthServiceInterface>;
+  let getTokenSpy: jasmine.Spy<DaffAuthStorageService['getAuthToken']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,6 +45,12 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
           provide: DaffAuthDriver,
           useValue: jasmine.createSpyObj('DaffAuthService', ['check']),
         },
+        {
+          provide: DAFF_AUTH_STATE_CONFIG,
+          useValue: <DaffAuthStateConfig>{
+            checkInterval: 100,
+          },
+        },
       ],
     });
 
@@ -51,10 +60,30 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     daffAuthStorageService = TestBed.inject(DaffAuthStorageService);
 
     spyOn(daffAuthStorageService, 'removeAuthToken');
+    getTokenSpy = spyOn(daffAuthStorageService, 'getAuthToken');
   });
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
+  });
+
+  describe('authCheckInterval$', () => {
+    let expected;
+
+    describe('when there is a token in storage', () => {
+
+      beforeEach(() => {
+        const mockAuthCheckAction = new DaffAuthCheck();
+        getTokenSpy.and.returnValue('token');
+
+        expected = cold('b', { b: mockAuthCheckAction });
+      });
+
+      it('should dispatch DaffAuthCheck every 100 ms', () => {
+        // TODO: fixgure out how to pass scheduler
+        expect(effects.authCheckInterval$).toBeObservable(expected);
+      });
+    });
   });
 
   describe('guardCheck$ | indicating the completion and result of an auth token check operation', () => {

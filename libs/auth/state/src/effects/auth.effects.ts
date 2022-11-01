@@ -15,6 +15,8 @@ import {
   switchMap,
   catchError,
   map,
+  repeat,
+  filter,
 } from 'rxjs/operators';
 
 import {
@@ -36,6 +38,10 @@ import {
   DaffAuthGuardCheckCompletion,
   DaffAuthGuardCheck,
 } from '../actions/public_api';
+import {
+  DaffAuthStateConfig,
+  DAFF_AUTH_STATE_CONFIG,
+} from '../config/public_api';
 
 @Injectable()
 export class DaffAuthEffects {
@@ -44,12 +50,13 @@ export class DaffAuthEffects {
     @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface,
     @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
+    @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
   ) {}
 
   check$: Observable<DaffAuthCheckSuccess | DaffAuthCheckFailure> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthCheckAction),
     switchMap((action: DaffAuthCheck) =>
-      this.checkToken().pipe(
+      this.authDriver.check().pipe(
         map(() => new DaffAuthCheckSuccess()),
         catchError((error: DaffError) => {
           this.storage.removeAuthToken();
@@ -62,7 +69,7 @@ export class DaffAuthEffects {
   guardCheck$: Observable<DaffAuthGuardCheckCompletion> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthGuardCheckAction),
     switchMap((action: DaffAuthGuardCheck) =>
-      this.checkToken().pipe(
+      this.authDriver.check().pipe(
         map(() => new DaffAuthGuardCheckCompletion(true)),
         catchError((error: DaffError) => {
           this.storage.removeAuthToken();
@@ -72,7 +79,9 @@ export class DaffAuthEffects {
     ),
   ));
 
-  private checkToken() {
-    return this.authDriver.check();
-  }
+  // this needs to be defined after `check$` or else the driver call won't be run
+  authCheckInterval$ = createEffect(() => of(new DaffAuthCheck()).pipe(
+    repeat({ delay: this.config.checkInterval }),
+    filter(() => !!this.storage.getAuthToken()),
+  ));
 }
