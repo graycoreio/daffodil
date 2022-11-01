@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.47.0](https://github.com/graycoreio/daffodil/compare/v0.46.0...v0.47.0) (2022-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core,driver:** `DaffApolloCacheableOperationLinkGenerator` has been renamed to `DaffApolloLinkGenerator`
+* **paypal:** - removes `DaffPaypalTokenResponse` and `DaffPaypalTokenRequest`
+- `DaffPaypalServiceInterface` -> `DaffPaypalExpressServiceInterface`
+- removes `DaffPaypalTransformerInterface`
+- removes token storing from state and associated selectors/facade fields
+
+### Features
+
+* **all:** type action reducer maps ([#2220](https://github.com/graycoreio/daffodil/issues/2220)) ([2691d6c](https://github.com/graycoreio/daffodil/commit/2691d6c2b1c6bb3de6cb5831d6ac26b63c1cced1))
+* **auth,demo:** add non-login register driver call ([#2223](https://github.com/graycoreio/daffodil/issues/2223)) ([8309f95](https://github.com/graycoreio/daffodil/commit/8309f95671ee999ed85ca659641f6477d63a4d54))
+* **auth:** add `MagentoAuthApolloBearerTokenLinkGenerator` ([#2227](https://github.com/graycoreio/daffodil/issues/2227)) ([24c9077](https://github.com/graycoreio/daffodil/commit/24c90771cd5ab74cd7ffe2cf5685a63157e68029))
+* **auth:** add redirect URLs for member and guest only guards ([#2233](https://github.com/graycoreio/daffodil/issues/2233)) ([793344a](https://github.com/graycoreio/daffodil/commit/793344a9246cc9a5586f31bc96dbf6093d69cc9f))
+* **auth:** add reset password feature ([#2225](https://github.com/graycoreio/daffodil/issues/2225)) ([0d2ea8e](https://github.com/graycoreio/daffodil/commit/0d2ea8e7af1501ebcb570d5de9c50b95269a3f42))
+* **auth:** dispatch auth complete when storing auth token ([#2232](https://github.com/graycoreio/daffodil/issues/2232)) ([ae10429](https://github.com/graycoreio/daffodil/commit/ae104293b2a11bd02e42bb61b08c7f5ae5e7373d))
+* **authorizenet:** add payment actions and reducer ([#2216](https://github.com/graycoreio/daffodil/issues/2216)) ([0a6fe90](https://github.com/graycoreio/daffodil/commit/0a6fe90b4404a9bd4c6b4c38e0dcc87a08ea90cd))
+* **authorizenet:** add payment driver ([#2215](https://github.com/graycoreio/daffodil/issues/2215)) ([5a2ecea](https://github.com/graycoreio/daffodil/commit/5a2ecea23f24efe2646833e9df339d9fee3d83d5))
+* **authorizenet:** add payment models ([#2214](https://github.com/graycoreio/daffodil/issues/2214)) ([6e4bee0](https://github.com/graycoreio/daffodil/commit/6e4bee092b32ce234202f759e19ba15a21e43fb8))
+* **auth:** remove auth token from storage on logout ([#2231](https://github.com/graycoreio/daffodil/issues/2231)) ([5b79c6d](https://github.com/graycoreio/daffodil/commit/5b79c6d26cfb24285e80fd9be19087a8ea0d18d2))
+* **auth:** remove auth token from storage when check fails ([#2229](https://github.com/graycoreio/daffodil/issues/2229)) ([42ccc40](https://github.com/graycoreio/daffodil/commit/42ccc404188e7772c7d0adc8ebb45219156179f3))
+* **auth:** run auth check on a configurable interval ([#2236](https://github.com/graycoreio/daffodil/issues/2236)) ([a3d4d14](https://github.com/graycoreio/daffodil/commit/a3d4d14e0c3af1987982a837b605d5ee8f071ccd))
+* **auth:** use customer email for auth check instead of ID ([#2230](https://github.com/graycoreio/daffodil/issues/2230)) ([67494ef](https://github.com/graycoreio/daffodil/commit/67494efa859dd948548abec72b4dd41cd83abdff))
+* **cart,cart-customer:** add `@daffodil/cart-customer` ([#2235](https://github.com/graycoreio/daffodil/issues/2235)) ([af3f000](https://github.com/graycoreio/daffodil/commit/af3f00044817da4630c23a57772921216422a9b2))
+* **cart:** add `@daffodil/payment` support ([#2212](https://github.com/graycoreio/daffodil/issues/2212)) ([944b823](https://github.com/graycoreio/daffodil/commit/944b82398a1ed8b58bf18ad3aa9cc559ad102571))
+* **cart:** add `DaffCartServiceInterface#merge` ([#2224](https://github.com/graycoreio/daffodil/issues/2224)) ([bd6050f](https://github.com/graycoreio/daffodil/commit/bd6050f7d353eb62f5a93fe95a2cf11a439b23c3))
+* **cart:** add optional `billingAddress` param to `DaffCartPaymentServiceInterface#update` ([#2213](https://github.com/graycoreio/daffodil/issues/2213)) ([7831a16](https://github.com/graycoreio/daffodil/commit/7831a16e67f361358b68f80033fdfa0ceac1eff5))
+* **cart:** create cart when user is unauthorized ([#2234](https://github.com/graycoreio/daffodil/issues/2234)) ([8e7242a](https://github.com/graycoreio/daffodil/commit/8e7242a82fa55ac46dfc6b3ad928c0055b419f47))
+* **cart:** handle auth flow ([#2226](https://github.com/graycoreio/daffodil/issues/2226)) ([7917cc0](https://github.com/graycoreio/daffodil/commit/7917cc08f8505f29dd8c24514c57f0e44c94e8d9))
+* **core,driver:** rename `DaffApolloCacheableOperationLinkGenerator` -> `DaffApolloLinkGenerator` ([#2222](https://github.com/graycoreio/daffodil/issues/2222)) ([979dc94](https://github.com/graycoreio/daffodil/commit/979dc94a8f0d86e97cfe6ff3cac6276d6e4c4c91))
+* **demo:** prevent lib imports on demo ([#2202](https://github.com/graycoreio/daffodil/issues/2202)) ([519393d](https://github.com/graycoreio/daffodil/commit/519393d7afcadcdcab0135b8a0e1e3d1b8ce8606))
+* **design-land:** prevent lib imports ([#2209](https://github.com/graycoreio/daffodil/issues/2209)) ([6dafaff](https://github.com/graycoreio/daffodil/commit/6dafaffcbcd160d85a5e1664221df45674cc91fb))
+* **payment:** add `@daffodil/payment` ([#2200](https://github.com/graycoreio/daffodil/issues/2200)) ([3402649](https://github.com/graycoreio/daffodil/commit/3402649888a5b02b7116e56e9cdb80b244fb8311))
+* **paypal:** add support for `@daffodil/payment` ([#2217](https://github.com/graycoreio/daffodil/issues/2217)) ([c96251e](https://github.com/graycoreio/daffodil/commit/c96251e017acfacf0765d66821a9f87ae4e486d2))
+
 ## [0.46.0](https://github.com/graycoreio/daffodil/compare/v0.45.1...v0.46.0) (2022-09-28)
 
 
