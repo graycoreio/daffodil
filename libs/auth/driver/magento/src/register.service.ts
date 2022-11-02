@@ -15,6 +15,7 @@ import {
   DaffRegisterServiceInterface,
   DaffRegistrationFailedError,
 } from '@daffodil/auth/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 import { transformMagentoAuthError } from './errors/transform';
 import { DaffMagentoLoginService } from './login.service';
@@ -29,7 +30,7 @@ import { createCustomerMutation } from './queries/public_api';
 })
 export class DaffMagentoRegisterService implements DaffRegisterServiceInterface {
   constructor(
-    private apollo: Apollo,
+    private apollo: DaffQueuedApollo,
     private loginService: DaffMagentoLoginService,
   ) {}
 
