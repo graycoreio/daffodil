@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.47.2](https://github.com/graycoreio/daffodil/compare/v0.47.1...v0.47.2) (2022-11-02)
+
+
+### Features
+
+* **auth:** reset errors after success ([#2240](https://github.com/graycoreio/daffodil/issues/2240)) ([35cdbcc](https://github.com/graycoreio/daffodil/commit/35cdbcccc1eb0c6516e1d3c4817f3e91c42fa2b5))
+* **auth:** use `DaffQueuedApollo` in Magento driver ([#2239](https://github.com/graycoreio/daffodil/issues/2239)) ([9781ec6](https://github.com/graycoreio/daffodil/commit/9781ec63055eaf38aff00734a840e6bb21ec39c5))
+
+
+### Bug Fixes
+
+* **auth:** magento driver not throwing errors ([#2241](https://github.com/graycoreio/daffodil/issues/2241)) ([a056010](https://github.com/graycoreio/daffodil/commit/a056010019ff4498c4d4a60496d1fb2a4a7768aa))
+
 ### [0.47.1](https://github.com/graycoreio/daffodil/compare/v0.47.0...v0.47.1) (2022-11-01)
 
 ## [0.47.0](https://github.com/graycoreio/daffodil/compare/v0.46.0...v0.47.0) (2022-11-01)
