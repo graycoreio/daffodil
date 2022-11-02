@@ -64,6 +64,7 @@ describe('@daffodil/auth/state | daffAuthRegisterReducer', () => {
       state = {
         ...initialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authRegisterSuccess = new DaffAuthRegisterSuccess();
@@ -72,6 +73,10 @@ describe('@daffodil/auth/state | daffAuthRegisterReducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
     });
   });
 

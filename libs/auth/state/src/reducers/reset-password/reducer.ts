@@ -26,6 +26,7 @@ export function daffAuthResetPasswordReducer<
       return {
         ...state,
         loading: false,
+        errors: [],
       };
 
     case DaffAuthResetPasswordActionTypes.ResetPasswordFailureAction:

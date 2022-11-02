@@ -21,7 +21,7 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
   });
 
   describe('when AuthCheckAction is triggered', () => {
-    let result;
+    let result: DaffAuthReducerState;
 
     beforeEach(() => {
       const authCheckAction = new DaffAuthCheck();
@@ -35,13 +35,14 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
   });
 
   describe('when AuthCheckSuccessAction is triggered', () => {
-    let result;
+    let result: DaffAuthReducerState;
     let state: DaffAuthReducerState;
 
     beforeEach(() => {
       state = {
         ...initialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authCheckSuccess = new DaffAuthCheckSuccess();
@@ -51,6 +52,10 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
     });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
+    });
   });
 
   describe('when AuthCheckFailureAction is triggered', () => {
@@ -58,7 +63,7 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
       code: 'error code',
       message: 'error message',
     };
-    let result;
+    let result: DaffAuthReducerState;
     let state: DaffAuthReducerState;
 
     beforeEach(() => {

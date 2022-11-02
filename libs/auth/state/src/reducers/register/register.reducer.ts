@@ -24,6 +24,7 @@ export function daffAuthRegisterReducer<
       return {
         ...state,
         loading: false,
+        errors: [],
       };
 
     case DaffAuthRegisterActionTypes.RegisterFailureAction:

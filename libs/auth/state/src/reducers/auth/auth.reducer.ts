@@ -20,6 +20,7 @@ export function daffAuthReducer(
       return {
         ...state,
         loading: false,
+        errors: [],
       };
 
     case DaffAuthActionTypes.AuthCheckFailureAction:
