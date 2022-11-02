@@ -68,6 +68,7 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
       state = {
         ...initialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authResetPasswordSuccess = new DaffResetPasswordSuccess();
@@ -76,6 +77,10 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
     });
   });
 
@@ -130,6 +135,7 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
       state = {
         ...initialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authSendResetEmailSuccess = new DaffSendResetEmailSuccess();
@@ -138,6 +144,10 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
     });
   });
 

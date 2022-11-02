@@ -30,6 +30,7 @@ export function daffAuthLoginReducer<
       return {
         ...state,
         loading: false,
+        errors: [],
       };
 
     case DaffAuthLoginActionTypes.LoginFailureAction:

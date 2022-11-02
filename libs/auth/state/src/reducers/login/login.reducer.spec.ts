@@ -76,6 +76,7 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
       state = {
         ...initialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLoginSuccess = new DaffAuthLoginSuccess(mockAuthToken);
@@ -84,6 +85,10 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
     });
   });
 
@@ -138,6 +143,7 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
       state = {
         ...initialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLogoutSuccess = new DaffAuthLogoutSuccess();
@@ -146,6 +152,10 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
     });
   });
 
