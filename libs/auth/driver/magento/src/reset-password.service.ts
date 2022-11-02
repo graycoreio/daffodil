@@ -12,6 +12,7 @@ import {
 
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
 import { DaffResetPasswordServiceInterface } from '@daffodil/auth/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 import { transformMagentoAuthError } from './errors/transform';
 import { DaffMagentoLoginService } from './login.service';
@@ -36,7 +37,7 @@ import {
 })
 export class DaffMagentoResetPasswordService implements DaffResetPasswordServiceInterface {
   constructor(
-    private apollo: Apollo,
+    private apollo: DaffQueuedApollo,
     private loginService: DaffMagentoLoginService,
   ) {}
 

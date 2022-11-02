@@ -14,6 +14,7 @@ import {
   DaffAuthToken,
 } from '@daffodil/auth';
 import { DaffLoginServiceInterface } from '@daffodil/auth/driver';
+import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 import { transformMagentoAuthError } from './errors/transform';
 import {
@@ -36,7 +37,7 @@ import {
 })
 export class DaffMagentoLoginService implements DaffLoginServiceInterface {
   constructor(
-    private apollo: Apollo,
+    private apollo: DaffQueuedApollo,
     public authTransformer: DaffMagentoAuthTransformerService,
   ) {}
 
