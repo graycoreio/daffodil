@@ -5,6 +5,7 @@ export const createCustomerMutation = gql`
   mutation MagentoCreateCustomer(
     $email: String!,
     $password: String!,
+    $subscribe: Boolean!,
     $firstname: String!,
     $lastname: String!,
   ) {
@@ -12,7 +13,8 @@ export const createCustomerMutation = gql`
       firstname: $firstname,
       lastname: $lastname,
       email: $email,
-      password: $password
+      password: $password,
+      is_subscribed: $subscribe
     }) {
       customer {
         email
