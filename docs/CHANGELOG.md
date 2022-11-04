@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.47.3](https://github.com/graycoreio/daffodil/compare/v0.47.2...v0.47.3) (2022-11-04)
+
+
+### Features
+
+* **auth:** add newsletter subscription to account registration ([#2242](https://github.com/graycoreio/daffodil/issues/2242)) ([3d12201](https://github.com/graycoreio/daffodil/commit/3d122010a05f234ae4e1b8033050154377d86e55))
+
 ### [0.47.2](https://github.com/graycoreio/daffodil/compare/v0.47.1...v0.47.2) (2022-11-02)
 
 
