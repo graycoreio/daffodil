@@ -29,6 +29,7 @@ describe('@daffodil/auth/testing | DaffAccountRegistrationFactory', () => {
     it('should return an AccountRegistration with all required fields defined', () => {
       expect(result.email).toBeDefined();
       expect(result.password).toBeDefined();
+      expect(result.subscribe).toBeDefined();
     });
   });
 });
