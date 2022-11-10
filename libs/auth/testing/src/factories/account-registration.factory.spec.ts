@@ -30,6 +30,8 @@ describe('@daffodil/auth/testing | DaffAccountRegistrationFactory', () => {
       expect(result.email).toBeDefined();
       expect(result.password).toBeDefined();
       expect(result.subscribe).toBeDefined();
+      expect(result.firstName).toBeDefined();
+      expect(result.lastName).toBeDefined();
     });
   });
 });
