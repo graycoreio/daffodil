@@ -41,14 +41,14 @@ export class DaffMagentoRegisterService implements DaffRegisterServiceInterface 
     );
   }
 
-  registerOnly({ email, password, subscribe }: DaffAccountRegistration): Observable<void> {
+  registerOnly({ email, password, subscribe, firstName, lastName }: DaffAccountRegistration): Observable<void> {
     return this.apollo.mutate<MagentoRegisterResponse>({
       mutation: createCustomerMutation,
       variables: {
         email,
         password,
-        firstname: 'temp',
-        lastname: 'temp',
+        firstname: firstName || 'temp',
+        lastname: lastName || 'temp',
         subscribe,
       },
     }).pipe(
