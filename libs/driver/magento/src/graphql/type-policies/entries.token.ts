@@ -15,7 +15,7 @@ export interface DaffTypePolicyEntry {
 }
 
 /**
- * A multi token for injecting {@link DaffTypePolicyEntry}.
+ * A multi token for providing {@link DaffTypePolicyEntry}.
  * {@link DAFF_MAGENTO_TYPE_POLICIES} is the recommended way to inject type policies.
  */
 export const DAFF_MAGENTO_TYPE_POLICY_ENTRIES = new InjectionToken<DaffTypePolicyEntry[]>('DAFF_MAGENTO_TYPE_POLICY_ENTRIES', { factory: () => []});
