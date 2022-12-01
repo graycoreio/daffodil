@@ -32,14 +32,15 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
     @Inject(DaffAuthorizeNetConfigToken) public config: DaffAuthorizeNetConfig,
     private acceptJsLoader: DaffAcceptJsLoadingService,
   ) {
-
+    if (!this.config?.apiLoginID || !this.config?.clientKey) {
+      throw new DaffAuthorizeNetUnconfiguredError(
+        '`apiLoginID` and `clientKey` are empty, are you missing your Authorize.net Credentials?',
+      );
+    }
   }
 
   generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): Observable<MagentoAuthorizeNetPayment> {
     return new Observable(observer => {
-      if (!this.config?.apiLoginID || !this.config?.clientKey) {
-        observer.error(new DaffAuthorizeNetUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.'));
-      }
       this.acceptJsLoader.getAccept().dispatchData(
         transformMagentoAuthorizeNetRequest(paymentTokenRequest, this.config),
         (response: AuthorizeNetResponse) => {
