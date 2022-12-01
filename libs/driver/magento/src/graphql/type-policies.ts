@@ -1,13 +1,16 @@
-import { TypePolicies } from '@apollo/client';
+import { TypePolicies } from '@apollo/client/core';
 
 /**
  * Custom type policies that allow us to have more granular control
  * over how ApolloClient reads from and writes to the cache.
  *
+ * This is applicable to Magento 2.4.3 and up.
+ * Heavily based on https://github.com/magento/pwa-studio/blob/99270701b2b607551f2e5881af272ed48ba7064c/packages/peregrine/lib/Apollo/policies/index.js.
+ *
  * https://www.apollographql.com/docs/react/caching/cache-configuration/#typepolicy-fields
  * https://www.apollographql.com/docs/react/caching/cache-field-behavior/
  */
-export const DAFF_MAGENTO_TYPE_POLICIES: TypePolicies = {
+export const DAFF_MAGENTO_2_4_3_TYPE_POLICIES: TypePolicies = {
   Query: {
     fields: {
       cart: {
