@@ -11,13 +11,33 @@ import {
 import {
   DaffAuthorizeNetConfig,
   DaffAuthorizeNetConfigToken,
+  DaffAuthorizeNetDriverErrorCodes,
   DaffAuthorizeNetPastCCExpirationError,
+  DaffAuthorizeNetUnconfiguredError,
 } from '@daffodil/authorizenet/driver';
 import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
 
 import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
 
-describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', () => {
+describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService | when the config is missing', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: DaffAuthorizeNetConfigToken,
+          useValue: null,
+        },
+      ],
+    });
+  });
+
+  it('should throw a DaffAuthorizeNetUnconfiguredError', () => {
+    expect(() => TestBed.inject(DaffMagentoAuthorizeNetService))
+      .toThrowError(DaffAuthorizeNetUnconfiguredError);
+  });
+});
+
+describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService', () => {
   let service: DaffMagentoAuthorizeNetService;
 
   let acceptSpy: jasmine.Spy;

@@ -14,6 +14,7 @@ import {
   DaffAuthorizeNetConfigToken,
   DaffAuthorizeNetConfig,
   DAFF_AUTHORIZE_NET_ERROR_CODE_MAP,
+  DaffAuthorizeNetUnconfiguredError,
 } from '@daffodil/authorizenet/driver';
 
 import { MagentoAuthorizeNetPayment } from './models/authorize-net-payment';
@@ -30,10 +31,16 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
   constructor(
     @Inject(DaffAuthorizeNetConfigToken) public config: DaffAuthorizeNetConfig,
     private acceptJsLoader: DaffAcceptJsLoadingService,
-  ) {}
+  ) {
+    if (!this.config?.apiLoginID || !this.config?.clientKey) {
+      throw new DaffAuthorizeNetUnconfiguredError(
+        '`apiLoginID` and `clientKey` are empty, are you missing your Authorize.net Credentials?',
+      );
+    }
+  }
 
   generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): Observable<MagentoAuthorizeNetPayment> {
-    return new Observable(observer =>
+    return new Observable(observer => {
       this.acceptJsLoader.getAccept().dispatchData(
         transformMagentoAuthorizeNetRequest(paymentTokenRequest, this.config),
         (response: AuthorizeNetResponse) => {
@@ -46,7 +53,7 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
             observer.next(transformMagentoAuthorizeNetResponse(response, paymentTokenRequest.creditCard.cardnumber));
           }
         },
-      ),
-    );
+      );
+    });
   }
 }
