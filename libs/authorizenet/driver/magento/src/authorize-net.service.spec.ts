@@ -32,8 +32,8 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
   });
 
   it('should throw a DaffAuthorizeNetUnconfiguredError', () => {
-    const expected = hot('#', {}, new DaffAuthorizeNetUnconfiguredError('`apiLoginID` and `clientKey` are required configuration fields for the Magento driver.'));
-    expect(TestBed.inject(DaffMagentoAuthorizeNetService).generateToken(null)).toBeObservable(expected);
+    expect(() => TestBed.inject(DaffMagentoAuthorizeNetService))
+      .toThrowError(DaffAuthorizeNetUnconfiguredError);
   });
 });
 
