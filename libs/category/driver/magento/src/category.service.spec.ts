@@ -18,11 +18,10 @@ import {
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import {
-  MagentoGetACategoryResponse,
   MagentoCategory,
-  MagentoGetCategoryQuery,
-  MagentoGetProductsResponse,
-  MagentoGetProductsQuery,
+  MagentoGetCategoryAndProductsResponse,
+  MagentoGetCategoryAndProductsQuery,
+  MagentoCategoryUrlResolverResponse,
 } from '@daffodil/category/driver/magento';
 import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/testing';
 import {
@@ -60,6 +59,8 @@ import {
 } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
+import { MagentoGetCategoryAndProductsRequest } from './models/public_api';
+import { MagentoResolveCategoryUrl } from './queries/public_api';
 
 describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () => {
   let categoryService: DaffMagentoCategoryService;
@@ -92,9 +93,9 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
   let mockMagentoPriceFilterTypeField: MagentoProductFilterTypeField;
   let mockMagentoProduct: MagentoProduct;
   let mockMagentoProductPageInfo: MagentoProductPageInfo;
-  let mockGetCategoryResponse: MagentoGetACategoryResponse;
   let mockGetFilterTypesResponse: MagentoProductGetFilterTypesResponse;
-  let mockGetProductsResponse: MagentoGetProductsResponse;
+  let mockGetCategoryAndProductsResponse: MagentoGetCategoryAndProductsResponse;
+  let mockCategoryUrlResolverResponse: MagentoCategoryUrlResolverResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -159,11 +160,6 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
     // transformedCategoryPageMetadata =  categoryPageMetadataFactory.create();
     // transformedProducts =  productFactory.createMany(3);
 
-    mockGetCategoryResponse = {
-      categoryList: [
-        mockMagentoCategory,
-      ],
-    };
     mockGetFilterTypesResponse = {
       __type: {
         inputFields: [
@@ -172,7 +168,10 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
         ],
       },
     };
-    mockGetProductsResponse = {
+    mockGetCategoryAndProductsResponse = {
+      categoryList: [
+        mockMagentoCategory,
+      ],
       products: {
         // items: [
         //   mockMagentoProduct,
@@ -186,6 +185,11 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
           mockMagentoSelectAggregation,
         ],
         sort_fields: mockMagentoProductSortFields,
+      },
+    };
+    mockCategoryUrlResolverResponse = {
+      route: {
+        uid: mockMagentoCategory.uid,
       },
     };
   });
@@ -208,13 +212,11 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
         done();
       });
 
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
       const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
+      const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
 
-      categoryOp.flushData(mockGetCategoryResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
-      productsOp.flushData(mockGetProductsResponse);
+      categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
     });
 
     describe('when filters are requested', () => {
@@ -250,13 +252,11 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
           done();
         });
 
-        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
         const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
-        const productsOp = controller.expectOne(MagentoGetProductsQuery());
+        const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
 
-        categoryOp.flushData(mockGetCategoryResponse);
         filterTypesOp.flushData(mockGetFilterTypesResponse);
-        productsOp.flushData(mockGetProductsResponse);
+        categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
       });
     });
   });
@@ -282,52 +282,34 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
         flush();
       });
 
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const resolveUrlOp = controller.expectOne(MagentoResolveCategoryUrl);
       const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
-      categoryOp.flushData(mockGetCategoryResponse);
+      resolveUrlOp.flushData(mockCategoryUrlResolverResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
 
       tick();
 
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
-      productsOp.flushData(mockGetProductsResponse);
+      const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
+      categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
     }));
 
-    it('should query the category with the truncated URL', fakeAsync(() => {
+    it('should query the category and products with the category ID', fakeAsync(() => {
       result.subscribe();
 
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+      const resolveUrlOp = controller.expectOne(MagentoResolveCategoryUrl);
       const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
-      categoryOp.flushData(mockGetCategoryResponse);
+      resolveUrlOp.flushData(mockCategoryUrlResolverResponse);
       filterTypesOp.flushData(mockGetFilterTypesResponse);
 
       tick();
 
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
-      productsOp.flushData(mockGetProductsResponse);
+      const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
+      categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
 
-      expect(categoryOp.operation.variables.filters.url_path.eq).toEqual('test/url');
-
-      flush();
-    }));
-
-    it('should query the products with the category ID', fakeAsync(() => {
-      result.subscribe();
-
-      const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
-      const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
-
-      categoryOp.flushData(mockGetCategoryResponse);
-      filterTypesOp.flushData(mockGetFilterTypesResponse);
-
-      tick();
-
-      const productsOp = controller.expectOne(MagentoGetProductsQuery());
-      productsOp.flushData(mockGetProductsResponse);
-
-      expect(productsOp.operation.variables.filter.category_uid.eq).toEqual(mockMagentoCategory.uid);
+      expect((<MagentoGetCategoryAndProductsRequest>categoryAndProductsOp.operation.variables).productFilter.category_uid.eq).toEqual(mockMagentoCategory.uid);
+      expect((<MagentoGetCategoryAndProductsRequest>categoryAndProductsOp.operation.variables).categoryFilters.category_uid.eq).toEqual(mockMagentoCategory.uid);
 
       flush();
     }));
@@ -364,16 +346,16 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
           flush();
         });
 
-        const categoryOp = controller.expectOne(MagentoGetCategoryQuery);
+        const resolveUrlOp = controller.expectOne(MagentoResolveCategoryUrl);
         const filterTypesOp = controller.expectOne(MagentoProductGetFilterTypes);
 
-        categoryOp.flushData(mockGetCategoryResponse);
+        resolveUrlOp.flushData(mockCategoryUrlResolverResponse);
         filterTypesOp.flushData(mockGetFilterTypesResponse);
 
         tick();
 
-        const productsOp = controller.expectOne(MagentoGetProductsQuery());
-        productsOp.flushData(mockGetProductsResponse);
+        const categoryAndProductsOp = controller.expectOne(MagentoGetCategoryAndProductsQuery());
+        categoryAndProductsOp.flushData(mockGetCategoryAndProductsResponse);
       }));
     });
   });
