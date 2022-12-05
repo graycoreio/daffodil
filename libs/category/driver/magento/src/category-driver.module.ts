@@ -51,6 +51,11 @@ export class DaffCategoryMagentoDriverModule {
         DaffMagentoAppliedFiltersTransformService,
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
+          useValue: DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME,
+          multi: true,
+        },
+        {
+          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
           useValue: DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
           multi: true,
         },
