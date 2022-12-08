@@ -28,7 +28,10 @@ export class DaffMagentoAuthService implements DaffAuthServiceInterface {
   constructor(private apollo: Apollo) {}
 
   check(): Observable<void> {
-    return this.apollo.query<MagentoCheckTokenResponse>({ query: checkTokenQuery }).pipe(
+    return this.apollo.query<MagentoCheckTokenResponse>({
+      query: checkTokenQuery,
+      fetchPolicy: 'no-cache',
+    }).pipe(
       map(validateCheckTokenResponse),
       map(() => undefined),
       catchError(err => throwError(() => transformMagentoAuthError(err))),
