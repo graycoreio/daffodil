@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.48.0](https://github.com/graycoreio/daffodil/compare/v0.47.3...v0.48.0) (2022-12-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** all filter related features have been moved to `@daffodil/core`
+* **core:** add required filter fields to `DaffCollectionMetadata` and `DaffCollectionRequest`
+* **category:** The `category` and `products` api calls made by this driver are now a single call. If you were previously leveraging fragments aggressively and relying on the queries to be split for query complexity reasons, you will need to revisit your queries.
+
+Co-authored-by: Damien Retzinger <damienwebdev@gmail.com>
+
+### Features
+
+* **auth:** add `firstName` and `lastName` to `DaffAccountRegistration` ([#2249](https://github.com/graycoreio/daffodil/issues/2249)) ([6449486](https://github.com/graycoreio/daffodil/commit/644948641beb162f734c1af6702722f046ae0bf8))
+* **authorizenet:** ensure config is present in Magento driver ([#2008](https://github.com/graycoreio/daffodil/issues/2008)) ([5f2e64a](https://github.com/graycoreio/daffodil/commit/5f2e64ac5577ad2956c835220b29a52644dd3fd7))
+* **category:** fix filter move breaking changes ([#2198](https://github.com/graycoreio/daffodil/issues/2198)) ([2beacd0](https://github.com/graycoreio/daffodil/commit/2beacd0527d943c00bf207b3775b0af8e966fe72))
+* **category:** use `route` query in Magento driver ([#2141](https://github.com/graycoreio/daffodil/issues/2141)) ([fe8fa32](https://github.com/graycoreio/daffodil/commit/fe8fa323a812cb43e9c0fe225c6e6f8973c1849e))
+* **core:** add filters to collection ([#2198](https://github.com/graycoreio/daffodil/issues/2198)) ([2a4c2cc](https://github.com/graycoreio/daffodil/commit/2a4c2cc7b74d8ca8e4e9a93352f304b9fa71ff7c))
+* **driver:** add type policies injection point for magento drivers ([#2255](https://github.com/graycoreio/daffodil/issues/2255)) ([9e7a4ab](https://github.com/graycoreio/daffodil/commit/9e7a4ab2ddef45702839684b53fab1330133f5d6))
+* **product:** remove filter features ([#2198](https://github.com/graycoreio/daffodil/issues/2198)) ([4abb68e](https://github.com/graycoreio/daffodil/commit/4abb68ef26d983bd3e84e661168f2c2bffe5e524))
+* **reviews:** use `@daffodil/core` filters ([#2198](https://github.com/graycoreio/daffodil/issues/2198)) ([3f8d17d](https://github.com/graycoreio/daffodil/commit/3f8d17d40f4d464e1778bc9806177c7f609e968e))
+* **search-product:** fix filter move breaking changes ([#2198](https://github.com/graycoreio/daffodil/issues/2198)) ([454eadd](https://github.com/graycoreio/daffodil/commit/454eadd1f53f183703ac45d4923ac554205e237e))
+
+
+### Bug Fixes
+
+* **auth:** skip Apollo cache on Magento auth check ([#2260](https://github.com/graycoreio/daffodil/issues/2260)) ([b6cdd68](https://github.com/graycoreio/daffodil/commit/b6cdd68a2745b229897b5b488489c9e05b76a12f))
+
 ### [0.47.3](https://github.com/graycoreio/daffodil/compare/v0.47.2...v0.47.3) (2022-11-04)
 
 
