@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.48.1](https://github.com/graycoreio/daffodil/compare/v0.48.0...v0.48.1) (2022-12-12)
+
+
+### Features
+
+* **reviews:** export mock models and change private to protected ([#2262](https://github.com/graycoreio/daffodil/issues/2262)) ([f570d32](https://github.com/graycoreio/daffodil/commit/f570d3227deb6a632c909390f2896657437fee0a))
+
+
+### Bug Fixes
+
+* **driver:** incorrect Magento Breadcrumb type policy key field ([#2258](https://github.com/graycoreio/daffodil/issues/2258)) ([f07377b](https://github.com/graycoreio/daffodil/commit/f07377bca96598e88be8ccef10f020a131d4c255))
+
 ## [0.48.0](https://github.com/graycoreio/daffodil/compare/v0.47.3...v0.48.0) (2022-12-08)
 
 
