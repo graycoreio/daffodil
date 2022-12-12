@@ -38,7 +38,7 @@ export const DAFF_MAGENTO_2_4_3_TYPE_POLICIES: TypePolicies = {
   },
   Breadcrumb: {
     // Uses provided fields on the object as the `id`.
-    keyFields: ['category_id'],
+    keyFields: ['category_uid'],
   },
   Cart: {
     keyFields: () => 'Cart',
