@@ -21,8 +21,8 @@ export class MockProductReviews implements DaffProductReviews {
   data: DaffProductReviews['data'];
 
   constructor(
-    private reviewFactory: DaffProductReviewFactory,
-    private metadataFactory: DaffCollectionMetadataFactory,
+    protected reviewFactory: DaffProductReviewFactory,
+    protected metadataFactory: DaffCollectionMetadataFactory,
   ) {
     this.data = this.createReviews();
 

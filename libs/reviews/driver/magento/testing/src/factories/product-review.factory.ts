@@ -9,7 +9,7 @@ import {
 
 import { MagentoProductReviewRatingFactory } from './product-review-rating.factory';
 
-class MockMagentoProductReview implements MagentoProductReview {
+export class MockMagentoProductReview implements MagentoProductReview {
   __typename: 'ProductReview' = 'ProductReview';
   summary = faker.random.words(5);
   text = faker.random.words(15);
@@ -22,7 +22,7 @@ class MockMagentoProductReview implements MagentoProductReview {
   ratings_breakdown = this.createRatings();
 
   constructor(
-    private ratingFactory: MagentoProductReviewRatingFactory,
+    protected ratingFactory: MagentoProductReviewRatingFactory,
   ) {}
 
   private createRatings(): MagentoProductReviewRating[] {

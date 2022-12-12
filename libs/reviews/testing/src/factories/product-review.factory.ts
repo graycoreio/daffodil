@@ -26,8 +26,8 @@ export class MockProductReview implements DaffProductReview {
   customer = this.createCustomer();
 
   constructor(
-    private ratingFactory: DaffReviewRatingFactory,
-    private customerFactory: DaffProductReviewCustomerFactory,
+    protected ratingFactory: DaffReviewRatingFactory,
+    protected customerFactory: DaffProductReviewCustomerFactory,
   ) {}
 
   private createRatings(): DaffReviewRating[] {

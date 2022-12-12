@@ -11,14 +11,14 @@ import {
 
 import { MagentoProductReviewFactory } from './product-review.factory';
 
-class MockMagentoProductReviews implements MagentoProductReviews {
+export class MockMagentoProductReviews implements MagentoProductReviews {
   __typename: 'ProductReviews' = 'ProductReviews';
   items = this.createReviews();
   page_info = this.createPageInfo();
 
   constructor(
-    private reviewFactory: MagentoProductReviewFactory,
-    private pageInfoFactory: MagentoProductPageInfoFactory,
+    protected reviewFactory: MagentoProductReviewFactory,
+    protected pageInfoFactory: MagentoProductPageInfoFactory,
   ) {}
 
   private createReviews(): MagentoProductReview[] {
