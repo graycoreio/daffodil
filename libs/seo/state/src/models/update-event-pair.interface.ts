@@ -1,6 +1,7 @@
 import {
   ActivatedRoute,
   Event,
+  Router,
 } from '@angular/router';
 
 import { Constructable } from '@daffodil/core';
@@ -17,5 +18,5 @@ export interface DaffSeoUpdateEventPair<T extends Event = Event, V = unknown> {
   /**
    * A function that gets SEO info from the particular action.
    */
-  getData: (event: T, activatedRoute: ActivatedRoute) => V;
+  getData: (event: T, activatedRoute: ActivatedRoute, url: Router['url']) => V;
 }

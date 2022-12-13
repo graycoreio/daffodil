@@ -51,7 +51,7 @@ export abstract class DaffSeoPageHookRouterEffects<
       map(event => this.updates.filter(update =>
         event instanceof update.event,
       ).map(({ getData }) =>
-        getData(event, this.activatedRoute),
+        getData(event, this.activatedRoute, this.router.url),
       )),
       tap((data: V[]) => data.forEach(datum => {
         if (datum) {
