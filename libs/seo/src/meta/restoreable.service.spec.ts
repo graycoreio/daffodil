@@ -73,7 +73,7 @@ describe('@daffodil/seo | DaffRestoreableMetaService', () => {
       });
 
       it('should invoke the meta service with the upserted def', () => {
-        expect(metaServiceSpy.upsert).toHaveBeenCalledOnceWith(def);
+        expect(metaServiceSpy.remove).toHaveBeenCalledOnceWith(def);
       });
     });
   });
@@ -124,6 +124,17 @@ describe('@daffodil/seo | DaffRestoreableMetaService', () => {
       it('should restore the upserted and cleared def', () => {
         expect(metaServiceSpy.upsert.calls.mostRecent().args[0]).toEqual(def);
         expect(metaServiceSpy.upsert).toHaveBeenCalledTimes(2);
+      });
+
+      describe('and then the defs are cleared again', () => {
+        beforeEach(() => {
+          service.clear();
+        });
+
+        it('should clear the restored defs', () => {
+          expect(metaServiceSpy.remove).toHaveBeenCalledTimes(2);
+          expect(metaServiceSpy.remove.calls.mostRecent().args[0]).toEqual(def);
+        });
       });
     });
 

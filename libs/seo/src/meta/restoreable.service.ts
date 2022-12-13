@@ -64,7 +64,7 @@ export class DaffRestoreableMetaService implements DaffSeoRestoreableServiceInte
     this._clearPage();
 
     Object.keys(this._restoreCache).forEach(key => {
-      this.meta.upsert(this._restoreCache[key]);
+      this.upsert(this._restoreCache[key]);
     });
 
     this.emptyRestoreCache();
