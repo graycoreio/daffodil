@@ -33,7 +33,6 @@ describe('@daffodil/reviews/driver/magento/testing | MagentoProductReviewFactory
       expect(result.ratings_breakdown).toBeDefined();
       expect(result.summary).toBeDefined();
       expect(result.text).toBeDefined();
-      expect(result.product.sku).toBeDefined();
     });
   });
 });

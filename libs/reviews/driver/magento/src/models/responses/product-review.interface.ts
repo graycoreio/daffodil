@@ -5,9 +5,6 @@ export interface MagentoProductReview {
   average_rating: number;
   created_at: string;
   nickname: string;
-  product: {
-    sku: string;
-  };
   ratings_breakdown: MagentoProductReviewRating[];
   summary: string;
   text: string;

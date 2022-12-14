@@ -27,6 +27,7 @@ describe('@daffodil/reviews/driver/magento/testing | MagentoReviewedProductFacto
     });
 
     it('should return', () => {
+      expect(result.sku).toBeDefined();
       expect(result.rating_summary).toBeDefined();
       expect(result.review_count).toBeDefined();
     });

@@ -5,12 +5,9 @@ export const magentoProductReviewFragment = gql`
     average_rating
     created_at
     nickname
-    product {
-      sku
-    }
     ratings_breakdown {
-        name
-        value
+      name
+      value
     }
     summary
     text

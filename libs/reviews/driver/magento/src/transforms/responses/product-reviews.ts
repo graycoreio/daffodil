@@ -7,7 +7,7 @@ import { magentoProductReviewCollectionMetadataTransform } from './product-revie
 
 export const magentoProductReviewsTransform = (productReviews: MagentoGetProductReviewsResponse): DaffProductReviews => {
   const reviews = productReviews.products.items?.[0]?.reviews;
-  const data = daffIdentifiableArrayToDict(reviews.items.map(magentoProductReviewTransform) || []);
+  const data = daffIdentifiableArrayToDict(reviews.items.map(review => magentoProductReviewTransform(review, productReviews.products.items?.[0].sku)) || []);
 
   return {
     data,

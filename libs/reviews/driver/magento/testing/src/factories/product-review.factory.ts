@@ -16,9 +16,6 @@ export class MockMagentoProductReview implements MagentoProductReview {
   average_rating = faker.datatype.number({ min: 0, max: 100 });
   created_at = faker.date.past();
   nickname = faker.name.firstName();
-  product = {
-    sku: faker.datatype.uuid(),
-  };
   ratings_breakdown = this.createRatings();
 
   constructor(

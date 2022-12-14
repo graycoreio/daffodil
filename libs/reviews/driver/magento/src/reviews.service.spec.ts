@@ -60,6 +60,7 @@ describe('@daffodil/reviews/driver/magento | DaffReviewsMagentoService', () => {
     mockGetProductReviewsResponse = {
       products: {
         items: [{
+          sku: productId,
           reviews: mockMagentoReviews,
         }],
       },
@@ -75,7 +76,7 @@ describe('@daffodil/reviews/driver/magento | DaffReviewsMagentoService', () => {
       it('should return the list of Daffodil countries', done => {
         service.list(productId).subscribe((result) => {
           expect(Object.values(result.data)).toEqual(jasmine.arrayContaining(mockMagentoReviews.items.map(e => jasmine.objectContaining({
-            productId: e.product.sku,
+            productId,
           }))));
           done();
         });
