@@ -3,10 +3,11 @@ import { DaffProductReview } from '@daffodil/reviews';
 import { MagentoProductReview } from '../../models/public_api';
 import { magentoProductRatingTransform } from './product-rating';
 
-export const magentoProductReviewTransform = (review: MagentoProductReview): DaffProductReview => ({
-  id: `${review.product.sku}-${review.nickname}`,
+export const magentoProductReviewTransform = (review: MagentoProductReview, productSku: string): DaffProductReview => ({
+  // TODO: use real ID when available
+  id: `${productSku}-${review.nickname}-${review.summary}`,
   overallRating: review.average_rating,
-  productId: review.product.sku,
+  productId: productSku,
   // TODO: investigate timezones issue
   // magento does not give timezone info in the string
   // figure out way to infer it

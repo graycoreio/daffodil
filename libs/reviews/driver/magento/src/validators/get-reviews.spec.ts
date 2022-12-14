@@ -19,6 +19,7 @@ describe('@daffodil/reviews/driver/magento | validateGetProductReviewsResponse',
       data: {
         products: {
           items: [{
+            sku: 'sku',
             reviews: reviewsFactory.create(),
           }],
         },
