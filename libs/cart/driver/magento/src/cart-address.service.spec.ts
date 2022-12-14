@@ -9,6 +9,7 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
+import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffCart,
   DaffCartAddress,
@@ -39,7 +40,7 @@ import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartAddressService } from './cart-address.service';
 
-describe('Driver | Magento | Cart | CartAddressService', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoCartAddressService', () => {
   let service: DaffMagentoCartAddressService;
   let controller: ApolloTestingController;
 
@@ -51,9 +52,10 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
 
   let magentoCartTransformerSpy;
   let magentoCartAddressInputTransformerSpy;
+  let authStorageSpy: jasmine.SpyObj<DaffAuthStorageService>;
 
-  let cartId;
-  let email;
+  let cartId: DaffCart['id'];
+  let email: string;
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
   let mockMagentoShippingAddress: MagentoShippingAddress;
@@ -63,6 +65,8 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
   let mockUpdateAddressWithEmailResponse: MagentoUpdateAddressWithEmailResponse;
 
   beforeEach(() => {
+    authStorageSpy = jasmine.createSpyObj('DaffAuthStorageService', ['getAuthToken']);
+
     TestBed.configureTestingModule({
       imports: [
         ApolloTestingModule,
@@ -76,6 +80,10 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
         {
           provide: DaffMagentoCartAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform']),
+        },
+        {
+          provide: DaffAuthStorageService,
+          useValue: authStorageSpy,
         },
         {
           provide: APOLLO_TESTING_CACHE,
@@ -183,6 +191,42 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
 
           op.flush({
             data: mockUpdateAddressWithEmailResponse,
+          });
+        });
+
+        describe('and the customer is logged in', () => {
+          beforeEach(() => {
+            authStorageSpy.getAuthToken.and.returnValue('token');
+          });
+
+          it('should not update email', done => {
+            service.update(cartId, mockDaffCartAddress).subscribe(result => {
+              done();
+            });
+
+            const op = controller.expectOne(addTypenameToDocument(updateAddress([])));
+
+            op.flush({
+              data: mockUpdateAddressResponse,
+            });
+          });
+        });
+
+        describe('and the customer is not logged in', () => {
+          beforeEach(() => {
+            authStorageSpy.getAuthToken.and.returnValue('');
+          });
+
+          it('should update email', done => {
+            service.update(cartId, mockDaffCartAddress).subscribe(result => {
+              done();
+            });
+
+            const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
+
+            op.flush({
+              data: mockUpdateAddressWithEmailResponse,
+            });
           });
         });
       });

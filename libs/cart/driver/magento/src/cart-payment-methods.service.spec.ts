@@ -20,7 +20,7 @@ import { schema } from '@daffodil/driver/magento';
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 import { listPaymentMethods } from './queries/public_api';
 
-describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
+describe('@daffodil/cart/driver/magento | CartPaymentMethodsService', () => {
   let service: DaffMagentoCartPaymentMethodsService;
   let controller: ApolloTestingController;
 

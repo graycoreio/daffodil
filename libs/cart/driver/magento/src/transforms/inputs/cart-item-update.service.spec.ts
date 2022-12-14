@@ -4,7 +4,7 @@ import { DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartItemUpdateInputTransformer } from './cart-item-update.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCartItemUpdateInput', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoCartItemUpdateInput', () => {
   let service: DaffMagentoCartItemUpdateInputTransformer;
 
   let daffCartItemFactory: DaffCartItemFactory;

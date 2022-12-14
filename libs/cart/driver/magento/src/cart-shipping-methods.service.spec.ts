@@ -24,7 +24,7 @@ interface MagentoCartAvailableShippingMethod extends MagentoCartShippingMethod {
   __typename: string;
 }
 
-describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
+describe('@daffodil/cart/driver/magento | CartShippingMethodsService', () => {
   let service: DaffMagentoCartShippingMethodsService;
   let controller: ApolloTestingController;
 

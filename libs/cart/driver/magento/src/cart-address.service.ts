@@ -12,6 +12,7 @@ import {
   catchError,
 } from 'rxjs/operators';
 
+import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffCartAddress,
   DaffCart,
@@ -47,10 +48,11 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
     private cartTransformer: DaffMagentoCartTransformer,
     private cartAddressInputTransformer: DaffMagentoCartAddressInputTransformer,
+    private authStorage: DaffAuthStorageService,
   ) {}
 
   update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address);
+    return address.email && !this.authStorage.getAuthToken() ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address);
   }
 
   private updateAddress(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {

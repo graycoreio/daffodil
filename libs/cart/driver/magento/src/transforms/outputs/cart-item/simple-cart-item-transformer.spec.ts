@@ -7,7 +7,7 @@ import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento'
 
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 
-describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => {
+describe('@daffodil/cart/driver/magento | Transformer | SimpleMagentoCartItem', () => {
   let daffCartItemFactory: DaffCartItemFactory;
   let magentoCartItemFactory: MagentoCartItemFactory;
 

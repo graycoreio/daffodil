@@ -32,7 +32,7 @@ import { DaffBadInputError } from '@daffodil/driver';
 
 import { DaffMagentoCartCouponService } from './cart-coupon.service';
 
-describe('Driver | Magento | Cart | CartCouponService', () => {
+describe('@daffodil/cart/driver/magento | CartCouponService', () => {
   let service: DaffMagentoCartCouponService;
   let controller: ApolloTestingController;
 
