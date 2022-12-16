@@ -4,5 +4,6 @@ export interface MagentoCustomer {
   email: string;
   firstname: string;
   lastname: string;
+  is_subscribed: boolean;
   addresses: MagentoCustomerAddress[];
 }

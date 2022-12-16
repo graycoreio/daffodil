@@ -7,6 +7,7 @@ export const magentoCustomerFragment = gql`
     email
     firstname
     lastname
+    is_subscribed
     addresses {
       ...magentoCustomerAddress
     }

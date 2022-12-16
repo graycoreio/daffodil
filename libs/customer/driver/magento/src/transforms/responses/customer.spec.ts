@@ -24,6 +24,7 @@ describe('@daffodil/customer/driver/magento | magentoCustomerTransform', () => {
     expect(result.email).toEqual(mockCustomer.email);
     expect(result.firstName).toEqual(mockCustomer.firstname);
     expect(result.lastName).toEqual(mockCustomer.lastname);
+    expect(result.isSubscribed).toEqual(mockCustomer.is_subscribed);
   });
 
   it('should transform addresses', () => {
