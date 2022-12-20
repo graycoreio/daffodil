@@ -6,7 +6,7 @@ import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoBillingAddressInputTransformer } from './billing-address.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoBillingAddressInput', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoBillingAddressInput', () => {
   let service: DaffMagentoBillingAddressInputTransformer;
 
   let daffCartAddressFactory: DaffCartAddressFactory;
