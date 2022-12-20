@@ -14,7 +14,7 @@ import {
   transformConfigurableCartItem,
 } from './cart-item-input-transformers';
 
-describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => {
+describe('@daffodil/cart/driver/magento | Transformers | MagentoCartItemInput', () => {
 
   let mockDaffCartItemInput: DaffCartItemInput;
 

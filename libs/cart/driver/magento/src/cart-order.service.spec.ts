@@ -23,7 +23,7 @@ import { DaffBadInputError } from '@daffodil/driver';
 
 import { DaffMagentoCartOrderService } from './cart-order.service';
 
-describe('Driver | Magento | Cart | CartOrderService', () => {
+describe('@daffodil/cart/driver/magento | CartOrderService', () => {
   let service: DaffMagentoCartOrderService;
   let controller: ApolloTestingController;
 

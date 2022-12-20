@@ -40,7 +40,7 @@ import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartBillingAddressService } from './cart-billing-address.service';
 
-describe('Driver | Magento | Cart | CartBillingAddressService', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoCartBillingAddressService', () => {
   let service: DaffMagentoCartBillingAddressService;
   let controller: ApolloTestingController;
 

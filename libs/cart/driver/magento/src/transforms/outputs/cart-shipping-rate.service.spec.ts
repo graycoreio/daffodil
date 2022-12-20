@@ -4,7 +4,7 @@ import { MagentoCartShippingMethodFactory } from '@daffodil/cart/driver/magento/
 
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoCartShippingRate', () => {
   let service: DaffMagentoCartShippingRateTransformer;
 
   let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;

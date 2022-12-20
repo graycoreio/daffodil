@@ -1,6 +1,6 @@
 import { daffMagentoCouponTransform as transform } from './cart-coupon';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCartCoupon', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoCartCoupon', () => {
   let result;
   let code: string;
 

@@ -4,7 +4,7 @@ import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoPaymentMethodInputTransformer } from './payment-method.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoPaymentMethodInput', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoPaymentMethodInput', () => {
   let service: DaffMagentoPaymentMethodInputTransformer;
 
   let daffPaymentFactory: DaffCartPaymentFactory;

@@ -4,7 +4,7 @@ import { MagentoCartAddressFactory } from '@daffodil/cart/driver/magento/testing
 
 import { DaffMagentoCartAddressTransformer } from './cart-address.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () => {
   let service: DaffMagentoCartAddressTransformer;
 
   let magentoCartAddressFactory: MagentoCartAddressFactory;

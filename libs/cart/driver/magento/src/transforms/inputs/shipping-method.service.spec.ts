@@ -4,7 +4,7 @@ import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoShippingMethodInputTransformer } from './shipping-method.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoShippingMethodInput', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingMethodInput', () => {
   let service: DaffMagentoShippingMethodInputTransformer;
 
   let daffShippingRateFactory: DaffCartShippingRateFactory;

@@ -4,7 +4,7 @@ import { MagentoCartPaymentMethodFactory } from '@daffodil/cart/driver/magento/t
 
 import { DaffMagentoCartPaymentTransformer } from './cart-payment.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
+describe('@daffodil/cart/driver/magento | Transformer | MagentoCartPayment', () => {
   let service: DaffMagentoCartPaymentTransformer;
 
   let magentoPaymentMethodFactory: MagentoCartPaymentMethodFactory;
