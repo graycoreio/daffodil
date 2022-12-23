@@ -12,6 +12,12 @@
       "@daffodil/customer/testing": [
         "libs/customer/testing/src"
       ],
+      "@daffodil/customer/state": [
+        "libs/customer/state/src"
+      ],
+      "@daffodil/customer/state/testing": [
+        "libs/customer/state/testing/src"
+      ],
       "@daffodil/customer/driver": [
         "libs/customer/driver/src"
       ],
