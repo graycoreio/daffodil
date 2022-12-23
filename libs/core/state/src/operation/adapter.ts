@@ -45,3 +45,13 @@ export function daffOperationFailed <T extends DaffOperationState = DaffOperatio
     errors,
   };
 };
+
+/**
+ * Resets errors.
+ */
+export function daffClearErrors <T extends DaffOperationState = DaffOperationState>(state: T): T {
+  return {
+    ...state,
+    errors: [],
+  };
+};

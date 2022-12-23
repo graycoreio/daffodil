@@ -6,6 +6,7 @@ import {
 } from '@daffodil/core/state';
 
 import {
+  daffClearErrors,
   daffCompleteOperation,
   daffOperationFailed,
   daffStartMutation,
@@ -54,6 +55,23 @@ describe('@daffodil/core/state | daffCompleteOperation', () => {
 
   it('should set loading to stable', () => {
     expect(result.loading).toEqual(DaffState.Stable);
+  });
+
+  it('should reset errors', () => {
+    expect(result.errors).toEqual([]);
+  });
+});
+
+describe('@daffodil/core/state | daffClearErrors', () => {
+  let state: DaffOperationState;
+  let result: DaffOperationState;
+
+  beforeEach(() => {
+    state = {
+      errors: [{ code: 'code', message: 'message' }],
+      loading: DaffState.Resolving,
+    };
+    result = daffClearErrors(state);
   });
 
   it('should reset errors', () => {
