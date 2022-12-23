@@ -9,6 +9,9 @@
       "@daffodil/customer": [
         "libs/customer/src"
       ],
+      "@daffodil/customer/testing": [
+        "libs/customer/testing/src"
+      ],
     }
   }
 }
