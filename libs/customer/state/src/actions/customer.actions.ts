@@ -19,6 +19,7 @@ export enum DaffCustomerActionTypes {
   CustomerChangePasswordAction = '[@daffodil/customer] Customer Change Password Action',
   CustomerChangePasswordSuccessAction = '[@daffodil/customer] Customer Change Password Success Action',
   CustomerChangePasswordFailureAction = '[@daffodil/customer] Customer Change Password Failure Action',
+  CustomerClearErrorsAction = '[@daffodil/customer] Customer Clear Errors Action',
 
 }
 
@@ -135,6 +136,13 @@ export class DaffCustomerChangePasswordFailure implements Action {
 }
 
 /**
+ * An action to clear all customer errors in state.
+ */
+export class DaffCustomerClearErrors implements Action {
+  readonly type = DaffCustomerActionTypes.CustomerClearErrorsAction;
+}
+
+/**
  * A union of the customer action types.
  */
 export type DaffCustomerActions<
@@ -151,4 +159,5 @@ export type DaffCustomerActions<
   | DaffCustomerChangeEmailFailure
   | DaffCustomerChangePassword
   | DaffCustomerChangePasswordSuccess
-  | DaffCustomerChangePasswordFailure;
+  | DaffCustomerChangePasswordFailure
+  | DaffCustomerClearErrors;

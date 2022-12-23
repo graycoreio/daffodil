@@ -1,4 +1,5 @@
 import {
+  daffClearErrors,
   daffCompleteOperation,
   daffOperationFailed,
   daffStartMutation,
@@ -45,6 +46,9 @@ export const daffCustomerReducer = <T extends DaffCustomer = DaffCustomer>(
     case action.type === DaffCustomerActionTypes.CustomerChangeEmailFailureAction:
     case action.type === DaffCustomerActionTypes.CustomerChangePasswordFailureAction:
       return daffOperationFailed([(<DaffCustomerLoadFailure>action).payload], state);
+
+    case action.type === DaffCustomerActionTypes.CustomerClearErrorsAction:
+      return daffClearErrors(state);
 
     default:
       return state;

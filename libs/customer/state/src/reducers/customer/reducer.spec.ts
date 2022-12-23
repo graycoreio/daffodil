@@ -20,6 +20,7 @@ import {
   DaffCustomerChangePassword,
   DaffCustomerChangePasswordFailure,
   DaffCustomerChangePasswordSuccess,
+  DaffCustomerClearErrors,
 } from '@daffodil/customer/state';
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
 
@@ -365,6 +366,31 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
 
     it('sets loading to stable', () => {
       expect(result.loading).toEqual(DaffState.Stable);
+    });
+  });
+
+  describe('when CustomerClearErrorsAction is triggered', () => {
+    let mockError: DaffStateError;
+    let result: DaffCustomerReducerState;
+    let state: DaffCustomerReducerState;
+
+    beforeEach(() => {
+      mockError = {
+        code: 'error code',
+        message: 'error message',
+      };
+      state = {
+        ...initialState,
+        errors: [mockError],
+      };
+
+      const customerLoadSuccess = new DaffCustomerClearErrors();
+
+      result = reducer(state, customerLoadSuccess);
+    });
+
+    it('should reset errors', () => {
+      expect(result.errors).toEqual([]);
     });
   });
 });
