@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "../../dist/out-tsc/libs/analytics-provider-data-layer",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
