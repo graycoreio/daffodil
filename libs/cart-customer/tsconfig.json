@@ -12,6 +12,9 @@
       "@daffodil/cart-customer/state": [
         "libs/cart-customer/state/src"
       ],
+      "@daffodil/cart-customer/driver/magento": [
+        "libs/cart-customer/driver/magento/src"
+      ],
     }
   }
 }

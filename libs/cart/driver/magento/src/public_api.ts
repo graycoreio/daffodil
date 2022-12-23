@@ -8,6 +8,7 @@ export { DaffMagentoCartService } from './cart.service';
 export { DaffMagentoCartItemService } from './cart-item.service';
 export { DaffMagentoCartPaymentService } from './cart-payment.service';
 export { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
+export { DaffMagentoCartAddressService } from './cart-address.service';
 export { DaffMagentoCartBillingAddressService } from './cart-billing-address.service';
 export { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
 export { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
