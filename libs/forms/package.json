@@ -1,0 +1,27 @@
+{
+  "name": "@daffodil/forms",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "General package for forms related features.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build forms --prod",
+    "lint": "cd ../.. && ng lint forms",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test forms --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/forms; npm publish --access=public)"
+  },
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/forms": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  }
+}

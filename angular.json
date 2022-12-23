@@ -1956,6 +1956,44 @@
           }
         }
       }
+    },
+    "forms": {
+      "projectType": "library",
+      "root": "libs/forms",
+      "sourceRoot": "libs/forms/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/forms/tsconfig.lib.json",
+            "project": "libs/forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/forms/ng-package.prod.json",
+              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/forms/test.ts",
+            "tsConfig": "libs/forms/tsconfig.spec.json",
+            "karmaConfig": "libs/forms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/forms/**/*.ts",
+              "libs/forms/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo",
