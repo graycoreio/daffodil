@@ -18,7 +18,7 @@ import { DaffCustomerFactory } from '@daffodil/customer/testing';
   providedIn: 'root',
 })
 export class DaffCustomerInMemoryBackendService implements InMemoryDbService {
-  customers: DaffCustomer[] = [];
+  customers: Record<DaffCustomer['id'], DaffCustomer> = {};
 
   constructor(
     private factory: DaffCustomerFactory,
@@ -46,18 +46,81 @@ export class DaffCustomerInMemoryBackendService implements InMemoryDbService {
   }
 
   /**
-   * Generates a token from a processor backend.
+   * Gets a customer.
    *
    * @param reqInfo request object
    * @returns An http response object
    */
   get(reqInfo: RequestInfo) {
     const customer = this.factory.create();
-    this.customers.push(customer);
+    this.customers[customer.id] = customer;
 
     return reqInfo.utils.createResponse$(() => ({
       status: STATUS.OK,
       body: customer,
+    }));
+  }
+
+  put(reqInfo: RequestInfo) {
+    switch (reqInfo.id) {
+      case 'email':
+        return this.changeEmail(reqInfo);
+
+      case 'password':
+        return this.changePassword(reqInfo);
+
+      case 'customer':
+        return this.updateCustomer(reqInfo);
+
+      default:
+        return reqInfo.utils.createResponse$(() => ({
+          status: STATUS.NOT_FOUND,
+        }));
+    }
+  }
+
+  private updateCustomer(reqInfo: RequestInfo) {
+    // TODO: fix bug where id can be nully
+    // interface with auth to actually find logged in customer?
+    const body = reqInfo.utils.getJsonBody(reqInfo.req);
+    const customer = this.customers[body.id];
+
+    if (!customer) {
+      return reqInfo.utils.createResponse$(() => ({
+        status: STATUS.NOT_FOUND,
+      }));
+    }
+
+    this.customers[body.id] = {
+      ...customer,
+      ...body,
+    };
+
+    return reqInfo.utils.createResponse$(() => ({
+      status: STATUS.OK,
+      body: this.customers[body.id],
+    }));
+  }
+
+  private changeEmail(reqInfo: RequestInfo) {
+    // interface with auth to actually find logged in customer?
+    // const customer = this.factory.create(reqInfo.utils.getJsonBody(reqInfo.req));
+    // this.customers.push(customer);
+
+    return reqInfo.utils.createResponse$(() => ({
+      status: STATUS.OK,
+      body: {},
+    }));
+  }
+
+  private changePassword(reqInfo: RequestInfo) {
+    // interface with auth to actually find logged in customer?
+    // const customer = this.factory.create(reqInfo.utils.getJsonBody(reqInfo.req));
+    // this.customers.push(customer);
+
+    return reqInfo.utils.createResponse$(() => ({
+      status: STATUS.OK,
+      body: {},
     }));
   }
 }

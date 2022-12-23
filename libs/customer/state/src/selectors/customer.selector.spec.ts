@@ -29,8 +29,6 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
 
   const {
     selectCustomer,
-    selectCustomerLoading,
-    selectCustomerErrors,
   } = daffCustomerGetSelectors();
 
   beforeEach(() => {
@@ -73,24 +71,6 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
 
         expect(selector).toBeObservable(expected);
       });
-    });
-  });
-
-  describe('selectCustomerLoading', () => {
-    it('should select the loading property of the customer state', () => {
-      const selector = store.pipe(select(selectCustomerLoading));
-      const expected = cold('a', { a: loading });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCustomerErrors', () => {
-    it('should select the error property of the customer state', () => {
-      const selector = store.pipe(select(selectCustomerErrors));
-      const expected = cold('a', { a: errors });
-
-      expect(selector).toBeObservable(expected);
     });
   });
 });

@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import {
-  Action,
   Store,
   select,
+  Action,
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStateError } from '@daffodil/core/state';
 import { DaffCustomer } from '@daffodil/customer';
 
-import { DaffCustomerStateRootSlice } from '../../reducers/public_api';
+import {
+  DaffCustomerReducerState,
+  DaffCustomerStateRootSlice,
+} from '../../reducers/public_api';
 import { daffCustomerGetSelectors } from '../../selectors/public_api';
 import { DaffCustomerPageFacadeInterface } from './interface';
 
@@ -24,21 +26,33 @@ import { DaffCustomerPageFacadeInterface } from './interface';
 })
 export class DaffCustomerPageFacade<T extends DaffCustomer = DaffCustomer> implements DaffCustomerPageFacadeInterface<T> {
   customer$: Observable<T>;
+  loadingState$: Observable<DaffCustomerReducerState<T>['loading']>;
   loading$: Observable<boolean>;
-  errors$: Observable<DaffStateError[]>;
+  resolving$: Observable<boolean>;
+  mutating$: Observable<boolean>;
+  errors$: Observable<DaffCustomerReducerState<T>['errors']>;
+  hasErrors$: Observable<boolean>;
 
   constructor(
     private store: Store<DaffCustomerStateRootSlice>,
   ) {
     const {
       selectCustomer,
-      selectCustomerLoading,
-      selectCustomerErrors,
+      selectErrors,
+      selectHasErrors,
+      selectLoading,
+      selectLoadingState,
+      selectMutating,
+      selectResolving,
     } = daffCustomerGetSelectors<T>();
 
     this.customer$ = this.store.pipe(select(selectCustomer));
-    this.loading$ = this.store.pipe(select(selectCustomerLoading));
-    this.errors$ = this.store.pipe(select(selectCustomerErrors));
+    this.loadingState$ = this.store.pipe(select(selectLoadingState));
+    this.loading$ = this.store.pipe(select(selectLoading));
+    this.resolving$ = this.store.pipe(select(selectResolving));
+    this.mutating$ = this.store.pipe(select(selectMutating));
+    this.errors$ = this.store.pipe(select(selectErrors));
+    this.hasErrors$ = this.store.pipe(select(selectHasErrors));
   }
 
   dispatch(action: Action) {

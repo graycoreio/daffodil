@@ -5,10 +5,14 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffCustomer } from '@daffodil/customer';
+import { DaffCustomerFactory } from '@daffodil/customer/testing';
+
 import { DaffCustomerInMemoryBackendService } from './customer.service';
 
 describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryBackendService', () => {
   let service: DaffCustomerInMemoryBackendService;
+  let customerFactory: DaffCustomerFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,6 +21,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryBackendServi
       ],
     });
 
+    customerFactory = TestBed.inject(DaffCustomerFactory);
     service = TestBed.inject(DaffCustomerInMemoryBackendService);
   });
 
@@ -48,8 +53,66 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryBackendServi
 
     it('should should add the customer to the DB', done => {
       result.subscribe(res => {
-        expect(service.customers).toContain(res.body);
+        expect(service.customers[res.body.id]).toEqual(res.body);
         done();
+      });
+    });
+  });
+
+  describe('put', () => {
+    let reqInfoStub;
+    let result: Observable<any>;
+
+    describe('updating a customer', () => {
+      let mockCustomer: DaffCustomer;
+
+      beforeEach(() => {
+        mockCustomer = customerFactory.create();
+
+        reqInfoStub = {
+          utils: {
+            createResponse$: (func) => of(func()),
+            getJsonBody: req => req,
+          },
+          id: 'customer',
+          req: mockCustomer,
+        };
+      });
+
+      describe('when the customer exists in the DB', () => {
+        beforeEach(() => {
+          service.customers[mockCustomer.id] = <DaffCustomer>{ id: mockCustomer.id };
+          result = service.put(reqInfoStub);
+        });
+
+        it('should return the updated customer', done => {
+          result.subscribe(res => {
+            expect(res.body).toEqual(mockCustomer);
+            expect(res.status).toEqual(STATUS.OK);
+            done();
+          });
+        });
+
+        it('should update the customer in the DB', done => {
+          result.subscribe(res => {
+            expect(service.customers[mockCustomer.id]).toEqual(mockCustomer);
+            done();
+          });
+        });
+      });
+
+      describe('when the customer does not exist in the DB', () => {
+        beforeEach(() => {
+          service.customers[mockCustomer.id] = null;
+          result = service.put(reqInfoStub);
+        });
+
+        it('should return not found', done => {
+          result.subscribe(res => {
+            expect(res.status).toEqual(STATUS.NOT_FOUND);
+            done();
+          });
+        });
       });
     });
   });

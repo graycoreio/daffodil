@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  map,
+  Observable,
+} from 'rxjs';
 
 import { DaffCustomer } from '@daffodil/customer';
 import { DaffCustomerDriverInterface } from '@daffodil/customer/driver';
@@ -23,7 +26,21 @@ export class DaffCustomerInMemoryDriver implements DaffCustomerDriverInterface {
     private http: HttpClient,
   ) {}
 
+  changeEmail(email: string, password: string): Observable<DaffCustomer> {
+    return this.http.put<DaffCustomer>(`${this.url}/email`, { email, password });
+  }
+
+  changePassword(oldPassword: string, newPassword: string): Observable<void> {
+    return this.http.put<string>(`${this.url}/password`, { new: newPassword, old: oldPassword }).pipe(
+      map(() => undefined),
+    );
+  }
+
   get(): Observable<DaffCustomer> {
     return this.http.get<DaffCustomer>(this.url);
+  }
+
+  update(customer: Partial<DaffCustomer>): Observable<DaffCustomer> {
+    return this.http.put<DaffCustomer>(`${this.url}/customer`, customer);
   }
 }

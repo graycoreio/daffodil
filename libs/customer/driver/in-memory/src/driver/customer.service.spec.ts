@@ -62,4 +62,70 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryDriver', () 
       req.flush(mockResponse);
     });
   });
+
+  describe('update', () => {
+    let url: string;
+    let result: Observable<DaffCustomer>;
+
+    beforeEach(() => {
+      url = `${service.url}/customer`;
+      result = service.update(mockResponse);
+    });
+
+    it('should send a put request and return a customer response', done => {
+      result.subscribe((resp) => {
+        expect(resp).toEqual(mockResponse);
+        done();
+      });
+
+      const req = httpMock.expectOne(url);
+      expect(req.request.method).toBe('PUT');
+
+      req.flush(mockResponse);
+    });
+  });
+
+  describe('changeEmail', () => {
+    let url: string;
+    let result: Observable<DaffCustomer>;
+
+    beforeEach(() => {
+      url = `${service.url}/email`;
+      result = service.changeEmail('email', 'password');
+    });
+
+    it('should send a put request and return a customer response', done => {
+      result.subscribe((resp) => {
+        expect(resp).toEqual(mockResponse);
+        done();
+      });
+
+      const req = httpMock.expectOne(url);
+      expect(req.request.method).toBe('PUT');
+
+      req.flush(mockResponse);
+    });
+  });
+
+  describe('changePassword', () => {
+    let url: string;
+    let result: Observable<void>;
+
+    beforeEach(() => {
+      url = `${service.url}/password`;
+      result = service.changePassword('old', 'new');
+    });
+
+    it('should send a put request and return void', done => {
+      result.subscribe((resp) => {
+        expect(resp).toBeUndefined();
+        done();
+      });
+
+      const req = httpMock.expectOne(url);
+      expect(req.request.method).toBe('PUT');
+
+      req.flush(mockResponse);
+    });
+  });
 });
