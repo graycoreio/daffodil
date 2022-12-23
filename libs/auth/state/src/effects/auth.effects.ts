@@ -87,7 +87,8 @@ export class DaffAuthEffects {
       DaffAuthActionTypes.AuthCheckFailureAction,
     ),
     filter(action => {
-      if (action.type === DaffAuthActionTypes.AuthGuardCheckCompletionAction && !action.result) {
+      // don't remove token when guard check completes with true result
+      if (action.type === DaffAuthActionTypes.AuthGuardCheckCompletionAction && action.result) {
         return false;
       }
 

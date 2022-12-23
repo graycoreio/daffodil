@@ -93,7 +93,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();
     setAuthTokenSpy = spyOn(daffAuthStorageService, 'setAuthToken');
-    spyOn(daffAuthStorageService, 'removeAuthToken');
+    removeAuthTokenSpy = spyOn(daffAuthStorageService, 'removeAuthToken');
 
     token = mockAuth.token;
     email = mockRegistration.email;
@@ -215,6 +215,47 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         it('should dispatch a server side action', () => {
           expect(effects.storeAuthToken$).toBeObservable(expected);
         });
+      });
+    });
+  });
+
+  describe('removeAuthToken$', () => {
+    let expected;
+    let authLogoutSuccessAction: DaffAuthLogoutSuccess;
+
+    beforeEach(() => {
+      authLogoutSuccessAction = new DaffAuthLogoutSuccess();
+      actions$ = hot('--a', { a: authLogoutSuccessAction });
+      expected = cold('---');
+    });
+
+    it('should remove the auth token from storage', () => {
+      expect(effects.removeAuthToken$).toBeObservable(expected);
+      expect(removeAuthTokenSpy).toHaveBeenCalledWith();
+    });
+
+    describe('and the storage service throws an error', () => {
+      beforeEach(() => {
+        removeAuthTokenSpy.and.callFake(throwStorageError);
+
+        expected = cold('--(b|)', { b: authStorageFailureAction });
+      });
+
+      it('should return a DaffAuthStorageFailure', () => {
+        expect(effects.removeAuthToken$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the storage service throws a server side error', () => {
+      beforeEach(() => {
+        const error = new DaffServerSideStorageError('Server side');
+        const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+        removeAuthTokenSpy.and.throwError(error);
+        expected = cold('--(a|)', { a: serverSideAction });
+      });
+
+      it('should dispatch a server side action', () => {
+        expect(effects.removeAuthToken$).toBeObservable(expected);
       });
     });
   });

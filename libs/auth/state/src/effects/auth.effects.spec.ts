@@ -43,6 +43,13 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   let getTokenSpy: jasmine.Spy<DaffAuthStorageService['getAuthToken']>;
   let removeTokenSpy: jasmine.Spy<DaffAuthStorageService['removeAuthToken']>;
 
+  const authStorageFailureAction = new DaffAuthStorageFailure(daffTransformErrorToStateError(
+    new DaffStorageServiceError('Storage of auth token has failed.')),
+  );
+  const throwStorageError = () => {
+    throw new DaffStorageServiceError('Storage of auth token has failed.');
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -165,6 +172,50 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
       it('should notify state that the check failed', () => {
         expect(effects.check$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('removeAuthToken$', () => {
+    let expected;
+
+    describe('when AuthCheckFailure is dispatched', () => {
+      let authLogoutSuccessAction: DaffAuthCheckFailure;
+
+      beforeEach(() => {
+        authLogoutSuccessAction = new DaffAuthCheckFailure({ code: 'code', message: 'message' });
+        actions$ = hot('--a', { a: authLogoutSuccessAction });
+        expected = cold('---');
+      });
+
+      it('should remove the auth token from storage', () => {
+        expect(effects.removeAuthToken$).toBeObservable(expected);
+        expect(removeTokenSpy).toHaveBeenCalledWith();
+      });
+
+      describe('and the storage service throws an error', () => {
+        beforeEach(() => {
+          removeTokenSpy.and.callFake(throwStorageError);
+
+          expected = cold('--(b|)', { b: authStorageFailureAction });
+        });
+
+        it('should return a DaffAuthStorageFailure', () => {
+          expect(effects.removeAuthToken$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the storage service throws a server side error', () => {
+        beforeEach(() => {
+          const error = new DaffServerSideStorageError('Server side');
+          const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+          removeTokenSpy.and.throwError(error);
+          expected = cold('--(a|)', { a: serverSideAction });
+        });
+
+        it('should dispatch a server side action', () => {
+          expect(effects.removeAuthToken$).toBeObservable(expected);
+        });
       });
     });
   });
