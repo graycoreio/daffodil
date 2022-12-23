@@ -21,6 +21,9 @@
       "@daffodil/customer/driver/testing": [
         "libs/customer/driver/testing/src"
       ],
+      "@daffodil/customer/driver/magento": [
+        "libs/customer/driver/magento/src"
+      ],
     }
   }
 }
