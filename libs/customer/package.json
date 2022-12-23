@@ -1,0 +1,41 @@
+{
+  "name": "@daffodil/customer",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A client-side Angular package for managing ecommerce customers agnostic to the ecommerce platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build customer --prod",
+    "lint": "cd ../.. && ng lint customer",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test customer --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/customer; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@apollo/client": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "@faker-js/faker": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/geography": "0.0.0-PLACEHOLDER"
+  }
+}
