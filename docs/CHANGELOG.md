@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.48.2](https://github.com/graycoreio/daffodil/compare/v0.48.1...v0.48.2) (2022-12-23)
+
+
+### Features
+
+* **core:** add `daffClearErrors` ([#2284](https://github.com/graycoreio/daffodil/issues/2284)) ([2c1a95a](https://github.com/graycoreio/daffodil/commit/2c1a95ac0b0515e726a74c65581f5d7b9ee5fd6d))
+* **core:** add operation state ([#2256](https://github.com/graycoreio/daffodil/issues/2256)) ([cc25f3b](https://github.com/graycoreio/daffodil/commit/cc25f3bc6fd930a1e693b41c9933c1d32c01c209))
+* **customer:** add `@daffodil/customer/driver/in-memory` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([1ad50aa](https://github.com/graycoreio/daffodil/commit/1ad50aaa3a61c548ff54a2044ed49115034e120e))
+* **customer:** add `@daffodil/customer/driver/magento` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([a22d11b](https://github.com/graycoreio/daffodil/commit/a22d11b9628ed54e26cb7a6c6297543707c660e0))
+* **customer:** add `@daffodil/customer/driver/testing` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([73597c4](https://github.com/graycoreio/daffodil/commit/73597c47c8aab3badc3a1694f908a4b37bf63f51))
+* **customer:** add `@daffodil/customer/driver` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([00da76b](https://github.com/graycoreio/daffodil/commit/00da76bf8b87889c3d3b377f3d2816e4919dd555))
+* **customer:** add `@daffodil/customer/routing` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([c5460d6](https://github.com/graycoreio/daffodil/commit/c5460d63fb395da9a029671923e59bb36132df3e))
+* **customer:** add `@daffodil/customer/state` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([ba0993e](https://github.com/graycoreio/daffodil/commit/ba0993e3c30464b76aaaddf87310833fc0f23998))
+* **customer:** add `@daffodil/customer/testing` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([6695ace](https://github.com/graycoreio/daffodil/commit/6695acebd2ab6d36fb4e4ea6f7966a1703e127e1))
+* **customer:** add `@daffodil/customer` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([b0df641](https://github.com/graycoreio/daffodil/commit/b0df6419260b316624e58e8862fcf566f4cf55e4))
+* **customer:** add clear errors action and guard ([#2285](https://github.com/graycoreio/daffodil/issues/2285)) ([d29b17a](https://github.com/graycoreio/daffodil/commit/d29b17ae09f5f672e8390ae692dca966b83fc7bf))
+* **customer:** add newsletter subscription support ([#2283](https://github.com/graycoreio/daffodil/issues/2283)) ([32289a2](https://github.com/graycoreio/daffodil/commit/32289a24061965f144d59af1145e88a5e73e2ee9))
+* **customer:** add update, change email, and change password ([#2282](https://github.com/graycoreio/daffodil/issues/2282)) ([dbe65b8](https://github.com/graycoreio/daffodil/commit/dbe65b81fcc04e031ab520ec3b34152327a042fc))
+* **external-router:** improve the typing of `daffExtractDaffPathData` ([#2271](https://github.com/graycoreio/daffodil/issues/2271)) ([63b5629](https://github.com/graycoreio/daffodil/commit/63b5629efd16b0e86cc590b3bc29ca830fd110c8))
+* **forms:** add `@daffodil/forms` and `daffFormNotEmptyValidator` ([#2254](https://github.com/graycoreio/daffodil/issues/2254)) ([a9ebada](https://github.com/graycoreio/daffodil/commit/a9ebada8f03adb4e919009898555df1e6ef66999))
+
+
+### Bug Fixes
+
+* **auth:** SSR storage errors break apps ([#2250](https://github.com/graycoreio/daffodil/issues/2250)) ([87dff58](https://github.com/graycoreio/daffodil/commit/87dff58279f49e7fd25077f1dfef3fb7478735f3))
+* **cart,cart-customer:** address update fails for logged-in customers ([#2274](https://github.com/graycoreio/daffodil/issues/2274)) ([117adcd](https://github.com/graycoreio/daffodil/commit/117adcd5cc6fb591fa108a43f704dffb2e5c2113))
+* **seo:** `DaffRestoreableMetaService#restore` not updating upsert cache ([#2264](https://github.com/graycoreio/daffodil/issues/2264)) ([e1da365](https://github.com/graycoreio/daffodil/commit/e1da3652f23250e55a4b9251e4b451173d28f309))
+
 ### [0.48.1](https://github.com/graycoreio/daffodil/compare/v0.48.0...v0.48.1) (2022-12-12)
 
 
