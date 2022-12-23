@@ -41,6 +41,11 @@ export interface DaffOperationStateSelectors<
   selectHasErrors: MemoizedSelector<TRootState, boolean>;
 }
 
+/**
+ * Creates a set of selectors for an operation state.
+ *
+ * @param selectState The feature selector for the operation state.
+ */
 export const daffOperationStateSelectorFactory = <
   TRootState,
   TState extends DaffOperationState = DaffOperationState

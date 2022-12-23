@@ -9,6 +9,9 @@ import { DaffStoreFacade } from '../store/facade';
 import { DaffOperationStateSelectors } from './selectors';
 import { DaffOperationState } from './state';
 
+/**
+ * A facade for an operation state.
+ */
 export interface DaffOperationStateFacadeInterface<
   TState extends DaffOperationState = DaffOperationState
 > extends DaffStoreFacade<Action> {
@@ -39,6 +42,9 @@ export interface DaffOperationStateFacadeInterface<
   hasErrors$: Observable<boolean>;
 }
 
+/**
+ * @inheritdoc
+ */
 export abstract class DaffOperationStateFacade<
   TRootState,
   TState extends DaffOperationState = DaffOperationState,

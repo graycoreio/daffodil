@@ -1,6 +1,9 @@
 import { DaffState } from '../states/public_api';
 import { DaffOperationState } from './state';
 
+/**
+ * An adapter for modifying {@link DaffOperationState}.
+ */
 export class DaffOperationStateAdapter<T extends DaffOperationState = DaffOperationState> {
   /**
    * Puts the state in a "resolving" state that correspondes to loading platform data in a GET fashion.
