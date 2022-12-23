@@ -30,6 +30,9 @@
       "@daffodil/customer/driver/magento": [
         "libs/customer/driver/magento/src"
       ],
+      "@daffodil/customer/routing": [
+        "libs/customer/routing/src"
+      ],
     }
   }
 }
