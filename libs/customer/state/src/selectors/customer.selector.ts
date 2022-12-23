@@ -3,34 +3,33 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffOperationStateSelectorFactory,
+  DaffOperationStateSelectors,
+  DaffStateError,
+} from '@daffodil/core/state';
 import { DaffCustomer } from '@daffodil/customer';
 
-import { DaffCustomerStateRootSlice } from '../reducers/public_api';
+import {
+  DaffCustomerReducerState,
+  DaffCustomerStateRootSlice,
+} from '../reducers/public_api';
 import { getDaffCustomerReducersStateSelector } from './feature.selector';
 
 /**
  * Selectors for the main part of customer state.
  */
-export interface DaffCustomerSelectors<T extends DaffCustomer = DaffCustomer> {
+export interface DaffCustomerSelectors<T extends DaffCustomer = DaffCustomer> extends DaffOperationStateSelectors<DaffCustomerStateRootSlice<T>, DaffCustomerReducerState<T>> {
   /**
    * Selects the customer.
    */
-  selectCustomer: MemoizedSelector<DaffCustomerStateRootSlice, T>;
-  /**
-   * Selects whether there is a pending customer operation.
-   */
-  selectCustomerLoading: MemoizedSelector<DaffCustomerStateRootSlice, boolean>;
-  /**
-   * Selects the list of customer errors, if any.
-   */
-  selectCustomerErrors: MemoizedSelector<DaffCustomerStateRootSlice, DaffStateError[]>;
+  selectCustomer: MemoizedSelector<DaffCustomerStateRootSlice<T>, T>;
 }
 
 /**
  * Creates a group of selectors for {@link DaffCustomerReducerState} that use the passed state selector as the basis.
  */
-const daffCustomerCreateSelectors = <T extends DaffCustomer = DaffCustomer>() => {
+const daffCustomerCreateSelectors = <T extends DaffCustomer = DaffCustomer>(): DaffCustomerSelectors<T> => {
   const { selectCustomerFeatureState } = getDaffCustomerReducersStateSelector<T>();
   const selectCustomerState = createSelector(
     selectCustomerFeatureState,
@@ -42,20 +41,9 @@ const daffCustomerCreateSelectors = <T extends DaffCustomer = DaffCustomer>() =>
     state => state.customer,
   );
 
-  const selectCustomerLoading = createSelector(
-    selectCustomerState,
-    state => state.loading,
-  );
-
-  const selectCustomerErrors = createSelector(
-    selectCustomerState,
-    state => state.errors,
-  );
-
   return {
+    ...daffOperationStateSelectorFactory(selectCustomerState),
     selectCustomer,
-    selectCustomerLoading,
-    selectCustomerErrors,
   };
 };
 

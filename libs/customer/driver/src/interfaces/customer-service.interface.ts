@@ -18,4 +18,21 @@ export interface DaffCustomerDriverInterface<
    * Get the currently logged-in customer.
    */
   get(): Observable<T>;
+
+  /**
+   * Update the currently logged-in customer.
+   *
+   * @param customer The customer info to update.
+   */
+  update(customer: Partial<T>): Observable<T>;
+
+  /**
+   * Change the currently logged-in customer's email.
+   */
+  changeEmail(email: string, password: string): Observable<T>;
+
+  /**
+   * Change the currently logged-in customer's password.
+   */
+  changePassword(oldPassword: string, newPassword: string): Observable<void>;
 }
