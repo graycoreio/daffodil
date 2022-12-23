@@ -22,7 +22,7 @@
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
-    "@angular/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/geography": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@ngrx/effects": "0.0.0-PLACEHOLDER",
     "@ngrx/store": "0.0.0-PLACEHOLDER",
