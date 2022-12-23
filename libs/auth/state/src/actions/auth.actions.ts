@@ -6,6 +6,7 @@ export enum DaffAuthActionTypes {
   AuthGuardCheckAction = '[@daffodil/auth] Auth Guard Check Action',
   AuthGuardCheckCompletionAction = '[@daffodil/auth] Auth Guard Check Completion Action',
   AuthStorageFailureAction = '[@daffodil/auth] Auth Storage Failure Action',
+  AuthServerSideAction = '[@daffodil/auth] Auth Server Side Action',
   AuthCheckAction = '[@daffodil/auth] Auth Check Action',
   AuthCheckSuccessAction = '[@daffodil/auth] Auth Check Success Action',
   AuthCheckFailureAction = '[@daffodil/auth] Auth Check Failure Action',
@@ -37,6 +38,15 @@ export class DaffAuthStorageFailure implements Action {
   constructor(public errorMessage: DaffStateError) {}
 }
 
+/*
+ * An action triggered when an invalid operation is performed in the server environment.
+ * A common example is trying to access the auth token from storage.
+ */
+export class DaffAuthServerSide implements Action {
+  readonly type = DaffAuthActionTypes.AuthServerSideAction;
+
+  constructor(public errorMessage: DaffStateError) {}
+}
 
 /**
  * An action triggered to initialize an auth check request.
@@ -77,6 +87,7 @@ export type DaffAuthActions =
   | DaffAuthGuardCheckCompletion
   | DaffAuthGuardCheck
   | DaffAuthStorageFailure
+  | DaffAuthServerSide
   | DaffAuthCheck
   | DaffAuthCheckSuccess
   | DaffAuthCheckFailure

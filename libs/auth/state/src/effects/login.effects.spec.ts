@@ -34,10 +34,16 @@ import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory,
 } from '@daffodil/auth/testing';
-import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DaffServerSideStorageError,
+  DaffStorageServiceError,
+} from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
-import { DaffAuthComplete } from '../public_api';
+import {
+  DaffAuthComplete,
+  DaffAuthServerSide,
+} from '../public_api';
 import { DaffAuthLoginEffects } from './login.effects';
 
 describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
@@ -46,7 +52,8 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
   let daffLoginDriver: jasmine.SpyObj<DaffLoginServiceInterface>;
   let daffAuthStorageService: DaffAuthStorageService;
-  let setAuthTokenSpy: jasmine.Spy;
+  let setAuthTokenSpy: jasmine.Spy<DaffAuthStorageService['setAuthToken']>;
+  let removeAuthTokenSpy: jasmine.Spy<DaffAuthStorageService['removeAuthToken']>;
 
   let registrationFactory: DaffAccountRegistrationFactory;
   const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
@@ -86,7 +93,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();
     setAuthTokenSpy = spyOn(daffAuthStorageService, 'setAuthToken');
-    spyOn(daffAuthStorageService, 'removeAuthToken');
+    removeAuthTokenSpy = spyOn(daffAuthStorageService, 'removeAuthToken');
 
     token = mockAuth.token;
     email = mockRegistration.email;
@@ -134,6 +141,42 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
     });
   });
 
+  describe('logout$ | when the user logs out', () => {
+    let expected;
+
+    const mockAuthLogoutAction = new DaffAuthLogout();
+
+    describe('and the logout is successful', () => {
+      beforeEach(() => {
+        daffLoginDriver.logout.and.returnValue(of(undefined));
+        const mockAuthLogoutSuccessAction = new DaffAuthLogoutSuccess();
+
+        actions$ = hot('--a', { a: mockAuthLogoutAction });
+        expected = cold('--b', { b: mockAuthLogoutSuccessAction });
+      });
+
+      it('should notify state that the logout succeeded', () => {
+        expect(effects.logout$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the logout fails', () => {
+      beforeEach(() => {
+        const error = new DaffAuthInvalidAPIResponseError('Failed to log out');
+        const response = cold('#', {}, error);
+        daffLoginDriver.logout.and.returnValue(response);
+        const mockAuthLogoutFailureAction = new DaffAuthLogoutFailure(daffTransformErrorToStateError(error));
+
+        actions$ = hot('--a', { a: mockAuthLogoutAction });
+        expected = cold('--b', { b: mockAuthLogoutFailureAction });
+      });
+
+      it('should notify state that the logout failed', () => {
+        expect(effects.logout$).toBeObservable(expected);
+      });
+    });
+  });
+
   describe('storeAuthToken$ | storing the auth token after a successful login', () => {
     let expected;
     let authLoginSuccessAction;
@@ -154,53 +197,65 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
       beforeEach(() => {
         setAuthTokenSpy.and.callFake(throwStorageError);
 
-        actions$ = hot('--a', { a: authLoginSuccessAction });
         expected = cold('--(b|)', { b: authStorageFailureAction });
       });
 
       it('should return a DaffAuthStorageFailure', () => {
         expect(effects.storeAuthToken$).toBeObservable(expected);
       });
+
+      describe('and the storage service throws a server side error', () => {
+        beforeEach(() => {
+          const error = new DaffServerSideStorageError('Server side');
+          const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+          setAuthTokenSpy.and.throwError(error);
+          expected = cold('--(a|)', { a: serverSideAction });
+        });
+
+        it('should dispatch a server side action', () => {
+          expect(effects.storeAuthToken$).toBeObservable(expected);
+        });
+      });
     });
   });
 
-  describe('logout$ | when the user logs out', () => {
+  describe('removeAuthToken$', () => {
     let expected;
+    let authLogoutSuccessAction: DaffAuthLogoutSuccess;
 
-    const mockAuthLogoutAction = new DaffAuthLogout();
+    beforeEach(() => {
+      authLogoutSuccessAction = new DaffAuthLogoutSuccess();
+      actions$ = hot('--a', { a: authLogoutSuccessAction });
+      expected = cold('---');
+    });
 
-    describe('and the logout is successful', () => {
+    it('should remove the auth token from storage', () => {
+      expect(effects.removeAuthToken$).toBeObservable(expected);
+      expect(removeAuthTokenSpy).toHaveBeenCalledWith();
+    });
+
+    describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffLoginDriver.logout.and.returnValue(of(undefined));
-        const mockAuthLogoutSuccessAction = new DaffAuthLogoutSuccess();
+        removeAuthTokenSpy.and.callFake(throwStorageError);
 
-        actions$ = hot('--a', { a: mockAuthLogoutAction });
-        expected = cold('--b', { b: mockAuthLogoutSuccessAction });
+        expected = cold('--(b|)', { b: authStorageFailureAction });
       });
 
-      it('should notify state that the logout succeeded', () => {
-        expect(effects.logout$).toBeObservable(expected);
-      });
-
-      it('should remove the auth token from storage', () => {
-        expect(effects.logout$).toBeObservable(expected);
-        expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
+      it('should return a DaffAuthStorageFailure', () => {
+        expect(effects.removeAuthToken$).toBeObservable(expected);
       });
     });
 
-    describe('and the logout fails', () => {
+    describe('and the storage service throws a server side error', () => {
       beforeEach(() => {
-        const error = new DaffAuthInvalidAPIResponseError('Failed to log out');
-        const response = cold('#', {}, error);
-        daffLoginDriver.logout.and.returnValue(response);
-        const mockAuthLogoutFailureAction = new DaffAuthLogoutFailure(daffTransformErrorToStateError(error));
-
-        actions$ = hot('--a', { a: mockAuthLogoutAction });
-        expected = cold('--b', { b: mockAuthLogoutFailureAction });
+        const error = new DaffServerSideStorageError('Server side');
+        const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+        removeAuthTokenSpy.and.throwError(error);
+        expected = cold('--(a|)', { a: serverSideAction });
       });
 
-      it('should notify state that the logout failed', () => {
-        expect(effects.logout$).toBeObservable(expected);
+      it('should dispatch a server side action', () => {
+        expect(effects.removeAuthToken$).toBeObservable(expected);
       });
     });
   });

@@ -24,6 +24,8 @@ export function daffAuthReducer(
       };
 
     case DaffAuthActionTypes.AuthCheckFailureAction:
+    case DaffAuthActionTypes.AuthServerSideAction:
+    case DaffAuthActionTypes.AuthStorageFailureAction:
       return {
         ...state,
         loading: false,

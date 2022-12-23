@@ -4,6 +4,8 @@ import {
   DaffAuthCheckSuccess,
   DaffAuthCheckFailure,
   daffAuthInitialState as initialState,
+  DaffAuthServerSide,
+  DaffAuthStorageFailure,
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
@@ -76,6 +78,64 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
       const authCheckFailure = new DaffAuthCheckFailure(error);
 
       result = reducer(state, authCheckFailure);
+    });
+
+    it('sets loading to false', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('adds an error to state.errors', () => {
+      expect(result.errors).toEqual([error]);
+    });
+  });
+
+  describe('when AuthServerSideAction is triggered', () => {
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
+    let result: DaffAuthReducerState;
+    let state: DaffAuthReducerState;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+      };
+
+      const authServerSide = new DaffAuthServerSide(error);
+
+      result = reducer(state, authServerSide);
+    });
+
+    it('sets loading to false', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('adds an error to state.errors', () => {
+      expect(result.errors).toEqual([error]);
+    });
+  });
+
+  describe('when AuthStorageFailureAction is triggered', () => {
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
+    let result: DaffAuthReducerState;
+    let state: DaffAuthReducerState;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+      };
+
+      const authStorageFailure = new DaffAuthStorageFailure(error);
+
+      result = reducer(state, authStorageFailure);
     });
 
     it('sets loading to false', () => {

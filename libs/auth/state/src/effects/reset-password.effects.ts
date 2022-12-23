@@ -29,7 +29,11 @@ import {
   DaffResetPasswordDriver,
   DaffResetPasswordServiceInterface,
 } from '@daffodil/auth/driver';
-import { DaffError } from '@daffodil/core';
+import {
+  DaffError,
+  DaffServerSideStorageError,
+  DaffStorageServiceError,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -41,6 +45,8 @@ import {
   DaffSendResetEmailSuccess,
   DaffSendResetEmailFailure,
   DaffAuthComplete,
+  DaffAuthServerSide,
+  DaffAuthStorageFailure,
 } from '../actions/public_api';
 
 @Injectable()
@@ -81,9 +87,24 @@ export class DaffAuthResetPasswordEffects<
           map(() => new DaffResetPasswordSuccess()),
         )),
       ).pipe(
-        catchError((error: DaffError) =>
-          of(new DaffResetPasswordFailure(this.errorMatcher(error))),
-        ),
+        catchError((error: DaffError) => {
+          switch (true) {
+            case error instanceof DaffServerSideStorageError:
+              return of(
+                new DaffAuthServerSide(this.errorMatcher(error)),
+                new DaffResetPasswordFailure(this.errorMatcher(error)),
+              );
+
+            case error instanceof DaffStorageServiceError:
+              return of(
+                new DaffAuthStorageFailure(this.errorMatcher(error)),
+                new DaffResetPasswordFailure(this.errorMatcher(error)),
+              );
+
+            default:
+              return of(new DaffResetPasswordFailure(this.errorMatcher(error)));
+          }
+        }),
       ),
     ),
   ));
