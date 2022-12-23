@@ -17,6 +17,7 @@ export class MockDaffCustomer implements DaffCustomer {
   email = faker.internet.email();
   firstName = faker.name.firstName();
   lastName = faker.name.lastName();
+  isSubscribed = faker.datatype.boolean();
   addresses = this.createAddresses();
 
   constructor(

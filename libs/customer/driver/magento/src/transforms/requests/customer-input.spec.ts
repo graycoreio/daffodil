@@ -20,11 +20,9 @@ describe('@daffodil/customer/driver/magento | magentoCustomerInputTransform', ()
     result = magentoCustomerInputTransform(mockCustomer);
   });
 
-  it('should transform firstname', () => {
+  it('should transform fields', () => {
     expect(result.firstname).toEqual(mockCustomer.firstName);
-  });
-
-  it('should transform lastname', () => {
     expect(result.lastname).toEqual(mockCustomer.lastName);
+    expect(result.is_subscribed).toEqual(mockCustomer.isSubscribed);
   });
 });

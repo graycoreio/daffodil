@@ -8,5 +8,6 @@ export const magentoCustomerTransform = (customer: MagentoCustomer): DaffCustome
   email: customer.email,
   firstName: customer.firstname,
   lastName: customer.lastname,
+  isSubscribed: customer.is_subscribed,
   addresses: customer.addresses.map(magentoCustomerAddressTransform),
 });

@@ -14,6 +14,7 @@ class MockMagentoCustomer implements MagentoCustomer {
   email = faker.internet.email();
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();
+  is_subscribed = faker.datatype.boolean();
   addresses = this.createAddresses();
 
   constructor(
