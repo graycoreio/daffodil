@@ -6,7 +6,8 @@ import {
 } from '@angular/forms';
 
 /**
- * A validator for a form group that returns an error if all of its immediate children don't have a truthy value.
+ * A form validator that passes validation when the Form control or
+ * at least one of the immediate children of a Form group have a value.
  * Empty strings are considered falsy.
  */
 // TODO: handle nested form groups
