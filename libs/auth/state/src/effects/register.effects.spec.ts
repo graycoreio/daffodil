@@ -25,11 +25,17 @@ import {
   DaffAuthRegisterSuccess,
   DaffAuthRegisterFailure,
   DaffAuthComplete,
+  DaffAuthServerSide,
+  DaffAuthStorageFailure,
 } from '@daffodil/auth/state';
 import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory,
 } from '@daffodil/auth/testing';
+import {
+  DaffServerSideStorageError,
+  DaffStorageServiceError,
+} from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import { DaffAuthRegisterEffects } from './register.effects';
@@ -91,25 +97,58 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
     describe('when autoLogin is true', () => {
       beforeEach(() => {
         mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, true);
+        actions$ = hot('--a', { a: mockAuthRegisterAction });
       });
 
       describe('and the register is successful', () => {
         beforeEach(() => {
           daffRegisterDriver.register.and.returnValue(of(token));
-          const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess();
-          const mockAuthCompleteAction = new DaffAuthComplete();
-
-          actions$ = hot('--a', { a: mockAuthRegisterAction });
-          expected = cold('--(ba)', { a: mockAuthCompleteAction, b: mockAuthResetPasswordSuccessAction });
         });
 
-        it('should notify state that the register was successful', () => {
-          expect(effects.register$).toBeObservable(expected);
+        describe('and setToken is successful', () => {
+          beforeEach(() => {
+            const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess();
+            const mockAuthCompleteAction = new DaffAuthComplete();
+
+            expected = cold('--(ba)', { a: mockAuthCompleteAction, b: mockAuthResetPasswordSuccessAction });
+          });
+
+          it('should notify state that the register was successful', () => {
+            expect(effects.register$).toBeObservable(expected);
+          });
+
+          it('should store the auth token', () => {
+            expect(effects.register$).toBeObservable(expected);
+            expect(setAuthTokenSpy).toHaveBeenCalledWith(token);
+          });
         });
 
-        it('should store the auth token', () => {
-          expect(effects.register$).toBeObservable(expected);
-          expect(setAuthTokenSpy).toHaveBeenCalledWith(token);
+        describe('and the storage service throws a server side error', () => {
+          beforeEach(() => {
+            const error = new DaffServerSideStorageError('Server side');
+            const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+            const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
+            setAuthTokenSpy.and.throwError(error);
+            expected = cold('--(ab)', { a: serverSideAction, b: mockAuthResetPasswordFailureAction });
+          });
+
+          it('should dispatch a server side and a failure action', () => {
+            expect(effects.register$).toBeObservable(expected);
+          });
+        });
+
+        describe('and the storage service throws a storage error', () => {
+          beforeEach(() => {
+            const error = new DaffStorageServiceError('Storage error');
+            const storageAction = new DaffAuthStorageFailure(daffTransformErrorToStateError(error));
+            const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
+            setAuthTokenSpy.and.throwError(error);
+            expected = cold('--(ab)', { a: storageAction, b: mockAuthResetPasswordFailureAction });
+          });
+
+          it('should dispatch a server side action', () => {
+            expect(effects.register$).toBeObservable(expected);
+          });
         });
       });
 

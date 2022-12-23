@@ -23,7 +23,13 @@ import {
   DaffAuthCheckFailure,
   DAFF_AUTH_STATE_CONFIG,
   DaffAuthStateConfig,
+  DaffAuthServerSide,
+  DaffAuthStorageFailure,
 } from '@daffodil/auth/state';
+import {
+  DaffServerSideStorageError,
+  DaffStorageServiceError,
+} from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import { DaffAuthEffects } from './auth.effects';
@@ -35,6 +41,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   let daffAuthStorageService: DaffAuthStorageService;
   let daffAuthDriver: jasmine.SpyObj<DaffAuthServiceInterface>;
   let getTokenSpy: jasmine.Spy<DaffAuthStorageService['getAuthToken']>;
+  let removeTokenSpy: jasmine.Spy<DaffAuthStorageService['removeAuthToken']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -59,7 +66,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     daffAuthDriver = TestBed.inject<jasmine.SpyObj<DaffAuthServiceInterface>>(DaffAuthDriver);
     daffAuthStorageService = TestBed.inject(DaffAuthStorageService);
 
-    spyOn(daffAuthStorageService, 'removeAuthToken');
+    removeTokenSpy = spyOn(daffAuthStorageService, 'removeAuthToken');
     getTokenSpy = spyOn(daffAuthStorageService, 'getAuthToken');
   });
 
@@ -90,12 +97,15 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     let expected;
     const mockAuthCheckAction = new DaffAuthGuardCheck();
 
+    beforeEach(() => {
+      actions$ = hot('--a', { a: mockAuthCheckAction });
+    });
+
     describe('and the check is successful', () => {
       beforeEach(() => {
         const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(true);
         daffAuthDriver.check.and.returnValue(of(undefined));
 
-        actions$ = hot('--a', { a: mockAuthCheckAction });
         expected = cold('--b', { b: mockAuthCheckCompletionAction });
       });
 
@@ -108,20 +118,13 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
       beforeEach(() => {
         const error = 'Auth token is not valid';
         const response = cold('#', {}, error);
-        const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(false);
         daffAuthDriver.check.and.returnValue(response);
-
-        actions$ = hot('--a', { a: mockAuthCheckAction });
+        const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(false);
         expected = cold('--b', { b: mockAuthCheckCompletionAction });
       });
 
       it('should notify state that the check failed', () => {
         expect(effects.guardCheck$).toBeObservable(expected);
-      });
-
-      it('should remove the auth token from storage', () => {
-        expect(effects.guardCheck$).toBeObservable(expected);
-        expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
       });
     });
   });
@@ -131,12 +134,15 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
     const mockAuthCheckAction = new DaffAuthCheck();
 
+    beforeEach(() => {
+      actions$ = hot('--a', { a: mockAuthCheckAction });
+    });
+
     describe('and the check is successful', () => {
       beforeEach(() => {
         daffAuthDriver.check.and.returnValue(of(undefined));
         const mockAuthCheckSuccessAction = new DaffAuthCheckSuccess();
 
-        actions$ = hot('--a', { a: mockAuthCheckAction });
         expected = cold('--b', { b: mockAuthCheckSuccessAction });
       });
 
@@ -146,23 +152,19 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     });
 
     describe('and the check fails', () => {
+      let error: DaffAuthenticationFailedError;
+
       beforeEach(() => {
-        const error = new DaffAuthenticationFailedError('Auth token is not valid');
+        error = new DaffAuthenticationFailedError('Auth token is not valid');
         const response = cold('#', {}, error);
         daffAuthDriver.check.and.returnValue(response);
         const mockAuthCheckFailureAction = new DaffAuthCheckFailure(daffTransformErrorToStateError(error));
 
-        actions$ = hot('--a', { a: mockAuthCheckAction });
         expected = cold('--b', { b: mockAuthCheckFailureAction });
       });
 
       it('should notify state that the check failed', () => {
         expect(effects.check$).toBeObservable(expected);
-      });
-
-      it('should remove the auth token from storage', () => {
-        expect(effects.check$).toBeObservable(expected);
-        expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
       });
     });
   });
