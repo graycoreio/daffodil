@@ -6,19 +6,19 @@ import {
 } from '@daffodil/core/state';
 
 import {
-  completeOperation,
-  operationFailed,
-  startMutation,
-  startResolution,
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffStartMutation,
+  daffStartResolution,
 } from './adapter';
 
-describe('@daffodil/core/state | startResolution', () => {
+describe('@daffodil/core/state | daffStartResolution', () => {
   let state: DaffOperationState;
   let result: DaffOperationState;
 
   beforeEach(() => {
     state = daffOperationInitialState;
-    result = startResolution(state);
+    result = daffStartResolution(state);
   });
 
   it('should set loading to resolving', () => {
@@ -26,13 +26,13 @@ describe('@daffodil/core/state | startResolution', () => {
   });
 });
 
-describe('@daffodil/core/state | startMutation', () => {
+describe('@daffodil/core/state | daffStartMutation', () => {
   let state: DaffOperationState;
   let result: DaffOperationState;
 
   beforeEach(() => {
     state = daffOperationInitialState;
-    result = startMutation(state);
+    result = daffStartMutation(state);
   });
 
   it('should set loading to mutating', () => {
@@ -40,7 +40,7 @@ describe('@daffodil/core/state | startMutation', () => {
   });
 });
 
-describe('@daffodil/core/state | completeOperation', () => {
+describe('@daffodil/core/state | daffCompleteOperation', () => {
   let state: DaffOperationState;
   let result: DaffOperationState;
 
@@ -49,7 +49,7 @@ describe('@daffodil/core/state | completeOperation', () => {
       errors: [{ code: 'code', message: 'message' }],
       loading: DaffState.Resolving,
     };
-    result = completeOperation(state);
+    result = daffCompleteOperation(state);
   });
 
   it('should set loading to stable', () => {
@@ -61,7 +61,7 @@ describe('@daffodil/core/state | completeOperation', () => {
   });
 });
 
-describe('@daffodil/core/state | operationFailed', () => {
+describe('@daffodil/core/state | daffOperationFailed', () => {
   let state: DaffOperationState;
   let result: DaffOperationState;
 
@@ -73,7 +73,7 @@ describe('@daffodil/core/state | operationFailed', () => {
       ...daffOperationInitialState,
       loading: DaffState.Resolving,
     };
-    result = operationFailed([error], state);
+    result = daffOperationFailed([error], state);
   });
 
   it('should set loading to stable', () => {
