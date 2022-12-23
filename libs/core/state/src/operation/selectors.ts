@@ -46,12 +46,12 @@ export interface DaffOperationStateSelectors<
  *
  * @param selectState The feature selector for the operation state.
  */
-export const daffOperationStateSelectorFactory = <
+export function daffOperationStateSelectorFactory <
   TRootState,
   TState extends DaffOperationState = DaffOperationState
 >(
   selectState: Selector<TRootState, TState>,
-): DaffOperationStateSelectors<TRootState, TState> => {
+): DaffOperationStateSelectors<TRootState, TState> {
   const selectLoadingState = createSelector(
     selectState,
     state => state.loading,
