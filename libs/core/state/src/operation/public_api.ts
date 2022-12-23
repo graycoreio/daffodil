@@ -1,4 +1,4 @@
-export { DaffOperationStateAdapter } from './adapter';
+export * from './adapter';
 export {
   DaffOperationState,
   daffOperationInitialState,
@@ -7,7 +7,4 @@ export {
   daffOperationStateSelectorFactory,
   DaffOperationStateSelectors,
 } from './selectors';
-export {
-  DaffOperationStateFacade,
-  DaffOperationStateFacadeInterface,
-} from './facade';
+export { DaffOperationStateFacadeInterface } from './facade.type';

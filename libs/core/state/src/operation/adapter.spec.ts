@@ -5,74 +5,82 @@ import {
   DaffStateError,
 } from '@daffodil/core/state';
 
-import { DaffOperationStateAdapter } from './adapter';
+import {
+  completeOperation,
+  operationFailed,
+  startMutation,
+  startResolution,
+} from './adapter';
 
-describe('@daffodil/core/state | DaffOperationStateAdapter', () => {
+describe('@daffodil/core/state | startResolution', () => {
   let state: DaffOperationState;
   let result: DaffOperationState;
-  let adapter: DaffOperationStateAdapter;
 
   beforeEach(() => {
     state = daffOperationInitialState;
-    adapter = new DaffOperationStateAdapter();
+    result = startResolution(state);
   });
 
-  describe('startResolution', () => {
-    beforeEach(() => {
-      result = adapter.startResolution(state);
-    });
+  it('should set loading to resolving', () => {
+    expect(result.loading).toEqual(DaffState.Resolving);
+  });
+});
 
-    it('should set loading to resolving', () => {
-      expect(result.loading).toEqual(DaffState.Resolving);
-    });
+describe('@daffodil/core/state | startMutation', () => {
+  let state: DaffOperationState;
+  let result: DaffOperationState;
+
+  beforeEach(() => {
+    state = daffOperationInitialState;
+    result = startMutation(state);
   });
 
-  describe('startMutation', () => {
-    beforeEach(() => {
-      result = adapter.startMutation(state);
-    });
+  it('should set loading to mutating', () => {
+    expect(result.loading).toEqual(DaffState.Mutating);
+  });
+});
 
-    it('should set loading to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
-    });
+describe('@daffodil/core/state | completeOperation', () => {
+  let state: DaffOperationState;
+  let result: DaffOperationState;
+
+  beforeEach(() => {
+    state = {
+      errors: [{ code: 'code', message: 'message' }],
+      loading: DaffState.Resolving,
+    };
+    result = completeOperation(state);
   });
 
-  describe('completeOperation', () => {
-    beforeEach(() => {
-      state = {
-        errors: [{ code: 'code', message: 'message' }],
-        loading: DaffState.Resolving,
-      };
-      result = adapter.completeOperation(state);
-    });
-
-    it('should set loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
-    });
-
-    it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
-    });
+  it('should set loading to stable', () => {
+    expect(result.loading).toEqual(DaffState.Stable);
   });
 
-  describe('operationFailed', () => {
-    let error: DaffStateError;
+  it('should reset errors', () => {
+    expect(result.errors).toEqual([]);
+  });
+});
 
-    beforeEach(() => {
-      error = { code: 'code', message: 'message' };
-      state = {
-        ...daffOperationInitialState,
-        loading: DaffState.Resolving,
-      };
-      result = adapter.operationFailed([error], state);
-    });
+describe('@daffodil/core/state | operationFailed', () => {
+  let state: DaffOperationState;
+  let result: DaffOperationState;
 
-    it('should set loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
-    });
+  let error: DaffStateError;
 
-    it('should add the error', () => {
-      expect(result.errors).toEqual([error]);
-    });
+  beforeEach(() => {
+    error = { code: 'code', message: 'message' };
+    state = {
+      ...daffOperationInitialState,
+      loading: DaffState.Resolving,
+    };
+    result = operationFailed([error], state);
+  });
+
+  it('should set loading to stable', () => {
+    expect(result.loading).toEqual(DaffState.Stable);
+  });
+
+  it('should add the error', () => {
+    expect(result.errors).toEqual([error]);
   });
 });
