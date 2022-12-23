@@ -9,14 +9,14 @@ import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
 import {
-  completeOperation,
+  daffCompleteOperation,
+  daffOperationFailed,
   daffOperationInitialState,
   DaffOperationState,
+  daffStartMutation,
+  daffStartResolution,
   DaffState,
   DaffStateError,
-  operationFailed,
-  startMutation,
-  startResolution,
 } from '@daffodil/core/state';
 
 import { daffOperationStateSelectorFactory } from './selectors';
@@ -46,16 +46,16 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
           test: (state = daffOperationInitialState, action) => {
             switch (action.type) {
               case 'resolve':
-                return startResolution(state);
+                return daffStartResolution(state);
 
               case 'mutate':
-                return startMutation(state);
+                return daffStartMutation(state);
 
               case 'success':
-                return completeOperation(state);
+                return daffCompleteOperation(state);
 
               case 'error':
-                return operationFailed([error], state);
+                return daffOperationFailed([error], state);
 
               default:
                 return state;
