@@ -1,1 +1,1 @@
-export { DaffClearErrorsGuard } from './clear-errors.guard';
+export { DaffCustomerClearErrorsGuard } from './clear-errors.guard';

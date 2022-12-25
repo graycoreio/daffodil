@@ -6,10 +6,10 @@ import {
 
 import { DaffCustomerClearErrors } from '@daffodil/customer/state';
 
-import { DaffClearErrorsGuard } from './clear-errors.guard';
+import { DaffCustomerClearErrorsGuard } from './clear-errors.guard';
 
-describe('@daffodil/customer/routing | DaffClearErrorsGuard', () => {
-  let guard: DaffClearErrorsGuard;
+describe('@daffodil/customer/routing | DaffCustomerClearErrorsGuard', () => {
+  let guard: DaffCustomerClearErrorsGuard;
   let store: Store<any>;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('@daffodil/customer/routing | DaffClearErrorsGuard', () => {
       ],
     });
 
-    guard = TestBed.inject(DaffClearErrorsGuard);
+    guard = TestBed.inject(DaffCustomerClearErrorsGuard);
     store = TestBed.inject(Store);
 
     spyOn(store, 'dispatch');
