@@ -50,7 +50,7 @@ import { MagentoCreateCartResponse } from './queries/responses/create-cart';
 import { MagentoGetCartResponse } from './queries/responses/get-cart';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
-const DAFF_MAGENTO_GET_RECOVERABLE_ERRORS = [
+export const DAFF_MAGENTO_GET_RECOVERABLE_ERRORS = [
   DaffProductOutOfStockError,
 ];
 

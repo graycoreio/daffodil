@@ -4,7 +4,12 @@ export * from './interfaces/public_api';
 export * from './injection-tokens/public_api';
 export * from './queries/public_api';
 
-export { DaffMagentoCartService } from './cart.service';
+export { transformMagentoCartGraphQlError } from './errors/transform';
+
+export {
+  DaffMagentoCartService,
+  DAFF_MAGENTO_GET_RECOVERABLE_ERRORS,
+} from './cart.service';
 export { DaffMagentoCartItemService } from './cart-item.service';
 export { DaffMagentoCartPaymentService } from './cart-payment.service';
 export { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
