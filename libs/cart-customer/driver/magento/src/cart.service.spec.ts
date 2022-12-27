@@ -50,6 +50,7 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
   let daffCartItemFactory: DaffCartItemFactory;
 
   let magentoCartTransformerSpy;
+  let guestDriverSpy: jasmine.SpyObj<DaffMagentoCartService>;
 
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
@@ -58,6 +59,8 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
   let mockCartResponse: MagentoGetCustomerCartResponse;
 
   beforeEach(() => {
+    guestDriverSpy = jasmine.createSpyObj('DaffMagentoCartService', ['get', 'create', 'clear']);
+
     TestBed.configureTestingModule({
       imports: [
         ApolloTestingModule,
@@ -70,7 +73,7 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
         },
         {
           provide: DaffMagentoCartService,
-          useValue: jasmine.createSpyObj('DaffMagentoCartService', ['get', 'create', 'clear']),
+          useValue: guestDriverSpy,
         },
         {
           provide: APOLLO_TESTING_CACHE,
@@ -106,6 +109,10 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
+    guestDriverSpy.get.and.returnValue(of({
+      response: mockDaffCart,
+      errors: [],
+    }));
   });
 
   it('should be created', () => {
@@ -113,8 +120,17 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
   });
 
   describe('get', () => {
+    describe('when called with a cart ID', () => {
+      it('should call the guest driver', done => {
+        service.get('cartId').subscribe(() => {
+          expect(guestDriverSpy.get).toHaveBeenCalledWith('cartId');
+          done();
+        });
+      });
+    });
+
     it('should call the transformer with the correct argument', done => {
-      service.get().subscribe(() => {
+      service.get('').subscribe(() => {
         expect(magentoCartTransformerSpy.transform).toHaveBeenCalledWith(mockCartResponse.customerCart);
         done();
       });
@@ -127,7 +143,7 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
     });
 
     it('should return the correct value', done => {
-      service.get().subscribe(result => {
+      service.get('').subscribe(result => {
         expect(result.response).toEqual(jasmine.objectContaining(mockDaffCart));
         done();
       });
@@ -141,7 +157,7 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
 
     describe('when there are graphQL errors', () => {
       it('should return those errors', done => {
-        service.get().subscribe(result => {
+        service.get('').subscribe(result => {
           expect(result.errors).toContain(jasmine.any(DaffCartNotFoundError));
           expect(result.errors).toContain(jasmine.any(DaffProductOutOfStockError));
           done();
@@ -171,7 +187,7 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
       });
 
       it('should should set out of stock errors as recoverable', done => {
-        service.get().subscribe(result => {
+        service.get('').subscribe(result => {
           expect(result.errors.find(error => error.code === DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK).recoverable).toBeTrue();
           done();
         });
