@@ -7,7 +7,10 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import { of } from 'rxjs';
+import {
+  defer,
+  of,
+} from 'rxjs';
 import {
   catchError,
   filter,
@@ -53,13 +56,19 @@ export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
 
   mergeAfterLogin$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthCompleteAction),
-    switchMap(() => of(null).pipe(
-      map(() => this.cartStorage.getCartId()),
+    switchMap(() => defer(() => of(this.cartStorage.getCartId())).pipe(
       switchMap(cartId => this.driver.merge(cartId).pipe(
         map(resp => new DaffResolveCartSuccess(resp.response)),
-        catchError((innerError: DaffError) => of(
-          new DaffResolveCartFailure([this.errorMatcher(innerError)]),
-        )),
+        catchError((error: DaffError) =>
+          // if a merge fails, just try to load the cart
+          // with an empty ID, the customer cart driver shouldn't need it
+          this.driver.get('').pipe(
+            map(resp => new DaffResolveCartSuccess(resp.response)),
+            catchError((innerError: DaffError) => of(
+              new DaffResolveCartFailure([this.errorMatcher(innerError)]),
+            )),
+          ),
+        ),
       )),
     )),
   ));
