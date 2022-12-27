@@ -7,10 +7,12 @@ import { StoreModule } from '@ngrx/store';
 
 import {
   DaffAuthStateConfig,
+  daffAuthStateDefaultConfig,
   provideDaffAuthStateConfig,
 } from './config/public_api';
 import { DaffAuthEffects } from './effects/auth.effects';
 import { DaffAuthLoginEffects } from './effects/login.effects';
+import { DaffAuthRedirectEffects } from './effects/redirect.effects';
 import { DaffAuthRegisterEffects } from './effects/register.effects';
 import { DaffAuthResetPasswordEffects } from './effects/reset-password.effects';
 import {
@@ -26,15 +28,19 @@ import {
       DaffAuthLoginEffects,
       DaffAuthRegisterEffects,
       DaffAuthResetPasswordEffects,
+      DaffAuthRedirectEffects,
     ]),
   ],
 })
 export class DaffAuthStateModule {
-  static withConfig(config: DaffAuthStateConfig): ModuleWithProviders<DaffAuthStateModule> {
+  static withConfig(config: Partial<DaffAuthStateConfig> = {}): ModuleWithProviders<DaffAuthStateModule> {
     return {
       ngModule: DaffAuthStateModule,
       providers: [
-        provideDaffAuthStateConfig(config),
+        provideDaffAuthStateConfig({
+          ...daffAuthStateDefaultConfig,
+          ...config,
+        }),
       ],
     };
   }

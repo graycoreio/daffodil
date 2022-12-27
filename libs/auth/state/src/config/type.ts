@@ -4,4 +4,16 @@ export interface DaffAuthStateConfig {
    * Defaults to twenty minutes.
    */
   checkInterval: number;
+
+  /**
+   * The path to which the user will be redirected when they are logged in and the auth token is stored.
+   * Defaults to `'/customer'`.
+   */
+  authCompleteRedirectPath: string;
+
+  /**
+   * The path to which the user will be redirected when they are logged out.
+   * Defaults to `'/auth/login'`.
+   */
+  logoutRedirectPath: string;
 }
