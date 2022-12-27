@@ -7,12 +7,14 @@ import {
 import {
   DaffCartAddressDriver,
   DaffCartBillingAddressDriver,
+  DaffCartDriver,
   DaffCartShippingAddressDriver,
 } from '@daffodil/cart/driver';
 
 import { DaffMagentoCartCustomerAddressService } from './cart-address.service';
 import { DaffMagentoCartCustomerBillingAddressService } from './cart-billing-address.service';
 import { DaffMagentoCartCustomerShippingAddressService } from './cart-shipping-address.service';
+import { DaffMagentoCartCustomerService } from './cart.service';
 
 @NgModule({
   imports: [
@@ -24,6 +26,10 @@ export class DaffCartCustomerMagentoDriverModule {
     return {
       ngModule: DaffCartCustomerMagentoDriverModule,
       providers: [
+        {
+          provide: DaffCartDriver,
+          useExisting: DaffMagentoCartCustomerService,
+        },
         {
           provide: DaffCartAddressDriver,
           useExisting: DaffMagentoCartCustomerAddressService,
