@@ -45,7 +45,8 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
   let driver: DaffCartServiceInterface;
   let cartStorageService: DaffCartStorageService;
 
-  let driverMergeSpy: jasmine.Spy<DaffCartServiceInterface['get']>;
+  let driverGetSpy: jasmine.Spy<DaffCartServiceInterface['get']>;
+  let driverMergeSpy: jasmine.Spy<DaffCartServiceInterface['merge']>;
   let driverCreateSpy: jasmine.Spy<DaffCartServiceInterface['create']>;
   let getCartIdSpy: jasmine.Spy;
 
@@ -71,6 +72,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
 
     stubCart = cartFactory.create();
 
+    driverGetSpy = spyOn(driver, 'get');
     driverMergeSpy = spyOn(driver, 'merge');
     driverCreateSpy = spyOn(driver, 'create');
     getCartIdSpy = spyOn(cartStorageService, 'getCartId');
@@ -85,7 +87,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
     let expected;
     const authCompleteAction = new DaffAuthComplete();
 
-    describe('and the call to CartBillingAddressService is successful', () => {
+    describe('and the call to the driver is successful', () => {
       beforeEach(() => {
         driverMergeSpy.and.returnValue(of({
           response: stubCart,
@@ -96,23 +98,48 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
         expected = cold('--b', { b: resolveSuccessAction });
       });
 
-      it('should dispatch a AuthCompleteSuccess action', () => {
+      it('should dispatch a DaffResolveCartSuccess action', () => {
         expect(effects.mergeAfterLogin$).toBeObservable(expected);
       });
     });
 
-    describe('and the call to CartBillingAddressService fails', () => {
+    describe('and the call to the driver fails', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
         const response = cold('#', {}, error);
         driverMergeSpy.and.returnValue(response);
-        const resolveFailureAction = new DaffResolveCartFailure([error]);
         actions$ = hot('--a', { a: authCompleteAction });
-        expected = cold('--b', { b: resolveFailureAction });
       });
 
-      it('should dispatch a AuthCompleteFailure action', () => {
-        expect(effects.mergeAfterLogin$).toBeObservable(expected);
+      describe('and the call to the driver is successful', () => {
+        beforeEach(() => {
+          driverGetSpy.and.returnValue(of({
+            response: stubCart,
+            errors: [],
+          }));
+          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
+          actions$ = hot('--a', { a: authCompleteAction });
+          expected = cold('--b', { b: resolveSuccessAction });
+        });
+
+        it('should dispatch a DaffResolveCartSuccess action', () => {
+          expect(effects.mergeAfterLogin$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the call to the driver fails', () => {
+        beforeEach(() => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
+          const response = cold('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const resolveFailureAction = new DaffResolveCartFailure([error]);
+          actions$ = hot('--a', { a: authCompleteAction });
+          expected = cold('--b', { b: resolveFailureAction });
+        });
+
+        it('should dispatch a DaffResolveCartFailure action', () => {
+          expect(effects.mergeAfterLogin$).toBeObservable(expected);
+        });
       });
     });
   });
