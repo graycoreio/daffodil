@@ -42,25 +42,27 @@ export class DaffMagentoCartCustomerService implements DaffCartServiceInterface<
     private guestDriver: DaffMagentoCartService,
   ) {}
 
-  get(): Observable<DaffDriverResponse<DaffCart>> {
-    return this.apollo.query<MagentoGetCustomerCartResponse>({
-      fetchPolicy: 'network-only',
-      query: getCustomerCart(this.extraCartFragments),
-      errorPolicy: 'all',
-    }).pipe(
-      map(({ data, errors }) => ({
-        response: data ? this.cartTransformer.transform(data.customerCart) : undefined,
-        errors: errors?.map(e => {
-          const error = transformMagentoCartGraphQlError(e);
+  get(cartId: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
+    return cartId
+      ? this.guestDriver.get(cartId)
+      : this.apollo.query<MagentoGetCustomerCartResponse>({
+        fetchPolicy: 'network-only',
+        query: getCustomerCart(this.extraCartFragments),
+        errorPolicy: 'all',
+      }).pipe(
+        map(({ data, errors }) => ({
+          response: data ? this.cartTransformer.transform(data.customerCart) : undefined,
+          errors: errors?.map(e => {
+            const error = transformMagentoCartGraphQlError(e);
 
-          if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => error instanceof klass).length > 0) {
-            error.recoverable = true;
-          }
+            if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => error instanceof klass).length > 0) {
+              error.recoverable = true;
+            }
 
-          return error;
-        }) || [],
-      })),
-    );
+            return error;
+          }) || [],
+        })),
+      );
   }
 
   create(): Observable<{id: DaffCart['id']}> {
