@@ -5,7 +5,7 @@ import { MagentoCartAddressInput } from '@daffodil/cart/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartAddressInput implements MagentoCartAddressInput {
-  region = faker.address.stateAbbr();
+  region_id = faker.unique(faker.datatype.number);
   country_code = faker.address.countryCode();
   street = [faker.address.streetAddress()];
   company = faker.company.companyName();

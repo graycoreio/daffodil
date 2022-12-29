@@ -5,7 +5,7 @@ export interface MagentoCartAddressInput {
   firstname: string;
   lastname: string;
   postcode?: string;
-  region?: string;
+  region_id: number;
   save_in_address_book: boolean;
   street: string[];
   telephone?: string;

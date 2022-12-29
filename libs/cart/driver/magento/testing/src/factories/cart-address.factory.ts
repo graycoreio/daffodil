@@ -8,8 +8,8 @@ export class MockMagentoCartAddress implements MagentoCartAddress {
   __typename = 'BillingCartAddress';
   region = {
     __typename: 'CartAddressRegion',
+    region_id: faker.unique(faker.datatype.number),
     code: faker.address.stateAbbr(),
-    label: faker.address.state(),
   };
   country = {
     __typename: 'CartAddressCountry',

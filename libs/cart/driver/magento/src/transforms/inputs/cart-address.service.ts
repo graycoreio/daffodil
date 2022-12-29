@@ -20,7 +20,7 @@ export class DaffMagentoCartAddressInputTransformer {
       firstname: cartAddress.firstname,
       lastname: cartAddress.lastname,
       postcode: cartAddress.postcode,
-      region: cartAddress.region,
+      region_id: Number(cartAddress.region),
       save_in_address_book: false,
       street,
       telephone: cartAddress.telephone,
