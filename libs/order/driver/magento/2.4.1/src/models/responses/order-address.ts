@@ -9,7 +9,7 @@ export interface MagentoOrderAddress {
   lastname: string;
   postcode: string;
   prefix: string;
-  region: string;
+  region_id: number;
   region_code: string;
   street: string[];
   suffix: string;
