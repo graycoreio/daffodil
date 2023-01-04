@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.49.0](https://github.com/graycoreio/daffodil/compare/v0.48.2...v0.49.0) (2023-01-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** adds required fields to `DaffAuthStateConfig`
+* **customer:** changes the name of the publicly exported `DaffClearErrorsGuard`
+
+### Features
+
+* **auth:** add `DaffAuthRedirectEffects` ([#2288](https://github.com/graycoreio/daffodil/issues/2288)) ([548be2e](https://github.com/graycoreio/daffodil/commit/548be2e272b287b934e86d297d0c1d3e03980a18))
+* **auth:** do not crash when token is inaccessible ([#2299](https://github.com/graycoreio/daffodil/issues/2299)) ([4af5618](https://github.com/graycoreio/daffodil/commit/4af56185e3fd07d7d1e6706391061ce9c08b6dc5))
+* **cart,cart-customer:** fallback to loading cart on merge failure ([#2289](https://github.com/graycoreio/daffodil/issues/2289)) ([6a14754](https://github.com/graycoreio/daffodil/commit/6a14754d1f622763b9ccc66a061692490f07797d))
+* **customer:** `DaffClearErrorsGuard` -> `DaffCustomerClearErrorsGuard` ([#2286](https://github.com/graycoreio/daffodil/issues/2286)) ([ec10abe](https://github.com/graycoreio/daffodil/commit/ec10abe1b1984378e79cf53786814e41aa25d0b6))
+* **geography:** send Magento driver calls as `GET` ([#2294](https://github.com/graycoreio/daffodil/issues/2294)) ([1189eb2](https://github.com/graycoreio/daffodil/commit/1189eb2eb90f4c143141eada444b730b55e1d595))
+
+
+### Bug Fixes
+
+* **cart-customer:** Magento driver always makes customer cart query ([#2290](https://github.com/graycoreio/daffodil/issues/2290)) ([545e5e3](https://github.com/graycoreio/daffodil/commit/545e5e392fa51d50f2b90af96208ef45bce292ef))
+
 ### [0.48.2](https://github.com/graycoreio/daffodil/compare/v0.48.1...v0.48.2) (2022-12-23)
 
 
