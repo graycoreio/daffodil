@@ -19,7 +19,12 @@ export class MagentoAuthApolloBearerTokenLinkGenerator implements DaffApolloLink
 
   getLink(): ApolloLink {
     return new ApolloLink((operation, forward) => {
-      const token = this.storage.getAuthToken();
+      let token = null;
+
+      try {
+        token = this.storage.getAuthToken();
+      } catch(e){}
+
       if (token) {
         operation.setContext({
           headers: {
