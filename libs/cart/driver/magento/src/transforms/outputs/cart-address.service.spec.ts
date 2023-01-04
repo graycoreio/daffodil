@@ -34,15 +34,17 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () 
   describe('transform | transforming a cart address', () => {
     let transformedCartAddress: DaffCartAddress;
     let street;
+    let street2: string;
     let city;
     let firstname;
 
     beforeEach(() => {
       street = 'street';
+      street2 = 'street2';
       city = 'city';
       firstname = 'firstname';
 
-      mockMagentoCartAddress.street = [street];
+      mockMagentoCartAddress.street = [street, street2];
       mockMagentoCartAddress.city = city;
       mockMagentoCartAddress.firstname = firstname;
 
@@ -51,6 +53,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () 
 
     it('should return an object with the correct values', () => {
       expect(transformedCartAddress.street).toEqual(street);
+      expect(transformedCartAddress.street2).toEqual(street2);
       expect(transformedCartAddress.city).toEqual(city);
       expect(transformedCartAddress.firstname).toEqual(firstname);
       expect(transformedCartAddress.region).toEqual(String(mockMagentoCartAddress.region.region_id));

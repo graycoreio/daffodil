@@ -20,6 +20,7 @@ export class DaffMagentoCartAddressTransformer {
     return address ? {
       // address
       street: address.street[0],
+      street2: address.street[1],
       city: address.city,
       region: String(address.region.region_id),
       region_code: address.region.code,
