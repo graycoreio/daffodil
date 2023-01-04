@@ -9,9 +9,10 @@ export class MockDaffAddress implements DaffAddress {
   street = faker.address.streetName();
   street2 = faker.address.secondaryAddress();
   city = faker.address.city();
-  region = faker.address.stateAbbr();
+  region = faker.datatype.uuid();
+  region_code = faker.address.stateAbbr();
   postcode = faker.address.zipCode();
-  country = faker.address.zipCode();
+  country = faker.address.countryCode();
 }
 
 @Injectable({

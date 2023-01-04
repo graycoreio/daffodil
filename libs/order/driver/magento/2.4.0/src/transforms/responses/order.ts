@@ -112,6 +112,7 @@ function transformAddress(address: MagentoGraycoreOrderAddress): DaffOrderAddres
     street2: address.street[1],
     city: address.city,
     region: address.region_id,
+    region_code: address.region,
     country: address.country_code,
     postcode: address.postcode,
   };

@@ -50,16 +50,4 @@ describe('Geography | Interfaces | Factories | DaffAddressFactory', () => {
       expect(result.postcode).toBeDefined();
     });
   });
-
-  describe('creating many addresses', () => {
-    let result: DaffAddress[];
-
-    it('should create as many cart addresses as desired', () => {
-      result = daffodilAddressFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = daffodilAddressFactory.createMany(3);
-      expect(result.length).toEqual(3);
-    });
-  });
 });

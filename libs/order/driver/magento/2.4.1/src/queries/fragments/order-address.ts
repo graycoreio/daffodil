@@ -12,7 +12,7 @@ export const orderAddressFragment = gql`
     lastname
     postcode
     prefix
-    region
+    region_id
     region_code
     street
     suffix

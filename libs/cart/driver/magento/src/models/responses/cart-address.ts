@@ -1,7 +1,7 @@
 export interface MagentoCartAddress {
   region: {
     code: string;
-    label: string;
+    region_id: number;
   };
   country: {
     code: string;

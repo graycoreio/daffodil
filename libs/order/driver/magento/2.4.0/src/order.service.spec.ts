@@ -272,7 +272,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
       street: [mockDaffOrderAddress.street, mockDaffOrderAddress.street2],
       city: mockDaffOrderAddress.city,
       region_id: String(mockDaffOrderAddress.region),
-      region: String(mockDaffOrderAddress.region),
+      region: mockDaffOrderAddress.region_code,
       country_code: mockDaffOrderAddress.country,
       postcode: mockDaffOrderAddress.postcode,
     };

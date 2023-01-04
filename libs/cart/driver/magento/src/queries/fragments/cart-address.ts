@@ -13,7 +13,7 @@ export const cartAddressFragment = gql`
     postcode
     region {
       code
-      label
+      region_id
     }
     street
     telephone

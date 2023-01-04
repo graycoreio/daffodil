@@ -27,7 +27,7 @@ describe('Cart | Testing | Factories | CartAddressInputFactory', () => {
     });
 
     it('should return a CartAddressInput with all required fields defined', () => {
-      expect(result.region).toBeDefined();
+      expect(result.region_id).toBeDefined();
       expect(result.country_code).toBeDefined();
       expect(result.street[0]).toBeDefined();
       expect(result.company).toBeDefined();

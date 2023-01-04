@@ -59,7 +59,7 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartAddressInputTransformer
       expect(transformedCartAddress.street).toEqual([street, street2]);
       expect(transformedCartAddress.city).toEqual(city);
       expect(transformedCartAddress.firstname).toEqual(firstname);
-      expect(transformedCartAddress.region).toEqual(region);
+      expect(transformedCartAddress.region_id).toEqual(Number(region));
     });
   });
 });

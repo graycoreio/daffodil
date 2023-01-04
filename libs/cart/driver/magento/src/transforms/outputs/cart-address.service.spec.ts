@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCartAddress } from '@daffodil/cart';
+import { MagentoCartAddress } from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressFactory } from '@daffodil/cart/driver/magento/testing';
 
 import { DaffMagentoCartAddressTransformer } from './cart-address.service';
@@ -9,7 +11,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () 
 
   let magentoCartAddressFactory: MagentoCartAddressFactory;
 
-  let mockMagentoCartAddress;
+  let mockMagentoCartAddress: MagentoCartAddress;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,7 +32,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () 
   });
 
   describe('transform | transforming a cart address', () => {
-    let transformedCartAddress;
+    let transformedCartAddress: DaffCartAddress;
     let street;
     let city;
     let firstname;
@@ -51,6 +53,8 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () 
       expect(transformedCartAddress.street).toEqual(street);
       expect(transformedCartAddress.city).toEqual(city);
       expect(transformedCartAddress.firstname).toEqual(firstname);
+      expect(transformedCartAddress.region).toEqual(String(mockMagentoCartAddress.region.region_id));
+      expect(transformedCartAddress.region_code).toEqual(mockMagentoCartAddress.region.code);
     });
 
     describe('when the argument is null', () => {

@@ -70,7 +70,9 @@ export class MagentoOrderTestDataFactory {
   ) {}
 
   create(): MagentoOrderTestData {
-    const mockDaffOrderAddress: DaffOrderAddress = this.daffOrderAddressFactory.create();
+    const mockDaffOrderAddress: DaffOrderAddress = this.daffOrderAddressFactory.create({
+      region: '5',
+    });
     const mockDaffOrderCoupon: DaffOrderCoupon = this.daffOrderCouponFactory.create();
     const mockDaffOrderPayment: DaffOrderPayment = this.daffOrderPaymentFactory.create({
       created_at: null,
@@ -340,8 +342,8 @@ export class MagentoOrderTestDataFactory {
       telephone: mockDaffOrderAddress.telephone,
       street: [mockDaffOrderAddress.street, mockDaffOrderAddress.street2],
       city: mockDaffOrderAddress.city,
-      region_code: mockDaffOrderAddress.region,
-      region: mockDaffOrderAddress.region,
+      region_code: mockDaffOrderAddress.region_code,
+      region_id: Number(mockDaffOrderAddress.region),
       country_code: mockDaffOrderAddress.country,
       postcode: mockDaffOrderAddress.postcode,
       company: null,
