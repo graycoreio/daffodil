@@ -1,4 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { Inject } from '@angular/core';
+import {
+  inject,
+  TestBed,
+} from '@angular/core/testing';
 import {
   DocumentNode,
   gql,
@@ -12,6 +16,10 @@ import {
 } from 'apollo-angular/testing';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
+import {
+  DaffPersistenceServiceToken,
+  DaffServerErrorStorageService,
+} from '@daffodil/core';
 
 import { MagentoAuthApolloBearerTokenLinkGenerator } from './apollo-bearer-token-link-generator';
 
@@ -74,6 +82,20 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
       });
 
       it('should not set the authorization header', () => {
+        apollo.query({ query }).subscribe();
+        operation = controller.expectOne(query).operation;
+        service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
+
+        expect(operation.getContext().headers?.authorization).toBeUndefined();
+      });
+    });
+
+    describe('when getting the token fails due to a storage error', () => {
+      beforeEach(() => {
+        daffAuthStorageService.getAuthToken.and.throwError('Some sort of error');
+      });
+
+      it('should not crash', () => {
         apollo.query({ query }).subscribe();
         operation = controller.expectOne(query).operation;
         service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
