@@ -29,6 +29,9 @@ import {
   DaffAuthLogout,
   DaffAuthLogoutSuccess,
   DaffAuthLogoutFailure,
+  DaffAuthComplete,
+  DaffAuthRevoke,
+  DaffAuthServerSide,
 } from '@daffodil/auth/state';
 import {
   DaffAccountRegistrationFactory,
@@ -40,10 +43,6 @@ import {
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
-import {
-  DaffAuthComplete,
-  DaffAuthServerSide,
-} from '../public_api';
 import { DaffAuthLoginEffects } from './login.effects';
 
 describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
@@ -226,7 +225,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
     beforeEach(() => {
       authLogoutSuccessAction = new DaffAuthLogoutSuccess();
       actions$ = hot('--a', { a: authLogoutSuccessAction });
-      expected = cold('---');
+      expected = cold('--a', { a: new DaffAuthRevoke() });
     });
 
     it('should remove the auth token from storage', () => {

@@ -3,7 +3,6 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { DaffAuthToken } from '@daffodil/auth';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthReducerState } from '../../reducers/public_api';
@@ -13,9 +12,10 @@ export interface AuthSelectors {
   selectAuthState: MemoizedSelector<Record<string, any>, DaffAuthReducerState>;
   selectAuthLoading: MemoizedSelector<Record<string, any>, boolean>;
   selectAuthErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
+  selectAuthLoggedIn: MemoizedSelector<Record<string, any>, boolean>;
 }
 
-const createAuthSelectors = <T extends DaffAuthToken = DaffAuthToken>() => {
+const createAuthSelectors = () => {
   const selectAuthState = createSelector(
     getDaffAuthFeatureStateSelector(),
     state => state.auth,
@@ -31,15 +31,21 @@ const createAuthSelectors = <T extends DaffAuthToken = DaffAuthToken>() => {
     state => state.errors,
   );
 
+  const selectAuthLoggedIn = createSelector(
+    selectAuthState,
+    state => state.loggedIn,
+  );
+
   return {
     selectAuthState,
     selectAuthLoading,
     selectAuthErrors,
+    selectAuthLoggedIn,
   };
 };
 
 export const getAuthSelectors = (() => {
   let cache;
-  return <T extends DaffAuthToken = DaffAuthToken>(): AuthSelectors =>
-    cache = cache || createAuthSelectors<T>();
+  return (): AuthSelectors =>
+    cache = cache || createAuthSelectors();
 })();

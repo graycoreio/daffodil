@@ -6,6 +6,8 @@ import {
   daffAuthInitialState as initialState,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
+  DaffAuthComplete,
+  DaffAuthRevoke,
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
@@ -19,6 +21,34 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
       const result = reducer(initialState, action);
 
       expect(result).toBe(initialState);
+    });
+  });
+
+  describe('when AuthCompleteAction is triggered', () => {
+    let result: DaffAuthReducerState;
+
+    beforeEach(() => {
+      const authCompleteAction = new DaffAuthComplete();
+
+      result = reducer(initialState, authCompleteAction);
+    });
+
+    it('sets loggedIn state to true', () => {
+      expect(result.loggedIn).toBeTrue();
+    });
+  });
+
+  describe('when AuthRevokeAction is triggered', () => {
+    let result: DaffAuthReducerState;
+
+    beforeEach(() => {
+      const authRevokeAction = new DaffAuthRevoke();
+
+      result = reducer(initialState, authRevokeAction);
+    });
+
+    it('sets loggedIn state to false', () => {
+      expect(result.loggedIn).toBeFalse();
     });
   });
 

@@ -45,6 +45,7 @@ import {
   DaffAuthGuardCheck,
   DaffAuthStorageFailure,
   DaffAuthServerSide,
+  DaffAuthRevoke,
 } from '../actions/public_api';
 import {
   DaffAuthStateConfig,
@@ -97,7 +98,7 @@ export class DaffAuthEffects {
     tap(() => {
       this.storage.removeAuthToken();
     }),
-    switchMap(() => EMPTY),
+    map(() => new DaffAuthRevoke()),
     catchError((error: Error) => {
       switch (true) {
         case error instanceof DaffServerSideStorageError:

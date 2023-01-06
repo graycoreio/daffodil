@@ -32,6 +32,18 @@ export function daffAuthReducer(
         errors: [action.errorMessage],
       };
 
+    case DaffAuthActionTypes.AuthCompleteAction:
+      return {
+        ...state,
+        loggedIn: true,
+      };
+
+    case DaffAuthActionTypes.AuthRevokeAction:
+      return {
+        ...state,
+        loggedIn: false,
+      };
+
     default:
       return state;
   }

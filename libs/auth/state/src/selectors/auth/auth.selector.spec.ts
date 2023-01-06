@@ -23,11 +23,13 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
   let state: DaffAuthReducerState;
   let loading: boolean;
   let errors: DaffStateError[];
+  let loggedIn: boolean;
 
   const {
     selectAuthLoading,
     selectAuthErrors,
     selectAuthState,
+    selectAuthLoggedIn,
   } = getAuthSelectors();
 
   beforeEach(() => {
@@ -43,9 +45,11 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
 
     loading = false;
     errors = [];
+    loggedIn = false;
     state = {
       loading,
       errors,
+      loggedIn,
     };
   });
 
@@ -69,6 +73,14 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
     it('returns the selected auth errors', () => {
       const selector = store.pipe(select(selectAuthErrors));
       const expected = cold('a', { a: errors });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectAuthLoggedIn', () => {
+    it('returns the logged in state', () => {
+      const selector = store.pipe(select(selectAuthLoggedIn));
+      const expected = cold('a', { a: loggedIn });
       expect(selector).toBeObservable(expected);
     });
   });
