@@ -21,6 +21,7 @@ import {
   DaffAuthRegister,
   DaffAuthRegisterFailure,
   DaffAuthLoginSuccess,
+  DaffAuthComplete,
 } from '@daffodil/auth/state';
 import {
   DaffAuthTokenFactory,
@@ -117,6 +118,19 @@ describe('DaffAuthFacade', () => {
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthCheckFailure(error));
       expect(facade.errors$).toBeObservable(expected);
+    });
+  });
+
+  describe('loggedIn$', () => {
+    it('should initially be false', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.loggedIn$).toBeObservable(expected);
+    });
+
+    it('should be true upon an auth complete', () => {
+      const expected = cold('a', { a: true });
+      store.dispatch(new DaffAuthComplete());
+      expect(facade.loggedIn$).toBeObservable(expected);
     });
   });
 });

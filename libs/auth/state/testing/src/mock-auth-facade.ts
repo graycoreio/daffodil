@@ -12,6 +12,7 @@ import { DaffStateError } from '@daffodil/core/state';
 export class MockDaffAuthFacade implements DaffAuthFacadeInterface {
   loading$ = new BehaviorSubject<boolean>(false);
   errors$ = new BehaviorSubject<DaffStateError[]>([]);
+  loggedIn$ = new BehaviorSubject<boolean>(false);
 
   dispatch(action: Action) {};
 }

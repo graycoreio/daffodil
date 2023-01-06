@@ -9,6 +9,10 @@ import {
 export interface DaffAuthFacadeInterface extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
+  /**
+   * Whether the current user is logged in.
+   */
+  loggedIn$: Observable<boolean>;
 
   dispatch(action: Action): void;
 }

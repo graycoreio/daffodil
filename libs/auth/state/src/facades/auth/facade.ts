@@ -19,18 +19,21 @@ import { DaffAuthFacadeInterface } from './facade.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffAuthFacade<T extends DaffAuthToken = DaffAuthToken> implements DaffAuthFacadeInterface {
+export class DaffAuthFacade implements DaffAuthFacadeInterface {
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
+  loggedIn$: Observable<boolean>;
 
   constructor(private store: Store<DaffAuthFeatureState>) {
     const {
       selectAuthLoading,
       selectAuthErrors,
+      selectAuthLoggedIn,
     } = getDaffAuthSelectors();
 
     this.loading$ = this.store.pipe(select(selectAuthLoading));
     this.errors$ = this.store.pipe(select(selectAuthErrors));
+    this.loggedIn$ = this.store.pipe(select(selectAuthLoggedIn));
   }
 
   dispatch(action: Action) {

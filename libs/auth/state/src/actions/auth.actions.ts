@@ -11,6 +11,7 @@ export enum DaffAuthActionTypes {
   AuthCheckSuccessAction = '[@daffodil/auth] Auth Check Success Action',
   AuthCheckFailureAction = '[@daffodil/auth] Auth Check Failure Action',
   AuthCompleteAction = '[@daffodil/auth] Auth Complete Action',
+  AuthRevokeAction = '[@daffodil/auth] Auth Revoke Action',
 }
 
 /**
@@ -83,6 +84,14 @@ export class DaffAuthComplete implements Action {
   readonly type = DaffAuthActionTypes.AuthCompleteAction;
 }
 
+/**
+ * An action triggered when the user auth token is revoked.
+ * The auth token has been removed from storage at this point.
+ */
+export class DaffAuthRevoke implements Action {
+  readonly type = DaffAuthActionTypes.AuthRevokeAction;
+}
+
 export type DaffAuthActions =
   | DaffAuthGuardCheckCompletion
   | DaffAuthGuardCheck
@@ -91,4 +100,5 @@ export type DaffAuthActions =
   | DaffAuthCheck
   | DaffAuthCheckSuccess
   | DaffAuthCheckFailure
-  | DaffAuthComplete;
+  | DaffAuthComplete
+  | DaffAuthRevoke;

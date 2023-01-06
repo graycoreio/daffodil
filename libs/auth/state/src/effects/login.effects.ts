@@ -47,6 +47,7 @@ import {
   DaffAuthStorageFailure,
   DaffAuthComplete,
   DaffAuthServerSide,
+  DaffAuthRevoke,
 } from '../actions/public_api';
 
 @Injectable()
@@ -94,7 +95,7 @@ export class DaffAuthLoginEffects<
     tap(() => {
       this.storage.removeAuthToken();
     }),
-    switchMap(() => EMPTY),
+    map(() => new DaffAuthRevoke()),
     catchError((error: Error) => {
       switch (true) {
         case error instanceof DaffServerSideStorageError:

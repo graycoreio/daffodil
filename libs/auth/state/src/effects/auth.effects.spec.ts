@@ -25,6 +25,7 @@ import {
   DaffAuthStateConfig,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
+  DaffAuthRevoke,
 } from '@daffodil/auth/state';
 import {
   DaffServerSideStorageError,
@@ -185,7 +186,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
       beforeEach(() => {
         authLogoutSuccessAction = new DaffAuthCheckFailure({ code: 'code', message: 'message' });
         actions$ = hot('--a', { a: authLogoutSuccessAction });
-        expected = cold('---');
+        expected = cold('--a', { a: new DaffAuthRevoke() });
       });
 
       it('should remove the auth token from storage', () => {
