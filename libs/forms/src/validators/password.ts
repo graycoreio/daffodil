@@ -108,15 +108,17 @@ function comboValidator(config: DaffFormsPasswordValidatorComboConfig): Validato
       : null;
 }
 
-export function daffFormsPasswordValidator(config: DaffFormsPasswordValidatorConfig = {}): ValidatorFn {
+export function daffFormsPasswordValidator(config: DaffFormsPasswordValidatorConfig = {}) {
   const validators = [];
   const classPattern = buildCharacterClassPattern(<DaffFormsPasswordValidatorClassConfig>config);
+  const minLength = (<DaffFormsPasswordValidatorLengthConfig>config).minLength;
+  const maxLength = (<DaffFormsPasswordValidatorLengthConfig>config).maxLength;
 
-  if ((<DaffFormsPasswordValidatorLengthConfig>config).minLength) {
-    validators.push(Validators.minLength((<DaffFormsPasswordValidatorLengthConfig>config).minLength));
+  if (minLength) {
+    validators.push(Validators.minLength(minLength));
   }
-  if ((<DaffFormsPasswordValidatorLengthConfig>config).maxLength) {
-    validators.push(Validators.maxLength((<DaffFormsPasswordValidatorLengthConfig>config).maxLength));
+  if (maxLength) {
+    validators.push(Validators.maxLength(maxLength));
   }
   if (classPattern.length > MATCH_EVERYTHING_REGEX.length) {
     validators.push(Validators.pattern(classPattern));
