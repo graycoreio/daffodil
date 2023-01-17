@@ -85,6 +85,10 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
       expect(result.loading).toEqual(false);
     });
 
+    it('sets loggedIn state to true', () => {
+      expect(result.loggedIn).toBeTrue();
+    });
+
     it('resets errors', () => {
       expect(result.errors).toEqual([]);
     });
@@ -116,6 +120,10 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
 
     it('adds an error to state.errors', () => {
       expect(result.errors).toEqual([error]);
+    });
+
+    it('sets loggedIn state to false', () => {
+      expect(result.loggedIn).toBeFalse();
     });
   });
 

@@ -19,11 +19,19 @@ export function daffAuthReducer(
     case DaffAuthActionTypes.AuthCheckSuccessAction:
       return {
         ...state,
+        loggedIn: true,
         loading: false,
         errors: [],
       };
 
     case DaffAuthActionTypes.AuthCheckFailureAction:
+      return {
+        ...state,
+        loggedIn: false,
+        loading: false,
+        errors: [action.errorMessage],
+      };
+
     case DaffAuthActionTypes.AuthServerSideAction:
     case DaffAuthActionTypes.AuthStorageFailureAction:
       return {
