@@ -1,18 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCartAddress } from '@daffodil/cart';
 import { DaffMagentoCartAddressInputTransformer } from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressInputFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoBillingAddressInputTransformer } from './billing-address.service';
 
-describe('@daffodil/cart/driver/magento | Transformer | MagentoBillingAddressInput', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoBillingAddressInputTransformer', () => {
   let service: DaffMagentoBillingAddressInputTransformer;
 
   let daffCartAddressFactory: DaffCartAddressFactory;
   let magentoCartAddressInputFactory: MagentoCartAddressInputFactory;
 
-  let mockDaffBillingAddress;
+  let mockDaffBillingAddress: DaffCartAddress;
   let mockMagentoCartAddressInput;
 
   let cartAddressTransformerSpy;
@@ -48,13 +49,13 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoBillingAddressInp
   describe('transform | transforming a shipping address input', () => {
     let transformedBillingAddress;
 
-    describe('when address_id is set', () => {
+    describe('when id is set', () => {
       let addressId;
 
       beforeEach(() => {
         addressId = '15';
 
-        mockDaffBillingAddress.address_id = addressId;
+        mockDaffBillingAddress.id = addressId;
 
         transformedBillingAddress = service.transform(mockDaffBillingAddress);
       });
@@ -68,9 +69,9 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoBillingAddressInp
       });
     });
 
-    describe('when address_id is not set', () => {
+    describe('when id is not set', () => {
       beforeEach(() => {
-        mockDaffBillingAddress.address_id = null;
+        mockDaffBillingAddress.id = null;
 
         transformedBillingAddress = service.transform(mockDaffBillingAddress);
       });

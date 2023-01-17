@@ -35,7 +35,7 @@ export class DaffMagentoCartAddressTransformer {
       email: address.email,
 
       // TODO: implement
-      address_id: null,
+      id: null,
       suffix: null,
       middlename: null,
       prefix: null,

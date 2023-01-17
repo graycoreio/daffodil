@@ -12,10 +12,10 @@ export class DaffMagentoBillingAddressInputTransformer {
   constructor(private cartAddressTransformer: DaffMagentoCartAddressInputTransformer) {}
 
   transform(cartAddress: Partial<DaffCartAddress>): MagentoBillingAddressInput {
-    return cartAddress.address_id
+    return cartAddress.id
       ? {
         address: null,
-        customer_address_id: cartAddress.address_id,
+        customer_address_id: Number(cartAddress.id),
       }
       : {
         address: this.cartAddressTransformer.transform(cartAddress),
