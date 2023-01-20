@@ -30,7 +30,7 @@ export class DaffAuthorizeNetUpdatePayment<
 > implements Action {
   readonly type = DaffAuthorizeNetActionTypes.UpdatePaymentAction;
 
-  constructor(public tokenRequest: T, public address: V) { }
+  constructor(public tokenRequest: T, public address: Partial<V>) { }
 }
 
 /**
