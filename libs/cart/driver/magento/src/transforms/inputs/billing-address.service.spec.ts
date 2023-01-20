@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartAddress } from '@daffodil/cart';
-import { DaffMagentoCartAddressInputTransformer } from '@daffodil/cart/driver/magento';
+import {
+  DaffMagentoCartAddressInputTransformer,
+  MagentoBillingAddressInput,
+} from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressInputFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
@@ -50,12 +53,12 @@ describe('@daffodil/cart/driver/magento | DaffMagentoBillingAddressInputTransfor
     let transformedBillingAddress;
 
     describe('when id is set', () => {
-      let addressId;
+      let addressId: MagentoBillingAddressInput['customer_address_id'];
 
       beforeEach(() => {
-        addressId = '15';
+        addressId = 15;
 
-        mockDaffBillingAddress.id = addressId;
+        mockDaffBillingAddress.id = String(addressId);
 
         transformedBillingAddress = service.transform(mockDaffBillingAddress);
       });

@@ -1,13 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartAddress } from '@daffodil/cart';
-import { DaffMagentoCartAddressInputTransformer } from '@daffodil/cart/driver/magento';
+import {
+  DaffMagentoCartAddressInputTransformer,
+  MagentoShippingAddressInput,
+} from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressInputFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoShippingAddressInputTransformer } from './shipping-address.service';
 
-describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingAddressInput', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoShippingAddressInputTransformer', () => {
   let service: DaffMagentoShippingAddressInputTransformer;
 
   let daffCartAddressFactory: DaffCartAddressFactory;
@@ -50,12 +53,12 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingAddressIn
     let transformedShippingAddress;
 
     describe('when id is set', () => {
-      let addressId;
+      let addressId: MagentoShippingAddressInput['customer_address_id'];
 
       beforeEach(() => {
-        addressId = '15';
+        addressId = 15;
 
-        mockDaffShippingAddress.id = addressId;
+        mockDaffShippingAddress.id = String(addressId);
 
         transformedShippingAddress = service.transform(mockDaffShippingAddress);
       });
