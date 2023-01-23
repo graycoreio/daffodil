@@ -10,7 +10,7 @@ import {
   MockDaffAddress,
 } from './address.factory';
 
-describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
+describe('@daffodil/core/testing | DaffAddressFactory', () => {
 
   let daffodilAddressFactory;
 

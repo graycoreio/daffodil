@@ -4,6 +4,6 @@ import { DaffState } from './state.enum';
  * The interface an object must implement to consistently describe its current
  * state.
  */
-export interface DaffStateable<T extends DaffState> {
+export interface DaffStateable<T extends DaffState = DaffState> {
   daffState: T;
 }
