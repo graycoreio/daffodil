@@ -1,18 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffMagentoCartAddressInputTransformer } from '@daffodil/cart/driver/magento';
+import { DaffCartAddress } from '@daffodil/cart';
+import {
+  DaffMagentoCartAddressInputTransformer,
+  MagentoShippingAddressInput,
+} from '@daffodil/cart/driver/magento';
 import { MagentoCartAddressInputFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoShippingAddressInputTransformer } from './shipping-address.service';
 
-describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingAddressInput', () => {
+describe('@daffodil/cart/driver/magento | DaffMagentoShippingAddressInputTransformer', () => {
   let service: DaffMagentoShippingAddressInputTransformer;
 
   let daffCartAddressFactory: DaffCartAddressFactory;
   let magentoCartAddressInputFactory: MagentoCartAddressInputFactory;
 
-  let mockDaffShippingAddress;
+  let mockDaffShippingAddress: DaffCartAddress;
   let mockMagentoCartAddressInput;
 
   let cartAddressTransformerSpy;
@@ -48,13 +52,13 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingAddressIn
   describe('transform | transforming a shipping address input', () => {
     let transformedShippingAddress;
 
-    describe('when address_id is set', () => {
-      let addressId;
+    describe('when id is set', () => {
+      let addressId: MagentoShippingAddressInput['customer_address_id'];
 
       beforeEach(() => {
-        addressId = '15';
+        addressId = 15;
 
-        mockDaffShippingAddress.address_id = addressId;
+        mockDaffShippingAddress.id = String(addressId);
 
         transformedShippingAddress = service.transform(mockDaffShippingAddress);
       });
@@ -68,9 +72,9 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingAddressIn
       });
     });
 
-    describe('when address_id is not set', () => {
+    describe('when id is not set', () => {
       beforeEach(() => {
-        mockDaffShippingAddress.address_id = null;
+        mockDaffShippingAddress.id = null;
 
         transformedShippingAddress = service.transform(mockDaffShippingAddress);
       });
