@@ -14,19 +14,61 @@ import {
 import { DaffOperationEntityState } from './state.type';
 import { DaffOperationEntity } from './type';
 
+/**
+ * An entity state adapter that takes care of managing contextual operation and error state for entities.
+ */
 export interface DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffIdentifiable> {
+  /**
+   * Stores a list of entities in state and resets them all to stable.
+   */
   list<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entities: T[], state: S): S;
+  /**
+   * Optimistically adds a placeholder entity into state if necessary and sets the entity to resolving.
+   */
   preload<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(id: string, state: S): S;
-  load<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S, placeholderId?: string): S;
+  /**
+   * Upserts the entity into state and resets operation state and errors.
+   */
+  load<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S): S;
+  /**
+   * Adds a placeholder entity into state if `placeholderId` is specified and sets state to adding.
+   */
   preadd<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S, placeholderId?: string): S;
+  /**
+   * Adds the entity into state, sets operation state to added, and resets errors.
+   */
   add<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S, placeholderId?: string): S;
+  /**
+   * Sets the entity's operation state to mutating.
+   */
   preupdate<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: Partial<T> & DaffIdentifiable, state: S): S;
+  /**
+   * Upserts the entity into state, sets operation state to mutated, and resets errors.
+   */
   update<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: Partial<T> & DaffIdentifiable, state: S): S;
+  /**
+   * Sets the entity's operation state to deleting.
+   */
   preremove<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S;
+  /**
+   * Removes the entity from state.
+   */
   remove<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S;
+  /**
+   * Resets the entity's operation state and stores errors on the entity.
+   */
   operationFailed<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, errors: DaffStateError[], state: S): S;
+  /**
+   * Resets the entity's operation state to stable.
+   */
   resetState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S;
+  /**
+   * Gets an empty entity state.
+   */
   getInitialState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(state?: S): S;
+  /**
+   * Gets entity selectors.
+   */
   getSelectors<TRootState>(selectState: (state: TRootState) => DaffOperationEntityState<T>): DaffOperationEntityStateSelectors<TRootState, T>;
 }
 

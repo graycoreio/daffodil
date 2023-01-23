@@ -23,7 +23,7 @@ export interface DaffOperationEntityStateSelectors<
 
   /**
    * Optimistically selects the list of entities.
-   * This excludes entities currently in the process of being deleted and temporary entities with errors.
+   * This excludes temporary entities with errors.
    */
   selectOptimisticList: MemoizedSelector<TRootState, DaffOperationEntity<T>[]>;
 }
