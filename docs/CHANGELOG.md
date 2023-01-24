@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.50.0](https://github.com/graycoreio/daffodil/compare/v0.49.0...v0.50.0) (2023-01-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** removes `DaffCartAddress#address_id` in favor of `DaffCartAddress#id`
+
+### Features
+
+* **authorizenet:** allow updating billing address by partial ([#2316](https://github.com/graycoreio/daffodil/issues/2316)) ([4177f32](https://github.com/graycoreio/daffodil/commit/4177f32ede1859c15c09c42d31a3c26b12f5f3d3))
+* **auth:** set `loggedIn` state for auth check ([#2314](https://github.com/graycoreio/daffodil/issues/2314)) ([51aed3b](https://github.com/graycoreio/daffodil/commit/51aed3bde5b9f565022e7fca9029acc7b78bbe85))
+* **auth:** track logged in status in state ([#2306](https://github.com/graycoreio/daffodil/issues/2306)) ([37efc65](https://github.com/graycoreio/daffodil/commit/37efc6522637999a4978f09434e96108cd2f975f))
+* **cart-customer:** add magento payment driver ([#2312](https://github.com/graycoreio/daffodil/issues/2312)) ([6ad6497](https://github.com/graycoreio/daffodil/commit/6ad64974d5cf15752169b7ad523488667f07ff94))
+* **cart:** extend `DaffCartAddress` from `DaffIdentifiable` ([#2315](https://github.com/graycoreio/daffodil/issues/2315)) ([eac86f9](https://github.com/graycoreio/daffodil/commit/eac86f967a79a9b4885f3710c4d749b7f84a8788))
+
+
+### Bug Fixes
+
+* **cart,geography:** ambiguous regions in Magento driver ([#2293](https://github.com/graycoreio/daffodil/issues/2293)) ([04282e2](https://github.com/graycoreio/daffodil/commit/04282e21777e22efcd44b7c030303ced3d91883b))
+* **cart:** `street2` value not getting transformed in Magento driver ([#2302](https://github.com/graycoreio/daffodil/issues/2302)) ([2536869](https://github.com/graycoreio/daffodil/commit/253686975e0799825dc7ce180a811d1e55949145))
+
 ## [0.49.0](https://github.com/graycoreio/daffodil/compare/v0.48.2...v0.49.0) (2023-01-04)
 
 
