@@ -8,11 +8,11 @@ import {
 import {
   magentoProductAggregationsFragment,
   magentoProductFragment,
-  magentoProductPageInfoFragment,
   magentoProductSortFieldsFragment,
 } from '@daffodil/product/driver/magento';
 
 import { magentoCategoryTreeFragment } from './fragments/public_api';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
 
 export const DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME = 'MagentoGetCategoryAndProducts';
 
@@ -30,7 +30,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: Cat
       ${daffBuildFragmentNameSpread(...extraProductFragments)}
 		}
 		page_info {
-			...magentoProductPageInfo
+			...magentoSearchResultPageInfo
 		}
 		aggregations {
 			...magentoProductAggregations
@@ -42,7 +42,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: Cat
 }
 ${magentoCategoryTreeFragment}
 ${magentoProductFragment}
-${magentoProductPageInfoFragment}
+${magentoSearchResultPageInfoFragment}
 ${magentoProductSortFieldsFragment}
 ${magentoProductAggregationsFragment}
 ${daffBuildFragmentDefinition(...extraProductFragments)}

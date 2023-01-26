@@ -1,4 +1,4 @@
-export interface MagentoProductPageInfo {
+export interface MagentoSearchResultPageInfo {
   __typename?: 'SearchResultPageInfo';
   current_page: number;
   page_size: number;

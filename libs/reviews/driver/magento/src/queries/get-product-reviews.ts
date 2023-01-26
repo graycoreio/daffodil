@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { magentoProductPageInfoFragment } from '@daffodil/product/driver/magento';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
 
 import { magentoProductReviewFragment } from './fragments/public_api';
 
@@ -20,12 +20,12 @@ export const getProductReviews = gql`
             ...magentoProductReview
           }
           page_info {
-            ...magentoProductPageInfo
+            ...magentoSearchResultPageInfo
           }
         }
       }
     }
   }
   ${magentoProductReviewFragment}
-  ${magentoProductPageInfoFragment}
+  ${magentoSearchResultPageInfoFragment}
 `;

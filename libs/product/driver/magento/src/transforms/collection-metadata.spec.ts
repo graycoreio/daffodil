@@ -3,31 +3,32 @@ import { TestBed } from '@angular/core/testing';
 import { DaffSortDirectionEnum } from '@daffodil/core';
 import { DaffCollectionMetadata } from '@daffodil/core';
 import { DaffFilterType } from '@daffodil/core';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
 import {
   MagentoProduct,
-  MagentoProductPageInfo,
   MagentoProductSortFields,
 } from '@daffodil/product/driver/magento';
 import { MagentoAggregation } from '@daffodil/product/driver/magento';
 import {
   MagentoProductAggregationSelectFactory,
   MagentoProductAggregationPriceFactory,
-  MagentoProductPageInfoFactory,
   MagentoProductSortFieldsFactory,
   MagentoProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 
 import { magentoProductCollectionMetadataTransform } from './collection-metadata';
 
+
 describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTransform', () => {
   let priceAggregateFactory: MagentoProductAggregationPriceFactory;
   let selectAggregateFactory: MagentoProductAggregationSelectFactory;
-  let pageInfoFactory: MagentoProductPageInfoFactory;
+  let pageInfoFactory: MagentoSearchResultPageInfoFactory;
   let sortFieldsFactory: MagentoProductSortFieldsFactory;
   let productFactory: MagentoProductFactory;
 
   let aggregates: MagentoAggregation[];
-  let pageInfo: MagentoProductPageInfo;
+  let pageInfo: MagentoSearchResultPageInfo;
   let sortFields: MagentoProductSortFields;
   let count: number;
   let products: MagentoProduct[];
@@ -37,7 +38,7 @@ describe('@daffodil/product/driver/magento | magentoProductCollectionMetadataTra
     productFactory = TestBed.inject(MagentoProductFactory);
     selectAggregateFactory = TestBed.inject(MagentoProductAggregationSelectFactory);
     priceAggregateFactory = TestBed.inject(MagentoProductAggregationPriceFactory);
-    pageInfoFactory = TestBed.inject(MagentoProductPageInfoFactory);
+    pageInfoFactory = TestBed.inject(MagentoSearchResultPageInfoFactory);
     sortFieldsFactory = TestBed.inject(MagentoProductSortFieldsFactory);
 
     pageInfo = pageInfoFactory.create();

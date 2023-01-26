@@ -5,10 +5,10 @@ import {
   daffBuildFragmentNameSpread,
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
 import {
   magentoProductAggregationsFragment,
   magentoProductFragment,
-  magentoProductPageInfoFragment,
   magentoProductSortFieldsFragment,
 } from '@daffodil/product/driver/magento';
 
@@ -28,7 +28,7 @@ export const productSearch = (extraProductFragments: DocumentNode[] = []) => gql
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
       page_info {
-			...magentoProductPageInfo
+			...magentoSearchResultPageInfo
       }
       aggregations {
         ...magentoProductAggregations
@@ -39,7 +39,7 @@ export const productSearch = (extraProductFragments: DocumentNode[] = []) => gql
 		  total_count
     }
   }
-  ${magentoProductPageInfoFragment}
+  ${magentoSearchResultPageInfoFragment}
   ${magentoProductSortFieldsFragment}
   ${magentoProductAggregationsFragment}
   ${magentoProductFragment}

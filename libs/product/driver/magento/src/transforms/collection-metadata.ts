@@ -1,11 +1,11 @@
 import { DaffSortDirectionEnum } from '@daffodil/core';
 import { DaffCollectionMetadata } from '@daffodil/core';
 import { daffFilterArrayToDict } from '@daffodil/core';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
 import {
   MagentoAggregation,
   MagentoProduct,
-  MagentoProductPageInfo,
   MagentoProductSortFields,
 } from '../models/public_api';
 import { magentoProductTransformAggregate } from './aggregate/public_api';
@@ -17,7 +17,7 @@ import { coerceDefaultSortOptionFirst } from './sort-options/sort-default-option
 // TODO: make a single param?
 export const magentoProductCollectionMetadataTransform = (
   aggregates: MagentoAggregation[],
-  pageInfo: MagentoProductPageInfo,
+  pageInfo: MagentoSearchResultPageInfo,
   sortFields: MagentoProductSortFields,
   products: MagentoProduct[],
   count: number,

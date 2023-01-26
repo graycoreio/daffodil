@@ -39,13 +39,14 @@ import {
   DaffFilterRequestEqualFactory,
   DaffFilterRequestRangeNumericFactory,
 } from '@daffodil/core/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
 import {
   MagentoAggregation,
   MagentoProduct,
   MagentoProductFilterTypeField,
   MagentoProductGetFilterTypes,
   MagentoProductGetFilterTypesResponse,
-  MagentoProductPageInfo,
   MagentoProductSortFields,
 } from '@daffodil/product/driver/magento';
 import {
@@ -53,7 +54,6 @@ import {
   MagentoProductAggregationPriceFactory,
   MagentoProductAggregationSelectFactory,
   MagentoProductSortFieldsFactory,
-  MagentoProductPageInfoFactory,
   MagentoSimpleProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -77,7 +77,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
   let selectAggregateFactory: MagentoProductAggregationSelectFactory;
   let magentoFilterTypeFieldFactory: MagentoProductFilterTypeFieldFactory;
   let magentoProductFactory: MagentoSimpleProductFactory;
-  let magentoPageInfoFactory: MagentoProductPageInfoFactory;
+  let magentoPageInfoFactory: MagentoSearchResultPageInfoFactory;
 
   let mockCategoryRequest: DaffCategoryIdRequest;
   let mockCategory: DaffCategory;
@@ -92,7 +92,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
   let mockMagentoSelectFilterTypeField: MagentoProductFilterTypeField;
   let mockMagentoPriceFilterTypeField: MagentoProductFilterTypeField;
   let mockMagentoProduct: MagentoProduct;
-  let mockMagentoProductPageInfo: MagentoProductPageInfo;
+  let mockMagentoProductPageInfo: MagentoSearchResultPageInfo;
   let mockGetFilterTypesResponse: MagentoProductGetFilterTypesResponse;
   let mockGetCategoryAndProductsResponse: MagentoGetCategoryAndProductsResponse;
   let mockCategoryUrlResolverResponse: MagentoCategoryUrlResolverResponse;
@@ -122,7 +122,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
     priceAggregateFactory = TestBed.inject(MagentoProductAggregationPriceFactory);
     rangeFilterRequestOptionFactory = TestBed.inject(DaffFilterRangeNumericRequestOptionFactory);
     magentoProductFactory = TestBed.inject(MagentoSimpleProductFactory);
-    magentoPageInfoFactory = TestBed.inject(MagentoProductPageInfoFactory);
+    magentoPageInfoFactory = TestBed.inject(MagentoSearchResultPageInfoFactory);
     magentoFilterTypeFieldFactory = TestBed.inject(MagentoProductFilterTypeFieldFactory);
 
     mockCategory = categoryFactory.create();

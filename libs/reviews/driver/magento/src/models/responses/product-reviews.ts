@@ -1,8 +1,8 @@
-import { MagentoProductPageInfo } from '@daffodil/product/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
 import { MagentoProductReview } from './public_api';
 
 export interface MagentoProductReviews {
   items: MagentoProductReview[];
-  page_info: MagentoProductPageInfo;
+  page_info: MagentoSearchResultPageInfo;
 }

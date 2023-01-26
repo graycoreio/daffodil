@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import * as faker from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoProductPageInfo } from '@daffodil/product/driver/magento';
-import { MagentoProductPageInfoFactory } from '@daffodil/product/driver/magento/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
 import {
   MagentoProductReviews,
   MagentoProductReview,
@@ -18,14 +18,14 @@ export class MockMagentoProductReviews implements MagentoProductReviews {
 
   constructor(
     protected reviewFactory: MagentoProductReviewFactory,
-    protected pageInfoFactory: MagentoProductPageInfoFactory,
+    protected pageInfoFactory: MagentoSearchResultPageInfoFactory,
   ) {}
 
   private createReviews(): MagentoProductReview[] {
     return this.reviewFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
   }
 
-  private createPageInfo(): MagentoProductPageInfo {
+  private createPageInfo(): MagentoSearchResultPageInfo {
     return this.pageInfoFactory.create();
   }
 }
@@ -36,7 +36,7 @@ export class MockMagentoProductReviews implements MagentoProductReviews {
 export class MagentoProductReviewsFactory extends DaffModelFactory<MagentoProductReviews> {
   constructor(
     reviewFactory: MagentoProductReviewFactory,
-    pageInfoFactory: MagentoProductPageInfoFactory,
+    pageInfoFactory: MagentoSearchResultPageInfoFactory,
   ) {
     super(MockMagentoProductReviews, reviewFactory, pageInfoFactory);
   }
