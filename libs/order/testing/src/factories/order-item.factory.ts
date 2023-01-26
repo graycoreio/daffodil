@@ -43,8 +43,7 @@ export class MockOrderItem implements DaffOrderItem {
   providedIn: 'root',
 })
 export class DaffOrderItemFactory extends DaffModelFactory<DaffOrderItem> {
-
-  constructor(){
+  constructor() {
     super(MockOrderItem);
   }
 }

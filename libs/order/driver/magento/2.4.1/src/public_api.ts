@@ -1,4 +1,4 @@
-export { daffMagentoTransformOrder } from './transforms/responses/order';
+export * from './transforms/responses/order';
 
 export * from './models/responses/public_api';
 export * from './queries/public_api';

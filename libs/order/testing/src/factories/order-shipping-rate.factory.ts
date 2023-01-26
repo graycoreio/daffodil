@@ -24,7 +24,7 @@ export class MockOrderShippingMethod implements DaffOrderShippingMethod {
   providedIn: 'root',
 })
 export class DaffOrderShippingMethodFactory extends DaffModelFactory<DaffOrderShippingMethod>{
-  constructor(){
+  constructor() {
     super(MockOrderShippingMethod);
   }
 }

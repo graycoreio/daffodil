@@ -10,7 +10,10 @@ import {
 } from 'rxjs';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
-import { DaffOrder } from '@daffodil/order';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
   DaffOrderDriver,
@@ -25,18 +28,22 @@ import {
   DaffOrderListSuccess,
   DaffOrderListFailure,
 } from '@daffodil/order/state';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import {
+  DaffOrderCollectionFactory,
+  DaffOrderFactory,
+} from '@daffodil/order/testing';
 
 import { DaffOrderEffects } from './order.effects';
 
-describe('Daffodil | Order | OrderEffects', () => {
+describe('@daffodil/order/state | DaffOrderEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffOrderEffects<DaffOrder>;
 
+  let mockOrderCollection: DaffOrderCollection;
   let mockOrder: DaffOrder;
   let orderId: DaffOrder['id'];
 
-  let orderFactory: DaffOrderFactory;
+  let orderCollectionFactory: DaffOrderCollectionFactory;
 
   let daffDriver: DaffOrderServiceInterface;
   let driverGetSpy: jasmine.Spy;
@@ -53,11 +60,12 @@ describe('Daffodil | Order | OrderEffects', () => {
       ],
     });
 
-    effects = TestBed.inject<DaffOrderEffects<DaffOrder>>(DaffOrderEffects);
+    effects = TestBed.inject(DaffOrderEffects);
     daffDriver = TestBed.inject<DaffOrderServiceInterface>(DaffOrderDriver);
-    orderFactory = TestBed.inject<DaffOrderFactory>(DaffOrderFactory);
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
-    mockOrder = orderFactory.create();
+    mockOrderCollection = orderCollectionFactory.create();
+    mockOrder = Object.values(mockOrderCollection.data)[0];
     orderId = mockOrder.id;
 
     driverGetSpy = spyOn(daffDriver, 'get');
@@ -107,8 +115,8 @@ describe('Daffodil | Order | OrderEffects', () => {
 
     describe('and the call to OrderService is successful', () => {
       beforeEach(() => {
-        driverListSpy.and.returnValue(of([mockOrder]));
-        const orderListSuccessAction = new DaffOrderListSuccess([mockOrder]);
+        driverListSpy.and.returnValue(of(mockOrderCollection));
+        const orderListSuccessAction = new DaffOrderListSuccess(mockOrderCollection);
         actions$ = hot('--a', { a: orderListAction });
         expected = cold('--b', { b: orderListSuccessAction });
       });

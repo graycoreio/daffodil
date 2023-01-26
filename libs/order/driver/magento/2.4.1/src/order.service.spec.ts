@@ -25,7 +25,7 @@ import {
 import { MagentoOrderTestDataFactory } from './helpers/public_api';
 import { DaffOrderMagentoService } from './order.service';
 
-describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
+describe('@daffodil/order/driver/magento/2.4.1 | DaffOrderMagentoService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
   let testDataFactory: MagentoOrderTestDataFactory;
@@ -105,7 +105,7 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
           it('should return the correct Daffodil order', done => {
             service.get(orderId, cartId).subscribe(result => {
               expect(result).toEqual(jasmine.objectContaining({
-                ...mockDaffOrder,
+                id: orderId,
                 extra_attributes: jasmine.anything(),
               }));
               done();
@@ -177,10 +177,10 @@ describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
       describe('and the response passes validation', () => {
         it('should return the list of Daffodil orders', done => {
           service.list(cartId).subscribe(result => {
-            expect(result).toEqual([jasmine.objectContaining({
-              ...mockDaffOrder,
-              extra_attributes: jasmine.anything(),
-            })]);
+            expect(result.data[orderId]).toEqual(jasmine.objectContaining({
+              id: orderId,
+            }));
+            expect(result.metadata.ids).toEqual([orderId]);
             done();
           });
 

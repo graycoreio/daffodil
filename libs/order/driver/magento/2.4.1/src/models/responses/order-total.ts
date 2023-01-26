@@ -1,6 +1,7 @@
-import { MagentoMoney } from '@daffodil/driver/magento';
-
-import { MagentoDiscount } from './discount';
+import {
+  MagentoDiscount,
+  MagentoMoney,
+} from '@daffodil/driver/magento';
 
 export interface MagentoOrderTotal {
   __typename?: string;

@@ -22,7 +22,7 @@ export function daffOrderEntitiesReducer<T extends DaffOrder = DaffOrder>(
       return adapter.upsertOne(action.payload, state);
 
     case DaffOrderActionTypes.OrderListSuccessAction:
-      return adapter.upsertMany(action.payload, state);
+      return adapter.setAll(Object.values(action.payload.data), state);
 
     default:
       return state;

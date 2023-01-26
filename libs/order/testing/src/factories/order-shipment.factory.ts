@@ -2,23 +2,46 @@ import { Injectable } from '@angular/core';
 import * as faker from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffOrderShipment } from '@daffodil/order';
+import {
+  DaffOrderShipment,
+  DaffOrderShipmentItem,
+  DaffOrderShipmentTracking,
+} from '@daffodil/order';
+
+import { DaffOrderShipmentItemFactory } from './order-shipment-item.factory';
+import { DaffOrderShipmentTrackingFactory } from './order-shipment-tracking.factory';
 
 export class MockOrderShipment implements DaffOrderShipment {
-  tracking = [];
-  items = [];
+  tracking = this.createTracking();
+  items = this.createItems();
   carrier = faker.random.word();
   carrier_title = faker.random.word();
   code = faker.random.word();
   method = faker.random.word();
   method_description = faker.random.word();
+
+  constructor(
+    private trackingFactory: DaffOrderShipmentTrackingFactory,
+    private itemFactory: DaffOrderShipmentItemFactory,
+  ) {}
+
+  private createTracking(): DaffOrderShipmentTracking[] {
+    return this.trackingFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  }
+
+  private createItems(): DaffOrderShipmentItem[] {
+    return this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  }
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class DaffOrderShipmentFactory extends DaffModelFactory<DaffOrderShipment> {
-  constructor() {
-    super(MockOrderShipment);
+  constructor(
+    trackingFactory: DaffOrderShipmentTrackingFactory,
+    itemFactory: DaffOrderShipmentItemFactory,
+  ) {
+    super(MockOrderShipment, trackingFactory, itemFactory);
   }
 }

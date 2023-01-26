@@ -4,7 +4,7 @@ import { DaffCompositeOrderItem } from '@daffodil/order';
 
 import { DaffCompositeOrderItemFactory } from './composite-order-item.factory';
 
-describe('Order | Testing | Factories | CompositeOrderItemFactory', () => {
+describe('@daffodil/order/testing | CompositeOrderItemFactory', () => {
   let compositeOrderItemFactory: DaffCompositeOrderItemFactory;
 
   beforeEach(() => {

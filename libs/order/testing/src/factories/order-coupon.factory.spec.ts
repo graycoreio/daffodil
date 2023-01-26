@@ -4,7 +4,7 @@ import { DaffOrderCoupon } from '@daffodil/order';
 
 import { DaffOrderCouponFactory } from './order-coupon.factory';
 
-describe('Order | Testing | Factories | DaffOrderCouponFactory', () => {
+describe('@daffodil/order/testing | DaffOrderCouponFactory', () => {
   let orderFactory: DaffOrderCouponFactory;
 
   beforeEach(() => {

@@ -4,7 +4,7 @@ import { DaffOrderAddress } from '@daffodil/order';
 
 import { DaffOrderAddressFactory } from './order-address.factory';
 
-describe('Order | Testing | Factories | OrderAddressFactory', () => {
+describe('@daffodil/order/testing | OrderAddressFactory', () => {
 
   let orderAddressFactory: DaffOrderAddressFactory;
 

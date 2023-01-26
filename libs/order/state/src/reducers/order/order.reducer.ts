@@ -3,17 +3,23 @@ import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderActions,
   DaffOrderActionTypes,
-} from '../../actions/order.actions';
+  DaffOrderCollectionActions,
+  DaffOrderCollectionActionTypes,
+} from '../../actions/public_api';
 import { daffOrderInitialState } from './order-initial-state';
 import { DaffOrderReducerState } from './order-reducer.interface';
 
 export function daffOrderReducer<T extends DaffOrder = DaffOrder>(
   state = daffOrderInitialState,
-  action: DaffOrderActions<T>,
+  action: DaffOrderActions<T> | DaffOrderCollectionActions,
 ): DaffOrderReducerState {
   switch (action.type) {
     case DaffOrderActionTypes.OrderListAction:
     case DaffOrderActionTypes.OrderLoadAction:
+    case DaffOrderCollectionActionTypes.ChangePageSizeAction:
+    case DaffOrderCollectionActionTypes.ChangeCurrentPageAction:
+    case DaffOrderCollectionActionTypes.ChangeFilterAction:
+    case DaffOrderCollectionActionTypes.ChangeSortingAction:
       return {
         ...state,
         loading: true,

@@ -57,7 +57,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     const {
       selectOrderIds,
       selectOrderEntities,
-      selectAllOrders,
+      selectOrders,
       selectOrderTotal,
       selectOrderLoading,
       selectOrderErrors,
@@ -87,7 +87,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this.loading$ = this.store.pipe(select(selectOrderLoading));
     this.errors$ = this.store.pipe(select(selectOrderErrors));
 
-    this.orders$ = this.store.pipe(select(selectAllOrders));
+    this.orders$ = this.store.pipe(select(selectOrders));
     this.orderIds$ = this.store.pipe(select(selectOrderIds));
     this.orderCount$ = this.store.pipe(select(selectOrderTotal));
     this.orderEntities$ = this.store.pipe(select(selectOrderEntities));

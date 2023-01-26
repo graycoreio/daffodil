@@ -2,6 +2,7 @@ import {
   daffAdd,
   daffSubtract,
 } from '@daffodil/core';
+import { MagentoDiscount } from '@daffodil/driver/magento';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -19,7 +20,6 @@ import {
   DaffOrderCoupon,
 } from '@daffodil/order';
 
-import { MagentoDiscount } from '../../models/responses/discount';
 import { MagentoOrderCredit } from '../../models/responses/order-credit';
 import { MagentoOrderCreditItem } from '../../models/responses/order-credit-item';
 import { MagentoOrderInvoiceItem } from '../../models/responses/order-invoice-item';
@@ -41,7 +41,7 @@ import {
   MagentoOrderInvoice,
 } from '../../models/responses/public_api';
 
-function transformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {
+export function daffMagentoTransformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {
   return [
     {
       label: 'Grand Total',
@@ -76,37 +76,37 @@ function transformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {
   ];
 }
 
-function transformCouponDiscount(discount: MagentoDiscount): DaffOrderCoupon {
+export function daffMagentoTransformCouponDiscount(discount: MagentoDiscount): DaffOrderCoupon {
   return {
     code: discount.label,
   };
 }
 
-function transformConfigurableOption(option: MagentoOrderItemOption): DaffConfigurableOrderItemAttribute {
+export function daffMagentoTransformConfigurableOption(option: MagentoOrderItemOption): DaffConfigurableOrderItemAttribute {
   return {
     attribute_label: option.label,
 	  value_label: option.value,
   };
 }
 
-function transformBundleOption(option: MagentoOrderBundleItemSelectedOption): DaffCompositeOrderItemOption {
+export function daffMagentoTransformBundleOption(option: MagentoOrderBundleItemSelectedOption): DaffCompositeOrderItemOption {
   return {
     option_label: option.label,
 	  value_label: option.values && option.values[0] && option.values[0].product_name,
   };
 }
 
-function transformAdditionalItemFields(item: MagentoOrderItem) {
+export function daffMagentoTransformAdditionalItemFields(item: MagentoOrderItem) {
   switch (item.product_type) {
     case MagentoOrderItemType.Bundle:
       return {
         type: DaffOrderItemType.Composite,
-        options: (<MagentoOrderBundleItem>item).bundle_options.map(transformBundleOption),
+        options: (<MagentoOrderBundleItem>item).bundle_options.map(daffMagentoTransformBundleOption),
       };
     case MagentoOrderItemType.Configurable:
       return {
         type: DaffOrderItemType.Configurable,
-        attributes: item.selected_options.map(transformConfigurableOption),
+        attributes: item.selected_options.map(daffMagentoTransformConfigurableOption),
       };
     case MagentoOrderItemType.Simple:
       return {
@@ -117,7 +117,7 @@ function transformAdditionalItemFields(item: MagentoOrderItem) {
   }
 }
 
-function transformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number): DaffOrderItem {
+export function daffMagentoTransformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number): DaffOrderItem {
   const discount = item.discounts.reduce((acc, d) => daffAdd(acc, d.amount.value), 0);
   const rowTotal = qty * item.product_sale_price.value;
   const rowTotalWithDiscount = qty * daffSubtract(item.product_sale_price.value, discount);
@@ -152,11 +152,11 @@ function transformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number)
     row_total_with_discount: rowTotalWithDiscount,
     row_weight: null,
     tax_before_discount: null,
-    ...transformAdditionalItemFields(item),
+    ...daffMagentoTransformAdditionalItemFields(item),
   };
 }
 
-function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): DaffOrderAddress {
+export function daffMagentoTransformAddress(address: MagentoOrderAddress, order: MagentoOrder): DaffOrderAddress {
   return {
     order_id: order.id,
     prefix: address.prefix,
@@ -176,14 +176,14 @@ function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): Da
   };
 }
 
-function transformShipmentItem(shipmentItem: MagentoOrderShipmentItem, order: MagentoOrder): DaffOrderShipmentItem {
+export function daffMagentoTransformShipmentItem(shipmentItem: MagentoOrderShipmentItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
-    item: transformItem(shipmentItem.order_item, order, shipmentItem.quantity_shipped),
+    item: daffMagentoTransformItem(shipmentItem.order_item, order, shipmentItem.quantity_shipped),
     qty: shipmentItem.quantity_shipped,
   };
 }
 
-function transformShipmentTracking(tracking: MagentoOrderShipmentTracking): DaffOrderShipmentTracking {
+export function daffMagentoTransformShipmentTracking(tracking: MagentoOrderShipmentTracking): DaffOrderShipmentTracking {
   return {
     tracking_number: tracking.number,
     tracking_url: null,
@@ -193,19 +193,19 @@ function transformShipmentTracking(tracking: MagentoOrderShipmentTracking): Daff
   };
 }
 
-function transformShipment(shipment: MagentoOrderShipment, order: MagentoOrder): DaffOrderShipment {
+export function daffMagentoTransformShipment(shipment: MagentoOrderShipment, order: MagentoOrder): DaffOrderShipment {
   return {
     carrier: order.carrier,
     carrier_title: null,
     code: null,
     method: order.shipping_method,
     method_description: null,
-    tracking: shipment.tracking.map(transformShipmentTracking),
-    items: shipment.items.map(item => transformShipmentItem(item, order)),
+    tracking: shipment.tracking.map(daffMagentoTransformShipmentTracking),
+    items: shipment.items.map(item => daffMagentoTransformShipmentItem(item, order)),
   };
 }
 
-function transformPayment(payment: MagentoOrderPayment, order: MagentoOrder): DaffOrderPayment {
+export function daffMagentoTransformPayment(payment: MagentoOrderPayment, order: MagentoOrder): DaffOrderPayment {
   const findAdditionalData = key => {
     const index = payment.additional_data.findIndex(({ name }) => name === key);
 
@@ -226,38 +226,38 @@ function transformPayment(payment: MagentoOrderPayment, order: MagentoOrder): Da
   };
 }
 
-function transformInvoiceItem(invoiceItem: MagentoOrderInvoiceItem, order: MagentoOrder): DaffOrderShipmentItem {
+export function daffMagentoTransformInvoiceItem(invoiceItem: MagentoOrderInvoiceItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
-    item: transformItem(invoiceItem.order_item, order, invoiceItem.quantity_invoiced),
+    item: daffMagentoTransformItem(invoiceItem.order_item, order, invoiceItem.quantity_invoiced),
     qty: invoiceItem.quantity_invoiced,
   };
 }
 
-function transformInvoice(invoice: MagentoOrderInvoice, order: MagentoOrder, payment: MagentoOrderPayment): DaffOrderInvoice {
+export function daffMagentoTransformInvoice(invoice: MagentoOrderInvoice, order: MagentoOrder, payment: MagentoOrderPayment): DaffOrderInvoice {
   return {
-    totals: transformTotals(invoice.total),
-    billing_address: transformAddress(order.billing_address, order),
-    shipping_address: transformAddress(order.shipping_address, order),
-    payment: transformPayment(payment, order),
-    items: invoice.items.map(item => transformInvoiceItem(item, order)),
+    totals: daffMagentoTransformTotals(invoice.total),
+    billing_address: daffMagentoTransformAddress(order.billing_address, order),
+    shipping_address: daffMagentoTransformAddress(order.shipping_address, order),
+    payment: daffMagentoTransformPayment(payment, order),
+    items: invoice.items.map(item => daffMagentoTransformInvoiceItem(item, order)),
     shipping_method: null,
   };
 }
 
-function transformCreditItem(creditItem: MagentoOrderCreditItem, order: MagentoOrder): DaffOrderShipmentItem {
+export function daffMagentoTransformCreditItem(creditItem: MagentoOrderCreditItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
-    item: transformItem(creditItem.order_item, order, creditItem.quantity_refunded),
+    item: daffMagentoTransformItem(creditItem.order_item, order, creditItem.quantity_refunded),
     qty: creditItem.quantity_refunded,
   };
 }
 
-function transformCredit(credit: MagentoOrderCredit, order: MagentoOrder): DaffOrderInvoice {
+export function daffMagentoTransformCredit(credit: MagentoOrderCredit, order: MagentoOrder): DaffOrderInvoice {
   return {
-    totals: transformTotals(credit.total),
-    billing_address: transformAddress(order.billing_address, order),
-    shipping_address: transformAddress(order.shipping_address, order),
-    payment: transformPayment(order.payment_methods[0], order),
-    items: credit.items.map(item => transformCreditItem(item, order)),
+    totals: daffMagentoTransformTotals(credit.total),
+    billing_address: daffMagentoTransformAddress(order.billing_address, order),
+    shipping_address: daffMagentoTransformAddress(order.shipping_address, order),
+    payment: daffMagentoTransformPayment(order.payment_methods[0], order),
+    items: credit.items.map(item => daffMagentoTransformCreditItem(item, order)),
     shipping_method: null,
   };
 }
@@ -275,19 +275,19 @@ export function daffMagentoTransformOrder(order: MagentoOrder): DaffOrder {
     created_at: order.order_date,
     status: order.status,
 
-    totals: transformTotals(order.total),
-    applied_codes: order.total.discounts.map(transformCouponDiscount),
-    items: order.items.map(item => transformItem(item, order, item.quantity_ordered)),
+    totals: daffMagentoTransformTotals(order.total),
+    applied_codes: order.total.discounts.map(daffMagentoTransformCouponDiscount),
+    items: order.items.map(item => daffMagentoTransformItem(item, order, item.quantity_ordered)),
     billing_addresses: [
-      transformAddress(order.billing_address, order),
+      daffMagentoTransformAddress(order.billing_address, order),
     ],
     shipping_addresses: [
-      transformAddress(order.shipping_address, order),
+      daffMagentoTransformAddress(order.shipping_address, order),
     ],
-    shipments: order.shipments.map(shipment => transformShipment(shipment, order)),
-    payment: transformPayment(order.payment_methods[0], order),
+    shipments: order.shipments.map(shipment => daffMagentoTransformShipment(shipment, order)),
+    payment: daffMagentoTransformPayment(order.payment_methods[0], order),
     // TODO: find out if the index is the correct payment for invoice
-    invoices: order.invoices.map((invoice, index) => transformInvoice(invoice, order, order.payment_methods[index])),
-    credits: order.credit_memos.map(credit => transformCredit(credit, order)),
+    invoices: order.invoices.map((invoice, index) => daffMagentoTransformInvoice(invoice, order, order.payment_methods[index])),
+    credits: order.credit_memos.map(credit => daffMagentoTransformCredit(credit, order)),
   };
 }

@@ -23,3 +23,4 @@ export {
   DaffOrderTotalTypeEnum,
 } from './order-total';
 export { DaffOrder } from './order';
+export { DaffOrderCollection } from './order-collection.type';

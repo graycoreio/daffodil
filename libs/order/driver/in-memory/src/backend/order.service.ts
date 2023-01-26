@@ -5,9 +5,16 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
+import {
+  DaffCollectionRequest,
+  daffIdentifiableArrayToDict,
+  DaffSortDirectionEnum,
+} from '@daffodil/core';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
+
+const DEFAULT_PAGE_SIZE = 20;
 
 /**
  * An in-memory service that stubs out the backend services for getting orders.
@@ -23,7 +30,7 @@ export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffI
   constructor(
     private orderFactory: DaffOrderFactory,
   ) {
-    this.orders = this.orderFactory.createMany(5);
+    this.orders = this.orderFactory.createMany(50);
   }
 
   /**
@@ -49,17 +56,64 @@ export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffI
    * Responds to GET requests.
    */
   get(reqInfo: RequestInfo): any {
-    return reqInfo.utils.createResponse$(() => ({
-      body: reqInfo.id ? this.getOrder(reqInfo) : this.listOrders(reqInfo),
-      status: STATUS.OK,
-    }));
+    return this.getOrder(reqInfo);
+  }
+
+  post(reqInfo: RequestInfo): any {
+    return this.listOrders(reqInfo);
   }
 
   private getOrder(reqInfo: RequestInfo) {
-    return reqInfo.collection.find(order => order.id === reqInfo.id);
+    const order = reqInfo.collection.find((o) => o.id === reqInfo.id);
+
+    return reqInfo.utils.createResponse$(() =>
+      order
+        ? {
+          body: order,
+          status: STATUS.OK,
+        }
+        : {
+          status: STATUS.NOT_FOUND,
+        },
+    );
   }
 
   private listOrders(reqInfo: RequestInfo) {
-    return reqInfo.collection;
+    const request: DaffCollectionRequest | null = reqInfo.utils.getJsonBody(reqInfo.req);
+    const pageSize = request?.pageSize || DEFAULT_PAGE_SIZE;
+    const currentPage = request?.currentPage || 1;
+    const orders: DaffOrder[] = reqInfo.collection;
+    const totalPages = Math.ceil(orders.length / pageSize);
+
+    return reqInfo.utils.createResponse$(() => {
+      if (currentPage > totalPages) {
+        return {
+          status: STATUS.BAD_REQUEST,
+        };
+      }
+      const startingIndex = pageSize * (currentPage - 1);
+      const filteredOrders = orders.slice(startingIndex, startingIndex + pageSize);
+
+      return {
+        status: STATUS.OK,
+        body: {
+          data: daffIdentifiableArrayToDict(filteredOrders),
+          metadata: {
+            ids: filteredOrders.map(({ id }) => id),
+            currentPage,
+            totalPages,
+            pageSize,
+            sortOptions: {
+              default: null,
+              options: [],
+            },
+            appliedSortDirection: DaffSortDirectionEnum.Ascending,
+            appliedSortOption: null,
+            count: orders.length,
+            filters: {},
+          },
+        },
+      };
+    });
   }
 }

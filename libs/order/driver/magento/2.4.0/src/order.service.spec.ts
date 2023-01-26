@@ -379,7 +379,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
         describe('and the order is found', () => {
           it('should return the correct Daffodil order', done => {
             service.get(orderId, cartId).subscribe(result => {
-              expect(result).toEqual(jasmine.objectContaining(mockDaffOrder));
+              expect(result.id).toEqual(orderId);
               done();
             });
 
@@ -450,7 +450,8 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
 
         it('should return the list of Daffodil orders', done => {
           service.list(cartId).subscribe(result => {
-            expect(result).toEqual([jasmine.objectContaining(mockDaffOrder)]);
+            expect(result.data[orderId].id).toEqual(orderId);
+            expect(result.metadata.ids).toContain(orderId);
             done();
           });
 

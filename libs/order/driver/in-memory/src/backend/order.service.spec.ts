@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { STATUS } from 'angular-in-memory-web-api';
 
 import { DaffOrder } from '@daffodil/order';
 import {
@@ -8,7 +9,7 @@ import {
 
 import { DaffInMemoryBackendOrderService } from './order.service';
 
-describe('DaffInMemoryBackendOrderService | Unit', () => {
+describe('@daffodil/order/driver/in-memory | DaffInMemoryBackendOrderService | Unit', () => {
   let service: DaffInMemoryBackendOrderService;
 
   let orderFactory: DaffOrderFactory;
@@ -72,11 +73,26 @@ describe('DaffInMemoryBackendOrderService | Unit', () => {
     beforeEach(() => {
       reqInfoStub.url = baseUrl;
 
-      result = service.get(reqInfoStub);
+      result = service.post(reqInfoStub);
     });
 
-    it('should return the order list', () => {
-      expect(result.body).toEqual([mockOrder]);
+    it('should return the order collection', () => {
+      expect(result.status).toEqual(STATUS.OK);
+      expect(result.body.data[mockOrder.id]).toEqual(mockOrder);
+      expect(result.body.metadata.ids).toEqual([mockOrder.id]);
+    });
+
+    describe('when the current page request is out of bounds', () => {
+      beforeEach(() => {
+        reqInfoStub.req.body = {
+          currentPage: 5,
+        };
+        result = service.post(reqInfoStub);
+      });
+
+      it('should return a bad request status', () => {
+        expect(result.status).toEqual(STATUS.BAD_REQUEST);
+      });
     });
   });
 

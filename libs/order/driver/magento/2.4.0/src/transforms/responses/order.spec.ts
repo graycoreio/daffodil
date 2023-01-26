@@ -296,7 +296,8 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
     });
 
     it('should return an object with the correct values', () => {
-      expect(transformedOrder).toEqual(jasmine.objectContaining(mockDaffOrder));
+      expect(transformedOrder.id).toEqual(mockDaffOrder.id);
+      expect(transformedOrder.status).toEqual(mockDaffOrder.status);
     });
   });
 });

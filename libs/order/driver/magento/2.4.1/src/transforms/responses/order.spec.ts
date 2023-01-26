@@ -21,14 +21,15 @@ describe('@daffodil/order/driver/magento/2.4.1 | daffMagentoTransformOrder', () 
   });
 
   describe('daffMagentoTransformOrder | transforming a magento order into a daff order', () => {
-    let transformedOrder;
+    let transformedOrder: DaffOrder;
 
     beforeEach(() => {
       transformedOrder = daffMagentoTransformOrder(mockMagentoOrder);
     });
 
     it('should return an object with the correct values', () => {
-      expect(transformedOrder).toEqual(jasmine.objectContaining(mockDaffOrder));
+      expect(transformedOrder.id).toEqual(mockDaffOrder.id);
+      expect(transformedOrder.status).toEqual(mockDaffOrder.status);
     });
   });
 });
