@@ -1,9 +1,9 @@
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 import {
   MagentoAggregation,
   MagentoProduct,
   MagentoProductSortFields,
 } from '@daffodil/product/driver/magento';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
 import { MagentoCategory } from './category';
 

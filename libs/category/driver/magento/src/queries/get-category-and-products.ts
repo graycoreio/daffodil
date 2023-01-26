@@ -5,6 +5,7 @@ import {
   daffBuildFragmentDefinition,
   daffBuildFragmentNameSpread,
 } from '@daffodil/core/graphql';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
 import {
   magentoProductAggregationsFragment,
   magentoProductFragment,
@@ -12,7 +13,6 @@ import {
 } from '@daffodil/product/driver/magento';
 
 import { magentoCategoryTreeFragment } from './fragments/public_api';
-import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
 
 export const DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME = 'MagentoGetCategoryAndProducts';
 
