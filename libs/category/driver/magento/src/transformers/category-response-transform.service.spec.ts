@@ -14,10 +14,10 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 import {
   DaffMagentoProductsTransformer,
   MagentoAggregation,
-  MagentoSearchResultPageInfo,
   MagentoProductSortFields,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
 } from '@daffodil/product/driver/magento';

@@ -13,10 +13,10 @@ import {
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 import { DaffFilterType } from '@daffodil/core';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 import {
   MagentoAggregation,
   MagentoProduct,
-  MagentoSearchResultPageInfo,
   MagentoProductSortFields,
 } from '@daffodil/product/driver/magento';
 import {
