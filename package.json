@@ -106,7 +106,7 @@
     "rimraf": "^3.0.2",
     "sass-true": "^5.0.0",
     "shx": "^0.3.4",
-    "simple-git": "^1.132.0",
+    "simple-git": "^3.16.0",
     "standard-version": "^9.3.0",
     "stylelint": "^13.13.1",
     "stylelint-scss": "^3.19.0",
