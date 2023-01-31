@@ -9,6 +9,9 @@
       "@daffodil/customer-order": [
         "libs/customer-order/src"
       ],
+      "@daffodil/customer-order/driver": [
+        "libs/customer-order/driver/src"
+      ],
     }
   }
 }
