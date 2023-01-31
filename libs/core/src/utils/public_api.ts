@@ -1,5 +1,6 @@
 export * from './long-arithmetic';
 export { range } from './range';
+export { shallowCompare } from './shallow-compare';
 export { shuffle } from './shuffle';
 export { randomSubset } from './random-subset';
 export { randomSlice } from './random-slice';
