@@ -1,14 +1,10 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import {
-  DaffAuthActions,
-  DaffAuthActionTypes,
-} from '@daffodil/auth/state';
-import {
-  daffCustomerInitialState,
-  DaffCustomerReducersState,
-} from '@daffodil/customer/state';
+import { DaffAuthActions } from '@daffodil/auth/state';
+import { DaffCustomerReducersState } from '@daffodil/customer/state';
+
+import { daffCustomerAuthResetAfterLogoutReducer } from './customer.reducer';
 
 export const daffCustomerAuthReducerMap: ActionReducerMap<DaffCustomerReducersState, DaffAuthActions> = {
-  customer: (state, action) => action.type === DaffAuthActionTypes.AuthRevokeAction ? daffCustomerInitialState : state,
+  customer: daffCustomerAuthResetAfterLogoutReducer,
 };
