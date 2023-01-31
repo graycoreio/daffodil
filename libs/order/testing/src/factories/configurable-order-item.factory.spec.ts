@@ -4,7 +4,7 @@ import { DaffConfigurableOrderItem } from '@daffodil/order';
 
 import { DaffConfigurableOrderItemFactory } from './configurable-order-item.factory';
 
-describe('Order | Testing | Factories | ConfigurableOrderItemFactory', () => {
+describe('@daffodil/order/testing | ConfigurableOrderItemFactory', () => {
 
   let configurableOrderItemFactory: DaffConfigurableOrderItemFactory;
 

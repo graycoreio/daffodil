@@ -1,23 +1,30 @@
-import { DaffOrder } from '@daffodil/order';
+import { TestBed } from '@angular/core/testing';
+
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import {
   DaffOrderLoadSuccess,
   DaffOrderListSuccess,
   daffOrderEntitiesInitialState as initialState,
 } from '@daffodil/order/state';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { daffOrderEntitiesReducer as reducer } from './order-entities.reducer';
 
-describe('Order | Reducer | OrderEntities', () => {
-  let orderFactory: DaffOrderFactory;
-  let order: DaffOrder;
+describe('@daffodil/order/state | daffOrderEntitiesReducer', () => {
+  let orderCollectionFactory: DaffOrderCollectionFactory;
+  let mockOrderCollection: DaffOrderCollection;
+  let mockOrder: DaffOrder;
   let orderId: DaffOrder['id'];
 
   beforeEach(() => {
-    orderFactory = new DaffOrderFactory();
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
-    order = orderFactory.create();
-    orderId = order.id;
+    mockOrderCollection = orderCollectionFactory.create();
+    mockOrder = Object.values(mockOrderCollection.data)[0];
+    orderId = mockOrder.id;
   });
 
   describe('when an unknown action is triggered', () => {
@@ -34,13 +41,13 @@ describe('Order | Reducer | OrderEntities', () => {
     let result;
 
     beforeEach(() => {
-      const orderLoadSuccess = new DaffOrderLoadSuccess<DaffOrder>(order);
+      const orderLoadSuccess = new DaffOrderLoadSuccess<DaffOrder>(mockOrder);
 
       result = reducer(initialState, orderLoadSuccess);
     });
 
     it('should set order from action.payload', () => {
-      expect(result.entities[orderId]).toEqual(order);
+      expect(result.entities[orderId]).toEqual(mockOrder);
     });
   });
 
@@ -48,13 +55,13 @@ describe('Order | Reducer | OrderEntities', () => {
     let result;
 
     beforeEach(() => {
-      const orderListSuccess = new DaffOrderListSuccess([order]);
+      const orderListSuccess = new DaffOrderListSuccess(mockOrderCollection);
 
       result = reducer(initialState, orderListSuccess);
     });
 
     it('should set orders from action.payload', () => {
-      expect(result.entities).toEqual({ [orderId]: order });
+      expect(result.entities[orderId]).toEqual(mockOrder);
     });
   });
 });

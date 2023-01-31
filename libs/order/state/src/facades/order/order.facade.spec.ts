@@ -14,6 +14,7 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffOrder,
+  DaffOrderCollection,
   DaffOrderTotal,
   DaffOrderTotalTypeEnum,
 } from '@daffodil/order';
@@ -27,6 +28,7 @@ import {
   DaffOrderListSuccess,
 } from '@daffodil/order/state';
 import {
+  DaffOrderCollectionFactory,
   DaffOrderFactory,
   DaffOrderTotalFactory,
 } from '@daffodil/order/testing';
@@ -36,9 +38,9 @@ import { DaffOrderFacade } from './order.facade';
 describe('DaffOrderFacade', () => {
   let store: Store<DaffOrderStateRootSlice>;
   let facade: DaffOrderFacade;
-  let orderFactory: DaffOrderFactory;
-  let orderTotalFactory: DaffOrderTotalFactory;
+  let orderCollectionFactory: DaffOrderCollectionFactory;
 
+  let mockOrderCollection: DaffOrderCollection;
   let mockOrder: DaffOrder;
   let mockOrderTotal: DaffOrderTotal;
   let orderId: DaffOrder['id'];
@@ -59,13 +61,11 @@ describe('DaffOrderFacade', () => {
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffOrderFacade);
-    orderFactory = TestBed.inject(DaffOrderFactory);
-    orderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
-    mockOrderTotal = orderTotalFactory.create();
-    mockOrder = orderFactory.create({
-      totals: [mockOrderTotal],
-    });
+    mockOrderCollection = orderCollectionFactory.create();
+    mockOrder = Object.values(mockOrderCollection.data)[0];
+    mockOrderTotal = mockOrder.totals[0];
     orderId = mockOrder.id;
     errors = [];
   });
@@ -117,8 +117,8 @@ describe('DaffOrderFacade', () => {
     });
 
     it('should be the orders upon a successful load', () => {
-      const expected = cold('a', { a: [mockOrder]});
-      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
+      const expected = cold('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
+      store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       expect(facade.orders$).toBeObservable(expected);
     });
   });
@@ -199,7 +199,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order', () => {
@@ -219,7 +219,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s totals', () => {
@@ -239,7 +239,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s applied codes', () => {
@@ -259,7 +259,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s items', () => {
@@ -279,7 +279,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s addresses', () => {
@@ -299,7 +299,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s addresses', () => {
@@ -319,7 +319,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s shipments', () => {
@@ -339,7 +339,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s payment', () => {
@@ -359,7 +359,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s invoices', () => {
@@ -379,7 +379,7 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s credits', () => {
@@ -400,7 +400,7 @@ describe('DaffOrderFacade', () => {
     describe('when an order has been loaded with a grand total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.GrandTotal;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the grand total', () => {
@@ -421,7 +421,7 @@ describe('DaffOrderFacade', () => {
     describe('when an order has been loaded with a subtotal', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Subtotal;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the subtotal', () => {
@@ -442,7 +442,7 @@ describe('DaffOrderFacade', () => {
     describe('when an order has been loaded with a shipping total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Shipping;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the shipping total', () => {
@@ -463,7 +463,7 @@ describe('DaffOrderFacade', () => {
     describe('when an order has been loaded with a discount total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the discount total', () => {
@@ -475,11 +475,10 @@ describe('DaffOrderFacade', () => {
   });
 
   describe('hasDiscount$', () => {
-
     describe('when an order has been loaded with a discount total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should return true', () => {
@@ -491,8 +490,9 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded without a discount total', () => {
       beforeEach(() => {
-        mockOrderTotal = null;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.GrandTotal;
+        mockOrder.totals = [mockOrderTotal];
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should return false', () => {
@@ -513,7 +513,7 @@ describe('DaffOrderFacade', () => {
     describe('when an order has been loaded with a tax total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Tax;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the tax total', () => {

@@ -14,7 +14,14 @@ import {
 } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffOrder } from '@daffodil/order';
+import {
+  daffIdentifiableArrayToDict,
+  DaffSortDirectionEnum,
+} from '@daffodil/core';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
   DaffOrderNotFoundError,
@@ -43,7 +50,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
     @Inject(DaffMagentoExtraOrderFragments) public extraOrderFragments: DocumentNode[],
   ) {}
 
-  list(cartId?: DaffCart['id']): Observable<DaffOrder[]> {
+  list(cartId?: DaffCart['id']): Observable<DaffOrderCollection> {
     return this.apollo.query<MagentoGetGuestOrdersResponse>({
       query: getGuestOrders(this.extraOrderFragments),
       variables: {
@@ -52,6 +59,23 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
     }).pipe(
       map(validateGetOrdersResponse),
       map(result => result.data.graycoreGuestOrders.items.map(daffMagentoTransformOrder)),
+      map(orders => ({
+        data: daffIdentifiableArrayToDict(orders),
+        metadata: {
+          ids: orders.map(({ id }) => id),
+          currentPage: 1,
+          totalPages: 1,
+          pageSize: orders.length,
+          sortOptions: {
+            default: null,
+            options: [],
+          },
+          appliedSortDirection: DaffSortDirectionEnum.Ascending,
+          appliedSortOption: null,
+          count: orders.length,
+          filters: {},
+        },
+      })),
       catchError(err => throwError(() => transformMagentoOrderError(err))),
     );
   }
@@ -59,14 +83,13 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
   get(orderId: DaffOrder['id'], cartId?: DaffCart['id']): Observable<DaffOrder> {
     return this.list(cartId).pipe(
       map(orders => {
-        for (const order of orders) {
-          if (order.id === orderId) {
-            return order;
-          }
+        const order = orders.data[orderId];
+
+        if (!order) {
+          throw new DaffOrderNotFoundError(`Could not find an order with ID ${orderId}`);
         }
 
-        // order not found
-        throw new DaffOrderNotFoundError(`Could not find an order with ID ${orderId}`);
+        return order;
       }),
     );
   }

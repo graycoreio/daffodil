@@ -4,7 +4,7 @@ import { DaffOrderInvoice } from '@daffodil/order';
 
 import { DaffOrderInvoiceFactory } from './order-invoice.factory';
 
-describe('Order | Testing | Factories | DaffOrderInvoiceFactory', () => {
+describe('@daffodil/order/testing | DaffOrderInvoiceFactory', () => {
   let factory: DaffOrderInvoiceFactory;
 
   beforeEach(() => {

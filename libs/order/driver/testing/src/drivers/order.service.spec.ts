@@ -11,8 +11,6 @@ describe('Driver | Testing | Order | OrderService', () => {
 
   let orderCreateSpy: jasmine.Spy;
   let orderCreateManySpy: jasmine.Spy;
-  let orderFactoryService: DaffOrderFactory;
-
   let orderFactory: DaffOrderFactory;
 
   let mockOrder: DaffOrder;
@@ -26,15 +24,13 @@ describe('Driver | Testing | Order | OrderService', () => {
     });
 
     service = TestBed.inject(DaffTestingOrderService);
-    orderFactoryService = TestBed.inject(DaffOrderFactory);
-
-    orderFactory = new DaffOrderFactory();
+    orderFactory = TestBed.inject(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;
 
-    orderCreateSpy = spyOn(orderFactoryService, 'create');
-    orderCreateManySpy = spyOn(orderFactoryService, 'createMany');
+    orderCreateSpy = spyOn(orderFactory, 'create');
+    orderCreateManySpy = spyOn(orderFactory, 'createMany');
     orderCreateSpy.and.returnValue(mockOrder);
     orderCreateManySpy.and.returnValue([mockOrder]);
   });
@@ -52,7 +48,7 @@ describe('Driver | Testing | Order | OrderService', () => {
 
   describe('list', () => {
     it('should return a list of DaffOrders', () => {
-      const expected = cold('(a|)', { a: [mockOrder]});
+      const expected = cold('(a|)', { a: jasmine.objectContaining({ data: { [orderId]: mockOrder }}) });
       expect(service.list()).toBeObservable(expected);
     });
   });

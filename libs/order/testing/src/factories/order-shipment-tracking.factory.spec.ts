@@ -4,7 +4,7 @@ import { DaffOrderShipmentTracking } from '@daffodil/order';
 
 import { DaffOrderShipmentTrackingFactory } from './order-shipment-tracking.factory';
 
-describe('Order | Testing | Factories | DaffOrderShipmentTrackingFactory', () => {
+describe('@daffodil/order/testing | DaffOrderShipmentTrackingFactory', () => {
   let factory: DaffOrderShipmentTrackingFactory;
 
   beforeEach(() => {

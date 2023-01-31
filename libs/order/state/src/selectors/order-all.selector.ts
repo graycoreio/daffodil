@@ -15,7 +15,7 @@ import {
 
 export interface DaffOrderAllSelectors<T extends DaffOrder = DaffOrder> extends
   DaffOrderEntitySelectors<T>,
-  DaffOrderSelectors,
+  DaffOrderSelectors<T>,
   DaffOrderFeatureSelector<T> {}
 
 export const getDaffOrderSelectors = (() => {

@@ -39,7 +39,6 @@ import {
 @Injectable()
 export class DaffOrderEffects<
   T extends DaffOrder = DaffOrder,
-  V extends DaffCart = DaffCart
 > {
   constructor(
     private actions$: Actions,
@@ -53,7 +52,7 @@ export class DaffOrderEffects<
 
   get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderLoadAction),
-    switchMap((action: DaffOrderLoad<T, V>) =>
+    switchMap((action: DaffOrderLoad<T>) =>
       this.driver.get(action.orderId, action.cartId).pipe(
         map(resp => new DaffOrderLoadSuccess<T>(resp)),
         catchError((error: DaffError) => of(new DaffOrderLoadFailure(this.errorMatcher(error)))),
@@ -68,7 +67,7 @@ export class DaffOrderEffects<
   list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderListAction),
     switchMap((action: DaffOrderList) =>
-      this.driver.list(action.payload).pipe(
+      this.driver.list(action.cartId, action.request).pipe(
         map(resp => new DaffOrderListSuccess<T>(resp)),
         catchError((error: DaffError) => of(new DaffOrderListFailure(this.errorMatcher(error)))),
       ),

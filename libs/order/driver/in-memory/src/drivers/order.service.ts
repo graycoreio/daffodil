@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffOrder } from '@daffodil/order';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCollectionRequest } from '@daffodil/core';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import { DaffOrderServiceInterface } from '@daffodil/order/driver';
 
 /**
@@ -20,7 +25,7 @@ export class DaffInMemoryOrderService implements DaffOrderServiceInterface<DaffO
     return this.http.get<DaffOrder>(`${this.url}/${orderId}`);
   }
 
-  list(): Observable<DaffOrder[]> {
-    return this.http.get<DaffOrder[]>(`${this.url}/`);
+  list(cartId?: DaffCart['id'], request?: DaffCollectionRequest): Observable<DaffOrderCollection> {
+    return this.http.post<DaffOrderCollection>(`${this.url}/`, request);
   }
 }

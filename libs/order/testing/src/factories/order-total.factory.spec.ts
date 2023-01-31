@@ -4,7 +4,7 @@ import { DaffOrderTotal } from '@daffodil/order';
 
 import { DaffOrderTotalFactory } from './order-total.factory';
 
-describe('Order | Testing | Factories | DaffOrderTotalFactory', () => {
+describe('@daffodil/order/testing | DaffOrderTotalFactory', () => {
   let factory: DaffOrderTotalFactory;
 
   beforeEach(() => {

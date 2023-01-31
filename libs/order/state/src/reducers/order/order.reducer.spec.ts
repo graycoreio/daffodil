@@ -1,5 +1,10 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffOrder } from '@daffodil/order';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
@@ -10,20 +15,21 @@ import {
   daffOrderInitialState as initialState,
   DaffOrderReducerState,
 } from '@daffodil/order/state';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import {
+  DaffOrderCollectionFactory,
+  DaffOrderFactory,
+} from '@daffodil/order/testing';
 
 import { daffOrderReducer as reducer } from './order.reducer';
 
-describe('Order | Reducer | Order', () => {
-  let orderFactory: DaffOrderFactory;
-  let mockOrder: DaffOrder;
-  let orderId: DaffOrder['id'];
+describe('@daffodil/order/state | daffOrderReducer', () => {
+  let orderCollectionFactory: DaffOrderCollectionFactory;
+  let mockOrderCollection: DaffOrderCollection;
 
   beforeEach(() => {
-    orderFactory = new DaffOrderFactory();
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
-    mockOrder = orderFactory.create();
-    orderId = mockOrder.id;
+    mockOrderCollection = orderCollectionFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {
@@ -38,7 +44,7 @@ describe('Order | Reducer | Order', () => {
 
   describe('when OrderLoadAction is triggered', () => {
     it('sets loading state to true', () => {
-      const orderLoadAction: DaffOrderLoad = new DaffOrderLoad(orderId);
+      const orderLoadAction: DaffOrderLoad = new DaffOrderLoad('orderId');
 
       const result = reducer(initialState, orderLoadAction);
 
@@ -48,7 +54,7 @@ describe('Order | Reducer | Order', () => {
 
   describe('when OrderLoadSuccessAction is triggered', () => {
     let mockError: DaffStateError;
-    let result;
+    let result: DaffOrderReducerState;
     let state: DaffOrderReducerState;
 
     beforeEach(() => {
@@ -62,7 +68,7 @@ describe('Order | Reducer | Order', () => {
         errors: [mockError],
       };
 
-      const orderLoadSuccess = new DaffOrderLoadSuccess(mockOrder);
+      const orderLoadSuccess = new DaffOrderLoadSuccess(Object.values(mockOrderCollection.data)[0]);
 
       result = reducer(state, orderLoadSuccess);
     });
@@ -77,7 +83,7 @@ describe('Order | Reducer | Order', () => {
   });
 
   describe('when OrderLoadFailureAction is triggered', () => {
-    let result;
+    let result: DaffOrderReducerState;
     let state: DaffOrderReducerState;
     let mockError: DaffStateError;
 
@@ -120,7 +126,7 @@ describe('Order | Reducer | Order', () => {
   });
 
   describe('when OrderListSuccessAction is triggered', () => {
-    let result;
+    let result: DaffOrderReducerState;
     let mockError: DaffStateError;
     let state: DaffOrderReducerState;
 
@@ -135,7 +141,7 @@ describe('Order | Reducer | Order', () => {
         errors: [mockError],
       };
 
-      const orderListSuccess = new DaffOrderListSuccess([mockOrder]);
+      const orderListSuccess = new DaffOrderListSuccess(mockOrderCollection);
 
       result = reducer(state, orderListSuccess);
     });
@@ -150,7 +156,7 @@ describe('Order | Reducer | Order', () => {
   });
 
   describe('when OrderListFailureAction is triggered', () => {
-    let result;
+    let result: DaffOrderReducerState;
     let state: DaffOrderReducerState;
     let mockError: DaffStateError;
 

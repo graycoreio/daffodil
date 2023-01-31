@@ -12,8 +12,10 @@ import {
   DaffCartPlaceOrderSuccess,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
+import { daffIdentifiableArrayToDict } from '@daffodil/core';
 import {
   DaffOrder,
+  DaffOrderCollection,
   DaffOrderItem,
   DaffOrderTotal,
   DaffOrderTotalTypeEnum,
@@ -26,6 +28,7 @@ import {
   DaffOrderStateRootSlice,
 } from '@daffodil/order/state';
 import {
+  DaffOrderCollectionFactory,
   DaffOrderFactory,
   DaffOrderItemFactory,
   DaffOrderTotalFactory,
@@ -33,13 +36,15 @@ import {
 
 import { getDaffOrderEntitySelectors } from './order-entities.selector';
 
-describe('Order | Selector | OrderEntities', () => {
+describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
   let store: Store<DaffOrderStateRootSlice>;
 
   let orderFactory: DaffOrderFactory;
   let orderItemFactory: DaffOrderItemFactory;
   let orderTotalFactory: DaffOrderTotalFactory;
+  let orderCollectionFactory: DaffOrderCollectionFactory;
 
+  let mockOrderCollection: DaffOrderCollection;
   let mockOrder: DaffOrder;
   let mockOrderItem: DaffOrderItem;
   let mockOrderTotal: DaffOrderTotal;
@@ -86,12 +91,16 @@ describe('Order | Selector | OrderEntities', () => {
     orderFactory = TestBed.inject(DaffOrderFactory);
     orderItemFactory = TestBed.inject(DaffOrderItemFactory);
     orderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
     mockOrderItem = orderItemFactory.create();
     mockOrderTotal = orderTotalFactory.create();
     mockOrder = orderFactory.create({
       items: [mockOrderItem],
       totals: [mockOrderTotal],
+    });
+    mockOrderCollection = orderCollectionFactory.create({
+      data: daffIdentifiableArrayToDict([mockOrder]),
     });
     orderId = mockOrder.id;
   });
@@ -106,7 +115,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select all of the orders', () => {
@@ -128,7 +137,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select all of the orders', () => {
@@ -150,7 +159,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select all of the order IDs', () => {
@@ -172,7 +181,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the total number of orders', () => {
@@ -195,7 +204,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been placed and loaded', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the most recently placed order', () => {
@@ -218,7 +227,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been placed and loaded', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select if the most recently placed order exists', () => {
@@ -240,7 +249,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s totals', () => {
@@ -262,7 +271,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s applied codes', () => {
@@ -284,7 +293,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s items', () => {
@@ -306,7 +315,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s addresses', () => {
@@ -328,7 +337,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s addresses', () => {
@@ -350,7 +359,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s shipments', () => {
@@ -372,7 +381,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s payment', () => {
@@ -394,7 +403,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s invoices', () => {
@@ -416,7 +425,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order\'s credits', () => {
@@ -438,7 +447,7 @@ describe('Order | Selector | OrderEntities', () => {
 
     describe('when an order has been loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the order item', () => {
@@ -461,7 +470,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded with a grand total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.GrandTotal;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the grand total', () => {
@@ -484,7 +493,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded with a subtotal', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Subtotal;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the subtotal', () => {
@@ -507,7 +516,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded with a shipping total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Shipping;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the shipping total', () => {
@@ -530,7 +539,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded with a discount total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the discount total', () => {
@@ -553,7 +562,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded with a discount total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should return true', () => {
@@ -567,7 +576,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded without a discount total', () => {
       beforeEach(() => {
         mockOrderTotal = null;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should return false', () => {
@@ -590,7 +599,7 @@ describe('Order | Selector | OrderEntities', () => {
     describe('when an order has been loaded with a tax total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Tax;
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the tax total', () => {

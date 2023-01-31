@@ -4,16 +4,23 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { DaffOrder } from '@daffodil/order';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
+import {
+  DaffOrderCollectionFactory,
+  DaffOrderFactory,
+} from '@daffodil/order/testing';
 
 import { DaffInMemoryOrderService } from './order.service';
 
-describe('Driver | In Memory | Order | OrderService', () => {
+describe('@daffodil/order/driver/in-memory | DaffInMemoryOrderService', () => {
   let service: DaffInMemoryOrderService;
   let httpMock: HttpTestingController;
-  let orderFactory: DaffOrderFactory;
+  let orderCollectionFactory: DaffOrderCollectionFactory;
 
+  let mockOrderCollection: DaffOrderCollection;
   let mockOrder: DaffOrder;
   let orderId;
 
@@ -28,10 +35,11 @@ describe('Driver | In Memory | Order | OrderService', () => {
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    orderFactory = TestBed.inject(DaffOrderFactory);
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
     service = TestBed.inject(DaffInMemoryOrderService);
 
-    mockOrder = orderFactory.create();
+    mockOrderCollection = orderCollectionFactory.create();
+    mockOrder = Object.values(mockOrderCollection.data)[0];
     orderId = mockOrder.id;
   });
 
@@ -60,14 +68,14 @@ describe('Driver | In Memory | Order | OrderService', () => {
   describe('list | getting all orders', () => {
     it('should send a get request and return the list of orders', done => {
       service.list().subscribe(res => {
-        expect(res).toEqual([mockOrder]);
+        expect(res).toEqual(mockOrderCollection);
         done();
       });
 
       const req = httpMock.expectOne(`${service.url}/`);
 
-      expect(req.request.method).toBe('GET');
-      req.flush([mockOrder]);
+      expect(req.request.method).toBe('POST');
+      req.flush(mockOrderCollection);
     });
   });
 });

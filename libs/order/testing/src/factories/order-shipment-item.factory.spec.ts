@@ -4,7 +4,7 @@ import { DaffOrderShipmentItem } from '@daffodil/order';
 
 import { DaffOrderShipmentItemFactory } from './order-shipment-item.factory';
 
-describe('Order | Testing | Factories | DaffOrderShipmentItemFactory', () => {
+describe('@daffodil/order/testing | DaffOrderShipmentItemFactory', () => {
   let factory: DaffOrderShipmentItemFactory;
 
   beforeEach(() => {

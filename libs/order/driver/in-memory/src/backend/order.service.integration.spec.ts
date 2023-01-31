@@ -5,12 +5,15 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { DaffOrder } from '@daffodil/order';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
 import { DaffInMemoryBackendOrderService } from './order.service';
 
-describe('DaffInMemoryBackendOrderService | Integration', () => {
+describe('@daffodil/order/driver/in-memory | DaffInMemoryBackendOrderService | Integration', () => {
   let httpClient: HttpClient;
 
   let orderFactory: DaffOrderFactory;
@@ -47,8 +50,9 @@ describe('DaffInMemoryBackendOrderService | Integration', () => {
 
   describe('processing a order list request', () => {
     it('should return the correct orders', done => {
-      httpClient.get<any>(`/api/orders/`).subscribe(result => {
-        expect(result).toEqual([mockOrder]);
+      httpClient.post<DaffOrderCollection>(`/api/orders/`, {}).subscribe(result => {
+        expect(result.data[mockOrder.id]).toEqual(mockOrder);
+        expect(result.metadata.ids).toEqual([mockOrder.id]);
         done();
       });
     });

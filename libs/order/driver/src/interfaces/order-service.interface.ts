@@ -2,7 +2,11 @@ import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffOrder } from '@daffodil/order';
+import { DaffCollectionRequest } from '@daffodil/core';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 
 export const DaffOrderDriver = new InjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 
@@ -11,15 +15,14 @@ export const DaffOrderDriver = new InjectionToken<DaffOrderServiceInterface>('Da
  */
 export interface DaffOrderServiceInterface<
   T extends DaffOrder = DaffOrder,
-  V extends DaffCart = DaffCart
 > {
   /**
    * Get an order object with the specified order ID.
    */
-  get(orderId: T['id'], cartId?: V['id']): Observable<T>;
+  get(orderId: T['id'], cartId?: DaffCart['id']): Observable<T>;
 
   /**
    * List all order objects for the logged-in user.
    */
-  list(cartId?: V['id']): Observable<T[]>;
+  list(cartId?: DaffCart['id'], request?: DaffCollectionRequest): Observable<DaffOrderCollection<T>>;
 }

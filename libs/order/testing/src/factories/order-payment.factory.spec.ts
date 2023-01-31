@@ -4,7 +4,7 @@ import { DaffOrderPayment } from '@daffodil/order';
 
 import { DaffOrderPaymentFactory } from './order-payment.factory';
 
-describe('Order | Testing | Factories | OrderPaymentFactory', () => {
+describe('@daffodil/order/testing | OrderPaymentFactory', () => {
 
   let orderPaymentFactory: DaffOrderPaymentFactory;
 

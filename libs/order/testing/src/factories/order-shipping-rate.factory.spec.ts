@@ -4,7 +4,7 @@ import {  DaffOrderShippingMethod } from '@daffodil/order';
 
 import { DaffOrderShippingMethodFactory } from './order-shipping-rate.factory';
 
-describe('Order | Testing | Factories | OrderShippingRateFactory', () => {
+describe('@daffodil/order/testing | OrderShippingRateFactory', () => {
 
   let orderShippingRateFactory: DaffOrderShippingMethodFactory;
 
