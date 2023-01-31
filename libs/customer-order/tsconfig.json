@@ -15,6 +15,9 @@
       "@daffodil/customer-order/driver/magento": [
         "libs/customer-order/driver/magento/src"
       ],
+      "@daffodil/customer-order/driver/magento/testing": [
+        "libs/customer-order/driver/magento/testing/src"
+      ],
     }
   }
 }
