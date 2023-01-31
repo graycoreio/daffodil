@@ -2033,6 +2033,7 @@
         }
       }
     },
+
     "customer-auth": {
       "projectType": "library",
       "root": "libs/customer-auth",
@@ -2066,6 +2067,44 @@
             "lintFilePatterns": [
               "libs/customer-auth/**/*.ts",
               "libs/customer-auth/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "customer-order": {
+      "projectType": "library",
+      "root": "libs/customer-order",
+      "sourceRoot": "libs/customer-order/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/customer-order/tsconfig.lib.json",
+            "project": "libs/customer-order/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/customer-order/ng-package.prod.json",
+              "tsConfig": "libs/customer-order/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/customer-order/test.ts",
+            "tsConfig": "libs/customer-order/tsconfig.spec.json",
+            "karmaConfig": "libs/customer-order/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/customer-order/**/*.ts",
+              "libs/customer-order/**/*.html"
             ]
           }
         }
