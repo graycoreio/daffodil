@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/customer-auth": [
+        "libs/customer-auth/src"
+      ],
+      "@daffodil/customer-auth/state": [
+        "libs/customer-auth/state/src"
+      ],
+    }
+  }
+}

@@ -2032,6 +2032,44 @@
           }
         }
       }
+    },
+    "customer-auth": {
+      "projectType": "library",
+      "root": "libs/customer-auth",
+      "sourceRoot": "libs/customer-auth/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/customer-auth/tsconfig.lib.json",
+            "project": "libs/customer-auth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/customer-auth/ng-package.prod.json",
+              "tsConfig": "libs/customer-auth/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/customer-auth/test.ts",
+            "tsConfig": "libs/customer-auth/tsconfig.spec.json",
+            "karmaConfig": "libs/customer-auth/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/customer-auth/**/*.ts",
+              "libs/customer-auth/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo",
