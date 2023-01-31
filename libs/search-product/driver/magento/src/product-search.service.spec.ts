@@ -10,14 +10,17 @@ import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
 import { DaffCollectionMetadata } from '@daffodil/core';
-import { schema } from '@daffodil/driver/magento';
+import {
+  MagentoSearchResultPageInfo,
+  schema,
+} from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
 import {
   MagentoAggregation,
   MagentoProduct,
   MagentoProductFilterTypeField,
   MagentoProductGetFilterTypes,
   MagentoProductGetFilterTypesResponse,
-  MagentoProductPageInfo,
   MagentoProductSortFields,
   MagentoSimpleProduct,
 } from '@daffodil/product/driver/magento';
@@ -26,7 +29,6 @@ import {
   MagentoProductAggregationSelectFactory,
   MagentoProductFactory,
   MagentoProductFilterTypeFieldFactory,
-  MagentoProductPageInfoFactory,
   MagentoProductSortFieldsFactory,
   MagentoSimpleProductFactory,
 } from '@daffodil/product/driver/magento/testing';
@@ -46,7 +48,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
   let selectAggregateFactory: MagentoProductAggregationSelectFactory;
   let magentoFilterTypeFieldFactory: MagentoProductFilterTypeFieldFactory;
   let magentoProductFactory: MagentoSimpleProductFactory;
-  let magentoPageInfoFactory: MagentoProductPageInfoFactory;
+  let magentoPageInfoFactory: MagentoSearchResultPageInfoFactory;
 
   let mockSimpleProduct: MagentoSimpleProduct;
   let mockSearchProductsResponse: MagentoSearchForProductsResponse;
@@ -56,7 +58,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
   let mockMagentoSelectFilterTypeField: MagentoProductFilterTypeField;
   let mockMagentoPriceFilterTypeField: MagentoProductFilterTypeField;
   let mockMagentoProduct: MagentoProduct;
-  let mockMagentoProductPageInfo: MagentoProductPageInfo;
+  let mockMagentoProductPageInfo: MagentoSearchResultPageInfo;
   let mockGetFilterTypesResponse: MagentoProductGetFilterTypesResponse;
 
   beforeEach(() => {
@@ -83,7 +85,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
     selectAggregateFactory = TestBed.inject(MagentoProductAggregationSelectFactory);
     priceAggregateFactory = TestBed.inject(MagentoProductAggregationPriceFactory);
     magentoProductFactory = TestBed.inject(MagentoSimpleProductFactory);
-    magentoPageInfoFactory = TestBed.inject(MagentoProductPageInfoFactory);
+    magentoPageInfoFactory = TestBed.inject(MagentoSearchResultPageInfoFactory);
     magentoFilterTypeFieldFactory = TestBed.inject(MagentoProductFilterTypeFieldFactory);
 
     mockSimpleProduct = magentoSimpleProductFactory.create();

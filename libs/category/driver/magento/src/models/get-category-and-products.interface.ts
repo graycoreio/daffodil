@@ -1,6 +1,6 @@
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 import {
   MagentoAggregation,
-  MagentoProductPageInfo,
   MagentoProduct,
   MagentoProductSortFields,
 } from '@daffodil/product/driver/magento';
@@ -11,7 +11,7 @@ export interface MagentoGetCategoryAndProductsResponse {
   categoryList: MagentoCategory[];
   products: {
     items: MagentoProduct[];
-    page_info: MagentoProductPageInfo;
+    page_info: MagentoSearchResultPageInfo;
     total_count: number;
     aggregations: MagentoAggregation[];
     sort_fields: MagentoProductSortFields;

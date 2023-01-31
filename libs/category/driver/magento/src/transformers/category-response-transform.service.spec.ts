@@ -14,10 +14,10 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 import {
   DaffMagentoProductsTransformer,
   MagentoAggregation,
-  MagentoProductPageInfo,
   MagentoProductSortFields,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
 } from '@daffodil/product/driver/magento';
@@ -105,7 +105,7 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryResponseTransfo
       };
       const aggregates: MagentoAggregation[] = aggregateFactory.createMany(1);
 
-      const page_info: MagentoProductPageInfo = {
+      const page_info: MagentoSearchResultPageInfo = {
         page_size: stubCategoryPageMetadata.pageSize,
         current_page: stubCategoryPageMetadata.currentPage,
         total_pages: stubCategoryPageMetadata.totalPages,

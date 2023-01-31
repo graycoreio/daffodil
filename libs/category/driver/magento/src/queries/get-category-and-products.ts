@@ -5,10 +5,10 @@ import {
   daffBuildFragmentDefinition,
   daffBuildFragmentNameSpread,
 } from '@daffodil/core/graphql';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
 import {
   magentoProductAggregationsFragment,
   magentoProductFragment,
-  magentoProductPageInfoFragment,
   magentoProductSortFieldsFragment,
 } from '@daffodil/product/driver/magento';
 
@@ -30,7 +30,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: Cat
       ${daffBuildFragmentNameSpread(...extraProductFragments)}
 		}
 		page_info {
-			...magentoProductPageInfo
+			...magentoSearchResultPageInfo
 		}
 		aggregations {
 			...magentoProductAggregations
@@ -42,7 +42,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: Cat
 }
 ${magentoCategoryTreeFragment}
 ${magentoProductFragment}
-${magentoProductPageInfoFragment}
+${magentoSearchResultPageInfoFragment}
 ${magentoProductSortFieldsFragment}
 ${magentoProductAggregationsFragment}
 ${daffBuildFragmentDefinition(...extraProductFragments)}

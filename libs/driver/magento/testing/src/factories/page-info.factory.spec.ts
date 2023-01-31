@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductPageInfo } from '@daffodil/product/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
-import { MagentoProductPageInfoFactory } from './page-info.factory';
+import { MagentoSearchResultPageInfoFactory } from './page-info.factory';
 
-describe('@daffodil/product/driver/magento/testing | MagentoProductPageInfoFactory', () => {
+describe('@daffodil/driver/magento/testing | MagentoSearchResultPageInfoFactory', () => {
 
-  let factory: MagentoProductPageInfoFactory;
+  let factory: MagentoSearchResultPageInfoFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoProductPageInfoFactory],
+      providers: [MagentoSearchResultPageInfoFactory],
     });
 
-    factory = TestBed.inject(MagentoProductPageInfoFactory);
+    factory = TestBed.inject(MagentoSearchResultPageInfoFactory);
   });
 
   it('should be created', () => {
@@ -22,7 +22,7 @@ describe('@daffodil/product/driver/magento/testing | MagentoProductPageInfoFacto
 
   describe('create', () => {
 
-    let result: MagentoProductPageInfo;
+    let result: MagentoSearchResultPageInfo;
 
     beforeEach(() => {
       result = factory.create();

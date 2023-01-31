@@ -15,7 +15,6 @@ export {
   MagentoProductSortFields,
   MagentoSortOption,
 } from './sort-fields';
-export { MagentoProductPageInfo } from './page-info';
 export {
   MagentoSortDirectionEnum,
   MagentoSortFieldAction,

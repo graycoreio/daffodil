@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import * as faker from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoProductPageInfo } from '@daffodil/product/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
-class MockMagentoProductPageInfo implements MagentoProductPageInfo {
+class MockMagentoSearchResultPageInfo implements MagentoSearchResultPageInfo {
   current_page =  1;
   page_size = faker.datatype.number(100);
   total_pages = faker.datatype.number(100);
@@ -13,8 +13,8 @@ class MockMagentoProductPageInfo implements MagentoProductPageInfo {
 @Injectable({
   providedIn: 'root',
 })
-export class MagentoProductPageInfoFactory extends DaffModelFactory<MagentoProductPageInfo> {
+export class MagentoSearchResultPageInfoFactory extends DaffModelFactory<MagentoSearchResultPageInfo> {
   constructor(){
-    super(MockMagentoProductPageInfo);
+    super(MockMagentoSearchResultPageInfo);
   }
 }
