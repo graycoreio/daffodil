@@ -475,7 +475,6 @@ describe('DaffOrderFacade', () => {
   });
 
   describe('hasDiscount$', () => {
-
     describe('when an order has been loaded with a discount total', () => {
       beforeEach(() => {
         mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
@@ -491,7 +490,8 @@ describe('DaffOrderFacade', () => {
 
     describe('when an order has been loaded without a discount total', () => {
       beforeEach(() => {
-        mockOrderTotal = null;
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.GrandTotal;
+        mockOrder.totals = [mockOrderTotal];
         store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
