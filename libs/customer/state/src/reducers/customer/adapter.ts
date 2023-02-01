@@ -1,5 +1,8 @@
 import { daffCompleteOperation } from '@daffodil/core/state';
-import { DaffCustomer } from '@daffodil/customer';
+import {
+  DaffCustomer,
+  DaffCustomerAddress,
+} from '@daffodil/customer';
 
 import { DaffCustomerReducerState } from './interface';
 
@@ -12,5 +15,20 @@ export function daffCustomerStateStoreCustomer<T extends DaffCustomer = DaffCust
     ...state,
     ...daffCompleteOperation(state),
     customer,
+  };
+}
+
+/**
+ * Stores customer addresses.
+ * Sets loading to false and resets errors.
+ */
+export function daffCustomerStateStoreAddresses<T extends DaffCustomer = DaffCustomer>(addresses: T[], state: DaffCustomerReducerState<T>): DaffCustomerReducerState<T> {
+  return {
+    ...state,
+    ...daffCompleteOperation(state),
+    customer: {
+      ...state.customer,
+      addresses,
+    },
   };
 }

@@ -7,6 +7,8 @@ import {
   DaffCustomerReducersState,
   daffCustomerInitialState,
   DaffCustomerLoadFailure,
+  daffCustomerAddressInitialState,
+  daffCustomerAddressEntitiesAdapter,
 } from '@daffodil/customer/state';
 
 import { DAFF_CUSTOMER_REDUCERS } from './reducers.token';
@@ -27,6 +29,8 @@ describe('@daffodil/customer/state | daffCustomerProvideExtraReducers', () => {
           message: 'already in state',
         }],
       },
+      address: daffCustomerAddressInitialState,
+      addressEntities: daffCustomerAddressEntitiesAdapter().getInitialState(),
     };
     extraError = {
       code:  'code',

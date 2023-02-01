@@ -8,12 +8,17 @@ import {
 import { DaffCustomer } from '@daffodil/customer';
 
 import {
-  DaffCustomerActionTypes,
   DaffCustomerActions,
+  DaffCustomerActionTypes,
+  DaffCustomerAddressActions,
+  DaffCustomerAddressActionTypes,
   DaffCustomerLoadFailure,
   DaffCustomerLoadSuccess,
-} from '../../actions/customer.actions';
-import { daffCustomerStateStoreCustomer } from './adapter';
+} from '../../actions/public_api';
+import {
+  daffCustomerStateStoreAddresses,
+  daffCustomerStateStoreCustomer,
+} from './adapter';
 import { daffCustomerInitialState } from './initial-state';
 import { DaffCustomerReducerState } from './interface';
 
@@ -22,33 +27,37 @@ import { DaffCustomerReducerState } from './interface';
  */
 export const daffCustomerReducer = <T extends DaffCustomer = DaffCustomer>(
   state = daffCustomerInitialState,
-  action: DaffCustomerActions<T>,
+  action: DaffCustomerActions<T> | DaffCustomerAddressActions,
 ): DaffCustomerReducerState<T> => {
-  switch (true) {
-    case action.type === DaffCustomerActionTypes.CustomerLoadAction:
+  switch (action.type) {
+    case DaffCustomerActionTypes.CustomerLoadAction:
       return daffStartResolution(state);
 
-    case action.type === DaffCustomerActionTypes.CustomerUpdateAction:
-    case action.type === DaffCustomerActionTypes.CustomerChangeEmailAction:
-    case action.type === DaffCustomerActionTypes.CustomerChangePasswordAction:
+    case DaffCustomerActionTypes.CustomerUpdateAction:
+    case DaffCustomerActionTypes.CustomerChangeEmailAction:
+    case DaffCustomerActionTypes.CustomerChangePasswordAction:
       return daffStartMutation(state);
 
-    case action.type === DaffCustomerActionTypes.CustomerLoadSuccessAction:
-    case action.type === DaffCustomerActionTypes.CustomerUpdateSuccessAction:
-    case action.type === DaffCustomerActionTypes.CustomerChangeEmailSuccessAction:
+    case DaffCustomerActionTypes.CustomerLoadSuccessAction:
+    case DaffCustomerActionTypes.CustomerUpdateSuccessAction:
+    case DaffCustomerActionTypes.CustomerChangeEmailSuccessAction:
       return daffCustomerStateStoreCustomer((<DaffCustomerLoadSuccess<T>>action).payload, state);
 
-    case action.type === DaffCustomerActionTypes.CustomerChangePasswordSuccessAction:
+    case DaffCustomerActionTypes.CustomerChangePasswordSuccessAction:
       return daffCompleteOperation(state);
 
-    case action.type === DaffCustomerActionTypes.CustomerLoadFailureAction:
-    case action.type === DaffCustomerActionTypes.CustomerUpdateFailureAction:
-    case action.type === DaffCustomerActionTypes.CustomerChangeEmailFailureAction:
-    case action.type === DaffCustomerActionTypes.CustomerChangePasswordFailureAction:
+    case DaffCustomerActionTypes.CustomerLoadFailureAction:
+    case DaffCustomerActionTypes.CustomerUpdateFailureAction:
+    case DaffCustomerActionTypes.CustomerChangeEmailFailureAction:
+    case DaffCustomerActionTypes.CustomerChangePasswordFailureAction:
       return daffOperationFailed([(<DaffCustomerLoadFailure>action).payload], state);
 
-    case action.type === DaffCustomerActionTypes.CustomerClearErrorsAction:
+    case DaffCustomerActionTypes.CustomerClearErrorsAction:
       return daffClearErrors(state);
+
+    case DaffCustomerAddressActionTypes.AddressDeleteSuccessAction:
+    case DaffCustomerAddressActionTypes.AddressAddSuccessAction:
+      return daffCustomerStateStoreAddresses(action.payload, state);
 
     default:
       return state;

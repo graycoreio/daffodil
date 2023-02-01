@@ -6,15 +6,14 @@ import {
 import {
   daffOperationStateSelectorFactory,
   DaffOperationStateSelectors,
-  DaffStateError,
 } from '@daffodil/core/state';
 import { DaffCustomer } from '@daffodil/customer';
 
 import {
   DaffCustomerReducerState,
   DaffCustomerStateRootSlice,
-} from '../reducers/public_api';
-import { getDaffCustomerReducersStateSelector } from './feature.selector';
+} from '../../reducers/public_api';
+import { getDaffCustomerReducersStateSelector } from '../feature.selector';
 
 /**
  * Selectors for the main part of customer state.

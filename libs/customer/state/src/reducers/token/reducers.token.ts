@@ -11,6 +11,8 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffCustomer } from '@daffodil/customer';
 
+import { daffCustomerAddressEntitiesReducer } from '../address-entities/public_api';
+import { daffCustomerAddressReducer } from '../address/public_api';
 import { daffCustomerReducer } from '../customer/reducer';
 import { DaffCustomerReducersState } from '../reducers.interface';
 import { DAFF_CUSTOMER_EXTRA_REDUCERS } from './extra.token';
@@ -28,6 +30,8 @@ export const DAFF_CUSTOMER_REDUCERS = new InjectionToken<ActionReducer<DaffCusto
     factory: () => daffComposeReducers([
       combineReducers({
         customer: daffCustomerReducer,
+        address: daffCustomerAddressReducer,
+        addressEntities: daffCustomerAddressEntitiesReducer,
       }),
       ...inject(DAFF_CUSTOMER_EXTRA_REDUCERS),
     ]),

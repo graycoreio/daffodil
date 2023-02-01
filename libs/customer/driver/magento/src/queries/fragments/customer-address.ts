@@ -10,10 +10,12 @@ export const magentoCustomerAddressFragment = gql`
     postcode
     region {
       region_code
-      region
+      region_id
     }
     street
     telephone
     company
+    default_billing
+    default_shipping
   }
 `;

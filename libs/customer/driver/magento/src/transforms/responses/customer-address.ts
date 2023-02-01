@@ -3,10 +3,11 @@ import { DaffCustomerAddress } from '@daffodil/customer';
 import { MagentoCustomerAddress } from '../../models/public_api';
 
 export const magentoCustomerAddressTransform = (address: MagentoCustomerAddress): DaffCustomerAddress => ({
-  id: address.id,
+  id: String(address.id),
   street: address.street[0],
   city: address.city,
-  region: address.region.region_code,
+  region: String(address.region.region_id),
+  region_code: address.region.region_code,
   country: address.country_code,
   country_id: address.country_code,
   postcode: address.postcode,
@@ -14,4 +15,6 @@ export const magentoCustomerAddressTransform = (address: MagentoCustomerAddress)
   lastname: address.lastname,
   telephone: address.telephone,
   email: address.email,
+  defaultBilling: address.default_billing,
+  defaultShipping: address.default_shipping,
 });

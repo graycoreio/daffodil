@@ -10,7 +10,7 @@ export class MockMagentoCustomerAddress implements MagentoCustomerAddress {
   region = {
     __typename: 'CustomerAddressRegion',
     region_code: faker.address.stateAbbr(),
-    region: faker.address.state(),
+    region_id: faker.unique(faker.datatype.number),
   };
   country_code = faker.address.countryCode();
   street = [faker.address.streetAddress()];
@@ -21,6 +21,8 @@ export class MockMagentoCustomerAddress implements MagentoCustomerAddress {
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();
   email = faker.internet.email();
+  default_billing = faker.datatype.boolean();
+  default_shipping = faker.datatype.boolean();
 }
 
 @Injectable({
