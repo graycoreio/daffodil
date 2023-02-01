@@ -3,7 +3,10 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { DaffCustomer } from '@daffodil/customer';
+import {
+  DaffCustomer,
+  DaffCustomerAddress,
+} from '@daffodil/customer';
 
 import {
   DaffCustomerStateRootSlice,
@@ -14,14 +17,17 @@ import {
 /**
  * Selector for the customer feature state.
  */
-export interface DaffCustomerFeatureSelector<T extends DaffCustomer = DaffCustomer> {
-  selectCustomerFeatureState: MemoizedSelector<DaffCustomerStateRootSlice<T>, DaffCustomerReducersState<T>>;
+export interface DaffCustomerFeatureSelector<
+  TCustomer extends DaffCustomer = DaffCustomer,
+  TAddress extends DaffCustomerAddress = DaffCustomerAddress
+> {
+  selectCustomerFeatureState: MemoizedSelector<DaffCustomerStateRootSlice<TCustomer, TAddress>, DaffCustomerReducersState<TCustomer, TAddress>>;
 }
 
 export const getDaffCustomerReducersStateSelector = (() => {
   let cache;
-  return <T extends DaffCustomer = DaffCustomer>(): DaffCustomerFeatureSelector<T> =>
+  return <TCustomer extends DaffCustomer = DaffCustomer, TAddress extends DaffCustomerAddress = DaffCustomerAddress>(): DaffCustomerFeatureSelector<TCustomer, TAddress> =>
     cache = cache || {
-      selectCustomerFeatureState: createFeatureSelector<DaffCustomerReducersState<T>>(DAFF_CUSTOMER_STORE_FEATURE_KEY),
+      selectCustomerFeatureState: createFeatureSelector<DaffCustomerReducersState<TCustomer, TAddress>>(DAFF_CUSTOMER_STORE_FEATURE_KEY),
     };
 })();

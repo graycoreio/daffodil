@@ -7,6 +7,8 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
+  daffCustomerAddressEntitiesReducer,
+  daffCustomerAddressReducer,
   daffCustomerReducer,
   DaffCustomerReducersState,
   DaffCustomerStateRootSlice,
@@ -27,6 +29,8 @@ describe('@daffodil/customer/state | DaffCustomerPageFacade', () => {
         StoreModule.forRoot({
           [DAFF_CUSTOMER_STORE_FEATURE_KEY]: combineReducers<DaffCustomerReducersState>({
             customer: daffCustomerReducer,
+            address: daffCustomerAddressReducer,
+            addressEntities: daffCustomerAddressEntitiesReducer,
           }),
         }),
       ],

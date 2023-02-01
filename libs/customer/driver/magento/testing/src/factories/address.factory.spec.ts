@@ -28,7 +28,7 @@ describe('@daffodil/customer/driver/magento/testing | CustomerAddressFactory', (
 
     it('should return a CustomerAddress with all required fields defined', () => {
       expect(result.region.region_code).toBeDefined();
-      expect(result.region.region).toBeDefined();
+      expect(result.region.region_id).toBeDefined();
       expect(result.country_code).toBeDefined();
       expect(result.street[0]).toBeDefined();
       expect(result.company).toBeDefined();
@@ -38,6 +38,8 @@ describe('@daffodil/customer/driver/magento/testing | CustomerAddressFactory', (
       expect(result.firstname).toBeDefined();
       expect(result.lastname).toBeDefined();
       expect(result.email).toBeDefined();
+      expect(result.default_billing).toBeDefined();
+      expect(result.default_shipping).toBeDefined();
     });
   });
 });

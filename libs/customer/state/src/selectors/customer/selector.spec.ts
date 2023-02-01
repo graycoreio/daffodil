@@ -8,16 +8,18 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import { DaffCustomer } from '@daffodil/customer';
-import { DaffCustomerStateRootSlice } from '@daffodil/customer/state';
-import { DaffCustomerFactory } from '@daffodil/customer/testing';
-
 import {
   DaffCustomerLoadSuccess,
   daffCustomerReducer,
   DaffCustomerReducersState,
   DAFF_CUSTOMER_STORE_FEATURE_KEY,
-} from '../public_api';
-import { daffCustomerGetSelectors } from './customer.selector';
+  DaffCustomerStateRootSlice,
+  daffCustomerAddressReducer,
+  daffCustomerAddressEntitiesReducer,
+} from '@daffodil/customer/state';
+import { DaffCustomerFactory } from '@daffodil/customer/testing';
+
+import { daffCustomerGetSelectors } from './selector';
 
 describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
   let store: Store<DaffCustomerStateRootSlice>;
@@ -37,6 +39,8 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
         StoreModule.forRoot({
           [DAFF_CUSTOMER_STORE_FEATURE_KEY]: combineReducers<DaffCustomerReducersState>({
             customer: daffCustomerReducer,
+            address: daffCustomerAddressReducer,
+            addressEntities: daffCustomerAddressEntitiesReducer,
           }),
         }),
       ],

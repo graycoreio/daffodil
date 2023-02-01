@@ -4,8 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffCustomerDriver } from '@daffodil/customer/driver';
+import {
+  DaffCustomerAddressDriver,
+  DaffCustomerDriver,
+} from '@daffodil/customer/driver';
 
+import { DaffCustomerAddressTestingDriver } from './address.service';
 import { DaffCustomerTestingDriver } from './customer.service';
 
 /**
@@ -24,6 +28,10 @@ export class DaffCustomerTestingDriverModule {
         {
           provide: DaffCustomerDriver,
           useExisting: DaffCustomerTestingDriver,
+        },
+        {
+          provide: DaffCustomerAddressDriver,
+          useExisting: DaffCustomerAddressTestingDriver,
         },
       ],
     };

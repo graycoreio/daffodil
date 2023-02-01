@@ -1,8 +1,8 @@
 export interface MagentoCustomerAddress {
-  id: string;
+  id: number;
   region: {
     region_code: string;
-    region: string;
+    region_id: number;
   };
   country_code: string;
   street: string[];
@@ -13,4 +13,6 @@ export interface MagentoCustomerAddress {
   firstname: string;
   lastname: string;
   email: string;
+  default_billing: boolean;
+  default_shipping: boolean;
 }

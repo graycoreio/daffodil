@@ -32,6 +32,8 @@ describe('@daffodil/customer/testing | DaffCustomerAddressFactory', () => {
 
     it('should define all the required fields', () => {
       expect(result.id).toBeDefined();
+      expect(result.defaultBilling).toBeDefined();
+      expect(result.defaultShipping).toBeDefined();
     });
   });
 });
