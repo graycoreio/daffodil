@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCustomerPageFacade } from '@daffodil/customer/state';
+import {
+  DaffCustomerAddressPageFacade,
+  DaffCustomerPageFacade,
+} from '@daffodil/customer/state';
 
+import { MockDaffCustomerAddressPageFacade } from './mock-address-facade';
 import { MockDaffCustomerPageFacade } from './mock-customer-facade';
 
 /**
@@ -10,6 +14,7 @@ import { MockDaffCustomerPageFacade } from './mock-customer-facade';
 @NgModule({
   providers: [
     { provide: DaffCustomerPageFacade, useExisting: MockDaffCustomerPageFacade },
+    { provide: DaffCustomerAddressPageFacade, useExisting: MockDaffCustomerAddressPageFacade },
   ],
 })
 export class DaffCustomerStateTestingModule {}
