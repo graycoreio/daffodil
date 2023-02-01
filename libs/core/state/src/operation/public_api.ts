@@ -8,3 +8,5 @@ export {
   DaffOperationStateSelectors,
 } from './selectors';
 export { DaffOperationStateFacadeInterface } from './facade.type';
+
+export * from './entity/public_api';
