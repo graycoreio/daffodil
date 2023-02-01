@@ -6,7 +6,7 @@ import { MagentoCartAddressFactory } from '@daffodil/cart/driver/magento/testing
 
 import { DaffMagentoCartAddressTransformer } from './cart-address.service';
 
-describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () => {
+describe('@daffodil/cart/driver/magento | MagentoCartAddress', () => {
   let service: DaffMagentoCartAddressTransformer;
 
   let magentoCartAddressFactory: MagentoCartAddressFactory;
@@ -58,6 +58,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartAddress', () 
       expect(transformedCartAddress.firstname).toEqual(firstname);
       expect(transformedCartAddress.region).toEqual(String(mockMagentoCartAddress.region.region_id));
       expect(transformedCartAddress.region_code).toEqual(mockMagentoCartAddress.region.code);
+      expect(transformedCartAddress.id).toEqual(String(mockMagentoCartAddress.customer_address_id));
     });
 
     describe('when the argument is null', () => {
