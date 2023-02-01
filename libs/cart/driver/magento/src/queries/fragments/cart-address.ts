@@ -3,6 +3,7 @@ import { gql } from 'apollo-angular';
 
 export const cartAddressFragment = gql`
   fragment cartAddress on CartAddressInterface {
+    customer_address_id
     city
     country {
       code

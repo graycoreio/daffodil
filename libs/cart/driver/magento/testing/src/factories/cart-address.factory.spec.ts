@@ -27,6 +27,7 @@ describe('Cart | Testing | Factories | CartAddressFactory', () => {
     });
 
     it('should return a CartAddress with all required fields defined', () => {
+      expect(result.customer_address_id).toBeDefined();
       expect(result.region.code).toBeDefined();
       expect(result.region.region_id).toBeDefined();
       expect(result.country.code).toBeDefined();

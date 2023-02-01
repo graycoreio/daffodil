@@ -33,9 +33,9 @@ export class DaffMagentoCartAddressTransformer {
       lastname: address.lastname,
       telephone: address.telephone,
       email: address.email,
+      id: address.customer_address_id ? String(address.customer_address_id) : null,
 
       // TODO: implement
-      id: null,
       suffix: null,
       middlename: null,
       prefix: null,

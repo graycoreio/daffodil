@@ -6,6 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartAddress implements MagentoCartAddress {
   __typename = 'BillingCartAddress';
+  customer_address_id = faker.unique(faker.datatype.number);
   region = {
     __typename: 'CartAddressRegion',
     region_id: faker.unique(faker.datatype.number),

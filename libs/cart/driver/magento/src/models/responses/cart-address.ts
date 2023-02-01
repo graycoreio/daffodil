@@ -15,4 +15,5 @@ export interface MagentoCartAddress {
   firstname: string;
   lastname: string;
   email: string;
+  customer_address_id: number;
 }
