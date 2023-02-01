@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.51.0](https://github.com/graycoreio/daffodil/compare/v0.50.0...v0.51.0) (2023-02-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **order:** orders are now stored as collections. driver responses and action payloads have been change accordingly
+* `MagentoProductPageInfo` -> `MagentoSearchResultPageInfo`, `magentoProductPageInfoFragment` -> `magentoSearchResultPageInfoFragment`
+
+### Features
+
+* **cart:** add `customer_address_id` to Magento address ([#2330](https://github.com/graycoreio/daffodil/issues/2330)) ([ec89214](https://github.com/graycoreio/daffodil/commit/ec8921459980436a710bccf418f99b628518bf66))
+* **core:** add `shallowCompare` ([#2323](https://github.com/graycoreio/daffodil/issues/2323)) ([cee9e8a](https://github.com/graycoreio/daffodil/commit/cee9e8a71a268b74f33f869c7de5aebd90ea0aea))
+* **core:** add operation entity state ([#2318](https://github.com/graycoreio/daffodil/issues/2318)) ([83ebfcb](https://github.com/graycoreio/daffodil/commit/83ebfcb5beb4b9d00979fb7dae37cfa733e3910b))
+* **customer-order:** add `@daffodil/customer-order/driver/magento/testing` ([#2328](https://github.com/graycoreio/daffodil/issues/2328)) ([e4f15c5](https://github.com/graycoreio/daffodil/commit/e4f15c578540c885e93d1a287a58492c887c5d92))
+* **customer-order:** add `@daffodil/customer-order/driver/magento` ([#2328](https://github.com/graycoreio/daffodil/issues/2328)) ([d911c69](https://github.com/graycoreio/daffodil/commit/d911c6939eecec488d1f8ca7ff8661b8a52a8ac5))
+* **customer-order:** add `@daffodil/customer-order/driver` ([#2328](https://github.com/graycoreio/daffodil/issues/2328)) ([fc64ede](https://github.com/graycoreio/daffodil/commit/fc64edea83c2f6c2e749b21cabe5f59dedad358e))
+* **customer-order:** add `@daffodil/customer-order` ([#2328](https://github.com/graycoreio/daffodil/issues/2328)) ([c60d484](https://github.com/graycoreio/daffodil/commit/c60d48458203fdcf8d381cc3b5407478131c6a7c))
+* **customer,customer-auth:** add address support ([#2319](https://github.com/graycoreio/daffodil/issues/2319)) ([486e775](https://github.com/graycoreio/daffodil/commit/486e775ad97ff5b248fef560008031465f538d1c))
+* **driver:** add magento filter input model ([#2325](https://github.com/graycoreio/daffodil/issues/2325)) ([722807b](https://github.com/graycoreio/daffodil/commit/722807b943f191215a0cb3477ff0c6f8e28a3227))
+* **forms:** add `daffFormsPasswordValidator` ([#2313](https://github.com/graycoreio/daffodil/issues/2313)) ([f944740](https://github.com/graycoreio/daffodil/commit/f94474032199332f63b93fb47f1c7415d6b22b9c))
+* **geography:** implement comparators with `shallowCompare` ([#2324](https://github.com/graycoreio/daffodil/issues/2324)) ([b206c26](https://github.com/graycoreio/daffodil/commit/b206c2646d863bee848ebeb6deda73dac951e8cb))
+* move magento page info from product to driver ([#2320](https://github.com/graycoreio/daffodil/issues/2320)) ([08e2b35](https://github.com/graycoreio/daffodil/commit/08e2b35e8d82b5c4a90f8a3b2dd80c5fbca9ab36))
+* **order:** add support for order collection ([#2326](https://github.com/graycoreio/daffodil/issues/2326)) ([2e6de81](https://github.com/graycoreio/daffodil/commit/2e6de81ed8826be940ab88b87cb33776f5248779))
+
+
+### Bug Fixes
+
+* **customer-auth:** customer state persists after logout ([#2327](https://github.com/graycoreio/daffodil/issues/2327)) ([b8f7e7b](https://github.com/graycoreio/daffodil/commit/b8f7e7be62f2d3d291c4115e531cd7f03492662a))
+
 ## [0.50.0](https://github.com/graycoreio/daffodil/compare/v0.49.0...v0.50.0) (2023-01-24)
 
 
