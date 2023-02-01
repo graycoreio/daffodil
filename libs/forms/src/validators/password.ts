@@ -120,7 +120,8 @@ export function daffFormsPasswordValidator(config: DaffFormsPasswordValidatorCon
   if (maxLength) {
     validators.push(Validators.maxLength(maxLength));
   }
-  if (classPattern.length > MATCH_EVERYTHING_REGEX.length) {
+  // only add validator if a class pattern was specified
+  if (classPattern !== MATCH_EVERYTHING_REGEX) {
     validators.push(Validators.pattern(classPattern));
   }
   if ((<DaffFormsPasswordValidatorComboConfig>config).numClasses) {
