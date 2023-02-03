@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.51.1](https://github.com/graycoreio/daffodil/compare/v0.51.0...v0.51.1) (2023-02-03)
+
+
+### Features
+
+* **customer:** add mock address facade and export testing helpers ([#2333](https://github.com/graycoreio/daffodil/issues/2333)) ([2391938](https://github.com/graycoreio/daffodil/commit/23919383bde0bd3da4325d2bcdf544399ebf2a30))
+
 ## [0.51.0](https://github.com/graycoreio/daffodil/compare/v0.50.0...v0.51.0) (2023-02-01)
 
 
