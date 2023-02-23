@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoDiscount } from '@daffodil/driver/magento';
-import { MagentoDiscountFactory } from '@daffodil/driver/magento/testing';
+import {
+  MagentoDiscountFactory,
+  MagentoMoneyFactory,
+} from '@daffodil/driver/magento/testing';
 import {
   MagentoOrderItem,
   MagentoOrderItemType,
@@ -11,7 +14,7 @@ import {
 } from '@daffodil/order/driver/magento/2.4.1';
 
 export class MockOrderItem implements MagentoOrderItem {
-  __typename: 'OrderItem' = 'OrderItem';
+  __typename = MagentoOrderItemTypenames.OrderItem;
   quantity_canceled = faker.datatype.number({ min: 1, max: 1000 });
   quantity_invoiced = faker.datatype.number({ min: 1, max: 1000 });
   quantity_ordered = faker.datatype.number({ min: 1, max: 1000 });
@@ -23,13 +26,14 @@ export class MockOrderItem implements MagentoOrderItem {
   selected_options = [];
   entered_options = [];
   status = faker.random.word();
-  product_sale_price = faker.datatype.number({ min: 1, max: 1000 });
+  product_sale_price = this.moneyFactory.create();
   product_name = faker.random.word();
   product_url_key = faker.random.word();
   discounts = this.createDiscounts();
 
   constructor(
     private discountFactory: MagentoDiscountFactory,
+    private moneyFactory: MagentoMoneyFactory,
   ) {}
 
   private createDiscounts(): MagentoDiscount[] {
@@ -43,7 +47,8 @@ export class MockOrderItem implements MagentoOrderItem {
 export class MagentoOrderItemFactory extends DaffModelFactory<MagentoOrderItem> {
   constructor(
     discountFactory: MagentoDiscountFactory,
+    moneyFactory: MagentoMoneyFactory,
   ) {
-    super(MockOrderItem, discountFactory);
+    super(MockOrderItem, discountFactory, moneyFactory);
   }
 }

@@ -70,9 +70,11 @@ describe('@daffodil/customer/driver/magento | DaffCustomerMagentoAddressService'
     magentoCustomerAddressFactory = TestBed.inject(MagentoCustomerAddressFactory);
     addressFactory = TestBed.inject(DaffCustomerAddressFactory);
 
-    mockAddress = addressFactory.create();
     mockMagentoAddress = magentoCustomerAddressFactory.create();
     addressId = String(mockMagentoAddress.id);
+    mockAddress = addressFactory.create({
+      id: addressId,
+    });
     mockGetAddressesResponse = {
       customer: {
         addresses: [mockMagentoAddress],

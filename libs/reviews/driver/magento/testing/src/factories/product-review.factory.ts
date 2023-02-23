@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
@@ -14,7 +14,7 @@ export class MockMagentoProductReview implements MagentoProductReview {
   summary = faker.random.words(5);
   text = faker.random.words(15);
   average_rating = faker.datatype.number({ min: 0, max: 100 });
-  created_at = faker.date.past();
+  created_at = faker.date.past().toISOString();
   nickname = faker.name.firstName();
   ratings_breakdown = this.createRatings();
 

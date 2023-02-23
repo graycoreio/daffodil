@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffOrderAddress } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';
@@ -26,7 +26,7 @@ export class MockOrderAddress implements DaffOrderAddress {
   city = 'city';
   state = 'state';
   region = 'region';
-  region_id = faker.datatype.number({ min: 1, max: 1000 });
+  region_id = faker.datatype.uuid();
   postcode = 'postcode';
   country_id = 'ISO';
   telephone = 'telephone';

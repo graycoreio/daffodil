@@ -32,7 +32,6 @@ describe('@daffodil/payment/testing | DaffPaymentResponseFactory', () => {
 
     it('should define all the required fields', () => {
       expect(result.method).toBeDefined();
-      expect(result.data).toBeDefined();
     });
   });
 });

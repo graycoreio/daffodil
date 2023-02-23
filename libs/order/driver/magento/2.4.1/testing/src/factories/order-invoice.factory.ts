@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoOrderInvoice } from '@daffodil/order/driver/magento/2.4.1';
@@ -10,7 +10,9 @@ import { MagentoOrderTotalFactory } from './order-total.factory';
 export class MockOrderInvoice implements MagentoOrderInvoice {
   __typename: 'Invoice' = 'Invoice';
   items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  total = this.totalFactory.create();
+  total = this.totalFactory.create({
+    __typename: 'InvoiceTotal',
+  });
 
   constructor(
     private itemFactory: MagentoOrderInvoiceItemFactory,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import {
   MagentoCartItemTypeEnum,
@@ -13,13 +13,13 @@ export class MockMagentoBundleCartItem extends MockMagentoCartItem implements Ma
   __typename = MagentoCartItemTypeEnum.Bundle;
   bundle_options = [
     {
-      id: faker.datatype.uuid(),
+      id: faker.unique(faker.datatype.number),
       type: 'radio',
       label: faker.random.word(),
       price: faker.datatype.number({ min: 1, max: 99 }),
       quantity: 1,
       values: [{
-        id: faker.datatype.uuid(),
+        id: faker.unique(faker.datatype.number),
         label: faker.random.word(),
         price: faker.datatype.number({ min: 1, max: 99 }),
         quantity: 1,

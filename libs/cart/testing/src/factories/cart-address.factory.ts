@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartAddress implements DaffCartAddress {
-  id = faker.datatype.number({ min: 1, max: 1000 });
+  id = faker.datatype.uuid();
   address_type = 'apartment';
   email = 'email@email.com';
   prefix = 'prefix';

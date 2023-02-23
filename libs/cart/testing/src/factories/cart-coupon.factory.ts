@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffCartCoupon } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffCartCoupon implements DaffCartCoupon {
-  id = faker.datatype.number({ min: 1, max: 1000 });
+  id = faker.datatype.uuid();
   coupon_id = this.id;
   code = faker.random.alphaNumeric(20);
   description = faker.random.words(5);
