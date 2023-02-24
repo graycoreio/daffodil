@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffIdentifiable } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffPersonalAddress } from '@daffodil/geography';
 import {
@@ -22,7 +23,7 @@ export enum DaffPaymentActionTypes {
  */
 export interface DaffPaymentGenerateToken<T extends DaffPaymentRequest = DaffPaymentRequest> extends Action {
   readonly request: T;
-  readonly address?: DaffPersonalAddress;
+  readonly address?: DaffPersonalAddress | DaffIdentifiable;
 }
 
 /**

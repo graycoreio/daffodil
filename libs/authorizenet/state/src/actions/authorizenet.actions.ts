@@ -5,6 +5,7 @@ import {
   DaffAuthorizeNetTokenRequest,
 } from '@daffodil/authorizenet';
 import { DaffCartAddress } from '@daffodil/cart';
+import { DaffIdentifiable } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffPersonalAddress } from '@daffodil/geography';
 import { DaffPaymentGenerateToken } from '@daffodil/payment/state';
@@ -81,7 +82,7 @@ export class DaffAuthorizenetApplyPayment implements DaffPaymentGenerateToken<Da
 
   constructor(
     public request: DaffAuthorizenetPaymentRequest,
-    public address?: DaffPersonalAddress,
+    public address?: DaffPersonalAddress | DaffIdentifiable,
   ) {};
 }
 
