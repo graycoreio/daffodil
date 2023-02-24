@@ -5,8 +5,14 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 
-import { DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS } from '../../injection-tokens/public_api';
-import { DaffCartMagentoCartItemTransform } from '../../interfaces/public_api';
+import {
+  DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS,
+  DAFF_CART_MAGENTO_CART_TRANSFORMS,
+} from '../../injection-tokens/public_api';
+import {
+  DaffCartMagentoCartItemTransform,
+  DaffCartMagentoCartTransform,
+} from '../../interfaces/public_api';
 import { MagentoCart } from '../../models/responses/cart';
 import { DaffMagentoBillingAddressTransformer } from './billing-address.service';
 import { daffMagentoCouponTransform } from './cart-coupon';
@@ -34,6 +40,7 @@ export class DaffMagentoCartTransformer {
     private shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
     private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
     @Inject(DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS) private cartItemTransforms: DaffCartMagentoCartItemTransform[],
+    @Inject(DAFF_CART_MAGENTO_CART_TRANSFORMS) private cartTransforms: DaffCartMagentoCartTransform[],
   ) {}
 
   private transformShippingAddress(cart: MagentoCart): {shipping_address: DaffCart['shipping_address']} {
@@ -121,21 +128,24 @@ export class DaffMagentoCartTransformer {
    * @param cart the cart from a magento cart query.
    */
   transform(cart: MagentoCart): DaffCart {
-    return cart ? {
-      extra_attributes: cart,
+    return cart ? this.cartTransforms.reduce(
+      (daffCart, transform) => transform(daffCart, cart),
+      {
+        extra_attributes: cart,
 
-      ...this.transformCartItems(cart),
-      ...this.transformBillingAddress(cart),
-      ...this.transformShippingAddress(cart),
-      ...this.transformCoupons(cart),
-      ...this.transformPayment(cart),
-      ...this.transformTotals(cart),
-      ...transformCartTotals(cart),
-      ...this.transformShippingInformation(cart),
-      ...this.transformShippingMethods(cart),
-      ...this.transformPaymentMethods(cart),
+        ...this.transformCartItems(cart),
+        ...this.transformBillingAddress(cart),
+        ...this.transformShippingAddress(cart),
+        ...this.transformCoupons(cart),
+        ...this.transformPayment(cart),
+        ...this.transformTotals(cart),
+        ...transformCartTotals(cart),
+        ...this.transformShippingInformation(cart),
+        ...this.transformShippingMethods(cart),
+        ...this.transformPaymentMethods(cart),
 
-      id: cart.id,
-    } : null;
+        id: cart.id,
+      },
+    ) : null;
   }
 }
