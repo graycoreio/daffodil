@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import {
   DaffCartItem,
@@ -21,10 +21,10 @@ export class DaffMockCartItem implements DaffCartItem {
   name = 'Product Name';
   url = `/${faker.internet.domainWord()}.html`;
   qty = faker.datatype.number({ min: 1, max: 100 });
-  price = faker.datatype.number({ min: 1, max: 1500 });
+  price = faker.datatype.number({ min: 10, max: 1500 });
   row_total = this.qty * this.price;
   in_stock = true;
-  _numberOfDiscounts = faker.datatype.number({ min: 0, max: 2 });
+  _numberOfDiscounts = faker.datatype.number({ min: 1, max: 2 });
   discounts = this._discounts(this._numberOfDiscounts, Math.floor(this.price / this._numberOfDiscounts));
 
   private _discounts(number = 2, max = 100): DaffCartItemDiscount[] {

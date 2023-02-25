@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoCustomerOrder } from '@daffodil/customer-order/driver/magento';
@@ -22,7 +22,9 @@ export class MockMagentoCustomerOrder implements MagentoCustomerOrder {
   carrier = faker.random.word();
   number = faker.datatype.uuid();
   shipping_method = faker.random.word();
-  total = this.totalFactory.create();
+  total = this.totalFactory.create({
+    __typename: 'OrderTotal',
+  });
   items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
   billing_address = this.addressFactory.create();
   shipping_address = this.addressFactory.create();

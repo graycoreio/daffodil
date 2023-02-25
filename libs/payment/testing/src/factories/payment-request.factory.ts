@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffPaymentRequest } from '@daffodil/payment';
@@ -9,7 +9,6 @@ import { DaffPaymentRequest } from '@daffodil/payment';
  */
 export class MockPaymentRequest implements DaffPaymentRequest {
   kind = faker.random.word();
-  data = faker.random.word();
 };
 
 /**

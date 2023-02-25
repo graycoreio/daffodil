@@ -30,6 +30,7 @@ import {
   MagentoOrderInvoiceItem,
   MagentoOrderBundleItem,
   MagentoOrderItemType,
+  MagentoOrderItemTypenames,
 } from '@daffodil/order/driver/magento/2.4.1';
 import {
   DaffOrderFactory,
@@ -225,7 +226,7 @@ export class MagentoOrderTestDataFactory {
     mockDaffOrderConfigurableItem.order_id = mockDaffOrder.id;
 
     const mockMagentoOrderSimpleItem: MagentoOrderItem = {
-      __typename: 'OrderItem',
+      __typename: MagentoOrderItemTypenames.OrderItem,
       selected_options: [],
       entered_options: [],
       status: null,
@@ -255,7 +256,7 @@ export class MagentoOrderTestDataFactory {
       }],
     };
     const mockMagentoOrderBundleItem: MagentoOrderBundleItem = {
-      __typename: 'BundleOrderItem',
+      __typename: MagentoOrderItemTypenames.BundleOrderItem,
       selected_options: [],
       entered_options: [],
       bundle_options: mockDaffOrderCompositeItem.options.map(a => ({
@@ -299,7 +300,7 @@ export class MagentoOrderTestDataFactory {
       }],
     };
     const mockMagentoOrderConfigurableItem: MagentoOrderItem = {
-      __typename: 'OrderItem',
+      __typename: MagentoOrderItemTypenames.OrderItem,
       selected_options: mockDaffOrderConfigurableItem.attributes.map(a => ({
         __typename: 'OrderItemOption',
         label: a.attribute_label,

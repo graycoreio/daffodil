@@ -9,11 +9,12 @@ export enum MagentoOrderItemType {
   Bundle = 'bundle'
 };
 
-export type MagentoOrderItemTypenames =
-  'OrderItem' |
-  'BundleOrderItem' |
-  'GiftCardOrderItem' |
-  'DownloadableOrderItem';
+export enum MagentoOrderItemTypenames {
+  OrderItem = 'OrderItem',
+  BundleOrderItem = 'BundleOrderItem',
+  GiftCardOrderItem = 'GiftCardOrderItem',
+  DownloadableOrderItem = 'DownloadableOrderItem'
+}
 
 export interface MagentoOrderItemOption {
   __typename?: string;

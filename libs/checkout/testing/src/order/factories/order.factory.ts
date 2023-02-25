@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffOrder } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';
@@ -8,7 +8,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * @deprecated
  */
 export class MockOrder implements DaffOrder {
-  id = faker.datatype.uuid();
+  id = faker.unique(faker.datatype.number);
   created_at = new Date();
   updated_at = new Date();
   store_to_base_rate = faker.datatype.number({ min: 1, max: 1000 });

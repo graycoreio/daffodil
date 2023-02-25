@@ -28,6 +28,6 @@ describe('@daffodil/customer/driver/magento | magentoCustomerTransform', () => {
   });
 
   it('should transform addresses', () => {
-    expect(result.addresses).toEqual(mockCustomer.addresses.map(({ id }) => jasmine.objectContaining({ id })));
+    expect(result.addresses).toEqual(mockCustomer.addresses.map(({ id }) => jasmine.objectContaining({ id: String(id) })));
   });
 });

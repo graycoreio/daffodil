@@ -2,7 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 import {
   Observable,
   of,

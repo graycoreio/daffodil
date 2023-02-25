@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoDiscountFactory } from '@daffodil/driver/magento/testing';
+import {
+  MagentoDiscountFactory,
+  MagentoMoneyFactory,
+} from '@daffodil/driver/magento/testing';
 import {
   MagentoOrderBundleItem,
   MagentoOrderItemType,
+  MagentoOrderItemTypenames,
 } from '@daffodil/order/driver/magento/2.4.1';
 
 import { MagentoOrderBundleItemSelectedOptionFactory } from './bundle-order-item-option.factory';
 import { MockOrderItem } from './order-item.factory';
 
 export class MockBundleOrderItem extends MockOrderItem implements MagentoOrderBundleItem {
+  __typename = MagentoOrderItemTypenames.BundleOrderItem;
   type = MagentoOrderItemType.Bundle;
   bundle_options = this.optionFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
 
   constructor(
     private optionFactory: MagentoOrderBundleItemSelectedOptionFactory,
     discountFactory: MagentoDiscountFactory,
+    moneyFactory: MagentoMoneyFactory,
   ) {
-    super(discountFactory);
+    super(discountFactory, moneyFactory);
   }
 }
 
@@ -30,7 +36,8 @@ export class MagentoOrderBundleItemFactory extends DaffModelFactory<MagentoOrder
   constructor(
     optionFactory: MagentoOrderBundleItemSelectedOptionFactory,
     discountFactory: MagentoDiscountFactory,
+    moneyFactory: MagentoMoneyFactory,
   ) {
-    super(MockBundleOrderItem, optionFactory, discountFactory);
+    super(MockBundleOrderItem, optionFactory, discountFactory, moneyFactory);
   }
 }

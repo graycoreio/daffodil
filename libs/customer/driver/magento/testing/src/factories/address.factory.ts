@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import * as faker from '@faker-js/faker/locale/en_US';
+import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoCustomerAddress } from '@daffodil/customer/driver/magento';
 
 export class MockMagentoCustomerAddress implements MagentoCustomerAddress {
   __typename = 'CustomerAddress';
-  id = faker.datatype.uuid();
+  id = faker.unique(faker.datatype.number);
   region = {
     __typename: 'CustomerAddressRegion',
     region_code: faker.address.stateAbbr(),

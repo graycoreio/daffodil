@@ -1,54 +1,61 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCustomerFactory } from '@daffodil/customer/testing';
+import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 
-import { DaffCustomerTestingDriver } from './customer.service';
+import { DaffCustomerAddressTestingDriver } from './address.service';
 
-describe('@daffodil/driver/testing | DaffCustomerTestingDriver', () => {
-  let service: DaffCustomerTestingDriver;
-  let customerFactory: DaffCustomerFactory;
+describe('@daffodil/customer/driver/testing | DaffCustomerAddressTestingDriver', () => {
+  let service: DaffCustomerAddressTestingDriver;
+  let customerFactory: DaffCustomerAddressFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffCustomerTestingDriver,
+        DaffCustomerAddressTestingDriver,
       ],
     });
 
-    service = TestBed.inject(DaffCustomerTestingDriver);
-    customerFactory = TestBed.inject(DaffCustomerFactory);
+    service = TestBed.inject(DaffCustomerAddressTestingDriver);
+    customerFactory = TestBed.inject(DaffCustomerAddressFactory);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
+  describe('list', () => {
+    it('should return a list of DaffCustomerAddress', () => {
+      const expected = cold('(a|)', { a: jasmine.arrayContaining([jasmine.objectContaining({ id: jasmine.anything(), street: jasmine.anything() })]) });
+      expect(service.list()).toBeObservable(expected);
+    });
+  });
+
   describe('get', () => {
-    it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.get()).toBeObservable(expected);
+    it('should return a DaffCustomerAddress', () => {
+      const expected = cold('(a|)', { a: jasmine.anything() });
+      expect(service.get('id')).toBeObservable(expected);
     });
   });
 
   describe('update', () => {
-    it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+    it('should return a DaffCustomerAddress', () => {
+      const expected = cold('(a|)', { a: jasmine.anything() });
       expect(service.update(customerFactory.create())).toBeObservable(expected);
     });
   });
 
-  describe('changePassword', () => {
+  describe('add', () => {
     it('should return', () => {
-      const expected = cold('(a|)', { a: undefined });
-      expect(service.changePassword('old', 'new')).toBeObservable(expected);
+      const expected = cold('(a|)', { a: jasmine.anything() });
+      expect(service.add(customerFactory.create())).toBeObservable(expected);
     });
   });
 
-  describe('changeEmail', () => {
-    it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.changeEmail('email', 'password')).toBeObservable(expected);
+  describe('delete', () => {
+    it('should return a DaffCustomerAddress', () => {
+      const expected = cold('(a|)', { a: jasmine.anything() });
+      expect(service.delete('id')).toBeObservable(expected);
     });
   });
 });
