@@ -17,7 +17,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/analytics/ng-package.prod.json",
               "tsConfig": "libs/analytics/tsconfig.lib.prod.json"
             }
           }
@@ -56,7 +55,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/analytics-provider-data-layer/ng-package.prod.json",
               "tsConfig": "libs/analytics-provider-data-layer/tsconfig.lib.prod.json"
             }
           }
@@ -303,7 +301,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/authorizenet/ng-package.prod.json",
               "tsConfig": "libs/authorizenet/tsconfig.lib.prod.json"
             }
           }
@@ -342,7 +339,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/product/ng-package.prod.json",
               "tsConfig": "libs/product/tsconfig.lib.prod.json"
             }
           }
@@ -381,7 +377,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/related-products/ng-package.prod.json",
               "tsConfig": "libs/related-products/tsconfig.lib.prod.json"
             }
           }
@@ -420,7 +415,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/upsell-products/ng-package.prod.json",
               "tsConfig": "libs/upsell-products/tsconfig.lib.prod.json"
             }
           }
@@ -459,7 +453,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/product-configurable/ng-package.prod.json",
               "tsConfig": "libs/product-configurable/tsconfig.lib.prod.json"
             }
           }
@@ -498,7 +491,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/product-composite/ng-package.prod.json",
               "tsConfig": "libs/product-composite/tsconfig.lib.prod.json"
             }
           }
@@ -537,7 +529,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/cart/ng-package.prod.json",
               "tsConfig": "libs/cart/tsconfig.lib.prod.json"
             }
           }
@@ -576,7 +567,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/cart-customer/ng-package.prod.json",
               "tsConfig": "libs/cart-customer/tsconfig.lib.prod.json"
             }
           }
@@ -615,7 +605,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/category/ng-package.prod.json",
               "tsConfig": "libs/category/tsconfig.lib.prod.json"
             }
           }
@@ -654,7 +643,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/checkout/ng-package.prod.json",
               "tsConfig": "libs/checkout/tsconfig.lib.prod.json"
             }
           }
@@ -693,7 +681,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/core/ng-package.prod.json",
               "tsConfig": "libs/core/tsconfig.lib.prod.json"
             }
           }
@@ -732,7 +719,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/driver/ng-package.prod.json",
               "tsConfig": "libs/driver/tsconfig.lib.prod.json"
             }
           }
@@ -1280,7 +1266,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/theme-switch/ng-package.prod.json",
               "tsConfig": "libs/theme-switch/tsconfig.lib.prod.json"
             }
           }
@@ -1319,7 +1304,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/navigation/ng-package.prod.json",
               "tsConfig": "libs/navigation/tsconfig.lib.prod.json"
             }
           }
@@ -1358,7 +1342,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/newsletter/ng-package.prod.json",
               "tsConfig": "libs/newsletter/tsconfig.lib.prod.json"
             }
           }
@@ -1397,7 +1380,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/contact/ng-package.prod.json",
               "tsConfig": "libs/contact/tsconfig.lib.prod.json"
             }
           }
@@ -1436,7 +1418,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/auth/ng-package.prod.json",
               "tsConfig": "libs/auth/tsconfig.lib.prod.json"
             }
           }
@@ -1475,7 +1456,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/geography/ng-package.prod.json",
               "tsConfig": "libs/geography/tsconfig.lib.prod.json"
             }
           }
@@ -1514,7 +1494,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/paypal/ng-package.prod.json",
               "tsConfig": "libs/paypal/tsconfig.lib.prod.json"
             }
           }
@@ -1552,7 +1531,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/order/ng-package.prod.json",
               "tsConfig": "libs/order/tsconfig.lib.prod.json"
             }
           }
@@ -1591,7 +1569,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/external-router/ng-package.prod.json",
               "tsConfig": "libs/external-router/tsconfig.lib.prod.json"
             }
           }
@@ -1629,7 +1606,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/search/ng-package.prod.json",
               "tsConfig": "libs/search/tsconfig.lib.prod.json"
             }
           }
@@ -1667,7 +1643,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/search-product/ng-package.prod.json",
               "tsConfig": "libs/search-product/tsconfig.lib.prod.json"
             }
           }
@@ -1705,7 +1680,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/search-product-composite/ng-package.prod.json",
               "tsConfig": "libs/search-product-composite/tsconfig.lib.prod.json"
             }
           }
@@ -1743,7 +1717,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/search-product-configurable/ng-package.prod.json",
               "tsConfig": "libs/search-product-configurable/tsconfig.lib.prod.json"
             }
           }
@@ -1781,7 +1754,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/search-category/ng-package.prod.json",
               "tsConfig": "libs/search-category/tsconfig.lib.prod.json"
             }
           }
@@ -1819,7 +1791,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/seo/ng-package.prod.json",
               "tsConfig": "libs/seo/tsconfig.lib.prod.json"
             }
           }
@@ -1857,7 +1828,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/content/ng-package.prod.json",
               "tsConfig": "libs/content/tsconfig.lib.prod.json"
             }
           }
@@ -1895,7 +1865,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/reviews/ng-package.prod.json",
               "tsConfig": "libs/reviews/tsconfig.lib.prod.json"
             }
           }
@@ -1933,7 +1902,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/payment/ng-package.prod.json",
               "tsConfig": "libs/payment/tsconfig.lib.prod.json"
             }
           }
@@ -1971,7 +1939,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/forms/ng-package.prod.json",
               "tsConfig": "libs/forms/tsconfig.lib.prod.json"
             }
           }
@@ -2009,7 +1976,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/customer/ng-package.prod.json",
               "tsConfig": "libs/customer/tsconfig.lib.prod.json"
             }
           }
@@ -2048,7 +2014,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/customer-auth/ng-package.prod.json",
               "tsConfig": "libs/customer-auth/tsconfig.lib.prod.json"
             }
           }
@@ -2086,7 +2051,6 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/customer-order/ng-package.prod.json",
               "tsConfig": "libs/customer-order/tsconfig.lib.prod.json"
             }
           }
