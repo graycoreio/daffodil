@@ -7,6 +7,7 @@ export const MAGENTO_GET_CUSTOMER_ORDER_QUERY_NAME = 'MagentoGetCustomerOrder';
 export const getCustomerOrder = gql`
   query ${MAGENTO_GET_CUSTOMER_ORDER_QUERY_NAME}($id: String!) {
     customer {
+      email
       orders(filter: {number: {eq: $id}}) {
         items {
           ...magentoCustomerOrder

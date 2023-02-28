@@ -217,6 +217,7 @@ export class MagentoOrderTestDataFactory {
       credits: [mockDaffOrderInvoice],
       customer_id: null,
       updated_at: null,
+      email: mockDaffOrderAddress.email,
     });
     mockDaffOrder.id = mockDaffOrder.id;
     mockDaffOrderAddress.order_id = mockDaffOrder.id;
@@ -487,7 +488,7 @@ export class MagentoOrderTestDataFactory {
       order_date: mockDaffOrder.created_at,
       carrier: mockDaffOrderShipment.carrier,
       shipping_method: mockDaffOrderShipment.method,
-      email: mockDaffOrderAddress.email,
+      email: mockDaffOrder.email,
       total: {
         __typename: 'OrderTotal',
         grand_total: {

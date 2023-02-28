@@ -74,7 +74,7 @@ export class DaffCustomerOrderMagentoService implements DaffOrderServiceInterfac
         },
       }).pipe(
         map(validateGetCustomerOrderResponse),
-        map(result => daffMagentoCustomerOrderTransformOrder(result.data.customer.orders.items[0])),
+        map(result => daffMagentoCustomerOrderTransformOrder(result.data.customer.orders.items[0], result.data.customer.email)),
         catchError(err => throwError(() => transformMagentoReviewsError(err))),
       )
       : this.guestDriver.get(orderId, cartId);

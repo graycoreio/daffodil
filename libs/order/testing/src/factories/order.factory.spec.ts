@@ -30,6 +30,7 @@ describe('@daffodil/order/testing | DaffOrderFactory', () => {
 
     it('should return a Order', () => {
       expect(result).toBeDefined();
+      expect(result.email).toBeDefined();
     });
 
     it('should have items', () => {
