@@ -9,7 +9,7 @@ import { MagentoGetCustomerOrdersResponse } from '../../models/public_api';
 import { daffMagentoCustomerOrderTransformOrder } from './order';
 
 export function magentoCustomerOrderCollectionTransform(response: MagentoGetCustomerOrdersResponse): DaffOrderCollection {
-  const orders = response.customer.orders.items.map(daffMagentoCustomerOrderTransformOrder);
+  const orders = response.customer.orders.items.map((order) => daffMagentoCustomerOrderTransformOrder(order, response.customer.email));
   return {
     data: daffIdentifiableArrayToDict(orders),
     metadata: {

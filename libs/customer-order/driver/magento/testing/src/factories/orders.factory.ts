@@ -17,12 +17,12 @@ export class MockMagentoCustomerOrders implements MagentoCustomerOrders {
   total_count = this.items.length;
 
   constructor(
-    protected reviewFactory: MagentoCustomerOrderFactory,
+    protected orderFactory: MagentoCustomerOrderFactory,
     protected pageInfoFactory: MagentoSearchResultPageInfoFactory,
   ) {}
 
   private createReviews(): MagentoCustomerOrder[] {
-    return this.reviewFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
+    return this.orderFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
   }
 
   private createPageInfo(): MagentoSearchResultPageInfo {
@@ -35,9 +35,9 @@ export class MockMagentoCustomerOrders implements MagentoCustomerOrders {
 })
 export class MagentoCustomerOrdersFactory extends DaffModelFactory<MagentoCustomerOrders> {
   constructor(
-    reviewFactory: MagentoCustomerOrderFactory,
+    orderFactory: MagentoCustomerOrderFactory,
     pageInfoFactory: MagentoSearchResultPageInfoFactory,
   ) {
-    super(MockMagentoCustomerOrders, reviewFactory, pageInfoFactory);
+    super(MockMagentoCustomerOrders, orderFactory, pageInfoFactory);
   }
 }

@@ -182,6 +182,7 @@ export function daffMagentoTransformOrder(order: MagentoGraycoreOrder): DaffOrde
     extra_attributes: order,
 
     id: String(order.order_number),
+    email: order.billing_address?.email,
     customer_id: String(order.customer_id),
     created_at: order.created_at,
     updated_at: order.updated_at,

@@ -19,6 +19,7 @@ import { DaffOrderTotalFactory } from './order-total.factory';
 export class MockOrder implements DaffOrder {
   id = faker.datatype.uuid();
   customer_id = faker.datatype.uuid();
+  email = faker.internet.email();
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();
   status = faker.random.word();

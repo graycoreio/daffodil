@@ -17,6 +17,7 @@ describe('@daffodil/customer-order/driver/magento | validateGetCustomerOrdersRes
     response = {
       data: {
         customer: {
+          email: 'email',
           orders: ordersFactory.create(),
         },
       },

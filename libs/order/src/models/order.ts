@@ -14,6 +14,7 @@ import { DaffOrderTotal } from './order-total';
 
 export interface DaffOrder extends DaffIdentifiable {
   customer_id: ID;
+  email: string;
   created_at: string;
   updated_at: string;
   status: string;

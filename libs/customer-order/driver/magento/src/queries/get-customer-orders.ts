@@ -9,6 +9,7 @@ export const MAGENTO_GET_CUSTOMER_ORDERS_QUERY_NAME = 'MagentoGetCustomerOrders'
 export const getCustomerOrders = gql`
   query ${MAGENTO_GET_CUSTOMER_ORDERS_QUERY_NAME}($currentPage: Int, $pageSize: Int) {
     customer {
+      email
       orders(currentPage: $currentPage, pageSize: $pageSize) {
         items {
           ...magentoCustomerOrder

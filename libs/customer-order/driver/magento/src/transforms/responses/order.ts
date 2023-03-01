@@ -262,11 +262,12 @@ export function daffMagentoCustomerOrderTransformCredit(credit: MagentoOrderCred
 /**
  * Transforms the MagentoCustomerOrder from the magento order query into a DaffOrder.
  */
-export function daffMagentoCustomerOrderTransformOrder(order: MagentoCustomerOrder): DaffOrder {
+export function daffMagentoCustomerOrderTransformOrder(order: MagentoCustomerOrder, email: string): DaffOrder {
   return {
     extra_attributes: order,
 
     id: order.number,
+    email,
     customer_id: null,
     updated_at: null,
     created_at: order.order_date,
