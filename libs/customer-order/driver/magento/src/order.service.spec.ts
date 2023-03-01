@@ -70,11 +70,13 @@ describe('@daffodil/customer-order/driver/magento | DaffCustomerOrderMagentoServ
     mockMagentoOrder = mockMagentoOrders.items[0];
     mockGetOrdersResponse = {
       customer: {
+        email: 'email',
         orders: mockMagentoOrders,
       },
     };
     mockGetOrderResponse = {
       customer: {
+        email: 'email',
         orders: {
           items: [mockMagentoOrder],
         },

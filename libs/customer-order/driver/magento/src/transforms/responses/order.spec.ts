@@ -21,7 +21,7 @@ describe('@daffodil/customer-order/driver/magento | daffMagentoCustomerOrderTran
     let transformedOrder: DaffOrder;
 
     beforeEach(() => {
-      transformedOrder = daffMagentoCustomerOrderTransformOrder(mockMagentoOrder);
+      transformedOrder = daffMagentoCustomerOrderTransformOrder(mockMagentoOrder, 'email');
     });
 
     it('should return an object with the correct values', () => {
