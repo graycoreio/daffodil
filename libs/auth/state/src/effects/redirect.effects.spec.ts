@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import {
   DaffAuthComplete,
   DaffAuthLogoutSuccess,
+  DaffAuthRevoke,
   daffAuthStateDefaultConfig,
   provideDaffAuthStateConfig,
 } from '@daffodil/auth/state';
@@ -72,6 +73,19 @@ describe('@daffodil/auth/state | DaffAuthRedirectEffects', () => {
   describe('when DaffAuthLogoutSuccess is dispatched', () => {
     beforeEach(() => {
       actions$ = hot('--a', { a: new DaffAuthLogoutSuccess() });
+    });
+
+    it('should navigate to the login page', () => {
+      const expected = cold('---');
+
+      expect(effects.redirectAfterLogout$).toBeObservable(expected);
+      expect(routerNavigateSpy).toHaveBeenCalledWith(logoutRedirectUrl);
+    });
+  });
+
+  describe('when DaffAuthRevoke is dispatched', () => {
+    beforeEach(() => {
+      actions$ = hot('--a', { a: new DaffAuthRevoke() });
     });
 
     it('should navigate to the login page', () => {
