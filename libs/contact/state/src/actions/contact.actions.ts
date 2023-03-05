@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffContactRequest } from '@daffodil/contact/driver';
 import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffContactActionTypes {
@@ -11,13 +12,13 @@ export enum DaffContactActionTypes {
   ContactResetAction = '[Daff-Contact] Contact Reset Action',
 }
 
-export class DaffContactSubmit<T> implements Action {
+export class DaffContactSubmit<T extends DaffContactRequest = DaffContactRequest> implements Action {
   readonly type = DaffContactActionTypes.ContactSubmitAction;
 
   constructor(public payload: T) {}
 }
 
-export class DaffContactRetry<T> implements Action {
+export class DaffContactRetry<T extends DaffContactRequest = DaffContactRequest> implements Action {
   readonly type = DaffContactActionTypes.ContactRetryAction;
 
   constructor(public payload: T) {}
@@ -37,7 +38,7 @@ export class DaffContactReset implements Action {
   readonly type = DaffContactActionTypes.ContactResetAction;
 }
 
-export type DaffContactActions<T> =
+export type DaffContactActions<T extends DaffContactRequest> =
 	| DaffContactSubmit<T>
 	| DaffContactRetry<T>
 	| DaffContactFailedSubmit

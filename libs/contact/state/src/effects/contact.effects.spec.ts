@@ -1,15 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   hot,
   cold,
 } from 'jasmine-marbles';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { of } from 'rxjs';
 
-import { DaffContactUnion } from '@daffodil/contact';
 import { DaffContactDriver } from '@daffodil/contact/driver';
 import { DaffContactTestingDriverModule } from '@daffodil/contact/driver/testing';
 import {
@@ -23,8 +20,8 @@ import {
 import { DaffContactEffects } from './contact.effects';
 
 describe('DaffContactEffects', () => {
-  let actions$: Observable<any>;
-  let effects: DaffContactEffects<DaffContactUnion, any>;
+  let actions$: Actions;
+  let effects: DaffContactEffects;
   const mockForm = { firstName: 'John', lastName: 'Doe' };
   let daffContactDriver;
 
