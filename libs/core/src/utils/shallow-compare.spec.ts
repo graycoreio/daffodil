@@ -140,7 +140,6 @@ describe('@daffodil/core | shallowCompare', () => {
       type UserUnion = A | B;
       const exampleB: () => UserUnion = () => ({ b: '', c: '' });
       const exampleA: () => UserUnion = () => ({ a: '', c: '' });
-      shallowCompare(exampleB(), exampleA(), ['a','b']);
       expect(shallowCompare(exampleB(), exampleA(), ['a','b'])).toBe(false);
     });
   });
