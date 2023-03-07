@@ -3,7 +3,7 @@
  * `null` and `undefined` are considered equal for the purposes of the comparison.
  * A strict equality comparison is used for truthy property values.
  */
-export function shallowCompare<T, K extends keyof T = keyof T>(obj1: T, obj2: T, props: K[]): boolean {
+export function shallowCompare<T>(obj1: T, obj2: T, props: (T extends T ? keyof T: never)[]): boolean {
   return !!(obj1 && obj2 && props.reduce(
     (acc, prop) => {
       const p1 = obj1[prop];

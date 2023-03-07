@@ -132,4 +132,16 @@ describe('@daffodil/core | shallowCompare', () => {
       expect(result).toBeTrue();
     });
   });
+
+  describe('when the type is a union type', () => {
+    it('should compile without a type error for keys that may or may not be on the type', () => {
+      interface A { a?: string; c: string };
+      interface B { b?: string; c: string };
+      type UserUnion = A | B;
+      const exampleB: () => UserUnion = () => ({ b: '', c: '' });
+      const exampleA: () => UserUnion = () => ({ a: '', c: '' });
+      shallowCompare(exampleB(), exampleA(), ['a','b']);
+      expect(shallowCompare(exampleB(), exampleA(), ['a','b'])).toBe(false);
+    });
+  });
 });
