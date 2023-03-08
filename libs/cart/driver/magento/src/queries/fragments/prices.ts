@@ -1,33 +1,33 @@
 import { gql } from 'apollo-angular';
 
-import { moneyFragment } from './money';
+import { magentoMoneyFragment } from '@daffodil/driver/magento';
 
 export const pricesFragment = gql`
   fragment prices on CartPrices {
 		grand_total {
-			...money
+			...moneyFragment
 		}
 		subtotal_excluding_tax {
-			...money
+			...moneyFragment
 		}
 		subtotal_including_tax {
-			...money
+			...moneyFragment
 		}
 		subtotal_with_discount_excluding_tax {
-			...money
+			...moneyFragment
 		}
 		applied_taxes {
 			amount {
-				...money
+				...moneyFragment
 			}
 			label
 		}
 		discounts {
 			amount {
-				...money
+				...moneyFragment
 			}
 			label
 		}
 	}
-  ${moneyFragment}
+  ${magentoMoneyFragment}
 `;

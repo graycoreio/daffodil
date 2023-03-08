@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { moneyFragment } from './money';
+import { magentoMoneyFragment } from '@daffodil/driver/magento';
 
 export const availableShippingMethodFragment = gql`
   fragment availableShippingMethod on AvailableShippingMethod {
@@ -9,8 +9,8 @@ export const availableShippingMethodFragment = gql`
     carrier_title
     method_title
     amount {
-      ...money
+      ...moneyFragment
     }
   }
-  ${moneyFragment}
+  ${magentoMoneyFragment}
 `;
