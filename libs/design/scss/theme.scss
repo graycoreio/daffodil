@@ -32,6 +32,7 @@
 @use '../src/molecules/hero/hero-theme' as hero;
 @use '../src/molecules/list/list/list-theme' as list;
 @use '../src/molecules/media-gallery/media-gallery-theme' as media-gallery;
+@use '../src/molecules/menu/menu-theme' as menu;
 @use '../src/molecules/modal/modal-theme' as modal;
 @use '../src/molecules/navbar/navbar-theme' as navbar;
 @use '../src/molecules/paginator/paginator-theme' as paginator;
@@ -68,6 +69,7 @@
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
 	@include media-gallery.daff-media-gallery-theme($theme);
+	@include menu.daff-menu-theme($theme);
 	@include modal.daff-modal-theme($theme);
 	@include navbar.daff-navbar-theme($theme);
 	@include paginator.daff-paginator-theme($theme);

@@ -1,0 +1,12 @@
+@use '../../../scss/core';
+@use '../../../scss/theming';
+
+@mixin daff-menu-theme($theme) {
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+
+	.daff-menu {
+		background: $white;
+		box-shadow: 0 8px 12px rgb($black, 0.12);
+	}
+}
