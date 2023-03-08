@@ -1,4 +1,3 @@
-export { moneyFragment } from './money';
 export { cartCouponFragment } from './cart-coupon';
 export { cartAddressFragment } from './cart-address';
 export { cartItemFragment } from './cart-item';
