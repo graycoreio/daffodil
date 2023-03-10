@@ -27,16 +27,6 @@ export class DaffCustomerOrderMagentoDriverModule {
           provide: DaffOrderDriver,
           useExisting: DaffCustomerOrderMagentoService,
         },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: MAGENTO_GET_CUSTOMER_ORDER_QUERY_NAME,
-          multi: true,
-        },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: MAGENTO_GET_CUSTOMER_ORDERS_QUERY_NAME,
-          multi: true,
-        },
       ],
     };
   }
