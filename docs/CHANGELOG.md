@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.52.0](https://github.com/graycoreio/daffodil/compare/v0.51.1...v0.52.0) (2023-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart,driver:** renamed `moneyFragment` to `magentoMoneyFragment` and moved export to `@daffodil/driver/magento`
+* **customer-order,order:** `DaffOrder#email` is a new required field
+* Previously, we compiled in partial mode. With the advent of Angular 13 (our specified peer dep), we no longer support the view engine, as a result we can fix many build errors caused by NGCC as we no longer need to ngcc!
+
+### Features
+
+* **all:** upgrade faker to v6 ([#2339](https://github.com/graycoreio/daffodil/issues/2339)) ([a88ddda](https://github.com/graycoreio/daffodil/commit/a88dddabd7320de29682716c6e38e873d0204f14))
+* **authorizenet,payment:** allow for setting address by ID ([#2342](https://github.com/graycoreio/daffodil/issues/2342)) ([edc4c12](https://github.com/graycoreio/daffodil/commit/edc4c1250502d96b879a995d394bbd8b7dfbc2ac))
+* **authorizenet:** export Magento driver services ([#2340](https://github.com/graycoreio/daffodil/issues/2340)) ([428cf60](https://github.com/graycoreio/daffodil/commit/428cf60a67207bf415f6366b0de7bbb4ff714859))
+* **auth:** redirect to logout path for `DaffAuthRevoke` ([#2347](https://github.com/graycoreio/daffodil/issues/2347)) ([d696e73](https://github.com/graycoreio/daffodil/commit/d696e73cc5cd8792dbc80db6dc634027d82c2c85))
+* **cart,driver:** move magento money fragment to driver ([#2354](https://github.com/graycoreio/daffodil/issues/2354)) ([63541b2](https://github.com/graycoreio/daffodil/commit/63541b2bdc6871428dc84c2c3ecbfbe0794f4a00))
+* **cart:** add support for extra cart transforms in Magento driver ([#2343](https://github.com/graycoreio/daffodil/issues/2343)) ([3512894](https://github.com/graycoreio/daffodil/commit/351289448330c42f962e40fe94613d02ffe28bd1))
+* compile in "full" mode ([9e0469a](https://github.com/graycoreio/daffodil/commit/9e0469ac2313f963aa57d976876fc057070e33b3))
+* **core:** add reducers for clearing error when navigation completes ([#2335](https://github.com/graycoreio/daffodil/issues/2335)) ([ccd46cf](https://github.com/graycoreio/daffodil/commit/ccd46cfaf1aedf2494fe69db89401106dbf8b802))
+* **customer-order,order:** add `email` to `DaffOrder` ([#2346](https://github.com/graycoreio/daffodil/issues/2346)) ([8bc240f](https://github.com/graycoreio/daffodil/commit/8bc240feb99606f9d089263b1514b279e5e52ec5))
+* **customer-order:** send requests as POST ([#2356](https://github.com/graycoreio/daffodil/issues/2356)) ([91db7f7](https://github.com/graycoreio/daffodil/commit/91db7f7d8565d26d1fcb98ba95649165c9b089e6))
+* **customer:** send magento queries as POST ([#2336](https://github.com/graycoreio/daffodil/issues/2336)) ([d5eea7e](https://github.com/graycoreio/daffodil/commit/d5eea7ec27cad74a355f969835b8ed37956c099d))
+
 ### [0.51.1](https://github.com/graycoreio/daffodil/compare/v0.51.0...v0.51.1) (2023-02-03)
 
 
