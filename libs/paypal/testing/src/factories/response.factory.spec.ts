@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffPaypalPaymentResponse } from '@daffodil/paypal';
+import { DaffPaypalExpressPaymentResponse } from '@daffodil/paypal';
 
-import { DaffPaypalPaymentResponseFactory } from './response.factory';
+import { DaffPaypalExpressPaymentResponseFactory } from './response.factory';
 
-describe('@daffodil/paypal/testing | DaffPaypalPaymentResponseFactory', () => {
-  let paypalTokenResponseFactory: DaffPaypalPaymentResponseFactory;
+describe('@daffodil/paypal/testing | DaffPaypalExpressPaymentResponseFactory', () => {
+  let paypalTokenResponseFactory: DaffPaypalExpressPaymentResponseFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffPaypalPaymentResponseFactory],
+      providers: [DaffPaypalExpressPaymentResponseFactory],
     });
 
-    paypalTokenResponseFactory = TestBed.inject(DaffPaypalPaymentResponseFactory);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalExpressPaymentResponseFactory);
   });
 
   it('should be created', () => {
@@ -21,13 +21,13 @@ describe('@daffodil/paypal/testing | DaffPaypalPaymentResponseFactory', () => {
 
   describe('create', () => {
 
-    let result: DaffPaypalPaymentResponse;
+    let result: DaffPaypalExpressPaymentResponse;
 
     beforeEach(() => {
       result = paypalTokenResponseFactory.create();
     });
 
-    it('should return a DaffPaypalPaymentResponse with all required fields defined', () => {
+    it('should return a DaffPaypalExpressPaymentResponse with all required fields defined', () => {
       expect(result.method).toBeDefined();
       expect(result.data).toBeDefined();
     });

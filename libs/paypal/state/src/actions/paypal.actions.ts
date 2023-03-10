@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffPaymentGenerateToken } from '@daffodil/payment/state';
 import {
-  DaffPaypalPaymentRequest,
+  DaffPaypalExpressPaymentRequest,
   DaffPaypalExpressTokenRequest,
   DaffPaypalExpressTokenResponse,
 } from '@daffodil/paypal';
@@ -15,7 +15,7 @@ export enum DaffPaypalActionTypes {
   GeneratePaypalExpressTokenFailureAction = '[@daffodil/paypal] Generate Express Token Failure Action'
 }
 
-export class DaffPaypalApplyPayment<T extends DaffPaypalPaymentRequest = DaffPaypalPaymentRequest> implements DaffPaymentGenerateToken<T> {
+export class DaffPaypalApplyPayment<T extends DaffPaypalExpressPaymentRequest = DaffPaypalExpressPaymentRequest> implements DaffPaymentGenerateToken<T> {
   readonly type = DaffPaypalActionTypes.ApplyPaymentAction;
 
   constructor(public request: T) {}
