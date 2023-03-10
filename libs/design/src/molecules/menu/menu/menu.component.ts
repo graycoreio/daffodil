@@ -21,7 +21,7 @@ import { DaffMenuService } from '../service/menu.service';
 
 @Component({
   selector: 'daff-menu',
-  template: '<ng-content select="daff-menu-item"></ng-content>',
+  template: '<ng-content select="[daff-menu-item]"></ng-content>',
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
