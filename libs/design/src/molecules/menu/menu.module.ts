@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffMenuActivatorDirective } from './menu-activator/menu-activator.component';
-import { DaffMenuComponent } from './menu.component';
-import { DaffMenuService } from './menu.service';
+import { DaffMenuItemComponent } from './menu-item/menu-item.component';
+import { DaffMenuComponent } from './menu/menu.component';
+import { DaffMenuService } from './service/menu.service';
 
 @NgModule({
   imports: [
@@ -14,10 +15,12 @@ import { DaffMenuService } from './menu.service';
   declarations: [
     DaffMenuActivatorDirective,
     DaffMenuComponent,
+    DaffMenuItemComponent,
   ],
   exports: [
     DaffMenuActivatorDirective,
     DaffMenuComponent,
+    DaffMenuItemComponent,
   ],
   providers: [
     DaffMenuService,

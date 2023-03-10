@@ -4,9 +4,22 @@
 @mixin daff-menu-theme($theme) {
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 
 	.daff-menu {
-		background: $white;
+		background: $base;
 		box-shadow: 0 8px 12px rgb($black, 0.12);
+	}
+
+	.daff-menu-item {
+		background: $base;
+		color: $base-contrast;
+
+		&:hover,
+		&:focus {
+			background: theming.daff-illuminate($base, $gray, 1);
+		}
 	}
 }

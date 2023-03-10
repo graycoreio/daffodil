@@ -1,6 +1,6 @@
 import { getAnimationState } from './animation-state';
 
-describe('ShopMenuComponent | Animation State Calculation', () => {
+describe('DaffMenuComponent | Animation State Calculation', () => {
   it('should return `open` when passed true', () => {
     expect(getAnimationState(true)).toEqual('open');
   });

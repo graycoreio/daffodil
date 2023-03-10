@@ -1,11 +1,8 @@
 import { ComponentExample } from '@daffodil/design';
 
-import { MenuWithComponentComponent } from './menu-with-component/menu-with-component.component';
-import { MenuWithComponentModule } from './menu-with-component/menu-with-component.module';
-import { MenuWithTemplateComponent } from './menu-with-template/menu-with-template.component';
-import { MenuWithTemplateModule } from './menu-with-template/menu-with-template.module';
+import { BasicMenuComponent } from './basic-menu/basic-menu.component';
+import { BasicMenuComponentModule } from './basic-menu/basic-menu.module';
 
 export const MENU_EXAMPLES: ComponentExample[] = [
-  { component: MenuWithTemplateComponent, module: MenuWithTemplateModule },
-  { component: MenuWithComponentComponent, module: MenuWithComponentModule },
+  { component: BasicMenuComponent, module: BasicMenuComponentModule },
 ];

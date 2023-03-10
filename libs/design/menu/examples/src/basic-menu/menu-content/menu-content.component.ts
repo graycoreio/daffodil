@@ -2,6 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import {
+  faEnvelope,
+  faInfo,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -9,4 +14,8 @@ import {
   templateUrl: './menu-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuContentComponent {}
+export class MenuContentComponent {
+  faUser = faUser;
+  faInfo = faInfo;
+  faEnvelope = faEnvelope;
+}

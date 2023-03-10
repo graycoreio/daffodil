@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffButtonModule,
   DaffMenuModule,
-  DaffListModule,
 } from '@daffodil/design';
 
+import { BasicMenuComponent } from './basic-menu.component';
 import { MenuContentComponent } from './menu-content/menu-content.component';
-import { MenuWithComponentComponent } from './menu-with-component.component';
 
 @NgModule({
   declarations: [
-    MenuWithComponentComponent,
+    BasicMenuComponent,
     MenuContentComponent,
   ],
   exports: [
-    MenuWithComponentComponent,
+    BasicMenuComponent,
   ],
   imports: [
     DaffButtonModule,
     DaffMenuModule,
-    DaffListModule,
+    FontAwesomeModule,
   ],
 })
-export class MenuWithComponentModule { }
+export class BasicMenuComponentModule { }

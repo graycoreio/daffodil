@@ -7,7 +7,7 @@ import {
   AnimationTriggerMetadata,
 } from '@angular/animations';
 
-export const shopMenuAnimations: {
+export const daffMenuAnimations: {
   readonly fade: AnimationTriggerMetadata;
 } = {
   fade: trigger('fade', [

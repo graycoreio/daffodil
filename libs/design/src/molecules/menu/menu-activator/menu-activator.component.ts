@@ -14,7 +14,7 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import { DaffMenuService } from '../menu.service';
+import { DaffMenuService } from '../service/menu.service';
 
 @Directive({
   selector: '[daffMenuActivator]',

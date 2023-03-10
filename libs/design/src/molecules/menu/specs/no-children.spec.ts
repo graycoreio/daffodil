@@ -11,16 +11,13 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffListModule } from '../../list/list.module';
-import { DaffMenuComponent } from '../menu.component';
 import { DaffMenuModule } from '../menu.module';
+import { DaffMenuComponent } from '../menu/menu.component';
 
 @Component({ template: `
   <daff-menu>
-    <daff-nav-list>
-      <a id="focused" href="/test" daff-list-item>Test</a>
-      <a id="not-focused" href="/test" daff-list-item>Test 2</a>
-    </daff-nav-list>
+    <a href="/test" daff-menu-item id="focused">Test</a>
+    <button daff-menu-item id="not-focused">Test 2</button>
   </daff-menu>
 ` })
 class WrapperComponent {}
@@ -35,7 +32,6 @@ describe('DaffMenuComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffListModule,
         DaffMenuModule,
       ],
       declarations: [

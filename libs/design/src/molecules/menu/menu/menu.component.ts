@@ -16,18 +16,19 @@ import {
   fromEvent,
 } from 'rxjs';
 
-import { daffFocusableElementsSelector } from '../../core/focus/public_api';
-import { DaffMenuService } from './menu.service';
+import { daffFocusableElementsSelector } from '../../../core/focus/public_api';
+import { DaffMenuService } from '../service/menu.service';
 
 @Component({
   selector: 'daff-menu',
-  template: '<ng-content></ng-content>',
+  template: '<ng-content select="daff-menu-item"></ng-content>',
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   @HostBinding('class.daff-menu') class = true;
   @HostBinding('tabindex') tabindex = 0;
+  @HostBinding('attr.role') role = 'menu';
 
   private _focusTrap: ConfigurableFocusTrap;
 
@@ -77,4 +78,3 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
     }
   }
 }
-

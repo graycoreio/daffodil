@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import {
   Component,
   DebugElement,
@@ -11,8 +10,8 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffMenuComponent } from '../menu.component';
 import { DaffMenuModule } from '../menu.module';
+import { DaffMenuComponent } from '../menu/menu.component';
 
 @Component({ template: `
   <daff-menu></daff-menu>

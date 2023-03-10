@@ -7,10 +7,10 @@ import { MenuContentComponent } from './menu-content/menu-content.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'menu-with-component',
-  templateUrl: './menu-with-component.component.html',
+  selector: 'basic-menu',
+  templateUrl: './basic-menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuWithComponentComponent {
+export class BasicMenuComponent {
   public menu = MenuContentComponent;
 }
