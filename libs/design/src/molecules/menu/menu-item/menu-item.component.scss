@@ -1,0 +1,17 @@
+@use 'interactions';
+
+:host {
+	@include interactions.clickable();
+	display: block;
+	padding: 12px 16px;
+	border: none;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.daff-menu-item {
+	&__content {
+		display: flex;
+		gap: 8px;
+	}
+}
