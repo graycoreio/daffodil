@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.53.1](https://github.com/graycoreio/daffodil/compare/v0.53.0...v0.53.1) (2023-03-11)
+
+
+### Features
+
+* **all:** upgrade to faker v7 ([#2358](https://github.com/graycoreio/daffodil/issues/2358)) ([8f8e876](https://github.com/graycoreio/daffodil/commit/8f8e87668157f4a90b6d618c04352f6c4316bf65))
+* **design:** create menu component ([#2353](https://github.com/graycoreio/daffodil/issues/2353)) ([264a4df](https://github.com/graycoreio/daffodil/commit/264a4df5fbf963b29a3c3d64daf07c117fc1a9a2))
+
 ## [0.53.0](https://github.com/graycoreio/daffodil/compare/v0.52.0...v0.53.0) (2023-03-11)
 
 
