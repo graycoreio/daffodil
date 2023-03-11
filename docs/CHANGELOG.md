@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.53.0](https://github.com/graycoreio/daffodil/compare/v0.52.0...v0.53.0) (2023-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **paypal:** removes `DaffPaypalPaymentResponse` and `DaffPaypalPaymentRequest` types
+
+### Features
+
+* **paypal:** narrow paypal types to be specific to express ([#2357](https://github.com/graycoreio/daffodil/issues/2357)) ([3558c7a](https://github.com/graycoreio/daffodil/commit/3558c7a10e779da4d650dc4bad2642e77dd71dfe))
+
 ## [0.52.0](https://github.com/graycoreio/daffodil/compare/v0.51.1...v0.52.0) (2023-03-10)
 
 
