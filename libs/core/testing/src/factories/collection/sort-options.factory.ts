@@ -11,14 +11,14 @@ import { DaffSortOptionFactory } from './sort-option.factory';
 
 class MockDaffSortOptions implements DaffSortOptions {
   options = this.createOptions();
-  default = faker.random.arrayElement(this.options).value;
+  default = faker.helpers.arrayElement(this.options).value;
 
   constructor(
     private optionFactory: DaffSortOptionFactory,
   ) {}
 
   private createOptions(): DaffSortOption[] {
-    return this.optionFactory.createMany(faker.random.number({ min: 1, max: 5 }));
+    return this.optionFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
   }
 }
 

@@ -15,7 +15,7 @@ import { DaffFilterRequestFactory } from '../filters/public_api';
  */
 export class MockCollectionRequest implements DaffCollectionRequest {
   currentPage = faker.datatype.number({ min: 1, max: 100 });
-  appliedSortDirection = faker.random.arrayElement([DaffSortDirectionEnum.Ascending, DaffSortDirectionEnum.Descending]);
+  appliedSortDirection = faker.helpers.arrayElement([DaffSortDirectionEnum.Ascending, DaffSortDirectionEnum.Descending]);
   pageSize = faker.datatype.number({ min: 1, max: 100 });
   appliedSortOption = faker.random.word();
   filterRequests = this.createFilterRequests();
@@ -25,7 +25,7 @@ export class MockCollectionRequest implements DaffCollectionRequest {
   ) {}
 
   private createFilterRequests(): DaffFilterRequest[] {
-    return this.filterRequestFactory.createMany(faker.random.number({ min: 1, max: 5 }));
+    return this.filterRequestFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
   }
 }
 

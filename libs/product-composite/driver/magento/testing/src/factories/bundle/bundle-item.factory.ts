@@ -18,7 +18,7 @@ export class MockMagentoBundledProductItem implements MagentoBundledProductItem 
   title = faker.random.word();
   type = faker.random.word();
   options = this.createOptions();
-  option_id = faker.random.number({ min: 1, max: 9999 });
+  option_id = faker.datatype.number({ min: 1, max: 9999 });
 
   protected createOptions(): MagentoBundledProductItemOption[] {
 	  return this.optionFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));

@@ -12,8 +12,8 @@ import { DaffSortOptionsFactory } from './sort-options.factory';
 
 class MockDaffSortable implements DaffSortable {
   sortOptions = this.createOptions();
-  appliedSortOption = faker.random.arrayElement(this.sortOptions.options).value;
-  appliedSortDirection = faker.random.arrayElement([DaffSortDirectionEnum.Ascending, DaffSortDirectionEnum.Descending]);
+  appliedSortOption = faker.helpers.arrayElement(this.sortOptions.options).value;
+  appliedSortDirection = faker.helpers.arrayElement([DaffSortDirectionEnum.Ascending, DaffSortDirectionEnum.Descending]);
 
   constructor(
     private optionFactory: DaffSortOptionsFactory,

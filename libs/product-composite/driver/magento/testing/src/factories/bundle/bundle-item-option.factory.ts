@@ -15,7 +15,7 @@ export class MockMagentoBundledProductItemOption implements MagentoBundledProduc
   uid = faker.datatype.uuid();
   label = faker.random.word();
   quantity = faker.datatype.number({ min: 1, max: 20 });
-  is_default = faker.random.boolean();
+  is_default = faker.datatype.boolean();
   position = faker.datatype.number({ min: 1, max: 10 });
   product = this.createProduct();
 

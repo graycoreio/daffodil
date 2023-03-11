@@ -40,7 +40,7 @@ export class MockMagentoCartItem implements MagentoCartItem {
       thumbnail: {
         __typename: 'Thumbnail',
         label: faker.random.word(),
-        url: faker.random.image(),
+        url: faker.image.image(),
       },
       stock_status: MagentoProductStockStatusEnum.InStock,
     };
