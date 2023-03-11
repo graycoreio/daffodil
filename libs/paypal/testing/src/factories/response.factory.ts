@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffPaypalPaymentResponse } from '@daffodil/paypal';
+import { DaffPaypalExpressPaymentResponse } from '@daffodil/paypal';
 
 import { DaffPaypalExpressTokenResponseFactory } from './paypal-token-response.factory';
 
-export class MockDaffPaypalPaymentResponse implements DaffPaypalPaymentResponse {
+export class MockDaffPaypalExpressPaymentResponse implements DaffPaypalExpressPaymentResponse {
   method = faker.random.word();
   data = this.createData();
 
@@ -22,10 +22,10 @@ export class MockDaffPaypalPaymentResponse implements DaffPaypalPaymentResponse 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaypalPaymentResponseFactory extends DaffModelFactory<DaffPaypalPaymentResponse>{
+export class DaffPaypalExpressPaymentResponseFactory extends DaffModelFactory<DaffPaypalExpressPaymentResponse>{
   constructor(
     tokenResponseFactory: DaffPaypalExpressTokenResponseFactory,
   ) {
-    super(MockDaffPaypalPaymentResponse, tokenResponseFactory);
+    super(MockDaffPaypalExpressPaymentResponse, tokenResponseFactory);
   }
 }

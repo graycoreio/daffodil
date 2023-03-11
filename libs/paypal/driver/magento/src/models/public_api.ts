@@ -4,3 +4,4 @@ export { MagentoPaypalUrlsRequest } from './request/magento-paypal-urls';
 export { MagentoPaypalExpressToken } from './response/magento-paypal-express-token';
 export { MagentoPaypalTokenResponse } from './response/magento-paypal-token-response';
 export { MagentoPaypalUrlsResponse } from './response/magento-paypal-urls';
+export * from './response/payment-response.type';

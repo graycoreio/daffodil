@@ -1,12 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffPaypalExpressPaymentRequest } from '@daffodil/paypal';
+import { MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD } from '@daffodil/paypal/driver/magento';
 import { DaffPaypalExpressPaymentRequestFactory } from '@daffodil/paypal/testing';
 
-import {
-  DaffMagentoPaypalPaymentService,
-  MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD,
-} from './paypal-payment.service';
+import { DaffMagentoPaypalPaymentService } from './paypal-payment.service';
 
 describe('@daffodil/paypal/driver/magento | DaffMagentoPaypalPaymentService', () => {
   let service: DaffMagentoPaypalPaymentService;

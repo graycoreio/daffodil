@@ -4,13 +4,11 @@ import {
   of,
 } from 'rxjs';
 
-import {
-  DaffPaypalExpressPaymentRequest,
-  DaffPaypalExpressPaymentResponse,
-} from '@daffodil/paypal';
+import { DaffPaypalExpressPaymentRequest } from '@daffodil/paypal';
 import { DaffPaypalExpressPaymentServiceInterface } from '@daffodil/paypal/driver';
 
-export const MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD: DaffPaypalExpressPaymentResponse['method'] = 'paypal_express';
+import { MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD } from './constants/public_api';
+import { MagentoPaypalExpressPaymentResponse } from './models/public_api';
 
 /**
  * @inheritdoc
@@ -18,8 +16,8 @@ export const MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD: DaffPaypalExpressPaymentResp
 @Injectable({
   providedIn: 'any',
 })
-export class DaffMagentoPaypalPaymentService implements DaffPaypalExpressPaymentServiceInterface {
-  generateToken(request: DaffPaypalExpressPaymentRequest): Observable<DaffPaypalExpressPaymentResponse> {
+export class DaffMagentoPaypalPaymentService implements DaffPaypalExpressPaymentServiceInterface<DaffPaypalExpressPaymentRequest, MagentoPaypalExpressPaymentResponse> {
+  generateToken(request: DaffPaypalExpressPaymentRequest): Observable<MagentoPaypalExpressPaymentResponse> {
     return of({
       method: MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD,
       data: {
