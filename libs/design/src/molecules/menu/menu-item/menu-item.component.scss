@@ -3,15 +3,20 @@
 :host {
 	@include interactions.clickable();
 	display: block;
-	padding: 12px 16px;
 	border: none;
 	border-radius: 4px;
+	margin: 0;
+	padding: 12px 16px;
 	text-decoration: none;
+	width: 100%;
 }
 
 .daff-menu-item {
 	&__content {
 		display: flex;
 		gap: 8px;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		text-align: left;
 	}
 }
