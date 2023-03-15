@@ -12,7 +12,6 @@ import {
 } from './config/public_api';
 import { DaffAuthEffects } from './effects/auth.effects';
 import { DaffAuthLoginEffects } from './effects/login.effects';
-import { DaffAuthRedirectEffects } from './effects/redirect.effects';
 import { DaffAuthRegisterEffects } from './effects/register.effects';
 import { DaffAuthResetPasswordEffects } from './effects/reset-password.effects';
 import {
@@ -28,7 +27,6 @@ import {
       DaffAuthLoginEffects,
       DaffAuthRegisterEffects,
       DaffAuthResetPasswordEffects,
-      DaffAuthRedirectEffects,
     ]),
   ],
 })

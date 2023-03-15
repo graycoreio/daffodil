@@ -18,10 +18,11 @@ import {
   DaffAuthActionTypes,
   DaffAuthComplete,
   DaffAuthLoginActionTypes,
-} from '../actions/public_api';
+} from '@daffodil/auth/state';
+
 import {
-  DaffAuthStateConfig,
-  DAFF_AUTH_STATE_CONFIG,
+  DaffAuthRoutingConfig,
+  DAFF_AUTH_ROUTING_CONFIG,
 } from '../config/public_api';
 
 /**
@@ -32,7 +33,7 @@ export class DaffAuthRedirectEffects {
   constructor(
     private actions$: Actions,
     private router: Router,
-    @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
+    @Inject(DAFF_AUTH_ROUTING_CONFIG) private config: DaffAuthRoutingConfig,
   ) {}
 
   redirectAfterLoginOrRegister$ = createEffect(() => this.actions$.pipe(
