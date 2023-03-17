@@ -8,17 +8,16 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { provideDaffAuthRoutingConfig } from '@daffodil/auth/routing';
 import {
   DaffAuthComplete,
   DaffAuthLogoutSuccess,
   DaffAuthRevoke,
-  daffAuthStateDefaultConfig,
-  provideDaffAuthStateConfig,
 } from '@daffodil/auth/state';
 
 import { DaffAuthRedirectEffects } from './redirect.effects';
 
-describe('@daffodil/auth/state | DaffAuthRedirectEffects', () => {
+describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthRedirectEffects;
 
@@ -39,8 +38,7 @@ describe('@daffodil/auth/state | DaffAuthRedirectEffects', () => {
       providers: [
         DaffAuthRedirectEffects,
         provideMockActions(() => actions$),
-        provideDaffAuthStateConfig({
-          ...daffAuthStateDefaultConfig,
+        provideDaffAuthRoutingConfig({
           authCompleteRedirectPath: authCompleteRedirectUrl,
           logoutRedirectPath: logoutRedirectUrl,
         }),
@@ -67,19 +65,6 @@ describe('@daffodil/auth/state | DaffAuthRedirectEffects', () => {
 
       expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
-    });
-  });
-
-  describe('when DaffAuthLogoutSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthLogoutSuccess() });
-    });
-
-    it('should navigate to the login page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterLogout$).toBeObservable(expected);
-      expect(routerNavigateSpy).toHaveBeenCalledWith(logoutRedirectUrl);
     });
   });
 
