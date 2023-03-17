@@ -45,7 +45,7 @@ export class DaffAuthRedirectEffects {
   ), { dispatch: false });
 
   redirectAfterLogout$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffAuthLoginActionTypes.LogoutSuccessAction, DaffAuthActionTypes.AuthRevokeAction),
+    ofType(DaffAuthActionTypes.AuthRevokeAction),
     tap(() => {
       this.router.navigateByUrl(this.config.logoutRedirectPath);
     }),

@@ -68,19 +68,6 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
     });
   });
 
-  describe('when DaffAuthLogoutSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthLogoutSuccess() });
-    });
-
-    it('should navigate to the login page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterLogout$).toBeObservable(expected);
-      expect(routerNavigateSpy).toHaveBeenCalledWith(logoutRedirectUrl);
-    });
-  });
-
   describe('when DaffAuthRevoke is dispatched', () => {
     beforeEach(() => {
       actions$ = hot('--a', { a: new DaffAuthRevoke() });
