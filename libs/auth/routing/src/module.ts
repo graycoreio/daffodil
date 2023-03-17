@@ -22,7 +22,7 @@ import {
   ],
 })
 export class DaffAuthRoutingModule {
-  static withConfig(config?: DaffAuthRoutingConfig): ModuleWithProviders<DaffAuthRoutingModule> {
+  static withConfig(config?: Partial<DaffAuthRoutingConfig>): ModuleWithProviders<DaffAuthRoutingModule> {
     return {
       ngModule: DaffAuthRoutingModule,
       providers: [
