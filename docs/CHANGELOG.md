@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.54.0](https://github.com/graycoreio/daffodil/compare/v0.53.1...v0.54.0) (2023-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** moves some state config to routing config
+
+### Features
+
+* **auth:** move redirect effects to routing ([#2362](https://github.com/graycoreio/daffodil/issues/2362)) ([c618188](https://github.com/graycoreio/daffodil/commit/c61818820f662c60b4a9be01a9182d03965c5afc))
+* **core:** shallow-compare works with disjoint unions ([#2351](https://github.com/graycoreio/daffodil/issues/2351)) ([e35d45a](https://github.com/graycoreio/daffodil/commit/e35d45ab48d2fe9bdcbc8cb439d75e039f21624a))
+* **design:** UI updates to menu component ([#2360](https://github.com/graycoreio/daffodil/issues/2360)) ([e37f6fa](https://github.com/graycoreio/daffodil/commit/e37f6fa6bff4413a66737dde28796af464da4c29))
+
+
+### Bug Fixes
+
+* **customer:** magento driver not transforming `street2` ([#2361](https://github.com/graycoreio/daffodil/issues/2361)) ([37036e9](https://github.com/graycoreio/daffodil/commit/37036e95ade45df786185a9094537b33bfd63be3))
+
 ### [0.53.1](https://github.com/graycoreio/daffodil/compare/v0.53.0...v0.53.1) (2023-03-11)
 
 
