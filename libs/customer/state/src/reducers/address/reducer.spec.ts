@@ -60,7 +60,7 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading state to resolving', () => {
-      expect(result.loading).toEqual(DaffState.Resolving);
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
   });
 
@@ -76,8 +76,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const customerListSuccess = new DaffCustomerAddressListSuccess([mockAddress]);
@@ -86,11 +86,11 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -106,8 +106,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -118,12 +118,12 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -137,7 +137,7 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading state to resolving', () => {
-      expect(result.loading).toEqual(DaffState.Resolving);
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
   });
 
@@ -153,8 +153,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const customerLoadSuccess = new DaffCustomerAddressLoadSuccess(mockAddress);
@@ -163,11 +163,11 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -183,8 +183,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -195,12 +195,12 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -214,7 +214,7 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Mutating);
     });
   });
 
@@ -230,8 +230,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const customerUpdateSuccess = new DaffCustomerAddressUpdateSuccess([mockAddress]);
@@ -240,11 +240,11 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -260,8 +260,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -272,12 +272,12 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -291,7 +291,7 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Mutating);
     });
   });
 
@@ -307,8 +307,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const customerDeleteSuccess = new DaffCustomerAddressDeleteSuccess([]);
@@ -317,11 +317,11 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -337,8 +337,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -349,12 +349,12 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -368,7 +368,7 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Mutating);
     });
   });
 
@@ -384,8 +384,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const customerAddSuccess = new DaffCustomerAddressAddSuccess([mockAddress]);
@@ -394,11 +394,11 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -414,8 +414,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -426,12 +426,12 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 });
