@@ -17,7 +17,7 @@ export interface DaffOperationStateSelectors<
   /**
    * Selects the loading state enum.
    */
-  selectLoadingState: MemoizedSelector<TRootState, TState['loading']>;
+  selectLoadingState: MemoizedSelector<TRootState, TState['daffState']>;
   /**
    * Selects whether the operation state is in any of the loading states.
    */
@@ -33,7 +33,7 @@ export interface DaffOperationStateSelectors<
   /**
    * Selects the errors in the operation state.
    */
-  selectErrors: MemoizedSelector<TRootState, TState['errors']>;
+  selectErrors: MemoizedSelector<TRootState, TState['daffErrors']>;
   /**
    * Selects whether the operation state has any errors.
    * If so, it should be considered to be in an "error" state.
@@ -54,7 +54,7 @@ export function daffOperationStateSelectorFactory <
 ): DaffOperationStateSelectors<TRootState, TState> {
   const selectLoadingState = createSelector(
     selectState,
-    state => state.loading,
+    state => state.daffState,
   );
   const selectLoading = createSelector(
     selectLoadingState,
@@ -70,7 +70,7 @@ export function daffOperationStateSelectorFactory <
   );
   const selectErrors = createSelector(
     selectState,
-    state => state.errors,
+    state => state.daffErrors,
   );
   const selectHasErrors = createSelector(
     selectErrors,

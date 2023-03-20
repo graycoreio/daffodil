@@ -8,7 +8,7 @@ import { DaffOperationState } from './state';
 export function daffStartResolution <T extends DaffOperationState = DaffOperationState>(state: T): T {
   return {
     ...state,
-    loading: DaffState.Resolving,
+    daffState: DaffState.Resolving,
   };
 };
 
@@ -18,7 +18,7 @@ export function daffStartResolution <T extends DaffOperationState = DaffOperatio
 export function daffStartMutation <T extends DaffOperationState = DaffOperationState>(state: T): T {
   return {
     ...state,
-    loading: DaffState.Mutating,
+    daffState: DaffState.Mutating,
   };
 };
 
@@ -29,8 +29,8 @@ export function daffStartMutation <T extends DaffOperationState = DaffOperationS
 export function daffCompleteOperation <T extends DaffOperationState = DaffOperationState>(state: T): T {
   return {
     ...state,
-    loading: DaffState.Stable,
-    errors: [],
+    daffState: DaffState.Stable,
+    daffErrors: [],
   };
 };
 
@@ -38,11 +38,11 @@ export function daffCompleteOperation <T extends DaffOperationState = DaffOperat
  * Indicates a failed operation.
  * Sets loading to stable and stores errors.
  */
-export function daffOperationFailed <T extends DaffOperationState = DaffOperationState>(errors: T['errors'], state: T): T {
+export function daffOperationFailed <T extends DaffOperationState = DaffOperationState>(errors: T['daffErrors'], state: T): T {
   return {
     ...state,
-    loading: DaffState.Stable,
-    errors,
+    daffState: DaffState.Stable,
+    daffErrors: errors,
   };
 };
 
@@ -52,6 +52,6 @@ export function daffOperationFailed <T extends DaffOperationState = DaffOperatio
 export function daffClearErrors <T extends DaffOperationState = DaffOperationState>(state: T): T {
   return {
     ...state,
-    errors: [],
+    daffErrors: [],
   };
 };
