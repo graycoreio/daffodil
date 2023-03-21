@@ -1,3 +1,9 @@
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffStartMutation,
+  daffStartResolution,
+} from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 
 import {
@@ -16,33 +22,21 @@ export function daffOrderReducer<T extends DaffOrder = DaffOrder>(
   switch (action.type) {
     case DaffOrderActionTypes.OrderListAction:
     case DaffOrderActionTypes.OrderLoadAction:
+      return daffStartResolution(state);
+
     case DaffOrderCollectionActionTypes.ChangePageSizeAction:
     case DaffOrderCollectionActionTypes.ChangeCurrentPageAction:
     case DaffOrderCollectionActionTypes.ChangeFilterAction:
     case DaffOrderCollectionActionTypes.ChangeSortingAction:
-      return {
-        ...state,
-        loading: true,
-      };
+      return daffStartMutation(state);
 
     case DaffOrderActionTypes.OrderListSuccessAction:
     case DaffOrderActionTypes.OrderLoadSuccessAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [],
-      };
+      return daffCompleteOperation(state);
 
     case DaffOrderActionTypes.OrderListFailureAction:
     case DaffOrderActionTypes.OrderLoadFailureAction:
-      return {
-        ...state,
-        errors: [
-          ...state.errors,
-          action.payload,
-        ],
-        loading: false,
-      };
+      return daffOperationFailed([action.payload], state);
 
     default:
       return state;

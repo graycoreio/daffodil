@@ -1,17 +1,18 @@
 import { Dictionary } from '@ngrx/entity';
-import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import {
-  DaffStoreFacade,
   DaffStateError,
+  DaffOperationStateFacadeInterface,
 } from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderTotal,
 } from '@daffodil/order';
 
-export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> extends DaffStoreFacade<Action> {
+import { DaffOrderReducerState } from '../../reducers/public_api';
+
+export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> extends DaffOperationStateFacadeInterface<DaffOrderReducerState> {
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
   orders$: Observable<T[]>;

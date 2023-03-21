@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderCollection,
@@ -48,7 +51,7 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
 
       const result = reducer(initialState, orderLoadAction);
 
-      expect(result.loading).toEqual(true);
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
   });
 
@@ -64,8 +67,8 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       };
       state = {
         ...initialState,
-        loading: true,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const orderLoadSuccess = new DaffOrderLoadSuccess(Object.values(mockOrderCollection.data)[0]);
@@ -74,11 +77,11 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
     });
 
     it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -94,8 +97,8 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       };
       state = {
         ...initialState,
-        loading: true,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -105,13 +108,12 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       result = reducer(state, orderLoadFailureAction);
     });
 
-    it('adds the error in action.payload to state.errors', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(2);
+    it('adds the error in action.payload to state.daffErrors', () => {
+      expect(result.daffErrors).toEqual([mockError]);
     });
 
     it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -121,7 +123,7 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
 
       const result = reducer(initialState, orderListAction);
 
-      expect(result.loading).toEqual(true);
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
   });
 
@@ -137,8 +139,8 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       };
       state = {
         ...initialState,
-        loading: true,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const orderListSuccess = new DaffOrderListSuccess(mockOrderCollection);
@@ -147,11 +149,11 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
     });
 
     it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -167,8 +169,8 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       };
       state = {
         ...initialState,
-        loading: true,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -178,13 +180,12 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       result = reducer(state, orderListFailureAction);
     });
 
-    it('adds the error in action.payload to state.errors', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(2);
+    it('adds the error in action.payload to state.daffErrors', () => {
+      expect(result.daffErrors).toEqual([mockError]);
     });
 
     it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 });
