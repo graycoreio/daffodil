@@ -1,3 +1,6 @@
+import { TestBed } from '@angular/core/testing';
+import { EntityState } from '@ngrx/entity';
+
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartItemListSuccess,
@@ -37,7 +40,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
   const initialState = daffCartItemEntitiesAdapter().getInitialState();
 
   beforeEach(() => {
-    statefulCartItemFactory = new DaffStatefulCartItemFactory();
+    statefulCartItemFactory = TestBed.inject(DaffStatefulCartItemFactory);
 
     error = {
       code: 'code',
@@ -57,9 +60,9 @@ describe('Cart | Cart Item Entities Reducer', () => {
   });
 
   describe('when an existing cart item does not have a default daffState', () => {
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
     let stubStatefulCartItem: DaffStatefulCartItem;
-    let initialStateWithCartItem;
+    let initialStateWithCartItem: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       stubStatefulCartItem = new DaffStatefulCartItemFactory().create({
@@ -140,7 +143,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
   describe('when CartItemListSuccessAction is triggered', () => {
 
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -158,14 +161,14 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item\'s errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+      expect(result.entities[cartItems[0].id].daffErrors).toEqual([]);
     });
   });
 
   describe('when CartItemLoadSuccessAction is triggered', () => {
 
     let statefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       statefulCartItem = statefulCartItemFactory.create();
@@ -179,7 +182,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item\'s errors', () => {
-      expect(result.entities[statefulCartItem.id].errors).toEqual([]);
+      expect(result.entities[statefulCartItem.id].daffErrors).toEqual([]);
     });
   });
 
@@ -187,11 +190,11 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2, {
-        errors: [error],
+        daffErrors: [error],
       });
       cart = new DaffCartFactory().create({
         items: cartItems,
@@ -214,7 +217,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item\'s errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+      expect(result.entities[cartItems[0].id].daffErrors).toEqual([]);
     });
   });
 
@@ -222,11 +225,11 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let statefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       statefulCartItem = statefulCartItemFactory.create({
-        errors: [error],
+        daffErrors: [error],
       });
       cart = new DaffCartFactory().create({
         items: [statefulCartItem],
@@ -249,7 +252,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item\'s errors', () => {
-      expect(result.entities[statefulCartItem.id].errors).toEqual([]);
+      expect(result.entities[statefulCartItem.id].daffErrors).toEqual([]);
     });
   });
 
@@ -257,11 +260,11 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let statefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       statefulCartItem = statefulCartItemFactory.create({
-        errors: [error],
+        daffErrors: [error],
       });
       cart = new DaffCartFactory().create({
         items: [statefulCartItem],
@@ -287,7 +290,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item\'s errors', () => {
-      expect(result.entities[statefulCartItem.id].errors).toEqual([]);
+      expect(result.entities[statefulCartItem.id].daffErrors).toEqual([]);
     });
   });
 
@@ -295,7 +298,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -320,7 +323,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -345,7 +348,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -366,7 +369,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+      expect(result.entities[cartItems[0].id].daffErrors).toEqual([]);
     });
   });
 
@@ -374,7 +377,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -395,7 +398,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+      expect(result.entities[cartItems[0].id].daffErrors).toEqual([]);
     });
   });
 
@@ -403,7 +406,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -424,7 +427,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+      expect(result.entities[cartItems[0].id].daffErrors).toEqual([]);
     });
   });
 
@@ -432,7 +435,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -453,14 +456,14 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should reset the cart item errors', () => {
-      expect(result.entities[cartItems[0].id].errors).toEqual([]);
+      expect(result.entities[cartItems[0].id].daffErrors).toEqual([]);
     });
   });
 
   describe('when CartClearSuccessAction is triggered', () => {
 
     let cart: DaffCart;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       cart = new DaffCartFactory().create({
@@ -479,7 +482,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
   describe('when CartItemStateResetAction is triggered', () => {
 
     let stubCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
     let testInitialState;
 
     beforeEach(() => {
@@ -506,7 +509,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
   describe('when CartItemUpdateAction is triggered', () => {
 
     let stubStatefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
     let testInitialState;
 
     beforeEach(() => {
@@ -530,7 +533,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
   describe('when CartItemDeleteAction is triggered', () => {
 
     let stubCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
     let testInitialState;
 
     beforeEach(() => {
@@ -553,7 +556,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
   describe('when CartItemLoadFailureAction is triggered', () => {
     let statefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       error = {
@@ -574,7 +577,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
   describe('when CartItemDeleteFailureAction is triggered', () => {
     let statefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       error = {
@@ -595,7 +598,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
   describe('when CartItemUpdateFailureAction is triggered', () => {
     let statefulCartItem: DaffStatefulCartItem;
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       error = {
@@ -614,12 +617,12 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should add the error to the cart item\'s errors', () => {
-      expect(result.entities[statefulCartItem.id].errors).toContain(error);
+      expect(result.entities[statefulCartItem.id].daffErrors).toContain(error);
     });
   });
 
   describe('when CartCreateSuccessAction is triggered', () => {
-    let result;
+    let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
       const cartCreateSuccess = new DaffCartCreateSuccess(<DaffCart>{});

@@ -10,7 +10,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class DaffMockStatefulConfigurableCartItem extends DaffMockConfigurableCartItem implements DaffStatefulConfigurableCartItem {
   daffState: DaffCartItemStateEnum.Default;
-  errors = [];
+  daffErrors = [];
 }
 
 @Injectable({
