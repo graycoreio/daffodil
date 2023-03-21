@@ -5,7 +5,11 @@ import {
   DaffErrorCodeMap,
   DaffInheritableError,
 } from '@daffodil/core';
-import { DaffDriverMagentoError } from '@daffodil/driver/magento';
+import {
+  DaffDriverMagentoError,
+  DaffDriverMagentoNetworkError,
+  DAFF_DRIVER_MAGENTO_NETWORK_ERROR_CODE,
+} from '@daffodil/driver/magento';
 
 import { daffTransformMagentoError } from './transform';
 
@@ -17,7 +21,7 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
+describe('@daffodil/driver/magento | daffTransformMagentoError', () => {
   let unhandledGraphQlError;
   let handledGraphQlError;
   let category;
@@ -74,6 +78,18 @@ describe('Driver | Magento | Errors | daffTransformMagentoError', () => {
     const result = daffTransformMagentoError(error, map);
 
     expect(result).toEqual(jasmine.any(MockError));
+  });
+
+  it('should be able to process Apollo network errors and return the DaffDriverMagentoNetworkError', () => {
+    const error = new ApolloError({
+      networkError: {
+        name: 'Error',
+        message: 'message',
+      },
+    });
+    const result = daffTransformMagentoError(error, map);
+
+    expect(result.code).toEqual(DAFF_DRIVER_MAGENTO_NETWORK_ERROR_CODE);
   });
 
   describe('when there are no GraphQL error', () => {
