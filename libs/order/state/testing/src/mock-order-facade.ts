@@ -3,7 +3,10 @@ import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -15,8 +18,12 @@ import { DaffOrderFacadeInterface } from '@daffodil/order/state';
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
-  loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
-  errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
+  loading$ = new BehaviorSubject<boolean>(null);
+  errors$ = new BehaviorSubject<DaffStateError[]>([]);
+  loadingState$ = new BehaviorSubject<DaffState>(DaffState.Stable);
+  resolving$ = new BehaviorSubject<boolean>(false);
+  mutating$ = new BehaviorSubject<boolean>(false);
+  hasErrors$ = new BehaviorSubject<boolean>(false);
 
   orders$: BehaviorSubject<DaffOrder[]> = new BehaviorSubject([]);
   orderIds$: BehaviorSubject<DaffOrder['id'][]> = new BehaviorSubject([]);

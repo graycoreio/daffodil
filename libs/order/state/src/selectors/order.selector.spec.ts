@@ -28,17 +28,11 @@ import { getOrderSelectors } from './order.selector';
 describe('Order | Selector | Order', () => {
   let store: Store<DaffOrderStateRootSlice>;
 
-  let orderFactory: DaffOrderFactory;
   let orderCollectionFactory: DaffOrderCollectionFactory;
 
-  let loading: boolean;
-  let errors: string[];
-  let mockOrder: DaffOrder;
   let mockOrderCollection: DaffOrderCollection;
 
   const {
-    selectOrderLoading,
-    selectOrderErrors,
     selectOrders,
   } = getOrderSelectors();
 
@@ -52,33 +46,11 @@ describe('Order | Selector | Order', () => {
     });
 
     store = TestBed.inject(Store);
-    orderFactory = TestBed.inject(DaffOrderFactory);
     orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
     mockOrderCollection = orderCollectionFactory.create();
-    mockOrder = Object.values(mockOrderCollection)[0];
-    loading = false;
-    errors = [];
 
     store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
-  });
-
-  describe('selectOrderLoading', () => {
-    it('should select the loading property of the order state', () => {
-      const selector = store.pipe(select(selectOrderLoading));
-      const expected = cold('a', { a: loading });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectOrderErrors', () => {
-    it('should select the error property of the order state', () => {
-      const selector = store.pipe(select(selectOrderErrors));
-      const expected = cold('a', { a: errors });
-
-      expect(selector).toBeObservable(expected);
-    });
   });
 
   describe('selectOrders', () => {
