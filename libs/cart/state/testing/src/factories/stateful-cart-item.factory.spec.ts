@@ -41,7 +41,7 @@ describe('Cart | State | Testing | Factories | StatefulCartItemFactory', () => {
       expect(result.row_total).not.toBeNull();
       expect(result.in_stock).not.toBeNull();
       expect(result.daffState).not.toBeNull();
-      expect(result.errors).not.toBeNull();
+      expect(result.daffErrors).not.toBeNull();
     });
   });
 });

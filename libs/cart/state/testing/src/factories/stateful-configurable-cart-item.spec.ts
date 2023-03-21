@@ -42,7 +42,7 @@ describe('Cart | State | Testing | Factories | StatefulConfigurableCartItemFacto
       expect(result.attributes[0].attribute_label).not.toBeNull();
       expect(result.attributes[0].value_label).not.toBeNull();
       expect(result.daffState).not.toBeNull();
-      expect(result.errors).not.toBeNull();
+      expect(result.daffErrors).not.toBeNull();
     });
   });
 });
