@@ -36,13 +36,13 @@ export const daffCustomerAddressReducer = <T extends DaffCustomerAddress = DaffC
     case action.type === DaffCustomerAddressActionTypes.AddressUpdateSuccessAction:
     case action.type === DaffCustomerAddressActionTypes.AddressAddSuccessAction:
     case action.type === DaffCustomerAddressActionTypes.AddressDeleteSuccessAction:
+    case action.type === DaffCustomerAddressActionTypes.AddressUpdateFailureAction:
+    case action.type === DaffCustomerAddressActionTypes.AddressAddFailureAction:
+    case action.type === DaffCustomerAddressActionTypes.AddressDeleteFailureAction:
       return daffCompleteOperation(state);
 
     case action.type === DaffCustomerAddressActionTypes.AddressListFailureAction:
     case action.type === DaffCustomerAddressActionTypes.AddressLoadFailureAction:
-    case action.type === DaffCustomerAddressActionTypes.AddressUpdateFailureAction:
-    case action.type === DaffCustomerAddressActionTypes.AddressAddFailureAction:
-    case action.type === DaffCustomerAddressActionTypes.AddressDeleteFailureAction:
       return daffOperationFailed([(<DaffCustomerAddressLoadFailure>action).payload], state);
 
     default:

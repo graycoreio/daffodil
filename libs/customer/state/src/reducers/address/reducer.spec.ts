@@ -271,11 +271,6 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       result = reducer(state, customerUpdateFailureAction);
     });
 
-    it('stores the errors in state', () => {
-      expect(result.daffErrors).toContain(mockError);
-      expect(result.daffErrors.length).toEqual(1);
-    });
-
     it('sets loading to stable', () => {
       expect(result.daffState).toEqual(DaffState.Stable);
     });
@@ -348,11 +343,6 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       result = reducer(state, customerDeleteFailureAction);
     });
 
-    it('stores the errors in state', () => {
-      expect(result.daffErrors).toContain(mockError);
-      expect(result.daffErrors.length).toEqual(1);
-    });
-
     it('sets loading to stable', () => {
       expect(result.daffState).toEqual(DaffState.Stable);
     });
@@ -423,11 +413,6 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       const customerAddFailureAction = new DaffCustomerAddressAddFailure(mockError, 'id');
 
       result = reducer(state, customerAddFailureAction);
-    });
-
-    it('stores the errors in state', () => {
-      expect(result.daffErrors).toContain(mockError);
-      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
