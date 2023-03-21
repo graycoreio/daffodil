@@ -23,7 +23,7 @@ describe('@daffodil/core/state | daffStartResolution', () => {
   });
 
   it('should set loading to resolving', () => {
-    expect(result.loading).toEqual(DaffState.Resolving);
+    expect(result.daffState).toEqual(DaffState.Resolving);
   });
 });
 
@@ -37,7 +37,7 @@ describe('@daffodil/core/state | daffStartMutation', () => {
   });
 
   it('should set loading to mutating', () => {
-    expect(result.loading).toEqual(DaffState.Mutating);
+    expect(result.daffState).toEqual(DaffState.Mutating);
   });
 });
 
@@ -47,18 +47,18 @@ describe('@daffodil/core/state | daffCompleteOperation', () => {
 
   beforeEach(() => {
     state = {
-      errors: [{ code: 'code', message: 'message' }],
-      loading: DaffState.Resolving,
+      daffErrors: [{ code: 'code', message: 'message' }],
+      daffState: DaffState.Resolving,
     };
     result = daffCompleteOperation(state);
   });
 
   it('should set loading to stable', () => {
-    expect(result.loading).toEqual(DaffState.Stable);
+    expect(result.daffState).toEqual(DaffState.Stable);
   });
 
   it('should reset errors', () => {
-    expect(result.errors).toEqual([]);
+    expect(result.daffErrors).toEqual([]);
   });
 });
 
@@ -68,14 +68,14 @@ describe('@daffodil/core/state | daffClearErrors', () => {
 
   beforeEach(() => {
     state = {
-      errors: [{ code: 'code', message: 'message' }],
-      loading: DaffState.Resolving,
+      daffErrors: [{ code: 'code', message: 'message' }],
+      daffState: DaffState.Resolving,
     };
     result = daffClearErrors(state);
   });
 
   it('should reset errors', () => {
-    expect(result.errors).toEqual([]);
+    expect(result.daffErrors).toEqual([]);
   });
 });
 
@@ -89,16 +89,16 @@ describe('@daffodil/core/state | daffOperationFailed', () => {
     error = { code: 'code', message: 'message' };
     state = {
       ...daffOperationInitialState,
-      loading: DaffState.Resolving,
+      daffState: DaffState.Resolving,
     };
     result = daffOperationFailed([error], state);
   });
 
   it('should set loading to stable', () => {
-    expect(result.loading).toEqual(DaffState.Stable);
+    expect(result.daffState).toEqual(DaffState.Stable);
   });
 
   it('should add the error', () => {
-    expect(result.errors).toEqual([error]);
+    expect(result.daffErrors).toEqual([error]);
   });
 });

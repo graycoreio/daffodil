@@ -53,7 +53,7 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading state to resolving', () => {
-      expect(result.loading).toEqual(DaffState.Resolving);
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
   });
 
@@ -70,8 +70,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
       mockCustomer = customerFactory.create();
 
@@ -81,11 +81,11 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
 
     it('should store the customer', () => {
@@ -105,8 +105,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -117,12 +117,12 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -136,7 +136,7 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Mutating);
     });
   });
 
@@ -153,8 +153,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
       mockCustomer = customerFactory.create();
 
@@ -164,11 +164,11 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
 
     it('should store the customer', () => {
@@ -188,8 +188,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -200,12 +200,12 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -219,7 +219,7 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Mutating);
     });
   });
 
@@ -236,8 +236,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
       mockCustomer = customerFactory.create();
 
@@ -247,11 +247,11 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
 
     it('should store the customer', () => {
@@ -271,8 +271,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -283,12 +283,12 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -302,7 +302,7 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Mutating);
     });
   });
 
@@ -318,8 +318,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [mockError],
+        daffState: DaffState.Resolving,
+        daffErrors: [mockError],
       };
 
       const customerChangePasswordSuccess = new DaffCustomerChangePasswordSuccess();
@@ -328,11 +328,11 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -348,8 +348,8 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        loading: DaffState.Resolving,
-        errors: [
+        daffState: DaffState.Resolving,
+        daffErrors: [
           { code: 'firstErrorCode', message: 'firstErrorMessage' },
         ],
       };
@@ -360,12 +360,12 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('stores the errors in state', () => {
-      expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(1);
+      expect(result.daffErrors).toContain(mockError);
+      expect(result.daffErrors.length).toEqual(1);
     });
 
     it('sets loading to stable', () => {
-      expect(result.loading).toEqual(DaffState.Stable);
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
   });
 
@@ -381,7 +381,7 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
       };
       state = {
         ...initialState,
-        errors: [mockError],
+        daffErrors: [mockError],
       };
 
       const customerLoadSuccess = new DaffCustomerClearErrors();
@@ -390,7 +390,7 @@ describe('@daffodil/customer/state | daffCustomerReducer', () => {
     });
 
     it('should reset errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 });

@@ -20,7 +20,7 @@ export function daffRouterStateNavigatedClearEntityErrorsReducerFactory<T extend
         return adapter.map(
           (entity) => ({
             ...entity,
-            errors: [],
+            daffErrors: [],
           }),
           state,
         );

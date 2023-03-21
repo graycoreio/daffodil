@@ -7,7 +7,7 @@ import { daffRouterStateNavigatedClearErrorsReducer as reducer } from './navigat
 type TestState = DaffErrorable;
 
 const initialState: TestState = {
-  errors: [
+  daffErrors: [
     {
       code: 'code',
       message: 'message',
@@ -36,7 +36,7 @@ describe('@daffodil/core/state | daffRouterStateNavigatedClearErrorsReducer', ()
     });
 
     it('sets clears errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 });

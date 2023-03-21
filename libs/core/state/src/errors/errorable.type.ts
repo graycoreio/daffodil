@@ -1,5 +1,8 @@
 import { DaffStateError } from './state-error.interface';
 
 export interface DaffErrorable {
-  errors: DaffStateError[];
+  /**
+   * A list of errors applicable only to this entity.
+   */
+  daffErrors: DaffStateError[];
 }
