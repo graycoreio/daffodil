@@ -9,6 +9,8 @@ import {
   DaffCategoryPageMetadata,
 } from '@daffodil/category';
 import {
+  daffOperationStateSelectorFactory,
+  DaffOperationStateSelectors,
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
@@ -25,7 +27,7 @@ import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
  */
 export interface DaffCategoryPageMemoizedSelectors<
   V extends DaffGenericCategory<V> = DaffCategory
-> {
+> extends DaffOperationStateSelectors<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState> {
   /**
    * Selects all state related to the category page metadata, category loading, and errors.
    */
@@ -39,33 +41,9 @@ export interface DaffCategoryPageMemoizedSelectors<
    */
   selectIsCategoryPageEmpty: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
   /**
-   * Selects the loading state of the current category; e.g. mutating, resolving, stable.
-   */
-  selectCategoryPageState: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryReducerState['daffState']>;
-  /**
    * Selects the id of the current category.
    */
   selectCurrentCategoryId: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffCategoryPageMetadata['id']>;
-  /**
-   * @deprecated Use selectIsCategoryPageResolving instead
-   */
-  selectCategoryLoading: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
-  /**
-   * @deprecated Use selectIsCategoryPageResolving and selectIsCategoryPageMutating instead
-   */
-  selectCategoryProductsLoading: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
-  /**
-   * Selects all errors associated with loading a category.
-   */
-  selectCategoryErrors: MemoizedSelector<DaffCategoryStateRootSlice<V>, DaffStateError[]>;
-  /**
-   * Selects whether the current category page is mutating; e.g. when a filter is applied to it.
-   */
-  selectIsCategoryPageMutating: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
-  /**
-   * Selects whether the current category is resolving; e.g. when the category first loads.
-   */
-  selectIsCategoryPageResolving: MemoizedSelector<DaffCategoryStateRootSlice<V>, boolean>;
 }
 
 const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => {
@@ -91,52 +69,18 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
     (state: V['product_ids']) => !state.length,
   );
 
-  const selectCategoryPageState = createSelector(
-    selectCategoryState,
-    (state: DaffCategoryReducerState) => state.daffState,
-  );
-
   const selectCurrentCategoryId = createSelector(
     selectCategoryState,
     (state: DaffCategoryReducerState) => state.id,
   );
 
-  const selectCategoryLoading = createSelector(
-    selectCategoryState,
-    (state: DaffCategoryReducerState) => state.categoryLoading,
-  );
-
-  const selectCategoryProductsLoading = createSelector(
-    selectCategoryState,
-    (state: DaffCategoryReducerState) => state.productsLoading,
-  );
-
-  const selectCategoryErrors = createSelector(
-    selectCategoryState,
-    (state: DaffCategoryReducerState) => state.errors,
-  );
-
-  const selectIsCategoryPageMutating = createSelector(
-    selectCategoryPageState,
-    (daffState: DaffCategoryReducerState['daffState']) => daffState === DaffState.Mutating,
-  );
-
-  const selectIsCategoryPageResolving = createSelector(
-    selectCategoryPageState,
-    (daffState: DaffCategoryReducerState['daffState']) => daffState === DaffState.Resolving,
-  );
 
   return {
+    ...daffOperationStateSelectorFactory(selectCategoryState),
     selectCategoryState,
     selectCategoryPageProductIds,
     selectIsCategoryPageEmpty,
-    selectCategoryPageState,
     selectCurrentCategoryId,
-    selectCategoryLoading,
-    selectCategoryProductsLoading,
-    selectCategoryErrors,
-    selectIsCategoryPageMutating,
-    selectIsCategoryPageResolving,
   };
 };
 

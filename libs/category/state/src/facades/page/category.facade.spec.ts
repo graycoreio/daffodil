@@ -106,12 +106,12 @@ describe('DaffCategoryFacade', () => {
     });
   });
 
-  describe('pageLoadingState$', () => {
+  describe('loadingState$', () => {
 
     it('should return an observable of the daffState', () => {
       const expected = cold('a', { a: DaffState.Stable });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
-      expect(facade.pageLoadingState$).toBeObservable(expected);
+      expect(facade.loadingState$).toBeObservable(expected);
     });
   });
 
@@ -129,34 +129,7 @@ describe('DaffCategoryFacade', () => {
     });
   });
 
-  describe('categoryLoading$', () => {
-    it('should be false if the category state is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.categoryLoading$).toBeObservable(expected);
-    });
-
-    it('should be true if the category state is loading', () => {
-      const expected = cold('a', { a: true });
-      store.dispatch(new DaffCategoryPageLoad({ id: '1', kind: DaffCategoryRequestKind.ID }));
-      expect(facade.categoryLoading$).toBeObservable(expected);
-    });
-  });
-
-  describe('productsLoading$', () => {
-    it('should be false if the category products are not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.productsLoading$).toBeObservable(expected);
-    });
-
-    it('should be true if the category products are loading', () => {
-      const expected = cold('a', { a: true });
-      store.dispatch(new DaffCategoryPageLoad({ id: '1', kind: DaffCategoryRequestKind.ID }));
-      expect(facade.productsLoading$).toBeObservable(expected);
-    });
-  });
-
   describe('errors$', () => {
-
     it('should be an empty array initially', () => {
       const initial = cold('a', { a: []});
       expect(facade.errors$).toBeObservable(initial);
@@ -220,19 +193,19 @@ describe('DaffCategoryFacade', () => {
     });
   });
 
-  describe('isPageMutating$', () => {
+  describe('mutating$', () => {
 
     it('should return whether the category page is mutating', () => {
       const expected = cold('a', { a: false });
-      expect(facade.isPageMutating$).toBeObservable(expected);
+      expect(facade.mutating$).toBeObservable(expected);
     });
   });
 
-  describe('isPageResolving$', () => {
+  describe('resolving$', () => {
 
     it('should return whether the category page is resolving', () => {
       const expected = cold('a', { a: false });
-      expect(facade.isPageResolving$).toBeObservable(expected);
+      expect(facade.resolving$).toBeObservable(expected);
     });
   });
 });
