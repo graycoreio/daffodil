@@ -386,6 +386,10 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     it('sets daffState to resolving', () => {
       expect(result.daffState).toEqual(DaffState.Resolving);
     });
+
+    it('clears ID', () => {
+      expect(result.id).toBeFalsy();
+    });
   });
 
   describe('when CategoryPageLoadByUrlAction is triggered', () => {
@@ -409,6 +413,10 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
 
     it('sets daffState to resolving', () => {
       expect(result.daffState).toEqual(DaffState.Resolving);
+    });
+
+    it('clears ID', () => {
+      expect(result.id).toBeFalsy();
     });
   });
 
