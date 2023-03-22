@@ -5,7 +5,10 @@ import {
   daffStartResolution,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductReducerState } from '@daffodil/product/state';
+import {
+  daffProductReducerInitialState,
+  DaffProductReducerState,
+} from '@daffodil/product/state';
 
 import {
   DaffCategoryPageProductCollectionActionTypes,
@@ -19,7 +22,7 @@ import { DaffCategoryActions } from '../actions/category.actions';
  * Modifies product state for category actions.
  */
 export function daffCategoryProductReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
-  state: DaffProductReducerState,
+  state: DaffProductReducerState = daffProductReducerInitialState,
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageProductCollectionActions,
 ): DaffProductReducerState {
   switch (action.type) {
