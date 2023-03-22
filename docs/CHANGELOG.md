@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.56.1](https://github.com/graycoreio/daffodil/compare/v0.56.0...v0.56.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **category:** info persists when loading new category ([#2373](https://github.com/graycoreio/daffodil/issues/2373)) ([bd166dd](https://github.com/graycoreio/daffodil/commit/bd166dd57eceb4d99fa9865f245dc0a5c8835c36))
+
 ## [0.56.0](https://github.com/graycoreio/daffodil/compare/v0.55.0...v0.56.0) (2023-03-22)
 
 
