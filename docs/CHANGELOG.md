@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.55.0](https://github.com/graycoreio/daffodil/compare/v0.54.0...v0.55.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** `DaffStatefulCartItem#errors` has been removed in favor of `DaffStatefulCartItem#daffErrors`
+* **order:** order reducer state and selectors have been changed to `@daffodil/core/state`'s operation state interfaces
+* **core, customer:** consolidate errors and loading in operation state (#2363)
+
+### Features
+
+* **cart:** use `DaffErrorable` in stateful cart item ([#2365](https://github.com/graycoreio/daffodil/issues/2365)) ([fdf6fce](https://github.com/graycoreio/daffodil/commit/fdf6fce4cb1e94032cef680878818b36e52ce719))
+* **category:** add service for build category URL requests ([#2368](https://github.com/graycoreio/daffodil/issues/2368)) ([ddf6eab](https://github.com/graycoreio/daffodil/commit/ddf6eabac45f84f2aefebb8603e9f2a7b2e99dfe))
+* **core, customer:** consolidate errors and loading in operation state ([#2363](https://github.com/graycoreio/daffodil/issues/2363)) ([ccf8231](https://github.com/graycoreio/daffodil/commit/ccf8231158704137637c79e1eb03a30fc544d10a))
+* **customer:** don't store contextual entity errors in global state ([#2366](https://github.com/graycoreio/daffodil/issues/2366)) ([36a9d3a](https://github.com/graycoreio/daffodil/commit/36a9d3a33b1949592b0c0ff5d8f64867f2655928))
+* **driver:** handle network errors in Magento error transform ([#2367](https://github.com/graycoreio/daffodil/issues/2367)) ([c566354](https://github.com/graycoreio/daffodil/commit/c566354f228cf61b9b4ab316d73d986e0385b090))
+* **order:** use operation state ([#2364](https://github.com/graycoreio/daffodil/issues/2364)) ([b8abe38](https://github.com/graycoreio/daffodil/commit/b8abe381f47c48a86ac55332732ba6e0128863dc))
+
 ## [0.54.0](https://github.com/graycoreio/daffodil/compare/v0.53.1...v0.54.0) (2023-03-17)
 
 
