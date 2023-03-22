@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.56.0](https://github.com/graycoreio/daffodil/compare/v0.55.0...v0.56.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** product reducer state, selectors, and facade have been changed to `@daffodil/core/state`'s operation state interfaces
+* **category:** category page reducer state, selectors, and facade have been changed to `@daffodil/core/state`'s operation state interfaces
+
+### Features
+
+* **category:** add injectable product reducer ([#2371](https://github.com/graycoreio/daffodil/issues/2371)) ([8958c5d](https://github.com/graycoreio/daffodil/commit/8958c5d0b29d9c1e32adaf56bc7782a2cd4f6576))
+* **category:** use operation state ([#2369](https://github.com/graycoreio/daffodil/issues/2369)) ([8dbfc3c](https://github.com/graycoreio/daffodil/commit/8dbfc3c162426314fe8cce3365170ddc60f511f9))
+* **product:** use operation state ([#2370](https://github.com/graycoreio/daffodil/issues/2370)) ([816f186](https://github.com/graycoreio/daffodil/commit/816f18657b1f9c086104f85657c63f198ee5bd21))
+
+
+### Bug Fixes
+
+* **product:** incorrect typing for injectable extra reducers ([#2372](https://github.com/graycoreio/daffodil/issues/2372)) ([d0bc28b](https://github.com/graycoreio/daffodil/commit/d0bc28b6e922c174a4de47f35bdc52bbb7aa9550))
+
 ## [0.55.0](https://github.com/graycoreio/daffodil/compare/v0.54.0...v0.55.0) (2023-03-22)
 
 
