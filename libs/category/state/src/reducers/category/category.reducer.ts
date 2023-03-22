@@ -33,7 +33,10 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
   switch (action.type) {
     case DaffCategoryPageActionTypes.CategoryPageLoadAction:
     case DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction:
-      return daffStartResolution(state);
+      return {
+        ...daffStartResolution(state),
+        id: null,
+      };
 
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSizeAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeCurrentPageAction:
