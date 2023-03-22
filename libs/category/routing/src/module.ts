@@ -21,6 +21,7 @@ import {
   DaffCategoryPageResolver,
   DaffCategoryPageUrlResolver,
 } from './resolvers/public_api';
+import { DaffCategoryRoutingUrlRequestBuilder } from './services/public_api';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {
     DaffCategoryPageResolver,
     DaffCategoryPageIdResolver,
     DaffCategoryPageUrlResolver,
+    DaffCategoryRoutingUrlRequestBuilder,
     {
       provide: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS,
       useFactory: () => {
