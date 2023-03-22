@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { daffArrayToDict } from '@daffodil/core';
+import { DaffState } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageLoad,
@@ -42,7 +43,7 @@ describe('@daffodil/product/state | daffProductReducer', () => {
   });
 
   describe('when ProductLoadByUrlAction is triggered', () => {
-    let result;
+    let result: DaffProductReducerState;
 
     beforeEach(() => {
       const productLoadAction = new DaffProductPageLoadByUrl(product.url);
@@ -50,8 +51,8 @@ describe('@daffodil/product/state | daffProductReducer', () => {
       result = daffProductReducer(daffProductReducerInitialState, productLoadAction);
     });
 
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
+    it('sets loading state to resolving', () => {
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
 
     it('resets currentProductId', () => {
@@ -60,7 +61,7 @@ describe('@daffodil/product/state | daffProductReducer', () => {
   });
 
   describe('when ProductLoadAction is triggered', () => {
-    let result;
+    let result: DaffProductReducerState;
 
     beforeEach(() => {
       const productLoadAction: DaffProductPageLoad = new DaffProductPageLoad(productId);
@@ -68,8 +69,8 @@ describe('@daffodil/product/state | daffProductReducer', () => {
       result = daffProductReducer(daffProductReducerInitialState, productLoadAction);
     });
 
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
+    it('sets loading state to resolving', () => {
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
 
     it('resets currentProductId', () => {
@@ -79,13 +80,13 @@ describe('@daffodil/product/state | daffProductReducer', () => {
 
   describe('when ProductLoadSuccessAction is triggered', () => {
 
-    let result;
+    let result: DaffProductReducerState;
     let state: DaffProductReducerState;
 
     beforeEach(() => {
       state = {
         ...daffProductReducerInitialState,
-        loading: true,
+        daffState: DaffState.Resolving,
       };
 
       const productLoadSuccess = new DaffProductPageLoadSuccess({
@@ -95,8 +96,8 @@ describe('@daffodil/product/state | daffProductReducer', () => {
       result = daffProductReducer(state, productLoadSuccess);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('sets currentProductId to the loaded product ID', () => {
@@ -110,14 +111,14 @@ describe('@daffodil/product/state | daffProductReducer', () => {
       code: 'error code',
       message: 'error message',
     };
-    let result;
+    let result: DaffProductReducerState;
     let state: DaffProductReducerState;
 
     beforeEach(() => {
       state = {
         ...daffProductReducerInitialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const productLoadFailure = new DaffProductPageLoadFailure(error);
@@ -125,19 +126,19 @@ describe('@daffodil/product/state | daffProductReducer', () => {
       result = daffProductReducer(state, productLoadFailure);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('stores the error', () => {
+      expect(result.daffErrors.length).toEqual(1);
     });
   });
 
   describe('when UpdateQtyAction is triggered', () => {
 
     let givenQty: number;
-    let result;
+    let result: DaffProductReducerState;
 
     beforeEach(() => {
       givenQty = 3;
