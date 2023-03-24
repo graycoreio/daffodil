@@ -28,8 +28,8 @@ export class DaffMagentoSimpleProductTransformers {
     return {
       ...this.productPreviewTransform(product, mediaUrl),
 
-      description: product.description.html,
-      short_description: product.short_description.html,
+      description: product.description?.html,
+      short_description: product.short_description?.html,
       meta_title: product.meta_title,
       meta_description: product.meta_description,
       canonicalUrl: product.canonical_url,

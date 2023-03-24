@@ -13,10 +13,6 @@ export interface MagentoProduct extends MagentoProductPreview {
   meta_title?: string;
   meta_description?: string;
   canonical_url?: string;
-  image?: {
-    url: string;
-    label: string;
-  };
   media_gallery_entries?: {
     label: string;
     file: string;

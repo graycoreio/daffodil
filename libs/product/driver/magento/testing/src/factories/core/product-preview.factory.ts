@@ -16,7 +16,7 @@ export class MockMagentoProductPreview implements MagentoProductPreview {
   name = faker.random.word();
   sku = faker.random.alphaNumeric(16);
   stock_status = MagentoProductStockStatusEnum.InStock;
-  thumbnail = {
+  image = {
     __typename: 'ProductImage',
     label: faker.random.words(3),
     url: faker.image.imageUrl(),

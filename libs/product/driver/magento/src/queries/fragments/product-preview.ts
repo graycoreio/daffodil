@@ -22,7 +22,7 @@ export const magentoProductPreviewFragment = gql`
 				}
 			}
 		}
-    thumbnail {
+    image {
 			url
 			label
 		}

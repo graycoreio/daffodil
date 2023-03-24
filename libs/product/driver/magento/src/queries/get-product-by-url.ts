@@ -6,7 +6,7 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { magentoProductFragment } from './fragments/product';
+import { magentoProductPageFragment } from './fragments/public_api';
 
 export const DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME = 'MagentoGetAProductByUrl';
 
@@ -18,11 +18,11 @@ export const getProductByUrl = (extraProductFragments: DocumentNode[] = []) => g
       }
     }){
       items {
-        ...product
+        ...magentoProductPage
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
     }
   }
-  ${magentoProductFragment}
+  ${magentoProductPageFragment}
   ${daffBuildFragmentDefinition(...extraProductFragments)}
 `;

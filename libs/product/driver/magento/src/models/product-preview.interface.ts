@@ -16,7 +16,7 @@ export interface MagentoProductPreview {
   sku: string;
   url_key: string;
   url_suffix: string;
-  thumbnail: {
+  image: {
     url: string;
     label: string;
   };
