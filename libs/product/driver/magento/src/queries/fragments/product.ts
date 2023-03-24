@@ -11,10 +11,6 @@ export const magentoProductFragment = gql`
 		meta_description
     canonical_url
     stock_status
-    image {
-			url
-			label
-		}
 		short_description {
 			html
 		}

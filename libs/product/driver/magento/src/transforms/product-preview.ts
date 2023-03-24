@@ -45,7 +45,7 @@ export function transformMagentoSimpleProductPreview(product: MagentoProductPrev
     id: product.sku,
     url: `/${product.url_key}${product.url_suffix}`,
     name: product.name,
-    thumbnail: transformThumbnail(product.thumbnail),
+    thumbnail: transformThumbnail(product.image),
     price: getPrice(product),
     discount: getDiscount(product),
     images: transformMediaGalleryEntries(product, mediaUrl),
@@ -53,7 +53,7 @@ export function transformMagentoSimpleProductPreview(product: MagentoProductPrev
   };
 }
 
-function transformThumbnail(image: MagentoProduct['thumbnail']): DaffProductImage {
+function transformThumbnail(image: MagentoProduct['image']): DaffProductImage {
   return {
     url: image.url,
     label: image.label,
