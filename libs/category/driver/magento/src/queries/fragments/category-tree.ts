@@ -17,11 +17,6 @@ export const magentoCategoryTreeFragment = gql`
 			category_level
 			category_url_path
 		}
-		products {
-			items {
-				sku
-			}
-		}
 		children_count
   }
 `;

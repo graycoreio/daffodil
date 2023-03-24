@@ -15,6 +15,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
   let service: DaffMagentoCategoryTransformerService;
   let categoryFactory: DaffCategoryFactory;
   let stubCategory: DaffCategory;
+  let mockProducts: MagentoProduct[];
 
   let url: DaffCategory['url'];
 
@@ -33,6 +34,19 @@ describe('DaffMagentoCategoryTransformerService', () => {
       id: '1',
       url: `/${url}.html`,
     });
+    mockProducts = [{
+      __typename: 'simple',
+      uid: '1',
+      name: 'name',
+      sku: stubCategory.product_ids[0],
+      url_key: 'url_key',
+      url_suffix: '.html',
+      price_range: null,
+      image: {
+        url: 'url',
+        label: 'label',
+      },
+    }];
   });
 
   it('should be created', () => {
@@ -59,26 +73,11 @@ describe('DaffMagentoCategoryTransformerService', () => {
           category_url_path: stubCategory.breadcrumbs[0].url,
         }],
         description: stubCategory.description,
-        products: {
-          items: [{
-            __typename: 'simple',
-            uid: '1',
-            name: 'name',
-            sku: stubCategory.product_ids[0],
-            url_key: 'url_key',
-            url_suffix: '.html',
-            price_range: null,
-            image: {
-              url: 'url',
-              label: 'label',
-            },
-          }],
-        },
         children_count: stubCategory.children_count,
       };
 
       stubCategory.breadcrumbs[0].url = `/${stubCategory.breadcrumbs[0].url}.html`;
-      result = service.transform(magentoCategory, magentoCategory.products.items);
+      result = service.transform(magentoCategory, mockProducts);
     });
 
     describe('when the products are different than those nested in the category', () => {
@@ -103,7 +102,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
       it('should set product_ids from the products response, not the category', () => {
         expect(result.product_ids).toContain(newProducts[0].sku);
-        expect(result.product_ids).not.toContain(magentoCategory.products.items[0].sku);
+        expect(result.product_ids).not.toContain(mockProducts[0].sku);
       });
     });
 
@@ -149,7 +148,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
         url: '/urlKey3.html',
       }];
 
-      result = service.transform(magentoCategory, magentoCategory.products.items);
+      result = service.transform(magentoCategory, mockProducts);
       expect(result.breadcrumbs).toEqual(expectedBreadcrumbs);
     });
 
