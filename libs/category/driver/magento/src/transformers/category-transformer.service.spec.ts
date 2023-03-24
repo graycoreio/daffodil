@@ -41,7 +41,6 @@ describe('DaffMagentoCategoryTransformerService', () => {
       sku: stubCategory.product_ids[0],
       url_key: 'url_key',
       url_suffix: '.html',
-      image: null,
       price_range: null,
       image: {
         url: 'url',
