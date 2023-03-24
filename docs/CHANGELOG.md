@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.57.0](https://github.com/graycoreio/daffodil/compare/v0.56.1...v0.57.0) (2023-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** removes `MagentoCategory#products`
+
+### Features
+
+* **category:** remove nested products query in Magento driver ([#2375](https://github.com/graycoreio/daffodil/issues/2375)) ([fb8019a](https://github.com/graycoreio/daffodil/commit/fb8019ae2e5bfa5ec4a1f1fe0094227a96cf5856))
+
 ### [0.56.1](https://github.com/graycoreio/daffodil/compare/v0.56.0...v0.56.1) (2023-03-22)
 
 
