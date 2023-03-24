@@ -67,9 +67,8 @@ describe('DaffMagentoCategoryTransformerService', () => {
             sku: stubCategory.product_ids[0],
             url_key: 'url_key',
             url_suffix: '.html',
-            image: null,
             price_range: null,
-            thumbnail: {
+            image: {
               url: 'url',
               label: 'label',
             },
@@ -93,9 +92,8 @@ describe('DaffMagentoCategoryTransformerService', () => {
           sku: 'a different SKU',
           url_key: 'url_key',
           url_suffix: '.html',
-          image: null,
           price_range: null,
-          thumbnail: {
+          image: {
             url: 'url',
             label: 'label',
           },
