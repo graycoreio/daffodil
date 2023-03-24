@@ -28,7 +28,7 @@ export interface DaffProduct extends DaffLocatable, DaffIdentifiable, Partial<Da
    */
   name: string;
   /**
-   * A smaller image to concisely visualize the product.
+   * An image to concisely visualize the product.
    */
   thumbnail: DaffProductImage;
   /**
