@@ -7,3 +7,4 @@ export { availableShippingMethodFragment } from './available-shipping-method';
 export { selectedShippingMethodFragment } from './selected-shipping-method';
 export { cartFragment } from './cart';
 export { pricesFragment } from './prices';
+export { magentoCartUserError } from './user-error';
