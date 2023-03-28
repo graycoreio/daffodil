@@ -6,7 +6,10 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from './fragments/public_api';
+import {
+  cartFragment,
+  magentoCartUserError,
+} from './fragments/public_api';
 
 export const addCartItem = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation MagentoAddCartItem($cartId: String!, $input: CartItemInput!) {
@@ -18,8 +21,12 @@ export const addCartItem = (extraCartFragments: DocumentNode[] = []) => gql`
         ...cart
         ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
+      user_errors {
+        ...cartUserError
+      }
     }
   }
   ${cartFragment}
+  ${magentoCartUserError}
   ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;

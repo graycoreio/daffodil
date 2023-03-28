@@ -19,6 +19,7 @@ import {
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
 import {
+  DaffCartDriverErrorCodes,
   DaffCartItemExceedsMaxQtyError,
   DaffCartNotFoundError,
   DaffProductOutOfStockError,
@@ -40,6 +41,8 @@ import {
   addCartItem,
   DaffCartMagentoCartItemTransform,
   daffProvideCartMagentoCartItemTransforms,
+  MagentoCartUserInputErrorType,
+  MagentoCartUserInputError,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -49,6 +52,7 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffError } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
 import { schema } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
@@ -181,6 +185,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
       addProductsToCart: {
         __typename: 'AddProductsToCartOutput',
         cart: mockMagentoCart,
+        user_errors: [],
       },
     };
     mockUpdateCartItemResponse = {
@@ -318,6 +323,28 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
           expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
           done();
         });
+
+        const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
+
+        op.flush({
+          data: mockAddCartItemResponse,
+        });
+      });
+    });
+
+    describe('when there are errors', () => {
+      beforeEach(() => {
+        mockAddCartItemResponse.addProductsToCart.user_errors.push({ code: MagentoCartUserInputErrorType.INSUFFICIENT_STOCK, message: 'Product out of stock' });
+      });
+
+      it('should throw an error', done => {
+        service.add(cartId, mockDaffConfigurableCartItemInput).pipe(
+          catchError((error: DaffError) => {
+            expect(error.code).toEqual(DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK);
+            done();
+            return [];
+          }),
+        ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
 

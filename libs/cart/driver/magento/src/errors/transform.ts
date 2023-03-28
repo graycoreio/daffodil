@@ -4,6 +4,7 @@ import { GraphQLError } from 'graphql';
 import { DaffCartCoupon } from '@daffodil/cart';
 import {
   DaffCartDriverErrorMap,
+  DaffCartInvalidAPIResponseError,
   DaffInvalidCouponCodeError,
 } from '@daffodil/cart/driver';
 import { DaffError } from '@daffodil/core';
@@ -12,9 +13,11 @@ import {
   daffMagentoTransformGraphQlError,
 } from '@daffodil/driver/magento';
 
+import { MagentoCartUserInputError } from '../models/public_api';
 import {
   DaffCartMagentoErrorMap,
   DaffCartMagentoErrorMessageRegexMap,
+  DaffCartMagentoUserErrorMap,
 } from './map';
 
 /**
@@ -52,4 +55,8 @@ export function transformCartMagentoError(error, requestPayload?: unknown) {
   } else {
     return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
   }
+}
+
+export function magentoCartTransformUserError(error: MagentoCartUserInputError): DaffError {
+  return new (DaffCartMagentoUserErrorMap[error.code] || DaffCartInvalidAPIResponseError)(error.message);
 }
