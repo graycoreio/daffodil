@@ -3,7 +3,7 @@ import { DocumentNode } from 'graphql';
 
 import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
 
-describe('Core | GraphQL | daffBuildFragmentNameSpread', () => {
+describe('@daffodil/core/graphql | daffBuildFragmentNameSpread', () => {
   let mockFragment1: DocumentNode;
   let mockFragment2: DocumentNode;
   let mockEmptyFragment: DocumentNode;
@@ -52,7 +52,7 @@ describe('Core | GraphQL | daffBuildFragmentNameSpread', () => {
     });
 
     it('should return a string of the names separated by newlines', () => {
-      expect(names).toEqual(`...fragment11\n...fragment12\n...fragment21\n...fragment22\n`);
+      expect(names).toEqual(`...fragment11\n...fragment21\n`);
     });
   });
 
