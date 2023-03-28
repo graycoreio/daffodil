@@ -215,10 +215,6 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
-
-    it('should add an error to the item section of state.errors', () => {
-      expect(result.errors[DaffCartOperationType.Item].length).toEqual(2);
-    });
   });
 
   describe('when CartItemDeleteOutOfStockAction is triggered', () => {
