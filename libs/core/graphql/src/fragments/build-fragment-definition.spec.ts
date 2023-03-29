@@ -3,7 +3,7 @@ import { DocumentNode } from 'graphql';
 
 import { daffBuildFragmentDefinition } from './build-fragment-definition';
 
-describe('Core | GraphQL | daffBuildFragmentDefinition', () => {
+describe('@daffodil/core/graphql | daffBuildFragmentDefinition', () => {
   let mockFragment1: DocumentNode;
   let mockFragment2: DocumentNode;
   let mockEmptyFragment: DocumentNode;
