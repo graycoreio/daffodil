@@ -32,7 +32,7 @@ import { DaffMagentoShippingAddressTransformer } from './shipping-address.servic
 @Injectable({
   providedIn: 'root',
 })
-export class DaffMagentoCartTransformer {
+export class DaffMagentoCartTransformer<T extends MagentoCart = MagentoCart, V extends DaffCart = DaffCart> {
   constructor(
     private shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
     private billingAddressTransformer: DaffMagentoBillingAddressTransformer,
@@ -40,10 +40,10 @@ export class DaffMagentoCartTransformer {
     private shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
     private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
     @Inject(DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS) private cartItemTransforms: DaffCartMagentoCartItemTransform[],
-    @Inject(DAFF_CART_MAGENTO_CART_TRANSFORMS) private cartTransforms: DaffCartMagentoCartTransform[],
+    @Inject(DAFF_CART_MAGENTO_CART_TRANSFORMS) private cartTransforms: DaffCartMagentoCartTransform<T, V>[],
   ) {}
 
-  private transformShippingAddress(cart: MagentoCart): {shipping_address: DaffCart['shipping_address']} {
+  private transformShippingAddress(cart: T): {shipping_address: V['shipping_address']} {
     return {
       shipping_address: cart.shipping_addresses[0]
         ? this.shippingAddressTransformer.transform({
@@ -54,7 +54,7 @@ export class DaffMagentoCartTransformer {
     };
   }
 
-  private transformBillingAddress(cart: MagentoCart): {billing_address: DaffCart['billing_address']} {
+  private transformBillingAddress(cart: T): {billing_address: V['billing_address']} {
     return {
       billing_address: cart.billing_address
         ? this.billingAddressTransformer.transform({
@@ -65,16 +65,16 @@ export class DaffMagentoCartTransformer {
     };
   }
 
-  private transformCartItems(cart: MagentoCart): {items: DaffCart['items']} {
+  private transformCartItems(cart: T): {items: V['items']} {
     return {
       // TODO: extract into own transforms
       items: cart.items.filter(item => !!item).map(item => transformMagentoCartItem(daffTransformMagentoCartItem(item), item, this.cartItemTransforms)),
     };
   }
 
-  private transformTotals(cart: MagentoCart): {
-    grand_total: DaffCart['grand_total'];
-    subtotal: DaffCart['subtotal'];
+  private transformTotals(cart: T): {
+    grand_total: V['grand_total'];
+    subtotal: V['subtotal'];
   } {
     return {
       grand_total: cart.prices.grand_total.value,
@@ -82,7 +82,7 @@ export class DaffMagentoCartTransformer {
     };
   }
 
-  private transformCoupons(cart: MagentoCart): {coupons: DaffCart['coupons']} {
+  private transformCoupons(cart: T): {coupons: V['coupons']} {
     return {
       coupons: cart.applied_coupons
         ? cart.applied_coupons.map(daffMagentoCouponTransform)
@@ -90,13 +90,13 @@ export class DaffMagentoCartTransformer {
     };
   }
 
-  private transformPayment(cart: MagentoCart): {payment: DaffCart['payment']} {
+  private transformPayment(cart: T): {payment: V['payment']} {
     return {
       payment: this.paymentTransformer.transform(cart.selected_payment_method),
     };
   }
 
-  private transformShippingInformation(cart: MagentoCart): {shipping_information: DaffCart['shipping_information']} {
+  private transformShippingInformation(cart: T): {shipping_information: V['shipping_information']} {
     return {
       shipping_information: cart.shipping_addresses[0]
         ? this.shippingInformationTransformer.transform(cart.shipping_addresses[0].selected_shipping_method)
@@ -104,7 +104,7 @@ export class DaffMagentoCartTransformer {
     };
   }
 
-  private transformShippingMethods(cart: MagentoCart): {available_shipping_methods: DaffCart['available_shipping_methods']} {
+  private transformShippingMethods(cart: T): {available_shipping_methods: V['available_shipping_methods']} {
     return {
       available_shipping_methods: cart.shipping_addresses[0] && cart.shipping_addresses[0].available_shipping_methods
         ? cart.shipping_addresses[0].available_shipping_methods.map(method =>
@@ -114,7 +114,7 @@ export class DaffMagentoCartTransformer {
     };
   }
 
-  private transformPaymentMethods(cart: MagentoCart): {available_payment_methods: DaffCart['available_payment_methods']} {
+  private transformPaymentMethods(cart: T): {available_payment_methods: V['available_payment_methods']} {
     return {
       available_payment_methods: cart.available_payment_methods.map(method =>
         this.paymentTransformer.transform(method),
@@ -127,10 +127,10 @@ export class DaffMagentoCartTransformer {
    *
    * @param cart the cart from a magento cart query.
    */
-  transform(cart: MagentoCart): DaffCart {
+  transform(cart: T): V {
     return cart ? this.cartTransforms.reduce(
       (daffCart, transform) => transform(daffCart, cart),
-      {
+      <V>{
         extra_attributes: cart,
 
         ...this.transformCartItems(cart),
