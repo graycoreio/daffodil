@@ -40,7 +40,10 @@ export function daffAdd(...numbers: number[]): number {
     return numbers[0];
   }
   const precision = Math.max(...numbers.map(daffPrecision));
-  return numbers.reduce((acc, number) => acc + Math.round(number*precision), 0) / precision;
+  return numbers.slice(1).reduce(
+    (acc, number) => acc + Math.round(number*precision),
+    Math.round(numbers[0]*precision),
+  ) / precision;
 }
 
 /**
