@@ -1,4 +1,8 @@
 export * from './long-arithmetic';
+export { daffAdd } from './long-arithmetic';
+export { daffSubtract } from './long-arithmetic';
+export { daffMultiply } from './long-arithmetic';
+export { daffDivide } from './long-arithmetic';
 export { range } from './range';
 export { shallowCompare } from './shallow-compare';
 export { shuffle } from './shuffle';
