@@ -1,17 +1,26 @@
 /**
- * A helper function to get the number of decimal significant figures of a number.
+ * A helper function to compute a power of 10 required to convert a decimal number to an integer
  * This function will fail if the given number has more than 16 significant figures or
  * the value of the number is greater than 10^11
  *
  * @param number
  */
-function daffPrecision(number: number): number {
-  let p = 10000;
-  if(number === undefined || number === null) {
+export function daffPrecision(number: number): number {
+  let p = 1;
+  if(
+    number === undefined ||
+      number === null ||
+      Number.isNaN(number) ||
+      number === Infinity ||
+      number === -Infinity
+  ) {
     return p;
   }
   while (Math.round(number * p) / p !== number) {
     p *= 10;
+    if(p >= 1e11){
+      break;
+    }
   }
   return p;
 }
