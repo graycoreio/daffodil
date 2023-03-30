@@ -33,8 +33,11 @@ export function daffPrecision(number: number): number {
  * @param numbers
  */
 export function daffAdd(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffAdd.');
+  if(numbers.length === 0) {
+    return undefined;
+  }
+  if(numbers.length === 1) {
+    return numbers[0];
   }
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.reduce((acc, number) => acc + Math.round(number*precision), 0) / precision;
@@ -48,8 +51,11 @@ export function daffAdd(...numbers: number[]): number {
  * @param numbers
  */
 export function daffSubtract(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffSubtract.');
+  if(numbers.length === 0) {
+    return undefined;
+  }
+  if(numbers.length === 1) {
+    return numbers[0];
   }
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.slice(1).reduce(
@@ -66,9 +72,13 @@ export function daffSubtract(...numbers: number[]): number {
  * @param numbers
  */
 export function daffMultiply(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffMultiply.');
+  if(numbers.length === 0) {
+    return undefined;
   }
+  if(numbers.length === 1) {
+    return numbers[0];
+  }
+
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.reduce(
     (acc, number) => acc * Math.round(number*precision),
@@ -87,15 +97,13 @@ export function daffMultiply(...numbers: number[]): number {
  * @param numbers
  */
 export function daffDivide(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffDivide.');
+  if(numbers.length === 0) {
+    return undefined;
   }
-  // TODO(griest024): use better condition after IE support is dropped
-  const illegalOperation = numbers.filter(isNaN).length > 0
-    || numbers.slice(1).filter(n => n === 0 || n === null).length > 0;
-  if (illegalOperation) {
-    return NaN;
+  if(numbers.length === 1) {
+    return numbers[0];
   }
+
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.slice(1).reduce(
     (acc, number) => acc / Math.round(number*precision),
