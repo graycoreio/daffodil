@@ -35,6 +35,10 @@ import {
   DaffStorageServiceError,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,
+  DaffDriverHttpClientCacheServiceInterface,
+} from '@daffodil/driver';
 
 import {
   DaffAuthActionTypes,
@@ -60,6 +64,7 @@ export class DaffAuthEffects {
     @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
     @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
+    @Inject(DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE) private clientCache: DaffDriverHttpClientCacheServiceInterface,
   ) {}
 
   check$ = createEffect(() => this.actions$.pipe(
@@ -128,4 +133,12 @@ export class DaffAuthEffects {
       }
     }),
   ));
+
+  clearClientCache$ = createEffect(() => this.actions$.pipe(
+    ofType(DaffAuthActionTypes.AuthRevokeAction),
+    tap(() => {
+      this.clientCache.reset();
+    }),
+    switchMap(() => EMPTY),
+  ), { dispatch: false });
 }

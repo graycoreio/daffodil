@@ -32,6 +32,10 @@ import {
   DaffStorageServiceError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import {
+  DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,
+  DaffDriverHttpClientCacheServiceInterface,
+} from '@daffodil/driver';
 
 import { DaffAuthEffects } from './auth.effects';
 
@@ -41,6 +45,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
   let daffAuthStorageService: DaffAuthStorageService;
   let daffAuthDriver: jasmine.SpyObj<DaffAuthServiceInterface>;
+  let clientCacheSpy: jasmine.SpyObj<DaffDriverHttpClientCacheServiceInterface>;
   let getTokenSpy: jasmine.Spy<DaffAuthStorageService['getAuthToken']>;
   let removeTokenSpy: jasmine.Spy<DaffAuthStorageService['removeAuthToken']>;
 
@@ -52,6 +57,8 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   };
 
   beforeEach(() => {
+    clientCacheSpy = jasmine.createSpyObj('DaffDriverHttpClientCacheServiceInterface', ['reset']);
+
     TestBed.configureTestingModule({
       providers: [
         DaffAuthEffects,
@@ -65,6 +72,10 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
           useValue: <DaffAuthStateConfig>{
             checkInterval: 100,
           },
+        },
+        {
+          provide: DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,
+          useValue: clientCacheSpy,
         },
       ],
     });
@@ -217,6 +228,25 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
         it('should dispatch a server side action', () => {
           expect(effects.removeAuthToken$).toBeObservable(expected);
         });
+      });
+    });
+  });
+
+  describe('clearClientCache$', () => {
+    let expected;
+
+    describe('when AuthRevoke is dispatched', () => {
+      let revokeAction: DaffAuthRevoke;
+
+      beforeEach(() => {
+        revokeAction = new DaffAuthRevoke();
+        actions$ = hot('--a', { a: revokeAction });
+        expected = cold('---');
+      });
+
+      it('should reset the client cache', () => {
+        expect(effects.clearClientCache$).toBeObservable(expected);
+        expect(clientCacheSpy.reset).toHaveBeenCalledWith();
       });
     });
   });
