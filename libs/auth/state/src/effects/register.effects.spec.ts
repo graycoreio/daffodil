@@ -24,7 +24,6 @@ import {
   DaffAuthRegister,
   DaffAuthRegisterSuccess,
   DaffAuthRegisterFailure,
-  DaffAuthComplete,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
 } from '@daffodil/auth/state';
@@ -107,10 +106,9 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
 
         describe('and setToken is successful', () => {
           beforeEach(() => {
-            const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess();
-            const mockAuthCompleteAction = new DaffAuthComplete();
+            const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess(token);
 
-            expected = cold('--(ba)', { a: mockAuthCompleteAction, b: mockAuthResetPasswordSuccessAction });
+            expected = cold('--a', { a: mockAuthResetPasswordSuccessAction });
           });
 
           it('should notify state that the register was successful', () => {

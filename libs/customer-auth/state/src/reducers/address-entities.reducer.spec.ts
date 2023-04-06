@@ -1,6 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffAuthRevoke } from '@daffodil/auth/state';
+import {
+  DaffAuthCheckFailure,
+  DaffAuthGuardLogout,
+  DaffAuthLogoutSuccess,
+} from '@daffodil/auth/state';
 import { DaffOperationEntityState } from '@daffodil/core/state';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import { daffCustomerAddressEntitiesAdapter } from '@daffodil/customer/state';
@@ -29,10 +33,35 @@ describe('@daffodil/customer-auth/state | daffCustomerAuthResetAddressEntitiesAf
     });
   });
 
-  describe('when AuthRevokeAction is triggered', () => {
-
+  describe('when DaffAuthLogoutSuccess is triggered', () => {
     beforeEach(() => {
-      const revokeAction = new DaffAuthRevoke();
+      const revokeAction = new DaffAuthLogoutSuccess();
+      state = daffCustomerAddressEntitiesAdapter().list(addressFactory.createMany(5), initialState);
+
+      result = reducer(state, revokeAction);
+    });
+
+    it('resets state', () => {
+      expect(result).toEqual(initialState);
+    });
+  });
+
+  describe('when DaffAuthCheckFailure is triggered', () => {
+    beforeEach(() => {
+      const revokeAction = new DaffAuthCheckFailure(null);
+      state = daffCustomerAddressEntitiesAdapter().list(addressFactory.createMany(5), initialState);
+
+      result = reducer(state, revokeAction);
+    });
+
+    it('resets state', () => {
+      expect(result).toEqual(initialState);
+    });
+  });
+
+  describe('when DaffAuthGuardLogout is triggered', () => {
+    beforeEach(() => {
+      const revokeAction = new DaffAuthGuardLogout(null);
       state = daffCustomerAddressEntitiesAdapter().list(addressFactory.createMany(5), initialState);
 
       result = reducer(state, revokeAction);

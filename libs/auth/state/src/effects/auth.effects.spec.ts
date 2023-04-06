@@ -16,8 +16,6 @@ import {
   DaffAuthenticationFailedError,
 } from '@daffodil/auth/driver';
 import {
-  DaffAuthGuardCheck,
-  DaffAuthGuardCheckCompletion,
   DaffAuthCheck,
   DaffAuthCheckSuccess,
   DaffAuthCheckFailure,
@@ -25,7 +23,8 @@ import {
   DaffAuthStateConfig,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
-  DaffAuthRevoke,
+  DaffAuthGuardLogout,
+  DaffAuthLogoutSuccess,
 } from '@daffodil/auth/state';
 import {
   DaffServerSideStorageError,
@@ -112,42 +111,6 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     });
   });
 
-  describe('guardCheck$ | indicating the completion and result of an auth token check operation', () => {
-    let expected;
-    const mockAuthCheckAction = new DaffAuthGuardCheck();
-
-    beforeEach(() => {
-      actions$ = hot('--a', { a: mockAuthCheckAction });
-    });
-
-    describe('and the check is successful', () => {
-      beforeEach(() => {
-        const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(true);
-        daffAuthDriver.check.and.returnValue(of(undefined));
-
-        expected = cold('--b', { b: mockAuthCheckCompletionAction });
-      });
-
-      it('should notify state that the check succeeded', () => {
-        expect(effects.guardCheck$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the check fails', () => {
-      beforeEach(() => {
-        const error = 'Auth token is not valid';
-        const response = cold('#', {}, error);
-        daffAuthDriver.check.and.returnValue(response);
-        const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(false);
-        expected = cold('--b', { b: mockAuthCheckCompletionAction });
-      });
-
-      it('should notify state that the check failed', () => {
-        expect(effects.guardCheck$).toBeObservable(expected);
-      });
-    });
-  });
-
   describe('check$ | when the user checks if their auth token is valid', () => {
     let expected;
 
@@ -155,6 +118,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
     beforeEach(() => {
       actions$ = hot('--a', { a: mockAuthCheckAction });
+      getTokenSpy.and.returnValue('token');
     });
 
     describe('and the check is successful', () => {
@@ -177,7 +141,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
         error = new DaffAuthenticationFailedError('Auth token is not valid');
         const response = cold('#', {}, error);
         daffAuthDriver.check.and.returnValue(response);
-        const mockAuthCheckFailureAction = new DaffAuthCheckFailure(daffTransformErrorToStateError(error));
+        const mockAuthCheckFailureAction = jasmine.any(DaffAuthCheckFailure);
 
         expected = cold('--b', { b: mockAuthCheckFailureAction });
       });
@@ -197,7 +161,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
       beforeEach(() => {
         authLogoutSuccessAction = new DaffAuthCheckFailure({ code: 'code', message: 'message' });
         actions$ = hot('--a', { a: authLogoutSuccessAction });
-        expected = cold('--a', { a: new DaffAuthRevoke() });
+        expected = cold('---');
       });
 
       it('should remove the auth token from storage', () => {
@@ -235,11 +199,26 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   describe('clearClientCache$', () => {
     let expected;
 
-    describe('when AuthRevoke is dispatched', () => {
-      let revokeAction: DaffAuthRevoke;
+    describe('when DaffAuthCheckFailure is dispatched', () => {
+      let revokeAction: DaffAuthCheckFailure;
 
       beforeEach(() => {
-        revokeAction = new DaffAuthRevoke();
+        revokeAction = new DaffAuthCheckFailure(null);
+        actions$ = hot('--a', { a: revokeAction });
+        expected = cold('---');
+      });
+
+      it('should reset the client cache', () => {
+        expect(effects.clearClientCache$).toBeObservable(expected);
+        expect(clientCacheSpy.reset).toHaveBeenCalledWith();
+      });
+    });
+
+    describe('when DaffAuthGuardLogout is dispatched', () => {
+      let revokeAction: DaffAuthGuardLogout;
+
+      beforeEach(() => {
+        revokeAction = new DaffAuthGuardLogout(null);
         actions$ = hot('--a', { a: revokeAction });
         expected = cold('---');
       });

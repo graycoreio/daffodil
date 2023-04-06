@@ -10,9 +10,12 @@ import { Observable } from 'rxjs';
 
 import { provideDaffAuthRoutingConfig } from '@daffodil/auth/routing';
 import {
-  DaffAuthComplete,
+  DaffAuthCheckFailure,
+  DaffAuthGuardLogout,
+  DaffAuthLoginSuccess,
   DaffAuthLogoutSuccess,
-  DaffAuthRevoke,
+  DaffAuthRegisterSuccess,
+  DaffResetPasswordSuccess,
 } from '@daffodil/auth/state';
 
 import { DaffAuthRedirectEffects } from './redirect.effects';
@@ -26,10 +29,12 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
   let routerNavigateSpy: jasmine.Spy<Router['navigateByUrl']>;
   let authCompleteRedirectUrl: string;
   let logoutRedirectUrl: string;
+  let expirationRedirectUrl: string;
 
   beforeEach(() => {
     authCompleteRedirectUrl = '/customer';
     logoutRedirectUrl = '/login';
+    expirationRedirectUrl = '/';
 
     TestBed.configureTestingModule({
       imports: [
@@ -41,6 +46,7 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
         provideDaffAuthRoutingConfig({
           authCompleteRedirectPath: authCompleteRedirectUrl,
           logoutRedirectPath: logoutRedirectUrl,
+          tokenExpirationRedirectPath: expirationRedirectUrl,
         }),
       ],
     });
@@ -55,9 +61,9 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when DaffAuthComplete is dispatched', () => {
+  describe('when DaffAuthLoginSuccess is dispatched', () => {
     beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthComplete() });
+      actions$ = hot('--a', { a: new DaffAuthLoginSuccess(null) });
     });
 
     it('should navigate to the customer dashboard page', () => {
@@ -68,9 +74,35 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
     });
   });
 
-  describe('when DaffAuthRevoke is dispatched', () => {
+  describe('when DaffAuthRegisterSuccess is dispatched', () => {
     beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthRevoke() });
+      actions$ = hot('--a', { a: new DaffAuthRegisterSuccess('token') });
+    });
+
+    it('should navigate to the customer dashboard page', () => {
+      const expected = cold('---');
+
+      expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+      expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
+    });
+  });
+
+  describe('when DaffResetPasswordSuccess is dispatched', () => {
+    beforeEach(() => {
+      actions$ = hot('--a', { a: new DaffResetPasswordSuccess('token') });
+    });
+
+    it('should navigate to the customer dashboard page', () => {
+      const expected = cold('---');
+
+      expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+      expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
+    });
+  });
+
+  describe('when DaffAuthLogoutSuccess is dispatched', () => {
+    beforeEach(() => {
+      actions$ = hot('--a', { a: new DaffAuthLogoutSuccess() });
     });
 
     it('should navigate to the login page', () => {
@@ -78,6 +110,32 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
 
       expect(effects.redirectAfterLogout$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(logoutRedirectUrl);
+    });
+  });
+
+  describe('when DaffAuthCheckFailure is dispatched', () => {
+    beforeEach(() => {
+      actions$ = hot('--a', { a: new DaffAuthCheckFailure(null) });
+    });
+
+    it('should navigate to the home page', () => {
+      const expected = cold('---');
+
+      expect(effects.redirectAfterExpiration$).toBeObservable(expected);
+      expect(routerNavigateSpy).toHaveBeenCalledWith(expirationRedirectUrl);
+    });
+  });
+
+  describe('when DaffAuthGuardLogout is dispatched', () => {
+    beforeEach(() => {
+      actions$ = hot('--a', { a: new DaffAuthGuardLogout(null) });
+    });
+
+    it('should navigate to the home page', () => {
+      const expected = cold('---');
+
+      expect(effects.redirectAfterExpiration$).toBeObservable(expected);
+      expect(routerNavigateSpy).toHaveBeenCalledWith(expirationRedirectUrl);
     });
   });
 });

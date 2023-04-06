@@ -21,7 +21,6 @@ import {
   DaffAuthRegister,
   DaffAuthRegisterFailure,
   DaffAuthLoginSuccess,
-  DaffAuthComplete,
 } from '@daffodil/auth/state';
 import {
   DaffAuthTokenFactory,
@@ -129,7 +128,7 @@ describe('DaffAuthFacade', () => {
 
     it('should be true upon an auth complete', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffAuthComplete());
+      store.dispatch(new DaffAuthLoginSuccess(null));
       expect(facade.loggedIn$).toBeObservable(expected);
     });
   });

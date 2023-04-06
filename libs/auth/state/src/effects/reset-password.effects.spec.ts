@@ -28,7 +28,6 @@ import {
   DaffSendResetEmail,
   DaffSendResetEmailSuccess,
   DaffSendResetEmailFailure,
-  DaffAuthComplete,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
 } from '@daffodil/auth/state';
@@ -103,10 +102,9 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
 
         describe('and setToken is successful', () => {
           beforeEach(() => {
-            const mockAuthResetPasswordSuccessAction = new DaffResetPasswordSuccess();
-            const mockAuthCompleteAction = new DaffAuthComplete();
+            const mockAuthResetPasswordSuccessAction = new DaffResetPasswordSuccess(token);
 
-            expected = cold('--(ba)', { a: mockAuthCompleteAction, b: mockAuthResetPasswordSuccessAction });
+            expected = cold('--a', { a: mockAuthResetPasswordSuccessAction });
           });
 
           it('should notify state that the resetPassword was successful', () => {

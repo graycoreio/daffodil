@@ -44,7 +44,6 @@ import {
   DaffSendResetEmail,
   DaffSendResetEmailSuccess,
   DaffSendResetEmailFailure,
-  DaffAuthComplete,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
 } from '../actions/public_api';
@@ -81,7 +80,7 @@ export class DaffAuthResetPasswordEffects<
         () => action.autoLogin,
         defer(() => this.driver.resetPassword(action.info).pipe(
           tap(token => this.storage.setAuthToken(token)),
-          switchMap(() => of(new DaffResetPasswordSuccess(), new DaffAuthComplete())),
+          map((token) => new DaffResetPasswordSuccess(token)),
         )),
         defer(() => this.driver.resetPasswordOnly(action.info).pipe(
           map(() => new DaffResetPasswordSuccess()),

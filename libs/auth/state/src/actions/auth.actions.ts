@@ -3,31 +3,12 @@ import { Action } from '@ngrx/store';
 import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffAuthActionTypes {
-  AuthGuardCheckAction = '[@daffodil/auth] Auth Guard Check Action',
-  AuthGuardCheckCompletionAction = '[@daffodil/auth] Auth Guard Check Completion Action',
   AuthStorageFailureAction = '[@daffodil/auth] Auth Storage Failure Action',
+  AuthGuardLogoutAction = '[@daffodil/auth] Auth Guard Logout Action',
   AuthServerSideAction = '[@daffodil/auth] Auth Server Side Action',
   AuthCheckAction = '[@daffodil/auth] Auth Check Action',
   AuthCheckSuccessAction = '[@daffodil/auth] Auth Check Success Action',
   AuthCheckFailureAction = '[@daffodil/auth] Auth Check Failure Action',
-  AuthCompleteAction = '[@daffodil/auth] Auth Complete Action',
-  AuthRevokeAction = '[@daffodil/auth] Auth Revoke Action',
-}
-
-/**
- * An action triggered by guards to initialize an auth check request.
- */
-export class DaffAuthGuardCheck implements Action {
-  readonly type = DaffAuthActionTypes.AuthGuardCheckAction;
-}
-
-/**
- * An action triggered on the completion of a guard token check.
- */
-export class DaffAuthGuardCheckCompletion implements Action {
-  readonly type = DaffAuthActionTypes.AuthGuardCheckCompletionAction;
-
-  constructor(public result: boolean) {}
 }
 
 /*
@@ -35,6 +16,15 @@ export class DaffAuthGuardCheckCompletion implements Action {
  */
 export class DaffAuthStorageFailure implements Action {
   readonly type = DaffAuthActionTypes.AuthStorageFailureAction;
+
+  constructor(public errorMessage: DaffStateError) {}
+}
+
+/*
+ * An action triggered when an auth token is cleared from storage by a routing guard.
+ */
+export class DaffAuthGuardLogout implements Action {
+  readonly type = DaffAuthActionTypes.AuthGuardLogoutAction;
 
   constructor(public errorMessage: DaffStateError) {}
 }
@@ -76,29 +66,10 @@ export class DaffAuthCheckFailure implements Action {
   constructor(public errorMessage: DaffStateError) {}
 }
 
-/**
- * An action triggered when the user authentication flow is completed.
- * The auth token is in storage at this point.
- */
-export class DaffAuthComplete implements Action {
-  readonly type = DaffAuthActionTypes.AuthCompleteAction;
-}
-
-/**
- * An action triggered when the user auth token is revoked.
- * The auth token has been removed from storage at this point.
- */
-export class DaffAuthRevoke implements Action {
-  readonly type = DaffAuthActionTypes.AuthRevokeAction;
-}
-
 export type DaffAuthActions =
-  | DaffAuthGuardCheckCompletion
-  | DaffAuthGuardCheck
   | DaffAuthStorageFailure
+  | DaffAuthGuardLogout
   | DaffAuthServerSide
   | DaffAuthCheck
   | DaffAuthCheckSuccess
-  | DaffAuthCheckFailure
-  | DaffAuthComplete
-  | DaffAuthRevoke;
+  | DaffAuthCheckFailure;

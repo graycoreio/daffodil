@@ -29,8 +29,6 @@ import {
   DaffAuthLogout,
   DaffAuthLogoutSuccess,
   DaffAuthLogoutFailure,
-  DaffAuthComplete,
-  DaffAuthRevoke,
   DaffAuthServerSide,
 } from '@daffodil/auth/state';
 import {
@@ -182,9 +180,8 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     beforeEach(() => {
       authLoginSuccessAction = new DaffAuthLoginSuccess(mockAuth);
-      const authCompleteAction = new DaffAuthComplete();
       actions$ = hot('--a', { a: authLoginSuccessAction });
-      expected = cold('--a', { a: authCompleteAction });
+      expected = cold('---');
     });
 
     it('should set the auth token in storage', () => {
@@ -225,7 +222,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
     beforeEach(() => {
       authLogoutSuccessAction = new DaffAuthLogoutSuccess();
       actions$ = hot('--a', { a: authLogoutSuccessAction });
-      expected = cold('--a', { a: new DaffAuthRevoke() });
+      expected = cold('---');
     });
 
     it('should remove the auth token from storage', () => {

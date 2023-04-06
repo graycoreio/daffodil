@@ -6,8 +6,10 @@ import {
   daffAuthInitialState as initialState,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
-  DaffAuthComplete,
-  DaffAuthRevoke,
+  DaffAuthLoginSuccess,
+  DaffAuthLogoutSuccess,
+  DaffAuthGuardLogout,
+  DaffAuthRegisterSuccess,
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
@@ -24,11 +26,11 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
     });
   });
 
-  describe('when AuthCompleteAction is triggered', () => {
+  describe('when DaffAuthLoginSuccess is triggered', () => {
     let result: DaffAuthReducerState;
 
     beforeEach(() => {
-      const authCompleteAction = new DaffAuthComplete();
+      const authCompleteAction = new DaffAuthLoginSuccess(null);
 
       result = reducer(initialState, authCompleteAction);
     });
@@ -38,11 +40,39 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
     });
   });
 
-  describe('when AuthRevokeAction is triggered', () => {
+  describe('when DaffAuthRegisterSuccess is triggered', () => {
+    let result: DaffAuthReducerState;
+
+    describe('and the token is present', () => {
+      beforeEach(() => {
+        const authCompleteAction = new DaffAuthRegisterSuccess('token');
+
+        result = reducer(initialState, authCompleteAction);
+      });
+
+      it('sets loggedIn state to true', () => {
+        expect(result.loggedIn).toBeTrue();
+      });
+    });
+
+    describe('and the token is not present', () => {
+      beforeEach(() => {
+        const authCompleteAction = new DaffAuthRegisterSuccess(null);
+
+        result = reducer(initialState, authCompleteAction);
+      });
+
+      it('does nothing to loggedIn state', () => {
+        expect(result.loggedIn).toEqual(initialState.loggedIn);
+      });
+    });
+  });
+
+  describe('when DaffAuthLogoutSuccess is triggered', () => {
     let result: DaffAuthReducerState;
 
     beforeEach(() => {
-      const authRevokeAction = new DaffAuthRevoke();
+      const authRevokeAction = new DaffAuthLogoutSuccess();
 
       result = reducer(initialState, authRevokeAction);
     });
@@ -110,6 +140,39 @@ describe('@daffodil/auth/state | daffAuthReducer', () => {
       };
 
       const authCheckFailure = new DaffAuthCheckFailure(error);
+
+      result = reducer(state, authCheckFailure);
+    });
+
+    it('sets loading to false', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('adds an error to state.errors', () => {
+      expect(result.errors).toEqual([error]);
+    });
+
+    it('sets loggedIn state to false', () => {
+      expect(result.loggedIn).toBeFalse();
+    });
+  });
+
+  describe('when DaffAuthGuardLogout is triggered', () => {
+    const error: DaffStateError = {
+      code: 'error code',
+      message: 'error message',
+    };
+    let result: DaffAuthReducerState;
+    let state: DaffAuthReducerState;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+      };
+
+      const authCheckFailure = new DaffAuthGuardLogout(error);
 
       result = reducer(state, authCheckFailure);
     });
