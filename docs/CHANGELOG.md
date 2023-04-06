@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.58.0](https://github.com/graycoreio/daffodil/compare/v0.57.0...v0.58.0) (2023-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth,cart-customer,customer-auth:** `DaffAuthRevoke` and `DaffAuthComplete` have been removed
+* **core:** `daffBuildFragmentNameSpread` now only uses the first fragment name from each passed definition
+
+this is to allow additional fragments to be interpolated into injected fragments.
+
+### Features
+
+* **auth,cart-customer,customer-auth:** don't call driver for missing token ([#2387](https://github.com/graycoreio/daffodil/issues/2387)) ([273b332](https://github.com/graycoreio/daffodil/commit/273b332b9811fb2d3828dee2810312c9d3024cf7))
+* **cart:** add generics to magento cart transformer ([#2379](https://github.com/graycoreio/daffodil/issues/2379)) ([72dfa99](https://github.com/graycoreio/daffodil/commit/72dfa992b00395e3c82a61ed928c999903b75875))
+* **cart:** don't add contextual cart item errors to global state ([#2377](https://github.com/graycoreio/daffodil/issues/2377)) ([c6db207](https://github.com/graycoreio/daffodil/commit/c6db2077c961cd07c957d90c77bf9848d2172414))
+* **cart:** export mock classes ([#2382](https://github.com/graycoreio/daffodil/issues/2382)) ([84224e9](https://github.com/graycoreio/daffodil/commit/84224e9444f12cfb6a6d0eadd754f7ac4b2cb9a5))
+* **cart:** use `user_errors` for Magento add to cart errors ([#2378](https://github.com/graycoreio/daffodil/issues/2378)) ([41aa023](https://github.com/graycoreio/daffodil/commit/41aa023845459397c6a89b6171c9a474e87d197c))
+* **core:** arithmetic corrections ([#2381](https://github.com/graycoreio/daffodil/issues/2381)) ([61bd6ab](https://github.com/graycoreio/daffodil/commit/61bd6ab4d96b21f2f44fda671781b74d1a3efb4e))
+* **core:** change fragment name spread to only get first fragment ([#2380](https://github.com/graycoreio/daffodil/issues/2380)) ([95fa1dc](https://github.com/graycoreio/daffodil/commit/95fa1dcbf987815fe449ef36e163049eb3d38201))
+* **driver,auth:** clear Apollo cache when customer is logged out ([#2385](https://github.com/graycoreio/daffodil/issues/2385)) ([aad083d](https://github.com/graycoreio/daffodil/commit/aad083d595ef3eccf8815e278e4385299d34c3fc))
+* **driver:** reload window to clear cache ([#2386](https://github.com/graycoreio/daffodil/issues/2386)) ([75e7ada](https://github.com/graycoreio/daffodil/commit/75e7ada90b4448fba2c8965075e630732bfec57c))
+
 ## [0.57.0](https://github.com/graycoreio/daffodil/compare/v0.56.1...v0.57.0) (2023-03-24)
 
 
