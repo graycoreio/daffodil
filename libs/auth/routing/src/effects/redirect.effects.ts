@@ -10,14 +10,20 @@ import {
 } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import {
+  filter,
   switchMap,
   tap,
 } from 'rxjs/operators';
 
 import {
   DaffAuthActionTypes,
-  DaffAuthComplete,
+  DaffAuthActions,
   DaffAuthLoginActionTypes,
+  DaffAuthLoginActions,
+  DaffAuthRegisterActionTypes,
+  DaffAuthRegisterActions,
+  DaffAuthResetPasswordActionTypes,
+  DaffAuthResetPasswordActions,
 } from '@daffodil/auth/state';
 
 import {
@@ -31,13 +37,23 @@ import {
 @Injectable()
 export class DaffAuthRedirectEffects {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffAuthLoginActions | DaffAuthActions | DaffAuthRegisterActions | DaffAuthResetPasswordActions>,
     private router: Router,
     @Inject(DAFF_AUTH_ROUTING_CONFIG) private config: DaffAuthRoutingConfig,
   ) {}
 
   redirectAfterLoginOrRegister$ = createEffect(() => this.actions$.pipe(
-    ofType<DaffAuthComplete>(DaffAuthActionTypes.AuthCompleteAction),
+    ofType(
+      DaffAuthLoginActionTypes.LoginSuccessAction,
+      DaffAuthRegisterActionTypes.RegisterSuccessAction,
+      DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction,
+    ),
+    filter((action) => {
+      if ((action.type === DaffAuthRegisterActionTypes.RegisterSuccessAction || action.type === DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction) && !action.token) {
+        return false;
+      }
+      return true;
+    }),
     tap(() => {
       this.router.navigateByUrl(this.config.authCompleteRedirectPath);
     }),
@@ -45,9 +61,20 @@ export class DaffAuthRedirectEffects {
   ), { dispatch: false });
 
   redirectAfterLogout$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffAuthActionTypes.AuthRevokeAction),
+    ofType(DaffAuthLoginActionTypes.LogoutSuccessAction),
     tap(() => {
       this.router.navigateByUrl(this.config.logoutRedirectPath);
+    }),
+    switchMap(() => EMPTY),
+  ), { dispatch: false });
+
+  redirectAfterExpiration$ = createEffect(() => this.actions$.pipe(
+    ofType(
+      DaffAuthActionTypes.AuthCheckFailureAction,
+      DaffAuthActionTypes.AuthGuardLogoutAction,
+    ),
+    tap(() => {
+      this.router.navigateByUrl(this.config.tokenExpirationRedirectPath);
     }),
     switchMap(() => EMPTY),
   ), { dispatch: false });

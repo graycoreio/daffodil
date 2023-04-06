@@ -18,4 +18,10 @@ export interface DaffAuthRoutingConfig {
    * Defaults to `'/'`.
    */
   logoutRedirectPath: string;
+
+  /**
+   * The path to which the user will be redirected when their auth token is present but invalid.
+   * Defaults to `'/'`.
+   */
+  tokenExpirationRedirectPath: string;
 }

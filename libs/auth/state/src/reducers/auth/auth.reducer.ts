@@ -1,13 +1,19 @@
 import {
   DaffAuthActionTypes,
   DaffAuthActions,
+  DaffAuthLoginActionTypes,
+  DaffAuthLoginActions,
+  DaffAuthRegisterActionTypes,
+  DaffAuthRegisterSuccess,
+  DaffAuthResetPasswordActionTypes,
+  DaffAuthResetPasswordActions,
 } from '../../actions/public_api';
 import { daffAuthInitialState } from './auth-initial-state';
 import { DaffAuthReducerState } from './auth-reducer-state.interface';
 
 export function daffAuthReducer(
   state = daffAuthInitialState,
-  action: DaffAuthActions,
+  action: DaffAuthActions | DaffAuthLoginActions | DaffAuthRegisterSuccess | DaffAuthResetPasswordActions,
 ): DaffAuthReducerState {
   switch (action.type) {
     case DaffAuthActionTypes.AuthCheckAction:
@@ -25,6 +31,7 @@ export function daffAuthReducer(
       };
 
     case DaffAuthActionTypes.AuthCheckFailureAction:
+    case DaffAuthActionTypes.AuthGuardLogoutAction:
       return {
         ...state,
         loggedIn: false,
@@ -40,13 +47,20 @@ export function daffAuthReducer(
         errors: [action.errorMessage],
       };
 
-    case DaffAuthActionTypes.AuthCompleteAction:
+    case DaffAuthLoginActionTypes.LoginSuccessAction:
       return {
         ...state,
         loggedIn: true,
       };
 
-    case DaffAuthActionTypes.AuthRevokeAction:
+    case DaffAuthRegisterActionTypes.RegisterSuccessAction:
+    case DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction:
+      return action.token ? {
+        ...state,
+        loggedIn: true,
+      } : state;
+
+    case DaffAuthLoginActionTypes.LogoutSuccessAction:
       return {
         ...state,
         loggedIn: false,

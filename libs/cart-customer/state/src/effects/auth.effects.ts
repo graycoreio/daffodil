@@ -19,8 +19,13 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffAuthActionTypes,
+  DaffAuthActions,
   DaffAuthLoginActionTypes,
+  DaffAuthLoginActions,
+  DaffAuthRegisterActionTypes,
+  DaffAuthRegisterActions,
+  DaffAuthResetPasswordActionTypes,
+  DaffAuthResetPasswordActions,
 } from '@daffodil/auth/state';
 import {
   DaffCart,
@@ -48,14 +53,24 @@ import { ErrorTransformer } from '@daffodil/core/state';
 @Injectable()
 export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffAuthLoginActions | DaffAuthActions | DaffAuthRegisterActions | DaffAuthResetPasswordActions>,
     @Inject(DAFF_CART_CUSTOMER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private cartStorage: DaffCartStorageService,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
   ) {}
 
   mergeAfterLogin$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffAuthActionTypes.AuthCompleteAction),
+    ofType(
+      DaffAuthLoginActionTypes.LoginSuccessAction,
+      DaffAuthRegisterActionTypes.RegisterSuccessAction,
+      DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction,
+    ),
+    filter((action) => {
+      if ((action.type === DaffAuthRegisterActionTypes.RegisterSuccessAction || action.type === DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction) && !action.token) {
+        return false;
+      }
+      return true;
+    }),
     switchMap(() => defer(() => of(this.cartStorage.getCartId())).pipe(
       switchMap(cartId => this.driver.merge(cartId).pipe(
         map(resp => new DaffResolveCartSuccess(resp.response)),
