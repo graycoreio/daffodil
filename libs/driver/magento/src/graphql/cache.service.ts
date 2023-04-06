@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  Inject,
+  Injectable,
+  PLATFORM_ID,
+} from '@angular/core';
 
 import { DaffDriverHttpClientCacheServiceInterface } from '@daffodil/driver';
 
@@ -13,10 +17,12 @@ import { DaffDriverHttpClientCacheServiceInterface } from '@daffodil/driver';
 })
 export class DaffDriverHttpClientCacheMagentoService implements DaffDriverHttpClientCacheServiceInterface {
   constructor(
-    private apollo: Apollo,
+    @Inject(PLATFORM_ID) private platformId: string,
   ) {}
 
   reset(): void {
-    this.apollo.client.clearStore();
+    if (isPlatformBrowser(this.platformId)) {
+      location.reload();
+    }
   }
 }
