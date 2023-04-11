@@ -18,6 +18,7 @@ import { DAFF_PRODUCT_META_REDUCERS } from './meta.token';
 export const DAFF_PRODUCT_STORE_CONFIG = new InjectionToken<StoreConfig<DaffProductReducersState>>(
   'DAFF_PRODUCT_STORE_CONFIG',
   {
+    providedIn: 'any',
     factory: () => ({
       metaReducers: inject(DAFF_PRODUCT_META_REDUCERS),
     }),
