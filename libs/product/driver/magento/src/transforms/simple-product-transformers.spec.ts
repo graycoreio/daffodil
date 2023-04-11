@@ -14,12 +14,13 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
   const mediaUrl = 'media url';
   let expectedDaffProduct: DaffProduct;
   let service: DaffMagentoSimpleProductTransformers;
+  let productFactory: MagentoProductFactory;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    productFactory = TestBed.inject(MagentoProductFactory);
     service = TestBed.inject(DaffMagentoSimpleProductTransformers);
 
-    stubMagentoProduct = new MagentoProductFactory().create();
+    stubMagentoProduct = productFactory.create();
 
     expectedDaffProduct = {
       type: DaffProductTypeEnum.Simple,
@@ -50,6 +51,19 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
 
     it('should transform a MagentoProduct to a DaffProduct', () => {
       expect(service.transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl)).toEqual(expectedDaffProduct);
+    });
+  });
+
+  describe('when some of the fields are missing', () => {
+    beforeEach(() => {
+      stubMagentoProduct.media_gallery_entries = null;
+      stubMagentoProduct.meta_description = null;
+    });
+
+    it('should not set those fields on the result', () => {
+      const result = service.transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl);
+      expect(result.images).toBeUndefined();
+      expect(result.meta_description).toBeUndefined();
     });
   });
 });

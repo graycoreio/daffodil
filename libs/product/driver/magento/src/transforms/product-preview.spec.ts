@@ -26,7 +26,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
       stock_status: MagentoProductStockStatusEnum.InStock,
     });
 
-    result = transformMagentoProductPreview(stubMagentoProduct, mediaUrl);
+    result = transformMagentoProductPreview(stubMagentoProduct);
   });
 
   it('should transform to a daff product', () => {
@@ -40,7 +40,7 @@ describe('@daffodil/product/driver/magento | transformMagentoProductPreview', ()
   describe('when the product is a simple product', () => {
 
     it('should return a simple product', () => {
-      expect(transformMagentoProductPreview(stubMagentoProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Simple);
+      expect(transformMagentoProductPreview(stubMagentoProduct).type).toEqual(DaffProductTypeEnum.Simple);
     });
   });
 });

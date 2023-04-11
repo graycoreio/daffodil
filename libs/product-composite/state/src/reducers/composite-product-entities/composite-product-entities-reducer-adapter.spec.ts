@@ -44,6 +44,19 @@ describe('@daffodil/product-composite/state | DaffCompositeProductAppliedOptions
       result = adapter.upsertProducts(initialState, <DaffCompositeProduct>product, compositeProduct);
     });
 
+    describe('when there is an existing product in state with items and the incoming composite product doesn\'t have items', () => {
+      beforeEach(() => {
+        result = adapter.upsertProducts(result, {
+          ...compositeProduct,
+          items: null,
+        });
+      });
+
+      it('should not delete items', () => {
+        expect(Object.keys(result.entities[compositeProduct.id].items).length).toBeGreaterThan(0);
+      });
+    });
+
     it('sets a composite product entity', () => {
       expect(result.entities[compositeProduct.id]).toEqual({
         id: compositeProduct.id,
