@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.2](https://github.com/graycoreio/daffodil/compare/v0.58.1...v0.58.2) (2023-04-11)
+
+
+### Bug Fixes
+
+* **product*:** product extensions missing required fields in state ([#2391](https://github.com/graycoreio/daffodil/issues/2391)) ([815311f](https://github.com/graycoreio/daffodil/commit/815311f9363b3013ba161c569efae4bc52176b6a))
+* **product:** meta reducers not injecting into state ([#2389](https://github.com/graycoreio/daffodil/issues/2389)) ([28245cc](https://github.com/graycoreio/daffodil/commit/28245ccf72c5be29797477609540abb1751a9c9e))
+* **related,upsell:** dedupe meta reducers crashing product state ([#2390](https://github.com/graycoreio/daffodil/issues/2390)) ([25dabd7](https://github.com/graycoreio/daffodil/commit/25dabd7575b4f965ba52c8e28c95f9eec66e094b))
+
 ### [0.58.1](https://github.com/graycoreio/daffodil/compare/v0.58.0...v0.58.1) (2023-04-11)
 
 
