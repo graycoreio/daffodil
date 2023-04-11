@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.1](https://github.com/graycoreio/daffodil/compare/v0.58.0...v0.58.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **product*:** pieces of products in state get nulled when fields are missing ([#2388](https://github.com/graycoreio/daffodil/issues/2388)) ([196200b](https://github.com/graycoreio/daffodil/commit/196200ba34c816c8d5204d84b39523ea450b9307))
+
 ## [0.58.0](https://github.com/graycoreio/daffodil/compare/v0.57.0...v0.58.0) (2023-04-06)
 
 
