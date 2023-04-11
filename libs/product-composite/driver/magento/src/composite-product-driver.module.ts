@@ -35,6 +35,21 @@ export class DaffCompositeProductMagentoDriverModule {
               ? transformMagentoBundledProduct(daffProduct, magentoProduct)
               : daffProduct,
         ),
+        // stub out composite fields for a preview
+        ...daffProvideProductMagentoExtraProductPreviewTransforms<MagentoBundledProduct>(
+          (daffProduct, magentoProduct) =>
+            magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
+              ? {
+                ...daffProduct,
+                items: [],
+                price: 0,
+                discount: {
+                  amount: 0,
+                  percent: 0,
+                },
+              }
+              : daffProduct,
+        ),
       ],
     };
   }

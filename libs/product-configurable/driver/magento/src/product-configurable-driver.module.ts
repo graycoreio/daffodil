@@ -35,6 +35,17 @@ export class DaffConfigurableProductMagentoDriverModule {
               ? transformMagentoConfigurableProduct(daffProduct, magentoProduct)
               : daffProduct,
         ),
+        // stub out configurable fields for a preview
+        ...daffProvideProductMagentoExtraProductPreviewTransforms<MagentoConfigurableProduct>(
+          (daffProduct, magentoProduct) =>
+            magentoProduct.__typename === MagentoProductTypeEnum.ConfigurableProduct
+              ? {
+                ...daffProduct,
+                variants: [],
+                configurableAttributes: [],
+              }
+              : daffProduct,
+        ),
       ],
     };
   }
