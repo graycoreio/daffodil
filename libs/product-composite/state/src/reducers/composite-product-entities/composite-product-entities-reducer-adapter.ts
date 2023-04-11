@@ -80,10 +80,12 @@ export class DaffCompositeProductAppliedOptionsEntitiesAdapter<T extends EntityS
   private buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct): DaffCompositeProductEntity {
     return {
       id: product.id,
-      items: product.items.reduce((acc, item) => ({
-        ...acc,
-        [item.id]: this.getDefaultOption(item),
-      }), {}),
+      ...product.items && {
+        items: product.items?.reduce((acc, item) => ({
+          ...acc,
+          [item.id]: this.getDefaultOption(item),
+        }), {}),
+      },
     };
   }
 
