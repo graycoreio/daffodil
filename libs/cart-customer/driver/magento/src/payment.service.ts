@@ -37,11 +37,9 @@ export class DaffMagentoCartCustomerPaymentService implements DaffCartPaymentSer
     payment: Partial<DaffCartPaymentMethod>,
     billingAddress?: Partial<DaffCartAddress>,
   ): Observable<Partial<DaffCart>> {
-    if (this.authStorage.getAuthToken() && billingAddress) {
-      delete billingAddress.email;
-    }
+    const { email: _, ...addressWithoutEmail } = billingAddress || {};
 
-    return this.guestDriver.update(cartId, payment, billingAddress);
+    return this.guestDriver.update(cartId, payment, this.authStorage.getAuthToken() ? addressWithoutEmail : billingAddress);
   }
 
   updateWithBilling(
@@ -49,10 +47,8 @@ export class DaffMagentoCartCustomerPaymentService implements DaffCartPaymentSer
     payment: Partial<DaffCartPaymentMethod>,
     address: Partial<DaffCartAddress>,
   ): Observable<Partial<DaffCart>> {
-    if (this.authStorage.getAuthToken()) {
-      delete address.email;
-    }
+    const { email: _, ...addressWithoutEmail } = address;
 
-    return this.guestDriver.updateWithBilling(cartId, payment, address);
+    return this.guestDriver.updateWithBilling(cartId, payment, this.authStorage.getAuthToken() ? addressWithoutEmail : address);
   }
 }
