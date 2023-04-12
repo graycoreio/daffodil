@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.3](https://github.com/graycoreio/daffodil/compare/v0.58.2...v0.58.3) (2023-04-12)
+
+
+### Bug Fixes
+
+* **cart-customer:** magento driver errors for address update ([#2392](https://github.com/graycoreio/daffodil/issues/2392)) ([f3759f3](https://github.com/graycoreio/daffodil/commit/f3759f3af2efbb97b5ddc6b297c3be3e3bf7bc29))
+
 ### [0.58.2](https://github.com/graycoreio/daffodil/compare/v0.58.1...v0.58.2) (2023-04-11)
 
 
