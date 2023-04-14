@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.4](https://github.com/graycoreio/daffodil/compare/v0.58.3...v0.58.4) (2023-04-14)
+
+
+### Features
+
+* **cart-customer, magento:** allow undefined billing address ([#2396](https://github.com/graycoreio/daffodil/issues/2396)) ([c2fe6af](https://github.com/graycoreio/daffodil/commit/c2fe6af49ee2bfca7f651b32feca7f6388f7483f))
+
+
+### Bug Fixes
+
+* **cart:** cart resolved state stuck on failed ([#2394](https://github.com/graycoreio/daffodil/issues/2394)) ([935a627](https://github.com/graycoreio/daffodil/commit/935a62749ca12f708348a294e223d04b50daeb14))
+* **cart:** preventing ordering when grand total is 0 ([#2393](https://github.com/graycoreio/daffodil/issues/2393)) ([8c0453a](https://github.com/graycoreio/daffodil/commit/8c0453a26894734bd6dbfe81303914993170289f))
+
 ### [0.58.3](https://github.com/graycoreio/daffodil/compare/v0.58.2...v0.58.3) (2023-04-12)
 
 
