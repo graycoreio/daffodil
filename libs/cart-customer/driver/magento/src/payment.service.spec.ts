@@ -71,6 +71,14 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerPaymen
       driverSpy.update.and.returnValue(of(null));
     });
 
+    it('should pass through an undefind value if the original value was undefined', (done) => {
+      service.update(cartId, undefined).subscribe(() => {
+        expect(driverSpy.update).toHaveBeenCalledWith(cartId, undefined);
+        done();
+      });
+    });
+
+
     describe('when the customer is logged in', () => {
       beforeEach(() => {
         authStorageSpy.getAuthToken.and.returnValue('token');
