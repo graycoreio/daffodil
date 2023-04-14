@@ -1746,6 +1746,29 @@ describe('Cart | Selector | Cart', () => {
         }));
       });
 
+      describe('and when the grand totals is 0', () => {
+        beforeEach(() => {
+          store.dispatch(new DaffCartLoadSuccess({
+            ...cart,
+            totals: [
+              {
+                name: DaffCartTotalTypeEnum.grandTotal,
+                label: '',
+                value: 0,
+              },
+              ...cart.totals,
+            ],
+          }));
+        });
+
+        it('should return true', () => {
+          const selector = store.pipe(select(selectCanPlaceOrder));
+          const expected = cold('a', { a: true });
+
+          expect(selector).toBeObservable(expected);
+        });
+      });
+
       it('should return false', () => {
         const selector = store.pipe(select(selectCanPlaceOrder));
         const expected = cold('a', { a: false });

@@ -591,17 +591,19 @@ const createCartSelectors = <
     selectHasShippingAddress,
     selectHasShippingMethod,
     selectHasPaymentMethod,
+    selectCartGrandTotal,
     (
       isCartEmpty,
       hasBillingAddress,
       hasShippingAddress,
       hasShippingMethod,
       hasPaymentMethod,
+      grandTotal,
     ) => !isCartEmpty
       && hasBillingAddress
       && hasShippingAddress
       && hasShippingMethod
-      && hasPaymentMethod,
+      && (grandTotal === 0 || hasPaymentMethod),
   );
 
   return {
