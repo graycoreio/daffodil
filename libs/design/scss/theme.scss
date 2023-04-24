@@ -39,6 +39,7 @@
 @use '../src/molecules/sidebar/sidebar/sidebar-theme' as sidebar;
 @use '../src/molecules/sidebar/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;
 @use '../scss/state/skeleton/mixins' as skeleton;
+@use '../tree/src/tree-theme' as tree;
 
 //
 // Generates the styles of a @daffodil/design theme.
@@ -79,4 +80,5 @@
 	@include paginator.daff-paginator-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
 	@include sidebar-viewport.daff-sidebar-viewport-theme($theme);
+	@include tree.daff-tree-theme($theme);
 }

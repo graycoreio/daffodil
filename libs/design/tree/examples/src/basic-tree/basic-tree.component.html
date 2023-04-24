@@ -1,0 +1,10 @@
+<ul daff-tree [tree]="tree">
+	<ng-template #daffTreeItemWithChildrenTpl let-node>
+			<button daffTreeItem [node]="node">{{ node.title }} </button>
+	</ng-template>
+	
+	<ng-template #daffTreeItemTpl let-node>
+			<a daffTreeItem [node]="node" [routerLink]="node.url">{{ node.title }}</a>
+	</ng-template>
+</ul>
+

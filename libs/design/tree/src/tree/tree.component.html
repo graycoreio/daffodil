@@ -1,0 +1,7 @@
+<ng-container *ngFor="let node of flatTree; trackBy: trackByTreeElement">
+	<li [attr.aria-level]="node.level">
+		<ng-container 
+			*ngTemplateOutlet="node.hasChildren ? withChildrenTemplate : treeItemTemplate; context: { $implicit: node }">
+		</ng-container>	
+	</li>
+</ng-container>

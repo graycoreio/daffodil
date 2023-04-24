@@ -778,7 +778,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/design/src/test.ts",
+            "main": "libs/design/test.ts",
             "codeCoverage": true,
             "tsConfig": "libs/design/tsconfig.spec.json",
             "karmaConfig": "libs/design/karma.conf.js",

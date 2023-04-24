@@ -1,0 +1,38 @@
+@use 'sass:map';
+@use '../../scss/theming';
+@use '../../scss/core';
+
+@mixin daff-tree-theme($theme) {
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+
+	.daff-tree-item {
+		$root: &;
+
+		background-color: $base;
+		color: theming.daff-illuminate($base-contrast, $gray, 2);
+
+		&:hover {
+			background-color: theming.daff-illuminate($base, $gray, 2);
+		}
+
+		&:after {
+			border-color: currentColor;
+		}
+
+		&.selected {
+			background-color: theming.daff-illuminate($base, $gray, 2);
+			color: $base-contrast;
+
+			&:before {
+				background-color: theming.daff-color($primary);
+			}
+		}
+	}
+}

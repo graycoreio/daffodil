@@ -1,0 +1,72 @@
+@use '../../../scss/interactions';
+@use '../../../scss/typography' as t;
+
+@mixin level-padding() {
+  padding-left: calc(var(--tree-padding) * (var(--depth)));
+}
+
+.daff-tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  --tree-padding: 16px;
+}
+
+.daff-tree-item {
+  @include interactions.clickable();
+  @include t.single-line-ellipsis();
+  display: block;
+  position: relative;
+  background: none;
+  border: 0;
+  padding: 8px 16px 8px 0;
+  line-height: 1.5rem;
+  font-weight: 400;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  @include level-padding();
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+  }
+
+  &:focus,
+  &:focus-visible {
+    z-index: 1;
+  }
+
+  &.selected {
+    font-weight: 600;
+  }
+
+  &__parent {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 48%;
+      right: 16px;
+      display: inline-block;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      width: 8px;
+      height: 8px;
+      transform: translateY(-50%) rotate(45deg);
+      transition: transform 150ms;
+    }
+
+    &.open {
+      &:after {
+        top: 56%;
+        transform: translateY(-50%) rotate(225deg);
+      }
+    }
+  }
+}
