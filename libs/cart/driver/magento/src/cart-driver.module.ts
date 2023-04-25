@@ -16,6 +16,7 @@ import {
   DaffCartPaymentMethodsDriver,
   DaffCartOrderDriver,
   DaffCartCouponDriver,
+  daffCartDriverProvideFreePaymentMethod,
 } from '@daffodil/cart/driver';
 
 import { DaffMagentoCartAddressService } from './cart-address.service';
@@ -116,6 +117,13 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoCartItemUpdateInputTransformer,
         DaffMagentoPaymentMethodInputTransformer,
         DaffMagentoShippingMethodInputTransformer,
+
+        daffCartDriverProvideFreePaymentMethod({
+          method: 'free',
+          payment_info: {
+            code: 'free',
+          },
+        }),
       ],
     };
   }
