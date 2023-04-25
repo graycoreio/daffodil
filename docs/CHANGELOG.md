@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.5](https://github.com/graycoreio/daffodil/compare/v0.58.4...v0.58.5) (2023-04-25)
+
+
+### Features
+
+* **order:** add injectable reducers ([#2399](https://github.com/graycoreio/daffodil/issues/2399)) ([cd9619e](https://github.com/graycoreio/daffodil/commit/cd9619eefe3942c8912a4244d483c5ccbc213370))
+
 ### [0.58.4](https://github.com/graycoreio/daffodil/compare/v0.58.3...v0.58.4) (2023-04-14)
 
 
