@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.6](https://github.com/graycoreio/daffodil/compare/v0.58.5...v0.58.6) (2023-04-27)
+
+
+### Features
+
+* **authorizenet:** add injectable reducers ([#2400](https://github.com/graycoreio/daffodil/issues/2400)) ([c086e6d](https://github.com/graycoreio/daffodil/commit/c086e6d2f098b0dceda7a7b7fa06c71446898691))
+* **cart, magento:** always load shipping methods on cart ([#2402](https://github.com/graycoreio/daffodil/issues/2402)) ([9f1c4d8](https://github.com/graycoreio/daffodil/commit/9f1c4d8ebedb83d0b1db2ef2a47009cdd190cf4c))
+* **cart:** add free shipping payment method injection token ([#2398](https://github.com/graycoreio/daffodil/issues/2398)) ([bcce413](https://github.com/graycoreio/daffodil/commit/bcce4134606ffb80de83d61e160fab6846de1b7b))
+
 ### [0.58.5](https://github.com/graycoreio/daffodil/compare/v0.58.4...v0.58.5) (2023-04-25)
 
 
