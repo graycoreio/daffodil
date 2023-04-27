@@ -22,6 +22,16 @@ export const cartFragment = gql`
           ...selectedShippingMethod
         }
       }
+      available_shipping_methods {
+        amount {
+          currency
+          value
+        }
+        carrier_code
+        method_code
+        carrier_title
+        method_title
+      }
     }
     items {
       ...cartItem
