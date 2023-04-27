@@ -45,4 +45,5 @@ export type DaffPaypalActions<
 > =
     | DaffGeneratePaypalExpressToken<T>
     | DaffGeneratePaypalExpressTokenSuccess<V>
-    | DaffGeneratePaypalExpressTokenFailure;
+    | DaffGeneratePaypalExpressTokenFailure
+    | DaffPaypalApplyPayment;
