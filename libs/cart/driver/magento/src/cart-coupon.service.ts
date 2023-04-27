@@ -33,7 +33,7 @@ import {
   MagentoRemoveAllCouponsResponse,
 } from './queries/responses/public_api';
 import { daffMagentoCouponTransform } from './transforms/outputs/cart-coupon';
-import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/cart-coupon-response.service';
+import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -47,7 +47,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
   constructor(
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
-    private cartTransformer: DaffMagentoCartCouponResponseTransformer,
+    private cartTransformer: DaffMagentoCartTransformer,
   ) {}
 
   apply(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {
