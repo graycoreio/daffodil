@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.7](https://github.com/graycoreio/daffodil/compare/v0.58.6...v0.58.7) (2023-04-27)
+
+
+### Features
+
+* **cart,magento:** full cart on update coupon ([b62fea7](https://github.com/graycoreio/daffodil/commit/b62fea754c555da6da88fb757c32d480ac2ba436))
+* **paypal:** add `DaffPaypalApplyPayment` to `DaffPaypalActions` ([#2401](https://github.com/graycoreio/daffodil/issues/2401)) ([34c2efe](https://github.com/graycoreio/daffodil/commit/34c2efe5a8a5a4b21d144a7d4a62fb09c95dccef))
+
 ### [0.58.6](https://github.com/graycoreio/daffodil/compare/v0.58.5...v0.58.6) (2023-04-27)
 
 
