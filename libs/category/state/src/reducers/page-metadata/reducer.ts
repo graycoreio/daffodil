@@ -20,7 +20,7 @@ import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions
 import { DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryPageMetadataReducerState } from './state.interface';
 
-export const initialState: DaffCategoryPageMetadataReducerState = {
+export const daffCategoryPageMetadataInitialState: DaffCategoryPageMetadataReducerState = {
   ...daffCollectionReducerInitialState,
   id: null,
 };
@@ -29,7 +29,7 @@ export const initialState: DaffCategoryPageMetadataReducerState = {
  * Returns the state for category data except for category entities.
  */
 export function daffCategoryPageMetadataReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
-  state = initialState,
+  state = daffCategoryPageMetadataInitialState,
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageProductCollectionActions,
 ): DaffCategoryPageMetadataReducerState {
   const adapter = getCollectionStateAdapter<DaffCategoryPageMetadataReducerState>();
@@ -37,7 +37,7 @@ export function daffCategoryPageMetadataReducer<U extends DaffGenericCategory<U>
     case DaffCategoryPageActionTypes.CategoryPageLoadAction:
     case DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction:
       return {
-        ...adapter.storeRequest(action.request, initialState),
+        ...adapter.storeRequest(action.request, daffCategoryPageMetadataInitialState),
         id: null,
       };
 
