@@ -6,6 +6,10 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
+import {
+  Observable,
+  map,
+} from 'rxjs';
 
 import {
   DaffCategoryRequestKind,
@@ -29,11 +33,13 @@ export class DaffCategoryRoutingUrlRequestBuilder {
    * Builds a category URL request from the provided route and router state that
    * is suitable for passing to {@link DaffCategoryPageLoadByUrl}.
    */
-  build(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): DaffCategoryUrlRequest {
-    return {
-      ...this.requestBuilder(route),
-      url: this.urlNormalizer.normalize(state.url),
-      kind: DaffCategoryRequestKind.URL,
-    };
+  build(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<DaffCategoryUrlRequest> {
+    return this.requestBuilder(route, state).pipe(
+      map((request) => ({
+        ...request,
+        url: this.urlNormalizer.normalize(state.url),
+        kind: DaffCategoryRequestKind.URL,
+      })),
+    );
   }
 }

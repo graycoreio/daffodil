@@ -104,7 +104,7 @@ describe('DaffCategoryPageUrlResolver', () => {
             provide: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER,
             useFactory: () => {
               const service = inject(DaffProductGetCollectionRequestFromRoute);
-              const builder: DaffCategoryRoutingRequestBuilder = r => service.getRequest(r.queryParamMap);
+              const builder: DaffCategoryRoutingRequestBuilder = r => service.getRequest(r, null);
               return builder;
             },
           },
@@ -226,7 +226,7 @@ describe('DaffCategoryPageUrlResolver', () => {
             provide: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER,
             useFactory: () => {
               const service = inject(DaffProductGetCollectionRequestFromRoute);
-              const builder: DaffCategoryRoutingRequestBuilder = r => service.getRequest(r.queryParamMap);
+              const builder: DaffCategoryRoutingRequestBuilder = r => service.getRequest(r, null);
               return builder;
             },
           },

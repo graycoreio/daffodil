@@ -7,7 +7,11 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   StoreModule,
@@ -45,6 +49,7 @@ describe('DaffCategoryPageIdResolver', () => {
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
   let route: ActivatedRoute;
+  let router: Router;
 
   describe('resolve - on server', () => {
 
@@ -54,6 +59,7 @@ describe('DaffCategoryPageIdResolver', () => {
           StoreModule.forRoot({
             [DAFF_CATEGORY_STORE_FEATURE_KEY]: combineReducers(daffCategoryReducers),
           }),
+          RouterTestingModule,
         ],
         providers: [
           DaffCategoryPageIdResolver,
@@ -72,20 +78,21 @@ describe('DaffCategoryPageIdResolver', () => {
       categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
+      router = TestBed.inject(Router);
 
       stubCategory = categoryFactory.create();
     }));
 
     it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
       spyOn(store, 'dispatch');
-      categoryResolver.resolve( route.snapshot );
+      categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
         new DaffCategoryPageLoad({ id: '123', kind: DaffCategoryRequestKind.ID }),
       );
     });
 
     it('should resolve when DaffCategoryPageLoadSuccess is dispatched', () => {
-      categoryResolver.resolve(route.snapshot).subscribe(value => {
+      categoryResolver.resolve(route.snapshot, router.routerState.snapshot).subscribe(value => {
         expect(value).toEqual(true);
       });
 
@@ -97,7 +104,7 @@ describe('DaffCategoryPageIdResolver', () => {
     });
 
     it('should resolve when DaffCartLoadFailure is dispatched', () => {
-      categoryResolver.resolve(route.snapshot).subscribe(value => {
+      categoryResolver.resolve(route.snapshot, router.routerState.snapshot).subscribe(value => {
         expect(value).toEqual(true);
       });
 
@@ -105,7 +112,7 @@ describe('DaffCategoryPageIdResolver', () => {
     });
 
     it('should not resolve without a category load success or failure', () => {
-      categoryResolver.resolve(route.snapshot).subscribe(() => {
+      categoryResolver.resolve(route.snapshot, router.routerState.snapshot).subscribe(() => {
         fail();
       });
       expect(true).toBeTruthy();
@@ -120,6 +127,7 @@ describe('DaffCategoryPageIdResolver', () => {
           StoreModule.forRoot({
             [DAFF_CATEGORY_STORE_FEATURE_KEY]: combineReducers(daffCategoryReducers),
           }),
+          RouterTestingModule,
         ],
         providers: [
           DaffCategoryPageIdResolver,
@@ -136,20 +144,21 @@ describe('DaffCategoryPageIdResolver', () => {
       categoryFactory = TestBed.inject(DaffCategoryFactory);
       store = TestBed.inject(Store);
       route = TestBed.inject(ActivatedRoute);
+      router = TestBed.inject(Router);
 
       stubCategory = categoryFactory.create();
     }));
 
     it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
       spyOn(store, 'dispatch');
-      categoryResolver.resolve( route.snapshot );
+      categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
       expect(store.dispatch).toHaveBeenCalledWith(
         new DaffCategoryPageLoad({ id: '123', kind: DaffCategoryRequestKind.ID }),
       );
     });
 
     it('should resolve without a category load success or failure', () => {
-      categoryResolver.resolve(route.snapshot).subscribe((value) => {
+      categoryResolver.resolve(route.snapshot, router.routerState.snapshot).subscribe((value) => {
         expect(value).toBeTruthy();
       });
     });

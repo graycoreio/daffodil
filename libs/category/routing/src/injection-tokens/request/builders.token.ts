@@ -2,12 +2,16 @@ import {
   InjectionToken,
   ValueProvider,
 } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { DaffCollectionRequest } from '@daffodil/core';
 
 
-export type DaffCategoryRoutingRequestBuilder<T extends DaffCollectionRequest = DaffCollectionRequest> = (route: ActivatedRouteSnapshot) => T;
+export type DaffCategoryRoutingRequestBuilder<T extends DaffCollectionRequest = DaffCollectionRequest> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => Observable<T>;
 
 /**
  * A multi-provider injection token for category request builders.

@@ -2,7 +2,15 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { ParamMap } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  ParamMap,
+  RouterStateSnapshot,
+} from '@angular/router';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCollectionRequest } from '@daffodil/core';
 
@@ -23,15 +31,15 @@ export class DaffProductGetCollectionRequestFromRoute {
     @Inject(DAFF_PRODUCT_ROUTING_CONFIG) private config: DaffProductRoutingConfig,
   ) {}
 
-  getRequest(queryParamMap: ParamMap): DaffCollectionRequest {
-    return DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffCollectionRequest>((acc, field) => {
+  getRequest(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<DaffCollectionRequest> {
+    return of(DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffCollectionRequest>((acc, field) => {
       const qp = this.config.params[field] || field;
-      if (queryParamMap.has(qp)) {
-        const qpVal = queryParamMap.get(qp);
+      if (route.queryParamMap.has(qp)) {
+        const qpVal = route.queryParamMap.get(qp);
         // no idea why field needs to be typecasted
         acc[(<string>field)] = this.config.transforms?.[field]?.request?.(qpVal) || qpVal;
       }
       return acc;
-    }, {});
+    }, {}));
   }
 }

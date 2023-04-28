@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Resolve,
+  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -20,7 +21,7 @@ export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
     private categoryPageIdResolver: DaffCategoryPageIdResolver,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.categoryPageIdResolver.resolve(route);
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.categoryPageIdResolver.resolve(route, state);
   }
 }

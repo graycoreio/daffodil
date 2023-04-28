@@ -47,7 +47,11 @@ export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>>
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    this.store.dispatch(new DaffCategoryPageLoadByUrl(this.requestBuilder.build(route, state)));
+    this.requestBuilder.build(route, state).pipe(
+      take(1),
+    ).subscribe((request) => {
+      this.store.dispatch(new DaffCategoryPageLoadByUrl(request));
+    });
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
       ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),

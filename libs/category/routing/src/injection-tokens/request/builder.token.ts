@@ -2,7 +2,7 @@ import {
   inject,
   InjectionToken,
 } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { of } from 'rxjs';
 
 import {
   DaffCategoryRoutingRequestBuilder,
@@ -15,6 +15,6 @@ import {
 export const DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER = new InjectionToken<DaffCategoryRoutingRequestBuilder>(
   'DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER',
   {
-    factory: () => () => ({}),
+    factory: () => () => of({}),
   },
 );

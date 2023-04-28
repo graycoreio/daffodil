@@ -65,7 +65,7 @@ describe('@daffodil/category/routing | DaffCategoryRoutingUrlRequestBuilder', ()
           provide: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER,
           useFactory: () => {
             const s = inject(DaffProductGetCollectionRequestFromRoute);
-            const builder: DaffCategoryRoutingRequestBuilder = r => s.getRequest(r.queryParamMap);
+            const builder: DaffCategoryRoutingRequestBuilder = r => s.getRequest(r, null);
             return builder;
           },
         },
@@ -91,20 +91,30 @@ describe('@daffodil/category/routing | DaffCategoryRoutingUrlRequestBuilder', ()
       tick();
     }));
 
-    it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
+    it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', (done) => {
       const result = service.build(route.snapshot, router.routerState.snapshot);
-      expect(result).toEqual(jasmine.objectContaining({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }));
+      result.subscribe((res) => {
+        expect(res).toEqual(jasmine.objectContaining({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }));
+        done();
+      });
     });
   });
 
-  it('should dispatch a DaffCategoryPageLoadByUrl action with the correct category url', fakeAsync(() => {
-    const url = `/${path}(secondary:outlet)`;
-    router.navigateByUrl(url);
-    tick();
+  describe('when the URL does not contain params', () => {
+    beforeEach(fakeAsync(() => {
+      const url = `/${path}(secondary:outlet)`;
+      router.navigateByUrl(url);
+      tick();
+    }));
 
-    const result = service.build(route.snapshot, router.routerState.snapshot);
-    expect(result).toEqual(jasmine.objectContaining({ url: `/${path}`, kind: DaffCategoryRequestKind.URL }));
-  }));
+    it('should dispatch a DaffCategoryPageLoadByUrl action with the correct category url', (done) => {
+      const result = service.build(route.snapshot, router.routerState.snapshot);
+      result.subscribe((res) => {
+        expect(res).toEqual(jasmine.objectContaining({ url: `/${path}`, kind: DaffCategoryRequestKind.URL }));
+        done();
+      });
+    });
+  });
 
   it('should build without a category load success or failure', fakeAsync(() => {
     router.navigateByUrl(path);

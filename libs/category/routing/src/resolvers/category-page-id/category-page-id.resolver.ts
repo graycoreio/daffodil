@@ -7,6 +7,7 @@ import {
 import {
   ActivatedRouteSnapshot,
   Resolve,
+  RouterStateSnapshot,
 } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
@@ -45,12 +46,16 @@ export class DaffCategoryPageIdResolver implements Resolve<Observable<boolean>> 
     private dispatcher: ActionsSubject,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    this.store.dispatch(new DaffCategoryPageLoad({
-      ...this.requestBuilder(route),
-      id: route.paramMap.get('id'),
-      kind: DaffCategoryRequestKind.ID,
-    }));
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    this.requestBuilder(route, state).pipe(
+      take(1),
+    ).subscribe((request) => {
+      this.store.dispatch(new DaffCategoryPageLoad({
+        ...request,
+        id: route.paramMap.get('id'),
+        kind: DaffCategoryRequestKind.ID,
+      }));
+    });
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
       ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),
