@@ -12,7 +12,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
 import { DaffSortDirectionEnum } from '@daffodil/core';
@@ -130,7 +133,7 @@ describe('@daffodil/product/routing | DaffProductRoutingCollectionEffects', () =
         filterRequests: daffFiltersToRequests(stubCollectionMetadata.filters),
       };
 
-      getQueryParamsSpy.getQueryParams.and.returnValue(request);
+      getQueryParamsSpy.getQueryParams.and.returnValue(of(request));
 
       facade.metadata$.next(stubCollectionMetadata);
 

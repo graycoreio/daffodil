@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Params } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import {
   DaffCollectionRequest,
@@ -19,7 +20,7 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
   let productCollectionMetadataFactory: DaffCollectionMetadataFactory;
 
   let mockRequest: DaffCollectionRequest;
-  let result: Params;
+  let result: Observable<Params>;
 
   beforeEach(() => {
     customPageSizeQp = 'custom_pageSize';
@@ -69,8 +70,11 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       });
     });
 
-    it('should set the query param the corresponding request fields', () => {
-      expect(Number(result[customPageSizeQp])).toEqual(pageSizeValue);
+    it('should set the query param the corresponding request fields', (done) => {
+      result.subscribe((res) => {
+        expect(Number(res[customPageSizeQp])).toEqual(pageSizeValue);
+        done();
+      });
     });
   });
 
@@ -85,8 +89,11 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       });
     });
 
-    it('should set the query param field from the request without performing a transform', () => {
-      expect(result.appliedSortOption).toEqual(sortOptionValue);
+    it('should set the query param field from the request without performing a transform', (done) => {
+      result.subscribe((res) => {
+        expect(res.appliedSortOption).toEqual(sortOptionValue);
+        done();
+      });
     });
   });
 
@@ -101,9 +108,12 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       });
     });
 
-    it('should not set a query param from that non request field', () => {
-      expect((<any>result).ignore_me).toBeUndefined();
-      expect(Object.values(result)).not.toContain(value);
+    it('should not set a query param from that non request field', (done) => {
+      result.subscribe((res) => {
+        expect((<any>res).ignore_me).toBeUndefined();
+        expect(Object.values(res)).not.toContain(value);
+        done();
+      });
     });
   });
 
@@ -118,8 +128,11 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       });
     });
 
-    it('should set the request field to the value returned by the custom transform', () => {
-      expect(result.currentPage).toEqual(customCurrentPageTransform.queryParam(currentPageValue));
+    it('should set the request field to the value returned by the custom transform', (done) => {
+      result.subscribe((res) => {
+        expect(res.currentPage).toEqual(customCurrentPageTransform.queryParam(currentPageValue));
+        done();
+      });
     });
   });
 });

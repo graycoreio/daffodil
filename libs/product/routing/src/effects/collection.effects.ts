@@ -43,21 +43,19 @@ export abstract class DaffProductRoutingCollectionEffects {
   update$ = createEffect(() => this.actions$.pipe(
     ofType(...this.actionTypes),
     withLatestFrom(this.facade.metadata$),
-    map(([action, metadata]): [Action, DaffCollectionRequest] => [
-      action,
-      {
-        filterRequests: daffFiltersToRequests(metadata.filters),
-        appliedSortOption: metadata.appliedSortOption,
-        appliedSortDirection: metadata.appliedSortDirection,
-        currentPage: metadata.currentPage,
-        pageSize: metadata.pageSize,
-      },
-    ]),
-    tap(([action, request]) => this.router.navigate(
+    map(([action, metadata]): DaffCollectionRequest => ({
+      filterRequests: daffFiltersToRequests(metadata.filters),
+      appliedSortOption: metadata.appliedSortOption,
+      appliedSortDirection: metadata.appliedSortDirection,
+      currentPage: metadata.currentPage,
+      pageSize: metadata.pageSize,
+    })),
+    switchMap((request) => this.getQueryParams.getQueryParams(request)),
+    tap((queryParams) => this.router.navigate(
       [],
       {
         relativeTo: this.route,
-        queryParams: this.getQueryParams.getQueryParams(request),
+        queryParams,
         queryParamsHandling: 'merge',
       },
     )),

@@ -3,6 +3,10 @@ import {
   Injectable,
 } from '@angular/core';
 import { Params } from '@angular/router';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCollectionRequest } from '@daffodil/core';
 
@@ -22,13 +26,13 @@ export class DaffProductGetQueryParamsFromRequest {
     @Inject(DAFF_PRODUCT_ROUTING_CONFIG) private config: DaffProductRoutingConfig,
   ) {}
 
-  getQueryParams(request: DaffCollectionRequest): Params {
-    return DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<Params>((acc, field) => {
+  getQueryParams(request: DaffCollectionRequest): Observable<Params> {
+    return of(DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<Params>((acc, field) => {
       const val = request[field];
       if (val) {
         acc[this.config.params[field] || field] = this.config.transforms?.[field]?.queryParam?.(val) || String(val);
       }
       return acc;
-    }, {});
+    }, {}));
   }
 }
