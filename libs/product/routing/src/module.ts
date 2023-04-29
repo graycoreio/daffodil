@@ -29,7 +29,10 @@ export class DaffProductRoutingModule {
       providers: [
         {
           provide: DAFF_PRODUCT_ROUTING_CONFIG,
-          useFactory: () => config || daffProductRoutingConfigDefaultFactory(inject(DaffBase64ServiceToken)),
+          useFactory: () => ({
+            ...daffProductRoutingConfigDefaultFactory(inject(DaffBase64ServiceToken)),
+            ...config || {},
+          }),
         },
       ],
     };
