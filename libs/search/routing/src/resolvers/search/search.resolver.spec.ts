@@ -19,7 +19,10 @@ import {
   Store,
   ActionsSubject,
 } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 import {
@@ -51,7 +54,7 @@ describe('@daffodil/search/routing | DaffSearchPageResolver', () => {
     options = {
       limit: 5,
     };
-    builder = r => options;
+    builder = r => of(options);
   });
 
   describe('resolve - on server', () => {

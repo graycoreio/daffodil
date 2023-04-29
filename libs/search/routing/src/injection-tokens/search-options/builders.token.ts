@@ -2,11 +2,15 @@ import {
   InjectionToken,
   ValueProvider,
 } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 
-export type DaffSearchRoutingOptionBuilder<T extends DaffSearchDriverOptions = DaffSearchDriverOptions> = (route: ActivatedRouteSnapshot) => T;
+export type DaffSearchRoutingOptionBuilder<T extends DaffSearchDriverOptions = DaffSearchDriverOptions> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => Observable<T>;
 
 /**
  * A multi-provider injection token for search option builders.

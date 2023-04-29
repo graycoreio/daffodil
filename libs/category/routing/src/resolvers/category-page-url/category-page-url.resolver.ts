@@ -20,7 +20,9 @@ import {
 } from 'rxjs';
 import {
   map,
+  switchMap,
   take,
+  tap,
 } from 'rxjs/operators';
 
 import {
@@ -47,16 +49,15 @@ export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>>
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    this.requestBuilder.build(route, state).pipe(
-      take(1),
-    ).subscribe((request) => {
-      this.store.dispatch(new DaffCategoryPageLoadByUrl(request));
-    });
-
-    return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-      ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),
-      map(() => true),
-      take(1),
+    return this.requestBuilder.build(route, state).pipe(
+      tap((request) => {
+        this.store.dispatch(new DaffCategoryPageLoadByUrl(request));
+      }),
+      switchMap(() => isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
+        ofType(DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction, DaffCategoryPageActionTypes.CategoryPageLoadFailureAction),
+        map(() => true),
+        take(1),
+      )),
     );
   }
 }

@@ -2,7 +2,14 @@ import {
   inject,
   NgModule,
 } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
+import {
+  combineLatest,
+  map,
+} from 'rxjs';
 
 import {
   DAFF_SEARCH_ROUTING_OPTIONS_BUILDER,
@@ -16,8 +23,10 @@ import { DaffSearchPageResolver } from './resolvers/public_api';
       provide: DAFF_SEARCH_ROUTING_OPTIONS_BUILDER,
       useFactory: () => {
         const builders = inject(DAFF_SEARCH_ROUTING_OPTIONS_BUILDERS);
-        return (route: ActivatedRouteSnapshot) =>
-          Object.assign({}, ...builders.map(builder => builder(route)));
+        return (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) =>
+          combineLatest(builders.map(builder => builder(route, state))).pipe(
+            map((requests) => Object.assign({}, ...requests)),
+          );
       },
     },
     DaffSearchPageResolver,

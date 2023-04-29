@@ -47,10 +47,14 @@ export class DaffSearchPageResolver implements Resolve<Observable<boolean>> {
     @Inject(DAFF_SEARCH_ROUTING_OPTIONS_BUILDER) private builder: DaffSearchRoutingOptionBuilder,
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const query = getQuery(route);
     if (query) {
-      this.store.dispatch(new DaffSearchLoad(query, this.builder(route)));
+      this.builder(route, state).pipe(
+        take(1),
+      ).subscribe((request) => {
+        this.store.dispatch(new DaffSearchLoad(query, request));
+      });
     }
 
     return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(

@@ -30,7 +30,7 @@ import { DaffSearchProductRoutingCollectionEffects } from './effects/collection-
       provide: DAFF_SEARCH_ROUTING_OPTIONS_BUILDERS,
       useFactory: () => {
         const service = inject(DaffProductGetCollectionRequestFromRoute);
-        const builder: DaffSearchRoutingOptionBuilder<DaffSearchProductDriverOptions> = route => service.getRequest(route.queryParamMap);
+        const builder: DaffSearchRoutingOptionBuilder<DaffSearchProductDriverOptions> = (route, state) => service.getRequest(route, state);
         return builder;
       },
       multi: true,
