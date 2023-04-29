@@ -18,7 +18,7 @@ import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions
 import { DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
 
-export const initialState: DaffCategoryReducerState = {
+export const daffCategoryInitialState: DaffCategoryReducerState = {
   ...daffOperationInitialState,
   id: null,
 };
@@ -27,7 +27,7 @@ export const initialState: DaffCategoryReducerState = {
  * Returns the state for category data except for category entities.
  */
 export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
-  state = initialState,
+  state = daffCategoryInitialState,
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageProductCollectionActions,
 ): DaffCategoryReducerState {
   switch (action.type) {
