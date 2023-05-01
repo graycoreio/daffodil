@@ -2109,6 +2109,43 @@
           }
         }
       }
+    },
+    "customer-store-credit": {
+      "projectType": "library",
+      "root": "libs/customer-store-credit",
+      "sourceRoot": "libs/customer-store-credit/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/customer-store-credit/tsconfig.lib.json",
+            "project": "libs/customer-store-credit/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/customer-store-credit/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/customer-store-credit/test.ts",
+            "tsConfig": "libs/customer-store-credit/tsconfig.spec.json",
+            "karmaConfig": "libs/customer-store-credit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/customer-store-credit/**/*.ts",
+              "libs/customer-store-credit/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo",
