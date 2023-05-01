@@ -4,13 +4,21 @@ import {
 } from '@angular/core';
 import { ParamMap } from '@angular/router';
 
-import { DaffCollectionRequest } from '@daffodil/core';
+import {
+  DaffCollectionRequest,
+  DaffFilterRequest,
+} from '@daffodil/core';
+import {
+  DaffRoutingQueryParamFilter,
+  daffRoutingQueryParamFilterRequestEqualBuilder,
+} from '@daffodil/core/routing';
 
 import {
   DaffProductRoutingConfig,
   DAFF_PRODUCT_ROUTING_CONFIG,
 } from '../config/public_api';
 import { DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS } from '../constants/public_api';
+import { DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS } from '../discrete-filter-params/public_api';
 
 /**
  * Builds a {@link DaffCollectionRequest} from the query params of the passed route.
@@ -21,10 +29,11 @@ import { DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS } from '../constants/public_api'
 export class DaffProductGetCollectionRequestFromRoute {
   constructor(
     @Inject(DAFF_PRODUCT_ROUTING_CONFIG) private config: DaffProductRoutingConfig,
+    @Inject(DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS) private discreteFilters: DaffRoutingQueryParamFilter[],
   ) {}
 
   getRequest(queryParamMap: ParamMap): DaffCollectionRequest {
-    return DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffCollectionRequest>((acc, field) => {
+    const request = DAFF_PRODUCT_COLLECTION_REQUEST_FIELDS.reduce<DaffCollectionRequest>((acc, field) => {
       const qp = this.config.params[field] || field;
       if (queryParamMap.has(qp)) {
         const qpVal = queryParamMap.get(qp);
@@ -33,5 +42,20 @@ export class DaffProductGetCollectionRequestFromRoute {
       }
       return acc;
     }, {});
+
+    return {
+      ...request,
+      // add discrete filter params to the list of requests
+      filterRequests: this.discreteFilters.reduce<DaffFilterRequest[]>(
+        (acc, { filterName, builder, queryParam }) =>
+          queryParamMap.has(queryParam)
+            ? [
+              ...acc,
+              builder(() => queryParamMap.getAll(queryParam), filterName),
+            ]
+            : acc,
+        request.filterRequests || [],
+      ),
+    };
   }
 }
