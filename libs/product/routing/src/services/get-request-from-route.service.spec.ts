@@ -10,8 +10,15 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffCollectionRequest } from '@daffodil/core';
-import { DaffCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
+import {
+  DaffCollectionRequest,
+  DaffFilterType,
+} from '@daffodil/core';
+import { daffRoutingQueryParamFilterRequestEqualBuilder } from '@daffodil/core/routing';
+import {
+  DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS,
+  DaffCollectionRequestQueryParamTransform,
+} from '@daffodil/product/routing';
 
 import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetCollectionRequestFromRoute } from './get-request-from-route.service';
@@ -55,6 +62,14 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
               currentPage: customCurrentPageTransform,
             },
           },
+        },
+        {
+          provide: DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS,
+          useValue: [{
+            filterName: 'discrete',
+            queryParam: 'discrete',
+            builder: daffRoutingQueryParamFilterRequestEqualBuilder,
+          }],
         },
       ],
     });
@@ -121,6 +136,25 @@ describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute',
 
     it('should set the request field to the value returned by the custom transform', () => {
       expect(result.currentPage).toEqual(customCurrentPageTransform.request(currentPageValue));
+    });
+  });
+
+  describe('when the value is passed through a discrete query param', () => {
+    let filterValue: string;
+
+    beforeEach(fakeAsync(() => {
+      filterValue = '2';
+      router.navigateByUrl(`/test?discrete=${filterValue}`);
+      tick();
+      result = service.getRequest(TestBed.inject(ActivatedRoute).snapshot.queryParamMap);
+    }));
+
+    it('should set the request field to the value returned by the custom transform', () => {
+      expect(result.filterRequests).toContain(jasmine.objectContaining({
+        type: DaffFilterType.Equal,
+        name: 'discrete',
+        value: [filterValue],
+      }));
     });
   });
 });

@@ -5,8 +5,12 @@ import {
   DaffCollectionRequest,
   daffFiltersToRequests,
 } from '@daffodil/core';
+import { daffRoutingQueryParamFilterRequestEqualBuilder } from '@daffodil/core/routing';
 import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
-import { DaffCollectionRequestQueryParamTransform } from '@daffodil/product/routing';
+import {
+  DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS,
+  DaffCollectionRequestQueryParamTransform,
+} from '@daffodil/product/routing';
 
 import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetQueryParamsFromRequest } from './get-query-params-from-request.service';
@@ -42,6 +46,14 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
             },
           },
         },
+        {
+          provide: DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS,
+          useValue: [{
+            filterName: 'discrete',
+            queryParam: 'discrete',
+            builder: daffRoutingQueryParamFilterRequestEqualBuilder,
+          }],
+        },
       ],
     });
 
@@ -56,6 +68,16 @@ describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () 
       pageSize: metadata.pageSize,
       filterRequests: daffFiltersToRequests(metadata.filters),
     };
+  });
+
+  describe('when the filter requests don\'t have the discrete filter request', () => {
+    beforeEach(() => {
+      result = service.getQueryParams(mockRequest);
+    });
+
+    it('should set that query param to undefined', () => {
+      expect(result.discrete).toBeUndefined();
+    });
   });
 
   describe('when the value should be set to a custom query param', () => {
