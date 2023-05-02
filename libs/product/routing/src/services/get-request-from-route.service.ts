@@ -42,20 +42,21 @@ export class DaffProductGetCollectionRequestFromRoute {
       }
       return acc;
     }, {});
+    const filterRequests = this.discreteFilters.reduce<DaffFilterRequest[]>(
+      (acc, { filterName, builder, queryParam }) =>
+        queryParamMap.has(queryParam)
+          ? [
+            ...acc,
+            builder(() => queryParamMap.getAll(queryParam), filterName),
+          ]
+          : acc,
+      request.filterRequests || [],
+    );
+    // add discrete filter params to the list of requests
+    if (filterRequests.length > 0) {
+      request.filterRequests = filterRequests;
+    }
 
-    return {
-      ...request,
-      // add discrete filter params to the list of requests
-      filterRequests: this.discreteFilters.reduce<DaffFilterRequest[]>(
-        (acc, { filterName, builder, queryParam }) =>
-          queryParamMap.has(queryParam)
-            ? [
-              ...acc,
-              builder(() => queryParamMap.getAll(queryParam), filterName),
-            ]
-            : acc,
-        request.filterRequests || [],
-      ),
-    };
+    return request;
   }
 }
