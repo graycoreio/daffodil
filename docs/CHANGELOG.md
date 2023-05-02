@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.8](https://github.com/graycoreio/daffodil/compare/v0.58.7...v0.58.8) (2023-05-02)
+
+
+### Features
+
+* **auth:** redirect to query param value when present ([#2408](https://github.com/graycoreio/daffodil/issues/2408)) ([e57bcf0](https://github.com/graycoreio/daffodil/commit/e57bcf0fd0b9043db7f71bcd3fe29875085db657))
+* **category:** add injectable reducer support ([#2404](https://github.com/graycoreio/daffodil/issues/2404)) ([52b6412](https://github.com/graycoreio/daffodil/commit/52b6412b0d1170f0257fa833331145388c4f5b59))
+* **core,product:** support product filters in discrete query params ([#2407](https://github.com/graycoreio/daffodil/issues/2407)) ([0b6b843](https://github.com/graycoreio/daffodil/commit/0b6b84332dffdc01e45a582bb317750f92e9a66b))
+* **product:** spread routing config ([#2405](https://github.com/graycoreio/daffodil/issues/2405)) ([6883424](https://github.com/graycoreio/daffodil/commit/6883424a6169087bb2c98ba49e9530224a76c8ec))
+
 ### [0.58.7](https://github.com/graycoreio/daffodil/compare/v0.58.6...v0.58.7) (2023-04-27)
 
 
