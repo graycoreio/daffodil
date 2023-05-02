@@ -2,7 +2,10 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
 import {
   Actions,
   createEffect,
@@ -39,6 +42,7 @@ export class DaffAuthRedirectEffects {
   constructor(
     private actions$: Actions<DaffAuthLoginActions | DaffAuthActions | DaffAuthRegisterActions | DaffAuthResetPasswordActions>,
     private router: Router,
+    private route: ActivatedRoute,
     @Inject(DAFF_AUTH_ROUTING_CONFIG) private config: DaffAuthRoutingConfig,
   ) {}
 
@@ -54,16 +58,16 @@ export class DaffAuthRedirectEffects {
       }
       return true;
     }),
-    tap(() => {
-      this.router.navigateByUrl(this.config.authCompleteRedirectPath);
+    tap((action) => {
+      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get(this.config.redirectUrlParam) || this.config.authCompleteRedirectPath);
     }),
     switchMap(() => EMPTY),
   ), { dispatch: false });
 
   redirectAfterLogout$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthLoginActionTypes.LogoutSuccessAction),
-    tap(() => {
-      this.router.navigateByUrl(this.config.logoutRedirectPath);
+    tap((action) => {
+      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get(this.config.redirectUrlParam) || this.config.logoutRedirectPath);
     }),
     switchMap(() => EMPTY),
   ), { dispatch: false });
@@ -74,7 +78,7 @@ export class DaffAuthRedirectEffects {
       DaffAuthActionTypes.AuthGuardLogoutAction,
     ),
     tap(() => {
-      this.router.navigateByUrl(this.config.tokenExpirationRedirectPath);
+      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get(this.config.redirectUrlParam) || this.config.tokenExpirationRedirectPath);
     }),
     switchMap(() => EMPTY),
   ), { dispatch: false });
