@@ -13,10 +13,12 @@ export const DAFF_AUTH_ROUTING_CONFIG = new InjectionToken<DaffAuthRoutingConfig
   factory: () => DAFF_AUTH_ROUTING_CONFIG_DEFAULT,
 });
 
-export const provideDaffAuthRoutingConfig = (config: Partial<DaffAuthRoutingConfig>): ValueProvider => ({
-  provide: DAFF_AUTH_ROUTING_CONFIG,
-  useValue: {
-    ...DAFF_AUTH_ROUTING_CONFIG_DEFAULT,
-    ...config,
-  },
-});
+export function provideDaffAuthRoutingConfig(config?: Partial<DaffAuthRoutingConfig>): ValueProvider {
+  return {
+    provide: DAFF_AUTH_ROUTING_CONFIG,
+    useValue: {
+      ...DAFF_AUTH_ROUTING_CONFIG_DEFAULT,
+      ...config || {},
+    },
+  };
+};

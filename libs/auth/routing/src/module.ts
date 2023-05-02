@@ -7,6 +7,7 @@ import {
   DaffAuthRoutingConfig,
   DAFF_AUTH_ROUTING_CONFIG,
   DAFF_AUTH_ROUTING_CONFIG_DEFAULT,
+  provideDaffAuthRoutingConfig,
 } from './config/public_api';
 import {
   DaffAuthResetPasswordGuard,
@@ -26,10 +27,7 @@ export class DaffAuthRoutingModule {
     return {
       ngModule: DaffAuthRoutingModule,
       providers: [
-        {
-          provide: DAFF_AUTH_ROUTING_CONFIG,
-          useValue: config || DAFF_AUTH_ROUTING_CONFIG_DEFAULT,
-        },
+        provideDaffAuthRoutingConfig(config),
       ],
     };
   }

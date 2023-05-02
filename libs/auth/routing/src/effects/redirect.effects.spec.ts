@@ -1,5 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  ParamMap,
+  Router,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
@@ -27,14 +31,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
   let router: Router;
 
   let routerNavigateSpy: jasmine.Spy<Router['navigateByUrl']>;
+  let qpSpy: jasmine.SpyObj<ParamMap>;
   let authCompleteRedirectUrl: string;
   let logoutRedirectUrl: string;
   let expirationRedirectUrl: string;
+  let redirectUrl: string;
 
   beforeEach(() => {
     authCompleteRedirectUrl = '/customer';
     logoutRedirectUrl = '/login';
     expirationRedirectUrl = '/';
+    redirectUrl = '/redirect';
+
+    qpSpy = jasmine.createSpyObj('ParamMap', ['get']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -48,6 +57,14 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
           logoutRedirectPath: logoutRedirectUrl,
           tokenExpirationRedirectPath: expirationRedirectUrl,
         }),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              queryParamMap: qpSpy,
+            },
+          },
+        },
       ],
     });
 
@@ -72,6 +89,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
       expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
     });
+
+    describe('and when the redirect QP is set', () => {
+      beforeEach(() => {
+        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        const expected = cold('---');
+
+        expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
+      });
+    });
   });
 
   describe('when DaffAuthRegisterSuccess is dispatched', () => {
@@ -84,6 +114,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
 
       expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
+    });
+
+    describe('and when the redirect QP is set', () => {
+      beforeEach(() => {
+        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        const expected = cold('---');
+
+        expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
+      });
     });
   });
 
@@ -98,6 +141,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
       expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
     });
+
+    describe('and when the redirect QP is set', () => {
+      beforeEach(() => {
+        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        const expected = cold('---');
+
+        expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
+      });
+    });
   });
 
   describe('when DaffAuthLogoutSuccess is dispatched', () => {
@@ -110,6 +166,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
 
       expect(effects.redirectAfterLogout$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(logoutRedirectUrl);
+    });
+
+    describe('and when the redirect QP is set', () => {
+      beforeEach(() => {
+        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        const expected = cold('---');
+
+        expect(effects.redirectAfterLogout$).toBeObservable(expected);
+        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
+      });
     });
   });
 
@@ -124,6 +193,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
       expect(effects.redirectAfterExpiration$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(expirationRedirectUrl);
     });
+
+    describe('and when the redirect QP is set', () => {
+      beforeEach(() => {
+        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        const expected = cold('---');
+
+        expect(effects.redirectAfterExpiration$).toBeObservable(expected);
+        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
+      });
+    });
   });
 
   describe('when DaffAuthGuardLogout is dispatched', () => {
@@ -136,6 +218,19 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
 
       expect(effects.redirectAfterExpiration$).toBeObservable(expected);
       expect(routerNavigateSpy).toHaveBeenCalledWith(expirationRedirectUrl);
+    });
+
+    describe('and when the redirect QP is set', () => {
+      beforeEach(() => {
+        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
+      });
+
+      it('should navigate to the redirect URL', () => {
+        const expected = cold('---');
+
+        expect(effects.redirectAfterExpiration$).toBeObservable(expected);
+        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
+      });
     });
   });
 });
