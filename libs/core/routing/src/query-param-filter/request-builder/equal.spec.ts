@@ -14,7 +14,7 @@ describe('@daffodil/core/routing | daffRoutingQueryParamFilterRequestEqualBuilde
     filterName = 'filterName';
     values = ['5', '3'];
 
-    result = daffRoutingQueryParamFilterRequestEqualBuilder(() => values, filterName);
+    result = daffRoutingQueryParamFilterRequestEqualBuilder(filterName, values);
   });
 
   it('should build an equal filter from the param map', () => {

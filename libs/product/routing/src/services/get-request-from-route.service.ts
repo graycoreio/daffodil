@@ -47,7 +47,7 @@ export class DaffProductGetCollectionRequestFromRoute {
         queryParamMap.has(queryParam)
           ? [
             ...acc,
-            builder(queryParamMap.getAll(queryParam), filterName),
+            builder(filterName, queryParamMap.getAll(queryParam)),
           ]
           : acc,
       request.filterRequests || [],
