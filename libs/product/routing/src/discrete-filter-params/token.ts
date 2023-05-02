@@ -26,7 +26,7 @@ export const DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS = new InjectionToken<Da
  * @param queryParam Defaults to `filterName`.
  * @param builder Defaults to {@link daffRoutingQueryParamFilterRequestEqualBuilder}.
  */
-export function daffProductRoutingProvideDiscreteFilterParams(filterName: DaffRoutingQueryParamFilter['filterName'], queryParam?: DaffRoutingQueryParamFilter['queryParam'], builder?: DaffRoutingQueryParamFilter['builder']): ValueProvider {
+export function daffProductRoutingProvideDiscreteFilterParam(filterName: DaffRoutingQueryParamFilter['filterName'], queryParam?: DaffRoutingQueryParamFilter['queryParam'], builder?: DaffRoutingQueryParamFilter['builder']): ValueProvider {
   return {
     provide: DAFF_PRODUCT_ROUTING_DISCRETE_FILTER_PARAMS,
     useValue: {
