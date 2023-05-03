@@ -2146,6 +2146,43 @@
           }
         }
       }
+    },
+    "cart-store-credit": {
+      "projectType": "library",
+      "root": "libs/cart-store-credit",
+      "sourceRoot": "libs/cart-store-credit/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/cart-store-credit/tsconfig.lib.json",
+            "project": "libs/cart-store-credit/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/cart-store-credit/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/cart-store-credit/test.ts",
+            "tsConfig": "libs/cart-store-credit/tsconfig.spec.json",
+            "karmaConfig": "libs/cart-store-credit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/cart-store-credit/**/*.ts",
+              "libs/cart-store-credit/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo",
