@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.9](https://github.com/graycoreio/daffodil/compare/v0.58.8...v0.58.9) (2023-05-03)
+
+
+### Features
+
+* add `@daffodil/customer-store-credit` and `@daffodil/cart-store-credit`  ([#2395](https://github.com/graycoreio/daffodil/issues/2395)) ([f86bfb3](https://github.com/graycoreio/daffodil/commit/f86bfb3ecdae8ebfcd3f7240c218a01c052d1770))
+* **customer-order:** support injectable Magento fragments and transforms ([#2410](https://github.com/graycoreio/daffodil/issues/2410)) ([8e3ecee](https://github.com/graycoreio/daffodil/commit/8e3ecee1e437a3428b5c745d94d4cd8379eb2828))
+* **order:** allow arbitrary total types ([#2409](https://github.com/graycoreio/daffodil/issues/2409)) ([82b9c4b](https://github.com/graycoreio/daffodil/commit/82b9c4b4f04110e4a1d8678815d2f8afec6cfb83))
+* **order:** reorder totals in Magento driver ([#2411](https://github.com/graycoreio/daffodil/issues/2411)) ([2d271dc](https://github.com/graycoreio/daffodil/commit/2d271dc879f5ccd1cce924f38e422d60fe4f6505))
+
 ### [0.58.8](https://github.com/graycoreio/daffodil/compare/v0.58.7...v0.58.8) (2023-05-02)
 
 
