@@ -1,0 +1,41 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/cart-store-credit": [
+        "libs/cart-store-credit/src"
+      ],
+      "@daffodil/cart-store-credit/testing": [
+        "libs/cart-store-credit/testing/src"
+      ],
+      "@daffodil/cart-store-credit/state": [
+        "libs/cart-store-credit/state/src"
+      ],
+      "@daffodil/cart-store-credit/state/testing": [
+        "libs/cart-store-credit/state/testing/src"
+      ],
+      "@daffodil/cart-store-credit/driver": [
+        "libs/cart-store-credit/driver/src"
+      ],
+      "@daffodil/cart-store-credit/driver/in-memory": [
+        "libs/cart-store-credit/driver/in-memory/src"
+      ],
+      "@daffodil/cart-store-credit/driver/testing": [
+        "libs/cart-store-credit/driver/testing/src"
+      ],
+      "@daffodil/cart-store-credit/driver/magento": [
+        "libs/cart-store-credit/driver/magento/src"
+      ],
+      "@daffodil/cart-store-credit/driver/magento/testing": [
+        "libs/cart-store-credit/driver/magento/testing/src"
+      ],
+      "@daffodil/cart-store-credit/routing": [
+        "libs/cart-store-credit/routing/src"
+      ],
+    }
+  }
+}
