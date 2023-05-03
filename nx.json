@@ -47,11 +47,6 @@
       "outputs": [
         "{projectRoot}/coverage"
       ]
-    },
-    "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
     }
   }
 }
