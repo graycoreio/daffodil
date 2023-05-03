@@ -1,4 +1,7 @@
 {
+  "affected": {
+    "defaultBase": "develop"
+  },
   "extends": "nx/presets/npm.json",
   "implicitDependencies": {
     "package.json": {
@@ -11,30 +14,11 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
+        "cacheDirectory": ".nx_cache",
         "cacheableOperations": [
           "build",
-          "build:client",
-          "build:server",
-          "build:serverless",
-          "build:serverless:compile",
-          "build:serverless:vercel",
           "test",
-          "lint",
-          "lint:fix",
-          "dev:ssr",
-          "lint:scss",
-          "build:assets",
-          "reportcoverage",
-          "test:scss",
-          "test:angular",
-          "build:types",
-          "build:bundle",
-          "build:copy-static",
-          "test:watch",
-          "build:copy-schema",
-          "build:copy-builders",
-          "build:copy-package",
-          "postbuild"
+          "lint"
         ]
       }
     }
@@ -56,175 +40,17 @@
         "{projectRoot}/dist"
       ]
     },
-    "build:client": {
-      "dependsOn": [
-        "^build:client"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:server": {
-      "dependsOn": [
-        "^build:server"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:serverless": {
-      "dependsOn": [
-        "^build:serverless"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:serverless:compile": {
-      "dependsOn": [
-        "^build:serverless:compile"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:serverless:vercel": {
-      "dependsOn": [
-        "^build:serverless:vercel"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
     "test": {
       "dependsOn": [
-        "^test"
+        "build"
+      ],
+      "outputs": [
+        "{projectRoot}/coverage"
       ]
     },
     "lint": {
       "dependsOn": [
         "^lint"
-      ]
-    },
-    "lint:fix": {
-      "dependsOn": [
-        "^lint:fix"
-      ]
-    },
-    "dev:ssr": {
-      "dependsOn": [
-        "^dev:ssr"
-      ]
-    },
-    "serve:ssr": {
-      "dependsOn": [
-        "^serve:ssr"
-      ]
-    },
-    "lint:scss": {
-      "dependsOn": [
-        "^lint:scss"
-      ]
-    },
-    "serve": {
-      "dependsOn": [
-        "^serve"
-      ]
-    },
-    "publish": {
-      "dependsOn": [
-        "^publish"
-      ]
-    },
-    "build:assets": {
-      "dependsOn": [
-        "^build:assets"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "reportcoverage": {
-      "dependsOn": [
-        "^reportcoverage"
-      ]
-    },
-    "test:scss": {
-      "dependsOn": [
-        "^test:scss"
-      ]
-    },
-    "test:angular": {
-      "dependsOn": [
-        "^test:angular"
-      ]
-    },
-    "build:types": {
-      "dependsOn": [
-        "^build:types"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:bundle": {
-      "dependsOn": [
-        "^build:bundle"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:copy-static": {
-      "dependsOn": [
-        "^build:copy-static"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "clean": {
-      "dependsOn": [
-        "^clean"
-      ]
-    },
-    "test:watch": {
-      "dependsOn": [
-        "^test:watch"
-      ]
-    },
-    "build:copy-schema": {
-      "dependsOn": [
-        "^build:copy-schema"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:copy-builders": {
-      "dependsOn": [
-        "^build:copy-builders"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "build:copy-package": {
-      "dependsOn": [
-        "^build:copy-package"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
-    "postbuild": {
-      "dependsOn": [
-        "^postbuild"
-      ]
-    },
-    "watch": {
-      "dependsOn": [
-        "^watch"
       ]
     }
   }
