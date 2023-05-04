@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 import {
   Observable,
   throwError,
@@ -20,6 +24,11 @@ import { DaffOrderMagentoService } from '@daffodil/order/driver/magento/2.4.1';
 
 import { transformMagentoReviewsError } from './errors/transform';
 import {
+  DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_FRAGMENTS,
+  DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM,
+} from './injection-tokens/public_api';
+import { DaffMagentoCustomerOrderTransform } from './interfaces/public_api';
+import {
   MagentoGetCustomerOrderResponse,
   MagentoGetCustomerOrdersResponse,
 } from './models/public_api';
@@ -28,8 +37,8 @@ import {
   getCustomerOrders,
 } from './queries/public_api';
 import {
+  MagentoCustomerOrderCollectionTransformer,
   daffMagentoCustomerOrderTransformOrder,
-  magentoCustomerOrderCollectionTransform,
 } from './transforms/public_api';
 import { validateGetCustomerOrderResponse } from './validators/get-order';
 import { validateGetCustomerOrdersResponse } from './validators/public_api';
@@ -47,19 +56,22 @@ export class DaffCustomerOrderMagentoService implements DaffOrderServiceInterfac
     private apollo: Apollo,
     private authStorage: DaffAuthStorageService,
     private guestDriver: DaffOrderMagentoService,
+    @Inject(DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_FRAGMENTS) private extraFragments: DocumentNode[],
+    private transformer: MagentoCustomerOrderCollectionTransformer,
+    @Inject(DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM) private orderTransform: DaffMagentoCustomerOrderTransform,
   ) {}
 
   list(cartId?: string, request: DaffCollectionRequest = {}): Observable<DaffOrderCollection> {
     return this.authStorage.getAuthToken()
       ? this.apollo.query<MagentoGetCustomerOrdersResponse>({
-        query: getCustomerOrders,
+        query: getCustomerOrders(this.extraFragments),
         variables: {
           currentPage: request.currentPage,
           pageSize: request.pageSize,
         },
       }).pipe(
         map(validateGetCustomerOrdersResponse),
-        map(response => magentoCustomerOrderCollectionTransform(response.data)),
+        map(response => this.transformer.transform(response.data)),
         catchError(err => throwError(() => transformMagentoReviewsError(err))),
       )
       : this.guestDriver.list(cartId);
@@ -68,13 +80,13 @@ export class DaffCustomerOrderMagentoService implements DaffOrderServiceInterfac
   get(orderId: string, cartId?: string): Observable<DaffOrder> {
     return this.authStorage.getAuthToken()
       ? this.apollo.query<MagentoGetCustomerOrderResponse>({
-        query: getCustomerOrder,
+        query: getCustomerOrder(this.extraFragments),
         variables: {
           id: orderId,
         },
       }).pipe(
         map(validateGetCustomerOrderResponse),
-        map(result => daffMagentoCustomerOrderTransformOrder(result.data.customer.orders.items[0], result.data.customer.email)),
+        map(result => this.orderTransform(result.data.customer.orders.items[0], result.data.customer.email)),
         catchError(err => throwError(() => transformMagentoReviewsError(err))),
       )
       : this.guestDriver.get(orderId, cartId);
