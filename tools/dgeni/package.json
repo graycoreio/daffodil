@@ -18,5 +18,8 @@
         ]
       }
     }
+  },
+  "devDependencies": {
+    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER"
   }
 }
