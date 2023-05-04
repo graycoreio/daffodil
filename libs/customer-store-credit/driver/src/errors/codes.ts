@@ -1,0 +1,5 @@
+import { DAFF_CUSTOMER_STORE_CREDIT_INVALID_API_RESPONSE_ERROR_CODE } from './invalid-api-response';
+
+export const DaffCustomerStoreCreditDriverErrorCodes = {
+  INVALID_API_RESPONSE: DAFF_CUSTOMER_STORE_CREDIT_INVALID_API_RESPONSE_ERROR_CODE,
+};
