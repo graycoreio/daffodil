@@ -16,13 +16,28 @@ describe('@daffodil/cart-store-credit/driver/magento | magentoCartWithStoreCredi
   beforeEach(() => {
     storeCreditFactory = TestBed.inject(MagentoCartWithStoreCreditFactory);
     cartFactory = TestBed.inject(DaffCartFactory);
-
-    mockStoreCredit = storeCreditFactory.create();
-
-    result = magentoCartWithStoreCreditTransform(cartFactory.create(), mockStoreCredit);
   });
 
   it('should transform', () => {
-    expect(result.appliedStoreCredit).toEqual(mockStoreCredit.applied_store_credit.applied_balance.value);
+    const credit = storeCreditFactory.create();
+    expect(
+      magentoCartWithStoreCreditTransform(cartFactory.create(), credit).appliedStoreCredit,
+    ).toEqual(credit.applied_store_credit.applied_balance.value);
+  });
+
+  it('should transform 0 safely', () => {
+    const magentoCart = storeCreditFactory.create();
+    magentoCart.applied_store_credit.applied_balance.value = 0;
+    expect(
+      magentoCartWithStoreCreditTransform(cartFactory.create(), magentoCart).appliedStoreCredit,
+    ).toEqual(0);
+  });
+
+  it('should transform to null if the cart does not have store credit (guest checkout)', () => {
+    const magentoCart = storeCreditFactory.create();
+    magentoCart.applied_store_credit = null;
+    expect(
+      magentoCartWithStoreCreditTransform(cartFactory.create(), magentoCart).appliedStoreCredit,
+    ).toEqual(0);
   });
 });
