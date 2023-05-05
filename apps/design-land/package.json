@@ -18,6 +18,15 @@
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
   },
+  "nx": {
+    "targets": {
+      "test": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
+  },
   "devDependencies": {
     "@daffodil/design": "0.0.0-PLACEHOLDER",
     "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER"
