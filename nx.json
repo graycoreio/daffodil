@@ -35,9 +35,6 @@
     "build": {
       "dependsOn": [
         "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
       ]
     },
     "test": {
@@ -45,7 +42,7 @@
         "build"
       ],
       "outputs": [
-        "{projectRoot}/coverage"
+        "{workspaceRoot}/{projectRoot}/coverage"
       ]
     }
   }

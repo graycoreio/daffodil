@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/external-router",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/external-router"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A platform-agnostic package that connects the @angular/router with an external routing service (e.g. an API), allowing for runtime route resolution.",
   "repository": {

@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/authorizenet",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/authorizenet"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "An ecommerce package that has multi-platform support and state management features for managing authorize.net payments.",
   "repository": {

@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/search",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/search"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing ecommerce orders agnostic to the ecommerce platform.",
   "repository": {

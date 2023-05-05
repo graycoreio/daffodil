@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/contact",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/contact"]
+      }
+    }
+  },
   "version": "0.0.1",
   "repository": {
     "type": "git",

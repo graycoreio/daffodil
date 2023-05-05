@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/analytics-provider-data-layer",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/analytics-provider-data-layer"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "Provides interfaces and services for pushing analytics events using the data layer schema.",
   "repository": {

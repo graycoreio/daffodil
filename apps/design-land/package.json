@@ -20,6 +20,9 @@
   },
   "nx": {
     "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/apps/design-land"]
+      },
       "test": {
         "dependsOn": [
           "^build"

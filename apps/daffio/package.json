@@ -7,6 +7,13 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/apps/daffio"]
+      }
+    }
+  },
   "scripts": {
     "build": "npm run build:client && npm run build:server && npm run build:serverless",
     "build:client": "ng build daffio --prod",

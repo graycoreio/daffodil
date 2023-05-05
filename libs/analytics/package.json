@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/analytics",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/analytics"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "General package for piping ngrx actions into provided external analytics services.",
   "repository": {

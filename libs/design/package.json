@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/design",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/design"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "author": "Graycore LLC",
   "license": "MIT",

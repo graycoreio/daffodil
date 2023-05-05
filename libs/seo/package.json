@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/seo",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/seo"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing canonical URLs and other SEO features.",
   "repository": {

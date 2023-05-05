@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/newsletter",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/newsletter"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
