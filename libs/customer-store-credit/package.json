@@ -38,6 +38,7 @@
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/customer-order": "0.0.0-PLACEHOLDER",
-    "@daffodil/customer": "0.0.0-PLACEHOLDER"
+    "@daffodil/customer": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   }
 }

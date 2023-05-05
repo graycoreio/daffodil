@@ -39,6 +39,7 @@
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/category": "0.0.0-PLACEHOLDER",
-    "@daffodil/search": "0.0.0-PLACEHOLDER"
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   }
 }
