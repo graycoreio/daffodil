@@ -4,7 +4,9 @@ import { DaffCartMagentoCartTransform } from '@daffodil/cart/driver/magento';
 
 import { MagentoCartWithStoreCredit } from '../../models/public_api';
 
-export const magentoCartWithStoreCreditTransform: DaffCartMagentoCartTransform<MagentoCartWithStoreCredit, DaffCartWithStoreCredit> = (daffCart: DaffCart, storeCredit: MagentoCartWithStoreCredit): DaffCartWithStoreCredit => ({
-  ...daffCart,
-  appliedStoreCredit: storeCredit.applied_store_credit.applied_balance.value,
-});
+export const magentoCartWithStoreCreditTransform:
+DaffCartMagentoCartTransform<MagentoCartWithStoreCredit, DaffCartWithStoreCredit> =
+  (daffCart: DaffCart, magentoCart: MagentoCartWithStoreCredit): DaffCartWithStoreCredit => ({
+    ...daffCart,
+    appliedStoreCredit: magentoCart.applied_store_credit?.applied_balance.value ?? 0,
+  });
