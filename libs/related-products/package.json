@@ -19,7 +19,8 @@
     "lint": "cd ../.. && ng lint related-products",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test related-products --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/related-products; npm publish --access=public)"
+    "prepublish": "cd ../../dist/related-products",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

@@ -19,7 +19,8 @@
     "lint": "cd ../.. && ng lint upsell-products",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test upsell-products --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/upsell-products; npm publish --access=public)"
+    "prepublish": "cd ../../dist/upsell-products",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

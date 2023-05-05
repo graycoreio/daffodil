@@ -16,7 +16,8 @@
     "lint": "cd ../.. && ng lint analytics-provider-data-layer",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test analytics-provider-data-layer --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/analytics-provider-data-layer; npm publish --access=public)"
+    "prepublish": "cd ../../dist/analytics-provider-data-layer",
+    "publish": "npm publish --access=public"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",

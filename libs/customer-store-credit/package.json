@@ -16,7 +16,8 @@
     "lint": "cd ../.. && ng lint customer-store-credit",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test customer-store-credit --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/customer-store-credit; npm publish --access=public)"
+    "prepublish": "cd ../../dist/customer-store-credit",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

@@ -16,7 +16,8 @@
     "lint": "cd ../.. && ng lint payment",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test payment --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/payment; npm publish --access=public)"
+    "prepublish": "cd ../../dist/payment",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
