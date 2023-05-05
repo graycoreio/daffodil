@@ -16,10 +16,11 @@
     "eslint-plugin-prefer-arrow": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
-    "publish": "(cd ../../../dist/eslint-config && npm publish --access=public)",
+    "prepublish": "cd ../../../dist/eslint-config",
+    "publish": "npm publish --access=public",
     "build": "shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
   },
-  "keywords": [ 
+  "keywords": [
     "code checker",
     "code linter",
     "code standards",
