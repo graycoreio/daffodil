@@ -10,7 +10,7 @@ import {
 import { magentoPageInfoTransform } from '@daffodil/driver/magento';
 import { DaffOrderCollection } from '@daffodil/order';
 
-import { DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM } from '../../injection-tokens/public_api';
+import { DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM } from '../../injection-tokens/transforms/token';
 import { DaffMagentoCustomerOrderTransform } from '../../interfaces/public_api';
 import { MagentoGetCustomerOrdersResponse } from '../../models/public_api';
 

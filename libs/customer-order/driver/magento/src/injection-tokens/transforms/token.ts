@@ -8,7 +8,7 @@ import { DaffOrder } from '@daffodil/order';
 
 import { DaffMagentoCustomerOrderTransform } from '../../interfaces/public_api';
 import { MagentoCustomerOrder } from '../../models/public_api';
-import { daffMagentoCustomerOrderTransformOrder } from '../../transforms/public_api';
+import { daffMagentoCustomerOrderTransformOrder } from '../../transforms/responses/order';
 import { DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_TRANSFORMS } from './extra.token';
 
 /**
