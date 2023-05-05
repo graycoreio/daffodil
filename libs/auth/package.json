@@ -30,7 +30,8 @@
     "rxjs": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+		"@daffodil/driver": "0.0.0-PLACEHOLDER"
 	},
 	"optionalDependencies": {
 		"@daffodil/driver": "0.0.0-PLACEHOLDER"
