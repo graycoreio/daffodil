@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/branding",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/branding"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "private": true,
   "scripts": {

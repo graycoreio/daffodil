@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/cart",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/cart"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "Interfaces built for daffodil/state",
   "repository": {

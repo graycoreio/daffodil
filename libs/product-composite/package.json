@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/product-composite",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/product-composite"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "Interfaces built for daffodil/state",
   "repository": {

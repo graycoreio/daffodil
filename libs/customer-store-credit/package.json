@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/customer-store-credit",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/customer-store-credit"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing ecommerce customer-store-credits agnostic to the ecommerce platform.",
   "repository": {

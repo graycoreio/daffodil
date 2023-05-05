@@ -7,6 +7,13 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/apps/demo"]
+      }
+    }
+  },
   "scripts": {
     "build": "ng build demo --prod",
     "lint": "npm run lint:scss && cd ../.. && ng lint demo",

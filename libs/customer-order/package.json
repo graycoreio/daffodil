@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/customer-order",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/customer-order"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing ecommerce customers agnostic to the ecommerce platform.",
   "repository": {

@@ -20,6 +20,13 @@
     "publish": "npm publish --access=public",
     "build": "shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/eslint-config"]
+      }
+    }
+  },
   "keywords": [
     "code checker",
     "code linter",

@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/docs-utils",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/docs-utils"]
+      }
+    }
+  },
   "private": true,
   "version": "0.0.0-PLACEHOLDER",
   "main": "index.js",

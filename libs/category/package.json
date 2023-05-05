@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/category",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/category"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "An ecommerce categories package that has multi-platform support and state management features.",
   "repository": {

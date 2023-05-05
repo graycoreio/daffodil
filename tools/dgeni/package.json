@@ -15,7 +15,8 @@
       "build": {
         "inputs": [
           "{workspaceRoot}/**/*.md"
-        ]
+        ],
+        "outputs": ["{workspaceRoot}/dist/docs"]
       }
     }
   },

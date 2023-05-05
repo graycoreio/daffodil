@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/payment",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/payment"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing ecommerce payments agnostic to the ecommerce platform.",
   "repository": {
