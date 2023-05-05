@@ -1,0 +1,163 @@
+name: Daffodil CI
+
+# specific branch build with batching
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+  # These are the files that, when changed, will incur a full build
+  buildRootFiles: angular.json | lerna.json | package.json | package-lock.json | tsconfig.json | tools/karma/karma.conf.js
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node_16_x:
+          node_version: 16.x
+    steps:
+      - uses: ./templates/setup-node.yml
+
+      # This cache step is purely for the purpose of diffing the specified files
+      # These files are those that would incur a repository-wide linting change
+      # Therefore every package must be relinted
+      - uses: actions/cache@v2
+        name: Cache .vscode For Lint Diff
+        with:
+          key: '"lint" | "$(node_version)" | angular.json | lerna.json | package.json | package-lock.json | .prettierrc | .stylelintrc | .eslintrc.js'
+          path: $(Build.SourcesDirectory)/.vscode
+          cacheHitVar: ngLintCache
+
+      - uses: ./templates/lerna-lerna-lint.yml
+        with:
+          incremental: |
+            and(
+              eq(variables['ngLintCache'], 'true'),
+              eq(variables['Build.Reason'], 'PullRequest')
+            )
+
+  build_and_test:
+    name: Build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node_16_x:
+          node_version: 16.x
+    steps:
+      - uses: ./templates/setup-node.yml
+      - uses: ./templates/get-branch-sha.yml
+        with:
+          stepName: GetBuildCacheCommitSHA
+          # for PR builds, we want to use the cache from the target commit
+          ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+            branch: origin/$(System.PullRequest.TargetBranch)
+          # for non PR builds, we want to create the cache for the current commit
+          ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+            branch: origin/$(Build.SourceBranchName)
+
+      # This cache step will only hit if the specified files have not changed
+      # If a cache miss occurs, we know that a full build must happen
+      - uses: actions/cache@v2
+        name: Cache Built Packages
+        with:
+          key: '"dist" | "$(node_version)" | $(buildRootFiles) | "$(GetBuildCacheCommitSHA.BranchSHA)" | "ngv13"'
+          path: $(Build.SourcesDirectory)/dist
+          cacheHitVar: ngBuildCache
+
+      - uses: ./templates/lerna-build-test.yml
+        with:
+          incremental: |
+            and(
+              eq(variables['ngBuildCache'], 'true'),
+              eq(variables['Build.Reason'], 'PullRequest')
+            )
+
+      - run: cp -a /dist/. $(Build.SourcesDirectory)/
+        name: Prepare Artifact Staging Directory
+
+      - run: zip $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-dist.zip $(Build.SourcesDirectory)/dist/* -r -q
+        name: Archive dist Folder
+
+      - run: actions/upload-artifact@v3
+        name: 'Publish Dist Artifact'
+        with:
+          path: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-dist.zip
+          name: 'dist-artifact'
+
+      - run: actions/upload-artifact@v3
+        name: 'Publish Daff.io Serverless Artifact'
+        with:
+          path: '$(Build.ArtifactStagingDirectory)/apps/daffio'
+          name: 'daffio-serverless'
+
+  compute_packages:
+    name: Compute Packages to Test
+    runs-on: ubuntu-latest
+    needs: [ ]
+    steps:
+      - shell: bash
+      - run: |
+          npm ci
+          PACKAGES_TO_TEST=$(npx lerna ls --since="origin/develop" --all --json | jq 'reduce .[] as $i ({}; .[$i.name] = $i)' -c)
+          echo "##vso[task.setvariable variable=packagesToTest;isOutput=true;]$PACKAGES_TO_TEST"
+        name: packages
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    if: and(succeeded(), ne(dependencies.compute_packages.outputs['packages.packagesToTest'], '{}'))
+    env:
+      node_version: 16.x
+    strategy:
+      matrix: $[ dependencies.compute_packages.outputs['packages.packagesToTest'] ]
+    needs:
+      - compute_packages
+      - build_and_test
+    steps:
+      - uses: actions/download-artifact@v3
+        name: Download Dist Artifact
+        with:
+          name: dist-artifact
+          path: $(Pipeline.Workspace)
+
+      - run: |
+          rm -r $(Build.SourcesDirectory)/dist/*
+          unzip $(Pipeline.Workspace)/$(Build.BuildId)-dist.zip -d $(Build.SourcesDirectory)/dist
+        name: Extract Dist Archive
+      - uses: ./templates/setup-node.yml
+      - uses: ./templates/codeclimate.yml
+      - uses: ./templates/get-branch-sha.yml
+        with:
+          stepName: GetBuildCacheCommitSHA
+          # for PR builds, we want to use the cache from the target commit
+          ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+            branch: origin/$(System.PullRequest.TargetBranch)
+          # for non PR builds, we want to create the cache for the current commit
+          ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+            branch: origin/$(Build.SourceBranchName)
+
+      # the publish step will fail and stop CI if the coverage folder doesn't exist
+      - run: mkdir -p $(Build.SourcesDirectory)/coverage
+        name: Ensure Coverage Directory is Present
+
+      - run: npx lerna run test --scope="$(name)" --concurrency=1
+        name: Run tests for $(name)
+
+      - task: actions/upload-artifact@v3
+        with:
+          # TODO: only publish cc.*.json reports, not entire folder
+          path: $(Build.SourcesDirectory)/coverage

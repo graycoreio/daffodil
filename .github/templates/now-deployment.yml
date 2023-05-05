@@ -1,0 +1,42 @@
+name: now-deployment
+
+inputs:
+  artifactName:
+    type: string
+    default: false
+  token:
+    type: string
+    default: false
+  nowOrg:
+    type: string
+    default: false
+  nowProjectId:
+    type: string
+    default: false
+  prod:
+    type: boolean
+    default: false
+
+runs:
+  using: 'composite'
+  steps:
+    - run: npm install -g vercel
+      name: Install Vercel Dependency
+
+    - run: VERCEL_ORG_ID=$org VERCEL_PROJECT_ID=$projectId npx vercel --token=$token
+      working-directory: '$(Pipeline.Workspace)/${{ inputs.artifactName }}'
+      name: 'Deploy ${{ inputs.artifactName }} to Vercel'
+      if: and(succeeded(), eq('${{ inputs.prod }}', false))
+      env:
+        token: ${{ inputs.token }}
+        org: ${{ inputs.nowOrg }}
+        projectId: ${{ inputs.nowProjectId }}
+
+    - script: VERCEL_ORG_ID=$org VERCEL_PROJECT_ID=$projectId npx vercel --token=$token --prod
+      working-directory: '$(Pipeline.Workspace)/${{ inputs.artifactName }}'
+      name: 'Deploy ${{ inputs.artifactName }} to Vercel (Prod)'
+      if: and(succeeded(), eq('${{ inputs.prod }}', true))
+      env:
+        token: ${{ inputs.token }}
+        org: ${{ inputs.nowOrg }}
+        projectId: ${{ inputs.nowProjectId }}

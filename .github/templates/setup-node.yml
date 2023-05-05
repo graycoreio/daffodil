@@ -1,0 +1,18 @@
+name: setup-node
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v2
+      with:
+        versionSpec: $(node_version)
+      name: Set Node Version
+
+    - uses: actions/cache@v2
+      with:
+        key: '"npm" | $(Build.SourcesDirectory)/package-lock.json'
+        path: $(npm_config_cache)
+      name: Cache NPM Cache
+
+    - run: npx npm ci --prefer-offline --no-audit --no-shrinkwrap
+      name: Install Dependencies

@@ -1,0 +1,24 @@
+name: lint
+
+inputs:
+  incremental:
+    type: string
+
+runs:
+  using: 'composite'
+  steps:
+    - run: npx lerna run lint --since origin/$(System.PullRequest.TargetBranch) --exclude-dependents
+      name: Incremental Lint
+      if: |
+        and(
+          succeeded(),
+          ${{ inputs.incremental }}
+        )
+
+    - run: npx lerna run lint
+      name: Full Lint
+      if: |
+        and(
+          succeeded(),
+          not(${{ inputs.incremental }})
+        )

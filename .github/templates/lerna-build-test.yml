@@ -1,0 +1,24 @@
+name: build-test
+
+inputs:
+  incremental:
+    type: string
+
+runs:
+  using: 'composite'
+  steps:
+    - run: npx lerna run build --stream --since origin/$(System.PullRequest.TargetBranch) --include-dependents --concurrency=1
+      name: Incremental Build
+      if: |
+        and(
+          succeeded(),
+          ${{ inputs.incremental }}
+        )
+
+    - run: npx lerna run build --concurrency=1
+      name: Full Build
+      if: |
+        and(
+          succeeded(),
+          not(${{ inputs.incremental }})
+        )

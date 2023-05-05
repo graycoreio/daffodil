@@ -1,0 +1,39 @@
+name: Preview Environment
+
+# specific branch build with batching
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
+jobs:
+  deploy_daffio_preview:
+    name: Deploy Daff.io
+    runs-on: ubuntu-latest
+    if: and(succeeded(), startsWith(variables['build.sourceBranch'], 'refs/pull'))
+    environment: daffio-pr-preview
+    env:
+      - group: daffio-now
+      - group: daffio-preview-now
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - uses: ./templates/now-deployment.yml
+              with:
+                artifactName: daffio-serverless
+                token: $(NOW_DEPLOYMENT_TOKEN)
+                nowOrg: $(NOW_ORG)
+                nowProjectId: $(DAFFIO_PREVIEW_NOW_PROJECTID)

@@ -1,0 +1,42 @@
+name: Daff.io Next Environment
+
+# specific branch build with batching
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+runs-on: ubuntu-latest
+
+env:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
+jobs:
+  deploy_next:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: and(succeeded(), startsWith(variables['build.sourceBranch'], 'refs/heads/develop'))
+    environment: daffio-next
+    env:
+      - group: daffio-now
+      - group: daffio-next-now
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - uses: ./templates/now-deployment.yml
+              with:
+                artifactName: daffio-serverless
+                token: $(NOW_DEPLOYMENT_TOKEN)
+                nowOrg: $(NOW_ORG)
+                nowProjectId: $(DAFFIO_NEXT_NOW_PROJECTID)
+                prod: true

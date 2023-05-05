@@ -1,0 +1,20 @@
+name: get-branch-sha
+
+inputs:
+  branch:
+    type: string
+  outputVar:
+    type: string
+    default: BranchSHA
+  stepName:
+    type: string
+    default: GetBranchSHA
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        BUILD_CACHE_COMMIT_SHA=$(git rev-parse ${{ inputs.branch }})
+        echo "##vso[task.setvariable variable=${{ inputs.outputVar }};isOutput=true]$BUILD_CACHE_COMMIT_SHA"
+      name: ${{ inputs.stepName }}
+
