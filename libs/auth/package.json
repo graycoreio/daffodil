@@ -19,7 +19,8 @@
     "lint": "cd ../.. && ng lint auth",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test auth --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/auth; npm publish --access=public)"
+    "prepublish": "cd ../../dist/auth",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

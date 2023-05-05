@@ -19,7 +19,8 @@
     "lint": "cd ../.. && ng lint paypal",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test paypal --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/paypal; npm publish --access=public)"
+    "prepublish": "cd ../../dist/paypal",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

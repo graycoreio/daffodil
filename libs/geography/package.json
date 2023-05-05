@@ -16,7 +16,8 @@
     "lint": "cd ../.. && ng lint geography",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test geography --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/geography; npm publish --access=public)"
+    "prepublish": "cd ../../dist/geography",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

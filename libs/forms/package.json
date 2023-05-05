@@ -16,7 +16,8 @@
     "lint": "cd ../.. && ng lint forms",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test forms --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/forms; npm publish --access=public)"
+    "prepublish": "cd ../../dist/forms",
+    "publish": "npm publish --access=public"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",

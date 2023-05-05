@@ -16,7 +16,8 @@
     "lint": "cd ../.. && ng lint analytics",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test analytics --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/analytics; npm publish --access=public)"
+    "prepublish": "cd ../../dist/analytics",
+    "publish": "npm publish --access=public"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",

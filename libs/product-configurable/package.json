@@ -19,7 +19,8 @@
     "lint": "cd ../.. && ng lint product-configurable",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test product-configurable --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/product-configurable; npm publish --access=public)"
+    "prepublish": "cd ../../dist/product-configurable",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
