@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.10](https://github.com/graycoreio/daffodil/compare/v0.58.9...v0.58.10) (2023-05-05)
+
+
+### Bug Fixes
+
+* **cart-store-credit, magento:** handle guest store credit ([#2413](https://github.com/graycoreio/daffodil/issues/2413)) ([8556e84](https://github.com/graycoreio/daffodil/commit/8556e84bf30a9f2599acdfe6d7243e2834560a06))
+
 ### [0.58.9](https://github.com/graycoreio/daffodil/compare/v0.58.8...v0.58.9) (2023-05-03)
 
 
