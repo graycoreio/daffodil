@@ -21,35 +21,6 @@ env:
   buildRootFiles: angular.json | lerna.json | package.json | package-lock.json | tsconfig.json | tools/karma/karma.conf.js
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node_16_x:
-          node_version: 16.x
-    steps:
-      - uses: ./templates/setup-node.yml
-
-      # This cache step is purely for the purpose of diffing the specified files
-      # These files are those that would incur a repository-wide linting change
-      # Therefore every package must be relinted
-      - uses: actions/cache@v2
-        name: Cache .vscode For Lint Diff
-        with:
-          key: '"lint" | "$(node_version)" | angular.json | lerna.json | package.json | package-lock.json | .prettierrc | .stylelintrc | .eslintrc.js'
-          path: $(Build.SourcesDirectory)/.vscode
-          cacheHitVar: ngLintCache
-
-      - uses: ./templates/lerna-lerna-lint.yml
-        with:
-          incremental: |
-            and(
-              eq(variables['ngLintCache'], 'true'),
-              eq(variables['Build.Reason'], 'PullRequest')
-            )
-
   build_and_test:
     name: Build
     runs-on: ubuntu-latest
