@@ -7,6 +7,7 @@
         "bierner.markdown-preview-github-styles",
         "mrmlnc.vscode-scss",
         "tehnix.vscode-tidymarkdown",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "github.vscode-github-actions"
     ]
 }
