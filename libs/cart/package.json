@@ -33,6 +33,7 @@
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/product": "0.0.0-PLACEHOLDER",
     "@daffodil/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/payment": "0.0.0-PLACEHOLDER",
     "@ngrx/effects": "0.0.0-PLACEHOLDER",
     "@ngrx/entity": "0.0.0-PLACEHOLDER",
     "@ngrx/store": "0.0.0-PLACEHOLDER",
