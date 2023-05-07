@@ -1,0 +1,110 @@
+name: Daffodil Build
+
+on:
+  push:
+    branches:
+      - develop
+    tags: ["v*"]
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16.x]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - uses: nrwl/nx-set-shas@v3
+        name: Derive appropriate SHAs for base and head for `nx affected` commands
+        with: 
+          main-branch-name: 'develop'
+
+      - uses: actions/cache@v3
+        name: Cache `.nx_cache` 
+        id: build_cache
+        with:
+          path: .nx_cache
+          key: build-${{ matrix.node }}-${{ github.sha }}
+          restore-keys:
+            build-${{ matrix.node }}
+
+      - uses: ./.github/actions/clear-old-nx-cache
+        with:
+          size-in-mb: 500
+
+      - uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ matrix.node }}
+          use-stamp-cache: true
+
+      - run: npx lerna run build --concurrency=1
+      - run: npx lerna run build --concurrency=1
+  compute_packages:
+    name: Compute Packages to Test
+    outputs:
+      packages: ${{ steps.compute.outputs.packages }}
+    runs-on: ubuntu-latest
+    needs: [ ]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-node
+        with:
+          node-version: '16.x'
+          use-stamp-cache: true
+      - uses: nrwl/nx-set-shas@v3
+        name: Derive appropriate SHAs for base and head for `nx affected` commands
+        with: 
+          main-branch-name: 'develop'
+      - name: packages
+        id: compute
+        shell: bash
+        run: |
+          packages=$(npx lerna ls --since=$NX_BASE --all --json | jq '[.[] | .name]' -c)
+          echo "packages=$packages" >> ${GITHUB_OUTPUT}
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    if: ${{ needs.compute_packages.outputs.packages != '[]' && needs.compute_packages.outputs.packages != '' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.compute_packages.outputs.packages) }}
+        node: [16.x] 
+    needs:
+      - compute_packages
+      - build
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - uses: nrwl/nx-set-shas@v3
+        name: Derive appropriate SHAs for base and head for `nx affected` commands
+        with: 
+          main-branch-name: 'develop'
+
+      - uses: actions/cache@v3
+        name: Cache `.nx_cache` 
+        id: build_cache
+        with:
+          fail-on-cache-miss: true
+          path: .nx_cache
+          key: build-${{ matrix.node }}-${{ github.sha }}
+
+      - uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ matrix.node }}
+          use-stamp-cache: true
+
+      - run: npx lerna run test --scope="${{ matrix.package }}" --concurrency=1
+        name: Test ${{ matrix.package }}
+        
