@@ -45,6 +45,14 @@ jobs:
           use-stamp-cache: true
 
       - run: npx lerna run build --concurrency=1
+
+      - run: cd dist/apps/daffio && zip -r ../daffio.zip . 
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: daffio-${{ matrix.node }}
+          path: dist/apps/daffio.zip
+          if-no-files-found: error
       
   compute_packages:
     name: Compute Packages to Test
@@ -107,4 +115,17 @@ jobs:
 
       - run: npx lerna run test --scope="${{ matrix.package }}" --concurrency=1
         name: Test ${{ matrix.package }}
-        
+
+  deploy_daffio:
+    name: Deploy Daff.io
+    needs: 
+      - build
+    uses: ./.github/workflows/deploy.yml
+    secrets: 
+      VERCEL_NEXT_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_NEXT_PROJECT_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG: ${{ secrets.VERCEL_ORG }}
+    with:
+      artifact: daffio-16.x
+      artifact-zip-name: daffio.zip
