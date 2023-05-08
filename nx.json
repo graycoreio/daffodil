@@ -10,6 +10,9 @@
     },
     ".eslintrc.json": "*"
   },
+  "namedInputs": {
+    "production": ["!{projectRoot}/**/*.spec.{ts,tsx}"]
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",

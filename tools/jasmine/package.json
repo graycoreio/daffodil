@@ -20,6 +20,7 @@
   "nx": {
     "targets": {
       "build": {
+        "inputs": ["production", "^production"],
         "outputs": ["{workspaceRoot}/dist/jasmine"]
       }
     }
