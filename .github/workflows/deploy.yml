@@ -25,7 +25,7 @@ jobs:
     environment: 
       name: preview
       url: ${{ steps.vercel-deploy.outputs.url }}
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request_target'
     steps:
       - uses: actions/download-artifact@v3
         with:
