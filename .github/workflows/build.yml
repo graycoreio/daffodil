@@ -5,9 +5,19 @@ on:
     branches:
       - develop
     tags: ["v*"]
-  pull_request:
+  # We only allow workflow runs from forks that we know are safe.
+  # We enabled, and dont plan to change from:
+  #     "Require approval for all outside collaborators"
+  # It's a little painful to have to keep clicking the button,
+  # but it's generally safer for us, while still allowing trusted 
+  # users to contribute to the project without annoying CI failures.
+  # 
+  # We have accepted this risk and attempted to handle the concern outlined here:
+  # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+  pull_request_target:
     branches:
       - develop
+      - allow_fork_builds
 
 jobs:
   build:
@@ -20,6 +30,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
       
       - uses: nrwl/nx-set-shas@v3
         name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -64,6 +76,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
       - uses: ./.github/actions/setup-node
         with:
           node-version: '16.x'
@@ -94,7 +107,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - uses: nrwl/nx-set-shas@v3
         name: Derive appropriate SHAs for base and head for `nx affected` commands
         with: 
