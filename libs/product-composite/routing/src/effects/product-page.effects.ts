@@ -3,6 +3,7 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   Actions,
   Effect,
@@ -63,7 +64,7 @@ function buildApplyActions<T extends DaffCompositeProduct = DaffCompositeProduct
 export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = DaffCompositeProduct> {
   constructor(
     private actions$: Actions,
-    private location: Location,
+    private route: ActivatedRoute,
     @Inject(DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG) private config: DaffProductCompositeRoutingConfig,
   ) {}
 
@@ -71,7 +72,7 @@ export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = Da
    * Get the value of the configured composite selection query param.
    */
   private getQueryParam(): string {
-    return new URL(this.location.path()).searchParams.get(this.config.compositeSelectionQueryParam);
+    return this.route.snapshot.queryParamMap.get(this.config.compositeSelectionQueryParam);
   }
 
   /**
