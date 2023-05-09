@@ -4,8 +4,10 @@
   },
   "extends": "nx/presets/npm.json",
   "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
     "notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
-    "sharedGlobals": ["{workspaceRoot}/package.json", "{workspaceRoot}/package-lock.json", "{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json"]
+    "sharedGlobals": ["{workspaceRoot}/package.json", "{workspaceRoot}/package-lock.json", "{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json"],
+    "eslint": ["{workspaceRoot}/.eslintrc.js", "{workspaceRoot}/tools/eslint/config/index.js"]
   },
   "tasksRunnerOptions": {
     "default": {
@@ -35,12 +37,17 @@
       ]
     },
     "test": {
+      "inputs": ["default"],
       "dependsOn": [
-        "build"
+        "^build"
       ],
       "outputs": [
         "{workspaceRoot}/{projectRoot}/coverage"
       ]
+    },
+    "lint": {
+      "inputs": ["eslint"],
+      "dependsOn": []
     }
   }
 }
