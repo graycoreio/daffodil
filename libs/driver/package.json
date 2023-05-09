@@ -3,7 +3,7 @@
   "nx": {
     "targets": {
       "build": {
-        "inputs": ["production", "^production", "sharedGlobals"],
+        "inputs": ["notSpec", "sharedGlobals"],
         "outputs": ["{workspaceRoot}/dist/driver"]
       }
     }

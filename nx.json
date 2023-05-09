@@ -11,7 +11,7 @@
     ".eslintrc.json": "*"
   },
   "namedInputs": {
-    "production": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
+    "notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
     "sharedGlobals": ["{workspaceRoot}/.eslintrc.js"]
   },
   "tasksRunnerOptions": {
