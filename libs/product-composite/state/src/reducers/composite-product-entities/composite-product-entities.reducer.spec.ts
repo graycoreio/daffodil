@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffProduct } from '@daffodil/product';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
 import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
@@ -21,8 +23,8 @@ describe('@daffodil/product-composite/state | daffCompositeProductEntitiesReduce
   let compositeProduct: DaffCompositeProduct;
 
   beforeEach(() => {
-    productFactory = new DaffProductFactory();
-    compositeProductFactory = new DaffCompositeProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
+    compositeProductFactory = TestBed.inject(DaffCompositeProductFactory);
     compositeProduct = compositeProductFactory.create();
   });
 
