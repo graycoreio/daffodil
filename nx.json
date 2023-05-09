@@ -3,12 +3,24 @@
     "defaultBase": "develop"
   },
   "extends": "nx/presets/npm.json",
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*"
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "notSpec": [
+      "!{projectRoot}/**/*.spec.{ts,tsx}"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/package-lock.json",
+      "{workspaceRoot}/angular.json",
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/lerna.json"
+    ],
+    "eslint": [
+      "{workspaceRoot}/.eslintrc.js",
+      "{workspaceRoot}/tools/eslint/config/index.js"
+    ]
   },
   "tasksRunnerOptions": {
     "default": {
@@ -33,17 +45,31 @@
   },
   "targetDefaults": {
     "build": {
+      "inputs": [
+        "notSpec",
+        "^notSpec",
+        "sharedGlobals"
+      ],
       "dependsOn": [
         "^build"
       ]
     },
     "test": {
+      "inputs": [
+        "default"
+      ],
       "dependsOn": [
         "build"
       ],
       "outputs": [
         "{workspaceRoot}/{projectRoot}/coverage"
       ]
+    },
+    "lint": {
+      "inputs": [
+        "eslint"
+      ],
+      "dependsOn": []
     }
   }
 }
