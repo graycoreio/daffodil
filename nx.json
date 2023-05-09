@@ -6,7 +6,7 @@
   "namedInputs": {
     "default": ["{projectRoot}/**/*"],
     "notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
-    "sharedGlobals": ["{workspaceRoot}/package.json", "{workspaceRoot}/package-lock.json", "{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json"],
+    "sharedGlobals": ["{workspaceRoot}/package.json", "{workspaceRoot}/package-lock.json", "{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json", "{workspaceRoot}/lerna.json"],
     "eslint": ["{workspaceRoot}/.eslintrc.js", "{workspaceRoot}/tools/eslint/config/index.js"]
   },
   "tasksRunnerOptions": {
