@@ -3,16 +3,9 @@
     "defaultBase": "develop"
   },
   "extends": "nx/presets/npm.json",
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*"
-  },
   "namedInputs": {
     "notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
-    "sharedGlobals": ["{workspaceRoot}/.eslintrc.js"]
+    "sharedGlobals": ["{workspaceRoot}/package.json", "{workspaceRoot}/package-lock.json", "{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json"]
   },
   "tasksRunnerOptions": {
     "default": {
