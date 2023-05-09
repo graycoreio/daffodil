@@ -20,7 +20,7 @@ export enum DaffCompositeProductActionTypes {
  * @param itemId - Id of the product item.
  * @param optionId - Id of the option of the product item that is chosen.
  */
-export class DaffCompositeProductApplyOption<T extends DaffCompositeProduct> implements Action {
+export class DaffCompositeProductApplyOption<T extends DaffCompositeProduct = DaffCompositeProduct> implements Action {
   readonly type = DaffCompositeProductActionTypes.CompositeProductApplyOptionAction;
 
   constructor(public id: T['id'], public itemId: DaffCompositeProductItem['id'], public optionId: DaffCompositeProductItemOption['id'], public qty?: number) {}

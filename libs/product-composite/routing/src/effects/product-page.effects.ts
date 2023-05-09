@@ -25,6 +25,8 @@ import {
 } from '@daffodil/product';
 import {
   DaffCompositeProduct,
+  DaffCompositeProductItem,
+  DaffCompositeProductItemOption,
   DaffProductCompositeSelectionPayload,
 } from '@daffodil/product-composite';
 import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
@@ -39,24 +41,26 @@ import {
 } from '../config/public_api';
 
 /**
- * IE compatible query params getter.
+ * Builds the apply actions from the list of selected options.
  */
-// TODO: replace with URLSearchParams when IE support is dropped
-const getQueryParams = (path: string): Record<string, string> => {
-  const params = {};
-  path.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi,
-    (_, key, value) => params[key] = decodeURIComponent(value),
-  );
-  return params;
-};
+function buildApplyActions<T extends DaffCompositeProduct = DaffCompositeProduct>(product: DaffCompositeProduct, itemId: DaffCompositeProductItem['id'], selectedOptions: DaffCompositeProductItemOption['id'][]): DaffCompositeProductApplyOption<T>[] {
+  const selectionItem = product.items.find(({ id }) => id === itemId);
+
+  return selectionItem
+    ? selectedOptions.map(selectionOptionId => {
+      // use the quantity of the referenced option
+      const qty = selectionItem?.options.find(({ id }) => id === selectionOptionId)?.quantity;
+
+      return new DaffCompositeProductApplyOption(product.id, itemId, selectionOptionId, qty);
+    })
+    : [];
+}
 
 /**
  * Handles composite product specific actions for the product page.
  */
 @Injectable()
 export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = DaffCompositeProduct> {
-
   constructor(
     private actions$: Actions,
     private location: Location,
@@ -64,14 +68,24 @@ export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = Da
   ) {}
 
   /**
+   * Get the value of the configured composite selection query param.
+   */
+  private getQueryParam(): string {
+    return new URL(this.location.path()).searchParams.get(this.config.compositeSelectionQueryParam);
+  }
+
+  /**
    * Applies composite item options based on the value of the configured query param.
    */
   preselectCompositeOptions$: Observable<typeof EMPTY | DaffCompositeProductApplyOption<T>> = createEffect(() => this.actions$.pipe(
     ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction),
     switchMap((action: DaffProductPageLoadSuccess<T>) => {
-      const queryParam = getQueryParams(this.location.path())[this.config.compositeSelectionQueryParam];
+      const queryParam = this.getQueryParam();
+      // get the product corresponding to the current product page
       const product: DaffCompositeProduct = action.payload.products.filter(({ id }) => id === action.payload.id)[0];
 
+      // if we don't have a query param set or if the product isn't composite,
+      // we have nothing to do
       if (!queryParam || product?.type !== DaffProductTypeEnum.Composite) {
         return EMPTY;
       }
@@ -84,17 +98,13 @@ export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = Da
         return EMPTY;
       }
 
-      return of(...Object.keys(selection).reduce<DaffCompositeProductApplyOption<T>[]>(
-        (actions, itemId) =>
-          actions.concat(selection[itemId].map(optionId => {
-            const qty = product.items.filter(({ id }) =>
-              id === itemId,
-            )[0]?.options.filter(({ id }) => id === optionId)[0]?.quantity;
-
-            return new DaffCompositeProductApplyOption(product.id, itemId, optionId, qty);
-          })),
+      const applyActions = Object.keys(selection).reduce<DaffCompositeProductApplyOption<T>[]>(
+        (actions, itemId) => actions.concat(buildApplyActions(product, itemId, selection[itemId])),
         [],
-      ));
+      );
+
+      // dispatch each of the apply actions into the action stream
+      return of(...applyActions);
     }),
   ));
 }
