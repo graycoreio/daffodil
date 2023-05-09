@@ -59,7 +59,7 @@
         "default"
       ],
       "dependsOn": [
-        "build, ^build"
+        "build"
       ],
       "outputs": [
         "{workspaceRoot}/{projectRoot}/coverage"
