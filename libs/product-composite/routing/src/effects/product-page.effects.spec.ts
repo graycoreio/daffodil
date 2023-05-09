@@ -22,7 +22,7 @@ import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/sta
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 
-import { daffProductCompositeRoutingConfigDefaultFactory } from '../config/public_api';
+import { daffProductCompositeRoutingProvideConfig } from '../config/public_api';
 import { DaffProductCompositePageEffects } from './product-page.effects';
 
 @Component({ template: '' })
@@ -39,6 +39,8 @@ describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', 
   let product: DaffCompositeProduct;
 
   beforeEach(() => {
+    queryParam = 'queryParam';
+
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([
@@ -51,6 +53,9 @@ describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', 
       providers: [
         DaffProductCompositePageEffects,
         provideMockActions(() => actions$),
+        daffProductCompositeRoutingProvideConfig({
+          compositeSelectionQueryParam: queryParam,
+        }),
       ],
     });
 
@@ -63,7 +68,6 @@ describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', 
       [product.items[0].id]: [product.items[0].options[0].id, product.items[0].options[1].id],
       [product.items[1].id]: [product.items[1].options[0].id],
     };
-    queryParam = btoa(JSON.stringify(selection));
   });
 
   it('should be created', () => {
@@ -80,7 +84,7 @@ describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', 
           products: [product],
         };
         const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        router.navigateByUrl(`/testpath?${daffProductCompositeRoutingConfigDefaultFactory(TestBed.inject(DaffBase64ServiceToken)).compositeSelectionQueryParam}=${encodeURIComponent(queryParam)}`);
+        router.navigateByUrl(`/testpath?${queryParam}=${encodeURIComponent(btoa(JSON.stringify(selection)))}`);
         tick();
         actions$ = hot('--a', { a: productLoadSuccessAction });
         expected = cold('--(abc)', {
@@ -115,7 +119,7 @@ describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', 
 
     describe('when called with a route with junk set as the query param', () => {
       beforeEach(fakeAsync(() => {
-        router.navigateByUrl(`/testpath?${daffProductCompositeRoutingConfigDefaultFactory(TestBed.inject(DaffBase64ServiceToken)).compositeSelectionQueryParam}=iamjunkanddonotdecodetoanythingworthwhile`);
+        router.navigateByUrl(`/testpath?${queryParam}=iamjunkanddonotdecodetoanythingworthwhile`);
         tick();
         const response = {
           id: product.id,
@@ -133,7 +137,27 @@ describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', 
 
     describe('when called with a route with nothing set as the query param', () => {
       beforeEach(fakeAsync(() => {
-        router.navigateByUrl(`/testpath?${daffProductCompositeRoutingConfigDefaultFactory(TestBed.inject(DaffBase64ServiceToken)).compositeSelectionQueryParam}=`);
+        router.navigateByUrl(`/testpath?${queryParam}=`);
+        tick();
+        const response = {
+          id: product.id,
+          products: [product],
+        };
+        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
+        actions$ = hot('--a', { a: productLoadSuccessAction });
+        expected = cold('---');
+      }));
+
+      it('should not error or apply any composite product options', () => {
+        expect(effects.preselectCompositeOptions$).toBeObservable(expected);
+      });
+    });
+
+    describe('when called with a route with an invalid selection set as the query param', () => {
+      beforeEach(fakeAsync(() => {
+        router.navigateByUrl(`/testpath?${queryParam}=${encodeURIComponent(btoa(JSON.stringify({
+          somerandomid: ['iamnotanoptionid'],
+        })))}`);
         tick();
         const response = {
           id: product.id,
