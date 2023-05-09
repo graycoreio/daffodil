@@ -19,29 +19,6 @@ on:
       VERCEL_PROJECT_ID:
         required: true
 jobs:
-  preview:
-    name: 'Preview'
-    runs-on: ubuntu-latest
-    environment: 
-      name: preview
-      url: ${{ steps.vercel-deploy.outputs.url }}
-    if: github.event_name == 'pull_request'
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: ${{ inputs.artifact }}
-      
-      - run: unzip -q ${{ inputs.artifact-zip-name }} -d . && rm ${{ inputs.artifact-zip-name }}
-        name: Unzip internal artifact zip
-        if: inputs.artifact-zip-name
-
-      - uses: graycoreio/github-actions/angular-universal-vercel@main
-        id: vercel-deploy
-        with:
-          vercel_token: ${{ secrets.VERCEL_TOKEN }}
-          vercel_org: ${{ secrets.VERCEL_ORG }}
-          vercel_project_id: ${{ secrets.VERCEL_NEXT_PROJECT_ID }}
-
   next:
     name: 'Next'
     runs-on: ubuntu-latest
