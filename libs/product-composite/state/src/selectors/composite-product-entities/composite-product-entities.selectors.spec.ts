@@ -26,7 +26,7 @@ import { getDaffCompositeProductEntitiesSelectors } from './composite-product-en
 describe('selectCompositeProductEntitiesState', () => {
 
   let store: Store<DaffCompositeProductStateRootSlice>;
-  const compositeProductFactory: DaffCompositeProductFactory = new DaffCompositeProductFactory();
+  let compositeProductFactory: DaffCompositeProductFactory;
   let stubCompositeProduct: DaffCompositeProduct;
   const {
     selectCompositeProductIds,
@@ -45,6 +45,8 @@ describe('selectCompositeProductEntitiesState', () => {
         }),
       ],
     });
+
+    compositeProductFactory = TestBed.inject(DaffCompositeProductFactory);
 
     stubCompositeProduct = compositeProductFactory.create();
     store = TestBed.inject(Store);

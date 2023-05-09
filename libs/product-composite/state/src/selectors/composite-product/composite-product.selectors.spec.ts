@@ -39,7 +39,7 @@ import { getDaffCompositeProductPriceSelectors } from './composite-product.selec
 describe('Composite Product Selectors | integration tests', () => {
 
   let store: Store<DaffCompositeProductStateRootSlice>;
-  const compositeProductFactory: DaffCompositeProductFactory = new DaffCompositeProductFactory();
+  let compositeProductFactory: DaffCompositeProductFactory;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let stubCompositeProduct: DaffCompositeProduct;
   let stubProduct: DaffProduct;
@@ -70,6 +70,8 @@ describe('Composite Product Selectors | integration tests', () => {
         }),
       ],
     });
+
+    compositeProductFactory = TestBed.inject(DaffCompositeProductFactory);
 
     stubCompositeProduct = compositeProductFactory.create();
     stubProduct = productFactory.create();
