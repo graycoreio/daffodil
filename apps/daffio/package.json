@@ -10,7 +10,7 @@
   "nx": {
     "targets": {
       "build": {
-        "inputs": ["production", "^production"],
+        "inputs": ["production", "^production", "sharedGlobals"],
         "outputs": ["{workspaceRoot}/dist/apps/daffio"]
       }
     }
