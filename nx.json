@@ -45,6 +45,11 @@
   },
   "targetDefaults": {
     "build": {
+      "inputs": [
+        "notSpec",
+        "^notSpec",
+        "sharedGlobals"
+      ],
       "dependsOn": [
         "^build"
       ]

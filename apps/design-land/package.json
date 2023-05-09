@@ -21,7 +21,6 @@
   "nx": {
     "targets": {
       "build": {
-        "inputs": ["notSpec", "^notSpec", "sharedGlobals"],
         "outputs": ["{workspaceRoot}/dist/apps/design-land"]
       },
       "test": {

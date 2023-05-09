@@ -3,7 +3,6 @@
   "nx": {
     "targets": {
       "build": {
-        "inputs": ["notSpec", "^notSpec", "sharedGlobals"],
         "outputs": ["{workspaceRoot}/dist/related-products"]
       }
     }
