@@ -23,8 +23,7 @@
     "test": "ng test driver --watch=false --browsers=ChromeHeadless",
     "lint": "cd ../.. && ng lint driver",
     "lint:fix": "npm run lint -- --fix",
-    "prepublish": "cd ../../dist/driver",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/driver && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

@@ -25,8 +25,7 @@
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
     "reportcoverage":
       "(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.core.json ../../coverage/libs/core/lcov.info)",
-    "prepublish": "cd ../../dist/core",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/core && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
