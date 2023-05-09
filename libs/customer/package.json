@@ -23,8 +23,7 @@
     "lint": "cd ../.. && ng lint customer",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test customer --watch=false --browsers=ChromeHeadless",
-    "prepublish": "cd ../../dist/customer",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/customer && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

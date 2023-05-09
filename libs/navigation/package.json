@@ -26,8 +26,7 @@
     "lint": "cd ../.. && ng lint navigation",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test navigation --watch=false --browsers=ChromeHeadless",
-    "prepublish": "cd ../../dist/navigation",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/navigation && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

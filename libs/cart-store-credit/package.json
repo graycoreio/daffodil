@@ -23,8 +23,7 @@
     "lint": "cd ../.. && ng lint cart-store-credit",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test cart-store-credit --watch=false --browsers=ChromeHeadless",
-    "prepublish": "cd ../../dist/cart-store-credit",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/cart-store-credit && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

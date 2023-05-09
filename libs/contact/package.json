@@ -20,8 +20,7 @@
     "lint": "cd ../.. && ng lint contact",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test contact --watch=false --browsers=ChromeHeadless",
-    "prepublish": "cd ../../dist/contact",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/contact && npm publish --access=public"
   },
   "devDependencies": {
     "@daffodil/driver": "0.0.0-PLACEHOLDER",

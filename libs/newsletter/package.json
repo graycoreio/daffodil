@@ -42,7 +42,6 @@
     "lint": "cd ../.. && ng lint newsletter",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test newsletter --watch=false --browsers=ChromeHeadless",
-    "prepublish": "cd ../../dist/newsletter",
-    "publish": "npm publish --access=public"
+    "publish": "cd ../../dist/newsletter && npm publish --access=public"
   }
 }
