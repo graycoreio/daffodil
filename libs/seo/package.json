@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/seo",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/seo"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing canonical URLs and other SEO features.",
   "repository": {
@@ -16,7 +23,8 @@
     "lint": "cd ../.. && ng lint seo",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test seo --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/seo; npm publish --access=public)"
+    "prepublish": "cd ../../dist/seo",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

@@ -1,5 +1,12 @@
 import { DaffGenericCategory } from '@daffodil/category';
-import { DaffState } from '@daffodil/core/state';
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffOperationInitialState,
+  daffStartMutation,
+  daffStartResolution,
+  DaffState,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import {
@@ -11,11 +18,8 @@ import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions
 import { DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
 
-export const initialState: DaffCategoryReducerState = {
-  daffState: DaffState.Stable,
-  categoryLoading: false,
-  productsLoading: false,
-  errors: [],
+export const daffCategoryInitialState: DaffCategoryReducerState = {
+  ...daffOperationInitialState,
   id: null,
 };
 
@@ -23,17 +27,14 @@ export const initialState: DaffCategoryReducerState = {
  * Returns the state for category data except for category entities.
  */
 export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends DaffProduct>(
-  state = initialState,
+  state = daffCategoryInitialState,
   action: DaffCategoryActions<U, W> | DaffCategoryPageActions<U, W> | DaffCategoryPageProductCollectionActions,
 ): DaffCategoryReducerState {
   switch (action.type) {
     case DaffCategoryPageActionTypes.CategoryPageLoadAction:
     case DaffCategoryPageActionTypes.CategoryPageLoadByUrlAction:
       return {
-        ...state,
-        categoryLoading: true,
-        productsLoading: true,
-        daffState: DaffState.Resolving,
+        ...daffStartResolution(state),
         id: null,
       };
 
@@ -46,29 +47,17 @@ export function daffCategoryReducer<U extends DaffGenericCategory<U>, W extends 
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction:
-      return {
-        ...state,
-        productsLoading: true,
-        daffState: DaffState.Mutating,
-      };
+      return daffStartMutation(state);
 
     case DaffCategoryPageActionTypes.CategoryPageLoadSuccessAction:
       return {
-        ...state,
-        categoryLoading: false,
-        productsLoading: false,
-        daffState: DaffState.Stable,
+        ...daffCompleteOperation(state),
         id: action.response.category.id,
       };
 
     case DaffCategoryPageActionTypes.CategoryPageLoadFailureAction:
-      return {
-        ...state,
-        categoryLoading: false,
-        productsLoading: false,
-        errors: [action.errorMessage],
-        daffState: DaffState.Stable,
-      };
+      return daffOperationFailed([action.errorMessage], state);
+
     default:
       return state;
   }

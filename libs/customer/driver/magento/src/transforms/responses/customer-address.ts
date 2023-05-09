@@ -5,6 +5,7 @@ import { MagentoCustomerAddress } from '../../models/public_api';
 export const magentoCustomerAddressTransform = (address: MagentoCustomerAddress): DaffCustomerAddress => ({
   id: String(address.id),
   street: address.street[0],
+  street2: address.street[1],
   city: address.city,
   region: String(address.region.region_id),
   region_code: address.region.region_code,

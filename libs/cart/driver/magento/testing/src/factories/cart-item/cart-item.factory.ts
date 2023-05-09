@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
 import {
   MagentoCartItem,
@@ -40,7 +40,7 @@ export class MockMagentoCartItem implements MagentoCartItem {
       thumbnail: {
         __typename: 'Thumbnail',
         label: faker.random.word(),
-        url: faker.random.image(),
+        url: faker.image.image(),
       },
       stock_status: MagentoProductStockStatusEnum.InStock,
     };

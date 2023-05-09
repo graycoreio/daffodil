@@ -38,6 +38,7 @@ testem.log
 lerna-debug.log
 apollo.config.js
 .angular
+.nx_cache
 
 # e2e
 /e2e/*.js

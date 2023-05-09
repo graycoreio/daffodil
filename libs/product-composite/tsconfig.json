@@ -12,6 +12,9 @@
       "@daffodil/product-composite/testing": [
         "libs/product-composite/testing/src"
       ],
+      "@daffodil/product-composite/routing": [
+        "libs/product-composite/routing/src"
+      ],
       "@daffodil/product-composite/state": [
         "libs/product-composite/state/src"
       ],

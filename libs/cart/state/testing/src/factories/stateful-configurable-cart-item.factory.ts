@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
 import {
   DaffCartItemStateEnum,
@@ -10,7 +10,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class DaffMockStatefulConfigurableCartItem extends DaffMockConfigurableCartItem implements DaffStatefulConfigurableCartItem {
   daffState: DaffCartItemStateEnum.Default;
-  errors = [];
+  daffErrors = [];
 }
 
 @Injectable({

@@ -50,7 +50,8 @@ export class DaffSearchCategoryMagentoDriver implements DaffSearchCategoryDriver
         pageSize: options.limit,
       },
     }).pipe(
-      map(result => result.data.categories.items.map(category => this.magentoCategoryTransformerService.transform(category, category.products.items))),
+      // category search results don't need product IDs
+      map(result => result.data.categories.items.map(category => this.magentoCategoryTransformerService.transform(category, []))),
       map(searchResults => daffSearchTransformResultsToCollection(daffTransformCategoriesToSearchResults(searchResults))),
       map(collection => ({
         collection,

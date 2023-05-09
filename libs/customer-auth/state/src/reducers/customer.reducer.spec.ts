@@ -1,6 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffAuthRevoke } from '@daffodil/auth/state';
+import {
+  DaffAuthCheckFailure,
+  DaffAuthGuardLogout,
+  DaffAuthLogoutSuccess,
+} from '@daffodil/auth/state';
 import {
   daffCustomerInitialState as initialState,
   DaffCustomerReducerState,
@@ -28,10 +32,41 @@ describe('@daffodil/customer-auth/state | daffCustomerAuthResetAfterLogoutReduce
     });
   });
 
-  describe('when AuthRevokeAction is triggered', () => {
-
+  describe('when DaffAuthLogoutSuccess is triggered', () => {
     beforeEach(() => {
-      const revokeAction = new DaffAuthRevoke();
+      const revokeAction = new DaffAuthLogoutSuccess();
+      state = {
+        ...initialState,
+        customer: customerFactory.create(),
+      };
+
+      result = reducer(state, revokeAction);
+    });
+
+    it('resets state', () => {
+      expect(result).toEqual(initialState);
+    });
+  });
+
+  describe('when DaffAuthCheckFailure is triggered', () => {
+    beforeEach(() => {
+      const revokeAction = new DaffAuthCheckFailure(null);
+      state = {
+        ...initialState,
+        customer: customerFactory.create(),
+      };
+
+      result = reducer(state, revokeAction);
+    });
+
+    it('resets state', () => {
+      expect(result).toEqual(initialState);
+    });
+  });
+
+  describe('when DaffAuthGuardLogout is triggered', () => {
+    beforeEach(() => {
+      const revokeAction = new DaffAuthGuardLogout(null);
       state = {
         ...initialState,
         customer: customerFactory.create(),

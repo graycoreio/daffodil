@@ -43,7 +43,7 @@ describe('@daffodil/core/state | daffRouterStateNavigatedClearEntityErrorsReduce
 
       result = reducer(adapter.addOne({
         id: 'id',
-        errors: [{
+        daffErrors: [{
           code: 'code',
           message: 'message',
         }],
@@ -51,7 +51,7 @@ describe('@daffodil/core/state | daffRouterStateNavigatedClearEntityErrorsReduce
     });
 
     it('sets clears errors', () => {
-      expect(result.entities.id.errors).toEqual([]);
+      expect(result.entities.id.daffErrors).toEqual([]);
     });
   });
 });

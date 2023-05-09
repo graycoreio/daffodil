@@ -17,7 +17,6 @@ export function daffRelatedProductsDedupeMetaReducer<T = Record<string, any>>(
   return (state: T, action: DaffProductPageActions) => {
     switch (action.type) {
       case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-
         return reducer(
           state,
           new DaffProductPageLoadSuccess({
@@ -34,6 +33,9 @@ export function daffRelatedProductsDedupeMetaReducer<T = Record<string, any>>(
             }),
           }),
         );
+
+      default:
+        return reducer(state, action);
     }
   };
 }

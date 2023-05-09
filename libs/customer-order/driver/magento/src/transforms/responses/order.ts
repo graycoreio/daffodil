@@ -42,34 +42,34 @@ import { MagentoCustomerOrder } from '../../models/public_api';
 export function daffMagentoCustomerOrderTransformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {
   return [
     {
-      label: 'Grand Total',
-      type: DaffOrderTotalTypeEnum.GrandTotal,
-      value: totals.grand_total.value,
-      sort_order: 1,
-    },
-    {
       label: 'Subtotal',
       type: DaffOrderTotalTypeEnum.Subtotal,
       value: totals.subtotal.value,
       sort_order: 0,
     },
     {
+      label: 'Discount',
+      type: DaffOrderTotalTypeEnum.Discount,
+      value: totals.discounts.reduce((acc, discount) => daffAdd(acc, discount.amount.value), 0),
+      sort_order: 10,
+    },
+    {
       label: 'Shipping',
       type: DaffOrderTotalTypeEnum.Shipping,
       value: totals.total_shipping.value,
-      sort_order: 2,
+      sort_order: 20,
     },
     {
       label: 'Tax',
       type: DaffOrderTotalTypeEnum.Tax,
       value: totals.total_tax.value,
-      sort_order: 3,
+      sort_order: 30,
     },
     {
-      label: 'Discount',
-      type: DaffOrderTotalTypeEnum.Discount,
-      value: totals.discounts.reduce((acc, discount) => daffAdd(acc, discount.amount.value), 0),
-      sort_order: 4,
+      label: 'Grand Total',
+      type: DaffOrderTotalTypeEnum.GrandTotal,
+      value: totals.grand_total.value,
+      sort_order: 40,
     },
   ];
 }

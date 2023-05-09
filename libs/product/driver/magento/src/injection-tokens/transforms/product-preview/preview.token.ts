@@ -22,7 +22,7 @@ export const DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM = new InjectionToken
       return (magentoProduct: MagentoProduct, mediaUrl: string) =>
         transforms.reduce(
           (daffProduct, transform) => transform(daffProduct, magentoProduct, mediaUrl),
-          transformMagentoProductPreview(magentoProduct, mediaUrl),
+          transformMagentoProductPreview(magentoProduct),
         );
     },
   },

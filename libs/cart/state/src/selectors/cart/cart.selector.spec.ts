@@ -219,7 +219,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartResolved', () => {
     it('should initially be default', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', { a: DaffCartResolveState.Default });
+      const expected = cold('a', { a: DaffCartResolveState.Succeeded });
 
       expect(selector).toBeObservable(expected);
     });

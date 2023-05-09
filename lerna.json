@@ -12,5 +12,6 @@
       ]
     }
   },
-  "version": "0.51.1"
+  "version": "0.58.10",
+  "useNx": true
 }

@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { moneyFragment } from './money';
+import { magentoMoneyFragment } from '@daffodil/driver/magento';
 
 export const cartItemProductFragment = gql`
   fragment cartItemProduct on ProductInterface {
@@ -27,14 +27,14 @@ export const cartItemFragment = gql`
     quantity
     prices {
       price {
-        ...money
+        ...moneyFragment
       }
       row_total {
-        ...money
+        ...moneyFragment
       }
       discounts {
         amount {
-          ...money
+          ...moneyFragment
         }
         label
       }
@@ -60,5 +60,5 @@ export const cartItemFragment = gql`
 		}
   }
   ${cartItemProductFragment}
-  ${moneyFragment}
+  ${magentoMoneyFragment}
 `;

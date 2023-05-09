@@ -1,3 +1,9 @@
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffOperationInitialState,
+  daffStartResolution,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import {
@@ -10,10 +16,9 @@ import { DaffProductReducerState } from './product-reducer-state.interface';
  * Initial values of the product state.
  */
 export const daffProductReducerInitialState: DaffProductReducerState = {
+  ...daffOperationInitialState,
   currentProductId: null,
   qty: 1,
-  loading: false,
-  errors: [],
 };
 
 /**
@@ -27,15 +32,17 @@ export function daffProductReducer<T extends DaffProduct>(state = daffProductRed
   switch (action.type) {
     case DaffProductPageActionTypes.ProductPageLoadAction:
     case DaffProductPageActionTypes.ProductPageLoadByUrlAction:
-      return { ...state, loading: true, currentProductId: null };
+      return daffStartResolution(state);
+
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
-      return { ...state, loading: false, currentProductId: action.payload.id };
+      return { ...daffCompleteOperation(state), currentProductId: action.payload.id };
+
     case DaffProductPageActionTypes.ProductPageLoadFailureAction:
-      return { ...state,
-        loading: false,
-        errors: state.errors.concat(new Array(action.payload)) };
+      return daffOperationFailed([action.payload], state);
+
     case DaffProductPageActionTypes.UpdateQtyAction:
       return { ...state, qty: action.payload };
+
     default:
       return state;
   }

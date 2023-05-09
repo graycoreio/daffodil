@@ -7,15 +7,15 @@ import { DaffProductStateModule } from '@daffodil/product/state';
 import { DaffCategoryPageFilterEffects } from './effects/category-page-filter.effects';
 import { DaffCategoryPageEffects } from './effects/category-page.effects';
 import { DaffCategoryEffects } from './effects/category.effects';
-import { daffCategoryReducers } from './reducers/category-reducers';
 import { DAFF_CATEGORY_STORE_FEATURE_KEY } from './reducers/public_api';
+import { DAFF_CATEGORY_REDUCERS } from './reducers/token/reducers.token';
 
 /**
  * A module that provides default reducers and effects for the category redux state.
  */
 @NgModule({
   imports: [
-    StoreModule.forFeature(DAFF_CATEGORY_STORE_FEATURE_KEY, daffCategoryReducers),
+    StoreModule.forFeature(DAFF_CATEGORY_STORE_FEATURE_KEY, DAFF_CATEGORY_REDUCERS),
     EffectsModule.forFeature([DaffCategoryEffects, DaffCategoryPageEffects, DaffCategoryPageFilterEffects]),
     DaffProductStateModule,
   ],

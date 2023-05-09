@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
@@ -16,7 +16,7 @@ export class MockMagentoProductPreview implements MagentoProductPreview {
   name = faker.random.word();
   sku = faker.random.alphaNumeric(16);
   stock_status = MagentoProductStockStatusEnum.InStock;
-  thumbnail = {
+  image = {
     __typename: 'ProductImage',
     label: faker.random.words(3),
     url: faker.image.imageUrl(),

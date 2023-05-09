@@ -12,10 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
 
 import { DAFF_AUTH_ROUTING_CONFIG } from '@daffodil/auth/routing';
-import {
-  DaffAuthGuardCheck,
-  DaffResetPasswordLanding,
-} from '@daffodil/auth/state';
+import { DaffResetPasswordLanding } from '@daffodil/auth/state';
 import {
   DaffAuthTestingModule,
   MockDaffAuthFacade,

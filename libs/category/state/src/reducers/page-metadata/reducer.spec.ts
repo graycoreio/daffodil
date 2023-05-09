@@ -59,7 +59,7 @@ import {
 
 import {
   daffCategoryPageMetadataReducer,
-  initialState,
+  daffCategoryPageMetadataInitialState,
 } from './reducer';
 
 describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
@@ -114,9 +114,9 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = daffCategoryPageMetadataReducer(initialState, action);
+      const result = daffCategoryPageMetadataReducer(daffCategoryPageMetadataInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffCategoryPageMetadataInitialState);
     });
   });
 
@@ -126,7 +126,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
     beforeEach(() => {
       const changeCategoryPageSize: DaffCategoryPageChangePageSize = new DaffCategoryPageChangePageSize(3);
 
-      result = daffCategoryPageMetadataReducer(initialState, changeCategoryPageSize);
+      result = daffCategoryPageMetadataReducer(daffCategoryPageMetadataInitialState, changeCategoryPageSize);
     });
 
     it('should set the categoryPageMetadata page size', () => {
@@ -140,7 +140,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
     beforeEach(() => {
       const changeCategoryCurrentPage: DaffCategoryPageChangeCurrentPage = new DaffCategoryPageChangeCurrentPage(3);
 
-      result = daffCategoryPageMetadataReducer(initialState, changeCategoryCurrentPage);
+      result = daffCategoryPageMetadataReducer(daffCategoryPageMetadataInitialState, changeCategoryCurrentPage);
     });
 
     it('should set the categoryPageMetadata current page', () => {
@@ -157,7 +157,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         direction: DaffSortDirectionEnum.Ascending,
       });
 
-      result = daffCategoryPageMetadataReducer(initialState, changeCategorySortingOption);
+      result = daffCategoryPageMetadataReducer(daffCategoryPageMetadataInitialState, changeCategorySortingOption);
     });
 
     it('should set the categoryPageMetadata applied sort option', () => {
@@ -179,7 +179,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         name: currentEqualFilter.name,
       });
       stateUnderTest = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
         filters: daffFilterArrayToDict([
           currentEqualFilter,
         ]),
@@ -203,7 +203,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
           value: currentAppliedEqualFilterOption.value,
         });
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentEqualFilter,
           ]),
@@ -233,7 +233,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
           },
         });
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentRangeFilter,
           ]),
@@ -264,7 +264,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
           value: currentUnappliedEqualFilterOption.value,
         });
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentEqualFilter,
           ]),
@@ -290,7 +290,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         });
         rangeFilterRequestOptionLabel = daffFilterComputeRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentRangeFilter,
           ]),
@@ -339,7 +339,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       currentRangeFilterPairLabel = daffFilterComputeRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
       rangeFilterRequestOptionLabel = daffFilterComputeRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
       stateUnderTest = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
         filters: daffFilterArrayToDict([
           currentEqualFilter,
           currentRangeFilter,
@@ -400,7 +400,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       });
       rangeFilterRequestOptionLabel = daffFilterComputeRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
       stateUnderTest = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
         filters: daffFilterArrayToDict([
           currentEqualFilter,
           currentRangeFilter,
@@ -442,7 +442,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         name: currentEqualFilter.name,
       });
       stateUnderTest = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
         filters: daffFilterArrayToDict([
           currentEqualFilter,
         ]),
@@ -470,7 +470,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
           value: [currentUnappliedEqualFilterOption.value],
         });
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentEqualFilter,
           ]),
@@ -504,7 +504,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         currentRangeFilterPairLabel = daffFilterComputeRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
         rangeFilterRequestOptionLabel = daffFilterComputeRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentRangeFilter,
           ]),
@@ -545,7 +545,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         });
         rangeFilterRequestOptionLabel = daffFilterComputeRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentEqualFilter,
             currentRangeFilter,
@@ -589,7 +589,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         options: daffFilterRangePairArrayToDict([currentRangeFilterPair]),
       });
       stateUnderTest = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
         filters: daffFilterArrayToDict([
           currentEqualFilter,
           currentRangeFilter,
@@ -617,7 +617,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       });
 
       stateUnderTest = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
         filters: daffFilterArrayToDict([currentEqualFilter]),
       };
 
@@ -640,7 +640,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
           value: [currentAppliedEqualFilterOption.value],
         });
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentEqualFilter,
           ]),
@@ -670,7 +670,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
         });
         currentRangeFilterPairLabel = daffFilterComputeRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentRangeFilter,
           ]),
@@ -706,7 +706,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
           name: currentRangeFilter.name,
         });
         stateUnderTest = {
-          ...initialState,
+          ...daffCategoryPageMetadataInitialState,
           filters: daffFilterArrayToDict([
             currentEqualFilter,
             currentRangeFilter,
@@ -741,7 +741,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       };
       const categoryLoadAction: DaffCategoryPageLoad = new DaffCategoryPageLoad(categoryRequest);
 
-      result = daffCategoryPageMetadataReducer(initialState, categoryLoadAction);
+      result = daffCategoryPageMetadataReducer(daffCategoryPageMetadataInitialState, categoryLoadAction);
     });
 
     it('sets the included parameters on categoryPageMetadata from the request', () => {
@@ -775,10 +775,10 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       });
 
       it('sets the missing parameters on categoryPageMetadata from initial state', () => {
-        expect(result.pageSize).toEqual(initialState.pageSize);
-        expect(result.currentPage).toEqual(initialState.currentPage);
-        expect(result.appliedSortDirection).toEqual(initialState.appliedSortDirection);
-        expect(result.appliedSortOption).toEqual(initialState.appliedSortOption);
+        expect(result.pageSize).toEqual(daffCategoryPageMetadataInitialState.pageSize);
+        expect(result.currentPage).toEqual(daffCategoryPageMetadataInitialState.currentPage);
+        expect(result.appliedSortDirection).toEqual(daffCategoryPageMetadataInitialState.appliedSortDirection);
+        expect(result.appliedSortOption).toEqual(daffCategoryPageMetadataInitialState.appliedSortOption);
       });
     });
   });
@@ -799,7 +799,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       };
       const categoryLoadAction: DaffCategoryPageLoadByUrl = new DaffCategoryPageLoadByUrl(categoryRequest);
 
-      result = daffCategoryPageMetadataReducer(initialState, categoryLoadAction);
+      result = daffCategoryPageMetadataReducer(daffCategoryPageMetadataInitialState, categoryLoadAction);
     });
 
     it('sets the included parameters on categoryPageMetadata from the request', () => {
@@ -833,10 +833,10 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       });
 
       it('sets the missing parameters on categoryPageMetadata from initial state', () => {
-        expect(result.pageSize).toEqual(initialState.pageSize);
-        expect(result.currentPage).toEqual(initialState.currentPage);
-        expect(result.appliedSortDirection).toEqual(initialState.appliedSortDirection);
-        expect(result.appliedSortOption).toEqual(initialState.appliedSortOption);
+        expect(result.pageSize).toEqual(daffCategoryPageMetadataInitialState.pageSize);
+        expect(result.currentPage).toEqual(daffCategoryPageMetadataInitialState.currentPage);
+        expect(result.appliedSortDirection).toEqual(daffCategoryPageMetadataInitialState.appliedSortDirection);
+        expect(result.appliedSortOption).toEqual(daffCategoryPageMetadataInitialState.appliedSortOption);
       });
     });
   });
@@ -848,7 +848,7 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCategoryPageMetadataInitialState,
       };
     });
 

@@ -6,9 +6,7 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartItemFragment } from './fragments/cart-item';
-import { cartTotalsFragment } from './fragments/cart-totals';
-import { cartCouponFragment } from './fragments/public_api';
+import { cartFragment } from './fragments/public_api';
 
 export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation MagentoApplyCoupon($cartId: String!, $couponCode: String!) {
@@ -19,20 +17,11 @@ export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql`
       }
     ) {
       cart {
-        id
-        items {
-          ...cartItem
-        }
-        applied_coupons {
-          ...cartCoupon
-				}
-				...cartTotals
+        ...cart
         ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
-  ${cartItemFragment}
-	${cartCouponFragment}
-	${cartTotalsFragment}
+  ${cartFragment}
   ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;

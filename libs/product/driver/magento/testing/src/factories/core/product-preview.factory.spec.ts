@@ -29,8 +29,8 @@ describe('@daffodil/product/testing | MagentoProductPreviewFactory', () => {
     it('should return a MagentoProduct with all required fields defined', () => {
       expect(result.__typename).toBeDefined();
       expect(result.uid).toBeDefined();
-      expect(result.thumbnail.label).toBeDefined();
-      expect(result.thumbnail.url).toBeDefined();
+      expect(result.image.label).toBeDefined();
+      expect(result.image.url).toBeDefined();
       expect(result.url_key).toBeDefined();
       expect(result.url_suffix).toBeDefined();
       expect(result.name).toBeDefined();

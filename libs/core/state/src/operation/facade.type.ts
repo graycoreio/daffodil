@@ -13,7 +13,7 @@ export interface DaffOperationStateFacadeInterface<
   /**
    * The loading state enum.
    */
-  loadingState$: Observable<TState['loading']>;
+  loadingState$: Observable<TState['daffState']>;
   /**
    * Whether the operation state is in any of the loading states.
    */
@@ -29,7 +29,7 @@ export interface DaffOperationStateFacadeInterface<
   /**
    * The errors in the operation state.
    */
-  errors$: Observable<TState['errors']>;
+  errors$: Observable<TState['daffErrors']>;
   /**
    * Whether the operation state has any errors.
    * If so, it should be considered to be in an "error" state.

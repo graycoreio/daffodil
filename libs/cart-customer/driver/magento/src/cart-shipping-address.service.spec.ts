@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import {
+  catchError,
+  of,
+} from 'rxjs';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
@@ -63,6 +66,25 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerShippi
     describe('when the customer is logged in', () => {
       beforeEach(() => {
         authStorageSpy.getAuthToken.and.returnValue('token');
+      });
+
+      describe('and the address object is frozen', () => {
+        beforeEach(() => {
+          Object.freeze(mockDaffCartAddress);
+        });
+
+        it('should not error', (done) => {
+          service.update(cartId, mockDaffCartAddress).pipe(
+            catchError((error) => {
+              fail(`An error was thrown: ${error}`);
+              done();
+              return of();
+            }),
+          ).subscribe(() => {
+            expect(true).toBeTrue();
+            done();
+          });
+        });
       });
 
       it('should remove the email from the address', done => {

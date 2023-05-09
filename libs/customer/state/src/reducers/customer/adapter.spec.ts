@@ -30,8 +30,8 @@ describe('@daffodil/customer/state | daffCustomerStateStoreCustomer', () => {
     };
     state = {
       ...initialState,
-      loading: DaffState.Resolving,
-      errors: [mockError],
+      daffState: DaffState.Resolving,
+      daffErrors: [mockError],
     };
 
     result = daffCustomerStateStoreCustomer(mockCustomer, state);
@@ -42,10 +42,10 @@ describe('@daffodil/customer/state | daffCustomerStateStoreCustomer', () => {
   });
 
   it('sets loading to stable', () => {
-    expect(result.loading).toEqual(DaffState.Stable);
+    expect(result.daffState).toEqual(DaffState.Stable);
   });
 
   it('should reset errors', () => {
-    expect(result.errors).toEqual([]);
+    expect(result.daffErrors).toEqual([]);
   });
 });

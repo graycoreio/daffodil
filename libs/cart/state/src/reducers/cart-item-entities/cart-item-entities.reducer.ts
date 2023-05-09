@@ -41,13 +41,13 @@ export function daffCartItemEntitiesReducer<
       return adapter.setAll(action.payload.map(item => ({
         ...item,
         daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
-        errors: [],
+        daffErrors: [],
       })), state);
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
       return adapter.upsertOne({
         ...action.payload,
         daffState: getDaffState(state.entities[action.payload.id]) || DaffCartItemStateEnum.Default,
-        errors: [],
+        daffErrors: [],
       }, state);
     case DaffCartItemActionTypes.CartItemAddSuccessAction:
       return adapter.setAll(
@@ -65,7 +65,7 @@ export function daffCartItemEntitiesReducer<
       return adapter.upsertOne({
         ...state.entities[action.itemId],
         daffState: DaffCartItemStateEnum.Error,
-        errors: state.entities[action.itemId]?.errors?.concat(action.payload) || [action.payload],
+        daffErrors: state.entities[action.itemId]?.daffErrors?.concat(action.payload) || [action.payload],
       }, state);
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
@@ -105,9 +105,9 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
     const oldItem = oldCartItems[newItem.id];
     switch(true) {
       case !oldItem:
-        return { ...newItem, daffState: DaffCartItemStateEnum.New, errors: []};
+        return { ...newItem, daffState: DaffCartItemStateEnum.New, daffErrors: []};
       case oldItem?.qty !== newItem.qty:
-        return { ...newItem, daffState: DaffCartItemStateEnum.Updated, errors: []};
+        return { ...newItem, daffState: DaffCartItemStateEnum.Updated, daffErrors: []};
       default:
         return newItem;
     }
@@ -116,6 +116,6 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
 
 function updateMutatedCartItemState<T extends DaffStatefulCartItem>(responseItems: T[], stateItems: Dictionary<T>, itemId: T['id']): T[] {
   return responseItems.map(item => item.id === itemId ?
-    { ...item, daffState: DaffCartItemStateEnum.Updated, errors: []} :
+    { ...item, daffState: DaffCartItemStateEnum.Updated, daffErrors: []} :
     { ...item, daffState: getDaffState(stateItems[item.id]) || DaffCartItemStateEnum.Default });
 }

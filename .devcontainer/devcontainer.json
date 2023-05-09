@@ -13,7 +13,8 @@
 		"mrmlnc.vscode-scss",
 		"naumovs.color-highlight",
 		"stylelint.vscode-stylelint",
-		"tehnix.vscode-tidymarkdown"
+		"tehnix.vscode-tidymarkdown",
+		"github.vscode-github-actions"
 	],
 	"runArgs": [
 		"--security-opt",

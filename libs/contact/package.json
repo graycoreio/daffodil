@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/contact",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/contact"]
+      }
+    }
+  },
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -13,7 +20,8 @@
     "lint": "cd ../.. && ng lint contact",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test contact --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/contact; npm publish --access=public)"
+    "prepublish": "cd ../../dist/contact",
+    "publish": "npm publish --access=public"
   },
   "devDependencies": {
     "@daffodil/driver": "0.0.0-PLACEHOLDER",

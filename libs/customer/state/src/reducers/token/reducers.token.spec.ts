@@ -24,7 +24,7 @@ describe('@daffodil/customer/state | daffCustomerProvideExtraReducers', () => {
     const initialState: DaffCustomerReducersState = {
       customer: {
         ...daffCustomerInitialState,
-        errors: [{
+        daffErrors: [{
           code: 'code',
           message: 'already in state',
         }],
@@ -40,8 +40,8 @@ describe('@daffodil/customer/state | daffCustomerProvideExtraReducers', () => {
       ...state,
       customer: {
         ...state.customer,
-        errors: [
-          ...state.customer.errors,
+        daffErrors: [
+          ...state.customer.daffErrors,
           extraError,
         ],
       },
@@ -59,6 +59,6 @@ describe('@daffodil/customer/state | daffCustomerProvideExtraReducers', () => {
   });
 
   it('should run the extra reducer after the daffodil reducers', () => {
-    expect(result.customer.errors[1]).toEqual(extraError);
+    expect(result.customer.daffErrors[1]).toEqual(extraError);
   });
 });

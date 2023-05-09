@@ -13,7 +13,7 @@ export function daffRouterStateNavigatedClearErrorsReducer<T extends DaffErrorab
     case ROUTER_NAVIGATED:
       return {
         ...state,
-        errors: [],
+        daffErrors: [],
       };
 
     default:

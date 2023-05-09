@@ -5,8 +5,10 @@ import {
   DaffCompositeProductStateModule,
   daffProductCompositeProvideExtraReducers,
 } from '@daffodil/product-composite/state';
+import { daffProductProvideMetaReducers } from '@daffodil/product/state';
 import { DaffSearchProductStateModule } from '@daffodil/search-product/state';
 
+import { daffSearchProductCompositeEnsureItemsMetaReducer } from './reducers/ensure-items.meta-reducer';
 import { daffSearchProductCompositeReducers } from './reducers/public_api';
 
 @NgModule({
@@ -15,7 +17,8 @@ import { daffSearchProductCompositeReducers } from './reducers/public_api';
     DaffCompositeProductStateModule,
   ],
   providers: [
-    daffProductCompositeProvideExtraReducers(combineReducers(daffSearchProductCompositeReducers)),
+    ...daffProductCompositeProvideExtraReducers(combineReducers(daffSearchProductCompositeReducers)),
+    ...daffProductProvideMetaReducers(daffSearchProductCompositeEnsureItemsMetaReducer),
   ],
 })
 export class DaffSearchProductCompositeStateModule {}

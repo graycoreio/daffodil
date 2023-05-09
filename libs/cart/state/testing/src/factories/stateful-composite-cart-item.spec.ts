@@ -44,7 +44,7 @@ describe('Cart | State | Testing | Factories | StatefulCompositeCartItemFactory'
       expect(result.options[0].option_label).not.toBeNull();
       expect(result.options[0].value_label).not.toBeNull();
       expect(result.daffState).not.toBeNull();
-      expect(result.errors).not.toBeNull();
+      expect(result.daffErrors).not.toBeNull();
     });
   });
 });

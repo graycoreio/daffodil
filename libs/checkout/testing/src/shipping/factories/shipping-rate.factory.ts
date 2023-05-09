@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
 import { ShippingRate } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';

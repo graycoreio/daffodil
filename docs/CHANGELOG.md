@@ -2,6 +2,230 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.58.10](https://github.com/graycoreio/daffodil/compare/v0.58.9...v0.58.10) (2023-05-05)
+
+
+### Bug Fixes
+
+* **cart-store-credit, magento:** handle guest store credit ([#2413](https://github.com/graycoreio/daffodil/issues/2413)) ([8556e84](https://github.com/graycoreio/daffodil/commit/8556e84bf30a9f2599acdfe6d7243e2834560a06))
+
+### [0.58.9](https://github.com/graycoreio/daffodil/compare/v0.58.8...v0.58.9) (2023-05-03)
+
+
+### Features
+
+* add `@daffodil/customer-store-credit` and `@daffodil/cart-store-credit`  ([#2395](https://github.com/graycoreio/daffodil/issues/2395)) ([f86bfb3](https://github.com/graycoreio/daffodil/commit/f86bfb3ecdae8ebfcd3f7240c218a01c052d1770))
+* **customer-order:** support injectable Magento fragments and transforms ([#2410](https://github.com/graycoreio/daffodil/issues/2410)) ([8e3ecee](https://github.com/graycoreio/daffodil/commit/8e3ecee1e437a3428b5c745d94d4cd8379eb2828))
+* **order:** allow arbitrary total types ([#2409](https://github.com/graycoreio/daffodil/issues/2409)) ([82b9c4b](https://github.com/graycoreio/daffodil/commit/82b9c4b4f04110e4a1d8678815d2f8afec6cfb83))
+* **order:** reorder totals in Magento driver ([#2411](https://github.com/graycoreio/daffodil/issues/2411)) ([2d271dc](https://github.com/graycoreio/daffodil/commit/2d271dc879f5ccd1cce924f38e422d60fe4f6505))
+
+### [0.58.8](https://github.com/graycoreio/daffodil/compare/v0.58.7...v0.58.8) (2023-05-02)
+
+
+### Features
+
+* **auth:** redirect to query param value when present ([#2408](https://github.com/graycoreio/daffodil/issues/2408)) ([e57bcf0](https://github.com/graycoreio/daffodil/commit/e57bcf0fd0b9043db7f71bcd3fe29875085db657))
+* **category:** add injectable reducer support ([#2404](https://github.com/graycoreio/daffodil/issues/2404)) ([52b6412](https://github.com/graycoreio/daffodil/commit/52b6412b0d1170f0257fa833331145388c4f5b59))
+* **core,product:** support product filters in discrete query params ([#2407](https://github.com/graycoreio/daffodil/issues/2407)) ([0b6b843](https://github.com/graycoreio/daffodil/commit/0b6b84332dffdc01e45a582bb317750f92e9a66b))
+* **product:** spread routing config ([#2405](https://github.com/graycoreio/daffodil/issues/2405)) ([6883424](https://github.com/graycoreio/daffodil/commit/6883424a6169087bb2c98ba49e9530224a76c8ec))
+
+### [0.58.7](https://github.com/graycoreio/daffodil/compare/v0.58.6...v0.58.7) (2023-04-27)
+
+
+### Features
+
+* **cart,magento:** full cart on update coupon ([b62fea7](https://github.com/graycoreio/daffodil/commit/b62fea754c555da6da88fb757c32d480ac2ba436))
+* **paypal:** add `DaffPaypalApplyPayment` to `DaffPaypalActions` ([#2401](https://github.com/graycoreio/daffodil/issues/2401)) ([34c2efe](https://github.com/graycoreio/daffodil/commit/34c2efe5a8a5a4b21d144a7d4a62fb09c95dccef))
+
+### [0.58.6](https://github.com/graycoreio/daffodil/compare/v0.58.5...v0.58.6) (2023-04-27)
+
+
+### Features
+
+* **authorizenet:** add injectable reducers ([#2400](https://github.com/graycoreio/daffodil/issues/2400)) ([c086e6d](https://github.com/graycoreio/daffodil/commit/c086e6d2f098b0dceda7a7b7fa06c71446898691))
+* **cart, magento:** always load shipping methods on cart ([#2402](https://github.com/graycoreio/daffodil/issues/2402)) ([9f1c4d8](https://github.com/graycoreio/daffodil/commit/9f1c4d8ebedb83d0b1db2ef2a47009cdd190cf4c))
+* **cart:** add free shipping payment method injection token ([#2398](https://github.com/graycoreio/daffodil/issues/2398)) ([bcce413](https://github.com/graycoreio/daffodil/commit/bcce4134606ffb80de83d61e160fab6846de1b7b))
+
+### [0.58.5](https://github.com/graycoreio/daffodil/compare/v0.58.4...v0.58.5) (2023-04-25)
+
+
+### Features
+
+* **order:** add injectable reducers ([#2399](https://github.com/graycoreio/daffodil/issues/2399)) ([cd9619e](https://github.com/graycoreio/daffodil/commit/cd9619eefe3942c8912a4244d483c5ccbc213370))
+
+### [0.58.4](https://github.com/graycoreio/daffodil/compare/v0.58.3...v0.58.4) (2023-04-14)
+
+
+### Features
+
+* **cart-customer, magento:** allow undefined billing address ([#2396](https://github.com/graycoreio/daffodil/issues/2396)) ([c2fe6af](https://github.com/graycoreio/daffodil/commit/c2fe6af49ee2bfca7f651b32feca7f6388f7483f))
+
+
+### Bug Fixes
+
+* **cart:** cart resolved state stuck on failed ([#2394](https://github.com/graycoreio/daffodil/issues/2394)) ([935a627](https://github.com/graycoreio/daffodil/commit/935a62749ca12f708348a294e223d04b50daeb14))
+* **cart:** preventing ordering when grand total is 0 ([#2393](https://github.com/graycoreio/daffodil/issues/2393)) ([8c0453a](https://github.com/graycoreio/daffodil/commit/8c0453a26894734bd6dbfe81303914993170289f))
+
+### [0.58.3](https://github.com/graycoreio/daffodil/compare/v0.58.2...v0.58.3) (2023-04-12)
+
+
+### Bug Fixes
+
+* **cart-customer:** magento driver errors for address update ([#2392](https://github.com/graycoreio/daffodil/issues/2392)) ([f3759f3](https://github.com/graycoreio/daffodil/commit/f3759f3af2efbb97b5ddc6b297c3be3e3bf7bc29))
+
+### [0.58.2](https://github.com/graycoreio/daffodil/compare/v0.58.1...v0.58.2) (2023-04-11)
+
+
+### Bug Fixes
+
+* **product*:** product extensions missing required fields in state ([#2391](https://github.com/graycoreio/daffodil/issues/2391)) ([815311f](https://github.com/graycoreio/daffodil/commit/815311f9363b3013ba161c569efae4bc52176b6a))
+* **product:** meta reducers not injecting into state ([#2389](https://github.com/graycoreio/daffodil/issues/2389)) ([28245cc](https://github.com/graycoreio/daffodil/commit/28245ccf72c5be29797477609540abb1751a9c9e))
+* **related,upsell:** dedupe meta reducers crashing product state ([#2390](https://github.com/graycoreio/daffodil/issues/2390)) ([25dabd7](https://github.com/graycoreio/daffodil/commit/25dabd7575b4f965ba52c8e28c95f9eec66e094b))
+
+### [0.58.1](https://github.com/graycoreio/daffodil/compare/v0.58.0...v0.58.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **product*:** pieces of products in state get nulled when fields are missing ([#2388](https://github.com/graycoreio/daffodil/issues/2388)) ([196200b](https://github.com/graycoreio/daffodil/commit/196200ba34c816c8d5204d84b39523ea450b9307))
+
+## [0.58.0](https://github.com/graycoreio/daffodil/compare/v0.57.0...v0.58.0) (2023-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth,cart-customer,customer-auth:** `DaffAuthRevoke` and `DaffAuthComplete` have been removed
+* **core:** `daffBuildFragmentNameSpread` now only uses the first fragment name from each passed definition
+
+this is to allow additional fragments to be interpolated into injected fragments.
+
+### Features
+
+* **auth,cart-customer,customer-auth:** don't call driver for missing token ([#2387](https://github.com/graycoreio/daffodil/issues/2387)) ([273b332](https://github.com/graycoreio/daffodil/commit/273b332b9811fb2d3828dee2810312c9d3024cf7))
+* **cart:** add generics to magento cart transformer ([#2379](https://github.com/graycoreio/daffodil/issues/2379)) ([72dfa99](https://github.com/graycoreio/daffodil/commit/72dfa992b00395e3c82a61ed928c999903b75875))
+* **cart:** don't add contextual cart item errors to global state ([#2377](https://github.com/graycoreio/daffodil/issues/2377)) ([c6db207](https://github.com/graycoreio/daffodil/commit/c6db2077c961cd07c957d90c77bf9848d2172414))
+* **cart:** export mock classes ([#2382](https://github.com/graycoreio/daffodil/issues/2382)) ([84224e9](https://github.com/graycoreio/daffodil/commit/84224e9444f12cfb6a6d0eadd754f7ac4b2cb9a5))
+* **cart:** use `user_errors` for Magento add to cart errors ([#2378](https://github.com/graycoreio/daffodil/issues/2378)) ([41aa023](https://github.com/graycoreio/daffodil/commit/41aa023845459397c6a89b6171c9a474e87d197c))
+* **core:** arithmetic corrections ([#2381](https://github.com/graycoreio/daffodil/issues/2381)) ([61bd6ab](https://github.com/graycoreio/daffodil/commit/61bd6ab4d96b21f2f44fda671781b74d1a3efb4e))
+* **core:** change fragment name spread to only get first fragment ([#2380](https://github.com/graycoreio/daffodil/issues/2380)) ([95fa1dc](https://github.com/graycoreio/daffodil/commit/95fa1dcbf987815fe449ef36e163049eb3d38201))
+* **driver,auth:** clear Apollo cache when customer is logged out ([#2385](https://github.com/graycoreio/daffodil/issues/2385)) ([aad083d](https://github.com/graycoreio/daffodil/commit/aad083d595ef3eccf8815e278e4385299d34c3fc))
+* **driver:** reload window to clear cache ([#2386](https://github.com/graycoreio/daffodil/issues/2386)) ([75e7ada](https://github.com/graycoreio/daffodil/commit/75e7ada90b4448fba2c8965075e630732bfec57c))
+
+## [0.57.0](https://github.com/graycoreio/daffodil/compare/v0.56.1...v0.57.0) (2023-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **category:** removes `MagentoCategory#products`
+
+### Features
+
+* **category:** remove nested products query in Magento driver ([#2375](https://github.com/graycoreio/daffodil/issues/2375)) ([fb8019a](https://github.com/graycoreio/daffodil/commit/fb8019ae2e5bfa5ec4a1f1fe0094227a96cf5856))
+
+### [0.56.1](https://github.com/graycoreio/daffodil/compare/v0.56.0...v0.56.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **category:** info persists when loading new category ([#2373](https://github.com/graycoreio/daffodil/issues/2373)) ([bd166dd](https://github.com/graycoreio/daffodil/commit/bd166dd57eceb4d99fa9865f245dc0a5c8835c36))
+
+## [0.56.0](https://github.com/graycoreio/daffodil/compare/v0.55.0...v0.56.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** product reducer state, selectors, and facade have been changed to `@daffodil/core/state`'s operation state interfaces
+* **category:** category page reducer state, selectors, and facade have been changed to `@daffodil/core/state`'s operation state interfaces
+
+### Features
+
+* **category:** add injectable product reducer ([#2371](https://github.com/graycoreio/daffodil/issues/2371)) ([8958c5d](https://github.com/graycoreio/daffodil/commit/8958c5d0b29d9c1e32adaf56bc7782a2cd4f6576))
+* **category:** use operation state ([#2369](https://github.com/graycoreio/daffodil/issues/2369)) ([8dbfc3c](https://github.com/graycoreio/daffodil/commit/8dbfc3c162426314fe8cce3365170ddc60f511f9))
+* **product:** use operation state ([#2370](https://github.com/graycoreio/daffodil/issues/2370)) ([816f186](https://github.com/graycoreio/daffodil/commit/816f18657b1f9c086104f85657c63f198ee5bd21))
+
+
+### Bug Fixes
+
+* **product:** incorrect typing for injectable extra reducers ([#2372](https://github.com/graycoreio/daffodil/issues/2372)) ([d0bc28b](https://github.com/graycoreio/daffodil/commit/d0bc28b6e922c174a4de47f35bdc52bbb7aa9550))
+
+## [0.55.0](https://github.com/graycoreio/daffodil/compare/v0.54.0...v0.55.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** `DaffStatefulCartItem#errors` has been removed in favor of `DaffStatefulCartItem#daffErrors`
+* **order:** order reducer state and selectors have been changed to `@daffodil/core/state`'s operation state interfaces
+* **core, customer:** consolidate errors and loading in operation state (#2363)
+
+### Features
+
+* **cart:** use `DaffErrorable` in stateful cart item ([#2365](https://github.com/graycoreio/daffodil/issues/2365)) ([fdf6fce](https://github.com/graycoreio/daffodil/commit/fdf6fce4cb1e94032cef680878818b36e52ce719))
+* **category:** add service for build category URL requests ([#2368](https://github.com/graycoreio/daffodil/issues/2368)) ([ddf6eab](https://github.com/graycoreio/daffodil/commit/ddf6eabac45f84f2aefebb8603e9f2a7b2e99dfe))
+* **core, customer:** consolidate errors and loading in operation state ([#2363](https://github.com/graycoreio/daffodil/issues/2363)) ([ccf8231](https://github.com/graycoreio/daffodil/commit/ccf8231158704137637c79e1eb03a30fc544d10a))
+* **customer:** don't store contextual entity errors in global state ([#2366](https://github.com/graycoreio/daffodil/issues/2366)) ([36a9d3a](https://github.com/graycoreio/daffodil/commit/36a9d3a33b1949592b0c0ff5d8f64867f2655928))
+* **driver:** handle network errors in Magento error transform ([#2367](https://github.com/graycoreio/daffodil/issues/2367)) ([c566354](https://github.com/graycoreio/daffodil/commit/c566354f228cf61b9b4ab316d73d986e0385b090))
+* **order:** use operation state ([#2364](https://github.com/graycoreio/daffodil/issues/2364)) ([b8abe38](https://github.com/graycoreio/daffodil/commit/b8abe381f47c48a86ac55332732ba6e0128863dc))
+
+## [0.54.0](https://github.com/graycoreio/daffodil/compare/v0.53.1...v0.54.0) (2023-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** moves some state config to routing config
+
+### Features
+
+* **auth:** move redirect effects to routing ([#2362](https://github.com/graycoreio/daffodil/issues/2362)) ([c618188](https://github.com/graycoreio/daffodil/commit/c61818820f662c60b4a9be01a9182d03965c5afc))
+* **core:** shallow-compare works with disjoint unions ([#2351](https://github.com/graycoreio/daffodil/issues/2351)) ([e35d45a](https://github.com/graycoreio/daffodil/commit/e35d45ab48d2fe9bdcbc8cb439d75e039f21624a))
+* **design:** UI updates to menu component ([#2360](https://github.com/graycoreio/daffodil/issues/2360)) ([e37f6fa](https://github.com/graycoreio/daffodil/commit/e37f6fa6bff4413a66737dde28796af464da4c29))
+
+
+### Bug Fixes
+
+* **customer:** magento driver not transforming `street2` ([#2361](https://github.com/graycoreio/daffodil/issues/2361)) ([37036e9](https://github.com/graycoreio/daffodil/commit/37036e95ade45df786185a9094537b33bfd63be3))
+
+### [0.53.1](https://github.com/graycoreio/daffodil/compare/v0.53.0...v0.53.1) (2023-03-11)
+
+
+### Features
+
+* **all:** upgrade to faker v7 ([#2358](https://github.com/graycoreio/daffodil/issues/2358)) ([8f8e876](https://github.com/graycoreio/daffodil/commit/8f8e87668157f4a90b6d618c04352f6c4316bf65))
+* **design:** create menu component ([#2353](https://github.com/graycoreio/daffodil/issues/2353)) ([264a4df](https://github.com/graycoreio/daffodil/commit/264a4df5fbf963b29a3c3d64daf07c117fc1a9a2))
+
+## [0.53.0](https://github.com/graycoreio/daffodil/compare/v0.52.0...v0.53.0) (2023-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **paypal:** removes `DaffPaypalPaymentResponse` and `DaffPaypalPaymentRequest` types
+
+### Features
+
+* **paypal:** narrow paypal types to be specific to express ([#2357](https://github.com/graycoreio/daffodil/issues/2357)) ([3558c7a](https://github.com/graycoreio/daffodil/commit/3558c7a10e779da4d650dc4bad2642e77dd71dfe))
+
+## [0.52.0](https://github.com/graycoreio/daffodil/compare/v0.51.1...v0.52.0) (2023-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart,driver:** renamed `moneyFragment` to `magentoMoneyFragment` and moved export to `@daffodil/driver/magento`
+* **customer-order,order:** `DaffOrder#email` is a new required field
+* Previously, we compiled in partial mode. With the advent of Angular 13 (our specified peer dep), we no longer support the view engine, as a result we can fix many build errors caused by NGCC as we no longer need to ngcc!
+
+### Features
+
+* **all:** upgrade faker to v6 ([#2339](https://github.com/graycoreio/daffodil/issues/2339)) ([a88ddda](https://github.com/graycoreio/daffodil/commit/a88dddabd7320de29682716c6e38e873d0204f14))
+* **authorizenet,payment:** allow for setting address by ID ([#2342](https://github.com/graycoreio/daffodil/issues/2342)) ([edc4c12](https://github.com/graycoreio/daffodil/commit/edc4c1250502d96b879a995d394bbd8b7dfbc2ac))
+* **authorizenet:** export Magento driver services ([#2340](https://github.com/graycoreio/daffodil/issues/2340)) ([428cf60](https://github.com/graycoreio/daffodil/commit/428cf60a67207bf415f6366b0de7bbb4ff714859))
+* **auth:** redirect to logout path for `DaffAuthRevoke` ([#2347](https://github.com/graycoreio/daffodil/issues/2347)) ([d696e73](https://github.com/graycoreio/daffodil/commit/d696e73cc5cd8792dbc80db6dc634027d82c2c85))
+* **cart,driver:** move magento money fragment to driver ([#2354](https://github.com/graycoreio/daffodil/issues/2354)) ([63541b2](https://github.com/graycoreio/daffodil/commit/63541b2bdc6871428dc84c2c3ecbfbe0794f4a00))
+* **cart:** add support for extra cart transforms in Magento driver ([#2343](https://github.com/graycoreio/daffodil/issues/2343)) ([3512894](https://github.com/graycoreio/daffodil/commit/351289448330c42f962e40fe94613d02ffe28bd1))
+* compile in "full" mode ([9e0469a](https://github.com/graycoreio/daffodil/commit/9e0469ac2313f963aa57d976876fc057070e33b3))
+* **core:** add reducers for clearing error when navigation completes ([#2335](https://github.com/graycoreio/daffodil/issues/2335)) ([ccd46cf](https://github.com/graycoreio/daffodil/commit/ccd46cfaf1aedf2494fe69db89401106dbf8b802))
+* **customer-order,order:** add `email` to `DaffOrder` ([#2346](https://github.com/graycoreio/daffodil/issues/2346)) ([8bc240f](https://github.com/graycoreio/daffodil/commit/8bc240feb99606f9d089263b1514b279e5e52ec5))
+* **customer-order:** send requests as POST ([#2356](https://github.com/graycoreio/daffodil/issues/2356)) ([91db7f7](https://github.com/graycoreio/daffodil/commit/91db7f7d8565d26d1fcb98ba95649165c9b089e6))
+* **customer:** send magento queries as POST ([#2336](https://github.com/graycoreio/daffodil/issues/2336)) ([d5eea7e](https://github.com/graycoreio/daffodil/commit/d5eea7ec27cad74a355f969835b8ed37956c099d))
+
 ### [0.51.1](https://github.com/graycoreio/daffodil/compare/v0.51.0...v0.51.1) (2023-02-03)
 
 

@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/core",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/core"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "Interfaces built for daffodil/state",
   "repository": {
@@ -18,7 +25,8 @@
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
     "reportcoverage":
       "(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.core.json ../../coverage/libs/core/lcov.info)",
-    "publish": "(cd ../../dist/core; npm publish --access=public)"
+    "prepublish": "cd ../../dist/core",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

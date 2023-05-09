@@ -17,6 +17,13 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "test": "ts-node --project tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/jasmine"]
+      }
+    }
+  },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
     "jasmine": "0.0.0-PLACEHOLDER",

@@ -8,6 +8,7 @@ import {
 import {
   DaffStoreFacade,
   DaffStateError,
+  DaffOperationStateFacadeInterface,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
@@ -20,43 +21,17 @@ import { DaffCategoryReducerState } from '../../reducers/category/category-reduc
 export interface DaffCategoryFacadeInterface<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct
-> extends DaffStoreFacade<Action> {
+> extends DaffOperationStateFacadeInterface<DaffCategoryReducerState> {
   /**
    * The currently selected category.
    */
   category$: Observable<V>;
-  /**
-   * The loading state of the current category page.
-   */
-  pageLoadingState$: Observable<DaffCategoryReducerState['daffState']>;
-  /**
-   * Whether the current category is in a mutating state.
-   */
-  isPageMutating$: Observable<boolean>;
-  /**
-   * Whether the current category is in a resolving state.
-   */
-  isPageResolving$: Observable<boolean>;
+
   /**
    * Products of the current category.
    */
   products$: Observable<W[]>;
-  /**
-   * The loading state for retrieving a single category.
-   *
-   * @deprecated Use isPageResolving$ instead
-   */
-  categoryLoading$: Observable<boolean>;
-  /**
-   * The loading state for retrieving only the products of the category.
-   *
-   * @deprecated Use isPageResolving$ and isPageMutating$ instead
-   */
-  productsLoading$: Observable<boolean>;
-  /**
-   * Errors associated with retrieving a single category.
-   */
-  errors$: Observable<DaffStateError[]>;
+
   /**
    * Is the category page empty of products.
    */

@@ -1,6 +1,3 @@
-import { DaffStateError } from '@daffodil/core/state';
+import { DaffOperationState } from '@daffodil/core/state';
 
-export interface DaffOrderReducerState {
-  loading: boolean;
-  errors: DaffStateError[];
-}
+export type DaffOrderReducerState = DaffOperationState;

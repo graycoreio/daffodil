@@ -12,7 +12,7 @@ import { DocumentNode } from 'graphql';
 import { daffBuildFragmentDefinition } from './build-fragment-definition';
 import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
 
-describe('Core | GraphQL | Fragment Integration', () => {
+describe('@daffodil/core/graphql | Fragment Integration', () => {
   let controller: ApolloTestingController;
   let apollo: Apollo;
 
@@ -34,6 +34,7 @@ describe('Core | GraphQL | Fragment Integration', () => {
     mockFragment1 = gql`
       fragment fragment11 on Query {
         field11
+        ...fragment12
       }
       fragment fragment12 on Query {
         field12
@@ -42,6 +43,7 @@ describe('Core | GraphQL | Fragment Integration', () => {
     mockFragment2 = gql`
       fragment fragment21 on Query {
         field21
+        ...fragment22
       }
       fragment fragment22 on Query {
         field22

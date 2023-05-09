@@ -14,7 +14,7 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffQueuedApollo } from './queued-apollo.service';
 
-describe('Core | GraphQL | DaffQueuedApollo', () => {
+describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
   let service: DaffQueuedApollo;
   let apollo: Apollo;
   let apolloMutateSpy: jasmine.Spy;

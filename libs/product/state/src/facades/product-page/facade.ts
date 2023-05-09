@@ -6,6 +6,10 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
@@ -21,13 +25,23 @@ import { DaffProductPageFacadeInterface } from './facade.interface';
   providedIn: 'root',
 })
 export class DaffProductPageFacade<T extends DaffProduct = DaffProduct> implements DaffProductPageFacadeInterface<T> {
+  loadingState$: Observable<DaffState>;
   loading$: Observable<boolean>;
+  mutating$: Observable<boolean>;
+  resolving$: Observable<boolean>;
+  errors$: Observable<DaffStateError[]>;
+  hasErrors$: Observable<boolean>;
   product$: Observable<T>;
 
   private selectors = getDaffProductSelectors<T>();
 
   constructor(private store: Store<DaffProductStateRootSlice<T>>) {
-	  this.loading$ = this.store.pipe(select(this.selectors.selectCurrentProductLoadingState));
+	  this.loadingState$ = this.store.pipe(select(this.selectors.selectLoadingState));
+	  this.loading$ = this.store.pipe(select(this.selectors.selectLoading));
+	  this.mutating$ = this.store.pipe(select(this.selectors.selectMutating));
+	  this.resolving$ = this.store.pipe(select(this.selectors.selectResolving));
+	  this.errors$ = this.store.pipe(select(this.selectors.selectErrors));
+	  this.hasErrors$ = this.store.pipe(select(this.selectors.selectHasErrors));
 	  this.product$ = this.store.pipe(select(this.selectors.selectCurrentProduct));
   }
 

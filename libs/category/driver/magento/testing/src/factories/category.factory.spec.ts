@@ -39,7 +39,6 @@ describe('@daffodil/category/driver/magento/testing | DaffCategoryDriverMagentoC
       expect(result.level).toBeDefined();
       expect(result.children_count).toBeDefined();
       expect(result.children).toBeDefined();
-      expect(result.products).toBeDefined();
     });
   });
 });

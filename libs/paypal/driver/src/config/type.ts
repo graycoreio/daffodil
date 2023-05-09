@@ -15,7 +15,7 @@ export interface DaffPaypalExpressDriverConfig {
      */
     token: string;
     /**
-     * The merchant ID query param name.
+     * The customer ID query param name.
      */
     payerId: string;
   };

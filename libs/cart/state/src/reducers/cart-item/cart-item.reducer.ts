@@ -99,13 +99,18 @@ export function cartItemReducer<T extends DaffCart>(
 
     case DaffCartItemActionTypes.CartItemListFailureAction:
     case DaffCartItemActionTypes.CartItemLoadFailureAction:
-    case DaffCartItemActionTypes.CartItemUpdateFailureAction:
     case DaffCartItemActionTypes.CartItemAddFailureAction:
-    case DaffCartItemActionTypes.CartItemDeleteFailureAction:
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
+        ...setLoading(state.loading, DaffState.Complete),
+      };
+
+    case DaffCartItemActionTypes.CartItemUpdateFailureAction:
+    case DaffCartItemActionTypes.CartItemDeleteFailureAction:
+      return {
+        ...state,
         ...setLoading(state.loading, DaffState.Complete),
       };
 

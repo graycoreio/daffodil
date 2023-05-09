@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import {
+  catchError,
+  of,
+} from 'rxjs';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
@@ -68,9 +71,36 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerPaymen
       driverSpy.update.and.returnValue(of(null));
     });
 
+    it('should pass through an undefind value if the original value was undefined', (done) => {
+      service.update(cartId, undefined).subscribe(() => {
+        expect(driverSpy.update).toHaveBeenCalledWith(cartId, undefined);
+        done();
+      });
+    });
+
+
     describe('when the customer is logged in', () => {
       beforeEach(() => {
         authStorageSpy.getAuthToken.and.returnValue('token');
+      });
+
+      describe('and the address object is frozen', () => {
+        beforeEach(() => {
+          Object.freeze(mockDaffCartAddress);
+        });
+
+        it('should not error', (done) => {
+          service.update(cartId, mockDaffCartPaymentMethod, mockDaffCartAddress).pipe(
+            catchError((error) => {
+              fail(`An error was thrown: ${error}`);
+              done();
+              return of();
+            }),
+          ).subscribe(() => {
+            expect(true).toBeTrue();
+            done();
+          });
+        });
       });
 
       it('should remove the email from the address', done => {
@@ -90,6 +120,25 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerPaymen
     describe('when the customer is logged in', () => {
       beforeEach(() => {
         authStorageSpy.getAuthToken.and.returnValue('token');
+      });
+
+      describe('and the address object is frozen', () => {
+        beforeEach(() => {
+          Object.freeze(mockDaffCartAddress);
+        });
+
+        it('should not error', (done) => {
+          service.updateWithBilling(cartId, mockDaffCartPaymentMethod, mockDaffCartAddress).pipe(
+            catchError((error) => {
+              fail(`An error was thrown: ${error}`);
+              done();
+              return of();
+            }),
+          ).subscribe(() => {
+            expect(true).toBeTrue();
+            done();
+          });
+        });
       });
 
       it('should remove the email from the address', done => {

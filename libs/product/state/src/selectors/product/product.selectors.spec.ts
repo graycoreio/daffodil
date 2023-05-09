@@ -25,7 +25,6 @@ describe('selectProductState', () => {
   let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
   const {
-    selectCurrentProductLoadingState,
     selectCurrentProductState,
     selectCurrentProductId,
     selectCurrentProduct,
@@ -62,24 +61,12 @@ describe('selectProductState', () => {
         expectedProductState = {
           currentProductId: mockProduct.id,
           qty: 1,
-          loading: false,
-          errors: [],
         };
       });
 
       it('returns the state for the current product', () => {
         const selector = store.pipe(select(selectCurrentProductState));
-        const expected = cold('a', { a: expectedProductState });
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-
-    describe('selectCurrentProductLoadingState', () => {
-
-      it('selects the loading state of the current product', () => {
-        const selector = store.pipe(select(selectCurrentProductLoadingState));
-        const expected = cold('a', { a: false });
+        const expected = cold('a', { a: jasmine.objectContaining(expectedProductState) });
 
         expect(selector).toBeObservable(expected);
       });

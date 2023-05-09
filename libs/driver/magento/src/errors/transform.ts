@@ -1,3 +1,5 @@
+import { ApolloError } from '@apollo/client/core';
+
 import {
   DaffError,
   DaffErrorCodeMap,
@@ -5,6 +7,7 @@ import {
 } from '@daffodil/core';
 
 import { DaffDriverMagentoError } from './error.class';
+import { DaffDriverMagentoNetworkError } from './network-error.class';
 import { daffMagentoTransformGraphQlError } from './transform-graphql';
 
 /**
@@ -12,9 +15,10 @@ import { daffMagentoTransformGraphQlError } from './transform-graphql';
  */
 // TODO: return array of errors
 export function daffTransformMagentoError<T extends DaffErrorCodeMap>(error: any, map: T): DaffError {
-  // TODO: handle network errors
-  if (error.graphQLErrors) {
-    return error.graphQLErrors.map(err => daffMagentoTransformGraphQlError<T>(err, map))[0];
+  if (error.graphQLErrors?.length > 0) {
+    return (<ApolloError>error).graphQLErrors.map(err => daffMagentoTransformGraphQlError<T>(err, map))[0];
+  } else if (error.networkError) {
+    return new DaffDriverMagentoNetworkError((<ApolloError>error).networkError.message);
   } else if (daffIsError(error)) {
     return error;
   } else {

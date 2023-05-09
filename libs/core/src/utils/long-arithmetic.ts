@@ -1,17 +1,26 @@
 /**
- * A helper function to get the number of decimal significant figures of a number.
+ * A helper function to compute a power of 10 required to convert a decimal number to an integer
  * This function will fail if the given number has more than 16 significant figures or
  * the value of the number is greater than 10^11
  *
  * @param number
  */
-function daffPrecision(number: number): number {
-  let p = 10000;
-  if(number === undefined || number === null) {
+export function daffPrecision(number: number): number {
+  let p = 1;
+  if(
+    number === undefined ||
+      number === null ||
+      Number.isNaN(number) ||
+      number === Infinity ||
+      number === -Infinity
+  ) {
     return p;
   }
   while (Math.round(number * p) / p !== number) {
     p *= 10;
+    if(p >= 1e11){
+      break;
+    }
   }
   return p;
 }
@@ -24,11 +33,17 @@ function daffPrecision(number: number): number {
  * @param numbers
  */
 export function daffAdd(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffAdd.');
+  if(numbers.length === 0) {
+    return undefined;
+  }
+  if(numbers.length === 1) {
+    return numbers[0];
   }
   const precision = Math.max(...numbers.map(daffPrecision));
-  return numbers.reduce((acc, number) => acc + Math.round(number*precision), 0) / precision;
+  return numbers.slice(1).reduce(
+    (acc, number) => acc + Math.round(number*precision),
+    Math.round(numbers[0]*precision),
+  ) / precision;
 }
 
 /**
@@ -39,8 +54,11 @@ export function daffAdd(...numbers: number[]): number {
  * @param numbers
  */
 export function daffSubtract(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffSubtract.');
+  if(numbers.length === 0) {
+    return undefined;
+  }
+  if(numbers.length === 1) {
+    return numbers[0];
   }
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.slice(1).reduce(
@@ -57,9 +75,13 @@ export function daffSubtract(...numbers: number[]): number {
  * @param numbers
  */
 export function daffMultiply(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffMultiply.');
+  if(numbers.length === 0) {
+    return undefined;
   }
+  if(numbers.length === 1) {
+    return numbers[0];
+  }
+
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.reduce(
     (acc, number) => acc * Math.round(number*precision),
@@ -78,15 +100,13 @@ export function daffMultiply(...numbers: number[]): number {
  * @param numbers
  */
 export function daffDivide(...numbers: number[]): number {
-  if(numbers.length < 2) {
-    throw new Error('Provide at least 2 numbers for daffDivide.');
+  if(numbers.length === 0) {
+    return undefined;
   }
-  // TODO(griest024): use better condition after IE support is dropped
-  const illegalOperation = numbers.filter(isNaN).length > 0
-    || numbers.slice(1).filter(n => n === 0 || n === null).length > 0;
-  if (illegalOperation) {
-    return NaN;
+  if(numbers.length === 1) {
+    return numbers[0];
   }
+
   const precision = Math.max(...numbers.map(daffPrecision));
   return numbers.slice(1).reduce(
     (acc, number) => acc / Math.round(number*precision),

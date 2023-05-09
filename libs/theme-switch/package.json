@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/theme-switch",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/theme-switch"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "private": true,
   "scripts": {

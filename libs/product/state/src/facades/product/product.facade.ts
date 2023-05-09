@@ -26,7 +26,7 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
   private selectors = getDaffProductSelectors<T>();
 
   constructor(private store: Store<DaffProductStateRootSlice<T>>) {
-	  this.loading$ = this.store.pipe(select(this.selectors.selectCurrentProductLoadingState));
+	  this.loading$ = this.store.pipe(select(this.selectors.selectLoading));
   }
 
   getProduct(id: T['id']): Observable<T> {

@@ -24,10 +24,8 @@ export class DaffMagentoCartCustomerAddressService implements DaffCartAddressSer
   ) {}
 
   update(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    if (this.authStorage.getAuthToken()) {
-      delete address.email;
-    }
+    const { email: _, ...addressWithoutEmail } = address;
 
-    return this.driver.update(cartId, address);
+    return this.driver.update(cartId, this.authStorage.getAuthToken() ? addressWithoutEmail : address);
   }
 }

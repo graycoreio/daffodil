@@ -12,11 +12,15 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffResolveCartServerSide } from '../../actions/public_api';
+import {
+  DaffCartCreateSuccess,
+  DaffCartLoadSuccess,
+  DaffResolveCartServerSide,
+} from '../../actions/public_api';
 import { cartResolveReducer as reducer } from './cart-resolve.reducer';
 
 
-describe('Cart | Reducer | cartResolveReducer', () => {
+describe('@daffodil/cart/state | cartResolveReducer', () => {
   let cartFactory: DaffCartFactory;
   let cart: DaffCart;
 
@@ -43,6 +47,46 @@ describe('Cart | Reducer | cartResolveReducer', () => {
       const result = reducer(initialState, cartResolveAction);
 
       expect(result.resolved).toEqual(DaffCartResolveState.Resolving);
+    });
+  });
+
+  describe('when DaffCartCreateSuccess is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        resolved: DaffCartResolveState.Resolving,
+      };
+
+      const cartResolveSuccess = new DaffCartCreateSuccess(cart);
+
+      result = reducer(state, cartResolveSuccess);
+    });
+
+    it('should indicate that the cart resolved successfully', () => {
+      expect(result.resolved).toEqual(DaffCartResolveState.Succeeded);
+    });
+  });
+
+  describe('when DaffCartLoadSuccess is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        resolved: DaffCartResolveState.Resolving,
+      };
+
+      const cartResolveSuccess = new DaffCartLoadSuccess(cart);
+
+      result = reducer(state, cartResolveSuccess);
+    });
+
+    it('should indicate that the cart resolved successfully', () => {
+      expect(result.resolved).toEqual(DaffCartResolveState.Succeeded);
     });
   });
 

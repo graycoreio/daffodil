@@ -28,7 +28,7 @@ import {
 } from '@daffodil/paypal/state';
 
 /**
- * A routing guard that will apply a paypal express payment with the given token and merchant ID.
+ * A routing guard that will apply a paypal express payment with the given token and payer ID.
  */
 @Injectable({
   providedIn: 'root',

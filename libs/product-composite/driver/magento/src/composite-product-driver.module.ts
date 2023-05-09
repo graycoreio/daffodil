@@ -42,6 +42,11 @@ export class DaffCompositeProductMagentoDriverModule {
               ? {
                 ...daffProduct,
                 items: [],
+                price: 0,
+                discount: {
+                  amount: 0,
+                  percent: 0,
+                },
               }
               : daffProduct,
         ),

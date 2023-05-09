@@ -45,9 +45,8 @@ import {
   DaffAuthLogoutFailure,
   DaffAuthLogout,
   DaffAuthStorageFailure,
-  DaffAuthComplete,
   DaffAuthServerSide,
-  DaffAuthRevoke,
+  DaffAuthLoginActions,
 } from '../actions/public_api';
 
 @Injectable()
@@ -56,7 +55,7 @@ export class DaffAuthLoginEffects<
   U extends DaffAuthToken = DaffAuthToken,
 > {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffAuthLoginActions<T, U>>,
     @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<T, U>,
     @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
@@ -64,10 +63,9 @@ export class DaffAuthLoginEffects<
 
   login$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthLoginActionTypes.LoginAction),
-    switchMap((action: DaffAuthLogin<T>) =>
+    switchMap((action) =>
       this.loginDriver.login(action.loginInfo).pipe(
-        map((resp) =>
-          new DaffAuthLoginSuccess<U>(resp),
+        map((resp) => new DaffAuthLoginSuccess<U>(resp),
         ),
         catchError((error: DaffError) =>
           of(new DaffAuthLoginFailure(this.errorMatcher(error))),
@@ -89,13 +87,13 @@ export class DaffAuthLoginEffects<
   ));
 
   removeAuthToken$ = createEffect(() => this.actions$.pipe(
-    ofType<DaffAuthLogoutSuccess>(
+    ofType(
       DaffAuthLoginActionTypes.LogoutSuccessAction,
     ),
     tap(() => {
       this.storage.removeAuthToken();
     }),
-    map(() => new DaffAuthRevoke()),
+    switchMap(() => EMPTY),
     catchError((error: Error) => {
       switch (true) {
         case error instanceof DaffServerSideStorageError:
@@ -106,14 +104,14 @@ export class DaffAuthLoginEffects<
           return of(new DaffAuthStorageFailure(this.errorMatcher(error)));
       }
     }),
-  ));
+  ), { dispatch: false });
 
   storeAuthToken$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthLoginActionTypes.LoginSuccessAction),
-    tap((action: DaffAuthLoginSuccess<U>) => {
+    tap((action) => {
       this.storage.setAuthToken(action.auth.token);
     }),
-    map(() => new DaffAuthComplete()),
+    switchMap(() => EMPTY),
     catchError((error: Error) => {
       switch (true) {
         case error instanceof DaffServerSideStorageError:
@@ -124,5 +122,5 @@ export class DaffAuthLoginEffects<
           return of(new DaffAuthStorageFailure(this.errorMatcher(error)));
       }
     }),
-  ));
+  ), { dispatch: false });
 }

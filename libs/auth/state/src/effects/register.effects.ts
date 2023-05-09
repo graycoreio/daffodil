@@ -38,12 +38,11 @@ import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffAuthRegisterActionTypes,
-  DaffAuthRegister,
   DaffAuthRegisterSuccess,
   DaffAuthRegisterFailure,
-  DaffAuthComplete,
   DaffAuthServerSide,
   DaffAuthStorageFailure,
+  DaffAuthRegisterActions,
 } from '../actions/public_api';
 
 @Injectable()
@@ -51,7 +50,7 @@ export class DaffAuthRegisterEffects<
   T extends DaffAccountRegistration = DaffAccountRegistration,
 > {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffAuthRegisterActions<T>>,
     @Inject(DaffRegisterDriver) private registerDriver: DaffRegisterServiceInterface<T>,
     @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
@@ -59,12 +58,12 @@ export class DaffAuthRegisterEffects<
 
   register$: Observable<any> = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthRegisterActionTypes.RegisterAction),
-    switchMap((action: DaffAuthRegister<T>) =>
+    switchMap((action) =>
       iif(
         () => action.autoLogin,
         defer(() => this.registerDriver.register(action.registration).pipe(
           tap(token => this.storage.setAuthToken(token)),
-          switchMap(() => of(new DaffAuthRegisterSuccess(), new DaffAuthComplete())),
+          map((token) => new DaffAuthRegisterSuccess(token)),
         )),
         defer(() => this.registerDriver.registerOnly(action.registration).pipe(
           map(() => new DaffAuthRegisterSuccess()),

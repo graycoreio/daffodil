@@ -31,7 +31,7 @@ export const DAFF_PRODUCT_EXTRA_REDUCERS = new InjectionToken<ActionReducer<Daff
  * ```
  */
 export function daffProductProvideExtraReducers<T extends DaffProduct = DaffProduct>(
-  ...reducers: ActionReducer<Partial<DaffProductReducersState<T>>>[]
+  ...reducers: ActionReducer<DaffProductReducersState<T>>[]
 ): Provider[] {
   return reducers.map(reducer => ({
     provide: DAFF_PRODUCT_EXTRA_REDUCERS,

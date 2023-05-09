@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/external-router",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/external-router"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A platform-agnostic package that connects the @angular/router with an external routing service (e.g. an API), allowing for runtime route resolution.",
   "repository": {
@@ -16,7 +23,8 @@
     "lint": "cd ../.. && ng lint external-router",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test external-router --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/external-router; npm publish --access=public)"
+    "prepublish": "cd ../../dist/external-router",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
@@ -27,7 +35,8 @@
     "rxjs": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
     "apollo-angular": "0.0.0-PLACEHOLDER",

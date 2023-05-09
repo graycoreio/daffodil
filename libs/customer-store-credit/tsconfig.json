@@ -1,0 +1,41 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/customer-store-credit": [
+        "libs/customer-store-credit/src"
+      ],
+      "@daffodil/customer-store-credit/testing": [
+        "libs/customer-store-credit/testing/src"
+      ],
+      "@daffodil/customer-store-credit/state": [
+        "libs/customer-store-credit/state/src"
+      ],
+      "@daffodil/customer-store-credit/state/testing": [
+        "libs/customer-store-credit/state/testing/src"
+      ],
+      "@daffodil/customer-store-credit/driver": [
+        "libs/customer-store-credit/driver/src"
+      ],
+      "@daffodil/customer-store-credit/driver/in-memory": [
+        "libs/customer-store-credit/driver/in-memory/src"
+      ],
+      "@daffodil/customer-store-credit/driver/testing": [
+        "libs/customer-store-credit/driver/testing/src"
+      ],
+      "@daffodil/customer-store-credit/driver/magento": [
+        "libs/customer-store-credit/driver/magento/src"
+      ],
+      "@daffodil/customer-store-credit/driver/magento/testing": [
+        "libs/customer-store-credit/driver/magento/testing/src"
+      ],
+      "@daffodil/customer-store-credit/routing": [
+        "libs/customer-store-credit/routing/src"
+      ],
+    }
+  }
+}

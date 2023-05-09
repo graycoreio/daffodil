@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/payment",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/payment"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "A client-side Angular package for managing ecommerce payments agnostic to the ecommerce platform.",
   "repository": {
@@ -16,7 +23,8 @@
     "lint": "cd ../.. && ng lint payment",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test payment --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/payment; npm publish --access=public)"
+    "prepublish": "cd ../../dist/payment",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
@@ -35,6 +43,7 @@
   },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/geography": "0.0.0-PLACEHOLDER"
+    "@daffodil/geography": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   }
 }

@@ -28,6 +28,7 @@ export const appRoutes: Routes = [
   { path: 'image-gallery', loadChildren: () => import('./image-gallery/image-gallery.module').then(m => m.DesignLandImageGalleryModule) },
   { path: 'navbar', loadChildren: () => import('./navbar/navbar.module').then(m => m.DesignLandNavbarModule) },
   { path: 'media-gallery', loadChildren: () => import('./media-gallery/media-gallery.module').then(m => m.DesignLandMediaGalleryModule) },
+  { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.DesignLandMenuModule) },
   { path: 'modal', loadChildren: () => import('./modal/modal.module').then(m => m.DesignLandModalModule) },
   { path: 'paginator', loadChildren: () => import('./paginator/paginator.module').then(m => m.DesignLandPaginatorModule) },
   { path: 'progress-indicator', loadChildren: () => import('./progress-indicator/progress-indicator.module').then(m => m.DesignLandProgressIndicatorModule) },

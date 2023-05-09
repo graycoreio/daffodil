@@ -104,7 +104,7 @@ describe('@daffodil/customer-order/driver/magento | DaffCustomerOrderMagentoServ
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(getCustomerOrders));
+          const op = controller.expectOne(addTypenameToDocument(getCustomerOrders()));
 
           op.flush({
             data: mockGetOrdersResponse,
@@ -122,7 +122,7 @@ describe('@daffodil/customer-order/driver/magento | DaffCustomerOrderMagentoServ
             }),
           ).subscribe();
 
-          const op = controller.expectOne(addTypenameToDocument(getCustomerOrders));
+          const op = controller.expectOne(addTypenameToDocument(getCustomerOrders()));
 
           op.graphqlErrors([new GraphQLError(
             'Generic error.',
@@ -149,7 +149,7 @@ describe('@daffodil/customer-order/driver/magento | DaffCustomerOrderMagentoServ
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(getCustomerOrder));
+          const op = controller.expectOne(addTypenameToDocument(getCustomerOrder()));
 
           op.flush({
             data: mockGetOrderResponse,
@@ -167,7 +167,7 @@ describe('@daffodil/customer-order/driver/magento | DaffCustomerOrderMagentoServ
             }),
           ).subscribe();
 
-          const op = controller.expectOne(addTypenameToDocument(getCustomerOrder));
+          const op = controller.expectOne(addTypenameToDocument(getCustomerOrder()));
 
           op.graphqlErrors([new GraphQLError(
             'Generic error.',

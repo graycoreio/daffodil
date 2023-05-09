@@ -32,26 +32,17 @@ import { DaffCategoryFacadeInterface } from './category-facade.interface';
 export class DaffCategoryFacade<
   V extends DaffGenericCategory<V> = DaffCategory,
   W extends DaffProduct = DaffProduct
-> implements DaffCategoryFacadeInterface<V,W> {
-
+> implements DaffCategoryFacadeInterface<V, W> {
   private categorySelectors = getDaffCategorySelectors<V,W>();
 
   category$: Observable<V>;
-
-  pageLoadingState$: Observable<DaffCategoryReducerState['daffState']>;
-
-  isPageMutating$: Observable<boolean>;
-
-  isPageResolving$: Observable<boolean>;
-
+  loadingState$: Observable<DaffCategoryReducerState['daffState']>;
+  loading$: Observable<boolean>;
+  mutating$: Observable<boolean>;
+  resolving$: Observable<boolean>;
   products$: Observable<W[]>;
-
-  categoryLoading$: Observable<boolean>;
-
-  productsLoading$: Observable<boolean>;
-
   errors$: Observable<DaffStateError[]>;
-
+  hasErrors$: Observable<boolean>;
   isCategoryEmpty$: Observable<boolean>;
 
   getCategoryById(id: V['id']): Observable<V> {
@@ -69,12 +60,12 @@ export class DaffCategoryFacade<
   constructor(private store: Store<DaffCategoryStateRootSlice<V, W>>) {
 	  this.category$ = this.store.pipe(select(this.categorySelectors.selectCurrentCategory));
 	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
-	  this.pageLoadingState$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageState));
-	  this.isPageMutating$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageMutating));
-	  this.isPageResolving$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageResolving));
-	  this.categoryLoading$ = this.store.pipe(select(this.categorySelectors.selectCategoryLoading));
-	  this.productsLoading$ = this.store.pipe(select(this.categorySelectors.selectCategoryProductsLoading));
-	  this.errors$ = this.store.pipe(select(this.categorySelectors.selectCategoryErrors));
+	  this.loadingState$ = this.store.pipe(select(this.categorySelectors.selectLoadingState));
+	  this.loading$ = this.store.pipe(select(this.categorySelectors.selectLoading));
+	  this.mutating$ = this.store.pipe(select(this.categorySelectors.selectMutating));
+	  this.resolving$ = this.store.pipe(select(this.categorySelectors.selectResolving));
+	  this.errors$ = this.store.pipe(select(this.categorySelectors.selectErrors));
+	  this.hasErrors$ = this.store.pipe(select(this.categorySelectors.selectHasErrors));
 	  this.isCategoryEmpty$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageEmpty));
   }
 

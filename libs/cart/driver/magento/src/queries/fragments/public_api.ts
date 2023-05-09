@@ -1,4 +1,3 @@
-export { moneyFragment } from './money';
 export { cartCouponFragment } from './cart-coupon';
 export { cartAddressFragment } from './cart-address';
 export { cartItemFragment } from './cart-item';
@@ -8,3 +7,4 @@ export { availableShippingMethodFragment } from './available-shipping-method';
 export { selectedShippingMethodFragment } from './selected-shipping-method';
 export { cartFragment } from './cart';
 export { pricesFragment } from './prices';
+export { magentoCartUserError } from './user-error';

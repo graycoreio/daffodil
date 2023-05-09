@@ -9,7 +9,6 @@ import {
 } from '@ngrx/effects';
 import {
   of,
-  Observable,
   EMPTY,
 } from 'rxjs';
 import {
@@ -25,27 +24,28 @@ import {
   DaffAuthStorageService,
   DAFF_AUTH_ERROR_MATCHER,
 } from '@daffodil/auth';
-import {
-  DaffAuthDriver,
-  DaffAuthServiceInterface,
-} from '@daffodil/auth/driver';
+import { DaffAuthDriverTokenCheck } from '@daffodil/auth/driver';
 import {
   DaffError,
   DaffServerSideStorageError,
   DaffStorageServiceError,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
+import {
+  DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,
+  DaffDriverHttpClientCacheServiceInterface,
+} from '@daffodil/driver';
 
 import {
   DaffAuthActionTypes,
   DaffAuthCheckSuccess,
   DaffAuthCheckFailure,
   DaffAuthCheck,
-  DaffAuthGuardCheckCompletion,
-  DaffAuthGuardCheck,
   DaffAuthStorageFailure,
   DaffAuthServerSide,
-  DaffAuthRevoke,
+  DaffAuthLoginActionTypes,
+  DaffAuthActions,
+  DaffAuthLoginActions,
 } from '../actions/public_api';
 import {
   DaffAuthStateConfig,
@@ -55,50 +55,32 @@ import {
 @Injectable()
 export class DaffAuthEffects {
   constructor(
-    private actions$: Actions,
-    @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface,
+    private actions$: Actions<DaffAuthActions | DaffAuthLoginActions>,
+    private tokenCheck: DaffAuthDriverTokenCheck,
     @Inject(DAFF_AUTH_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private storage: DaffAuthStorageService,
     @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
+    @Inject(DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE) private clientCache: DaffDriverHttpClientCacheServiceInterface,
   ) {}
 
   check$ = createEffect(() => this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthCheckAction),
-    switchMap((action: DaffAuthCheck) =>
-      this.authDriver.check().pipe(
+    switchMap((action) =>
+      this.tokenCheck.check().pipe(
         map(() => new DaffAuthCheckSuccess()),
         catchError((error: DaffError) => of(new DaffAuthCheckFailure(this.errorMatcher(error)))),
       ),
     ),
   ));
 
-  guardCheck$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffAuthActionTypes.AuthGuardCheckAction),
-    switchMap((action: DaffAuthGuardCheck) =>
-      this.authDriver.check().pipe(
-        map(() => new DaffAuthGuardCheckCompletion(true)),
-        catchError((error: DaffError) => of(new DaffAuthGuardCheckCompletion(false))),
-      ),
-    ),
-  ));
-
   removeAuthToken$ = createEffect(() => this.actions$.pipe(
-    ofType<DaffAuthCheckFailure | DaffAuthGuardCheckCompletion>(
-      DaffAuthActionTypes.AuthGuardCheckCompletionAction,
+    ofType(
       DaffAuthActionTypes.AuthCheckFailureAction,
     ),
-    filter(action => {
-      // don't remove token when guard check completes with true result
-      if (action.type === DaffAuthActionTypes.AuthGuardCheckCompletionAction && action.result) {
-        return false;
-      }
-
-      return true;
-    }),
     tap(() => {
       this.storage.removeAuthToken();
     }),
-    map(() => new DaffAuthRevoke()),
+    switchMap(() => EMPTY),
     catchError((error: Error) => {
       switch (true) {
         case error instanceof DaffServerSideStorageError:
@@ -109,7 +91,7 @@ export class DaffAuthEffects {
           return of(new DaffAuthStorageFailure(this.errorMatcher(error)));
       }
     }),
-  ));
+  ), { dispatch: false });
 
   // this needs to be defined after `check$` or else the driver call won't be run
   authCheckInterval$ = createEffect(() => of(new DaffAuthCheck()).pipe(
@@ -128,4 +110,16 @@ export class DaffAuthEffects {
       }
     }),
   ));
+
+  clearClientCache$ = createEffect(() => this.actions$.pipe(
+    ofType(
+      DaffAuthActionTypes.AuthCheckFailureAction,
+      DaffAuthActionTypes.AuthGuardLogoutAction,
+      DaffAuthLoginActionTypes.LogoutSuccessAction,
+    ),
+    tap(() => {
+      this.clientCache.reset();
+    }),
+    switchMap(() => EMPTY),
+  ), { dispatch: false });
 }

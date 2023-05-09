@@ -26,11 +26,11 @@ import { DaffCustomerPageFacadeInterface } from './interface';
 })
 export class DaffCustomerPageFacade<T extends DaffCustomer = DaffCustomer> implements DaffCustomerPageFacadeInterface<T> {
   customer$: Observable<T>;
-  loadingState$: Observable<DaffCustomerReducerState<T>['loading']>;
+  loadingState$: Observable<DaffCustomerReducerState<T>['daffState']>;
   loading$: Observable<boolean>;
   resolving$: Observable<boolean>;
   mutating$: Observable<boolean>;
-  errors$: Observable<DaffCustomerReducerState<T>['errors']>;
+  errors$: Observable<DaffCustomerReducerState<T>['daffErrors']>;
   hasErrors$: Observable<boolean>;
 
   constructor(

@@ -18,8 +18,8 @@ import {
  * Transforms a Magento product into a product preview.
  * Handles all product types.
  */
-export function transformMagentoProductPreview(product: MagentoProduct, mediaUrl: string): DaffProduct {
-  return transformMagentoSimpleProductPreview(product, mediaUrl);
+export function transformMagentoProductPreview(product: MagentoProduct): DaffProduct {
+  return transformMagentoSimpleProductPreview(product);
 }
 
 const getType = (product: MagentoProductPreview): DaffProductTypeEnum => {
@@ -39,21 +39,20 @@ const getType = (product: MagentoProductPreview): DaffProductTypeEnum => {
 /**
  * Transforms a Magento simple product into a product preview.
  */
-export function transformMagentoSimpleProductPreview(product: MagentoProductPreview, mediaUrl: string): DaffProduct {
+export function transformMagentoSimpleProductPreview(product: MagentoProductPreview): DaffProduct {
   return {
     type: getType(product),
     id: product.sku,
     url: `/${product.url_key}${product.url_suffix}`,
     name: product.name,
-    thumbnail: transformThumbnail(product.thumbnail),
+    thumbnail: transformThumbnail(product.image),
     price: getPrice(product),
     discount: getDiscount(product),
-    images: transformMediaGalleryEntries(product, mediaUrl),
     in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
   };
 }
 
-function transformThumbnail(image: MagentoProduct['thumbnail']): DaffProductImage {
+function transformThumbnail(image: MagentoProduct['image']): DaffProductImage {
   return {
     url: image.url,
     label: image.label,
@@ -74,12 +73,4 @@ function getDiscount(product: {price_range: MagentoProduct['price_range']}): Daf
       amount: product.price_range.maximum_price.discount.amount_off,
       percent: product.price_range.maximum_price.discount.percent_off,
     } : { amount: null, percent: null };
-}
-
-function transformMediaGalleryEntries(product: MagentoProduct, mediaUrl: string): DaffProductImage[] {
-  return product.media_gallery_entries?.map(image => ({
-    url: mediaUrl + 'catalog/product' + image.file,
-    label: image.label,
-    id: image.uid.toString(),
-  })) || [];
 }

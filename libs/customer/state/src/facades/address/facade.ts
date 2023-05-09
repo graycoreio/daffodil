@@ -35,11 +35,11 @@ export class DaffCustomerAddressPageFacade<T extends DaffCustomerAddressEntity =
   private _selectAddress: DaffCustomerAddressSelectors<T>['selectAddress'];
 
   addresses$: Observable<T[]>;
-  loadingState$: Observable<DaffCustomerAddressReducerState['loading']>;
+  loadingState$: Observable<DaffCustomerAddressReducerState['daffState']>;
   loading$: Observable<boolean>;
   resolving$: Observable<boolean>;
   mutating$: Observable<boolean>;
-  errors$: Observable<DaffCustomerAddressReducerState['errors']>;
+  errors$: Observable<DaffCustomerAddressReducerState['daffErrors']>;
   hasErrors$: Observable<boolean>;
 
   constructor(

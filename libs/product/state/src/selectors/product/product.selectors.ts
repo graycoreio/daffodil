@@ -3,6 +3,10 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
+import {
+  daffOperationStateSelectorFactory,
+  DaffOperationStateSelectors,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import {
@@ -15,15 +19,11 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
 /**
  * An interface for selectors related to the current product page.
  */
-export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> {
+export interface DaffProductPageMemoizedSelectors<T extends DaffProduct = DaffProduct> extends DaffOperationStateSelectors<DaffProductStateRootSlice, DaffProductReducerState> {
   /**
    * Selects the entire state object for the product page feature area.
    */
   selectCurrentProductState: MemoizedSelector<DaffProductStateRootSlice, DaffProductReducerState>;
-  /**
-   * Selects the loading state of the current product.
-   */
-  selectCurrentProductLoadingState: MemoizedSelector<DaffProductStateRootSlice, boolean>;
   /**
    * Selects the id of the current product.
    */
@@ -45,11 +45,6 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
     (state: DaffProductReducersState<T>) => state.product,
   );
 
-  const selectCurrentProductLoadingState = createSelector(
-    selectCurrentProductState,
-    (state: DaffProductReducerState) => state.loading,
-  );
-
   const selectCurrentProductId = createSelector(
     selectCurrentProductState,
     (state: DaffProductReducerState) => state.currentProductId,
@@ -62,8 +57,8 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
   );
 
   return {
+    ...daffOperationStateSelectorFactory(selectCurrentProductState),
     selectCurrentProductState,
-    selectCurrentProductLoadingState,
     selectCurrentProductId,
     selectCurrentProduct,
   };

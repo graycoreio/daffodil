@@ -234,7 +234,7 @@ const createCartItemEntitiesSelectors = <
 
   const selectCartItemErrors = defaultMemoize((itemId: U['id']) => createSelector(
     selectCartItem(itemId),
-    (cartItem: U) => cartItem?.errors || [],
+    (cartItem: U) => cartItem?.daffErrors || [],
   )).memoized;
 
   return {

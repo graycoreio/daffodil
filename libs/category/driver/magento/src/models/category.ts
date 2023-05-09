@@ -1,5 +1,3 @@
-import { MagentoProduct } from '@daffodil/product/driver/magento';
-
 export interface MagentoCategory {
   __typename?: string;
   uid: string;
@@ -13,9 +11,6 @@ export interface MagentoCategory {
   breadcrumbs?: MagentoBreadcrumb[];
   level?: number;
   children_count?: number;
-  products?: {
-    items?: MagentoProduct[];
-  };
   children?: MagentoCategory[];
 }
 

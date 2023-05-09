@@ -15,25 +15,27 @@ import { DaffProduct } from '@daffodil/product';
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
-
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);
-  pageLoadingState$: BehaviorSubject<DaffCategoryReducerState['daffState']> = new BehaviorSubject(null);
-  isPageMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  isPageResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  loadingState$: BehaviorSubject<DaffCategoryReducerState['daffState']> = new BehaviorSubject(null);
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  mutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  resolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  hasErrors$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
-  categoryLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  productsLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   errors$: BehaviorSubject<DaffStateError[]> = new BehaviorSubject([]);
   isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   getCategoryById(id: DaffCategory['id']): BehaviorSubject<DaffCategory> {
 	  return new BehaviorSubject(null);
   };
+
   getProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<DaffProduct[]> {
 	  return new BehaviorSubject([]);
   };
+
   getTotalProductsByCategory(categoryId: DaffCategory['id']): BehaviorSubject<number> {
 	  return new BehaviorSubject(null);
   };
+
   dispatch(action: Action) {};
 }

@@ -6,11 +6,13 @@ import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import {
   Observable,
+  of,
   throwError,
 } from 'rxjs';
 import {
   catchError,
   map,
+  switchMap,
 } from 'rxjs/operators';
 
 import {
@@ -24,7 +26,10 @@ import {
 import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
-import { transformCartMagentoError } from './errors/transform';
+import {
+  magentoCartTransformUserError,
+  transformCartMagentoError,
+} from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 import {
   DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
@@ -151,7 +156,12 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       },
       fetchPolicy: 'network-only',
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.addProductsToCart.cart)),
+      switchMap((result) =>
+        result.data.addProductsToCart.user_errors.length > 0
+          ? throwError(() => magentoCartTransformUserError(result.data.addProductsToCart.user_errors[0]))
+          : of(this.cartTransformer.transform(result.data.addProductsToCart.cart)),
+      ),
+      catchError(err => throwError(() => transformCartMagentoError(err))),
     );
   }
 }

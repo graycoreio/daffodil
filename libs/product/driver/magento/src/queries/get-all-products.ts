@@ -6,7 +6,7 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { magentoProductFragment } from './fragments/product';
+import { magentoProductPageFragment } from './fragments/public_api';
 
 export const DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME = 'MagentoGetAllProducts';
 
@@ -15,7 +15,7 @@ export const getAllProducts = (extraProductFragments: DocumentNode[] = []) => gq
     products(pageSize: $pageSize) {
       total_count
       items {
-        ...product
+        ...magentoProductPage
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
       page_info {
@@ -24,6 +24,6 @@ export const getAllProducts = (extraProductFragments: DocumentNode[] = []) => gq
       }
     }
   }
-  ${magentoProductFragment}
+  ${magentoProductPageFragment}
   ${daffBuildFragmentDefinition(...extraProductFragments)}
 `;

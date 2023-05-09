@@ -22,6 +22,7 @@ describe('@daffodil/customer/driver/magento | magentoCustomerAddressTransform', 
   it('should transform', () => {
     expect(result.id).toEqual(String(mockAddress.id));
     expect(result.street).toEqual(mockAddress.street[0]);
+    expect(result.street2).toEqual(mockAddress.street[1]);
     expect(result.city).toEqual(mockAddress.city);
     expect(result.region).toEqual(String(mockAddress.region.region_id));
     expect(result.region_code).toEqual(mockAddress.region.region_code);

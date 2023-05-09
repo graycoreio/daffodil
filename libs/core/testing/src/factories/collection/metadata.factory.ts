@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
 import {
   DaffCollectionMetadata,
@@ -48,7 +48,7 @@ export class MockCollectionMetadata implements DaffCollectionMetadata {
     this.appliedSortDirection = _sortFields.appliedSortDirection;
     this.appliedSortOption = _sortFields.appliedSortOption;
     this.sortOptions = _sortFields.sortOptions;
-    this.filters = daffFilterArrayToDict(filterFactory.createMany(faker.random.number({ min: 1, max: 5 })));
+    this.filters = daffFilterArrayToDict(filterFactory.createMany(faker.datatype.number({ min: 1, max: 5 })));
   }
 }
 

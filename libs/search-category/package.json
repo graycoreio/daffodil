@@ -1,5 +1,12 @@
 {
   "name": "@daffodil/search-category",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/search-category"]
+      }
+    }
+  },
   "version": "0.0.0-PLACEHOLDER",
   "description": "Interfaces built for daffodil/state",
   "repository": {
@@ -19,7 +26,8 @@
     "lint": "cd ../.. && ng lint search-category",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test search-category --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/search-category; npm publish --access=public)"
+    "prepublish": "cd ../../dist/search-category",
+    "publish": "npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
@@ -39,6 +47,7 @@
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/category": "0.0.0-PLACEHOLDER",
-    "@daffodil/search": "0.0.0-PLACEHOLDER"
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   }
 }

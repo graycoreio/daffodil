@@ -7,7 +7,10 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   DaffOrder,
   DaffOrderTotal,
@@ -27,6 +30,10 @@ import { DaffOrderFacadeInterface } from './order-facade.interface';
 export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrderFacadeInterface<T> {
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
+  loadingState$: Observable<DaffState>;
+  resolving$: Observable<boolean>;
+  mutating$: Observable<boolean>;
+  hasErrors$: Observable<boolean>;
 
   orders$: Observable<T[]>;
   orderIds$: Observable<T['id'][]>;
@@ -59,8 +66,12 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectOrderEntities,
       selectOrders,
       selectOrderTotal,
-      selectOrderLoading,
-      selectOrderErrors,
+      selectLoading,
+      selectErrors,
+      selectHasErrors,
+      selectMutating,
+      selectResolving,
+      selectLoadingState,
 
       selectPlacedOrder,
       selectHasPlacedOrder,
@@ -84,8 +95,12 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectOrderTaxTotal,
     } = getDaffOrderSelectors<T>();
 
-    this.loading$ = this.store.pipe(select(selectOrderLoading));
-    this.errors$ = this.store.pipe(select(selectOrderErrors));
+    this.loading$ = this.store.pipe(select(selectLoading));
+    this.errors$ = this.store.pipe(select(selectErrors));
+    this.loadingState$ = this.store.pipe(select(selectLoadingState));
+    this.resolving$ = this.store.pipe(select(selectResolving));
+    this.mutating$ = this.store.pipe(select(selectMutating));
+    this.hasErrors$ = this.store.pipe(select(selectHasErrors));
 
     this.orders$ = this.store.pipe(select(selectOrders));
     this.orderIds$ = this.store.pipe(select(selectOrderIds));

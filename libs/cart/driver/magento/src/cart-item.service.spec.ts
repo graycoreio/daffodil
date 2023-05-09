@@ -19,6 +19,7 @@ import {
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
 import {
+  DaffCartDriverErrorCodes,
   DaffCartItemExceedsMaxQtyError,
   DaffCartNotFoundError,
   DaffProductOutOfStockError,
@@ -40,6 +41,8 @@ import {
   addCartItem,
   DaffCartMagentoCartItemTransform,
   daffProvideCartMagentoCartItemTransforms,
+  MagentoCartUserInputErrorType,
+  MagentoCartUserInputError,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -49,11 +52,10 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffError } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
 import { schema } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
-import { DaffConfigurableProduct } from '@daffodil/product-configurable';
-import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCartItemService } from './cart-item.service';
@@ -63,7 +65,6 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
   let controller: ApolloTestingController;
 
   let daffProductFactory: DaffProductFactory;
-  let daffConfigurableProductFactory: DaffConfigurableProductFactory;
   let daffCartFactory: DaffCartFactory;
   let magentoCartFactory: MagentoCartFactory;
   let daffCartItemFactory: DaffCartItemFactory;
@@ -81,7 +82,6 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
   let itemId;
   let sku;
   let mockDaffProduct: DaffProduct;
-  let mockDaffConfigurableProduct: DaffConfigurableProduct;
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
   let mockMagentoCartItem: MagentoCartItem;
@@ -127,14 +127,12 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
     magentoCartItemUpdateInputTransformer = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
 
     daffProductFactory = TestBed.inject(DaffProductFactory);
-    daffConfigurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
     daffCartFactory = TestBed.inject(DaffCartFactory);
     magentoCartFactory = TestBed.inject(MagentoCartFactory);
     daffCartItemFactory = TestBed.inject(DaffCartItemFactory);
     magentoCartItemFactory = TestBed.inject(MagentoCartItemFactory);
 
     mockDaffProduct = daffProductFactory.create();
-    mockDaffConfigurableProduct = daffConfigurableProductFactory.create();
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
     mockDaffCartItem = daffCartItemFactory.create();
@@ -163,8 +161,8 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
     };
     mockDaffConfigurableCartItemInput = {
       type: DaffCartItemInputType.Configurable,
-      variantId: mockDaffConfigurableProduct.variants[0].id,
-      productId: mockDaffConfigurableProduct.id,
+      variantId: 'variantId',
+      productId: 'configurableId',
       qty: 2,
     };
     mockMagentoCartItemUpdateInput = {
@@ -181,6 +179,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
       addProductsToCart: {
         __typename: 'AddProductsToCartOutput',
         cart: mockMagentoCart,
+        user_errors: [],
       },
     };
     mockUpdateCartItemResponse = {
@@ -318,6 +317,28 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
           expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
           done();
         });
+
+        const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
+
+        op.flush({
+          data: mockAddCartItemResponse,
+        });
+      });
+    });
+
+    describe('when there are errors', () => {
+      beforeEach(() => {
+        mockAddCartItemResponse.addProductsToCart.user_errors.push({ code: MagentoCartUserInputErrorType.INSUFFICIENT_STOCK, message: 'Product out of stock' });
+      });
+
+      it('should throw an error', done => {
+        service.add(cartId, mockDaffConfigurableCartItemInput).pipe(
+          catchError((error: DaffError) => {
+            expect(error.code).toEqual(DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK);
+            done();
+            return [];
+          }),
+        ).subscribe();
 
         const op = controller.expectOne(addTypenameToDocument(addCartItem([])));
 

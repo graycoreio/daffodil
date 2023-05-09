@@ -54,6 +54,8 @@ export class DaffResetPassword<T extends DaffAuthResetPasswordInfo = DaffAuthRes
  */
 export class DaffResetPasswordSuccess implements Action {
   readonly type = DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction;
+
+  constructor(public token?: string) {}
 }
 
 /**
