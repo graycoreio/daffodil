@@ -28,7 +28,7 @@ import { DaffProductCompositePageEffects } from './product-page.effects';
 @Component({ template: '' })
 class TestComponent {}
 
-describe('@daffodil/product-composite/state | DaffProductCompositePageEffects', () => {
+describe('@daffodil/product-composite/routing | DaffProductCompositePageEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffProductCompositePageEffects;
   let router: Router;
