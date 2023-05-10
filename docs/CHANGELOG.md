@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.59.0](https://github.com/graycoreio/daffodil/compare/v0.58.10...v0.59.0) (2023-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart,payment:** `DaffPaymentStateReducerAdapter#storeError` now accepts an array of errors
+
+### Features
+
+* **authorizenet,payment:** set anet errors for apply failure ([#2432](https://github.com/graycoreio/daffodil/issues/2432)) ([f902c64](https://github.com/graycoreio/daffodil/commit/f902c6412f04640816e09f1db98fdf29acf10a24))
+* **cart,payment:** set payment errors instead of concating ([#2433](https://github.com/graycoreio/daffodil/issues/2433)) ([130a9f9](https://github.com/graycoreio/daffodil/commit/130a9f996361152969cec71b02a05cc23fbd6ceb))
+* **paypal:** shallow spread Magento driver config ([#2434](https://github.com/graycoreio/daffodil/issues/2434)) ([56f474e](https://github.com/graycoreio/daffodil/commit/56f474e52194a7e5e34d18974db3c812d3837cd7))
+* **product-composite:** add item and option factories ([#2429](https://github.com/graycoreio/daffodil/issues/2429)) ([d70bf3d](https://github.com/graycoreio/daffodil/commit/d70bf3d9e92c52fcbd3f320e9f6f59150783762d))
+* **product-composite:** add service for generating share codes ([#2431](https://github.com/graycoreio/daffodil/issues/2431)) ([cc00ed9](https://github.com/graycoreio/daffodil/commit/cc00ed9edf0a6b78b006ada3ae473e1f81c2a949))
+
+
+### Bug Fixes
+
+* **cart:** add a missing peer dep on payment ([#2419](https://github.com/graycoreio/daffodil/issues/2419)) ([decf6fd](https://github.com/graycoreio/daffodil/commit/decf6fd14d36a2ea995213afbfb04d52bdf867e9))
+* **product-composite:** preselect item options based on configurable query param ([#2001](https://github.com/graycoreio/daffodil/issues/2001)) ([48514c4](https://github.com/graycoreio/daffodil/commit/48514c4a681b4cfac05c593641cd498f0db2d0f2))
+
 ### [0.58.10](https://github.com/graycoreio/daffodil/compare/v0.58.9...v0.58.10) (2023-05-05)
 
 
