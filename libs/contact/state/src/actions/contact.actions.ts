@@ -38,7 +38,7 @@ export class DaffContactReset implements Action {
   readonly type = DaffContactActionTypes.ContactResetAction;
 }
 
-export type DaffContactActions<T extends DaffContactRequest> =
+export type DaffContactActions<T extends DaffContactRequest = DaffContactRequest> =
 	| DaffContactSubmit<T>
 	| DaffContactRetry<T>
 	| DaffContactFailedSubmit
