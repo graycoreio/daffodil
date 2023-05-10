@@ -21,7 +21,7 @@ import { DaffMagentoPaypalService } from './paypal.service';
   ],
 })
 export class DaffPaypalMagentoDriverModule {
-  static forRoot(config: DaffPaypalExpressDriverConfig = MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT): ModuleWithProviders<DaffPaypalMagentoDriverModule> {
+  static forRoot(config: Partial<DaffPaypalExpressDriverConfig> = MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT): ModuleWithProviders<DaffPaypalMagentoDriverModule> {
     return {
       ngModule: DaffPaypalMagentoDriverModule,
       providers: [
@@ -35,7 +35,10 @@ export class DaffPaypalMagentoDriverModule {
         },
         {
           provide: DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
-          useValue: config,
+          useValue: {
+            ...MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT,
+            ...config,
+          },
         },
       ],
     };
