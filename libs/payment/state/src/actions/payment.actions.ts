@@ -49,8 +49,6 @@ export class DaffPaymentGenerateTokenFailure implements Action {
  */
 export type DaffPaymentActions<
   T extends DaffPaymentResponse = DaffPaymentResponse,
-  R extends DaffPaymentRequest = DaffPaymentRequest,
 > =
-  | DaffPaymentGenerateToken<R>
   | DaffPaymentGenerateTokenSuccess<T>
   | DaffPaymentGenerateTokenFailure;

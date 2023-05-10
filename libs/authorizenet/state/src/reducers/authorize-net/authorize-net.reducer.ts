@@ -3,6 +3,10 @@ import {
   DaffCartPaymentActions,
   DaffCartPaymentActionTypes,
 } from '@daffodil/cart/state';
+import {
+  DaffPaymentActions,
+  DaffPaymentActionTypes,
+} from '@daffodil/payment/state';
 
 import {
   DaffAuthorizeNetActions,
@@ -19,7 +23,7 @@ export const initialState: DaffAuthorizeNetReducerState = {
 
 export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>(
   state: DaffAuthorizeNetReducerState = initialState,
-  action: DaffAuthorizeNetActions<T> | DaffCartPaymentActions,
+  action: DaffAuthorizeNetActions<T> | DaffCartPaymentActions | DaffPaymentActions,
 ): DaffAuthorizeNetReducerState {
   switch (action.type) {
     case DaffAuthorizeNetActionTypes.UpdatePaymentAction:
@@ -30,6 +34,7 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
       };
     case DaffAuthorizeNetActionTypes.UpdatePaymentSuccessAction:
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
+    case DaffPaymentActionTypes.GenerateTokenSuccessAction:
       return {
         ...state,
         loading: false,
@@ -37,11 +42,13 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
       };
     case DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction:
     case DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction:
+    case DaffPaymentActionTypes.GenerateTokenFailureAction:
       return {
         ...state,
         loading: false,
         paymentError: action.payload,
       };
+
     case DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction:
       return {
         ...state,

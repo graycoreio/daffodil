@@ -11,6 +11,10 @@ import {
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffPaymentGenerateTokenFailure,
+  DaffPaymentGenerateTokenSuccess,
+} from '@daffodil/payment/state';
 
 import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 
@@ -97,6 +101,26 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
     });
   });
 
+  describe('when DaffPaymentGenerateTokenSuccess is triggered', () => {
+    let result: DaffAuthorizeNetReducerState;
+
+    beforeEach(() => {
+      const tokenLoadSuccess = new DaffPaymentGenerateTokenSuccess({
+        method: 'method',
+      });
+
+      result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
+    });
+
+    it('indicates that the request has finished loading', () => {
+      expect(result.loading).toBeFalsy();
+    });
+
+    it('clears the payment error message', () => {
+      expect(result.paymentError).toBeNull();
+    });
+  });
+
   describe('when DaffAuthorizeNetUpdatePaymentFailure is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
     let mockError: DaffStateError;
@@ -107,6 +131,29 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
         message: 'error message',
       };
       const tokenResponseLoadFailure: DaffAuthorizeNetUpdatePaymentFailure = new DaffAuthorizeNetUpdatePaymentFailure(mockError);
+
+      result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
+    });
+
+    it('indicates that the request has finished loading', () => {
+      expect(result.loading).toBeFalsy();
+    });
+
+    it('sets payment error state to the action payload', () => {
+      expect(result.paymentError).toEqual(mockError);
+    });
+  });
+
+  describe('when DaffPaymentGenerateTokenFailure is triggered', () => {
+    let result: DaffAuthorizeNetReducerState;
+    let mockError: DaffStateError;
+
+    beforeEach(() => {
+      mockError = {
+        code: 'error code',
+        message: 'error message',
+      };
+      const tokenResponseLoadFailure = new DaffPaymentGenerateTokenFailure(mockError);
 
       result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
     });
