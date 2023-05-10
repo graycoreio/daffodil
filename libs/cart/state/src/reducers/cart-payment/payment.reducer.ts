@@ -23,7 +23,7 @@ export const daffCartPaymentReducer: ActionReducer<DaffPaymentReducerState> = (
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction:
     case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction:
-      return adapter.storeError(action.payload, state);
+      return adapter.storeError([action.payload], state);
 
     default:
       return state;

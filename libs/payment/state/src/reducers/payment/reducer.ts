@@ -27,7 +27,7 @@ export const daffPaymentReducerFactory = <T extends DaffPaymentResponse = DaffPa
         return adapter.tokenGenerated(state);
 
       case action.type === DaffPaymentActionTypes.GenerateTokenFailureAction:
-        return adapter.storeError((<DaffPaymentGenerateTokenFailure>action).payload, state);
+        return adapter.storeError([(<DaffPaymentGenerateTokenFailure>action).payload], state);
 
       default:
         return state;

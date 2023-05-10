@@ -33,13 +33,10 @@ export class DaffPaymentStateReducerAdapter {
    * Stores the from a failed payment.
    * Also sets loading to false.
    */
-  storeError(error: DaffStateError, state: DaffPaymentReducerState): DaffPaymentReducerState {
+  storeError(errors: DaffStateError[], state: DaffPaymentReducerState): DaffPaymentReducerState {
     return {
       ...state,
-      errors: [
-        ...state.errors,
-        error,
-      ],
+      errors,
       loading: false,
     };
   }

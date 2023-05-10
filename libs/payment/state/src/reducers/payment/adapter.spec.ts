@@ -74,12 +74,12 @@ describe('@daffodil/payment/state | DaffPaymentStateReducerAdapter', () => {
       };
 
 
-      result = adapter.storeError(mockError, state);
+      result = adapter.storeError([mockError], state);
     });
 
-    it('adds the error in action.payload to state.errors', () => {
+    it('sets the error in action.payload to state.errors', () => {
       expect(result.errors).toContain(mockError);
-      expect(result.errors.length).toEqual(2);
+      expect(result.errors.length).toEqual(1);
     });
 
     it('sets loading to false', () => {
