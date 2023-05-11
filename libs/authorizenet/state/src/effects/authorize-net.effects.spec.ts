@@ -23,6 +23,7 @@ import {
   DaffAuthorizeNetConfig,
   DaffAuthorizeNetDriver,
   DaffAuthorizeNetPaymentId,
+  DaffAuthorizeNetAcceptjsMissingError,
 } from '@daffodil/authorizenet/driver';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import { DaffTestingAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/testing';
@@ -217,6 +218,15 @@ describe('DaffAuthorizeNetEffects', () => {
         recoverable: false,
         message: mockError.message,
       }) });
+
+      expect(effects.loadAcceptJs$(0, 0)).toBeObservable(expected);
+    });
+
+    it('should trigger a DaffLoadAcceptJsFailure action if acceptJs fails to load but does not throw an error', () => {
+      acceptJsLoadingServiceSpy.getAccept.and.returnValue(null);
+      const loadAcceptJsAction = new DaffLoadAcceptJs();
+      actions$ = hot('--a', { a: loadAcceptJsAction });
+      const expected = cold('--b', { b: new DaffLoadAcceptJsFailure(<any>jasmine.any(DaffAuthorizeNetAcceptjsMissingError)) });
 
       expect(effects.loadAcceptJs$(0, 0)).toBeObservable(expected);
     });

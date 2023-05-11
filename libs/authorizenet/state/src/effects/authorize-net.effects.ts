@@ -28,6 +28,7 @@ import {
   DaffAuthorizeNetDriver,
   DaffAuthorizeNetService,
   DaffAuthorizeNetPaymentId,
+  DaffAuthorizeNetAcceptjsMissingError,
 } from '@daffodil/authorizenet/driver';
 import {
   DaffCartPaymentActionTypes,
@@ -109,7 +110,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
     tap((action: DaffLoadAcceptJs) => this.acceptJsLoadingService.load()),
     switchMap(() => defer(() => of(this.acceptJsLoadingService.getAccept())).pipe(
       backoff(maxTries, ms),
-      map(() => new DaffLoadAcceptJsSuccess()),
+      map((Accept) => Accept ? new DaffLoadAcceptJsSuccess() : new DaffLoadAcceptJsFailure(new DaffAuthorizeNetAcceptjsMissingError('Accept.js failed to load.'))),
       catchError((error: DaffError) => of(new DaffLoadAcceptJsFailure(this.errorMatcher(error)))),
     )),
   ));
