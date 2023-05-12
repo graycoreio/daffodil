@@ -1,4 +1,7 @@
-import { Location } from '@angular/common';
+import {
+  DOCUMENT,
+  Location,
+} from '@angular/common';
 import {
   Inject,
   Injectable,
@@ -40,6 +43,7 @@ import {
   DaffProductCompositeRoutingConfig,
   DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG,
 } from '../config/public_api';
+import { DaffProductCompositeQueryParamService } from '../services/query-param.service';
 
 /**
  * Builds the apply actions from the list of selected options.
@@ -64,16 +68,9 @@ function buildApplyActions<T extends DaffCompositeProduct = DaffCompositeProduct
 export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = DaffCompositeProduct> {
   constructor(
     private actions$: Actions,
-    private route: ActivatedRoute,
+    private paramGetter: DaffProductCompositeQueryParamService,
     @Inject(DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG) private config: DaffProductCompositeRoutingConfig,
   ) {}
-
-  /**
-   * Get the value of the configured composite selection query param.
-   */
-  private getQueryParam(): string {
-    return this.route.snapshot.queryParamMap.get(this.config.compositeSelectionQueryParam);
-  }
 
   /**
    * Applies composite item options based on the value of the configured query param.
@@ -81,7 +78,8 @@ export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = Da
   preselectCompositeOptions$: Observable<typeof EMPTY | DaffCompositeProductApplyOption<T>> = createEffect(() => this.actions$.pipe(
     ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction),
     switchMap((action: DaffProductPageLoadSuccess<T>) => {
-      const queryParam = this.getQueryParam();
+      const queryParam = this.paramGetter.get();
+      console.log(queryParam);
       // get the product corresponding to the current product page
       const product: DaffCompositeProduct = action.payload.products.filter(({ id }) => id === action.payload.id)[0];
 
