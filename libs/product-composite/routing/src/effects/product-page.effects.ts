@@ -79,7 +79,7 @@ export class DaffProductCompositePageEffects<T extends DaffCompositeProduct = Da
     ofType(DaffProductPageActionTypes.ProductPageLoadSuccessAction),
     switchMap((action: DaffProductPageLoadSuccess<T>) => {
       const queryParam = this.paramGetter.get();
-      console.log(queryParam);
+
       // get the product corresponding to the current product page
       const product: DaffCompositeProduct = action.payload.products.filter(({ id }) => id === action.payload.id)[0];
 
