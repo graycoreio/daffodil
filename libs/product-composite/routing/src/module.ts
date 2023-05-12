@@ -13,10 +13,14 @@ import {
   DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG,
 } from './config/public_api';
 import { DaffProductCompositePageEffects } from './effects/public_api';
+import { DaffProductCompositeQueryParamService } from './services/query-param.service';
 
 @NgModule({
   imports: [
     EffectsModule.forFeature([DaffProductCompositePageEffects]),
+  ],
+  providers: [
+    DaffProductCompositeQueryParamService,
   ],
 })
 export class DaffProductCompositeRoutingModule {
