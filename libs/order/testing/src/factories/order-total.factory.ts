@@ -8,7 +8,7 @@ export class MockOrderTotal implements DaffOrderTotal {
   label = faker.random.word();
   value = faker.datatype.number({ min: 1, max: 100 });
   sort_order = faker.datatype.number({ min: 1, max: 100 });
-  type = faker.helpers.unique(faker.random.word);
+  type = faker.datatype.uuid();
 };
 
 @Injectable({
