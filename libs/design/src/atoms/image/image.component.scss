@@ -1,8 +1,18 @@
+@use 'state';
+
 :host {
 	display: inline-block;
 	border-radius: inherit;
 	position: relative;
 	width: 100%;
+
+	&.daff-skeleton {
+		@include state.skeleton-screen(100%, 100%);
+
+		img {
+			opacity: 0;
+		}
+	}
 
 	img {
 		position: absolute;

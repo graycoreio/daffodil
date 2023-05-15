@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 import { DaffImageComponent } from './image.component';
 
 @Component({
-  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height"></daff-image>`,
+  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height" [skeleton]="skeleton"></daff-image>`,
 })
 
 class WrapperComponent {
@@ -20,6 +20,7 @@ class WrapperComponent {
   alt = 'image';
   width = 100;
   height = 100;
+  skeleton = false;
 }
 
 describe('DaffImageComponent', () => {
@@ -79,6 +80,10 @@ describe('DaffImageComponent', () => {
     fixture.detectChanges();
 
     expect(component.height).toEqual(100);
+  });
+
+  it('should be able to take `skeleton` as an input', () => {
+    expect(component.skeleton).toEqual(wrapper.skeleton);
   });
 
   it('should throw an error when src is invalid', () => {
