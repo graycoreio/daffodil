@@ -2,9 +2,7 @@
 * DO NOT IMPORT THIS FILE ANYWHERE ELSE
 ************************************/
 
-@use 'daff-global';
-
-@use 'daffio-theme';
+@use 'global';
 @use 'theme' as daff-theme;
 @use './component-themes' as daffio-components;
 
@@ -14,22 +12,21 @@
 .daff-theme-light {
 	@import 'highlight.js/scss/a11y-light.scss';
 
-	@include branding.daff-branding-theme(daffio-theme.$theme);
-	@include daff-theme.daff-theme(daffio-theme.$theme);
-  @include daffio-components.component-themes(daffio-theme.$theme);
+	@include branding.daff-branding-theme(daff-theme.$theme);
+	@include daff-theme.daff-theme(daff-theme.$theme);
+	@include daffio-components.component-themes(daff-theme.$theme);
 
-	background: daffio-theme.$white;
-	color: daffio-theme.daff-text-contrast(daffio-theme.$white);
+	background: var(--daff-base-background);
+	color: var(--daff-base-text);
 }
 
 .daff-theme-dark {
 	@import 'highlight.js/scss/a11y-dark.scss';
 
-	@include branding.daff-branding-theme(daffio-theme.$theme-dark);
-	@include daff-theme.daff-theme(daffio-theme.$theme-dark);
-  @include daffio-components.component-themes(daffio-theme.$theme-dark);
+	@include branding.daff-branding-theme(daff-theme.$theme-dark);
+	@include daff-theme.daff-theme(daff-theme.$theme-dark);
+	@include daffio-components.component-themes(daff-theme.$theme-dark);
 
-	background: daffio-theme.$black;
-	color: daffio-theme.daff-text-contrast(daffio-theme.$black);
-
+	background: var(--daff-base-background);
+	color: var(--daff-base-text);
 }

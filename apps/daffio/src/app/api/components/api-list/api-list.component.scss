@@ -1,5 +1,5 @@
 @use '../../../../scss/type-descriptors/mixins' as type-mixin;
-@import 'utilities';
+@use 'utilities' as daff;
 
 :host {
 	display: flex;
@@ -27,15 +27,15 @@
 		line-height: 1.375rem;
 		margin: 0 0 24px;
 
-		@include breakpoint(mobile) {
+		@include daff.breakpoint(mobile) {
 			font-size: 1.25rem;
 			line-height: 1.75rem;
 		}
 
 		> * {
-			@include single-line-ellipsis();
+			@include daff.single-line-ellipsis();
 
-			@include breakpoint(mobile) {
+			@include daff.breakpoint(mobile) {
 				display: inline-block;
 			}
 		}
@@ -46,11 +46,11 @@
 		grid-template-columns: 1fr;
 		grid-gap: 8px 24px;
 
-		@include breakpoint(tablet) {
+		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);
 		}
 		
-		@include breakpoint(small-laptop) {
+		@include daff.breakpoint(small-laptop) {
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
@@ -66,7 +66,7 @@
 }
 
 	&__item-name {
-		@include single-line-ellipsis();
+		@include daff.single-line-ellipsis();
 	}
 
 	&__item-label {

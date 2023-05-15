@@ -1,17 +1,17 @@
-@import 'utilities';
+@use 'utilities' as daff;
 
 :host {
 	display: block;
 	padding: 48px 24px;
 
-	@include breakpoint(tablet) {
+	@include daff.breakpoint(tablet) {
 		padding: 48px;
 	}
 }
 
 .daffio-api-list-page {
 	&__title {
-		@include headline-xl();
+		@include daff.headline-xl();
 		margin-bottom: 48px;
 	}
 }

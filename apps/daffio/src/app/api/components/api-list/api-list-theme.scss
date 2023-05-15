@@ -1,9 +1,9 @@
-@use 'daffio-theme' as theme;
+@use 'theme' as daff-theme;
 
 @mixin daffio-api-list-theme($theme) {
-	$gray: theme.daff-map-deep-get($theme, 'core.gray');
-	$base: theme.daff-map-deep-get($theme, "core.base");
-	$base-contrast: theme.daff-map-deep-get($theme, "core.base-contrast");
+	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$base: daff-theme.daff-map-deep-get($theme, "core.base");
+	$base-contrast: daff-theme.daff-map-deep-get($theme, "core.base-contrast");
 
 	.daffio-api-list {
 		&__package-name {
@@ -16,7 +16,7 @@
 			}
 
 			&:hover {
-				color: theme.daff-illuminate($base-contrast, $gray, 3);
+				color: daff-theme.daff-illuminate($base-contrast, $gray, 3);
 			}
 		}
 
@@ -27,7 +27,7 @@
 			}
 
 			&:hover {
-				background: theme.daff-illuminate($base, $gray, 2);
+				background: daff-theme.daff-illuminate($base, $gray, 2);
 			}
 		}
 	}
