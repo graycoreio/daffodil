@@ -1,0 +1,41 @@
+@use '../../core';
+@use '../../theming';
+
+@mixin daff-skeleton-theme($theme) {
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$base: core.daff-map-deep-get($theme, 'core.base');
+
+	.daff-skeleton {
+		&::before,
+		::before {
+			background: theming.daff-illuminate($base, $gray, 2);
+		}
+
+		@keyframes loading {
+			from {
+				opacity: 0.5;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+@mixin skeleton-screen($width, $height) {
+	display: flex;
+
+	&::before {
+		animation-name: loading;
+		animation-duration: 1500ms;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+		content: '';
+		height: $height;
+		width: $width;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}

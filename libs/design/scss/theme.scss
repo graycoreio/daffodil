@@ -38,6 +38,7 @@
 @use '../src/molecules/paginator/paginator-theme' as paginator;
 @use '../src/molecules/sidebar/sidebar/sidebar-theme' as sidebar;
 @use '../src/molecules/sidebar/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;
+@use '../scss/state/skeleton/mixins' as skeleton;
 
 //
 // Generates the styles of a @daffodil/design theme.
@@ -51,6 +52,9 @@
 @mixin daff-theme($theme) {
 	// CSS variables
 	@include variables.daff-theme-css-variables($theme);
+
+	// Mixins
+	@include skeleton.daff-skeleton-theme($theme);
 
 	// Atoms
 	@include button.daff-button-theme($theme);
