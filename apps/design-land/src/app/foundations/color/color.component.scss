@@ -1,4 +1,4 @@
-@use 'utilities' as *;
+@use 'utilities' as daff;
 
 .dl-color {
 	&__grid {
@@ -10,14 +10,14 @@
 			'secondary'
 			'tertiary';
 
-		@include breakpoint(tablet) {
+		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-areas: 
 				'primary   secondary'
 				'tertiary  .';
 		}
 
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: repeat(3, 1fr);
 			grid-template-areas: 
 				'primary secondary tertiary';
@@ -34,14 +34,14 @@
 			'red-palette'
 			'green-palette';
 
-		@include breakpoint(tablet) {
+		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-areas:
 				'brand-yellow  bronze'
 				'red-palette   green-palette';
 		}
 
-		@include breakpoint(big-tablet) {
+		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: repeat(4, 1fr);
 			grid-template-areas:
 				'brand-yellow bronze red-palette green-palette';
@@ -103,6 +103,6 @@
 	}
 
 	&__hue {
-		@include uppercase();
+		text-transform: uppercase;
 	}
 }
