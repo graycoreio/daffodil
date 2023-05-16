@@ -14,6 +14,7 @@ import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
 import { CONTAINER_EXAMPLES } from '@daffodil/design/container/examples';
 import { HERO_EXAMPLES } from '@daffodil/design/hero/examples';
 import { IMAGE_EXAMPLES } from '@daffodil/design/image/examples';
+import { INPUT_EXAMPLES } from '@daffodil/design/input/examples';
 import { LIST_EXAMPLES } from '@daffodil/design/list/examples';
 import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
 import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
@@ -55,6 +56,7 @@ export class DesignLandAppComponent {
       ...LIST_EXAMPLES,
       ...PAGINATOR_EXAMPLES,
       ...IMAGE_EXAMPLES,
+      ...INPUT_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.

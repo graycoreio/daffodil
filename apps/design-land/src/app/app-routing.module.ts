@@ -26,6 +26,7 @@ export const appRoutes: Routes = [
   { path: 'loading-icon', loadChildren: () => import('./loading-icon/loading-icon.module').then(m => m.DesignLandLoadingIconModule) },
   { path: 'image', loadChildren: () => import('./image/image.module').then(m => m.DesignLandImageModule) },
   { path: 'image-gallery', loadChildren: () => import('./image-gallery/image-gallery.module').then(m => m.DesignLandImageGalleryModule) },
+  { path: 'input', loadChildren: () => import('./input/input.module').then(m => m.DesignLandInputModule) },
   { path: 'navbar', loadChildren: () => import('./navbar/navbar.module').then(m => m.DesignLandNavbarModule) },
   { path: 'media-gallery', loadChildren: () => import('./media-gallery/media-gallery.module').then(m => m.DesignLandMediaGalleryModule) },
   { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.DesignLandMenuModule) },
