@@ -10,6 +10,10 @@ import {
 } from '@angular/core';
 
 import { daffArticleEncapsulatedMixin } from '../../core/article-encapsulated/public_api';
+import {
+  daffSkeletonableMixin,
+  DaffSkeletonable,
+} from '../../core/skeletonable/public_api';
 import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from './media-gallery-token';
 import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
@@ -23,7 +27,7 @@ class DaffMediaGalleryBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffMediaGalleryBase = daffArticleEncapsulatedMixin((DaffMediaGalleryBase));
+const _daffMediaGalleryBase = daffSkeletonableMixin(daffArticleEncapsulatedMixin((DaffMediaGalleryBase)));
 
 @Component({
   selector: 'daff-media-gallery',
@@ -34,8 +38,11 @@ const _daffMediaGalleryBase = daffArticleEncapsulatedMixin((DaffMediaGalleryBase
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     { provide: DAFF_MEDIA_GALLERY_TOKEN, useExisting: DaffMediaGalleryComponent },
   ],
+  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['skeleton'],
 })
-export class DaffMediaGalleryComponent extends _daffMediaGalleryBase implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
+export class DaffMediaGalleryComponent extends _daffMediaGalleryBase implements DaffMediaGalleryRegistration, DaffSkeletonable, OnInit, OnDestroy {
   /**
    * Adds a class for styling the media gallery
    */

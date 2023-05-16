@@ -4,3 +4,5 @@ export { BasicMediaGalleryModule } from './basic-media-gallery/basic-media-galle
 export { BasicMediaGalleryComponent } from './basic-media-gallery/basic-media-gallery.component';
 export { MismatchedSizesMediaGalleryModule } from './mismatched-sizes-media-gallery/mismatched-sizes-media-gallery.module';
 export { MismatchedSizesMediaGalleryComponent } from './mismatched-sizes-media-gallery/mismatched-sizes-media-gallery.component';
+export { SkeletonMediaGalleryComponent } from './skeleton-media-gallery/skeleton-media-gallery.component';
+export { SkeletonMediaGalleryModule } from './skeleton-media-gallery/skeleton-media-gallery.module';

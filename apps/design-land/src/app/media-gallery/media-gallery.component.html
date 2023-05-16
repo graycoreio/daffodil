@@ -5,12 +5,21 @@
 <p><code>[daffThumbnail]</code>should be used as a directive with <code>&lt;daff-image&gt;</code>. (View <a href="/image">Image Documentation</a>)</p>
 <p>It should never be used as a standalone component. The first thumbnail is selected by default and dynamically rendered as the primary image by utilizing the <code>&lt;daff-media-renderer&gt;</code> component. The selected thumbnail can be controlled by the enduser, and the position of the list of thumbnails is dependent on the screen size.</p>
 
+<h2>Usage</h2>
+
+<h3>Basic Media Gallery</h3>
 <design-land-example-viewer-container example="basic-media-gallery"></design-land-example-viewer-container>
+
+<h3>Skeleton Media Gallery</h3>
+<p>A skeleton media gallery is used to display a low fidelity representation of a media gallery before it's loaded on the page. It helps to improve load times perceived by users.</p>
+
+<design-land-example-viewer-container example="skeleton-media-gallery"></design-land-example-viewer-container>
 
 <h2>Image Aspect Ratio</h2>
 <p>It's recommended to utilize the same aspect ratio for all images in the same media gallery. Otherwise, the height and width of the media gallery may change with every different aspect ratio presented by the selected thumbnail as show in the example.</p>
 
 <p>The thumbnail dimension is set to <code>80x80</code> pixels, so the recommended aspect ratio is <code>1:1</code>. However, it is not required since the thumbnail will horizontally and vertically center align images within a thumbnail.</p>
+
 <design-land-example-viewer-container example="mismatched-sizes-media-gallery"></design-land-example-viewer-container>
 
 <h2>Accessibility</h2>
