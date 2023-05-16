@@ -6,6 +6,7 @@
   "include-component-in-tag": false,
   "include-v-in-tag": true,
   "pull-request-title-pattern": "chore: release ${version}",
+  "changelog-path": "docs/CHANGELOG.md",
   "packages": {
     ".": {
       "release-type": "node"
