@@ -129,3 +129,36 @@ jobs:
     with:
       artifact: daffio-16.x
       artifact-zip-name: daffio.zip
+
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: 
+      - build
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+
+    - uses: actions/cache@v3
+      name: Cache `.nx_cache` 
+      id: build_cache
+      with:
+        fail-on-cache-miss: true
+        path: .nx_cache
+        key: build-16.x-${{ github.sha }}
+
+    - uses: graycoreio/github-actions/setup-node@main
+      with:
+        node-version: 16.x
+        use-stamp-cache: true
+        registry-url: 'https://registry.npmjs.org'
+
+    - run: npx lerna run build
+          
+    - uses: graycoreio/github-actions/set-versions-from-root@main
+
+    - run: npx lerna run publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
