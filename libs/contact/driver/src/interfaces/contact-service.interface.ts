@@ -15,6 +15,6 @@ export const DaffContactDriver = new InjectionToken<DaffContactServiceInterface>
 /**
  * The interface that a contact driver must implement.
  */
-export interface DaffContactServiceInterface<T extends DaffContactRequest = DaffContactRequest> {
-  send(payload: T): Observable<DaffContactResponse>;
+export interface DaffContactServiceInterface {
+  send(payload: DaffContactRequest): Observable<DaffContactResponse>;
 }

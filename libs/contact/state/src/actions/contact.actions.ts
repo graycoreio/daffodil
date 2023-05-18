@@ -12,16 +12,16 @@ export enum DaffContactActionTypes {
   ContactResetAction = '[Daff-Contact] Contact Reset Action',
 }
 
-export class DaffContactSubmit<T extends DaffContactRequest = DaffContactRequest> implements Action {
+export class DaffContactSubmit implements Action {
   readonly type = DaffContactActionTypes.ContactSubmitAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: DaffContactRequest) {}
 }
 
-export class DaffContactRetry<T extends DaffContactRequest = DaffContactRequest> implements Action {
+export class DaffContactRetry implements Action {
   readonly type = DaffContactActionTypes.ContactRetryAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: DaffContactRequest) {}
 }
 export class DaffContactFailedSubmit implements Action {
   readonly type = DaffContactActionTypes.ContactFailedSubmitAction;
@@ -38,10 +38,10 @@ export class DaffContactReset implements Action {
   readonly type = DaffContactActionTypes.ContactResetAction;
 }
 
-export type DaffContactActions<T extends DaffContactRequest = DaffContactRequest> =
-	| DaffContactSubmit<T>
-	| DaffContactRetry<T>
-	| DaffContactFailedSubmit
-	| DaffContactCancel
-	| DaffContactSuccessSubmit
-	| DaffContactReset;
+export type DaffContactActions =
+  | DaffContactSubmit
+  | DaffContactRetry
+  | DaffContactFailedSubmit
+  | DaffContactCancel
+  | DaffContactSuccessSubmit
+  | DaffContactReset;
