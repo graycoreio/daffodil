@@ -7,8 +7,9 @@ import { DaffHubspotConfig } from './models/config';
 import { DaffHubspotRequest } from './models/hubspot-request';
 import { HubspotResponse } from './models/hubspot-response';
 import { jsonBuilder } from './transformers/json-builder';
+import { DaffHubspotFormsInterface } from "./models/forms";
 
-export class DaffHubspotFormsService {
+export class DaffHubspotFormsService implements DaffHubspotFormsInterface {
 
   constructor(
     private http: HttpClient,
