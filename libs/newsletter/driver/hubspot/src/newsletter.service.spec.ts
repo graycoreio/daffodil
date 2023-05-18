@@ -1,42 +1,54 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
+import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
 import { DaffNewsletterHubspotService } from './newsletter.service';
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
+import { HttpTestingController } from '@angular/common/http/testing';
 
 describe('DaffNewsletterHubspotService', () => {
-  let newsletterService;
+	let newsletterService: DaffNewsletterHubspotService;
+	let httpMock: HttpTestingController;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffNewsletterHubspotService,
-        {
-          provide: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
-          useValue: {
-            submit: (): Observable<any> => hot('--a', { a: { test: '123' }}),
-          },
-        },
-      ],
-    });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [
+				DaffNewsletterHubspotService,
+				{
+					provide: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
+					useValue: {
+						submit: () => 'test',
+					},
+				},
+			],
+		});
+		httpMock = TestBed.inject(HttpTestingController);
 
-    newsletterService = TestBed.inject(DaffNewsletterHubspotService);
-  });
+		newsletterService = TestBed.inject(DaffNewsletterHubspotService);
+	});
 
-  it('should be created', () => {
-    expect(newsletterService).toBeTruthy();
-  });
-
-  describe('when sending', () => {
-    it('should return an observable of HubspotResponse', () => {
-      const payload = { email: 'email@email.edu' };
-      const expected = cold('--b', { b: { test: '123' }});
-
-      expect(newsletterService.send(payload)).toBeObservable(expected);
-    });
-  });
+	describe('send | sending a newsletter', () => {
+		it('should send an email to the hubspot forms api', () => {
+			it('should allow a developer to configure and send newsletter subscription requests to the HubspotForms API', () => {
+				const newsletterSubmission = { email: 'test@email.com' };
+				newsletterService.send(newsletterSubmission).subscribe(resp => {
+					expect(resp).toEqual(newsletterSubmission);
+				});
+				const req = httpMock.expectOne(
+					'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123',
+				);
+				expect(req.request.body).toEqual(
+					jasmine.objectContaining({
+						fields: [Object({ name: 'email', value: 'test@email.com' })],
+						context: Object({
+							hutk: null,
+							pageUri: '/',
+							pageName: jasmine.any(String),
+						}),
+					}),
+				);
+				req.flush(newsletterSubmission);
+			});
+		});
+	});
 });
