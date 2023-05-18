@@ -13,7 +13,7 @@ import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{
+export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface {
   url = '/api/newsletters/';
 
   constructor(private http: HttpClient) { }

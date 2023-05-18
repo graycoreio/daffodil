@@ -1,5 +1,5 @@
 import { DaffNewsletterSubmission } from './newsletter.model';
 
-export interface DaffNewsletterUnion extends DaffNewsletterSubmission {
+export type DaffNewsletterUnion = DaffNewsletterSubmission & {
   [x: string]: any;
 }

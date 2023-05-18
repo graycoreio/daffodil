@@ -35,13 +35,14 @@ import {
   DaffNewsletterRetry,
   DaffNewsletterCancel,
 } from '../actions/newsletter.actions';
+import { DaffNewsletterResponse } from 'libs/newsletter/driver/src/newsletter_response';
 
 @Injectable()
-export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
+export class DaffNewsletterEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface<T, V>,
+    @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface,
     @Inject(DAFF_NEWSLETTER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) { }
 
@@ -49,12 +50,12 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
     ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction,
       DaffNewsletterActionTypes.NewsletterRetry,
       DaffNewsletterActionTypes.NewsletterCancelAction),
-    switchMap((action: DaffNewsletterSubscribe<T> | DaffNewsletterRetry<T> | DaffNewsletterCancel) => {
+    switchMap((action: DaffNewsletterSubscribe | DaffNewsletterRetry | DaffNewsletterCancel) => {
       if ((action.type === DaffNewsletterActionTypes.NewsletterCancelAction)) {
         return of(action);
       } else if (action instanceof DaffNewsletterSubscribe || action instanceof DaffNewsletterRetry){
         return this.driver.send(action.payload).pipe(
-          map((resp: V) => new DaffNewsletterSuccessSubscribe()),
+          map((resp: DaffNewsletterResponse) => new DaffNewsletterSuccessSubscribe()),
           catchError((error: DaffError) => of(new DaffNewsletterFailedSubscribe(this.errorMatcher(error)))),
         );
       }
