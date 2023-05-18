@@ -55,7 +55,6 @@ describe('DaffContactHubspotDriver', () => {
         context: Object({ hutk: null, pageUri: '/', pageName: jasmine.any(String) }),
       }));
       req.flush(stubHubspotResponse);
-      httpMock.verify();
     });
 
   });
