@@ -14,17 +14,19 @@ import {
   DaffCartTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
 @Component({ template: '' })
 class TestComponent {}
 
-describe('Cart | State | Guards | DaffResolvedCartGuard | Integration', () => {
+describe('@daffodil/cart/routing | DaffResolvedCartGuard | Integration', () => {
   let facade: MockDaffCartFacade;
   let router: Router;
   let location: Location;
   const redirectPath = 'path';
+  let cartFactory: DaffCartFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -57,11 +59,13 @@ describe('Cart | State | Guards | DaffResolvedCartGuard | Integration', () => {
     facade = TestBed.inject(MockDaffCartFacade);
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
+    cartFactory = TestBed.inject(DaffCartFactory);
   });
 
   describe('when there is a successfully resolved cart', () => {
     beforeEach(fakeAsync(() => {
       facade.resolved$.next(DaffCartResolveState.Succeeded);
+      facade.cart$.next(cartFactory.create());
       router.initialNavigation();
       tick();
     }));
@@ -74,6 +78,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard | Integration', () => {
   describe('when there is a failed cart resolution', () => {
     beforeEach(fakeAsync(() => {
       facade.resolved$.next(DaffCartResolveState.Failed);
+      facade.cart$.next(null);
       router.initialNavigation();
       tick();
     }));

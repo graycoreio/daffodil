@@ -13,6 +13,7 @@ import {
   filter,
   take,
   map,
+  switchMap,
 } from 'rxjs/operators';
 
 import {
@@ -50,11 +51,8 @@ export class DaffResolvedCartGuard implements CanActivate {
 					resolvedState === DaffCartResolveState.ServerSide ||
 					resolvedState === DaffCartResolveState.Failed,
       ),
-      map(
-        resolvedState =>
-          resolvedState === DaffCartResolveState.Succeeded ||
-					resolvedState === DaffCartResolveState.ServerSide,
-      ),
+      switchMap(() => this.facade.cart$),
+      map((cart) => !!cart?.id),
       take(1),
       map(success =>
         !success && this.config.resolution.failedResolutionPath

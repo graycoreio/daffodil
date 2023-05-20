@@ -7,27 +7,36 @@ import {
   DaffCartResolveState,
   DaffCartFacade,
 } from '@daffodil/cart/state';
-import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { daffCartRoutingConfigurationDefault } from '../../config/config';
 import { daffCartRoutingResolutionConfigurationDefault } from '../../config/resolution/config';
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
-describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
+describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
   let service: DaffResolvedCartGuard;
-  let facade;
+  let facade: MockDaffCartFacade;
   let router: Router;
+  let cartFactory: DaffCartFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DaffCartTestingModule, RouterTestingModule],
+      imports: [
+        DaffCartTestingModule,
+        RouterTestingModule,
+      ],
     });
 
-    facade = TestBed.inject(DaffCartFacade);
+    facade = TestBed.inject(MockDaffCartFacade);
     router = TestBed.inject(Router);
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     service = new DaffResolvedCartGuard(
-      facade,
+      TestBed.inject(DaffCartFacade),
       router,
       daffCartRoutingConfigurationDefault,
     );
@@ -41,6 +50,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
     describe('when the cart has not been resolved', () => {
       beforeEach(() => {
         facade.resolved$.next(DaffCartResolveState.Default);
+        facade.cart$.next(null);
       });
 
       it('should not emit', () => {
@@ -53,6 +63,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
     describe('when there is a successfully resolved cart', () => {
       beforeEach(() => {
         facade.resolved$.next(DaffCartResolveState.Succeeded);
+        facade.cart$.next(cartFactory.create());
       });
 
       it('should allow activation', () => {
@@ -65,11 +76,12 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
     describe('when there is a failed cart resolution', () => {
       beforeEach(() => {
         facade.resolved$.next(DaffCartResolveState.Failed);
+        facade.cart$.next(null);
       });
 
       describe('when the redirect URL is not specified', () => {
         it('should not redirect', () => {
-          service = new DaffResolvedCartGuard(facade, router, {
+          service = new DaffResolvedCartGuard(TestBed.inject(DaffCartFacade), router, {
             ...daffCartRoutingConfigurationDefault,
             resolution: {
               ...daffCartRoutingResolutionConfigurationDefault,
@@ -83,7 +95,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
       });
 
       it('should return a UrlTree to the configured route', () => {
-        service = new DaffResolvedCartGuard(facade, router, {
+        service = new DaffResolvedCartGuard(TestBed.inject(DaffCartFacade), router, {
           ...daffCartRoutingConfigurationDefault,
           resolution: {
             ...daffCartRoutingResolutionConfigurationDefault,
