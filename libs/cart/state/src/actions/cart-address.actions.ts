@@ -21,7 +21,7 @@ export enum DaffCartAddressActionTypes {
 export class DaffCartAddressUpdate<T extends DaffCartAddress = DaffCartAddress> implements Action {
   readonly type = DaffCartAddressActionTypes.CartAddressUpdateAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: Partial<T>) {}
 }
 
 /**
