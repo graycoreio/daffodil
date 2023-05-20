@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.59.2](https://github.com/graycoreio/daffodil/compare/v0.59.1...v0.59.2) (2023-05-20)
+
+
+### Features
+
+* **cart:** change address update action payload to `Partial` ([#2443](https://github.com/graycoreio/daffodil/issues/2443)) ([c5374c2](https://github.com/graycoreio/daffodil/commit/c5374c250df8bc957562805449fad6041196e9ac))
+
 ## [0.59.1](https://github.com/graycoreio/daffodil/compare/v0.59.0...v0.59.1) (2023-05-16)
 
 
