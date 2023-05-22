@@ -35,7 +35,7 @@ import {
   DaffNewsletterRetry,
   DaffNewsletterCancel,
 } from '../actions/newsletter.actions';
-import { DaffNewsletterResponse } from 'libs/newsletter/driver/src/newsletter_response';
+import { DaffNewsletterResponse } from "@daffodil/newsletter";
 
 @Injectable()
 export class DaffNewsletterEffects {
