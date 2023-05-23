@@ -9,6 +9,8 @@ import { DaffNewsletterResponse, DaffNewsletterSubmission } from "@daffodil/news
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
+import { HubspotResponse } from '@daffodil/driver/hubspot/models/hubspot-response';
+import { map } from "rxjs/operators";
 
 @Injectable()
 export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface {
@@ -16,6 +18,18 @@ export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterf
   constructor(@Inject(DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN) private hubspotService: DaffHubspotFormsService) {}
 
   send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse> {
-    return this.hubspotService.submit(payload);
+    if (typeof payload === 'string') {
+      payload = {
+        email: payload
+      }
+    }
+
+    return this.hubspotService.submit(payload).pipe(
+      map((response: HubspotResponse) => {
+        return {
+          message: response.inlineMessage
+        }
+      }
+    ));
   }
 }
