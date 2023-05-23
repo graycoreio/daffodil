@@ -5,7 +5,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffHubspotFormsService } from '@daffodil/driver/hubspot';
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { DaffNewsletterResponse, DaffNewsletterSubmission } from "@daffodil/newsletter";
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
@@ -15,7 +15,7 @@ export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterf
 
   constructor(@Inject(DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN) private hubspotService: DaffHubspotFormsService) {}
 
-  send(payload: DaffNewsletterSubmission): Observable<any> {
+  send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse> {
     return this.hubspotService.submit(payload);
   }
 }
