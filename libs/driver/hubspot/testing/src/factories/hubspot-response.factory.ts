@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { HubspotError, HubspotResponse } from "../../../src/models/hubspot-response";
+import { HubspotResponse, HubspotError } from "@daffodil/driver/hubspot";
 
 const MockHubspotError = (): HubspotError => {
   return {
