@@ -73,7 +73,6 @@ describe('DaffLoadingIconComponent | Usage', () => {
   });
 });
 
-
 describe('DaffLoadingIconComponent | Defaults', () => {
   let component: DaffLoadingIconComponent;
   let fixture: ComponentFixture<DaffLoadingIconComponent>;
@@ -101,8 +100,8 @@ describe('DaffLoadingIconComponent | Defaults', () => {
     expect(component.diameter).toEqual(60);
   });
 
-  it('should set the default color to primary', () => {
-    expect(component.color).toEqual('primary');
+  it('should not set a default color', () => {
+    expect(component.color).toBeFalsy();
   });
 });
 

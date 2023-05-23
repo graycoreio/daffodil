@@ -14,7 +14,8 @@ $max-stroke-length: $perimeter * $max-percentage-fill;
 $angle: 270 - $max-percentage-fill * 360;
 
 :host {
-	display: block;
+	display: flex;
+	width: 100%;
 }
 
 circle {

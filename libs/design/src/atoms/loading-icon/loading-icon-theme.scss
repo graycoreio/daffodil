@@ -12,6 +12,10 @@
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-loading-icon {
+		circle {
+			stroke: currentColor;
+		}
+
 		&.daff-primary {
 			circle {
 				stroke: theming.daff-color($primary);

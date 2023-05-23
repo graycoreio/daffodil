@@ -10,7 +10,6 @@ import {
 import {
   daffColorMixin,
   DaffColorable,
-  DaffPalette,
 } from '../../core/colorable/public_api';
 
 /**
@@ -20,7 +19,7 @@ class DaffLoadingIconBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary');
+const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase);
 
 /**
  * @inheritdoc
@@ -39,8 +38,7 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
   /**
    * The (pixel) diameter of the animation
    */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() diameter: number = 60;
+  @Input() diameter = 60;
 
   /**
    * @docs-private
