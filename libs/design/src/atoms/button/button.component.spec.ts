@@ -11,6 +11,8 @@ import { By } from '@angular/platform-browser';
 
 import { DaffPalette } from '../../core/colorable/public_api';
 import { DaffStatus } from '../../core/statusable/statusable';
+import { DaffLoadingIconComponent } from '../loading-icon/loading-icon.component';
+import { DaffLoadingIconModule } from '../loading-icon/loading-icon.module';
 import {
   DaffButtonComponent,
   DaffButtonSize,
@@ -52,6 +54,9 @@ describe('DaffButtonComponent', () => {
       declarations: [
         DaffButtonComponent,
         WrapperComponent,
+      ],
+      imports: [
+        DaffLoadingIconModule,
       ],
     })
       .compileComponents();
@@ -199,6 +204,39 @@ describe('DaffButtonComponent', () => {
     });
   });
 
+  describe('using the loading property of a button', () => {
+    it('should be able to take `loading` as an input', () => {
+      expect(component.loading).toEqual(wrapper.loading);
+    });
+
+    describe('when loading is set to true', () => {
+      let loadingIcon: DaffLoadingIconComponent;
+
+      beforeEach(() => {
+        wrapper.loading = true;
+        fixture.detectChanges();
+
+        loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon')).componentInstance;
+      });
+
+      it('should show the <daff-loading-icon>', () => {
+        expect(loadingIcon).toBeDefined();
+      });
+
+      it('should set the <daff-loading-icon>`s diameter to 24', () => {
+        expect(loadingIcon.diameter).toBe(24);
+      });
+    });
+
+    it('should show the `.daff-button__content` when loading is set to false', () => {
+      wrapper.loading = false;
+      fixture.detectChanges();
+
+      const buttonContent = fixture.debugElement.query(By.css('.daff-button__content')).componentInstance;
+
+      expect(buttonContent).toBeDefined();
+    });
+  });
 
   describe('when the button is disabled', () => {
     beforeEach(() => {
