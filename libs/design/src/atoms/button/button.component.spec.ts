@@ -18,16 +18,16 @@ import {
 
 @Component({
   template: `
-    <a daff-button [color]="color" [size]="size" [status]="status">Link Daff Button</a>
-    <a daff-stroked-button [color]="color" [size]="size" [status]="status">Link Daff Stroked Button</a>
-    <a daff-raised-button [color]="color" [size]="size" [status]="status">Link Daff Raised Button</a>
-    <a daff-icon-button [color]="color" [size]="size" [status]="status">Link Daff Icon Button</a>
-    <a daff-underline-button [color]="color" [size]="size" [status]="status">Link Daff Underline Button</a>
-    <button daff-button [color]="color" [size]="size" [status]="status">Button Daff Button</button>
-    <button daff-stroked-button [color]="color" [size]="size" [status]="status">Button Daff Stroked Button</button>
-    <button daff-raised-button [color]="color" [size]="size" [status]="status">Button Daff Raised Button</button>
-    <button daff-icon-button [color]="color" [size]="size" [status]="status">Button Daff Icon Button</button>
-    <button daff-underline-button [color]="color" [size]="size" [status]="status">Button Daff Underline Button</button>
+    <a daff-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Basic Link Button</a>
+    <a daff-stroked-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Stroked Link Button</a>
+    <a daff-raised-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Raised Link Button</a>
+    <a daff-icon-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Icon Link Button</a>
+    <a daff-underline-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Underline Link Button</a>
+    <button daff-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Basic Button</button>
+    <button daff-stroked-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Stroked Button</button>
+    <button daff-raised-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Raised Button</button>
+    <button daff-icon-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Icon Button</button>
+    <button daff-underline-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Underline Button</button>
   `,
 })
 
@@ -35,6 +35,8 @@ class WrapperComponent {
   color: DaffPalette;
   size: DaffButtonSize;
   status: DaffStatus;
+  loading = false;
+  tabindex = 0;
 }
 
 describe('DaffButtonComponent', () => {
@@ -188,6 +190,36 @@ describe('DaffButtonComponent', () => {
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
+    });
+  });
+
+  describe('using the tabindex property of a button', () => {
+    it('should be able to take `tabindex` as an input', () => {
+      expect(component.tabindex).toEqual(wrapper.tabindex);
+    });
+  });
+
+
+  describe('when the button is disabled', () => {
+    beforeEach(() => {
+      component.disabled = true;
+      fixture.detectChanges();
+    });
+
+    it('should add a disabled class to the host element', () => {
+      expect(de.nativeElement.classList.contains('daff-button--disabled')).toBeTruthy();
+    });
+
+    it('should set disabled to true', () => {
+      expect(de.nativeElement.attributes['disabled'].value).toEqual('true');
+    });
+
+    it('should set aria-disabled to true', () => {
+      expect(de.nativeElement.attributes['aria-disabled'].value).toEqual('true');
+    });
+
+    it('should set the tabindex to -1', () => {
+      expect(de.nativeElement.attributes['tabindex'].value).toEqual('-1');
     });
   });
 });

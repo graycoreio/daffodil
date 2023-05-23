@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   OnInit,
@@ -6,6 +7,7 @@ import {
   ElementRef,
   HostBinding,
   Renderer2,
+  Input,
 } from '@angular/core';
 
 import { daffArticleEncapsulatedMixin } from '../../core/article-encapsulated/public_api';
@@ -148,6 +150,37 @@ export class DaffButtonComponent
    */
   @HostBinding('class.daff-underline-button') get underline() {
     return this.buttonType === DaffButtonTypeEnum.Underline;
+  }
+
+  @HostBinding('class.daff-button--disabled') get disabledClass() {
+	  return this.disabled;
+  }
+
+  @Input() loading = false;
+  @Input() tabindex = 0;
+
+  _disabled = false;
+
+  /**
+   * The disabled state of the button.
+   */
+  @Input() get disabled() {
+	  return this._disabled || this.loading;
+  }
+  set disabled(value: any) {
+	  this._disabled = coerceBooleanProperty(value);
+  }
+
+  @HostBinding('attr.disabled') get disabledAttribute() {
+	  return this.disabled ? true : null;
+  }
+
+  @HostBinding('attr.aria-disabled') get ariaDisabled() {
+	  return this.disabled ? true : null;
+  }
+
+  @HostBinding('attr.tabindex') get disabledTabIndex() {
+	  return this.disabled ? -1 : this.tabindex;
   }
 
   private _getHostElement() {
