@@ -23,7 +23,7 @@ const initialState: DaffNewsletterState = {
   error: null,
 };
 
-export function reducer<T extends DaffNewsletterSubmission>(state: DaffNewsletterState = initialState, action: DaffNewsletterActions<T>) {
+export function reducer<T extends DaffNewsletterSubmission>(state: DaffNewsletterState = initialState, action: DaffNewsletterActions) {
   switch (action.type) {
     case DaffNewsletterActionTypes.NewsletterRetry:
     case DaffNewsletterActionTypes.NewsletterSubscribeAction:
