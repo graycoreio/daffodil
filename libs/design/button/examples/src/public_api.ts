@@ -1,34 +1,18 @@
-import { BasicButtonComponent } from './basic-button/basic-button.component';
+export { BUTTON_EXAMPLES } from './examples';
+
+export { BasicButtonComponent } from './basic-button/basic-button.component';
 export { BasicButtonModule } from './basic-button/basic-button.module';
-import { IconButtonComponent } from './icon-button/icon-button.component';
+export { FlatButtonComponent } from './flat-button/flat-button.component';
+export { FlatButtonModule } from './flat-button/flat-button.module';
+export { IconButtonComponent } from './icon-button/icon-button.component';
 export { IconButtonModule } from './icon-button/icon-button.module';
-import { RaisedButtonComponent } from './raised-button/raised-button.component';
+export { RaisedButtonComponent } from './raised-button/raised-button.component';
 export { RaisedButtonModule } from './raised-button/raised-button.module';
-import { SizeableButtonComponent } from './sizeable-button/sizeable-button.component';
+export { SizeableButtonComponent } from './sizeable-button/sizeable-button.component';
 export { SizeableButtonModule } from './sizeable-button/sizeable-button.module';
-import { StatusableButtonComponent } from './statusable-button/statusable-button.component';
+export { StatusableButtonComponent } from './statusable-button/statusable-button.component';
 export { StatusableButtonModule } from './statusable-button/statusable-button.module';
-import { StrokedButtonComponent } from './stroked-button/stroked-button.component';
+export { StrokedButtonComponent } from './stroked-button/stroked-button.component';
 export { StrokedButtonModule } from './stroked-button/stroked-button.module';
-import { UnderlineButtonComponent } from './underline-button/underline-button.component';
+export { UnderlineButtonComponent } from './underline-button/underline-button.component';
 export { UnderlineButtonModule } from './underline-button/underline-button.module';
-
-export const BUTTON_EXAMPLES = [
-  BasicButtonComponent,
-  IconButtonComponent,
-  RaisedButtonComponent,
-  SizeableButtonComponent,
-  StatusableButtonComponent,
-  StrokedButtonComponent,
-  UnderlineButtonComponent,
-];
-
-export {
-  BasicButtonComponent,
-  IconButtonComponent,
-  RaisedButtonComponent,
-  SizeableButtonComponent,
-  StatusableButtonComponent,
-  StrokedButtonComponent,
-  UnderlineButtonComponent,
-};

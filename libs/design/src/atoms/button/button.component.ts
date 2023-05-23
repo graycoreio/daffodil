@@ -38,6 +38,7 @@ const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
   'daff-button',
   'daff-stroked-button',
   'daff-raised-button',
+  'daff-flat-button',
   'daff-icon-button',
   'daff-underline-button',
 ];
@@ -51,7 +52,7 @@ class DaffButtonBase{
 
 const _daffButtonBase = daffArticleEncapsulatedMixin(daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md'))))));
 
-export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
+export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-flat-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
 /**
  * The DaffSizeable types that the DaffButtonComponent can implement
@@ -62,6 +63,7 @@ enum DaffButtonTypeEnum {
   Default = 'daff-button',
   Stroked = 'daff-stroked-button',
   Raised = 'daff-raised-button',
+  Flat = 'daff-flat-button',
   Icon = 'daff-icon-button',
   Underline = 'daff-underline-button'
 }
@@ -75,11 +77,13 @@ enum DaffButtonTypeEnum {
     'button[daff-button]' + ',' +
     'button[daff-stroked-button]' + ',' +
     'button[daff-raised-button]' + ',' +
+    'button[daff-flat-button]' + ',' +
     'button[daff-icon-button]' + ',' +
     'button[daff-underline-button]' + ',' +
     'a[daff-button]' + ',' +
     'a[daff-stroked-button]' + ',' +
     'a[daff-raised-button]' + ',' +
+    'a[daff-flat-button]' + ',' +
     'a[daff-icon-button]' + ',' +
     'a[daff-underline-button]',
   templateUrl: './button.component.html',
@@ -136,6 +140,13 @@ export class DaffButtonComponent
    */
   @HostBinding('class.daff-raised-button') get raised() {
     return this.buttonType === DaffButtonTypeEnum.Raised;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-flat-button') get flat() {
+    return this.buttonType === DaffButtonTypeEnum.Flat;
   }
 
   /**

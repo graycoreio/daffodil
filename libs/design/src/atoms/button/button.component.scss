@@ -48,7 +48,8 @@
 
 .daff-button,
 .daff-raised-button,
-.daff-stroked-button {
+.daff-stroked-button,
+.daff-flat-button {
 	@include daff-button();
 	@include daff-button-animation();
 	@include prefix-suffix();

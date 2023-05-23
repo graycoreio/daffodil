@@ -6,7 +6,7 @@
 @use './button-theme-variants/raised';
 @use './button-theme-variants/stroked';
 @use './button-theme-variants/underline';
-@use './button-theme-variants/focus';
+@use './button-theme-variants/flat';
 
 @mixin daff-button-theme($theme) {
 	$primary: map.get($theme, primary);
@@ -437,66 +437,99 @@ z
 		}
 	}
 
-	.daff-underline-button {
-		@include underline.daff-underline-button-theme-variant(
-			theming.daff-illuminate($base, $gray, 7)
-		);
+	.daff-flat-button {
+		color: theming.daff-text-contrast($base);
+
+		&:after {
+			background-color: theming.daff-illuminate($base, $gray, 2);
+		}
+
+		&:active {
+			&:after {
+				background-color: theming.daff-illuminate($base, $gray, 3);
+			}
+		}
 
 		&.daff-primary {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color($primary)
+			@include flat.daff-flat-button-theme-variant(
+				theming.daff-color($primary),
+				theming.daff-color($primary, 70)
 			);
 		}
 
 		&.daff-secondary {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color($secondary)
+			@include flat.daff-flat-button-theme-variant(
+				theming.daff-color($secondary),
+				theming.daff-color($secondary, 70)
 			);
 		}
 
 		&.daff-tertiary {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color($tertiary)
+			@include flat.daff-flat-button-theme-variant(
+				theming.daff-color($tertiary),
+				theming.daff-color($tertiary, 70)
 			);
 		}
 
 		&.daff-black {
-			@include underline.daff-underline-button-theme-variant($black);
-		}
-
-		&.daff-white {
-			@include underline.daff-underline-button-theme-variant($white);
-		}
-
-		&.daff-theme {
-			@include underline.daff-underline-button-theme-variant($base);
-		}
-
-		&.daff-theme-contrast {
-			@include underline.daff-underline-button-theme-variant($base-contrast);
-		}
-
-		&[disabled] {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-illuminate($base, $gray, 4)
+			@include flat.daff-flat-button-theme-variant(
+				$black,
+				theming.daff-color($gray, 100)
 			);
 		}
 
+		&.daff-white {
+			@include flat.daff-flat-button-theme-variant(
+				$white,
+				theming.daff-color($gray, 20)
+			);
+		}
+
+		&.daff-theme {
+			@include flat.daff-flat-button-theme-variant(
+				$base,
+				theming.daff-illuminate($base, $gray, 2)
+			);
+		}
+
+		&.daff-theme-contrast {
+			@include flat.daff-flat-button-theme-variant(
+				$base-contrast,
+				theming.daff-illuminate($base-contrast, $gray, 2)
+			);
+		}
+
+		&[disabled],
+		&.daff-button--disabled {
+			color: theming.daff-illuminate($base, $gray, 5);
+
+			&:hover,
+			&:focus,
+			&:active {
+				&:after {
+					background: transparent;
+				}
+			}
+		}
+
 		&.daff-warn {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60)
+			@include flat.daff-flat-button-theme-variant(
+				theming.daff-color(theming.$daff-bronze, 60),
+				theming.daff-color(theming.$daff-bronze, 70)
 			);
 		}
 
 		&.daff-danger {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60)
+			@include flat.daff-flat-button-theme-variant(
+				theming.daff-color(theming.$daff-red, 60),
+				theming.daff-color(theming.$daff-red, 70)
 			);
 		}
 
 		&.daff-success {
-			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60)
+			@include flat.daff-flat-button-theme-variant(
+				theming.daff-color(theming.$daff-green, 60),
+				theming.daff-color(theming.$daff-green, 70)
 			);
 		}
 	}

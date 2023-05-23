@@ -25,11 +25,13 @@ import {
     <a daff-raised-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Raised Link Button</a>
     <a daff-icon-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Icon Link Button</a>
     <a daff-underline-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Underline Link Button</a>
+    <a daff-flat-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Flat Link Button</a>
     <button daff-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Basic Button</button>
     <button daff-stroked-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Stroked Button</button>
     <button daff-raised-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Raised Button</button>
     <button daff-icon-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Icon Button</button>
     <button daff-underline-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Underline Button</button>
+    <button daff-flat-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Flat Button</button>
   `,
 })
 
@@ -125,7 +127,7 @@ describe('DaffButtonComponent', () => {
     });
   });
 
-  describe('<daff-icon-butto>n', () => {
+  describe('<daff-icon-button>', () => {
     beforeEach(() => {
       buttonDE = fixture.debugElement.query(By.css('button[daff-icon-button]'));
       anchorDE = fixture.debugElement.query(By.css('a[daff-icon-button]'));
@@ -155,6 +157,23 @@ describe('DaffButtonComponent', () => {
 
       expect(anchorDE.classes).toEqual(jasmine.objectContaining({
         'daff-underline-button': true,
+      }));
+    });
+  });
+
+  describe('<daff-flat-button>', () => {
+    beforeEach(() => {
+      buttonDE = fixture.debugElement.query(By.css('button[daff-flat-button]'));
+      anchorDE = fixture.debugElement.query(By.css('a[daff-flat-button]'));
+    });
+
+    it('should add a class of `daff-flat-button` to the host element', () => {
+      expect(buttonDE.classes).toEqual(jasmine.objectContaining({
+        'daff-flat-button': true,
+      }));
+
+      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+        'daff-flat-button': true,
       }));
     });
   });
