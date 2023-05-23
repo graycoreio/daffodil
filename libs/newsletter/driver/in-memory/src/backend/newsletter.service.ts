@@ -5,13 +5,13 @@ import {
   ParsedRequestUrl,
 } from 'angular-in-memory-web-api';
 
-import { DaffNewsletterUnion } from '@daffodil/newsletter';
+import { DaffNewsletterStorage } from '@daffodil/newsletter';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
-  newsletters: DaffNewsletterUnion[] = [];
+  newsletters: DaffNewsletterStorage[] = [];
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
