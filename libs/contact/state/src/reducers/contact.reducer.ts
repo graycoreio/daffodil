@@ -22,8 +22,8 @@ const initialState: DaffContactState = {
   errors: [],
 };
 
-export function reducer<T>(state: DaffContactState = initialState,
-  action: DaffContactActions<T>){
+export function reducer(state: DaffContactState = initialState,
+  action: DaffContactActions){
   switch(action.type){
     case DaffContactActionTypes.ContactRetryAction:
     case DaffContactActionTypes.ContactSubmitAction:
