@@ -9,7 +9,6 @@ import {
   of,
 } from 'rxjs';
 
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterServiceInterface,
   DaffNewsletterDriver,
@@ -28,12 +27,9 @@ import { DaffNewsletterEffects } from './newsletter.effects';
 
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
+  let effects: DaffNewsletterEffects;
   const mockNewsletter = { email: 'test@test.com' };
-  let daffNewsletterDriver: DaffNewsletterServiceInterface<
-  DaffNewsletterSubmission,
-  any
-  >;
+  let daffNewsletterDriver: DaffNewsletterServiceInterface;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
