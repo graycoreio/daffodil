@@ -6,6 +6,8 @@ import {
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs';
 
 import { DaffCartPaymentMethod } from '@daffodil/cart';
 import {
@@ -19,6 +21,7 @@ import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 import { listPaymentMethods } from './queries/public_api';
+
 
 describe('@daffodil/cart/driver/magento | CartPaymentMethodsService', () => {
   let service: DaffMagentoCartPaymentMethodsService;
@@ -92,6 +95,30 @@ describe('@daffodil/cart/driver/magento | CartPaymentMethodsService', () => {
       method = 'method';
       mockDaffCartPayment.method = method;
       mockMagentoPaymentMethod.code = method;
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.list(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
     });
 
     it('should call the transformer with the correct argument', done => {

@@ -207,6 +207,30 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
   });
 
   describe('list | getting a list of cart items', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.list(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(listCartItems([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
     describe('when the products response contains nully values', () => {
       beforeEach(() => {
         mockListCartItemResponse = {
@@ -353,7 +377,6 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
     });
   });
 
-
   describe('update | updates a cart item', () => {
     describe('when the call to the Magento API is successful', () => {
       let qty;
@@ -483,6 +506,30 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
   });
 
   describe('delete | removes a cart item', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.delete(cartId, mockDaffCartItem.id).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(removeCartItem([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
     beforeEach(() => {
       mockMagentoCart.items = [];
       mockDaffCart.items = [];

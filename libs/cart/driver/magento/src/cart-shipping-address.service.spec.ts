@@ -159,6 +159,30 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartShippingAddressService'
   });
 
   describe('get | getting the shipping address', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.get(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(getShippingAddress([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
     it('should call the transformer with the correct argument', done => {
       service.get(cartId).subscribe(() => {
         // can't check for all args because available_shipping_methods and
