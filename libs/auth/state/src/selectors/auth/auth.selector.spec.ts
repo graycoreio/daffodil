@@ -12,6 +12,7 @@ import {
   DaffAuthReducerState,
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
+  daffAuthInitialState,
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
@@ -26,8 +27,6 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
   let loggedIn: boolean;
 
   const {
-    selectAuthLoading,
-    selectAuthErrors,
     selectAuthState,
     selectAuthLoggedIn,
   } = getAuthSelectors();
@@ -47,8 +46,7 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
     errors = [];
     loggedIn = false;
     state = {
-      loading,
-      errors,
+      ...daffAuthInitialState,
       loggedIn,
     };
   });
@@ -57,22 +55,6 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
     it('selects the auth state', () => {
       const selector = store.pipe(select(selectAuthState));
       const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectAuthLoading', () => {
-    it('selects the loading state of the auth', () => {
-      const selector = store.pipe(select(selectAuthLoading));
-      const expected = cold('a', { a: loading });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectAuthErrors', () => {
-    it('returns the selected auth errors', () => {
-      const selector = store.pipe(select(selectAuthErrors));
-      const expected = cold('a', { a: errors });
       expect(selector).toBeObservable(expected);
     });
   });

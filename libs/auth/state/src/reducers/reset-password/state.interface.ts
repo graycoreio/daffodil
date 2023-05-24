@@ -1,8 +1,6 @@
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
-import { DaffStateError } from '@daffodil/core/state';
+import { DaffOperationState } from '@daffodil/core/state';
 
-export interface DaffAuthResetPasswordReducerState {
-  loading: boolean;
-  errors: DaffStateError[];
+export interface DaffAuthResetPasswordReducerState extends DaffOperationState {
   token: DaffAuthResetPasswordInfo['token'];
 }

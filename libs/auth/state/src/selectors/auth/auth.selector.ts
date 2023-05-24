@@ -3,16 +3,20 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffOperationStateSelectorFactory,
+  DaffOperationStateSelectors,
+} from '@daffodil/core/state';
 
-import { DaffAuthReducerState } from '../../reducers/public_api';
+import {
+  DaffAuthReducerState,
+  DaffAuthStateRootSlice,
+} from '../../reducers/public_api';
 import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
 
-export interface AuthSelectors {
-  selectAuthState: MemoizedSelector<Record<string, any>, DaffAuthReducerState>;
-  selectAuthLoading: MemoizedSelector<Record<string, any>, boolean>;
-  selectAuthErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-  selectAuthLoggedIn: MemoizedSelector<Record<string, any>, boolean>;
+export interface AuthSelectors extends DaffOperationStateSelectors<DaffAuthStateRootSlice, DaffAuthReducerState> {
+  selectAuthState: MemoizedSelector<DaffAuthStateRootSlice, DaffAuthReducerState>;
+  selectAuthLoggedIn: MemoizedSelector<DaffAuthStateRootSlice, boolean>;
 }
 
 const createAuthSelectors = () => {
@@ -21,25 +25,14 @@ const createAuthSelectors = () => {
     state => state.auth,
   );
 
-  const selectAuthLoading = createSelector(
-    selectAuthState,
-    state => state.loading,
-  );
-
-  const selectAuthErrors = createSelector(
-    selectAuthState,
-    state => state.errors,
-  );
-
   const selectAuthLoggedIn = createSelector(
     selectAuthState,
     state => state.loggedIn,
   );
 
   return {
+    ...daffOperationStateSelectorFactory<DaffAuthStateRootSlice, DaffAuthReducerState>(selectAuthState),
     selectAuthState,
-    selectAuthLoading,
-    selectAuthErrors,
     selectAuthLoggedIn,
   };
 };

@@ -1,6 +1,3 @@
-import { DaffStateError } from '@daffodil/core/state';
+import { DaffOperationState } from '@daffodil/core/state';
 
-export interface DaffAuthLoginReducerState {
-  loading: boolean;
-  errors: DaffStateError[];
-}
+export type DaffAuthLoginReducerState = DaffOperationState;

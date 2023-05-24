@@ -1,4 +1,9 @@
 import { DaffAccountRegistration } from '@daffodil/auth';
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffStartMutation,
+} from '@daffodil/core/state';
 
 import {
   DaffAuthRegisterActionTypes,
@@ -15,24 +20,13 @@ export function daffAuthRegisterReducer<
 ): DaffAuthRegisterReducerState {
   switch (action.type) {
     case DaffAuthRegisterActionTypes.RegisterAction:
-      return {
-        ...state,
-        loading: true,
-      };
+      return daffStartMutation(state);
 
     case DaffAuthRegisterActionTypes.RegisterSuccessAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [],
-      };
+      return daffCompleteOperation(state);
 
     case DaffAuthRegisterActionTypes.RegisterFailureAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [action.errorMessage],
-      };
+      return daffOperationFailed([action.errorMessage], state);
 
     default:
       return state;

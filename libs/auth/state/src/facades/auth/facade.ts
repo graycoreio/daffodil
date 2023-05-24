@@ -6,11 +6,10 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffAuthToken } from '@daffodil/auth';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffAuthFeatureState } from '../../reducers/public_api';
-import { getDaffAuthSelectors } from '../../selectors/public_api';
+import { DaffAuthStateRootSlice } from '../../reducers/public_api';
+import { getAuthSelectors } from '../../selectors/auth/auth.selector';
 import { DaffAuthFacadeInterface } from './facade.interface';
 
 /**
@@ -24,15 +23,15 @@ export class DaffAuthFacade implements DaffAuthFacadeInterface {
   errors$: Observable<DaffStateError[]>;
   loggedIn$: Observable<boolean>;
 
-  constructor(private store: Store<DaffAuthFeatureState>) {
+  constructor(private store: Store<DaffAuthStateRootSlice>) {
     const {
-      selectAuthLoading,
-      selectAuthErrors,
+      selectLoading,
+      selectErrors,
       selectAuthLoggedIn,
-    } = getDaffAuthSelectors();
+    } = getAuthSelectors();
 
-    this.loading$ = this.store.pipe(select(selectAuthLoading));
-    this.errors$ = this.store.pipe(select(selectAuthErrors));
+    this.loading$ = this.store.pipe(select(selectLoading));
+    this.errors$ = this.store.pipe(select(selectErrors));
     this.loggedIn$ = this.store.pipe(select(selectAuthLoggedIn));
   }
 

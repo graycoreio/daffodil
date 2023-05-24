@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffAuthFeatureState } from '../../reducers/public_api';
-import { getDaffAuthSelectors } from '../../selectors/public_api';
+import { DaffAuthStateRootSlice } from '../../reducers/public_api';
+import { getDaffAuthResetPasswordSelectors } from '../../selectors/reset-password/selector';
 import { DaffAuthResetPasswordFacadeInterface } from './facade.interface';
 
 /**
@@ -25,17 +25,17 @@ export class DaffAuthResetPasswordFacade implements DaffAuthResetPasswordFacadeI
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
 
-  constructor(private store: Store<DaffAuthFeatureState>) {
+  constructor(private store: Store<DaffAuthStateRootSlice>) {
     const {
-      selectAuthResetPasswordLoading,
-      selectAuthResetPasswordErrors,
+      selectLoading,
+      selectErrors,
       selectAuthResetPasswordToken,
-    } = getDaffAuthSelectors();
+    } = getDaffAuthResetPasswordSelectors();
 
     this.token$ = this.store.pipe(select(selectAuthResetPasswordToken));
 
-    this.loading$ = this.store.pipe(select(selectAuthResetPasswordLoading));
-    this.errors$ = this.store.pipe(select(selectAuthResetPasswordErrors));
+    this.loading$ = this.store.pipe(select(selectLoading));
+    this.errors$ = this.store.pipe(select(selectErrors));
   }
 
   dispatch(action: Action) {

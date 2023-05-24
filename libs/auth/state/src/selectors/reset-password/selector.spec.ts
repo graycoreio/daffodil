@@ -15,7 +15,10 @@ import {
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffResetPasswordLanding } from '../../public_api';
+import {
+  DaffResetPasswordLanding,
+  daffAuthResetPasswordInitialState,
+} from '../../public_api';
 import { getDaffAuthResetPasswordSelectors } from './selector';
 
 describe('@daffodil/auth/state | getDaffAuthResetPasswordSelectors', () => {
@@ -28,8 +31,6 @@ describe('@daffodil/auth/state | getDaffAuthResetPasswordSelectors', () => {
 
   const {
     selectAuthResetPasswordState,
-    selectAuthResetPasswordLoading,
-    selectAuthResetPasswordErrors,
     selectAuthResetPasswordToken,
   } = getDaffAuthResetPasswordSelectors();
 
@@ -48,8 +49,7 @@ describe('@daffodil/auth/state | getDaffAuthResetPasswordSelectors', () => {
     errors = [];
     token = 'token';
     state = {
-      loading,
-      errors,
+      ...daffAuthResetPasswordInitialState,
       token,
     };
   });
@@ -59,22 +59,6 @@ describe('@daffodil/auth/state | getDaffAuthResetPasswordSelectors', () => {
       store.dispatch(new DaffResetPasswordLanding(token));
       const selector = store.pipe(select(selectAuthResetPasswordState));
       const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectAuthResetPasswordLoading', () => {
-    it('selects the loading state of the reset password state', () => {
-      const selector = store.pipe(select(selectAuthResetPasswordLoading));
-      const expected = cold('a', { a: loading });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectAuthResetPasswordErrors', () => {
-    it('returns the reset password errors', () => {
-      const selector = store.pipe(select(selectAuthResetPasswordErrors));
-      const expected = cold('a', { a: errors });
       expect(selector).toBeObservable(expected);
     });
   });

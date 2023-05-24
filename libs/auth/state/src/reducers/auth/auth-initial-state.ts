@@ -1,7 +1,8 @@
+import { daffOperationInitialState } from '@daffodil/core/state';
+
 import { DaffAuthReducerState } from './auth-reducer-state.interface';
 
 export const daffAuthInitialState: DaffAuthReducerState = {
-  loading: false,
-  errors: [],
+  ...daffOperationInitialState,
   loggedIn: false,
 };

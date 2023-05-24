@@ -1,4 +1,9 @@
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffStartMutation,
+} from '@daffodil/core/state';
 
 import {
   DaffAuthResetPasswordActionTypes,
@@ -16,26 +21,15 @@ export function daffAuthResetPasswordReducer<
   switch (action.type) {
     case DaffAuthResetPasswordActionTypes.ResetPasswordAction:
     case DaffAuthResetPasswordActionTypes.SendResetEmailAction:
-      return {
-        ...state,
-        loading: true,
-      };
+      return daffStartMutation(state);
 
     case DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction:
     case DaffAuthResetPasswordActionTypes.SendResetEmailSuccessAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [],
-      };
+      return daffCompleteOperation(state);
 
     case DaffAuthResetPasswordActionTypes.ResetPasswordFailureAction:
     case DaffAuthResetPasswordActionTypes.SendResetEmailFailureAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [action.errorMessage],
-      };
+      return daffOperationFailed([action.errorMessage], state);
 
     case DaffAuthResetPasswordActionTypes.ResetPasswordLandingAction:
       return {
