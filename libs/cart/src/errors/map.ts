@@ -4,6 +4,7 @@ import {
   DaffCartStorageResolutionError,
   DaffCartServerSideResolutionError,
   DaffCartNotFoundOrCreatedResolutionError,
+  DaffCartExceededMaxResolutionAttemptsError,
 } from './resolution/public_api';
 
 /**
@@ -14,4 +15,5 @@ export const DaffCartErrorMap = {
   [DaffCartErrorCodes.CART_STORAGE_RESOLUTION]: DaffCartStorageResolutionError,
   [DaffCartErrorCodes.CART_SERVER_SIDE_RESOLUTION]: DaffCartServerSideResolutionError,
   [DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION]: DaffCartNotFoundOrCreatedResolutionError,
+  [DaffCartErrorCodes.EXCEEDED_MAX_RESOLUTION_ATTEMPTS]: DaffCartExceededMaxResolutionAttemptsError,
 };
