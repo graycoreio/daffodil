@@ -42,4 +42,5 @@ export const initialState: DaffCartReducerState<any> = Object.freeze({
     [DaffCartOperationType.Coupon]: [],
   },
   resolved: DaffCartResolveState.Default,
+  failedAttempts: 0,
 });

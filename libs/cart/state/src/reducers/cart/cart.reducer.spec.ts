@@ -80,7 +80,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
   });
 
   describe('when CartLoadSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -90,6 +90,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.loading,
           [DaffCartOperationType.Cart]: DaffState.Resolving,
         },
+        failedAttempts: 2,
       };
 
       const cartListLoadSuccess = new DaffCartLoadSuccess(cart);
@@ -108,10 +109,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
     it('should reset the errors in the cart section of state.errors to an empty array', () => {
       expect(result.errors[DaffCartOperationType.Cart]).toEqual([]);
     });
+
+    it('should reset failed attempts', () => {
+      expect(result.failedAttempts).toEqual(0);
+    });
   });
 
   describe('when CartLoadPartialSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -125,6 +130,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.errors,
           [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
         },
+        failedAttempts: 2,
       };
 
       const cartListLoadSuccess = new DaffCartLoadPartialSuccess(cart, [error]);
@@ -144,10 +150,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
       expect(result.errors[DaffCartOperationType.Cart]).toContain(error);
     });
+
+    it('should reset failed attempts', () => {
+      expect(result.failedAttempts).toEqual(0);
+    });
   });
 
   describe('when ResolveCartSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -157,6 +167,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.loading,
           [DaffCartOperationType.Cart]: DaffState.Resolving,
         },
+        failedAttempts: 2,
       };
 
       const cartListLoadSuccess = new DaffResolveCartSuccess(cart);
@@ -175,10 +186,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
     it('should reset the errors in the cart section of state.errors to an empty array', () => {
       expect(result.errors[DaffCartOperationType.Cart]).toEqual([]);
     });
+
+    it('should reset failed attempts', () => {
+      expect(result.failedAttempts).toEqual(0);
+    });
   });
 
   describe('when ResolveCartPartialSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -192,6 +207,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.errors,
           [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
         },
+        failedAttempts: 2,
       };
 
       const cartListLoadSuccess = new DaffResolveCartPartialSuccess(cart, [error]);
@@ -211,10 +227,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
       expect(result.errors[DaffCartOperationType.Cart]).toContain(error);
     });
+
+    it('should reset failed attempts', () => {
+      expect(result.failedAttempts).toEqual(0);
+    });
   });
 
   describe('when CartLoadFailureAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -228,6 +248,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.errors,
           [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
         },
+        failedAttempts: 2,
       };
 
       const cartListLoadFailure = new DaffCartLoadFailure([error]);
@@ -242,10 +263,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
     it('should add an error to the cart section of state.errors', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
     });
+
+    it('should increment failed attempts', () => {
+      expect(result.failedAttempts).toEqual(state.failedAttempts + 1);
+    });
   });
 
   describe('when ResolveCartFailureAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -259,6 +284,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.errors,
           [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
         },
+        failedAttempts: 2,
       };
 
       const cartListLoadFailure = new DaffResolveCartFailure([error]);
@@ -274,10 +300,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
       expect(result.errors[DaffCartOperationType.Cart]).toContain(error);
     });
+
+    it('should increment failed attempts', () => {
+      expect(result.failedAttempts).toEqual(state.failedAttempts + 1);
+    });
   });
 
   describe('when CartStorageFailure is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -318,7 +348,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
   });
 
   describe('when CartCreateSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -329,6 +359,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.loading,
           [DaffCartOperationType.Cart]: DaffState.Resolving,
         },
+        failedAttempts: 2,
       };
 
       const cartCreateSuccess = new DaffCartCreateSuccess({ id: cart.id });
@@ -350,10 +381,14 @@ describe('@daffodil/cart/state | cartReducer', () => {
     it('should reset the errors in the cart section of state.errors to an empty array', () => {
       expect(result.errors[DaffCartOperationType.Cart]).toEqual([]);
     });
+
+    it('should reset failed attempts', () => {
+      expect(result.failedAttempts).toEqual(0);
+    });
   });
 
   describe('when CartCreateFailureAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -367,6 +402,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
           ...initialState.errors,
           [DaffCartOperationType.Cart]: [{ code: 'first error code', message: 'first error message' }],
         },
+        failedAttempts: 2,
       };
 
       const cartCreateFailure = new DaffCartCreateFailure(error);
@@ -380,6 +416,10 @@ describe('@daffodil/cart/state | cartReducer', () => {
 
     it('should add an error to the cart section of state.errors', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
+    });
+
+    it('should increment failed attempts', () => {
+      expect(result.failedAttempts).toEqual(state.failedAttempts + 1);
     });
   });
 
@@ -397,7 +437,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
   });
 
   describe('when AddToCartActionSuccess is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -427,7 +467,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
   });
 
   describe('when AddToCartFailureAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
@@ -504,7 +544,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
   });
 
   describe('when CartClearFailureAction is triggered', () => {
-    let result;
+    let result: DaffCartReducerState;
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {

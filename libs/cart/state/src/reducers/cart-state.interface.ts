@@ -9,4 +9,8 @@ export interface DaffCartReducerState<T extends DaffCart = DaffCart> {
   loading: DaffCartLoading;
   errors: DaffCartErrors;
   resolved: DaffCartResolveState;
+  /**
+   * How many times Daffodil has failed to resolve or create a cart without success.
+   */
+  failedAttempts: number;
 }

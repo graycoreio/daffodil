@@ -36,9 +36,19 @@ export function cartReducer<T extends DaffCart>(
         ...setLoading(state.loading, DaffState.Mutating),
       };
 
-    case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.CartClearSuccessAction:
     case DaffCartActionTypes.AddToCartSuccessAction:
+      return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...state.cart,
+          ...action.payload,
+        },
+        ...setLoading(state.loading, DaffState.Complete),
+      };
+
+    case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.ResolveCartSuccessAction:
       return {
         ...state,
@@ -48,6 +58,7 @@ export function cartReducer<T extends DaffCart>(
           ...action.payload,
         },
         ...setLoading(state.loading, DaffState.Complete),
+        failedAttempts: 0,
       };
 
     case DaffCartActionTypes.CartCreateSuccessAction:
@@ -59,15 +70,24 @@ export function cartReducer<T extends DaffCart>(
           ...action.payload,
         },
         ...setLoading(state.loading, DaffState.Complete),
+        failedAttempts: 0,
       };
+
     case DaffCartActionTypes.CartClearFailureAction:
     case DaffCartActionTypes.AddToCartFailureAction:
-    case DaffCartActionTypes.CartCreateFailureAction:
     case DaffCartActionTypes.CartStorageFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
         ...setLoading(state.loading, DaffState.Complete),
+      };
+
+    case DaffCartActionTypes.CartCreateFailureAction:
+      return {
+        ...state,
+        ...addError(state.errors, action.payload),
+        ...setLoading(state.loading, DaffState.Complete),
+        failedAttempts: state.failedAttempts + 1,
       };
 
     case DaffCartActionTypes.CartLoadFailureAction:
@@ -76,6 +96,7 @@ export function cartReducer<T extends DaffCart>(
         ...state,
         ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Stable),
+        failedAttempts: state.failedAttempts + 1,
       };
 
     case DaffCartActionTypes.ResolveCartPartialSuccessAction:
@@ -88,6 +109,7 @@ export function cartReducer<T extends DaffCart>(
         },
         ...addError(state.errors, ...action.errors),
         ...setLoading(state.loading, DaffState.Stable),
+        failedAttempts: 0,
       };
 
     default:
