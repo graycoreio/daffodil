@@ -1,4 +1,10 @@
 import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffStartResolution,
+} from '@daffodil/core/state';
+
+import {
   DaffAuthActionTypes,
   DaffAuthActions,
   DaffAuthLoginActionTypes,
@@ -17,35 +23,24 @@ export function daffAuthReducer(
 ): DaffAuthReducerState {
   switch (action.type) {
     case DaffAuthActionTypes.AuthCheckAction:
-      return {
-        ...state,
-        loading: true,
-      };
+      return daffStartResolution(state);
 
     case DaffAuthActionTypes.AuthCheckSuccessAction:
       return {
-        ...state,
+        ...daffCompleteOperation(state),
         loggedIn: true,
-        loading: false,
-        errors: [],
       };
 
     case DaffAuthActionTypes.AuthCheckFailureAction:
     case DaffAuthActionTypes.AuthGuardLogoutAction:
       return {
-        ...state,
+        ...daffOperationFailed([action.errorMessage], state),
         loggedIn: false,
-        loading: false,
-        errors: [action.errorMessage],
       };
 
     case DaffAuthActionTypes.AuthServerSideAction:
     case DaffAuthActionTypes.AuthStorageFailureAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [action.errorMessage],
-      };
+      return daffOperationFailed([action.errorMessage], state);
 
     case DaffAuthLoginActionTypes.LoginSuccessAction:
       return {

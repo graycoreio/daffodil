@@ -15,7 +15,10 @@ import {
   DaffSendResetEmail,
 } from '@daffodil/auth/state';
 import { DaffAuthResetPasswordInfoFactory } from '@daffodil/auth/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { DaffResetPasswordLanding } from '../../public_api';
 import { daffAuthResetPasswordReducer as reducer } from './reducer';
@@ -46,20 +49,6 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
     });
   });
 
-  describe('when AuthResetPasswordAction is triggered', () => {
-    let result: DaffAuthResetPasswordReducerState;
-
-    beforeEach(() => {
-      const authResetPasswordAction = new DaffResetPassword(mockResetInfo);
-
-      result = reducer(initialState, authResetPasswordAction);
-    });
-
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
-    });
-  });
-
   describe('when AuthResetPasswordSuccessAction is triggered', () => {
     let result: DaffAuthResetPasswordReducerState;
     let state: DaffAuthResetPasswordReducerState;
@@ -67,20 +56,20 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authResetPasswordSuccess = new DaffResetPasswordSuccess();
       result = reducer(state, authResetPasswordSuccess);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('resets errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -95,8 +84,8 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authResetPasswordFailure = new DaffResetPasswordFailure(error);
@@ -104,26 +93,12 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
       result = reducer(state, authResetPasswordFailure);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors).toEqual([error]);
-    });
-  });
-
-  describe('when AuthSendResetEmailAction is triggered', () => {
-    let result: DaffAuthResetPasswordReducerState;
-
-    beforeEach(() => {
-      const authSendResetEmailAction = new DaffSendResetEmail(email);
-
-      result = reducer(initialState, authSendResetEmailAction);
-    });
-
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
+    it('adds an error to state.daffErrors', () => {
+      expect(result.daffErrors).toEqual([error]);
     });
   });
 
@@ -134,20 +109,20 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authSendResetEmailSuccess = new DaffSendResetEmailSuccess();
       result = reducer(state, authSendResetEmailSuccess);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('resets errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -162,8 +137,8 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authSendResetEmailFailure = new DaffSendResetEmailFailure(error);
@@ -171,12 +146,12 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
       result = reducer(state, authSendResetEmailFailure);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors).toEqual([error]);
+    it('adds an error to state.daffErrors', () => {
+      expect(result.daffErrors).toEqual([error]);
     });
   });
 

@@ -19,7 +19,10 @@ import {
   DaffAuthTokenFactory,
   DaffAccountRegistrationFactory,
 } from '@daffodil/auth/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { daffAuthLoginReducer as reducer } from './login.reducer';
 
@@ -54,20 +57,6 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
     });
   });
 
-  describe('when AuthLoginAction is triggered', () => {
-    let result: DaffAuthLoginReducerState;
-
-    beforeEach(() => {
-      const authLoginAction: DaffAuthLogin<DaffLoginInfo> = new DaffAuthLogin(mockLoginInfo);
-
-      result = reducer(initialState, authLoginAction);
-    });
-
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
-    });
-  });
-
   describe('when AuthLoginSuccessAction is triggered', () => {
     let result: DaffAuthLoginReducerState;
     let state: DaffAuthLoginReducerState;
@@ -75,20 +64,20 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLoginSuccess = new DaffAuthLoginSuccess(mockAuthToken);
       result = reducer(state, authLoginSuccess);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('resets errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -103,8 +92,8 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLoginFailure = new DaffAuthLoginFailure(error);
@@ -112,12 +101,12 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
       result = reducer(state, authLoginFailure);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors).toEqual([error]);
+    it('adds an error to state.daffErrors', () => {
+      expect(result.daffErrors).toEqual([error]);
     });
   });
 
@@ -131,7 +120,7 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
     });
 
     it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
+      expect(result.daffState).toEqual(DaffState.Resolving);
     });
   });
 
@@ -142,20 +131,20 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLogoutSuccess = new DaffAuthLogoutSuccess();
       result = reducer(state, authLogoutSuccess);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
     it('resets errors', () => {
-      expect(result.errors).toEqual([]);
+      expect(result.daffErrors).toEqual([]);
     });
   });
 
@@ -170,8 +159,8 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authLogoutFailure = new DaffAuthLogoutFailure(error);
@@ -179,12 +168,12 @@ describe('@daffodil/auth/state | daffAuthLoginReducer', () => {
       result = reducer(state, authLogoutFailure);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
+    it('sets loading to stable', () => {
+      expect(result.daffState).toEqual(DaffState.Stable);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors).toEqual([error]);
+    it('adds an error to state.daffErrors', () => {
+      expect(result.daffErrors).toEqual([error]);
     });
   });
 });

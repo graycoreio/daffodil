@@ -4,16 +4,20 @@ import {
 } from '@ngrx/store';
 
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffOperationStateSelectorFactory,
+  DaffOperationStateSelectors,
+} from '@daffodil/core/state';
 
-import { DaffAuthResetPasswordReducerState } from '../../reducers/public_api';
+import {
+  DaffAuthResetPasswordReducerState,
+  DaffAuthStateRootSlice,
+} from '../../reducers/public_api';
 import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
 
-export interface DaffAuthResetPasswordSelectors {
-  selectAuthResetPasswordState: MemoizedSelector<Record<string, any>, DaffAuthResetPasswordReducerState>;
-  selectAuthResetPasswordLoading: MemoizedSelector<Record<string, any>, boolean>;
-  selectAuthResetPasswordErrors: MemoizedSelector<Record<string, any>, DaffStateError[]>;
-  selectAuthResetPasswordToken: MemoizedSelector<Record<string, any>, DaffAuthResetPasswordInfo['token']>;
+export interface DaffAuthResetPasswordSelectors extends DaffOperationStateSelectors<DaffAuthStateRootSlice, DaffAuthResetPasswordReducerState> {
+  selectAuthResetPasswordState: MemoizedSelector<DaffAuthStateRootSlice, DaffAuthResetPasswordReducerState>;
+  selectAuthResetPasswordToken: MemoizedSelector<DaffAuthStateRootSlice, DaffAuthResetPasswordInfo['token']>;
 }
 
 const createResetPasswordSelectors = (): DaffAuthResetPasswordSelectors => {
@@ -22,25 +26,14 @@ const createResetPasswordSelectors = (): DaffAuthResetPasswordSelectors => {
     state => state.resetPassword,
   );
 
-  const selectAuthResetPasswordLoading = createSelector(
-    selectAuthResetPasswordState,
-    state => state.loading,
-  );
-
-  const selectAuthResetPasswordErrors = createSelector(
-    selectAuthResetPasswordState,
-    state => state.errors,
-  );
-
   const selectAuthResetPasswordToken = createSelector(
     selectAuthResetPasswordState,
     state => state.token,
   );
 
   return {
+    ...daffOperationStateSelectorFactory<DaffAuthStateRootSlice, DaffAuthResetPasswordReducerState>(selectAuthResetPasswordState),
     selectAuthResetPasswordState,
-    selectAuthResetPasswordLoading,
-    selectAuthResetPasswordErrors,
     selectAuthResetPasswordToken,
   };
 };

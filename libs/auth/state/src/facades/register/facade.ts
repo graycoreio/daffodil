@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffAuthFeatureState } from '../../reducers/public_api';
+import { DaffAuthStateRootSlice } from '../../reducers/public_api';
 import { getDaffAuthSelectors } from '../../selectors/public_api';
 import { DaffAuthRegisterFacadeInterface } from './facade.interface';
 
@@ -22,14 +22,14 @@ export class DaffAuthRegisterFacade implements DaffAuthRegisterFacadeInterface {
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
 
-  constructor(private store: Store<DaffAuthFeatureState>) {
+  constructor(private store: Store<DaffAuthStateRootSlice>) {
     const {
-      selectAuthRegisterLoading,
-      selectAuthRegisterErrors,
+      selectLoading,
+      selectErrors,
     } = getDaffAuthSelectors();
 
-    this.loading$ = this.store.pipe(select(selectAuthRegisterLoading));
-    this.errors$ = this.store.pipe(select(selectAuthRegisterErrors));
+    this.loading$ = this.store.pipe(select(selectLoading));
+    this.errors$ = this.store.pipe(select(selectErrors));
   }
 
   dispatch(action: Action) {

@@ -2,6 +2,11 @@ import {
   DaffLoginInfo,
   DaffAuthToken,
 } from '@daffodil/auth';
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffStartMutation,
+} from '@daffodil/core/state';
 
 import {
   DaffAuthLoginActionTypes,
@@ -20,26 +25,15 @@ export function daffAuthLoginReducer<
   switch (action.type) {
     case DaffAuthLoginActionTypes.LoginAction:
     case DaffAuthLoginActionTypes.LogoutAction:
-      return {
-        ...state,
-        loading: true,
-      };
+      return daffStartMutation(state);
 
     case DaffAuthLoginActionTypes.LoginSuccessAction:
     case DaffAuthLoginActionTypes.LogoutSuccessAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [],
-      };
+      return daffCompleteOperation(state);
 
     case DaffAuthLoginActionTypes.LoginFailureAction:
     case DaffAuthLoginActionTypes.LogoutFailureAction:
-      return {
-        ...state,
-        loading: false,
-        errors: [action.errorMessage],
-      };
+      return daffOperationFailed([action.errorMessage], state);
 
     default:
       return state;

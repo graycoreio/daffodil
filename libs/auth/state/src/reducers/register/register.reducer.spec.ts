@@ -12,7 +12,10 @@ import {
   daffAuthRegisterInitialState as initialState,
 } from '@daffodil/auth/state';
 import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { daffAuthRegisterReducer as reducer } from './register.reducer';
 
@@ -63,8 +66,8 @@ describe('@daffodil/auth/state | daffAuthRegisterReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authRegisterSuccess = new DaffAuthRegisterSuccess();
@@ -91,8 +94,8 @@ describe('@daffodil/auth/state | daffAuthRegisterReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
-        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
+        daffState: DaffState.Resolving,
+        daffErrors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const authRegisterFailure = new DaffAuthRegisterFailure(error);

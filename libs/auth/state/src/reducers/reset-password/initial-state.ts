@@ -1,7 +1,8 @@
+import { daffOperationInitialState } from '@daffodil/core/state';
+
 import { DaffAuthResetPasswordReducerState } from './state.interface';
 
 export const daffAuthResetPasswordInitialState: DaffAuthResetPasswordReducerState = {
-  loading: false,
-  errors: [],
+  ...daffOperationInitialState,
   token: null,
 };
