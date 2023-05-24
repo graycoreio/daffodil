@@ -30,7 +30,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthFacade } from './facade';
 
-describe('DaffAuthFacade', () => {
+describe('@daffodil/auth/state | DaffAuthFacade', () => {
   let store: Store<any>;
   let facade: DaffAuthFacade;
   let authFactory: DaffAuthTokenFactory;

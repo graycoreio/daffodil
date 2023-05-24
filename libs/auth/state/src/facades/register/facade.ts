@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthStateRootSlice } from '../../reducers/public_api';
-import { getDaffAuthSelectors } from '../../selectors/public_api';
+import { getDaffAuthRegisterSelectors } from '../../selectors/register/register.selector';
 import { DaffAuthRegisterFacadeInterface } from './facade.interface';
 
 /**
@@ -26,7 +26,7 @@ export class DaffAuthRegisterFacade implements DaffAuthRegisterFacadeInterface {
     const {
       selectLoading,
       selectErrors,
-    } = getDaffAuthSelectors();
+    } = getDaffAuthRegisterSelectors();
 
     this.loading$ = this.store.pipe(select(selectLoading));
     this.errors$ = this.store.pipe(select(selectErrors));
