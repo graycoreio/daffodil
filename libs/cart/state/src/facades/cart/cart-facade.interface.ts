@@ -22,7 +22,10 @@ import {
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
-import { DaffCartResolveState } from '../../reducers/public_api';
+import {
+  DaffCartReducerState,
+  DaffCartResolveState,
+} from '../../reducers/public_api';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
@@ -32,6 +35,16 @@ export interface DaffCartFacadeInterface<
   cart$: Observable<T>;
 
   resolved$: Observable<DaffCartResolveState>;
+
+  /**
+   * How many times Daffodil has failed to resolve or create a cart without success.
+   */
+  failedAttempts$: Observable<DaffCartReducerState<T>['failedAttempts']>;
+  /**
+   * Whether the number of failed attempts has met or exceeded the configured maximum number of attempts.
+   * If false, Daffodil will not automatically attempt cart resolution or creation.
+   */
+  keepAttemptingResolution$: Observable<boolean>;
 
   /**
    * The object that holds all the loading states for cart operations.

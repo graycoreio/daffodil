@@ -77,7 +77,12 @@ import {
 import { DaffState } from '@daffodil/core/state';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffCartItemUpdateFailure } from '../../actions/public_api';
+import {
+  DaffCartItemUpdateFailure,
+  DaffResolveCartFailure,
+  DaffResolveCartSuccess,
+} from '../../actions/public_api';
+import { daffCartStateProvideConfig } from '../../config/token';
 import { DaffCartFacade } from './cart.facade';
 
 describe('DaffCartFacade', () => {
@@ -112,6 +117,9 @@ describe('DaffCartFacade', () => {
             [paymentMethod]: paymentId,
           },
         },
+        daffCartStateProvideConfig({
+          maxResolutionAttempts: 1,
+        }),
       ],
     });
 
@@ -171,6 +179,30 @@ describe('DaffCartFacade', () => {
     it('should be the resolved state', () => {
       const expected = cold('a', { a: DaffCartResolveState.Default });
       expect(facade.resolved$).toBeObservable(expected);
+    });
+  });
+
+  describe('keepAttemptingResolution$', () => {
+    describe('after resolution success', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffResolveCartSuccess(cartFactory.create()));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true });
+        expect(facade.keepAttemptingResolution$).toBeObservable(expected);
+      });
+    });
+
+    describe('after resolution failure', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffResolveCartFailure([]));
+      });
+
+      it('should be false', () => {
+        const expected = cold('a', { a: false });
+        expect(facade.keepAttemptingResolution$).toBeObservable(expected);
+      });
     });
   });
 

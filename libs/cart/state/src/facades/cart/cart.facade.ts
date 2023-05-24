@@ -23,6 +23,10 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 
 import {
+  DAFF_CART_STATE_CONFIG,
+  DaffCartStateConfig,
+} from '../../config/public_api';
+import {
   DaffCartItemStateEnum,
   DaffStatefulCartItem,
 } from '../../models/stateful-cart-item';
@@ -32,6 +36,7 @@ import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 import {
   DaffCartStateRootSlice,
   DaffCartResolveState,
+  DaffCartReducerState,
 } from '../../reducers/public_api';
 import {
   getDaffCartSelectors,
@@ -53,6 +58,8 @@ export class DaffCartFacade<
   cart$: Observable<T>;
 
   resolved$: Observable<DaffCartResolveState>;
+  failedAttempts$: Observable<DaffCartReducerState<T>['failedAttempts']>;
+  keepAttemptingResolution$: Observable<boolean>;
 
   loadingObject$: Observable<DaffCartLoading>;
   featureLoading$: Observable<boolean>;
@@ -156,11 +163,13 @@ export class DaffCartFacade<
     // because Angular explicitly types this as `Object`
     // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object,
+    @Inject(DAFF_CART_STATE_CONFIG) private config: DaffCartStateConfig,
   ) {
     const {
       selectCartValue,
 
       selectCartResolved,
+      selectCartFailedAttempts,
 
       selectCartLoadingObject,
       selectCartFeatureLoading,
@@ -271,6 +280,10 @@ export class DaffCartFacade<
     this.cart$ = this.store.pipe(select(selectCartValue));
 
     this.resolved$ = this.store.pipe(select(selectCartResolved));
+    this.failedAttempts$ = this.store.pipe(select(selectCartFailedAttempts));
+    this.keepAttemptingResolution$ = this.failedAttempts$.pipe(
+      map((failedAttempts) => failedAttempts < this.config.maxResolutionAttempts),
+    );
 
     this.loadingObject$ = this.store.pipe(select(selectCartLoadingObject));
     this.featureLoading$ = this.store.pipe(select(selectCartFeatureLoading));

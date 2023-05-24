@@ -39,6 +39,11 @@ export interface DaffCartStateMemoizedSelectors<
   selectCartResolved: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartResolveState>;
 
   /**
+   * Selects how many times Daffodil has failed to resolve or create a cart without success.
+   */
+  selectCartFailedAttempts: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducerState<T>['failedAttempts']>;
+
+  /**
    * The object that holds all the loading states for cart operations.
    */
   selectCartLoadingObject: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducerState<T>['loading']>;
@@ -249,6 +254,11 @@ const createCartSelectors = <
   const selectCartResolved = createSelector(
     selectCartState,
     (state: DaffCartReducerState<T>) => state.resolved,
+  );
+
+  const selectCartFailedAttempts = createSelector(
+    selectCartState,
+    (state: DaffCartReducerState<T>) => state.failedAttempts,
   );
 
   const selectCartLoadingObject = createSelector(
@@ -609,6 +619,7 @@ const createCartSelectors = <
     selectCartValue,
 
     selectCartResolved,
+    selectCartFailedAttempts,
 
     selectCartLoadingObject,
     selectCartFeatureLoading,

@@ -57,7 +57,7 @@ import {
 
 import { getCartSelectors } from './cart.selector';
 
-describe('Cart | Selector | Cart', () => {
+describe('@daffodil/cart/state | getCartSelectors', () => {
   let store: Store<DaffCartStateRootSlice>;
 
   let cartFactory: DaffCartFactory;
@@ -75,6 +75,7 @@ describe('Cart | Selector | Cart', () => {
     selectCartValue,
 
     selectCartResolved,
+    selectCartFailedAttempts,
 
     selectCartLoadingObject,
     selectCartFeatureLoading,
@@ -243,6 +244,23 @@ describe('Cart | Selector | Cart', () => {
     it('should be failed after cart resolution failure', () => {
       const selector = store.pipe(select(selectCartResolved));
       const expected = cold('a', { a: DaffCartResolveState.Failed });
+      store.dispatch(new DaffResolveCartFailure([error]));
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartFailedAttempts', () => {
+    it('should initially be 0', () => {
+      const selector = store.pipe(select(selectCartFailedAttempts));
+      const expected = cold('a', { a: 0 });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should be 1 after cart resolution failure', () => {
+      const selector = store.pipe(select(selectCartFailedAttempts));
+      const expected = cold('a', { a: 1 });
       store.dispatch(new DaffResolveCartFailure([error]));
 
       expect(selector).toBeObservable(expected);
