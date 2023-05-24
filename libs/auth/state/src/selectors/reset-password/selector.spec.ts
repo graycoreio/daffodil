@@ -19,9 +19,9 @@ import {
   DaffResetPasswordLanding,
   daffAuthResetPasswordInitialState,
 } from '../../public_api';
-import { getDaffAuthResetPasswordSelectors } from './selector';
+import { daffAuthResetPasswordSelectorFactory } from './selector';
 
-describe('@daffodil/auth/state | getDaffAuthResetPasswordSelectors', () => {
+describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
   let store: Store<DaffAuthStateRootSlice>;
 
   let state: DaffAuthResetPasswordReducerState;
@@ -32,7 +32,7 @@ describe('@daffodil/auth/state | getDaffAuthResetPasswordSelectors', () => {
   const {
     selectAuthResetPasswordState,
     selectAuthResetPasswordToken,
-  } = getDaffAuthResetPasswordSelectors();
+  } = daffAuthResetPasswordSelectorFactory();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

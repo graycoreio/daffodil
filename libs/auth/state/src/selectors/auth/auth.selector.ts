@@ -37,7 +37,7 @@ const createAuthSelectors = () => {
   };
 };
 
-export const getAuthSelectors = (() => {
+export const daffAuthSelectorFactory = (() => {
   let cache;
   return (): AuthSelectors =>
     cache = cache || createAuthSelectors();

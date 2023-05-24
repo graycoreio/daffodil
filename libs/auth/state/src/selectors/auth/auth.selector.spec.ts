@@ -16,9 +16,9 @@ import {
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { getAuthSelectors } from './auth.selector';
+import { daffAuthSelectorFactory } from './auth.selector';
 
-describe('@daffodil/auth/state | getAuthSelectors', () => {
+describe('@daffodil/auth/state | daffAuthSelectorFactory', () => {
   let store: Store<DaffAuthStateRootSlice>;
 
   let state: DaffAuthReducerState;
@@ -29,7 +29,7 @@ describe('@daffodil/auth/state | getAuthSelectors', () => {
   const {
     selectAuthState,
     selectAuthLoggedIn,
-  } = getAuthSelectors();
+  } = daffAuthSelectorFactory();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

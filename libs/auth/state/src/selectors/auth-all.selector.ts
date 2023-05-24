@@ -3,20 +3,20 @@ import { MemoizedSelector } from '@ngrx/store';
 import { DaffAuthFeatureState } from '../reducers/public_api';
 import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';
 import {
-  getAuthSelectors,
+  daffAuthSelectorFactory,
   AuthSelectors,
 } from './auth/auth.selector';
 import {
-  getDaffAuthLoginSelectors,
+  daffAuthLoginSelectorFactory,
   DaffAuthLoginSelectors,
 } from './login/login.selector';
 import {
-  getDaffAuthRegisterSelectors,
+  daffAuthRegisterSelectorFactory,
   DaffAuthRegisterSelectors,
 } from './register/register.selector';
 import {
   DaffAuthResetPasswordSelectors,
-  getDaffAuthResetPasswordSelectors,
+  daffAuthResetPasswordSelectorFactory,
 } from './reset-password/selector';
 
 export interface DaffAuthSelectors extends
@@ -31,10 +31,10 @@ export const getDaffAuthSelectors = (() => {
   let cache;
   return (): DaffAuthSelectors =>
     cache = cache || {
-      ...getAuthSelectors(),
-      ...getDaffAuthLoginSelectors(),
-      ...getDaffAuthRegisterSelectors(),
-      ...getDaffAuthResetPasswordSelectors(),
+      ...daffAuthSelectorFactory(),
+      ...daffAuthLoginSelectorFactory(),
+      ...daffAuthRegisterSelectorFactory(),
+      ...daffAuthResetPasswordSelectorFactory(),
       selectAuthFeatureState: getDaffAuthFeatureStateSelector(),
     };
 })();

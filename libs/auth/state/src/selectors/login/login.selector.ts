@@ -32,7 +32,7 @@ const createLoginSelectors = () => {
   };
 };
 
-export const getDaffAuthLoginSelectors = (() => {
+export const daffAuthLoginSelectorFactory = (() => {
   let cache;
   return (): DaffAuthLoginSelectors =>
     cache = cache || createLoginSelectors();
