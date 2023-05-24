@@ -25,7 +25,7 @@ export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterf
     }
 
     return this.hubspotService.submit(payload).pipe(
-      map((response: HubspotResponse) => {
+      map((response: HubspotResponse): DaffNewsletterResponse => {
         return {
           message: response.inlineMessage
         }
