@@ -38,7 +38,7 @@ const createResetPasswordSelectors = (): DaffAuthResetPasswordSelectors => {
   };
 };
 
-export const getDaffAuthResetPasswordSelectors = (() => {
+export const daffAuthResetPasswordSelectorFactory = (() => {
   let cache;
   return (): DaffAuthResetPasswordSelectors =>
     cache = cache || createResetPasswordSelectors();

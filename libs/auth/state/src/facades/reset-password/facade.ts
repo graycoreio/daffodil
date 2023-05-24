@@ -10,7 +10,7 @@ import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthStateRootSlice } from '../../reducers/public_api';
-import { getDaffAuthResetPasswordSelectors } from '../../selectors/reset-password/selector';
+import { daffAuthResetPasswordSelectorFactory } from '../../selectors/reset-password/selector';
 import { DaffAuthResetPasswordFacadeInterface } from './facade.interface';
 
 /**
@@ -30,7 +30,7 @@ export class DaffAuthResetPasswordFacade implements DaffAuthResetPasswordFacadeI
       selectLoading,
       selectErrors,
       selectAuthResetPasswordToken,
-    } = getDaffAuthResetPasswordSelectors();
+    } = daffAuthResetPasswordSelectorFactory();
 
     this.token$ = this.store.pipe(select(selectAuthResetPasswordToken));
 

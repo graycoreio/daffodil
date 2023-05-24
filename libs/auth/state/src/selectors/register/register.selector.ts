@@ -30,7 +30,7 @@ const createRegisterSelectors = () => {
   };
 };
 
-export const getDaffAuthRegisterSelectors = (() => {
+export const daffAuthRegisterSelectorFactory = (() => {
   let cache;
   return (): DaffAuthRegisterSelectors =>
     cache = cache || createRegisterSelectors();
