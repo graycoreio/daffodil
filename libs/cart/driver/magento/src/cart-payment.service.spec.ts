@@ -196,6 +196,30 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartPaymentService', () => 
   });
 
   describe('get | getting the selected payment method', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.get(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
     it('should call the transformer with the correct argument', done => {
       service.get(cartId).subscribe(() => {
         expect(magentoBillingRateTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining(mockMagentoCartPaymentMethod));
@@ -236,6 +260,30 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartPaymentService', () => 
 
       mockMagentoCartPaymentMethod.code = method;
       mockDaffCartPaymentMethod.method = method;
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.update(cartId, mockDaffCartPaymentMethod).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
     });
 
     it('should return the correct value', done => {
@@ -377,6 +425,30 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartPaymentService', () => 
     beforeEach(() => {
       mockMagentoCart.selected_payment_method = null;
       mockDaffCart.payment = null;
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.remove(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
     });
 
     it('should return void', done => {

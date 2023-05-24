@@ -4,8 +4,14 @@ import {
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
+  map,
+} from 'rxjs/operators';
 
 import {
   DaffCartPaymentMethod,
@@ -13,6 +19,7 @@ import {
 } from '@daffodil/cart';
 import { DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
 
+import { transformCartMagentoError } from './errors/transform';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { listPaymentMethods } from './queries/public_api';
 import { MagentoListPaymentMethodsResponse } from './queries/responses/list-payment-methods';
@@ -40,6 +47,7 @@ export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMeth
       fetchPolicy: 'network-only',
     }).pipe(
       map(result => result.data.cart.available_payment_methods.map(item => this.paymentTransformer.transform(item))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

@@ -4,8 +4,12 @@ import {
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { Observable } from 'rxjs';
 import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
   map,
   switchMap,
 } from 'rxjs/operators';
@@ -17,6 +21,7 @@ import {
 import { DaffCartShippingInformationServiceInterface } from '@daffodil/cart/driver';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
+import { transformCartMagentoError } from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import {
@@ -61,6 +66,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
         ? this.shippingRateTransformer.transform(result.data.cart.shipping_addresses[0].selected_shipping_method)
         : null,
       ),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -90,6 +96,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
           })),
         ),
       ),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -105,6 +112,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
       },
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.setShippingMethodsOnCart.cart)),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

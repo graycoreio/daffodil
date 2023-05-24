@@ -68,6 +68,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
         })
         : null,
       ),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 

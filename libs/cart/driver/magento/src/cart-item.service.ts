@@ -85,6 +85,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
     }).pipe(
       map(result => result.data.cart.items.filter(item => !!item)),
       map(items => items.map(item => transformMagentoCartItem(daffTransformMagentoCartItem(item), item, this.cartItemTransforms))),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 
@@ -132,6 +133,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       fetchPolicy: 'network-only',
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.removeItemFromCart.cart)),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 

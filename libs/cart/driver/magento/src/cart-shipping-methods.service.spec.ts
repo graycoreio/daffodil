@@ -6,6 +6,8 @@ import {
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs';
 
 import { DaffCartShippingRate } from '@daffodil/cart';
 import {
@@ -19,6 +21,7 @@ import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
+
 
 interface MagentoCartAvailableShippingMethod extends MagentoCartShippingMethod {
   __typename: string;
@@ -102,6 +105,30 @@ describe('@daffodil/cart/driver/magento | CartShippingMethodsService', () => {
 
       mockDaffCartShippingRate.carrier = carrier;
       mockDaffCartShippingRate.price = price;
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.list(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(listShippingMethods([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
     });
 
     it('should call the transformer with the correct argument', done => {

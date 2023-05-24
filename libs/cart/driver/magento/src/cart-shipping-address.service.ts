@@ -68,6 +68,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
         })
         : null,
       ),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 

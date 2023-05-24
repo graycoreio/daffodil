@@ -4,8 +4,14 @@ import {
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
+  map,
+} from 'rxjs/operators';
 
 import {
   DaffCartShippingRate,
@@ -13,6 +19,7 @@ import {
 } from '@daffodil/cart';
 import { DaffCartShippingMethodsServiceInterface } from '@daffodil/cart/driver';
 
+import { transformCartMagentoError } from './errors/transform';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { listShippingMethods } from './queries/public_api';
 import { MagentoListShippingMethodsResponse } from './queries/responses/list-shipping-methods';
@@ -42,6 +49,7 @@ export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMe
       map(result => result.data.cart.shipping_addresses[0].available_shipping_methods.map(item =>
         this.shippingRateTransformer.transform(item),
       )),
+      catchError(error => throwError(() => transformCartMagentoError(error))),
     );
   }
 }

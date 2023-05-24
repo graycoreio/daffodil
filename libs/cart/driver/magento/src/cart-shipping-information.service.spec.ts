@@ -6,6 +6,8 @@ import {
   ApolloTestingModule,
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs';
 
 import {
   DaffCart,
@@ -37,6 +39,7 @@ import {
 import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
+
 
 interface MagentoCartSelectedShippingMethod extends MagentoCartShippingMethod {
   __typename: string;
@@ -159,6 +162,30 @@ describe('@daffodil/cart/driver/magento | CartShippingInformationService', () =>
   });
 
   describe('get | getting the selected shipping method', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.get(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
     it('should call the transformer with the correct argument', done => {
       service.get(cartId).subscribe(() => {
         expect(magentoShippingRateTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining(mockMagentoShippingMethod));
@@ -219,6 +246,30 @@ describe('@daffodil/cart/driver/magento | CartShippingInformationService', () =>
       mockDaffCartShippingInformation.carrier = carrier;
     });
 
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.update(cartId, mockDaffCartShippingInformation).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
     it('should return the correct value and manually refetch the shipping methods', done => {
       service.update(cartId, mockDaffCartShippingInformation).subscribe(result => {
         expect(result.shipping_information.carrier).toEqual(carrier);
@@ -250,6 +301,30 @@ describe('@daffodil/cart/driver/magento | CartShippingInformationService', () =>
     beforeEach(() => {
       mockMagentoCart.shipping_addresses[0].selected_shipping_method = null;
       mockDaffCart.shipping_information = null;
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.delete(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
     });
 
     it('should return the cart without shipping information', done => {
