@@ -13,6 +13,7 @@ import {
   DaffCart,
   DaffCartStorageService,
   DaffCartNotFoundOrCreatedResolutionError,
+  DaffCartExceededMaxResolutionAttemptsError,
 } from '@daffodil/cart';
 import { DaffCartResolutionError } from '@daffodil/cart';
 import { DaffCartStorageResolutionError } from '@daffodil/cart';
@@ -32,6 +33,10 @@ import {
   DaffResolveCartServerSide,
   DaffResolveCartPartialSuccess,
 } from '@daffodil/cart/state';
+import {
+  DaffCartTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
   DaffStorageServiceError,
@@ -54,6 +59,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
 
   let driver: DaffCartServiceInterface;
   let cartStorageService: DaffCartStorageService;
+  let mockFacade: MockDaffCartFacade;
 
   let driverGetSpy: jasmine.Spy<DaffCartServiceInterface['get']>;
   let driverCreateSpy: jasmine.Spy<DaffCartServiceInterface['create']>;
@@ -67,6 +73,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffTestingCartDriverModule.forRoot(),
+        DaffCartTestingModule,
       ],
       providers: [
         DaffCartResolverEffects,
@@ -78,6 +85,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
     driver = TestBed.inject(DaffCartDriver);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartStorageService = TestBed.inject(DaffCartStorageService);
+    mockFacade = TestBed.inject(MockDaffCartFacade);
 
     stubCart = cartFactory.create();
 
@@ -159,31 +167,68 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
     });
 
     describe('when there is not a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(undefined);
-        driverCreateSpy.and.returnValue(of({ id: stubCart.id }));
-        driverGetSpy.and.returnValue(of({
-          response: stubCart,
-          errors: [],
-        }));
+      describe('and when daffodil should keep attempting resolution', () => {
+        beforeEach(() => {
+          mockFacade.keepAttemptingResolution$.next(true);
+          getCartIdSpy.and.returnValue(undefined);
+          driverCreateSpy.and.returnValue(of({ id: stubCart.id }));
+          driverGetSpy.and.returnValue(of({
+            response: stubCart,
+            errors: [],
+          }));
+        });
+
+        describe('and when creating a cart fails', () => {
+          let errorMessage: string;
+          let error: DaffError;
+
+          beforeEach(() => {
+            errorMessage = 'error';
+            error = new DaffCartResolutionError(errorMessage);
+            const response = cold(
+              '#',
+              {},
+              error,
+            );
+            driverCreateSpy.and.returnValue(response);
+          });
+
+          it('should dispatch DaffResolveCartFailure action', () => {
+            const resolveCartFailureAction = new DaffResolveCartFailure([
+              daffTransformErrorToStateError(error),
+            ]);
+            const expected = cold('--b', {
+              b: resolveCartFailureAction,
+            });
+
+            expect(effects.onResolveCart()).toBeObservable(expected);
+          });
+        });
+
+        it('should create a cart', () => {
+          const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+          const expected = cold('--b', {
+            b: resolveCartSuccessAction,
+          });
+
+          expect(effects.onResolveCart()).toBeObservable(expected);
+          expect(driverCreateSpy).toHaveBeenCalled();
+        });
       });
 
-      describe('and when creating a cart fails', () => {
-        let errorMessage: string;
-        let error: DaffError;
-
+      describe('and when daffodil should not keep attempting resolution', () => {
         beforeEach(() => {
-          errorMessage = 'error';
-          error = new DaffCartResolutionError(errorMessage);
-          const response = cold(
-            '#',
-            {},
-            error,
-          );
-          driverCreateSpy.and.returnValue(response);
+          mockFacade.keepAttemptingResolution$.next(false);
+          getCartIdSpy.and.returnValue(undefined);
+          driverCreateSpy.and.returnValue(of({ id: stubCart.id }));
+          driverGetSpy.and.returnValue(of({
+            response: stubCart,
+            errors: [],
+          }));
         });
 
         it('should dispatch DaffResolveCartFailure action', () => {
+          const error = new DaffCartExceededMaxResolutionAttemptsError('Not attempting automatic cart creation during cart resolution because the max attempts exceed the configured limit of 3');
           const resolveCartFailureAction = new DaffResolveCartFailure([
             daffTransformErrorToStateError(error),
           ]);
@@ -193,16 +238,6 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
 
           expect(effects.onResolveCart()).toBeObservable(expected);
         });
-      });
-
-      it('should create a cart', () => {
-        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
-        const expected = cold('--b', {
-          b: resolveCartSuccessAction,
-        });
-
-        expect(effects.onResolveCart()).toBeObservable(expected);
-        expect(driverCreateSpy).toHaveBeenCalled();
       });
     });
 

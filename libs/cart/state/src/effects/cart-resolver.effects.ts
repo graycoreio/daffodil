@@ -15,11 +15,13 @@ import {
   iif,
   Observable,
   of,
+  throwError,
 } from 'rxjs';
 import {
   switchMap,
   catchError,
   map,
+  withLatestFrom,
 } from 'rxjs/operators';
 
 import {
@@ -30,6 +32,7 @@ import {
   DaffCartStorageResolutionError,
   DaffCartNotFoundOrCreatedResolutionError,
   DaffCartResolutionError,
+  DaffCartExceededMaxResolutionAttemptsError,
 } from '@daffodil/cart';
 import {
   DaffCartDriver,
@@ -53,6 +56,11 @@ import {
   DaffResolveCart,
   DaffResolveCartPartialSuccess,
 } from '../actions/public_api';
+import {
+  DAFF_CART_STATE_CONFIG,
+  DaffCartStateConfig,
+} from '../config/public_api';
+import { DaffCartFacade } from '../facades/cart/cart.facade';
 
 /**
  * An effect for resolving a guest cart for a customer.
@@ -67,8 +75,10 @@ implements OnInitEffects {
   constructor(
     private actions$: Actions,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_CART_STATE_CONFIG) private config: DaffCartStateConfig,
     private cartStorage: DaffCartStorageService,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
+    private facade: DaffCartFacade,
   ) {}
 
   ngrxOnInitEffects(): Action {
@@ -84,8 +94,13 @@ implements OnInitEffects {
         // then just cancel the outstanding operation
         EMPTY,
         defer(() => of(this.cartStorage.getCartId())).pipe(
-          switchMap(cartId =>
-            cartId ? of({ id: cartId }) : this.driver.create(),
+          withLatestFrom(this.facade.keepAttemptingResolution$),
+          switchMap(([cartId, keepAttemptingResolution]) =>
+            cartId
+              ? of({ id: cartId })
+              : keepAttemptingResolution
+                ? this.driver.create()
+                : throwError(() => new DaffCartExceededMaxResolutionAttemptsError(`Not attempting automatic cart creation during cart resolution because the max attempts exceed the configured limit of ${this.config.maxResolutionAttempts}`)),
           ),
           switchMap(({ id }) => this.driver.get(id)),
           switchMap(({ response, errors }) => {
@@ -127,10 +142,15 @@ implements OnInitEffects {
                 return of(new DaffResolveCartServerSide(this.errorMatcher(
                   new DaffCartServerSideResolutionError(error.message),
                 )));
+
               case error instanceof DaffStorageServiceError:
                 return of(new DaffResolveCartFailure([this.errorMatcher(
                   new DaffCartStorageResolutionError(error.message),
                 )]));
+
+              case error instanceof DaffCartExceededMaxResolutionAttemptsError:
+                return of(new DaffResolveCartFailure([this.errorMatcher(error)]));
+
               default:
                 return of(new DaffResolveCartFailure([this.errorMatcher(
                   new DaffCartResolutionError(error.message),
