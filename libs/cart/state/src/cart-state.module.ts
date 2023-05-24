@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import {
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import {
   combineReducers,
@@ -7,6 +10,10 @@ import {
 
 import { daffPaymentProvideExtraReducers } from '@daffodil/payment/state';
 
+import {
+  DaffCartStateConfig,
+  daffCartStateProvideConfig,
+} from './config/public_api';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartBillingAddressEffects } from './effects/cart-billing-address.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
@@ -51,4 +58,13 @@ import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
     })),
   ],
 })
-export class DaffCartStateModule {}
+export class DaffCartStateModule {
+  static withConfig(config: Partial<DaffCartStateConfig>): ModuleWithProviders<DaffCartStateModule> {
+    return {
+      ngModule: DaffCartStateModule,
+      providers: [
+        daffCartStateProvideConfig(config),
+      ],
+    };
+  }
+}
