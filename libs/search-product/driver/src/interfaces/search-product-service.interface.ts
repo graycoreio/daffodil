@@ -20,4 +20,5 @@ export interface DaffSearchProductDriverInterface<
   readonly kind: typeof DAFF_SEARCH_PRODUCT_RESULT_KIND;
 
   search(query: string, options?: DaffSearchProductDriverOptions): Observable<DaffSearchProductDriverResponse<T>>;
+  incremental(query: string, options?: DaffSearchProductDriverOptions): Observable<DaffSearchProductDriverResponse<T>>;
 }

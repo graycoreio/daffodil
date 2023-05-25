@@ -61,7 +61,7 @@ export class DaffSearchIncrementalEffects<
     ofType(DaffSearchActionTypes.SearchIncrementalAction),
     debounceTime(throttleWindow, scheduler),
     switchMap((action: DaffSearchIncremental) =>
-      this.driver.search(action.query, {
+      this.driver.incremental(action.query, {
         limit: this.config.incrementalResultLimit,
         ...action.options,
       }).pipe(

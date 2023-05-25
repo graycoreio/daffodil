@@ -44,7 +44,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
   let searchResultFactory: DaffSearchResultFactory;
 
   let daffDriver: DaffSearchDriverInterface;
-  let driverSearchSpy: jasmine.Spy<DaffSearchDriverInterface['search']>;
+  let driverIncrementalSpy: jasmine.Spy<DaffSearchDriverInterface['incremental']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -78,8 +78,8 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
       thing: 'thing',
     };
 
-    driverSearchSpy = spyOn(daffDriver, 'search');
-    driverSearchSpy.and.returnValue(of(mockResponse));
+    driverIncrementalSpy = spyOn(daffDriver, 'incremental');
+    driverIncrementalSpy.and.returnValue(of(mockResponse));
   });
 
   it('should be created', () => {
@@ -138,7 +138,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
         expectObservable(
           effects.incremental$(0, testScheduler).pipe(
             tap(() => {
-              expect(driverSearchSpy).toHaveBeenCalledWith(query, {
+              expect(driverIncrementalSpy).toHaveBeenCalledWith(query, {
                 ...options,
                 limit: 10,
               });
@@ -186,7 +186,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
         testScheduler.run(({ hot, expectObservable, cold }) => {
           const error = new DaffSearchInvalidAPIResponseError('Failed to search');
           const response = cold<DaffSearchDriverResponse>('#', {}, error);
-          driverSearchSpy.and.returnValue(response);
+          driverIncrementalSpy.and.returnValue(response);
           searchResultIncrementalFailureAction = new DaffSearchIncrementalFailure(daffTransformErrorToStateError(error));
           actions$ = hot('--a', { a: searchIncrementalAction });
 

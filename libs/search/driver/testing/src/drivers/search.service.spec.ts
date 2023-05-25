@@ -26,4 +26,11 @@ describe('@daffodil/driver/testing | DaffTestingSearchDriver', () => {
       expect(service.search('query')).toBeObservable(expected);
     });
   });
+
+  describe('incremental', () => {
+    it('should return a DaffSearchResultCollection', () => {
+      const expected = cold('(a|)', { a: jasmine.notEmpty() });
+      expect(service.incremental('query')).toBeObservable(expected);
+    });
+  });
 });
