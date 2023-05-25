@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.60.0](https://github.com/graycoreio/daffodil/compare/v0.59.2...v0.60.0) (2023-05-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **search*:** `DaffSearchDriverInterface#incremental` was added
+* **auth:** auth state structure and selectors have changed
+
+### Features
+
+* **auth:** add injectable reducers ([#2454](https://github.com/graycoreio/daffodil/issues/2454)) ([c0fc259](https://github.com/graycoreio/daffodil/commit/c0fc259083ba75de6c41250227f0064bf52d3348))
+* **auth:** migrate auth state to operation state ([#2453](https://github.com/graycoreio/daffodil/issues/2453)) ([9afcabd](https://github.com/graycoreio/daffodil/commit/9afcabd01b7f117e2268b7de046989d5c129c5fb))
+* **auth:** set and remove auth token immediately ([#2456](https://github.com/graycoreio/daffodil/issues/2456)) ([fc6c85d](https://github.com/graycoreio/daffodil/commit/fc6c85da7064fafd6a9939009034d3d3ea40d6c0))
+* **cart:** transform Magento driver errors ([#2449](https://github.com/graycoreio/daffodil/issues/2449)) ([229d4d0](https://github.com/graycoreio/daffodil/commit/229d4d0b76d4d4a61525818d6301cc428d4f2140))
+* **search*:** add `incremental` driver call ([#2455](https://github.com/graycoreio/daffodil/issues/2455)) ([d112bcd](https://github.com/graycoreio/daffodil/commit/d112bcd2c66070a10a59484dbbe8261471d31f92))
+
 ## [0.59.2](https://github.com/graycoreio/daffodil/compare/v0.59.1...v0.59.2) (2023-05-20)
 
 
