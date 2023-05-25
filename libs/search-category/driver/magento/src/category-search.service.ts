@@ -60,4 +60,8 @@ export class DaffSearchCategoryMagentoDriver implements DaffSearchCategoryDriver
       catchError(err => throwError(() => transformSearchCategoryMagentoError(err))),
     );
   }
+
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse<DaffSearchCategoryResult>> {
+    return this.search(query, options);
+  }
 }

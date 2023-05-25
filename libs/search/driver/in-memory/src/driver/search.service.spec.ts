@@ -72,4 +72,28 @@ describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
       req.flush(mockResponse);
     });
   });
+
+  describe('incremental', () => {
+    let query: string;
+    let url: string;
+    let result: ReturnType<DaffInMemorySearchDriver['incremental']>;
+
+    beforeEach(() => {
+      query = 'query';
+      url = `${service.url}?query=${query}`;
+      result = service.incremental(query);
+    });
+
+    it('should send a get request and return a collection of search results', done => {
+      result.subscribe((resp) => {
+        expect(resp).toEqual(mockResponse);
+        done();
+      });
+
+      const req = httpMock.expectOne(url);
+      expect(req.request.method).toBe('GET');
+
+      req.flush(mockResponse);
+    });
+  });
 });

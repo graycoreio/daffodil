@@ -23,6 +23,12 @@ class TestDriver1 implements DaffSearchDriverKindedInterface {
       metadata: {},
     });
   }
+  incremental(query: string) {
+    return of({
+      collection: {},
+      metadata: {},
+    });
+  }
 }
 
 @Injectable({
@@ -31,6 +37,12 @@ class TestDriver1 implements DaffSearchDriverKindedInterface {
 class TestDriver2 implements DaffSearchDriverKindedInterface {
   kind = 'TestDriver2';
   search(query: string) {
+    return of({
+      collection: {},
+      metadata: {},
+    });
+  }
+  incremental(query: string) {
     return of({
       collection: {},
       metadata: {},

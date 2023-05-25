@@ -30,4 +30,9 @@ export class DaffInMemorySearchDriver implements DaffSearchDriverInterface {
     // TODO: handle options
     return this.http.get<DaffSearchDriverResponse>(`${this.url}?query=${query}`);
   }
+
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {
+    // TODO: handle options
+    return this.http.get<DaffSearchDriverResponse>(`${this.url}?query=${query}`);
+  }
 }

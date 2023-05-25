@@ -89,4 +89,43 @@ describe('@daffodil/search-category/driver/magento | DaffSearchCategoryMagentoDr
       });
     });
   });
+
+  describe('incremental | searching for categories', () => {
+    describe('when the call to the Magento API is successful', () => {
+      it('should return a collection of category search results', done => {
+        service.incremental('query').subscribe(result => {
+          expect(result.collection[DAFF_SEARCH_CATEGORY_RESULT_KIND][0].id).toEqual(mockCategory.uid);
+          done();
+        });
+
+        const op = controller.expectOne(categorySearch());
+
+        op.flushData(mockGetCategoriesResponse);
+      });
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.incremental('query').pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(categorySearch());
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find any categories matching that query.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+  });
 });

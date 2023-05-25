@@ -46,4 +46,16 @@ export class DaffSearchFederatedDriver implements DaffSearchDriverInterface {
       })),
     );
   }
+
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {
+    return combineLatest(this.drivers.reduce<Record<string, Observable<DaffSearchDriverResponse>>>((acc, driver) => {
+      acc[driver.kind] = driver.incremental(query, options);
+      return acc;
+    }, {})).pipe(
+      map(responses => ({
+        collection: Object.assign({}, ...Object.values(responses).map(({ collection }) => collection)),
+        metadata: this.config.preferredDriverKind ? responses[this.config.preferredDriverKind].metadata : {},
+      })),
+    );
+  }
 }

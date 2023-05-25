@@ -34,4 +34,12 @@ export class DaffTestingSearchDriver implements DaffSearchDriverInterface {
       metadata: {},
     });
   }
+
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {
+    const limit = options.limit || 5;
+    return of({
+      collection: daffSearchTransformResultsToCollection(this.searchResultFactory.createMany(limit)),
+      metadata: {},
+    });
+  }
 }

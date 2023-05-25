@@ -177,4 +177,50 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
       });
     });
   });
+
+  describe('incremental | searching for products', () => {
+    describe('when the call to the Magento API is successful', () => {
+      it('should return a collection of product search results', done => {
+        service.incremental('query').subscribe(result => {
+          expect(result.collection[DAFF_SEARCH_PRODUCT_RESULT_KIND][0].id).toEqual(mockSimpleProduct.sku);
+          expect((<DaffCollectionMetadata>result.metadata).count).toEqual(mockSearchProductsResponse.products.total_count);
+          done();
+        });
+
+        const searchOp = controller.expectOne(addTypenameToDocument(productSearch()));
+        const filterOp = controller.expectOne(addTypenameToDocument(MagentoProductGetFilterTypes));
+
+        searchOp.flush({
+          data: mockSearchProductsResponse,
+        });
+        filterOp.flush({
+          data: mockGetFilterTypesResponse,
+        });
+      });
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.incremental('query').pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(productSearch()));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find any products matching that query.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+  });
 });

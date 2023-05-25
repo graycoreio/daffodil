@@ -37,6 +37,14 @@ export interface DaffSearchDriverInterface<
 > {
   /**
    * Searches for entities according to the specified query.
+   * This method provides substantially more information than `incremental`.
+   * Its intended use is populating a page of search results.
    */
   search(query: string, options?: DaffSearchDriverOptions): Observable<DaffSearchDriverResponse<T>>;
+
+  /**
+   * Rapidly searches for entities. This is intended to be called as the user types their search query.
+   * Less information is requested in comparison to `search`.
+   */
+  incremental(query: string, options?: DaffSearchDriverOptions): Observable<DaffSearchDriverResponse<T>>;
 }
