@@ -119,6 +119,38 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
       it('should notify state that the login was successful', () => {
         expect(effects.login$).toBeObservable(expected);
       });
+
+      it('should store the auth token', () => {
+        expect(effects.login$).toBeObservable(expected);
+        expect(setAuthTokenSpy).toHaveBeenCalledWith(mockAuth.token);
+      });
+
+      describe('but the token storage fails', () => {
+        beforeEach(() => {
+          setAuthTokenSpy.and.callFake(throwStorageError);
+          const mockAuthLoginFailureAction = new DaffAuthLoginFailure({
+            code: 'DAFF_STORAGE_FAILURE', recoverable: false, message: 'Storage of auth token has failed.',
+          });
+          expected = cold('--b', { b: mockAuthLoginFailureAction });
+        });
+
+        it('should return a DaffAuthStorageFailure', () => {
+          expect(effects.login$).toBeObservable(expected);
+        });
+
+        describe('unless the storage service throws a server side error', () => {
+          beforeEach(() => {
+            const error = new DaffServerSideStorageError('Server side');
+            const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+            setAuthTokenSpy.and.throwError(error);
+            expected = cold('--(a)', { a: serverSideAction });
+          });
+
+          it('should dispatch a server side action', () => {
+            expect(effects.login$).toBeObservable(expected);
+          });
+        });
+      });
     });
 
     describe('and the login fails', () => {
@@ -155,6 +187,36 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
       it('should notify state that the logout succeeded', () => {
         expect(effects.logout$).toBeObservable(expected);
       });
+
+      it('should remove the auth token from storage', () => {
+        expect(effects.logout$).toBeObservable(expected);
+        expect(removeAuthTokenSpy).toHaveBeenCalledWith();
+      });
+
+      describe('unless the storage service throws an error', () => {
+        beforeEach(() => {
+          removeAuthTokenSpy.and.callFake(throwStorageError);
+
+          expected = cold('--(b)', { b: authStorageFailureAction });
+        });
+
+        it('should return a DaffAuthStorageFailure', () => {
+          expect(effects.logout$).toBeObservable(expected);
+        });
+      });
+
+      describe('unless the storage service throws a server side error', () => {
+        beforeEach(() => {
+          const error = new DaffServerSideStorageError('Server side');
+          const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
+          removeAuthTokenSpy.and.throwError(error);
+          expected = cold('--(a)', { a: serverSideAction });
+        });
+
+        it('should dispatch a server side action', () => {
+          expect(effects.logout$).toBeObservable(expected);
+        });
+      });
     });
 
     describe('and the logout fails', () => {
@@ -170,88 +232,6 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
       it('should notify state that the logout failed', () => {
         expect(effects.logout$).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('storeAuthToken$ | storing the auth token after a successful login', () => {
-    let expected;
-    let authLoginSuccessAction;
-
-    beforeEach(() => {
-      authLoginSuccessAction = new DaffAuthLoginSuccess(mockAuth);
-      actions$ = hot('--a', { a: authLoginSuccessAction });
-      expected = cold('---');
-    });
-
-    it('should set the auth token in storage', () => {
-      expect(effects.storeAuthToken$).toBeObservable(expected);
-      expect(setAuthTokenSpy).toHaveBeenCalledWith(mockAuth.token);
-    });
-
-    describe('and the storage service throws an error', () => {
-      beforeEach(() => {
-        setAuthTokenSpy.and.callFake(throwStorageError);
-
-        expected = cold('--(b|)', { b: authStorageFailureAction });
-      });
-
-      it('should return a DaffAuthStorageFailure', () => {
-        expect(effects.storeAuthToken$).toBeObservable(expected);
-      });
-
-      describe('and the storage service throws a server side error', () => {
-        beforeEach(() => {
-          const error = new DaffServerSideStorageError('Server side');
-          const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
-          setAuthTokenSpy.and.throwError(error);
-          expected = cold('--(a|)', { a: serverSideAction });
-        });
-
-        it('should dispatch a server side action', () => {
-          expect(effects.storeAuthToken$).toBeObservable(expected);
-        });
-      });
-    });
-  });
-
-  describe('removeAuthToken$', () => {
-    let expected;
-    let authLogoutSuccessAction: DaffAuthLogoutSuccess;
-
-    beforeEach(() => {
-      authLogoutSuccessAction = new DaffAuthLogoutSuccess();
-      actions$ = hot('--a', { a: authLogoutSuccessAction });
-      expected = cold('---');
-    });
-
-    it('should remove the auth token from storage', () => {
-      expect(effects.removeAuthToken$).toBeObservable(expected);
-      expect(removeAuthTokenSpy).toHaveBeenCalledWith();
-    });
-
-    describe('and the storage service throws an error', () => {
-      beforeEach(() => {
-        removeAuthTokenSpy.and.callFake(throwStorageError);
-
-        expected = cold('--(b|)', { b: authStorageFailureAction });
-      });
-
-      it('should return a DaffAuthStorageFailure', () => {
-        expect(effects.removeAuthToken$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the storage service throws a server side error', () => {
-      beforeEach(() => {
-        const error = new DaffServerSideStorageError('Server side');
-        const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
-        removeAuthTokenSpy.and.throwError(error);
-        expected = cold('--(a|)', { a: serverSideAction });
-      });
-
-      it('should dispatch a server side action', () => {
-        expect(effects.removeAuthToken$).toBeObservable(expected);
       });
     });
   });
