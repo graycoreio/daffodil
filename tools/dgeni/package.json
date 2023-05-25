@@ -14,7 +14,11 @@
     "targets": {
       "build": {
         "inputs": [
-          "{workspaceRoot}/**/*.md"
+          "{workspaceRoot}/**/*.md",
+          "{workspaceRoot}/libs/**/*.ts",
+          "{workspaceRoot}/libs/**/*.tsx",
+          "{workspaceRoot}/libs/**/*.html",
+          "{workspaceRoot}/libs/**/*.scss"
         ],
         "outputs": ["{workspaceRoot}/dist/docs"]
       }
