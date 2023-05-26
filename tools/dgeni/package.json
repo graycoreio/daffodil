@@ -16,7 +16,6 @@
         "inputs": [
           "{workspaceRoot}/**/*.md",
           "{workspaceRoot}/libs/**/*.ts",
-          "{workspaceRoot}/libs/**/*.tsx",
           "{workspaceRoot}/libs/**/*.html",
           "{workspaceRoot}/libs/**/*.scss"
         ],
