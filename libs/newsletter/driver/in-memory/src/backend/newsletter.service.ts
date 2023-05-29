@@ -4,8 +4,7 @@ import {
   RequestInfoUtilities,
   ParsedRequestUrl,
 } from 'angular-in-memory-web-api';
-
-import { DaffNewsletterStorage } from '@daffodil/newsletter';
+import { DaffNewsletterStorage } from "../models/newsletter_storage";
 
 @Injectable({
   providedIn: 'root',
