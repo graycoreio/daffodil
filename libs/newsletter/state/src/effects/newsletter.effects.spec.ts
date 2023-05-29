@@ -57,7 +57,7 @@ describe('NewsletterEffects', () => {
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of({message: 'mystring'}));
 
         actions$ = hot('--a', { a: newsletterSubscribe });
         expected = cold('--b', { b: successAction });
@@ -86,7 +86,7 @@ describe('NewsletterEffects', () => {
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of({message: 'mystring'}));
 
         actions$ = hot('--a', { a: newsletterRetry });
         expected = cold('--b', { b: successAction });
