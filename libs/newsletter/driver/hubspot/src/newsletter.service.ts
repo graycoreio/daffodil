@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffHubspotFormsService } from '@daffodil/driver/hubspot';
+import { DaffHubspotFormsInterface } from '@daffodil/driver/hubspot';
 import { DaffNewsletterResponse, DaffNewsletterSubmission } from "@daffodil/newsletter";
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
@@ -15,7 +15,7 @@ import { map } from "rxjs/operators";
 @Injectable()
 export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface {
 
-  constructor(@Inject(DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN) private hubspotService: DaffHubspotFormsService) {}
+  constructor(@Inject(DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN) private hubspotService: DaffHubspotFormsInterface) {}
 
   send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse> {
     if (typeof payload === 'string') {
