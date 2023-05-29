@@ -14,6 +14,6 @@ import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 export class DaffTestingNewsletterService implements DaffNewsletterServiceInterface {
   send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse>{
-    return of('Success').pipe(delay<DaffNewsletterResponse>(10));
+    return of({message: 'Success'}).pipe(delay<DaffNewsletterResponse>(10));
   }
 }
