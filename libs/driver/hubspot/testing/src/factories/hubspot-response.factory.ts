@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { HubspotResponse, HubspotError } from "@daffodil/driver/hubspot";
+import {
+  HubspotResponse,
+  HubspotError,
+} from '@daffodil/driver/hubspot';
 
-const MockHubspotError = (): HubspotError => {
-  return {
-    message: faker.random.words(5),
-    errorType: faker.random.word()
-  }
-}
+const MockHubspotError = (): HubspotError => ({
+  message: faker.random.words(5),
+  errorType: faker.random.word(),
+});
 
 export class MockHubspotResponse implements HubspotResponse {
   redirectUri? = faker.internet.url();

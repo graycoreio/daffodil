@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HubspotResponse } from "@daffodil/driver/hubspot/models/hubspot-response";
+import { HubspotResponse } from '@daffodil/driver/hubspot/models/hubspot-response';
 
 import { DaffHubspotResponseFactory } from './hubspot-response.factory';
 

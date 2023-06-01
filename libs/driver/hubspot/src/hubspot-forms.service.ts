@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { DaffHubspotConfig } from './models/config';
+import { DaffHubspotFormsInterface } from './models/forms';
 import { DaffHubspotRequest } from './models/hubspot-request';
 import { HubspotResponse } from './models/hubspot-response';
 import { jsonBuilder } from './transformers/json-builder';
-import { DaffHubspotFormsInterface } from "./models/forms";
 
 export class DaffHubspotFormsService implements DaffHubspotFormsInterface {
 

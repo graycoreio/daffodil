@@ -1,6 +1,7 @@
-import { Observable } from "rxjs";
-import { HubspotResponse } from "./hubspot-response";
+import { Observable } from 'rxjs';
+
+import { HubspotResponse } from './hubspot-response';
 
 export interface DaffHubspotFormsInterface {
-  submit(payload: Record<string, any>): Observable<HubspotResponse>
+  submit(payload: Record<string, any>): Observable<HubspotResponse>;
 }

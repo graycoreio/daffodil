@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { DaffHubspotFormsService } from './hubspot-forms.service';
 import { DaffHubspotConfig } from './models/config';
-import { DaffHubspotFormsInterface } from "./models/forms";
+import { DaffHubspotFormsInterface } from './models/forms';
 
 export const daffHubspotFormsServiceFactory = (
   http: HttpClient,
