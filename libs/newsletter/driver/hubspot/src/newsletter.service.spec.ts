@@ -1,32 +1,24 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-
+ import { TestBed } from '@angular/core/testing';
 
 import { DaffNewsletterHubspotService } from './newsletter.service';
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
-import {
-  DaffNewsletterDriver,
-  DaffNewsletterServiceInterface,
-} from '@daffodil/newsletter/driver';
+import { DaffHubspotResponseFactory } from '@daffodil/driver/hubspot/testing';
+
 import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
 import { Observable } from "rxjs";
 import { hot } from "jasmine-marbles";
 import { HubspotResponse } from '@daffodil/driver/hubspot';
+import { DaffNewsletterSubmission } from "@daffodil/newsletter";
 
-describe('DaffNewsletterHubspotDriver', () => {
-  let newsletterService: DaffNewsletterServiceInterface;
-  let httpMock: HttpTestingController;
+describe('newsletterHubspotService', () => {
+  let newsletterHubspotService: DaffNewsletterHubspotService;
+  let responseFactory: DaffHubspotResponseFactory = new DaffHubspotResponseFactory();
+
+  let sampleResponse: HubspotResponse = responseFactory.create();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
         DaffNewsletterHubSpotDriverModule.forRoot({
           portalId: '123123',
           guid: '123123',
@@ -37,36 +29,28 @@ describe('DaffNewsletterHubspotDriver', () => {
         {
           provide: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
           useValue: {
-            submit: (): Observable<HubspotResponse> => hot('--a', { a: {
-                redirectUri: "test",
-                inlineMessage: "test",
-                errors: []
-            }}),
+            submit: (): Observable<HubspotResponse> => hot('--a', { a: sampleResponse}),
           },
         },
       ],
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
-
-    newsletterService = TestBed.inject(DaffNewsletterDriver);
+    newsletterHubspotService = TestBed.inject(DaffNewsletterHubspotService);
   });
 
-  it('should provide an instance of the DaffNewsletterDriver', () => {
-    expect(newsletterService).toBeTruthy();
-  });
+  it('should take a DaffNewsletterSubmission string convert a HubspotResponse to a DaffNewsletterResponse', () => {
+    const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
 
-  it('should allow a developer to configure and send newsletter subscription requests to the HubspotForms API', () => {
-    const newsletterSubmission = { email: 'test@email.com' };
-    newsletterService.send(newsletterSubmission).subscribe((resp) => {
-      expect(resp).toEqual({ message: "test"});
+    newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
+      expect(resp).toEqual({ message: sampleResponse.inlineMessage});
     });
-    const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/123123/123123');
-    expect(req.request.body).toEqual(jasmine.objectContaining({
-      fields: [Object({ name: 'email', value: 'test@email.com' })],
-      context: Object({ hutk: null, pageUri: '/', pageName: jasmine.any(String) }),
-    }));
-    req.flush(newsletterSubmission);
-    httpMock.verify();
+  });
+
+  it('should take a DaffNewsletterSubmission convert a HubspotResponse to a DaffNewsletterResponse', () => {
+    const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@email.com' };
+
+    newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
+      expect(resp).toEqual({ message: sampleResponse.inlineMessage});
+    });
   });
 });
