@@ -3,14 +3,17 @@ import {
   Injectable,
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { DaffHubspotFormsInterface } from '@daffodil/driver/hubspot';
-import { DaffNewsletterResponse, DaffNewsletterSubmission } from "@daffodil/newsletter";
+import { HubspotResponse } from '@daffodil/driver/hubspot/models/hubspot-response';
+import {
+  DaffNewsletterResponse,
+  DaffNewsletterSubmission,
+} from '@daffodil/newsletter';
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
-import { HubspotResponse } from '@daffodil/driver/hubspot/models/hubspot-response';
-import { map } from "rxjs/operators";
 
 @Injectable()
 export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface {
@@ -20,16 +23,14 @@ export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterf
   send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse> {
     if (typeof payload === 'string') {
       payload = {
-        email: payload
-      }
+        email: payload,
+      };
     }
 
     return this.hubspotService.submit(payload).pipe(
-      map((response: HubspotResponse): DaffNewsletterResponse => {
-        return {
-          message: response.inlineMessage
-        }
-      }
-    ));
+      map((response: HubspotResponse): DaffNewsletterResponse => ({
+        message: response.inlineMessage,
+      }),
+      ));
   }
 }

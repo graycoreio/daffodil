@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffNewsletterSubmission, DaffNewsletterResponse } from "@daffodil/newsletter";
+import {
+  DaffNewsletterSubmission,
+  DaffNewsletterResponse,
+} from '@daffodil/newsletter';
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 /**

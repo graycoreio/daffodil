@@ -22,6 +22,7 @@ import {
   DaffNewsletterSubmission,
   DAFF_NEWSLETTER_ERROR_MATCHER,
 } from '@daffodil/newsletter';
+import { DaffNewsletterResponse } from '@daffodil/newsletter';
 import {
   DaffNewsletterDriver,
   DaffNewsletterServiceInterface,
@@ -35,7 +36,6 @@ import {
   DaffNewsletterRetry,
   DaffNewsletterCancel,
 } from '../actions/newsletter.actions';
-import { DaffNewsletterResponse } from "@daffodil/newsletter";
 
 @Injectable()
 export class DaffNewsletterEffects {

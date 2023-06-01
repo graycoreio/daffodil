@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 
 import {
   daffHubspotFormsServiceFactory,
-  DaffHubspotFormsInterface
+  DaffHubspotFormsInterface,
 } from '@daffodil/driver/hubspot';
 
-import { DaffNewsletterConfigToken } from "../config/newsletter-config.interface";
+import { DaffNewsletterConfigToken } from '../config/newsletter-config.interface';
 
 export const DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN: InjectionToken<DaffHubspotFormsInterface> = new InjectionToken<DaffHubspotFormsInterface>('DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN',
   {
