@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 import {
   daffHubspotFormsServiceFactory,
-  DaffHubspotFormsInterface
+  DaffHubspotFormsInterface,
 } from '@daffodil/driver/hubspot';
 
 import { DaffContactConfigToken } from '../config/contact-config.interface';
