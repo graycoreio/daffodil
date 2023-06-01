@@ -14,6 +14,9 @@ import {
 
 import { DaffNewsletterConfigToken } from '../config/newsletter-config.interface';
 
+/**
+ * A token for combining the inputs to the HubspotFormsServiceFactory into a single dependency.
+ */
 export const DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN: InjectionToken<DaffHubspotFormsInterface> = new InjectionToken<DaffHubspotFormsInterface>('DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN',
   {
     providedIn: 'root', factory: () => daffHubspotFormsServiceFactory(
