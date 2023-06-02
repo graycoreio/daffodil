@@ -11,10 +11,12 @@ import {
 } from '@daffodil/newsletter';
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
-
 export class DaffTestingNewsletterService implements DaffNewsletterServiceInterface {
   send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse>{
     return of({ message: 'Success' }).pipe(delay<DaffNewsletterResponse>(10));

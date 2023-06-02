@@ -7,6 +7,9 @@ import {
 
 import { DaffNewsletterStorage } from '../models/newsletter_storage';
 
+/**
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })

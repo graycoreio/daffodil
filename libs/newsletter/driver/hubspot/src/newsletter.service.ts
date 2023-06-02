@@ -15,6 +15,9 @@ import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
 
+/**
+ * @inheritdoc
+ */
 @Injectable()
 export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface {
 
