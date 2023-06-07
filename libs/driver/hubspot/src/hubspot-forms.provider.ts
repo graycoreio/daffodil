@@ -6,6 +6,9 @@ import { DaffHubspotFormsService } from './hubspot-forms.service';
 import { DaffHubspotConfig } from './models/config';
 import { DaffHubspotFormsInterface } from './models/forms';
 
+/**
+ * Factory for {@link DaffHubspotFormsService}.
+ */
 export const daffHubspotFormsServiceFactory = (
   http: HttpClient,
   document: Document,
