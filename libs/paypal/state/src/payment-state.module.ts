@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { combineReducers } from '@ngrx/store';
 
+import { daffComposeReducers } from '@daffodil/core/state';
 import {
+  DaffPaymentActions,
   daffPaymentProvideAvailableProcessors,
   daffPaymentProvideExtraReducers,
   daffPaymentReducerFactory,
+  DaffPaymentReducerState,
   DaffPaymentStateModule,
 } from '@daffodil/payment/state';
 import { DAFF_PAYPAL_PAYMENT_KIND } from '@daffodil/paypal';
 import { DaffPaypalExpressPaymentDriver } from '@daffodil/paypal/driver';
 
-import { DaffPaypalActionTypes } from './actions/paypal.actions';
+import {
+  DaffPaypalActions,
+  DaffPaypalActionTypes,
+} from './actions/paypal.actions';
+import { daffPaypalPaymentReducer } from './reducers/payment/reducer';
 
 @NgModule({
   imports: [
@@ -23,7 +30,7 @@ import { DaffPaypalActionTypes } from './actions/paypal.actions';
       action: DaffPaypalActionTypes.ApplyPaymentAction,
     }),
     ...daffPaymentProvideExtraReducers(combineReducers({
-      payment: daffPaymentReducerFactory([DaffPaypalActionTypes.ApplyPaymentAction]),
+      payment: daffComposeReducers<DaffPaymentReducerState, DaffPaypalActions | DaffPaymentActions>([daffPaymentReducerFactory([DaffPaypalActionTypes.ApplyPaymentAction]), daffPaypalPaymentReducer]),
     })),
   ],
 })
