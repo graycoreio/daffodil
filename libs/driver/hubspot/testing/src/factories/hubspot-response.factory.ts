@@ -19,7 +19,9 @@ export class MockHubspotResponse implements HubspotResponse {
 }
 
 /**
- * Model factory for {@link HubspotResponse}.
+ * Model factory for {@link MockHubspotResponse}s.
+ *
+ * Should be used to create {@link MockHubspotResponse}s for testing purposes.
  */
 @Injectable({
   providedIn: 'root',
