@@ -9,6 +9,9 @@ import { DaffHubspotRequest } from './models/hubspot-request';
 import { HubspotResponse } from './models/hubspot-response';
 import { jsonBuilder } from './transformers/json-builder';
 
+/**
+ * Service for interacting with Hubspot Forms API.
+ */
 export class DaffHubspotFormsService implements DaffHubspotFormsInterface {
 
   constructor(
