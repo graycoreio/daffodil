@@ -5,7 +5,7 @@
   - [Adding to the Codebase](#adding-to-the-codebase)
   - [Loading into Apollo Cache](#loading-into-apollo-cache)
 
-In order for Apollo to properly match fragment types, the GraphQL schema must be fetched, processed, added to the codebase, and loaded into the `ApolloClient` cache.
+**In order for Apollo to properly match fragment types, the GraphQL schema must be fetched, processed, added to the codebase, and loaded into the *`ApolloClient`* cache.**
 
 <!-- TODO: add link to apollo docs -->
 
@@ -45,7 +45,7 @@ We recommend adding a command to your `angular.json` to generate fragment types.
 }
 ```
 
-`fragmentTypes.json` can then be generated with the single command:
+***`fragmentTypes.json`* can then be generated with the single command:**
 ```bash
 NODE_TLS_REJECT_UNAUTHORIZED=0 ng run app:generateFragmentTypes -c magento-local
 ```
