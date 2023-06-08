@@ -8,6 +8,8 @@ import {
 import { DaffNewsletterStorage } from '../models/newsletter_storage';
 
 /**
+ * An in-memory service that handles newsletter requests.
+ *
  * @inheritdoc
  */
 @Injectable({
