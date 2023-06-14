@@ -105,7 +105,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
   ));
 
 
-  loadAcceptJs$ = createEffect(() => (maxTries = 10, ms = 10): Observable<any> => this.actions$.pipe(
+  loadAcceptJs$ = createEffect(() => (maxTries = 3, ms = 30): Observable<any> => this.actions$.pipe(
     ofType(DaffAuthorizeNetActionTypes.LoadAcceptJsAction),
     tap((action: DaffLoadAcceptJs) => this.acceptJsLoadingService.load()),
     switchMap(() => defer(() => of(this.acceptJsLoadingService.getAccept())).pipe(
