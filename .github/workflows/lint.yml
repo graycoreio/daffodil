@@ -34,10 +34,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+
       - uses: nrwl/nx-set-shas@v3
         name: Derive appropriate SHAs for base and head for `nx affected` commands
-        with: 
+        with:
           main-branch-name: 'develop'
 
       - uses: actions/cache@v3
@@ -47,11 +47,11 @@ jobs:
           path: .nx_cache
           key: lint-${{ matrix.node }}
 
-      - uses: ./.github/actions/clear-old-nx-cache
+      - uses: graycoreio/github-actions/clear-old-nx-cache@main
         with:
           size-in-mb: 10
 
-      - uses: ./.github/actions/setup-node
+      - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
