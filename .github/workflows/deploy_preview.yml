@@ -12,27 +12,24 @@ on:
 #####
 # We only allow workflow runs from forks that we know are safe via a control
 # in the Github UI called "Require approval for all outside collaborators".
-#    
+#
 # It's a little painful to have to keep clicking the button in the UI,
-# but it's generally safer for us (from a security standpoint), 
-# while still allowing trusted users to contribute 
+# but it's generally safer for us (from a security standpoint),
+# while still allowing trusted users to contribute
 # to the project without annoying CI failures.
-# 
+#
 # We have understood the risk and attempted to handle the concern outlined here:
-# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/ 
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 jobs:
   deploy_daffio:
     name: Deploy Daff.io
-    runs-on: ubuntu-latest 
-    environment: 
+    runs-on: ubuntu-latest
+    environment:
       name: preview
       url: ${{ steps.vercel.outputs.url }}
     if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
-    - uses: ./.github/actions/vercel-from-workflow-run
+    - uses: graycoreio/github-actions/angular-universal-vercel-wflw-run@main
       id: vercel
       with:
         artifact: daffio-16.x
