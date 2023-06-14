@@ -138,20 +138,22 @@ const createCompositeProductSelectors = <T extends DaffProduct>(): DaffComposite
         return undefined;
       }
 
-      const prices = getMinPricesForConfiguration(
-        (<DaffCompositeProduct><any>product),
-        getAppliedOptionsForConfiguration((<DaffCompositeProduct><any>product), appliedOptions),
-      );
+      const prices = getMinPricesForConfiguration( 
+        product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeConfigurationItem>): DaffPriceRange => {
+        let minPrice: DaffPrice = 0;
+        product.items.forEach((item) => { 
+          const option = appliedOptions[item.id];
+          if (option && option.value !== null) {
+            const optionPrice = option.quantity * option.value.price;
+            minPrice += optionPrice;
+         }
+      });
 
-      return daffMultiply(
-        daffDivide(
-          daffSubtract(prices.originalPrice, prices.discountedPrice),
-          prices.originalPrice,
-        ),
-        100,
-      );
-    },
-  )).memoized;
+      return {
+      originalPrice: minPrice,
+      discountedPrice: minPrice,
+     };
+  };.memoized;
 
   return {
     selectCompositeProductRequiredItemPricesForConfiguration,
