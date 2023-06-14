@@ -5,7 +5,6 @@
   - [Adding to the Codebase](#adding-to-the-codebase)
   - [Loading into Apollo Cache](#loading-into-apollo-cache)
 
-**In order for Apollo to properly match fragment types, the GraphQL schema must be fetched, processed, added to the codebase, and loaded into the *`ApolloClient`* cache.**
 
 <!-- TODO: add link to apollo docs -->
 
