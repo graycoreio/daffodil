@@ -24,6 +24,7 @@
 
 @mixin skeleton-screen($width, $height) {
 	display: flex;
+	position: relative;
 
 	&::before {
 		animation-name: loading;
