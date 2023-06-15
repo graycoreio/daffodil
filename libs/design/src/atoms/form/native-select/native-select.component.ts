@@ -11,13 +11,13 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { DaffFormFieldControl } from '../../form-field/form-field-control';
+import { DaffFormFieldControl } from '../form-field/form-field-control';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'select[daff-native-select]',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./select.component.scss'],
+  styleUrls: ['./native-select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
