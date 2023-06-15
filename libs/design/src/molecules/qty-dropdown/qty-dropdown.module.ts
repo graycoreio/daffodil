@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { DaffFormFieldModule } from '../../atoms/form/form-field/form-field.module';
 import { DaffInputModule } from '../../atoms/form/input/input.module';
-import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
+import { DaffNativeSelectModule } from '../../atoms/form/native-select/select.module';
 import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 
 @NgModule({

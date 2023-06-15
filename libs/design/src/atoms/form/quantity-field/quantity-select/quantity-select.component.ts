@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { DaffNativeSelectComponent } from '../../select/public_api';
+import { DaffNativeSelectComponent } from '../../native-select/public_api';
 
 /**
  * Create an array of numbers from min to max, not including max.

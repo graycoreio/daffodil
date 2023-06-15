@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
 import {
   DaffNativeSelectModule,
   DaffNativeSelectComponent,
-} from '../../select/public_api';
+} from '../../native-select/public_api';
 import { DaffQuantitySelectComponent } from './quantity-select.component';
 
 @Component({
