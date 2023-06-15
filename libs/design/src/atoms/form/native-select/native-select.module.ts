@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffNativeSelectComponent } from './select/select.component';
+import { DaffNativeSelectComponent } from './native-select.component';
 
 @NgModule({
   imports: [

@@ -22,7 +22,7 @@
 @use '../src/atoms/form/error-message/error-message-theme' as error-message;
 @use '../src/atoms/form/form-field/form-field/form-field-theme' as form-field;
 @use '../src/atoms/form/input/input-theme' as input;
-@use '../src/atoms/form/select/select/select-theme' as select;
+@use '../src/atoms/form/native-select/native-select-theme' as native-select;
 @use '../src/atoms/loading-icon/loading-icon-theme' as loading-icon;
 @use '../src/atoms/progress-indicator/progress-indicator-theme' as progress-indicator;
 @use '../src/molecules/accordion/accordion-item/accordion-item-theme' as accordion-item;
@@ -61,7 +61,7 @@
 	@include error-message.daff-error-message-theme($theme);
 	@include form-field.daff-form-field-theme($theme);
 	@include input.daff-input-theme($theme);
-	@include select.daff-select-theme($theme);
+	@include native-select.daff-native-select-theme($theme);
 	@include loading-icon.daff-loading-icon-theme($theme);
 	@include progress-indicator.daff-progress-indicator-theme($theme);
 

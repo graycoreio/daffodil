@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffNativeSelectComponent } from './select.component';
+import { DaffNativeSelectComponent } from './native-select.component';
 
 @Component({
   template: `

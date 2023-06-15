@@ -9,7 +9,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffFormFieldModule } from '../../atoms/form/form-field/public_api';
 import { DaffInputModule } from '../../atoms/form/input/input.module';
-import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
+import { DaffNativeSelectModule } from '../../atoms/form/native-select/public_api';
 import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 
 @Component({ template: '<daff-qty-dropdown [qty]="qtyValue" [id]="idValue"></daff-qty-dropdown>' })

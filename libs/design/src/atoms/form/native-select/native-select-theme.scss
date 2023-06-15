@@ -1,8 +1,8 @@
 @use 'sass:map';
-@use '../../../../../scss/core';
-@use '../../../../../scss/theming';
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
 
-@mixin daff-select-theme($theme) {
+@mixin daff-native-select-theme($theme) {
 	$gray: core.daff-map-deep-get($theme, 'core.gray');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$black: core.daff-map-deep-get($theme, 'core.black');
