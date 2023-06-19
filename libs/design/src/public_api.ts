@@ -16,6 +16,7 @@ export * from './atoms/container/public_api';
 export * from './atoms/loading-icon/public_api';
 export * from './atoms/progress-indicator/public_api';
 export * from './atoms/form/radio/public_api';
+export * from './atoms/form/form-label/public_api';
 
 // Molecules
 export * from './molecules/accordion/public_api';
