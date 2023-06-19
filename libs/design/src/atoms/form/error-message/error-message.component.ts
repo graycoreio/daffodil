@@ -1,6 +1,7 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -9,4 +10,6 @@ import {
   styleUrls: ['./error-message.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffErrorMessageComponent {}
+export class DaffErrorMessageComponent {
+  @HostBinding('class.daff-error-message') class = true;
+}
