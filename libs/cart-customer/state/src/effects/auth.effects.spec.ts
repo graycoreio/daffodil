@@ -89,6 +89,17 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
     let expected;
     const authCompleteAction = new DaffAuthLoginSuccess(null);
 
+    describe('and the cart ID is missing', () => {
+      beforeEach(() => {
+        getCartIdSpy.and.returnValue(null);
+        actions$ = hot('--a', { a: authCompleteAction });
+      });
+
+      it('should not attempt to merge the carts', () => {
+        expect(driverMergeSpy).not.toHaveBeenCalled();
+      });
+    });
+
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {
         driverMergeSpy.and.returnValue(of({
@@ -146,9 +157,20 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
     });
   });
 
-  describe('when DaffAuthLoginSuccess is triggered with a token', () => {
+  describe('when DaffAuthRegisterSuccess is triggered with a token', () => {
     let expected;
     const authCompleteAction = new DaffAuthRegisterSuccess('token');
+
+    describe('and the cart ID is missing', () => {
+      beforeEach(() => {
+        getCartIdSpy.and.returnValue(null);
+        actions$ = hot('--a', { a: authCompleteAction });
+      });
+
+      it('should not attempt to merge the carts', () => {
+        expect(driverMergeSpy).not.toHaveBeenCalled();
+      });
+    });
 
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {
@@ -210,6 +232,17 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
   describe('when DaffResetPasswordSuccess is triggered with a token', () => {
     let expected;
     const authCompleteAction = new DaffResetPasswordSuccess('token');
+
+    describe('and the cart ID is missing', () => {
+      beforeEach(() => {
+        getCartIdSpy.and.returnValue(null);
+        actions$ = hot('--a', { a: authCompleteAction });
+      });
+
+      it('should not attempt to merge the carts', () => {
+        expect(driverMergeSpy).not.toHaveBeenCalled();
+      });
+    });
 
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {

@@ -66,7 +66,11 @@ export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
       DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction,
     ),
     filter((action) => {
-      if ((action.type === DaffAuthRegisterActionTypes.RegisterSuccessAction || action.type === DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction) && !action.token) {
+      if (
+        !this.cartStorage.getCartId()
+        || (action.type === DaffAuthRegisterActionTypes.RegisterSuccessAction || action.type === DaffAuthResetPasswordActionTypes.ResetPasswordSuccessAction)
+        && !action.token
+      ) {
         return false;
       }
       return true;
