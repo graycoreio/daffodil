@@ -1,0 +1,18 @@
+<daff-notification [status]="statusControl.value">
+	<fa-icon *ngIf="statusControl.value === ''" daffPrefix [icon]="faInfoCircle" [fixedWidth]="true"></fa-icon>
+	<fa-icon *ngIf="statusControl.value === 'success'" daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
+	<fa-icon *ngIf="statusControl.value === 'warn'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+	<fa-icon *ngIf="statusControl.value === 'error'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+	<div daffNotificationTitle>Title</div>
+	<div daffNotificationSubtitle>This is the subtitle with information</div>
+	<div daffNotificationActions>
+		<button daff-button size="sm" color="theme-contrast">Confirm</button>
+		<button daff-stroked-button size="sm" color="theme-contrast">Cancel</button>
+	</div>
+</daff-notification>
+
+<select [formControl]="statusControl">
+	<option value="success">Success</option>
+	<option value="warn">Warn</option>
+	<option value="error">Error</option>
+</select>

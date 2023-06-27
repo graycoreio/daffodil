@@ -1,0 +1,97 @@
+@use '../../../scss/interactions';
+
+.daff-notification {
+	$root: &;
+	display: flex;
+	border-radius: 4px;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	position: relative;
+
+	&:before {
+		content: '';
+		border-radius: 4px 0 0 4px;
+		position: absolute;
+		height: 100%;
+		left: 0;
+		top: 0;
+		width: 4px;
+	}
+
+	.daff-prefix {
+		padding: 16px 0 16px 16px;
+	}
+
+	&__close-icon {
+		@include interactions.clickable();
+		appearance: none;
+		background: none;
+		border: none;
+		color: currentColor;
+		margin: 0;
+		min-height: 3rem;
+		height: 3rem;
+		min-width: 3rem;
+		width: 3rem;
+	}
+
+	&__details {
+		display: flex;
+		gap: 16px;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		width: 100%;
+	}
+
+	&__content {
+		display: flex;
+    flex-direction: column;
+    gap: 4px;
+		padding: 16px 16px 0;
+	}
+
+	&__title {
+		font-weight: 600;
+	}
+
+	&__subtitle {
+		align-self: center;
+		font-weight: normal;
+		line-height: 1.25rem;
+	}
+
+	&__actions {
+    display: flex;
+    gap: 8px;
+		padding: 0 16px 16px;
+	}
+
+	&.toast {
+		#{$root}__details {
+			flex-direction: column;
+		}
+	}
+
+	&.inline {
+		.daff-prefix {
+			padding: 12px 0 12px 16px;
+		}
+
+		#{$root}__details {
+			flex-direction: row;
+			gap: 16px;
+		}
+
+		#{$root}__content {
+			flex-direction: row;
+			flex-wrap: wrap;
+			flex-grow: 1;
+			padding: 12px;
+		}
+
+		#{$root}__actions {
+			min-height: 3rem;
+    	padding: 8px 0;
+		}
+	}
+}

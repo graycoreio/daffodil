@@ -35,6 +35,7 @@
 @use '../src/molecules/menu/menu-theme' as menu;
 @use '../src/molecules/modal/modal-theme' as modal;
 @use '../src/molecules/navbar/navbar-theme' as navbar;
+@use '../notification/src/notification-theme' as notification;
 @use '../src/molecules/paginator/paginator-theme' as paginator;
 @use '../src/molecules/sidebar/sidebar/sidebar-theme' as sidebar;
 @use '../src/molecules/sidebar/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;
@@ -77,6 +78,7 @@
 	@include menu.daff-menu-theme($theme);
 	@include modal.daff-modal-theme($theme);
 	@include navbar.daff-navbar-theme($theme);
+	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
 	@include sidebar-viewport.daff-sidebar-viewport-theme($theme);
