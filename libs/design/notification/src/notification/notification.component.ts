@@ -7,6 +7,8 @@ import {
   ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -76,6 +78,8 @@ export class DaffNotificationComponent
    */
   @Input() duration: number;
 
+  @Output() closeNotification: EventEmitter<void> = new EventEmitter();
+
   /**
    * The mode to layout the content within a notification
    */
@@ -88,7 +92,7 @@ export class DaffNotificationComponent
   @ContentChild(DaffPrefixDirective)
   _prefix: DaffPrefixDirective;
 
-  closeNotification(event: Event) {
-
+  onCloseNotification(event: Event) {
+    this.closeNotification.emit();
   }
 }

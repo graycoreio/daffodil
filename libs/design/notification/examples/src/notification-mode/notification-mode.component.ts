@@ -16,4 +16,8 @@ export class NotificationModeComponent {
   faInfoCircle = faInfoCircle;
 
   modeControl: FormControl = new FormControl('inline');
+
+  handleClose() {
+    console.log('test');
+  }
 }

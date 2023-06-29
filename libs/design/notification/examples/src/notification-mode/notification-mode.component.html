@@ -1,4 +1,4 @@
-<daff-notification [mode]="modeControl.value">
+<daff-notification [mode]="modeControl.value" (closeNotification)="handleClose()">
 	<fa-icon daffPrefix [icon]="faInfoCircle" [fixedWidth]="true"></fa-icon>
 	<div daffNotificationTitle>Title</div>
 	<div daffNotificationSubtitle>This is the subtitle with information</div>
