@@ -7,7 +7,10 @@ import {
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
-import { of } from 'rxjs';
+import {
+  catchError,
+  of,
+} from 'rxjs';
 
 import {
   DaffCart,
@@ -27,6 +30,8 @@ import {
   DaffMagentoCartTransformer,
   createCart,
   getCart,
+  magentoMergeCartsMutation,
+  MagentoMergeCartResponse,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -59,6 +64,7 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
   let mockDaffCartItem: DaffCartItem;
   let mockCartResponse: MagentoGetCartResponse;
   let mockCreateCartResponse: MagentoCreateCartResponse;
+  let mockMergeCartsResponse: MagentoMergeCartResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -112,6 +118,9 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
       __typename: 'Cart',
       cart: mockMagentoCart,
     };
+    mockMergeCartsResponse = {
+      mergeCarts: mockMagentoCart,
+    };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
     magentoCartItemSpy.list.and.returnValue(of(mockDaffCart.items));
@@ -153,62 +162,87 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
     });
 
     describe('when there are graphQL errors', () => {
-      it('should return those errors', done => {
-        service.get(cartId).subscribe(result => {
-          expect(result.errors).toContain(jasmine.any(DaffCartNotFoundError));
-          expect(result.errors).toContain(jasmine.any(DaffProductOutOfStockError));
-          done();
-        });
+      describe('and some of the errors are unrecoverable', () => {
+        it('should throw the first unrecoverable error', done => {
+          service.get(cartId).pipe(
+            catchError((err) => {
+              expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+              done();
+              return of();
+            }),
+          ).subscribe(result => {
+            fail('get should throw, not emit');
+          });
 
-        const op = controller.expectOne(addTypenameToDocument(getCart([])));
+          const op = controller.expectOne(addTypenameToDocument(getCart([])));
 
-        op.flush({
-          errors: [new GraphQLError(
-            'Can\'t find a cart with that ID.',
-            null,
-            null,
-            null,
-            null,
-            null,
-            { category: 'graphql-no-such-entity' },
-          ), new GraphQLError(
-            'Some of the products are out of stock.',
-            null,
-            null,
-            null,
-            null,
-            null,
-            { category: 'graphql-no-such-entity' },
-          )],
+          op.flush({
+            errors: [new GraphQLError(
+              'Can\'t find a cart with that ID.',
+              null,
+              null,
+              null,
+              null,
+              null,
+              { category: 'graphql-no-such-entity' },
+            ), new GraphQLError(
+              'Some of the products are out of stock.',
+              null,
+              null,
+              null,
+              null,
+              null,
+              { category: 'graphql-no-such-entity' },
+            )],
+          });
         });
       });
 
-      it('should should set out of stock errors as recoverable', done => {
-        service.get(cartId).subscribe(result => {
-          expect(result.errors.find(error => error.code === DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK).recoverable).toBeTrue();
-          done();
+      describe('and all of the errors are recoverable', () => {
+        it('should return those errors', done => {
+          service.get(cartId).subscribe(result => {
+            expect(result.errors).toContain(jasmine.any(DaffProductOutOfStockError));
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(getCart([])));
+
+          op.flush({
+            errors: [
+              new GraphQLError(
+                'Some of the products are out of stock.',
+                null,
+                null,
+                null,
+                null,
+                null,
+                { category: 'graphql-no-such-entity' },
+              ),
+            ],
+          });
         });
 
-        const op = controller.expectOne(addTypenameToDocument(getCart([])));
+        it('should should set out of stock errors as recoverable', done => {
+          service.get(cartId).subscribe(result => {
+            expect(result.errors.find(error => error.code === DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK).recoverable).toBeTrue();
+            done();
+          });
 
-        op.flush({
-          errors: [new GraphQLError(
-            'Can\'t find a cart with that ID.',
-            null,
-            null,
-            null,
-            null,
-            null,
-            { category: 'graphql-no-such-entity' },
-          ), new GraphQLError(
-            'Some of the products are out of stock.',
-            null,
-            null,
-            null,
-            null,
-            null,
-            { category: 'graphql-no-such-entity' },
-          )],
+          const op = controller.expectOne(addTypenameToDocument(getCart([])));
+
+          op.flush({
+            errors: [
+              new GraphQLError(
+                'Some of the products are out of stock.',
+                null,
+                null,
+                null,
+                null,
+                null,
+                { category: 'graphql-no-such-entity' },
+              ),
+            ],
+          });
         });
       });
     });
@@ -255,6 +289,117 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
 
       op.flush({
         data: mockCreateCartResponse,
+      });
+    });
+
+    afterEach(() => {
+      controller.verify();
+    });
+  });
+
+  describe('merge', () => {
+    let customerCartId: DaffCart['id'];
+
+    beforeEach(() => {
+      customerCartId = 'customerCartId';
+    });
+
+    it('should return the correct value', done => {
+      service.merge(cartId, customerCartId).subscribe(result => {
+        expect(result.response).toEqual(jasmine.objectContaining(mockDaffCart));
+        done();
+      });
+
+      const op = controller.expectOne(addTypenameToDocument(magentoMergeCartsMutation([])));
+
+      op.flush({
+        data: mockMergeCartsResponse,
+      });
+    });
+
+    describe('when there are graphQL errors', () => {
+      describe('and some of the errors are unrecoverable', () => {
+        it('should throw the first unrecoverable error', done => {
+          service.merge(cartId, customerCartId).pipe(
+            catchError((err) => {
+              expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+              done();
+              return of();
+            }),
+          ).subscribe(result => {
+            fail('get should throw, not emit');
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(magentoMergeCartsMutation([])));
+
+          op.flush({
+            errors: [new GraphQLError(
+              'Can\'t find a cart with that ID.',
+              null,
+              null,
+              null,
+              null,
+              null,
+              { category: 'graphql-no-such-entity' },
+            ), new GraphQLError(
+              'Some of the products are out of stock.',
+              null,
+              null,
+              null,
+              null,
+              null,
+              { category: 'graphql-no-such-entity' },
+            )],
+          });
+        });
+      });
+
+      describe('and all of the errors are recoverable', () => {
+        it('should return those errors', done => {
+          service.merge(cartId, customerCartId).subscribe(result => {
+            expect(result.errors).toContain(jasmine.any(DaffProductOutOfStockError));
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(magentoMergeCartsMutation([])));
+
+          op.flush({
+            errors: [
+              new GraphQLError(
+                'Some of the products are out of stock.',
+                null,
+                null,
+                null,
+                null,
+                null,
+                { category: 'graphql-no-such-entity' },
+              ),
+            ],
+          });
+        });
+
+        it('should should set out of stock errors as recoverable', done => {
+          service.merge(cartId, customerCartId).subscribe(result => {
+            expect(result.errors.find(error => error.code === DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK).recoverable).toBeTrue();
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(magentoMergeCartsMutation([])));
+
+          op.flush({
+            errors: [
+              new GraphQLError(
+                'Some of the products are out of stock.',
+                null,
+                null,
+                null,
+                null,
+                null,
+                { category: 'graphql-no-such-entity' },
+              ),
+            ],
+          });
+        });
       });
     });
 
