@@ -74,7 +74,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
     stubCart = cartFactory.create();
     getCartIdSpy = spyOn(cartStorageService, 'getCartId');
 
-    getCartIdSpy.and.returnValue(String(stubCart.id));
+    getCartIdSpy.and.returnValue(stubCart.id);
     cartResolverSpy.getCartOrFail.and.returnValue(of({
       response: stubCart,
       errors: [],
@@ -85,10 +85,24 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
     expect(effects).toBeTruthy();
   });
 
-  it('should initiate cart resolution', () => {
-    expect(effects.ngrxOnInitEffects() instanceof DaffResolveCart).toEqual(
-      true,
-    );
+  describe('when there is a cart ID in storage', () => {
+    beforeEach(() => {
+      getCartIdSpy.and.returnValue(stubCart.id);
+    });
+
+    it('should initiate cart resolution', () => {
+      expect(effects.ngrxOnInitEffects() instanceof DaffResolveCart).toBeTrue();
+    });
+  });
+
+  describe('when there is a not cart ID in storage', () => {
+    beforeEach(() => {
+      getCartIdSpy.and.returnValue(null);
+    });
+
+    it('should not initiate cart resolution', () => {
+      expect(effects.ngrxOnInitEffects() instanceof DaffResolveCart).toBeFalse();
+    });
   });
 
   describe('onResolveCart() | when DaffResolveCartSuccess is dispatched', () => {

@@ -72,7 +72,7 @@ implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return new DaffResolveCart();
+    return this.cartStorage.getCartId() ? new DaffResolveCart() : { type: '' };
   }
 
   onResolveCart = createEffect(() => (): Observable<Action> => this.actions$.pipe(
