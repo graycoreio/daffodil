@@ -87,13 +87,18 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
         errors: errors?.map(e => {
           const error = transformMagentoCartGraphQlError(e);
 
-          if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => error instanceof klass).length > 0) {
+          if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.find(klass => error instanceof klass)) {
             error.recoverable = true;
           }
 
           return error;
         }) || [],
       })),
+      switchMap((resp) =>
+        resp.errors.reduce((acc, err) => acc && err.recoverable, true)
+          ? of(resp)
+          : throwError(() => resp.errors.filter((err) => !err.recoverable)[0]),
+      ),
     );
   }
 
@@ -126,6 +131,8 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
         source: guestCart,
         destination: customerCart,
       },
+      errorPolicy: 'all',
+      fetchPolicy: 'network-only',
     }).pipe(
       map(({ data, errors }) => ({
         response: data ? this.cartTransformer.transform(data.mergeCarts) : undefined,
@@ -139,6 +146,11 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
           return error;
         }) || [],
       })),
+      switchMap((resp) =>
+        resp.errors.reduce((acc, err) => acc && err.recoverable, true)
+          ? of(resp)
+          : throwError(() => resp.errors.filter((err) => !err.recoverable)[0]),
+      ),
     );
   };
 }
