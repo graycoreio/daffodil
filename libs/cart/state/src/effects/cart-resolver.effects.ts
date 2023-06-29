@@ -28,13 +28,13 @@ import {
   DAFF_CART_ERROR_MATCHER,
   DaffCartServerSideResolutionError,
   DaffCartStorageResolutionError,
-  DaffCartNotFoundOrCreatedResolutionError,
   DaffCartResolutionError,
 } from '@daffodil/cart';
 import {
   DaffCartDriver,
   DaffCartServiceInterface,
-  DaffCartNotFoundError,
+  DaffCartDriverResolveService,
+  daffCartDriverHandleCartNotFound,
 } from '@daffodil/cart/driver';
 import {
   DaffStorageServiceError,
@@ -43,7 +43,6 @@ import {
   DaffInheritableError,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import { DaffDriverResponse } from '@daffodil/driver';
 
 import {
   DaffCartActionTypes,
@@ -68,6 +67,7 @@ implements OnInitEffects {
     private actions$: Actions,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private cartStorage: DaffCartStorageService,
+    private cartResolver: DaffCartDriverResolveService,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
   ) {}
 
@@ -83,57 +83,31 @@ implements OnInitEffects {
         () => action.type === DaffCartActionTypes.ResolveCartSuccessAction,
         // then just cancel the outstanding operation
         EMPTY,
-        defer(() => of(this.cartStorage.getCartId())).pipe(
-          switchMap(cartId =>
-            cartId ? of({ id: cartId }) : this.driver.create(),
+        this.cartResolver.getCartOrFail().pipe(
+          map(({ response, errors }) =>
+            errors.length > 0
+              ? new DaffResolveCartPartialSuccess(response, errors.map(error => this.errorMatcher(error)))
+              : new DaffResolveCartSuccess(response),
           ),
-          switchMap(({ id }) => this.driver.get(id)),
-          switchMap(({ response, errors }) => {
-            if (errors.length === 0) {
-              return of(new DaffResolveCartSuccess(response));
-            }
-
-            const hasOnlyRecoverableErrors = errors.reduce((acc, error) => acc && error.recoverable, true);
-
-            if (hasOnlyRecoverableErrors) {
-              return of(new DaffResolveCartPartialSuccess(response, errors.map(error => this.errorMatcher(error))));
-            }
-
-            if (errors.find(error => error instanceof DaffCartNotFoundError)) {
-              return this.driver.create().pipe(
-                switchMap(({ id }) => this.driver.get(id)),
-                map(resp => new DaffResolveCartSuccess(resp.response)),
-                catchError((innerError: DaffError) => of(
-                  new DaffResolveCartFailure([this.errorMatcher(
-                    new DaffCartNotFoundOrCreatedResolutionError(innerError.message),
-                  )]),
-                )),
-              );
-            }
-
-            // there are no special case errors, DaffResolveCartFailure will suffice
-            // just map the errors
-            return of(new DaffResolveCartFailure(errors.map(error => this.errorMatcher(
-              // I wish there was a better way to check this
-              error instanceof DaffInheritableError || !!(<DaffError>error).code
-                ? error
-                : new DaffCartResolutionError(error.message),
-            ))),
-            );
-          }),
+          daffCartDriverHandleCartNotFound(this.cartStorage),
           catchError((error: Error) => {
             switch (true) {
               case error instanceof DaffServerSideStorageError:
                 return of(new DaffResolveCartServerSide(this.errorMatcher(
                   new DaffCartServerSideResolutionError(error.message),
                 )));
+
               case error instanceof DaffStorageServiceError:
                 return of(new DaffResolveCartFailure([this.errorMatcher(
                   new DaffCartStorageResolutionError(error.message),
                 )]));
+
               default:
                 return of(new DaffResolveCartFailure([this.errorMatcher(
-                  new DaffCartResolutionError(error.message),
+                  // I wish there was a better way to check this
+                  error instanceof DaffInheritableError || !!(<DaffError>error).code
+                    ? error
+                    : new DaffCartResolutionError(error.message),
                 )]));
             }
           }),
