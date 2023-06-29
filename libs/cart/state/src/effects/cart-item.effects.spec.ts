@@ -12,6 +12,7 @@ import {
 import {
   Observable,
   of,
+  throwError,
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
@@ -24,6 +25,7 @@ import {
 import {
   DaffCartItemServiceInterface,
   DaffCartItemDriver,
+  DaffCartDriverResolveService,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
@@ -82,8 +84,11 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
   let driverUpdateSpy: jasmine.Spy;
   let driverDeleteSpy: jasmine.Spy;
   let getCartIdSpy: jasmine.Spy;
+  let cartResolverSpy: jasmine.SpyObj<DaffCartDriverResolveService>;
 
   beforeEach(() => {
+    cartResolverSpy = jasmine.createSpyObj('DaffCartDriverResolveService', ['getCartIdOrFail']);
+
     TestBed.configureTestingModule({
       imports: [
         DaffTestingCartDriverModule.forRoot(),
@@ -97,6 +102,10 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
         {
           provide: DaffCartItemStateDebounceTime,
           useValue: 4000,
+        },
+        {
+          provide: DaffCartDriverResolveService,
+          useValue: cartResolverSpy,
         },
       ],
     });
@@ -216,28 +225,52 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
       mockCart.items = [];
     });
 
-    describe('and the call to CartItemService is successful', () => {
+    describe('and the cart ID retrieval succeeds', () => {
       beforeEach(() => {
-        mockCart.items.push(mockCartItem);
-        driverAddSpy.and.returnValue(of(mockCart));
-        const cartItemAddSuccessAction = new DaffCartItemAddSuccess(mockCart);
-        actions$ = hot('--a', { a: cartItemAddAction });
-        expected = cold('--b', { b: cartItemAddSuccessAction });
+        cartResolverSpy.getCartIdOrFail.and.returnValue(of(mockCart.id));
       });
 
-      it('should dispatch a CartItemAddSuccess action', () => {
-        expect(effects.add$).toBeObservable(expected);
+      describe('and the call to CartItemService is successful', () => {
+        beforeEach(() => {
+          mockCart.items.push(mockCartItem);
+          driverAddSpy.and.returnValue(of(mockCart));
+          const cartItemAddSuccessAction = new DaffCartItemAddSuccess(mockCart);
+          actions$ = hot('--a', { a: cartItemAddAction });
+          expected = cold('--b', { b: cartItemAddSuccessAction });
+        });
+
+        it('should dispatch a CartItemAddSuccess action', () => {
+          expect(effects.add$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the call to CartItemService fails', () => {
+        beforeEach(() => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add cart item' };
+          const response = cold('#', {}, error);
+          driverAddSpy.and.returnValue(response);
+          const cartItemAddFailureAction = new DaffCartItemAddFailure(error);
+          actions$ = hot('--a', { a: cartItemAddAction });
+          expected = cold('--b', { b: cartItemAddFailureAction });
+        });
+
+        it('should dispatch a CartItemAddFailure action', () => {
+          expect(effects.add$).toBeObservable(expected);
+        });
       });
     });
 
-    describe('and the call to CartItemService fails', () => {
+    describe('and the cart ID retrieval fails', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add cart item' };
-        const response = cold('#', {}, error);
-        driverAddSpy.and.returnValue(response);
         const cartItemAddFailureAction = new DaffCartItemAddFailure(error);
         actions$ = hot('--a', { a: cartItemAddAction });
-        expected = cold('--b', { b: cartItemAddFailureAction });
+        expected = cold('--(b|)', { b: cartItemAddFailureAction });
+        cartResolverSpy.getCartIdOrFail.and.returnValue(throwError(() => error));
+      });
+
+      it('should not try to add the item', () => {
+        expect(driverAddSpy).not.toHaveBeenCalled();
       });
 
       it('should dispatch a CartItemAddFailure action', () => {

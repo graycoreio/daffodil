@@ -22,6 +22,7 @@ import {
   debounceTime,
   mergeMap,
   take,
+  concatMap,
 } from 'rxjs/operators';
 
 import {
@@ -31,8 +32,10 @@ import {
   DAFF_CART_ERROR_MATCHER,
 } from '@daffodil/cart';
 import {
+  DaffCartDriverResolveService,
   DaffCartItemDriver,
   DaffCartItemServiceInterface,
+  daffCartDriverHandleCartNotFound,
 } from '@daffodil/cart/driver';
 import { ErrorTransformer } from '@daffodil/core/state';
 
@@ -50,13 +53,13 @@ import {
   DaffCartItemList,
   DaffCartItemListSuccess,
   DaffCartItemListFailure,
-  DaffCartItemAdd,
   DaffCartItemAddSuccess,
   DaffCartItemAddFailure,
   DaffCartItemStateReset,
   DaffCartItemDeleteOutOfStock,
   DaffCartItemDeleteOutOfStockSuccess,
   DaffCartItemDeleteOutOfStockFailure,
+  DaffCartItemActions,
 } from '../actions/public_api';
 import { DaffCartItemStateDebounceTime } from '../injection-tokens/cart-item-state-debounce-time';
 import { DaffStatefulCartItem } from '../models/public_api';
@@ -69,12 +72,13 @@ export class DaffCartItemEffects<
   V extends DaffCart,
 > {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffCartItemActions<T, U, V>>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
     private storage: DaffCartStorageService,
     @Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number,
     private store: Store,
+    private cartResolver: DaffCartDriverResolveService,
   ) {}
 
 
@@ -99,18 +103,33 @@ export class DaffCartItemEffects<
     ),
   ));
 
+  private addCartItem$(
+    cartId: DaffCart['id'],
+    input: U,
+  ) {
+    return this.driver.add(
+      cartId,
+      input,
+    ).pipe(
+      map((resp: V) => new DaffCartItemAddSuccess(resp)),
+      catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error)))),
+    );
+  }
 
   add$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemAddAction),
-    switchMap((action: DaffCartItemAdd<U>) =>
-      this.driver.add(
-        this.storage.getCartId(),
+    concatMap((action) => combineLatest([
+      of(action),
+      this.cartResolver.getCartIdOrFail(),
+    ])),
+    mergeMap(([action, id]) =>
+      this.addCartItem$(
+        id,
         action.input,
-      ).pipe(
-        map((resp: V) => new DaffCartItemAddSuccess(resp)),
-        catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error)))),
       ),
     ),
+    daffCartDriverHandleCartNotFound(this.storage),
+    catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error)))),
   ));
 
 
