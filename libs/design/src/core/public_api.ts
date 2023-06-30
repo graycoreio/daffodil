@@ -1,6 +1,6 @@
 // Core
 export * from './prefix-suffix/public_api';
-export * from './colorable/colorable';
+export * from './colorable/public_api';
 export * from './breakpoints/breakpoints';
 export * from './constructor/constructor';
 export * from './statusable/public_api';
