@@ -28,10 +28,7 @@ export function daffSearchProductCompositeEnsureItemsMetaReducer(reducer: Reduce
       case DaffSearchActionTypes.SearchIncrementalSuccessAction:
         return reducer(state, new DaffSearchIncrementalSuccess({
           ...action.payload,
-          collection: {
-            ...action.payload.collection,
-            [DAFF_SEARCH_PRODUCT_RESULT_KIND]: daffProductCompositeEnsureItems<DaffSearchProductCompositeResult>(state, action.payload.collection[DAFF_SEARCH_PRODUCT_RESULT_KIND] || []),
-          },
+          [DAFF_SEARCH_PRODUCT_RESULT_KIND]: daffProductCompositeEnsureItems<DaffSearchProductCompositeResult>(state, action.payload[DAFF_SEARCH_PRODUCT_RESULT_KIND] || []),
         }));
 
       default:

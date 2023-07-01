@@ -28,10 +28,7 @@ export function daffSearchProductConfigurableEnsureChildrenMetaReducer(reducer: 
       case DaffSearchActionTypes.SearchIncrementalSuccessAction:
         return reducer(state, new DaffSearchIncrementalSuccess({
           ...action.payload,
-          collection: {
-            ...action.payload.collection,
-            [DAFF_SEARCH_PRODUCT_RESULT_KIND]: daffProductConfigurableEnsureChildren<DaffSearchProductConfigurableResult>(state, action.payload.collection[DAFF_SEARCH_PRODUCT_RESULT_KIND] || []),
-          },
+          [DAFF_SEARCH_PRODUCT_RESULT_KIND]: daffProductConfigurableEnsureChildren<DaffSearchProductConfigurableResult>(state, action.payload[DAFF_SEARCH_PRODUCT_RESULT_KIND] || []),
         }));
 
       default:

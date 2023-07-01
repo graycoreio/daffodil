@@ -10,7 +10,10 @@ import {
 } from 'rxjs/operators';
 
 import { DaffMagentoCategoryTransformerService } from '@daffodil/category/driver/magento';
-import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import {
+  DaffSearchResultCollection,
+  daffSearchTransformResultsToCollection,
+} from '@daffodil/search';
 import {
   DaffSearchCategoryResult,
   daffTransformCategoriesToSearchResults,
@@ -61,7 +64,9 @@ export class DaffSearchCategoryMagentoDriver implements DaffSearchCategoryDriver
     );
   }
 
-  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse<DaffSearchCategoryResult>> {
-    return this.search(query, options);
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection<DaffSearchCategoryResult>> {
+    return this.search(query, options).pipe(
+      map(({ collection }) => collection),
+    );
   }
 }

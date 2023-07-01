@@ -24,10 +24,7 @@ class TestDriver1 implements DaffSearchDriverKindedInterface {
     });
   }
   incremental(query: string) {
-    return of({
-      collection: {},
-      metadata: {},
-    });
+    return of({});
   }
 }
 
@@ -43,10 +40,7 @@ class TestDriver2 implements DaffSearchDriverKindedInterface {
     });
   }
   incremental(query: string) {
-    return of({
-      collection: {},
-      metadata: {},
-    });
+    return of({});
   }
 }
 

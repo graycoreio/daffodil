@@ -79,7 +79,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
     };
 
     driverIncrementalSpy = spyOn(daffDriver, 'incremental');
-    driverIncrementalSpy.and.returnValue(of(mockResponse));
+    driverIncrementalSpy.and.returnValue(of(mockCollection));
   });
 
   it('should be created', () => {
@@ -100,7 +100,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
           expect(actual).toEqual(ex);
         });
 
-        const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockResponse);
+        const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockCollection);
 
         testScheduler.run(({ hot, expectObservable }) => {
           actions$ = hot('--a-a-a-a-a', { a: searchIncrementalAction });
@@ -122,10 +122,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
         expect(actual).toEqual(ex);
       });
 
-      const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess({
-        collection: mockCollection,
-        metadata: {},
-      });
+      const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockCollection);
 
       testScheduler.run(({ hot, expectObservable }) => {
         actions$ = hot('--a', { a: searchIncrementalAction });
@@ -155,10 +152,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
           expect(actual).toEqual(ex);
         });
 
-        const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess({
-          collection: mockCollection,
-          metadata: {},
-        });
+        const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockCollection);
 
         testScheduler.run(({ hot, expectObservable }) => {
           actions$ = hot('--a', { a: searchIncrementalAction });
@@ -185,7 +179,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
 
         testScheduler.run(({ hot, expectObservable, cold }) => {
           const error = new DaffSearchInvalidAPIResponseError('Failed to search');
-          const response = cold<DaffSearchDriverResponse>('#', {}, error);
+          const response = cold<DaffSearchResultCollection>('#', {}, error);
           driverIncrementalSpy.and.returnValue(response);
           searchResultIncrementalFailureAction = new DaffSearchIncrementalFailure(daffTransformErrorToStateError(error));
           actions$ = hot('--a', { a: searchIncrementalAction });

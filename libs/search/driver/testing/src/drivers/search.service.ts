@@ -4,7 +4,10 @@ import {
   of,
 } from 'rxjs';
 
-import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import {
+  DaffSearchResultCollection,
+  daffSearchTransformResultsToCollection,
+} from '@daffodil/search';
 import {
   DaffSearchDriverInterface,
   DaffSearchDriverOptions,
@@ -35,11 +38,8 @@ export class DaffTestingSearchDriver implements DaffSearchDriverInterface {
     });
   }
 
-  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection> {
     const limit = options.limit || 5;
-    return of({
-      collection: daffSearchTransformResultsToCollection(this.searchResultFactory.createMany(limit)),
-      metadata: {},
-    });
+    return of(daffSearchTransformResultsToCollection(this.searchResultFactory.createMany(limit)));
   }
 }

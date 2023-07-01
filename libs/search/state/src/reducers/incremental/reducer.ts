@@ -23,7 +23,7 @@ export function daffSearchIncrementalReducer<T extends DaffSearchResult = DaffSe
       return adapter.search(action.query);
 
     case DaffSearchActionTypes.SearchIncrementalSuccessAction:
-      return adapter.storeResults(action.payload.collection);
+      return adapter.storeResults(action.payload);
 
     case DaffSearchActionTypes.SearchIncrementalFailureAction:
       return adapter.storeError(action.payload);

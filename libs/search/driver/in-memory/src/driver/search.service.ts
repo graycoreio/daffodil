@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  map,
+} from 'rxjs';
 
+import { DaffSearchResultCollection } from '@daffodil/search';
 import {
   DaffSearchDriverInterface,
   DaffSearchDriverOptions,
@@ -31,8 +35,10 @@ export class DaffInMemorySearchDriver implements DaffSearchDriverInterface {
     return this.http.get<DaffSearchDriverResponse>(`${this.url}?query=${query}`);
   }
 
-  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection> {
     // TODO: handle options
-    return this.http.get<DaffSearchDriverResponse>(`${this.url}?query=${query}`);
+    return this.http.get<DaffSearchDriverResponse>(`${this.url}?query=${query}`).pipe(
+      map(({ collection }) => collection),
+    );
   }
 }
