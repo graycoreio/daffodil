@@ -10,6 +10,7 @@ import {
 import {
   of,
   EMPTY,
+  asyncScheduler,
 } from 'rxjs';
 import {
   switchMap,
@@ -18,6 +19,7 @@ import {
   repeat,
   filter,
   tap,
+  delay,
 } from 'rxjs/operators';
 
 import {
@@ -111,12 +113,13 @@ export class DaffAuthEffects {
     }),
   ));
 
-  clearClientCache$ = createEffect(() => this.actions$.pipe(
+  clearClientCache$ = createEffect(() => (delayTime = 10, scheduler = asyncScheduler) => this.actions$.pipe(
     ofType(
       DaffAuthActionTypes.AuthCheckFailureAction,
       DaffAuthActionTypes.AuthGuardLogoutAction,
       DaffAuthLoginActionTypes.LogoutSuccessAction,
     ),
+    delay(delayTime, scheduler),
     tap(() => {
       this.clientCache.reset();
     }),
