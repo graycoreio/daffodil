@@ -113,7 +113,7 @@ export class DaffAuthEffects {
     }),
   ));
 
-  clearClientCache$ = createEffect(() => (delayTime = 10, scheduler = asyncScheduler) => this.actions$.pipe(
+  clearClientCache$ = (delayTime = 10, scheduler = asyncScheduler) => createEffect(() => this.actions$.pipe(
     ofType(
       DaffAuthActionTypes.AuthCheckFailureAction,
       DaffAuthActionTypes.AuthGuardLogoutAction,
