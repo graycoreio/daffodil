@@ -30,20 +30,31 @@ import {
   DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM,
   DaffMagentoProductTransform,
 } from '@daffodil/product/driver/magento';
-import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import {
+  DaffSearchResultCollection,
+  daffSearchTransformResultsToCollection,
+} from '@daffodil/search';
 import {
   daffTransformProductsToSearchResults,
   DAFF_SEARCH_PRODUCT_RESULT_KIND,
+  DaffSearchProductResult,
 } from '@daffodil/search-product';
 import {
   DaffSearchProductDriverInterface,
   DaffSearchProductDriverOptions,
   DaffSearchProductDriverResponse,
 } from '@daffodil/search-product/driver';
+import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 
 import { transformSearchProductMagentoError } from './errors/transform';
-import { MagentoSearchForProductsResponse } from './models/get-product-response.interface';
-import { productSearch } from './queries/product-search';
+import {
+  MagentoSearchForProductsResponse,
+  MagentoSearchProductIncrementalResponse,
+} from './models/public_api';
+import {
+  daffSearchProductIncrementalQuery,
+  productSearch,
+} from './queries/public_api';
 
 /**
  * A service for searching products in Magento.
@@ -135,52 +146,16 @@ export class DaffSearchProductMagentoDriver implements DaffSearchProductDriverIn
     );
   }
 
-  incremental(query: string, options: DaffSearchProductDriverOptions = {}): Observable<DaffSearchProductDriverResponse> {
-    const queryVariables = this.getVariables(options);
-
-    return combineLatest([
-      this.apollo.query<MagentoSearchForProductsResponse>({
-        query: productSearch(this.extraPreviewFragments),
-        variables: {
-          ...queryVariables,
-          search: query,
-        },
-      }),
-      this.apollo.query<MagentoProductGetFilterTypesResponse>({
-        query: MagentoProductGetFilterTypes,
-      }),
-    ]).pipe(
-      map(([products, filters]) => ({
-        products: products.data.products.items,
-        filters: magentoProductAddMetadataTypesToAggregates(
-          filters.data.__type.inputFields,
-          products.data.products.aggregations,
-        ),
-        sortFields: products.data.products.sort_fields,
-        pageInfo: products.data.products.page_info,
-        count: products.data.products.total_count,
-      })),
-      map(({ products, filters, sortFields, pageInfo, count }) => ({
-        products: daffSearchTransformResultsToCollection(daffTransformProductsToSearchResults(
-          this.magentoProductsTransformers.transformManyMagentoProducts(products, this.config.baseMediaUrl),
-        )),
-        metadata: magentoProductCollectionMetadataTransform(
-          filters,
-          pageInfo,
-          sortFields,
-          products,
-          count,
-          options.appliedSortOption,
-          options.appliedSortDirection,
-        ),
-      })),
-      map(({ products, metadata }) => ({
-        collection: products,
-        metadata: {
-          ...metadata,
-          filters: daffApplyRequestsToFilters(options.filterRequests || [], metadata.filters),
-        },
-      })),
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
+    return this.apollo.query<MagentoSearchProductIncrementalResponse>({
+      query: daffSearchProductIncrementalQuery(this.extraPreviewFragments),
+      variables: {
+        search: query,
+      },
+    }).pipe(
+      map(({ data }) => daffSearchTransformResultsToCollection(daffTransformProductsToSearchResults(
+        this.magentoProductsTransformers.transformManyMagentoProducts(data.products.items, this.config.baseMediaUrl),
+      ))),
       catchError(err => throwError(() => transformSearchProductMagentoError(err))),
     );
   }

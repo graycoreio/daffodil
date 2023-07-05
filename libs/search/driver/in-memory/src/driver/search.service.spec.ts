@@ -86,7 +86,7 @@ describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
 
     it('should send a get request and return a collection of search results', done => {
       result.subscribe((resp) => {
-        expect(resp).toEqual(mockResponse);
+        expect(resp).toEqual(mockResponse.collection);
         done();
       });
 

@@ -1,1 +1,2 @@
-export { MagentoSearchForProductsResponse } from './get-product-response.interface';
+export { MagentoSearchForProductsResponse } from './search-response.interface';
+export { MagentoSearchProductIncrementalResponse } from './incremental-response.interface';

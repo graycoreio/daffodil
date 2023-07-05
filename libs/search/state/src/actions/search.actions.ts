@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffSearchResult } from '@daffodil/search';
+import {
+  DaffSearchResult,
+  DaffSearchResultCollection,
+} from '@daffodil/search';
 import {
   DaffSearchDriverOptions,
   DaffSearchDriverResponse,
@@ -67,7 +70,7 @@ export class DaffSearchIncremental implements Action {
 export class DaffSearchIncrementalSuccess<T extends DaffSearchResult = DaffSearchResult> implements Action {
   readonly type = DaffSearchActionTypes.SearchIncrementalSuccessAction;
 
-  constructor(public payload: DaffSearchDriverResponse<T>) {}
+  constructor(public payload: DaffSearchResultCollection<T>) {}
 }
 
 /**

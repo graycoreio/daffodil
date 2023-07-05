@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffSearchResult } from '@daffodil/search';
+import {
+  DaffSearchResult,
+  DaffSearchResultCollection,
+} from '@daffodil/search';
 
 import type { DaffSearchDriverResponse } from './response.interface';
 
@@ -46,5 +49,5 @@ export interface DaffSearchDriverInterface<
    * Rapidly searches for entities. This is intended to be called as the user types their search query.
    * Less information is requested in comparison to `search`.
    */
-  incremental(query: string, options?: DaffSearchDriverOptions): Observable<DaffSearchDriverResponse<T>>;
+  incremental(query: string, options?: DaffSearchDriverOptions): Observable<DaffSearchResultCollection<T>>;
 }

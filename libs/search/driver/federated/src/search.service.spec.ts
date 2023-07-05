@@ -32,10 +32,7 @@ class TestDriver1 implements DaffSearchDriverKindedInterface {
 
   incremental(query: string) {
     return of({
-      collection: {
-        testIncremental1: [],
-      },
-      metadata: {},
+      testIncremental1: [],
     });
   }
 }
@@ -57,10 +54,7 @@ class TestDriver2 implements DaffSearchDriverKindedInterface {
 
   incremental(query: string) {
     return of({
-      collection: {
-        testIncremental2: [],
-      },
-      metadata: {},
+      testIncremental2: [],
     });
   }
 }
@@ -103,7 +97,7 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
   });
 
   describe('incremental | invoking injected drivers', () => {
-    let result: Observable<DaffSearchDriverResponse>;
+    let result: Observable<DaffSearchResultCollection>;
 
     beforeEach(() => {
       result = service.incremental('query');
@@ -111,10 +105,8 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
 
     it('should invoke and collect the result from the injected drivers', () => {
       const expected = cold('(a|)', { a: jasmine.objectContaining({
-        collection: {
-          testIncremental1: jasmine.truthy(),
-          testIncremental2: jasmine.truthy(),
-        },
+        testIncremental1: jasmine.truthy(),
+        testIncremental2: jasmine.truthy(),
       }) });
 
       expect(result).toBeObservable(expected);

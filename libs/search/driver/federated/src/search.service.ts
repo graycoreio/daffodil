@@ -8,6 +8,7 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { DaffSearchResultCollection } from '@daffodil/search';
 import {
   DaffSearchDriverInterface,
   DaffSearchDriverKindedInterface,
@@ -47,15 +48,12 @@ export class DaffSearchFederatedDriver implements DaffSearchDriverInterface {
     );
   }
 
-  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {
-    return combineLatest(this.drivers.reduce<Record<string, Observable<DaffSearchDriverResponse>>>((acc, driver) => {
+  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection> {
+    return combineLatest(this.drivers.reduce<Record<string, Observable<DaffSearchResultCollection>>>((acc, driver) => {
       acc[driver.kind] = driver.incremental(query, options);
       return acc;
     }, {})).pipe(
-      map(responses => ({
-        collection: Object.assign({}, ...Object.values(responses).map(({ collection }) => collection)),
-        metadata: this.config.preferredDriverKind ? responses[this.config.preferredDriverKind].metadata : {},
-      })),
+      map(responses => Object.assign({}, ...Object.values(responses))),
     );
   }
 }

@@ -33,7 +33,10 @@ import {
   MagentoSimpleProductFactory,
 } from '@daffodil/product/driver/magento/testing';
 import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
-import { MagentoSearchForProductsResponse } from '@daffodil/search-product/driver/magento';
+import {
+  MagentoSearchForProductsResponse,
+  daffSearchProductIncrementalQuery,
+} from '@daffodil/search-product/driver/magento';
 
 import { DaffSearchProductMagentoDriver } from './product-search.service';
 import { productSearch } from './queries/product-search';
@@ -182,19 +185,14 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
     describe('when the call to the Magento API is successful', () => {
       it('should return a collection of product search results', done => {
         service.incremental('query').subscribe(result => {
-          expect(result.collection[DAFF_SEARCH_PRODUCT_RESULT_KIND][0].id).toEqual(mockSimpleProduct.sku);
-          expect((<DaffCollectionMetadata>result.metadata).count).toEqual(mockSearchProductsResponse.products.total_count);
+          expect(result[DAFF_SEARCH_PRODUCT_RESULT_KIND][0].id).toEqual(mockSimpleProduct.sku);
           done();
         });
 
-        const searchOp = controller.expectOne(addTypenameToDocument(productSearch()));
-        const filterOp = controller.expectOne(addTypenameToDocument(MagentoProductGetFilterTypes));
+        const searchOp = controller.expectOne(addTypenameToDocument(daffSearchProductIncrementalQuery()));
 
         searchOp.flush({
           data: mockSearchProductsResponse,
-        });
-        filterOp.flush({
-          data: mockGetFilterTypesResponse,
         });
       });
     });
@@ -209,7 +207,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
           }),
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(productSearch()));
+        const op = controller.expectOne(addTypenameToDocument(daffSearchProductIncrementalQuery()));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find any products matching that query.',

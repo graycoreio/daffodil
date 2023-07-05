@@ -79,10 +79,7 @@ describe('@daffodil/search/state | daffSearchIncrementalReducer', () => {
         kind: 'resultKind',
       });
 
-      const searchResultIncrementalSuccess = new DaffSearchIncrementalSuccess({
-        collection: daffSearchTransformResultsToCollection([mockSearchResult]),
-        metadata: {},
-      });
+      const searchResultIncrementalSuccess = new DaffSearchIncrementalSuccess(daffSearchTransformResultsToCollection([mockSearchResult]));
 
       result = reducer(state, searchResultIncrementalSuccess);
     });

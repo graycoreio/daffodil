@@ -21,9 +21,14 @@ export function daffSearchProductEntitiesReducer<T extends DaffSearchProductResu
 
   switch (action.type) {
     case DaffSearchActionTypes.SearchLoadSuccessAction:
-    case DaffSearchActionTypes.SearchIncrementalSuccessAction:
       return adapter.upsertMany(
         action.payload.collection[DAFF_SEARCH_PRODUCT_RESULT_KIND] || [],
+        state,
+      );
+
+    case DaffSearchActionTypes.SearchIncrementalSuccessAction:
+      return adapter.upsertMany(
+        action.payload[DAFF_SEARCH_PRODUCT_RESULT_KIND] || [],
         state,
       );
 

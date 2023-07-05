@@ -9,7 +9,10 @@ import {
 } from '@daffodil/search';
 import { DaffSearchProductResult } from '@daffodil/search-product';
 import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
-import { DaffSearchLoadSuccess } from '@daffodil/search/state';
+import {
+  DaffSearchIncrementalSuccess,
+  DaffSearchLoadSuccess,
+} from '@daffodil/search/state';
 
 import { daffSearchProductEntitiesReducer as reducer } from './entities.reducer';
 
@@ -44,7 +47,7 @@ describe('@daffodil/search-product-product/state | daffSearchProductEntitiesRedu
   });
 
   describe('when SearchLoadSuccessAction is triggered', () => {
-    let result;
+    let result: EntityState<DaffSearchProductResult>;
 
     beforeEach(() => {
       const searchResultLoadSuccess = new DaffSearchLoadSuccess({
@@ -53,6 +56,20 @@ describe('@daffodil/search-product-product/state | daffSearchProductEntitiesRedu
       });
 
       result = reducer(initialState, searchResultLoadSuccess);
+    });
+
+    it('should set search from action.payload', () => {
+      expect(result.entities[searchResultId]).toEqual(search);
+    });
+  });
+
+  describe('when SearchIncrementalSuccessAction is triggered', () => {
+    let result: EntityState<DaffSearchProductResult>;
+
+    beforeEach(() => {
+      const searchResultIncrementalSuccess = new DaffSearchIncrementalSuccess(daffSearchTransformResultsToCollection([search]));
+
+      result = reducer(initialState, searchResultIncrementalSuccess);
     });
 
     it('should set search from action.payload', () => {

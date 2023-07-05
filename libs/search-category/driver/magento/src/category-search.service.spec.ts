@@ -94,7 +94,7 @@ describe('@daffodil/search-category/driver/magento | DaffSearchCategoryMagentoDr
     describe('when the call to the Magento API is successful', () => {
       it('should return a collection of category search results', done => {
         service.incremental('query').subscribe(result => {
-          expect(result.collection[DAFF_SEARCH_CATEGORY_RESULT_KIND][0].id).toEqual(mockCategory.uid);
+          expect(result[DAFF_SEARCH_CATEGORY_RESULT_KIND][0].id).toEqual(mockCategory.uid);
           done();
         });
 
