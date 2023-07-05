@@ -8,6 +8,7 @@ import {
   Observable ,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
@@ -38,10 +39,15 @@ import {
 
 import { DaffAuthEffects } from './auth.effects';
 
+const getScheduler = () => new TestScheduler((actual, expected) => {
+  expect(actual).toEqual(expected);
+});
+
 describe('@daffodil/auth/state | DaffAuthEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthEffects;
 
+  let scheduler: TestScheduler;
   let daffAuthStorageService: DaffAuthStorageService;
   let daffAuthDriver: jasmine.SpyObj<DaffAuthServiceInterface>;
   let clientCacheSpy: jasmine.SpyObj<DaffDriverHttpClientCacheServiceInterface>;
@@ -204,13 +210,18 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
       beforeEach(() => {
         revokeAction = new DaffAuthCheckFailure(null);
-        actions$ = hot('--a', { a: revokeAction });
-        expected = cold('---');
       });
 
-      it('should reset the client cache', () => {
-        expect(effects.clearClientCache$).toBeObservable(expected);
-        expect(clientCacheSpy.reset).toHaveBeenCalledWith();
+      it('should reset the client cache after a delay', () => {
+        scheduler = getScheduler();
+        scheduler.run(({ expectObservable, time, flush, hot: createHot }) => {
+          actions$ = createHot('--a-', { a: revokeAction });
+          expectObservable(effects.clearClientCache$(10, scheduler)).toBe('---');
+          expect(clientCacheSpy.reset).not.toHaveBeenCalled();
+          time('10|');
+          flush();
+          expect(clientCacheSpy.reset).toHaveBeenCalledWith();
+        });
       });
     });
 
@@ -219,13 +230,18 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
       beforeEach(() => {
         revokeAction = new DaffAuthGuardLogout(null);
-        actions$ = hot('--a', { a: revokeAction });
-        expected = cold('---');
       });
 
-      it('should reset the client cache', () => {
-        expect(effects.clearClientCache$).toBeObservable(expected);
-        expect(clientCacheSpy.reset).toHaveBeenCalledWith();
+      it('should reset the client cache after a delay', () => {
+        scheduler = getScheduler();
+        scheduler.run(({ expectObservable, time, flush, hot: createHot }) => {
+          actions$ = createHot('--a-', { a: revokeAction });
+          expectObservable(effects.clearClientCache$(10, scheduler)).toBe('---');
+          expect(clientCacheSpy.reset).not.toHaveBeenCalled();
+          time('10|');
+          flush();
+          expect(clientCacheSpy.reset).toHaveBeenCalledWith();
+        });
       });
     });
   });
