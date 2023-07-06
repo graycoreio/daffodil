@@ -18,31 +18,37 @@
 	&[disabled],
 	&.daff-button--disabled {
 		cursor: not-allowed;
+
+		&:hover {
+			&:after {
+				opacity: 0;
+			}
+		}
 	}
-}
 
-@mixin daff-button-animation() {
-	transition:
-		background-color 300ms,
-		border-color 300ms,
-		box-shadow 300ms,
-		color 300ms,
-		transform 300ms;
-	will-change: background-color, border-color, box-shadow, color;
-}
-
-@mixin prefix-suffix {
+	.daff-button__content,
 	.daff-prefix,
 	.daff-suffix {
-		vertical-align: middle;
+		z-index: 2;
+	}
+}
+
+@mixin daff-button-background($border-radius) {
+	&:after {
+		content: '';
+		border-radius: $border-radius;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity 300ms;
 	}
 
-	.daff-prefix {
-		margin-right: 8px;
-	}
-
-	.daff-suffix {
-		margin-left: 8px;
+	&:hover,
+	&:active {
+		&:after {
+			opacity: 1;
+		}
 	}
 }
 
@@ -51,8 +57,6 @@
 .daff-stroked-button,
 .daff-flat-button {
 	@include daff-button();
-	@include daff-button-animation();
-	@include prefix-suffix();
 	min-width: 96px;
 
 	&.daff-sm {
@@ -75,6 +79,24 @@
 		height: 3.5rem;
 		padding: 0 1.5rem;
 	}
+}
+
+.daff-button,
+.daff-flat-button {
+	@include daff-button-background(4px);
+}
+
+.daff-raised-button {
+	@include daff-button-background(0px);
+}
+
+.daff-stroked-button {
+	@include daff-button-background(3px);
+}
+
+.daff-flat-button {
+	background: none;
+	border: none;
 }
 
 .daff-icon-button {
@@ -125,10 +147,6 @@
 				animation: none;
 			}
 		}
-	}
-
-	&:focus {
-		border-radius: 4px;
 	}
 
 	&::after {

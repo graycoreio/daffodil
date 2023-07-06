@@ -1,13 +1,11 @@
 @use 'sass:map';
 @use '../../../../scss/theming';
 
-@mixin daff-stroked-button-theme-variant(
+@mixin daff-flat-button-theme-variant(
 	$base-color,
 	$active-color
 ) {
-	border: 1px solid $base-color;
 	color: $base-color;
-	background-color: transparent;
 
 	&:after {
 		background-color: $base-color;
@@ -18,7 +16,6 @@
 	}
 
 	&:active {
-		border: 1px solid $active-color;
 		color: theming.daff-text-contrast($active-color);
 
 		&:after {
