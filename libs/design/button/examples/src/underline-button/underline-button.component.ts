@@ -12,9 +12,10 @@ import {
   selector: 'underline-button',
   templateUrl: './underline-button.component.html',
   styles: [`
-    button[daff-underline-button],
-    a[daff-underline-button] {
-      margin: 4px;
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,

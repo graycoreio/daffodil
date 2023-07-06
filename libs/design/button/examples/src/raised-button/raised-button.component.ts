@@ -12,9 +12,10 @@ import {
   selector: 'raised-button',
   templateUrl: './raised-button.component.html',
   styles: [`
-    button[daff-raised-button],
-    a[daff-raised-button] {
-      margin: 4px;
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,

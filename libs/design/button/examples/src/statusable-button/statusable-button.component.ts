@@ -13,15 +13,7 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'statusable-button',
   templateUrl: './statusable-button.component.html',
-  styles: [`
-    button[daff-button],
-    button[daff-stroked-button],
-    button[daff-raised-button],
-    button[daff-underline-button],
-    button[daff-icon-button] {
-      margin: 4px;
-    }
-  `],
+  styleUrls: ['./statusable-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusableButtonComponent {

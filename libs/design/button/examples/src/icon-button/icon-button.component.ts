@@ -9,9 +9,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   selector: 'icon-button',
   templateUrl: './icon-button.component.html',
   styles: [`
-    button[daff-button],
-    a[daff-button] {
-      margin: 4px;
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,

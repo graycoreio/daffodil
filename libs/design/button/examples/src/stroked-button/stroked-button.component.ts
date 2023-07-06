@@ -12,9 +12,10 @@ import {
   selector: 'stroked-button',
   templateUrl: './stroked-button.component.html',
   styles: [`
-    button[daff-stroked-button],
-    a[daff-stroked-button] {
-      margin: 4px;
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,

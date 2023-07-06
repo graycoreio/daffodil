@@ -8,11 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sizeable-button',
   templateUrl: './sizeable-button.component.html',
-  styles: [`
-    button {
-      margin: 4px;
-    }
-  `],
+  styleUrls: ['./sizeable-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SizeableButtonComponent {

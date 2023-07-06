@@ -5,7 +5,6 @@ import { DaffButtonModule } from '@daffodil/design';
 
 import { UnderlineButtonComponent } from './underline-button.component';
 
-
 @NgModule({
   declarations: [
     UnderlineButtonComponent,
