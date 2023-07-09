@@ -19,7 +19,7 @@ import {
   DaffCartItemList,
   DaffCartItemListSuccess,
   DaffCartItemListFailure,
-  initialState,
+  daffCartReducerInitialState,
   DaffStatefulCartItem,
   DaffCartItemUpdate,
   DaffCartItemDelete,
@@ -59,23 +59,23 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      result = cartItemReducer(initialState, action);
+      result = cartItemReducer(daffCartReducerInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffCartReducerInitialState);
     });
   });
 
   describe('when CartItemUpdateAction is triggered', () => {
     beforeEach(() => {
       const cartItemUpdate = new DaffCartItemUpdate('itemId', { qty: 4 });
-      result = cartItemReducer(initialState, cartItemUpdate);
+      result = cartItemReducer(daffCartReducerInitialState, cartItemUpdate);
     });
 
     it('should indicate that the cart is loading', () => {
       const expectedState: DaffCartReducerState<DaffCart> = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Mutating,
         },
       };
@@ -89,9 +89,9 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
@@ -120,13 +120,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -144,14 +144,14 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
   describe('when CartItemDeleteAction is triggered', () => {
     beforeEach(() => {
       const cartItemDelete = new DaffCartItemDelete('itemId');
-      result = cartItemReducer(initialState, cartItemDelete);
+      result = cartItemReducer(daffCartReducerInitialState, cartItemDelete);
     });
 
     it('should indicate that the cart is loading', () => {
       const expectedState: DaffCartReducerState<DaffCart> = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Mutating,
         },
       };
@@ -165,9 +165,9 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
@@ -196,13 +196,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -220,14 +220,14 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
   describe('when CartItemDeleteOutOfStockAction is triggered', () => {
     beforeEach(() => {
       const cartItemDeleteOutOfStock = new DaffCartItemDeleteOutOfStock();
-      result = cartItemReducer(initialState, cartItemDeleteOutOfStock);
+      result = cartItemReducer(daffCartReducerInitialState, cartItemDeleteOutOfStock);
     });
 
     it('should indicate that the cart is loading', () => {
       const expectedState: DaffCartReducerState<DaffCart> = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Mutating,
         },
       };
@@ -241,13 +241,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'code', message: 'message' }],
           [DaffCartOperationType.Cart]: [{ code: DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK, message: 'message' }],
         },
@@ -281,13 +281,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -314,7 +314,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
     it('should indicate that the cart item is being added', () => {
       const cartItemAddAction = new DaffCartItemAdd({ type, productId, qty });
 
-      result = cartItemReducer(initialState, cartItemAddAction);
+      result = cartItemReducer(daffCartReducerInitialState, cartItemAddAction);
 
       expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Adding);
     });
@@ -326,9 +326,9 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
     beforeEach(() => {
       const cartItemAddActionSuccess = new DaffCartItemAddSuccess(cart);
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
@@ -355,13 +355,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -385,14 +385,14 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
   describe('when CartItemLoadAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState: DaffCartReducerState<DaffCart> = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
       const cartItemLoad = new DaffCartItemLoad('itemId');
-      result = cartItemReducer(initialState, cartItemLoad);
+      result = cartItemReducer(daffCartReducerInitialState, cartItemLoad);
 
       expect(result).toEqual(expectedState);
     });
@@ -409,10 +409,10 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
       };
       const cartItemLoadActionSuccess = new DaffCartItemLoadSuccess(newCartItem);
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         cart,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
@@ -439,13 +439,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -469,14 +469,14 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
   describe('when CartItemListAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState: DaffCartReducerState<any> = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
       const cartItemList = new DaffCartItemList();
-      result = cartItemReducer(initialState, cartItemList);
+      result = cartItemReducer(daffCartReducerInitialState, cartItemList);
 
       expect(result).toEqual(expectedState);
     });
@@ -488,9 +488,9 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
     beforeEach(() => {
       const cartItemListActionSuccess = new DaffCartItemListSuccess([cartItem]);
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
       };
@@ -517,13 +517,13 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Item]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Item]: [{ code: 'first error code', message: 'first error message' }],
         },
       };

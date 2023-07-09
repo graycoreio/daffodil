@@ -17,7 +17,7 @@ import {
   DaffCartItemInputType,
 } from '@daffodil/cart';
 import {
-  initialState,
+  daffCartReducerInitialState,
   DaffCartReducersState,
   DaffCartLoading,
   DaffCartErrors,
@@ -176,7 +176,7 @@ describe('DaffCartFacade', () => {
 
   describe('cart$', () => {
     it('should initially be cart with no defined properties', () => {
-      const expected = cold('a', { a: initialState.cart });
+      const expected = cold('a', { a: daffCartReducerInitialState.cart });
       expect(facade.cart$).toBeObservable(expected);
     });
 

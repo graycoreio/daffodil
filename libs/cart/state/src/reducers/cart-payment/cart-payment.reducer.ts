@@ -4,7 +4,7 @@ import { DaffLoadingState } from '@daffodil/core/state';
 
 import { DaffCartPaymentActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
-import { initialState } from '../cart-initial-state';
+import { daffCartReducerInitialState } from '../cart-initial-state';
 import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCartReducerState } from '../cart-state.interface';
 import {
@@ -18,7 +18,7 @@ const resetErrors = initializeErrorResetter(DaffCartOperationType.Payment);
 const setLoading = initializeLoadingSetter(DaffCartOperationType.Payment);
 
 export function cartPaymentReducer<T extends DaffCart>(
-  state = initialState,
+  state = daffCartReducerInitialState,
   action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {

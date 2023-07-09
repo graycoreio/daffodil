@@ -5,7 +5,7 @@ import { DaffCartPaymentMethod } from '@daffodil/cart';
 import {
   daffCartProvideExtraReducers,
   DaffCartReducersState,
-  initialState as cartInitialState,
+  daffCartReducerInitialState as cartInitialState,
   DaffCartPaymentLoadSuccess,
 } from '@daffodil/cart/state';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
