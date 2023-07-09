@@ -15,6 +15,7 @@ import {
   DaffCartPaymentMethodGuardRedirectUrl,
   DaffCartOrderResultGuardRedirectUrl,
   DaffCartItemsGuardRedirectUrl,
+  DaffResolveCartGuardRedirectUrl,
 } from './guards/public_api';
 import {
   DaffEmptyCartResolverRedirectUrl,
@@ -31,6 +32,7 @@ import {
     { provide: DaffCartOrderResultGuardRedirectUrl, useValue: '/' },
     { provide: DaffEmptyCartResolverRedirectUrl, useValue: '/' },
     { provide: DaffCartResolverRedirectUrl, useValue: '/' },
+    { provide: DaffResolveCartGuardRedirectUrl, useValue: '/' },
   ],
 })
 export class DaffCartRoutingModule {

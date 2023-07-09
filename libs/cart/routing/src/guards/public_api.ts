@@ -1,5 +1,6 @@
 export { DaffBillingAddressGuard } from './billing-address/billing-address.guard';
 export { DaffResolvedCartGuard } from './resolved-cart/resolved-cart.guard';
+export { DaffResolveCartGuard } from './resolve-cart/resolve-cart.guard';
 export { DaffCartItemsGuard } from './cart-items/cart-items.guard';
 export { DaffCartInStockItemsGuard } from './in-stock-items/in-stock-items.guard';
 export { DaffPaymentMethodGuard } from './payment-method/payment-method.guard';
@@ -13,3 +14,4 @@ export { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method/payment-
 export { DaffCartShippingAddressGuardRedirectUrl } from './shipping-address/shipping-address-guard-redirect.token';
 export { DaffCartShippingMethodGuardRedirectUrl } from './shipping-method/shipping-method-guard-redirect.token';
 export { DaffCartOrderResultGuardRedirectUrl } from './order-result/order-result-guard-redirect.token';
+export { DaffResolveCartGuardRedirectUrl } from './resolve-cart/redirect.token';
