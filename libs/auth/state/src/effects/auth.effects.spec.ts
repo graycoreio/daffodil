@@ -26,6 +26,7 @@ import {
   DaffAuthStorageFailure,
   DaffAuthGuardLogout,
   DaffAuthLogoutSuccess,
+  DaffAuthResetToUnauthenticated,
 } from '@daffodil/auth/state';
 import {
   DaffServerSideStorageError,
@@ -37,6 +38,7 @@ import {
   DaffDriverHttpClientCacheServiceInterface,
 } from '@daffodil/driver';
 
+import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
 import { DaffAuthEffects } from './auth.effects';
 
 const getScheduler = () => new TestScheduler((actual, expected) => {
@@ -53,6 +55,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   let clientCacheSpy: jasmine.SpyObj<DaffDriverHttpClientCacheServiceInterface>;
   let getTokenSpy: jasmine.Spy<DaffAuthStorageService['getAuthToken']>;
   let removeTokenSpy: jasmine.Spy<DaffAuthStorageService['removeAuthToken']>;
+  let unauthenticatedHook: jasmine.Spy;
 
   const authStorageFailureAction = new DaffAuthStorageFailure(daffTransformErrorToStateError(
     new DaffStorageServiceError('Storage of auth token has failed.')),
@@ -63,6 +66,7 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
 
   beforeEach(() => {
     clientCacheSpy = jasmine.createSpyObj('DaffDriverHttpClientCacheServiceInterface', ['reset']);
+    unauthenticatedHook = jasmine.createSpy();
 
     TestBed.configureTestingModule({
       providers: [
@@ -81,6 +85,10 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
         {
           provide: DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,
           useValue: clientCacheSpy,
+        },
+        {
+          provide: DAFF_AUTH_UNAUTHENTICATED_HOOK,
+          useValue: unauthenticatedHook,
         },
       ],
     });
@@ -202,46 +210,68 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
     });
   });
 
-  describe('clearClientCache$', () => {
+  describe('resetToUnauthenticated$', () => {
     let expected;
 
-    describe('when DaffAuthCheckFailure is dispatched', () => {
-      let revokeAction: DaffAuthCheckFailure;
+    describe('when AuthCheckFailure is dispatched', () => {
+      let authLogoutSuccessAction: DaffAuthCheckFailure;
 
       beforeEach(() => {
-        revokeAction = new DaffAuthCheckFailure(null);
+        authLogoutSuccessAction = new DaffAuthCheckFailure({ code: 'code', message: 'message' });
+        actions$ = hot('--a', { a: authLogoutSuccessAction });
+        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated() });
       });
 
-      it('should reset the client cache after a delay', () => {
-        scheduler = getScheduler();
-        scheduler.run(({ expectObservable, time, flush, hot: createHot }) => {
-          actions$ = createHot('--a-', { a: revokeAction });
-          expectObservable(effects.clearClientCache$(10, scheduler)).toBe('---');
-          expect(clientCacheSpy.reset).not.toHaveBeenCalled();
-          time('10|');
-          flush();
-          expect(clientCacheSpy.reset).toHaveBeenCalledWith();
-        });
+      it('should dispatch DaffAuthResetToUnauthenticated', () => {
+        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
       });
     });
 
-    describe('when DaffAuthGuardLogout is dispatched', () => {
-      let revokeAction: DaffAuthGuardLogout;
+    describe('when AuthGuardLogout is dispatched', () => {
+      let authLogoutSuccessAction: DaffAuthGuardLogout;
 
       beforeEach(() => {
-        revokeAction = new DaffAuthGuardLogout(null);
+        authLogoutSuccessAction = new DaffAuthGuardLogout({ code: 'code', message: 'message' });
+        actions$ = hot('--a', { a: authLogoutSuccessAction });
+        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated() });
+      });
+
+      it('should dispatch DaffAuthResetToUnauthenticated', () => {
+        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+      });
+    });
+
+    describe('when LogoutSuccess is dispatched', () => {
+      let authLogoutSuccessAction: DaffAuthLogoutSuccess;
+
+      beforeEach(() => {
+        authLogoutSuccessAction = new DaffAuthLogoutSuccess();
+        actions$ = hot('--a', { a: authLogoutSuccessAction });
+        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated() });
+      });
+
+      it('should dispatch DaffAuthResetToUnauthenticated', () => {
+        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('clearClientCache$', () => {
+    let expected;
+
+    describe('when DaffAuthResetToUnauthenticated is dispatched', () => {
+      let revokeAction: DaffAuthResetToUnauthenticated;
+
+      beforeEach(() => {
+        revokeAction = new DaffAuthResetToUnauthenticated();
+        actions$ = hot('--a', { a: revokeAction });
+        expected = cold('---');
       });
 
       it('should reset the client cache after a delay', () => {
-        scheduler = getScheduler();
-        scheduler.run(({ expectObservable, time, flush, hot: createHot }) => {
-          actions$ = createHot('--a-', { a: revokeAction });
-          expectObservable(effects.clearClientCache$(10, scheduler)).toBe('---');
-          expect(clientCacheSpy.reset).not.toHaveBeenCalled();
-          time('10|');
-          flush();
-          expect(clientCacheSpy.reset).toHaveBeenCalledWith();
-        });
+        expect(effects.clearClientCache$).toBeObservable(expected);
+        expect(unauthenticatedHook).toHaveBeenCalledWith();
+        expect(clientCacheSpy.reset).toHaveBeenCalledWith();
       });
     });
   });
