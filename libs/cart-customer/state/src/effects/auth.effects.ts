@@ -16,9 +16,11 @@ import {
   filter,
   map,
   switchMap,
+  tap,
 } from 'rxjs/operators';
 
 import {
+  DaffAuthActionTypes,
   DaffAuthActions,
   DaffAuthLoginActionTypes,
   DaffAuthLoginActions,
@@ -71,31 +73,37 @@ export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
       }
       return true;
     }),
-    switchMap(() => defer(() => of(this.cartStorage.getCartId())).pipe(
-      switchMap(cartId => this.driver.merge(cartId).pipe(
-        map(resp => new DaffResolveCartSuccess(resp.response)),
-        catchError((error: DaffError) =>
-          // if a merge fails, just try to load the cart
-          // with an empty ID, the customer cart driver shouldn't need it
-          this.driver.get('').pipe(
-            map(resp => new DaffResolveCartSuccess(resp.response)),
-            catchError((innerError: DaffError) => of(
-              new DaffResolveCartFailure([this.errorMatcher(innerError)]),
-            )),
+    map(() => this.cartStorage.getCartId()),
+    switchMap((cartId) =>
+      cartId
+        ? this.driver.merge(cartId).pipe(
+          map(resp => new DaffResolveCartSuccess(resp.response)),
+          catchError((error: DaffError) =>
+            // if a merge fails, just try to load the cart
+            // with an empty ID, the customer cart driver shouldn't need it
+            this.driver.get('').pipe(
+              map(resp => new DaffResolveCartSuccess(resp.response)),
+              catchError((innerError: DaffError) => of(
+                new DaffResolveCartFailure([this.errorMatcher(innerError)]),
+              )),
+            ),
           ),
+        )
+        : this.driver.get('').pipe(
+          map(resp => new DaffResolveCartSuccess(resp.response)),
+          catchError((innerError: DaffError) => of(
+            new DaffResolveCartFailure([this.errorMatcher(innerError)]),
+          )),
         ),
-      )),
-    )),
-  ));
-
-  createAfterLogout$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffAuthLoginActionTypes.LogoutSuccessAction),
-    map(() => new DaffCartCreate()),
+    ),
   ));
 
   createWhenUnathorized$ = createEffect(() => this.actions$.pipe(
     ofType<DaffResolveCartFailure | DaffCartLoadFailure>(DaffCartActionTypes.ResolveCartFailureAction, DaffCartActionTypes.CartLoadFailureAction),
     filter(action => !!action.payload.find(err => err.code === DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART)),
+    tap(() => {
+      this.cartStorage.removeCartId();
+    }),
     map(() => new DaffCartCreate()),
   ));
 }
