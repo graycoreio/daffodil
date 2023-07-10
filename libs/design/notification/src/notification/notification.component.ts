@@ -29,11 +29,11 @@ class DaffNotificationBase {
 
 const _daffNotificationBase = daffArticleEncapsulatedMixin(daffStatusMixin(DaffNotificationBase));
 
-export type DaffNotificationMode = 'inline' | 'toast';
+export type DaffNotificationOrientation = 'horizontal' | 'vertical';
 
-enum DaffNotificationModeEnum {
-  Inline = 'inline',
-  Toast = 'toast',
+enum DaffNotificationOrientationEnum {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
 }
 
 /**
@@ -60,30 +60,21 @@ export class DaffNotificationComponent
   @HostBinding('attr.tabindex') tabindex = '0';
   @HostBinding('attr.aria-live') ariaLive = 'polite';
 
-  @HostBinding('class.toast') get toastMode() {
-	  return this.mode === DaffNotificationModeEnum.Toast;
+  @HostBinding('class.vertical') get verticalOrientation() {
+	  return this.orientation === DaffNotificationOrientationEnum.Vertical;
   }
 
-  @HostBinding('class.inline') get inlineMode() {
-	  return this.mode === DaffNotificationModeEnum.Inline;
+  @HostBinding('class.horizontal') get horizontalOrientation() {
+	  return this.orientation === DaffNotificationOrientationEnum.Horizontal;
   }
 
-  /**
-   * Whether or not a notification is closable
-   */
-  @Input() dismissable = true;
-
-  /**
-   * The duration (in seconds) that a notification is visible
-   */
-  @Input() duration: number;
+  /** Whether or not a notification is closable */
+  @Input() @HostBinding('class.dismissable') dismissable = false;
 
   @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
-  /**
-   * The mode to layout the content within a notification
-   */
-  @Input() mode: DaffNotificationMode = DaffNotificationModeEnum.Toast;
+  /** The orientation to layout the content within a notification */
+  @Input() orientation: DaffNotificationOrientation = DaffNotificationOrientationEnum.Vertical;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
 	  super(elementRef, renderer);

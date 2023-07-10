@@ -13,49 +13,37 @@
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-notification {
-		background: theming.daff-color($gray, 10);
-		color: theming.daff-text-contrast(theming.daff-color($gray, 10));
-
-		&:before {
-			background: theming.daff-color($gray);
-		}
+		background: theming.daff-illuminate($base, $gray, 1);
+		border: 1px solid theming.daff-illuminate($base, $gray, 2);
+		color: theming.daff-text-contrast(theming.daff-illuminate($base, $gray, 1));
 
 		&.daff-success {
 			background: theming.daff-color(theming.$daff-green, 10);
+			border: 1px solid theming.daff-color(theming.$daff-green, 20);
 			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-green, 10));
 
 			.daff-prefix {
 				color: theming.daff-color(theming.$daff-green, 60);
 			}
-			
-			&:before {
-				background: theming.daff-color(theming.$daff-green, 60);
-			}
 		}
 
 		&.daff-warn {
 			background: theming.daff-color(theming.$daff-bronze, 10);
+			border: 1px solid theming.daff-color(theming.$daff-bronze, 20);
 			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-bronze, 10));
 
 			.daff-prefix {
 				color: theming.daff-color(theming.$daff-bronze, 60);
 			}
-
-			&:before {
-				background: theming.daff-color(theming.$daff-bronze, 60);
-			}
 		}
 
 		&.daff-error {
 			background: theming.daff-color(theming.$daff-red, 10);
+			border: 1px solid theming.daff-color(theming.$daff-red, 20);
 			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-red, 10));
 
 			.daff-prefix {
 				color: theming.daff-color(theming.$daff-red, 60);
-			}
-
-			&:before {
-				background: theming.daff-color(theming.$daff-red, 60);
 			}
 		}
 	}

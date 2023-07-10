@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design';
 import { DaffNotificationModule } from '@daffodil/design/notification';
@@ -14,6 +15,7 @@ import { DesignLandNotificationComponent } from './notification.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     DesignLandNotificationRoutingModule,
     DesignLandExampleViewerModule,
 
