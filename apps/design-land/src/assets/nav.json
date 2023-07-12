@@ -242,6 +242,13 @@
           "id": "sidebar",
           "items": [],
           "data": {}
+        },
+        {
+          "title": "Toast",
+          "url": "toast",
+          "id": "toast",
+          "items": [],
+          "data": {}
         }
       ],
       "data": {}

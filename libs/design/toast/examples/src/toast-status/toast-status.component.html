@@ -1,0 +1,17 @@
+<daff-toast [status]="statusControl.value">
+	<fa-icon *ngIf="statusControl.value === 'success'" daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
+	<fa-icon *ngIf="statusControl.value === 'warn'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+	<fa-icon *ngIf="statusControl.value === 'error'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+	<div daffToastTitle>Update Available</div>
+	<div daffToastSubtitle>A new version of this page is available.</div>
+	<div daffToastActions>
+		<button daff-button size="sm" color="theme-contrast">Update</button>
+		<button daff-flat-button size="sm" color="theme-contrast">Not now</button>
+	</div>
+</daff-toast>
+
+<select [formControl]="statusControl">
+	<option value="success">Success</option>
+	<option value="warn">Warn</option>
+	<option value="error">Error</option>
+</select>
