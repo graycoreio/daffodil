@@ -13,16 +13,25 @@ import { DaffStatus } from '@daffodil/design';
 
 import {
   DaffNotificationComponent,
-  DaffNotificationMode,
+  DaffNotificationOrientation,
 } from './notification.component';
 
 @Component ({
-  template: `<daff-notification [status]="status" [mode]="modeValue"></daff-notification>`,
+  template: `
+    <daff-notification
+      [status]="status"
+      [orientation]="orientationValue"
+      [dismissable]="dismissableValue"
+      (closeNotification)="closeNotificationFunction()">
+    </daff-notification>
+  `,
 })
 
 class WrapperComponent {
   status: DaffStatus;
-  modeValue: DaffNotificationMode;
+  orientationValue: DaffNotificationOrientation;
+  dismissableValue = false;
+  closeNotificationFunction() {}
 }
 
 describe('DaffNotificationComponent', () => {
@@ -61,6 +70,35 @@ describe('DaffNotificationComponent', () => {
     });
   });
 
+  describe('the dismissable property', () => {
+    it('should take dismissable as an input', () => {
+      expect(component.dismissable).toEqual(wrapper.dismissableValue);
+    });
+
+    describe('when dismissable is set to true', () => {
+      beforeEach(() => {
+        wrapper.dismissableValue = true;
+        fixture.detectChanges();
+      });
+
+      it('should add a class of "dismissable" to the host element', () => {
+        expect(de.classes['daff-notification.dismissable']).toBeTrue();
+      });
+
+      it('should show the close icon button', () => {
+        expect(fixture.debugElement.query(By.css('.daff-notification__close-icon'))).toBeTruthy();
+      });
+    });
+  });
+
+  it('should set aria-live to polite', () => {
+    expect(de.attributes['aria-live']).toEqual('polite');
+  });
+
+  it('should set the tabindex to 0', () => {
+    expect(de.attributes['tabindex']).toEqual('0');
+  });
+
   describe('using the status property of a notification', () => {
     it('should not set a default status', () => {
       expect(component.status).toBeFalsy();
@@ -74,18 +112,39 @@ describe('DaffNotificationComponent', () => {
     });
   });
 
-  describe('setting the mode of a notification', () => {
-    it('should not set the default mode to `toast`', () => {
-      expect(component.mode).toEqual('toast');
+  describe('setting the orientation of a notification', () => {
+    it('should take orientation as an input', () => {
+      expect(component.orientation).toEqual(wrapper.orientationValue);
     });
 
-    describe('when mode="inline"', () => {
-      it('should add a class of "inline" to the host element', () => {
-        wrapper.modeValue = 'inline';
+    it('should set the default orientation to `vertical`', () => {
+      expect(component.orientation).toEqual('vertical');
+    });
+
+    describe('when orientation="horizontal"', () => {
+      it('should add a class of "horizontal" to the host element', () => {
+        wrapper.orientationValue = 'horizontal';
         fixture.detectChanges();
 
-        expect(de.classes['daff-notification.inline']).toBeTrue();
+        expect(de.classes['daff-notification.horizontal']).toBeTrue();
       });
     });
+
+    describe('when orientation="vertical"', () => {
+      it('should add a class of "vertical" to the host element', () => {
+        wrapper.orientationValue = 'vertical';
+        fixture.detectChanges();
+
+        expect(de.classes['daff-notification.vertical']).toBeTrue();
+      });
+    });
+  });
+
+  it('should close the notification when the close icon button is clicked', () => {
+    spyOn(wrapper, 'closeNotificationFunction');
+    fixture.debugElement.query(By.css('.daff-notification__close-icon')).nativeElement.click();
+    fixture.detectChanges();
+
+    expect(wrapper.closeNotificationFunction).toHaveBeenCalledWith();
   });
 });
