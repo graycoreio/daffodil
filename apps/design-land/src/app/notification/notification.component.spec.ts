@@ -4,21 +4,21 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 
-import { DesignLandMenuComponent } from './menu.component';
+import { DesignLandNotificationComponent } from './notification.component';
 
-describe('DesignLandMenuComponent', () => {
-  let component: DesignLandMenuComponent;
-  let fixture: ComponentFixture<DesignLandMenuComponent>;
+describe('DesignLandNotificationComponent', () => {
+  let component: DesignLandNotificationComponent;
+  let fixture: ComponentFixture<DesignLandNotificationComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DesignLandMenuComponent ],
+      declarations: [ DesignLandNotificationComponent ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DesignLandMenuComponent);
+    fixture = TestBed.createComponent(DesignLandNotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
