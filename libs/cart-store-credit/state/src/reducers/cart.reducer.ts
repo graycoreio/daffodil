@@ -3,7 +3,7 @@ import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import {
   DaffCartOperationType,
   DaffCartReducerState,
-  initialState,
+  daffCartReducerInitialState,
 } from '@daffodil/cart/state';
 import { DaffState } from '@daffodil/core/state';
 
@@ -13,7 +13,7 @@ import {
 } from '../actions/public_api';
 
 export function daffCartStoreCreditCartReducer<T extends DaffCartWithStoreCredit = DaffCartWithStoreCredit>(
-  state = initialState,
+  state = daffCartReducerInitialState,
   action: DaffCartStoreCreditActions,
 ): DaffCartReducerState<T> {
   switch (action.type) {

@@ -4,7 +4,7 @@ import { DaffCartOperationType } from './cart-operation-type.enum';
 import { DaffCartResolveState } from './cart-resolve/cart-resolve-state.enum';
 import { DaffCartReducerState } from './cart-state.interface';
 
-export const initialState: DaffCartReducerState<any> = Object.freeze({
+export const daffCartReducerInitialState: DaffCartReducerState<any> = Object.freeze({
   cart: {
     id: null,
     subtotal: null,

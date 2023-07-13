@@ -5,7 +5,7 @@ import {
   DaffResolveCart,
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
-  initialState,
+  daffCartReducerInitialState,
   DaffCartReducerState,
   DaffCartResolveState,
 } from '@daffodil/cart/state';
@@ -34,9 +34,9 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = reducer(initialState, action);
+      const result = reducer(daffCartReducerInitialState, action);
 
-      expect(result).toEqual(initialState);
+      expect(result).toEqual(daffCartReducerInitialState);
     });
   });
 
@@ -44,7 +44,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
     it('should set resolved state to resolving', () => {
       const cartResolveAction: DaffResolveCart = new DaffResolveCart();
 
-      const result = reducer(initialState, cartResolveAction);
+      const result = reducer(daffCartReducerInitialState, cartResolveAction);
 
       expect(result.resolved).toEqual(DaffCartResolveState.Resolving);
     });
@@ -56,7 +56,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         resolved: DaffCartResolveState.Resolving,
       };
 
@@ -76,7 +76,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         resolved: DaffCartResolveState.Resolving,
       };
 
@@ -96,7 +96,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         resolved: DaffCartResolveState.Resolving,
       };
 
@@ -117,7 +117,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         resolved: DaffCartResolveState.Resolving,
       };
 
@@ -138,7 +138,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         resolved: DaffCartResolveState.Resolving,
       };
 
