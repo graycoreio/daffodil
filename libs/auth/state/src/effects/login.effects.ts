@@ -81,7 +81,7 @@ export class DaffAuthLoginEffects<
     switchMap((action: DaffAuthLogout) =>
       this.loginDriver.logout().pipe(
         map(() => new DaffAuthLogoutSuccess()),
-        tap(() =>  this.storage.removeAuthToken()),
+        tap(() => this.storage.removeAuthToken()),
         catchError((error: DaffError) => {
           switch (true) {
             case error instanceof DaffServerSideStorageError:
