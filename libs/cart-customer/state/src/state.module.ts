@@ -11,6 +11,7 @@ import { daffCartProvideExtraReducers } from '@daffodil/cart/state';
 
 import { DaffCartCustomerAuthEffects } from './effects/auth.effects';
 import { daffCartCustomerLoginMutatingReducerMap } from './reducers/login-mutating';
+import { daffCartCustomerUnauthenticatedReset } from './reducers/unauthenticated-reset';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { daffCartCustomerLoginMutatingReducerMap } from './reducers/login-mutati
       multi: true,
     },
     daffCartProvideExtraReducers(
+      daffCartCustomerUnauthenticatedReset,
       combineReducers(daffCartCustomerLoginMutatingReducerMap),
     ),
   ],
