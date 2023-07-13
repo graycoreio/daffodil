@@ -3,12 +3,21 @@ import { Action } from '@ngrx/store';
 import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffAuthActionTypes {
+  ResetToUnauthenticatedAction = '[@daffodil/auth] Reset To Unauthenticated Action',
   AuthStorageFailureAction = '[@daffodil/auth] Auth Storage Failure Action',
   AuthGuardLogoutAction = '[@daffodil/auth] Auth Guard Logout Action',
   AuthServerSideAction = '[@daffodil/auth] Auth Server Side Action',
   AuthCheckAction = '[@daffodil/auth] Auth Check Action',
   AuthCheckSuccessAction = '[@daffodil/auth] Auth Check Success Action',
   AuthCheckFailureAction = '[@daffodil/auth] Auth Check Failure Action',
+}
+
+/*
+ * An action triggered when the authenicated status of the user is invalidated for some reason.
+ * That reason could be a logout, auth token check failure, or an unauthorized error.
+ */
+export class DaffAuthResetToUnauthenticated implements Action {
+  readonly type = DaffAuthActionTypes.ResetToUnauthenticatedAction;
 }
 
 /*
@@ -67,6 +76,7 @@ export class DaffAuthCheckFailure implements Action {
 }
 
 export type DaffAuthActions =
+  | DaffAuthResetToUnauthenticated
   | DaffAuthStorageFailure
   | DaffAuthGuardLogout
   | DaffAuthServerSide
