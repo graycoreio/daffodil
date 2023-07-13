@@ -20,7 +20,7 @@ import {
   DaffCartCouponRemoveAll,
   DaffCartCouponRemoveAllSuccess,
   DaffCartCouponRemoveAllFailure,
-  initialState,
+  daffCartReducerInitialState,
   DaffCartCouponClearErrors,
 } from '@daffodil/cart/state';
 import {
@@ -54,9 +54,9 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = reducer(initialState, action);
+      const result = reducer(daffCartReducerInitialState, action);
 
-      expect(result).toEqual(initialState);
+      expect(result).toEqual(daffCartReducerInitialState);
     });
   });
 
@@ -64,7 +64,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     it('should indicate that the cart coupon is being mutated', () => {
       const cartCouponApplyAction: DaffCartCouponApply = new DaffCartCouponApply(mockCoupon);
 
-      const result = reducer(initialState, cartCouponApplyAction);
+      const result = reducer(daffCartReducerInitialState, cartCouponApplyAction);
 
       expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Mutating);
     });
@@ -76,9 +76,9 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
       };
@@ -108,13 +108,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Coupon]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -137,7 +137,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     it('should set loading state to true', () => {
       const cartCouponListAction: DaffCartCouponList = new DaffCartCouponList();
 
-      const result = reducer(initialState, cartCouponListAction);
+      const result = reducer(daffCartReducerInitialState, cartCouponListAction);
 
       expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Resolving);
     });
@@ -149,9 +149,9 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
       };
@@ -181,13 +181,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Coupon]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -210,7 +210,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     it('should indicate that the cart coupon is being mutated', () => {
       const cartCouponRemoveAction: DaffCartCouponRemove = new DaffCartCouponRemove(mockCoupon);
 
-      const result = reducer(initialState, cartCouponRemoveAction);
+      const result = reducer(daffCartReducerInitialState, cartCouponRemoveAction);
 
       expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Mutating);
     });
@@ -223,9 +223,9 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       const cartCouponRemoveActionSuccess: DaffCartCouponRemoveSuccess = new DaffCartCouponRemoveSuccess(cart);
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
       };
@@ -253,13 +253,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Coupon]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -283,14 +283,14 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   describe('when CartCouponRemoveAllAction is triggered', () => {
     it('should indicate that the cart coupon is being mutated', () => {
       const expectedState: DaffCartReducerState<DaffCart> = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Mutating,
         },
       };
       const cartClear = new DaffCartCouponRemoveAll();
-      const result = reducer(initialState, cartClear);
+      const result = reducer(daffCartReducerInitialState, cartClear);
 
       expect(result).toEqual(expectedState);
     });
@@ -301,19 +301,19 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       const cartClearSuccess = new DaffCartCouponRemoveAllSuccess(cart);
-      result = reducer(initialState, cartClearSuccess);
+      result = reducer(daffCartReducerInitialState, cartClearSuccess);
     });
 
     it('should set the cart payload on state', () => {
       const expectedState = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         cart: {
-          ...initialState.cart,
+          ...daffCartReducerInitialState.cart,
           items: [],
           ...cart,
         },
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Complete,
         },
       };
@@ -333,13 +333,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.Coupon]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Coupon]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -367,9 +367,9 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       const cartCouponRemoveActionSuccess = new DaffCartCouponClearErrors();
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.Coupon]: [{ code: 'first error code', message: 'first error message' }],
         },
       };

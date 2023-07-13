@@ -3,7 +3,7 @@ import { DaffState } from '@daffodil/core/state';
 
 import { DaffCartShippingMethodsActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
-import { initialState } from '../cart-initial-state';
+import { daffCartReducerInitialState } from '../cart-initial-state';
 import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCartReducerState } from '../cart-state.interface';
 import {
@@ -17,7 +17,7 @@ const resetErrors = initializeErrorResetter(DaffCartOperationType.ShippingMethod
 const setLoading = initializeLoadingSetter(DaffCartOperationType.ShippingMethods);
 
 export function cartShippingMethodsReducer<T extends DaffCart>(
-  state = initialState,
+  state = daffCartReducerInitialState,
   action: ActionTypes,
 ): DaffCartReducerState<T> {
   switch (action.type) {

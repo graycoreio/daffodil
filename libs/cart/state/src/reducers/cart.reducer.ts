@@ -4,7 +4,7 @@ import { daffComposeReducers } from '@daffodil/core/state';
 import { ActionTypes } from './action-types.type';
 import { cartBillingAddressReducer } from './cart-billing-address/cart-billing-address.reducer';
 import { cartCouponReducer } from './cart-coupon/cart-coupon.reducer';
-import { initialState } from './cart-initial-state';
+import { daffCartReducerInitialState } from './cart-initial-state';
 import { cartItemReducer } from './cart-item/cart-item.reducer';
 import { cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-methods.reducer';
 import { cartPaymentReducer } from './cart-payment/cart-payment.reducer';
@@ -33,7 +33,7 @@ const composedReducers = daffComposeReducers([
  * passing the returned state into the next.
  */
 export function daffCartReducer<T extends DaffCart = DaffCart>(
-  state = initialState,
+  state = daffCartReducerInitialState,
   action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
   return composedReducers(state, action);

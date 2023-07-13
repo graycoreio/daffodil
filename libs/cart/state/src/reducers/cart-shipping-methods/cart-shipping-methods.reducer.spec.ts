@@ -10,7 +10,7 @@ import {
   DaffCartReducerState,
   DaffCartShippingMethodsLoadSuccess,
   DaffCartShippingMethodsLoadFailure,
-  initialState,
+  daffCartReducerInitialState,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -45,9 +45,9 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = cartShippingMethodsReducer(initialState, action);
+      const result = cartShippingMethodsReducer(daffCartReducerInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffCartReducerInitialState);
     });
   });
 
@@ -55,7 +55,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
     it('should set loading state to true', () => {
       const cartShippingMethodsLoadAction = new DaffCartShippingMethodsLoad();
-      const result = cartShippingMethodsReducer(initialState, cartShippingMethodsLoadAction);
+      const result = cartShippingMethodsReducer(daffCartReducerInitialState, cartShippingMethodsLoadAction);
 
       expect(result.loading[DaffCartOperationType.ShippingMethods]).toEqual(DaffState.Resolving);
     });
@@ -67,9 +67,9 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingMethods]: DaffState.Resolving,
         },
       };
@@ -99,13 +99,13 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingMethods]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.ShippingMethods]: [{ code: 'first error code', message: 'first error message' }],
         },
       };

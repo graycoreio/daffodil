@@ -11,7 +11,7 @@ import {
   DaffCartAddressUpdate,
   DaffCartAddressUpdateSuccess,
   DaffCartAddressUpdateFailure,
-  initialState,
+  daffCartReducerInitialState,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
@@ -35,9 +35,9 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = cartShippingAddressReducer(initialState, action);
+      const result = cartShippingAddressReducer(daffCartReducerInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffCartReducerInitialState);
     });
   });
 
@@ -45,7 +45,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should set loading state to true', () => {
       const cartListLoadAction = new DaffCartShippingAddressLoad();
 
-      const result = cartShippingAddressReducer(initialState, cartListLoadAction);
+      const result = cartShippingAddressReducer(daffCartReducerInitialState, cartListLoadAction);
 
       expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Resolving);
     });
@@ -57,9 +57,9 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
       };
@@ -89,13 +89,13 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.ShippingAddress]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -118,7 +118,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should indicate that the cart shipping address is being mutated', () => {
       const cartShippingAddressUpdateAction = new DaffCartShippingAddressUpdate(cart.shipping_address);
 
-      const result = cartShippingAddressReducer(initialState, cartShippingAddressUpdateAction);
+      const result = cartShippingAddressReducer(daffCartReducerInitialState, cartShippingAddressUpdateAction);
 
       expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Mutating);
     });
@@ -131,9 +131,9 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     beforeEach(() => {
       const cartShippingAddressUpdateActionSuccess = new DaffCartShippingAddressUpdateSuccess(cart);
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
       };
@@ -161,13 +161,13 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.ShippingAddress]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
@@ -192,7 +192,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should set loading state to true', () => {
       const cartAddressUpdateAction = new DaffCartAddressUpdate(cart.shipping_address);
 
-      const result = cartShippingAddressReducer(initialState, cartAddressUpdateAction);
+      const result = cartShippingAddressReducer(daffCartReducerInitialState, cartAddressUpdateAction);
 
       expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Mutating);
     });
@@ -205,9 +205,9 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     beforeEach(() => {
       const cartAddressUpdateActionSuccess = new DaffCartAddressUpdateSuccess(cart);
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
       };
@@ -235,13 +235,13 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.ShippingAddress]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.ShippingAddress]: [{ code: 'first error code', message: 'first error message' }],
         },
       };

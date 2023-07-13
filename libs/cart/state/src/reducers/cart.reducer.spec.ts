@@ -1,5 +1,5 @@
 import { daffCartReducer } from '../reducers/cart.reducer';
-import { initialState } from './cart-initial-state';
+import { daffCartReducerInitialState as initialState } from './cart-initial-state';
 
 describe('Cart | Reducer | Cart', () => {
   describe('when an unknown action is triggered', () => {

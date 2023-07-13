@@ -5,7 +5,7 @@ import {
   DaffCartReducerState,
   DaffCartPaymentMethodsLoadSuccess,
   DaffCartPaymentMethodsLoadFailure,
-  initialState,
+  daffCartReducerInitialState,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
@@ -30,9 +30,9 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = cartPaymentMethodsReducer(initialState, action);
+      const result = cartPaymentMethodsReducer(daffCartReducerInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffCartReducerInitialState);
     });
   });
 
@@ -40,7 +40,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
     it('should set loading state to true', () => {
       const cartPaymentMethodsLoadAction = new DaffCartPaymentMethodsLoad();
-      const result = cartPaymentMethodsReducer(initialState, cartPaymentMethodsLoadAction);
+      const result = cartPaymentMethodsReducer(daffCartReducerInitialState, cartPaymentMethodsLoadAction);
 
       expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Resolving);
     });
@@ -52,9 +52,9 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.PaymentMethods]: DaffState.Resolving,
         },
       };
@@ -84,13 +84,13 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
     beforeEach(() => {
       state = {
-        ...initialState,
+        ...daffCartReducerInitialState,
         loading: {
-          ...initialState.loading,
+          ...daffCartReducerInitialState.loading,
           [DaffCartOperationType.PaymentMethods]: DaffState.Resolving,
         },
         errors: {
-          ...initialState.errors,
+          ...daffCartReducerInitialState.errors,
           [DaffCartOperationType.PaymentMethods]: [{ code: 'first error code', message: 'first error message' }],
         },
       };
