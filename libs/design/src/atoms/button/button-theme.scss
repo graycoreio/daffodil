@@ -294,7 +294,7 @@
 	.daff-stroked-button {
 		background: transparent;
 		border: 1px solid theming.daff-illuminate($base, $gray, 5);
-		color: theming.daff-text-contrast($base);
+		color: currentColor;
 
 		&:after {
 			background: theming.daff-illuminate($base, $gray, 2);
@@ -406,7 +406,7 @@
 	}
 
 	.daff-flat-button {
-		color: theming.daff-text-contrast($base);
+		color: currentColor;
 
 		&:after {
 			background-color: theming.daff-illuminate($base, $gray, 2);
@@ -416,6 +416,11 @@
 			&:after {
 				background-color: theming.daff-illuminate($base, $gray, 3);
 			}
+		}
+
+		&:hover,
+		&:active {
+			color: theming.daff-text-contrast(theming.daff-illuminate($base, $gray, 2));
 		}
 
 		&.daff-primary {
