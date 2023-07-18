@@ -1,4 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Input,
@@ -8,12 +9,12 @@ import {
   EventEmitter,
   Renderer2,
   HostBinding,
+  ChangeDetectorRef,
 } from '@angular/core';
 
 import {
   daffColorMixin,
   DaffColorable,
-  DaffPalette,
 } from '@daffodil/design';
 
 import { daffProgressBarAnimation } from './animation/progress-bar-animation';
@@ -26,6 +27,8 @@ class DaffProgressBarBase{
 }
 
 const _daffProgressBarBase = daffColorMixin(DaffProgressBarBase, 'primary');
+
+export const clamp = (number: number, min: number, max: number) => Math.min(Math.max(number, min), max);
 
 /**
  * @inheritdoc
@@ -50,19 +53,68 @@ export class DaffProgressBarComponent extends _daffProgressBarBase implements Da
   @HostBinding('class.daff-progress-bar') class = true;
 
   /**
-   * The percentage completion of the progression,
+   * @docs-private
+   */
+  @HostBinding('class.indeterminate') get indeterminateClass() {
+    return this._indeterminate;
+  }
+
+  @HostBinding('role') get role() {
+    return 'progressbar';
+  }
+
+  @HostBinding('attr.aria-label') get ariaLabel() {
+    return this._indeterminate ? 'loading' : null;
+  }
+
+  @HostBinding('attr.aria-valuemin') ariaValueMin = '0';
+  @HostBinding('attr.aria-valuemax') ariaValueMax = '100';
+  @HostBinding('attr.aria-valuenow') get ariaValueNow() {
+    return this.percentage;
+  }
+
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) {
+    super(elementRef, renderer);
+  }
+
+  private _percentage = 0;
+  private _indeterminate = false;
+
+  /**
+   * Sets the percentage completion of the progression,
    * expressed as a whole number between 0 and 100.
    *
    */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() percentage: number = 0;
+  @Input() get percentage(): number {
+    return this._percentage;
+  };
+  set percentage(val: number) {
+    this._percentage = clamp(val, 0, 100);
+    this._changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * Property to set the animation of a progress bar to
+   * run for an indefinite amount of time.
+   *
+   * See: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
+   **/
+  @Input() get indeterminate() {
+    return this._indeterminate;
+  }
+  set indeterminate(value: any) {
+	  this._indeterminate = coerceBooleanProperty(value);
+  }
 
   /**
    * An event that emits each time the progression reaches 100%
    * and the animation is finished
    */
   @Output() finished: EventEmitter<void> = new EventEmitter();
-
 
   /**
    * Calculates when the progress animation is fully completed
@@ -87,9 +139,5 @@ export class DaffProgressBarComponent extends _daffProgressBarBase implements Da
         percentage: this.percentage,
       },
     };
-  }
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef, renderer);
   }
 }

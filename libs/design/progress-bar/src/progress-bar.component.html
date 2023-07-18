@@ -1,1 +1,5 @@
-<div class="daff-progress-bar__fill" [@fill]="fillState" (@fill.done)="onAnimationComplete($event)"></div>
+<ng-content select="label[daffProgressBarLabel]"></ng-content>
+<div class="daff-progress-bar__track">
+	<div *ngIf="!indeterminate" class="daff-progress-bar__fill" [@fill]="fillState" (@fill.done)="onAnimationComplete($event)"></div>
+	<div *ngIf="indeterminate" class="daff-progress-bar__fill indeterminate-bar"></div>
+</div>

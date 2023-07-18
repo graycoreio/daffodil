@@ -1,5 +1,53 @@
-:host {
+$height: 4px;
+
+:host(.daff-progress-bar) {
+	$root: '.daff-progress-bar';
 	display: flex;
-	height: 3px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
 	width: 100%;
+
+	::ng-deep {
+		#{$root}__label {
+			font-size: 0.875rem;
+			line-height: 1rem;
+		}
+	}
+	
+	#{$root}__track {
+		height: $height;
+		position: relative;
+		width: 100%;
+	}
+
+	#{$root}__fill {
+		height: $height;
+		width: 100%;
+		transform: scaleX(0);
+		transform-origin: 0 center;
+	}
+
+	&.indeterminate {
+		overflow: hidden;
+
+		.indeterminate-bar {
+			height: 100%;
+			width: 100%;
+			animation: indeterminate-animation 1500ms infinite linear;
+			transform-origin: 0% 50%;
+		}
+	}
+}
+
+@keyframes indeterminate-animation {
+	0% {
+		transform: translateX(0) scaleX(0);
+	}
+	20% {
+		transform: translateX(0) scaleX(25%);
+	}
+	100% {
+		transform: translateX(100%) scaleX(25%);
+	}
 }

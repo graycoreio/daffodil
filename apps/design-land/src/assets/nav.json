@@ -81,7 +81,14 @@
           "data": {}
         },
         {
-          "title": "Progress Indicator",
+          "title": "Progress Bar",
+          "url": "progress-bar",
+          "id": "progress-bar",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Progress Indicator (Deprecated)",
           "url": "progress-indicator",
           "id": "progress-indicator",
           "items": [],
