@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.61.0](https://github.com/graycoreio/daffodil/compare/v0.60.0...v0.61.0) (2023-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** `initialState` -> `daffCartReducerInitialState`
+* **search*:** changes `DaffSearchDriverInterface#incremental` to return a `DaffSearchResultCollection`. changes `DaffSearchIncrementalSuccess#payload` to be a `DaffSearchResultCollection`
+* **design:** rename native select sass and paths ([#2475](https://github.com/graycoreio/daffodil/issues/2475))
+
+### Features
+
+* **auth:** add `DaffAuthResetToUnauthenticated` ([#2504](https://github.com/graycoreio/daffodil/issues/2504)) ([57127d3](https://github.com/graycoreio/daffodil/commit/57127d3bdf73250b0d04d21de91fe1a9c3396673))
+* **auth:** add unauthenticated hook tokens ([#2503](https://github.com/graycoreio/daffodil/issues/2503)) ([0f0d0c3](https://github.com/graycoreio/daffodil/commit/0f0d0c32798c305f4cd4b1466693b07ecdacca0a))
+* **auth:** call unauthenticated hooks before resetting client cache ([#2505](https://github.com/graycoreio/daffodil/issues/2505)) ([a519413](https://github.com/graycoreio/daffodil/commit/a519413b7b6de7bc8506b602d983c2a9d3c82a0b))
+* **auth:** delay client cache reset ([#2495](https://github.com/graycoreio/daffodil/issues/2495)) ([33c3c9b](https://github.com/graycoreio/daffodil/commit/33c3c9bf681a4b61d4556da2a8e9f68b2903b8cb))
+* **authorizenet:** reduce backoff timing for accept.js retry ([#2465](https://github.com/graycoreio/daffodil/issues/2465)) ([62a16b0](https://github.com/graycoreio/daffodil/commit/62a16b051d61223c9cdc8852332930b00e2f128e))
+* **cart-customer:** only merge if a cart ID is in storage ([#2502](https://github.com/graycoreio/daffodil/issues/2502)) ([11b1bb1](https://github.com/graycoreio/daffodil/commit/11b1bb1c544be73185cfc2a69b2ce9297f4031f0))
+* **cart-customer:** remove cart ID from storage when unauthenticated ([#2507](https://github.com/graycoreio/daffodil/issues/2507)) ([e8fc2c4](https://github.com/graycoreio/daffodil/commit/e8fc2c40f39e7e0d7fa57b6a08fc76c47aafa150))
+* **cart-customer:** reset cart state when the user is unauthenticated ([#2509](https://github.com/graycoreio/daffodil/issues/2509)) ([e26ab24](https://github.com/graycoreio/daffodil/commit/e26ab2492825b6d9b04129b13f87530c92a3571c))
+* **cart-customer:** set cart to mutating when the user is logged in ([#2508](https://github.com/graycoreio/daffodil/issues/2508)) ([33d9c1a](https://github.com/graycoreio/daffodil/commit/33d9c1aea5578b6e413ef0b9136f682db8348d72))
+* **cart:** add `daffCartDriverHandleCartNotFound` ([#2489](https://github.com/graycoreio/daffodil/issues/2489)) ([15cb6cd](https://github.com/graycoreio/daffodil/commit/15cb6cdf2fd2fa568793e6a9878d3811012bc5eb))
+* **cart:** add `DaffCartDriverResolveService` ([#2490](https://github.com/graycoreio/daffodil/issues/2490)) ([f691fd8](https://github.com/graycoreio/daffodil/commit/f691fd850de3a7da8ebe456f2d381da965535675))
+* **cart:** add `DaffResolveCartGuard` ([#2506](https://github.com/graycoreio/daffodil/issues/2506)) ([5da2cfc](https://github.com/graycoreio/daffodil/commit/5da2cfc1cf951af4d912803d8b8e6dffc1b90258))
+* **cart:** create cart automatically for add cart item ([#2493](https://github.com/graycoreio/daffodil/issues/2493)) ([88e5ef9](https://github.com/graycoreio/daffodil/commit/88e5ef915876224c89f271e05dfb8bf66b0707cd))
+* **cart:** only initially resolve cart if ID is in storage ([#2492](https://github.com/graycoreio/daffodil/issues/2492)) ([cc3db71](https://github.com/graycoreio/daffodil/commit/cc3db71951080ca74d9081e16c0b8d097a2f9129))
+* **cart:** package prefix reducer initial state exports ([#2501](https://github.com/graycoreio/daffodil/issues/2501)) ([c7b85d7](https://github.com/graycoreio/daffodil/commit/c7b85d766ce1c3bec15f3974928288d580458c94))
+* **cart:** throw unrecoverable errors in magento driver ([#2488](https://github.com/graycoreio/daffodil/issues/2488)) ([18bca84](https://github.com/graycoreio/daffodil/commit/18bca84116e47ffce31fc9e7cb77f2cb4a409b21))
+* **cart:** use `DaffCartDriverResolveService` for resolve effects ([#2491](https://github.com/graycoreio/daffodil/issues/2491)) ([bbd939e](https://github.com/graycoreio/daffodil/commit/bbd939e9e755e9c5c49876a88124ccbb4c6bbe05))
+* **design:** add hostbinding class to error message so the theming styles can be properly applied ([#2479](https://github.com/graycoreio/daffodil/issues/2479)) ([80fe194](https://github.com/graycoreio/daffodil/commit/80fe1947ede023590ee1a5ec1379c5183682c81a))
+* **design:** add loading, disabled, and tabindex properties to button component ([#2448](https://github.com/graycoreio/daffodil/issues/2448)) ([678e8a9](https://github.com/graycoreio/daffodil/commit/678e8a92940ac8a57a92806f256ebb8fb743b048))
+* **design:** create &lt;daff-flat-button&gt; variant ([#2448](https://github.com/graycoreio/daffodil/issues/2448)) ([ed4a52d](https://github.com/graycoreio/daffodil/commit/ed4a52d4e2e1aa04df446359641c4a650378e4b5))
+* **design:** expose colorable public_api to core's public_api ([#2487](https://github.com/graycoreio/daffodil/issues/2487)) ([5c7669d](https://github.com/graycoreio/daffodil/commit/5c7669d1669811069bddcb18840c4b30c07212fb))
+* **design:** expose DaffStatusable to the public api ([#2485](https://github.com/graycoreio/daffodil/issues/2485)) ([d82d703](https://github.com/graycoreio/daffodil/commit/d82d7035707c7fa1684bdc04369783c075534e0a))
+* **design:** expose form label to the public api ([#2478](https://github.com/graycoreio/daffodil/issues/2478)) ([7661c57](https://github.com/graycoreio/daffodil/commit/7661c57cb23c30a3f488d46b1f4533801488ba06))
+* **design:** remove default color on loading icon and update styles ([#2448](https://github.com/graycoreio/daffodil/issues/2448)) ([2649337](https://github.com/graycoreio/daffodil/commit/264933779bdc89bad70afccdbcc2b4eeef523b56))
+* **design:** remove focus style and optimize background color animations on buttons ([#2448](https://github.com/graycoreio/daffodil/issues/2448)) ([9163a24](https://github.com/graycoreio/daffodil/commit/9163a24e2e24fc7a0924ac31e92102e685c07a9b))
+* **design:** rename native select sass and paths ([#2475](https://github.com/graycoreio/daffodil/issues/2475)) ([990919f](https://github.com/graycoreio/daffodil/commit/990919f856000c25adeebd06da22bee6c571c013))
+* **design:** set the base stroked and flat button text color to currentColor ([#2500](https://github.com/graycoreio/daffodil/issues/2500)) ([939a655](https://github.com/graycoreio/daffodil/commit/939a655d90a75675fad64531b567c7812a583f3a))
+* **design:** show the daff loading icon when loading is set to true on a button ([#2448](https://github.com/graycoreio/daffodil/issues/2448)) ([6d6067f](https://github.com/graycoreio/daffodil/commit/6d6067f1a2f1236d10575ef808589598a2d089f9))
+* **design:** update daff-green palette colors to be more aligned with the other decorative palettes ([#2486](https://github.com/graycoreio/daffodil/issues/2486)) ([d9596a9](https://github.com/graycoreio/daffodil/commit/d9596a9c07eb32f981c7cf0f4bb69d80f07ca744))
+* **paypal:** set payment loading for generate express token ([#2461](https://github.com/graycoreio/daffodil/issues/2461)) ([4d9003f](https://github.com/graycoreio/daffodil/commit/4d9003f686dec367ec41fd44fb8e36f399aa0e6c))
+* **search*:** remove collection metadata request from incremental search ([#2494](https://github.com/graycoreio/daffodil/issues/2494)) ([56f37a4](https://github.com/graycoreio/daffodil/commit/56f37a423b015f8fa420b11ca7514b3fc30eb71b))
+
+
+### Bug Fixes
+
+* **design:** update skeleton screen positioning style ([1a5c02c](https://github.com/graycoreio/daffodil/commit/1a5c02c0bd4942670f714b8746a57c7984f2de8a))
+
 ## [0.60.0](https://github.com/graycoreio/daffodil/compare/v0.59.2...v0.60.0) (2023-05-25)
 
 
