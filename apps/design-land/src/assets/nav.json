@@ -1,0 +1,244 @@
+{
+  "title": "",
+  "url": "/",
+  "id": "root",
+  "items": [
+    {
+      "title": "Foundations",
+      "url": "/",
+      "id": "foundations",
+      "items": [
+        {
+          "title": "Color",
+          "url": "color",
+          "id": "color",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Typography",
+          "url": "typography",
+          "id": "typography",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Variables",
+          "url": "variables",
+          "id": "variables",
+          "items": [],
+          "data": {}
+        }
+      ],
+      "data": {}
+    },
+    {
+      "title": "Atoms",
+      "url": "/",
+      "id": "atoms",
+      "items": [
+        {
+          "title": "Button",
+          "url": "button",
+          "id": "button",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Checkbox",
+          "url": "checkbox",
+          "id": "checkbox",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Loading Icon",
+          "url": "loading-icon",
+          "id": "loading-icon",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Image",
+          "url": "image",
+          "id": "image",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Form",
+          "url": "/",
+          "id": "form",
+          "items": [
+            {
+              "title": "Input",
+              "url": "input",
+              "id": "input",
+              "items": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "title": "Progress Indicator",
+          "url": "progress-indicator",
+          "id": "progress-indicator",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Radio",
+          "url": "radio",
+          "id": "radio",
+          "items": [],
+          "data": {}
+        }
+      ],
+      "data": {}
+    },
+    {
+      "title": "Molecules",
+      "url": "/",
+      "id": "molecules",
+      "items": [
+        {
+          "title": "Accordion",
+          "url": "accordion",
+          "id": "accordion",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Article",
+          "url": "article",
+          "id": "article",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Callout",
+          "url": "callout",
+          "id": "callout",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Card",
+          "url": "card",
+          "id": "card",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Container",
+          "url": "container",
+          "id": "container",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Feature",
+          "url": "feature",
+          "id": "feature",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Form",
+          "url": "form",
+          "id": "form",
+          "items": [
+            {
+              "title": "Quantity Field",
+              "url": "quantity-field",
+              "id": "quantity-field",
+              "items": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "title": "Hero",
+          "url": "hero",
+          "id": "hero",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Image Gallery",
+          "url": "image-gallery",
+          "id": "image-gallery",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Link Set",
+          "url": "link-set",
+          "id": "link-set",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "List",
+          "url": "list",
+          "id": "list",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Navbar",
+          "url": "navbar",
+          "id": "navbar",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Media Gallery",
+          "url": "media-gallery",
+          "id": "media-gallery",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Menu",
+          "url": "menu",
+          "id": "menu",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Modal",
+          "url": "modal",
+          "id": "modal",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Paginator",
+          "url": "paginator",
+          "id": "paginator",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Quantity Dropdown",
+          "url": "qty-dropdown",
+          "id": "qty-dropdown",
+          "items": [],
+          "data": {}
+        },
+        {
+          "title": "Sidebar",
+          "url": "sidebar",
+          "id": "sidebar",
+          "items": [],
+          "data": {}
+        }
+      ],
+      "data": {}
+    }
+  ],
+  "data": {}
+}
