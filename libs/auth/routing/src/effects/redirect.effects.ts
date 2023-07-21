@@ -63,23 +63,4 @@ export class DaffAuthRedirectEffects {
     }),
     switchMap(() => EMPTY),
   ), { dispatch: false });
-
-  redirectAfterLogout$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffAuthLoginActionTypes.LogoutSuccessAction),
-    tap((action) => {
-      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get(this.config.redirectUrlParam) || this.config.logoutRedirectPath);
-    }),
-    switchMap(() => EMPTY),
-  ), { dispatch: false });
-
-  redirectAfterExpiration$ = createEffect(() => this.actions$.pipe(
-    ofType(
-      DaffAuthActionTypes.AuthCheckFailureAction,
-      DaffAuthActionTypes.AuthGuardLogoutAction,
-    ),
-    tap(() => {
-      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get(this.config.redirectUrlParam) || this.config.tokenExpirationRedirectPath);
-    }),
-    switchMap(() => EMPTY),
-  ), { dispatch: false });
 }

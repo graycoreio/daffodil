@@ -2,7 +2,9 @@ import {
   inject,
   InjectionToken,
 } from '@angular/core';
+import { combineLatest } from 'rxjs';
 
+import { DaffAuthUnauthenticatedHook } from './hook.type';
 import { DAFF_AUTH_UNAUTHENTICATED_HOOKS } from './hooks.token';
 
 /**
@@ -11,12 +13,12 @@ import { DAFF_AUTH_UNAUTHENTICATED_HOOKS } from './hooks.token';
  *
  * @docs-private
  */
-export const DAFF_AUTH_UNAUTHENTICATED_HOOK = new InjectionToken<() => void>(
+export const DAFF_AUTH_UNAUTHENTICATED_HOOK = new InjectionToken<DaffAuthUnauthenticatedHook>(
   'DAFF_AUTH_UNAUTHENTICATED_HOOK',
-{
-  factory: () => inject(DAFF_AUTH_UNAUTHENTICATED_HOOKS).reduce((acc, hook) => () => {
-    acc();
-    hook();
-  }, () => {}),
-},
+  {
+    factory: () => {
+      const hooks = inject(DAFF_AUTH_UNAUTHENTICATED_HOOKS);
+      return (action) => combineLatest(hooks.map((hook) => hook(action)));
+    },
+  },
 );

@@ -4,8 +4,12 @@ import {
 } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { combineReducers } from '@ngrx/store';
+import { of } from 'rxjs';
 
-import { DAFF_AUTH_UNAUTHENTICATED_HOOKS } from '@daffodil/auth/state';
+import {
+  DAFF_AUTH_UNAUTHENTICATED_HOOKS,
+  DaffAuthUnauthenticatedHook,
+} from '@daffodil/auth/state';
 import { DaffCartStorageService } from '@daffodil/cart';
 import { daffCartProvideExtraReducers } from '@daffodil/cart/state';
 
@@ -24,11 +28,15 @@ import { daffCartCustomerUnauthenticatedReset } from './reducers/unauthenticated
       provide: DAFF_AUTH_UNAUTHENTICATED_HOOKS,
       useFactory: () => {
         const storage = inject(DaffCartStorageService);
-        return () => {
+        const hook: DaffAuthUnauthenticatedHook = () => {
           try {
-            storage.removeCartId();
-          } catch {}
+            return of(storage.removeCartId());
+          } catch {
+            return of(null);
+          }
         };
+
+        return hook;
       },
       multi: true,
     },

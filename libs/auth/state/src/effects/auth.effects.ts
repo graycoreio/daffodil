@@ -54,6 +54,7 @@ import {
   DaffAuthStateConfig,
   DAFF_AUTH_STATE_CONFIG,
 } from '../config/public_api';
+import { DaffAuthUnauthenticatedHook } from '../injection-tokens/public_api';
 import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
 
 @Injectable()
@@ -65,7 +66,7 @@ export class DaffAuthEffects {
     private storage: DaffAuthStorageService,
     @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
     @Inject(DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE) private clientCache: DaffDriverHttpClientCacheServiceInterface,
-    @Inject(DAFF_AUTH_UNAUTHENTICATED_HOOK) private unauthenticatedHook: () => void,
+    @Inject(DAFF_AUTH_UNAUTHENTICATED_HOOK) private unauthenticatedHook: DaffAuthUnauthenticatedHook,
   ) {}
 
   check$ = createEffect(() => this.actions$.pipe(
@@ -122,18 +123,14 @@ export class DaffAuthEffects {
       DaffAuthActionTypes.AuthGuardLogoutAction,
       DaffAuthLoginActionTypes.LogoutSuccessAction,
     ),
-    map(() => new DaffAuthResetToUnauthenticated()),
+    map((action) => new DaffAuthResetToUnauthenticated(action.type)),
   ));
 
   clearClientCache$ = createEffect(() => this.actions$.pipe(
     ofType(
       DaffAuthActionTypes.ResetToUnauthenticatedAction,
     ),
-    // map here to be sure that the stream waits for the hook to complete
-    // tap is for side effects and might use setTimeout
-    map(() => {
-      this.unauthenticatedHook();
-    }),
+    switchMap((action) => this.unauthenticatedHook(action.reason)),
     tap(() => {
       this.clientCache.reset();
     }),

@@ -14,10 +14,7 @@ import { Observable } from 'rxjs';
 
 import { provideDaffAuthRoutingConfig } from '@daffodil/auth/routing';
 import {
-  DaffAuthCheckFailure,
-  DaffAuthGuardLogout,
   DaffAuthLoginSuccess,
-  DaffAuthLogoutSuccess,
   DaffAuthRegisterSuccess,
   DaffResetPasswordSuccess,
 } from '@daffodil/auth/state';
@@ -151,84 +148,6 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
         const expected = cold('---');
 
         expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
-        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
-      });
-    });
-  });
-
-  describe('when DaffAuthLogoutSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthLogoutSuccess() });
-    });
-
-    it('should navigate to the login page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterLogout$).toBeObservable(expected);
-      expect(routerNavigateSpy).toHaveBeenCalledWith(logoutRedirectUrl);
-    });
-
-    describe('and when the redirect QP is set', () => {
-      beforeEach(() => {
-        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
-      });
-
-      it('should navigate to the redirect URL', () => {
-        const expected = cold('---');
-
-        expect(effects.redirectAfterLogout$).toBeObservable(expected);
-        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
-      });
-    });
-  });
-
-  describe('when DaffAuthCheckFailure is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthCheckFailure(null) });
-    });
-
-    it('should navigate to the home page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterExpiration$).toBeObservable(expected);
-      expect(routerNavigateSpy).toHaveBeenCalledWith(expirationRedirectUrl);
-    });
-
-    describe('and when the redirect QP is set', () => {
-      beforeEach(() => {
-        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
-      });
-
-      it('should navigate to the redirect URL', () => {
-        const expected = cold('---');
-
-        expect(effects.redirectAfterExpiration$).toBeObservable(expected);
-        expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
-      });
-    });
-  });
-
-  describe('when DaffAuthGuardLogout is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthGuardLogout(null) });
-    });
-
-    it('should navigate to the home page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterExpiration$).toBeObservable(expected);
-      expect(routerNavigateSpy).toHaveBeenCalledWith(expirationRedirectUrl);
-    });
-
-    describe('and when the redirect QP is set', () => {
-      beforeEach(() => {
-        qpSpy.get.withArgs('redirect').and.returnValue(redirectUrl);
-      });
-
-      it('should navigate to the redirect URL', () => {
-        const expected = cold('---');
-
-        expect(effects.redirectAfterExpiration$).toBeObservable(expected);
         expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
       });
     });
