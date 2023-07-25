@@ -3,7 +3,7 @@ import { DaffCustomerAddress } from '@daffodil/customer';
 import { MagentoCustomerAddress } from '../../models/public_api';
 
 export const magentoCustomerAddressTransform = (address: MagentoCustomerAddress): DaffCustomerAddress => ({
-  id: String(address.id),
+  id: address.id ? String(address.id) : null,
   street: address.street[0],
   street2: address.street[1],
   city: address.city,

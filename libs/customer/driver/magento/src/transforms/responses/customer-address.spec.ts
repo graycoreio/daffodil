@@ -36,4 +36,17 @@ describe('@daffodil/customer/driver/magento | magentoCustomerAddressTransform', 
     expect(result.defaultBilling).toEqual(mockAddress.default_billing);
     expect(result.defaultShipping).toEqual(mockAddress.default_shipping);
   });
+
+  describe('when the ID is null', () => {
+    beforeEach(() => {
+      mockAddress = addressFactory.create({
+        id: null,
+      });
+      result = magentoCustomerAddressTransform(mockAddress);
+    });
+
+    it('should set ID to null', () => {
+      expect(result.id).toBeNull();
+    });
+  });
 });
