@@ -1,9 +1,7 @@
-import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,32 +11,20 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 import {
   DaffBackdropComponent,
   DaffBackdropModule,
 } from '../../backdrop/public_api';
-import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 
 @Component({ template: `
   <div class="sidebar-content-wrapper">
-    <daff-sidebar-viewport
-      [backdropIsVisible]="backdropIsVisible"
-      [mode]="mode"
-      [opened]="open"
-      (backdropClicked)="incrementBackdropClicked()"></daff-sidebar-viewport>
+    <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()">
+    </daff-sidebar-viewport>
   </div>
 ` })
 class WrapperComponent {
-  open = false;
-
-  backdropIsVisible = false;
-
-  mode: DaffSidebarMode = 'side';
-
   backdropClickedCounter = 0;
 
   incrementBackdropClicked() {
@@ -61,7 +47,6 @@ describe('DaffSidebarViewportComponent | Usage', () => {
       imports: [
         NoopAnimationsModule,
         DaffBackdropModule,
-        A11yModule,
       ],
       declarations: [
         WrapperComponent,
@@ -85,26 +70,8 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('on <daff-backdrop>', () => {
-
-    beforeEach(() => {
-      wrapper.mode = 'over';
-      wrapper.open = true;
-      fixture.detectChanges();
-
-      backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
-    });
-
-    it('should set transparent', () => {
-      expect(backdrop.transparent).toEqual(!component.backdropIsVisible);
-    });
-  });
-
   describe('when <backdrop> emits backdropClicked', () => {
-
     beforeEach(() => {
-      wrapper.mode = 'over';
-      wrapper.open = true;
       fixture.detectChanges();
       backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
       spyOn(component.backdropClicked, 'emit');
@@ -117,139 +84,57 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     });
   });
 
-  describe('over mode', () => {
-    beforeEach(() => {
-      wrapper.mode = 'over';
-      fixture.detectChanges();
+  describe('multiple sidebars', () => {
+    it('should allow the following combinations of sidebars', () => {
+      @Component({
+        template: `
+        <daff-sidebar-viewport>
+          <daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar[1]" [mode]="sidebar[0]"></daff-sidebar>
+        </daff-sidebar-viewport>
+        `,
+      })
+      class IterableWrapperComponent{
+        @Input() sidebars: any[] = [];
+      }
+
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({
+        imports: [
+          CommonModule,
+          NoopAnimationsModule,
+          DaffBackdropModule,
+        ],
+        declarations: [
+          DaffSidebarComponent,
+          DaffSidebarViewportComponent,
+          IterableWrapperComponent,
+        ],
+      }).compileComponents();
+
+      const iterableFixture = TestBed.createComponent(IterableWrapperComponent);
+      const iterableWrapper = iterableFixture.componentInstance;
+
+      iterableFixture.detectChanges();
+
+      const allowedSidebarCombinations = [
+        [['side', 'left']],
+        [['side', 'right']],
+        [['side', 'left'],['side', 'left']], // We allow it, even though it looks dumb
+        [['side', 'right'],['side', 'right']], // We allow it, even though it looks dumb
+        [['side', 'left'],['side', 'right']], // We allow it, even though it looks dumb
+        [['side', 'left'],['side', 'left'],['side', 'right'],['side', 'right']], // We allow it, even though it looks dumb
+        [['over', 'left']],
+        [['over', 'right']],
+        [['over', 'left'], ['over', 'right']],
+        [['under', 'left']],
+        [['under', 'right']],
+        [['under', 'left'], ['under', 'right']],
+      ];
+
+      allowedSidebarCombinations.forEach((el) => {
+        iterableWrapper.sidebars = el;
+        expect(() => iterableFixture.detectChanges()).not.toThrowError();
+      });
     });
-
-    it('should render backdrop', () => {
-      expect(backdrop).not.toBeNull();
-    });
-  });
-
-  describe('push mode', () => {
-    beforeEach(() => {
-      wrapper.mode = 'push';
-      fixture.detectChanges();
-    });
-
-    it('should render backdrop', () => {
-      expect(backdrop).not.toBeNull();
-    });
-  });
-
-  describe('side mode', () => {
-
-    let backdropElement;
-
-    beforeEach(() => {
-      wrapper.mode = 'side';
-      fixture.detectChanges();
-
-      backdropElement = fixture.debugElement.query(By.css('daff-backdrop'));
-    });
-
-    it('should not render backdrop', () => {
-      expect(backdropElement).toBeNull();
-    });
-
-    it('should be `open` and and not change animation states regardless of `opened` state changes', () => {
-      wrapper.open = false;
-      fixture.detectChanges();
-
-      expect(component._animationState).toEqual('open');
-
-      wrapper.open = true;
-      fixture.detectChanges();
-
-      expect(component._animationState).toEqual('open');
-    });
-  });
-
-  describe('fixed mode', () => {
-
-    let backdropElement;
-
-    beforeEach(() => {
-      wrapper.mode = 'fixed';
-      fixture.detectChanges();
-
-      backdropElement = fixture.debugElement.query(By.css('daff-backdrop'));
-    });
-
-    it('should not render backdrop', () => {
-      expect(backdropElement).toBeNull();
-    });
-
-    it('should be `open` and and not change animation states regardless of `opened` state changes', () => {
-      wrapper.open = false;
-      fixture.detectChanges();
-
-      expect(component._animationState).toEqual('open');
-
-      wrapper.open = true;
-      fixture.detectChanges();
-
-      expect(component._animationState).toEqual('open');
-    });
-  });
-
-  it('should recalculate the animation state when the mode changes', () => {
-    wrapper.mode = 'side';
-    wrapper.open = false;
-    fixture.detectChanges();
-    expect(component._animationState).toEqual('open');
-
-    wrapper.mode = 'push';
-    fixture.detectChanges();
-    expect(component._animationState).toEqual('closed');
-  });
-});
-
-describe('DaffSidebarViewportComponent | Defaults', () => {
-
-  let fixture: ComponentFixture<DaffSidebarViewportComponent>;
-  let component: DaffSidebarViewportComponent;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        DaffBackdropModule,
-        A11yModule,
-      ],
-      declarations: [
-        DaffSidebarViewportComponent,
-        DaffSidebarComponent,
-      ],
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DaffSidebarViewportComponent);
-    component = fixture.componentInstance;
-
-    component = fixture.componentInstance;
-
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should have the _animationState should be `open` by default', () => {
-    expect(component._animationState).toEqual('open');
-  });
-
-  it('should not have the backdrop by default', () => {
-    expect(component.hasBackdrop).toBe(false);
-    expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBeNull();
-  });
-
-  it('should be `side` mode by default', () => {
-    expect(component.mode).toBe('side');
   });
 });

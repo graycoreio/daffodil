@@ -12,7 +12,7 @@ export interface State {
 
 export const initialState: State = {
   showSidebar: false,
-  mode: 'push',
+  mode: 'under',
 };
 
 export function reducer(state = initialState, action: SidebarActions): State {
@@ -23,8 +23,14 @@ export function reducer(state = initialState, action: SidebarActions): State {
       return { ...state, showSidebar: false };
     case SidebarActionTypes.OpenSidebarAction:
       return { ...state, showSidebar: true };
-    case SidebarActionTypes.SetSidebarStateAction:
+    case SidebarActionTypes.SetSidebarVisibilityAction:
       return { ...state, showSidebar: action.payload };
+    case SidebarActionTypes.SetSidebarStateAction:
+      return {
+        ...state,
+        mode: action.payload?.mode ?? state.mode,
+        showSidebar: action.payload?.open ?? state.showSidebar,
+      };
     case SidebarActionTypes.SetSidebarModeAction:
       return { ...state, mode: action.payload };
     case SidebarActionTypes.ResetModeAction:

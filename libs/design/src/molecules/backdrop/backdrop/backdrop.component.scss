@@ -1,18 +1,26 @@
-@use '../../../../scss/interactions';
+@use 'interactions';
 
 $bg-color: rgba(0, 0, 0, 0.3);
 $highlight-color: rgba(0, 0, 0, 0);
 
 :host {
-	@include interactions.clickable;
 	display: block;
 	-webkit-tap-highlight-color: $highlight-color;
+	visibility: hidden;
+	pointer-events: none;
+
+	&.interactable {
+		visibility: visible;
+		pointer-events: all;
+		@include interactions.clickable;
+	}
 }
 
 .daff-backdrop {
 	background: $bg-color;
 	height: 100%;
 	width: 100%;
+	
 
 	&--transparent {
 		background: none;
@@ -23,6 +31,8 @@ $highlight-color: rgba(0, 0, 0, 0);
 	&:visited {
 		outline: 0;
 	}
+
+	
 
 	&--fullscreen {
 		position: absolute;

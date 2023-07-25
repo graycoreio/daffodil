@@ -1,0 +1,18 @@
+<daff-sidebar-viewport class="viewport">
+  <daff-sidebar mode="side-fixed" [open]="true">
+    <a daff-link-set-item routerLink="accordion">Accordion</a><br>
+    <a daff-link-set-item routerLink="article">Article</a><br>
+  </daff-sidebar>
+  <div class="content">
+    <nav daff-navbar>
+      <div>Two Fixed Sidebars on either side.</div>
+    </nav>
+    <div class="filler">
+      <p>Content</p>
+    </div>
+  </div>
+  <daff-sidebar mode="side-fixed" side="right" [open]="true">
+    <a daff-link-set-item routerLink="accordion">Accordion</a><br>
+    <a daff-link-set-item routerLink="article">Article</a><br>
+  </daff-sidebar>
+</daff-sidebar-viewport>

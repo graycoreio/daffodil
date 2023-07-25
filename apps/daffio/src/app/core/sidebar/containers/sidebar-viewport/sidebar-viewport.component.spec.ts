@@ -72,8 +72,8 @@ describe('DaffioSidebarViewportContainer', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set the `daff-sidebar-viewport` mode to the default initialState (push)', () => {
-    expect(daffSidebarViewport.mode).toEqual('push');
+  it('should set the `daff-sidebar` mode to the default initialState (push)', () => {
+    expect(daffSidebar.mode).toEqual('under');
   });
 
   describe('when the `daff-sidebar-viewport` emits `backdropClicked`', () => {
@@ -124,7 +124,7 @@ describe('DaffioSidebarViewportContainer', () => {
       it('should call store.dispatch with a SetSidebarAction action', () => {
         component.setVisibility(true);
 
-        expect(store.dispatch).toHaveBeenCalledWith(new SetSidebarState(true));
+        expect(store.dispatch).toHaveBeenCalledWith(new SetSidebarState({ open: true }));
       });
     });
   });

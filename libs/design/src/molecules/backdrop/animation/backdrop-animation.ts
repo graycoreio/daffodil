@@ -15,6 +15,10 @@ export const daffBackdropAnimations: {
   readonly fadeBackdrop: AnimationTriggerMetadata;
 } = {
   fadeBackdrop: trigger('fadeBackdrop', [
+    state('interactable', style({ opacity: 1 })),
+    state('non-interactable', style({ opacity: 0 })),
+    transition('interactable => non-interactable', animate(animationDuration + ' ' + backdropTransitionOut)),
+    transition('non-interactable => interactable', animate(animationDuration + ' ' + backdropTransitionIn)),
     transition(':enter', [
       style({ opacity: 0 }),
       animate(animationDuration + ' ' + backdropTransitionIn, style({ opacity: 1 })),

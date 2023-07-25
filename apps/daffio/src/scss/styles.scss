@@ -30,3 +30,8 @@
 	background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }
+
+
+body {
+	--daff-sidebar-side-fixed-top-shift: 64px;
+}

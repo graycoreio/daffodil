@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -13,8 +16,10 @@ import {
 
 import {
   DaffSidebarModule,
+  DaffSidebarSide,
   DaffSidebarViewportComponent,
 } from '@daffodil/design';
+import { DaffSidebarMode } from '@daffodil/design';
 
 import {
   ToggleSidebar,
@@ -26,7 +31,14 @@ import * as fromDemoSidebar from '../../reducers';
 import { SidebarViewportContainer } from './sidebar-viewport.component';
 
 @Component({ selector: 'demo-sidebar', template: '' })
-class MockSidebarContainer {}
+class MockSidebarContainer {
+  @Input() side: DaffSidebarSide;
+
+  @Input() mode: DaffSidebarMode;
+
+  @Input() open: boolean;
+
+}
 
 describe('SidebarViewportContainer', () => {
   let component: SidebarViewportContainer;
@@ -74,8 +86,8 @@ describe('SidebarViewportContainer', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set the `daff-sidebar-viewport` mode to over', () => {
-    expect(sidebarViewport.mode).toEqual('over');
+  it('should set the `daff-sidebar` mode to under', () => {
+    expect(sidebarContainer.mode).toEqual('under');
   });
 
   it('should call close when the `daff-sidebar-viewport` emits `backdropClicked`', () => {

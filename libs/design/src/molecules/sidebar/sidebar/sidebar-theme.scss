@@ -2,12 +2,12 @@
 
 @mixin daff-sidebar-theme($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, "core.base-contrast");
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$black: core.daff-map-deep-get($theme, 'core.black');
+	$font-color: core.daff-map-deep-get($theme, 'core.font-color');
 
 	.daff-sidebar {
 		background: $base;
-		box-shadow: 6px 1px 9px 0 rgba($black, 0.1);
-		color: $base-contrast;
+		color: $font-color;
 	}
 }

@@ -15,7 +15,7 @@ export const docsRoutes: Routes = [
       doc: DocsResolver,
     },
     data: {
-      sidebarMode: 'side',
+      sidebarMode: 'side-fixed',
     },
   },
 ];

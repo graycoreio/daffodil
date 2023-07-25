@@ -1,0 +1,20 @@
+<daff-sidebar-viewport class="viewport" (backdropClicked)="closeSidebar()">
+  <daff-sidebar mode="under" side="left" [open]="openLeft">
+    <a daff-link-set-item routerLink="accordion">Accordion</a><br>
+    <a daff-link-set-item routerLink="article">Article</a><br>
+  </daff-sidebar>
+  <daff-sidebar mode="under" side="right" [open]="openRight">
+    <a daff-link-set-item routerLink="accordion">Accordion</a><br>
+    <a daff-link-set-item routerLink="article">Article</a><br>
+  </daff-sidebar>
+  <div>
+    <nav daff-navbar>
+      <button daff-button (click)="openLeftSidebar()">
+        Open
+      </button>
+      <button daff-button (click)="openRightSidebar()">
+        Open
+      </button>
+    </nav>
+  </div>
+</daff-sidebar-viewport>

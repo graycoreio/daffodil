@@ -1,4 +1,5 @@
 // Core
+export * from './animation/animation-state-with-params';
 export * from './prefix-suffix/public_api';
 export * from './colorable/public_api';
 export * from './breakpoints/breakpoints';
