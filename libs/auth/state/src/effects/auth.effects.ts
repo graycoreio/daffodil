@@ -26,7 +26,10 @@ import {
   DaffAuthStorageService,
   DAFF_AUTH_ERROR_MATCHER,
 } from '@daffodil/auth';
-import { DaffAuthDriverTokenCheck } from '@daffodil/auth/driver';
+import {
+  DaffAuthDriverErrorCodes,
+  DaffAuthDriverTokenCheck,
+} from '@daffodil/auth/driver';
 import {
   DaffError,
   DaffServerSideStorageError,
@@ -123,6 +126,18 @@ export class DaffAuthEffects {
       DaffAuthActionTypes.AuthGuardLogoutAction,
       DaffAuthLoginActionTypes.LogoutSuccessAction,
     ),
+    filter((action) => {
+      // if the auth check failure is for any reason other than auth failure, don't reset
+      if (
+        action.type === DaffAuthActionTypes.AuthCheckFailureAction
+        && action.errorMessage.code !== DaffAuthDriverErrorCodes.UNAUTHORIZED
+        && action.errorMessage.code !== DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED
+      ) {
+        return false;
+      }
+
+      return true;
+    }),
     map((action) => new DaffAuthResetToUnauthenticated(action.type)),
   ));
 
