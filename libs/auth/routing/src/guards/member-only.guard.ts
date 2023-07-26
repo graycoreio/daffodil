@@ -22,6 +22,7 @@ import {
   DaffAuthStorageService,
 } from '@daffodil/auth';
 import {
+  DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES,
   DaffAuthDriverErrorCodes,
   DaffAuthDriverTokenCheck,
 } from '@daffodil/auth/driver';
@@ -59,7 +60,7 @@ export class MemberOnlyGuard implements CanActivate {
     return this.tokenCheck.check().pipe(
       map(() => true),
       catchError((error: DaffError) => {
-        if (error.code === DaffAuthDriverErrorCodes.UNAUTHORIZED || error.code === DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED) {
+        if (DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES.find((code) => code === error.code)) {
           this.storage.removeAuthToken();
           this.store.dispatch(new DaffAuthGuardLogout(this.errorMatcher(error)));
         }

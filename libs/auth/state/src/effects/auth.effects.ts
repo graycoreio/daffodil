@@ -10,7 +10,6 @@ import {
 import {
   of,
   EMPTY,
-  asyncScheduler,
 } from 'rxjs';
 import {
   switchMap,
@@ -19,16 +18,14 @@ import {
   repeat,
   filter,
   tap,
-  delay,
 } from 'rxjs/operators';
 
 import {
   DaffAuthStorageService,
   DAFF_AUTH_ERROR_MATCHER,
-  DaffAuthErrorCodes,
 } from '@daffodil/auth';
 import {
-  DaffAuthDriverErrorCodes,
+  DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES,
   DaffAuthDriverTokenCheck,
 } from '@daffodil/auth/driver';
 import {
@@ -60,12 +57,6 @@ import {
 } from '../config/public_api';
 import { DaffAuthUnauthenticatedHook } from '../injection-tokens/public_api';
 import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
-
-const CLIENT_RESET_ERROR_CODES = [
-  DaffAuthDriverErrorCodes.UNAUTHORIZED,
-  DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED,
-  DaffAuthErrorCodes.MISSING_TOKEN,
-];
 
 @Injectable()
 export class DaffAuthEffects {
@@ -138,7 +129,7 @@ export class DaffAuthEffects {
       // such as a network failure, don't reset
       if (
         action.type === DaffAuthActionTypes.AuthCheckFailureAction
-          && !CLIENT_RESET_ERROR_CODES.find((code) => code === action.errorMessage.code)
+          && !DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES.find((code) => code === action.errorMessage.code)
       ) {
         return false;
       }
