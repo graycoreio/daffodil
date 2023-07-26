@@ -2183,6 +2183,44 @@
           }
         }
       }
+    },
+    "customer-payment": {
+      "projectType": "library",
+      "root": "libs/customer-payment",
+      "sourceRoot": "libs/customer-payment/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/customer-payment/tsconfig.lib.json",
+            "project": "libs/customer-payment/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/customer-payment/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/customer-payment/test.ts",
+            "tsConfig": "libs/customer-payment/tsconfig.spec.json",
+            "karmaConfig": "libs/customer-payment/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/customer-payment/**/*.ts",
+              "libs/customer-payment/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     }
   },
   "defaultProject": "demo",
