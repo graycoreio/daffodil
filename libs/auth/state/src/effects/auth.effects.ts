@@ -25,6 +25,7 @@ import {
 import {
   DaffAuthStorageService,
   DAFF_AUTH_ERROR_MATCHER,
+  DaffAuthErrorCodes,
 } from '@daffodil/auth';
 import {
   DaffAuthDriverErrorCodes,
@@ -59,6 +60,12 @@ import {
 } from '../config/public_api';
 import { DaffAuthUnauthenticatedHook } from '../injection-tokens/public_api';
 import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
+
+const CLIENT_RESET_ERROR_CODES = [
+  DaffAuthDriverErrorCodes.UNAUTHORIZED,
+  DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED,
+  DaffAuthErrorCodes.MISSING_TOKEN,
+];
 
 @Injectable()
 export class DaffAuthEffects {
@@ -127,11 +134,11 @@ export class DaffAuthEffects {
       DaffAuthLoginActionTypes.LogoutSuccessAction,
     ),
     filter((action) => {
-      // if the auth check failure is for any reason other than auth failure, don't reset
+      // if the auth check failure is for any reason other than auth failure,
+      // such as a network failure, don't reset
       if (
         action.type === DaffAuthActionTypes.AuthCheckFailureAction
-        && action.errorMessage.code !== DaffAuthDriverErrorCodes.UNAUTHORIZED
-        && action.errorMessage.code !== DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED
+          && !CLIENT_RESET_ERROR_CODES.find((code) => code === action.errorMessage.code)
       ) {
         return false;
       }
