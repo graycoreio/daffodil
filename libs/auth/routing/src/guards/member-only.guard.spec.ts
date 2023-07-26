@@ -18,6 +18,7 @@ import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffAuthDriverTokenCheck,
   DaffAuthInvalidAPIResponseError,
+  DaffAuthenticationFailedError,
   DaffUnauthorizedError,
 } from '@daffodil/auth/driver';
 import { DaffAuthGuardLogout } from '@daffodil/auth/state';
@@ -104,6 +105,28 @@ describe('@daffodil/auth/routing | MemberOnlyGuard', () => {
       describe('from an unauthorized error', () => {
         beforeEach(() => {
           daffAuthCheckService.check.and.returnValue(hot('--#', {}, new DaffUnauthorizedError('error')));
+          result = guard.canActivate();
+          expected = cold('--(b|)', { b: false });
+        });
+
+        it('should return false', () => {
+          expect(result).toBeObservable(expected);
+        });
+
+        it('should remove the token from storage', () => {
+          expect(result).toBeObservable(expected);
+          expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
+        });
+
+        it('should dispatch guard logout', () => {
+          expect(result).toBeObservable(expected);
+          expect(mockStore.dispatch).toHaveBeenCalledWith(jasmine.any(DaffAuthGuardLogout));
+        });
+      });
+
+      describe('from an unauthenticated error', () => {
+        beforeEach(() => {
+          daffAuthCheckService.check.and.returnValue(hot('--#', {}, new DaffAuthenticationFailedError('error')));
           result = guard.canActivate();
           expected = cold('--(b|)', { b: false });
         });

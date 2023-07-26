@@ -13,8 +13,10 @@ import { TestScheduler } from 'rxjs/testing';
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffAuthDriver,
+  DaffAuthInvalidAPIResponseError,
   DaffAuthServiceInterface,
   DaffAuthenticationFailedError,
+  DaffUnauthorizedError,
 } from '@daffodil/auth/driver';
 import {
   DaffAuthCheck,
@@ -214,16 +216,30 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   describe('resetToUnauthenticated$', () => {
     let expected;
 
-    describe('when AuthCheckFailure is dispatched', () => {
-      let authLogoutSuccessAction: DaffAuthCheckFailure;
+    describe('when DaffAuthCheckFailure is dispatched for an unauthorized error', () => {
+      let revokeAction: DaffAuthCheckFailure;
 
       beforeEach(() => {
-        authLogoutSuccessAction = new DaffAuthCheckFailure({ code: 'code', message: 'message' });
-        actions$ = hot('--a', { a: authLogoutSuccessAction });
-        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(authLogoutSuccessAction.type) });
+        revokeAction = new DaffAuthCheckFailure(new DaffUnauthorizedError('error'));
+        actions$ = hot('--a', { a: revokeAction });
+        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(revokeAction.type) });
       });
 
       it('should dispatch DaffAuthResetToUnauthenticated', () => {
+        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+      });
+    });
+
+    describe('when DaffAuthCheckFailure is dispatched for some random reason', () => {
+      let revokeAction: DaffAuthCheckFailure;
+
+      beforeEach(() => {
+        revokeAction = new DaffAuthCheckFailure(new DaffAuthInvalidAPIResponseError(''));
+        actions$ = hot('---');
+        expected = cold('---');
+      });
+
+      it('should not dispatch DaffAuthResetToUnauthenticated', () => {
         expect(effects.resetToUnauthenticated$).toBeObservable(expected);
       });
     });

@@ -58,7 +58,7 @@ export class GuestOnlyGuard implements CanActivate {
     return this.tokenCheck.check().pipe(
       map(() => false),
       catchError((error: DaffError) => {
-        if (error.code === DaffAuthDriverErrorCodes.UNAUTHORIZED) {
+        if (error.code === DaffAuthDriverErrorCodes.UNAUTHORIZED || error.code === DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED) {
           this.storage.removeAuthToken();
           this.store.dispatch(new DaffAuthGuardLogout(this.errorMatcher(error)));
         }
