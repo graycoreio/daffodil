@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/customer-payment-authorizenet": [
+        "libs/customer-payment-authorizenet/src"
+      ],
+      "@daffodil/customer-payment-authorizenet/testing": [
+        "libs/customer-payment-authorizenet/testing/src"
+      ],
+      "@daffodil/customer-payment-authorizenet/state": [
+        "libs/customer-payment-authorizenet/state/src"
+      ],
+      "@daffodil/customer-payment-authorizenet/driver": [
+        "libs/customer-payment-authorizenet/driver/src"
+      ],
+      "@daffodil/customer-payment-authorizenet/driver/magento": [
+        "libs/customer-payment-authorizenet/driver/magento/src"
+      ],
+      "@daffodil/customer-payment-authorizenet/driver/magento/testing": [
+        "libs/customer-payment-authorizenet/driver/magento/testing/src"
+      ],
+    }
+  }
+}

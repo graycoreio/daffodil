@@ -1,0 +1,1 @@
+export const DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_PAYMENT_KIND = 'daffCustomerPaymentAuthorizeNet';

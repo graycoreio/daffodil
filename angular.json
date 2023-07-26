@@ -2221,6 +2221,42 @@
         }
       }
     },
+    "customer-payment-authorizenet": {
+      "projectType": "library",
+      "root": "libs/customer-payment-authorizenet",
+      "sourceRoot": "libs/customer-payment-authorizenet/src",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/customer-payment-authorizenet/tsconfig.lib.json",
+            "project": "libs/customer-payment-authorizenet/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/customer-payment-authorizenet/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/customer-payment-authorizenet/test.ts",
+            "tsConfig": "libs/customer-payment-authorizenet/tsconfig.spec.json",
+            "karmaConfig": "libs/customer-payment-authorizenet/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/customer-payment-authorizenet/**/*.ts",
+              "libs/customer-payment-authorizenet/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo",
