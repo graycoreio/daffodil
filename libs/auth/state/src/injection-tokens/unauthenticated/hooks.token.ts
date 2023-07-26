@@ -3,16 +3,17 @@ import {
   Provider,
 } from '@angular/core';
 
+import { DaffAuthUnauthenticatedHook } from './hook.type';
+
 /**
  * A token to hold the unauthenticated hooks.
- * When a logged-in user is unauthenticated, various packages may perform cleanup tasks.
- * These are guaranteed to run synchronously before the client driver state is fully reset.
+ * See {@link DaffAuthUnauthenticatedHook}.
  *
  * Prefer using {@link daffAuthProvideUnauthenticatedHooks}.
  */
-export const DAFF_AUTH_UNAUTHENTICATED_HOOKS = new InjectionToken<(() => void)[]>(
+export const DAFF_AUTH_UNAUTHENTICATED_HOOKS = new InjectionToken<DaffAuthUnauthenticatedHook[]>(
   'DAFF_AUTH_UNAUTHENTICATED_HOOKS',
-{ factory: () => []},
+  { factory: () => []},
 );
 
 /**
@@ -28,7 +29,7 @@ export const DAFF_AUTH_UNAUTHENTICATED_HOOKS = new InjectionToken<(() => void)[]
  * ```
  */
 export function daffAuthProvideUnauthenticatedHooks(
-  ...hooks: (() => void)[]
+  ...hooks: DaffAuthUnauthenticatedHook[]
 ): Provider[] {
   return hooks.map(hook => ({
     provide: DAFF_AUTH_UNAUTHENTICATED_HOOKS,

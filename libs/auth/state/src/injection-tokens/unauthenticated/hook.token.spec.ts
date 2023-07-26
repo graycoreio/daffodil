@@ -1,13 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { daffAuthProvideUnauthenticatedHooks } from '@daffodil/auth/state';
+import {
+  DaffAuthActionTypes,
+  DaffAuthUnauthenticatedHook,
+  daffAuthProvideUnauthenticatedHooks,
+} from '@daffodil/auth/state';
 
 import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from './hook.token';
 
 describe('@daffodil/auth/state | DAFF_AUTH_UNAUTHENTICATED_HOOK', () => {
   let spy1: jasmine.Spy;
   let spy2: jasmine.Spy;
-  let result: () => void;
+  let result: DaffAuthUnauthenticatedHook;
 
   beforeEach(() => {
     spy1 = jasmine.createSpy();
@@ -26,8 +30,8 @@ describe('@daffodil/auth/state | DAFF_AUTH_UNAUTHENTICATED_HOOK', () => {
   });
 
   it('should provide a function that calls all the hooks', () => {
-    result();
-    expect(spy1).toHaveBeenCalledWith();
-    expect(spy2).toHaveBeenCalledWith();
+    result(DaffAuthActionTypes.AuthCheckFailureAction);
+    expect(spy1).toHaveBeenCalledWith(DaffAuthActionTypes.AuthCheckFailureAction);
+    expect(spy2).toHaveBeenCalledWith(DaffAuthActionTypes.AuthCheckFailureAction);
   });
 });

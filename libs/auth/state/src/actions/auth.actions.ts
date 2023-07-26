@@ -18,6 +18,10 @@ export enum DaffAuthActionTypes {
  */
 export class DaffAuthResetToUnauthenticated implements Action {
   readonly type = DaffAuthActionTypes.ResetToUnauthenticatedAction;
+
+  constructor(
+    public reason: Action['type'],
+  ) {}
 }
 
 /*

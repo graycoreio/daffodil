@@ -1,18 +1,20 @@
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
+import { DaffAuthUnauthenticatedHook } from './hook.type';
 import {
   daffAuthProvideUnauthenticatedHooks,
   DAFF_AUTH_UNAUTHENTICATED_HOOKS,
 } from './hooks.token';
 
 describe('@daffodil/auth/state | daffAuthProvideUnauthenticatedHooks', () => {
-  let hooks: (() => void)[];
-  let result: (() => void)[];
+  let hooks: DaffAuthUnauthenticatedHook[];
+  let result: DaffAuthUnauthenticatedHook[];
 
   beforeEach(() => {
     hooks = [
-      () => {},
-      () => {},
+      () => of(),
+      () => of(),
     ];
 
     TestBed.configureTestingModule({
