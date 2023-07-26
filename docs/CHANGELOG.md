@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.62.0](https://github.com/graycoreio/daffodil/compare/v0.61.0...v0.62.0) (2023-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** `DAFF_AUTH_UNAUTHENTICATED_HOOKS` contains functions that now must return an observable
+* **design:** The sidebar now holds the state of the sidebar (instead of the viewport), specifically "mode" and "open".
+
+### Features
+
+* **auth:** support asynchronous unauthenticated hooks ([#2513](https://github.com/graycoreio/daffodil/issues/2513)) ([2100b24](https://github.com/graycoreio/daffodil/commit/2100b241d3799b151159d951f3cec0db2e861d8e))
+* **cart-customer:** check token for cart mutation failures ([#2450](https://github.com/graycoreio/daffodil/issues/2450)) ([f14af85](https://github.com/graycoreio/daffodil/commit/f14af85896fea37dbefec2f85e79a86ff9ae8f75))
+* **core:** add `allOf` operator ([#2517](https://github.com/graycoreio/daffodil/issues/2517)) ([53c6bdc](https://github.com/graycoreio/daffodil/commit/53c6bdcde8822f00d8cd6af77887d7c8d7cfbc59))
+* **core:** add `anyOf` operator ([#2516](https://github.com/graycoreio/daffodil/issues/2516)) ([a61dc02](https://github.com/graycoreio/daffodil/commit/a61dc0282584f8369cd7b2424d565788464f8993))
+* **customer-payment:** add support for customer payments ([#2344](https://github.com/graycoreio/daffodil/issues/2344)) ([49f6cf6](https://github.com/graycoreio/daffodil/commit/49f6cf6a3f22adf841b1bca526eaec11496b062e))
+* **customer:** correctly handle missing customer address ID ([#2515](https://github.com/graycoreio/daffodil/issues/2515)) ([4761b9e](https://github.com/graycoreio/daffodil/commit/4761b9e1d6a7d838f91c5f4ed54b6e51d582c508))
+* **daffio:** implement tree ([#1824](https://github.com/graycoreio/daffodil/issues/1824)) ([e15b6a2](https://github.com/graycoreio/daffodil/commit/e15b6a280c23a91537e9773fb8543d27b8c233cf))
+* **design:** add tree component ([#1622](https://github.com/graycoreio/daffodil/issues/1622)) ([f211e48](https://github.com/graycoreio/daffodil/commit/f211e485750ebc2fe2d41816828325baaa222d07))
+* **design:** allow multiple sidebars of various modes and sides ([dd6bc28](https://github.com/graycoreio/daffodil/commit/dd6bc285a0a5d2efbedf2ce18769a8938318364a))
+* **design:** implement tree in left nav ([#1824](https://github.com/graycoreio/daffodil/issues/1824)) ([3aa4727](https://github.com/graycoreio/daffodil/commit/3aa4727446f7a67606a8f981c1b0cd3908fa2d6b))
+
+
+### Bug Fixes
+
+* **auth:** logout flow gets triggered for auth check network failures ([#2482](https://github.com/graycoreio/daffodil/issues/2482)) ([7d6b62d](https://github.com/graycoreio/daffodil/commit/7d6b62d7983beef123314f982e87035c81f8f84f))
+* **daffio:** use new  sidebar implementation ([22d293c](https://github.com/graycoreio/daffodil/commit/22d293c668f909cbf45ff4379f76f994be984222))
+* **demo:** use new  sidebar implementation ([e1a6122](https://github.com/graycoreio/daffodil/commit/e1a6122729fe9bbe503dd942ef46d866181a20ff))
+
 ## [0.61.0](https://github.com/graycoreio/daffodil/compare/v0.60.0...v0.61.0) (2023-07-18)
 
 
