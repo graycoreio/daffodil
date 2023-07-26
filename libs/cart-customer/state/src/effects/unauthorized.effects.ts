@@ -63,7 +63,7 @@ type ActionTypes =
 | DaffCartPlaceOrderFailure;
 
 /**
- * Handles merging and creating carts in response to auth actions.
+ * Handles unauthorized cart errors.
  */
 @Injectable()
 export class DaffCartCustomerUnauthorizedEffects {
