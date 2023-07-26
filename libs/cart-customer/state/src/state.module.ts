@@ -14,6 +14,7 @@ import { DaffCartStorageService } from '@daffodil/cart';
 import { daffCartProvideExtraReducers } from '@daffodil/cart/state';
 
 import { DaffCartCustomerAuthEffects } from './effects/auth.effects';
+import { DaffCartCustomerUnauthorizedEffects } from './effects/unauthorized.effects';
 import { daffCartCustomerLoginMutatingReducerMap } from './reducers/login-mutating';
 import { daffCartCustomerUnauthenticatedReset } from './reducers/unauthenticated-reset';
 
@@ -21,6 +22,7 @@ import { daffCartCustomerUnauthenticatedReset } from './reducers/unauthenticated
   imports: [
     EffectsModule.forFeature([
       DaffCartCustomerAuthEffects,
+      DaffCartCustomerUnauthorizedEffects,
     ]),
   ],
   providers: [
