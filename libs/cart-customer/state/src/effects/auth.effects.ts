@@ -36,15 +36,11 @@ import {
 import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '@daffodil/cart-customer';
 import {
   DaffCartDriver,
-  DaffCartDriverErrorCodes,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
 import {
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
-  DaffCartCreate,
-  DaffCartLoadFailure,
-  DaffCartActionTypes,
 } from '@daffodil/cart/state';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
@@ -96,14 +92,5 @@ export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
           )),
         ),
     ),
-  ));
-
-  createWhenUnathorized$ = createEffect(() => this.actions$.pipe(
-    ofType<DaffResolveCartFailure | DaffCartLoadFailure>(DaffCartActionTypes.ResolveCartFailureAction, DaffCartActionTypes.CartLoadFailureAction),
-    filter(action => !!action.payload.find(err => err.code === DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART)),
-    tap(() => {
-      this.cartStorage.removeCartId();
-    }),
-    map(() => new DaffCartCreate()),
   ));
 }

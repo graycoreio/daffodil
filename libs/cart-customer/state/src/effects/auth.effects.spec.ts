@@ -11,7 +11,6 @@ import {
 
 import {
   DaffAuthLoginSuccess,
-  DaffAuthLogoutSuccess,
   DaffAuthRegisterSuccess,
   DaffResetPasswordSuccess,
 } from '@daffodil/auth/state';
@@ -22,14 +21,11 @@ import {
 import {
   DaffCartServiceInterface,
   DaffCartDriver,
-  DaffCartDriverErrorCodes,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
-  DaffCartCreate,
-  DaffCartLoadFailure,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
@@ -407,78 +403,6 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
         it('should dispatch a DaffResolveCartFailure action', () => {
           expect(effects.mergeAfterLogin$).toBeObservable(expected);
         });
-      });
-    });
-  });
-
-  describe('when ResolveCartFailureAction is triggered', () => {
-    let expected;
-
-    describe('and the error is a DaffUnauthorizedForCartError', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffResolveCartFailure([error]);
-        const cartCreateAction = new DaffCartCreate();
-        actions$ = hot('--a', { a: resolveCartFailureAction });
-        expected = cold('--b', { b: cartCreateAction });
-      });
-
-      it('should dispatch cart create', () => {
-        expect(effects.createWhenUnathorized$).toBeObservable(expected);
-      });
-
-      it('should remove the cart ID from storage', () => {
-        expect(effects.createWhenUnathorized$).toBeObservable(expected);
-        expect(removeCartIdSpy).toHaveBeenCalledWith();
-      });
-    });
-
-    describe('and the error is not a DaffUnauthorizedForCartError', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffResolveCartFailure([error]);
-        actions$ = hot('--a', { a: resolveCartFailureAction });
-        expected = cold('---');
-      });
-
-      it('should not dispatch anything', () => {
-        expect(effects.createWhenUnathorized$).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('when CartLoadFailureAction is triggered', () => {
-    let expected;
-
-    describe('and the error is a DaffUnauthorizedForCartError', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartLoadFailure([error]);
-        const cartCreateAction = new DaffCartCreate();
-        actions$ = hot('--a', { a: resolveCartFailureAction });
-        expected = cold('--b', { b: cartCreateAction });
-      });
-
-      it('should dispatch cart create', () => {
-        expect(effects.createWhenUnathorized$).toBeObservable(expected);
-      });
-
-      it('should remove the cart ID from storage', () => {
-        expect(effects.createWhenUnathorized$).toBeObservable(expected);
-        expect(removeCartIdSpy).toHaveBeenCalledWith();
-      });
-    });
-
-    describe('and the error is not a DaffUnauthorizedForCartError', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartLoadFailure([error]);
-        actions$ = hot('--a', { a: resolveCartFailureAction });
-        expected = cold('---');
-      });
-
-      it('should not dispatch anything', () => {
-        expect(effects.createWhenUnathorized$).toBeObservable(expected);
       });
     });
   });
