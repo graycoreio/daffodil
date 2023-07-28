@@ -182,6 +182,20 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
   });
 
   describe('incremental | searching for products', () => {
+    it('should send the limit as page size', done => {
+      const limit = 5;
+      service.incremental('query', { limit }).subscribe(result => {
+        done();
+      });
+
+      const searchOp = controller.expectOne(addTypenameToDocument(daffSearchProductIncrementalQuery()));
+      expect(searchOp.operation.variables.pageSize).toEqual(limit);
+
+      searchOp.flush({
+        data: mockSearchProductsResponse,
+      });
+    });
+
     describe('when the call to the Magento API is successful', () => {
       it('should return a collection of product search results', done => {
         service.incremental('query').subscribe(result => {
