@@ -146,11 +146,12 @@ export class DaffSearchProductMagentoDriver implements DaffSearchProductDriverIn
     );
   }
 
-  incremental(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
+  incremental(query: string, options: DaffSearchProductDriverOptions = {}): Observable<DaffSearchResultCollection<DaffSearchProductResult>> {
     return this.apollo.query<MagentoSearchProductIncrementalResponse>({
       query: daffSearchProductIncrementalQuery(this.extraPreviewFragments),
       variables: {
         search: query,
+        pageSize: options.pageSize || options.limit,
       },
     }).pipe(
       map(({ data }) => daffSearchTransformResultsToCollection(daffTransformProductsToSearchResults(
