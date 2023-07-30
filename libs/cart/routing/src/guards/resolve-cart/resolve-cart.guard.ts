@@ -8,35 +8,29 @@ import {
   UrlTree,
 } from '@angular/router';
 import {
-  ActionsSubject,
-  Store,
-} from '@ngrx/store';
-import {
   Observable,
   of,
 } from 'rxjs';
 import {
   tap,
+  map,
+  switchMap,
+  skipUntil,
   filter,
   take,
-  map,
 } from 'rxjs/operators';
 
 import { DaffCartStorageService } from '@daffodil/cart';
 import {
-  DaffCartActionTypes,
-  DaffCartActions,
   DaffCartFacade,
   DaffCartResolveState,
-  DaffCartStateRootSlice,
   DaffResolveCart,
 } from '@daffodil/cart/state';
 
-import {
-  DaffCartRoutingConfiguration,
-  DAFF_CART_ROUTING_CONFIG,
-} from '../../config/config';
 import { DaffResolveCartGuardRedirectUrl } from './redirect.token';
+
+const shouldAttemptResolution = (resolvedState: DaffCartResolveState, hasIDInStorage: boolean): boolean =>
+  (hasIDInStorage && resolvedState === DaffCartResolveState.Default) || resolvedState === DaffCartResolveState.Failed;
 
 /**
  * A routing guard that will optionally redirect to a given url if the cart is not properly resolved.
@@ -50,38 +44,54 @@ import { DaffResolveCartGuardRedirectUrl } from './redirect.token';
 })
 export class DaffResolveCartGuard implements CanActivate {
   constructor(
-    private store: Store<DaffCartStateRootSlice>,
-    private dispatcher: ActionsSubject,
+    private facade: DaffCartFacade,
     private router: Router,
     @Inject(DaffResolveCartGuardRedirectUrl) private redirectUrl: string,
     private storage: DaffCartStorageService,
   ) {}
 
   canActivate(): Observable<boolean | UrlTree> {
-    if (this.storage.getCartId()) {
-      this.store.dispatch(new DaffResolveCart());
-
-      return this.dispatcher.pipe(
-        filter<DaffCartActions>(action =>
-          action.type === DaffCartActionTypes.ResolveCartServerSideAction
-            || action.type === DaffCartActionTypes.ResolveCartFailureAction
-            || action.type === DaffCartActionTypes.ResolveCartSuccessAction
-            || action.type === DaffCartActionTypes.ResolveCartPartialSuccessAction,
-        ),
-        map((action) => {
-          if (
-            action.type === DaffCartActionTypes.ResolveCartSuccessAction
-            || action.type === DaffCartActionTypes.ResolveCartPartialSuccessAction
-          ) {
+    return this.facade.resolved$.pipe(
+      take(1),
+      // first step: decide if we should dispatch resolve
+      switchMap((resolved) => {
+        if (shouldAttemptResolution(resolved, !!this.storage.getCartId())) {
+          this.facade.dispatch(new DaffResolveCart());
+          // if we dispatch, we can't immediately proceed with the next step
+          // or resolved state won't be updated in time
+          // this ensures that the above dispatched resolution is registered by state
+          // before this guard proceeds to the next step
+          return this.facade.resolved$.pipe(
+            skipUntil(this.facade.resolved$.pipe(
+              filter((innerResolved) => innerResolved === DaffCartResolveState.Resolving),
+            )),
+          );
+        } else {
+          return this.facade.resolved$;
+        }
+      }),
+      // second step: decide if navigation should proceed
+      // and if so, to where
+      map((resolved) => {
+        switch (resolved) {
+          // proceed with navigation
+          case DaffCartResolveState.Succeeded:
             return true;
-          }
 
-          return this.router.parseUrl(this.redirectUrl);
-        }),
-        take(1),
-      );
-    } else {
-      return of(this.router.parseUrl(this.redirectUrl));
-    }
+          // navigation cannot proceed, redirect
+          case DaffCartResolveState.Default:
+          case DaffCartResolveState.Failed:
+          case DaffCartResolveState.ServerSide:
+            return this.router.parseUrl(this.redirectUrl);
+
+          // we should wait for resolution to finish
+          case DaffCartResolveState.Resolving:
+          default:
+            return null;
+        }
+      }),
+      // ensure that the pipe does not emit before resolution has been completed
+      filter((response) => response !== null && response !== undefined),
+    );
   }
 }

@@ -4,13 +4,11 @@ import {
 } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  StoreModule,
-  combineReducers,
-  Store,
-} from '@ngrx/store';
-import { Observable } from 'rxjs';
+  cold,
+  hot,
+} from 'jasmine-marbles';
+import { BehaviorSubject } from 'rxjs';
 
 import {
   DaffCart,
@@ -18,23 +16,18 @@ import {
 } from '@daffodil/cart';
 import { DaffResolveCartGuardRedirectUrl } from '@daffodil/cart/routing';
 import {
-  daffCartReducers,
-  DaffCartStateRootSlice,
-  DaffResolveCartSuccess,
-  DaffResolveCartFailure,
-  DaffResolveCartServerSide,
   DaffResolveCart,
-  DAFF_CART_STORE_FEATURE_KEY,
-  DaffResolveCartPartialSuccess,
+  DaffCartResolveState,
+  DaffCartFacade,
 }  from '@daffodil/cart/state';
+import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffResolveCartGuard } from './resolve-cart.guard';
 
 describe('@daffodil/cart/routing | DaffResolveCartGuard', () => {
-  const actions$: Observable<any> = null;
   let cartResolver: DaffResolveCartGuard;
-  let store: Store<DaffCartStateRootSlice>;
+  let cartFacade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
 
   let cartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
@@ -48,13 +41,10 @@ describe('@daffodil/cart/routing | DaffResolveCartGuard', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
-        }),
+        DaffCartTestingModule,
         RouterTestingModule,
       ],
       providers: [
-        provideMockActions(() => actions$),
         { provide: DaffResolveCartGuardRedirectUrl, useValue: stubUrl },
         {
           provide: DaffCartStorageService,
@@ -65,7 +55,7 @@ describe('@daffodil/cart/routing | DaffResolveCartGuard', () => {
 
     cartResolver = TestBed.inject(DaffResolveCartGuard);
     cartFactory = TestBed.inject(DaffCartFactory);
-    store = TestBed.inject(Store);
+    cartFacade = TestBed.inject(DaffCartFacade);
     router = TestBed.inject(Router);
 
     stubCart = cartFactory.create();
@@ -84,66 +74,145 @@ describe('@daffodil/cart/routing | DaffResolveCartGuard', () => {
         cartStorageSpy.getCartId.and.returnValue(stubCart.id);
       });
 
-      it('should dispatch a DaffResolveCart action', () => {
-        spyOn(store, 'dispatch');
-        cartResolver.canActivate().subscribe();
+      describe('and when the resolved state is default and the cart is resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+        });
 
-        expect(store.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
-      });
+        it('should dispatch a DaffResolveCart action', () => {
+          spyOn(cartFacade, 'dispatch');
+          const expected = cold('--a', { a: true });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+          expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
+        });
 
-      describe('when DaffResolveCartSuccess is dispatched', () => {
-        it('should return true', done => {
-          cartResolver.canActivate().subscribe((returnedValue) => {
-            expect(returnedValue).toBeTrue();
-            done();
-          });
-
-          store.dispatch(new DaffResolveCartPartialSuccess(stubCart, []));
+        it('should return true when success is dispatched', () => {
+          const expected = cold('--a', { a: true });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
         });
       });
 
-      describe('when DaffResolveCartPartialSuccess is dispatched', () => {
-        it('should return true', done => {
-          cartResolver.canActivate().subscribe((returnedValue) => {
-            expect(returnedValue).toBeTrue();
-            done();
-          });
+      describe('and when the resolved state is default and the cart is not resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+        });
 
-          store.dispatch(new DaffResolveCartPartialSuccess(stubCart, []));
+        it('should dispatch a DaffResolveCart action', () => {
+          spyOn(cartFacade, 'dispatch');
+          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+          expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
+        });
+
+        it('should redirect when failure is dispatched', () => {
+          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
         });
       });
 
-      describe('when DaffResolveCartFailure is dispatched', () => {
-        it('should redirect to the provided DaffResolveCartGuardRedirectUrl', done => {
-          cartResolver.canActivate().subscribe((resp) => {
-            expect(resp).toEqual(router.parseUrl(stubUrl));
-            done();
-          });
+      describe('and when the resolved state is resolving and the cart is resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+        });
 
-          store.dispatch(new DaffResolveCartFailure([]));
+        it('should not dispatch a DaffResolveCart action', () => {
+          spyOn(cartFacade, 'dispatch');
+          const expected = cold('--a', { a: true });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+          expect(cartFacade.dispatch).not.toHaveBeenCalledWith(new DaffResolveCart());
+        });
+
+        it('should return true when success is dispatched', () => {
+          const expected = cold('--a', { a: true });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
         });
       });
 
-      describe('when DaffResolveCartServerSide is dispatched', () => {
-        it('should redirect to the provided DaffResolveCartGuardRedirectUrl', done => {
-          cartResolver.canActivate().subscribe((resp) => {
-            expect(resp).toEqual(router.parseUrl(stubUrl));
+      describe('and when the resolved state is resolving and the cart is not resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+        });
+
+        it('should not dispatch a DaffResolveCart action', () => {
+          spyOn(cartFacade, 'dispatch');
+          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+          expect(cartFacade.dispatch).not.toHaveBeenCalledWith(new DaffResolveCart());
+        });
+
+        it('should redirect when failure is dispatched', () => {
+          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+        });
+      });
+
+      describe('and when the cart is resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = new BehaviorSubject(DaffCartResolveState.Succeeded);
+        });
+
+        it('should not dispatch a DaffResolveCart action', (done) => {
+          spyOn(cartFacade, 'dispatch');
+          cartResolver.canActivate().subscribe((res) => {
+            expect(cartFacade.dispatch).not.toHaveBeenCalledWith(new DaffResolveCart());
             done();
           });
+        });
 
-          store.dispatch(new DaffResolveCartServerSide(null));
+        it('should return true', (done) => {
+          cartResolver.canActivate().subscribe((res) => {
+            expect(res).toBeTrue();
+            done();
+          });
+        });
+      });
+
+      describe('and when the resolved state is failed and the cart is resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+        });
+
+        it('should dispatch a DaffResolveCart action', () => {
+          spyOn(cartFacade, 'dispatch');
+          const expected = cold('--a', { a: true });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+          expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
+        });
+
+        it('should return true when success is dispatched', () => {
+          const expected = cold('--a', { a: true });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+        });
+      });
+
+      describe('and when the resolved state is failed and the cart is not resolved successfully', () => {
+        beforeEach(() => {
+          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+        });
+
+        it('should dispatch a DaffResolveCart action', () => {
+          spyOn(cartFacade, 'dispatch');
+          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
+          expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
+        });
+
+        it('should redirect when failure is dispatched', () => {
+          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
+          expect(cartResolver.canActivate()).toBeObservable(expected);
         });
       });
     });
 
     describe('when there is not a cart ID in storage', () => {
       beforeEach(() => {
+        cartFacade.resolved$ = new BehaviorSubject(DaffCartResolveState.Default);
         cartStorageSpy.getCartId.and.returnValue(null);
       });
 
-      it('should redirect', done => {
-        cartResolver.canActivate().subscribe((resp) => {
-          expect(resp).toEqual(router.parseUrl(stubUrl));
+      it('should redirect', (done) => {
+        cartResolver.canActivate().subscribe((res) => {
+          expect(res).toEqual(router.parseUrl(stubUrl));
           done();
         });
       });
