@@ -113,11 +113,6 @@ describe('@daffodil/auth/routing | GuestOnlyGuard', () => {
           expect(result).toBeObservable(expected);
         });
 
-        it('should remove the token from storage', () => {
-          expect(result).toBeObservable(expected);
-          expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
-        });
-
         it('should dispatch guard logout', () => {
           expect(result).toBeObservable(expected);
           expect(mockStore.dispatch).toHaveBeenCalledWith(jasmine.any(DaffAuthGuardLogout));
@@ -133,11 +128,6 @@ describe('@daffodil/auth/routing | GuestOnlyGuard', () => {
 
         it('should return true', () => {
           expect(result).toBeObservable(expected);
-        });
-
-        it('should remove the token from storage', () => {
-          expect(result).toBeObservable(expected);
-          expect(daffAuthStorageService.removeAuthToken).toHaveBeenCalledWith();
         });
 
         it('should dispatch guard logout', () => {

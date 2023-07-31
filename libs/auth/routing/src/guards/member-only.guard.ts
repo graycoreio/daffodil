@@ -61,7 +61,6 @@ export class MemberOnlyGuard implements CanActivate {
       map(() => true),
       catchError((error: DaffError) => {
         if (DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES[error.code]) {
-          this.storage.removeAuthToken();
           this.store.dispatch(new DaffAuthGuardLogout(this.errorMatcher(error)));
         }
         return of(false);
