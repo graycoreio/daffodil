@@ -10,7 +10,6 @@ import {
 import {
   of,
   EMPTY,
-  asyncScheduler,
 } from 'rxjs';
 import {
   switchMap,
@@ -19,7 +18,6 @@ import {
   repeat,
   filter,
   tap,
-  delay,
 } from 'rxjs/operators';
 
 import {
@@ -27,7 +25,7 @@ import {
   DAFF_AUTH_ERROR_MATCHER,
 } from '@daffodil/auth';
 import {
-  DaffAuthDriverErrorCodes,
+  DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES,
   DaffAuthDriverTokenCheck,
 } from '@daffodil/auth/driver';
 import {
@@ -127,11 +125,11 @@ export class DaffAuthEffects {
       DaffAuthLoginActionTypes.LogoutSuccessAction,
     ),
     filter((action) => {
-      // if the auth check failure is for any reason other than auth failure, don't reset
+      // if the auth check failure is for any reason other than auth failure,
+      // such as a network failure, don't reset
       if (
         action.type === DaffAuthActionTypes.AuthCheckFailureAction
-        && action.errorMessage.code !== DaffAuthDriverErrorCodes.UNAUTHORIZED
-        && action.errorMessage.code !== DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED
+          && !DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES[action.errorMessage.code]
       ) {
         return false;
       }
