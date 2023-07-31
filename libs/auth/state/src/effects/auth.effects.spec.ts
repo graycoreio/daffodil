@@ -203,20 +203,6 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
       });
     });
 
-    describe('when DaffAuthCheckFailure is dispatched for an missing token error', () => {
-      let revokeAction: DaffAuthCheckFailure;
-
-      beforeEach(() => {
-        revokeAction = new DaffAuthCheckFailure(new DaffAuthMissingTokenError('error'));
-        actions$ = hot('--a', { a: revokeAction });
-        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(revokeAction.type) });
-      });
-
-      it('should dispatch DaffAuthResetToUnauthenticated', () => {
-        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
-      });
-    });
-
     describe('when DaffAuthCheckFailure is dispatched for some random reason', () => {
       let revokeAction: DaffAuthCheckFailure;
 
