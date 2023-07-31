@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.62.1](https://github.com/graycoreio/daffodil/compare/v0.62.0...v0.62.1) (2023-07-31)
+
+
+### Features
+
+* **auth:** handle missing token errors by resetting to unauthenticated state ([#2518](https://github.com/graycoreio/daffodil/issues/2518)) ([3655843](https://github.com/graycoreio/daffodil/commit/365584352fe2783bf1840c1653a93eca0d6a44f0))
+* **auth:** remove auth token in unauthenticated hook ([#2523](https://github.com/graycoreio/daffodil/issues/2523)) ([6472f8f](https://github.com/graycoreio/daffodil/commit/6472f8fced7b199f2b73a3d5197f28348ec33def))
+* **cart:** rework resolve cart guard ([#2522](https://github.com/graycoreio/daffodil/issues/2522)) ([f460cc8](https://github.com/graycoreio/daffodil/commit/f460cc8de5279d3d23c9dba25b32ea70a5f47bf1))
+
+
+### Bug Fixes
+
+* **search-product:** incremental search not limited ([#2519](https://github.com/graycoreio/daffodil/issues/2519)) ([3dec63e](https://github.com/graycoreio/daffodil/commit/3dec63e476c6b1c48431e87078bbb8aa02e4d6e5))
+
 ## [0.62.0](https://github.com/graycoreio/daffodil/compare/v0.61.0...v0.62.0) (2023-07-26)
 
 
