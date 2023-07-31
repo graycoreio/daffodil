@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.62.2](https://github.com/graycoreio/daffodil/compare/v0.62.1...v0.62.2) (2023-07-31)
+
+
+### Bug Fixes
+
+* **auth:** guest guard always triggers logout for a guest user ([#2524](https://github.com/graycoreio/daffodil/issues/2524)) ([6025568](https://github.com/graycoreio/daffodil/commit/60255684d7227579a2726fdc9f8a8b31105d88c3))
+
 ## [0.62.1](https://github.com/graycoreio/daffodil/compare/v0.62.0...v0.62.1) (2023-07-31)
 
 
