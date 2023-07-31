@@ -1,5 +1,3 @@
-import { DaffAuthErrorCodes } from '@daffodil/auth';
-
 import { DaffAuthDriverErrorCodes } from '../errors/public_api';
 
 /**
@@ -11,5 +9,4 @@ import { DaffAuthDriverErrorCodes } from '../errors/public_api';
 export const DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES = {
   [DaffAuthDriverErrorCodes.UNAUTHORIZED]: true,
   [DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED]: true,
-  [DaffAuthErrorCodes.MISSING_TOKEN]: true,
 };
