@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import {
   Observable,
+  iif,
   of,
 } from 'rxjs';
 import {
@@ -32,6 +33,23 @@ import { DaffResolveCartGuardRedirectUrl } from './redirect.token';
 const shouldAttemptResolution = (resolvedState: DaffCartResolveState, hasIDInStorage: boolean): boolean =>
   (hasIDInStorage && resolvedState === DaffCartResolveState.Default) || resolvedState === DaffCartResolveState.Failed;
 
+const canActivate = (resolved: DaffCartResolveState): boolean => {
+  switch (resolved) {
+    // proceed with navigation
+    case DaffCartResolveState.Succeeded:
+      return true;
+    // we should wait for resolution to finish
+    case DaffCartResolveState.Resolving:
+      return null;
+    // navigation cannot proceed, redirect
+    case DaffCartResolveState.Default:
+    case DaffCartResolveState.Failed:
+    case DaffCartResolveState.ServerSide:
+    default:
+      return false;
+  }
+};
+
 /**
  * A routing guard that will optionally redirect to a given url if the cart is not properly resolved.
  * It will initiate cart resolution.
@@ -53,45 +71,32 @@ export class DaffResolveCartGuard implements CanActivate {
   canActivate(): Observable<boolean | UrlTree> {
     return this.facade.resolved$.pipe(
       take(1),
-      // first step: decide if we should dispatch resolve
-      switchMap((resolved) => {
-        if (shouldAttemptResolution(resolved, !!this.storage.getCartId())) {
+      // first step: decide if we should resolve a cart
+      map((resolved) => shouldAttemptResolution(resolved, !!this.storage.getCartId())),
+      tap((shouldAttempt) => {
+        if(shouldAttempt) {
           this.facade.dispatch(new DaffResolveCart());
-          // if we dispatch, we can't immediately proceed with the next step
-          // or resolved state won't be updated in time
-          // this ensures that the above dispatched resolution is registered by state
-          // before this guard proceeds to the next step
-          return this.facade.resolved$.pipe(
-            skipUntil(this.facade.resolved$.pipe(
-              filter((innerResolved) => innerResolved === DaffCartResolveState.Resolving),
-            )),
-          );
-        } else {
-          return this.facade.resolved$;
         }
       }),
+      // If we dispatch above, we can't immediately proceed with the next step
+      // as the resolved state is not guaranteed to be updated in time.
+      // This ensures that the above dispatched DaffResolveCart is processed
+      // by the reducers before this guard proceeds to the next step
+      switchMap((shouldAttempt) => iif(
+        () => shouldAttempt,
+        this.facade.resolved$.pipe(
+          skipUntil(this.facade.resolved$.pipe(
+            filter((innerResolved) => innerResolved === DaffCartResolveState.Resolving),
+          )),
+        ),
+        this.facade.resolved$,
+      )),
       // second step: decide if navigation should proceed
-      // and if so, to where
-      map((resolved) => {
-        switch (resolved) {
-          // proceed with navigation
-          case DaffCartResolveState.Succeeded:
-            return true;
-
-          // navigation cannot proceed, redirect
-          case DaffCartResolveState.Default:
-          case DaffCartResolveState.Failed:
-          case DaffCartResolveState.ServerSide:
-            return this.router.parseUrl(this.redirectUrl);
-
-          // we should wait for resolution to finish
-          case DaffCartResolveState.Resolving:
-          default:
-            return null;
-        }
-      }),
+      map((resolved) => canActivate(resolved)),
       // ensure that the pipe does not emit before resolution has been completed
       filter((response) => response !== null && response !== undefined),
+      // finally we can resolve, but to where do we resolve
+      map((resolved) => resolved ? resolved : this.router.parseUrl(this.redirectUrl)),
     );
   }
 }
