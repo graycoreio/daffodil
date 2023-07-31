@@ -129,7 +129,7 @@ export class DaffAuthEffects {
       // such as a network failure, don't reset
       if (
         action.type === DaffAuthActionTypes.AuthCheckFailureAction
-          && !DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES.find((code) => code === action.errorMessage.code)
+          && !DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES[action.errorMessage.code]
       ) {
         return false;
       }
