@@ -80,26 +80,6 @@ export class DaffAuthEffects {
     ),
   ));
 
-  removeAuthToken$ = createEffect(() => this.actions$.pipe(
-    ofType(
-      DaffAuthActionTypes.AuthCheckFailureAction,
-    ),
-    tap(() => {
-      this.storage.removeAuthToken();
-    }),
-    switchMap(() => EMPTY),
-    catchError((error: Error) => {
-      switch (true) {
-        case error instanceof DaffServerSideStorageError:
-          return of(new DaffAuthServerSide(this.errorMatcher(error)));
-
-        case error instanceof DaffStorageServiceError:
-        default:
-          return of(new DaffAuthStorageFailure(this.errorMatcher(error)));
-      }
-    }),
-  ), { dispatch: false });
-
   // this needs to be defined after `check$` or else the driver call won't be run
   authCheckInterval$ = createEffect(() => of(new DaffAuthCheck()).pipe(
     repeat({ delay: this.config.checkInterval }),

@@ -187,36 +187,6 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
       it('should notify state that the logout succeeded', () => {
         expect(effects.logout$).toBeObservable(expected);
       });
-
-      it('should remove the auth token from storage', () => {
-        expect(effects.logout$).toBeObservable(expected);
-        expect(removeAuthTokenSpy).toHaveBeenCalledWith();
-      });
-
-      describe('unless the storage service throws an error', () => {
-        beforeEach(() => {
-          removeAuthTokenSpy.and.callFake(throwStorageError);
-
-          expected = cold('--(b)', { b: authStorageFailureAction });
-        });
-
-        it('should return a DaffAuthStorageFailure', () => {
-          expect(effects.logout$).toBeObservable(expected);
-        });
-      });
-
-      describe('unless the storage service throws a server side error', () => {
-        beforeEach(() => {
-          const error = new DaffServerSideStorageError('Server side');
-          const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
-          removeAuthTokenSpy.and.throwError(error);
-          expected = cold('--(a)', { a: serverSideAction });
-        });
-
-        it('should dispatch a server side action', () => {
-          expect(effects.logout$).toBeObservable(expected);
-        });
-      });
     });
 
     describe('and the logout fails', () => {
