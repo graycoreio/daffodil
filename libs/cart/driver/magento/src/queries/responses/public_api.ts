@@ -16,8 +16,6 @@ export { MagentoUpdateBillingAddressWithEmailResponse } from './update-billing-a
 export { MagentoGetShippingAddressResponse } from './get-shipping-address';
 export { MagentoUpdateShippingAddressResponse } from './update-shipping-address';
 export { MagentoUpdateShippingAddressWithEmailResponse } from './update-shipping-address-with-email';
-export { MagentoUpdateAddressResponse } from './update-address';
-export { MagentoUpdateAddressWithEmailResponse } from './update-address-with-email';
 export { MagentoGetCartResponse } from './get-cart';
 export { MagentoCreateCartResponse } from './create-cart';
 export { MagentoSetGuestEmailResponse } from './set-guest-email';

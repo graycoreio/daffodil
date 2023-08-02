@@ -1,7 +1,5 @@
-import { MagentoCartAddressInput } from './cart-address';
+import { MagentoCartAddressInputBase } from './cart-address-base';
 
-export interface MagentoShippingAddressInput {
-  address: MagentoCartAddressInput;
-  customer_address_id?: number;
+export interface MagentoShippingAddressInput extends MagentoCartAddressInputBase {
   customer_notes?: string;
 }

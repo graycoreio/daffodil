@@ -1,4 +1,4 @@
-import { MagentoGetCartResponse } from './get-cart';
+import { MagentoGetCartResponse } from '../responses/get-cart';
 
 export interface MagentoUpdateAddressResponse {
   setBillingAddressOnCart: {

@@ -22,14 +22,11 @@ import { DaffQueuedApollo } from '@daffodil/core/graphql';
 import { transformCartMagentoError } from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
+import { MagentoCartAddressInput } from './models/public_api';
 import {
   updateAddress,
   updateAddressWithEmail,
 } from './queries/public_api';
-import {
-  MagentoUpdateAddressResponse,
-  MagentoUpdateAddressWithEmailResponse,
-} from './queries/responses/public_api';
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
@@ -53,12 +50,25 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
     return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address);
   }
 
+  private getAddressInput(address: Partial<DaffCartAddress>): {
+    address?: MagentoCartAddressInput;
+    addressId?: number;
+  } {
+    return address.id
+      ? {
+        addressId: Number(address.id),
+      }
+      : {
+        address: this.cartAddressInputTransformer.transform(address),
+      };
+  }
+
   private updateAddress(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return this.mutationQueue.mutate<MagentoUpdateAddressResponse>({
+    return this.mutationQueue.mutate({
       mutation: updateAddress(this.extraCartFragments),
       variables: {
+        ...this.getAddressInput(address),
         cartId,
-        address: this.cartAddressInputTransformer.transform(address),
       },
       fetchPolicy: 'network-only',
     }).pipe(
@@ -68,12 +78,12 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
   }
 
   private updateAddressWithEmail(cartId: DaffCart['id'], address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return this.mutationQueue.mutate<MagentoUpdateAddressWithEmailResponse>({
+    return this.mutationQueue.mutate({
       mutation: updateAddressWithEmail(this.extraCartFragments),
       variables: {
+        ...this.getAddressInput(address),
         cartId,
         email: address.email,
-        address: this.cartAddressInputTransformer.transform(address),
       },
       fetchPolicy: 'network-only',
     }).pipe(
