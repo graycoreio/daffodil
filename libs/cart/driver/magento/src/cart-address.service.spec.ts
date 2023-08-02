@@ -170,6 +170,28 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartAddressService', () => 
           mockDaffCartAddress.street = street;
         });
 
+        describe('and when the cart address ID is set', () => {
+          let id: string;
+
+          beforeEach(() => {
+            id = '5';
+            mockDaffCartAddress.id = id;
+          });
+
+          it('should set the addressId variable', done => {
+            service.update(cartId, mockDaffCartAddress).subscribe(result => {
+              done();
+            });
+
+            const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([])));
+            expect(op.operation.variables.addressId).toEqual(Number(id));
+
+            op.flush({
+              data: mockUpdateAddressWithEmailResponse,
+            });
+          });
+        });
+
         it('should return the correct value', done => {
           service.update(cartId, mockDaffCartAddress).subscribe(result => {
             expect(result.billing_address.street).toEqual(street);
@@ -196,6 +218,28 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartAddressService', () => 
           mockMagentoShippingAddress.street = [street];
           mockDaffCartAddress.street = street;
           mockDaffCartAddress.email = null;
+        });
+
+        describe('and when the cart address ID is set', () => {
+          let id: string;
+
+          beforeEach(() => {
+            id = '5';
+            mockDaffCartAddress.id = id;
+          });
+
+          it('should set the addressId variable', done => {
+            service.update(cartId, mockDaffCartAddress).subscribe(result => {
+              done();
+            });
+
+            const op = controller.expectOne(addTypenameToDocument(updateAddress([])));
+            expect(op.operation.variables.addressId).toEqual(Number(id));
+
+            op.flush({
+              data: mockUpdateAddressWithEmailResponse,
+            });
+          });
         });
 
         it('should return the correct value', done => {

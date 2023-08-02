@@ -19,8 +19,8 @@ export { updateBillingAddressWithEmail } from './update-billing-address-with-ema
 export { getShippingAddress } from './get-shipping-address';
 export { updateShippingAddress } from './update-shipping-address';
 export { updateShippingAddressWithEmail } from './update-shipping-address-with-email';
-export { updateAddress } from './update-address';
-export { updateAddressWithEmail } from './update-address-with-email';
+export * from './update-address/public_api';
+export * from './update-address-with-email/public_api';
 export { getCart } from './get-cart';
 export { createCart } from './create-cart';
 export { placeOrder } from './place-order';
