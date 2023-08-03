@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.62.3](https://github.com/graycoreio/daffodil/compare/v0.62.2...v0.62.3) (2023-08-02)
+
+
+### Bug Fixes
+
+* **cart:** Magento driver crashes while setting cart address by ID ([#2528](https://github.com/graycoreio/daffodil/issues/2528)) ([9bbde26](https://github.com/graycoreio/daffodil/commit/9bbde26f6550c039d84809b579385e0d1947ccba))
+
 ## [0.62.2](https://github.com/graycoreio/daffodil/compare/v0.62.1...v0.62.2) (2023-07-31)
 
 
