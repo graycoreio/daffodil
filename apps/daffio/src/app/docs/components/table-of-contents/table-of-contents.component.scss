@@ -8,7 +8,7 @@
 	position: sticky;
 	max-height: 100vh;
 	overflow: auto;
-	top: 48px;
+	top: var(--daff-sidebar-side-fixed-top-shift);
 
 	&__item {
 		display: block;

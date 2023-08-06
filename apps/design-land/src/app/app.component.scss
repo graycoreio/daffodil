@@ -1,21 +1,16 @@
+:host {
+  --daff-sidebar-side-fixed-top-shift: 64px;
+}
+
 .design-land {
+  
   &__theme-switch {
     margin-left: auto;
-  }
-  
-  &__sidebar {
-    --daff-sidebar-side-fixed-top-shift: 64px;
   }
 
   &__content {
     padding: 24px 48px 48px;
   }
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 
 daff-link-set {
