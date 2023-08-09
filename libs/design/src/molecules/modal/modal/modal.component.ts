@@ -1,22 +1,28 @@
 import { AnimationEvent } from '@angular/animations';
 import {
+  ConfigurableFocusTrap,
+  ConfigurableFocusTrapFactory,
+} from '@angular/cdk/a11y';
+import {
   CdkPortalOutlet,
   ComponentPortal,
 } from '@angular/cdk/portal';
 import {
   Component,
-  Output,
   EventEmitter,
   Input,
   HostBinding,
   ChangeDetectionStrategy,
   ViewChild,
   HostListener,
+  ElementRef,
+  AfterContentInit,
+  AfterViewInit,
 } from '@angular/core';
 
+import { daffFocusableElementsSelector } from '../../../core/focus/public_api';
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';
-
 
 @Component({
   selector: 'daff-modal',
@@ -25,7 +31,12 @@ import { getAnimationState } from '../animations/modal-animation-state';
   animations: [daffFadeAnimations.fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffModalComponent {
+export class DaffModalComponent implements AfterContentInit, AfterViewInit {
+  /**
+   * HostBinding to set the default modal class on the host element.
+   */
+  @HostBinding('class.daff-modal') modalClass = true;
+
   /**
    * Dictates whether or not a modal is open or closed.
    */
@@ -49,29 +60,47 @@ export class DaffModalComponent {
   >();
 
   /**
-   * Event fired when the backdrop is clicked
-   * This is often used to close the modal
+   * Event fired when the backdrop is clicked. This is often used to close the modal.
    */
   hide: EventEmitter<void> = new EventEmitter<void>();
 
-  /**
-   * Hostbinding to set the default modal class on the host element
-   *
-   * @docs-private
-   */
-  @HostBinding('class.daff-modal') modalClass = true;
+  private _focusTrap: ConfigurableFocusTrap;
+
+  constructor(
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
+    private _elementRef: ElementRef<HTMLElement>,
+  ) {
+  }
+
+  ngAfterContentInit() {
+    this._focusTrap = this._focusTrapFactory.create(
+	    this._elementRef.nativeElement,
+	  );
+  }
+
+  ngAfterViewInit() {
+    const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(
+      daffFocusableElementsSelector)
+    );
+
+    if(focusableChild) {
+      focusableChild.focus();
+    } else {
+      // There's a timing condition when computing HostBindings afterContentInit
+      // so to allow the menu to be focused, we manually set the tabindex.
+      this._elementRef.nativeElement.tabIndex = 0;
+      (<HTMLElement>this._elementRef.nativeElement).focus();
+    }
+  }
 
   /**
-   * Helper method to attach portable content to modal
+   * Helper method to attach portable content to modal.
    */
   attachContent(portal: ComponentPortal<any>): any {
 	  this._portalOutlet.attachComponentPortal(portal);
   }
 
-  /**
-   * Animation hook that controls the entrance and exit animations
-   * of the modal
-   */
+  /** Animation hook that controls the entrance and exit animations of the modal. */
   @HostBinding('@fade') get fadeState(): string {
 	  return getAnimationState(this.open);
   }
