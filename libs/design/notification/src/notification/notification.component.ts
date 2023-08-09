@@ -73,8 +73,20 @@ export class DaffNotificationComponent
 
   @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
-  /** The orientation to layout the content within a notification */
-  @Input() orientation: DaffNotificationOrientation = DaffNotificationOrientationEnum.Vertical;
+  private _orientation: DaffNotificationOrientation = DaffNotificationOrientationEnum.Vertical;
+
+  @Input()
+  get orientation() {
+    return this._orientation;
+  }
+
+  set orientation(value: DaffNotificationOrientation) {
+    if(value === null || value === undefined || <unknown>value === '') {
+      this._orientation = DaffNotificationOrientationEnum.Vertical;
+    } else {
+      this._orientation = value;
+    }
+  };
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
 	  super(elementRef, renderer);

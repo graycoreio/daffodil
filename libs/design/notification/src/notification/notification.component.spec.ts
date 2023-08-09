@@ -20,8 +20,8 @@ import {
   template: `
     <daff-notification
       [status]="status"
-      [orientation]="orientationValue"
-      [dismissable]="dismissableValue"
+      [orientation]="orientation"
+      [dismissable]="dismissable"
       (closeNotification)="closeNotificationFunction()">
     </daff-notification>
   `,
@@ -29,9 +29,9 @@ import {
 
 class WrapperComponent {
   status: DaffStatus;
-  orientationValue: DaffNotificationOrientation;
-  dismissableValue = false;
-  closeNotificationFunction() {}
+  orientation: DaffNotificationOrientation = 'vertical';
+  dismissable = false;
+  closeNotificationFunction = () => {};
 }
 
 describe('DaffNotificationComponent', () => {
@@ -72,17 +72,17 @@ describe('DaffNotificationComponent', () => {
 
   describe('the dismissable property', () => {
     it('should take dismissable as an input', () => {
-      expect(component.dismissable).toEqual(wrapper.dismissableValue);
+      expect(component.dismissable).toEqual(wrapper.dismissable);
     });
 
     describe('when dismissable is set to true', () => {
       beforeEach(() => {
-        wrapper.dismissableValue = true;
+        wrapper.dismissable = true;
         fixture.detectChanges();
       });
 
       it('should add a class of "dismissable" to the host element', () => {
-        expect(de.classes['daff-notification.dismissable']).toBeTrue();
+        expect(de.classes['dismissable']).toBeTrue();
       });
 
       it('should show the close icon button', () => {
@@ -114,7 +114,7 @@ describe('DaffNotificationComponent', () => {
 
   describe('setting the orientation of a notification', () => {
     it('should take orientation as an input', () => {
-      expect(component.orientation).toEqual(wrapper.orientationValue);
+      expect(component.orientation).toEqual(wrapper.orientation);
     });
 
     it('should set the default orientation to `vertical`', () => {
@@ -123,28 +123,33 @@ describe('DaffNotificationComponent', () => {
 
     describe('when orientation="horizontal"', () => {
       it('should add a class of "horizontal" to the host element', () => {
-        wrapper.orientationValue = 'horizontal';
+        wrapper.orientation = 'horizontal';
         fixture.detectChanges();
 
-        expect(de.classes['daff-notification.horizontal']).toBeTrue();
+        expect(de.classes['horizontal']).toBeTrue();
       });
     });
 
     describe('when orientation="vertical"', () => {
       it('should add a class of "vertical" to the host element', () => {
-        wrapper.orientationValue = 'vertical';
+        wrapper.orientation = 'vertical';
         fixture.detectChanges();
 
-        expect(de.classes['daff-notification.vertical']).toBeTrue();
+        expect(de.classes['vertical']).toBeTrue();
       });
     });
   });
 
-  it('should close the notification when the close icon button is clicked', () => {
-    spyOn(wrapper, 'closeNotificationFunction');
-    fixture.debugElement.query(By.css('.daff-notification__close-icon')).nativeElement.click();
-    fixture.detectChanges();
+  describe('when the close icon button is clicked', () => {
+    it('should emit closeNotification', () => {
+      wrapper.dismissable = true;
+      fixture.detectChanges();
 
-    expect(wrapper.closeNotificationFunction).toHaveBeenCalledWith();
+      spyOn(component.closeNotification, 'emit');
+
+      fixture.debugElement.query(By.css('.daff-notification__close-icon')).nativeElement.click();
+
+      expect(component.closeNotification.emit).toHaveBeenCalledWith();
+    });
   });
 });
