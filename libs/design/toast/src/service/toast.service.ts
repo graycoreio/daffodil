@@ -7,25 +7,20 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
   Injectable,
-  Type,
 } from '@angular/core';
-import {
-  BehaviorSubject,
-  EMPTY,
-  Subject,
-} from 'rxjs';
+import { Subject } from 'rxjs';
 
 import {
   DaffToast,
   DaffToastActionEvent,
   DaffToastData,
-} from './toast';
+} from '../toast';
+import { DaffToastTemplateComponent } from '../toast-template/toast-template.component';
+import { DaffToastModule } from '../toast.module';
 import {
-  DaffToastConfiguration,
   daffDefaultToastConfiguration,
-} from './toast-config';
-import { DaffToastTemplateComponent } from './toast-template/toast-template.component';
-import { DaffToastModule } from './toast.module';
+  DaffToastConfiguration,
+} from '../toast/toast-config';
 
 @Injectable({ providedIn: DaffToastModule })
 export class DaffToastService {
@@ -51,8 +46,8 @@ export class DaffToastService {
 	  return this.overlay.create({
 	    hasBackdrop: false,
 	    positionStrategy: new GlobalPositionStrategy()
-	      .centerHorizontally()
-        .bottom('16px'),
+	      .top('128px')
+        .right('24px'),
 	    scrollStrategy: this.overlay.scrollStrategies.noop(),
 	  });
   }
@@ -119,4 +114,3 @@ export class DaffToastService {
 }
 
 //todo: support anchor links as actions
-//todo: styles

@@ -28,12 +28,11 @@ export class DefaultToastComponent {
 
   open() {
     this.toast = this.toastService.open({
-      title: 'Hello Elain' + ' ' + this.count++,
-      subtitle: 'Awesome.',
-      status: 'success',
+      title: 'Update Available' + ' ' + this.count++,
+      message: 'A new version of this page is available.',
       actions: [
-        { title: 'Link', type: 'underline', color: 'primary' },
-        { title: 'Action', type: 'raised', color: 'secondary', data: { action: 'openModal' }},
+        { title: 'Update', color: 'theme-contrast', size: 'sm' },
+        { title: 'Not now', type: 'raised', size: 'sm', data: { action: 'openModal' }},
       ],
     });
 

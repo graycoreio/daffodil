@@ -1,8 +1,3 @@
-import { OverlayRef } from '@angular/cdk/overlay';
-import {
-  ComponentRef,
-  Type,
-} from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
@@ -10,8 +5,6 @@ import {
   DaffPalette,
   DaffStatus,
 } from '@daffodil/design';
-
-
 
 export interface DaffToastAction {
   title: string;
@@ -30,7 +23,7 @@ export interface DaffToastAction {
 export interface DaffToastData {
   title: string;
 
-  subtitle?: string;
+  message?: string;
 
   status?: DaffStatus;
 

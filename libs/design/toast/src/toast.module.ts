@@ -10,7 +10,7 @@ import {
 } from '@daffodil/design';
 
 import { DaffToastActionsDirective } from './toast-actions/toast-actions.directive';
-import { DaffToastSubtitleDirective } from './toast-subtitle/toast-subtitle.directive';
+import { DaffToastMessageDirective } from './toast-message/toast-message.directive';
 import { DaffToastTemplateComponent } from './toast-template/toast-template.component';
 import { DaffToastTitleDirective } from './toast-title/toast-title.directive';
 import { DaffToastComponent } from './toast/toast.component';
@@ -29,14 +29,14 @@ import { DaffToastComponent } from './toast/toast.component';
     DaffToastComponent,
     DaffToastActionsDirective,
     DaffToastTitleDirective,
-    DaffToastSubtitleDirective,
+    DaffToastMessageDirective,
     DaffToastTemplateComponent,
   ],
   exports: [
     DaffToastComponent,
     DaffToastActionsDirective,
     DaffToastTitleDirective,
-    DaffToastSubtitleDirective,
+    DaffToastMessageDirective,
     DaffPrefixSuffixModule,
   ],
 })

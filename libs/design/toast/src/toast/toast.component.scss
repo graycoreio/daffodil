@@ -8,6 +8,10 @@
 	line-height: 1.5rem;
 	position: relative;
 
+	+ .daff-toast {
+		margin-top: 16px;
+	}
+
 	&:before {
 		content: '';
 		border-radius: 4px 0 0 4px;
@@ -55,8 +59,7 @@
 		font-weight: 600;
 	}
 
-	&__subtitle {
-		align-self: center;
+	&__message {
 		font-weight: normal;
 		line-height: 1.25rem;
 	}

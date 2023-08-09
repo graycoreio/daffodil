@@ -23,7 +23,7 @@ import { DaffToast } from '../toast';
       (closeToast)="item.dismiss()"
       @fadeIn>
       <div daffToastTitle>{{ item.title }}</div>
-      <div daffToastSubtitle>{{ item.subtitle }}</div>
+      <div daffToastMessage>{{ item.message }}</div>
       <div daffToastActions *ngIf="item.actions">
         <ng-container *ngFor="let action of item.actions">
           <ng-container *ngTemplateOutlet="button;context:{ action, item }">

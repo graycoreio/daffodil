@@ -9,16 +9,16 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffToastSubtitleDirective } from './toast-subtitle.directive';
+import { DaffToastMessageDirective } from './toast-message.directive';
 
 @Component({
   template: `
-    <h3 daffToastSubtitle>Subtitle</h3>
+    <h3 daffToastMessage>Message</h3>
   `,
 })
 class WrapperComponent {}
 
-describe('DaffToastSubtitleDirective', () => {
+describe('DaffToastMessageDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -26,7 +26,7 @@ describe('DaffToastSubtitleDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffToastSubtitleDirective,
+        DaffToastMessageDirective,
         WrapperComponent,
       ],
     })
@@ -36,7 +36,7 @@ describe('DaffToastSubtitleDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('[daffToastSubtitle]'));
+    de = fixture.debugElement.query(By.css('[daffToastMessage]'));
     fixture.detectChanges();
   });
 
@@ -44,9 +44,9 @@ describe('DaffToastSubtitleDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffToastSubtitle]', () => {
-    it('should add a class of `daff-toast__subtitle` to its host element', () => {
-      expect(de.nativeElement.classList.contains('daff-toast__subtitle')).toEqual(true);
+  describe('[daffToastMessage]', () => {
+    it('should add a class of `daff-toast__message` to its host element', () => {
+      expect(de.nativeElement.classList.contains('daff-toast__message')).toEqual(true);
     });
   });
 });

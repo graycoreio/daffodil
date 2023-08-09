@@ -14,7 +14,8 @@
 
 	.daff-toast {
 		background: theming.daff-illuminate($base, $gray, 1);
-		color: daff-text-contrast($base);
+		box-shadow: 0 -16px 24px -4px rgba($black, 0.04), 0 8px 24px -4px rgba($black, 0.10);
+		color: theming.daff-text-contrast($base);
 
 		&:before {
 			background: theming.daff-illuminate($base, $gray, 4);
