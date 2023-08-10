@@ -105,6 +105,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
   create(): Observable<{id: DaffCart['id']}> {
     return this.mutationQueue.mutate<MagentoCreateCartResponse>({ mutation: createCart }).pipe(
       map(result => ({ id: result.data.createEmptyCart })),
+      catchError(err => throwError(() => transformCartMagentoError(err))),
     );
   }
 
