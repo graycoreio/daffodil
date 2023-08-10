@@ -41,23 +41,23 @@ export class DaffQueuedApollo {
 
   private addRequestToQueue(subscriber: Subscriber<any>, request: Observable<any>): void {
     this.queue.push(() => {
-      const sub = request.subscribe(
-        response => {
+      const sub = request.subscribe({
+        next: response => {
           // emit the outer observable
           subscriber.next(response);
           subscriber.complete();
 
           this.finishRequestSubscription(sub);
         },
-        error => {
+        error: error => {
           subscriber.error(error);
           this.finishRequestSubscription(sub);
         },
-        () => {
+        complete: () => {
           subscriber.complete();
           this.finishRequestSubscription(sub);
         },
-      );
+      });
     });
 
     // start the queue if previously empty
