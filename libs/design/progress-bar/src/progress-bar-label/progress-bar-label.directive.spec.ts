@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 import { DaffProgressBarLabelDirective } from './progress-bar-label.directive';
 
 @Component({
-  template: `<div daffProgressBarLabel></div>`,
+  template: `<label daffProgressBarLabel>Label</label>`,
 })
 
 class WrapperComponent {}
@@ -35,7 +35,7 @@ describe('DaffProgressBarLabelDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('[daffProgressBar]'));
+    de = fixture.debugElement.query(By.css('[daffProgressBarLabel]'));
     fixture.detectChanges();
   });
 
@@ -44,7 +44,7 @@ describe('DaffProgressBarLabelDirective', () => {
   });
 
   describe('[daffProgressBarLabel]', () => {
-    it('should add a class of "daff-progres-bar__label" to the host element', () => {
+    it('should add a class of "daff-progress-bar__label" to the host element', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
         'daff-progress-bar__label': true,
       }));
