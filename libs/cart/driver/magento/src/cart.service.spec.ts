@@ -279,6 +279,34 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
   });
 
   describe('create | creates the cart', () => {
+    describe('when there are graphQL errors', () => {
+      it('should throw the error', done => {
+        service.create().pipe(
+          catchError((err) => {
+            expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+            done();
+            return of();
+          }),
+        ).subscribe(result => {
+          fail('create should throw, not emit');
+        });
+
+        const op = controller.expectOne(addTypenameToDocument(createCart));
+
+        op.flush({
+          errors: [new GraphQLError(
+            'Can\'t find a cart with that ID.',
+            null,
+            null,
+            null,
+            null,
+            null,
+            { category: 'graphql-no-such-entity' },
+          )],
+        });
+      });
+    });
+
     it('should return an observable with the cart ID', done => {
       service.create().subscribe(result => {
         expect(result.id).toEqual(cartId);
