@@ -5,9 +5,9 @@ import {
   DaffErrorCodeMap,
   daffIsError,
 } from '@daffodil/core';
+import { DaffDriverNetworkError } from '@daffodil/driver';
 
 import { DaffDriverMagentoError } from './error.class';
-import { DaffDriverMagentoNetworkError } from './network-error.class';
 import { daffMagentoTransformGraphQlError } from './transform-graphql';
 
 /**
@@ -18,7 +18,7 @@ export function daffTransformMagentoError<T extends DaffErrorCodeMap>(error: any
   if (error.graphQLErrors?.length > 0) {
     return (<ApolloError>error).graphQLErrors.map(err => daffMagentoTransformGraphQlError<T>(err, map))[0];
   } else if (error.networkError) {
-    return new DaffDriverMagentoNetworkError((<ApolloError>error).networkError.message);
+    return new DaffDriverNetworkError((<ApolloError>error).networkError.message);
   } else if (daffIsError(error)) {
     return error;
   } else {
