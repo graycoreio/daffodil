@@ -5,11 +5,8 @@ import {
   DaffErrorCodeMap,
   DaffInheritableError,
 } from '@daffodil/core';
-import {
-  DaffDriverMagentoError,
-  DaffDriverMagentoNetworkError,
-  DAFF_DRIVER_MAGENTO_NETWORK_ERROR_CODE,
-} from '@daffodil/driver/magento';
+import { DAFF_DRIVER_NETWORK_ERROR_CODE } from '@daffodil/driver';
+import { DaffDriverMagentoError } from '@daffodil/driver/magento';
 
 import { daffTransformMagentoError } from './transform';
 
@@ -80,7 +77,7 @@ describe('@daffodil/driver/magento | daffTransformMagentoError', () => {
     expect(result).toEqual(jasmine.any(MockError));
   });
 
-  it('should be able to process Apollo network errors and return the DaffDriverMagentoNetworkError', () => {
+  it('should be able to process Apollo network errors and return the DaffDriverNetworkError', () => {
     const error = new ApolloError({
       networkError: {
         name: 'Error',
@@ -89,7 +86,7 @@ describe('@daffodil/driver/magento | daffTransformMagentoError', () => {
     });
     const result = daffTransformMagentoError(error, map);
 
-    expect(result.code).toEqual(DAFF_DRIVER_MAGENTO_NETWORK_ERROR_CODE);
+    expect(result.code).toEqual(DAFF_DRIVER_NETWORK_ERROR_CODE);
   });
 
   describe('when there are no GraphQL error', () => {
