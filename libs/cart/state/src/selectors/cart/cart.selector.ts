@@ -562,7 +562,10 @@ const createCartSelectors = <
   const selectIsBillingSameAsShipping = createSelector(
     selectCartShippingAddress,
     selectCartBillingAddress,
-    (shippingAddress, billingAddress) => daffComparePersonalAddresses(shippingAddress, billingAddress),
+    (shippingAddress, billingAddress) =>
+      shippingAddress?.id || billingAddress?.id
+        ? shippingAddress?.id === billingAddress?.id
+        : daffComparePersonalAddresses(shippingAddress, billingAddress),
   );
 
   const selectHasBillingAddress = createSelector(

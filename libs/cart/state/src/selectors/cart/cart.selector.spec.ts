@@ -1548,6 +1548,25 @@ describe('Cart | Selector | Cart', () => {
         });
       });
 
+      describe('and the shipping and billing address are the same except for ID', () => {
+        beforeEach(() => {
+          store.dispatch(new DaffCartLoadSuccess({
+            ...cart,
+            shipping_address: {
+              ...cart.billing_address,
+              id: `not ${cart.billing_address.id}`,
+            },
+          }));
+        });
+
+        it('should return false', () => {
+          const selector = store.pipe(select(selectIsBillingSameAsShipping));
+          const expected = cold('a', { a: false });
+
+          expect(selector).toBeObservable(expected);
+        });
+      });
+
       describe('and the shipping and billing address are not the same', () => {
         beforeEach(() => {
           store.dispatch(new DaffCartLoadSuccess({
