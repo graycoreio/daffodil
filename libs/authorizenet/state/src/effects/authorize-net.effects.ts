@@ -53,6 +53,10 @@ import {
   DaffLoadAcceptJsFailure,
   DaffLoadAcceptJsSuccess,
 } from '../actions/authorizenet.actions';
+import {
+  DAFF_AUTHORIZE_NET_STATE_CONFIG,
+  DaffAuthorizeNetStateConfig,
+} from '../config/public_api';
 
 @Injectable()
 export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest> {
@@ -62,6 +66,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
     @Inject(DaffAuthorizeNetDriver) private driver: DaffAuthorizeNetService<T>,
     @Inject(DaffAuthorizeNetPaymentId) private authorizeNetPaymentId: string,
     @Inject(DAFF_AUTHORIZENET_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
+    @Inject(DAFF_AUTHORIZE_NET_STATE_CONFIG) private config: DaffAuthorizeNetStateConfig,
     private acceptJsLoadingService: DaffAcceptJsLoadingService,
   ) {}
 
@@ -105,7 +110,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
   ));
 
 
-  loadAcceptJs$ = createEffect(() => (maxTries = 3, ms = 30): Observable<any> => this.actions$.pipe(
+  loadAcceptJs$ = createEffect(() => (maxTries = this.config.acceptMaxRetries, ms = this.config.acceptBackoffTiming): Observable<any> => this.actions$.pipe(
     ofType(DaffAuthorizeNetActionTypes.LoadAcceptJsAction),
     tap((action: DaffLoadAcceptJs) => this.acceptJsLoadingService.load()),
     switchMap(() => defer(() => of(this.acceptJsLoadingService.getAccept())).pipe(
