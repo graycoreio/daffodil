@@ -1,4 +1,6 @@
+import { PLATFORM_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { platformBrowser } from '@angular/platform-browser';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   hot,
@@ -39,7 +41,7 @@ import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import { DaffCartResolverEffects } from './cart-resolver.effects';
 
-describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
+describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () => {
   let actions$: Observable<any>;
   let effects: DaffCartResolverEffects;
 
@@ -261,5 +263,65 @@ describe('@daffodil/cart/state | DaffCartResolverEffects', () => {
         expect(effects.onResolveCart()).toBeObservable(expected);
       });
     });
+  });
+});
+
+describe('@daffodil/cart/state | DaffCartResolverEffects | on the server', () => {
+  let actions$: Observable<any>;
+  let effects: DaffCartResolverEffects;
+
+  let cartFactory: DaffCartFactory;
+  let stubCart: DaffCart;
+
+  let cartResolverSpy: jasmine.SpyObj<DaffCartDriverResolveService>;
+  let cartStorageService: DaffCartStorageService;
+  let getCartIdSpy: jasmine.Spy;
+
+  beforeEach(() => {
+    cartResolverSpy = jasmine.createSpyObj('DaffCartDriverResolveService', ['getCartOrFail']);
+
+    TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot(),
+      ],
+      providers: [
+        DaffCartResolverEffects,
+        provideMockActions(() => actions$),
+        {
+          provide: DaffCartDriverResolveService,
+          useValue: cartResolverSpy,
+        },
+        {
+          provide: PLATFORM_ID,
+          useValue: 'server',
+        },
+      ],
+    });
+
+    effects = TestBed.inject(DaffCartResolverEffects);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartStorageService = TestBed.inject(DaffCartStorageService);
+
+    stubCart = cartFactory.create();
+    getCartIdSpy = spyOn(cartStorageService, 'getCartId');
+
+    getCartIdSpy.and.returnValue(stubCart.id);
+    cartResolverSpy.getCartOrFail.and.returnValue(of({
+      response: stubCart,
+      errors: [],
+    }));
+  });
+
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+
+  it('should should not call the cart storage service', () => {
+    effects.ngrxOnInitEffects();
+    expect(getCartIdSpy).not.toHaveBeenCalled();
+  });
+
+  it('should not initiate cart resolution', () => {
+    expect(effects.ngrxOnInitEffects() instanceof DaffResolveCart).toBeFalse();
   });
 });
