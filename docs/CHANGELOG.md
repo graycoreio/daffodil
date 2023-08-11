@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.62.4](https://github.com/graycoreio/daffodil/compare/v0.62.3...v0.62.4) (2023-08-11)
+
+
+### Features
+
+* **authorizenet:** add state config for accept retry backoff ([#2541](https://github.com/graycoreio/daffodil/issues/2541)) ([9dd40b7](https://github.com/graycoreio/daffodil/commit/9dd40b795513da9ad0f93e36cffbcafbdb1b9408))
+* **cart:** handle create errors in Magento driver ([#2536](https://github.com/graycoreio/daffodil/issues/2536)) ([4ead116](https://github.com/graycoreio/daffodil/commit/4ead116348ed7a159bdfcd965b41919c442175cb))
+* **design:** add focus trapping to modal component ([#2532](https://github.com/graycoreio/daffodil/issues/2532)) ([1569d60](https://github.com/graycoreio/daffodil/commit/1569d60365e45b2757d737a8003003d53afcb8dd))
+* **design:** create notification component ([#2484](https://github.com/graycoreio/daffodil/issues/2484)) ([e1f2574](https://github.com/graycoreio/daffodil/commit/e1f2574848e82d535d0563ec7e9891058f03dc95))
+* **design:** use position fixed on sidebar nav ([1839a85](https://github.com/graycoreio/daffodil/commit/1839a85058a21cede712797ff1966b5204ba1287))
+* **driver:** add `DaffDriverNetworkError` ([#2534](https://github.com/graycoreio/daffodil/issues/2534)) ([6e30ab1](https://github.com/graycoreio/daffodil/commit/6e30ab19d4772b6bc27aece8b0bc05bf25e999ec))
+
 ## [0.62.3](https://github.com/graycoreio/daffodil/compare/v0.62.2...v0.62.3) (2023-08-02)
 
 
