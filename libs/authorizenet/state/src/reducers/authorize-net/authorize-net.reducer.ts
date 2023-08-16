@@ -13,16 +13,10 @@ import {
   DaffAuthorizeNetActionTypes,
 } from '../../actions/authorizenet.actions';
 import { DaffAuthorizeNetReducerState } from './authorize-net-reducer.interface';
-
-export const initialState: DaffAuthorizeNetReducerState = {
-  isAcceptLoaded: false,
-  paymentError: null,
-  acceptJsLoadError: null,
-  loading: false,
-};
+import { daffAuthorizeNetReducerInitialState } from './initial-state';
 
 export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>(
-  state: DaffAuthorizeNetReducerState = initialState,
+  state: DaffAuthorizeNetReducerState = daffAuthorizeNetReducerInitialState,
   action: DaffAuthorizeNetActions<T> | DaffCartPaymentActions | DaffPaymentActions,
 ): DaffAuthorizeNetReducerState {
   switch (action.type) {
