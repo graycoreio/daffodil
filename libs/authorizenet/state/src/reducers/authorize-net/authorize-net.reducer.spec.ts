@@ -17,22 +17,15 @@ import {
 } from '@daffodil/payment/state';
 
 import { daffAuthorizeNetReducer } from './authorize-net.reducer';
+import { daffAuthorizeNetReducerInitialState } from './initial-state';
 
 describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
-
   let stubPaymentNonce;
-  let initialState: DaffAuthorizeNetReducerState;
   let stubAddress: DaffCartAddress;
 
   beforeEach(() => {
     stubAddress = new DaffCartAddressFactory().create();
     stubPaymentNonce = 'tokenResponse';
-    initialState = {
-      isAcceptLoaded: false,
-      loading: false,
-      paymentError: null,
-      acceptJsLoadError: null,
-    };
   });
 
   describe('when an unknown action is triggered', () => {
@@ -40,9 +33,9 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
     it('should return the current state', () => {
       const action = <any>{};
 
-      const result = daffAuthorizeNetReducer(initialState, action);
+      const result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(daffAuthorizeNetReducerInitialState);
     });
   });
 
@@ -54,7 +47,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
         kind: DAFF_AUTHORIZENET_PAYMENT_KIND,
       }, stubAddress);
 
-      result = daffAuthorizeNetReducer(initialState, tokenLoad);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, tokenLoad);
     });
 
     it('indicates that the request is loading', () => {
@@ -75,7 +68,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
         },
       }, stubAddress);
 
-      result = daffAuthorizeNetReducer(initialState, tokenLoad);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, tokenLoad);
     });
 
     it('indicates that the request is loading', () => {
@@ -89,7 +82,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
     beforeEach(() => {
       const tokenLoadSuccess: DaffAuthorizeNetUpdatePaymentSuccess = new DaffAuthorizeNetUpdatePaymentSuccess();
 
-      result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, tokenLoadSuccess);
     });
 
     it('indicates that the request has finished loading', () => {
@@ -109,7 +102,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
         method: 'method',
       });
 
-      result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, tokenLoadSuccess);
     });
 
     it('indicates that the request has finished loading', () => {
@@ -132,7 +125,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
       };
       const tokenResponseLoadFailure: DaffAuthorizeNetUpdatePaymentFailure = new DaffAuthorizeNetUpdatePaymentFailure(mockError);
 
-      result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, tokenResponseLoadFailure);
     });
 
     it('indicates that the request has finished loading', () => {
@@ -155,7 +148,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
       };
       const tokenResponseLoadFailure = new DaffPaymentGenerateTokenFailure(mockError);
 
-      result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, tokenResponseLoadFailure);
     });
 
     it('indicates that the request has finished loading', () => {
@@ -173,7 +166,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
 
     beforeEach(() => {
       const acceptJsLoaded: DaffLoadAcceptJsSuccess = new DaffLoadAcceptJsSuccess();
-      result = daffAuthorizeNetReducer(initialState, acceptJsLoaded);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, acceptJsLoaded);
     });
 
     it('should indicate that accept js has loaded', () => {
@@ -196,7 +189,7 @@ describe('@daffodil/authorizenet/state | daffAuthorizeNetReducer', () => {
       };
       const loadAcceptJsFailure: DaffLoadAcceptJsFailure = new DaffLoadAcceptJsFailure(mockError);
 
-      result = daffAuthorizeNetReducer(initialState, loadAcceptJsFailure);
+      result = daffAuthorizeNetReducer(daffAuthorizeNetReducerInitialState, loadAcceptJsFailure);
     });
 
     it('indicates that nothing is loading', () => {
