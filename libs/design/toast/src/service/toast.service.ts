@@ -1,15 +1,35 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
-  GlobalPositionStrategy,
   Overlay,
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
+  Inject,
   Injectable,
+  OnDestroy,
+  Optional,
+  SkipSelf,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+  Subject,
+  Subscription,
+  iif,
+  of,
+} from 'rxjs';
+import {
+  filter,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 
+import { DaffBreakpoints } from '@daffodil/design';
+
+import {
+  DAFF_TOAST_OPTIONS,
+  DaffToastOptions,
+} from '../options/daff-toast-options';
 import {
   DaffToast,
   DaffToastActionEvent,
@@ -21,9 +41,12 @@ import {
   daffDefaultToastConfiguration,
   DaffToastConfiguration,
 } from '../toast/toast-config';
+import { createPositionStrategy } from './position-strategy';
 
 @Injectable({ providedIn: DaffToastModule })
-export class DaffToastService {
+export class DaffToastService implements OnDestroy {
+
+  private _sub: Subscription;
 
   private _toasts: DaffToast[] = [];
 
@@ -31,8 +54,25 @@ export class DaffToastService {
 
   private _template: ComponentRef<DaffToastTemplateComponent> | undefined;
 
-  constructor(private overlay: Overlay) {
+  constructor(
+    private overlay: Overlay,
+    @Inject(DAFF_TOAST_OPTIONS) private options: DaffToastOptions,
+    @Optional() @SkipSelf() private _parentToast: DaffToastService,
+    private mediaQuery: BreakpointObserver,
+  ) {
+    this._sub = this.mediaQuery.observe(DaffBreakpoints.MOBILE).pipe(
+      filter(() => this._overlayRef !== undefined),
+      switchMap((x) => iif(
+        () => x.matches === true,
+        of(createPositionStrategy(this.options.position)),
+        of(createPositionStrategy({ bottom: '24px', horizontallyCenter: 'center' })),
+      )),
+      tap((strategy) => this._overlayRef.updatePositionStrategy(strategy)),
+    ).subscribe();
+  }
 
+  ngOnDestroy(): void {
+    this._sub.unsubscribe();
   }
 
   private _attachToastTemplate(
@@ -45,17 +85,20 @@ export class DaffToastService {
   private _createOverlayRef(): OverlayRef {
 	  return this.overlay.create({
 	    hasBackdrop: false,
-	    positionStrategy: new GlobalPositionStrategy()
-	      .top('128px')
-        .right('24px'),
+	    positionStrategy: createPositionStrategy(this.options.position),
 	    scrollStrategy: this.overlay.scrollStrategies.noop(),
 	  });
+
   }
 
   open(
 	  toast: DaffToastData,
 	  configuration?: Partial<DaffToastConfiguration>,
   ): DaffToast {
+    if(this._parentToast) {
+      return this._parentToast.open(toast, configuration);
+    }
+
 	  const config = { ...daffDefaultToastConfiguration, ...configuration };
     if(this._toasts.length === 0) {
       this._overlayRef = this._createOverlayRef();
@@ -71,7 +114,10 @@ export class DaffToastService {
       this.close(_toastPlus);
     };
 
-	  this._toasts.push(_toastPlus);
+	  this._toasts = [
+      _toastPlus,
+      ...this._toasts,
+    ];
 
     if(config.durationInMs) {
       setTimeout(() => {
@@ -80,15 +126,20 @@ export class DaffToastService {
     }
 
     if(this._toasts.length > 3) {
-      this._toasts.shift();
+      this._toasts.pop();
     }
 
-    this._template.instance.items = [...this._toasts];
+    this._template.instance.items = this._toasts;
 
 	  return _toastPlus;
   }
 
   close(toast: DaffToast): void {
+    if(this._parentToast) {
+      this._parentToast.close(toast);
+      return;
+    }
+
 	  const index = this._toasts.indexOf(toast);
 	  if (index === -1) {
 	    throw new Error(

@@ -7,6 +7,11 @@ export {
   DaffToastData,
 } from './toast';
 
+export {
+  DAFF_TOAST_OPTIONS,
+  provideDaffToastOptions,
+} from './options/daff-toast-options';
+
 export * from './toast/toast.component';
 export * from './toast-actions/toast-actions.directive';
 export * from './toast-title/toast-title.directive';

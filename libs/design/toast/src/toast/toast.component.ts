@@ -9,6 +9,7 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
+  HostListener,
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -56,17 +57,17 @@ export class DaffToastComponent
   @HostBinding('attr.tabindex') tabindex = '0';
   @HostBinding('attr.aria-live') ariaLive = 'polite';
 
+  @HostListener('keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if(this.dismissable){
+      this.onCloseToast(event);
+    }
+  }
+
   /** Whether or not a toast is closable */
   @Input() dismissable = true;
 
   /** The duration (in milliseconds) that a toast is visible before it's dismissed. */
   @Input() duration: number;
-
-  /** The horizontal position of a toast in the viewport. It defaults to center. */
-  @Input() horizontalPosition: DaffToastHorizontalPosition = 'center';
-
-  /** The vertical position of a toast in the viewport. It defaults to bottom. */
-  @Input() verticalPosition: DaffToastVerticalPosition = 'bottom';
 
   @Output() closeToast: EventEmitter<void> = new EventEmitter();
 

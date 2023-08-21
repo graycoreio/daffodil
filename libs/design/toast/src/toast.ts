@@ -17,7 +17,7 @@ export interface DaffToastAction {
 
   type?: 'raised' | 'underline' | 'stroked' | 'flat' | undefined;
 
-  data?: unknown;
+  data?: Record<string, any>;
 }
 
 export interface DaffToastData {

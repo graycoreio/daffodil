@@ -32,10 +32,24 @@ import { DaffToast } from '../toast';
       </div>
     </daff-toast>
 
-    <ng-template #button let-action="action" let-item="item">
-      <button daff-button [status]="action.status" [color]="action.color" [size]="action.size"
-          (click)="item.actions$.next({ event: $event, action})">{{ action.title }}
-      </button>
+    <ng-template #button let-action="action" let-item="item" >
+      <ng-container [ngSwitch]="action.type">
+          <button *ngSwitchDefault daff-button [status]="action.status" [color]="action.color" [size]="action.size"
+            (click)="item.actions$.next({ event: $event, action})">{{ action.title }}
+          </button>
+          <button *ngSwitchCase="'stroked'" daff-stroked-button [status]="action.status" [color]="action.color" [size]="action.size"
+            (click)="item.actions$.next({ event: $event, action})">{{ action.title }}
+          </button>
+          <button *ngSwitchCase="'raised'" daff-raised-button [status]="action.status" [color]="action.color" [size]="action.size"
+            (click)="item.actions$.next({ event: $event, action})">{{ action.title }}
+          </button>
+          <button *ngSwitchCase="'flat'" daff-flat-button [status]="action.status" [color]="action.color" [size]="action.size"
+            (click)="item.actions$.next({ event: $event, action})">{{ action.title }}
+          </button>
+          <button *ngSwitchCase="'underline'" daff-underline-button [status]="action.status" [color]="action.color" [size]="action.size"
+            (click)="item.actions$.next({ event: $event, action})">{{ action.title }}
+          </button>
+      </ng-container>
     </ng-template>
   `,
   animations: [

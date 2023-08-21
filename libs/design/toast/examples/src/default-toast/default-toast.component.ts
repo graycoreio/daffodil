@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import {
@@ -22,9 +23,7 @@ export class DefaultToastComponent {
 
   private count = 0;
 
-  constructor(private toastService: DaffToastService) {
-
-  }
+  constructor(private toastService: DaffToastService) {}
 
   open() {
     this.toast = this.toastService.open({
@@ -32,12 +31,8 @@ export class DefaultToastComponent {
       message: 'A new version of this page is available.',
       actions: [
         { title: 'Update', color: 'theme-contrast', size: 'sm' },
-        { title: 'Not now', type: 'raised', size: 'sm', data: { action: 'openModal' }},
+        { title: 'Not now', type: 'raised', size: 'sm' },
       ],
-    });
-
-    this.toast.actions$.pipe(filter((action) => action.action.data === 'openModal')).subscribe((action) => {
-
     });
   }
 }
