@@ -31,7 +31,7 @@ import {
   createCart,
   getCart,
   magentoMergeCartsMutation,
-  MagentoMergeCartResponse,
+  MagentoMergeCartsResponse,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -64,7 +64,7 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartService', () => {
   let mockDaffCartItem: DaffCartItem;
   let mockCartResponse: MagentoGetCartResponse;
   let mockCreateCartResponse: MagentoCreateCartResponse;
-  let mockMergeCartsResponse: MagentoMergeCartResponse;
+  let mockMergeCartsResponse: MagentoMergeCartsResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

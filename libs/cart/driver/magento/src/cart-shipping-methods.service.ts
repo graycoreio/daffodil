@@ -21,8 +21,10 @@ import { DaffCartShippingMethodsServiceInterface } from '@daffodil/cart/driver';
 
 import { transformCartMagentoError } from './errors/transform';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
-import { listShippingMethods } from './queries/public_api';
-import { MagentoListShippingMethodsResponse } from './queries/responses/list-shipping-methods';
+import {
+  listShippingMethods,
+  MagentoListShippingMethodsResponse,
+} from './queries/public_api';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 
 /**

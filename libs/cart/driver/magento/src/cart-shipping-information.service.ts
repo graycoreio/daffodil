@@ -28,12 +28,10 @@ import {
   getSelectedShippingMethod,
   setSelectedShippingMethod,
   listShippingMethods,
-} from './queries/public_api';
-import {
   MagentoGetSelectedShippingMethodResponse,
   MagentoSetSelectedShippingMethodResponse,
   MagentoListShippingMethodsResponse,
-} from './queries/responses/public_api';
+} from './queries/public_api';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';

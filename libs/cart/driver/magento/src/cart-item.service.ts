@@ -37,16 +37,16 @@ import {
 } from './injection-tokens/public_api';
 import { DaffCartMagentoCartItemTransform } from './interfaces/public_api';
 import { MagentoCartItemInput } from './models/requests/cart-item';
-import { addCartItem } from './queries/add-cart-item';
 import {
+  MagentoAddCartItemResponse,
+  MagentoListCartItemsResponse,
+  MagentoRemoveCartItemResponse,
+  addCartItem,
   listCartItems,
   removeCartItem,
   updateCartItem,
 } from './queries/public_api';
-import { MagentoAddCartItemResponse } from './queries/responses/add-cart-item';
-import { MagentoListCartItemsResponse } from './queries/responses/list-cart-items';
-import { MagentoUpdateCartItemResponse } from './queries/responses/public_api';
-import { MagentoRemoveCartItemResponse } from './queries/responses/remove-cart-item';
+import { MagentoUpdateCartItemResponse } from './queries/public_api';
 import {
   transformCompositeCartItem,
   transformSimpleCartItem,

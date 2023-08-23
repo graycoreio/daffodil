@@ -2,7 +2,6 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import {
@@ -10,13 +9,11 @@ import {
   throwError,
   forkJoin,
   of,
-  merge,
 } from 'rxjs';
 import {
   map,
   switchMap,
   catchError,
-  tap,
 } from 'rxjs/operators';
 
 import {
@@ -30,7 +27,6 @@ import {
   DaffCartItemServiceInterface,
   DaffProductOutOfStockError,
 } from '@daffodil/cart/driver';
-import { DaffInheritableError } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 import { DaffDriverResponse } from '@daffodil/driver';
 
@@ -44,10 +40,10 @@ import {
   getCart,
   createCart,
   magentoMergeCartsMutation,
-  MagentoMergeCartResponse,
+  MagentoMergeCartsResponse,
+  MagentoCreateCartResponse,
+  MagentoGetCartResponse,
 } from './queries/public_api';
-import { MagentoCreateCartResponse } from './queries/responses/create-cart';
-import { MagentoGetCartResponse } from './queries/responses/get-cart';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
 export const DAFF_MAGENTO_GET_RECOVERABLE_ERRORS = [
@@ -126,7 +122,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
   }
 
   merge(guestCart: DaffCart['id'], customerCart?: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
-    return this.mutationQueue.mutate<MagentoMergeCartResponse>({
+    return this.mutationQueue.mutate<MagentoMergeCartsResponse>({
       mutation: magentoMergeCartsMutation(this.extraCartFragments),
       variables: {
         source: guestCart,

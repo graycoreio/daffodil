@@ -27,12 +27,10 @@ import {
   getBillingAddress,
   updateBillingAddress,
   updateBillingAddressWithEmail,
-} from './queries/public_api';
-import {
   MagentoGetBillingAddressResponse,
   MagentoUpdateBillingAddressResponse,
   MagentoUpdateBillingAddressWithEmailResponse,
-} from './queries/responses/public_api';
+} from './queries/public_api';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';

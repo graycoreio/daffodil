@@ -26,12 +26,10 @@ import {
   listCartCoupons,
   applyCoupon,
   removeAllCoupons,
-} from './queries/public_api';
-import {
   MagentoListCartCouponsResponse,
   MagentoApplyCouponResponse,
   MagentoRemoveAllCouponsResponse,
-} from './queries/responses/public_api';
+} from './queries/public_api';
 import { daffMagentoCouponTransform } from './transforms/outputs/cart-coupon';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 
