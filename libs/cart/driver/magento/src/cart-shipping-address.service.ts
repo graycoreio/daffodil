@@ -27,12 +27,10 @@ import {
   getShippingAddress,
   updateShippingAddress,
   updateShippingAddressWithEmail,
-} from './queries/public_api';
-import {
   MagentoGetShippingAddressResponse,
   MagentoUpdateShippingAddressResponse,
   MagentoUpdateShippingAddressWithEmailResponse,
-} from './queries/responses/public_api';
+} from './queries/public_api';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';

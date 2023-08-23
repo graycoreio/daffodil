@@ -20,8 +20,10 @@ import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 import { transformCartMagentoError } from './errors/transform';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
-import { placeOrder } from './queries/public_api';
-import { MagentoPlaceOrderResponse } from './queries/responses/public_api';
+import {
+  placeOrder,
+  MagentoPlaceOrderResponse,
+} from './queries/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.

@@ -29,13 +29,11 @@ import {
   setSelectedPaymentMethod,
   setSelectedPaymentMethodWithBilling,
   setSelectedPaymentMethodWithBillingAndEmail,
-} from './queries/public_api';
-import {
   MagentoGetSelectedPaymentMethodResponse,
   MagentoSetSelectedPaymentMethodResponse,
   MagentoSetSelectedPaymentMethodWithBillingResponse,
   MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse,
-} from './queries/responses/public_api';
+} from './queries/public_api';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';

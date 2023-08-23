@@ -21,8 +21,10 @@ import { DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
 
 import { transformCartMagentoError } from './errors/transform';
 import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
-import { listPaymentMethods } from './queries/public_api';
-import { MagentoListPaymentMethodsResponse } from './queries/responses/list-payment-methods';
+import {
+  listPaymentMethods,
+  MagentoListPaymentMethodsResponse,
+} from './queries/public_api';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 
 /**
