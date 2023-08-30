@@ -1,11 +1,40 @@
 <h1 daffArticleTitle>Toast</h1>
-<p daffArticleLead>Toasts are typically time-sensitive notifications that are related to application level information.</p>
+<p daffArticleLead>Toasts are small messages designed to mimic push notifications used to provide users with application level information.</p>
 
 <h2>Overview</h2>
 <p>Toasts should be used to display temporary messages about actions or events that occured, with no relation to content on a page. For messaging that provide context in close promixity to a piece of content within a page, use the <a routerLink="/notification">Notification</a> component.</p>
 
-<h2>Default toast</h2>
+<h2>Basic toast</h2>
 <design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
 
-<h2>Toast Statuses</h2>
+<h2>Stacking</h2>
+<p>A maximum of three toasts can be shown at a time. Toasts are stacked vertically, with the most recent toast displayed on top.</p>
+
+<h2>Statuses</h2>
+<p>Supported statuses: <code>warn | danger | success</code></p>
+
 <design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
+
+<h2>Positions</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>vertical</td>
+			<td><code>top | bottom</code></td>
+		</tr>
+		<tr>
+			<td>horizontal</td>
+			<td><code>left | center | right</code></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Top right is the default position for toasts.</p>
+
+<design-land-example-viewer-container example="toast-positions"></design-land-example-viewer-container>

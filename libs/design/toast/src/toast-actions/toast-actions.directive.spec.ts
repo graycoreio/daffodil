@@ -13,7 +13,7 @@ import { DaffToastActionsDirective } from './toast-actions.directive';
 
 @Component({
   template: `
-    <h3 daffToastActions>Lorem Ipsum</h3>
+    <div daffToastActions><button>Click me!</button></div>
   `,
 })
 class WrapperComponent {}

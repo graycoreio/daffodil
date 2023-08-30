@@ -1,0 +1,14 @@
+<div class="toast-positions__options">
+	<select [formControl]="verticalControl">
+		<option value="top">Top</option>
+		<option value="bottom">Bottom</option>
+	</select>
+	
+	<select [formControl]="horizontalControl">
+		<option value="left">Left</option>
+		<option value="center">Center</option>
+		<option value="right">Right</option>
+	</select>
+</div>
+
+<button daff-button size="sm" (click)="open()">Show toast</button>

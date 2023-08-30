@@ -13,7 +13,7 @@ import { DaffToastMessageDirective } from './toast-message.directive';
 
 @Component({
   template: `
-    <h3 daffToastMessage>Message</h3>
+    <div daffToastMessage>Message</div>
   `,
 })
 class WrapperComponent {}

@@ -9,10 +9,11 @@ import {
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
 
+import { DaffToastPositionService } from './service/position.service';
 import { DaffToastActionsDirective } from './toast-actions/toast-actions.directive';
 import { DaffToastMessageDirective } from './toast-message/toast-message.directive';
-import { DaffToastTemplateComponent } from './toast-template/toast-template.component';
 import { DaffToastTitleDirective } from './toast-title/toast-title.directive';
+import { DaffToastTemplateComponent } from './toast/toast-template.component';
 import { DaffToastComponent } from './toast/toast.component';
 
 
@@ -38,6 +39,9 @@ import { DaffToastComponent } from './toast/toast.component';
     DaffToastTitleDirective,
     DaffToastMessageDirective,
     DaffPrefixSuffixModule,
+  ],
+  providers: [
+    DaffToastPositionService,
   ],
 })
 export class DaffToastModule { }

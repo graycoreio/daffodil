@@ -10,7 +10,6 @@ import {
   DaffToastService,
 } from '@daffodil/design/toast';
 
-
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'default-toast',
@@ -30,8 +29,8 @@ export class DefaultToastComponent {
       title: 'Update Available' + ' ' + this.count++,
       message: 'A new version of this page is available.',
       actions: [
-        { title: 'Update', color: 'theme-contrast', size: 'sm' },
-        { title: 'Not now', type: 'raised', size: 'sm' },
+        { content: 'Update', color: 'theme-contrast', size: 'sm' },
+        { content: 'Remind me later', type: 'flat', size: 'sm' },
       ],
     });
   }

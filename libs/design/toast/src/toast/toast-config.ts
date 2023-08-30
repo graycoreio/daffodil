@@ -1,11 +1,9 @@
 export interface DaffToastConfiguration {
   /**
-   * The duration that the toast will stay open. If undefined,
-   * the toast will remain open until closed another way.
+   * The duration (in milliseconds) that a toast is visible before it's dismissed.
+   * If undefined, the toast will remain open until closed another way.
    */
-  durationInMs?: number;
+  duration?: number;
 }
 
-export const daffDefaultToastConfiguration: DaffToastConfiguration = {
-
-};
+export const daffDefaultToastConfiguration: DaffToastConfiguration = {};

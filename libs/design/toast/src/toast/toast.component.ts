@@ -30,9 +30,6 @@ class DaffToastBase {
 
 const _daffToastBase = daffArticleEncapsulatedMixin(daffStatusMixin(DaffToastBase));
 
-export type DaffToastHorizontalPosition = 'left' | 'right' | 'center';
-export type DaffToastVerticalPosition = 'top' | 'bottom';
-
 /**
  * DaffToastComponent provides a way to display and
  * communicate information for user actions or system updates.
@@ -52,24 +49,14 @@ export class DaffToastComponent
   implements DaffPrefixable, DaffStatusable {
   faTimes = faTimes;
 
+  /** @docs-private */
   @HostBinding('class.daff-toast') class = true;
 
-  @HostBinding('attr.tabindex') tabindex = '0';
+  /** @docs-private */
   @HostBinding('attr.aria-live') ariaLive = 'polite';
 
-  @HostListener('keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    if(this.dismissable){
-      this.onCloseToast(event);
-    }
-  }
-
   /** Whether or not a toast is closable */
-  @Input() dismissable = true;
-
-  /** The duration (in milliseconds) that a toast is visible before it's dismissed. */
-  @Input() duration: number;
-
-  @Output() closeToast: EventEmitter<void> = new EventEmitter();
+  @Input() dismissible = true;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
 	  super(elementRef, renderer);
@@ -77,8 +64,4 @@ export class DaffToastComponent
 
   @ContentChild(DaffPrefixDirective)
   _prefix: DaffPrefixDirective;
-
-  onCloseToast(event: Event) {
-    this.closeToast.emit();
-  }
 }

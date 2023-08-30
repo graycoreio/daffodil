@@ -8,6 +8,4 @@
   </div>
   <ng-content select="[daffToastActions]"></ng-content>
 </div>
-<button class="daff-toast__close-icon" *ngIf="dismissable" (click)="onCloseToast($event)">
-  <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
-</button>
+<ng-content></ng-content>

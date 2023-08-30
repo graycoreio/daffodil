@@ -6,8 +6,11 @@ import {
   DaffStatus,
 } from '@daffodil/design';
 
+/**
+ * An interface for properties of actions, specifically the DaffButtonComponent, placed inside of a toast.
+ */
 export interface DaffToastAction {
-  title: string;
+  content: string;
 
   size?: DaffButtonSize;
 

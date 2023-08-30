@@ -20,6 +20,7 @@ import {
 } from 'rxjs';
 import {
   filter,
+  map,
   switchMap,
   tap,
 } from 'rxjs/operators';
@@ -35,13 +36,14 @@ import {
   DaffToastActionEvent,
   DaffToastData,
 } from '../toast';
-import { DaffToastTemplateComponent } from '../toast-template/toast-template.component';
 import { DaffToastModule } from '../toast.module';
 import {
   daffDefaultToastConfiguration,
   DaffToastConfiguration,
 } from '../toast/toast-config';
+import { DaffToastTemplateComponent } from '../toast/toast-template.component';
 import { createPositionStrategy } from './position-strategy';
+import { DaffToastPositionService } from './position.service';
 
 @Injectable({ providedIn: DaffToastModule })
 export class DaffToastService implements OnDestroy {
@@ -59,14 +61,11 @@ export class DaffToastService implements OnDestroy {
     @Inject(DAFF_TOAST_OPTIONS) private options: DaffToastOptions,
     @Optional() @SkipSelf() private _parentToast: DaffToastService,
     private mediaQuery: BreakpointObserver,
+    private toastPosition: DaffToastPositionService,
   ) {
     this._sub = this.mediaQuery.observe(DaffBreakpoints.MOBILE).pipe(
       filter(() => this._overlayRef !== undefined),
-      switchMap((x) => iif(
-        () => x.matches === true,
-        of(createPositionStrategy(this.options.position)),
-        of(createPositionStrategy({ bottom: '24px', horizontallyCenter: 'center' })),
-      )),
+      map((position) => createPositionStrategy(this.toastPosition.config)),
       tap((strategy) => this._overlayRef.updatePositionStrategy(strategy)),
     ).subscribe();
   }
@@ -83,10 +82,10 @@ export class DaffToastService implements OnDestroy {
   }
 
   private _createOverlayRef(): OverlayRef {
-	  return this.overlay.create({
+  	  return this.overlay.create({
 	    hasBackdrop: false,
-	    positionStrategy: createPositionStrategy(this.options.position),
 	    scrollStrategy: this.overlay.scrollStrategies.noop(),
+      positionStrategy: createPositionStrategy(this.toastPosition.config),
 	  });
 
   }
@@ -95,7 +94,7 @@ export class DaffToastService implements OnDestroy {
 	  toast: DaffToastData,
 	  configuration?: Partial<DaffToastConfiguration>,
   ): DaffToast {
-    if(this._parentToast) {
+    if(this._parentToast && this.options.useParent) {
       return this._parentToast.open(toast, configuration);
     }
 
@@ -119,10 +118,10 @@ export class DaffToastService implements OnDestroy {
       ...this._toasts,
     ];
 
-    if(config.durationInMs) {
+    if(config.duration) {
       setTimeout(() => {
         _toastPlus.dismiss();
-      }, configuration.durationInMs);
+      }, configuration.duration);
     }
 
     if(this._toasts.length > 3) {
@@ -135,7 +134,7 @@ export class DaffToastService implements OnDestroy {
   }
 
   close(toast: DaffToast): void {
-    if(this._parentToast) {
+    if(this._parentToast && this.options.useParent) {
       this._parentToast.close(toast);
       return;
     }
@@ -163,5 +162,3 @@ export class DaffToastService implements OnDestroy {
     }
   }
 }
-
-//todo: support anchor links as actions

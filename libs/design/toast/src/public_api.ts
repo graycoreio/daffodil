@@ -1,3 +1,4 @@
+export { DaffToastPositionService } from './service/position.service';
 export { DaffToastModule } from './toast.module';
 export { DaffToastService } from './service/toast.service';
 export { DaffToastConfiguration } from './toast/toast-config';

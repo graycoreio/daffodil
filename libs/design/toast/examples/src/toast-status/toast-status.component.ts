@@ -18,21 +18,21 @@ const status: Record<string, DaffToastData> =  {
   error: {
     title: 'Something went wrong',
     actions: [
-      { title: 'Burn it all down.', color: 'theme-contrast', size: 'sm' },
+      { content: 'Burn it all down.', color: 'theme-contrast', size: 'sm' },
     ],
   },
   success: {
     title: 'Warning!',
     message: 'Hrm...',
     actions: [
-      { title: 'Repair', color: 'theme-contrast', size: 'sm' },
+      { content: 'Repair', color: 'theme-contrast', size: 'sm' },
     ],
   },
   warn: {
     title: 'Hurrah!',
     message: 'It worked!',
     actions: [
-      { title: 'Update', color: 'theme-contrast', size: 'sm' },
+      { content: 'Update', color: 'theme-contrast', size: 'sm' },
     ],
   },
 };
