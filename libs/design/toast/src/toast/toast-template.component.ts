@@ -38,7 +38,7 @@ import { DaffToast } from '../toast';
           <ng-container *ngTemplateOutlet="button;context:{ action, item }"></ng-container>
         </ng-container>
       </div>
-      <button *ngIf="item.actions" class="daff-toast__close-button" (click)="onCloseToast(item.dismiss())">
+      <button *ngIf="item.showCloseButton" class="daff-toast__close-button" (click)="onCloseToast(item.dismiss())">
         <fa-icon [icon]="faTimes" size="sm" [fixedWidth]="true"></fa-icon>
       </button>
     </daff-toast>

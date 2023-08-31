@@ -104,6 +104,7 @@ export class DaffToastService implements OnDestroy {
       this._template = this._attachToastTemplate(this._overlayRef);
     }
     const _toastPlus: DaffToast = {
+      showCloseButton: true,
       ...toast,
       dismiss: () => {},
       actions$: new Subject(),

@@ -31,6 +31,8 @@ export interface DaffToastData {
   status?: DaffStatus;
 
   actions?: DaffToastAction[];
+
+  showCloseButton?: boolean;
 }
 
 export interface DaffToastActionEvent {

@@ -2,8 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 import {
   DaffToast,
