@@ -3,8 +3,12 @@ import {
   Inject,
 } from '@angular/core';
 import {
+  ActivatedRouteSnapshot,
   CanActivate,
+  CanActivateChild,
   Router,
+  RouterStateSnapshot,
+  UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
@@ -27,12 +31,16 @@ import { DaffCartInStockItemsGuardRedirectUrl } from './in-stock-items-guard-red
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCartInStockItemsGuard implements CanActivate {
+export class DaffCartInStockItemsGuard implements CanActivate, CanActivateChild {
   constructor(
     private facade: DaffCartFacade,
     private router: Router,
     @Inject(DaffCartInStockItemsGuardRedirectUrl) private redirectUrl: string,
   ) {}
+
+  canActivateChild(): Observable<boolean> {
+    return this.canActivate();
+  }
 
   canActivate(): Observable<boolean> {
     return this.facade.hasOutOfStockItems$.pipe(
