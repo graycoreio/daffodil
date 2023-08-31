@@ -109,4 +109,49 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
     });
   });
+
+  describe('canActivateChild', () => {
+    describe('when there are only in stock items in the cart', () => {
+      beforeEach(() => {
+        cartItems = cartItemFactory.createMany(1, {
+          in_stock: true,
+        });
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          items: cartItems,
+        }));
+      });
+
+      it('should allow activation', () => {
+        const expected = cold('(a|)', { a: true });
+
+        expect(service.canActivateChild()).toBeObservable(expected);
+      });
+    });
+
+
+    describe('when there are out of stock items in the cart', () => {
+      beforeEach(() => {
+        cartItems = cartItemFactory.createMany(1, {
+          in_stock: false,
+        });
+        spyOn(router, 'navigateByUrl');
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          items: cartItems,
+        }));
+      });
+
+      it('should not allow activation', () => {
+        const expected = cold('(a|)', { a: false });
+
+        expect(service.canActivateChild()).toBeObservable(expected);
+      });
+
+      it('should redirect to the given DaffCartInStockItemsGuardRedirectUrl', () => {
+        service.canActivate().subscribe();
+        expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+      });
+    });
+  });
 });
