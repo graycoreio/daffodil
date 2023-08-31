@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.63.0](https://github.com/graycoreio/daffodil/compare/v0.62.4...v0.63.0) (2023-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** `MagentoMergeCartResponse` -> `MagentoMergeCartsResponse`
+
+### Features
+
+* **authorizenet:** export reducer initial state ([#2546](https://github.com/graycoreio/daffodil/issues/2546)) ([e9ff895](https://github.com/graycoreio/daffodil/commit/e9ff895bf31cea65a04f9573b84d46f9de3c4a6c))
+* **cart:** implement `CanActivateChild` in in stock items guard ([#2558](https://github.com/graycoreio/daffodil/issues/2558)) ([669bef2](https://github.com/graycoreio/daffodil/commit/669bef23a1f70147c7b3b01ce28e3069b955e062))
+* **cart:** type magento driver queries ([#2551](https://github.com/graycoreio/daffodil/issues/2551)) ([4889b40](https://github.com/graycoreio/daffodil/commit/4889b4054d394954c79eeb2eb46db52db949cc61))
+* **core:** add `catchAndArrayifyErrors` pipe ([#2556](https://github.com/graycoreio/daffodil/issues/2556)) ([9bc2359](https://github.com/graycoreio/daffodil/commit/9bc235947cd53c7a329b97910c0afd146da97698))
+* **core:** export storage error codes ([#2555](https://github.com/graycoreio/daffodil/issues/2555)) ([24d438f](https://github.com/graycoreio/daffodil/commit/24d438f75c9d94e1b5f1c515593d66dc2c607a40))
+
+
+### Bug Fixes
+
+* **cart:** `selectIsBillingSameAsShipping` does not respect IDs ([#2543](https://github.com/graycoreio/daffodil/issues/2543)) ([bc63ae8](https://github.com/graycoreio/daffodil/commit/bc63ae8388b37c6c3ea4cba0d8de04ae13b5bf3f))
+
 ## [0.62.4](https://github.com/graycoreio/daffodil/compare/v0.62.3...v0.62.4) (2023-08-11)
 
 
