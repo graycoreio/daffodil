@@ -1,6 +1,8 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   Injectable,
   Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import {
   Actions,
@@ -51,6 +53,7 @@ import {
   DaffResolveCartServerSide,
   DaffResolveCart,
   DaffResolveCartPartialSuccess,
+  DaffCartActions,
 } from '../actions/public_api';
 
 /**
@@ -64,19 +67,22 @@ import {
 export class DaffCartResolverEffects<T extends DaffCart = DaffCart>
 implements OnInitEffects {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffCartActions<T>>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     private cartStorage: DaffCartStorageService,
     private cartResolver: DaffCartDriverResolveService,
-    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
+    @Inject(PLATFORM_ID) private platformId: string,
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return this.cartStorage.getCartId() ? new DaffResolveCart() : { type: '' };
+    return isPlatformBrowser(this.platformId) && this.cartStorage.getCartId() ? new DaffResolveCart() : { type: '' };
   }
 
   onResolveCart = createEffect(() => (): Observable<Action> => this.actions$.pipe(
-    ofType<DaffResolveCart | DaffResolveCartSuccess>(DaffCartActionTypes.ResolveCartAction, DaffCartActionTypes.ResolveCartSuccessAction),
+    ofType(
+      DaffCartActionTypes.ResolveCartAction,
+      DaffCartActionTypes.ResolveCartSuccessAction,
+    ),
     switchMap(action =>
       iif(
         // if something else resolves the cart during an outstanding resolve
