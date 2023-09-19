@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.63.1](https://github.com/graycoreio/daffodil/compare/v0.63.0...v0.63.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* **cart:** cart resolution effects unsafely call storage in SSR ([#2545](https://github.com/graycoreio/daffodil/issues/2545)) ([d6e0468](https://github.com/graycoreio/daffodil/commit/d6e04685e89f15a37f80075b0829c284b7a3b056))
+
 ## [0.63.0](https://github.com/graycoreio/daffodil/compare/v0.62.4...v0.63.0) (2023-08-31)
 
 
