@@ -9,17 +9,18 @@ import {
   AfterContentChecked,
 } from '@angular/core';
 
+import { daffSidebarAnimations } from '../animation/sidebar-animation';
+import { getAnimationState } from '../animation/sidebar-animation-state';
+import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
+import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
+import { DaffSidebarMode } from '../helper/sidebar-mode';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
 import { sidebarViewportContentPadding } from './content-pad';
 import {
   isViewportContentShifted,
   sidebarViewportContentShift,
 } from './content-shift';
-import { daffSidebarAnimations } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
-import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
-import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 /**
  * The DaffSidebarViewport is the "holder" of sidebars throughout an entire application.
@@ -36,11 +37,9 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
  * at the same time. @see {@link DaffSidebarMode }
  *
  * Since this is a functional component, it's possible to have multiple "open" sidebars
- * within at the same time. As a result, this component attempts to
- * gracefully handle these situations. However, importantly, this sidebar
- * has a constraint, there's only allowed to be one sidebar,
- * of each mode, on each side, at any given time. If this is violated,
- * this component will throw an exception.
+ * at the same time. As a result, this component attempts to gracefully handle these situations.
+ * However, importantly, there can only be one sidebar of each mode, on each side, at any given time.
+ * If this is violated, this component will throw an exception.
  */
 @Component({
   selector: 'daff-sidebar-viewport',
@@ -133,7 +132,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
   private updateAnimationState() {
     this._animationState = {
       value: getAnimationState(
-        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open), false),
+        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open), false), DaffSidebarModeEnum.Over,
       ),
       params: { shift: this._shift },
     };

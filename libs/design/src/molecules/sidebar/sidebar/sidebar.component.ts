@@ -1,6 +1,11 @@
+import { AnimationEvent } from '@angular/animations';
+import {
+  ConfigurableFocusTrap,
+  ConfigurableFocusTrapFactory,
+} from '@angular/cdk/a11y';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
-  ViewEncapsulation,
   NgZone,
   ElementRef,
   Output,
@@ -8,10 +13,16 @@ import {
   HostBinding,
   ChangeDetectionStrategy,
   Input,
+  HostListener,
+  Inject,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+import {
+  daffFocusableElementsSelector,
+  DaffFocusStackService,
+} from '../../../core/focus/public_api';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
 import { getAnimationState } from '../animation/sidebar-animation-state';
 import { getSidebarAnimationWidth } from '../animation/sidebar-animation-width';
@@ -51,9 +62,89 @@ export class DaffSidebarComponent {
    */
   @HostBinding('@transformSidebar') get transformSidebar() {
     return {
-      value: getAnimationState(this.open, this.mode === 'over' || this.mode === 'side-fixed'),
-      params: { width:  getSidebarAnimationWidth(this.side, this.width) },
+      value: getAnimationState(this.open, this.mode),
+      params: { width: getSidebarAnimationWidth(this.side, this.width) },
     };
+  }
+
+  constructor(
+    private _elementRef: ElementRef<HTMLElement>,
+    private _ngZone: NgZone,
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
+    private _focusStack: DaffFocusStackService,
+    @Inject(DOCUMENT) private _doc: any,
+  ) {
+
+    /**
+     * Listen to `keydown` events outside the zone so that change detection is not run every
+     * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed.
+     *
+     */
+    this._ngZone.runOutsideAngular(() => {
+      fromEvent<KeyboardEvent>(this._elementRef.nativeElement, 'keydown').pipe(
+        filter(event => event.key === 'Escape'),
+      ).subscribe(event => this._ngZone.run(() => {
+        this.escapePressed.emit();
+        event.stopPropagation();
+      }));
+    });
+  }
+
+  private _focusTrap: ConfigurableFocusTrap;
+
+  /**
+   * Animation event that can be used to hook into when the transformSidebar
+   * animation begins. This is used in sidebar to determine when to show the
+   * visibility of the sidebar so that the animation does not jump as the element is shown.
+   */
+  @HostListener('@transformSidebar.start', ['$event']) onAnimationStart(e: AnimationEvent) {
+    if (e.toState === 'open' || e.toState === 'under-open') {
+      this._elementRef.nativeElement.style.visibility = 'visible';
+    }
+  }
+
+  /**
+   * Animation event that can be used to hook into when the
+   * transformSidebar animation is complete.
+   */
+  @HostListener('@transformSidebar.done', ['$event']) onAnimationComplete(e: AnimationEvent) {
+    /**
+     * This is used in sidebar to determine when to hide the visibility
+     * of the sidebar so that the animation does not jump as the element is hidden.
+     */
+    if (e.toState === 'closed' || e.toState === 'under-closed') {
+      this._elementRef.nativeElement.style.visibility = 'hidden';
+    }
+
+    if(!this.open) {
+      if(this._focusTrap) {
+        this._focusTrap.destroy();
+        this._focusTrap = undefined;
+        this._focusStack.pop();
+      }
+      return;
+    }
+
+    if(!(this.mode === 'over' || this.mode === 'under')) {
+      return;
+    }
+
+    this._focusTrap = this._focusTrapFactory.create(
+      this._elementRef.nativeElement,
+    );
+
+    const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(
+      daffFocusableElementsSelector)
+    );
+
+    this._focusStack.push(this._doc.activeElement);
+
+    if(focusableChild) {
+      focusableChild.focus();
+    } else {
+      this._elementRef.nativeElement.tabIndex = 0;
+      (<HTMLElement>this._elementRef.nativeElement).focus();
+    }
   }
 
   /**
@@ -81,25 +172,5 @@ export class DaffSidebarComponent {
    */
   get width() {
     return this._elementRef.nativeElement.offsetWidth;
-  }
-
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    private _ngZone: NgZone,
-  ) {
-
-    /**
-     * Listen to `keydown` events outside the zone so that change detection is not run every
-     * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed.
-     *
-     */
-    this._ngZone.runOutsideAngular(() => {
-      fromEvent<KeyboardEvent>(this._elementRef.nativeElement, 'keydown').pipe(
-        filter(event => event.key === 'Escape'),
-      ).subscribe(event => this._ngZone.run(() => {
-        this.escapePressed.emit();
-        event.stopPropagation();
-      }));
-    });
   }
 }

@@ -55,5 +55,7 @@ export const daffSidebarAnimations: {
 export enum DaffSidebarAnimationStates {
   OPEN = 'open',
   CLOSED = 'closed',
+  UNDEROPEN = 'under-open',
+  UNDERCLOSED = 'under-closed',
   NONE = 'none'
 }
