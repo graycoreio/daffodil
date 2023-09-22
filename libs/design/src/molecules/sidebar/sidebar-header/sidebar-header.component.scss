@@ -1,0 +1,45 @@
+.daff-sidebar-header {
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+	&__close-button {
+		position: absolute;
+	}
+
+	&__title {
+		font-size: 1rem;
+		font-weight: 500;
+	}
+}
+
+.daff-sidebar {
+	.daff-sidebar-header {
+		padding: 16px 16px 16px 45px;
+
+		&.hide-button {
+			padding: 16px;
+		}
+
+		&__close-button {
+			left: -3px;
+			right: auto;
+			top: 3px;
+		}
+	}
+
+	&.right {
+		.daff-sidebar-header {
+			padding: 16px 45px 16px 16px;
+	
+			&.hide-button {
+				padding: 16px;
+			}
+	
+			&__close-button {
+				left: auto;
+				right: -3px;
+			}
+		}
+	}
+}

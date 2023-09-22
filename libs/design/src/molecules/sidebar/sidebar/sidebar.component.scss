@@ -1,7 +1,8 @@
 @use '../helper/variables';
 
 :host {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	width: 240px;
 	flex-shrink: 0;
 	overflow: auto;
@@ -37,7 +38,6 @@
 		}
 	}
 
-
 	&.over {
 		z-index: variables.$daff-sidebar-sidebar-over-z-index;
 	}
@@ -50,5 +50,13 @@
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {
 	&.side-fixed {
 		position: sticky;
+	}
+}
+
+.daff-sidebar {
+	&__body {
+		flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
 	}
 }

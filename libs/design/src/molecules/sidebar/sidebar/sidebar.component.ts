@@ -25,8 +25,8 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
  */
 @Component({
   selector: 'daff-sidebar',
+  templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     daffSidebarAnimations.transformSidebar,
@@ -34,6 +34,8 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
 })
 export class DaffSidebarComponent {
   /**
+   * @docs-private
+   *
    * The CSS classes set.
    */
   @HostBinding('class') get classes() {

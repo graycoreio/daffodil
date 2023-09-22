@@ -1,15 +1,16 @@
 @use '../helper/variables';
 
 :host {
-	overflow: hidden;
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
+	height: 100vh;
+	height: 100dvh;
 	min-height: 100%;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 	z-index: variables.$daff-sidebar-viewport-z-index;
-	height: 100vh;
-	height: 100dvh;
+
 }
 
 .daff-sidebar-viewport {
@@ -21,10 +22,6 @@
 		z-index: variables.$daff-sidebar-content-z-index;
 		overflow-y: auto;
 		height: 100%;
-	}
-
-	&__sidebar {
-		flex-shrink: 0;
 	}
 
 	&__nav {
