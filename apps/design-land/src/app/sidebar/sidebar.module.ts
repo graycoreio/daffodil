@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { DaffArticleModule } from '@daffodil/design';
+
 import { DesignLandSidebarRoutingModule } from './sidebar-routing.module';
 import { DesignLandSidebarComponent } from './sidebar.component';
 import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
@@ -12,6 +14,7 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
   ],
   imports: [
     CommonModule,
+    DaffArticleModule,
     DesignLandExampleViewerModule,
     DesignLandSidebarRoutingModule,
     DesignLandArticleEncapsulatedModule,

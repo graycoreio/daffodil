@@ -7,7 +7,7 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-sidebar',
   templateUrl: './basic-sidebar.component.html',
-  styles: ['daff-sidebar-viewport { height: 300px }'],
+  styleUrls: ['./basic-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicSidebarComponent {

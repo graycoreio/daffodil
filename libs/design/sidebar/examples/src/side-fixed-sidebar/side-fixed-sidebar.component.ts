@@ -5,14 +5,12 @@ import {
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'fixed-and-over-sidebar',
-  templateUrl: './fixed-and-over-sidebar.component.html',
-  styleUrls: [
-    'fixed-and-over-sidebar.component.scss',
-  ],
+  selector: 'side-fixed-sidebar',
+  templateUrl: './side-fixed-sidebar.component.html',
+  styleUrls: ['side-fixed-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FixedAndOverSidebarComponent {
+export class SideFixedSidebarComponent {
   overOpen = false;
 
   openOverSidebar(){
