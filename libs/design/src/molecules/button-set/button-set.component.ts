@@ -5,6 +5,9 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
+/**
+ * @deprecated in v1.0.0
+ */
 @Component({
   selector: 'daff-button-set',
   template: '<ng-content></ng-content>',
