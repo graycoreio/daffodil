@@ -1,10 +1,3 @@
-// stack is empty array by default
-// when there is nothing in stack and focus is called, focus should doing nothing
-// when something is in stack and focus is called, element is focused
-// when push is called, it should add element to stack
-// when pop is called, it should remove element from stack and focus the element
-// if stack is empty and pop is called, document should become focused
-
 import { Component } from '@angular/core';
 import {
   ComponentFixture,
@@ -45,6 +38,7 @@ describe('DaffFocusStackService', () => {
 
   it('should be created', () => {
     expect(stack).toBeTruthy();
+    expect(stack.length()).toEqual(0);
   });
 
   describe('focus', () => {
