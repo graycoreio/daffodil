@@ -5,7 +5,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffListModule,
-  DaffButtonSetModule,
   DaffButtonModule,
   DaffContainerModule,
 } from '@daffodil/design';
@@ -20,7 +19,6 @@ import { FooterComponent } from './footer.component';
 
     DaffListModule,
     DaffButtonModule,
-    DaffButtonSetModule,
     DaffContainerModule,
     FontAwesomeModule,
   ],

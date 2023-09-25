@@ -25,4 +25,10 @@
 	@include breakpoint(big-tablet) {
 		grid-template-columns: repeat(4, 1fr);
 	}
+
+	&__social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
 }
