@@ -15,9 +15,11 @@
 <h3>Implementing the main and sidebar content</h3>
 <p>The main and sidebar content should be placed inside of the <code>&lt;daff-sidebar-viewport&gt;</code>. The sidebar content should be placed inside of the <code>&lt;daff-sidebar&gt;</code>.</p>
 
-<p>The primary navigation of your application should be placed alongside the <code>&lt;daff-sidebar&gt;</code> using the <code>[daff-sidebar-viewport-nav]</code> selector.</p>
+<p>A viewport navigation can either be:<p>
 
-<p>The following example is a valid markup of a sidebar that belongs on the application level:</p>
+<ul>
+  <li>Placed alongside the <code>&lt;daff-sidebar&gt;</code> using the <code>[daff-sidebar-viewport-nav]</code> selector.</li>
+</ul>
 
 <pre><code>&lt;daff-sidebar-viewport (backdropClicked)="toggleOpen()"&gt;
   &lt;nav daff-sidebar-viewport-nav daff-navbar&gt;
@@ -33,8 +35,26 @@
   &lt;/div&gt;
 &lt;/daff-sidebar-viewport&gt;</code></pre>
 
+<ul>
+  <li>Placed inside of the viewport content by <b>omitting</b> the <code>[daff-sidebar-viewport-nav]</code> selector from the nav component.</li>
+</ul>
+
+<pre><code>&lt;daff-sidebar-viewport (backdropClicked)="toggleOpen()"&gt;
+  &lt;nav daff-navbar&gt;
+    Nav content
+  &lt;/nav&gt;    
+  &lt;daff-sidebar mode="over" [open]="open"&gt;
+    &lt;div class="sidebar-content"&gt;
+      Sidebar content
+    &lt;/div&gt;
+  &lt;/daff-sidebar&gt;
+  &lt;div class="page-content"&gt;
+    Page content
+  &lt;/div&gt;
+&lt;/daff-sidebar-viewport&gt;</code></pre>
+
 <h3>Header and footer</h3>
-<p>The <code>&lt;daff-sidebar-header&gt;</code> includes an optional title, a built in close button that can be hidden, and a slot to render custom content. To hide the close button, set <code>hideCloseButton="true"</code> on the <code>&lt;daff-sidebar-header&gt;</code>.</p>
+<p>The <code>&lt;daff-sidebar-header&gt;</code> includes optional title (<code>[daffSidebarHeaderTitle]</code>) and action (<code>[daffSidebarHeaderAction]</code>) selectors, and a slot to render custom content. The action selector should be used along with the <code>&lt;daff-icon-button&gt;</code> (view <a routerLink="/button">Button Documentation</a>) to make sure that the action is positioned correctly and it passes WCAG guidelines.</p>
 
 <p>The <code>&lt;daff-sidebar-footer&gt;</code> is a "holder" component with minimal default styling. Its main purpose is to position the footer at the bottom of the sidebar, allowing the sidebar's content to overflow and scroll while ensuring that the footer remains constantly visible.</p>
 
@@ -43,7 +63,7 @@
 <h3>Opening and closing a sidebar</h3>
 <p>The <code>open</code> property is used to set the open state for a sidebar.</p>
 
-<p>There are three ways to close a sidebar: clicking on the backdrop of the sidebar viewport, pressing <code>ESC</code> when the sidebar has focus, or using the close button on the sidebar header. To implement:</p>
+<p>By default, sidebar supports two methods of closing itself: clicking on the backdrop of the sidebar viewport or pressing <code>ESC</code> when the sidebar has focus.</p>
 
 <table>
   <thead>
@@ -64,12 +84,6 @@
         <code>(escapePressed)</code>
       </td>
       <td>Set on the <code>&lt;daff-sidebar&gt;</code></td>
-    </tr>
-    <tr>
-      <td>
-        <code>(closeSidebar)</code>
-      </td>
-      <td>Set on the <code>&lt;daff-sidebar-header&gt;</code></td>
     </tr>
   </tbody>
 </table>
@@ -153,9 +167,7 @@
 </design-land-article-encapsulated>
 
 <h3>Accessibility</h3>
-<p>A meaningful <code>role</code> should be set on all sidebars depending on how they are used.</p>
-
-<p>When the <code>&lt;daff-sidebar-header&gt;</code> is not used or there is no title for the sidebar, a meaningful <code>aria-label</code> should be set to describe the sidebar.</p>
+<p>A meaningful <code>role</code> should be set on all sidebars depending on how they are used. When the <code>&lt;daff-sidebar-header&gt;</code> is not used or there is no title for the sidebar, a meaningful <code>aria-label</code> should be set to describe the sidebar.</p>
 
 <h4>Focus</h4>
 <p>Focus trapping is enabled for <code>over</code> and <code>under</code> modes, and disabled for <code>side</code> and <code>side-fixed</code> modes. When a sidebar is opened, the first tabbable element within the will receive focus. When a sidebar is closed, the element that was focused before the sidebar was opened will be re-focused.</p>

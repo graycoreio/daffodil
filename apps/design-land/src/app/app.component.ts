@@ -1,21 +1,9 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Component,
   Injector,
   ComponentFactoryResolver,
 } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import {
-  Observable,
-  map,
-  tap,
-} from 'rxjs';
 
-import {
-  DaffBreakpoints,
-  DaffSidebarMode,
-  DaffSidebarModeEnum,
-} from '@daffodil/design';
 import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
 import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
 import { BUTTON_EXAMPLES } from '@daffodil/design/button/examples';
@@ -40,24 +28,15 @@ import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
 
-
-
 @Component({
   selector: 'design-land-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class DesignLandAppComponent {
-  faBars = faBars;
-
-  public mode$: Observable<DaffSidebarMode>;
-
-  public open = false;
-
   constructor(
     injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private breakpoint: BreakpointObserver,
   ) {
     [
       ...ARTICLE_EXAMPLES,
@@ -89,13 +68,5 @@ export class DesignLandAppComponent {
           customElement.element,
         );
       });
-    this.open = this.breakpoint.isMatched(DaffBreakpoints.BIG_TABLET);
-    this.mode$ = this.breakpoint.observe(DaffBreakpoints.BIG_TABLET).pipe(
-      map((match) => match.matches ? DaffSidebarModeEnum.SideFixed : DaffSidebarModeEnum.Under),
-    );
-  }
-
-  toggleOpen() {
-    this.open = !this.open;
   }
 }

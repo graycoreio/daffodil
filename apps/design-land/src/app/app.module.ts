@@ -17,6 +17,7 @@ import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 import { DesignLandAppRoutingModule } from './app-routing.module';
 import { DesignLandAppComponent } from './app.component';
 import { DesignLandNavModule } from './core/nav/nav.module';
+import { DesignLandTemplateModule } from './core/template/template.module';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { DesignLandNavModule } from './core/nav/nav.module';
     DaffButtonModule,
     FontAwesomeModule,
     DesignLandNavModule,
+    DesignLandTemplateModule,
   ],
   declarations: [
     DesignLandAppComponent,

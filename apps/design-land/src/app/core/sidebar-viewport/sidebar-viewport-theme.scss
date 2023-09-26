@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'theme' as daff-theme;
+
+@mixin sidebar-viewport-theme($theme) {
+	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
+
+	.design-land-sidebar-viewport {
+		&__sidebar {
+			border-right: 1px solid daff-theme.daff-illuminate($base, $gray, 2);
+		}
+
+		&__get-started-button {
+			background: daff-theme.daff-illuminate($base, $gray, 1);
+
+			&:hover {
+				background: daff-theme.daff-illuminate($base, $gray, 2);
+			}
+		}
+	}
+}
