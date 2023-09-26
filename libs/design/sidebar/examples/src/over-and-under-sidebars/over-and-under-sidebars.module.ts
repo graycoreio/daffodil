@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffSidebarModule,
@@ -13,6 +14,7 @@ import { OverandUnderSidebarsComponent } from './over-and-under-sidebars.compone
 @NgModule({
   imports: [
     ReactiveFormsModule,
+    FontAwesomeModule,
 
     DaffSidebarModule,
     DaffNavbarModule,

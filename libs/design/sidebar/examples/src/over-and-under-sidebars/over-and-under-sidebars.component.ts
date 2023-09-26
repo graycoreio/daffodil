@@ -3,6 +3,7 @@ import {
   Component,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,6 +13,8 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverandUnderSidebarsComponent {
+  faTimes = faTimes;
+
   open = false;
 
   sideControl: FormControl = new FormControl('left');

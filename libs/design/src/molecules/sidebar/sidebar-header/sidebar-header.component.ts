@@ -6,6 +6,8 @@ import {
   EventEmitter,
   Input,
   ViewEncapsulation,
+  ContentChild,
+  ElementRef,
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,19 +20,5 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 })
 export class DaffSidebarHeaderComponent {
-  faTimes = faTimes;
-
   @HostBinding('class.daff-sidebar-header') class = true;
-
-  @HostBinding('class.hide-button') get hideClass() {
-    return this.hideCloseButton;
-  }
-
-  @Input() hideCloseButton = false;
-
-  @Output() closeSidebar: EventEmitter<void> = new EventEmitter();
-
-  onCloseSidebar(event: Event) {
-    this.closeSidebar.emit();
-  }
 }

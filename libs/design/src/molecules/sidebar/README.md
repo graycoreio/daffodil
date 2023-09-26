@@ -12,9 +12,9 @@ The default setting for sidebar is `mode="side"` and `side="left"`.
 ### Implementing the main and sidebar content
 The main and sidebar content should be placed inside of the `<daff-sidebar-viewport>`. The sidebar content should be placed inside of the `<daff-sidebar>`.
 
-The primary navigation of your application should be placed alongside the `<daff-sidebar>` using the `[daff-sidebar-viewport-nav]` selector.
+A viewport navigation can either be:
 
-The following example is a valid markup of a sidebar that belongs on the application level:
+- Placed alongside the `<daff-sidebar>` using the `[daff-sidebar-viewport-nav]` selector.
 
 ```html
 <daff-sidebar-viewport (backdropClicked)="toggleOpen()">
@@ -32,8 +32,26 @@ The following example is a valid markup of a sidebar that belongs on the applica
 </daff-sidebar-viewport>
 ```
 
+- Placed inside of the viewport content by **omitting** the `[daff-sidebar-viewport-nav]` selector from the nav component.
+
+```html
+<daff-sidebar-viewport (backdropClicked)="toggleOpen()">
+	<nav daff-navbar>
+		Nav content
+	</nav>
+	<daff-sidebar mode="over" [open]="open">
+		<div class="sidebar-content">
+			Sidebar content
+		</div>
+	</daff-sidebar>
+	<div class="page-content">
+		Page content
+	</div>
+</daff-sidebar-viewport>
+```
+
 ### Header and footer
-The `<daff-sidebar-header>` includes an optional title, a built in close button that can be hidden, and a slot to render custom content. To hide the close button, set `hideCloseButton="true"` on the `<daff-sidebar-header>`.
+The `<daff-sidebar-header>` includes optional title (`[daffSidebarHeaderTitle]`) and action (`[daffSidebarHeaderAction]`) selectors, and a slot to render custom content. The action selector should be used along with the `<daff-icon-button>` (view [Button Documentation](../../atoms//button//README.md)) to make sure that the action is positioned correctly and it passes WCAG guidelines.
 
 The `<daff-sidebar-footer>` is a "holder" component with minimal default styling. Its main purpose is to position the footer at the bottom of the sidebar, allowing the sidebar's content to overflow and scroll while ensuring that the footer remains constantly visible.
 
@@ -42,12 +60,11 @@ Both the header and footer are optional components that will not render in the D
 ### Opening and closing a sidebar
 THe `open` property is used to set the open state for a sidebar.
 
-There are three ways to close a sidebar: clicking on the backdrop of the sidebar viewport, pressing `ESC` when the sidebar has focus, or using the close button on the sidebar header. To implement:
+By default, sidebar supports two methods of closing itself: clicking on the backdrop of the sidebar viewport or pressing `ESC` when the sidebar has focus.
 
 | Method              | ------------------------------------ |
 | `(backdropClicked)` | Set on the `<daff-sidebar-viewport>` |
 | `(escapePressed)`   | Set on the `<daff-sidebar>`          |
-| `(closeSidebar)`    | Set on the `<daff-sidebar-header>`   |
 
 ### Modes
 `<daff-sidebar>` can be rendered four different ways by using the `mode` property. If `mode` is not specified, `side` is used by default.
