@@ -5,7 +5,7 @@
 	flex-direction: column;
 	width: 240px;
 	flex-shrink: 0;
-	overflow: auto;
+	overflow-y: auto;
 
 	&.side-fixed {
 		position: fixed;
