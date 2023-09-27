@@ -7,8 +7,11 @@
 
 	&:hover,
 	&.selected { /* stylelint-disable-line selector-class-pattern */
-		background: $active-color;
 		color: theming.daff-text-contrast($active-color);
+
+		&:after {
+			background: $active-color;
+		}
 	}
 }
 
@@ -20,11 +23,26 @@
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
+	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$font-color: core.daff-map-deep-get($theme, 'core.font-color');
 
 	.daff-paginator {
 		&__previous,
 		&__next {
-			color: currentColor;
+			color: $font-color;
+		}
+
+		&__page-link {
+			color: $font-color;
+
+			&:hover,
+			&.selected {
+				color: daff-text-contrast(theming.daff-illuminate($base, $gray, 2));
+
+				&:after {
+					background: theming.daff-illuminate($base, $gray, 2);
+				}
+			}
 		}
 
 		&.daff-primary {

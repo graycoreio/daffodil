@@ -3,7 +3,7 @@
   tabindex="0"
   attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
   (click)="_onNotifyPrevPageChange()">
-  <fa-icon [icon]="faChevronLeft"></fa-icon> Previous
+  <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon> Previous
 </button>
 
 <button type="button" class="daff-paginator__page-link"
@@ -11,7 +11,7 @@
   tabindex="0"
   attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator"
   (click)="_onNotifyPageChange(1)">
-  1
+  <span>1</span>
 </button>
 
 <span class="daff-paginator__ellipsis" *ngIf="_showFirstEllipsis()">...</span>
@@ -24,7 +24,7 @@
     aria-current="_isSelected(pageNumber)"
     *ngIf="_showNumber(pageNumber)"
     (click)="_onNotifyPageChange(pageNumber)">
-    {{ pageNumber }}
+    <span>{{ pageNumber }}</span>
   </button>
 </ng-container>
 
@@ -36,7 +36,7 @@
   attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
   (click)="_onNotifyPageChange(numberOfPages)"
   *ngIf="!(numberOfPages < 2)">
-  {{ numberOfPages }}
+  <span>{{ numberOfPages }}</span>
 </button>
 
 <button class="daff-paginator__next"
@@ -44,5 +44,5 @@
   tabindex="0"
   attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
   (click)="_onNotifyNextPageChange()">
-  Next <fa-icon [icon]="faChevronRight"></fa-icon>
+  Next <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
 </button>
