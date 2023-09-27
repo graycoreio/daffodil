@@ -8,7 +8,6 @@ import {
   OnChanges,
   ChangeDetectionStrategy,
   Renderer2,
-  OnInit,
 } from '@angular/core';
 import {
   faChevronRight,
@@ -17,7 +16,6 @@ import {
 
 import {
   daffColorMixin,
-  DaffPalette,
   DaffColorable,
 } from '../../core/colorable/public_api';
 import {
@@ -32,6 +30,9 @@ class DaffPaginatorBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
+/**
+ * @deprecated in v1.0.0
+ */
 const _daffPaginatorBase = daffColorMixin(DaffPaginatorBase);
 
 const visiblePageRange = 2;
