@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.63.2](https://github.com/graycoreio/daffodil/compare/v0.63.1...v0.63.2) (2023-09-29)
+
+
+### Features
+
+* **design:** add deprecation notice for DaffButtonSetComponent ([#2571](https://github.com/graycoreio/daffodil/issues/2571)) ([1ef3e46](https://github.com/graycoreio/daffodil/commit/1ef3e467eb5a49ad25538f9af1525c4d890adb0d))
+* **design:** create focus stack service ([#2570](https://github.com/graycoreio/daffodil/issues/2570)) ([68aeffc](https://github.com/graycoreio/daffodil/commit/68aeffc97ab33ed71555ddaed0c566ccae2e4f92))
+* **design:** deprecate theming option for paginators and update styles to work in both dark and light mode ([#2575](https://github.com/graycoreio/daffodil/issues/2575)) ([ec50bcb](https://github.com/graycoreio/daffodil/commit/ec50bcbe4f803c6ece04e30246dc954f32237afc))
+* **design:** remove border transition from media gallery thumbnail ([#2573](https://github.com/graycoreio/daffodil/issues/2573)) ([5814c62](https://github.com/graycoreio/daffodil/commit/5814c621b396c942bc9e297fcd8b3562a4c97044))
+
+
+### Bug Fixes
+
+* **reviews:** state errors are not reset upon success ([#2577](https://github.com/graycoreio/daffodil/issues/2577)) ([9cf5f58](https://github.com/graycoreio/daffodil/commit/9cf5f58686bac14afb6bb3d23ee4818aa2ba1ffb))
+
 ## [0.63.1](https://github.com/graycoreio/daffodil/compare/v0.63.0...v0.63.1) (2023-09-19)
 
 
