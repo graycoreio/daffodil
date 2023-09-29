@@ -140,7 +140,7 @@ describe('@daffodil/reviews/state | daffProductPageReviewsReducer', () => {
 
     it('resets errors', () => {
       expect(result.errors).toEqual([]);
-    })
+    });
   });
 
   describe('when ReviewsProductListFailureAction is triggered', () => {
