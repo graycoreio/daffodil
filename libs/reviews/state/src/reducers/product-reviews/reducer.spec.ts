@@ -124,6 +124,7 @@ describe('@daffodil/reviews/state | daffProductPageReviewsReducer', () => {
       state = {
         ...daffProductReviewsReducerInitialState,
         loading: true,
+        errors: [{ code: 'firstErrorCode', message: 'firstErrorMessage' }],
       };
 
       const productLoadSuccess = new DaffReviewsProductListSuccess({
@@ -136,6 +137,10 @@ describe('@daffodil/reviews/state | daffProductPageReviewsReducer', () => {
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
     });
+
+    it('resets errors', () => {
+      expect(result.errors).toEqual([]);
+    })
   });
 
   describe('when ReviewsProductListFailureAction is triggered', () => {

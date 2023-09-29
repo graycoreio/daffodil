@@ -34,14 +34,21 @@ export function daffProductPageReviewsReducer<T extends DaffProductReview = Daff
     case DaffProductReviewsCollectionActionTypes.ChangeFilterAction:
     case DaffProductReviewsCollectionActionTypes.ChangeSortingAction:
       return { ...state, loading: true };
+
     case DaffReviewsProductActionTypes.ListSuccessAction:
-      return { ...state, loading: false };
+      return {
+        ...state,
+        loading: false,
+        errors: [],
+      };
+
     case DaffReviewsProductActionTypes.ListFailureAction:
       return {
         ...state,
         loading: false,
         errors: state.errors.concat([action.payload]),
       };
+
     default:
       return state;
   }
