@@ -58,12 +58,19 @@
 		@include t.embolden;
 	}
 
+	@include stopsArticleCascade(pre) {
+		margin: 1.5rem 0;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
 	pre {
 		display: block;
 		border-radius: 4px;
 		font-size: t.$small-font-size;
 		line-height: 1.5rem;
-		margin: 1.5rem 0;
 		padding: 1.5rem;
 		overflow: auto;
 		white-space: pre-wrap;
@@ -71,10 +78,6 @@
 		code {
 			display: block;
 			padding: 0;
-		}
-
-		&:last-child {
-			margin-bottom: 0;
 		}
 	}
 
