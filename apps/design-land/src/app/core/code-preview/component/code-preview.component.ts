@@ -25,7 +25,6 @@ class CodePreviewBase {
 
 const _codePreviewBase = daffArticleEncapsulatedMixin((CodePreviewBase));
 
-
 @Component({
   selector: 'design-land-code-preview',
   templateUrl: './code-preview.component.html',
@@ -41,22 +40,26 @@ export class CodePreviewComponent extends _codePreviewBase implements OnChanges 
   @ViewChild('content', { static: true }) content: ElementRef;
 
   /**
-   * The title of the preview
+   * Property to change the display of the content
    */
-  @Input() title: string;
+  @Input() hideContent = false;
+
+  @HostBinding('class.hide-content') get hideContentClass() {
+    return this.hideContent;
+  }
 
   /**
    * The example code
    */
   @Input() example: DesignLandCodeExample;
 
-  file: DesignLandCodeExampleFile;
+  exampleFile: DesignLandCodeExampleFile;
 
   ngOnChanges() {
     if(this.example){
       this.content.nativeElement.innerHtml = '';
       this.content.nativeElement.appendChild(document.createElement(this.example.element));
-      this.file = this.example.files[0];
+      this.exampleFile = this.example.files[0];
     }
   }
 
