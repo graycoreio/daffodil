@@ -1,25 +1,35 @@
 import {
+  ConfigurableFocusTrap,
+  ConfigurableFocusTrapFactory,
+} from '@angular/cdk/a11y';
+import {
   Component,
-  Input,
   ElementRef,
   Renderer2,
   HostBinding,
   ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
+  AfterViewInit,
+  AfterContentInit,
   HostListener,
+  Input,
+  OnDestroy,
+  ViewChild,
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {
   daffArticleEncapsulatedMixin,
+  DaffFocusStackService,
   DaffPrefixable,
   DaffPrefixDirective,
   DaffStatusable,
   daffStatusMixin,
 } from '@daffodil/design';
+
+import { DaffToast } from '../toast';
+import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
 
 /**
  * An _elementRef is needed for the core mixins
@@ -46,7 +56,7 @@ const _daffToastBase = daffArticleEncapsulatedMixin(daffStatusMixin(DaffToastBas
 })
 export class DaffToastComponent
   extends _daffToastBase
-  implements DaffPrefixable, DaffStatusable {
+  implements DaffPrefixable, DaffStatusable, AfterContentInit, AfterViewInit, OnDestroy {
   faTimes = faTimes;
 
   /** @docs-private */
@@ -55,13 +65,52 @@ export class DaffToastComponent
   /** @docs-private */
   @HostBinding('attr.aria-live') ariaLive = 'polite';
 
-  /** Whether or not a toast is closable */
-  @Input() dismissible = true;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-	  super(elementRef, renderer);
-  }
+  @ContentChild(DaffToastActionsDirective)
+  _actions: DaffToastActionsDirective;
 
   @ContentChild(DaffPrefixDirective)
   _prefix: DaffPrefixDirective;
+
+  @ViewChild('container', { read: ElementRef, static: true }) container: ElementRef;
+
+  @Input() toast: DaffToast;
+
+  /**
+   * @docs-private
+   */
+  @HostListener('keydown.escape')
+  onEscape() {
+    this.toast.dismiss();
+  }
+
+  private _focusTrap: ConfigurableFocusTrap;
+
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
+    private _focusStack: DaffFocusStackService,
+  ) {
+	  super(elementRef, renderer);
+  }
+
+  ngAfterContentInit() {
+    if(this._actions) {
+      this._focusTrap = this._focusTrapFactory.create(
+        // this.container.nativeElement,
+        this._elementRef.nativeElement,
+      );
+    }
+  }
+
+  ngAfterViewInit() {
+    if(this._actions) {
+      this._focusStack.push();
+      this._focusTrap.focusFirstTabbableElementWhenReady();
+    }
+  }
+
+  ngOnDestroy() {
+    this._focusTrap.destroy();
+  }
 }

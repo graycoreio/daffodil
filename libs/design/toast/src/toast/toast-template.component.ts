@@ -26,7 +26,8 @@ import { DaffToast } from '../toast';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <daff-toast
-      *ngFor="let item of items;"
+      *ngFor="let item of items | slice:0:3"
+      [toast]="item"
       [status]="item.status ?? null"
       (closeToast)="item.dismiss()"
       [@slideIn]="slideAnimation"
@@ -38,12 +39,12 @@ import { DaffToast } from '../toast';
           <ng-container *ngTemplateOutlet="button;context:{ action, item }"></ng-container>
         </ng-container>
       </div>
-      <button *ngIf="item.showCloseButton" class="daff-toast__close-button" (click)="onCloseToast(item.dismiss())">
+      <button daff-icon-button color="theme-contrast" *ngIf="item.dismissible" aria-label="close notification" (click)="onCloseToast(item.dismiss())">
         <fa-icon [icon]="faTimes" size="sm" [fixedWidth]="true"></fa-icon>
       </button>
     </daff-toast>
 
-    <ng-template #button let-action="action" let-item="item" >
+    <ng-template #button let-action="action" let-item="item">
       <ng-container [ngSwitch]="action.type">
         <button type="button" *ngSwitchDefault daff-button
           [status]="action.status"

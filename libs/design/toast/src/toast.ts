@@ -32,7 +32,7 @@ export interface DaffToastData {
 
   actions?: DaffToastAction[];
 
-  showCloseButton?: boolean;
+  dismissible?: boolean;
 }
 
 export interface DaffToastActionEvent {

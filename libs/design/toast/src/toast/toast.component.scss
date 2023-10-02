@@ -3,29 +3,32 @@
 .daff-toast {
 	$root: &;
 	display: flex;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	position: relative;
 	min-width: 15rem;
 	max-width: 90vw;
 
+	// the div selectors are to add margin to toast if focus trapping is involved
+	+ div + .daff-toast,
+	+ div + div + .daff-toast,
 	+ .daff-toast {
-		margin-top: 16px;
+		margin-top: 0.75rem;
 	}
 
 	&:before {
 		content: '';
-		border-radius: 4px 0 0 4px;
+		border-radius: 0.25rem 0 0 0.25rem;
 		position: absolute;
 		height: 100%;
 		left: 0;
 		top: 0;
-		width: 4px;
+		width: 0.25rem;
 	}
 
 	.daff-prefix {
-		padding: 16px 0 16px 16px;
+		padding: 1rem 0 1rem 1rem;
 	}
 
 	&__close-button {
@@ -51,8 +54,8 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
-    gap: 4px;
-		padding: 16px;
+    gap: 0.25rem;
+		padding: 1rem;
 	}
 
 	&__title {
@@ -67,8 +70,8 @@
 	&__actions {
     display: flex;
 		align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 		min-height: 3rem;
-		padding: 0 16px 16px;
+		padding: 0 1rem 1rem;
 	}
 }

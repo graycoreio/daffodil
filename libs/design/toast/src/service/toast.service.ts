@@ -15,17 +15,17 @@ import {
 import {
   Subject,
   Subscription,
-  iif,
-  of,
 } from 'rxjs';
 import {
   filter,
   map,
-  switchMap,
   tap,
 } from 'rxjs/operators';
 
-import { DaffBreakpoints } from '@daffodil/design';
+import {
+  DaffBreakpoints,
+  DaffFocusStackService,
+} from '@daffodil/design';
 
 import {
   DAFF_TOAST_OPTIONS,
@@ -62,6 +62,7 @@ export class DaffToastService implements OnDestroy {
     @Optional() @SkipSelf() private _parentToast: DaffToastService,
     private mediaQuery: BreakpointObserver,
     private toastPosition: DaffToastPositionService,
+    private focusStack: DaffFocusStackService,
   ) {
     this._sub = this.mediaQuery.observe(DaffBreakpoints.MOBILE).pipe(
       filter(() => this._overlayRef !== undefined),
@@ -104,7 +105,7 @@ export class DaffToastService implements OnDestroy {
       this._template = this._attachToastTemplate(this._overlayRef);
     }
     const _toastPlus: DaffToast = {
-      showCloseButton: true,
+      dismissible: true,
       ...toast,
       dismiss: () => {},
       actions$: new Subject(),
@@ -112,6 +113,7 @@ export class DaffToastService implements OnDestroy {
 
     _toastPlus.dismiss = () => {
       this.close(_toastPlus);
+      this.focusStack.pop();
     };
 
 	  this._toasts = [
@@ -123,10 +125,6 @@ export class DaffToastService implements OnDestroy {
       setTimeout(() => {
         _toastPlus.dismiss();
       }, configuration.duration);
-    }
-
-    if(this._toasts.length > 3) {
-      this._toasts.pop();
     }
 
     this._template.instance.items = this._toasts;
