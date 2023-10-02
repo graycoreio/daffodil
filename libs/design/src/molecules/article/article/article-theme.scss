@@ -34,8 +34,8 @@
 		}
 
 		pre {
-			background: rgba(theming.daff-illuminate($base, $gray, 2), 0.3);
-			border: 1px solid rgba(theming.daff-illuminate($base, $gray, 2), 0.6);
+			background: theming.daff-illuminate($base, $gray, 1);
+			border: 1px solid theming.daff-illuminate($base, $gray, 2);
 			color: $base-contrast;
 
 			code {
