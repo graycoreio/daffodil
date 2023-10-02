@@ -31,7 +31,9 @@ import { DaffToast } from '../toast';
       [status]="item.status ?? null"
       (closeToast)="item.dismiss()"
       [@slideIn]="slideAnimation"
-      [attr.role]="item.actions ? 'alertdialog' : undefined">
+      [attr.role]="item.actions ? 'alertdialog' : undefined"
+      [attr.aria-labelledby]="item.actions ? item.title : undefined"
+      [attr.aria-describedby]="item.actions ? item.message : undefined">
       <div daffToastTitle>{{ item.title }}</div>
       <div daffToastMessage>{{ item.message }}</div>
       <div daffToastActions *ngIf="item.actions">
@@ -50,7 +52,7 @@ import { DaffToast } from '../toast';
           [status]="action.status"
           [color]="action.color"
           [size]="action.size"
-          [attr.aria-label]="action.content + ' ' + 'button'"
+          [attr.aria-label]="action.content"
           (click)="item.actions$.next({ event: $event, action})">
             {{ action.content }}
         </button>
@@ -58,7 +60,7 @@ import { DaffToast } from '../toast';
           [status]="action.status"
           [color]="action.color"
           [size]="action.size"
-          [attr.aria-label]="action.content + ' ' + 'button'"
+          [attr.aria-label]="action.content"
           (click)="item.actions$.next({ event: $event, action})">
             {{ action.content }}
         </button>
@@ -66,7 +68,7 @@ import { DaffToast } from '../toast';
           [status]="action.status"
           [color]="action.color"
           [size]="action.size"
-          [attr.aria-label]="action.content + ' ' + 'button'"
+          [attr.aria-label]="action.content"
           (click)="item.actions$.next({ event: $event, action})">
             {{ action.content }}
         </button>
@@ -74,7 +76,7 @@ import { DaffToast } from '../toast';
           [status]="action.status"
           [color]="action.color"
           [size]="action.size"
-          [attr.aria-label]="action.content + ' ' + 'button'"
+          [attr.aria-label]="action.content"
           (click)="item.actions$.next({ event: $event, action})">
             {{ action.content }}
         </button>
@@ -82,7 +84,7 @@ import { DaffToast } from '../toast';
           [status]="action.status"
           [color]="action.color"
           [size]="action.size"
-          [attr.aria-label]="action.content + ' ' + 'button'"
+          [attr.aria-label]="action.content"
           (click)="item.actions$.next({ event: $event, action})">
             {{ action.content }}
         </button>
