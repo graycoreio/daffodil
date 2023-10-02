@@ -1,4 +1,5 @@
 @use '../../../scss/interactions';
+@use '../../../scss/layout';
 
 .daff-toast {
 	$root: &;
@@ -9,6 +10,10 @@
 	position: relative;
 	min-width: 15rem;
 	max-width: 90vw;
+
+	@include layout.breakpoint(mobile) {
+		max-width: 25rem;
+	}
 
 	// the div selectors are to add margin to toast if focus trapping is involved
 	+ div + .daff-toast,

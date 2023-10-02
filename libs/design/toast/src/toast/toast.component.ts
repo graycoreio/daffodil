@@ -63,7 +63,7 @@ export class DaffToastComponent
   @HostBinding('class.daff-toast') class = true;
 
   /** @docs-private */
-  @HostBinding('attr.aria-live') ariaLive = 'polite';
+  @HostBinding('attr.role') role = 'alert';
 
   @ContentChild(DaffToastActionsDirective)
   _actions: DaffToastActionsDirective;
@@ -111,6 +111,8 @@ export class DaffToastComponent
   }
 
   ngOnDestroy() {
-    this._focusTrap.destroy();
+    if(this._actions) {
+      this._focusTrap.destroy();
+    }
   }
 }

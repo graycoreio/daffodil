@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
@@ -21,6 +22,8 @@ export interface DaffToastAction {
   type?: 'raised' | 'underline' | 'stroked' | 'flat' | undefined;
 
   data?: Record<string, any>;
+
+  eventEmitter?: EventEmitter<DaffToastAction>;
 }
 
 export interface DaffToastData {
@@ -31,8 +34,6 @@ export interface DaffToastData {
   status?: DaffStatus;
 
   actions?: DaffToastAction[];
-
-  dismissible?: boolean;
 }
 
 export interface DaffToastActionEvent {
@@ -43,6 +44,4 @@ export interface DaffToastActionEvent {
 
 export interface DaffToast extends DaffToastData {
   dismiss: () => void;
-
-  actions$: Observable<DaffToastActionEvent>;
 }

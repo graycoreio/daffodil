@@ -88,7 +88,6 @@ export class DaffToastService implements OnDestroy {
 	    scrollStrategy: this.overlay.scrollStrategies.noop(),
       positionStrategy: createPositionStrategy(this.toastPosition.config),
 	  });
-
   }
 
   open(
@@ -105,10 +104,8 @@ export class DaffToastService implements OnDestroy {
       this._template = this._attachToastTemplate(this._overlayRef);
     }
     const _toastPlus: DaffToast = {
-      dismissible: true,
       ...toast,
       dismiss: () => {},
-      actions$: new Subject(),
     };
 
     _toastPlus.dismiss = () => {
@@ -144,8 +141,6 @@ export class DaffToastService implements OnDestroy {
 	      'The Toast that you are trying to remove does not exist.',
 	    );
 	  }
-
-    (<Subject<DaffToastActionEvent>>toast.actions$).complete();
 
 	  this._toasts = this._toasts.filter(m => m !== toast);
     this._template.instance.items = [...this._toasts];

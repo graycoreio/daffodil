@@ -41,7 +41,7 @@ import { DaffToast } from '../toast';
           <ng-container *ngTemplateOutlet="button;context:{ action, item }"></ng-container>
         </ng-container>
       </div>
-      <button daff-icon-button color="theme-contrast" *ngIf="item.dismissible" aria-label="close notification" (click)="onCloseToast(item.dismiss())">
+      <button daff-icon-button color="theme-contrast" *ngIf="item.actions" aria-label="close notification" (click)="onCloseToast(item.dismiss())">
         <fa-icon [icon]="faTimes" size="sm" [fixedWidth]="true"></fa-icon>
       </button>
     </daff-toast>
@@ -53,7 +53,7 @@ import { DaffToast } from '../toast';
           [color]="action.color"
           [size]="action.size"
           [attr.aria-label]="action.content"
-          (click)="item.actions$.next({ event: $event, action})">
+          (click)="action.eventEmitter?.emit({ event: $event, action})">
             {{ action.content }}
         </button>
         <button type="button" *ngSwitchCase="'stroked'" daff-stroked-button
@@ -61,7 +61,7 @@ import { DaffToast } from '../toast';
           [color]="action.color"
           [size]="action.size"
           [attr.aria-label]="action.content"
-          (click)="item.actions$.next({ event: $event, action})">
+          (click)="action.eventEmitter?.emit({ event: $event, action})">
             {{ action.content }}
         </button>
         <button type="button" *ngSwitchCase="'raised'" daff-raised-button
@@ -69,7 +69,7 @@ import { DaffToast } from '../toast';
           [color]="action.color"
           [size]="action.size"
           [attr.aria-label]="action.content"
-          (click)="item.actions$.next({ event: $event, action})">
+          (click)="action.eventEmitter?.emit({ event: $event, action})">
             {{ action.content }}
         </button>
         <button type="button" *ngSwitchCase="'flat'" daff-flat-button
@@ -77,7 +77,7 @@ import { DaffToast } from '../toast';
           [color]="action.color"
           [size]="action.size"
           [attr.aria-label]="action.content"
-          (click)="item.actions$.next({ event: $event, action})">
+          (click)="action.eventEmitter?.emit({ event: $event, action})">
             {{ action.content }}
         </button>
         <button type="button" *ngSwitchCase="'underline'" daff-underline-button
@@ -85,7 +85,7 @@ import { DaffToast } from '../toast';
           [color]="action.color"
           [size]="action.size"
           [attr.aria-label]="action.content"
-          (click)="item.actions$.next({ event: $event, action})">
+          (click)="action.eventEmitter?.emit({ event: $event, action})">
             {{ action.content }}
         </button>
       </ng-container>
