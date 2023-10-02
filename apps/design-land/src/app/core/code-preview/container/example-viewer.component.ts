@@ -23,6 +23,8 @@ export class DesignLandExampleViewerContainer implements OnInit {
    */
   @Input() example: string;
 
+  @Input() hideContent = false;
+
   selectedExample$: Observable<DesignLandCodeExample>;
 
   constructor(private codeExamples: CodeExampleService){}

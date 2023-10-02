@@ -1,14 +1,31 @@
 @use 'sass:map';
 @use 'theme' as daff-theme;
 
+
 @mixin code-preview-theme($theme) {
 	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
+	$primary: map.get(daff-theme.$theme, primary);
+	$font-color: daff-theme.daff-map-deep-get($theme, 'core.font-color');
+	$border: 1px solid daff-theme.daff-illuminate($base, $gray, 2);
 
 	.design-land-code-preview {
 		&__content {
-			border: 1px solid rgba(daff-theme.daff-illuminate($base, $gray, 2), 0.6);
+			border: $border;
 			border-bottom: 0;
+		}
+
+		&__tab-wrapper {
+			border-left: $border;
+			border-right: $border;
+		}
+
+		&__tab {
+			color: $font-color;
+
+			&.selected {
+				border-bottom: 2px solid daff-theme.daff-color($primary);
+			}
 		}
 	}
 }
