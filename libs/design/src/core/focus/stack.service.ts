@@ -29,8 +29,8 @@ export class DaffFocusStackService {
    * this._focusStack.push(this._doc.activeElement);
    * ```
    */
-  push(el: HTMLElement): number {
-    this._stack.push(el);
+  push(el: HTMLElement | undefined = undefined): number {
+    this._stack.push(el ?? this.document.activeElement);
     return this._stack.length;
   }
 
