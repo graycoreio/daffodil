@@ -6,6 +6,7 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
+  EventEmitter,
   Inject,
   Injectable,
   OnDestroy,
@@ -13,13 +14,19 @@ import {
   SkipSelf,
 } from '@angular/core';
 import {
-  Subject,
+  EMPTY,
+  interval,
+  merge,
+  Observable,
+  of,
   Subscription,
 } from 'rxjs';
 import {
   filter,
   map,
+  take,
   tap,
+  timeout,
 } from 'rxjs/operators';
 
 import {
@@ -33,7 +40,6 @@ import {
 } from '../options/daff-toast-options';
 import {
   DaffToast,
-  DaffToastActionEvent,
   DaffToastData,
 } from '../toast';
 import { DaffToastModule } from '../toast.module';
@@ -42,6 +48,7 @@ import {
   DaffToastConfiguration,
 } from '../toast/toast-config';
 import { DaffToastTemplateComponent } from '../toast/toast-template.component';
+import { daffToastChangesFocus } from './changes-focus';
 import { createPositionStrategy } from './position-strategy';
 import { DaffToastPositionService } from './position.service';
 
@@ -98,31 +105,38 @@ export class DaffToastService implements OnDestroy {
       return this._parentToast.open(toast, configuration);
     }
 
-	  const config = { ...daffDefaultToastConfiguration, ...configuration };
+	  const config: DaffToastConfiguration = {
+      ...daffDefaultToastConfiguration,
+      duration: toast.actions?.length > 0 ? undefined : 5000,
+      ...configuration,
+    };
     if(this._toasts.length === 0) {
       this._overlayRef = this._createOverlayRef();
       this._template = this._attachToastTemplate(this._overlayRef);
     }
+    const dismissEvent = new EventEmitter<void>();
     const _toastPlus: DaffToast = {
+      dismissible: true,
       ...toast,
-      dismiss: () => {},
+      dismiss: () => {
+        dismissEvent.emit();
+      },
+      dismissalStream: merge(
+        config.duration ? interval(config.duration): EMPTY,
+        dismissEvent,
+      ).pipe(
+        take(1),
+      ),
     };
 
-    _toastPlus.dismiss = () => {
+    _toastPlus.dismissalStream.subscribe(() => {
       this.close(_toastPlus);
-      this.focusStack.pop();
-    };
+    });
 
 	  this._toasts = [
       _toastPlus,
       ...this._toasts,
     ];
-
-    if(config.duration) {
-      setTimeout(() => {
-        _toastPlus.dismiss();
-      }, configuration.duration);
-    }
 
     this._template.instance.items = this._toasts;
 
@@ -133,6 +147,10 @@ export class DaffToastService implements OnDestroy {
     if(this._parentToast && this.options.useParent) {
       this._parentToast.close(toast);
       return;
+    }
+
+    if(daffToastChangesFocus(toast)) {
+      this.focusStack.pop();
     }
 
 	  const index = this._toasts.indexOf(toast);

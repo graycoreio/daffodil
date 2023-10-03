@@ -34,6 +34,8 @@ export interface DaffToastData {
   status?: DaffStatus;
 
   actions?: DaffToastAction[];
+
+  dismissible?: boolean;
 }
 
 export interface DaffToastActionEvent {
@@ -44,4 +46,5 @@ export interface DaffToastActionEvent {
 
 export interface DaffToast extends DaffToastData {
   dismiss: () => void;
+  dismissalStream: Observable<void | number>;
 }

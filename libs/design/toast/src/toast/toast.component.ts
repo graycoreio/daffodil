@@ -28,6 +28,7 @@ import {
   daffStatusMixin,
 } from '@daffodil/design';
 
+import { daffToastChangesFocus } from '../service/changes-focus';
 import { DaffToast } from '../toast';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
 
@@ -65,6 +66,9 @@ export class DaffToastComponent
   /** @docs-private */
   @HostBinding('attr.role') role = 'alert';
 
+  /** @docs-private */
+  @HostBinding('attr.aria-atomic') ariaAtomic = 'true';
+
   @ContentChild(DaffToastActionsDirective)
   _actions: DaffToastActionsDirective;
 
@@ -95,7 +99,7 @@ export class DaffToastComponent
   }
 
   ngAfterContentInit() {
-    if(this._actions) {
+    if(daffToastChangesFocus(this.toast)) {
       this._focusTrap = this._focusTrapFactory.create(
         // this.container.nativeElement,
         this._elementRef.nativeElement,
@@ -104,14 +108,14 @@ export class DaffToastComponent
   }
 
   ngAfterViewInit() {
-    if(this._actions) {
+    if(daffToastChangesFocus(this.toast)) {
       this._focusStack.push();
       this._focusTrap.focusFirstTabbableElementWhenReady();
     }
   }
 
   ngOnDestroy() {
-    if(this._actions) {
+    if(daffToastChangesFocus(this.toast)) {
       this._focusTrap.destroy();
     }
   }
