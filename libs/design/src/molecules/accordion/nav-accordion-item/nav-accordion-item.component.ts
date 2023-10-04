@@ -18,6 +18,9 @@ import { DaffAccordionComponent } from '../accordion/accordion.component';
 import { daffAccordionAnimations } from '../animation/accordion-animation';
 import { getAnimationState } from '../animation/accordion-animation-state';
 
+/**
+ * @deprecated in v1.0.0. Use DaffTreeComponent instead.
+ */
 @Component({
   selector: 'daff-nav-accordion-item',
   templateUrl: './nav-accordion-item.component.html',

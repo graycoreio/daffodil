@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design';
 
@@ -14,6 +15,8 @@ import { DesignLandAccordionComponent } from './accordion.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
+
     DesignLandAccordionRoutingModule,
     DesignLandExampleViewerModule,
     DaffArticleModule,
