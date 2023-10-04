@@ -12,7 +12,7 @@
 	max-width: 90vw;
 
 	@include layout.breakpoint(mobile) {
-		max-width: 25rem;
+		max-width: 22rem;
 	}
 
 	// the div selectors are to add margin to toast if focus trapping is involved

@@ -41,8 +41,12 @@ import { DaffToastPositionService } from '../service/position.service';
           <ng-container *ngTemplateOutlet="button;context:{ action, item }"></ng-container>
         </ng-container>
       </div>
-      <button daff-icon-button color="theme-contrast" *ngIf="item.dismissible" aria-label="close notification" (click)="onCloseToast(item.dismiss())">
-        <fa-icon [icon]="faTimes" size="sm" [fixedWidth]="true"></fa-icon>
+      <button daff-icon-button color="theme-contrast"
+        *ngIf="item.dismissible"
+        aria-label="close button"
+        [attr.aria-hidden]="item.actions ? undefined : true"
+        (click)="onCloseToast(item.dismiss())">
+          <fa-icon [icon]="faTimes" size="sm" [fixedWidth]="true"></fa-icon>
       </button>
     </daff-toast>
 

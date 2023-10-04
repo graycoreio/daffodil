@@ -64,10 +64,7 @@ export class DaffToastComponent
   @HostBinding('class.daff-toast') class = true;
 
   /** @docs-private */
-  @HostBinding('attr.role') role = 'alert';
-
-  /** @docs-private */
-  @HostBinding('attr.aria-atomic') ariaAtomic = 'true';
+  @HostBinding('attr.role') ariaLive = 'status';
 
   @ContentChild(DaffToastActionsDirective)
   _actions: DaffToastActionsDirective;
