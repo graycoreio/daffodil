@@ -4,9 +4,10 @@ export { DaffToastService } from './service/toast.service';
 export { DaffToastConfiguration } from './toast/toast-config';
 export {
   DaffToast,
-  DaffToastAction,
   DaffToastData,
-} from './toast';
+} from './interfaces/toast';
+
+export { DaffToastAction } from './interfaces/toast-action';
 
 export {
   DAFF_TOAST_OPTIONS,

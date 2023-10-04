@@ -1,5 +1,4 @@
 import { EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import {
   DaffButtonSize,
@@ -11,6 +10,8 @@ import {
  * An interface for properties of actions, specifically the DaffButtonComponent, placed inside of a toast.
  */
 export interface DaffToastAction {
+  type?: 'raised' | 'underline' | 'stroked' | 'flat' | undefined;
+
   content: string;
 
   size?: DaffButtonSize;
@@ -19,32 +20,13 @@ export interface DaffToastAction {
 
   status?: DaffStatus;
 
-  type?: 'raised' | 'underline' | 'stroked' | 'flat' | undefined;
-
   data?: Record<string, any>;
 
   eventEmitter?: EventEmitter<DaffToastAction>;
-}
-
-export interface DaffToastData {
-  title: string;
-
-  message?: string;
-
-  status?: DaffStatus;
-
-  actions?: DaffToastAction[];
-
-  dismissible?: boolean;
 }
 
 export interface DaffToastActionEvent {
   event: MouseEvent;
 
   action: DaffToastAction;
-}
-
-export interface DaffToast extends DaffToastData {
-  dismiss: () => void;
-  dismissalStream: Observable<void | number>;
 }

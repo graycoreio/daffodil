@@ -28,8 +28,8 @@ import {
   daffStatusMixin,
 } from '@daffodil/design';
 
+import { DaffToast } from '../interfaces/toast';
 import { daffToastChangesFocus } from '../service/changes-focus';
-import { DaffToast } from '../toast';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
 
 /**

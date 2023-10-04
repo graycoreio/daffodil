@@ -15,12 +15,12 @@ import {
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffToast } from '../interfaces/toast';
 import {
   DaffToastOptions,
   DAFF_TOAST_OPTIONS,
 } from '../options/daff-toast-options';
 import { DaffToastPositionService } from '../service/position.service';
-import { DaffToast } from '../toast';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

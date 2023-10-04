@@ -17,8 +17,6 @@ import {
   EMPTY,
   interval,
   merge,
-  Observable,
-  of,
   Subscription,
 } from 'rxjs';
 import {
@@ -26,7 +24,6 @@ import {
   map,
   take,
   tap,
-  timeout,
 } from 'rxjs/operators';
 
 import {
@@ -35,13 +32,13 @@ import {
 } from '@daffodil/design';
 
 import {
+  DaffToast,
+  DaffToastData,
+} from '../interfaces/toast';
+import {
   DAFF_TOAST_OPTIONS,
   DaffToastOptions,
 } from '../options/daff-toast-options';
-import {
-  DaffToast,
-  DaffToastData,
-} from '../toast';
 import { DaffToastModule } from '../toast.module';
 import {
   daffDefaultToastConfiguration,
@@ -107,6 +104,7 @@ export class DaffToastService implements OnDestroy {
 
 	  const config: DaffToastConfiguration = {
       ...daffDefaultToastConfiguration,
+      // sets the default duration to 5000ms if a toast does not have actions
       duration: toast.actions?.length > 0 ? undefined : 5000,
       ...configuration,
     };
