@@ -16,24 +16,15 @@ import {
 
 const status: Record<string, DaffToastData> =  {
   error: {
-    title: 'Something went wrong',
-    actions: [
-      { content: 'Burn it all down.', color: 'theme-contrast', size: 'sm' },
-    ],
+    title: 'Server error',
   },
   success: {
-    title: 'Warning!',
-    message: 'Hrm...',
-    actions: [
-      { content: 'Repair', color: 'theme-contrast', size: 'sm' },
-    ],
+    title: 'Update complete',
+    message: 'The app is now up-to-date with the newest version.',
   },
   warn: {
-    title: 'Hurrah!',
-    message: 'It worked!',
-    actions: [
-      { content: 'Update', color: 'theme-contrast', size: 'sm' },
-    ],
+    title: 'The app is outdated',
+    message: 'Update the app now. The version you are using may have security vulnerabilities.',
   },
 };
 
@@ -57,6 +48,10 @@ export class ToastStatusComponent {
     this.toastService.open({
       status: this.statusControl.value,
       ...status[this.statusControl.value],
-    });
+    },
+    {
+      duration: this.statusControl.value === 'error' ? undefined : 5000,
+    },
+    );
   }
 }

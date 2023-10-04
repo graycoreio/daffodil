@@ -22,6 +22,19 @@ import {
 export class ToastPositionsComponent implements OnInit {
   private toast: DaffToast;
 
+  constructor(
+    private toastService: DaffToastService,
+    private toastPositionService: DaffToastPositionService,
+  ) {}
+
+  open() {
+    this.toast = this.toastService.open({
+      title: 'Update complete' + ' ' + this.count++,
+      message: 'This page is now up-to-date.',
+      dismissible: true,
+    });
+  }
+
   private count = 0;
 
   horizontalControl: FormControl = new FormControl('right');
@@ -38,21 +51,6 @@ export class ToastPositionsComponent implements OnInit {
         horizontal,
         vertical,
       });
-    });
-  }
-
-  constructor(
-    private toastService: DaffToastService,
-    private toastPositionService: DaffToastPositionService,
-  ) {}
-
-  open() {
-    this.toast = this.toastService.open({
-      title: 'Update complete' + ' ' + this.count++,
-      message: 'This page is now up-to-date.',
-    },
-    {
-      duration: 3000,
     });
   }
 }

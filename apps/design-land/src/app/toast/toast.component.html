@@ -1,40 +1,169 @@
 <h1 daffArticleTitle>Toast</h1>
-<p daffArticleLead>Toasts are small messages designed to mimic push notifications used to provide users with application level information.</p>
+<p daffArticleLead>Toasts are small messages designed to mimic push notifications. They are used to provide users with application level information.</p>
 
 <h2>Overview</h2>
-<p>Toasts should be used to display temporary messages about actions or events that occured, with no relation to content on a page. For messaging that provide context in close promixity to a piece of content within a page, use the <a routerLink="/notification">Notification</a> component.</p>
+<p>Toasts should be used to display temporary messages about actions or events that occured or in need of attention, with no relation to content on a page. For messaging that provide context in close promixity to a piece of content within a page, use the <a routerLink="/notification">Notification</a> component.</p>
 
-<h2>Basic toast</h2>
-<design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
+<h3>Basic toast</h3>
+<design-land-article-encapsulated>
+	<design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
 
-<h2>Stacking</h2>
+<h3>Configurations</h3>
+Toasts can be configured by using the <code>DaffToastService</code>.
+
+The following is an example of a toast with a duration:
+
+<pre><code>constructor(private toastService: DaffToastService) &lcub;&rcub;
+	
+	open() &lcub;
+		this.toast = this.toastService.open(&lcub;
+			title: 'Update Complete',
+			message: 'This page has been updated to the newest version.',
+		&rcub;,
+		&lcub;
+			duration: 5000,
+		&rcub;);
+	&rcub;</code></pre>
+
+The following is an example of a toast with actions:
+
+<pre><code>constructor(private toastService: DaffToastService) &lcub;&rcub;
+	
+open() &lcub;
+	this.toast = this.toastService.open(&lcub;
+		title: 'Update Available',
+		message: 'A new version of this page is available.',
+		actions: [
+			&lcub; content: 'Update', color: 'theme-contrast', size: 'sm', eventEmitter: this.update &rcub;,
+			&lcub; content: 'Remind me later', type: 'flat', size: 'sm', eventEmitter: this.closeToast &rcub;,
+		],
+	&rcub;);
+&rcub;</code></pre>
+
+The following configurations are available in the <code>DaffToastService</code>:
+
+<table>
+	<thead>
+		<tr>
+			<td>Property</td>
+			<Td>Type</Td>
+			<td>Description</td>
+			<td>Default</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>title</td>
+			<td>string</td>
+			<td>A quick overview of the toast</td>
+			<td>--</td>
+		</tr>
+		<tr>
+			<td>message</td>
+			<td>string</td>
+			<td>Additional details about the message that should be limited to one or two sentences</td>
+			<td>--</td>
+		</tr>
+		<tr>
+			<td>actions</td>
+			<td><code>DaffToastAction</code></td>
+			<td>Adds a <code>daff-button</code> that allow users to perform an action related to the message. Actions should be limited to two buttons.</td>
+			<td>--</td>
+		</tr>
+		<tr>
+			<td>dismissible</td>
+			<td>boolean</td>
+			<td>Allows a toast to be dismissible via a close button</td>
+			<td><code>true</code></td>
+		</tr>
+		<tr>
+			<td>duration</td>
+			<td>number</td>
+			<td>The duration in milliseconds that a toast is visible before it's dismissed</td>
+			<td>5000</td>
+		</tr>
+	</tbody>
+</table>
+
+The <code>actions</code> configurations are based on the properties of the <code>DaffButtonComponent</code> (view <a routerLink="/button">Button Documentation</a>), with the addition of <code>data</code> and <code>eventEmitter</code>.
+
+<h3>Dismissal</h3>
+<p>A toast can be dismissed via a timed duration, a close button, or the <code>ESC</code> key.
+	
+<h5>Timed duration</h5>
+<p>A toast with actions will persist until one of the actions have been interacted with, or is dismissed by the close button or the <code>ESC</code> key. Setting a duration should be avoided for toasts that have actions as users may need to interact with the actions.</p>
+
+<h4>Toast with custom duration</h4>
+<design-land-article-encapsulated>
+	<design-land-example-viewer-container example="toast-with-custom-duration"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
+	
+<p>By default, a toast without actions will be dismissed after <code>5000ms</code>. This can be updated by setting <code>duration</code> through the <code>DaffToastService</code>.</p>
+
+<h5>Close button</h5>
+<p>The close button is shown by default but can be hidden by setting <code>dismissible: false</code> through the <code>DaffToastService</code>.</p>
+
+<h5>Escape key</h5>
+<p>A toast can be dismissed by using the <code>ESC</code> key if it has actions and is focus trapped.</p>
+
+<h3>Stacking</h3>
 <p>A maximum of three toasts can be shown at a time. Toasts are stacked vertically, with the most recent toast displayed on top.</p>
 
-<h2>Statuses</h2>
+<h3>Statuses</h3>
+<p>The status color of a toast can be updated by using the <code>status</code> property.</p>
+
 <p>Supported statuses: <code>warn | danger | success</code></p>
 
-<design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
+<h4>Toast with statuses</h4>
+<design-land-article-encapsulated>
+	<design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
 
-<h2>Positions</h2>
+<h3>Positions</h3>
+
 <table>
 	<thead>
 		<tr>
 			<th>Property</th>
 			<th>Value</th>
+			<th>Default</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>vertical</td>
 			<td><code>top | bottom</code></td>
+			<td><code>top</code></td>
 		</tr>
 		<tr>
 			<td>horizontal</td>
 			<td><code>left | center | right</code></td>
+			<td><code>right</code></td>
 		</tr>
 	</tbody>
 </table>
 
-<p>Top right is the default position for toasts.</p>
+<p>To change the horizontal and vertical position of a toast, add the <code>provideDaffToastOptions</code> dependency key to the <code>providers</code> key in the module as shown below:</p>
 
-<design-land-example-viewer-container example="toast-positions"></design-land-example-viewer-container>
+<pre><code>providers: [
+	provideDaffToastOptions(&lcub;
+		position: &lcub;
+			vertical: 'bottom',
+			horizontal: 'center',
+		&rcub;,
+		useParent: false,
+	&rcub;),
+]</code></pre>
+
+<p>The position of a toast on a mobile device will always be on the bottom center.</p>
+
+<h4>Toast with configurable positions</h4>
+<design-land-article-encapsulated>
+	<design-land-example-viewer-container example="toast-positions"></design-land-example-viewer-container>
+</design-land-article-encapsulated>
+
+<h3>Accessibility</h3>
+<p>By default, toasts use a <code>role="status"</code> to announce messages. It's the equivalent of <code>aria-live="polite"</code>, which does not interrupt a user's current activity and waits until they are idle to make the announcement. When a toast has actions, a <code>role="alertdialog"</code> is used. The toast will also be focus trapped, and the focus immediately moves to the actions.</p>
+
+<p>Avoid setting a duration on toasts with actions because they will disappear automatically, making it difficult for users to interact with the actions.</p>

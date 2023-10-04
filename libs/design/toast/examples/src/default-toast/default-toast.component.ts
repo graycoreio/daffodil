@@ -1,10 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
+  OnInit,
 } from '@angular/core';
 
 import {
   DaffToast,
+  DaffToastAction,
+  DaffToastPositionService,
   DaffToastService,
 } from '@daffodil/design/toast';
 
@@ -15,21 +19,35 @@ import {
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DefaultToastComponent {
+export class DefaultToastComponent implements OnInit {
   private toast: DaffToast;
 
-  private count = 0;
-
   constructor(private toastService: DaffToastService) {}
+
+  update = new EventEmitter<DaffToastAction>();
+
+  closeToast = new EventEmitter<DaffToastAction>();
 
   open() {
     this.toast = this.toastService.open({
       title: 'Update Available' + ' ' + this.count++,
       message: 'A new version of this page is available.',
       actions: [
-        { content: 'Update', color: 'theme-contrast', size: 'sm' },
-        { content: 'Remind me later', type: 'flat', size: 'sm' },
+        { content: 'Update', color: 'theme-contrast', size: 'sm', eventEmitter: this.update },
+        { content: 'Remind me later', type: 'flat', size: 'sm', eventEmitter: this.closeToast },
       ],
     });
   }
+
+  ngOnInit() {
+    this.update.subscribe(() => {
+      console.log('test');
+    });
+
+    this.closeToast.subscribe(() => {
+      this.toastService.close(this.toast);
+    });
+  }
+
+  private count = 0;
 }
