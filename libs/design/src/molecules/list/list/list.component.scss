@@ -1,5 +1,6 @@
 @use '../../../../scss/typography' as t;
 @use '../../../../scss/interactions';
+@use '../../../../scss/layout';
 
 @mixin daff-list() {
 	$root: &;
@@ -10,6 +11,7 @@
 	.daff-list-item {
 		$root: &;
 		display: flex;
+		gap: 16px;
 		padding: 12px 16px;
 
 		&__content {
@@ -34,14 +36,7 @@
 		.daff-suffix {
 			display: flex;
 			align-items: center;
-		}
-
-		.daff-prefix {
-			margin-right: 24px;
-		}
-
-		.daff-suffix {
-			margin-left: 24px;
+			z-index: 2;
 		}
 	}
 }
@@ -103,5 +98,29 @@
 		@include interactions.clickable();
 		outline: none;
 		text-decoration: none;
+		position: relative;
+
+		&__content {
+			z-index: 2;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			transition: opacity 300ms;
+			z-index: 1;
+		}
+
+		&:hover,
+		&:active {
+			&:after {
+				opacity: 1;
+			}
+		}
 	}
 }
