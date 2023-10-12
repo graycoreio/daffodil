@@ -57,11 +57,14 @@
 
 	.daff-nav-list {
 		.daff-list-item {
-			background-color: $base;
-			transition: background-color 150ms;
+			&:after {
+				background-color: $base;
+			}
 
 			&:hover {
-				background-color: theming.daff-illuminate($base, $gray, 1);
+				&:after {
+					background-color: theming.daff-illuminate($base, $gray, 1);
+				}
 			}
 		}
 	}
