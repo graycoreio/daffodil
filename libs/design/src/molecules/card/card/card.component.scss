@@ -8,6 +8,7 @@ $card-img-border-radius: calc(#{$card-border-radius} - 1px);
 	$root: &;
 	display: flex;
 	border-radius: $card-border-radius;
+	position: relative;
 
 	&__image {
 		display: inline-block;
@@ -76,6 +77,8 @@ $card-img-border-radius: calc(#{$card-border-radius} - 1px);
 
 	&__body {
 		padding: 1.5rem;
+		position: relative;
+		z-index: 2;
 	}
 
 	&__content {
@@ -99,7 +102,35 @@ a {
 	&.daff-card,
 	&.daff-raised-card,
 	&.daff-stroked-card {
+		$root: &;
 		text-decoration: none;
-		transition: background-color 300ms, box-shadow 300ms;
+
+		.daff-card__wrapper {
+			position: relative;
+
+			&:after {
+				content: '';
+				position: absolute;
+				border-bottom-left-radius: $card-img-border-radius;
+				border-bottom-right-radius: $card-img-border-radius;
+				left: 0;
+				top: 0;
+				height: 100%;
+				width: 100%;
+				opacity: 0;
+				transition: opacity 300ms;
+				z-index: 1;
+			}
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			.daff-card__wrapper {
+				&:after {
+					opacity: 1;
+				}
+			}
+		}
 	}
 }
