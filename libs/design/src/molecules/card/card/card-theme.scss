@@ -112,74 +112,58 @@
 	a {
 		&.daff-card {
 			@include linkable.daff-linkable-card-theme-variant(
-				theming.daff-illuminate($base, $gray, 2),
-				theming.daff-illuminate($base, $gray, 3),
-				theming.daff-color($gray)
+				theming.daff-illuminate($base, $gray, 2)
 			);
 
 			&.daff-primary {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($primary, 70),
-					theming.daff-color($primary, 80),
-					theming.daff-color($primary)
+					theming.daff-color($primary, 70)
 				);
 			}
 
 			&.daff-secondary {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($secondary, 70),
-					theming.daff-color($secondary, 80),
-					theming.daff-color($secondary)
+					theming.daff-color($secondary, 70)
 				);
 			}
 
 			&.daff-tertiary {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($tertiary, 70),
-					theming.daff-color($tertiary, 80),
-					theming.daff-color($tertiary)
+					theming.daff-color($tertiary, 70)
 				);
 			}
 
 			&.daff-theme {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-illuminate($base, $gray, 1),
-					theming.daff-illuminate($base, $gray, 2),
-					theming.daff-color($gray)
+					theming.daff-illuminate($base, $gray, 1)
 				);
 			}
 
 			&.daff-theme-contrast {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-illuminate($base-contrast, $gray, 1),
-					theming.daff-illuminate($base-contrast, $gray, 2),
-					theming.daff-color($gray)
+					theming.daff-illuminate($base-contrast, $gray, 1)
 				);
 			}
 
 			&.daff-black {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($gray, 100),
-					theming.daff-color($gray, 90),
-					theming.daff-color($gray)
+					theming.daff-color($gray, 100)
 				);
 			}
 
 			&.daff-white {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($gray, 10),
-					theming.daff-color($gray, 20),
-					theming.daff-color($gray)
+					theming.daff-color($gray, 10)
 				);
 			}
 		}
 
 		&.daff-raised-card {
-			&:hover,
-			&:focus,
-			&:active {
-				box-shadow: 0 16px 32px -4px rgba($black, 0.12),
-					0 8px 12px -2px rgba($black, 0.06);
+			.daff-card__wrapper {
+				&:after {
+					box-shadow: 0 16px 32px -4px rgba($black, 0.12),
+						0 8px 12px -2px rgba($black, 0.06);
+				}
 			}
 		}
 	}
