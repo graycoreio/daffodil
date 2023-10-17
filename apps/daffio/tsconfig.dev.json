@@ -7,8 +7,5 @@
         "libs/*/src"
       ],
     }
-  },
-  "angularCompilerOptions": {
-    "enableIvy": true
   }
 }
