@@ -7,6 +7,7 @@ import {
   RouterStateSnapshot,
   ActivatedRoute,
   ActivatedRouteSnapshot,
+  EventType,
 } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
@@ -35,6 +36,7 @@ const configureStubNavigationAction = (snapshot: any): RouterNavigatedAction => 
       root: <ActivatedRouteSnapshot><unknown>snapshot,
     },
     event: {
+      type: EventType.NavigationEnd,
       id: 12,
       url: '',
       urlAfterRedirects: '',
