@@ -1,29 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoCustomerOrder } from '@daffodil/customer-order/driver/magento';
+import { MagentoOrder } from '@daffodil/order/driver/magento/2-4-1';
 
-import { MagentoCustomerOrderFactory } from './order.factory';
+import { MagentoOrderFactory } from './order.factory';
 
-describe('@daffodil/order/magento/2-4-1/testing | MagentoCustomerOrderFactory', () => {
-  let factory: MagentoCustomerOrderFactory;
+describe('@daffodil/order/magento/2-4-1/testing | MagentoOrderFactory', () => {
+
+  let orderFactory: MagentoOrderFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoCustomerOrderFactory],
+      providers: [MagentoOrderFactory],
     });
 
-    factory = TestBed.inject(MagentoCustomerOrderFactory);
+    orderFactory = TestBed.inject(MagentoOrderFactory);
   });
 
   it('should be created', () => {
-    expect(factory).toBeTruthy();
+    expect(orderFactory).toBeTruthy();
   });
 
   describe('create', () => {
-    let result: MagentoCustomerOrder;
+    let result: MagentoOrder;
 
     beforeEach(() => {
-      result = factory.create();
+      result = orderFactory.create();
     });
 
     it('should return a Order', () => {
@@ -34,6 +35,7 @@ describe('@daffodil/order/magento/2-4-1/testing | MagentoCustomerOrderFactory', 
       expect(result.carrier).toBeDefined();
       expect(result.number).toBeDefined();
       expect(result.shipping_method).toBeDefined();
+      expect(result.email).toBeDefined();
       expect(result.items).toBeDefined();
       expect(result.billing_address).toBeDefined();
       expect(result.shipping_address).toBeDefined();

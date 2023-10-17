@@ -13,7 +13,7 @@ import {
   MagentoOrderPaymentFactory,
   MagentoOrderInvoiceFactory,
   MagentoOrderCreditFactory,
-} from '@daffodil/order/driver/magento/2.4.1/testing';
+} from '@daffodil/order/driver/magento/2-4-1/testing';
 
 export class MockMagentoCustomerOrderWithStoreCredit extends MockMagentoCustomerOrder implements MagentoCustomerOrderWithStoreCredit {
   total = {

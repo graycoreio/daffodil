@@ -6,7 +6,7 @@ import {
   MagentoOrderPayment,
   MagentoOrderShipment,
   MagentoOrderTotal,
-} from '@daffodil/order/driver/magento/2.4.1';
+} from '@daffodil/order/driver/magento/2-4-1';
 
 export interface MagentoCustomerOrder {
   __typename?: 'CustomerOrder';
