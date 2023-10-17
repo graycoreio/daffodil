@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^13.0.0",
     "@angular/platform-browser-dynamic": "^13.0.0",
     "@angular/platform-server": "^13.0.0",
-    "@angular/pwa": "^0.1100.0",
+    "@angular/pwa": "^13.0.0",
     "@angular/router": "^13.0.0",
     "@angular/service-worker": "^13.0.0",
     "@apollo/client": "^3.0.0",
