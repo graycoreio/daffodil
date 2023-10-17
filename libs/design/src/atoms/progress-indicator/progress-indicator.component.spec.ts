@@ -23,7 +23,7 @@ import { DaffProgressIndicatorComponent } from './progress-indicator.component';
 })
 class WrapperComponent {
   color: DaffPalette;
-  percentage: number;
+  percentage: number = 0;
   onComplete(): void {};
 }
 
