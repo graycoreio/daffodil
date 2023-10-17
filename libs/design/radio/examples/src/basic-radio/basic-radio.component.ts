@@ -4,8 +4,8 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
 } from '@angular/forms';
 
 @Component({
@@ -16,8 +16,8 @@ import {
 })
 export class BasicRadioComponent implements OnInit {
 
-  radioGroup = new FormGroup({
-    race: new FormControl('Zerg'),
+  radioGroup = new UntypedFormGroup({
+    race: new UntypedFormControl('Zerg'),
   });
   constructor() {
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
   Validators,
 } from '@angular/forms';
 
@@ -11,10 +11,10 @@ import {
 export class ShippingOptionFormFactory {
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
   ) {}
 
-  create(): FormGroup {
+  create(): UntypedFormGroup {
     return this.fb.group({
       id: ['', Validators.required],
     });

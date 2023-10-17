@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -15,7 +15,7 @@ import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
 export class CardOrientationComponent {
   faMapMarked = faMapMarked;
 
-  orientationControl: FormControl = new FormControl('');
+  orientationControl: UntypedFormControl = new UntypedFormControl('');
 
   options = [
     { value: '', label: 'Default' },

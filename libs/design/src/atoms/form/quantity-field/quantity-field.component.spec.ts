@@ -6,7 +6,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormControl,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -31,7 +31,7 @@ class WrapperComponent {
   minValue = 0;
   maxValue = 50;
   selectMaxValue = 10;
-  formControl = new FormControl(1);
+  formControl = new UntypedFormControl(1);
 }
 
 describe('DaffQuantityFieldComponent', () => {

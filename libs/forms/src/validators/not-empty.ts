@@ -1,6 +1,6 @@
 import {
   AbstractControl,
-  FormGroup,
+  UntypedFormGroup,
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
@@ -13,7 +13,7 @@ import {
 // TODO: handle nested form groups
 export const daffFormNotEmptyValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
   (
-    control instanceof FormGroup
+    control instanceof UntypedFormGroup
       ? Object.values(control.controls).reduce((acc, { value }) => acc || !!value, false)
       : !!control.value
   )

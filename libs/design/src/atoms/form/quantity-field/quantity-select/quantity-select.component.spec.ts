@@ -7,7 +7,7 @@ import {
 } from '@angular/core/testing';
 import {
   NgControl,
-  FormControl,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -45,7 +45,7 @@ describe('DaffQuantitySelectComponent', () => {
     control = {
       statusChanges: new Subject(),
       disabled: false,
-      control: new FormControl(1),
+      control: new UntypedFormControl(1),
       value: null,
     };
 

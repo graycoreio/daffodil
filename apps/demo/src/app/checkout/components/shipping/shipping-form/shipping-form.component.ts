@@ -6,8 +6,8 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
 } from '@angular/forms';
 
 import { DaffAddress } from '@daffodil/core';
@@ -26,10 +26,10 @@ export class ShippingFormComponent implements OnInit {
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private addressFormFactory: AddressFormFactory,
     private shippingOptionFormService: ShippingOptionFormService,
   ) {}

@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import {
   faCheck,
   faExclamation,
@@ -21,5 +21,5 @@ export class NotificationStatusComponent {
   faCheck = faCheck;
   faExclamation = faExclamation;
 
-  statusControl: FormControl = new FormControl('success');
+  statusControl: UntypedFormControl = new UntypedFormControl('success');
 }

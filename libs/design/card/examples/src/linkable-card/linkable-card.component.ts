@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,9 +12,9 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkableCardComponent {
-  basicColorControl: FormControl = new FormControl('');
-  raisedColorControl: FormControl = new FormControl('');
-  strokedColorControl: FormControl = new FormControl('');
+  basicColorControl: UntypedFormControl = new UntypedFormControl('');
+  raisedColorControl: UntypedFormControl = new UntypedFormControl('');
+  strokedColorControl: UntypedFormControl = new UntypedFormControl('');
 
   options = [
     { value: '', label: 'Default' },

@@ -2033,7 +2033,6 @@
         }
       }
     },
-
     "customer-auth": {
       "projectType": "library",
       "root": "libs/customer-auth",
@@ -2259,7 +2258,6 @@
       }
     }
   },
-  "defaultProject": "demo",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

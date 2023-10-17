@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPalette } from '@daffodil/design';
@@ -18,5 +18,5 @@ export class HeroThemingComponent {
   faMobile = faMobile;
   color: DaffPalette = 'primary';
 
-  colorControl: FormControl = new FormControl('');
+  colorControl: UntypedFormControl = new UntypedFormControl('');
 }

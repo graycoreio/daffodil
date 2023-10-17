@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 
@@ -18,13 +18,13 @@ describe('@daffodil/design | daffFormNotEmptyValidator | integration', () => {
   });
 
   describe('when the control is a form group', () => {
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
 
     describe('when the form group is empty', () => {
       beforeEach(() => {
-        formGroup = new FormGroup({
-          control1: new FormControl(null),
-          control2: new FormControl(''),
+        formGroup = new UntypedFormGroup({
+          control1: new UntypedFormControl(null),
+          control2: new UntypedFormControl(''),
         }, daffFormNotEmptyValidator);
       });
 
@@ -39,9 +39,9 @@ describe('@daffodil/design | daffFormNotEmptyValidator | integration', () => {
 
     describe('when the form group is not empty', () => {
       beforeEach(() => {
-        formGroup = new FormGroup({
-          control1: new FormControl(null),
-          control2: new FormControl('a value'),
+        formGroup = new UntypedFormGroup({
+          control1: new UntypedFormControl(null),
+          control2: new UntypedFormControl('a value'),
         }, daffFormNotEmptyValidator);
       });
 
@@ -56,11 +56,11 @@ describe('@daffodil/design | daffFormNotEmptyValidator | integration', () => {
   });
 
   describe('when the control is a control', () => {
-    let control: FormControl;
+    let control: UntypedFormControl;
 
     describe('when the form group is empty', () => {
       beforeEach(() => {
-        control = new FormControl('', daffFormNotEmptyValidator);
+        control = new UntypedFormControl('', daffFormNotEmptyValidator);
       });
 
       it('should invalidate the form group', () => {
@@ -74,7 +74,7 @@ describe('@daffodil/design | daffFormNotEmptyValidator | integration', () => {
 
     describe('when the form group is not empty', () => {
       beforeEach(() => {
-        control = new FormControl('a value', daffFormNotEmptyValidator);
+        control = new UntypedFormControl('a value', daffFormNotEmptyValidator);
       });
 
       it('should not invalidate the form group', () => {

@@ -6,15 +6,12 @@ import { DaffArticleModule } from '@daffodil/design';
 import { ARTICLE_EXAMPLES } from './examples';
 
 @NgModule({
-  declarations: [
-    ...ARTICLE_EXAMPLES,
-  ],
-  imports: [
-    CommonModule,
-    DaffArticleModule,
-  ],
-  entryComponents: [
-    ...ARTICLE_EXAMPLES,
-  ],
+    declarations: [
+        ...ARTICLE_EXAMPLES,
+    ],
+    imports: [
+        CommonModule,
+        DaffArticleModule,
+    ]
 })
 export class ArticleExamplesModule { }

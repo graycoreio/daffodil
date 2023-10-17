@@ -5,8 +5,8 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -25,8 +25,8 @@ import { DaffRadioModule } from '../radio.module';
   `,
 })
 class RadioEmbeddedComponent {
-  radioGroup = new FormGroup({
-    fruit: new FormControl('apple'),
+  radioGroup = new UntypedFormGroup({
+    fruit: new UntypedFormControl('apple'),
   });
   disable() {
     this.radioGroup.disable();

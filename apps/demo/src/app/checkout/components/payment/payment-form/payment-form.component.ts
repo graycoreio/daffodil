@@ -6,8 +6,8 @@ import {
   EventEmitter,
 } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -33,10 +33,10 @@ export class PaymentFormComponent implements OnInit {
   @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private paymentInfoFormFactory: PaymentInfoFormFactory,
     private addressFormFactory: AddressFormFactory,
     private store: Store<fromDemoCheckout.State>,

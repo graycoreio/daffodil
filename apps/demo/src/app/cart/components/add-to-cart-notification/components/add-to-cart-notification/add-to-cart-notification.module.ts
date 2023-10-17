@@ -15,18 +15,17 @@ import { AddToCartNotificationComponent } from './add-to-cart-notification.compo
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ViewCartModule,
-    ProceedToCheckoutModule,
-    ProductAddedModule,
-    DaffLoadingIconModule,
-    DaffButtonSetModule,
-    DaffButtonModule,
-    FontAwesomeModule,
-  ],
-  declarations: [AddToCartNotificationComponent],
-  exports: [AddToCartNotificationComponent],
-  entryComponents: [AddToCartNotificationComponent],
+    imports: [
+        CommonModule,
+        ViewCartModule,
+        ProceedToCheckoutModule,
+        ProductAddedModule,
+        DaffLoadingIconModule,
+        DaffButtonSetModule,
+        DaffButtonModule,
+        FontAwesomeModule,
+    ],
+    declarations: [AddToCartNotificationComponent],
+    exports: [AddToCartNotificationComponent]
 })
 export class AddToCartNotificationComponentModule {}

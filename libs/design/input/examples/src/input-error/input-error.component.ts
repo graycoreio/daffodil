@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 import {
-  FormControl,
+  UntypedFormControl,
   Validators,
 } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputErrorComponent {
-  control: FormControl = new FormControl('test@example.com', [
+  control: UntypedFormControl = new UntypedFormControl('test@example.com', [
     Validators.email,
     Validators.required,
   ]);

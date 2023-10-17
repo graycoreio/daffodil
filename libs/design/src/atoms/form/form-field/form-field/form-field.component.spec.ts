@@ -6,7 +6,7 @@ import {
 } from '@angular/core/testing';
 import {
   ReactiveFormsModule,
-  FormControl,
+  UntypedFormControl,
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -26,7 +26,7 @@ import { DaffFormFieldComponent } from './form-field.component';
   </daff-form-field>` })
 class WrapperComponent {
   formSubmittedValue: boolean;
-  formControl = new FormControl('', Validators.required);
+  formControl = new UntypedFormControl('', Validators.required);
 }
 
 describe('DaffFormFieldComponent | Usage', () => {

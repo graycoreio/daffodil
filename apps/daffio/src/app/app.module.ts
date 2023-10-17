@@ -6,7 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { EffectsModule } from '@ngrx/effects';
 import {
   StoreRouterConnectingModule,
-  DefaultRouterStateSerializer,
+  FullRouterStateSerializer,
 } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -30,7 +30,7 @@ import { TemplateModule } from './core/template/template.module';
     AppRoutingModule,
 
     //Make sure this loads after Router and Store
-    StoreRouterConnectingModule.forRoot({ serializer: DefaultRouterStateSerializer,
+    StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,
       /*
         They stateKey defines the name of the state used by the router-store reducer.
         This matches the key defined in the map of reducers

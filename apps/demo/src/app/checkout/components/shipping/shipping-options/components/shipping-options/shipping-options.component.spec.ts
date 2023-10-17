@@ -5,8 +5,8 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
   FormsModule,
   ReactiveFormsModule,
   FormControl,
@@ -18,7 +18,7 @@ import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
 import { ShippingOptionsService } from '../services/shipping-options.service';
 import { ShippingOptionsComponent } from './shipping-options.component';
 
-const formBuilder: FormBuilder = new FormBuilder();
+const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
 const stubFormGroupValue = formBuilder.group({
   id: ['', Validators.required],
@@ -31,7 +31,7 @@ const stubSubmitted = false;
               '[submitted]="submittedValue"></demo-shipping-options>',
 })
 class WrapperComponent {
-  formGroupValue: FormGroup = stubFormGroupValue;
+  formGroupValue: UntypedFormGroup = stubFormGroupValue;
   submittedValue: boolean = stubSubmitted;
 };
 

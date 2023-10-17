@@ -12,7 +12,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import {
   ROUTER_NAVIGATED,
   RouterNavigatedAction,
-  DefaultRouterStateSerializer,
+  FullRouterStateSerializer,
 } from '@ngrx/router-store';
 import {
   hot,

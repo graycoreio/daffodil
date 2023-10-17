@@ -9,7 +9,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormControl,
+  UntypedFormControl,
   NgControl,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -50,7 +50,7 @@ describe('DaffQuantityInputComponent', () => {
     control = {
       statusChanges: new Subject(),
       disabled: false,
-      control: new FormControl(1),
+      control: new UntypedFormControl(1),
       value: null,
     };
 

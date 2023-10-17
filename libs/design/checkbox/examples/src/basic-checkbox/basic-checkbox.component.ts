@@ -3,7 +3,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicCheckboxComponent implements OnInit {
-  checkboxExample = new FormControl();
+  checkboxExample = new UntypedFormControl();
 
   ngOnInit() {
     this.checkboxExample.setValue(true);

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  FormGroup,
+  UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 
@@ -27,7 +27,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
 
   describe('create', () => {
 
-    let result: FormGroup;
+    let result: UntypedFormGroup;
     let expectedResult;
 
     beforeEach(() => {

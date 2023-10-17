@@ -3,9 +3,9 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
-  FormGroup,
+  UntypedFormGroup,
 } from '@angular/forms';
 
 @Component({
@@ -15,10 +15,10 @@ import {
 })
 export class DesignLandFormComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
   ) {}
 
   ngOnInit() {

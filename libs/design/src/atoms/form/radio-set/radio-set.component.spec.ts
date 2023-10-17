@@ -8,8 +8,8 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -28,8 +28,8 @@ import { DaffRadioSetComponent } from './radio-set.component';
   `,
 })
 class RadioEmbeddedComponent {
-  radioGroup = new FormGroup({
-    fruit: new FormControl(),
+  radioGroup = new UntypedFormGroup({
+    fruit: new UntypedFormControl(),
   });
 }
 

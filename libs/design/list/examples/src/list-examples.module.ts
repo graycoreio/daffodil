@@ -8,15 +8,12 @@ import { MultilineListModule } from './multiline-list/multiline-list.module';
 import { NavListModule } from './nav-list/nav-list.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BasicListModule,
-    NavListModule,
-    IconListModule,
-    MultilineListModule,
-  ],
-  entryComponents: [
-    ...LIST_EXAMPLES,
-  ],
+    imports: [
+        CommonModule,
+        BasicListModule,
+        NavListModule,
+        IconListModule,
+        MultilineListModule,
+    ]
 })
 export class ListExamplesModule { }
