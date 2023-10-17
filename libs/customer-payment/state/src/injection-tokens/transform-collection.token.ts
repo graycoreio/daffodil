@@ -5,8 +5,8 @@ import {
 
 import { daffArrayToDict } from '@daffodil/core';
 
-import { DaffCustomerPaymentRequestTransform } from '../models/public_api';
 import { DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORMS } from './available-transforms.token';
+import { DaffCustomerPaymentRequestTransform } from '../models/public_api';
 
 /**
  * An internal token to combine the available payment transforms into a single collection.

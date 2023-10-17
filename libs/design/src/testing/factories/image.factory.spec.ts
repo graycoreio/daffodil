@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Image } from '../../interfaces/image';
 import { ImageFactory } from './image.factory';
+import { Image } from '../../interfaces/image';
 
 describe('ImageFactory', () => {
 

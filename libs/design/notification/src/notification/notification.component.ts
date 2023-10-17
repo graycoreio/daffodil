@@ -93,7 +93,7 @@ export class DaffNotificationComponent
   }
 
   @ContentChild(DaffPrefixDirective)
-  _prefix: DaffPrefixDirective;
+    _prefix: DaffPrefixDirective;
 
   onCloseNotification(event: Event) {
     this.closeNotification.emit();

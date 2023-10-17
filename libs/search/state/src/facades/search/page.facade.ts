@@ -3,10 +3,10 @@ import { Store } from '@ngrx/store';
 
 import { DaffSearchResult } from '@daffodil/search';
 
-import { DaffSearchStateRootSlice } from '../../reducers/public_api';
-import { daffSearchGetPageSelectors } from '../../selectors/public_api';
 import { DaffSearchFacadeBase } from './base.facade';
 import { DaffSearchFacadeInterface } from './search-facade.interface';
+import { DaffSearchStateRootSlice } from '../../reducers/public_api';
+import { daffSearchGetPageSelectors } from '../../selectors/public_api';
 
 /**
  * @inheritdoc

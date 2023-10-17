@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffExternalRouterInsertionStrategy } from '../model/insertion-strategy.type';
-import { DaffTypeRoutePair } from '../model/type-route-pair';
 import {
   DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
   daffProvideRouteResolvableByType,
 } from './type-resolvable-routes.token';
+import { DaffExternalRouterInsertionStrategy } from '../model/insertion-strategy.type';
+import { DaffTypeRoutePair } from '../model/type-route-pair';
 
 describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE', () => {
   let token: DaffTypeRoutePair[];

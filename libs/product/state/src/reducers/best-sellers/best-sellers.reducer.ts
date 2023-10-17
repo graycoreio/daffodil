@@ -1,10 +1,10 @@
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffBestSellersReducerState } from './best-sellers-reducer-state.interface';
 import {
   DaffBestSellersActionTypes,
   DaffBestSellersActions,
 } from '../../actions/best-sellers.actions';
-import { DaffBestSellersReducerState } from './best-sellers-reducer-state.interface';
 
 export const initialState: DaffBestSellersReducerState = {
   productIds: [],

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ShippingOptionFormFactory } from '../factories/shipping-option-form.factory';
 import { ShippingOptionFormService } from './shipping-option-form.service';
+import { ShippingOptionFormFactory } from '../factories/shipping-option-form.factory';
 
 describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Services | ShippingOptionFormService', () => {
   let shippingOptionsService: ShippingOptionFormService;

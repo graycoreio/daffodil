@@ -1,12 +1,12 @@
 import { DaffProductReview } from '@daffodil/reviews';
 
+import { DaffProductPageReviewsReducerState } from './state.interface';
 import {
   DaffReviewsProductActionTypes,
   DaffReviewsProductActions,
   DaffProductReviewsCollectionActionTypes,
   DaffProductReviewsCollectionActions,
 } from '../../actions/public_api';
-import { DaffProductPageReviewsReducerState } from './state.interface';
 
 /**
  * Initial values of the product state.

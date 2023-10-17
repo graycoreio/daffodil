@@ -4,8 +4,8 @@ import {
   DaffCompositeCartItemOption,
 } from '@daffodil/cart';
 
-import { MagentoBundleCartItem } from '../../../models/responses/cart-item';
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
+import { MagentoBundleCartItem } from '../../../models/responses/cart-item';
 
 function transformBundleCartItemOption(option: MagentoBundleCartItem['bundle_options'][0]): DaffCompositeCartItemOption {
   return {

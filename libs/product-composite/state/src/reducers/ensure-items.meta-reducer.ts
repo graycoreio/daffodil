@@ -1,7 +1,6 @@
 import { ActionReducer } from '@ngrx/store';
 
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   DaffProductActionTypes,
   DaffProductActions,
@@ -11,6 +10,7 @@ import {
   DaffProductPageLoadSuccess,
   DaffProductReducersState,
 } from '@daffodil/product/state';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
 
 import { daffProductCompositeEnsureItems } from '../helpers/public_api';
 

@@ -9,9 +9,9 @@ import {
 
 import { daffComposeReducers } from '@daffodil/core/state';
 
+import { DAFF_PRODUCT_CONFIGURABLE_EXTRA_REDUCERS } from './extra.token';
 import { daffConfigurableProductReducers } from '../configurable-product-reducers';
 import { DaffConfigurableProductReducersState } from '../configurable-product-reducers-state.interface';
-import { DAFF_PRODUCT_CONFIGURABLE_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil configurable product reducers.

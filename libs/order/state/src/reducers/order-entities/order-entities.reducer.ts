@@ -1,12 +1,12 @@
 import { DaffOrder } from '@daffodil/order';
 
+import { daffGetOrderAdapter } from './order-entities-adapter';
+import { daffOrderEntitiesInitialState } from './order-entities-initial-state';
+import { DaffOrderEntityState } from './order-entities-state.interface';
 import {
   DaffOrderActions,
   DaffOrderActionTypes,
 } from '../../actions/order.actions';
-import { daffGetOrderAdapter } from './order-entities-adapter';
-import { daffOrderEntitiesInitialState } from './order-entities-initial-state';
-import { DaffOrderEntityState } from './order-entities-state.interface';
 
 /**
  * Reducer function that catches actions and changes/overwrites order entities state.

@@ -7,6 +7,10 @@ import {
 } from 'rxjs';
 
 import {
+  DaffProductStateTestingModule,
+  MockDaffProductPageFacade,
+} from '@daffodil/product/state/testing';
+import {
   DaffCompositeProduct,
   DaffCompositeProductItemOption,
 } from '@daffodil/product-composite';
@@ -16,10 +20,6 @@ import {
   MockDaffCompositeProductFacade,
 } from '@daffodil/product-composite/state/testing';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
-import {
-  DaffProductStateTestingModule,
-  MockDaffProductPageFacade,
-} from '@daffodil/product/state/testing';
 
 import { DaffProductCompositeRoutingShareCodeService } from './share-code.service';
 

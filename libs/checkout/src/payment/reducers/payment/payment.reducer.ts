@@ -1,8 +1,8 @@
+import { DaffPaymentReducerState } from './payment-reducer.interface';
 import {
   DaffPaymentActionTypes,
   DaffPaymentActions,
 } from '../../actions/payment.actions';
-import { DaffPaymentReducerState } from './payment-reducer.interface';
 
 export const initialState: DaffPaymentReducerState = {
   paymentInfo: null,

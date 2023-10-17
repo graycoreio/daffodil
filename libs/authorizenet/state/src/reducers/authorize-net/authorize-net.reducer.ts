@@ -8,12 +8,12 @@ import {
   DaffPaymentActionTypes,
 } from '@daffodil/payment/state';
 
+import { DaffAuthorizeNetReducerState } from './authorize-net-reducer.interface';
+import { daffAuthorizeNetReducerInitialState } from './initial-state';
 import {
   DaffAuthorizeNetActions,
   DaffAuthorizeNetActionTypes,
 } from '../../actions/authorizenet.actions';
-import { DaffAuthorizeNetReducerState } from './authorize-net-reducer.interface';
-import { daffAuthorizeNetReducerInitialState } from './initial-state';
 
 export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>(
   state: DaffAuthorizeNetReducerState = daffAuthorizeNetReducerInitialState,

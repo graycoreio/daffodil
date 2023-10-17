@@ -3,8 +3,8 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { DaffCompositeProduct } from '@daffodil/product-composite';
 import { MockProduct } from '@daffodil/product/testing';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
 
 import { DaffCompositeProductItemFactory } from './composite-product-item.factory';
 

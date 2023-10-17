@@ -10,15 +10,15 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import {
+  selectPaymentState,
+  selectPaymentInfo,
+} from './payment.selector';
 import { DaffPaymentFactory } from '../../../testing/src';
 import { PaymentInfo } from '../../models/payment/payment-info';
 import { DaffUpdatePaymentInfo } from '../actions/payment.actions';
 import { daffPaymentReducers } from '../reducers/payment-reducers';
 import { DaffPaymentReducersState } from '../reducers/payment-reducers.interface';
-import {
-  selectPaymentState,
-  selectPaymentInfo,
-} from './payment.selector';
 
 describe('selectPaymentState', () => {
 

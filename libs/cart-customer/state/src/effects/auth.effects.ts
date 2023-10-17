@@ -33,7 +33,6 @@ import {
   DaffCart,
   DaffCartStorageService,
 } from '@daffodil/cart';
-import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '@daffodil/cart-customer';
 import {
   DaffCartDriver,
   DaffCartServiceInterface,
@@ -42,6 +41,7 @@ import {
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
 } from '@daffodil/cart/state';
+import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '@daffodil/cart-customer';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 

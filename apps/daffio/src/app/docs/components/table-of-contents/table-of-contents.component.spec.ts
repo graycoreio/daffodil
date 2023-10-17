@@ -8,9 +8,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffLinkSetModule } from '@daffodil/design';
 
+import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
-import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
 
 describe('DaffioDocsTableOfContentsComponent', () => {
   let component: DaffioDocsTableOfContentsComponent;

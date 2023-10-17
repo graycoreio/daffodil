@@ -1,8 +1,8 @@
+import { DaffSearchDriverKindedInterface } from '@daffodil/search/driver';
 import {
   DaffSearchCategoryResult,
   DAFF_SEARCH_CATEGORY_RESULT_KIND,
 } from '@daffodil/search-category';
-import { DaffSearchDriverKindedInterface } from '@daffodil/search/driver';
 
 /**
  * A driver interface for searching categories.

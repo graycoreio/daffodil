@@ -22,6 +22,7 @@ import {
 } from '@daffodil/cart';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffCartFacadeInterface } from './cart-facade.interface';
 import {
   DaffCartItemStateEnum,
   DaffStatefulCartItem,
@@ -37,7 +38,6 @@ import {
   getDaffCartSelectors,
   DaffCartMemoizedSelectors,
 } from '../../selectors/public_api';
-import { DaffCartFacadeInterface } from './cart-facade.interface';
 
 /**
  * @inheritdoc

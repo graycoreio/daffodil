@@ -12,10 +12,10 @@ import {
   DaffExternalRouterNoWildcardError,
 } from '@daffodil/external-router';
 
+import { DaffExternalRouter } from './router.service';
 import { DaffRouteWithDataPath } from '../model/route-with-data-path';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
 import { DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE } from '../token/type-resolvable-routes.token';
-import { DaffExternalRouter } from './router.service';
 
 describe('@daffodil/external-router | DaffExternalRouter', () => {
   let service: DaffExternalRouter;

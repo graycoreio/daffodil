@@ -11,8 +11,8 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffMenuModule } from '../menu.module';
 import { DaffMenuComponent } from '../menu/menu.component';
+import { DaffMenuModule } from '../menu.module';
 
 @Component({ template: `
   <daff-menu>

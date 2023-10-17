@@ -12,11 +12,11 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageLoadByUrl } from '../../actions/public_api';
 import {
   daffProductReducerInitialState,
   daffProductReducer,
 } from './product.reducer';
+import { DaffProductPageLoadByUrl } from '../../actions/public_api';
 
 describe('@daffodil/product/state | daffProductReducer', () => {
 

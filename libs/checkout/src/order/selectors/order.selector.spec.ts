@@ -10,17 +10,17 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffOrderFactory } from '../../../testing/src';
-import { DaffOrder } from '../../models/order/order';
-import { DaffPlaceOrderSuccess } from '../actions/order.actions';
-import { daffOrderReducers } from '../reducers/order-reducers';
-import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import {
   selectOrderState,
   selectOrder,
   selectLoading,
   selectErrors,
 } from './order.selector';
+import { DaffOrderFactory } from '../../../testing/src';
+import { DaffOrder } from '../../models/order/order';
+import { DaffPlaceOrderSuccess } from '../actions/order.actions';
+import { daffOrderReducers } from '../reducers/order-reducers';
+import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 
 describe('selectOrderState', () => {
 

@@ -20,8 +20,8 @@ import {
   DaffCollectionRequestQueryParamTransform,
 } from '@daffodil/product/routing';
 
-import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetCollectionRequestFromRoute } from './get-request-from-route.service';
+import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 
 @Component({ template: '' })
 class TestComponent {}

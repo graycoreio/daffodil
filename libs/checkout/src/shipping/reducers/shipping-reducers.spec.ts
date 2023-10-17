@@ -1,5 +1,5 @@
-import { daffShippingReducers } from './shipping-reducers';
 import { daffShippingReducer } from './shipping/shipping.reducer';
+import { daffShippingReducers } from './shipping-reducers';
 
 describe('daffShippingReducers', () => {
 

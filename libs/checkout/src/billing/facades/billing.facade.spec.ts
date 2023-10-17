@@ -10,6 +10,7 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import { DaffBillingFacade } from './billing.facade';
 import { PaymentInfo } from '../../models/payment/payment-info';
 import {
   DaffUpdateBillingAddress,
@@ -17,7 +18,6 @@ import {
   DaffUpdatePaymentInfo,
 } from '../actions/billing.actions';
 import { daffBillingReducers } from '../reducers/billing-reducers';
-import { DaffBillingFacade } from './billing.facade';
 
 describe('DaffBillingFacade', () => {
   let store: Store<any>;

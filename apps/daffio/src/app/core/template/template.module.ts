@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 
+import { TemplateComponent } from './template.component';
 import { DaffioFooterModule } from '../footer/footer.module';
 import { DaffioHeaderModule } from '../header/containers/header.module';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
-import { TemplateComponent } from './template.component';
 
 @NgModule({
   imports: [

@@ -1,7 +1,7 @@
 
 
-import { DaffFilterBase } from '../../filter-base';
 import { DaffFilterRangePair } from './pair';
+import { DaffFilterBase } from '../../filter-base';
 
 /**
  * A base type for a range-style filter where there is a continuous distribution

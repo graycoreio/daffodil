@@ -2,8 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffThemingService } from '../theming.service';
 import { DaffThemeClassSetterService } from './theme-class-setter.service';
+import { DaffThemingService } from '../theming.service';
 
 describe('DaffThemeClassSetterService', () => {
   let service: DaffThemeClassSetterService;

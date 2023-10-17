@@ -1,5 +1,5 @@
-import { DaffTreeUi } from '../interfaces/tree-ui';
 import { traverse } from './traverse-tree';
+import { DaffTreeUi } from '../interfaces/tree-ui';
 
 /**
  * Collapse the tree and its subtrees.

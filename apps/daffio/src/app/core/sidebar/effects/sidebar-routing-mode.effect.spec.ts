@@ -21,12 +21,12 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects';
 import {
   ResetMode,
   SetSidebarMode,
   SetSidebarState,
 } from '../actions/sidebar.actions';
-import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects';
 
 const configureStubNavigationAction = (snapshot: any): RouterNavigatedAction => ({
   type: ROUTER_NAVIGATED,

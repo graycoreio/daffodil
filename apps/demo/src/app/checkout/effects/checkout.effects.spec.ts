@@ -12,9 +12,9 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 
+import { CheckoutEffects } from './checkout.effects';
 import { ShowReviewView } from '../actions/checkout.actions';
 import { ToggleShowPaymentForm } from '../actions/payment.actions';
-import { CheckoutEffects } from './checkout.effects';
 
 describe('CheckoutEffects', () => {
   let actions$: Observable<any>;

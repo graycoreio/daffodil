@@ -78,33 +78,33 @@ export class DaffCategoryPageFilterEffects<
   | DaffCategoryPageLoadSuccess
   | DaffCategoryPageLoadFailure
   > = createEffect(() => (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
-    ofType(
-      DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction,
-      DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction,
-      DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction,
-      DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction,
-      DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction,
-      DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction,
-    ),
-    withLatestFrom(this.facade.metadata$),
-    map((
-      [action, metadata]: [DaffCategoryPageProductCollectionActions, DaffCategoryPageMetadata],
-    ): DaffCategoryIdRequest => ({
-      kind: DaffCategoryRequestKind.ID,
-      id: metadata.id,
-      filterRequests: daffFiltersToRequests(metadata.filters),
-      appliedSortOption: metadata.appliedSortOption,
-      appliedSortDirection: metadata.appliedSortDirection,
-      currentPage: metadata.currentPage,
-      pageSize: metadata.pageSize,
-    })),
-    throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
-    switchMap(payload => this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponse<V, W>) => [
-        new DaffProductGridLoadSuccess(resp.products),
-        new DaffCategoryPageLoadSuccess(resp),
-      ]),
-      catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
-    )),
-  ));
+      ofType(
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction,
+      ),
+      withLatestFrom(this.facade.metadata$),
+      map((
+        [action, metadata]: [DaffCategoryPageProductCollectionActions, DaffCategoryPageMetadata],
+      ): DaffCategoryIdRequest => ({
+        kind: DaffCategoryRequestKind.ID,
+        id: metadata.id,
+        filterRequests: daffFiltersToRequests(metadata.filters),
+        appliedSortOption: metadata.appliedSortOption,
+        appliedSortDirection: metadata.appliedSortDirection,
+        currentPage: metadata.currentPage,
+        pageSize: metadata.pageSize,
+      })),
+      throttleTime(throttleWindow, scheduler, { leading: true, trailing: true }),
+      switchMap(payload => this.driver.get(payload).pipe(
+        switchMap((resp: DaffGetCategoryResponse<V, W>) => [
+          new DaffProductGridLoadSuccess(resp.products),
+          new DaffCategoryPageLoadSuccess(resp),
+        ]),
+        catchError((error: DaffError) => of(new DaffCategoryPageLoadFailure(this.errorMatcher(error)))),
+      )),
+    ));
 }

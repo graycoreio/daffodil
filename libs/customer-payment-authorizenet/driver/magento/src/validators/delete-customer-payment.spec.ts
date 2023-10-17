@@ -1,7 +1,7 @@
 import { ApolloQueryResult } from '@apollo/client/core';
 
-import { MagentoDeleteCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
 import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
+import { MagentoDeleteCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
 
 import { validateDeleteCustomerPaymentResponse as validator } from './delete-customer-payment';
 

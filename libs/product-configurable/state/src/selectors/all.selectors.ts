@@ -1,13 +1,13 @@
 import { DaffProduct } from '@daffodil/product';
 
 import {
-  DaffConfigurableProductEntitiesMemoizedSelectors,
-  getDaffConfigurableProductEntitiesSelectors,
-} from './configurable-product-entities/configurable-product-entities.selectors';
-import {
   DaffConfigurableProductMemoizedSelectors,
   getDaffConfigurableProductSelectors,
 } from './configurable-product/configurable-product.selectors';
+import {
+  DaffConfigurableProductEntitiesMemoizedSelectors,
+  getDaffConfigurableProductEntitiesSelectors,
+} from './configurable-product-entities/configurable-product-entities.selectors';
 import {
   getDaffConfigurableProductFeatureSelector,
   DaffConfigurableProductFeatureMemoizedSelector,

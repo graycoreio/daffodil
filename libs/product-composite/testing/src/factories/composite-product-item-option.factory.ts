@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffCompositeProductItemOption } from '@daffodil/product-composite';
 import { MockProduct } from '@daffodil/product/testing';
+import { DaffCompositeProductItemOption } from '@daffodil/product-composite';
 
 /**
  * Mocked DaffCompositeProductItemOption object.

@@ -50,8 +50,8 @@ import {
 } from '@daffodil/product/routing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/request/builder.token';
 import { DaffCategoryPageUrlResolver } from './category-page-url.resolver';
+import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/request/builder.token';
 
 @Component({ template: '' })
 class TestComponent {}

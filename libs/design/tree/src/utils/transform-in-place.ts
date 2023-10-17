@@ -1,6 +1,6 @@
+import { traverse } from './traverse-tree';
 import { RecursiveTreeKeyOfType } from '../interfaces/recursive-key';
 import { DaffTreeData } from '../interfaces/tree-data';
-import { traverse } from './traverse-tree';
 
 /**
  * Transform a tree-like structure in-place into a {@link DaffTreeData}.

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { ApolloQueryResult } from '@apollo/client/core';
 
+import { DaffCustomerPaymentNotFoundError } from '@daffodil/customer-payment/driver';
 import { MagentoGetCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
 import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/testing';
-import { DaffCustomerPaymentNotFoundError } from '@daffodil/customer-payment/driver';
 
 import { validateGetCustomerPaymentResponse as validator } from './get-customer-payment';
 

@@ -5,10 +5,10 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { daffComputeThemeSetting } from '../functions/computer';
-import { DaffTheme } from '../types/theme';
 import { DaffOsThemeService } from './os-theme/ostheme.service';
 import { DaffThemeStorageService } from './storage/theme-storage.service';
+import { daffComputeThemeSetting } from '../functions/computer';
+import { DaffTheme } from '../types/theme';
 
 /**
  * A service for controlling the application's theme.

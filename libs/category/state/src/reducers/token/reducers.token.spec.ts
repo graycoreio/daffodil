@@ -8,10 +8,10 @@ import {
 } from '@daffodil/category/state';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { daffCategoryEntitiesAdapter } from '../category-entities/category-entities-adapter';
-import { daffCategoryInitialState } from '../category/category.reducer';
-import { daffCategoryPageMetadataInitialState } from '../page-metadata/reducer';
 import { DAFF_CATEGORY_REDUCERS } from './reducers.token';
+import { daffCategoryInitialState } from '../category/category.reducer';
+import { daffCategoryEntitiesAdapter } from '../category-entities/category-entities-adapter';
+import { daffCategoryPageMetadataInitialState } from '../page-metadata/reducer';
 
 describe('@daffodil/category/state | daffCategoryProvideExtraReducers', () => {
   let extraError: DaffStateError;

@@ -14,6 +14,12 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import {
+  selectBillingState,
+  selectBillingAddress,
+  selectBillingAddressIsShippingAddress,
+  selectPaymentInfo,
+} from './billing.selector';
 import { PaymentInfo } from '../../models/payment/payment-info';
 import {
   DaffUpdateBillingAddress,
@@ -21,12 +27,6 @@ import {
 } from '../actions/billing.actions';
 import { daffBillingReducers } from '../reducers/billing-reducers';
 import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
-import {
-  selectBillingState,
-  selectBillingAddress,
-  selectBillingAddressIsShippingAddress,
-  selectPaymentInfo,
-} from './billing.selector';
 
 describe('selectBillingFeatureState', () => {
 

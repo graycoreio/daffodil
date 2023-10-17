@@ -60,8 +60,8 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffCartLoadSuccess } from '../actions/public_api';
 import { DaffCartItemEffects } from './cart-item.effects';
+import { DaffCartLoadSuccess } from '../actions/public_api';
 
 describe('@daffodil/cart/state | DaffCartItemEffects', () => {
   let actions$: Observable<any>;

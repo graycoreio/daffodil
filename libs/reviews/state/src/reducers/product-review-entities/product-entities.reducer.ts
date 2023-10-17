@@ -2,11 +2,11 @@ import { EntityState } from '@ngrx/entity';
 
 import { DaffProductReview } from '@daffodil/reviews';
 
+import { daffProductReviewEntitiesAdapter } from './product-entities-reducer-adapter';
 import {
   DaffReviewsProductActions,
   DaffReviewsProductActionTypes,
 } from '../../actions/public_api';
-import { daffProductReviewEntitiesAdapter } from './product-entities-reducer-adapter';
 
 /**
  * Adds product review entities into state on list success.

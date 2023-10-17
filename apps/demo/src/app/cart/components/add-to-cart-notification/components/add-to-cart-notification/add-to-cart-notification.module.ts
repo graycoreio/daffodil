@@ -8,24 +8,24 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
+import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import { ProceedToCheckoutModule } from '../../../proceed-to-checkout/proceed-to-checkout.module';
 import { ViewCartModule } from '../../../view-cart/view-cart.module';
 import { ProductAddedModule } from '../product-added/product-added.module';
-import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ViewCartModule,
-        ProceedToCheckoutModule,
-        ProductAddedModule,
-        DaffLoadingIconModule,
-        DaffButtonSetModule,
-        DaffButtonModule,
-        FontAwesomeModule,
-    ],
-    declarations: [AddToCartNotificationComponent],
-    exports: [AddToCartNotificationComponent]
+  imports: [
+    CommonModule,
+    ViewCartModule,
+    ProceedToCheckoutModule,
+    ProductAddedModule,
+    DaffLoadingIconModule,
+    DaffButtonSetModule,
+    DaffButtonModule,
+    FontAwesomeModule,
+  ],
+  declarations: [AddToCartNotificationComponent],
+  exports: [AddToCartNotificationComponent],
 })
 export class AddToCartNotificationComponentModule {}

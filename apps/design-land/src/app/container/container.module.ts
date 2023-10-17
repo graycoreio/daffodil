@@ -6,9 +6,9 @@ import {
   DaffContainerModule,
 } from '@daffodil/design';
 
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandContainerRoutingModule } from './container-routing.module';
 import { DesignLandContainerComponent } from './container.component';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [

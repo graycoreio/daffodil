@@ -11,8 +11,8 @@ import {
 } from '@daffodil/auth';
 import { DaffAuthResetPasswordInfoFactory } from '@daffodil/auth/testing';
 
-import { DaffInMemoryLoginService } from '../login/login.service';
 import { DaffInMemoryResetPasswordService } from './service';
+import { DaffInMemoryLoginService } from '../login/login.service';
 
 describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', () => {
   let service: DaffInMemoryResetPasswordService;

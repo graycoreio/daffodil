@@ -6,9 +6,9 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 import { DaffBackdropModule } from '../../../backdrop/public_api';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
-import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 
 describe('DaffSidebarViewportComponent | Defaults', () => {
   let fixture: ComponentFixture<DaffSidebarViewportComponent>;

@@ -9,8 +9,8 @@ import {
   DaffLoadingIconModule,
 } from '@daffodil/design';
 
-import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 import { ProductComponent } from './product.component';
+import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 
 
 @NgModule({

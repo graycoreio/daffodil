@@ -14,8 +14,8 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalModule } from '../modal.module';
 import { DaffModalService } from './modal.service';
+import { DaffModalModule } from '../modal.module';
 
 @Component({
   template: `
@@ -25,7 +25,7 @@ import { DaffModalService } from './modal.service';
 class DynamicComponent {}
 
 @NgModule({
-    declarations: [DynamicComponent]
+  declarations: [DynamicComponent],
 })
 class DynamicModule {}
 

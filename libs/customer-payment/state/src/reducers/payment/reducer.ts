@@ -6,13 +6,13 @@ import {
 } from '@daffodil/core/state';
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 
+import { daffCustomerPaymentInitialState } from './initial-state';
+import { DaffCustomerPaymentReducerState } from './type';
 import {
   DaffCustomerPaymentActions,
   DaffCustomerPaymentActionTypes,
   DaffCustomerPaymentLoadFailure,
 } from '../../actions/payment.actions';
-import { daffCustomerPaymentInitialState } from './initial-state';
-import { DaffCustomerPaymentReducerState } from './type';
 
 /**
  * The reducer for the customer payment page state, see {@link DaffCustomerPaymentReducerState}.

@@ -1,8 +1,8 @@
+import { DaffBillingReducerState } from './billing-reducer.interface';
 import {
   DaffBillingActionTypes,
   DaffBillingActions,
 } from '../../actions/billing.actions';
-import { DaffBillingReducerState } from './billing-reducer.interface';
 
 export const initialState: DaffBillingReducerState = {
   billingAddress: null,

@@ -58,17 +58,17 @@ export class DaffSearchIncrementalEffects<
   incremental$: (throttleWindow: number, scheduler: typeof asyncScheduler) => Observable<
   DaffSearchIncrementalSuccess | DaffSearchIncrementalFailure
   > = createEffect(() => (throttleWindow = 200, scheduler = asyncScheduler) => this.actions$.pipe(
-    ofType(DaffSearchActionTypes.SearchIncrementalAction),
-    debounceTime(throttleWindow, scheduler),
-    switchMap((action: DaffSearchIncremental) =>
-      this.driver.incremental(action.query, {
-        limit: this.config.incrementalResultLimit,
-        ...action.options,
-      }).pipe(
-        map(resp => new DaffSearchIncrementalSuccess<T>(resp)),
-        catchError((error: DaffError) => of(new DaffSearchIncrementalFailure(this.errorMatcher(error)))),
+      ofType(DaffSearchActionTypes.SearchIncrementalAction),
+      debounceTime(throttleWindow, scheduler),
+      switchMap((action: DaffSearchIncremental) =>
+        this.driver.incremental(action.query, {
+          limit: this.config.incrementalResultLimit,
+          ...action.options,
+        }).pipe(
+          map(resp => new DaffSearchIncrementalSuccess<T>(resp)),
+          catchError((error: DaffError) => of(new DaffSearchIncrementalFailure(this.errorMatcher(error)))),
+        ),
       ),
-    ),
-  ));
+    ));
 }
 

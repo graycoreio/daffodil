@@ -19,8 +19,8 @@ import {
 } from '@daffodil/paypal/state';
 import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
-import { DaffPaypalExpressReducerState } from '../public_api';
 import { getDaffPaypalSelectors } from './paypal.selector';
+import { DaffPaypalExpressReducerState } from '../public_api';
 
 describe('@daffodil/paypal/state | getDaffPaypalSelectors', () => {
 

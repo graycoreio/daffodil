@@ -1,12 +1,12 @@
 import { DaffCountry } from '@daffodil/geography';
 
+import { getCountryAdapter } from './country-entities-adapter';
+import { daffCountryEntitiesInitialState } from './country-entities-initial-state';
+import { DaffCountryEntityState } from './country-entities-state.interface';
 import {
   DaffGeographyActions,
   DaffGeographyActionTypes,
 } from '../../actions/public_api';
-import { getCountryAdapter } from './country-entities-adapter';
-import { daffCountryEntitiesInitialState } from './country-entities-initial-state';
-import { DaffCountryEntityState } from './country-entities-state.interface';
 
 /**
  * Reducer function that catches actions and changes/overwrites country entities state.

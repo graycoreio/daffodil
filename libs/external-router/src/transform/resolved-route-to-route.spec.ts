@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 import { daffTransformResolvedRouteToRoute } from './resolved-route-to-route';
+import { DaffExternalRouterUnknownRouteTypeError } from '../errors/unknown-type';
 
 describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => {
   let router: Router;

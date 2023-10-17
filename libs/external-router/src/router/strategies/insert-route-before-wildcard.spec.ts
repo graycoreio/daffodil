@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 
-import { DaffExternalRouterNoWildcardError } from '../../errors/no-wildcard';
 import { daffInsertRouteBeforeWildCardStrategy } from './insert-route-before-wildcard';
+import { DaffExternalRouterNoWildcardError } from '../../errors/no-wildcard';
 
 describe('@daffodil/external-router | daffInsertRouteBeforeWildCardStrategy', () => {
 

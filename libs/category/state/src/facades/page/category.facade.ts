@@ -13,12 +13,12 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffCategoryFacadeInterface } from './category-facade.interface';
 import {
   DaffCategoryStateRootSlice,
   DaffCategoryReducerState,
 } from '../../reducers/public_api';
 import { getDaffCategorySelectors } from '../../selectors/category.selector';
-import { DaffCategoryFacadeInterface } from './category-facade.interface';
 
 /**
  * A facade for interacting with the category state.

@@ -9,9 +9,9 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { TemplateModule } from '../../core/template/template.module';
 import { DaffioNotFoundComponent } from './component/not-found.component';
 import { DaffioNotFoundRoutingModule } from './not-found-routing.module';
+import { TemplateModule } from '../../core/template/template.module';
 
 
 @NgModule({

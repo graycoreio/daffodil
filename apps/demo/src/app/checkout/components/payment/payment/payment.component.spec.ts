@@ -21,13 +21,13 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import { PaymentComponent } from './payment.component';
 import {
   ShowPaymentForm,
   ToggleShowPaymentForm,
   HidePaymentForm,
 } from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';
-import { PaymentComponent } from './payment.component';
 
 const paymentFactory = new DaffPaymentFactory();
 const daffodilAddressFactory = new DaffAddressFactory();

@@ -2,6 +2,13 @@
 import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProductLoadSuccess,
+  DaffProductGridLoadSuccess,
+  DaffBestSellersLoadSuccess,
+  DaffProductPageLoadSuccess,
+} from '@daffodil/product/state';
+import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   DaffConfigurableProductApplyAttribute,
@@ -11,13 +18,6 @@ import {
   DaffConfigurableProductEntity,
 } from '@daffodil/product-configurable/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
-import {
-  DaffProductLoadSuccess,
-  DaffProductGridLoadSuccess,
-  DaffBestSellersLoadSuccess,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
 

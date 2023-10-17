@@ -6,9 +6,9 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandButtonRoutingModule } from './button-routing.module';
 import { DesignLandButtonComponent } from './button.component';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [

@@ -9,14 +9,14 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '../../core/colorable/public_api';
-import { DaffStatus } from '../../core/statusable/statusable';
-import { DaffLoadingIconComponent } from '../loading-icon/loading-icon.component';
-import { DaffLoadingIconModule } from '../loading-icon/loading-icon.module';
 import {
   DaffButtonComponent,
   DaffButtonSize,
 } from './button.component';
+import { DaffPalette } from '../../core/colorable/public_api';
+import { DaffStatus } from '../../core/statusable/statusable';
+import { DaffLoadingIconComponent } from '../loading-icon/loading-icon.component';
+import { DaffLoadingIconModule } from '../loading-icon/loading-icon.module';
 
 @Component({
   template: `

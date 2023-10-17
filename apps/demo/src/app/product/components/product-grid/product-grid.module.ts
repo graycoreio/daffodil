@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { DaffLoadingIconModule } from '@daffodil/design';
 
-import { ProductCardModule } from '../product-card/product-card.module';
 import { ProductGridComponent } from './product-grid.component';
+import { ProductCardModule } from '../product-card/product-card.module';
 
 @NgModule({
   imports: [

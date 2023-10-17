@@ -7,12 +7,12 @@ import {
   DaffSearchResult,
   daffSearchTransformResultsToCollection,
 } from '@daffodil/search';
-import { DaffSearchProductResult } from '@daffodil/search-product';
-import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
 import {
   DaffSearchIncrementalSuccess,
   DaffSearchLoadSuccess,
 } from '@daffodil/search/state';
+import { DaffSearchProductResult } from '@daffodil/search-product';
+import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
 
 import { daffSearchProductEntitiesReducer as reducer } from './entities.reducer';
 

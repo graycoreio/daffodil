@@ -8,6 +8,7 @@ import {
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
+import { DaffAnalyticsEffects } from './analytics-effects';
 import {
   DaffAnalyticsTrackerClass,
   DaffAnalyticsServices,
@@ -16,7 +17,6 @@ import {
   DaffAnalyticsConfig,
   DaffAnalyticsConfigInterface,
 } from '../config/config';
-import { DaffAnalyticsEffects } from './analytics-effects';
 
 describe('@daffodil/analytics | DaffAnalyticsEffects', () => {
   let actions$: Actions;

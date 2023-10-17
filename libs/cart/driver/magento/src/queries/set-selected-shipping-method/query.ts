@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoSetSelectedShippingMethodResponse } from './response.type';
 import { MagentoCartSetSelectedShippingMethodQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const setSelectedShippingMethod = (extraCartFragments: DocumentNode[] = []) => gql<MagentoSetSelectedShippingMethodResponse, MagentoCartSetSelectedShippingMethodQueryVariables>`
   mutation MagentoSetSelectedShippingMethod($cartId: String!, $method: ShippingMethodInput!) {

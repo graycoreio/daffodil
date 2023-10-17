@@ -11,11 +11,11 @@ import {
   OnDestroy,
 } from '@angular/core';
 
+import { daffThumbnailCompatToken } from './thumbnail-compat.token';
+import { DaffThumbnailRegistration } from './thumbnail-registration.interface';
 import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
-import { daffThumbnailCompatToken } from './thumbnail-compat.token';
-import { DaffThumbnailRegistration } from './thumbnail-registration.interface';
 
 /**
  * A directive marking thumbnails for the `DaffMediaRendererComponent`. Needs to be wrapped in a `daff-media-gallery` component

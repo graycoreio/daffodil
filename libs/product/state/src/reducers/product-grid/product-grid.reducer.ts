@@ -1,10 +1,10 @@
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffProductGridReducerState } from './product-grid-reducer-state.interface';
 import {
   DaffProductGridActionTypes,
   DaffProductGridActions,
 } from '../../actions/public_api';
-import { DaffProductGridReducerState } from './product-grid-reducer-state.interface';
 
 /**
  * Initial values of the product grid state.

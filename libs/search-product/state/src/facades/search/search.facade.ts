@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffSearchProductFacadeInterface } from './search-facade.interface';
 import { DaffSearchProductStateRootSlice } from '../../reducers/public_api';
 import { DaffSearchProductSelectors } from '../../selectors/public_api';
-import { DaffSearchProductFacadeInterface } from './search-facade.interface';
 
 /**
  * @inheritdoc

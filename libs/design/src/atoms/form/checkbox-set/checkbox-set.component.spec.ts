@@ -15,8 +15,8 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffCheckboxModule } from '../checkbox/checkbox.module';
 import { DaffCheckboxSetComponent } from './checkbox-set.component';
+import { DaffCheckboxModule } from '../checkbox/checkbox.module';
 
 @Component({
   template: `

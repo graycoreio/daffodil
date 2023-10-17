@@ -21,8 +21,8 @@ import {
   DaffFormFieldModule,
 } from '@daffodil/design';
 
-import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
 import { PaymentInfoFormComponent } from './payment-info-form.component';
+import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
 
 @Component({
   template: `

@@ -7,8 +7,8 @@ import {
 } from '@daffodil/design';
 import { DaffProductStateModule } from '@daffodil/product/state';
 
-import { ProductGridModule } from '../../components/product-grid/product-grid.module';
 import { ProductGridViewComponent } from './product-grid-view.component';
+import { ProductGridModule } from '../../components/product-grid/product-grid.module';
 
 @NgModule({
   imports: [

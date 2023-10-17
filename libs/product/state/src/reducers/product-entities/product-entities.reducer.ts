@@ -2,6 +2,7 @@ import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
 
+import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 import {
   DaffProductGridActionTypes,
   DaffProductGridActions,
@@ -12,7 +13,6 @@ import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
 } from '../../actions/public_api';
-import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.

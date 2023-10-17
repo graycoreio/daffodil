@@ -28,16 +28,16 @@ import {
   DaffProductTypeEnum,
 } from '@daffodil/product';
 import {
+  DaffProductPageActionTypes,
+  DaffProductPageLoadSuccess,
+} from '@daffodil/product/state';
+import {
   DaffCompositeProduct,
   DaffCompositeProductItem,
   DaffCompositeProductItemOption,
   DaffProductCompositeSelectionPayload,
 } from '@daffodil/product-composite';
 import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
-import {
-  DaffProductPageActionTypes,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
 
 import {
   DaffProductCompositeRoutingConfig,

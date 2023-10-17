@@ -11,8 +11,8 @@ import { DaffAddToCart } from '@daffodil/cart/state';
 import { DaffModalModule } from '@daffodil/design';
 
 
-import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
+import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 
 describe('AddToCartNotificationEffects', () => {

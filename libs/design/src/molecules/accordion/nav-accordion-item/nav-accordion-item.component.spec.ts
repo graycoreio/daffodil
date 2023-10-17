@@ -11,8 +11,8 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffAccordionComponent } from '../accordion/accordion.component';
 import { DaffNavAccordionItemComponent } from './nav-accordion-item.component';
+import { DaffAccordionComponent } from '../accordion/accordion.component';
 
 
 @Component({ template: `

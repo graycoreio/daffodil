@@ -12,6 +12,7 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import { BillingContainer } from './billing.component';
 import { PaymentInfo } from '../../models/payment/payment-info';
 import {
   DaffUpdateBillingAddress,
@@ -23,7 +24,6 @@ import {
   selectBillingAddress,
   selectBillingAddressIsShippingAddress,
 } from '../selectors/billing.selector';
-import { BillingContainer } from './billing.component';
 
 describe('BillingContainer', () => {
   let component: BillingContainer;

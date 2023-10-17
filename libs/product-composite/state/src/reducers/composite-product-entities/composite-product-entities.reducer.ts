@@ -1,7 +1,6 @@
 import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
@@ -12,13 +11,14 @@ import {
   DaffBestSellersActionTypes,
   DaffProductActionTypes,
 } from '@daffodil/product/state';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
 
+import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
+import { DaffCompositeProductEntity } from './composite-product-entity';
 import {
   DaffCompositeProductActions,
   DaffCompositeProductActionTypes,
 } from '../../actions/public_api';
-import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
-import { DaffCompositeProductEntity } from './composite-product-entity';
 
 /**
  * Reducer function that catches actions and changes/overwrites composite product entities state.

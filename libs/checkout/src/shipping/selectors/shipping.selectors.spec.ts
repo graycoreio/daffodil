@@ -14,17 +14,17 @@ import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import {
-  DaffUpdateShippingAddress,
-  DaffSelectShippingOption,
-} from '../actions/shipping.actions';
-import { daffShippingReducers } from '../reducers/shipping-reducers';
-import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
-import {
   selectShippingAddress,
   selectShippingOptionId,
   selectIsShippingAddressValid,
   selectShippingState,
 } from './shipping.selectors';
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../actions/shipping.actions';
+import { daffShippingReducers } from '../reducers/shipping-reducers';
+import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
 
 describe('Shipping Selectors', () => {
   let store: Store<DaffShippingReducersState>;

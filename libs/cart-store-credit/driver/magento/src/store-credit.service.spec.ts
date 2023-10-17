@@ -9,6 +9,7 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
+import { daffProvideCartMagentoCartTransforms } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartWithStoreCredit,
   MagentoApplyStoreCreditResponse,
@@ -18,7 +19,6 @@ import {
   magentoCartWithStoreCreditTransform,
 } from '@daffodil/cart-store-credit/driver/magento';
 import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/testing';
-import { daffProvideCartMagentoCartTransforms } from '@daffodil/cart/driver/magento';
 import {
   DaffDriverMagentoError,
   schema,

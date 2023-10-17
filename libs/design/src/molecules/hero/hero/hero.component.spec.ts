@@ -9,13 +9,13 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '../../../core/colorable/public_api';
-import { DaffTextAlignment } from '../../../core/text-alignable/text-alignable';
 import {
   DaffHeroComponent,
   DaffHeroLayout,
   DaffHeroSize,
 } from './hero.component';
+import { DaffPalette } from '../../../core/colorable/public_api';
+import { DaffTextAlignment } from '../../../core/text-alignable/text-alignable';
 
 @Component({
   template: `<daff-hero [layout]="layout" [size]="size" [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,

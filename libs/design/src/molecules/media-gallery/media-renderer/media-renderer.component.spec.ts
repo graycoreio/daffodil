@@ -10,6 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffMediaRendererComponent } from './media-renderer.component';
 import { DaffArticleComponent } from '../../article/public_api';
 import { DaffCardComponent } from '../../card/public_api';
 import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
@@ -17,7 +18,6 @@ import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
-import { DaffMediaRendererComponent } from './media-renderer.component';
 
 @Component({
   selector: 'daff-mock-thumbnail1',

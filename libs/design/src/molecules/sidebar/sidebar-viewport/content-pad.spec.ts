@@ -12,8 +12,8 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { sidebarViewportContentPadding } from './content-pad';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   template: `

@@ -12,6 +12,7 @@ import {
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import { ShippingContainer } from './shipping.component';
 import {
   DaffUpdateShippingAddress,
   DaffSelectShippingOption,
@@ -21,7 +22,6 @@ import {
   selectShippingOptionId,
   selectIsShippingAddressValid,
 } from '../selectors/shipping.selectors';
-import { ShippingContainer } from './shipping.component';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;

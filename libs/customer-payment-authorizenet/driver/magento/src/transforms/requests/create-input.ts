@@ -1,9 +1,9 @@
 import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
-import { DaffCustomerPaymentAuthorizeNetRequest } from '@daffodil/customer-payment-authorizenet';
 import { magentoCustomerAddressInputTransform } from '@daffodil/customer/driver/magento';
+import { DaffCustomerPaymentAuthorizeNetRequest } from '@daffodil/customer-payment-authorizenet';
 
-import { MagentoTokenBaseCardCreateInput } from '../../models/public_api';
 import { magentoCustomerPaymentAnetCCTypeRequestTransform } from './cc-type';
+import { MagentoTokenBaseCardCreateInput } from '../../models/public_api';
 
 export const magentoCustomerPaymentCreateInputTransform = (payment: DaffCustomerPaymentAuthorizeNetRequest, token: MagentoAuthorizeNetPayment, method: string): MagentoTokenBaseCardCreateInput => ({
   customer_email: payment.data.email,

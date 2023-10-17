@@ -12,12 +12,12 @@ import {
   DaffBase64Service,
   DaffBase64ServiceToken,
 } from '@daffodil/core';
+import { DaffProductPageFacade } from '@daffodil/product/state';
 import {
   DaffProductCompositeSelectionPayload,
   daffProductCompositeBuildSelectionPayload,
 } from '@daffodil/product-composite';
 import { DaffCompositeProductFacade } from '@daffodil/product-composite/state';
-import { DaffProductPageFacade } from '@daffodil/product/state';
 
 import {
   DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG,

@@ -4,8 +4,8 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { Constructor } from '../constructor/constructor';
 import { DaffTextAlignment } from './text-alignable';
+import { Constructor } from '../constructor/constructor';
 
 interface HasElementRef {
   _elementRef: ElementRef;

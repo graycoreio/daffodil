@@ -15,12 +15,12 @@ import {
 import { DaffAuthResetPasswordInfoFactory } from '@daffodil/auth/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffAuthResetPasswordFacade } from './facade';
 import {
   DaffResetPasswordFailure,
   DaffResetPasswordLanding,
   DaffResetPasswordSuccess,
 } from '../../public_api';
-import { DaffAuthResetPasswordFacade } from './facade';
 
 describe('DaffAuthResetPasswordFacade', () => {
   let store: Store<any>;

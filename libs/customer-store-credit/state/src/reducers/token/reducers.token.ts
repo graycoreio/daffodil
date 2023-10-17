@@ -11,9 +11,9 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 
+import { DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 import { DaffCustomerStoreCreditReducersState } from '../reducers.interface';
 import { daffCustomerStoreCreditReducer } from '../store-credit/public_api';
-import { DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil customer reducers.

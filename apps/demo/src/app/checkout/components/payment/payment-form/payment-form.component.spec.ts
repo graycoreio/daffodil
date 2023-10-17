@@ -23,11 +23,11 @@ import {
 import { PaymentInfo } from '@daffodil/checkout';
 import { DaffAddress } from '@daffodil/core';
 
+import { PaymentFormComponent } from './payment-form.component';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
-import { PaymentFormComponent } from './payment-form.component';
 
 @Component({
   template: `

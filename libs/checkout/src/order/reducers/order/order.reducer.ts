@@ -1,8 +1,8 @@
+import { DaffOrderReducerState } from './order-reducer.interface';
 import {
   DaffOrderActions,
   DaffOrderActionTypes,
 } from '../../actions/order.actions';
-import { DaffOrderReducerState } from './order-reducer.interface';
 
 /**
  * @deprecated

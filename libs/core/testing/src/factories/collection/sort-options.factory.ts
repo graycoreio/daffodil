@@ -6,8 +6,8 @@ import {
   DaffSortOptions,
 } from '@daffodil/core';
 
-import { DaffModelFactory } from '../factory';
 import { DaffSortOptionFactory } from './sort-option.factory';
+import { DaffModelFactory } from '../factory';
 
 class MockDaffSortOptions implements DaffSortOptions {
   options = this.createOptions();

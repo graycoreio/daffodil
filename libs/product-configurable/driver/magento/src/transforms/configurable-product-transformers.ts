@@ -4,16 +4,16 @@ import {
   DaffProduct,
 } from '@daffodil/product';
 import {
+  MagentoProduct,
+  MagentoProductStockStatusEnum,
+} from '@daffodil/product/driver/magento';
+import {
   DaffConfigurableProduct,
   DaffConfigurableProductAttribute,
   DaffConfigurableProductOptionValue,
   DaffConfigurableProductVariant,
   DaffProductVariantAttributesDictionary,
 } from '@daffodil/product-configurable';
-import {
-  MagentoProduct,
-  MagentoProductStockStatusEnum,
-} from '@daffodil/product/driver/magento';
 
 import {
   MagentoConfigurableAttributeOption,

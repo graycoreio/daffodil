@@ -10,12 +10,12 @@ import {
   DaffProductTypeEnum,
   DaffProduct,
 } from '@daffodil/product';
+import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 import {
   DaffConfigurableProductVariant,
   DaffConfigurableProduct,
   DaffConfigurableProductAttribute,
 } from '@daffodil/product-configurable';
-import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 
 import { DaffConfigurableProductEntityAttribute } from '../../reducers/configurable-product-entities/configurable-product-entity';
 import { DaffConfigurableProductStateRootSlice } from '../../reducers/configurable-product-reducers-state.interface';

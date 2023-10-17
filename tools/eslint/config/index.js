@@ -11,6 +11,7 @@ module.exports = {
     'plugin:jasmine/recommended',
   ],
   rules: {
+    'jsdoc/newline-after-description': 'off',
     'prefer-arrow/prefer-arrow-functions': [
       'error',
       {

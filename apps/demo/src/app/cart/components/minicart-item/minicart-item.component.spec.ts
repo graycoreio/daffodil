@@ -12,8 +12,8 @@ import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
-import { CartItemComponent } from '../cart-item/cart-item.component';
 import { MiniCartItemComponent } from './minicart-item.component';
+import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({ template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>' })
 class WrapperComponent {

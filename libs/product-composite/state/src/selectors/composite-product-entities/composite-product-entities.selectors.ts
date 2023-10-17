@@ -12,12 +12,12 @@ import {
   DaffProduct,
   DaffProductTypeEnum,
 } from '@daffodil/product';
+import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 import {
   DaffCompositeProductItemOption,
   DaffCompositeProductItem,
   DaffCompositeProduct,
 } from '@daffodil/product-composite';
-import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from '../../reducers/composite-product-entities/composite-product-entities-reducer-adapter';
 import { DaffCompositeProductEntity } from '../../reducers/composite-product-entities/composite-product-entity';

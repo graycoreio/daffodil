@@ -2,13 +2,13 @@ import { EntityState } from '@ngrx/entity';
 
 import { daffProductEntitiesAdapter } from '@daffodil/product/state';
 import {
-  DaffSearchProductResult,
-  DAFF_SEARCH_PRODUCT_RESULT_KIND,
-} from '@daffodil/search-product';
-import {
   DaffSearchActions,
   DaffSearchActionTypes,
 } from '@daffodil/search/state';
+import {
+  DaffSearchProductResult,
+  DAFF_SEARCH_PRODUCT_RESULT_KIND,
+} from '@daffodil/search-product';
 
 /**
  * Reducer function that catches actions and changes/overwrites search entities state.

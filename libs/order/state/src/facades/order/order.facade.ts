@@ -16,10 +16,10 @@ import {
   DaffOrderTotal,
 } from '@daffodil/order';
 
+import { DaffOrderFacadeInterface } from './order-facade.interface';
 import { DaffOrderStateRootSlice } from '../../reducers/public_api';
 import { DaffOrderEntitySelectors } from '../../selectors/order-entities.selector';
 import { getDaffOrderSelectors } from '../../selectors/public_api';
-import { DaffOrderFacadeInterface } from './order-facade.interface';
 
 /**
  * @inheritdoc

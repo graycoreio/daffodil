@@ -32,8 +32,8 @@ import {
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 
-import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list.component';
 import { SidebarContainer } from './sidebar.component';
+import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list.component';
 
 @Component({ template: '<demo-sidebar></demo-sidebar>' })
 class WrapperComponent {}

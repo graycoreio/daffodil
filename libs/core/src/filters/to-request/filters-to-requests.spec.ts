@@ -22,9 +22,9 @@ import {
   DaffFilterFactory,
 } from '@daffodil/core/testing';
 
+import { daffFiltersToRequests } from './filters-to-requests';
 import { daffFilterEqualOptionArrayToDict } from '../type/equal/public_api';
 import { daffFilterRangePairArrayToDict } from '../type/range/public_api';
-import { daffFiltersToRequests } from './filters-to-requests';
 
 describe('@daffodil/core | filters | daffFiltersToRequests', () => {
   let equalFilterFactory: DaffFilterEqualFactory;

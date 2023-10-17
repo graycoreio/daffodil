@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffUpsellProductsFacadeInterface } from './upsell-product-facade.interface';
 import { DaffUpsellProductStateRootSlice } from '../reducers/reducers-state.interface';
 import { getDaffUpsellProductsSelectors } from '../selectors/public_api';
-import { DaffUpsellProductsFacadeInterface } from './upsell-product-facade.interface';
 
 /**
  * @inheritdoc

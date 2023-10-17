@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 import { DaffDefaultProductFactory } from '@daffodil/product/testing';
-import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
 import { DaffSearchTestingModule } from '@daffodil/search/testing';
+import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
 
 import { DaffSearchProductInMemoryBackendService } from './search.service';
 

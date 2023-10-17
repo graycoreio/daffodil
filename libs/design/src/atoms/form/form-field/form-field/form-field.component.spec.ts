@@ -12,11 +12,11 @@ import {
 import { By } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { DaffFormFieldComponent } from './form-field.component';
 import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
 import { DaffInputModule } from '../../input/public_api';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
-import { DaffFormFieldComponent } from './form-field.component';
 
 
 @Component({ template: `

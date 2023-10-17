@@ -2,13 +2,13 @@ import { Observable } from 'rxjs';
 
 import { DaffSearchResultCollection } from '@daffodil/search';
 import {
-  DaffSearchProductResult,
-  DAFF_SEARCH_PRODUCT_RESULT_KIND,
-} from '@daffodil/search-product';
-import {
   DaffSearchDriverKindedInterface,
   DaffSearchDriverOptions,
 } from '@daffodil/search/driver';
+import {
+  DaffSearchProductResult,
+  DAFF_SEARCH_PRODUCT_RESULT_KIND,
+} from '@daffodil/search-product';
 
 import { DaffSearchProductDriverOptions } from './options.interface';
 import { DaffSearchProductDriverResponse } from './response.interface';

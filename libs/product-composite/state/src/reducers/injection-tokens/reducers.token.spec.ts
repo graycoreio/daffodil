@@ -4,16 +4,16 @@ import {
   combineReducers,
 } from '@ngrx/store';
 
+import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   DaffCompositeProductReducersState,
   daffProductCompositeProvideExtraReducers,
 } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
-import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 
-import { daffCompositeProductAppliedOptionsEntitiesAdapter } from '../composite-product-entities/composite-product-entities-reducer-adapter';
 import { DAFF_PRODUCT_COMPOSITE_REDUCERS } from './reducers.token';
+import { daffCompositeProductAppliedOptionsEntitiesAdapter } from '../composite-product-entities/composite-product-entities-reducer-adapter';
 
 describe('daffProductCompositeProvideExtraReducers', () => {
   let productFactory: DaffCompositeProductFactory;

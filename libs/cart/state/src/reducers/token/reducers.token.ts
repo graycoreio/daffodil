@@ -14,9 +14,9 @@ import {
 } from '@daffodil/cart';
 import { daffComposeReducers } from '@daffodil/core/state';
 
+import { DAFF_CART_EXTRA_REDUCERS } from './extra.token';
 import { daffCartReducers } from '../cart-reducers';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
-import { DAFF_CART_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil cart reducers.

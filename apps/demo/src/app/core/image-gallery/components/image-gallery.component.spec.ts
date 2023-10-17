@@ -13,9 +13,9 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffImageGalleryModule } from '@daffodil/design';
 
+import { ImageGalleryComponent } from './image-gallery.component';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 import * as fromDemoImageGallery from '../reducers';
-import { ImageGalleryComponent } from './image-gallery.component';
 
 
 const stubImages = [

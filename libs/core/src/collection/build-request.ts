@@ -1,6 +1,6 @@
-import { daffFiltersToRequests } from '../filters/public_api';
 import { DaffCollectionMetadata } from './metadata.interface';
 import { DaffCollectionRequest } from './request.interface';
+import { daffFiltersToRequests } from '../filters/public_api';
 
 /**
  * Builds a {@link DaffCollectionRequest} from {@link DaffCollectionMetadata}.

@@ -14,8 +14,8 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffRadioModule } from '../radio/radio.module';
 import { DaffRadioSetComponent } from './radio-set.component';
+import { DaffRadioModule } from '../radio/radio.module';
 
 @Component({
   template: `

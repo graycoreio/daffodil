@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 
 import { DaffCustomerAddress } from '@daffodil/customer';
 
+import { DaffCustomerAddressPageFacadeInterface } from './interface';
 import { DaffCustomerAddressEntity } from '../../models/public_api';
 import {
   daffCustomerAddressEntitiesAdapter,
@@ -18,7 +19,6 @@ import {
   daffCustomerAddressGetSelectors,
   DaffCustomerAddressSelectors,
 } from '../../selectors/public_api';
-import { DaffCustomerAddressPageFacadeInterface } from './interface';
 
 // TODO: address entities?
 

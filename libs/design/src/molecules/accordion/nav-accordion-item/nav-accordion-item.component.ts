@@ -58,7 +58,7 @@ export class DaffNavAccordionItemComponent implements OnInit {
   @Input() initiallyActive: boolean;
 
   @ContentChildren(DaffNavAccordionItemComponent, { descendants: true })
-  _navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
+    _navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
 
   /**
    * @docs-private

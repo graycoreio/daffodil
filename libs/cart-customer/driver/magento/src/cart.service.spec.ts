@@ -14,10 +14,6 @@ import {
   DaffCartItem,
 } from '@daffodil/cart';
 import {
-  getCustomerCart,
-  MagentoGetCustomerCartResponse,
-} from '@daffodil/cart-customer/driver/magento';
-import {
   DaffCartDriverErrorCodes,
   DaffCartNotFoundError,
   DaffProductOutOfStockError,
@@ -36,6 +32,10 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import {
+  getCustomerCart,
+  MagentoGetCustomerCartResponse,
+} from '@daffodil/cart-customer/driver/magento';
 import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartCustomerService } from './cart.service';

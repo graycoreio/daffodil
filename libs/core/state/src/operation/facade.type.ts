@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '../store/facade';
 import { DaffOperationState } from './state';
+import { DaffStoreFacade } from '../store/facade';
 
 /**
  * A facade for an operation state.

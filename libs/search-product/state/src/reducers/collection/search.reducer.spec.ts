@@ -1,4 +1,8 @@
 import {
+  daffSearchInitialState as initialState,
+  DaffSearchReducerState,
+} from '@daffodil/search/state';
+import {
   DaffSearchProductCollectionApplyFilters,
   DaffSearchProductCollectionReplaceFilters,
   DaffSearchProductCollectionRemoveFilters,
@@ -8,10 +12,6 @@ import {
   DaffSearchProductCollectionChangePageSize,
   DaffSearchProductCollectionChangeSortingOption,
 } from '@daffodil/search-product/state';
-import {
-  daffSearchInitialState as initialState,
-  DaffSearchReducerState,
-} from '@daffodil/search/state';
 
 import { daffSearchProductCollectionSearchReducer as reducer } from './search.reducer';
 

@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import { DaffAuthorizeNetPaymentDriver } from '@daffodil/authorizenet/driver';
-import { DaffCustomerPaymentAuthorizeNetPaymentDriver } from '@daffodil/customer-payment-authorizenet/driver';
 import { DaffCustomerPaymentDriver } from '@daffodil/customer-payment/driver';
+import { DaffCustomerPaymentAuthorizeNetPaymentDriver } from '@daffodil/customer-payment-authorizenet/driver';
 
 import { DaffCustomerPaymentAuthorizeNetMagentoService } from './customer-payment.service';
 import { DaffCustomerPaymentAuthorizeNetMagentoPaymentService } from './payment.service';

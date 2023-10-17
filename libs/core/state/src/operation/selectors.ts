@@ -4,8 +4,8 @@ import {
   Selector,
 } from '@ngrx/store';
 
-import { DaffState } from '../states/public_api';
 import { DaffOperationState } from './state';
+import { DaffState } from '../states/public_api';
 
 /**
  * Selectors for an operation state.

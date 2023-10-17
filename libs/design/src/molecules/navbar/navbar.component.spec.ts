@@ -9,8 +9,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '../../core/colorable/public_api';
 import { DaffNavbarComponent } from './navbar.component';
+import { DaffPalette } from '../../core/colorable/public_api';
 
 @Component({ template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>' })
 class WrapperComponent {

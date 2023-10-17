@@ -6,8 +6,8 @@ import {
 
 import { DaffAddress } from '@daffodil/core';
 
-import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
 import { DaffShippingReducerState } from '../reducers/shipping/shipping-reducer.interface';
+import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';
 
 /**
  * Shipping Feature State

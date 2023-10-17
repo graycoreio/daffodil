@@ -26,14 +26,14 @@ import {
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import { DAFF_SEARCH_ERROR_MATCHER } from '@daffodil/search';
-import { DaffSearchProductResult } from '@daffodil/search-product';
-import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
 import { DaffSearchDriver } from '@daffodil/search/driver';
 import {
   DaffSearchPageFacade,
   DaffSearchLoadFailure,
   DaffSearchLoadSuccess,
 } from '@daffodil/search/state';
+import { DaffSearchProductResult } from '@daffodil/search-product';
+import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
 
 import { DaffSearchProductCollectionActionTypes } from '../actions/product-collection.actions';
 import { DaffSearchProductCollectionFacade } from '../facades/public_api';

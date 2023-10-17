@@ -11,6 +11,7 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffCategoryPageMetadataReducerState } from './state.interface';
 import {
   DaffCategoryPageProductCollectionActionTypes,
   DaffCategoryPageProductCollectionActions,
@@ -18,7 +19,6 @@ import {
 import { DaffCategoryPageActions } from '../../actions/category-page.actions';
 import { DaffCategoryPageActionTypes } from '../../actions/category-page.actions';
 import { DaffCategoryActions } from '../../actions/category.actions';
-import { DaffCategoryPageMetadataReducerState } from './state.interface';
 
 export const daffCategoryPageMetadataInitialState: DaffCategoryPageMetadataReducerState = {
   ...daffCollectionReducerInitialState,

@@ -4,11 +4,11 @@ import {
   DaffCustomerPaymentRequest,
 } from '@daffodil/customer-payment';
 
+import { daffCustomerPaymentEntitiesAdapter } from './adapter';
 import {
   DaffCustomerPaymentActions,
   DaffCustomerPaymentActionTypes,
 } from '../../actions/payment.actions';
-import { daffCustomerPaymentEntitiesAdapter } from './adapter';
 
 
 /**

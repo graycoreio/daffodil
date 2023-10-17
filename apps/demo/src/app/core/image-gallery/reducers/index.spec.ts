@@ -9,8 +9,8 @@ import {
   select,
 } from '@ngrx/store';
 
-import { SetSelectedImageState } from '../actions/image-gallery.actions';
 import * as fromDemoImageGallery from './index';
+import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
 describe('selectImageGalleryState', () => {
 

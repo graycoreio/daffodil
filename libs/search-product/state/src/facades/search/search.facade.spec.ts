@@ -14,6 +14,12 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductTestingModule } from '@daffodil/product/testing';
 import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import { DaffSearchDriverResponse } from '@daffodil/search/driver';
+import {
+  DaffSearchLoadSuccess,
+  daffSearchReducers,
+  DAFF_SEARCH_STORE_FEATURE_KEY,
+} from '@daffodil/search/state';
 import { DaffSearchProductResult } from '@daffodil/search-product';
 import {
   daffSearchProductGetPageSelectors,
@@ -22,12 +28,6 @@ import {
   DAFF_SEARCH_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/search-product/state';
 import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
-import { DaffSearchDriverResponse } from '@daffodil/search/driver';
-import {
-  DaffSearchLoadSuccess,
-  daffSearchReducers,
-  DAFF_SEARCH_STORE_FEATURE_KEY,
-} from '@daffodil/search/state';
 
 import { DaffSearchProductFacade } from './search.facade';
 

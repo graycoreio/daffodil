@@ -19,11 +19,11 @@ import {
   Subject,
 } from 'rxjs';
 
+import { DaffQuantityInputComponent } from './quantity-input.component';
 import {
   DaffInputModule,
   DaffInputComponent,
 } from '../../input/public_api';
-import { DaffQuantityInputComponent } from './quantity-input.component';
 
 @Component({
   template: `

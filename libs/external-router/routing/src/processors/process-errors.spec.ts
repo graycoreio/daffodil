@@ -1,10 +1,10 @@
 
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 
+import { processErrors } from './process-errors';
 import { DaffExternalRouterClientError } from '../errors/client-error';
 import { DaffExternalRouterNotFoundError } from '../errors/not-found-error';
 import { DaffExternalRouterServerError } from '../errors/server-error';
-import { processErrors } from './process-errors';
 
 describe('@daffodil/external-router/driver/magento | processErrors', () => {
 

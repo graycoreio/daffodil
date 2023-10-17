@@ -7,13 +7,13 @@ import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import {
-  DaffUpdateShippingAddress,
-  DaffSelectShippingOption,
-} from '../../actions/shipping.actions';
-import {
   initialState,
   daffShippingReducer,
 } from './shipping.reducer';
+import {
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+} from '../../actions/shipping.actions';
 
 describe('Shipping | Shipping Reducer', () => {
 

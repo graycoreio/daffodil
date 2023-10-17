@@ -6,10 +6,10 @@ import {
   DaffArticleModule,
 } from '@daffodil/design';
 
-import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandPaginatorRoutingModule } from './paginator-routing.module';
 import { DesignLandPaginatorComponent } from './paginator.component';
+import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [

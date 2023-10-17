@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { ShippingComponent } from './shipping.component';
 import { ShippingFormModule } from '../shipping-form/shipping-form.module';
 import { ShippingSummaryModule } from '../shipping-summary/shipping-summary.module';
-import { ShippingComponent } from './shipping.component';
 
 @NgModule({
   imports: [

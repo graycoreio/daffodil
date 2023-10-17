@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design';
 
-import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 import { DaffioDocViewerComponent } from './doc-viewer.component';
+import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @NgModule({
   declarations: [

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { DaffCartAddress } from '@daffodil/cart';
 
-import { MagentoShippingAddressInput } from '../../models/requests/shipping-address';
 import { DaffMagentoCartAddressInputTransformer } from './cart-address.service';
+import { MagentoShippingAddressInput } from '../../models/requests/shipping-address';
 
 @Injectable({
   providedIn: 'root',

@@ -43,8 +43,8 @@ import {
   DaffDriverHttpClientCacheServiceInterface,
 } from '@daffodil/driver';
 
-import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
 import { DaffAuthEffects } from './auth.effects';
+import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
 
 const getScheduler = () => new TestScheduler((actual, expected) => {
   expect(actual).toEqual(expected);

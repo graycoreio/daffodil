@@ -31,8 +31,8 @@ import {
   daffTransformErrorToStateError,
 } from '@daffodil/core/state';
 
-import { DaffCartLoadPartialSuccess } from '../../actions/public_api';
 import { cartReducer } from './cart.reducer';
+import { DaffCartLoadPartialSuccess } from '../../actions/public_api';
 
 describe('@daffodil/cart/state | cartReducer', () => {
   let cartFactory: DaffCartFactory;

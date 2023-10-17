@@ -14,9 +14,9 @@ import {
   MockDaffProductGridFacade,
 } from '@daffodil/product/state/testing';
 
+import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
-import { ProductGridViewComponent } from './product-grid-view.component';
 
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;

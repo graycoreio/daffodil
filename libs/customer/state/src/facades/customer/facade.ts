@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 
 import { DaffCustomer } from '@daffodil/customer';
 
+import { DaffCustomerPageFacadeInterface } from './interface';
 import {
   DaffCustomerReducerState,
   DaffCustomerStateRootSlice,
 } from '../../reducers/public_api';
 import { daffCustomerGetSelectors } from '../../selectors/public_api';
-import { DaffCustomerPageFacadeInterface } from './interface';
 
 /**
  * @inheritdoc

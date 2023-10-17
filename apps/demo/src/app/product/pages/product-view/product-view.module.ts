@@ -5,9 +5,9 @@ import { DaffCartStateModule } from '@daffodil/cart/state';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffProductStateModule } from '@daffodil/product/state';
 
+import { ProductViewComponent } from './product-view.component';
 import { AddToCartModule } from '../../components/add-to-cart/add-to-cart.module';
 import { ProductComponentModule } from '../../components/product/product.module';
-import { ProductViewComponent } from './product-view.component';
 
 @NgModule({
   imports: [

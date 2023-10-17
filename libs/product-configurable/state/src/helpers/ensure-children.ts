@@ -1,6 +1,6 @@
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import { DaffProductReducersState } from '@daffodil/product/state';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 /**
  * Maps a list of products, ensuring that the configurable products have a list of child variant and attributes.

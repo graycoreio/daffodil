@@ -1,5 +1,5 @@
-import { daffOrderReducers } from './order-reducers';
 import { daffOrderReducer } from './order/order.reducer';
+import { daffOrderReducers } from './order-reducers';
 
 describe('daffOrderReducers', () => {
 

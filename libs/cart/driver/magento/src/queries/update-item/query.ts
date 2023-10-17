@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoUpdateCartItemResponse } from './response.type';
 import { MagentoCartUpdateItemQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const updateCartItem = (extraCartFragments: DocumentNode[] = []) => gql<MagentoUpdateCartItemResponse, MagentoCartUpdateItemQueryVariables>`
   mutation MagentoUpdateCartItem($cartId: String!, $input: CartItemUpdateInput!) {

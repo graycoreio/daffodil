@@ -8,12 +8,12 @@ import {
 } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
-import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 import {
   DaffMediaGallery,
   DaffMediaGalleryRegistry,
 } from './media-gallery.registry';
+import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({})
 export class FakeComponent {}

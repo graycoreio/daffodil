@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { DaffOrder } from '@daffodil/order';
 import { MagentoOrder } from '@daffodil/order/driver/magento/2-4-1';
 
-import { MagentoOrderTestDataFactory } from '../../helpers/public_api';
 import { daffMagentoTransformOrder } from './order';
+import { MagentoOrderTestDataFactory } from '../../helpers/public_api';
 
 describe('@daffodil/order/driver/magento/2-4-1 | daffMagentoTransformOrder', () => {
   let testDataFactory: MagentoOrderTestDataFactory;

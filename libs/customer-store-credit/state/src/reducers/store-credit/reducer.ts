@@ -6,13 +6,13 @@ import {
 } from '@daffodil/core/state';
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 
+import { daffCustomerStoreCreditInitialState } from './initial-state';
+import { DaffCustomerStoreCreditReducerState } from './type';
 import {
   DaffCustomerStoreCreditActions,
   DaffCustomerStoreCreditActionTypes,
   DaffCustomerStoreCreditLoadFailure,
 } from '../../actions/store-credit.actions';
-import { daffCustomerStoreCreditInitialState } from './initial-state';
-import { DaffCustomerStoreCreditReducerState } from './type';
 
 /**
  * The reducer for the customer store credit page state, see {@link DaffCustomerStoreCreditReducerState}.

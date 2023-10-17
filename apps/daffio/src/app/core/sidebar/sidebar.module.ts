@@ -7,9 +7,9 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { DaffioGuidesNavModule } from '../../guides/components/guides-nav/guides-nav.module';
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
+import { DaffioGuidesNavModule } from '../../guides/components/guides-nav/guides-nav.module';
 
 @NgModule({
   imports: [

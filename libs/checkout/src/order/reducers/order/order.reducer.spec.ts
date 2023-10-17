@@ -2,17 +2,17 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
+import { DaffOrderReducerState } from './order-reducer.interface';
+import {
+  initialState,
+  daffOrderReducer,
+} from './order.reducer';
 import { DaffOrder } from '../../../models/order/order';
 import {
   DaffPlaceOrder,
   DaffPlaceOrderSuccess,
   DaffPlaceOrderFailure,
 } from '../../actions/order.actions';
-import { DaffOrderReducerState } from './order-reducer.interface';
-import {
-  initialState,
-  daffOrderReducer,
-} from './order.reducer';
 
 describe('Order | Order Reducer', () => {
 

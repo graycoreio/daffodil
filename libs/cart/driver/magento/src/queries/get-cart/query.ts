@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoGetCartResponse } from './response.type';
 import { MagentoCartGetQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const getCart = (extraCartFragments: DocumentNode[] = []) => gql<MagentoGetCartResponse, MagentoCartGetQueryVariables>`
   query MagentoGetCart($cartId: String!) {

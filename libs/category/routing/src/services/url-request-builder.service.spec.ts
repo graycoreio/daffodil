@@ -23,8 +23,8 @@ import {
   DaffProductRoutingModule,
 } from '@daffodil/product/routing';
 
-import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../injection-tokens/request/builder.token';
 import { DaffCategoryRoutingUrlRequestBuilder } from './url-request-builder.service';
+import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../injection-tokens/request/builder.token';
 
 @Component({ template: '' })
 class TestComponent {}

@@ -1,9 +1,9 @@
 
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 
+import { processRedirects } from './process-redirect';
 import { DaffExternalRouterPermanentRedirectError } from '../errors/permanent-redirect';
 import { DaffExternalRouterTemporaryRedirectError } from '../errors/temporary-redirect';
-import { processRedirects } from './process-redirect';
 
 describe('@daffodil/external-router/driver/magento | processRedirects', () => {
 

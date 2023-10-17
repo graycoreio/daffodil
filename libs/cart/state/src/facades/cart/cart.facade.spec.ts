@@ -77,8 +77,8 @@ import {
 import { DaffState } from '@daffodil/core/state';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 import { DaffCartFacade } from './cart.facade';
+import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 
 describe('DaffCartFacade', () => {
   let store: Store<DaffCartStateRootSlice>;

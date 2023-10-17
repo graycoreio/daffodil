@@ -1,5 +1,5 @@
-import { daffBillingReducers } from './billing-reducers';
 import { daffBillingReducer } from './billing/billing.reducer';
+import { daffBillingReducers } from './billing-reducers';
 
 describe('daffBillingReducers', () => {
 

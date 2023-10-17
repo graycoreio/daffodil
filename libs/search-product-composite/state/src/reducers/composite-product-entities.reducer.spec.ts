@@ -8,9 +8,9 @@ import {
 } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import { DaffSearchLoadSuccess } from '@daffodil/search/state';
 import { daffTransformProductsToSearchResults } from '@daffodil/search-product';
 import { DaffSearchProductCompositeResult } from '@daffodil/search-product-composite';
-import { DaffSearchLoadSuccess } from '@daffodil/search/state';
 
 import { daffSearchProductCompositeEntitiesReducer } from './composite-product-entities.reducer';
 

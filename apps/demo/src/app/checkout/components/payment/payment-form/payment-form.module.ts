@@ -8,9 +8,9 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
+import { PaymentFormComponent } from './payment-form.component';
 import { AddressFormModule } from '../../forms/address-form/address-form.module';
 import { PaymentInfoFormModule } from '../payment-info-form/payment-info-form.module';
-import { PaymentFormComponent } from './payment-form.component';
 
 @NgModule({
   imports: [

@@ -16,11 +16,11 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
+import { DaffProductFacade } from './product.facade';
 import {
   DaffProductPageLoad,
   DaffProductPageLoadSuccess,
 } from '../../actions/product-page.actions';
-import { DaffProductFacade } from './product.facade';
 
 describe('DaffProductFacade', () => {
   let store: Store<DaffProductStateRootSlice>;

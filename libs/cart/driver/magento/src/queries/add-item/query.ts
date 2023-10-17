@@ -6,12 +6,12 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
+import { MagentoAddCartItemResponse } from './response.type';
+import { MagentoCartAddItemQueryVariables } from './variables.type';
 import {
   cartFragment,
   magentoCartUserError,
 } from '../fragments/public_api';
-import { MagentoAddCartItemResponse } from './response.type';
-import { MagentoCartAddItemQueryVariables } from './variables.type';
 
 export const addCartItem = (extraCartFragments: DocumentNode[] = []) => gql<MagentoAddCartItemResponse, MagentoCartAddItemQueryVariables>`
   mutation MagentoAddCartItem($cartId: String!, $input: CartItemInput!) {

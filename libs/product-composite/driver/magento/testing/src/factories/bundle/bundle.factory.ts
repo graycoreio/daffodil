@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { MagentoProductTypeEnum } from '@daffodil/product/driver/magento';
+import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
 import {
   MagentoBundledProduct,
   MagentoBundledProductItem,
 } from '@daffodil/product-composite/driver/magento';
-import { MagentoProductTypeEnum } from '@daffodil/product/driver/magento';
-import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
 
 import { MagentoBundledProductItemFactory } from './bundle-item.factory';
 

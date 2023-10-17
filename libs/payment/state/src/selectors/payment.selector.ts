@@ -5,8 +5,8 @@ import {
 
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffPaymentStateRootSlice } from '../reducers/public_api';
 import { getDaffPaymentReducersStateSelector } from './feature.selector';
+import { DaffPaymentStateRootSlice } from '../reducers/public_api';
 
 /**
  * Selectors for the main part of payment state.

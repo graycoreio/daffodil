@@ -10,12 +10,12 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
+import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 import { DaffGeographyStateRootSlice } from '../../reducers/public_api';
 import {
   getDaffGeographySelectors,
   DaffGeographyAllSelectors,
 } from '../../selectors/public_api';
-import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 
 /**
  * @inheritdoc

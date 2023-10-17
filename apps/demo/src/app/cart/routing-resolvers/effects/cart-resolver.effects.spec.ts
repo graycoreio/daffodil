@@ -22,12 +22,12 @@ import { DaffTestingCartService } from '@daffodil/cart/driver/testing';
 import { daffCartReducers } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
+import { CartResolverEffects } from './cart-resolver.effects';
 import {
   ResolveCart,
   ResolveCartSuccess,
   ResolveCartFailure,
 } from '../actions/cart-resolver.actions';
-import { CartResolverEffects } from './cart-resolver.effects';
 
 describe('CartResolverEffects', () => {
   let actions$: Observable<any>;

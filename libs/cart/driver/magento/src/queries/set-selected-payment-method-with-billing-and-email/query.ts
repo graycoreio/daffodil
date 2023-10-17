@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse } from './response.type';
 import { MagentoCartSetSelectedPaymentMethodWithBillingAndEmailQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const setSelectedPaymentMethodWithBillingAndEmail = (extraCartFragments: DocumentNode[] = []) => gql<MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse, MagentoCartSetSelectedPaymentMethodWithBillingAndEmailQueryVariables>`
   mutation MagentoSetSelectedPaymentMethodWithBillingAndEmail(

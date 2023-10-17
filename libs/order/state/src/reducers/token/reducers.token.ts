@@ -11,11 +11,11 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffOrder } from '@daffodil/order';
 
+import { DAFF_ORDER_EXTRA_REDUCERS } from './extra.token';
+import { daffOrderReducer } from '../order/order.reducer';
 import { daffOrderEntitiesReducer } from '../order-entities/public_api';
 import { DaffOrderReducersState } from '../order-reducers.interface';
-import { daffOrderReducer } from '../order/order.reducer';
 import { daffOrdersCollectionReducer } from '../public_api';
-import { DAFF_ORDER_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil order reducers.

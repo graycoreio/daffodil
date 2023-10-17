@@ -6,13 +6,13 @@ import {
 } from '@daffodil/core/state';
 import { DaffCustomerAddress } from '@daffodil/customer';
 
+import { daffCustomerAddressInitialState } from './initial-state';
+import { DaffCustomerAddressReducerState } from './type';
 import {
   DaffCustomerAddressActions,
   DaffCustomerAddressActionTypes,
   DaffCustomerAddressLoadFailure,
 } from '../../actions/address.actions';
-import { daffCustomerAddressInitialState } from './initial-state';
-import { DaffCustomerAddressReducerState } from './type';
 
 /**
  * The reducer for the customer page state, see {@link DaffCustomerAddressReducerState}.

@@ -5,12 +5,12 @@ import {
   daffStartMutation,
 } from '@daffodil/core/state';
 
+import { daffAuthResetPasswordInitialState } from './initial-state';
+import { DaffAuthResetPasswordReducerState } from './state.interface';
 import {
   DaffAuthResetPasswordActionTypes,
   DaffAuthResetPasswordActions,
 } from '../../actions/public_api';
-import { daffAuthResetPasswordInitialState } from './initial-state';
-import { DaffAuthResetPasswordReducerState } from './state.interface';
 
 export function daffAuthResetPasswordReducer<
   T extends DaffAuthResetPasswordInfo = DaffAuthResetPasswordInfo,

@@ -7,8 +7,8 @@ import { sample } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 
-import { DAFF_PRODUCT_TYPE_FACTORIES } from '../injection-tokens/public_api';
 import { MockProduct } from './default-product.factory';
+import { DAFF_PRODUCT_TYPE_FACTORIES } from '../injection-tokens/public_api';
 
 /**
  * Factory for creating DaffProducts.

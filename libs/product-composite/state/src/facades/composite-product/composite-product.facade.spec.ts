@@ -14,6 +14,11 @@ import {
   daffSubtract,
 } from '@daffodil/core';
 import {
+  DaffProductLoadSuccess,
+  daffProductReducers,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
+} from '@daffodil/product/state';
+import {
   DaffCompositeProduct,
   DaffCompositeConfigurationItem,
 } from '@daffodil/product-composite';
@@ -24,11 +29,6 @@ import {
   DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
-import {
-  DaffProductLoadSuccess,
-  daffProductReducers,
-  DAFF_PRODUCT_STORE_FEATURE_KEY,
-} from '@daffodil/product/state';
 
 import { DaffCompositeProductFacade } from './composite-product.facade';
 

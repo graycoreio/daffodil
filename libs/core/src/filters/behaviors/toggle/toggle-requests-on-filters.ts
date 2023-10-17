@@ -1,10 +1,10 @@
 
 
+import { daffToggleFilter } from './toggle';
 import {
   DaffFilters,
   DaffFilterToggleRequest,
 } from '../../../filterable/public_api';
-import { daffToggleFilter } from './toggle';
 
 /**
  * Toggles the state of the filters (and their options) in the {@link DaffFilters}

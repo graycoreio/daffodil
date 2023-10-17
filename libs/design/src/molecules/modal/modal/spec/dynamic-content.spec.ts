@@ -27,7 +27,7 @@ class WrapperComponent {}
 class DynamicComponent {}
 
 @NgModule({
-    declarations: [DynamicComponent]
+  declarations: [DynamicComponent],
 })
 class DynamicModule{}
 

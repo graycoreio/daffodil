@@ -5,12 +5,12 @@ import {
   daffStartMutation,
 } from '@daffodil/core/state';
 
+import { daffAuthRegisterInitialState } from './register-initial-state';
+import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
 import {
   DaffAuthRegisterActionTypes,
   DaffAuthRegisterActions,
 } from '../../actions/public_api';
-import { daffAuthRegisterInitialState } from './register-initial-state';
-import { DaffAuthRegisterReducerState } from './register-reducer-state.interface';
 
 export function daffAuthRegisterReducer<
   T extends DaffAccountRegistration,

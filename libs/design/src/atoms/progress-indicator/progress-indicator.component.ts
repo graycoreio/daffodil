@@ -10,12 +10,12 @@ import {
   HostBinding,
 } from '@angular/core';
 
+import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
 import {
   daffColorMixin,
   DaffColorable,
   DaffPalette,
 } from '../../core/colorable/public_api';
-import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin

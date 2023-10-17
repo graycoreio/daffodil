@@ -1,10 +1,10 @@
 
 
+import { daffApplyFilter } from './apply-filter';
 import {
   DaffFilterRequest,
   DaffFilters,
 } from '../../../filterable/public_api';
-import { daffApplyFilter } from './apply-filter';
 
 /**
  * Applies filters from a {@link DaffFilterRequest} to a dictionary

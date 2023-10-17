@@ -6,11 +6,11 @@ import {
 
 import { DaffSeoMetaDefinition } from '@daffodil/seo';
 
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
 import {
   daffProvideMetaRouterUpdates,
   DAFF_SEO_META_ROUTER_UPDATES,
 } from './updates.token';
+import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
 
 describe('daffProvideMetaUpdates', () => {
   let updates: DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>[];

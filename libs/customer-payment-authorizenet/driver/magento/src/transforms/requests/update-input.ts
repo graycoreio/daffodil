@@ -1,10 +1,10 @@
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffCustomerAddress } from '@daffodil/customer';
-import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
 import { magentoCustomerAddressInputTransform } from '@daffodil/customer/driver/magento';
+import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
 
-import { MagentoTokenBaseCardUpdateInput } from '../../models/public_api';
 import { magentoCustomerPaymentAnetCCTypeRequestTransform } from './cc-type';
+import { MagentoTokenBaseCardUpdateInput } from '../../models/public_api';
 
 export const magentoCustomerPaymentUpdateInputTransform = (payment: Partial<DaffCustomerPaymentAuthorizeNet> & DaffIdentifiable, method: string): MagentoTokenBaseCardUpdateInput => ({
   hash: payment.id,

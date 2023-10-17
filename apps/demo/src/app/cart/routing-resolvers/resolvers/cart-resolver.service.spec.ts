@@ -20,12 +20,12 @@ import {
 }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
+import { CartResolver } from './cart-resolver.service';
 import {
   ResolveCart,
   ResolveCartSuccess,
   ResolveCartFailure,
 } from '../actions/cart-resolver.actions';
-import { CartResolver } from './cart-resolver.service';
 
 describe('CartResolver', () => {
   const actions$: Observable<any> = null;

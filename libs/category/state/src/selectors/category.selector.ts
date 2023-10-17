@@ -12,7 +12,6 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { getDaffProductSelectors } from '@daffodil/product/state';
 
-import { DaffCategoryStateRootSlice } from '../reducers/public_api';
 import { DaffCategoryEntitiesMemoizedSelectors } from './category-entities/category-entities.selector';
 import { getDaffCategoryEntitiesSelectors } from './category-entities/category-entities.selector';
 import {
@@ -27,6 +26,7 @@ import {
   DaffCategoryPageProductCollectionSelectors,
   getCategoryProductCollectionSelectors,
 } from './collection/selectors';
+import { DaffCategoryStateRootSlice } from '../reducers/public_api';
 
 /**
  * An interface for selectors that combine category metadata and category entities selectors.

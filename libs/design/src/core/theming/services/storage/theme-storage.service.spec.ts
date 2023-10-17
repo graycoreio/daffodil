@@ -7,11 +7,11 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffPersistenceService } from '@daffodil/core';
 
-import { DaffTheme } from '../../types/theme';
 import {
   DaffThemeStorageService,
   THEME_STORAGE_KEY,
 } from './theme-storage.service';
+import { DaffTheme } from '../../types/theme';
 
 class DaffMemoryStorageService implements DaffPersistenceService {
   memory: { [x: string]: any } = {};

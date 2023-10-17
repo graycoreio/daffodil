@@ -13,10 +13,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
 
-import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { DaffioAppComponent } from './app.component';
 import { TemplateModule } from './core/template/template.module';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [

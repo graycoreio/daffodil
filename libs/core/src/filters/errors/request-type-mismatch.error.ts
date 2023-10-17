@@ -1,8 +1,8 @@
+import { DaffFilterErrorCodes } from './codes.enum';
 import {
   DaffError,
   DaffInheritableError,
 } from '../../errors/public_api';
-import { DaffFilterErrorCodes } from './codes.enum';
 
 /**
  * An error thrown when an operation targeting a filter matching one type

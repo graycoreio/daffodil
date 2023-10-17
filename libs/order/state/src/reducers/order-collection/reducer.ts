@@ -8,13 +8,13 @@ import {
 } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 
+import { DaffOrderCollectionReducerState } from './state.interface';
 import {
   DaffOrderActionTypes,
   DaffOrderActions,
   DaffOrderCollectionActions,
   DaffOrderCollectionActionTypes,
 } from '../../actions/public_api';
-import { DaffOrderCollectionReducerState } from './state.interface';
 
 /**
  * Handles the reduction of order actions into the collection metadata state.

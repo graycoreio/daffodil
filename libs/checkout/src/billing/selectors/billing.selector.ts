@@ -7,8 +7,8 @@ import {
 import { DaffAddress } from '@daffodil/core';
 
 import { PaymentInfo } from '../../models/payment/payment-info';
-import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
 import { DaffBillingReducerState } from '../reducers/billing/billing-reducer.interface';
+import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
 
 /**
  * Billing Feature State

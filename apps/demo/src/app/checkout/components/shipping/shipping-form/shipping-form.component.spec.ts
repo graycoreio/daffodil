@@ -17,9 +17,9 @@ import { By } from '@angular/platform-browser';
 
 import { DaffAddress } from '@daffodil/core';
 
+import { ShippingFormComponent } from './shipping-form.component';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
-import { ShippingFormComponent } from './shipping-form.component';
 
 @Component({
   template: `

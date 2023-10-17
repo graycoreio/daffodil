@@ -6,14 +6,14 @@ import {
 } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 
+import { daffOrderInitialState } from './order-initial-state';
+import { DaffOrderReducerState } from './order-reducer.interface';
 import {
   DaffOrderActions,
   DaffOrderActionTypes,
   DaffOrderCollectionActions,
   DaffOrderCollectionActionTypes,
 } from '../../actions/public_api';
-import { daffOrderInitialState } from './order-initial-state';
-import { DaffOrderReducerState } from './order-reducer.interface';
 
 export function daffOrderReducer<T extends DaffOrder = DaffOrder>(
   state = daffOrderInitialState,

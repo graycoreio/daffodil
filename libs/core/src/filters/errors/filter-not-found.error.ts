@@ -1,8 +1,8 @@
+import { DaffFilterErrorCodes } from './codes.enum';
 import {
   DaffError,
   DaffInheritableError,
 } from '../../errors/public_api';
-import { DaffFilterErrorCodes } from './codes.enum';
 
 /**
  * An error thrown when a lookup for a filter.

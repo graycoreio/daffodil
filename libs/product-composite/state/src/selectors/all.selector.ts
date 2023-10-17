@@ -1,13 +1,13 @@
 import { DaffProduct } from '@daffodil/product';
 
 import {
-  DaffCompositeProductEntitiesMemoizedSelectors,
-  getDaffCompositeProductEntitiesSelectors,
-} from './composite-product-entities/composite-product-entities.selectors';
-import {
   DaffCompositeProductMemoizedSelectors,
   getDaffCompositeProductPriceSelectors,
 } from './composite-product/composite-product.selectors';
+import {
+  DaffCompositeProductEntitiesMemoizedSelectors,
+  getDaffCompositeProductEntitiesSelectors,
+} from './composite-product-entities/composite-product-entities.selectors';
 
 /**
  * An interface for all selectors in the composite product feature area.

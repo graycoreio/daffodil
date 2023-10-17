@@ -6,9 +6,9 @@ import {
   daffBuildFragmentNameSpread,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoRemoveAllCouponsResponse } from './response.type';
 import { MagentoCartRemoveAllCouponsQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const removeAllCoupons = (extraCartFragments: DocumentNode[] = []) => gql<MagentoRemoveAllCouponsResponse, MagentoCartRemoveAllCouponsQueryVariables>`
   mutation MagentoRemoveAllCoupons($cartId: String!) {

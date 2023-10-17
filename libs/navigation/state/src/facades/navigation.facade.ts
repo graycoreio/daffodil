@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
+import { DaffNavigationFacadeInterface } from './navigation-facade.interface';
 import { DaffNavigationStateRootSlice } from '../reducers/navigation-reducers.interface';
 import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
-import { DaffNavigationFacadeInterface } from './navigation-facade.interface';
 
 /**
  * @inheritdoc

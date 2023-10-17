@@ -5,15 +5,6 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 
-import {
-  DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS,
-  DAFF_CART_MAGENTO_CART_TRANSFORMS,
-} from '../../injection-tokens/public_api';
-import {
-  DaffCartMagentoCartItemTransform,
-  DaffCartMagentoCartTransform,
-} from '../../interfaces/public_api';
-import { MagentoCart } from '../../models/responses/cart';
 import { DaffMagentoBillingAddressTransformer } from './billing-address.service';
 import { daffMagentoCouponTransform } from './cart-coupon';
 import {
@@ -25,6 +16,15 @@ import { DaffMagentoCartShippingInformationTransformer } from './cart-shipping-i
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 import { transformCartTotals } from './cart-totals-transformer';
 import { DaffMagentoShippingAddressTransformer } from './shipping-address.service';
+import {
+  DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS,
+  DAFF_CART_MAGENTO_CART_TRANSFORMS,
+} from '../../injection-tokens/public_api';
+import {
+  DaffCartMagentoCartItemTransform,
+  DaffCartMagentoCartTransform,
+} from '../../interfaces/public_api';
+import { MagentoCart } from '../../models/responses/cart';
 
 /**
  * Transforms magento carts into an object usable by daffodil.

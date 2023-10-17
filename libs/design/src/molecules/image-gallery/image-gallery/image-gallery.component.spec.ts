@@ -6,9 +6,9 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffImageGalleryComponent } from './image-gallery.component';
 import { DaffImageListComponent } from '../../image-list/public_api';
 import { DaffGalleryImageComponent } from '../gallery-image/gallery-image.component';
-import { DaffImageGalleryComponent } from './image-gallery.component';
 
 @Component({ template:
   `<daff-image-gallery>

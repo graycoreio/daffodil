@@ -1,8 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 
+import { daffCategoryReducer } from './category/category.reducer';
 import { daffCategoryEntitiesReducer } from './category-entities/category-entities.reducer';
 import { DaffCategoryReducersState } from './category-reducers.interface';
-import { daffCategoryReducer } from './category/category.reducer';
 import { daffCategoryPageMetadataReducer } from './page-metadata/reducer';
 
 /**

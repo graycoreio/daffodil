@@ -1,10 +1,10 @@
 import { DaffCart } from '@daffodil/cart';
 
+import { DaffCartResolveState } from './cart-resolve-state.enum';
 import { DaffCartActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
 import { daffCartReducerInitialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
-import { DaffCartResolveState } from './cart-resolve-state.enum';
 
 export function cartResolveReducer<T extends DaffCart = DaffCart>(
   state = daffCartReducerInitialState,

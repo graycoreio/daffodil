@@ -4,9 +4,9 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { Constructor } from '../constructor/constructor';
 import { colorInPalette } from './color-in-palette';
 import { DaffPalette } from './colorable';
+import { Constructor } from '../constructor/constructor';
 
 interface HasElementRef {
   _elementRef: ElementRef;

@@ -11,9 +11,9 @@ import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 
+import { DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 import { DaffCartStoreCreditReducersState } from '../reducers.interface';
 import { daffCustomerStoreCreditReducer } from '../store-credit/public_api';
-import { DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil cart reducers.

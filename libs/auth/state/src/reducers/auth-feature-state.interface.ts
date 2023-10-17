@@ -1,5 +1,5 @@
-import { DAFF_AUTH_STORE_FEATURE_KEY } from './auth-store-feature-key';
 import { DaffAuthReducerState } from './auth/public_api';
+import { DAFF_AUTH_STORE_FEATURE_KEY } from './auth-store-feature-key';
 import { DaffAuthLoginReducerState } from './login/public_api';
 import { DaffAuthRegisterReducerState } from './register/public_api';
 import { DaffAuthResetPasswordReducerState } from './reset-password/public_api';

@@ -19,9 +19,9 @@ import {
   DaffCompositeProductItem,
 } from '@daffodil/product-composite';
 
+import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
 import { DaffCompositeProductStateRootSlice } from '../../reducers/composite-product-reducers-state.interface';
 import { getDaffCompositeProductSelectors } from '../../selectors/public_api';
-import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
 
 /**
  * A facade for interacting with the composite product state.

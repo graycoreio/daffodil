@@ -1,6 +1,6 @@
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { DaffCompositeProduct } from '@daffodil/product-composite';
 import { DaffProductReducersState } from '@daffodil/product/state';
+import { DaffCompositeProduct } from '@daffodil/product-composite';
 
 /**
  * Maps a list of products, ensuring that the composite products have a list of items.

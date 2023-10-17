@@ -7,8 +7,8 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductStateRootSlice } from '@daffodil/product/state';
 
-import { DAFF_CATEGORY_STORE_FEATURE_KEY } from './category-store-feature-key';
 import { DaffCategoryReducerState } from './category/category-reducer-state.interface';
+import { DAFF_CATEGORY_STORE_FEATURE_KEY } from './category-store-feature-key';
 import { DaffCategoryPageMetadataReducerState } from './page-metadata/state.interface';
 
 /**

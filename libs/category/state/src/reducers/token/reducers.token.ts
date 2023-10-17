@@ -11,9 +11,9 @@ import {
 import { DaffCategory } from '@daffodil/category';
 import { daffComposeReducers } from '@daffodil/core/state';
 
+import { DAFF_CATEGORY_EXTRA_REDUCERS } from './extra.token';
 import { daffCategoryReducers } from '../category-reducers';
 import { DaffCategoryReducersState } from '../category-reducers.interface';
-import { DAFF_CATEGORY_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil category reducers.

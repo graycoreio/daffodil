@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { DaffShippingReducersState } from './shipping-reducers.interface';
 import { daffShippingReducer } from './shipping/shipping.reducer';
+import { DaffShippingReducersState } from './shipping-reducers.interface';
 
 export const daffShippingReducers: ActionReducerMap<DaffShippingReducersState> = {
   shipping: daffShippingReducer,

@@ -7,10 +7,10 @@ import {
   DaffNavbarModule,
 } from '@daffodil/design';
 
-import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
 import { DesignLandNavbarComponent } from './navbar.component';
+import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 
 @NgModule({

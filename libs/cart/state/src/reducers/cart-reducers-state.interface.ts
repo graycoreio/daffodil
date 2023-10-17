@@ -5,10 +5,10 @@ import {
   DaffCartOrderResult,
 } from '@daffodil/cart';
 
-import { DaffStatefulCartItem } from '../models/stateful-cart-item';
 import { DaffCartOrderReducerState } from './cart-order/cart-order-state.interface';
 import { DaffCartReducerState } from './cart-state.interface';
 import { DAFF_CART_STORE_FEATURE_KEY } from './cart-store-feature-key';
+import { DaffStatefulCartItem } from '../models/stateful-cart-item';
 
 export interface DaffCartReducersState<
   T extends DaffCart = DaffCart,

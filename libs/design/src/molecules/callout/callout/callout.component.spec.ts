@@ -9,13 +9,13 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '../../../core/colorable/public_api';
-import { DaffTextAlignment } from '../../../core/text-alignable/text-alignable';
 import {
   DaffCalloutComponent,
   DaffCalloutLayout,
   DaffCalloutSize,
 } from './callout.component';
+import { DaffPalette } from '../../../core/colorable/public_api';
+import { DaffTextAlignment } from '../../../core/text-alignable/text-alignable';
 
 @Component ({
   template: `

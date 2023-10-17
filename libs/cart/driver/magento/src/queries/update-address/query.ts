@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoUpdateAddressResponse } from './response.type';
 import { MagentoCartUpdateAddressQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 /**
  * Update the shipping and billing address of the cart.

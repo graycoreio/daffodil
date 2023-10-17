@@ -14,9 +14,9 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
+import { ShippingOptionsComponent } from './shipping-options.component';
 import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
 import { ShippingOptionsService } from '../services/shipping-options.service';
-import { ShippingOptionsComponent } from './shipping-options.component';
 
 const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 

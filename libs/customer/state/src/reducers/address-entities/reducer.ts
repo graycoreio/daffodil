@@ -1,6 +1,7 @@
 import { DaffOperationEntityState } from '@daffodil/core/state';
 import { DaffCustomerAddress } from '@daffodil/customer';
 
+import { daffCustomerAddressEntitiesAdapter } from './adapter';
 import {
   DaffCustomerAddressActions,
   DaffCustomerAddressActionTypes,
@@ -9,7 +10,6 @@ import {
   DaffCustomerActions,
   DaffCustomerActionTypes,
 } from '../../actions/customer.actions';
-import { daffCustomerAddressEntitiesAdapter } from './adapter';
 
 
 /**

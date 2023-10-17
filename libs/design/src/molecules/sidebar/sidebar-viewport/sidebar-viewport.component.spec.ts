@@ -11,12 +11,12 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import {
   DaffBackdropComponent,
   DaffBackdropModule,
 } from '../../backdrop/public_api';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
-import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 
 @Component({ template: `
   <div class="sidebar-content-wrapper">

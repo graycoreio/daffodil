@@ -8,10 +8,10 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
+import { DaffOrderFacade } from './order.facade';
 import { DaffOrder } from '../../models/order/order';
 import { DaffPlaceOrderSuccess } from '../actions/order.actions';
 import { daffOrderReducers } from '../reducers/order-reducers';
-import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
   let store: Store<any>;

@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffButtonModule } from '@daffodil/design';
 
+import { ShippingFormComponent } from './shipping-form.component';
 import { AddressFormModule } from '../../forms/address-form/address-form.module';
 import { ShippingOptionsModule } from '../shipping-options/shipping-options.module';
-import { ShippingFormComponent } from './shipping-form.component';
 
 @NgModule({
   imports: [

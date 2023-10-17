@@ -5,8 +5,8 @@ import {
   DaffIdentifiable,
 } from '@daffodil/core';
 
-import { DaffModelFactory } from '../factory';
 import { DaffCollectionMetadataFactory } from './metadata.factory';
+import { DaffModelFactory } from '../factory';
 
 /**
  * Mocked {@link DaffCollection} object.

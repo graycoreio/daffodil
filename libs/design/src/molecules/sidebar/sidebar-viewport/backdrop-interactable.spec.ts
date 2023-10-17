@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
   beforeEach(waitForAsync(() => {

@@ -10,6 +10,8 @@ import {
 import { DaffState } from '@daffodil/core/state';
 import { DaffLoadingState } from '@daffodil/core/state';
 
+import { daffCartOrderInitialState } from './cart-order-initial-state';
+import { DaffCartOrderReducerState } from './cart-order-state.interface';
 import { DaffStatefulCartItem } from '../..';
 import {
   DaffCartActionTypes,
@@ -23,8 +25,6 @@ import {
   DaffCartShippingInformationActionTypes,
 } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';
-import { daffCartOrderInitialState } from './cart-order-initial-state';
-import { DaffCartOrderReducerState } from './cart-order-state.interface';
 
 export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrderResult>(
   state = daffCartOrderInitialState,

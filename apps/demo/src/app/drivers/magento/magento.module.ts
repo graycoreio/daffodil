@@ -18,9 +18,9 @@ import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/m
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
+import possibleTypes from './fragmentTypes.json';
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
-import possibleTypes from './fragmentTypes.json';
 
 const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
 

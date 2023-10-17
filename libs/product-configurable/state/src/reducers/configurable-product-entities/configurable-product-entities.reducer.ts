@@ -1,7 +1,6 @@
 import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   DaffBestSellersActions,
   DaffBestSellersActionTypes,
@@ -12,13 +11,14 @@ import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
 } from '@daffodil/product/state';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
+import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
+import { DaffConfigurableProductEntity } from './configurable-product-entity';
 import {
   DaffConfigurableProductActions,
   DaffConfigurableProductActionTypes,
 } from '../../actions/public_api';
-import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
-import { DaffConfigurableProductEntity } from './configurable-product-entity';
 
 /**
  * Reducer function that catches actions and changes/overwrites configurable product entities state.

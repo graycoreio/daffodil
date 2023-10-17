@@ -2,16 +2,16 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import {
+  initialState,
+  daffBillingReducer,
+} from './billing.reducer';
 import { PaymentInfo } from '../../../models/payment/payment-info';
 import {
   DaffUpdateBillingAddress,
   DaffUpdatePaymentInfo,
   DaffToggleBillingAddressIsShippingAddress,
 } from '../../actions/billing.actions';
-import {
-  initialState,
-  daffBillingReducer,
-} from './billing.reducer';
 
 describe('Billing | Billing Reducer', () => {
 

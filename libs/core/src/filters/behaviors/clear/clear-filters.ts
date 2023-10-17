@@ -1,7 +1,7 @@
 
 
-import { DaffFilters } from '../../../filterable/public_api';
 import { daffClearFilter } from './clear-filter';
+import { DaffFilters } from '../../../filterable/public_api';
 
 /**
  * Undoes the applied state of all applied filter options of a dictionary of {@link DaffFilter}
