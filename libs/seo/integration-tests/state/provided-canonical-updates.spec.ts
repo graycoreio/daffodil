@@ -136,7 +136,7 @@ describe('@daffodil/seo/state | Providing Custom Behavior for Canonical URL Upda
             path: 'nourl',
             component: MockComponent,
           },
-        ], { relativeLinkResolution: 'legacy' }),
+        ], {}),
         DaffSeoStateModule,
       ],
       providers: [

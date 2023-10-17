@@ -26,13 +26,12 @@ export const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
-      initialNavigation: 'enabledBlocking',
-      scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled',
-      //this ensures that clicking on the same fragment route a second time will scroll to the associated id.
-      onSameUrlNavigation: 'reload',
-      relativeLinkResolution: 'legacy',
-    }),
+    initialNavigation: 'enabledBlocking',
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled',
+    //this ensures that clicking on the same fragment route a second time will scroll to the associated id.
+    onSameUrlNavigation: 'reload'
+}),
   ],
   exports: [
     RouterModule,
