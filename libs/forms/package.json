@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build forms --prod",
+    "build": "ng build forms --configuration production",
     "lint": "cd ../.. && ng lint forms",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test forms --watch=false --browsers=ChromeHeadless",

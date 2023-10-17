@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build customer-payment-authorizenet --prod",
+    "build": "ng build customer-payment-authorizenet --configuration production",
     "lint": "cd ../.. && ng lint customer-payment-authorizenet",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test customer-payment-authorizenet --watch=false --browsers=ChromeHeadless",

@@ -22,7 +22,7 @@
     "directory": "../../dist/navigation"
   },
   "scripts": {
-    "build": "ng build navigation --prod",
+    "build": "ng build navigation --configuration production",
     "lint": "cd ../.. && ng lint navigation",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test navigation --watch=false --browsers=ChromeHeadless",

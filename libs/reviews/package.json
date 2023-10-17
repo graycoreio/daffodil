@@ -22,7 +22,7 @@
     "directory": "../../dist/reviews"
   },
   "scripts": {
-    "build": "ng build reviews --prod",
+    "build": "ng build reviews --configuration production",
     "lint": "cd ../.. && ng lint reviews",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test reviews --watch=false --browsers=ChromeHeadless",

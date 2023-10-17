@@ -22,7 +22,7 @@
     "directory": "../../dist/product"
   },
   "scripts": {
-    "build": "ng build product --prod && npm run build:assets",
+    "build": "ng build product --configuration production && npm run build:assets",
     "build:assets": "shx cp -R assets/ ../../dist/product/assets/",
     "lint": "cd ../.. && ng lint product",
     "lint:fix": "npm run lint -- --fix",

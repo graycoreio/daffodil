@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "npm run build:client && npm run build:server && npm run build:serverless",
-    "build:client": "ng build daffio --prod",
+    "build:client": "ng build daffio --configuration production",
     "build:server": "ng run daffio:server:production",
     "build:serverless": "npm run build:serverless:compile && npm run build:serverless:vercel",
     "build:serverless:compile": "webpack-cli --config serverless/webpack.serverless.config.js",

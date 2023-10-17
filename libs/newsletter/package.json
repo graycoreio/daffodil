@@ -38,7 +38,7 @@
     "@daffodil/driver": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
-    "build": "ng build newsletter --prod",
+    "build": "ng build newsletter --configuration production",
     "lint": "cd ../.. && ng lint newsletter",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test newsletter --watch=false --browsers=ChromeHeadless",

@@ -22,7 +22,7 @@
     "directory": "../../dist/auth"
   },
   "scripts": {
-    "build": "ng build auth --prod",
+    "build": "ng build auth --configuration production",
     "lint": "cd ../.. && ng lint auth",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test auth --watch=false --browsers=ChromeHeadless",

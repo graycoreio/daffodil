@@ -22,7 +22,7 @@
     "directory": "../../dist/category"
   },
   "scripts": {
-    "build": "ng build category --prod",
+    "build": "ng build category --configuration production",
     "lint": "cd ../.. && ng lint category",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test category --watch=false --browsers=ChromeHeadless",

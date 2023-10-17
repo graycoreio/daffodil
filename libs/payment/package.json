@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build payment --prod",
+    "build": "ng build payment --configuration production",
     "lint": "cd ../.. && ng lint payment",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test payment --watch=false --browsers=ChromeHeadless",

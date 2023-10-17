@@ -22,7 +22,7 @@
     "directory": "../../dist/product-configurable"
   },
   "scripts": {
-    "build": "ng build product-configurable --prod",
+    "build": "ng build product-configurable --configuration production",
     "lint": "cd ../.. && ng lint product-configurable",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test product-configurable --watch=false --browsers=ChromeHeadless",

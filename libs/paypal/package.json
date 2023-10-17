@@ -22,7 +22,7 @@
     "directory": "../../dist/paypal"
   },
   "scripts": {
-    "build": "ng build paypal --prod",
+    "build": "ng build paypal --configuration production",
     "lint": "cd ../.. && ng lint paypal",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test paypal --watch=false --browsers=ChromeHeadless",

@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build customer-auth --prod",
+    "build": "ng build customer-auth --configuration production",
     "lint": "cd ../.. && ng lint customer-auth",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test customer-auth --watch=false --browsers=ChromeHeadless",
