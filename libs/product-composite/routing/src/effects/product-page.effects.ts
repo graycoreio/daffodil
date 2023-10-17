@@ -1,15 +1,9 @@
 import {
-  DOCUMENT,
-  Location,
-} from '@angular/common';
-import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {
   Actions,
-  Effect,
   createEffect,
   ofType,
 } from '@ngrx/effects';
