@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.64.1](https://github.com/graycoreio/daffodil/compare/v0.64.0...v0.64.1) (2023-10-18)
+
+
+### Features
+
+* upgrade rxjs to `7.8.1` ([#2585](https://github.com/graycoreio/daffodil/issues/2585)) ([1fffe84](https://github.com/graycoreio/daffodil/commit/1fffe84bf77c675c3cf4137a39f7b23bd6234bdb))
+
 ## [0.64.0](https://github.com/graycoreio/daffodil/compare/v0.63.2...v0.64.0) (2023-10-18)
 
 
