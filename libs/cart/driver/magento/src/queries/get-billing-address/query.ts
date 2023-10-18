@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartAddressFragment } from '../fragments/public_api';
 import { MagentoGetBillingAddressResponse } from './response.type';
 import { MagentoCartGetBillingAddressQueryVariables } from './variables.type';
+import { cartAddressFragment } from '../fragments/public_api';
 
 export const getBillingAddress = (extraCartFragments: DocumentNode[] = []) => gql<MagentoGetBillingAddressResponse, MagentoCartGetBillingAddressQueryVariables>`
   query MagentoGetBillingAddress($cartId: String!) {

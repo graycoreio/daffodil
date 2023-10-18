@@ -11,9 +11,9 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProductReview } from '@daffodil/reviews';
 
+import { DAFF_REVIEWS_EXTRA_REDUCERS } from './extra.token';
 import { daffReviewsReducers } from '../reducers';
 import { DaffReviewsReducersState } from '../reducers-state.interface';
-import { DAFF_REVIEWS_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil cart reducers.

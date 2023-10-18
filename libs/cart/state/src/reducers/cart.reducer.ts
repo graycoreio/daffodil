@@ -2,18 +2,18 @@ import { DaffCart } from '@daffodil/cart';
 import { daffComposeReducers } from '@daffodil/core/state';
 
 import { ActionTypes } from './action-types.type';
+import { cartReducer } from './cart/cart.reducer';
 import { cartBillingAddressReducer } from './cart-billing-address/cart-billing-address.reducer';
 import { cartCouponReducer } from './cart-coupon/cart-coupon.reducer';
 import { daffCartReducerInitialState } from './cart-initial-state';
 import { cartItemReducer } from './cart-item/cart-item.reducer';
-import { cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-methods.reducer';
 import { cartPaymentReducer } from './cart-payment/cart-payment.reducer';
+import { cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-methods.reducer';
 import { cartResolveReducer } from './cart-resolve/cart-resolve.reducer';
 import { cartShippingAddressReducer } from './cart-shipping-address/cart-shipping-address.reducer';
 import { cartShippingInformationReducer } from './cart-shipping-information/cart-shipping-information.reducer';
 import { cartShippingMethodsReducer } from './cart-shipping-methods/cart-shipping-methods.reducer';
 import { DaffCartReducerState } from './cart-state.interface';
-import { cartReducer } from './cart/cart.reducer';
 
 const composedReducers = daffComposeReducers([
   cartReducer,

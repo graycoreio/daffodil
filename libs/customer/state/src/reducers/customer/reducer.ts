@@ -8,6 +8,12 @@ import {
 import { DaffCustomer } from '@daffodil/customer';
 
 import {
+  daffCustomerStateStoreAddresses,
+  daffCustomerStateStoreCustomer,
+} from './adapter';
+import { daffCustomerInitialState } from './initial-state';
+import { DaffCustomerReducerState } from './interface';
+import {
   DaffCustomerActions,
   DaffCustomerActionTypes,
   DaffCustomerAddressActions,
@@ -15,12 +21,6 @@ import {
   DaffCustomerLoadFailure,
   DaffCustomerLoadSuccess,
 } from '../../actions/public_api';
-import {
-  daffCustomerStateStoreAddresses,
-  daffCustomerStateStoreCustomer,
-} from './adapter';
-import { daffCustomerInitialState } from './initial-state';
-import { DaffCustomerReducerState } from './interface';
 
 /**
  * The reducer for the customer page state, see {@link DaffCustomerReducerState}.

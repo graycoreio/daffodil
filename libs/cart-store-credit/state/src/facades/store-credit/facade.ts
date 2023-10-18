@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 
+import { DaffCartStoreCreditPageFacadeInterface } from './interface';
 import {
   DaffCartStoreCreditReducerState,
   DaffCartStoreCreditStateRootSlice,
 } from '../../reducers/public_api';
 import { daffCustomerStoreCreditGetSelectors } from '../../selectors/public_api';
-import { DaffCartStoreCreditPageFacadeInterface } from './interface';
 
 /**
  * @inheritdoc

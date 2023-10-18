@@ -8,9 +8,9 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffCartTotalTypeEnum } from '@daffodil/cart';
+import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/testing';
-import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffCustomerStoreCreditInMemoryBackendService } from '@daffodil/customer-store-credit/driver/in-memory';
 
 

@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build external-router --prod",
+    "build": "ng build external-router --configuration production",
     "lint": "cd ../.. && ng lint external-router",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test external-router --watch=false --browsers=ChromeHeadless",

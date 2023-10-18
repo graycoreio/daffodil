@@ -4,8 +4,8 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
 import { DAFF_SEARCH_RESULT_KIND_FACTORIES } from '@daffodil/search/testing';
+import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
 
 /**
  * Module for providing the product search result factory as a search result kind factory.

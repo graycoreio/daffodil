@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffRelatedProductsFacadeInterface } from './related-product-facade.interface';
 import { DaffRelatedProductStateRootSlice } from '../reducers/reducers-state.interface';
 import { getDaffRelatedProductsSelectors } from '../selectors/public_api';
-import { DaffRelatedProductsFacadeInterface } from './related-product-facade.interface';
 
 /**
  * @inheritdoc

@@ -6,7 +6,7 @@ import {
 } from '@angular/core/testing';
 import {
   ReactiveFormsModule,
-  FormControl,
+  UntypedFormControl,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -21,7 +21,7 @@ import { DaffRadioModule } from '../radio.module';
   `,
 })
 class RadioWrapperComponent {
-  radio = new FormControl();
+  radio = new UntypedFormControl();
 }
 
 describe('DaffRadioControlValueAccessorDirective', () => {

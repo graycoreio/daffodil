@@ -3,7 +3,10 @@ import {
   DaffCartOrderResult,
 } from '@daffodil/cart';
 
-import { DaffStatefulCartItem } from '../models/stateful-cart-item';
+import {
+  DaffCartStateMemoizedSelectors,
+  getCartSelectors,
+} from './cart/cart.selector';
 import {
   DaffCartFeatureMemoizedSelectors,
   getDaffCartFeatureSelector,
@@ -16,10 +19,7 @@ import {
   DaffCartOrderMemoizedSelectors,
   getCartOrderSelectors,
 } from './cart-order/cart-order.selector';
-import {
-  DaffCartStateMemoizedSelectors,
-  getCartSelectors,
-} from './cart/cart.selector';
+import { DaffStatefulCartItem } from '../models/stateful-cart-item';
 
 export interface DaffCartMemoizedSelectors<
   T extends DaffCart = DaffCart,

@@ -11,10 +11,10 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffPaymentResponse } from '@daffodil/payment';
 
+import { DAFF_PAYMENT_EXTRA_REDUCERS } from './extra.token';
 import { DAFF_PAYMENT_AVAILABLE_PROCESSORS } from '../../injection-tokens/public_api';
 import { daffPaymentReducerFactory } from '../payment/reducer';
 import { DaffPaymentReducersState } from '../reducers.interface';
-import { DAFF_PAYMENT_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil payment reducers.

@@ -1,5 +1,5 @@
-import { DaffFilterOptionBase } from '../../filter-option-base';
 import { DaffFilterRangeOption } from './option';
+import { DaffFilterOptionBase } from '../../filter-option-base';
 
 /**
  * An pair of options of the range filter.

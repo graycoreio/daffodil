@@ -10,8 +10,8 @@ import {
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
@@ -23,11 +23,11 @@ import {
 import { PaymentInfo } from '@daffodil/checkout';
 import { DaffAddress } from '@daffodil/core';
 
+import { PaymentFormComponent } from './payment-form.component';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
-import { PaymentFormComponent } from './payment-form.component';
 
 @Component({
   template: `
@@ -51,13 +51,13 @@ class WrapperComponent {
 
 @Component({ selector: 'demo-address-form', template: '' })
 class MockAddressFormComponent {
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 }
 
 @Component({ selector: 'demo-payment-info-form', template: '' })
 class MockPaymentInfoFormComponent {
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 }
 
@@ -72,9 +72,9 @@ describe('PaymentFormComponent', () => {
   let addressFormComponent: MockAddressFormComponent;
   let paymentInfoFormComponent: MockPaymentInfoFormComponent;
   const addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
-  let stubAddressFormGroup: FormGroup;
+  let stubAddressFormGroup: UntypedFormGroup;
   const paymentInfoFormFactorySpy = jasmine.createSpyObj('PaymentInfoFormFactory', ['create']);
-  let stubPaymentInfoFormGroup: FormGroup;
+  let stubPaymentInfoFormGroup: UntypedFormGroup;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -103,11 +103,11 @@ describe('PaymentFormComponent', () => {
     stubPaymentInfo = null;
     stubBillingAddress = null;
     stubBillingAddressIsShippingAddress = false;
-    stubAddressFormGroup = new AddressFormFactory(new FormBuilder()).create(stubPaymentInfo);
+    stubAddressFormGroup = new AddressFormFactory(new UntypedFormBuilder()).create(stubPaymentInfo);
     stubAddressFormGroup.markAsDirty();
     stubAddressFormGroup.markAsTouched();
     addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
-    stubPaymentInfoFormGroup = new PaymentInfoFormFactory(new FormBuilder()).create(stubBillingAddress);
+    stubPaymentInfoFormGroup = new PaymentInfoFormFactory(new UntypedFormBuilder()).create(stubBillingAddress);
     paymentInfoFormFactorySpy.create.and.returnValue(stubPaymentInfoFormGroup);
 
     fixture = TestBed.createComponent(WrapperComponent);
@@ -146,7 +146,7 @@ describe('PaymentFormComponent', () => {
   describe('on <demo-address-form>', () => {
 
     it('should set formGroup', () => {
-      expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['address']);
+      expect(<UntypedFormGroup> addressFormComponent.formGroup).toEqual(<UntypedFormGroup> paymentFormComponent.form.controls['address']);
     });
 
     it('should set formSubmitted', () => {
@@ -157,7 +157,7 @@ describe('PaymentFormComponent', () => {
   describe('on <demo-payment-info-form>', () => {
 
     it('should set formGroup', () => {
-      expect(<FormGroup> paymentInfoFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['paymentInfo']);
+      expect(<UntypedFormGroup> paymentInfoFormComponent.formGroup).toEqual(<UntypedFormGroup> paymentFormComponent.form.controls['paymentInfo']);
     });
 
     it('should set formSubmitted', () => {
@@ -220,7 +220,7 @@ describe('PaymentFormComponent', () => {
     describe('when form is invalid', () => {
 
       beforeEach(() => {
-        const formBuilder = new FormBuilder();
+        const formBuilder = new UntypedFormBuilder();
         paymentFormComponent.form = formBuilder.group({
           address: stubAddressFormGroup,
           paymentInfo: stubPaymentInfoFormGroup,
@@ -326,7 +326,7 @@ describe('PaymentFormComponent', () => {
           postcode: 'valid',
           telephone: 'valid',
         });
-        const formBuilder = new FormBuilder();
+        const formBuilder = new UntypedFormBuilder();
         paymentFormComponent.form = formBuilder.group({
           address: stubAddressFormGroup,
           paymentInfo: stubPaymentInfoFormGroup,

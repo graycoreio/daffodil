@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { DaffCountry } from '@daffodil/geography';
 
-import { MagentoCountry } from '../../models/responses/country';
 import { DaffMagentoSubdivisionTransformer } from './subdivision.service';
+import { MagentoCountry } from '../../models/responses/country';
 
 /**
  * Transforms magento carts into an object usable by daffodil.

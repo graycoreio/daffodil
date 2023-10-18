@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build analytics-provider-data-layer --prod",
+    "build": "ng build analytics-provider-data-layer --configuration production",
     "lint": "cd ../.. && ng lint analytics-provider-data-layer",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test analytics-provider-data-layer --watch=false --browsers=ChromeHeadless",

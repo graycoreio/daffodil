@@ -6,16 +6,16 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormControl,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffInputModule } from '../input/public_api';
-import { DaffNativeSelectModule } from '../native-select/public_api';
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
+import { DaffInputModule } from '../input/public_api';
+import { DaffNativeSelectModule } from '../native-select/public_api';
 
 @Component({
   template: `
@@ -31,7 +31,7 @@ class WrapperComponent {
   minValue = 0;
   maxValue = 50;
   selectMaxValue = 10;
-  formControl = new FormControl(1);
+  formControl = new UntypedFormControl(1);
 }
 
 describe('DaffQuantityFieldComponent', () => {

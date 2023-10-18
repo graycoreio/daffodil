@@ -6,9 +6,9 @@ import { Actions } from '@ngrx/effects';
 
 import { DaffRestoreableTitleService } from '@daffodil/seo';
 
+import { DaffSeoPageHookEffects } from './page-hook.effects';
 import { DAFF_SEO_TITLE_UPDATES } from '../../injection-tokens/public_api';
 import { DaffSeoTitleUpdate } from '../../models/public_api';
-import { DaffSeoPageHookEffects } from './page-hook.effects';
 
 /**
  * Page hook effects for the page title.

@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffAuthResetPasswordFacadeInterface } from './facade.interface';
 import { DaffAuthStateRootSlice } from '../../reducers/public_api';
 import { daffAuthResetPasswordSelectorFactory } from '../../selectors/reset-password/selector';
-import { DaffAuthResetPasswordFacadeInterface } from './facade.interface';
 
 /**
  * @inheritdoc

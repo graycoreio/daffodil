@@ -15,11 +15,11 @@ import {
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
 
+import { daffAuthResetPasswordSelectorFactory } from './selector';
 import {
   DaffResetPasswordLanding,
   daffAuthResetPasswordInitialState,
 } from '../../public_api';
-import { daffAuthResetPasswordSelectorFactory } from './selector';
 
 describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
   let store: Store<DaffAuthStateRootSlice>;

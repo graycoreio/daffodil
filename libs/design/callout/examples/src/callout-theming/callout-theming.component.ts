@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,7 +14,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
 })
 export class CalloutThemingComponent {
   faMobile = faMobile;
-  colorControl: FormControl = new FormControl('');
+  colorControl: UntypedFormControl = new UntypedFormControl('');
 
   options = [
     { value: '', label: 'Default' },

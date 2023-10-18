@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { DaffPersistenceService } from '../persistence.interface';
 import { DaffStorageServiceError } from './error';
+import { DaffPersistenceService } from '../persistence.interface';
 
 /**
  * @inheritdoc

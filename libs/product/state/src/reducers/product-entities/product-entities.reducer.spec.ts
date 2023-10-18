@@ -9,9 +9,9 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageLoadSuccess } from '../../actions/public_api';
 import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 import { daffProductEntitiesReducer } from './product-entities.reducer';
+import { DaffProductPageLoadSuccess } from '../../actions/public_api';
 
 describe('Product | Product Entities Reducer', () => {
 

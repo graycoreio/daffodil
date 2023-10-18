@@ -22,7 +22,7 @@
     "directory": "../../dist/search-product-composite"
   },
   "scripts": {
-    "build": "ng build search-product-composite --prod",
+    "build": "ng build search-product-composite --configuration production",
     "lint": "cd ../.. && ng lint search-product-composite",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test search-product-composite --watch=false --browsers=ChromeHeadless",

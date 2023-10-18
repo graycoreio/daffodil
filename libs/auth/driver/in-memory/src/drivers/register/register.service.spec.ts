@@ -11,8 +11,8 @@ import {
 } from '@daffodil/auth';
 import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
-import { DaffInMemoryLoginService } from '../login/login.service';
 import { DaffInMemoryRegisterService } from './register.service';
+import { DaffInMemoryLoginService } from '../login/login.service';
 
 describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => {
   let service: DaffInMemoryRegisterService;

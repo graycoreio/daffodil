@@ -1,5 +1,5 @@
-import { daffPaypalReducers } from './paypal-reducers';
 import { daffPaypalReducer } from './paypal/paypal.reducer';
+import { daffPaypalReducers } from './paypal-reducers';
 
 describe('daffPaypalReducers', () => {
 

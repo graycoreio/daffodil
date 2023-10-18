@@ -1,5 +1,5 @@
-import { DaffFilterRequest } from '../filterable/public_api';
 import { DaffSortDirectionEnum } from './sortable';
+import { DaffFilterRequest } from '../filterable/public_api';
 
 /**
  * A collection of items that is paginable, sortable, and filterable.

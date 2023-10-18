@@ -16,8 +16,8 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageLoadSuccess } from '../../actions/public_api';
 import { getDaffProductPageSelectors } from './product.selectors';
+import { DaffProductPageLoadSuccess } from '../../actions/public_api';
 
 describe('selectProductState', () => {
 

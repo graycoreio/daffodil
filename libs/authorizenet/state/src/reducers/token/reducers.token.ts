@@ -10,9 +10,9 @@ import {
 import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 
-import { DaffAuthorizeNetReducersState } from '../authorize-net-reducers.interface';
-import { daffAuthorizeNetReducer } from '../authorize-net/authorize-net.reducer';
 import { DAFF_AUTHORIZE_NET_EXTRA_REDUCERS } from './extra.token';
+import { daffAuthorizeNetReducer } from '../authorize-net/authorize-net.reducer';
+import { DaffAuthorizeNetReducersState } from '../authorize-net-reducers.interface';
 
 /**
  * An internal token to hold the Daffodil authorizenet reducers.

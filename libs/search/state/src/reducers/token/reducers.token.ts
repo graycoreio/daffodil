@@ -11,9 +11,9 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffSearchResult } from '@daffodil/search';
 
+import { DAFF_SEARCH_EXTRA_REDUCERS } from './extra.token';
 import { daffSearchReducers } from '../reducers';
 import { DaffSearchReducersState } from '../reducers.interface';
-import { DAFF_SEARCH_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil search reducers.

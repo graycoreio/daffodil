@@ -12,8 +12,8 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffPalette } from '../../core/colorable/public_api';
 import { DaffProgressIndicatorComponent } from './progress-indicator.component';
+import { DaffPalette } from '../../core/colorable/public_api';
 
 @Component({
   template: `
@@ -23,7 +23,7 @@ import { DaffProgressIndicatorComponent } from './progress-indicator.component';
 })
 class WrapperComponent {
   color: DaffPalette;
-  percentage: number;
+  percentage = 0;
   onComplete(): void {};
 }
 

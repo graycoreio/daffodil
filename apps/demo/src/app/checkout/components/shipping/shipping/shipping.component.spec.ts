@@ -20,12 +20,12 @@ import { of } from 'rxjs';
 
 import { DaffAddress } from '@daffodil/core';
 
+import { ShippingComponent } from './shipping.component';
 import {
   SetShowShippingForm,
   ToggleShowShippingForm,
 } from '../../../actions/shipping.actions';
 import * as fromDemoCheckout from '../../../reducers';
-import { ShippingComponent } from './shipping.component';
 
 const stubIsShippingAddressValidValue = true;
 const stubDaffodilAddress: DaffAddress = {

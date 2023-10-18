@@ -13,8 +13,5 @@ import { ARTICLE_EXAMPLES } from './examples';
     CommonModule,
     DaffArticleModule,
   ],
-  entryComponents: [
-    ...ARTICLE_EXAMPLES,
-  ],
 })
 export class ArticleExamplesModule { }

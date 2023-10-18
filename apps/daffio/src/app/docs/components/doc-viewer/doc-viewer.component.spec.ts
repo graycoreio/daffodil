@@ -9,10 +9,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffArticleModule } from '@daffodil/design';
 
+import { DaffioDocViewerComponent } from './doc-viewer.component';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
-import { DaffioDocViewerComponent } from './doc-viewer.component';
 
 @Component({
   template: `<daffio-doc-viewer [doc]="doc"></daffio-doc-viewer>`,

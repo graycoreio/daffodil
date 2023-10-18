@@ -4,11 +4,11 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { DaffioDocsService } from './docs.service';
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockGuides } from '../testing/factories/guide-list.factory';
-import { DaffioDocsService } from './docs.service';
 
 describe('DaffioDocsService', () => {
   let service: DaffioDocsService<DaffioDoc, DaffioGuideList>;

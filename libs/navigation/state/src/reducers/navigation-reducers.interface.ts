@@ -1,7 +1,7 @@
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
-import { DaffNavigationReducerState } from '../reducers/navigation/navigation-reducer-state.interface';
 import { DAFF_NAVIGATION_STORE_FEATURE_KEY } from './navigation-store-feature-key';
+import { DaffNavigationReducerState } from '../reducers/navigation/navigation-reducer-state.interface';
 
 export interface DaffNavigationReducersState<T extends DaffGenericNavigationTree<T>> {
   navigation: DaffNavigationReducerState<T>;

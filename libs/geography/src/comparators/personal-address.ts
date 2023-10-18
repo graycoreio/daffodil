@@ -1,7 +1,7 @@
 import { shallowCompare } from '@daffodil/core';
 
-import { DaffPersonalAddress } from '../models/personal-address';
 import { daffCompareAddresses } from './address';
+import { DaffPersonalAddress } from '../models/personal-address';
 
 /**
  * Compares two personal addresses and returns true if all of their fields are equal.

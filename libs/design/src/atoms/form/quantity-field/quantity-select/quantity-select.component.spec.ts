@@ -7,17 +7,17 @@ import {
 } from '@angular/core/testing';
 import {
   NgControl,
-  FormControl,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
+import { DaffQuantitySelectComponent } from './quantity-select.component';
 import {
   DaffNativeSelectModule,
   DaffNativeSelectComponent,
 } from '../../native-select/public_api';
-import { DaffQuantitySelectComponent } from './quantity-select.component';
 
 @Component({
   template: `
@@ -45,7 +45,7 @@ describe('DaffQuantitySelectComponent', () => {
     control = {
       statusChanges: new Subject(),
       disabled: false,
-      control: new FormControl(1),
+      control: new UntypedFormControl(1),
       value: null,
     };
 

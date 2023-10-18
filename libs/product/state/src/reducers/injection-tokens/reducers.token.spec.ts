@@ -14,8 +14,8 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { daffProductReducerInitialState } from '../product/product.reducer';
 import { DAFF_PRODUCT_REDUCERS } from './reducers.token';
+import { daffProductReducerInitialState } from '../product/product.reducer';
 
 describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
   let productFactory: DaffProductFactory;

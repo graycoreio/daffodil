@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
-import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { MockCart } from '@daffodil/cart/testing';
+import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 /**

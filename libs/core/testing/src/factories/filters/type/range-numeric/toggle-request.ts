@@ -7,8 +7,8 @@ import {
 } from '@daffodil/core';
 import { DaffFilterType } from '@daffodil/core';
 
-import { DaffModelFactory } from '../../../factory';
 import { DaffFilterRangeNumericRequestOptionFactory } from './request-option';
+import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterToggleRangeNumericRequest implements DaffFilterRangeNumericToggleRequest {
   type: DaffFilterType.RangeNumeric = DaffFilterType.RangeNumeric;

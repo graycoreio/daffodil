@@ -11,10 +11,10 @@ import {
   DaffSortOptions,
 } from '@daffodil/core';
 
-import { DaffModelFactory } from '../factory';
-import { DaffFilterFactory } from '../filters/public_api';
 import { DaffNumericallyPaginableFactory } from './numerically-paginable.factory';
 import { DaffSortableFactory } from './sortable.factory';
+import { DaffModelFactory } from '../factory';
+import { DaffFilterFactory } from '../filters/public_api';
 
 /**
  * Mocked {@link DaffCollectionMetadata} object.

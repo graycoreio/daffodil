@@ -10,7 +10,7 @@
   "version": "0.0.0-PLACEHOLDER",
   "private": true,
   "scripts": {
-    "build": "ng build theme-switch --prod",
+    "build": "ng build theme-switch --configuration production",
     "lint": "cd ../.. && ng lint theme-switch",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test theme-switch --watch=false --browsers=ChromeHeadless"

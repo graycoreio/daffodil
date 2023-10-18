@@ -9,14 +9,14 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormControl,
+  UntypedFormControl,
   ReactiveFormsModule,
-  FormArray,
+  UntypedFormArray,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffCheckboxModule } from '../checkbox/checkbox.module';
 import { DaffCheckboxSetComponent } from './checkbox-set.component';
+import { DaffCheckboxModule } from '../checkbox/checkbox.module';
 
 @Component({
   template: `
@@ -31,7 +31,7 @@ import { DaffCheckboxSetComponent } from './checkbox-set.component';
 class CheckboxEmbeddedComponent implements OnInit {
   @ViewChild(DaffCheckboxSetComponent)
   private checkboxSet: DaffCheckboxSetComponent;
-  checkboxArray = new FormArray([new FormControl(), new FormControl(), new FormControl()]);
+  checkboxArray = new UntypedFormArray([new UntypedFormControl(), new UntypedFormControl(), new UntypedFormControl()]);
 
 
   selectedValues = [];

@@ -9,7 +9,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormControl,
+  UntypedFormControl,
   NgControl,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -19,11 +19,11 @@ import {
   Subject,
 } from 'rxjs';
 
+import { DaffQuantityInputComponent } from './quantity-input.component';
 import {
   DaffInputModule,
   DaffInputComponent,
 } from '../../input/public_api';
-import { DaffQuantityInputComponent } from './quantity-input.component';
 
 @Component({
   template: `
@@ -50,7 +50,7 @@ describe('DaffQuantityInputComponent', () => {
     control = {
       statusChanges: new Subject(),
       disabled: false,
-      control: new FormControl(1),
+      control: new UntypedFormControl(1),
       value: null,
     };
 

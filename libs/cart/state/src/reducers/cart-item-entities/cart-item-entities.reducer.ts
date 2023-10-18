@@ -8,6 +8,7 @@ import {
   DaffCart,
 } from '@daffodil/cart';
 
+import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import {
   DaffCartItemActionTypes,
   DaffCartActionTypes,
@@ -19,7 +20,6 @@ import {
   DaffCartItemStateEnum,
   DaffStatefulCartItem,
 } from '../../models/stateful-cart-item';
-import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.

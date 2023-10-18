@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ES2022",
     "module": "es2020",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -22,7 +22,8 @@
         "dist/*"
       ]
     },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": false
   },
   "exclude": [
     "node_modules",

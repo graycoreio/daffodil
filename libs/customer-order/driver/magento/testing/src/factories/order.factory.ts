@@ -11,7 +11,7 @@ import {
   MagentoOrderShipmentFactory,
   MagentoOrderTotalFactory,
   MagentoOrderCreditFactory,
-} from '@daffodil/order/driver/magento/2.4.1/testing';
+} from '@daffodil/order/driver/magento/2-4-1/testing';
 
 export class MockMagentoCustomerOrder implements MagentoCustomerOrder {
   protected _numberOfSuborders = faker.datatype.number({ min: 1, max: 3 });

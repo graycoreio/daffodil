@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffProductFacadeInterface } from './product-facade.interface';
 import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductSelectors } from '../../selectors/public_api';
-import { DaffProductFacadeInterface } from './product-facade.interface';
 
 /**
  * A facade for getting state about a particular product.

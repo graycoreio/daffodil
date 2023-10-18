@@ -6,8 +6,8 @@ import {
   DaffFilterRangeOption,
 } from '@daffodil/core';
 
-import { DaffModelFactory } from '../../../factory';
 import { DaffFilterRangeNumericOptionFactory } from './option';
+import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterRangeNumericPair implements DaffFilterRangePair<number> {
   applied: true = true;

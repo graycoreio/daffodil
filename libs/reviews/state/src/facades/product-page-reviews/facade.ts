@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProductReview } from '@daffodil/reviews';
 
+import { DaffProductPageReviewsFacadeInterface } from './facade.interface';
 import { DaffReviewsStateRootSlice } from '../../reducers/reducers-state.interface';
 import { getDaffReviewsSelectors } from '../../selectors/public_api';
-import { DaffProductPageReviewsFacadeInterface } from './facade.interface';
 
 /**
  * @inheritdoc

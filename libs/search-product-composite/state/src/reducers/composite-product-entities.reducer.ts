@@ -4,12 +4,12 @@ import {
   daffCompositeProductAppliedOptionsEntitiesAdapter,
   DaffCompositeProductEntity,
 } from '@daffodil/product-composite/state';
-import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
-import { DaffSearchProductCompositeResult } from '@daffodil/search-product-composite';
 import {
   DaffSearchActions,
   DaffSearchActionTypes,
 } from '@daffodil/search/state';
+import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
+import { DaffSearchProductCompositeResult } from '@daffodil/search-product-composite';
 
 /**
  * Reducer function for updating composite product entities for a completed search.

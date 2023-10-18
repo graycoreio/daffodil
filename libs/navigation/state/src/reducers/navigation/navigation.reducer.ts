@@ -1,10 +1,10 @@
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
+import { DaffNavigationReducerState } from './navigation-reducer-state.interface';
 import {
   DaffNavigationActionTypes,
   DaffNavigationActions,
 } from '../../actions/navigation.actions';
-import { DaffNavigationReducerState } from './navigation-reducer-state.interface';
 
 export const initialState: DaffNavigationReducerState<any> = {
   navigationTree: null,

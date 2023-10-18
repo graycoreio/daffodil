@@ -1,9 +1,9 @@
 
+import { magentoProductGetMatchedAttributeType } from './get-matched-attribute-type';
 import {
   MagentoAggregation,
   MagentoProductFilterTypeField,
 } from '../../models/public_api';
-import { magentoProductGetMatchedAttributeType } from './get-matched-attribute-type';
 
 export function magentoProductAddMetadataTypesToAggregates(
   inputFields: MagentoProductFilterTypeField[],

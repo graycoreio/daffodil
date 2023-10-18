@@ -9,10 +9,10 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
-import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffThumbnailDirective } from './thumbnail.directive';
+import { DaffMediaGalleryComponent } from '../media-gallery.component';
+import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 @Component({
   template: `<daff-media-gallery><div daffThumbnail (becameSelected)="becameSelectedFunction()"></div></daff-media-gallery>`,

@@ -16,6 +16,13 @@ import {
 } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
+  DaffProductLoadSuccess,
+  DaffProductGridLoad,
+  daffProductReducers,
+  DAFF_PRODUCT_STORE_FEATURE_KEY,
+} from '@daffodil/product/state';
+import { DaffProductFactory } from '@daffodil/product/testing';
+import {
   DaffCompositeProduct,
   DaffCompositeConfigurationItem,
 } from '@daffodil/product-composite';
@@ -26,13 +33,6 @@ import {
 import { DaffCompositeProductStateRootSlice } from '@daffodil/product-composite/state';
 import { DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
-import {
-  DaffProductLoadSuccess,
-  DaffProductGridLoad,
-  daffProductReducers,
-  DAFF_PRODUCT_STORE_FEATURE_KEY,
-} from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { getDaffCompositeProductPriceSelectors } from './composite-product.selectors';
 

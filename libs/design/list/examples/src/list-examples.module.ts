@@ -15,8 +15,5 @@ import { NavListModule } from './nav-list/nav-list.module';
     IconListModule,
     MultilineListModule,
   ],
-  entryComponents: [
-    ...LIST_EXAMPLES,
-  ],
 })
 export class ListExamplesModule { }

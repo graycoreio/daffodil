@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoRemoveCartItemResponse } from './response.type';
 import { MagentoCartRemoveItemQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const removeCartItem = (extraCartFragments: DocumentNode[] = []) => gql<MagentoRemoveCartItemResponse, MagentoCartRemoveItemQueryVariables>`
   mutation MagentoRemoveCartItem($cartId: String!, $itemId: Int!) {

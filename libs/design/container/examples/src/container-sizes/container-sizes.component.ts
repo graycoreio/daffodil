@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContainerSizesComponent {
-  sizeControl: FormControl = new FormControl('xs');
+  sizeControl: UntypedFormControl = new UntypedFormControl('xs');
 
   options = [
     { value: 'xs', label: 'Extra Small' },

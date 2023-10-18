@@ -3,8 +3,8 @@ import {
   createFeatureSelector,
 } from '@ngrx/store';
 
-import { DaffPaymentReducersState } from '../reducers/payment-reducers.interface';
 import { DaffPaymentReducerState } from '../reducers/payment/payment-reducer.interface';
+import { DaffPaymentReducersState } from '../reducers/payment-reducers.interface';
 
 /**
  * Payment Feature State

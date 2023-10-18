@@ -36,7 +36,6 @@ class DynamicTwoComponent {}
 
 @NgModule({
   declarations: [DynamicComponent, DynamicTwoComponent],
-  entryComponents: [DynamicComponent, DynamicTwoComponent],
 })
 class DynamicModule {}
 

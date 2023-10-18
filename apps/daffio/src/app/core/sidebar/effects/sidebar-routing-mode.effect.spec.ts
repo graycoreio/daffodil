@@ -7,12 +7,13 @@ import {
   RouterStateSnapshot,
   ActivatedRoute,
   ActivatedRouteSnapshot,
+  EventType,
 } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   ROUTER_NAVIGATED,
   RouterNavigatedAction,
-  DefaultRouterStateSerializer,
+  FullRouterStateSerializer,
 } from '@ngrx/router-store';
 import {
   hot,
@@ -20,12 +21,12 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects';
 import {
   ResetMode,
   SetSidebarMode,
   SetSidebarState,
 } from '../actions/sidebar.actions';
-import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects';
 
 const configureStubNavigationAction = (snapshot: any): RouterNavigatedAction => ({
   type: ROUTER_NAVIGATED,
@@ -35,6 +36,7 @@ const configureStubNavigationAction = (snapshot: any): RouterNavigatedAction => 
       root: <ActivatedRouteSnapshot><unknown>snapshot,
     },
     event: {
+      type: EventType.NavigationEnd,
       id: 12,
       url: '',
       urlAfterRedirects: '',

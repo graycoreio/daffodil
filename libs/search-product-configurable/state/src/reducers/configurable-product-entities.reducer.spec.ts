@@ -8,9 +8,9 @@ import {
 } from '@daffodil/product-configurable/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import { DaffSearchLoadSuccess } from '@daffodil/search/state';
 import { daffTransformProductsToSearchResults } from '@daffodil/search-product';
 import { DaffSearchProductConfigurableResult } from '@daffodil/search-product-configurable';
-import { DaffSearchLoadSuccess } from '@daffodil/search/state';
 
 import { daffSearchProductConfigurableProductEntitiesReducer } from './configurable-product-entities.reducer';
 

@@ -28,8 +28,8 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { daffAdd } from '@daffodil/core';
 
-import { MagentoCart } from '../../models/public_api';
 import { DaffMagentoCartTransformer } from './cart.service';
+import { MagentoCart } from '../../models/public_api';
 
 describe('@daffodil/cart/driver/magento | MagentoCart', () => {
   let service: DaffMagentoCartTransformer;

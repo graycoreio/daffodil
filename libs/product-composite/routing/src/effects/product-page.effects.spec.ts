@@ -7,17 +7,17 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 import {
   DaffCompositeProduct,
   DaffProductCompositeSelectionPayload,
 } from '@daffodil/product-composite';
 import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
-import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 
+import { DaffProductCompositePageEffects } from './product-page.effects';
 import { daffProductCompositeRoutingProvideConfig } from '../config/public_api';
 import { DaffProductCompositeQueryParamService } from '../services/query-param.service';
-import { DaffProductCompositePageEffects } from './product-page.effects';
 
 @Component({ template: '' })
 class TestComponent {}

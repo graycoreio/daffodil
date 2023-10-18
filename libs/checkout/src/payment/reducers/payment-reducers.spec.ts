@@ -1,5 +1,5 @@
-import { daffPaymentReducers } from './payment-reducers';
 import { daffPaymentReducer } from './payment/payment.reducer';
+import { daffPaymentReducers } from './payment-reducers';
 
 describe('selectPaymentState', () => {
 

@@ -8,7 +8,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  FormControl,
+  UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -27,7 +27,7 @@ import { DaffNativeSelectComponent } from './native-select.component';
 
 class WrapperComponent {
   formSubmittedValue: boolean;
-  formControlValue: FormControl;
+  formControlValue: UntypedFormControl;
 }
 
 describe('DaffNativeSelectComponent', () => {
@@ -52,7 +52,7 @@ describe('DaffNativeSelectComponent', () => {
   }));
 
   beforeEach(() => {
-    stubFormControl = new FormControl();
+    stubFormControl = new UntypedFormControl();
     stubFormSubmitted = false;
 
     fixture = TestBed.createComponent(WrapperComponent);

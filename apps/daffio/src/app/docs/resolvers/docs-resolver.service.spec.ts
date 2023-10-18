@@ -11,12 +11,12 @@ import {
   throwError,
 } from 'rxjs';
 
+import { DocsResolver } from './docs-resolver.service';
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
 import { DaffioDocsServiceInterface } from '../services/docs-service.interface';
 import { DaffioDocsService } from '../services/docs.service';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
-import { DocsResolver } from './docs-resolver.service';
 
 describe('DocsResolver', () => {
   let resolver: DocsResolver<DaffioDoc, DaffioGuideList>;

@@ -15,15 +15,15 @@ import {
   daffSearchTransformResultsToCollection,
 } from '@daffodil/search';
 import {
+  DaffSearchDriverOptions,
+  DaffSearchDriverResponse,
+} from '@daffodil/search/driver';
+import {
   DaffSearchCategoryResult,
   daffTransformCategoriesToSearchResults,
   DAFF_SEARCH_CATEGORY_RESULT_KIND,
 } from '@daffodil/search-category';
 import { DaffSearchCategoryDriverInterface } from '@daffodil/search-category/driver';
-import {
-  DaffSearchDriverOptions,
-  DaffSearchDriverResponse,
-} from '@daffodil/search/driver';
 
 import { transformSearchCategoryMagentoError } from './errors/transform';
 import { MagentoSearchForCategoriesResponse } from './models/public_api';

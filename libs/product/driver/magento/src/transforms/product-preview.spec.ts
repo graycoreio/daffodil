@@ -7,8 +7,8 @@ import {
 import { MagentoProduct } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
-import { MagentoProductStockStatusEnum } from '../models/product-preview.interface';
 import { transformMagentoProductPreview } from './product-preview';
+import { MagentoProductStockStatusEnum } from '../models/product-preview.interface';
 
 
 describe('@daffodil/product/driver/magento | transformMagentoProductPreview', () => {

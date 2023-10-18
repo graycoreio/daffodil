@@ -1,7 +1,7 @@
 import { DaffProductReview } from '@daffodil/reviews';
 
-import { MagentoProductReview } from '../../models/public_api';
 import { magentoProductRatingTransform } from './product-rating';
+import { MagentoProductReview } from '../../models/public_api';
 
 export const magentoProductReviewTransform = (review: MagentoProductReview, productSku: string): DaffProductReview => ({
   // TODO: use real ID when available

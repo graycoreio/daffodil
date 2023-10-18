@@ -27,8 +27,8 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
+import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 
 describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
 

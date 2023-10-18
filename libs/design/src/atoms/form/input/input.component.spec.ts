@@ -7,7 +7,7 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffInputComponent } from './input.component';
@@ -38,7 +38,7 @@ describe('DaffInputComponent', () => {
   }));
 
   beforeEach(() => {
-    stubFormControl = new FormControl();
+    stubFormControl = new UntypedFormControl();
     stubFormSubmitted = false;
 
     fixture = TestBed.createComponent(WrapperComponent);

@@ -7,9 +7,9 @@ import {
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormGroup,
+  UntypedFormGroup,
   AbstractControl,
-  FormBuilder,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -21,8 +21,8 @@ import {
   DaffFormFieldModule,
 } from '@daffodil/design';
 
-import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
 import { PaymentInfoFormComponent } from './payment-info-form.component';
+import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
 
 @Component({
   template: `
@@ -32,7 +32,7 @@ import { PaymentInfoFormComponent } from './payment-info-form.component';
   `,
 })
 class WrapperComponent {
-  formGroupValue: FormGroup;
+  formGroupValue: UntypedFormGroup;
   submittedValue: boolean;
 }
 
@@ -40,7 +40,7 @@ describe('PaymentInfoFormComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let paymentInfoForm: PaymentInfoFormComponent;
-  const paymentInfoFormFactory = new PaymentInfoFormFactory(new FormBuilder());
+  const paymentInfoFormFactory = new PaymentInfoFormFactory(new UntypedFormBuilder());
   const paymentInfoGroup = paymentInfoFormFactory.create(null);
 
   beforeEach(waitForAsync(() => {

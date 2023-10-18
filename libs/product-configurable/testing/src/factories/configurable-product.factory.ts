@@ -3,8 +3,8 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import { MockProduct } from '@daffodil/product/testing';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 /**
  * Mocked DaffConfigurableProduct object.

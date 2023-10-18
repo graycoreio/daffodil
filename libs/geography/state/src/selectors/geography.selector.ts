@@ -6,9 +6,9 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
+import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 import { DaffGeographyStateRootSlice } from '../reducers/geography-reducers-state.interface';
 import { DaffGeographyReducerState } from '../reducers/public_api';
-import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 
 export interface DaffGeographySelectors {
   selectGeographyState: MemoizedSelector<DaffGeographyStateRootSlice, DaffGeographyReducerState>;

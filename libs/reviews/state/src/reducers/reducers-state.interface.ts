@@ -2,8 +2,8 @@ import { EntityState } from '@ngrx/entity';
 
 import { DaffProductReview } from '@daffodil/reviews';
 
-import { DaffReviewsCollectionReducerState } from './product-reviews-collection/state.interface';
 import { DaffProductPageReviewsReducerState } from './product-reviews/state.interface';
+import { DaffReviewsCollectionReducerState } from './product-reviews-collection/state.interface';
 import { DAFF_REVIEWS_STORE_FEATURE_KEY } from './store-feature-key';
 
 /**

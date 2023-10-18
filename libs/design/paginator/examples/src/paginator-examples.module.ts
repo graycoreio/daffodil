@@ -13,8 +13,5 @@ import { PAGINATOR_EXAMPLES } from './examples';
     CommonModule,
     DaffPaginatorModule,
   ],
-  entryComponents: [
-    ...PAGINATOR_EXAMPLES,
-  ],
 })
 export class PaginatorExamplesModule { }

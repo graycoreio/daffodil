@@ -4,8 +4,8 @@ import {
   Injectable,
 } from '@angular/core';
 
-import { AcceptType } from '../models/acceptJs/accept';
 import { DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION } from './accept-js-production.token';
+import { AcceptType } from '../models/acceptJs/accept';
 
 const ACCEPT_JS_SANDBOX_URL = 'https://jstest.authorize.net/v1/Accept.js';
 const ACCEPT_JS_PRODUCTION_URL = 'https://js.authorize.net/v1/Accept.js';

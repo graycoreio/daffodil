@@ -2,7 +2,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 interface RegionOption {
   label: string;
@@ -16,7 +16,7 @@ interface RegionOption {
 })
 export class AddressFormComponent {
 
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 
   constructor() { }

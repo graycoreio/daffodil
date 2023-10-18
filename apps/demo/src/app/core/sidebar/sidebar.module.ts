@@ -11,8 +11,8 @@ import {
 import { DaffNavigationStateModule } from '@daffodil/navigation/state';
 
 import { SidebarListComponent } from './components/sidebar-list/sidebar-list.component';
-import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { SidebarContainer } from './containers/sidebar/sidebar.component';
+import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DemoSidebarStateModule } from './sidebar.state.module';
 
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { DaffProduct } from '@daffodil/product';
 
-import { MagentoProduct } from '../models/magento-product';
 import { DaffMagentoSimpleProductTransformers } from './simple-product-transformers';
+import { MagentoProduct } from '../models/magento-product';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.

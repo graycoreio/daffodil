@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffNewsletterFacadeInterface } from './newsletter-facade.interface';
 import { DaffNewsletterStateRootSlice } from '../reducers/newsletter.reducer';
 import {
   selectDaffNewsletterSuccess,
   selectDaffNewsletterError,
   selectDaffNewsletterLoading,
 } from '../selectors/newsletter.selector';
-import { DaffNewsletterFacadeInterface } from './newsletter-facade.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DaffNewsletterFacade implements DaffNewsletterFacadeInterface {

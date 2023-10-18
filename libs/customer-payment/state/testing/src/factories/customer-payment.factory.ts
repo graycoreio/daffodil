@@ -3,9 +3,9 @@ import { faker } from '@faker-js/faker';
 
 import { DaffState } from '@daffodil/core/state';
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 import { DaffCustomerPaymentEntity } from '@daffodil/customer-payment/state';
 import { MockDaffCustomerPayment } from '@daffodil/customer-payment/testing';
-import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 
 /**
  * Mock class for {@link DaffCustomerPaymentEntity}.

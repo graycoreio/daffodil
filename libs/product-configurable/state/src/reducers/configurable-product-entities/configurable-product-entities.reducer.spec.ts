@@ -1,5 +1,12 @@
 
 import { DaffProduct } from '@daffodil/product';
+import {
+  DaffProductLoadSuccess,
+  DaffProductGridLoadSuccess,
+  DaffBestSellersLoadSuccess,
+  DaffProductPageLoadSuccess,
+} from '@daffodil/product/state';
+import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   DaffConfigurableProductApplyAttribute,
@@ -8,13 +15,6 @@ import {
   daffConfigurableProductAppliedAttributesEntitiesAdapter,
 } from '@daffodil/product-configurable/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
-import {
-  DaffProductLoadSuccess,
-  DaffProductGridLoadSuccess,
-  DaffBestSellersLoadSuccess,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { daffConfigurableProductEntitiesReducer } from './configurable-product-entities.reducer';
 

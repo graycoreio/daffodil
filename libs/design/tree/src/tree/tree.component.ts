@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+import { DaffTreeNotifierService } from './tree-notifier.service';
 import { DaffTreeData } from '../interfaces/tree-data';
 import { DaffTreeUi } from '../interfaces/tree-ui';
 import {
@@ -17,7 +18,6 @@ import {
   flattenTree,
 } from '../utils/flatten-tree';
 import { hydrateTree } from '../utils/hydrate-tree';
-import { DaffTreeNotifierService } from './tree-notifier.service';
 
 /**
  * The `DaffTreeComponent` allows you to render tree structures as interactable ui.
@@ -100,7 +100,7 @@ export class DaffTreeComponent implements OnInit {
    * @docs-private
    */
   @ContentChild('daffTreeItemWithChildrenTpl', { static: true })
-  withChildrenTemplate: TemplateRef<any>;
+    withChildrenTemplate: TemplateRef<any>;
 
   /**
    * The template used to render tree-nodes that have no children.

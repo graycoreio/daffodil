@@ -46,7 +46,6 @@ export const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
-      relativeLinkResolution: 'legacy',
     }),
   ],
   exports: [

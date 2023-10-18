@@ -16,9 +16,9 @@ import {
   DaffInputModule,
 } from '@daffodil/design';
 
-import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
 import { DaffioSimpleFooterComponent } from './simple-footer/simple-footer.component';
 import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';
+import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
 
 
 

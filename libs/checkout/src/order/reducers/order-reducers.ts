@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { DaffOrderReducersState } from './order-reducers.interface';
 import { daffOrderReducer } from './order/order.reducer';
+import { DaffOrderReducersState } from './order-reducers.interface';
 
 /**
  * @deprecated

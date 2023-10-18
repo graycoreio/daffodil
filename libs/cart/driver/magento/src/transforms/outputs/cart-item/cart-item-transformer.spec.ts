@@ -10,11 +10,11 @@ import {
   MagentoConfigurableCartItemFactory,
 } from '@daffodil/cart/driver/magento/testing';
 
-import { DaffCartMagentoCartItemTransform } from '../../../interfaces/public_api';
 import {
   daffTransformMagentoCartItem,
   transformMagentoCartItem,
 } from './cart-item-transformer';
+import { DaffCartMagentoCartItemTransform } from '../../../interfaces/public_api';
 
 describe('@daffodil/cart/driver/magento | transformMagentoCartItem', () => {
   let stubMagentoCartItems: MagentoCartItem[];

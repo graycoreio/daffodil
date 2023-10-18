@@ -6,9 +6,9 @@ import { Actions } from '@ngrx/effects';
 
 import { DaffRestoreableCanonicalService } from '@daffodil/seo';
 
+import { DaffSeoPageHookEffects } from './page-hook.effects';
 import { DAFF_SEO_CANONICAL_URL_UPDATES } from '../../injection-tokens/public_api';
 import { DaffSeoCanonicalUrlUpdate } from '../../models/public_api';
-import { DaffSeoPageHookEffects } from './page-hook.effects';
 
 /**
  * Page hook effects for the canonical URL.

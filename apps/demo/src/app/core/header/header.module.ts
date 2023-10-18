@@ -8,10 +8,10 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
-import { LogoModule } from '../logo/logo.module';
-import { SidebarModule } from '../sidebar/sidebar.module';
 import { DemoHeaderComponent } from './components/header/header.component';
 import { DemoHeaderContainer } from './containers/header/header.component';
+import { LogoModule } from '../logo/logo.module';
+import { SidebarModule } from '../sidebar/sidebar.module';
 
 
 @NgModule({

@@ -11,10 +11,10 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffMenuComponent } from './menu.component';
 import { DaffMenuModule } from '../menu.module';
 import { DaffMenuService } from '../service/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
-import { DaffMenuComponent } from './menu.component';
 
 @Component({ template: `
   <daff-menu></daff-menu>

@@ -1,5 +1,5 @@
-import { DaffIdentifiable } from '../identifiable/identifiable.interface';
 import { DaffCollectionMetadata } from './metadata.interface';
+import { DaffIdentifiable } from '../identifiable/identifiable.interface';
 
 /**
  * A collection of items that is paginable, sortable, and filterable.

@@ -1,6 +1,11 @@
 import { Package } from 'dgeni';
 
 
+import { DesignExampleConvertToJsonProcessor } from './processors/convertToJson';
+import { DesignExampleDocumentCreatorProcessor } from './processors/designExampleDocumentCreator';
+import { DesignExampleFilterProcessor } from './processors/exampleFileCollator';
+import { DesignExampleHighlightCodeProcessor } from './processors/highlightCode';
+import { designExampleReaderFactory } from './reader/example.reader';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import {
@@ -8,11 +13,6 @@ import {
   TEMPLATES_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
-import { DesignExampleConvertToJsonProcessor } from './processors/convertToJson';
-import { DesignExampleDocumentCreatorProcessor } from './processors/designExampleDocumentCreator';
-import { DesignExampleFilterProcessor } from './processors/exampleFileCollator';
-import { DesignExampleHighlightCodeProcessor } from './processors/highlightCode';
-import { designExampleReaderFactory } from './reader/example.reader';
 
 const typescriptPackage = require('dgeni-packages/typescript');
 

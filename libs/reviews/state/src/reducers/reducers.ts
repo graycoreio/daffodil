@@ -1,8 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 
 import { daffReviewsProductEntitiesReducer } from './product-review-entities/product-entities.reducer';
-import { daffReviewsCollectionReducer } from './product-reviews-collection/reducer';
 import { daffProductPageReviewsReducer } from './product-reviews/reducer';
+import { daffReviewsCollectionReducer } from './product-reviews-collection/reducer';
 import { DaffReviewsReducersState } from './reducers-state.interface';
 
 /**

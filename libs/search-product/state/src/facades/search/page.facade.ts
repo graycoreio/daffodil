@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { DaffSearchProductStateRootSlice } from '../../reducers/public_api';
-import { daffSearchProductGetPageSelectors } from '../../selectors/public_api';
 import { DaffSearchProductFacadeInterface } from './search-facade.interface';
 import { DaffSearchProductFacade } from './search.facade';
+import { DaffSearchProductStateRootSlice } from '../../reducers/public_api';
+import { daffSearchProductGetPageSelectors } from '../../selectors/public_api';
 
 /**
  * @inheritdoc

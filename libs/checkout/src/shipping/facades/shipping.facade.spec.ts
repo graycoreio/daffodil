@@ -9,12 +9,12 @@ import { cold } from 'jasmine-marbles';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import { DaffShippingFacade } from './shipping.facade';
 import {
   DaffUpdateShippingAddress,
   DaffSelectShippingOption,
 } from '../actions/shipping.actions';
 import { daffShippingReducers } from '../reducers/shipping-reducers';
-import { DaffShippingFacade } from './shipping.facade';
 
 describe('DaffShippingFacade', () => {
   let store: Store<any>;

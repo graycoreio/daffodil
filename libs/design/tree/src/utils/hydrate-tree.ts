@@ -1,6 +1,6 @@
+import { traverse } from './traverse-tree';
 import { DaffTreeData } from '../interfaces/tree-data';
 import { DaffTreeUi } from '../interfaces/tree-ui';
-import { traverse } from './traverse-tree';
 
 export const daffDataTreeToUiTree = <T>(data: DaffTreeData<T>, parent: DaffTreeUi<T>, open: boolean = false): DaffTreeUi<T> => ({
   id: data.id ?? data.title,

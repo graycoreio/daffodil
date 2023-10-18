@@ -20,8 +20,8 @@ import {
   DaffStateError,
 } from '@daffodil/core/state';
 
-import { DaffResetPasswordLanding } from '../../public_api';
 import { daffAuthResetPasswordReducer as reducer } from './reducer';
+import { DaffResetPasswordLanding } from '../../public_api';
 
 describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
   let registrationFactory: DaffAuthResetPasswordInfoFactory;

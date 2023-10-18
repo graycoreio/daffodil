@@ -13,9 +13,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffioApiPageComponent } from './api-page.component';
 import { DaffioDoc } from '../../../docs/models/doc';
 import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
-import { DaffioApiPageComponent } from './api-page.component';
 
 @Component({ selector: 'daffio-doc-viewer', template: '' })
 class MockDaffioDocViewerComponent {

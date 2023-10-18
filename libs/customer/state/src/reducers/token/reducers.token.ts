@@ -11,11 +11,11 @@ import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffCustomer } from '@daffodil/customer';
 
-import { daffCustomerAddressEntitiesReducer } from '../address-entities/public_api';
+import { DAFF_CUSTOMER_EXTRA_REDUCERS } from './extra.token';
 import { daffCustomerAddressReducer } from '../address/public_api';
+import { daffCustomerAddressEntitiesReducer } from '../address-entities/public_api';
 import { daffCustomerReducer } from '../customer/reducer';
 import { DaffCustomerReducersState } from '../reducers.interface';
-import { DAFF_CUSTOMER_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil customer reducers.

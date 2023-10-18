@@ -3,8 +3,8 @@ import {
   Component,
 } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
 } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingIconColorComponent {
-  colorGroup = new FormGroup({
-    color: new FormControl('primary'),
+  colorGroup = new UntypedFormGroup({
+    color: new UntypedFormControl('primary'),
   });
 }

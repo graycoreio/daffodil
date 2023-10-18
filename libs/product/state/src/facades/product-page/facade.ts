@@ -12,9 +12,9 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffProductPageFacadeInterface } from './facade.interface';
 import { DaffProductStateRootSlice } from '../../reducers/product-reducers-state.interface';
 import { getDaffProductSelectors } from '../../selectors/public_api';
-import { DaffProductPageFacadeInterface } from './facade.interface';
 
 /**
  * A facade for getting state about a particular product.

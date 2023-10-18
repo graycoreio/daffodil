@@ -9,9 +9,9 @@ import {
   DaffMagentoProductTransform,
 } from '@daffodil/product/driver/magento';
 
-import { MagentoCompleteCategoryResponse } from '../models/public_api';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
+import { MagentoCompleteCategoryResponse } from '../models/public_api';
 
 @Injectable({
   providedIn: 'root',

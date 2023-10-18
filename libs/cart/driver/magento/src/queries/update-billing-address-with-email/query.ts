@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoUpdateBillingAddressWithEmailResponse } from './response.type';
 import { MagentoCartUpdateBillingAddressWithEmailQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const updateBillingAddressWithEmail = (extraCartFragments: DocumentNode[] = []) => gql<MagentoUpdateBillingAddressWithEmailResponse, MagentoCartUpdateBillingAddressWithEmailQueryVariables>`
   mutation MagentoUpdateBillingAddressWithEmail(

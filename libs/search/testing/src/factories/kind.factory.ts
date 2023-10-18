@@ -7,8 +7,8 @@ import { sample } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffSearchResult } from '@daffodil/search';
 
-import { DAFF_SEARCH_RESULT_KIND_FACTORIES } from '../injection-tokens/public_api';
 import { MockSearchResult } from './search-result.factory';
+import { DAFF_SEARCH_RESULT_KIND_FACTORIES } from '../injection-tokens/public_api';
 
 /**
  * Factory for creating DaffSearchResults.

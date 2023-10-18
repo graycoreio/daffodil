@@ -1,5 +1,5 @@
-import { DaffState } from '../states/public_api';
 import { DaffOperationState } from './state';
+import { DaffState } from '../states/public_api';
 
 /**
  * Puts the state in a "resolving" state that correspondes to loading platform data in a GET fashion.

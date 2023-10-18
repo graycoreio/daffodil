@@ -22,7 +22,7 @@
     "directory": "../../dist/authorizenet"
   },
   "scripts": {
-    "build": "ng build authorizenet --prod",
+    "build": "ng build authorizenet --configuration production",
     "lint": "cd ../.. && ng lint authorizenet",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test authorizenet --watch=false --browsers=ChromeHeadless",

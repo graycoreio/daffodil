@@ -3,11 +3,11 @@ import {
   DaffPaypalExpressTokenResponse,
 } from '@daffodil/paypal';
 
+import { DaffPaypalReducerState } from './paypal-reducer.interface';
 import {
   DaffPaypalActions,
   DaffPaypalActionTypes,
 } from '../../actions/paypal.actions';
-import { DaffPaypalReducerState } from './paypal-reducer.interface';
 
 export const initialState: DaffPaypalReducerState = {
   loading: false,

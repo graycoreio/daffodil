@@ -1,15 +1,9 @@
 import {
-  DOCUMENT,
-  Location,
-} from '@angular/common';
-import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {
   Actions,
-  Effect,
   createEffect,
   ofType,
 } from '@ngrx/effects';
@@ -28,16 +22,16 @@ import {
   DaffProductTypeEnum,
 } from '@daffodil/product';
 import {
+  DaffProductPageActionTypes,
+  DaffProductPageLoadSuccess,
+} from '@daffodil/product/state';
+import {
   DaffCompositeProduct,
   DaffCompositeProductItem,
   DaffCompositeProductItemOption,
   DaffProductCompositeSelectionPayload,
 } from '@daffodil/product-composite';
 import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/state';
-import {
-  DaffProductPageActionTypes,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
 
 import {
   DaffProductCompositeRoutingConfig,

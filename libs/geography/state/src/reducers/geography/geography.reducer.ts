@@ -1,11 +1,11 @@
 import { DaffCountry } from '@daffodil/geography';
 
+import { daffGeographyInitialState } from './geography-initial-state';
+import { DaffGeographyReducerState } from './geography-state.interface';
 import {
   DaffGeographyActions,
   DaffGeographyActionTypes,
 } from '../../actions/public_api';
-import { daffGeographyInitialState } from './geography-initial-state';
-import { DaffGeographyReducerState } from './geography-state.interface';
 
 export function daffGeographyReducer<T extends DaffCountry>(
   state = daffGeographyInitialState,

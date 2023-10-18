@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DaffioApiServiceInterface } from './api-service.interface';
 import { DAFFIO_DOCS_PATH_TOKEN } from '../../docs/services/docs-path.token';
 import { DaffioApiReference } from '../models/api-reference';
-import { DaffioApiServiceInterface } from './api-service.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DaffioApiService implements DaffioApiServiceInterface {

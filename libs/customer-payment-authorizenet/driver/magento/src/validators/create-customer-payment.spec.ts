@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { ApolloQueryResult } from '@apollo/client/core';
 
+import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
 import { MagentoCreateCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
 import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/testing';
-import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
 
 import { validateCreateCustomerPaymentResponse as validator } from './create-customer-payment';
 

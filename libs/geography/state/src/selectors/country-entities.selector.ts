@@ -7,12 +7,12 @@ import {
 
 import { DaffCountry } from '@daffodil/geography';
 
+import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 import { DaffGeographyStateRootSlice } from '../reducers/geography-reducers-state.interface';
 import {
   getCountryAdapter,
   DaffCountryEntityState,
 } from '../reducers/public_api';
-import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 
 export interface DaffCountryEntitySelectors<T extends DaffCountry = DaffCountry> {
   selectCountryEntitiesState: MemoizedSelector<DaffGeographyStateRootSlice<T>, DaffCountryEntityState<T>>;

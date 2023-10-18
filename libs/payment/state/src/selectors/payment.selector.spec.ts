@@ -9,12 +9,12 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffPaymentStateRootSlice } from '@daffodil/payment/state';
 
+import { daffPaymentGetSelectors } from './payment.selector';
 import {
   daffPaymentReducerFactory,
   DaffPaymentReducersState,
   DAFF_PAYMENT_STORE_FEATURE_KEY,
 } from '../public_api';
-import { daffPaymentGetSelectors } from './payment.selector';
 
 describe('@daffodil/payment/state | daffPaymentGetSelectors', () => {
   let store: Store<DaffPaymentStateRootSlice>;

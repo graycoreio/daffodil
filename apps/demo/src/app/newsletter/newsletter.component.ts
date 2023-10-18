@@ -3,7 +3,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  FormControl,
+  UntypedFormControl,
   Validators,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -29,7 +29,7 @@ export class NewsletterComponent implements OnInit {
   loading$ = this.newsletterFacade.loading$;
   hasError$: Observable<boolean>;
 
-  email: FormControl = new FormControl('', Validators.email);
+  email: UntypedFormControl = new UntypedFormControl('', Validators.email);
 
   constructor(public newsletterFacade: DaffNewsletterFacade) {
   }

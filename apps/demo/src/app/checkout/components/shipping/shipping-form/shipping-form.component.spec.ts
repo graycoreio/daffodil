@@ -10,16 +10,16 @@ import {
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffAddress } from '@daffodil/core';
 
+import { ShippingFormComponent } from './shipping-form.component';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
-import { ShippingFormComponent } from './shipping-form.component';
 
 @Component({
   template: `
@@ -38,13 +38,13 @@ class WrapperComponent {
 
 @Component({ selector: 'demo-address-form', template: '' })
 class MockAddressFormComponent {
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 }
 
 @Component({ selector: 'demo-shipping-options', template: '' })
 class MockShippingOptionsComponent {
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 }
 
@@ -55,7 +55,7 @@ describe('ShippingFormComponent', () => {
   let addressFormComponent: MockAddressFormComponent;
   let shippingOptionsComponent: MockShippingOptionsComponent;
   const addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
-  let stubAddressFormGroup: FormGroup;
+  let stubAddressFormGroup: UntypedFormGroup;
   let shippingOptionFormService: ShippingOptionFormService;
   let stubShippingAddress;
 
@@ -95,7 +95,7 @@ describe('ShippingFormComponent', () => {
     wrapper.editModeValue = false;
     wrapper.shippingAddressValue = stubShippingAddress;
 
-    stubAddressFormGroup = new AddressFormFactory(new FormBuilder()).create(stubShippingAddress).value;
+    stubAddressFormGroup = new AddressFormFactory(new UntypedFormBuilder()).create(stubShippingAddress).value;
     addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
 
     fixture.detectChanges();
@@ -120,7 +120,7 @@ describe('ShippingFormComponent', () => {
   describe('on <demo-address-form>', () => {
 
     it('should set formGroup', () => {
-      expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls['address']);
+      expect(<UntypedFormGroup> addressFormComponent.formGroup).toEqual(<UntypedFormGroup> shippingFormComponent.form.controls['address']);
     });
 
     it('should set formSubmitted', () => {
@@ -131,7 +131,7 @@ describe('ShippingFormComponent', () => {
   describe('on <demo-shipping-options>', () => {
 
     it('should set formGroup', () => {
-      expect(<FormGroup> shippingOptionsComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls.shippingOption);
+      expect(<UntypedFormGroup> shippingOptionsComponent.formGroup).toEqual(<UntypedFormGroup> shippingFormComponent.form.controls.shippingOption);
     });
 
     it('should set submitted', () => {
@@ -163,7 +163,7 @@ describe('ShippingFormComponent', () => {
     describe('when form is valid', () => {
 
       beforeEach(() => {
-        const formBuilder = new FormBuilder();
+        const formBuilder = new UntypedFormBuilder();
         shippingFormComponent.form = formBuilder.group({
           address: formBuilder.group({}),
           shippingOption: formBuilder.group({ id: 'id' }),

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
-import { DaffSeoMetaDefinition } from '../models/public_api';
 import { getAttrSelector } from './get-attr-selector';
+import { DaffSeoMetaDefinition } from '../models/public_api';
 
 /**
  * Manages the meta tags on the current browser page.

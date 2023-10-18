@@ -35,7 +35,7 @@ import {
   MagentoOrderInvoice,
   MagentoOrderCreditItem,
   MagentoOrderCredit,
-} from '@daffodil/order/driver/magento/2.4.1';
+} from '@daffodil/order/driver/magento/2-4-1';
 
 import { MagentoCustomerOrder } from '../../models/public_api';
 

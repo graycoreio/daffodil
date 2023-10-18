@@ -1,8 +1,8 @@
 
 
+import { DaffFilterEqualOption } from './option';
 import { DaffFilterBase } from '../../filter-base';
 import { DaffFilterType } from '../filter-type';
-import { DaffFilterEqualOption } from './option';
 
 /**
  * A DaffFilterEqual is used to represent filters where

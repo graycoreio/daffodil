@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { MagentoCartWithStoreCredit } from '@daffodil/cart-store-credit/driver/magento';
 import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/testing';
-import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { magentoCartWithStoreCreditTransform } from './cart-with-store-credit';
 

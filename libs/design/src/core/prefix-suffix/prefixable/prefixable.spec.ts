@@ -7,9 +7,9 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
+import { daffPrefixableMixin } from './prefixable';
 import { DaffPrefixSuffixModule } from '../prefix-suffix.module';
 import { DaffPrefixDirective } from '../prefix.directive';
-import { daffPrefixableMixin } from './prefixable';
 
 class PrefixableComponentBase {}
 

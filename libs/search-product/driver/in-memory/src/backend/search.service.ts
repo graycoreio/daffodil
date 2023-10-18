@@ -10,12 +10,12 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 import { daffSearchTransformResultsToCollection } from '@daffodil/search';
+import { DaffSearchDriverResponse } from '@daffodil/search/driver';
+import { DaffSearchInMemoryChildBackend } from '@daffodil/search/driver/in-memory';
 import {
   daffTransformProductsToSearchResults,
   DAFF_SEARCH_PRODUCT_RESULT_KIND,
 } from '@daffodil/search-product';
-import { DaffSearchDriverResponse } from '@daffodil/search/driver';
-import { DaffSearchInMemoryChildBackend } from '@daffodil/search/driver/in-memory';
 
 /**
  * An in-memory service that stubs out the backend services for searching products.

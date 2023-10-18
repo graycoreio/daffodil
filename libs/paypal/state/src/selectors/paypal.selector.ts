@@ -7,12 +7,12 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffPaypalExpressReducerState } from '../reducers/express/public_api';
+import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 import {
   DaffPaypalReducersState,
   DaffPaypalStateRootSlice,
 } from '../reducers/paypal-reducers.interface';
 import { DAFF_PAYPAL_STORE_FEATURE_KEY } from '../reducers/paypal-store-feature-key';
-import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interface';
 
 export interface DaffPaypalMemoizedSelectors {
   selectPaypalFeatureState: MemoizedSelector<DaffPaypalStateRootSlice, DaffPaypalReducersState>;

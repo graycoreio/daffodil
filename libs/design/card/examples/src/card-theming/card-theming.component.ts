@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardThemingComponent {
-  colorControl: FormControl = new FormControl('');
+  colorControl: UntypedFormControl = new UntypedFormControl('');
 
   options = [
     { value: '', label: 'Default' },

@@ -20,13 +20,13 @@ import { DaffIdentifiable } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import {
-  DaffCustomerPaymentAuthorizeNet,
-  DaffCustomerPaymentAuthorizeNetRequest,
-} from '@daffodil/customer-payment-authorizenet';
-import {
   DaffCustomerPaymentDriverInterface,
   DaffCustomerPaymentNotFoundError,
 } from '@daffodil/customer-payment/driver';
+import {
+  DaffCustomerPaymentAuthorizeNet,
+  DaffCustomerPaymentAuthorizeNetRequest,
+} from '@daffodil/customer-payment-authorizenet';
 import { DaffPersonalAddress } from '@daffodil/geography';
 
 import { transformMagentoReviewsError } from './errors/transform';

@@ -21,8 +21,8 @@ import {
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
 
-import { DaffCategoryStateRootSlice } from '../../reducers/public_api';
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
+import { DaffCategoryStateRootSlice } from '../../reducers/public_api';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 

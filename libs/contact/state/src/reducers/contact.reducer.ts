@@ -1,10 +1,10 @@
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DAFF_CONTACT_STORE_FEATURE_KEY } from './contact-store-feature-key';
 import {
   DaffContactActions,
   DaffContactActionTypes,
 } from '../actions/contact.actions';
-import { DAFF_CONTACT_STORE_FEATURE_KEY } from './contact-store-feature-key';
 
 export interface DaffContactState {
   success: boolean;

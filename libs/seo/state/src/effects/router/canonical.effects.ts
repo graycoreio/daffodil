@@ -10,9 +10,9 @@ import {
 
 import { DaffRestoreableCanonicalService } from '@daffodil/seo';
 
+import { DaffSeoPageHookRouterEffects } from './page-hook.effects';
 import { DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES } from '../../injection-tokens/canonical/router/updates.token';
 import { DaffSeoUpdateEventPair } from '../../models/update-event-pair.interface';
-import { DaffSeoPageHookRouterEffects } from './page-hook.effects';
 
 /**
  * Page hook effects for the canonical URL.

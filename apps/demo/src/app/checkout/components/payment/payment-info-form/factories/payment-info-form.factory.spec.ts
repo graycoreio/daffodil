@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  FormGroup,
+  UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 
@@ -31,7 +31,7 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
 
   describe('create', () => {
 
-    let result: FormGroup;
+    let result: UntypedFormGroup;
     let paymentInfo;
 
     describe('when paymentInfo is null', () => {

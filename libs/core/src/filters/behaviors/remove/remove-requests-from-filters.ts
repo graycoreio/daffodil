@@ -1,10 +1,10 @@
 
 
+import { daffRemoveFilter } from './remove-filter';
 import {
   DaffFilterRequest,
   DaffFilters,
 } from '../../../filterable/public_api';
-import { daffRemoveFilter } from './remove-filter';
 
 /**
  * Undoes all applied options of a dictionary of {@link DaffFilter}

@@ -19,8 +19,8 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
-import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
+import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
 const cartFactory = new DaffCartFactory();
 const cart = cartFactory.create();

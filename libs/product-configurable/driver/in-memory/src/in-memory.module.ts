@@ -4,8 +4,8 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 import { DAFF_PRODUCT_TYPE_FACTORIES } from '@daffodil/product/testing';
+import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 
 /**
  * Module for providing the configurable product factory to the product kind factory.

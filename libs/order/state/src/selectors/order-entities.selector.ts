@@ -16,12 +16,12 @@ import {
   DaffOrderTotalTypeEnum,
 } from '@daffodil/order';
 
+import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 import {
   DaffOrderStateRootSlice,
   daffGetOrderAdapter,
   DaffOrderEntityState,
 } from '../reducers/public_api';
-import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 
 export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   selectOrderEntitiesState: MemoizedSelector<DaffOrderStateRootSlice<T>, DaffOrderEntityState<T>>;

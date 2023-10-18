@@ -14,9 +14,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffioApiListPageComponent } from './api-list-page.component';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
 import { DaffioApiReference } from '../../models/api-reference';
-import { DaffioApiListPageComponent } from './api-list-page.component';
 
 @Injectable({ providedIn: 'root' })
 class ActivatedRouteStub {

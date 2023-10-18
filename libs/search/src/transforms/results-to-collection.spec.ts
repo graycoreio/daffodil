@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffSearchResultFactory } from '@daffodil/search/testing';
 
+import { daffSearchTransformResultsToCollection } from './results-to-collection';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
 } from '../models/public_api';
-import { daffSearchTransformResultsToCollection } from './results-to-collection';
 
 describe('@daffodil/search | daffSearchTransformResultsToCollection', () => {
   let results: DaffSearchResult[];

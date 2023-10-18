@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffAuthFacadeInterface } from './facade.interface';
 import { DaffAuthStateRootSlice } from '../../reducers/public_api';
 import { daffAuthSelectorFactory } from '../../selectors/auth/auth.selector';
-import { DaffAuthFacadeInterface } from './facade.interface';
 
 /**
  * @inheritdoc

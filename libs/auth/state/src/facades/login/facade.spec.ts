@@ -24,8 +24,8 @@ import {
 } from '@daffodil/auth/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffAuthLogin } from '../../public_api';
 import { DaffAuthLoginFacade } from './facade';
+import { DaffAuthLogin } from '../../public_api';
 
 describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
   let store: Store<any>;

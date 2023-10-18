@@ -12,8 +12,8 @@ import {
   DaffCollectionRequestQueryParamTransform,
 } from '@daffodil/product/routing';
 
-import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 import { DaffProductGetQueryParamsFromRequest } from './get-query-params-from-request.service';
+import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 
 describe('@daffodil/product/routing | DaffProductGetQueryParamsFromRequest', () => {
   let customPageSizeQp: string;

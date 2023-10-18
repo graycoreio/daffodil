@@ -10,8 +10,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 
-import { DaffRouteWithDataPath } from '../../model/route-with-data-path';
 import { daffDataPathUrlMatcher } from './data-path-matcher';
+import { DaffRouteWithDataPath } from '../../model/route-with-data-path';
 
 describe('@daffodil/external-router | daffPathUrlMatcher', () => {
   let router: Router;

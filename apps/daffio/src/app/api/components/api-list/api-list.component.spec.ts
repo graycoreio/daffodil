@@ -9,8 +9,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffContainerModule } from '@daffodil/design';
 
-import { DaffioApiReference } from '../../models/api-reference';
 import { DaffioApiListComponent } from './api-list.component';
+import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({ template: '<daffio-api-list [apiList]="apiListValue"></daffio-api-list>' })
 class WrapperComponent {

@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
 import { DaffAuthorizeNetStateRootSlice } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
-import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
 
 @Injectable({
   providedIn: 'root',

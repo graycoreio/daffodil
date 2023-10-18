@@ -7,8 +7,8 @@ import { DaffLogoModule } from '@daffodil/branding';
 import { DaffButtonModule } from '@daffodil/design';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
-import { DaffioHeaderComponentModule } from '../components/header.module';
 import { DaffioHeaderContainer } from './header.component';
+import { DaffioHeaderComponentModule } from '../components/header.module';
 
 @NgModule({
   imports: [

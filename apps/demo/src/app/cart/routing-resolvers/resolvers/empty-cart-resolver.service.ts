@@ -16,11 +16,11 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
+import { CartResolver } from './cart-resolver.service';
 import {
   ResolveCartSuccess,
   CartResolverActionTypes,
 } from '../actions/cart-resolver.actions';
-import { CartResolver } from './cart-resolver.service';
 
 @Injectable({
   providedIn: 'root',

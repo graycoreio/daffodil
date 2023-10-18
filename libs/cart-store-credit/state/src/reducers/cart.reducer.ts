@@ -1,10 +1,10 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import {
   DaffCartOperationType,
   DaffCartReducerState,
   daffCartReducerInitialState,
 } from '@daffodil/cart/state';
+import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffState } from '@daffodil/core/state';
 
 import {

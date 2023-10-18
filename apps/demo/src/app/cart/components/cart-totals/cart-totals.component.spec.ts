@@ -16,8 +16,8 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffMockCurrencyPipe } from '@daffodil/core/testing';
 
-import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
 import { CartTotalsComponent } from './cart-totals.component';
+import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
 
 @Component({ template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>' })
 class WrapperComponent {

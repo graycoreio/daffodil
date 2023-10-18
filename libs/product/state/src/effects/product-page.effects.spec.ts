@@ -23,8 +23,8 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductPageLoadByUrl } from '../actions/public_api';
 import { DaffProductPageEffects } from './product-page.effects';
+import { DaffProductPageLoadByUrl } from '../actions/public_api';
 
 describe('DaffProductPageEffects', () => {
   let actions$: Observable<any>;

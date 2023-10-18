@@ -18,6 +18,7 @@ import {
 } from 'rxjs/operators';
 
 import { DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartStorageFailure } from '@daffodil/cart/state';
 import {
   DaffCartWithStoreCredit,
   DAFF_CART_STORE_CREDIT_ERROR_MATCHER,
@@ -26,7 +27,6 @@ import {
   DaffCartStoreCreditDriver,
   DaffCartStoreCreditDriverInterface,
 } from '@daffodil/cart-store-credit/driver';
-import { DaffCartStorageFailure } from '@daffodil/cart/state';
 import {
   DaffError,
   DaffStorageServiceError,

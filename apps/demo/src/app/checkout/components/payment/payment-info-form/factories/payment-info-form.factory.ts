@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
   Validators,
 } from '@angular/forms';
 
@@ -11,10 +11,10 @@ import {
 export class PaymentInfoFormFactory {
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
   ) {}
 
-  create(paymentInfo): FormGroup {
+  create(paymentInfo): UntypedFormGroup {
     return this.fb.group({
       name: [paymentInfo ? paymentInfo.name : '', Validators.required],
       cardnumber: [paymentInfo ? paymentInfo.cardnumber : '', Validators.required],

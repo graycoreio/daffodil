@@ -13,8 +13,5 @@ import { DaffImageComponent } from './image.component';
   exports: [
     DaffImageComponent,
   ],
-  entryComponents: [
-    DaffImageComponent,
-  ],
 })
 export class DaffImageModule { }

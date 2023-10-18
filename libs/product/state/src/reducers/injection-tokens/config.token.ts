@@ -7,8 +7,8 @@ import { StoreConfig } from '@ngrx/store';
 // workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProduct } from '@daffodil/product';
 
-import { DaffProductReducersState } from '../product-reducers-state.interface';
 import { DAFF_PRODUCT_META_REDUCERS } from './meta.token';
+import { DaffProductReducersState } from '../product-reducers-state.interface';
 
 /**
  * An internal token to hold the Daffodil product feature store config.

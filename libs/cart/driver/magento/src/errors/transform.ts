@@ -13,12 +13,12 @@ import {
   daffMagentoTransformGraphQlError,
 } from '@daffodil/driver/magento';
 
-import { MagentoCartUserInputError } from '../models/public_api';
 import {
   DaffCartMagentoErrorMap,
   DaffCartMagentoErrorMessageRegexMap,
   DaffCartMagentoUserErrorMap,
 } from './map';
+import { MagentoCartUserInputError } from '../models/public_api';
 
 /**
  * Transforms a single GraphQL error.

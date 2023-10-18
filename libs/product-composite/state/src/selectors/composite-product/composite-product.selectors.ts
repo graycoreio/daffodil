@@ -20,13 +20,13 @@ import {
   DaffProductPrices,
   DaffPriceRange,
 } from '@daffodil/product';
+import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 import {
   DaffCompositeProduct,
   DaffCompositeConfigurationItem,
   DaffCompositeProductItem,
   DaffCompositeProductItemOption,
 } from '@daffodil/product-composite';
-import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 
 import { DaffCompositeProductStateRootSlice } from '../../reducers/composite-product-reducers-state.interface';
 import { DaffCompositeProductEntity } from '../../reducers/public_api';

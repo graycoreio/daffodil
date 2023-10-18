@@ -1,10 +1,10 @@
-import { DaffPaymentFactory } from '../../../../testing/src';
-import { PaymentInfo } from '../../../models/payment/payment-info';
-import { DaffUpdatePaymentInfo } from '../../actions/payment.actions';
 import {
   initialState,
   daffPaymentReducer,
 } from './payment.reducer';
+import { DaffPaymentFactory } from '../../../../testing/src';
+import { PaymentInfo } from '../../../models/payment/payment-info';
+import { DaffUpdatePaymentInfo } from '../../actions/payment.actions';
 
 describe('Payment | Payment Reducer', () => {
 

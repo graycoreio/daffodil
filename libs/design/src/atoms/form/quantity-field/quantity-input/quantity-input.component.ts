@@ -9,7 +9,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import {
-  FormControl,
+  UntypedFormControl,
   NgControl,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -43,7 +43,7 @@ export class DaffQuantityInputComponent implements OnInit, OnDestroy {
    * to avoid triggering updates on the input event.
    * Instead, we listen for the change event and manually patch form control values.
    */
-  _inputControl = new FormControl();
+  _inputControl = new UntypedFormControl();
 
   get focused(): boolean {
     return this.input?.focused;

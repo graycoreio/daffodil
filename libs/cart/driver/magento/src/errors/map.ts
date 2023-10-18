@@ -9,8 +9,8 @@ import { DaffErrorCodeMap } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
 import { DaffProductNotFoundError } from '@daffodil/product/driver';
 
-import { MagentoCartUserInputErrorType } from '../models/public_api';
 import { MagentoCartGraphQlErrorCode } from './codes';
+import { MagentoCartUserInputErrorType } from '../models/public_api';
 
 export const DaffCartMagentoErrorMap: DaffErrorCodeMap = {
   [MagentoCartGraphQlErrorCode.CART_NOT_FOUND]: DaffCartNotFoundError,

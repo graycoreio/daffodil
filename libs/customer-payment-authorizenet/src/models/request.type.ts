@@ -1,8 +1,8 @@
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
 import { DaffCustomerPaymentRequest } from '@daffodil/customer-payment';
 
-import { DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_PAYMENT_KIND } from '../constants/public_api';
 import { DaffCustomerPaymentAuthorizeNetCCType } from './cc-type.enum';
+import { DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_PAYMENT_KIND } from '../constants/public_api';
 
 export interface DaffCustomerPaymentAuthorizeNetRequestData extends DaffAuthorizeNetTokenRequest {
   /**

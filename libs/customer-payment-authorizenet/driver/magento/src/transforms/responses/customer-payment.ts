@@ -1,8 +1,8 @@
-import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
 import { magentoCustomerAddressTransform } from '@daffodil/customer/driver/magento';
+import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
 
-import { MagentoTokenBaseCard } from '../../models/public_api';
 import { magentoCustomerPaymentAnetCCTypeResponseTransform } from './card-type';
+import { MagentoTokenBaseCard } from '../../models/public_api';
 
 export const magentoCustomerPaymentAuthorizeNetTransform = (payment: MagentoTokenBaseCard): DaffCustomerPaymentAuthorizeNet => ({
   method: payment.method,

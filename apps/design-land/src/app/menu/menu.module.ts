@@ -7,9 +7,9 @@ import {
   DaffMenuModule,
 } from '@daffodil/design';
 
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { DesignLandMenuRoutingModule } from './menu-routing-module';
 import { DesignLandMenuComponent } from './menu.component';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [

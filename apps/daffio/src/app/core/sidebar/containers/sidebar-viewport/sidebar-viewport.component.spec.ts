@@ -21,13 +21,13 @@ import {
   DaffSidebarComponent,
 } from '@daffodil/design';
 
+import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import {
   OpenSidebar,
   CloseSidebar,
   SetSidebarState,
 } from '../../actions/sidebar.actions';
 import * as fromSidebar from '../../reducers/index';
-import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;

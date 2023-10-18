@@ -19,8 +19,8 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 
-import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
+import * as fromDemoCheckout from '../../reducers';
 
 describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;

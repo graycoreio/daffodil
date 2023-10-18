@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffOrder } from '@daffodil/checkout';
 
-import { DaffOrderFactory } from '../../order/factories/order.factory';
 import { DaffTestingCheckoutService } from './checkout.service';
+import { DaffOrderFactory } from '../../order/factories/order.factory';
 
 describe('Driver | Testing | Checkout | CheckoutService', () => {
   let testingCheckoutService: DaffTestingCheckoutService;

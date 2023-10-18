@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { DaffCartShippingInformation } from '@daffodil/cart';
 
-import { MagentoCartShippingMethod } from '../../models/responses/cart-shipping-method';
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
+import { MagentoCartShippingMethod } from '../../models/responses/cart-shipping-method';
 
 /**
  * Transforms magento cart shipping methods into an object usable by daffodil.

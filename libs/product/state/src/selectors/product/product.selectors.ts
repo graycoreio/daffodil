@@ -9,11 +9,11 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffProductReducerState } from '../../reducers/product/product-reducer-state.interface';
 import {
   DaffProductReducersState,
   DaffProductStateRootSlice,
 } from '../../reducers/product-reducers-state.interface';
-import { DaffProductReducerState } from '../../reducers/product/product-reducer-state.interface';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**

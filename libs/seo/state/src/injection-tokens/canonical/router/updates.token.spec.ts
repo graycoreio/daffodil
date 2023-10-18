@@ -4,11 +4,11 @@ import {
   NavigationEnd,
 } from '@angular/router';
 
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
 import {
   daffProvideCanonicalUrlRouterUpdates,
   DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES,
 } from './updates.token';
+import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
 
 describe('daffProvideCanonicalUrlUpdates', () => {
   let updates: DaffSeoUpdateEventPair<Event, string>[];

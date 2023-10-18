@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
+import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import { MockPaymentResponse } from '@daffodil/payment/testing';
 
 /**

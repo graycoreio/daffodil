@@ -36,12 +36,12 @@ import {
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
+import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import {
   CloseAddToCartNotification,
   OpenAddToCartNotification,
 } from '../../actions/add-to-cart-notification.actions';
 import * as fromAddToCartNotification from '../../reducers/index';
-import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 
 @Component({ template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>' })
 class WrapperComponent {}

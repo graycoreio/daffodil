@@ -5,10 +5,10 @@ import {
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffTheme } from '../types/theme';
 import { DaffOsThemeService } from './os-theme/ostheme.service';
 import { DaffThemeStorageService } from './storage/theme-storage.service';
 import { DaffThemingService } from './theming.service';
+import { DaffTheme } from '../types/theme';
 
 describe('DaffThemingService', () => {
   let testScheduler: TestScheduler;

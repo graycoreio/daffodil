@@ -5,8 +5,8 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffRouteWithType } from '../../model/route-with-type';
 import { daffInsertDataPathStrategy } from './insert-data-path';
+import { DaffRouteWithType } from '../../model/route-with-type';
 
 describe('@daffodil/external-router | daffInsertDataPathOnRouteMatchingType', () => {
   let router: Router;

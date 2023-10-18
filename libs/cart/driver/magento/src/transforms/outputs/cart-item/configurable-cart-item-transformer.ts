@@ -4,8 +4,8 @@ import {
   DaffConfigurableCartItemAttribute,
 } from '@daffodil/cart';
 
-import { MagentoConfigurableCartItem } from '../../../models/responses/cart-item';
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
+import { MagentoConfigurableCartItem } from '../../../models/responses/cart-item';
 
 function transformConfigurableCartItemAttribute(
   option: MagentoConfigurableCartItem['configurable_options'][0],

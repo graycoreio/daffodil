@@ -5,8 +5,8 @@ import {
   DoCheck,
 } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
 } from '@angular/forms';
 
 import { ShippingOption } from '@daffodil/checkout';
@@ -20,7 +20,7 @@ import { ShippingOptionsService } from '../services/shipping-options.service';
   styleUrls: ['./shipping-options.component.scss'],
 })
 export class ShippingOptionsComponent implements OnInit, DoCheck {
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 
   shippingOptions: ShippingOption[];
@@ -38,6 +38,6 @@ export class ShippingOptionsComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.errorState = this.errorStateMatcher.isErrorState(<FormControl> this.formGroup.controls['id'], this.submitted);
+    this.errorState = this.errorStateMatcher.isErrorState(<UntypedFormControl> this.formGroup.controls['id'], this.submitted);
   }
 }

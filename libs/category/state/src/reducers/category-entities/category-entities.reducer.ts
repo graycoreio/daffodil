@@ -6,6 +6,7 @@ import {
 } from '@daffodil/category';
 import { DaffProduct } from '@daffodil/product';
 
+import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 import {
   DaffCategoryPageActionTypes,
   DaffCategoryPageActions,
@@ -14,7 +15,6 @@ import {
   DaffCategoryActionTypes,
   DaffCategoryActions,
 } from '../../actions/category.actions';
-import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 
 /**
  * A reducer function to store category entities from DaffCategoryLoadSuccess and DaffCategoryPageLoadSuccess actions.

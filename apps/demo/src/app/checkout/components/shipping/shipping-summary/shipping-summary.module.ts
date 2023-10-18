@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AddressSummaryModule } from '../../payment/address-summary/address-summary.module';
 import { ShippingSummaryComponent } from './shipping-summary.component';
+import { AddressSummaryModule } from '../../payment/address-summary/address-summary.module';
 
 @NgModule({
   imports: [

@@ -7,8 +7,8 @@ import {
   DaffContainerModule,
 } from '@daffodil/design';
 
-import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
 import { DaffioHeaderComponent } from './header/header.component';
+import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
 
 @NgModule({
   imports: [

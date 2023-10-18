@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "build": "ng build demo --prod",
+    "build": "ng build demo --configuration production",
     "lint": "npm run lint:scss && cd ../.. && ng lint demo",
     "lint:fix": "npm run lint -- --fix",
     "lint:scss": "stylelint **/*.scss",

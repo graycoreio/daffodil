@@ -5,14 +5,14 @@ import {
 
 import { DaffIdentifiable } from '@daffodil/core';
 
-import { DaffStateError } from '../../errors/public_api';
-import { DaffState } from '../../states/public_api';
 import {
   daffOperationEntityStateSelectorFactory,
   DaffOperationEntityStateSelectors,
 } from './selectors';
 import { DaffOperationEntityState } from './state.type';
 import { DaffOperationEntity } from './type';
+import { DaffStateError } from '../../errors/public_api';
+import { DaffState } from '../../states/public_api';
 
 /**
  * An entity state adapter that takes care of managing contextual operation and error state for entities.

@@ -1,14 +1,14 @@
 import { DaffPaymentResponse } from '@daffodil/payment';
 
+import { DaffPaymentStateReducerAdapter } from './adapter';
+import { daffPaymentInitialState } from './initial-state';
+import { DaffPaymentReducerState } from './interface';
 import {
   DaffPaymentGenerateToken,
   DaffPaymentActionTypes,
   DaffPaymentActions,
   DaffPaymentGenerateTokenFailure,
 } from '../../actions/payment.actions';
-import { DaffPaymentStateReducerAdapter } from './adapter';
-import { daffPaymentInitialState } from './initial-state';
-import { DaffPaymentReducerState } from './interface';
 
 /**
  * The reducer for the payment page state, see {@link DaffPaymentReducerState}.

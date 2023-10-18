@@ -9,11 +9,11 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '../../../core/colorable/public_api';
 import {
   DaffCardComponent,
   DaffCardOrientation,
 } from './card.component';
+import { DaffPalette } from '../../../core/colorable/public_api';
 
 @Component ({
   template: `<daff-card [color]="color" [orientation]="orientation"></daff-card>`,

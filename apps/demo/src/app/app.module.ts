@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { DaffProgressIndicatorModule } from '@daffodil/design';
 
-import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoCartRootModule } from './cart/cart-root.module';
@@ -18,6 +17,7 @@ import { NotFoundModule } from './misc/not-found/not-found.module';
 import { ProductModule } from './product/product.module';
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { ThankYouModule } from './thank-you/thank-you.module';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [

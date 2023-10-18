@@ -8,17 +8,17 @@ import {
 import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
+import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartAddressService } from './cart-address/cart-address.service';
 import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
-import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
 import { DaffInMemoryBackendCartPaymentService } from './cart-payment/cart-payment.service';
+import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
 import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
 import { DaffInMemoryBackendCartShippingInformationService } from './cart-shipping-information/cart-shipping-information.service';
 import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
-import { DaffInMemoryBackendCartService } from './cart/cart.service';
 
 /**
  * The root cart in-memory backend.

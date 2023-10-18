@@ -5,8 +5,8 @@ import {
 
 import { daffArrayToDict } from '@daffodil/core';
 
-import { DaffPaymentProcessorCollection } from '../models/public_api';
 import { DAFF_PAYMENT_AVAILABLE_PROCESSORS } from './available-processors.token';
+import { DaffPaymentProcessorCollection } from '../models/public_api';
 
 /**
  * An internal token to combine the available payment processors into a single collection.

@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build customer-store-credit --prod",
+    "build": "ng build customer-store-credit --configuration production",
     "lint": "cd ../.. && ng lint customer-store-credit",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test customer-store-credit --watch=false --browsers=ChromeHeadless",

@@ -21,8 +21,8 @@ import {
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
 
-import { CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 import * as fromAddToCartNotification from './index';
+import { CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('selectDemoAddToCartNotificationState', () => {
 

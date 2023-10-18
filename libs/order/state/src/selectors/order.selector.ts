@@ -10,13 +10,13 @@ import {
 } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 
+import { getDaffOrderCollectionSelectors } from './order-collection/selectors';
+import { getDaffOrderEntitySelectors } from './order-entities.selector';
+import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 import {
   DaffOrderStateRootSlice,
   DaffOrderReducerState,
 } from '../reducers/public_api';
-import { getDaffOrderCollectionSelectors } from './order-collection/selectors';
-import { getDaffOrderEntitySelectors } from './order-entities.selector';
-import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 
 export interface DaffOrderSelectors<T extends DaffOrder = DaffOrder> extends DaffOperationStateSelectors<DaffOrderStateRootSlice<T>, DaffOrderReducerState> {
   selectOrderState: MemoizedSelector<DaffOrderStateRootSlice, DaffOrderReducerState>;

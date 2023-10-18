@@ -8,13 +8,13 @@ import {
   MockStore,
 } from '@ngrx/store/testing';
 
+import { OrderContainer } from './order.component';
 import { DaffOrderFactory } from '../../../testing/src';
 import { DaffOrder } from '../../models/order/order';
 import {
   selectLoading,
   selectOrder,
 } from '../selectors/order.selector';
-import { OrderContainer } from './order.component';
 
 describe('OrderContainer', () => {
   let component: OrderContainer;

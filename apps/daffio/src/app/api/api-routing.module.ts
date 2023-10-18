@@ -4,10 +4,10 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
 import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioApiListResolver } from './resolvers/api-list-resolver.service';
+import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 
 export const apiRoutes: Routes = [
   {

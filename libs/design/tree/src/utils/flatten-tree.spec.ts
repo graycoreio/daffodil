@@ -1,7 +1,7 @@
-import { DaffTreeUi } from '../interfaces/tree-ui';
 import { flattenTree } from './flatten-tree';
 import { hydrateTree } from './hydrate-tree';
 import { traverse } from './traverse-tree';
+import { DaffTreeUi } from '../interfaces/tree-ui';
 
 describe('@daffodil/design/tree - flattenTree', () => {
   it('should flatten a root into an empty array', () => {

@@ -8,11 +8,11 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
-import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 import { DaffProductStateRootSlice } from '@daffodil/product/state';
+import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 
-import { getDaffConfigurableProductAllSelectors } from '../selectors/public_api';
 import { DaffConfigurableProductFacadeInterface } from './configurable-product-facade.interface';
+import { getDaffConfigurableProductAllSelectors } from '../selectors/public_api';
 
 /**
  * A facade for interacting with the configurable product state.

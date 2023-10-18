@@ -6,10 +6,10 @@ import {
 // workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProduct } from '@daffodil/product';
 
+import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS } from './extra.token';
 import { DaffMagentoProductTransform } from '../../../interfaces/public_api';
 import { MagentoProduct } from '../../../models/public_api';
 import { DaffMagentoProductsTransformer } from '../../../transforms/product-transformers';
-import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS } from './extra.token';
 
 /**
  * An internal token to combine the Magento preview transform with the injected transforms.

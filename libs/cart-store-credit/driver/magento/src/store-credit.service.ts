@@ -13,12 +13,12 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
-import { DaffCartStoreCreditDriverInterface } from '@daffodil/cart-store-credit/driver';
 import {
   DaffMagentoCartTransformer,
   DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
 } from '@daffodil/cart/driver/magento';
+import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
+import { DaffCartStoreCreditDriverInterface } from '@daffodil/cart-store-credit/driver';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 import { transformMagentoReviewsError } from './errors/transform';

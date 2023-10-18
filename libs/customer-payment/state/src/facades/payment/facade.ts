@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 
+import { DaffCustomerPaymentPageFacadeInterface } from './interface';
 import { DaffCustomerPaymentEntity } from '../../models/public_api';
 import {
   daffCustomerPaymentEntitiesAdapter,
@@ -18,7 +19,6 @@ import {
   daffCustomerPaymentGetSelectors,
   DaffCustomerPaymentSelectors,
 } from '../../selectors/public_api';
-import { DaffCustomerPaymentPageFacadeInterface } from './interface';
 
 // TODO: payment entities?
 

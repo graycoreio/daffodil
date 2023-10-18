@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   ReactiveFormsModule,
   ValidationErrors,
 } from '@angular/forms';
@@ -20,13 +20,13 @@ describe('@daffodil/design | daffFormNotEmptyValidator | unit', () => {
   });
 
   describe('when the control is a form group', () => {
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
 
     describe('and when the form group is empty', () => {
       beforeEach(() => {
-        formGroup = new FormGroup({
-          control1: new FormControl(null),
-          control2: new FormControl(''),
+        formGroup = new UntypedFormGroup({
+          control1: new UntypedFormControl(null),
+          control2: new UntypedFormControl(''),
         });
         result = daffFormNotEmptyValidator(formGroup);
       });
@@ -38,9 +38,9 @@ describe('@daffodil/design | daffFormNotEmptyValidator | unit', () => {
 
     describe('and when the form group is not empty', () => {
       beforeEach(() => {
-        formGroup = new FormGroup({
-          control1: new FormControl(null),
-          control2: new FormControl('a value'),
+        formGroup = new UntypedFormGroup({
+          control1: new UntypedFormControl(null),
+          control2: new UntypedFormControl('a value'),
         });
         result = daffFormNotEmptyValidator(formGroup);
       });
@@ -52,11 +52,11 @@ describe('@daffodil/design | daffFormNotEmptyValidator | unit', () => {
   });
 
   describe('when the control is a control', () => {
-    let control: FormControl;
+    let control: UntypedFormControl;
 
     describe('and when the form group is empty', () => {
       beforeEach(() => {
-        control = new FormControl(null);
+        control = new UntypedFormControl(null);
         result = daffFormNotEmptyValidator(control);
       });
 
@@ -67,7 +67,7 @@ describe('@daffodil/design | daffFormNotEmptyValidator | unit', () => {
 
     describe('and when the form group is not empty', () => {
       beforeEach(() => {
-        control = new FormControl('a value');
+        control = new UntypedFormControl('a value');
         result = daffFormNotEmptyValidator(control);
       });
 

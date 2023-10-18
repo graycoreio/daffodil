@@ -9,9 +9,9 @@ import {
 
 import { daffComposeReducers } from '@daffodil/core/state';
 
+import { DAFF_AUTH_EXTRA_REDUCERS } from './extra.token';
 import { DaffAuthFeatureState } from '../auth-feature-state.interface';
 import { daffAuthReducers } from '../auth-reducers';
-import { DAFF_AUTH_EXTRA_REDUCERS } from './extra.token';
 
 /**
  * An internal token to hold the Daffodil auth reducers.

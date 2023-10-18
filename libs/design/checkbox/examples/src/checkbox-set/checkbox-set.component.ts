@@ -5,8 +5,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  FormArray,
-  FormControl,
+  UntypedFormArray,
+  UntypedFormControl,
 } from '@angular/forms';
 
 import { DaffCheckboxSetComponent } from '@daffodil/design';
@@ -21,7 +21,7 @@ export class CheckboxSetComponent implements OnInit {
 
   @ViewChild(DaffCheckboxSetComponent)
   private checkboxSet: DaffCheckboxSetComponent;
-  checkboxArray = new FormArray([new FormControl(), new FormControl(), new FormControl()]);
+  checkboxArray = new UntypedFormArray([new UntypedFormControl(), new UntypedFormControl(), new UntypedFormControl()]);
   selectedValues = [];
 
   ngOnInit() {

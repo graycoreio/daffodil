@@ -8,12 +8,12 @@ import {
   daffStartMutation,
 } from '@daffodil/core/state';
 
+import { daffAuthLoginInitialState } from './login-initial-state';
+import { DaffAuthLoginReducerState } from './login-reducer-state.interface';
 import {
   DaffAuthLoginActionTypes,
   DaffAuthLoginActions,
 } from '../../actions/public_api';
-import { daffAuthLoginInitialState } from './login-initial-state';
-import { DaffAuthLoginReducerState } from './login-reducer-state.interface';
 
 export function daffAuthLoginReducer<
   T extends DaffLoginInfo,

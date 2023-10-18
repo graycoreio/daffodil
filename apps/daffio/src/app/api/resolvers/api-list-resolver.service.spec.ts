@@ -8,10 +8,10 @@ import {
   throwError,
 } from 'rxjs';
 
+import { DaffioApiListResolver } from './api-list-resolver.service';
 import { DaffioApiReference } from '../models/api-reference';
 import { DaffioApiServiceInterface } from '../services/api-service.interface';
 import { DaffioApiService } from '../services/api.service';
-import { DaffioApiListResolver } from './api-list-resolver.service';
 
 describe('DaffioApiListResolver', () => {
   let resolver: DaffioApiListResolver;

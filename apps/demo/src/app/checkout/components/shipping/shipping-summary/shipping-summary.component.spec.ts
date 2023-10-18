@@ -12,9 +12,9 @@ import { By } from '@angular/platform-browser';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
+import { ShippingSummaryComponent } from './shipping-summary.component';
 import { ShippingOptionsFactory } from '../shipping-options/components/factories/shipping-options.factory';
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
-import { ShippingSummaryComponent } from './shipping-summary.component';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const stubDaffodilAddress = daffodilAddressFactory.create();

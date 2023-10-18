@@ -6,9 +6,9 @@ import {
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 
-import { DAFF_PRODUCT_EXTRA_FACTORIES } from '../injection-tokens/public_api';
 import { MockProduct } from './default-product.factory';
 import { DaffProductKindFactory } from './kind.factory';
+import { DAFF_PRODUCT_EXTRA_FACTORIES } from '../injection-tokens/public_api';
 
 /**
  * Factory for creating `DaffProduct`s with extension fields.

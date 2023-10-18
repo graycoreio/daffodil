@@ -6,11 +6,11 @@ import {
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
+import { DaffProductReducerState } from './product-reducer-state.interface';
 import {
   DaffProductPageActions,
   DaffProductPageActionTypes,
 } from '../../actions/public_api';
-import { DaffProductReducerState } from './product-reducer-state.interface';
 
 /**
  * Initial values of the product state.

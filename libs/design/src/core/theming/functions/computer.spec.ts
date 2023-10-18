@@ -1,5 +1,5 @@
-import { DaffTheme } from '../types/theme';
 import { daffComputeThemeSetting } from './computer';
+import { DaffTheme } from '../types/theme';
 
 describe('daffComputeThemeSetting', () => {
   it('should return dark if there are no OS or storage preferences', () => {

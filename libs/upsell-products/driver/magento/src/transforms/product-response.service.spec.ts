@@ -8,8 +8,8 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffUpsellProduct } from '@daffodil/upsell-products';
 import { MagentoProductWithUpsellFactory } from '@daffodil/upsell-products/driver/magento/testing';
 
-import { MagentoProductWithUpsell } from '../models/product-with-upsell.interface';
 import { DaffMagentoUpsellProductsTransformers } from './product-response.service';
+import { MagentoProductWithUpsell } from '../models/product-with-upsell.interface';
 
 describe('@daffodil/upsell-products/driver/magento | DaffMagentoUpsellProductsTransformers', () => {
   let service: DaffMagentoUpsellProductsTransformers;

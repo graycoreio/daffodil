@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { DaffPersistenceService } from '../persistence.interface';
 import { DaffServerSideStorageError } from './server-error';
+import { DaffPersistenceService } from '../persistence.interface';
 
 /**
  * A storage service meant to be loaded into SSR contexts.

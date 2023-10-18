@@ -8,8 +8,8 @@ import {
   DaffListModule,
 } from '@daffodil/design';
 
-import { DaffioFeatureComparisonModule } from '../feature-comparison/feature-comparison.module';
 import { DaffioWhyPwaSolutionComponent } from './why-pwa-solution.component';
+import { DaffioFeatureComparisonModule } from '../feature-comparison/feature-comparison.module';
 
 @NgModule({
   imports: [

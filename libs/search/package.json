@@ -19,7 +19,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build search --prod",
+    "build": "ng build search --configuration production",
     "lint": "cd ../.. && ng lint search",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test search --watch=false --browsers=ChromeHeadless",

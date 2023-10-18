@@ -3,13 +3,13 @@ import { DaffCollectionMetadata } from '@daffodil/core';
 import { daffFilterArrayToDict } from '@daffodil/core';
 import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
+import { magentoProductTransformAggregate } from './aggregate/public_api';
+import { coerceDefaultSortOptionFirst } from './sort-options/sort-default-option-first';
 import {
   MagentoAggregation,
   MagentoProduct,
   MagentoProductSortFields,
 } from '../models/public_api';
-import { magentoProductTransformAggregate } from './aggregate/public_api';
-import { coerceDefaultSortOptionFirst } from './sort-options/sort-default-option-first';
 
 /**
  * Builds a product collection metadata object.

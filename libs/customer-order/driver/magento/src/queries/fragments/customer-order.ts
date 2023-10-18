@@ -8,7 +8,7 @@ import {
   orderItemFragment,
   orderPaymentFragment,
   orderShipmentFragment,
-} from '@daffodil/order/driver/magento/2.4.1';
+} from '@daffodil/order/driver/magento/2-4-1';
 
 export const magentoCustomerOrderFragment = gql`
   fragment magentoCustomerOrder on CustomerOrder {

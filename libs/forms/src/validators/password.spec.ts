@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import {
   daffFormsPasswordValidator,
@@ -6,7 +6,7 @@ import {
 } from './password';
 
 describe('@daffodil/forms | daffFormsPasswordValidator', () => {
-  let control: FormControl;
+  let control: UntypedFormControl;
   let config: DaffFormsPasswordValidatorConfig;
 
   describe('when a combo is required', () => {
@@ -15,7 +15,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
         numClasses: 2,
         occurences: 2,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {
@@ -44,7 +44,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
       config = {
         special: 2,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {
@@ -73,7 +73,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
       config = {
         numbers: 2,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {
@@ -102,7 +102,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
       config = {
         lowercase: 2,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {
@@ -131,7 +131,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
       config = {
         uppercase: 2,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {
@@ -160,7 +160,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
       config = {
         minLength: 10,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {
@@ -189,7 +189,7 @@ describe('@daffodil/forms | daffFormsPasswordValidator', () => {
       config = {
         maxLength: 10,
       };
-      control = new FormControl('', daffFormsPasswordValidator(config));
+      control = new UntypedFormControl('', daffFormsPasswordValidator(config));
     });
 
     describe('and the form value does not meet those requirements', () => {

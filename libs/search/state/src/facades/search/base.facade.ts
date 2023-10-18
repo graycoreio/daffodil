@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffSearchResult } from '@daffodil/search';
 
+import { DaffSearchFacadeInterface } from './search-facade.interface';
 import { DaffSearchStateRootSlice } from '../../reducers/public_api';
 import { DaffSearchSelectors } from '../../selectors/public_api';
-import { DaffSearchFacadeInterface } from './search-facade.interface';
 
 /**
  * @inheritdoc

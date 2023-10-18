@@ -20,7 +20,7 @@ import {
   DaffOrderCollection,
 } from '@daffodil/order';
 import { DaffOrderServiceInterface } from '@daffodil/order/driver';
-import { DaffOrderMagentoService } from '@daffodil/order/driver/magento/2.4.1';
+import { DaffOrderMagentoService } from '@daffodil/order/driver/magento/2-4-1';
 
 import { transformMagentoReviewsError } from './errors/transform';
 import {

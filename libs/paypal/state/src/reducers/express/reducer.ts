@@ -3,12 +3,12 @@ import {
   DaffPaypalExpressTokenResponse,
 } from '@daffodil/paypal';
 
+import { daffPaypalExpressInitialState } from './initial-state';
+import { DaffPaypalExpressReducerState } from './interface';
 import {
   DaffPaypalActions,
   DaffPaypalActionTypes,
 } from '../../actions/paypal.actions';
-import { daffPaypalExpressInitialState } from './initial-state';
-import { DaffPaypalExpressReducerState } from './interface';
 
 export function daffPaypalExpressReducer <T extends DaffPaypalExpressTokenRequest, V extends DaffPaypalExpressTokenResponse>(state: DaffPaypalExpressReducerState = daffPaypalExpressInitialState, action: DaffPaypalActions<T, V>): DaffPaypalExpressReducerState {
   switch (action.type) {

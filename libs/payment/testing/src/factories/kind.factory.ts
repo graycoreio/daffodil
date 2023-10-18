@@ -7,8 +7,8 @@ import { sample } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffPaymentResponse } from '@daffodil/payment';
 
-import { DAFF_PAYMENT_RESPONSE_KIND_FACTORIES } from '../injection-tokens/factories/kind.token';
 import { MockPaymentResponse } from './payment-response.factory';
+import { DAFF_PAYMENT_RESPONSE_KIND_FACTORIES } from '../injection-tokens/factories/kind.token';
 
 /**
  * Factory for creating DaffPaymentResponses.

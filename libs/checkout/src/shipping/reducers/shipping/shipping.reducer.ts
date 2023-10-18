@@ -1,8 +1,8 @@
+import { DaffShippingReducerState } from './shipping-reducer.interface';
 import {
   DaffShippingActionTypes,
   DaffShippingActions,
 } from '../../actions/shipping.actions';
-import { DaffShippingReducerState } from './shipping-reducer.interface';
 
 export const initialState: DaffShippingReducerState = {
   shippingAddress: null,

@@ -4,16 +4,16 @@ import {
   combineReducers,
 } from '@ngrx/store';
 
+import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   DaffConfigurableProductReducersState,
   daffProductConfigurableProvideExtraReducers,
 } from '@daffodil/product-configurable/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
-import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 
-import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from '../configurable-product-entities/configurable-product-entities-reducer-adapter';
 import { DAFF_PRODUCT_CONFIGURABLE_REDUCERS } from './reducers.token';
+import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from '../configurable-product-entities/configurable-product-entities-reducer-adapter';
 
 describe('daffProductConfigurableProvideExtraReducers', () => {
   let productFactory: DaffConfigurableProductFactory;

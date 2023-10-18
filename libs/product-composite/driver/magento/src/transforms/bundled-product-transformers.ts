@@ -3,13 +3,13 @@ import {
   DaffProductTypeEnum,
   DaffProduct,
 } from '@daffodil/product';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 import {
   DaffCompositeProduct,
   DaffCompositeProductItemOption,
   DaffCompositeProductItem,
   DaffCompositeProductItemInputEnum,
 } from '@daffodil/product-composite';
-import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
 
 import {
   MagentoBundledProduct,

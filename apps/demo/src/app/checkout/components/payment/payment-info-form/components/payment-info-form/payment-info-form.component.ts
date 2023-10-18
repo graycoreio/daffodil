@@ -4,7 +4,7 @@ import {
   Input,
 } from '@angular/core';
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
 } from '@angular/forms';
 
@@ -25,7 +25,7 @@ interface YearOption {
 })
 export class PaymentInfoFormComponent {
 
-  @Input() formGroup: FormGroup;
+  @Input() formGroup: UntypedFormGroup;
   @Input() submitted: boolean;
 
   constructor() { }

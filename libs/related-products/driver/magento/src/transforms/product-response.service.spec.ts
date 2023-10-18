@@ -8,8 +8,8 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 import { MagentoProductWithRelatedFactory } from '@daffodil/related-products/driver/magento/testing';
 
-import { MagentoProductWithRelated } from '../models/product-with-related.interface';
 import { DaffMagentoRelatedProductsTransformers } from './product-response.service';
+import { MagentoProductWithRelated } from '../models/product-with-related.interface';
 
 describe('@daffodil/related-products/driver/magento | DaffMagentoRelatedProductsTransformers', () => {
   let service: DaffMagentoRelatedProductsTransformers;

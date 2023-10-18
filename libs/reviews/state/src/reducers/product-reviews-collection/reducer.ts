@@ -8,13 +8,13 @@ import {
 } from '@daffodil/core/state';
 import { DaffProductReview } from '@daffodil/reviews';
 
+import { DaffReviewsCollectionReducerState } from './state.interface';
 import {
   DaffReviewsProductActionTypes,
   DaffReviewsProductActions,
   DaffProductReviewsCollectionActions,
   DaffProductReviewsCollectionActionTypes,
 } from '../../actions/public_api';
-import { DaffReviewsCollectionReducerState } from './state.interface';
 
 /**
  * Handles the reduction of review actions into the collection metadata state.

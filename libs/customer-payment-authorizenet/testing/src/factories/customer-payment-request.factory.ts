@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
+import { MockDaffCustomerPaymentRequest } from '@daffodil/customer-payment/testing';
 import {
   DaffCustomerPaymentAuthorizeNetCCType,
   DaffCustomerPaymentAuthorizeNetRequest,
   DaffCustomerPaymentAuthorizeNetRequestData,
   DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_PAYMENT_KIND,
 } from '@daffodil/customer-payment-authorizenet';
-import { MockDaffCustomerPaymentRequest } from '@daffodil/customer-payment/testing';
-import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 
 /**
  * Mock class for {@link DaffCustomerPaymentAuthorizeNetRequest}.

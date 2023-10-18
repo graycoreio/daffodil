@@ -22,7 +22,7 @@
     "directory": "../../dist/search-category"
   },
   "scripts": {
-    "build": "ng build search-category --prod",
+    "build": "ng build search-category --configuration production",
     "lint": "cd ../.. && ng lint search-category",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test search-category --watch=false --browsers=ChromeHeadless",

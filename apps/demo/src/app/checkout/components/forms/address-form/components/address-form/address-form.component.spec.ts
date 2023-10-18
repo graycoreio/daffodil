@@ -7,10 +7,10 @@ import {
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormGroup,
+  UntypedFormGroup,
   AbstractControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -29,7 +29,7 @@ import { AddressFormComponent } from './address-form.component';
                 '[submitted]="submittedValue"></demo-address-form>',
 })
 class WrapperComponent {
-  formGroupValue: FormGroup;
+  formGroupValue: UntypedFormGroup;
   submittedValue: boolean;
 }
 
@@ -58,7 +58,7 @@ describe('AddressFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    const formBuilder = new FormBuilder();
+    const formBuilder = new UntypedFormBuilder();
     wrapper.formGroupValue = formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],

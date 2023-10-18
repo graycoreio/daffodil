@@ -8,6 +8,7 @@ import {
   ContentChildren,
   QueryList,
   ChangeDetectionStrategy,
+  forwardRef,
 } from '@angular/core';
 import {
   faChevronDown,
@@ -57,8 +58,8 @@ export class DaffNavAccordionItemComponent implements OnInit {
 
   @Input() initiallyActive: boolean;
 
-  @ContentChildren(DaffNavAccordionItemComponent, { descendants: true })
-  _navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
+  @ContentChildren(forwardRef(() => DaffNavAccordionItemComponent), { descendants: true })
+    _navAccordionItemChild: QueryList<DaffNavAccordionItemComponent>;
 
   /**
    * @docs-private

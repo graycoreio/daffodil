@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design';
 
-import { DesignLandExampleViewerModule } from '../../core/code-preview/container/example-viewer.module';
 import { DesignLandVariablesRoutingModule } from './variables-routing.module';
 import { DesignLandVariablesComponent } from './variables.component';
+import { DesignLandExampleViewerModule } from '../../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [

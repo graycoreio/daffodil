@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { DaffErrorStateMatcher } from './error-state-matcher';
 
@@ -11,7 +11,7 @@ describe('DaffErrorStateMatcher', () => {
     let formSubmitted;
 
     beforeEach(() => {
-      control = new FormControl();
+      control = new UntypedFormControl();
       formSubmitted = false;
     });
 

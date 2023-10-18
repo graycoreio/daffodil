@@ -6,7 +6,7 @@ import {
 } from '@angular/core/testing';
 import {
   ReactiveFormsModule,
-  FormControl,
+  UntypedFormControl,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -19,7 +19,7 @@ import { DaffCheckboxModule } from '../checkbox.module';
   `,
 })
 class CheckboxWrapperComponent {
-  checkbox = new FormControl();
+  checkbox = new UntypedFormControl();
 }
 
 describe('DaffCheckboxControlValueAccessorDirective', () => {

@@ -9,8 +9,8 @@ import {
   select,
 } from '@ngrx/store';
 
-import { SetShowShippingForm } from '../actions/shipping.actions';
 import * as fromCheckout from './index';
+import { SetShowShippingForm } from '../actions/shipping.actions';
 
 describe('selectDemoCheckoutState', () => {
 

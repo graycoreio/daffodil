@@ -1,7 +1,7 @@
 import { DaffStateError } from '@daffodil/core/state';
 
-import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCartErrors } from './cart-errors.type';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 
 export const initializeErrorAdder = (errorSpace: DaffCartOperationType) =>
   (errors: DaffCartErrors, ...errorsToAdd: DaffStateError[]) => ({

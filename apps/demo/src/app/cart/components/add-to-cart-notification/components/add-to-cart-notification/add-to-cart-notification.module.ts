@@ -8,10 +8,10 @@ import {
   DaffButtonModule,
 } from '@daffodil/design';
 
+import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import { ProceedToCheckoutModule } from '../../../proceed-to-checkout/proceed-to-checkout.module';
 import { ViewCartModule } from '../../../view-cart/view-cart.module';
 import { ProductAddedModule } from '../product-added/product-added.module';
-import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 
 
 @NgModule({
@@ -27,6 +27,5 @@ import { AddToCartNotificationComponent } from './add-to-cart-notification.compo
   ],
   declarations: [AddToCartNotificationComponent],
   exports: [AddToCartNotificationComponent],
-  entryComponents: [AddToCartNotificationComponent],
 })
 export class AddToCartNotificationComponentModule {}

@@ -4,9 +4,9 @@ import {
   Routes,
 } from '@angular/router';
 
+import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { EmptyCartResolver } from '../cart/routing-resolvers/resolvers/empty-cart-resolver.service';
 import { ThankYouViewComponent } from '../thank-you/pages/thank-you-view.component';
-import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 
 const routes: Routes = [
   {

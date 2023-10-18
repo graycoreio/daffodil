@@ -4,11 +4,11 @@ import {
   NavigationEnd,
 } from '@angular/router';
 
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
 import {
   daffProvideTitleRouterUpdates,
   DAFF_SEO_TITLE_ROUTER_UPDATES,
 } from './updates.token';
+import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
 
 describe('daffProvideTitleUpdates', () => {
   let updates: DaffSeoUpdateEventPair<Event, string>[];

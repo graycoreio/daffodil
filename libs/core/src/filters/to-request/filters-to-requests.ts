@@ -1,10 +1,10 @@
 
 
+import { daffFilterToRequest } from './filter-to-request';
 import {
   DaffFilterRequest,
   DaffFilters,
 } from '../../filterable/public_api';
-import { daffFilterToRequest } from './filter-to-request';
 
 /**
  * Builds a list of filter requests from a list of filters.

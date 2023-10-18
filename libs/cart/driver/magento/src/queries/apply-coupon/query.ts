@@ -6,9 +6,9 @@ import {
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
 
-import { cartFragment } from '../fragments/public_api';
 import { MagentoApplyCouponResponse } from './response.type';
 import { MagentoCartApplyCouponQueryVariables } from './variables.type';
+import { cartFragment } from '../fragments/public_api';
 
 export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql<MagentoApplyCouponResponse, MagentoCartApplyCouponQueryVariables>`
   mutation MagentoApplyCoupon($cartId: String!, $couponCode: String!) {

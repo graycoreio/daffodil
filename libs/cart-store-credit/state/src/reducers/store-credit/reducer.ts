@@ -5,12 +5,12 @@ import {
   daffStartMutation,
 } from '@daffodil/core/state';
 
+import { daffCustomerStoreCreditInitialState } from './initial-state';
+import { DaffCartStoreCreditReducerState } from './type';
 import {
   DaffCartStoreCreditActions,
   DaffCartStoreCreditActionTypes,
 } from '../../actions/store-credit.actions';
-import { daffCustomerStoreCreditInitialState } from './initial-state';
-import { DaffCartStoreCreditReducerState } from './type';
 
 /**
  * The reducer for the cart store credit page state, see {@link DaffCartStoreCreditReducerState}.

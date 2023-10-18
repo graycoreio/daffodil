@@ -1,5 +1,8 @@
 import { DaffCartItem } from '@daffodil/cart';
 
+import { transformMagentoBundleCartItem } from './bundle-cart-item-transformer';
+import { transformMagentoConfigurableCartItem } from './configurable-cart-item-transformer';
+import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 import { DaffCartMagentoCartItemTransform } from '../../../interfaces/public_api';
 import {
   MagentoCartItem,
@@ -7,9 +10,6 @@ import {
   MagentoBundleCartItem,
   MagentoConfigurableCartItem,
 } from '../../../models/responses/cart-item';
-import { transformMagentoBundleCartItem } from './bundle-cart-item-transformer';
-import { transformMagentoConfigurableCartItem } from './configurable-cart-item-transformer';
-import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 
 /**
  * The standard transform for a magento cart item.

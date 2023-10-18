@@ -9,9 +9,9 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 
+import { DaffResolvedCartGuard } from './resolved-cart.guard';
 import { daffCartRoutingConfigurationDefault } from '../../config/config';
 import { daffCartRoutingResolutionConfigurationDefault } from '../../config/resolution/config';
-import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
 describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
   let service: DaffResolvedCartGuard;

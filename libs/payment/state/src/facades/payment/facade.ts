@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
 
+import { DaffPaymentPageFacadeInterface } from './interface';
 import { DaffPaymentStateRootSlice } from '../../reducers/public_api';
 import { daffPaymentGetSelectors } from '../../selectors/public_api';
-import { DaffPaymentPageFacadeInterface } from './interface';
 
 /**
  * @inheritdoc

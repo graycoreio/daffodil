@@ -26,8 +26,8 @@ import {
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
 
-import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
 import { EmptyCartResolver } from './empty-cart-resolver.service';
+import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
 
 describe('EmptyCartResolver', () => {
   const actions$: Observable<any> = null;

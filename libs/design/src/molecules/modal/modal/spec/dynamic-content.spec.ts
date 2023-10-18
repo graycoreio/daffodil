@@ -28,7 +28,6 @@ class DynamicComponent {}
 
 @NgModule({
   declarations: [DynamicComponent],
-  entryComponents: [DynamicComponent],
 })
 class DynamicModule{}
 

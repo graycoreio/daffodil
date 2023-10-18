@@ -8,10 +8,10 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
+import { DaffPaymentFacade } from './payment.facade';
 import { PaymentInfo } from '../../models/payment/payment-info';
 import { DaffUpdatePaymentInfo } from '../actions/payment.actions';
 import { daffPaymentReducers } from '../reducers/payment-reducers';
-import { DaffPaymentFacade } from './payment.facade';
 
 describe('DaffPaymentFacade', () => {
   let store: Store<any>;

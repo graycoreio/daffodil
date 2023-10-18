@@ -21,6 +21,7 @@ import {
 } from '@daffodil/design';
 import { DaffSidebarMode } from '@daffodil/design';
 
+import { SidebarViewportContainer } from './sidebar-viewport.component';
 import {
   ToggleSidebar,
   OpenSidebar,
@@ -28,7 +29,6 @@ import {
   SetSidebarState,
 } from '../../actions/sidebar.actions';
 import * as fromDemoSidebar from '../../reducers';
-import { SidebarViewportContainer } from './sidebar-viewport.component';
 
 @Component({ selector: 'demo-sidebar', template: '' })
 class MockSidebarContainer {

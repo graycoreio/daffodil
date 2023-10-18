@@ -40,11 +40,6 @@ import {
   DaffFilterToggleRequestFactory,
 } from '@daffodil/core/testing';
 import { DaffProductStateTestingModule } from '@daffodil/product/state/testing';
-import { DaffSearchProductDriverResponse } from '@daffodil/search-product/driver';
-import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
-import { DaffSearchProductTestingDriverModule } from '@daffodil/search-product/driver/testing';
-import { DaffSearchProductCollectionActionTypes } from '@daffodil/search-product/state';
-import { DaffSearchProductStateTestingModule } from '@daffodil/search-product/state/testing';
 import { DaffSearchDriver } from '@daffodil/search/driver';
 import { DaffSearchTestingDriverModule } from '@daffodil/search/driver/testing';
 import {
@@ -55,6 +50,11 @@ import {
   DaffSearchStateTestingModule,
   MockDaffSearchFacade,
 } from '@daffodil/search/state/testing';
+import { DaffSearchProductDriverResponse } from '@daffodil/search-product/driver';
+import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
+import { DaffSearchProductTestingDriverModule } from '@daffodil/search-product/driver/testing';
+import { DaffSearchProductCollectionActionTypes } from '@daffodil/search-product/state';
+import { DaffSearchProductStateTestingModule } from '@daffodil/search-product/state/testing';
 
 import { DaffSearchProductCollectionEffects } from './collection.effects';
 

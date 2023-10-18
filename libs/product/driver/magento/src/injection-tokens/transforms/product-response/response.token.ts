@@ -7,10 +7,10 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
+import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from './response-extra.token';
 import { DaffMagentoProductResponseTransform } from '../../../interfaces/public_api';
 import { MagentoProduct } from '../../../models/magento-product';
 import { DaffMagentoProductResponseTransformers } from '../../../transforms/public_api';
-import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from './response-extra.token';
 
 /**
  * An internal token to combine the Magento response transform with the injected transforms.

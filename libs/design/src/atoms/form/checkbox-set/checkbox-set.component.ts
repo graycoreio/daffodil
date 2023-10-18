@@ -8,7 +8,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 
 import { DaffCheckboxComponent } from '../checkbox/checkbox.component';
 
@@ -20,7 +20,7 @@ import { DaffCheckboxComponent } from '../checkbox/checkbox.component';
 })
 export class DaffCheckboxSetComponent {
 
-  @Input() formArray: FormArray;
+  @Input() formArray: UntypedFormArray;
   /**
    * The name of the checkbox-set
    */

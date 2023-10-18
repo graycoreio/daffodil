@@ -12,11 +12,11 @@ import {
   Store,
 } from '@ngrx/store';
 
+import { DemoHeaderContainer } from './header.component';
 import { LogoModule } from '../../../logo/logo.module';
 import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 import * as fromSidebar from '../../../sidebar/reducers/index';
 import { DemoHeaderComponent } from '../../components/header/header.component';
-import { DemoHeaderContainer } from './header.component';
 
 describe('DemoHeaderContainer', () => {
   let component: DemoHeaderContainer;

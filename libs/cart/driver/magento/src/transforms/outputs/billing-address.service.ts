@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { DaffCartAddress } from '@daffodil/cart';
 
-import { MagentoCartAddress } from '../../models/responses/cart-address';
 import { DaffMagentoCartAddressTransformer } from './cart-address.service';
+import { MagentoCartAddress } from '../../models/responses/cart-address';
 
 /**
  * Transforms magento addresses into an object usable by daffodil.

@@ -8,12 +8,12 @@ import {
   DaffProductGetCollectionRequestFromRoute,
   DaffProductRoutingModule,
 } from '@daffodil/product/routing';
-import { DaffSearchProductDriverOptions } from '@daffodil/search-product/driver';
 import {
   DaffSearchRoutingModule,
   DaffSearchRoutingOptionBuilder,
   DAFF_SEARCH_ROUTING_OPTIONS_BUILDERS,
 } from '@daffodil/search/routing';
+import { DaffSearchProductDriverOptions } from '@daffodil/search-product/driver';
 
 import { DaffSearchProductRoutingCollectionEffects } from './effects/collection-route.effects';
 

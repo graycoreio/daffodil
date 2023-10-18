@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-    'modules-newline',
+    'modules-newlines',
     'jasmine'
   ],
   extends: [
@@ -11,6 +11,7 @@ module.exports = {
     'plugin:jasmine/recommended',
   ],
   rules: {
+    'jsdoc/newline-after-description': 'off',
     'prefer-arrow/prefer-arrow-functions': [
       'error',
       {
@@ -28,8 +29,8 @@ module.exports = {
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/member-ordering': 'off',
     'import/no-unassigned-import': ['error'],
-    'modules-newline/import-declaration-newline': 'warn',
-    'modules-newline/export-declaration-newline': 'warn',
+    'modules-newlines/import-declaration-newline': 'warn',
+    'modules-newlines/export-declaration-newline': 'warn',
     'indent': 'off',
     '@typescript-eslint/indent': [
       'error',

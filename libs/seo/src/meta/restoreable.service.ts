@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 
 
 
+import { getAttrSelector } from './get-attr-selector';
+import { DaffMetaService } from './meta.service';
 import {
   DaffSeoRestoreableServiceInterface,
   DaffSeoMetaDefinition,
 } from '../models/public_api';
-import { getAttrSelector } from './get-attr-selector';
-import { DaffMetaService } from './meta.service';
 
 /**
  * @inheritdoc

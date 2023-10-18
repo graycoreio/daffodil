@@ -10,8 +10,8 @@ import {
   DaffFilterRequestFactory,
 } from '@daffodil/core/testing';
 
-import { DaffFilterRequestNameMismatch } from '../errors/request-name-mismatch.error';
 import { daffFilterValidateRequestNameMatch } from './request-name-match';
+import { DaffFilterRequestNameMismatch } from '../errors/request-name-mismatch.error';
 
 describe('@daffodil/core | filters | validators | daffFilterValidateRequestNameMatch', () => {
   let filterFactory: DaffFilterFactory;

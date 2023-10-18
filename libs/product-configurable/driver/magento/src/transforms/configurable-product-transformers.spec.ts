@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffMagentoSimpleProductTransformers } from '@daffodil/product/driver/magento';
+import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
   MagentoConfigurableProduct,
@@ -9,8 +11,6 @@ import {
 } from '@daffodil/product-configurable/driver/magento';
 import { MagentoConfigurableProductFactory } from '@daffodil/product-configurable/driver/magento/testing';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
-import { DaffMagentoSimpleProductTransformers } from '@daffodil/product/driver/magento';
-import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 import {
   transformOption,

@@ -4,8 +4,8 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 import { DaffioGuidesPageComponent } from './pages/guides-page.component';
+import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 
 export const docsRoutes: Routes = [
   {

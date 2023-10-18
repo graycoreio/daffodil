@@ -4,6 +4,8 @@ import {
   daffStartResolution,
 } from '@daffodil/core/state';
 
+import { daffAuthInitialState } from './auth-initial-state';
+import { DaffAuthReducerState } from './auth-reducer-state.interface';
 import {
   DaffAuthActionTypes,
   DaffAuthActions,
@@ -14,8 +16,6 @@ import {
   DaffAuthResetPasswordActionTypes,
   DaffAuthResetPasswordActions,
 } from '../../actions/public_api';
-import { daffAuthInitialState } from './auth-initial-state';
-import { DaffAuthReducerState } from './auth-reducer-state.interface';
 
 export function daffAuthReducer(
   state = daffAuthInitialState,

@@ -45,9 +45,9 @@ import {
   DaffLoadingIconModule,
 } from '@daffodil/design';
 
+import { CheckoutViewComponent } from './checkout-view.component';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromDemoCheckout from '../../reducers/index';
-import { CheckoutViewComponent } from './checkout-view.component';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const paymentFactory = new DaffPaymentFactory();

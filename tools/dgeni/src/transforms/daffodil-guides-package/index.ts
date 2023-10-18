@@ -1,13 +1,13 @@
 import { Package } from 'dgeni';
 
+import { GenerateGuideListProcessor } from './processors/generateGuideList';
+import { guideFileReaderFactory } from './reader/guide-file.reader';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import {
   API_SOURCE_PATH,
   GUIDES_TEMPLATES_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
-import { GenerateGuideListProcessor } from './processors/generateGuideList';
-import { guideFileReaderFactory } from './reader/guide-file.reader';
 
 //List of packages to be left out of Guide generation
 const excludedPackages = ['branding', 'docs-utils'];

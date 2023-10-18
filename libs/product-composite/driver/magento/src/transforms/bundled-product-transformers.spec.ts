@@ -1,5 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
+import {
+  MagentoProductStockStatusEnum,
+  DaffMagentoSimpleProductTransformers,
+} from '@daffodil/product/driver/magento';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   MagentoBundledProduct,
@@ -9,10 +13,6 @@ import {
   MagentoBundledProductFactory,
   MagentoBundledProductItemOptionFactory,
 } from '@daffodil/product-composite/driver/magento/testing';
-import {
-  MagentoProductStockStatusEnum,
-  DaffMagentoSimpleProductTransformers,
-} from '@daffodil/product/driver/magento';
 
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
 import daffCompositeProductData from './spec-data/daff-composite-product.json';

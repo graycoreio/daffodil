@@ -29,10 +29,10 @@ import {
 } from '@daffodil/product/state/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
+import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 import { ProductComponent } from '../../components/product/product.component';
-import { ProductViewComponent } from './product-view.component';
 
 @Component({
   selector: 'demo-product',

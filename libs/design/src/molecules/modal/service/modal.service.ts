@@ -12,9 +12,9 @@ import {
 } from '@angular/core';
 
 import { DaffModal } from '../modal';
-import { DaffModalModule } from '../modal.module';
 import { DaffModalConfiguration } from '../modal/modal-config';
 import { DaffModalComponent } from '../modal/modal.component';
+import { DaffModalModule } from '../modal.module';
 
 @Injectable({
   providedIn: DaffModalModule,

@@ -5,8 +5,8 @@ import {
 } from '@ngrx/store';
 
 import { DaffOrder } from '../../models/order/order';
-import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import { DaffOrderReducerState } from '../reducers/order/order-reducer.interface';
+import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 
 /**
  * Order Feature State

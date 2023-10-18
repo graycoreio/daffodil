@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 
 import { crossOsFilename } from '@daffodil/docs-utils';
 
-import { DaffioDoc } from '../models/doc';
-import { DaffioGuideList } from '../models/guide-list';
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
 import { DaffioDocsServiceInterface } from './docs-service.interface';
+import { DaffioDoc } from '../models/doc';
+import { DaffioGuideList } from '../models/guide-list';
 
 @Injectable({
   providedIn: 'root',

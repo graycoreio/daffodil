@@ -6,11 +6,11 @@ import {
 
 import { DaffProduct } from '@daffodil/product';
 import { getDaffProductSelectors } from '@daffodil/product/state';
+import { DaffSearchSelectors } from '@daffodil/search/state';
 import {
   DaffSearchProductResult,
   DAFF_SEARCH_PRODUCT_RESULT_KIND,
 } from '@daffodil/search-product';
-import { DaffSearchSelectors } from '@daffodil/search/state';
 
 import { DaffSearchProductStateRootSlice } from '../reducers/public_api';
 

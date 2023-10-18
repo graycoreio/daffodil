@@ -1,15 +1,15 @@
 import { ActionReducer } from '@ngrx/store';
 
-import { daffProductCompositeEnsureItems } from '@daffodil/product-composite/state';
 import { DaffProductReducersState } from '@daffodil/product/state';
-import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
-import { DaffSearchProductCompositeResult } from '@daffodil/search-product-composite';
+import { daffProductCompositeEnsureItems } from '@daffodil/product-composite/state';
 import {
   DaffSearchActionTypes,
   DaffSearchActions,
   DaffSearchIncrementalSuccess,
   DaffSearchLoadSuccess,
 } from '@daffodil/search/state';
+import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
+import { DaffSearchProductCompositeResult } from '@daffodil/search-product-composite';
 
 type Reducer = ActionReducer<DaffProductReducersState<DaffSearchProductCompositeResult>, DaffSearchActions<DaffSearchProductCompositeResult>>;
 
