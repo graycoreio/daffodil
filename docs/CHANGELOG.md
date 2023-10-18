@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.64.0](https://github.com/graycoreio/daffodil/compare/v0.63.2...v0.64.0) (2023-10-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Angular and associated deps have been upgraded to v15. TS has been upgraded to 4.8.
+
+### Features
+
+* **design-land:** add file tabs back to code preview and allow content to be hidden ([#2578](https://github.com/graycoreio/daffodil/issues/2578)) ([37e02bd](https://github.com/graycoreio/daffodil/commit/37e02bd6926e03633cdf299be29548d41e295e60))
+* **design:** add deprecation notice for DaffNavAccordionItemComponent ([#2582](https://github.com/graycoreio/daffodil/issues/2582)) ([2059403](https://github.com/graycoreio/daffodil/commit/2059403a56847a4cd357bba81e98e20e790c48c4))
+* **design:** clean up &lt;pre&gt; styling and add margin styles to stop article cascade ([#2579](https://github.com/graycoreio/daffodil/issues/2579)) ([540a550](https://github.com/graycoreio/daffodil/commit/540a550d98b79c2db9e27a3a48dee038f15f3f95))
+* **design:** focus stack pushes arg or the document's active element ([#2581](https://github.com/graycoreio/daffodil/issues/2581)) ([189d132](https://github.com/graycoreio/daffodil/commit/189d1321c5055aa13cbd52a3f3ed94cee2301798))
+* **design:** update  nav list background color to animate via opacity for performance ([#2583](https://github.com/graycoreio/daffodil/issues/2583)) ([bfccd2c](https://github.com/graycoreio/daffodil/commit/bfccd2c0ac8e0c308fe209196521b06299ab5acd))
+* **design:** update linked card background color to animate via opacity ([#2584](https://github.com/graycoreio/daffodil/issues/2584)) ([dca9b9b](https://github.com/graycoreio/daffodil/commit/dca9b9b7884c70a383c066bba57d453e00a6fd5d))
+* upgrade angular to v15 ([#2564](https://github.com/graycoreio/daffodil/issues/2564)) ([0742b01](https://github.com/graycoreio/daffodil/commit/0742b01527e0c5796b11c4a7713b86cba612b046))
+
 ## [0.63.2](https://github.com/graycoreio/daffodil/compare/v0.63.1...v0.63.2) (2023-09-29)
 
 
