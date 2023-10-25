@@ -9,6 +9,7 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
 } from '@angular/core';
+import { Params } from '@angular/router';
 import {
   faChevronRight,
   faChevronLeft,
@@ -92,6 +93,22 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   @Input() currentPage: number;
 
   /**
+   * Replace the paginator buttons with links. `url` is required if using this mode.
+   */
+  @Input() linkMode = false;
+
+  /**
+   * The url to which to navigate if the paginator is in link mode.
+   * This paginator component will set the page query param.
+   */
+  @Input() url?: string;
+
+  /**
+   * The query param to which the paginator component will set the current page value in link mode.
+   */
+  @Input() queryParam = 'page';
+
+  /**
    * @docs-private
    */
   _numberOfPagesArray: number[];
@@ -100,6 +117,42 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
    * Emits when the current page changes with the new current page.
    */
   @Output() notifyPageChange: EventEmitter<any> = new EventEmitter();
+
+  /**
+   * Determines when ellipsis after the first page number should show.
+   *
+   * @docs-private
+   */
+  get _showFirstEllipsis(): boolean {
+    return this.currentPage >= visiblePageRange+2;
+  }
+
+  /**
+   * Determines when ellipsis before the final page number should show.
+   *
+   * @docs-private
+   */
+  get _showLastEllipsis(): boolean {
+    return this.currentPage < (this.numberOfPages - visiblePageRange);
+  }
+
+  /**
+   * Determines when the Previous button should be disabled.
+   *
+   * @docs-private
+   */
+  get _disablePrev(): boolean {
+    return this.currentPage === 1;
+  }
+
+  /**
+   * Determines when the Next button should be disabled.
+   *
+   * @docs-private
+   */
+  get _disableNext(): boolean {
+    return this.currentPage === this.numberOfPages;
+  }
 
   /**
    * @docs-private
@@ -153,24 +206,6 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   }
 
   /**
-   * Determines when ellipsis after the first page number should show.
-   *
-   * @docs-private
-   */
-  _showFirstEllipsis(): boolean {
-    return this.currentPage >= visiblePageRange+2;
-  }
-
-  /**
-   * Determines when ellipsis before the final page number should show.
-   *
-   * @docs-private
-   */
-  _showLastEllipsis(): boolean {
-    return this.currentPage < (this.numberOfPages - visiblePageRange);
-  }
-
-  /**
    * Determines if the given page number should be shown. The two additional 'or' conditionals are needed
    * so the paginator retains the same total width at the extreme page numbers (1 and numberOfPages).
    *
@@ -183,21 +218,9 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
       || (this.currentPage > this.numberOfPages - visiblePageRange && pageNumber > this.numberOfPages - 2*visiblePageRange);
   }
 
-  /**
-   * Determines when the Previous button should be disabled.
-   *
-   * @docs-private
-   */
-  _disablePrev(): boolean {
-    return this.currentPage === 1;
-  }
-
-  /**
-   * Determines when the Next button should be disabled.
-   *
-   * @docs-private
-   */
-  _disableNext(): boolean {
-    return this.currentPage === this.numberOfPages;
+  _buildPageQueryParams(page: number): Params {
+    return {
+      [this.queryParam]: page,
+    };
   }
 }

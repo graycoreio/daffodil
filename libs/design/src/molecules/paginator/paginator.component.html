@@ -1,48 +1,106 @@
-<button type="button" class="daff-paginator__previous"
-  [disabled]="_disablePrev()"
+<button *ngIf="!linkMode" type="button" class="daff-paginator__previous"
+  [disabled]="_disablePrev"
   tabindex="0"
   attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
   (click)="_onNotifyPrevPageChange()">
   <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon> Previous
 </button>
+<ng-container *ngIf="linkMode">
+  <a class="daff-paginator__previous"
+    *ngIf="!_disablePrev"
+    attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
+    [routerLink]="url"
+    queryParamsHandling="merge"
+    [queryParams]="_buildPageQueryParams(currentPage - 1)">
+    <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon><span>Previous</span>
+  </a>
+  <span class="daff-paginator__previous disabled"
+    *ngIf="_disablePrev"
+    attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
+    [attr.disabled]="true">
+    <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon><span>Previous</span>
+  </span>
+</ng-container>
 
-<button type="button" class="daff-paginator__page-link"
+<button *ngIf="!linkMode" type="button" class="daff-paginator__page-link"
   [class.selected]="_isSelected(1)"
   tabindex="0"
   attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator"
   (click)="_onNotifyPageChange(1)">
   <span>1</span>
 </button>
+<a *ngIf="linkMode" class="daff-paginator__page-link"
+  [routerLink]="url"
+  [queryParams]="_buildPageQueryParams(1)"
+  queryParamsHandling="merge"
+  [class.selected]="_isSelected(1)"
+  attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator"
+><span>1</span></a>
 
-<span class="daff-paginator__ellipsis" *ngIf="_showFirstEllipsis()">...</span>
+<span class="daff-paginator__ellipsis" *ngIf="_showFirstEllipsis">...</span>
 
 <ng-container *ngFor="let pageNumber of _numberOfPagesArray">
-  <button type="button" class="daff-paginator__page-link"
-    [class.selected]="_isSelected(pageNumber)"
-    tabindex="0"
-    attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
-    aria-current="_isSelected(pageNumber)"
-    *ngIf="_showNumber(pageNumber)"
-    (click)="_onNotifyPageChange(pageNumber)">
-    <span>{{ pageNumber }}</span>
-  </button>
+  <ng-container *ngIf="_showNumber(pageNumber)">
+    <button *ngIf="!linkMode" type="button" class="daff-paginator__page-link"
+      [class.selected]="_isSelected(pageNumber)"
+      [attr.data-page-number]="pageNumber"
+      tabindex="0"
+      attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
+      aria-current="_isSelected(pageNumber)"
+      (click)="_onNotifyPageChange(pageNumber)">
+      <span>{{ pageNumber }}</span>
+    </button>
+    <a *ngIf="linkMode" class="daff-paginator__page-link"
+      [attr.data-page-number]="pageNumber"
+      [routerLink]="url"
+      [queryParams]="_buildPageQueryParams(pageNumber)"
+      queryParamsHandling="merge"
+      [class.selected]="_isSelected(pageNumber)"
+      attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
+    ><span>{{ pageNumber }}</span></a>
+  </ng-container>
 </ng-container>
 
-<span class="daff-paginator__ellipsis" *ngIf="_showLastEllipsis()">...</span>
+<span class="daff-paginator__ellipsis" *ngIf="_showLastEllipsis">...</span>
 
-<button type="button" class="daff-paginator__page-link"
-  [class.selected]="_isSelected(numberOfPages)"
-  tabindex="0"
-  attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
-  (click)="_onNotifyPageChange(numberOfPages)"
-  *ngIf="!(numberOfPages < 2)">
-  <span>{{ numberOfPages }}</span>
-</button>
+<ng-container *ngIf="!(numberOfPages < 2)">
+  <button *ngIf="!linkMode" type="button" class="daff-paginator__page-link"
+    [class.selected]="_isSelected(numberOfPages)"
+    tabindex="0"
+    attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
+    (click)="_onNotifyPageChange(numberOfPages)"
+  >
+    <span>{{ numberOfPages }}</span>
+  </button>
+  <a *ngIf="linkMode" class="daff-paginator__page-link"
+    [routerLink]="url"
+    [queryParams]="_buildPageQueryParams(numberOfPages)"
+    queryParamsHandling="merge"
+    [class.selected]="_isSelected(numberOfPages)"
+    attr.aria-label="Go to Page {{numberOfPages}} of {{_paginatorId}} Paginator"
+  ><span>{{ numberOfPages }}</span></a>
+</ng-container>
 
-<button class="daff-paginator__next"
-  [disabled]="_disableNext()"
+<button *ngIf="!linkMode" class="daff-paginator__next"
+  [disabled]="_disableNext"
   tabindex="0"
   attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
   (click)="_onNotifyNextPageChange()">
   Next <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
 </button>
+<ng-container *ngIf="linkMode">
+  <a class="daff-paginator__next"
+    *ngIf="!_disableNext"
+    [routerLink]="url"
+    attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+    queryParamsHandling="merge"
+    [queryParams]="_buildPageQueryParams(currentPage + 1)">
+    <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+  </a>
+  <span class="daff-paginator__next disabled"
+    *ngIf="_disableNext"
+    attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+    [attr.disabled]="true">
+    <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+  </span>
+</ng-container>
