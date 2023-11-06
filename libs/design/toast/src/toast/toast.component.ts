@@ -15,9 +15,7 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  ViewChild,
 } from '@angular/core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {
   daffArticleEncapsulatedMixin,
@@ -58,8 +56,6 @@ const _daffToastBase = daffArticleEncapsulatedMixin(daffStatusMixin(DaffToastBas
 export class DaffToastComponent
   extends _daffToastBase
   implements DaffPrefixable, DaffStatusable, AfterContentInit, AfterViewInit, OnDestroy {
-  faTimes = faTimes;
-
   /** @docs-private */
   @HostBinding('class.daff-toast') class = true;
 
@@ -71,8 +67,6 @@ export class DaffToastComponent
 
   @ContentChild(DaffPrefixDirective)
   _prefix: DaffPrefixDirective;
-
-  @ViewChild('container', { read: ElementRef, static: true }) container: ElementRef;
 
   @Input() toast: DaffToast;
 
@@ -98,7 +92,6 @@ export class DaffToastComponent
   ngAfterContentInit() {
     if(daffToastChangesFocus(this.toast)) {
       this._focusTrap = this._focusTrapFactory.create(
-        // this.container.nativeElement,
         this._elementRef.nativeElement,
       );
     }
