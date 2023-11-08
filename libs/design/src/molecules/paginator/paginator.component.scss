@@ -8,6 +8,12 @@ $border-radius: 3px;
 }
 
 .daff-paginator {
+	&__page-link,
+	&__previous,
+	&__next {
+		text-decoration: none;
+	}
+
 	&__previous,
 	&__next {
 		@include interactions.clickable;
@@ -30,7 +36,7 @@ $border-radius: 3px;
 	&__ellipsis {
 		height: 2rem;
 		width: 2rem;
-		text-align: center
+		text-align: center;
 	}
 
 	&__page-link {
@@ -51,7 +57,7 @@ $border-radius: 3px;
 			z-index: 2;
 		}
 
-		&:after {
+		&::after {
 			content: '';
 			border-radius: $border-radius;
 			position: absolute;
@@ -66,7 +72,7 @@ $border-radius: 3px;
 		&:hover,
 		&:active,
 		&.selected {
-			&:after {
+			&::after {
 				opacity: 1;
 			}
 		}
