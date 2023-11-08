@@ -11,8 +11,8 @@ import {
 } from '@daffodil/design';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
-import { DesignLandNavModule } from '../nav/nav.module';
 import { DesignLandSidebarViewportComponent } from './sidebar-viewport.component';
+import { DesignLandNavModule } from '../nav/nav.module';
 
 @NgModule({
   imports: [

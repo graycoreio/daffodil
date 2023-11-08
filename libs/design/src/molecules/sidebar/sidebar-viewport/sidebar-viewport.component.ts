@@ -9,18 +9,18 @@ import {
   AfterContentChecked,
 } from '@angular/core';
 
-import { daffSidebarAnimations } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
-import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
-import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
-import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
 import { sidebarViewportContentPadding } from './content-pad';
 import {
   isViewportContentShifted,
   sidebarViewportContentShift,
 } from './content-shift';
+import { daffSidebarAnimations } from '../animation/sidebar-animation';
+import { getAnimationState } from '../animation/sidebar-animation-state';
+import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
+import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
+import { DaffSidebarMode } from '../helper/sidebar-mode';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 /**
  * The DaffSidebarViewport is the "holder" of sidebars throughout an entire application.
