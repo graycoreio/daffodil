@@ -68,7 +68,12 @@
       "inputs": [
         "eslint"
       ],
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "projects": ["@daffodil/eslint-config"],
+          "target": "build"
+        }
+      ]
     }
   }
 }
