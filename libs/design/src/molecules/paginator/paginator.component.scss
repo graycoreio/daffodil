@@ -1,6 +1,17 @@
 @use '../../../scss/interactions';
 
-$border-radius: 3px;
+$border-radius: 4px;
+
+@mixin paginator-controls-base() {
+	@include interactions.clickable;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	appearance: none;
+	background: none;
+	border: 0;
+	border-radius: $border-radius;
+}
 
 :host {
 	display: flex;
@@ -17,13 +28,8 @@ $border-radius: 3px;
 	&__previous,
 	&__next {
 		@include interactions.clickable;
-		display: flex;
-		align-items: center;
+		@include paginator-controls-base();
 		gap: 8px;
-		appearance: none;
-		background: transparent;
-		border: 0;
-		border-radius: $border-radius;
 		height: 2rem;
 		padding: 0 8px;
 
@@ -41,13 +47,7 @@ $border-radius: 3px;
 
 	&__page-link {
 		@include interactions.clickable;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		appearance: none;
-		background: none;
-		border: 0;
-		border-radius: $border-radius;
+		@include paginator-controls-base();
 		min-width: 2rem;
 		height: 2rem;
 		padding: 0 4px;
