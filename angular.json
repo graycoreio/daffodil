@@ -1021,7 +1021,7 @@
     },
     "daffio-dev": {
       "root": "apps/daffio/",
-      "sourceRoot": "apps/daffio",
+      "sourceRoot": "apps/daffio/src",
       "projectType": "application",
       "architect": {
         "build": {
@@ -1230,7 +1230,7 @@
     },
     "branding": {
       "root": "libs/branding",
-      "sourceRoot": "libs/branding",
+      "sourceRoot": "libs/branding/src",
       "projectType": "library",
       "prefix": "daff-branding",
       "architect": {
@@ -1268,7 +1268,7 @@
     },
     "theme-switch": {
       "root": "libs/theme-switch",
-      "sourceRoot": "libs/theme-switch",
+      "sourceRoot": "libs/theme-switch/src",
       "projectType": "library",
       "prefix": "daff-theme-switch",
       "architect": {
@@ -1307,7 +1307,7 @@
     },
     "navigation": {
       "root": "libs/navigation",
-      "sourceRoot": "libs/navigation",
+      "sourceRoot": "libs/navigation/src",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
@@ -1346,7 +1346,7 @@
     },
     "newsletter": {
       "root": "libs/newsletter",
-      "sourceRoot": "libs/newsletter",
+      "sourceRoot": "libs/newsletter/src",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
@@ -1386,7 +1386,7 @@
     "contact": {
       "projectType": "library",
       "root": "libs/contact",
-      "sourceRoot": "libs/contact",
+      "sourceRoot": "libs/contact/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1424,7 +1424,7 @@
     },
     "auth": {
       "root": "libs/auth",
-      "sourceRoot": "libs/auth",
+      "sourceRoot": "libs/auth/src",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
@@ -1464,7 +1464,7 @@
     "geography": {
       "projectType": "library",
       "root": "libs/geography",
-      "sourceRoot": "libs/geography",
+      "sourceRoot": "libs/geography/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1502,7 +1502,7 @@
     },
     "paypal": {
       "root": "libs/paypal",
-      "sourceRoot": "libs/paypal",
+      "sourceRoot": "libs/paypal/src",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
@@ -1541,7 +1541,7 @@
     "order": {
       "projectType": "library",
       "root": "libs/order",
-      "sourceRoot": "libs/order",
+      "sourceRoot": "libs/order/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1580,7 +1580,7 @@
     "external-router": {
       "projectType": "library",
       "root": "libs/external-router",
-      "sourceRoot": "libs/external-router",
+      "sourceRoot": "libs/external-router/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1618,7 +1618,7 @@
     "search": {
       "projectType": "library",
       "root": "libs/search",
-      "sourceRoot": "libs/search",
+      "sourceRoot": "libs/search/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1656,7 +1656,7 @@
     "search-product": {
       "projectType": "library",
       "root": "libs/search-product",
-      "sourceRoot": "libs/search-product",
+      "sourceRoot": "libs/search-product/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1694,7 +1694,7 @@
     "search-product-composite": {
       "projectType": "library",
       "root": "libs/search-product-composite",
-      "sourceRoot": "libs/search-product-composite",
+      "sourceRoot": "libs/search-product-composite/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1732,7 +1732,7 @@
     "search-product-configurable": {
       "projectType": "library",
       "root": "libs/search-product-configurable",
-      "sourceRoot": "libs/search-product-configurable",
+      "sourceRoot": "libs/search-product-configurable/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1770,7 +1770,7 @@
     "search-category": {
       "projectType": "library",
       "root": "libs/search-category",
-      "sourceRoot": "libs/search-category",
+      "sourceRoot": "libs/search-category/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1808,7 +1808,7 @@
     "seo": {
       "projectType": "library",
       "root": "libs/seo",
-      "sourceRoot": "libs/seo",
+      "sourceRoot": "libs/seo/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1846,7 +1846,7 @@
     "content": {
       "projectType": "library",
       "root": "libs/content",
-      "sourceRoot": "libs/content",
+      "sourceRoot": "libs/content/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1884,7 +1884,7 @@
     "reviews": {
       "projectType": "library",
       "root": "libs/reviews",
-      "sourceRoot": "libs/reviews",
+      "sourceRoot": "libs/reviews/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1922,7 +1922,7 @@
     "payment": {
       "projectType": "library",
       "root": "libs/payment",
-      "sourceRoot": "libs/payment",
+      "sourceRoot": "libs/payment/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1960,7 +1960,7 @@
     "forms": {
       "projectType": "library",
       "root": "libs/forms",
-      "sourceRoot": "libs/forms",
+      "sourceRoot": "libs/forms/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -1998,7 +1998,7 @@
     "customer": {
       "projectType": "library",
       "root": "libs/customer",
-      "sourceRoot": "libs/customer",
+      "sourceRoot": "libs/customer/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -2036,7 +2036,7 @@
     "customer-auth": {
       "projectType": "library",
       "root": "libs/customer-auth",
-      "sourceRoot": "libs/customer-auth",
+      "sourceRoot": "libs/customer-auth/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -2074,7 +2074,7 @@
     "customer-order": {
       "projectType": "library",
       "root": "libs/customer-order",
-      "sourceRoot": "libs/customer-order",
+      "sourceRoot": "libs/customer-order/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -2112,7 +2112,7 @@
     "customer-store-credit": {
       "projectType": "library",
       "root": "libs/customer-store-credit",
-      "sourceRoot": "libs/customer-store-credit",
+      "sourceRoot": "libs/customer-store-credit/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -2149,7 +2149,7 @@
     "cart-store-credit": {
       "projectType": "library",
       "root": "libs/cart-store-credit",
-      "sourceRoot": "libs/cart-store-credit",
+      "sourceRoot": "libs/cart-store-credit/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -2186,7 +2186,7 @@
     "customer-payment": {
       "projectType": "library",
       "root": "libs/customer-payment",
-      "sourceRoot": "libs/customer-payment",
+      "sourceRoot": "libs/customer-payment/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
@@ -2223,7 +2223,7 @@
     "customer-payment-authorizenet": {
       "projectType": "library",
       "root": "libs/customer-payment-authorizenet",
-      "sourceRoot": "libs/customer-payment-authorizenet",
+      "sourceRoot": "libs/customer-payment-authorizenet/src",
       "prefix": "@daffodil",
       "architect": {
         "build": {
