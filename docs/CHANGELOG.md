@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.64.2](https://github.com/graycoreio/daffodil/compare/v0.64.1...v0.64.2) (2023-11-09)
+
+
+### Features
+
+* **customer-payment-authorizenet:** export all card type transforms ([#2592](https://github.com/graycoreio/daffodil/issues/2592)) ([9ad7775](https://github.com/graycoreio/daffodil/commit/9ad77756aad8cff37bcc911874f38835e02f9e87))
+
 ## [0.64.1](https://github.com/graycoreio/daffodil/compare/v0.64.0...v0.64.1) (2023-10-18)
 
 
