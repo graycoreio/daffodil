@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   Component,
   DebugElement,
@@ -6,8 +7,12 @@ import {
   waitForAsync,
   ComponentFixture,
   TestBed,
+  fakeAsync,
+  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import {
   DaffPaginatorNumberOfPagesErrorMessage,
@@ -16,11 +21,27 @@ import {
 import { DaffPaginatorComponent } from './paginator.component';
 import { DaffPaginatorModule } from './paginator.module';
 
-@Component({ template: '<daff-paginator aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></daff-paginator>' })
+
+@Component({ template: '' })
+class TestComponent {}
+
+@Component({ template: `
+  <daff-paginator
+    aria-label="id"
+    [numberOfPages]="numberOfPagesValue"
+    [currentPage]="currentPageValue"
+    [linkMode]="linkModeValue"
+    [url]="urlValue"
+    [queryParam]="queryParamValue"
+  ></daff-paginator>
+` })
 
 class WrapperComponent {
   numberOfPagesValue = 20;
   currentPageValue = 2;
+  linkModeValue = false;
+  urlValue = '';
+  queryParamValue = '';
 }
 
 describe('DaffPaginatorComponent', () => {
@@ -28,11 +49,24 @@ describe('DaffPaginatorComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let component: DaffPaginatorComponent;
+  let route: ActivatedRoute;
+  let location: Location;
+  const testUrl = 'test';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffPaginatorModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: '',
+            component: TestComponent,
+          },
+          {
+            path: testUrl,
+            component: TestComponent,
+          },
+        ]),
       ],
       declarations: [
         WrapperComponent,
@@ -42,6 +76,9 @@ describe('DaffPaginatorComponent', () => {
   }));
 
   beforeEach(() => {
+    route = TestBed.inject(ActivatedRoute);
+    location = TestBed.inject(Location);
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-paginator'));
@@ -64,6 +101,18 @@ describe('DaffPaginatorComponent', () => {
     expect(component.currentPage).toEqual(wrapper.currentPageValue);
   });
 
+  it('should be able to take linkMode as input', () => {
+    expect(component.linkMode).toEqual(wrapper.linkModeValue);
+  });
+
+  it('should be able to take url as input', () => {
+    expect(component.url).toEqual(wrapper.urlValue);
+  });
+
+  it('should be able to take queryParam as input', () => {
+    expect(component.queryParam).toEqual(wrapper.queryParamValue);
+  });
+
   it('should be able to take numberOfPages as input', () => {
     expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue);
   });
@@ -79,6 +128,65 @@ describe('DaffPaginatorComponent', () => {
 
     expect(paginatorText.includes(lesserPage)).toBeTruthy();
     expect(paginatorText.includes(greaterPage)).toBeTruthy();
+  });
+
+  describe('when the component is in link mode', () => {
+    beforeEach(() => {
+      wrapper.linkModeValue = true;
+      wrapper.urlValue = testUrl;
+      wrapper.queryParamValue = 'queryParam';
+      fixture.detectChanges();
+    });
+
+    it('should render the buttons as anchors', () => {
+      expect(fixture.debugElement.queryAll(By.css('button')).length).toEqual(0);
+      expect(fixture.debugElement.queryAll(By.css('a')).length).toBeGreaterThan(0);
+    });
+
+    describe('when previous link is clicked', () => {
+      beforeEach(fakeAsync(() => {
+        fixture.debugElement.query(By.css('.daff-paginator__previous')).nativeElement.click();
+        tick();
+      }));
+
+      it('should set the query param value', () => {
+        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue))).toEqual(wrapper.currentPageValue - 1);
+      });
+
+      it('should navigate to the set url', () => {
+        expect(location.path()).toContain(wrapper.urlValue);
+      });
+    });
+
+    describe('when next link is clicked', () => {
+      beforeEach(fakeAsync(() => {
+        fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.click();
+        tick();
+      }));
+
+      it('should set the query param value', () => {
+        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue))).toEqual(wrapper.currentPageValue + 1);
+      });
+
+      it('should navigate to the set url', () => {
+        expect(location.path()).toContain(wrapper.urlValue);
+      });
+    });
+
+    describe('when a page number link is clicked', () => {
+      beforeEach(fakeAsync(() => {
+        fixture.debugElement.query(By.css('.daff-paginator__page-link[data-page-number="3"]')).nativeElement.click();
+        tick();
+      }));
+
+      it('should set the query param value', () => {
+        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue))).toEqual(3);
+      });
+
+      it('should navigate to the set url', () => {
+        expect(location.path()).toContain(wrapper.urlValue);
+      });
+    });
   });
 
   describe('when the numberOfPages is less than 2', () => {
