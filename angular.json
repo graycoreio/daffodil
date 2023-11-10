@@ -83,7 +83,7 @@
     },
     "demo": {
       "root": "apps/demo/",
-      "sourceRoot": "apps/demo",
+      "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "architect": {
         "generateFragmentTypes": {
@@ -241,7 +241,7 @@
     },
     "demo-dev": {
       "root": "apps/demo/",
-      "sourceRoot": "apps/demo",
+      "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "architect": {
         "build": {
@@ -802,7 +802,7 @@
     },
     "daffio": {
       "root": "apps/daffio/",
-      "sourceRoot": "apps/daffio",
+      "sourceRoot": "apps/daffio/src",
       "projectType": "application",
       "prefix": "daffio",
       "schematics": {},
@@ -1021,7 +1021,7 @@
     },
     "daffio-dev": {
       "root": "apps/daffio/",
-      "sourceRoot": "apps/daffio",
+      "sourceRoot": "apps/daffio/src",
       "projectType": "application",
       "architect": {
         "build": {
