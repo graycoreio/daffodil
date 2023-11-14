@@ -59,4 +59,10 @@
 			top: -60px;
 		}
 	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
 }

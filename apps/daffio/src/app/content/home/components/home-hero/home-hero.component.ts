@@ -4,6 +4,8 @@ import {
   HostBinding,
 } from '@angular/core';
 
+import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
+
 @Component({
   selector: 'daffio-home-hero',
   templateUrl: './home-hero.component.html',
@@ -13,4 +15,7 @@ import {
 
 export class DaffioHomeHeroComponent {
   @HostBinding('class.daffio-home-hero') class = true;
+
+  repoLink = DAFF_BRANDING_CONSTANTS.REPO_URL;
+  discordLink = DAFF_BRANDING_CONSTANTS.DISCORD_URL;
 }
