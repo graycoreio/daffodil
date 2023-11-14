@@ -47,7 +47,7 @@
 	}
 }
 
-:host-context(daff-sidebar-viewport daff-sidebar-viewport > ) {
+:host-context(daff-sidebar-viewport daff-sidebar-viewport) {
 	&.side-fixed {
 		position: sticky;
 	}
