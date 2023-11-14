@@ -7,7 +7,11 @@ import { DaffLogoComponent } from './logo.component';
   imports: [
     CommonModule,
   ],
-  declarations: [DaffLogoComponent],
-  exports: [DaffLogoComponent],
+  declarations: [
+    DaffLogoComponent,
+  ],
+  exports: [
+    DaffLogoComponent,
+  ],
 })
 export class DaffLogoModule { }
