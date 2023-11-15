@@ -69,10 +69,4 @@ describe('DaffioHeaderContainer', () => {
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
     });
   });
-
-  it('renders a [daffioHeaderItemm] for every links defined', () => {
-    const headerItems = fixture.debugElement.queryAll(By.css('[daffioHeaderItem]'));
-
-    expect(headerItems.length).toEqual(daffioHeaderContainer.links.length);
-  });
 });

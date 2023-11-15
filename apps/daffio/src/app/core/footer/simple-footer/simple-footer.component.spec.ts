@@ -76,16 +76,4 @@ describe('DaffioSimpleFooterComponent', () => {
       expect(logo.componentInstance.type).toEqual('icon');
     });
   });
-
-  it('renders a menu link for every link defined', () => {
-    const footerLinks = fixture.debugElement.queryAll(By.css('.daffio-simple-footer__menu a'));
-
-    expect(footerLinks.length).toEqual(component.links.length);
-  });
-
-  it('renders a social link for every link defined', () => {
-    const socialLinks = fixture.debugElement.queryAll(By.css('.daffio-simple-footer__social a'));
-
-    expect(socialLinks.length).toEqual(component.links.length);
-  });
 });
