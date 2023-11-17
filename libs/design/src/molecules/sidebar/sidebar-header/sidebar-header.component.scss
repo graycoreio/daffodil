@@ -1,3 +1,5 @@
+@use '../../../../scss/typography' as t;
+
 .daff-sidebar-header {
 	display: flex;
 	align-items: center;
@@ -9,12 +11,13 @@
 	}
 
 	&__title {
+		@include t.text-truncate();
 		font-size: 1rem;
 		font-weight: 500;
 	}
 
 	&__action + &__title {
-		margin: 0 0 0 26px;
+		margin: 0 0 0 29px;
 	}
 }
 
@@ -23,8 +26,8 @@
 		padding: 16px;
 
 		&__action {
-			left: -3px;
-			right: auto;
+			left: 0;
+			right: initial;
 			top: 3px;
 		}
 	}
@@ -32,12 +35,12 @@
 	&.right {
 		.daff-sidebar-header {
 			&__action {
-				left: auto;
-				right: -3px;
+				left: initial;
+				right: 0;
 			}
 
-			&__action + &__title {
-				margin: 0 26px 0 0;
+			&__title {
+				margin: 0 29px 0 0;
 			}
 		}
 	}
