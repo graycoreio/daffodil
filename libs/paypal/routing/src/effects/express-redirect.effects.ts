@@ -1,4 +1,8 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import {
   Actions,
   ofType,
@@ -25,6 +29,7 @@ import {
 export class DaffPaypalExpressRedirectEffects<T extends DaffPaypalExpressTokenResponse = DaffPaypalExpressTokenResponse>{
   constructor(
     private actions$: Actions,
+    @Inject(DOCUMENT) private document: Document,
   ) { }
 
   redirectUserToStartUrl$: Observable<Action> = createEffect(() => this.actions$.pipe(
@@ -32,7 +37,7 @@ export class DaffPaypalExpressRedirectEffects<T extends DaffPaypalExpressTokenRe
     tap((action: DaffGeneratePaypalExpressTokenSuccess<T>) => {
       const url = action.payload.urls.start;
       if (url) {
-        window.location.assign(action.payload.urls.start);
+        this.document.defaultView.location.assign(action.payload.urls.start);
       }
     }),
     switchMap(() => EMPTY),
