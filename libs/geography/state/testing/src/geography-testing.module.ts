@@ -9,4 +9,4 @@ import { MockDaffGeographyFacade } from './mock-geography-facade';
     { provide: DaffGeographyFacade, useExisting: MockDaffGeographyFacade },
   ],
 })
-export class DaffGeographyTestingModule {}
+export class DaffGeographyStateTestingModule {}

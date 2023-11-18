@@ -9,4 +9,4 @@ import { MockDaffAuthorizeNetFacade } from './mock-authorize-net-facade';
     { provide: DaffAuthorizeNetFacade, useExisting: MockDaffAuthorizeNetFacade },
   ],
 })
-export class DaffAuthorizeNetTestingModule {}
+export class DaffAuthorizeNetStateTestingModule {}

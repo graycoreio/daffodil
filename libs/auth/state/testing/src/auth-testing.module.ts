@@ -20,4 +20,4 @@ import { MockDaffAuthResetPasswordFacade } from './mock-reset-password-facade';
     { provide: DaffAuthResetPasswordFacade, useExisting: MockDaffAuthResetPasswordFacade },
   ],
 })
-export class DaffAuthTestingModule {}
+export class DaffAuthStateTestingModule {}

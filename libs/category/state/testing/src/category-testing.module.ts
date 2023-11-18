@@ -17,4 +17,4 @@ import { MockDaffCategoryFacade } from './mock-category-facade';
     { provide: DaffCategoryProductCollectionFacade, useExisting: MockDaffCollectionFacade },
   ],
 })
-export class DaffCategoryTestingModule { }
+export class DaffCategoryStateTestingModule { }

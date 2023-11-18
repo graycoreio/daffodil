@@ -17,4 +17,4 @@ import { MockDaffNavigationFacade } from './mock-navigation.facade';
     { provide: DaffNavigationFacade, useExisting: MockDaffNavigationFacade },
   ],
 })
-export class DaffNavigationTestingModule {}
+export class DaffNavigationStateTestingModule {}
