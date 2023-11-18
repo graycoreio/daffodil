@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -40,7 +40,7 @@ describe('PlaceOrderComponent', () => {
         provideMockStore({}),
       ],
       imports: [
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
       ],
     })
       .compileComponents();

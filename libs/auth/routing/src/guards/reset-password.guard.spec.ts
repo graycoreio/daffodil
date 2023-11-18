@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 import { DAFF_AUTH_ROUTING_CONFIG } from '@daffodil/auth/routing';
 import { DaffResetPasswordLanding } from '@daffodil/auth/state';
 import {
-  DaffAuthTestingModule,
+  DaffAuthStateTestingModule,
   MockDaffAuthFacade,
 } from '@daffodil/auth/state/testing';
 
@@ -38,7 +38,7 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        DaffAuthTestingModule,
+        DaffAuthStateTestingModule,
         RouterTestingModule.withRoutes([
           {
             path: 'reset',

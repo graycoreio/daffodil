@@ -32,7 +32,7 @@ class CartComponent implements OnInit {
 import {
   DaffCartFacade,
   DaffCartCreate,
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade
 } from '@daffodil/cart';
 
@@ -44,7 +44,7 @@ describe('CartComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCartTestingModule // this provides the MockDaffCartFacade
+        DaffCartStateTestingModule // this provides the MockDaffCartFacade
       ]
     });
 

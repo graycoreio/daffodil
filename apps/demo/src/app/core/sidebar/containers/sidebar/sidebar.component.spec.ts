@@ -26,7 +26,7 @@ import {
   DaffNavigationLoad,
 } from '@daffodil/navigation/state';
 import {
-  DaffNavigationTestingModule,
+  DaffNavigationStateTestingModule,
   MockDaffNavigationFacade,
 } from '@daffodil/navigation/state/testing';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
@@ -55,7 +55,7 @@ describe('SidebarContainer', () => {
         FontAwesomeModule,
         DaffLoadingIconModule,
         DaffLinkSetModule,
-        DaffNavigationTestingModule,
+        DaffNavigationStateTestingModule,
       ],
       declarations: [
         WrapperComponent,

@@ -28,7 +28,7 @@ import {
   DaffCategoryPageRemoveFilters,
 } from '@daffodil/category/state';
 import {
-  DaffCategoryTestingModule,
+  DaffCategoryStateTestingModule,
   MockDaffCategoryFacade,
 } from '@daffodil/category/state/testing';
 import {
@@ -226,7 +226,7 @@ describe('DaffCategoryPageFilterEffects', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffCategoryTestingDriverModule.forRoot(),
-        DaffCategoryTestingModule,
+        DaffCategoryStateTestingModule,
       ],
       providers: [
         DaffCategoryPageFilterEffects,

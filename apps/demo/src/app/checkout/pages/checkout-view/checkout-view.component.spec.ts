@@ -24,7 +24,7 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import {
@@ -139,7 +139,7 @@ describe('CheckoutViewComponent', () => {
         NoopAnimationsModule,
         DaffContainerModule,
         DaffLoadingIconModule,
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
       ],
       declarations: [
         CheckoutViewComponent,

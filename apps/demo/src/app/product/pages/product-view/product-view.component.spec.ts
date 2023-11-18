@@ -17,7 +17,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffCartItemInputType } from '@daffodil/cart';
 import { DaffCartItemAdd } from '@daffodil/cart/state';
 import {
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
@@ -70,7 +70,7 @@ describe('ProductViewComponent', () => {
       imports: [
         RouterTestingModule,
         DaffLoadingIconModule,
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
         DaffProductStateTestingModule,
       ],
       declarations: [

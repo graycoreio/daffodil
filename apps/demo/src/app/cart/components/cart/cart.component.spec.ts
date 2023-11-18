@@ -14,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -72,7 +72,7 @@ describe('Cart', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
       ],
       declarations: [
         WrapperComponent,
