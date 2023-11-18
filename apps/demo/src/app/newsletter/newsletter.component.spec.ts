@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffContainerModule } from '@daffodil/design';
 import {
-  DaffNewsletterTestingModule,
+  DaffNewsletterStateTestingModule,
   MockDaffNewsletterFacade,
 } from '@daffodil/newsletter/state/testing';
 
@@ -28,7 +28,7 @@ describe('NewsletterComponent', () => {
       imports: [
         DaffContainerModule,
         ReactiveFormsModule,
-        DaffNewsletterTestingModule,
+        DaffNewsletterStateTestingModule,
       ],
     })
       .compileComponents();

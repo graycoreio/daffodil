@@ -9,7 +9,7 @@ import {
 
 import { DaffCartOrderResultGuardRedirectUrl } from '@daffodil/cart/routing';
 import { DaffCartFacade } from '@daffodil/cart/state';
-import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
+import { DaffCartStateTestingModule } from '@daffodil/cart/state/testing';
 
 import { DaffOrderResultGuard } from './order-result.guard';
 
@@ -27,7 +27,7 @@ describe('Cart | State | Guards | DaffOrderResultGuard', () => {
       ],
       imports: [
         RouterTestingModule,
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
       ],
     });
 

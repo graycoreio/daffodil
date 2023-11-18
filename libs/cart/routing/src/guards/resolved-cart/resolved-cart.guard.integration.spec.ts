@@ -11,7 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DAFF_CART_ROUTING_CONFIG } from '@daffodil/cart/routing';
 import { DaffCartResolveState } from '@daffodil/cart/state';
 import {
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 
@@ -29,7 +29,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard | Integration', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
         RouterTestingModule.withRoutes([
           {
             path: '',

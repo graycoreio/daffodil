@@ -9,4 +9,4 @@ import { MockDaffPaypalFacade } from './mock-paypal-facade';
     { provide: DaffPaypalFacade, useExisting: MockDaffPaypalFacade },
   ],
 })
-export class DaffPaypalTestingModule { }
+export class DaffPaypalStateTestingModule { }

@@ -1,2 +1,2 @@
 export { MockDaffNewsletterFacade } from './mock-newsletter-facade';
-export { DaffNewsletterTestingModule } from './newsletter-testing.module';
+export { DaffNewsletterStateTestingModule } from './newsletter-testing.module';

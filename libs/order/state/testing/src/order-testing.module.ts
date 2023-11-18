@@ -14,4 +14,4 @@ import { MockDaffOrderFacade } from './mock-order-facade';
     { provide: DaffOrderCollectionFacade, useExisting: MockDaffCollectionFacade },
   ],
 })
-export class DaffOrderTestingModule {}
+export class DaffOrderStateTestingModule {}

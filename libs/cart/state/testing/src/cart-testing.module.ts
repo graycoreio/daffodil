@@ -9,4 +9,4 @@ import { MockDaffCartFacade } from './mock-cart-facade';
     { provide: DaffCartFacade, useExisting: MockDaffCartFacade },
   ],
 })
-export class DaffCartTestingModule { }
+export class DaffCartStateTestingModule { }

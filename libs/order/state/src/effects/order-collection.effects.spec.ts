@@ -29,7 +29,7 @@ import {
   DaffOrderListFailure,
   DaffOrderListSuccess,
 } from '@daffodil/order/state';
-import { DaffOrderTestingModule } from '@daffodil/order/state/testing';
+import { DaffOrderStateTestingModule } from '@daffodil/order/state/testing';
 import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { DaffOrderCollectionEffects } from './order-collection.effects';
@@ -145,7 +145,7 @@ describe('@daffodil/order/state | DaffOrderCollectionEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffOrderTestingModule,
+        DaffOrderStateTestingModule,
         DaffOrderTestingDriverModule.forRoot(),
       ],
       providers: [

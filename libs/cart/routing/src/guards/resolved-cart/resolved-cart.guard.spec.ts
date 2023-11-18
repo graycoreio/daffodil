@@ -7,7 +7,7 @@ import {
   DaffCartResolveState,
   DaffCartFacade,
 } from '@daffodil/cart/state';
-import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
+import { DaffCartStateTestingModule } from '@daffodil/cart/state/testing';
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 import { daffCartRoutingConfigurationDefault } from '../../config/config';
@@ -20,7 +20,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DaffCartTestingModule, RouterTestingModule],
+      imports: [DaffCartStateTestingModule, RouterTestingModule],
     });
 
     facade = TestBed.inject(DaffCartFacade);

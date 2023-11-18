@@ -6,7 +6,7 @@ import { DaffNavigationFacade } from '@daffodil/navigation/state';
 import { MockDaffNavigationFacade } from './mock-navigation.facade';
 
 /**
- * The DaffNavigationTestingModule provides a mock for the DaffNavigationFacade. This makes testing much simpler
+ * The DaffNavigationStateTestingModule provides a mock for the DaffNavigationFacade. This makes testing much simpler
  * by removing any interaction with the ngrx store.
  */
 @NgModule({
@@ -17,4 +17,4 @@ import { MockDaffNavigationFacade } from './mock-navigation.facade';
     { provide: DaffNavigationFacade, useExisting: MockDaffNavigationFacade },
   ],
 })
-export class DaffNavigationTestingModule {}
+export class DaffNavigationStateTestingModule {}

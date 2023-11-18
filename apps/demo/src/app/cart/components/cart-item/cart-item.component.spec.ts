@@ -14,7 +14,7 @@ import {
   DaffCartItemUpdate,
 } from '@daffodil/cart/state';
 import {
-  DaffCartTestingModule,
+  DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
@@ -47,7 +47,7 @@ describe('CartItemComponent', () => {
       imports: [
         RouterTestingModule,
         DaffQtyDropdownModule,
-        DaffCartTestingModule,
+        DaffCartStateTestingModule,
       ],
       declarations: [
         CartItemComponent,

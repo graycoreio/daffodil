@@ -9,4 +9,4 @@ import { MockDaffNewsletterFacade } from './mock-newsletter-facade';
     { provide: DaffNewsletterFacade, useExisting: MockDaffNewsletterFacade },
   ],
 })
-export class DaffNewsletterTestingModule { }
+export class DaffNewsletterStateTestingModule { }
