@@ -63,10 +63,10 @@ export class DaffToastComponent
   @HostBinding('attr.role') ariaLive = 'status';
 
   @ContentChild(DaffToastActionsDirective)
-  _actions: DaffToastActionsDirective;
+    _actions: DaffToastActionsDirective;
 
   @ContentChild(DaffPrefixDirective)
-  _prefix: DaffPrefixDirective;
+    _prefix: DaffPrefixDirective;
 
   @Input() toast: DaffToast;
 

@@ -31,6 +31,9 @@ import {
   DaffFocusStackService,
 } from '@daffodil/design';
 
+import { daffToastChangesFocus } from './changes-focus';
+import { createPositionStrategy } from './position-strategy';
+import { DaffToastPositionService } from './position.service';
 import {
   DaffToast,
   DaffToastData,
@@ -39,15 +42,12 @@ import {
   DAFF_TOAST_OPTIONS,
   DaffToastOptions,
 } from '../options/daff-toast-options';
-import { DaffToastModule } from '../toast.module';
 import {
   daffDefaultToastConfiguration,
   DaffToastConfiguration,
 } from '../toast/toast-config';
 import { DaffToastTemplateComponent } from '../toast/toast-template.component';
-import { daffToastChangesFocus } from './changes-focus';
-import { createPositionStrategy } from './position-strategy';
-import { DaffToastPositionService } from './position.service';
+import { DaffToastModule } from '../toast.module';
 
 @Injectable({ providedIn: DaffToastModule })
 export class DaffToastService implements OnDestroy {

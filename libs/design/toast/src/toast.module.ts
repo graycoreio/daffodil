@@ -10,11 +10,11 @@ import {
 } from '@daffodil/design';
 
 import { DaffToastPositionService } from './service/position.service';
+import { DaffToastTemplateComponent } from './toast/toast-template.component';
+import { DaffToastComponent } from './toast/toast.component';
 import { DaffToastActionsDirective } from './toast-actions/toast-actions.directive';
 import { DaffToastMessageDirective } from './toast-message/toast-message.directive';
 import { DaffToastTitleDirective } from './toast-title/toast-title.directive';
-import { DaffToastTemplateComponent } from './toast/toast-template.component';
-import { DaffToastComponent } from './toast/toast.component';
 
 
 @NgModule({
