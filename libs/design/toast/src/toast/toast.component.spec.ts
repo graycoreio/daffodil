@@ -8,17 +8,28 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
-import { DaffStatus } from '@daffodil/design';
+import {
+  DaffStatus,
+  DaffStatusEnum,
+} from '@daffodil/design';
+import { DaffToast } from '@daffodil/design/toast';
 
 import { DaffToastComponent } from './toast.component';
 
 @Component ({
-  template: `<daff-toast [status]="status"></daff-toast>`,
+  template: `
+    <daff-toast
+      [status]="status"
+      [toast]="toast"
+    ></daff-toast>
+  `,
 })
 
 class WrapperComponent {
   status: DaffStatus;
+  toast: DaffToast;
 }
 
 describe('DaffToastComponent', () => {
@@ -40,6 +51,11 @@ describe('DaffToastComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
+    wrapper.toast = {
+      title: 'title',
+      dismiss: () => {},
+      dismissalStream: of(),
+    };
     de = fixture.debugElement.query(By.css('daff-toast'));
     component = de.componentInstance;
     fixture.detectChanges();
@@ -63,7 +79,7 @@ describe('DaffToastComponent', () => {
     });
 
     it('should add the class of the defined status to the host element', () => {
-      wrapper.status = 'warn';
+      wrapper.status = DaffStatusEnum.Warn;
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
