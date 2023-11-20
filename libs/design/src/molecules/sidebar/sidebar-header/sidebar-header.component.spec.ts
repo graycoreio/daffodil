@@ -12,12 +12,9 @@ import { By } from '@angular/platform-browser';
 import { DaffSidebarHeaderComponent } from './sidebar-header.component';
 
 @Component({ template: `
-  <daff-sidebar-header [hideCloseButton]="hideCloseButton" (closeSidebar)="closeSidebarFunction()">Header</daff-sidebar-header>
+  <daff-sidebar-header>Header</daff-sidebar-header>
 ` })
-class WrapperComponent {
-  hideCloseButton = false;
-  closeSidebarFunction = () => {};
-}
+class WrapperComponent {}
 
 describe('DaffSidebarHeaderComponent', () => {
   let wrapper: WrapperComponent;
@@ -52,36 +49,5 @@ describe('DaffSidebarHeaderComponent', () => {
     expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-sidebar-header': true,
     }));
-  });
-
-  describe('hideCloseButton', () => {
-    it('should take hideCloseButton as an input', () => {
-      wrapper.hideCloseButton = false;
-      fixture.detectChanges();
-
-      expect(component.hideCloseButton).toEqual(false);
-    });
-
-    it('should add a class of `hide-button` to the host element when it`s set to true', () => {
-      wrapper.hideCloseButton = true;
-      fixture.detectChanges();
-
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'hide-button': true,
-      }));
-    });
-  });
-
-  describe('when the close icon button is clicked', () => {
-    it('should emit closeSidebar', () => {
-      wrapper.hideCloseButton = false;
-      fixture.detectChanges();
-
-      spyOn(component.closeSidebar, 'emit');
-
-      fixture.debugElement.query(By.css('.daff-sidebar-header__close-button')).nativeElement.click();
-
-      expect(component.closeSidebar.emit).toHaveBeenCalledWith();
-    });
   });
 });

@@ -1,9 +1,8 @@
 import { QueryList } from '@angular/core';
 
-import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
-import { DaffSidebarSide } from '../helper/sidebar-side';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
-
+import { DaffSidebarModeEnum } from '../../helper/sidebar-mode';
+import { DaffSidebarSide } from '../../helper/sidebar-side';
+import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 /**
  * Given a list of sidebars, compute the associated content shift.

@@ -7,14 +7,16 @@ import {
   ContentChildren,
   QueryList,
   AfterContentChecked,
+  ElementRef,
 } from '@angular/core';
 
-import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
-import { sidebarViewportContentPadding } from './content-pad';
+import { sidebarViewportBackdropInteractable } from './utils/backdrop-interactable';
+import { sidebarViewportContentPadding } from './utils/content-pad';
 import {
   isViewportContentShifted,
   sidebarViewportContentShift,
-} from './content-shift';
+} from './utils/content-shift';
+import { sidebarViewportHeight } from './utils/viewport-height';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
 import { getAnimationState } from '../animation/sidebar-animation-state';
 import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
@@ -52,7 +54,10 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked {
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>,
+  ) { }
 
   /**
    * The list of sidebars in the viewport.
@@ -82,14 +87,15 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
    */
   _backdropInteractable = false;
 
+  _viewportHasHeight = false;
+
   /**
    * The animation state
    */
   _animationState: DaffSidebarViewportAnimationState = { value: 'closed', params: { shift: '0px' }};
 
   /**
-   * Event fired when the backdrop is clicked
-   * This is often used to close the sidebar
+   * Event fired when the backdrop is clicked. This is often used to close the sidebar.
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
@@ -119,6 +125,14 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     if(this._contentPadRight !== nextRightPadding) {
       this._contentPadRight = nextRightPadding;
       this.updateAnimationState();
+      this.cdRef.markForCheck();
+    }
+
+    const viewportHeight = sidebarViewportHeight(this.sidebars);
+    if (this._viewportHasHeight !== viewportHeight) {
+      this._viewportHasHeight = viewportHeight;
+      this._elementRef.nativeElement.style.height = '100dvh';
+      this._elementRef.nativeElement.style.minHeight = '100%';
       this.cdRef.markForCheck();
     }
   }

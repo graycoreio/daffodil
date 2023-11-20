@@ -13,7 +13,7 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { sidebarViewportContentPadding } from './content-pad';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
   template: `

@@ -1,6 +1,6 @@
 import { QueryList } from '@angular/core';
 
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 /**
  * Determines, given a list of sidebars, whether or not the backdrop is interactable (typically clickable).

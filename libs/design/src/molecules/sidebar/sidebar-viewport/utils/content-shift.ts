@@ -1,7 +1,7 @@
 import { QueryList } from '@angular/core';
 
-import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarMode } from '../../helper/sidebar-mode';
+import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 export const isViewportContentShifted = (mode: DaffSidebarMode, open: boolean): boolean => (mode === 'under' && open);
 

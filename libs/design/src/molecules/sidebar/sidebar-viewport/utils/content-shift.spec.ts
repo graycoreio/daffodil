@@ -13,7 +13,7 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { sidebarViewportContentShift } from './content-shift';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 
 @Component({

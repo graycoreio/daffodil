@@ -3,9 +3,6 @@
 :host {
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
-	height: 100vh;
-	height: 100dvh;
-	min-height: 100%;
 	overflow: hidden;
 	position: relative;
 	width: 100%;
