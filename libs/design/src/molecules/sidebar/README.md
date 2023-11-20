@@ -50,6 +50,9 @@ A viewport navigation can either be:
 </daff-sidebar-viewport>
 ```
 
+#### Required Imports
+The `BrowserAnimationsModule` or `NoopAnimationsModule` must be imported in the particular Angular `@NgModule` the sidebar is used in for the sidebar to render and work properly.
+
 ### Header and footer
 The `<daff-sidebar-header>` includes optional title (`[daffSidebarHeaderTitle]`) and action (`[daffSidebarHeaderAction]`) selectors, and a slot to render custom content. The action selector should be used along with the `<daff-icon-button>` (view [Button Documentation](../../atoms//button//README.md)) to make sure that the action is positioned correctly and it passes WCAG guidelines.
 

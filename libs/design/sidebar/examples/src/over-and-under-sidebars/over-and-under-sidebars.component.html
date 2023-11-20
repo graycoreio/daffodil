@@ -1,4 +1,4 @@
-<daff-sidebar-viewport class="viewport" (backdropClicked)="closeSidebar()">
+<daff-sidebar-viewport (backdropClicked)="closeSidebar()">
   <daff-sidebar class="over-sidebar" [mode]="modeControl.value" [side]="sideControl.value" [open]="open" (escapePressed)="closeSidebar()">
     <daff-sidebar-header>
       <button daff-icon-button color="theme-contrast" daffSidebarHeaderAction (click)="closeSidebar()">

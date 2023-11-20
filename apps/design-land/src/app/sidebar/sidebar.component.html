@@ -53,6 +53,9 @@
   &lt;/div&gt;
 &lt;/daff-sidebar-viewport&gt;</code></pre>
 
+<h4>Required imports</h4>
+<p>The <code>BrowserAnimationsModule</code> or <code>NoopAnimationsModule</code> must be imported in the particular Angular <code>@NgModule</code> the sidebar is used in for the sidebar to render and work properly.</p>
+
 <h3>Header and footer</h3>
 <p>The <code>&lt;daff-sidebar-header&gt;</code> includes optional title (<code>[daffSidebarHeaderTitle]</code>) and action (<code>[daffSidebarHeaderAction]</code>) selectors, and a slot to render custom content. The action selector should be used along with the <code>&lt;daff-icon-button&gt;</code> (view <a routerLink="/button">Button Documentation</a>) to make sure that the action is positioned correctly and it passes WCAG guidelines.</p>
 
