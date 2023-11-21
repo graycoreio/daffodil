@@ -1,5 +1,5 @@
 <daff-sidebar-viewport class="design-land-sidebar-viewport" (backdropClicked)="toggleOpen()">
-  <daff-sidebar class="design-land-sidebar-viewport__sidebar" [mode]="mode$ | async" [open]="open">
+  <daff-sidebar class="design-land-sidebar-viewport__sidebar" [mode]="mode$ | async" [open]="open" (escapePressed)="toggleOpen()">
     <design-land-nav></design-land-nav>
     <daff-sidebar-footer>
       <a href="https://github.com/graycoreio/daffodil" target="_blank" class="design-land-sidebar-viewport__get-started-button">Get Started</a>
