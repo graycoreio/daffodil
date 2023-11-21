@@ -44,7 +44,7 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx lerna run build --concurrency=1
+      - run: NX_REJECT_UNKNOWN_LOCAL_CACHE=0 npx lerna run build --concurrency=1
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
 
