@@ -40,8 +40,8 @@ describe('Driver | Testing | Geography | GeographyService', () => {
     countryFactoryService = TestBed.inject(DaffCountryFactory);
     subdivisionFactoryService = TestBed.inject(DaffSubdivisionFactory);
 
-    countryFactory = new DaffCountryFactory();
     subdivisionFactory = new DaffSubdivisionFactory();
+    countryFactory = new DaffCountryFactory(subdivisionFactory);
 
     mockCountry = countryFactory.create();
     mockSubdivision = subdivisionFactory.create();

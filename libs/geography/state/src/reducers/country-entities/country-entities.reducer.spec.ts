@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffCountry,
   DaffSubdivision,
@@ -6,6 +8,7 @@ import {
   DaffCountryLoadSuccess,
   DaffCountryListSuccess,
   daffCountryEntitiesInitialState as initialState,
+  DaffCountryEntityState,
 } from '@daffodil/geography/state';
 import {
   DaffCountryFactory,
@@ -14,7 +17,7 @@ import {
 
 import { daffCountryEntitiesReducer as reducer } from './country-entities.reducer';
 
-describe('Geography | Reducer | CountryEntities', () => {
+describe('@daffodil/geography/state | daffCountryEntitiesReducer', () => {
   let countryFactory: DaffCountryFactory;
   let subdivisionFactory: DaffSubdivisionFactory;
   let mockCountry: DaffCountry;
@@ -22,7 +25,7 @@ describe('Geography | Reducer | CountryEntities', () => {
   let countryId: DaffCountry['id'];
 
   beforeEach(() => {
-    countryFactory = new DaffCountryFactory();
+    countryFactory = TestBed.inject(DaffCountryFactory);
     subdivisionFactory = new DaffSubdivisionFactory();
 
     mockCountry = countryFactory.create();
@@ -41,7 +44,7 @@ describe('Geography | Reducer | CountryEntities', () => {
   });
 
   describe('when CountryLoadSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCountryEntityState;
 
     beforeEach(() => {
       const countryLoadSuccess = new DaffCountryLoadSuccess<DaffCountry>(mockCountry);
@@ -59,7 +62,7 @@ describe('Geography | Reducer | CountryEntities', () => {
   });
 
   describe('when CountryListSuccessAction is triggered', () => {
-    let result;
+    let result: DaffCountryEntityState;
 
     beforeEach(() => {
       const countryListSuccess = new DaffCountryListSuccess([mockCountry]);
@@ -90,7 +93,10 @@ describe('Geography | Reducer | CountryEntities', () => {
             ...mockCountry,
             subdivisions: [mockSubdivision],
           });
-          const countryListSuccess = new DaffCountryListSuccess([mockCountry]);
+          const countryListSuccess = new DaffCountryListSuccess([{
+            ...mockCountry,
+            subdivisions: [],
+          }]);
 
           const inter = reducer(initialState, countryLoadSuccess);
 
@@ -98,7 +104,7 @@ describe('Geography | Reducer | CountryEntities', () => {
         });
 
         it('should not overwrite the subdivisions', () => {
-          expect(result.entities[mockCountry.id].subdivisions).toEqual([mockSubdivision]);
+          expect(result.entities[mockCountry.id].subdivisions).toContain(mockSubdivision);
         });
       });
 

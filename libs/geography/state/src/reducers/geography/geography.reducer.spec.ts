@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 import {
@@ -14,13 +16,13 @@ import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { daffGeographyReducer as reducer } from './geography.reducer';
 
-describe('Geography | Reducer | Geography', () => {
+describe('@daffodil/geography/state | daffGeographyReducer', () => {
   let countryFactory: DaffCountryFactory;
   let country: DaffCountry;
   let countryId: DaffCountry['id'];
 
   beforeEach(() => {
-    countryFactory = new DaffCountryFactory();
+    countryFactory = TestBed.inject(DaffCountryFactory);
 
     country = countryFactory.create();
     countryId = country.id;
