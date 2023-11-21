@@ -116,12 +116,11 @@ export class DaffSidebarComponent {
       this._elementRef.nativeElement.style.visibility = 'hidden';
     }
 
-    if(!this.open) {
-      if(this._focusTrap) {
-        this._focusTrap.destroy();
-        this._focusTrap = undefined;
-        this._focusStack.pop();
-      }
+    if(!this.open && this._focusTrap) {
+      this._focusTrap.destroy();
+      this._focusTrap = undefined;
+      this._focusStack.pop();
+
       return;
     }
 
@@ -129,13 +128,9 @@ export class DaffSidebarComponent {
       return;
     }
 
-    this._focusTrap = this._focusTrapFactory.create(
-      this._elementRef.nativeElement,
-    );
+    this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
 
-    const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(
-      daffFocusableElementsSelector)
-    );
+    const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(daffFocusableElementsSelector));
 
     this._focusStack.push(this._doc.activeElement);
 
