@@ -7,7 +7,6 @@ import { DaffCartPaymentMethod } from './cart-payment';
 import { DaffCartShippingInformation } from './cart-shipping-info';
 import { DaffCartShippingRate } from './cart-shipping-rate';
 import { DaffCartTotal } from './cart-total';
-import { DaffCartDiscount } from './discount.type';
 
 /**
  * A cart.
