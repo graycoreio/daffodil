@@ -61,10 +61,10 @@ export class DaffInMemoryBackendGeographyService implements InMemoryDbService, D
   }
 
   private getCountry(reqInfo: RequestInfo) {
-    return reqInfo.collection.find(country => country.id === reqInfo.id);
+    return this.countries.find(country => country.id === reqInfo.id);
   }
 
   private listCountries(reqInfo: RequestInfo) {
-    return reqInfo.collection;
+    return this.countries;
   }
 }
