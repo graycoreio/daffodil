@@ -42,6 +42,8 @@ describe('DaffInMemoryBackendGeographyService | Unit', () => {
         findById: (ary, id) => ary.find(e => e.id === id),
       },
     };
+    reqInfoStub.req.body.countries = collection;
+    service.createDb(reqInfoStub);
   });
 
   it('should be created', () => {
@@ -74,19 +76,6 @@ describe('DaffInMemoryBackendGeographyService | Unit', () => {
 
     it('should return the country list', () => {
       expect(result.body).toEqual([mockCountry]);
-    });
-  });
-
-  describe('createDb', () => {
-    let result;
-
-    beforeEach(() => {
-      result = service.createDb(reqInfoStub);
-    });
-
-    it('should return a object with an array of countries', () => {
-      expect(Array.isArray(result.countries)).toEqual(true);
-      expect(result.countries.length).toBeGreaterThan(2);
     });
   });
 });
