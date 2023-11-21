@@ -7,6 +7,7 @@ import {
   DaffNativeSelectModule,
   DaffFormFieldModule,
 } from '@daffodil/design';
+import { DaffGeographyStateModule } from '@daffodil/geography/state';
 
 import { AddressFormComponent } from './components/address-form/address-form.component';
 
@@ -17,6 +18,7 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     DaffInputModule,
     DaffNativeSelectModule,
     DaffFormFieldModule,
+    DaffGeographyStateModule,
   ],
   declarations: [
     AddressFormComponent,

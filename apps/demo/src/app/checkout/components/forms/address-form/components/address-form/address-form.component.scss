@@ -10,7 +10,7 @@
 			'firstname firstname   firstname    lastname    lastname    lastname'
 			'   street    street      street      street      street      street'
 			'     city      city       state       state    postcode    postcode'
-			'telephone telephone   telephone free-space1 free-space1 free-space1';
+			'telephone telephone   telephone     country     country     country';
 
 		&__first-name {
 			grid-area: firstname;
@@ -30,6 +30,10 @@
 
 		&__state {
 			grid-area: state;
+		}
+
+		&__country {
+			grid-area: country;
 		}
 
 		&__postcode {
