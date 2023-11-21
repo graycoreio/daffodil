@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -62,33 +65,25 @@ describe('DaffSidebarComponent', () => {
 
 @Component({ template: `
   <div class="host-element">
-    <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
+    <daff-sidebar [mode]="mode" [side]="side"></daff-sidebar>
   </div>
 ` })
-class WrapperComponent {
-  escapePressedCount = 0;
-
-  open = false;
-
+class DefaultsWrapperComponent {
   side = 'left';
-
   mode = 'side';
-
-  pressed(): void{
-    this.escapePressedCount++;
-  }
 }
 
-describe('DaffSidebarComponent | usage', () => {
-  let wrapper: WrapperComponent;
-  let fixture: ComponentFixture<WrapperComponent>;
+describe('DaffSidebarComponent | Defaults', () => {
+  let wrapper: DefaultsWrapperComponent;
+  let fixture: ComponentFixture<DefaultsWrapperComponent>;
   let component: DaffSidebarComponent;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule],
       declarations: [
-        WrapperComponent,
+        DefaultsWrapperComponent,
         DaffSidebarComponent,
       ],
     })
@@ -96,15 +91,100 @@ describe('DaffSidebarComponent | usage', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperComponent);
+    fixture = TestBed.createComponent(DefaultsWrapperComponent);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
-    component = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
+    de = fixture.debugElement.query(By.css('daff-sidebar'));
+    component = de.componentInstance;
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  it('should add a class of "daff-sidebar" to the host element', () => {
+    expect(de.classes['daff-sidebar']).toBeTrue();
+  });
+
+  it('should set the default side to left', () => {
+    expect(de.classes['left']).toBeTrue();
+  });
+
+  it('should set the default mode to side', () => {
+    expect(de.classes['side']).toBeTrue();
+  });
+
+  it('should set the default width to 240px', () => {
+    expect(component.width).toEqual(240);
+  });
+});
+
+@Component({ template: `
+  <div class="host-element">
+    <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
+  </div>
+` })
+class UsageWrapperComponent {
+  open = false;
+  side = 'left';
+  mode = 'side';
+
+  escapePressedCount = 0;
+
+  pressed(): void{
+    this.escapePressedCount++;
+  }
+}
+
+describe('DaffSidebarComponent | Usage', () => {
+  let wrapper: UsageWrapperComponent;
+  let fixture: ComponentFixture<UsageWrapperComponent>;
+  let component: DaffSidebarComponent;
+  let de: DebugElement;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule],
+      declarations: [
+        UsageWrapperComponent,
+        DaffSidebarComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UsageWrapperComponent);
+    wrapper = fixture.componentInstance;
+    fixture.detectChanges();
+
+    de = fixture.debugElement.query(By.css('daff-sidebar'));
+    component = de.componentInstance;
+  });
+
+  it('should create', () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  describe('setting the side', () => {
+    describe('when side="left"', () => {
+      it('should add a class of "left" to the host element', () => {
+        wrapper.side = 'left';
+        fixture.detectChanges();
+
+        expect(de.classes['left']).toBeTrue();
+      });
+    });
+
+    describe('when side="right"', () => {
+      it('should add a class of "right" to the host element', () => {
+        wrapper.side = 'right';
+        fixture.detectChanges();
+
+        expect(de.classes['right']).toBeTrue();
+      });
+    });
   });
 
   it('should be able to bind to the Output `escapePressed`', () => {
@@ -126,8 +206,5 @@ describe('DaffSidebarComponent | usage', () => {
   it('should be able to bind to the input `open`', () => {
     expect(component.open).toEqual(false);
   });
-
-  it('should have a width of 240px by default', () => {
-    expect(component.width).toEqual(240);
-  });
 });
+

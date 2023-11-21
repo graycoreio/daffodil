@@ -67,6 +67,33 @@ export class DaffSidebarComponent {
     };
   }
 
+  /**
+   * Event fired when `ESC` key is pressed when the sidebar has focus
+   */
+  @Output() escapePressed: EventEmitter<void> = new EventEmitter<void>();
+
+  /**
+   * What side of the viewport to show the sidebar on.
+   */
+  @Input() side: DaffSidebarSide = 'left';
+
+  /**
+   * The mode of the sidebar.
+   */
+  @Input() mode: DaffSidebarMode = 'side';
+
+  /**
+   * Whether or not the sidebar is open.
+   */
+  @Input() open = false;
+
+  /**
+   * The width of the sidebar.
+   */
+  get width() {
+    return this._elementRef.nativeElement.offsetWidth;
+  }
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
@@ -140,32 +167,5 @@ export class DaffSidebarComponent {
       this._elementRef.nativeElement.tabIndex = 0;
       (<HTMLElement>this._elementRef.nativeElement).focus();
     }
-  }
-
-  /**
-   * Event fired when `ESC` key is pressed when the sidebar has focus
-   */
-  @Output() escapePressed: EventEmitter<void> = new EventEmitter<void>();
-
-  /**
-   * What side of the viewport to show the sidebar on.
-   */
-  @Input() side: DaffSidebarSide = 'left';
-
-  /**
-   * The mode of the sidebar.
-   */
-  @Input() mode: DaffSidebarMode = 'side';
-
-  /**
-   * Whether or not the sidebar is open.
-   */
-  @Input() open = false;
-
-  /**
-   * The width of the sidebar.
-   */
-  get width() {
-    return this._elementRef.nativeElement.offsetWidth;
   }
 }
