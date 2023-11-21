@@ -22,7 +22,7 @@ import { DaffLoadingIconModule } from '@daffodil/design';
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
-const cartFactory = new DaffCartFactory();
+const cartFactory = TestBed.inject(DaffCartFactory);
 const cart = cartFactory.create();
 const stubCartTitle = 'cartTitle';
 

@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartPaymentLoad,
@@ -30,7 +32,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   let cart: DaffCart;
 
   beforeEach(() => {
-    cartFactory = new DaffCartFactory();
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     cart = cartFactory.create();
   });

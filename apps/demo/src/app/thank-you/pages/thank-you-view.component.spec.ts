@@ -30,7 +30,7 @@ import {
 
 import { ThankYouViewComponent } from './thank-you-view.component';
 
-const cartFactory = new DaffCartFactory();
+const cartFactory = TestBed.inject(DaffCartFactory);
 const cartItemFactory = new DaffCartItemFactory();
 const stubCart: DaffCart = cartFactory.create({ items: [cartItemFactory.create()]});
 

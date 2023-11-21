@@ -22,7 +22,7 @@ describe('Order | Order Reducer', () => {
 
   beforeEach(() => {
     orderFactory = new DaffOrderFactory();
-    stubCart = new DaffCartFactory().create();
+    stubCart = TestBed.inject(DaffCartFactory).create();
     stubOrder = orderFactory.create();
   });
 

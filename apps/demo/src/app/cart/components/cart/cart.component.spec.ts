@@ -66,7 +66,7 @@ describe('Cart', () => {
   let cartItemCountElement: DebugElement;
   let cartItemCountComponent: MockCartItemCountComponent;
 
-  const cartFactory = new DaffCartFactory();
+  const cartFactory = TestBed.inject(DaffCartFactory);
   const cart = cartFactory.create();
 
   beforeEach(waitForAsync(() => {

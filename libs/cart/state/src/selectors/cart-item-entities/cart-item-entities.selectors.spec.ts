@@ -31,12 +31,11 @@ import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors
 import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 
 describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
-
   let store: Store<DaffCartStateRootSlice>;
-  const cartFactory: DaffCartFactory = new DaffCartFactory();
-  const statefulCartItemFactory: DaffStatefulCartItemFactory = new DaffStatefulCartItemFactory();
-  const statefulConfigurableCartItemFactory: DaffStatefulConfigurableCartItemFactory = new DaffStatefulConfigurableCartItemFactory();
-  const statefulCompositeCartItemFactory: DaffStatefulCompositeCartItemFactory = new DaffStatefulCompositeCartItemFactory();
+  let cartFactory: DaffCartFactory;
+  let statefulCartItemFactory: DaffStatefulCartItemFactory;
+  let statefulConfigurableCartItemFactory: DaffStatefulConfigurableCartItemFactory;
+  let statefulCompositeCartItemFactory: DaffStatefulCompositeCartItemFactory;
   let mockCart: DaffCart;
   let mockCartItems: DaffStatefulCartItem[];
   let mockStatefulConfigurableCartItems: DaffStatefulConfigurableCartItem[];
@@ -72,11 +71,16 @@ describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
       ],
     });
 
+    store = TestBed.inject(Store);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    statefulCartItemFactory = new DaffStatefulCartItemFactory();
+    statefulConfigurableCartItemFactory = new DaffStatefulConfigurableCartItemFactory();
+    statefulCompositeCartItemFactory = new DaffStatefulCompositeCartItemFactory();
+
     mockCart = cartFactory.create();
     mockCartItems = statefulCartItemFactory.createMany(2);
     mockStatefulConfigurableCartItems = statefulConfigurableCartItemFactory.createMany(2);
     mockStatefulCompositeCartItems = statefulCompositeCartItemFactory.createMany(2);
-    store = TestBed.inject(Store);
 
     store.dispatch(new DaffCartItemListSuccess(mockCartItems));
   });

@@ -61,7 +61,7 @@ describe('AddToCartNotificationComponent', () => {
     [DAFF_PRODUCT_STORE_FEATURE_KEY]: DaffProductReducersState<DaffProduct>;
   }>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  const cartFactory: DaffCartFactory = new DaffCartFactory();
+  const cartFactory: DaffCartFactory = TestBed.inject(DaffCartFactory);
 
   let addToCartNotification: AddToCartNotificationComponent;
   let productAdded: MockProductAddedComponent;

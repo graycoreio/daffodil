@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartShippingAddressLoad,
@@ -26,7 +28,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
   let cart: DaffCart;
 
   beforeEach(() => {
-    cartFactory = new DaffCartFactory();
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     cart = cartFactory.create();
   });

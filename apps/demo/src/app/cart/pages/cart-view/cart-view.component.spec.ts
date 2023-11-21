@@ -23,7 +23,7 @@ import {
 
 import { DemoCartViewComponent } from './cart-view.component';
 
-const cartFactory = new DaffCartFactory();
+const cartFactory = TestBed.inject(DaffCartFactory);
 const cart = cartFactory.create();
 
 @Component({

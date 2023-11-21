@@ -30,7 +30,7 @@ describe('CartTotalsComponent', () => {
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
   let currencyPipe;
-  const cartFactory = new DaffCartFactory();
+  const cartFactory = TestBed.inject(DaffCartFactory);
   const cartItemFactory = new DaffCartItemFactory();
 
   const mockCart = cartFactory.create({

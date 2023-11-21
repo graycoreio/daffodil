@@ -52,7 +52,7 @@ describe('Cart | State | Guards | DaffShippingMethodGuard', () => {
 
   describe('canActivate', () => {
     it('should allow activation when there is a shipping method', () => {
-      const cart: DaffCart = new DaffCartFactory().create({
+      const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
         shipping_information: new DaffCartShippingRateFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
@@ -65,7 +65,7 @@ describe('Cart | State | Guards | DaffShippingMethodGuard', () => {
 
       beforeEach(() => {
         spyOn(router, 'navigateByUrl');
-        const cart: DaffCart = new DaffCartFactory().create({
+        const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
           shipping_information: null,
         });
         store.dispatch(new DaffCartLoadSuccess(cart));

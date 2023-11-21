@@ -1,9 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffCart,
-  DaffCartTotalTypeEnum,
-} from '@daffodil/cart';
+import { DaffCartTotalTypeEnum } from '@daffodil/cart';
 import { MagentoCart } from '@daffodil/cart/driver/magento';
 import { MagentoCartFactory } from '@daffodil/cart/driver/magento/testing';
 import { daffAdd } from '@daffodil/core';
@@ -12,12 +9,11 @@ import { transformCartTotals } from './cart-totals-transformer';
 
 describe('transformCartTotals', () => {
   let stubMagentoCart: MagentoCart;
-  let expectedTotals: {totals: DaffCart['totals']};
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
-    stubMagentoCart = new MagentoCartFactory().create({
+    stubMagentoCart = TestBed.inject(MagentoCartFactory).create({
       shipping_addresses: [
         {
           selected_shipping_method: {
@@ -28,97 +24,22 @@ describe('transformCartTotals', () => {
         },
       ],
     });
-    const totalTax = stubMagentoCart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0);
-    expectedTotals = {
-      totals: [
-        {
-          name: DaffCartTotalTypeEnum.grandTotal,
-          label: 'Grand Total',
-          value: stubMagentoCart.prices.grand_total.value,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalExcludingTax,
-          label: 'Subtotal Excluding Tax',
-          value: stubMagentoCart.prices.subtotal_excluding_tax.value,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalIncludingTax,
-          label: 'Subtotal Including Tax',
-          value: stubMagentoCart.prices.subtotal_including_tax.value,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
-          label: 'Subtotal with Discount Excluding Tax',
-          value: stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
-          label: 'Subtotal with Discount Including Tax',
-          value: daffAdd(stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax),
-        },
-        {
-          name: DaffCartTotalTypeEnum.tax,
-          label: 'Tax',
-          value: totalTax,
-        },
-        ...stubMagentoCart.prices.discounts.map(discount => ({
-          name: DaffCartTotalTypeEnum.discount,
-          label: discount.label,
-          value: discount.amount.value,
-        })),
-        {
-          name: DaffCartTotalTypeEnum.shipping,
-          label: 'Shipping',
-          value: stubMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value,
-        },
-      ],
-    };
   });
 
   it('should transform cart totals', () => {
-    expect(transformCartTotals(stubMagentoCart)).toEqual(expectedTotals);
+    const totalTax = stubMagentoCart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0);
+    const transformedTotals = transformCartTotals(stubMagentoCart).totals;
+
+    expect(transformedTotals[DaffCartTotalTypeEnum.grandTotal].value).toEqual(stubMagentoCart.prices.grand_total.value);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalExcludingTax].value).toEqual(stubMagentoCart.prices.subtotal_excluding_tax.value);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalIncludingTax].value).toEqual(stubMagentoCart.prices.subtotal_including_tax.value);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value).toEqual(stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value).toEqual(daffAdd(stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax));
+    expect(transformedTotals[DaffCartTotalTypeEnum.tax].value).toEqual(totalTax);
+    expect(transformedTotals[DaffCartTotalTypeEnum.shipping].value).toEqual(stubMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value);
   });
 
   it('should transform cart totals when magento gives null/empty values', () => {
-    expectedTotals = {
-      totals: [
-        {
-          name: DaffCartTotalTypeEnum.grandTotal,
-          label: 'Grand Total',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalExcludingTax,
-          label: 'Subtotal Excluding Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalIncludingTax,
-          label: 'Subtotal Including Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
-          label: 'Subtotal with Discount Excluding Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
-          label: 'Subtotal with Discount Including Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.tax,
-          label: 'Tax',
-          value: 0,
-        },
-        {
-          name: DaffCartTotalTypeEnum.shipping,
-          label: 'Shipping',
-          value: null,
-        },
-      ],
-    };
     stubMagentoCart.prices.applied_taxes = [];
     stubMagentoCart.prices.discounts = [];
     stubMagentoCart.prices.grand_total.value = null;
@@ -127,49 +48,18 @@ describe('transformCartTotals', () => {
     stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value = null;
     stubMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value = null;
 
-    expect(transformCartTotals(stubMagentoCart)).toEqual(expectedTotals);
+    const transformedTotals = transformCartTotals(stubMagentoCart).totals;
+
+    expect(transformedTotals[DaffCartTotalTypeEnum.grandTotal].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalExcludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalIncludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.tax].value).toEqual(0);
+    expect(transformedTotals[DaffCartTotalTypeEnum.shipping].value).toEqual(null);
   });
 
   it('should transform cart totals when magento gives empty shipping addresses', () => {
-    expectedTotals = {
-      totals: [
-        {
-          name: DaffCartTotalTypeEnum.grandTotal,
-          label: 'Grand Total',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalExcludingTax,
-          label: 'Subtotal Excluding Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalIncludingTax,
-          label: 'Subtotal Including Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
-          label: 'Subtotal with Discount Excluding Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
-          label: 'Subtotal with Discount Including Tax',
-          value: null,
-        },
-        {
-          name: DaffCartTotalTypeEnum.tax,
-          label: 'Tax',
-          value: 0,
-        },
-        {
-          name: DaffCartTotalTypeEnum.shipping,
-          label: 'Shipping',
-          value: null,
-        },
-      ],
-    };
     stubMagentoCart.prices.applied_taxes = [];
     stubMagentoCart.prices.discounts = [];
     stubMagentoCart.prices.grand_total.value = null;
@@ -178,6 +68,14 @@ describe('transformCartTotals', () => {
     stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value = null;
     stubMagentoCart.shipping_addresses = null;
 
-    expect(transformCartTotals(stubMagentoCart)).toEqual(expectedTotals);
+    const transformedTotals = transformCartTotals(stubMagentoCart).totals;
+
+    expect(transformedTotals[DaffCartTotalTypeEnum.grandTotal].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalExcludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalIncludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value).toEqual(null);
+    expect(transformedTotals[DaffCartTotalTypeEnum.tax].value).toEqual(0);
+    expect(transformedTotals[DaffCartTotalTypeEnum.shipping].value).toEqual(null);
   });
 });

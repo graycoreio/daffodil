@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffCart,
   DaffCartItemInputType,
@@ -46,7 +48,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
   let result: DaffCartReducerState;
 
   beforeEach(() => {
-    cartFactory = new DaffCartFactory();
+    cartFactory = TestBed.inject(DaffCartFactory);
     statefulCartItemFactory = new DaffStatefulCartItemFactory();
 
     cart = cartFactory.create();

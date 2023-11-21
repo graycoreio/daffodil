@@ -51,7 +51,7 @@ describe('CartSidebar', () => {
 
   let summaryElement: DebugElement;
 
-  const cartFactory = new DaffCartFactory();
+  const cartFactory = TestBed.inject(DaffCartFactory);
   const cart = cartFactory.create();
 
   beforeEach(waitForAsync(() => {

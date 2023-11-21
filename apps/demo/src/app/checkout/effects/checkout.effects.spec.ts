@@ -20,7 +20,7 @@ describe('CheckoutEffects', () => {
   let actions$: Observable<any>;
   let effects: CheckoutEffects;
   let router: Router;
-  const cartFactory: DaffCartFactory = new DaffCartFactory();
+  const cartFactory: DaffCartFactory = TestBed.inject(DaffCartFactory);
   let stubCart: DaffCart;
 
   beforeEach(() => {

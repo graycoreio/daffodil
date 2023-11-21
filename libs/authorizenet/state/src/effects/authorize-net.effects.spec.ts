@@ -156,7 +156,7 @@ describe('DaffAuthorizeNetEffects', () => {
   describe('updatePaymentSuccessSubstream$', () => {
 
     it('should dispatch DaffAuthorizeNetUpdatePaymentSuccess when the cart payment method has been successfully updated', () => {
-      const stubCart = new DaffCartFactory().create();
+      const stubCart = TestBed.inject(DaffCartFactory).create();
       const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
       const cartPaymentUpdateWithBillingSuccess = new DaffCartPaymentUpdateWithBillingSuccess(stubCart);
       const authorizeNetPaymentUpdateSuccess = new DaffAuthorizeNetUpdatePaymentSuccess();

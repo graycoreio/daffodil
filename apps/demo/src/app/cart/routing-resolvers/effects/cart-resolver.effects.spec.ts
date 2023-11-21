@@ -49,7 +49,7 @@ describe('CartResolverEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffCartDriver,
-          useValue: new DaffTestingCartService(new DaffCartFactory()),
+          useValue: new DaffTestingCartService(TestBed.inject(DaffCartFactory)),
         },
       ],
     });

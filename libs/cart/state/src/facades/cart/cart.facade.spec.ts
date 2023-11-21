@@ -957,7 +957,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart subtotal upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalExcludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.subtotal$).toBeObservable(expected);
     });
@@ -971,7 +971,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart grand total upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.grandTotal).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.grandTotal].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.grandTotal$).toBeObservable(expected);
     });
@@ -981,7 +981,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart subtotal excluding tax upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalExcludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.subtotalExcludingTax$).toBeObservable(expected);
     });
@@ -991,7 +991,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart subtotal including tax upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalIncludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalIncludingTax].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.subtotalIncludingTax$).toBeObservable(expected);
     });
@@ -1001,7 +1001,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart subtotal with discounts excluding tax upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.subtotalWithDiscountExcludingTax$).toBeObservable(expected);
     });
@@ -1011,7 +1011,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart subtotal with discounts including tax upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.subtotalWithDiscountIncludingTax$).toBeObservable(expected);
     });
@@ -1021,7 +1021,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart discount totals upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.filter(total => total.name === DaffCartTotalTypeEnum.discount) });
+      const expected = cold('a', { a: [cart.totals[DaffCartTotalTypeEnum.discount]]});
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.discountTotals$).toBeObservable(expected);
     });
@@ -1031,7 +1031,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart tax total upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.tax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.tax].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.totalTax$).toBeObservable(expected);
     });
@@ -1041,7 +1041,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart shipping total upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.shipping).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.shipping].value });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.shippingTotal$).toBeObservable(expected);
     });

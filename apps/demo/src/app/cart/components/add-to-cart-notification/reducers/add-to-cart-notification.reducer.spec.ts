@@ -98,7 +98,7 @@ describe('Add To Cart Notification | Reducer', () => {
   describe('when AddToCartSuccess action is triggered', () => {
 
     let result;
-    const cartFactory = new DaffCartFactory();
+    const cartFactory = TestBed.inject(DaffCartFactory);
     const stubCart: DaffCart = cartFactory.create();
 
     beforeEach(() => {

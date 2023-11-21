@@ -36,7 +36,7 @@ describe('CartItemsComponent', () => {
   let cartItems;
   let cart: CartItemsComponent;
 
-  const cartFactory = new DaffCartFactory();
+  const cartFactory = TestBed.inject(DaffCartFactory);
   const mockCart = cartFactory.create({
     items: new DaffCartItemFactory().createMany(2),
   });
