@@ -7,6 +7,7 @@ import { DaffCartPaymentMethod } from './cart-payment';
 import { DaffCartShippingInformation } from './cart-shipping-info';
 import { DaffCartShippingRate } from './cart-shipping-rate';
 import { DaffCartTotal } from './cart-total';
+import { DaffCartDiscount } from './discount.type';
 
 /**
  * A cart.
@@ -45,7 +46,7 @@ export interface DaffCart extends DaffIdentifiable {
   /**
    * A list of totals for the cart.
    */
-  totals: DaffCartTotal[];
+  totals: Record<DaffCartTotal['name'], DaffCartTotal>;
   /**
    * The selected shipping method.
    */

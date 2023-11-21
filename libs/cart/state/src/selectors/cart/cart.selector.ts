@@ -199,6 +199,7 @@ export interface DaffCartStateMemoizedSelectors<
   selectCartTotalTax: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
   /**
    * Selects the DaffCartTotals for cart discounts. These are discounts associated with coupon codes.
+   * @deprecated use {@link DaffCart#discounts} instead.
    */
   selectCartDiscountTotals: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal[]>;
   selectCartShippingTotal: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
@@ -454,63 +455,63 @@ const createCartSelectors = <
   const selectCartSubtotal = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalExcludingTax);
+      const subtotalObject = state.totals[DaffCartTotalTypeEnum.subtotalExcludingTax];
       return subtotalObject ? subtotalObject.value : null;
     },
   );
   const selectCartGrandTotal = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const grandTotalObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.grandTotal);
+      const grandTotalObject = state.totals[DaffCartTotalTypeEnum.grandTotal];
       return grandTotalObject ? grandTotalObject.value : null;
     },
   );
   const selectCartSubtotalExcludingTax = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalExcludingTaxObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalExcludingTax);
+      const subtotalExcludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalExcludingTax];
       return subtotalExcludingTaxObject ? subtotalExcludingTaxObject.value : null;
     },
   );
   const selectCartSubtotalIncludingTax = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalIncludingTaxObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalIncludingTax);
+      const subtotalIncludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalIncludingTax];
       return subtotalIncludingTaxObject ? subtotalIncludingTaxObject.value : null;
     },
   );
   const selectCartSubtotalWithDiscountExcludingTax = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalWithDiscountExcludingTaxObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax);
+      const subtotalWithDiscountExcludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax];
       return subtotalWithDiscountExcludingTaxObject ? subtotalWithDiscountExcludingTaxObject.value : null;
     },
   );
   const selectCartSubtotalWithDiscountIncludingTax = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalWithDiscountIncludingTaxObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax);
+      const subtotalWithDiscountIncludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax];
       return subtotalWithDiscountIncludingTaxObject ? subtotalWithDiscountIncludingTaxObject.value : null;
     },
   );
   const selectCartTotalTax = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const taxObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.tax);
+      const taxObject = state.totals[DaffCartTotalTypeEnum.tax];
       return taxObject ? taxObject.value : null;
     },
   );
   const selectCartDiscountTotals = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const discounts: DaffCartTotal[] = state.totals.filter(total => total.name === DaffCartTotalTypeEnum.discount);
-      return discounts ? discounts : [];
+      const discount = state.totals[DaffCartTotalTypeEnum.discount];
+      return discount ? [discount] : [];
     },
   );
   const selectCartShippingTotal = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => {
-      const shippingTotalObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.shipping);
+      const shippingTotalObject = state.totals[DaffCartTotalTypeEnum.shipping];
       return shippingTotalObject ? shippingTotalObject.value : null;
     },
   );

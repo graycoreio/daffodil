@@ -51,7 +51,8 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
       });
 
       it('should have cart totals', () => {
-        expect(result.totals.length).toBeGreaterThan(0);
+        expect(result.totals).toBeGreaterThan(0);
+      });
       });
     });
   });

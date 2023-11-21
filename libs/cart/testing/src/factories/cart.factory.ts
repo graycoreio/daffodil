@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import {
-  DaffCart,
-  DaffCartTotalTypeEnum,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
+
+import { DaffCartTotalFactory } from './cart-total.factory';
 
 export class MockCart implements DaffCart {
   id = faker.datatype.uuid();
@@ -16,59 +15,24 @@ export class MockCart implements DaffCart {
   billing_address = null;
   shipping_address = null;
   shipping_information = null;
-  totals = [
-    {
-      name: DaffCartTotalTypeEnum.grandTotal,
-      value: 1050,
-      label: 'Grand Total',
-    },
-    {
-      name: DaffCartTotalTypeEnum.subtotalExcludingTax,
-      value: 900,
-      label: 'Subtotal Excluding Tax',
-    },
-    {
-      name: DaffCartTotalTypeEnum.subtotalIncludingTax,
-      value: 950,
-      label: 'Subtotal Including Tax',
-    },
-    {
-      name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
-      value: 850,
-      label: '',
-    },
-    {
-      name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
-      value: 900,
-      label: '',
-    },
-    {
-      name: DaffCartTotalTypeEnum.tax,
-      value: 50,
-      label: '',
-    },
-    {
-      name: DaffCartTotalTypeEnum.discount,
-      value: 50,
-      label: '',
-    },
-    {
-      name: DaffCartTotalTypeEnum.shipping,
-      value: 50,
-      label: 'Shipping',
-    },
-  ];
+  totals = this.totalFactory.createAllTotals();
   payment = null;
   available_shipping_methods = [];
   available_payment_methods = [];
   extra_attributes = {};
+
+  constructor(
+    private totalFactory: DaffCartTotalFactory,
+  ) {}
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class DaffCartFactory extends DaffModelFactory<DaffCart>{
-  constructor() {
-    super(MockCart);
+  constructor(
+    totalFactory: DaffCartTotalFactory,
+  ) {
+    super(MockCart, totalFactory);
   }
 }
