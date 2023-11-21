@@ -85,4 +85,8 @@ describe('DaffToastComponent', () => {
       expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
     });
   });
+
+  it('should have a role of status', () => {
+    expect(component.role).toBe('status');
+  });
 });

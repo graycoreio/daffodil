@@ -60,7 +60,7 @@ export class DaffToastComponent
   @HostBinding('class.daff-toast') class = true;
 
   /** @docs-private */
-  @HostBinding('attr.role') ariaLive = 'status';
+  @HostBinding('attr.role') role = 'status';
 
   @ContentChild(DaffToastActionsDirective)
     _actions: DaffToastActionsDirective;
