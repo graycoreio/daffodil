@@ -3,7 +3,11 @@ import {
   Input,
 } from '@angular/core';
 
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartTotal,
+  DaffCartTotalTypeEnum,
+} from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-totals',
@@ -12,4 +16,20 @@ import { DaffCart } from '@daffodil/cart';
 })
 export class CartTotalsComponent {
   @Input() cart: DaffCart;
+
+  get subtotal(): DaffCartTotal {
+    return this.cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax];
+  }
+
+  get shipping(): DaffCartTotal {
+    return this.cart.totals[DaffCartTotalTypeEnum.shipping];
+  }
+
+  get tax(): DaffCartTotal {
+    return this.cart.totals[DaffCartTotalTypeEnum.tax];
+  }
+
+  get grandTotal(): DaffCartTotal {
+    return this.cart.totals[DaffCartTotalTypeEnum.grandTotal];
+  }
 }
