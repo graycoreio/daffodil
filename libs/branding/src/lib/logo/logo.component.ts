@@ -2,6 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   Input,
+  HostBinding,
 } from '@angular/core';
 
 export type DaffLogoType = 'icon' | 'full';
@@ -10,12 +11,12 @@ export enum DaffLogoTypeEnum {
   FULL = 'full'
 }
 
-export type DaffLogoColor = 'dark' | 'light' | 'base' | 'baseContrast';
+export type DaffLogoColor = 'dark' | 'light' | 'base' | 'base-contrast';
 export enum DaffLogoColorEnum {
-  BLACK = 'dark',
-  WHITE = 'light',
+  DARK = 'dark',
+  LIGHT = 'light',
   BASE = 'base',
-  BASECONTRAST = 'baseContrast'
+  BASECONTRAST = 'base-contrast'
 }
 
 @Component({
@@ -25,6 +26,8 @@ export enum DaffLogoColorEnum {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffLogoComponent {
+  @HostBinding('class.daff-branding-logo') class = true;
+
   /**
    * @docs
    *
@@ -41,14 +44,6 @@ export class DaffLogoComponent {
    * has its own custom types.
    */
   @Input() color: DaffLogoColor = DaffLogoColorEnum.BASECONTRAST;
-
-  /**
-   * @docs
-   *
-   * Path to the flower in a project, defaults
-   * to what is handle by the branding schematics.
-   */
-  @Input() flowerPath = '/assets/daff-branding/daff-flower.svg';
 
   /**
    * Helper function to determine if the logo type is "full"
