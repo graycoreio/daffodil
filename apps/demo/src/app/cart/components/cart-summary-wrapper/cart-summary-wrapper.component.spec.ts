@@ -22,8 +22,8 @@ import { DaffLoadingIconModule } from '@daffodil/design';
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
-const cartFactory = TestBed.inject(DaffCartFactory);
-const cart = cartFactory.create();
+let cartFactory: DaffCartFactory;
+let cart: DaffCart;
 const stubCartTitle = 'cartTitle';
 
 @Component({ template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>' })
@@ -83,6 +83,10 @@ describe('CartSummaryWrapper', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+
+    cart = cartFactory.create();
+
     fixture = TestBed.createComponent(WrapperComponent);
     router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');

@@ -22,7 +22,6 @@ import { DaffCustomerStoreCreditInMemoryBackendService } from '@daffodil/custome
 })
 export class DaffCartStoreCreditInMemoryBackendService implements InMemoryDbService {
   constructor(
-    private factory: DaffCartWithStoreCreditFactory,
     private customerStoreCredit: DaffCustomerStoreCreditInMemoryBackendService,
     private cart: DaffInMemoryBackendCartRootService,
   ) {}

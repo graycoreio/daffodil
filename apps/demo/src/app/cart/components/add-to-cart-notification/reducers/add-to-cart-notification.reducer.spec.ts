@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffAddToCart,
@@ -16,9 +18,17 @@ import {
   getProductQty,
   getLoading,
   getProductId,
+  State,
 } from '../reducers/add-to-cart-notification.reducer';
 
 describe('Add To Cart Notification | Reducer', () => {
+  let cartFactory: DaffCartFactory;
+  let stubCart: DaffCart;
+
+  beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+    stubCart = cartFactory.create();
+  });
 
   describe('initialState', () => {
 
@@ -40,7 +50,7 @@ describe('Add To Cart Notification | Reducer', () => {
 
   describe('when OpenAddToCartNotification action is triggered', () => {
 
-    let result;
+    let result: State;
 
     beforeEach(() => {
       const openAddToCartNotificationAction = new OpenAddToCartNotification();
@@ -55,7 +65,7 @@ describe('Add To Cart Notification | Reducer', () => {
 
   describe('when CloseAddToCartNotification action is triggered', () => {
 
-    let result;
+    let result: State;
 
     beforeEach(() => {
       const closeAddToCartNotificationAction = new CloseAddToCartNotification();
@@ -70,7 +80,7 @@ describe('Add To Cart Notification | Reducer', () => {
 
   describe('when AddToCart action is triggered', () => {
 
-    let result;
+    let result: State;
     let stubQty;
     let stubId;
 
@@ -96,10 +106,7 @@ describe('Add To Cart Notification | Reducer', () => {
   });
 
   describe('when AddToCartSuccess action is triggered', () => {
-
-    let result;
-    const cartFactory = TestBed.inject(DaffCartFactory);
-    const stubCart: DaffCart = cartFactory.create();
+    let result: State;
 
     beforeEach(() => {
       const addToCartSuccessAction = new DaffAddToCartSuccess(stubCart);

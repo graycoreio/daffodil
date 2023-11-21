@@ -39,9 +39,9 @@ class MockImageGalleryContainer {
 describe('ProductComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  const productFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let router;
-  const stubProduct: DaffProduct = productFactory.create();
+  let stubProduct: DaffProduct;
   let stubQty = 1;
   let productComponent: ProductComponent;
 
@@ -64,6 +64,10 @@ describe('ProductComponent', () => {
   }));
 
   beforeEach(() => {
+    productFactory = TestBed.inject(DaffProductFactory);
+
+    stubProduct = productFactory.create();
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     router = TestBed.inject(Router);

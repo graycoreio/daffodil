@@ -36,10 +36,8 @@ describe('CartItemsComponent', () => {
   let cartItems;
   let cart: CartItemsComponent;
 
-  const cartFactory = TestBed.inject(DaffCartFactory);
-  const mockCart = cartFactory.create({
-    items: new DaffCartItemFactory().createMany(2),
-  });
+  let cartFactory: DaffCartFactory;
+  let mockCart: DaffCart;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -53,6 +51,12 @@ describe('CartItemsComponent', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+
+    mockCart = cartFactory.create({
+      items: new DaffCartItemFactory().createMany(2),
+    });
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 

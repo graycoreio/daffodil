@@ -18,8 +18,11 @@ import {
   DaffCartServiceInterface,
   DaffCartDriver,
 } from '@daffodil/cart/driver';
-import { DaffTestingCartService } from '@daffodil/cart/driver/testing';
-import { daffCartReducers } from '@daffodil/cart/state';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
+  DaffCartStateTestingModule,
+  MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolverEffects } from './cart-resolver.effects';
@@ -35,29 +38,26 @@ describe('CartResolverEffects', () => {
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
   let driver: DaffCartServiceInterface<DaffCart>;
+  let cartFacade: MockDaffCartFacade;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          carts: combineReducers(daffCartReducers),
-        }),
+        DaffTestingCartDriverModule.forRoot(),
+        DaffCartStateTestingModule,
       ],
       providers: [
         CartResolverEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartDriver,
-          useValue: new DaffTestingCartService(TestBed.inject(DaffCartFactory)),
-        },
       ],
     });
 
+    cartFacade = TestBed.inject(MockDaffCartFacade);
     effects = TestBed.inject(CartResolverEffects);
     cartFactory = TestBed.inject(DaffCartFactory);
-    stubCart = cartFactory.create();
     driver = TestBed.inject(DaffCartDriver);
+
+    stubCart = cartFactory.create();
   });
 
   it('should be created', () => {
@@ -65,14 +65,12 @@ describe('CartResolverEffects', () => {
   });
 
   describe('onResolveCart$', () => {
-
     let expected;
     const resolveCartAction = new ResolveCart();
 
     describe('when cart in redux state is defined', () => {
-
       beforeEach(() => {
-        spyOn(effects, 'selectStoreCart').and.returnValue(of(stubCart));
+        cartFacade.cart$.next(stubCart);
       });
 
       it('should dispatch a ResolveCartSuccess action', () => {
@@ -85,13 +83,11 @@ describe('CartResolverEffects', () => {
     });
 
     describe('when cart in redux state is null', () => {
-
       beforeEach(() => {
-        spyOn(effects, 'selectStoreCart').and.returnValue(of(null));
+        cartFacade.cart$.next(null);
       });
 
       describe('and service call to cartService.get is successful', () => {
-
         beforeEach(() => {
           spyOn(driver, 'get').and.returnValue(of({
             response: stubCart,
@@ -109,7 +105,6 @@ describe('CartResolverEffects', () => {
       });
 
       describe('and service call to cartService.get fails', () => {
-
         beforeEach(() => {
           const response = cold('#', {});
           spyOn(driver, 'get').and.returnValue(response);

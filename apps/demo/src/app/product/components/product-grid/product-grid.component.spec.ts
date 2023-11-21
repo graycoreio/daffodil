@@ -27,7 +27,7 @@ class MockProductCardComponent {
 describe('ProductGridComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let productCards;
 
   beforeEach(waitForAsync(() => {
@@ -42,6 +42,8 @@ describe('ProductGridComponent', () => {
   }));
 
   beforeEach(() => {
+    productFactory = TestBed.inject(DaffProductFactory);
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     wrapper.productsValue = new Array(productFactory.create(), productFactory.create());

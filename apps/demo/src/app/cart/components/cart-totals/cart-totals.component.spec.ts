@@ -30,12 +30,10 @@ describe('CartTotalsComponent', () => {
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
   let currencyPipe;
-  const cartFactory = TestBed.inject(DaffCartFactory);
-  const cartItemFactory = new DaffCartItemFactory();
+  let cartFactory: DaffCartFactory;
+  let cartItemFactory: DaffCartItemFactory;
 
-  const mockCart = cartFactory.create({
-    items: cartItemFactory.createMany(2),
-  });
+  let mockCart: DaffCart;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -52,6 +50,12 @@ describe('CartTotalsComponent', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+
+    mockCart = cartFactory.create({
+      items: cartItemFactory.createMany(2),
+    });
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     currencyPipe = spyOn(DaffMockCurrencyPipe.prototype, 'transform');

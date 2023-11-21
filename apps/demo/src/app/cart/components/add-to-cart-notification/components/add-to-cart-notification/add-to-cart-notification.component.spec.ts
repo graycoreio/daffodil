@@ -18,6 +18,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffCart } from '@daffodil/cart';
 import {
   DaffAddToCart,
   DaffAddToCartSuccess,
@@ -60,11 +61,14 @@ describe('AddToCartNotificationComponent', () => {
     cart: DaffCartReducersState;
     [DAFF_PRODUCT_STORE_FEATURE_KEY]: DaffProductReducersState<DaffProduct>;
   }>;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
-  const cartFactory: DaffCartFactory = TestBed.inject(DaffCartFactory);
+  let productFactory: DaffProductFactory;
+  let cartFactory: DaffCartFactory;
 
   let addToCartNotification: AddToCartNotificationComponent;
   let productAdded: MockProductAddedComponent;
+  let stubProduct: DaffProduct;
+  let productAddPayload;
+  let stubCart: DaffCart;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -91,6 +95,13 @@ describe('AddToCartNotificationComponent', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
+
+    stubProduct = productFactory.create();
+    productAddPayload = { productId: stubProduct.id, qty: 1 };
+    stubCart = cartFactory.create();
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     store = TestBed.inject(Store);
@@ -106,9 +117,7 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('on demo-product-added', () => {
-    const stubProduct = productFactory.create();
-    const productAddPayload = { productId: stubProduct.id, qty: 1 };
-    const stubCart = cartFactory.create();
+
 
     beforeEach(() => {
       store.dispatch(new DaffProductLoadSuccess({
@@ -133,7 +142,6 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('ngOnInit', () => {
-
     beforeEach(() => {
       addToCartNotification.ngOnInit();
     });
@@ -172,10 +180,6 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('when loading$ is false', () => {
-    const stubProduct = productFactory.create();
-    const productAddPayload = { productId: stubProduct.id, qty: 1 };
-    const stubCart = cartFactory.create();
-
     beforeEach(() => {
       store.dispatch(new OpenAddToCartNotification());
       store.dispatch(new DaffAddToCart(productAddPayload));
@@ -214,9 +218,6 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('when loading$ is true', () => {
-    const stubProduct = productFactory.create();
-    const productAddPayload = { productId: stubProduct.id, qty: 1 };
-
     beforeEach(() => {
       store.dispatch(new OpenAddToCartNotification());
       store.dispatch(new DaffAddToCart(productAddPayload));

@@ -53,8 +53,8 @@ class MockAddToCartComponent {
 }
 
 describe('ProductViewComponent', () => {
-  const productFactory: DaffProductFactory = new DaffProductFactory();
-  const mockProduct = productFactory.create();
+  let productFactory: DaffProductFactory;
+  let mockProduct;
   const idParam = '1001';
   const activatedRoute = new ActivatedRouteStub();
 
@@ -86,11 +86,15 @@ describe('ProductViewComponent', () => {
   }));
 
   beforeEach(() => {
+    facade = TestBed.inject(MockDaffProductPageFacade);
+    cartFacade = TestBed.inject(MockDaffCartFacade);
+    productFactory = TestBed.inject(DaffProductFactory);
+
+    mockProduct = productFactory.create();
+
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-    facade = TestBed.inject(MockDaffProductPageFacade);
-    cartFacade = TestBed.inject(MockDaffCartFacade);
 
     fixture.detectChanges();
 
