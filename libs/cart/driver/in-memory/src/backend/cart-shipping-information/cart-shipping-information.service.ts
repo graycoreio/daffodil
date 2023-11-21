@@ -12,7 +12,9 @@ import {
   DaffCartShippingInformation,
 } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
+import { daffCartInMemoryComputeCartTotals } from '../../helpers/compute-cart-totals';
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
   DaffCartInMemoryExtraAttributesHook,
@@ -27,6 +29,7 @@ import {
 export class DaffInMemoryBackendCartShippingInformationService implements DaffInMemoryDataServiceInterface {
   constructor(
     @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
+    private productBackend: DaffInMemoryBackendProductService,
   ) {}
 
   get(reqInfo: RequestInfo) {
@@ -65,7 +68,7 @@ export class DaffInMemoryBackendCartShippingInformationService implements DaffIn
     cart.shipping_information = shippingInformation;
 
     return {
-      ...cart,
+      ...daffCartInMemoryComputeCartTotals(cart, this.productBackend.products),
       extra_attributes: this.extraFieldsHook(reqInfo, cart),
     };
   }
@@ -76,7 +79,7 @@ export class DaffInMemoryBackendCartShippingInformationService implements DaffIn
     cart.shipping_information = null;
 
     return {
-      ...cart,
+      ...daffCartInMemoryComputeCartTotals(cart, this.productBackend.products),
       extra_attributes: this.extraFieldsHook(reqInfo, cart),
     };
   }
