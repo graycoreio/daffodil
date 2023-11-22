@@ -7,6 +7,7 @@ import {
 
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffCartStoreCreditInMemoryBackendService } from './store-credit.service';
 
@@ -18,6 +19,9 @@ describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMe
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
       providers: [
         DaffCartStoreCreditInMemoryBackendService,
       ],
