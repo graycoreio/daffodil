@@ -5,6 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MockProduct,
   DaffProductKindFactory,
+  DaffProductImageFactory,
 } from '@daffodil/product/testing';
 import { DaffReviewedProduct } from '@daffodil/reviews';
 
@@ -26,8 +27,9 @@ export class MockReviewedProduct extends MockProduct implements DaffReviewedProd
 export class DaffReviewedProductFactory extends DaffModelFactory<DaffReviewedProduct>{
   constructor(
     private productKindFactory: DaffProductKindFactory,
+    imageFactory: DaffProductImageFactory,
   ) {
-    super(MockReviewedProduct);
+    super(MockReviewedProduct, imageFactory);
   }
 
   create(partial: Partial<DaffReviewedProduct> = {}): DaffReviewedProduct {
