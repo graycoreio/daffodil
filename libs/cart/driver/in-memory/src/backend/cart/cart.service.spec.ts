@@ -12,6 +12,7 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCartService } from './cart.service';
 
@@ -32,6 +33,9 @@ describe('DaffInMemoryBackendCartService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
       providers: [
         DaffInMemoryBackendCartService,
         {
@@ -87,10 +91,10 @@ describe('DaffInMemoryBackendCartService', () => {
     });
 
     it('should return the cart', () => {
-      expect(result.body).toEqual({
-        ...mockCart,
+      expect(result.body).toEqual(jasmine.objectContaining({
+        id: mockCart.id,
         extra_attributes: extraAttributes,
-      });
+      }));
       expect(result.status).toEqual(STATUS.OK);
     });
 

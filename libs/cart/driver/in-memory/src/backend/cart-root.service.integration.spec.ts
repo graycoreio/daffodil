@@ -22,6 +22,7 @@ import {
   DaffCartPaymentFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 
@@ -51,6 +52,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       imports: [
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartRootService, { delay: 0 }),
+        DaffProductTestingModule,
       ],
     });
 

@@ -2,6 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
+import { faker } from '@faker-js/faker';
 import {
   STATUS,
   RequestInfo,
@@ -11,7 +12,9 @@ import {
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
+import { daffCartInMemoryComputeCartTotals } from '../../helpers/compute-cart-totals';
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
   DaffCartInMemoryExtraAttributesHook,
@@ -27,6 +30,7 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
   constructor(
     private cartFactory: DaffCartFactory,
     @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
+    private productBackend: DaffInMemoryBackendProductService,
   ) {}
 
   get(reqInfo: RequestInfo) {
@@ -129,7 +133,7 @@ export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceIn
     return cart
       ? {
         body: {
-          ...cart,
+          ...daffCartInMemoryComputeCartTotals(cart, this.productBackend.products),
           extra_attributes: this.extraFieldsHook(reqInfo, <DaffCart>cart),
         },
         status: STATUS.OK,

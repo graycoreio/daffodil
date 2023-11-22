@@ -11,6 +11,7 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCartItemsService } from './cart-items.service';
 
@@ -31,6 +32,9 @@ describe('DaffInMemoryBackendCartItemsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
       providers: [
         DaffInMemoryBackendCartItemsService,
         {

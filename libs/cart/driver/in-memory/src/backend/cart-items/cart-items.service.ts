@@ -14,7 +14,10 @@ import {
 } from '@daffodil/cart';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
+import { daffCartInMemoryComputeCartItemPrices } from '../../helpers/compute-cart-item-prices';
+import { daffCartInMemoryComputeCartTotals } from '../../helpers/compute-cart-totals';
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
   DaffCartInMemoryExtraAttributesHook,
@@ -30,6 +33,7 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
   constructor(
     private cartItemFactory: DaffCartItemFactory,
     @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
+    private productBackend: DaffInMemoryBackendProductService,
   ) {}
 
   get(reqInfo: RequestInfo) {
@@ -105,16 +109,16 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
     const cartIndex = reqInfo.collection.findIndex(c => c.id === reqInfo.id);
     const itemChanges = reqInfo.utils.getJsonBody(reqInfo.req);
     const itemIndex = cart.items.findIndex((item) => itemId === item.id);
-    reqInfo.collection[cartIndex] = {
+    reqInfo.collection[cartIndex] = daffCartInMemoryComputeCartTotals({
       ...cart,
       items: cart.items.map(
-        (item, index) => index === itemIndex ? {
+        (item, index) => index === itemIndex ? daffCartInMemoryComputeCartItemPrices({
           ...cart.items[itemIndex],
           ...itemChanges,
-        } : item,
+        }, this.productBackend.products) : item,
       ),
       extra_attributes: this.extraFieldsHook(reqInfo, cart),
-    };
+    }, this.productBackend.products);
 
     return reqInfo.collection[cartIndex];
   }
@@ -124,27 +128,27 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
     const cartIndex = reqInfo.collection.findIndex(c => c.id === reqInfo.id);
     const itemInput = reqInfo.utils.getJsonBody(reqInfo.req);
     const existingCartItemIndex = cart.items.findIndex(item => item.product_id === itemInput.productId);
-    if(existingCartItemIndex > -1) {
+    if (existingCartItemIndex > -1) {
       const updatedCartItem = {
         ...cart.items[existingCartItemIndex],
         qty: cart.items[existingCartItemIndex].qty + itemInput.qty,
       };
-      reqInfo.collection[cartIndex] = {
+      reqInfo.collection[cartIndex] = daffCartInMemoryComputeCartTotals({
         ...cart,
         items: cart.items.map(
-          (item, index) => index === existingCartItemIndex ? updatedCartItem : item,
+          (item, index) => index === existingCartItemIndex ? daffCartInMemoryComputeCartItemPrices(updatedCartItem, this.productBackend.products) : item,
         ),
         extra_attributes: this.extraFieldsHook(reqInfo, cart),
-      };
+      }, this.productBackend.products);
     } else {
-      reqInfo.collection[cartIndex] = {
+      reqInfo.collection[cartIndex] = daffCartInMemoryComputeCartTotals({
         ...cart,
         items: [
           ...cart.items,
-          this.transformItemInput(itemInput),
+          daffCartInMemoryComputeCartItemPrices(this.transformItemInput(itemInput), this.productBackend.products),
         ],
         extra_attributes: this.extraFieldsHook(reqInfo, cart),
-      };
+      }, this.productBackend.products);
     }
 
     return reqInfo.collection[cartIndex];
@@ -154,11 +158,11 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
     const cart = this.getCart(reqInfo);
     const itemIndex = cart.items.findIndex(({ id }) => itemId === id);
     const cartIndex = reqInfo.collection.findIndex(c => c.id === reqInfo.id);
-    reqInfo.collection[cartIndex] = {
+    reqInfo.collection[cartIndex] = daffCartInMemoryComputeCartTotals({
       ...cart,
       items: cart.items.filter((item, index) => index !== itemIndex),
       extra_attributes: this.extraFieldsHook(reqInfo, cart),
-    };
+    }, this.productBackend.products);
 
     return reqInfo.collection[cartIndex];
   }
