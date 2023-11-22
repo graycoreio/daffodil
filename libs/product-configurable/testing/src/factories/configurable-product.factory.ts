@@ -3,7 +3,10 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { DaffProductImageFactory, MockProduct } from '@daffodil/product/testing';
+import {
+  DaffProductImageFactory,
+  MockProduct,
+} from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 /**
