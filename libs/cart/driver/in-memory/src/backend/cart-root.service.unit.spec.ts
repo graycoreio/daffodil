@@ -23,6 +23,7 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 
@@ -79,6 +80,9 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
       providers: [
         DaffInMemoryBackendCartRootService,
       ],

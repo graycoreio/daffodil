@@ -9,6 +9,7 @@ import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
+import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCartShippingInformationService } from './cart-shipping-information.service';
 
@@ -28,6 +29,9 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffProductTestingModule,
+      ],
       providers: [
         DaffInMemoryBackendCartShippingInformationService,
         {
