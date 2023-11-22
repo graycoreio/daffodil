@@ -1,21 +1,21 @@
 <div class="demo-cart-totals">
   <demo-cart-totals-item>
     <ng-container cart-total-label>Subtotal</ng-container>
-    <ng-container cart-total-value>{{ cart.subtotal | currency }}</ng-container>
+    <ng-container cart-total-value>{{ subtotal.value | currency }}</ng-container>
   </demo-cart-totals-item>
 
   <demo-cart-totals-item>
     <ng-container cart-total-label>Estimated Shipping</ng-container>
-    <ng-container cart-total-value>FREE (HC)</ng-container>
+    <ng-container cart-total-value>{{shipping.value | currency}}</ng-container>
   </demo-cart-totals-item>
 
   <demo-cart-totals-item>
     <ng-container cart-total-label>Estimated Tax</ng-container>
-    <ng-container cart-total-value>{{ 0 | currency }}</ng-container>
+    <ng-container cart-total-value>{{ tax.value | currency }}</ng-container>
   </demo-cart-totals-item>
 
   <demo-cart-totals-item emphasize="true" class="demo-cart-totals__total">
     <ng-container cart-total-label>Estimated Total</ng-container>
-    <ng-container cart-total-value>{{ cart.grand_total | currency }}</ng-container>
+    <ng-container cart-total-value>{{ grandTotal.value | currency }}</ng-container>
   </demo-cart-totals-item>
 </div>
