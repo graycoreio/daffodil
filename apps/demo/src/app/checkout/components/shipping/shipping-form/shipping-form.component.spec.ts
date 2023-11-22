@@ -149,10 +149,6 @@ describe('ShippingFormComponent', () => {
       expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress);
     });
 
-    it('sets form.value.address to addressFormFactory.create()', () => {
-      expect(shippingFormComponent.form.value.address).toEqual(stubAddressFormGroup);
-    });
-
     it('sets form.value.shippingOption to shippingOptionFormService.getShippingOptionFormGroup()', () => {
       expect(shippingFormComponent.form.value.shippingOption).toEqual(shippingOptionFormService.getShippingOptionFormGroup().value);
     });

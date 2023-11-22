@@ -1,12 +1,9 @@
 import {
   Component,
-  OnInit,
   Input,
 } from '@angular/core';
-import {
-  UntypedFormGroup,
-  FormControl,
-} from '@angular/forms';
+
+import { PaymentInfoFormGroup } from '../../models/payment-form.type';
 
 interface MonthOption {
   label: string;
@@ -25,7 +22,7 @@ interface YearOption {
 })
 export class PaymentInfoFormComponent {
 
-  @Input() formGroup: UntypedFormGroup;
+  @Input() formGroup: PaymentInfoFormGroup;
   @Input() submitted: boolean;
 
   constructor() { }

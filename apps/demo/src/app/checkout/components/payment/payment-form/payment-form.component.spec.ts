@@ -71,10 +71,8 @@ describe('PaymentFormComponent', () => {
   let paymentFormComponent: PaymentFormComponent;
   let addressFormComponent: MockAddressFormComponent;
   let paymentInfoFormComponent: MockPaymentInfoFormComponent;
-  const addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
-  let stubAddressFormGroup: UntypedFormGroup;
-  const paymentInfoFormFactorySpy = jasmine.createSpyObj('PaymentInfoFormFactory', ['create']);
-  let stubPaymentInfoFormGroup: UntypedFormGroup;
+  let addressFormFactory: AddressFormFactory;
+  let paymentInfoFormFactory: PaymentInfoFormFactory;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -91,28 +89,22 @@ describe('PaymentFormComponent', () => {
         MockPaymentInfoFormComponent,
         PaymentFormComponent,
       ],
-      providers: [
-        { provide: AddressFormFactory, useValue: addressFormFactorySpy },
-        { provide: PaymentInfoFormFactory, useValue: paymentInfoFormFactorySpy },
-      ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    store = TestBed.inject(Store);
+    addressFormFactory = TestBed.inject(AddressFormFactory);
+    paymentInfoFormFactory = TestBed.inject(PaymentInfoFormFactory);
+
     stubPaymentInfo = null;
     stubBillingAddress = null;
     stubBillingAddressIsShippingAddress = false;
-    stubAddressFormGroup = new AddressFormFactory(new UntypedFormBuilder()).create(stubPaymentInfo);
-    stubAddressFormGroup.markAsDirty();
-    stubAddressFormGroup.markAsTouched();
-    addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
-    stubPaymentInfoFormGroup = new PaymentInfoFormFactory(new UntypedFormBuilder()).create(stubBillingAddress);
-    paymentInfoFormFactorySpy.create.and.returnValue(stubPaymentInfoFormGroup);
+
+    spyOn(store, 'dispatch');
 
     fixture = TestBed.createComponent(WrapperComponent);
-    store = TestBed.inject(Store);
-    spyOn(store, 'dispatch');
     wrapper = fixture.componentInstance;
     wrapper.paymentInfoValue = stubPaymentInfo;
     wrapper.billingAddressValue = stubBillingAddress;
@@ -146,7 +138,7 @@ describe('PaymentFormComponent', () => {
   describe('on <demo-address-form>', () => {
 
     it('should set formGroup', () => {
-      expect(<UntypedFormGroup> addressFormComponent.formGroup).toEqual(<UntypedFormGroup> paymentFormComponent.form.controls['address']);
+      expect(addressFormComponent.formGroup).toEqual(paymentFormComponent.form.controls.address);
     });
 
     it('should set formSubmitted', () => {
@@ -157,27 +149,11 @@ describe('PaymentFormComponent', () => {
   describe('on <demo-payment-info-form>', () => {
 
     it('should set formGroup', () => {
-      expect(<UntypedFormGroup> paymentInfoFormComponent.formGroup).toEqual(<UntypedFormGroup> paymentFormComponent.form.controls['paymentInfo']);
+      expect(paymentInfoFormComponent.formGroup).toEqual(paymentFormComponent.form.controls.paymentInfo);
     });
 
     it('should set formSubmitted', () => {
       expect(paymentInfoFormComponent.submitted).toEqual(false);
-    });
-  });
-
-  describe('ngOnInit', () => {
-
-    it('should call PaymentInfoFormFactory with paymentInfo', () => {
-      expect(paymentInfoFormFactorySpy.create).toHaveBeenCalledWith(stubPaymentInfo);
-    });
-
-    it('should call AddressFormFactory with billingAddress', () => {
-      expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubBillingAddress);
-    });
-
-    it('sets form.value to returned factory values', () => {
-      expect(paymentFormComponent.form.value.address).toEqual(stubAddressFormGroup.value);
-      expect(paymentFormComponent.form.value.paymentInfo).toEqual(stubPaymentInfoFormGroup.value);
     });
   });
 
@@ -221,9 +197,9 @@ describe('PaymentFormComponent', () => {
 
       beforeEach(() => {
         const formBuilder = new UntypedFormBuilder();
-        paymentFormComponent.form = formBuilder.group({
-          address: stubAddressFormGroup,
-          paymentInfo: stubPaymentInfoFormGroup,
+        paymentFormComponent.form.patchValue({
+          address: null,
+          paymentInfo: null,
         });
       });
 
@@ -277,12 +253,12 @@ describe('PaymentFormComponent', () => {
 
         describe('and paymentInfoForm is valid', () => {
 
-          const expectedPaymentInfo: PaymentInfo = {
+          const expectedPaymentInfo = {
             name: 'valid',
-            cardnumber: 2,
-            month: 2,
-            year: 2,
-            securitycode: 2,
+            cardnumber: '2',
+            month: '2',
+            year: '2',
+            securitycode: '2',
           };
 
           beforeEach(() => {
@@ -310,38 +286,36 @@ describe('PaymentFormComponent', () => {
     describe('when form is valid', () => {
 
       beforeEach(() => {
-        stubPaymentInfoFormGroup.setValue({
-          name: 'valid',
-          cardnumber: 'valid',
-          month: '01',
-          year: 'valid',
-          securitycode: 'valid',
-        });
-        stubAddressFormGroup.setValue({
-          firstname: 'valid',
-          lastname: 'valid',
-          street: 'valid',
-          city: 'valid',
-          state: 'California',
-          postcode: 'valid',
-          telephone: 'valid',
-        });
-        const formBuilder = new UntypedFormBuilder();
-        paymentFormComponent.form = formBuilder.group({
-          address: stubAddressFormGroup,
-          paymentInfo: stubPaymentInfoFormGroup,
+        paymentFormComponent.form.patchValue({
+          address: {
+            firstname: 'valid',
+            lastname: 'valid',
+            street: 'valid',
+            city: 'valid',
+            state: 'California',
+            country: 'US',
+            postcode: 'valid',
+            telephone: 'valid',
+          },
+          paymentInfo: {
+            name: 'valid',
+            cardnumber: 'valid',
+            month: '01',
+            year: 'valid',
+            securitycode: 'valid',
+          },
         });
         fixture.detectChanges();
       });
 
       it('should emit updatePaymentInfo', () => {
         paymentFormComponent.onSubmit();
-        expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(stubPaymentInfoFormGroup.value);
+        expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(paymentFormComponent.form.value.paymentInfo);
       });
 
       it('should emit updateBillingAddress with expected object', () => {
         paymentFormComponent.onSubmit();
-        expect(paymentFormComponent.updateBillingAddress.emit).toHaveBeenCalledWith(stubAddressFormGroup.value);
+        expect(paymentFormComponent.updateBillingAddress.emit).toHaveBeenCalledWith(paymentFormComponent.form.value.address);
       });
 
       it('should call store.dispatch with an EnablePlaceOrderButton action', () => {

@@ -5,15 +5,13 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import {
-  UntypedFormGroup,
-  UntypedFormBuilder,
-} from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { PaymentInfo } from '@daffodil/checkout';
 import { DaffAddress } from '@daffodil/core';
 
+import { PaymentFormGroup } from './models/payment-form.type';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
@@ -33,7 +31,7 @@ export class PaymentFormComponent implements OnInit {
   @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 
-  form: UntypedFormGroup;
+  form: PaymentFormGroup;
 
   constructor(
     private fb: UntypedFormBuilder,
