@@ -13,6 +13,11 @@ import {
   UntypedFormBuilder,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { cold } from 'jasmine-marbles';
+import {
+  BehaviorSubject,
+  of,
+} from 'rxjs';
 
 import {
   DaffInputModule,
@@ -21,22 +26,38 @@ import {
   DaffNativeSelectModule,
   DaffInputComponent,
 } from '@daffodil/design';
+import { DaffCountry } from '@daffodil/geography';
+import { DaffCountryLoad } from '@daffodil/geography/state';
+import {
+  DaffGeographyStateTestingModule,
+  MockDaffGeographyFacade,
+} from '@daffodil/geography/state/testing';
+import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { AddressFormComponent } from './address-form.component';
+import { AddressFormFactory } from '../../factories/address-form.factory';
+import { AddressFormGroup } from '../../models/address-form.type';
 
 @Component({
-  template: '<demo-address-form [formGroup]="formGroupValue" ' +
-                '[submitted]="submittedValue"></demo-address-form>',
+  template: `
+    <demo-address-form
+      [formGroup]="formGroupValue"
+      [submitted]="submittedValue"
+    ></demo-address-form>
+  `,
 })
 class WrapperComponent {
-  formGroupValue: UntypedFormGroup;
+  formGroupValue: AddressFormGroup;
   submittedValue: boolean;
 }
 
 describe('AddressFormComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let addressForm: AddressFormComponent;
+  let component: AddressFormComponent;
+  let geographyFacade: MockDaffGeographyFacade;
+  let countryFactory: DaffCountryFactory;
+  let mockCountry: DaffCountry;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -46,6 +67,7 @@ describe('AddressFormComponent', () => {
         DaffInputModule,
         DaffNativeSelectModule,
         DaffFormFieldModule,
+        DaffGeographyStateTestingModule,
       ],
       declarations: [
         WrapperComponent,
@@ -56,36 +78,34 @@ describe('AddressFormComponent', () => {
   }));
 
   beforeEach(() => {
+    geographyFacade = TestBed.inject(MockDaffGeographyFacade);
+    countryFactory = TestBed.inject(DaffCountryFactory);
+
+    mockCountry = countryFactory.create();
+    geographyFacade.countries$.next([mockCountry]);
+    spyOn(geographyFacade, 'getCountrySubdivisions').withArgs(mockCountry.id).and.returnValue(new BehaviorSubject(mockCountry.subdivisions));
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    const formBuilder = new UntypedFormBuilder();
-    wrapper.formGroupValue = formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['State', Validators.required],
-      postcode: ['', Validators.required],
-      telephone: ['', Validators.required],
-    });
+    wrapper.formGroupValue = TestBed.inject(AddressFormFactory).create({});
 
     wrapper.submittedValue = false;
 
     fixture.detectChanges();
 
-    addressForm = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
+    component = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
   });
 
   it('should create', () => {
-    expect(addressForm).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should be able to take formGroup as input', () => {
-    expect(addressForm.formGroup).toEqual(wrapper.formGroupValue);
+    expect(component.formGroup).toEqual(wrapper.formGroupValue);
   });
 
   it('should be able to take submitted as input', () => {
-    expect(addressForm.submitted).toEqual(wrapper.submittedValue);
+    expect(component.submitted).toEqual(wrapper.submittedValue);
   });
 
   describe('on [daff-input]', () => {
@@ -97,11 +117,11 @@ describe('AddressFormComponent', () => {
     });
 
     it('should set formControl', () => {
-      expect(input.ngControl.control).toEqual(addressForm.formGroup.controls['firstname']);
+      expect(input.ngControl.control).toEqual(component.formGroup.controls['firstname']);
     });
 
     it('should set formSubmitted', () => {
-      expect(input.formSubmitted).toEqual(addressForm.submitted);
+      expect(input.formSubmitted).toEqual(component.submitted);
     });
   });
 
@@ -113,12 +133,23 @@ describe('AddressFormComponent', () => {
       select = fixture.debugElement.queryAll(By.css('[daff-native-select]'))[0].componentInstance;
     });
 
-    it('should set formControl', () => {
-      expect(select.ngControl.control).toEqual(<AbstractControl> addressForm.formGroup.controls['state']);
+    it('should set formSubmitted', () => {
+      expect(select.formSubmitted).toEqual(component.submitted);
+    });
+  });
+
+  describe('when a country is selected', () => {
+    beforeEach(() => {
+      spyOn(geographyFacade, 'dispatch');
+      component.formGroup.controls.country.patchValue(mockCountry.id);
     });
 
-    it('should set formSubmitted', () => {
-      expect(select.formSubmitted).toEqual(addressForm.submitted);
+    it('should load the country', () => {
+      expect(geographyFacade.dispatch).toHaveBeenCalledWith(new DaffCountryLoad(mockCountry.id));
+    });
+
+    it('should render a list of the subdivisions', () => {
+      expect(component.stateSelectValues$).toBeObservable(cold('a', { a: mockCountry.subdivisions }));
     });
   });
 });

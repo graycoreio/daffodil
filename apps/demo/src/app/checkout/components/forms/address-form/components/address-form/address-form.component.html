@@ -31,12 +31,23 @@
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['city'].errors && (formGroup.controls['city'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
+  <daff-form-field class="demo-address-form__country">
+    <select daff-native-select
+      name="country"
+      [formControl]="formGroup.controls['country']"
+      [formSubmitted]="submitted">
+      <option [value]="''">Country</option>
+      <option *ngFor="let country of (countrySelectValues$ | async)" [value]="country.id" [disabled]="country.disabled">{{country.name}}</option>
+    </select>
+    <daff-error-message *ngIf="formGroup.controls['state'].errors && (formGroup.controls['state'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
   <daff-form-field class="demo-address-form__state">
     <select daff-native-select
       name="state"
       [formControl]="formGroup.controls['state']"
       [formSubmitted]="submitted">
-      <option *ngFor="let state of stateSelectValues" [value]="state.value" [disabled]="state.disabled">{{state.label}}</option>
+      <option [value]="''">State</option>
+      <option *ngFor="let state of (stateSelectValues$ | async)" [value]="state.id" [disabled]="state.disabled">{{state.name}}</option>
     </select>
     <daff-error-message *ngIf="formGroup.controls['state'].errors && (formGroup.controls['state'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
