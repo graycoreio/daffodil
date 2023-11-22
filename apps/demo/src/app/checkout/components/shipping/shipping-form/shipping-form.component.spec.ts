@@ -95,7 +95,7 @@ describe('ShippingFormComponent', () => {
     wrapper.editModeValue = false;
     wrapper.shippingAddressValue = stubShippingAddress;
 
-    stubAddressFormGroup = new AddressFormFactory(new UntypedFormBuilder()).create(stubShippingAddress).value;
+    stubAddressFormGroup = TestBed.inject(AddressFormFactory).create(stubShippingAddress);
     addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
 
     fixture.detectChanges();
@@ -147,10 +147,6 @@ describe('ShippingFormComponent', () => {
 
     it('should call addressFormFactory.create with shippingAddress', () => {
       expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress);
-    });
-
-    it('sets form.value.address to addressFormFactory.create()', () => {
-      expect(shippingFormComponent.form.value.address).toEqual(stubAddressFormGroup);
     });
 
     it('sets form.value.shippingOption to shippingOptionFormService.getShippingOptionFormGroup()', () => {

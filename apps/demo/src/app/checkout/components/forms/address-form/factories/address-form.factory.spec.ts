@@ -6,7 +6,7 @@ import {
 
 import { AddressFormFactory } from './address-form.factory';
 
-describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressFormFactory', () => {
+describe('@daffodil/demo | AddressFormFactory', () => {
 
   let addressFormFactory;
 
@@ -41,6 +41,7 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           street: '',
           city: '',
           state: '',
+          country: '',
           postcode: '',
           telephone: '',
         };
@@ -62,6 +63,7 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           street: 'street',
           city: 'city',
           state: 'another state',
+          country: 'another state',
           postcode: 'postcode',
           telephone: 'telephone',
         };
