@@ -124,7 +124,7 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
       });
     });
 
-    describe('when collectionName is country', () => {
+    describe('when collectionName is countries', () => {
 
       let reqInfo;
       let result;
@@ -134,17 +134,17 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
         returnedValue = 'returnedValue';
         spyOn(service['geographyTestingService'], 'get').and.returnValue(returnedValue);
         reqInfo = {
-          collectionName: 'country',
+          collectionName: 'countries',
         };
 
         result = service.get(reqInfo);
       });
 
-      it('should call countryTestingService.get', () => {
+      it('should call geographyTestingService.get', () => {
         expect(service['geographyTestingService'].get).toHaveBeenCalledWith(reqInfo);
       });
 
-      it('should return the returned value of countryTestingService.get', () => {
+      it('should return the returned value of geographyTestingService.get', () => {
         expect(result).toEqual(returnedValue);
       });
     });
