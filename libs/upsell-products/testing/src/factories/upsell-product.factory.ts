@@ -6,6 +6,7 @@ import { DaffProduct } from '@daffodil/product';
 import {
   MockProduct,
   DaffProductKindFactory,
+  DaffProductImageFactory,
 } from '@daffodil/product/testing';
 import { DaffUpsellProduct } from '@daffodil/upsell-products';
 
@@ -17,8 +18,9 @@ export class MockUpsellProduct extends MockProduct implements DaffUpsellProduct 
 
   constructor(
     productFactory: DaffProductKindFactory,
+    imageFactory: DaffProductImageFactory,
   ) {
-    super();
+    super(imageFactory);
 
     this.upsell = productFactory.createMany(3);
   }
@@ -33,7 +35,8 @@ export class MockUpsellProduct extends MockProduct implements DaffUpsellProduct 
 export class DaffUpsellProductFactory extends DaffModelFactory<DaffUpsellProduct>{
   constructor(
     productKindFactory: DaffProductKindFactory,
+    imageFactory: DaffProductImageFactory,
   ) {
-    super(MockUpsellProduct, productKindFactory);
+    super(MockUpsellProduct, productKindFactory, imageFactory);
   }
 }

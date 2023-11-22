@@ -3,7 +3,10 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { MockProduct } from '@daffodil/product/testing';
+import {
+  DaffProductImageFactory,
+  MockProduct,
+} from '@daffodil/product/testing';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
 
 import { DaffCompositeProductItemFactory } from './composite-product-item.factory';
@@ -17,8 +20,9 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 
   constructor(
     protected itemFactory: DaffCompositeProductItemFactory,
+    imageFactory: DaffProductImageFactory,
   ) {
-    super();
+    super(imageFactory);
   }
 }
 
@@ -31,7 +35,8 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 export class DaffCompositeProductFactory extends DaffModelFactory<DaffCompositeProduct>{
   constructor(
     itemFactory: DaffCompositeProductItemFactory,
+    imageFactory: DaffProductImageFactory,
   ) {
-    super(MockCompositeProduct, itemFactory);
+    super(MockCompositeProduct, itemFactory, imageFactory);
   }
 }
