@@ -1,4 +1,6 @@
 
+import { TestBed } from '@angular/core/testing';
+
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -19,15 +21,14 @@ import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/t
 import { daffConfigurableProductEntitiesReducer } from './configurable-product-entities.reducer';
 
 describe('@daffodil/product-configurable/state | daffConfigurableProductEntitiesReducer', () => {
-
   let productFactory: DaffProductFactory;
   let configurableProductFactory: DaffConfigurableProductFactory;
   const initialState = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState();
   let configurableProduct: DaffConfigurableProduct;
 
   beforeEach(() => {
-    productFactory = new DaffProductFactory();
-    configurableProductFactory = new DaffConfigurableProductFactory();
+    productFactory = TestBed.inject(DaffProductFactory);
+    configurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
     configurableProduct = configurableProductFactory.create();
   });
 

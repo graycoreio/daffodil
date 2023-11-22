@@ -36,11 +36,10 @@ import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing
 
 import { getDaffCompositeProductPriceSelectors } from './composite-product.selectors';
 
-describe('Composite Product Selectors | integration tests', () => {
-
+describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelectors | integration tests', () => {
   let store: Store<DaffCompositeProductStateRootSlice>;
   let compositeProductFactory: DaffCompositeProductFactory;
-  const productFactory: DaffProductFactory = new DaffProductFactory();
+  let productFactory: DaffProductFactory;
   let stubCompositeProduct: DaffCompositeProduct;
   let stubProduct: DaffProduct;
   const {
@@ -71,6 +70,7 @@ describe('Composite Product Selectors | integration tests', () => {
       ],
     });
 
+    productFactory = TestBed.inject(DaffProductFactory);
     compositeProductFactory = TestBed.inject(DaffCompositeProductFactory);
 
     stubCompositeProduct = compositeProductFactory.create();

@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
+  DaffProductImageFactory,
   MockProduct,
   daffProvideProductExtraFactoryTypes,
 } from '@daffodil/product/testing';
@@ -18,8 +19,10 @@ class TestMockProduct extends MockProduct {
   providedIn: 'root',
 })
 class TestProductFactory extends DaffModelFactory<DaffProduct> {
-  constructor() {
-    super(TestMockProduct);
+  constructor(
+    imageFactory: DaffProductImageFactory,
+  ) {
+    super(TestMockProduct, imageFactory);
   }
 }
 

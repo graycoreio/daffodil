@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
-import { MockProduct } from '@daffodil/product/testing';
+import { DaffProductImageFactory, MockProduct } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 /**
@@ -246,7 +246,9 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
   providedIn: 'root',
 })
 export class DaffConfigurableProductFactory extends DaffModelFactory<DaffConfigurableProduct>{
-  constructor(){
-    super(MockConfigurableProduct);
+  constructor(
+    imageFactory: DaffProductImageFactory,
+  ) {
+    super(MockConfigurableProduct, imageFactory);
   }
 }

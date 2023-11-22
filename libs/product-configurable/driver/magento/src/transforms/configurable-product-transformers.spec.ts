@@ -23,24 +23,33 @@ import daffConfigurableProductData from './spec-data/daff-configurable-product.j
 import magentoConfigurableProductData from './spec-data/magento-configurable-product.json';
 
 describe('DaffMagentoConfigurableProductTransformers', () => {
-  const daffConfigurableProduct: DaffConfigurableProduct = new DaffConfigurableProductFactory().create();
-  const magentoConfigurableProduct: MagentoConfigurableProduct = new MagentoConfigurableProductFactory().create();
-  daffConfigurableProduct.variants[0].image = new DaffProductImageFactory().create();
-  daffConfigurableProduct.variants[1].image = new DaffProductImageFactory().create();
-  daffConfigurableProduct.variants[2].image = new DaffProductImageFactory().create();
-  daffConfigurableProduct.variants[0].image.id = '0';
-  daffConfigurableProduct.variants[1].image.id = '0';
-  daffConfigurableProduct.variants[2].image.id = '0';
+  let imageFactory: DaffProductImageFactory;
+  let configurableProductFactory: DaffConfigurableProductFactory;
+  let magentoConfigurableProductFactory: MagentoConfigurableProductFactory;
+  let daffConfigurableProduct: DaffConfigurableProduct;
+  let magentoConfigurableProduct: MagentoConfigurableProduct;
   const mediaUrl = 'mediaUrl';
-  delete daffConfigurableProduct.configurableAttributes[0].values[0].swatch;
-  delete daffConfigurableProduct.configurableAttributes[0].values[1].swatch;
-  delete daffConfigurableProduct.configurableAttributes[0].values[2].swatch;
   let simpleProductService: DaffMagentoSimpleProductTransformers;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
     simpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
+    imageFactory = TestBed.inject(DaffProductImageFactory);
+    configurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
+    magentoConfigurableProductFactory = TestBed.inject(MagentoConfigurableProductFactory);
+
+    daffConfigurableProduct = configurableProductFactory.create();
+    magentoConfigurableProduct = magentoConfigurableProductFactory.create();
+    daffConfigurableProduct.variants[0].image = new DaffProductImageFactory().create();
+    daffConfigurableProduct.variants[1].image = new DaffProductImageFactory().create();
+    daffConfigurableProduct.variants[2].image = new DaffProductImageFactory().create();
+    daffConfigurableProduct.variants[0].image.id = '0';
+    daffConfigurableProduct.variants[1].image.id = '0';
+    daffConfigurableProduct.variants[2].image.id = '0';
+    delete daffConfigurableProduct.configurableAttributes[0].values[0].swatch;
+    delete daffConfigurableProduct.configurableAttributes[0].values[1].swatch;
+    delete daffConfigurableProduct.configurableAttributes[0].values[2].swatch;
   });
 
   describe('transformMagentoConfigurableProduct', () => {

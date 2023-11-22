@@ -27,7 +27,7 @@ import { getDaffConfigurableProductEntitiesSelectors } from './configurable-prod
 describe('selectConfigurableProductEntitiesState', () => {
 
   let store: Store<DaffProductStateRootSlice>;
-  const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
+  let configurableProductFactory: DaffConfigurableProductFactory;
   let stubConfigurableProduct: DaffConfigurableProduct;
   const {
     selectConfigurableProductIds,
@@ -47,8 +47,10 @@ describe('selectConfigurableProductEntitiesState', () => {
       ],
     });
 
-    stubConfigurableProduct = configurableProductFactory.create();
+    configurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
     store = TestBed.inject(Store);
+
+    stubConfigurableProduct = configurableProductFactory.create();
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(stubConfigurableProduct)));
     store.dispatch(new DaffConfigurableProductApplyAttribute(
