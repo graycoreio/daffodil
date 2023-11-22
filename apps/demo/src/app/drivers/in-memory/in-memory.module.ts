@@ -4,6 +4,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
+import { DaffGeographyInMemoryDriverModule } from '@daffodil/geography/driver/in-memory';
 import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/driver/in-memory';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductInMemoryDriverModule } from '@daffodil/product/driver/in-memory';
@@ -20,6 +21,7 @@ import { DemoInMemoryBackendService } from './backend/backend.service';
     DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationInMemoryDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
+    DaffGeographyInMemoryDriverModule.forRoot(),
   ],
 })
 export class DemoInMemoryDriverModule { }

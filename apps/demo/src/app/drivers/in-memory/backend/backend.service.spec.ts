@@ -3,14 +3,15 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
+import { DaffInMemoryBackendGeographyService } from '@daffodil/geography/driver/in-memory';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DemoInMemoryBackendService } from './backend.service';
 
-describe('Driver | In Memory | InMemoryService', () => {
-  let service;
+describe('@daffodil/demo | DemoInMemoryBackendService', () => {
+  let service: DemoInMemoryBackendService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,6 +24,7 @@ describe('Driver | In Memory | InMemoryService', () => {
         DaffInMemoryBackendProductService,
         DaffInMemoryBackendCheckoutService,
         DaffInMemoryBackendNavigationService,
+        DaffInMemoryBackendGeographyService,
         DemoInMemoryBackendService,
       ],
     });
@@ -42,7 +44,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.cartTestingService, 'post').and.returnValue(
+        spyOn(service['cartTestingService'], 'post').and.returnValue(
           returnedValue,
         );
         reqInfo = {
@@ -53,7 +55,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
 
       it('should call cartTestingService.post', () => {
-        expect(service.cartTestingService.post).toHaveBeenCalledWith(reqInfo);
+        expect(service['cartTestingService'].post).toHaveBeenCalledWith(reqInfo);
       });
 
       it('should return the returned value of cartTestingService.post', () => {
@@ -80,7 +82,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.productTestingService, 'get').and.returnValue(returnedValue);
+        spyOn(service['productTestingService'], 'get').and.returnValue(returnedValue);
         reqInfo = {
           collectionName: 'products',
         };
@@ -89,7 +91,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
 
       it('should call productTestingService.get', () => {
-        expect(service.productTestingService.get).toHaveBeenCalledWith(reqInfo);
+        expect(service['productTestingService'].get).toHaveBeenCalledWith(reqInfo);
       });
 
       it('should return the returned value of productTestingService.get', () => {
@@ -105,7 +107,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.navigationTestingService, 'get').and.returnValue(returnedValue);
+        spyOn(service['navigationTestingService'], 'get').and.returnValue(returnedValue);
         reqInfo = {
           collectionName: 'navigation',
         };
@@ -114,10 +116,35 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
 
       it('should call navigationTestingService.get', () => {
-        expect(service.navigationTestingService.get).toHaveBeenCalledWith(reqInfo);
+        expect(service['navigationTestingService'].get).toHaveBeenCalledWith(reqInfo);
       });
 
       it('should return the returned value of navigationTestingService.get', () => {
+        expect(result).toEqual(returnedValue);
+      });
+    });
+
+    describe('when collectionName is countries', () => {
+
+      let reqInfo;
+      let result;
+      let returnedValue;
+
+      beforeEach(() => {
+        returnedValue = 'returnedValue';
+        spyOn(service['geographyTestingService'], 'get').and.returnValue(returnedValue);
+        reqInfo = {
+          collectionName: 'countries',
+        };
+
+        result = service.get(reqInfo);
+      });
+
+      it('should call geographyTestingService.get', () => {
+        expect(service['geographyTestingService'].get).toHaveBeenCalledWith(reqInfo);
+      });
+
+      it('should return the returned value of geographyTestingService.get', () => {
         expect(result).toEqual(returnedValue);
       });
     });
@@ -130,7 +157,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.cartTestingService, 'get').and.returnValue(returnedValue);
+        spyOn(service['cartTestingService'], 'get').and.returnValue(returnedValue);
         reqInfo = {
           collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
         };
@@ -139,7 +166,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
 
       it('should call cartTestingService.get', () => {
-        expect(service.cartTestingService.get).toHaveBeenCalledWith(reqInfo);
+        expect(service['cartTestingService'].get).toHaveBeenCalledWith(reqInfo);
       });
 
       it('should return the returned value of cartTestingService.get', () => {
@@ -163,7 +190,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.cartTestingService, 'put').and.returnValue(
+        spyOn(service['cartTestingService'], 'put').and.returnValue(
           returnedValue,
         );
         reqInfo = {
@@ -174,7 +201,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
 
       it('should call cartTestingService.put', () => {
-        expect(service.cartTestingService.put).toHaveBeenCalledWith(reqInfo);
+        expect(service['cartTestingService'].put).toHaveBeenCalledWith(reqInfo);
       });
 
       it('should return the returned value of cartTestingService.put', () => {
@@ -199,7 +226,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
       beforeEach(() => {
         returnedValue = 'returnedValue';
-        spyOn(service.cartTestingService, 'delete').and.returnValue(
+        spyOn(service['cartTestingService'], 'delete').and.returnValue(
           returnedValue,
         );
         reqInfo = {
@@ -210,7 +237,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       });
 
       it('should call cartTestingService.delete', () => {
-        expect(service.cartTestingService.delete).toHaveBeenCalledWith(reqInfo);
+        expect(service['cartTestingService'].delete).toHaveBeenCalledWith(reqInfo);
       });
 
       it('should return the returned value of cartTestingService.delete', () => {
@@ -239,30 +266,30 @@ describe('Driver | In Memory | InMemoryService', () => {
       cartReturn = 'cartReturn';
       orderReturn = 'orderReturn';
       navigationReturn = 'navigationReturn';
-      spyOn(service.productTestingService, 'createDb').and.returnValue(
+      spyOn(service['productTestingService'], 'createDb').and.returnValue(
         productReturn,
       );
-      spyOn(service.cartTestingService, 'createDb').and.returnValue(cartReturn);
-      spyOn(service.checkoutTestingService, 'createDb').and.returnValue(orderReturn);
-      spyOn(service.navigationTestingService, 'createDb').and.returnValue(navigationReturn);
+      spyOn(service['cartTestingService'], 'createDb').and.returnValue(cartReturn);
+      spyOn(service['checkoutTestingService'], 'createDb').and.returnValue(orderReturn);
+      spyOn(service['navigationTestingService'], 'createDb').and.returnValue(navigationReturn);
 
-      result = service.createDb();
+      result = service.createDb(null);
     });
 
     it('should call productTestingService.createDb', () => {
-      expect(service.productTestingService.createDb).toHaveBeenCalled();
+      expect(service['productTestingService'].createDb).toHaveBeenCalled();
     });
 
     it('should call cartTestingService.createDb', () => {
-      expect(service.cartTestingService.createDb).toHaveBeenCalled();
+      expect(service['cartTestingService'].createDb).toHaveBeenCalled();
     });
 
     it('should call checkoutTestingService.createDb', () => {
-      expect(service.checkoutTestingService.createDb).toHaveBeenCalled();
+      expect(service['checkoutTestingService'].createDb).toHaveBeenCalled();
     });
 
     it('should call navigationTestingService.createDb', () => {
-      expect(service.navigationTestingService.createDb).toHaveBeenCalled();
+      expect(service['navigationTestingService'].createDb).toHaveBeenCalled();
     });
 
     it('should return expected object', () => {

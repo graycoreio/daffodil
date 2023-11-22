@@ -14,6 +14,7 @@ import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
+import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
@@ -35,6 +36,7 @@ const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
     DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationMagentoDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
+    DaffGeographyMagentoDriverModule.forRoot(),
     ApolloModule,
   ],
 })
