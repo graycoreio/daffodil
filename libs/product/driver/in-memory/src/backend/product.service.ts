@@ -71,7 +71,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
       '1033',
       '1034',
       '1035',
-    ].map(id => this.productFactory.create({ id, url: `/${id}`, images: this.productImageFactory.createMany(5) }));
+    ].map(id => this.productFactory.create({ id, url: `/${id}` }));
   }
 
   /**
