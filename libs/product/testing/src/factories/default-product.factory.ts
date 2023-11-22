@@ -7,6 +7,8 @@ import {
   DaffProductTypeEnum,
 } from '@daffodil/product';
 
+import { DaffProductImageFactory } from './product-image.factory';
+
 /**
  * Mocked DaffProduct object.
  */
@@ -24,14 +26,18 @@ export class MockProduct implements DaffProduct {
 	  amount: this.stubDiscount,
 	  percent: Math.floor((this.stubDiscount/this.stubPrice) * 100),
   };
-  images = [];
-  thumbnail = null;
+  images = this.imageFactory.createMany(faker.datatype.number({ min: 1, max: 10 }));
+  thumbnail = this.imageFactory.create();
   name = faker.commerce.productName();
-  brand = faker.company.companyName();
-  description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.';
-  short_description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut.';
+  brand = faker.company.name();
+  description = faker.commerce.productDescription();
+  short_description = faker.commerce.productDescription();
   meta_title = faker.commerce.productName();
-  meta_description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.';
+  meta_description = faker.commerce.productDescription();
+
+  constructor(
+    protected imageFactory: DaffProductImageFactory,
+  ) {}
 }
 
 /**
@@ -41,7 +47,9 @@ export class MockProduct implements DaffProduct {
   providedIn: 'root',
 })
 export class DaffDefaultProductFactory extends DaffModelFactory<DaffProduct> {
-  constructor() {
-    super(MockProduct);
+  constructor(
+    imageFactory: DaffProductImageFactory,
+  ) {
+    super(MockProduct, imageFactory);
   }
 }

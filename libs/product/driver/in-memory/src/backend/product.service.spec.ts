@@ -42,10 +42,6 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
       expect(result.products.length).toBeGreaterThan(2);
       expect(isProduct(result.products[0])).toBeTruthy();
     });
-
-    it('should return Products that have 5 images', () => {
-      expect(result.products[0].images.length).toEqual(5);
-    });
   });
 
   describe('get', () => {

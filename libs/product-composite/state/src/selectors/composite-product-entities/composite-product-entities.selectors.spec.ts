@@ -24,7 +24,6 @@ import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing
 import { getDaffCompositeProductEntitiesSelectors } from './composite-product-entities.selectors';
 
 describe('selectCompositeProductEntitiesState', () => {
-
   let store: Store<DaffCompositeProductStateRootSlice>;
   let compositeProductFactory: DaffCompositeProductFactory;
   let stubCompositeProduct: DaffCompositeProduct;
@@ -47,9 +46,9 @@ describe('selectCompositeProductEntitiesState', () => {
     });
 
     compositeProductFactory = TestBed.inject(DaffCompositeProductFactory);
+    store = TestBed.inject(Store);
 
     stubCompositeProduct = compositeProductFactory.create();
-    store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(stubCompositeProduct)));
   });

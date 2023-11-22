@@ -10,7 +10,7 @@ import {
   daffProvideProductExtraProductFactories,
   MockProduct,
   DaffProductKindFactory,
-  daffProvideProductExtraFactoryTypes,
+  DaffProductImageFactory,
 } from '@daffodil/product/testing';
 
 import { DaffProductExtensionFactory } from './extension.factory';
@@ -23,8 +23,10 @@ class TestMockProduct extends MockProduct {
   providedIn: 'root',
 })
 class TestProductFactory extends DaffModelFactory<DaffProduct> {
-  constructor() {
-    super(TestMockProduct);
+  constructor(
+    imageFactory: DaffProductImageFactory,
+  ) {
+    super(TestMockProduct, imageFactory);
   }
 }
 
@@ -37,8 +39,10 @@ class TestMockProductKind extends MockProduct {
   providedIn: 'root',
 })
 class TestProductKindFactory extends DaffModelFactory<DaffProduct> {
-  constructor() {
-    super(TestMockProductKind);
+  constructor(
+    imageFactory: DaffProductImageFactory,
+  ) {
+    super(TestMockProductKind, imageFactory);
   }
 }
 

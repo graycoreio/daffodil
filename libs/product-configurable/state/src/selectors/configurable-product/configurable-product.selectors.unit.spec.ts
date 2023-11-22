@@ -28,7 +28,7 @@ import { getDaffConfigurableProductSelectors } from './configurable-product.sele
 describe('Configurable Product Selectors | unit tests', () => {
 
   let store: Store<DaffProductStateRootSlice>;
-  const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
+  let configurableProductFactory: DaffConfigurableProductFactory;
   let stubConfigurableProduct: DaffConfigurableProduct;
   const {
     selectAllConfigurableProductVariants,
@@ -57,8 +57,10 @@ describe('Configurable Product Selectors | unit tests', () => {
       ],
     });
 
-    stubConfigurableProduct = configurableProductFactory.create();
+    configurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
     store = TestBed.inject(Store);
+
+    stubConfigurableProduct = configurableProductFactory.create();
   });
 
   describe('selectAllConfigurableProductVariants', () => {

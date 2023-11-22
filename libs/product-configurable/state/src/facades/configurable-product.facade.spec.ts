@@ -26,6 +26,7 @@ describe('DaffConfigurableProductFacade', () => {
   let store: Store<DaffProductStateRootSlice>;
   let facade: DaffConfigurableProductFacade;
   let stubConfigurableProduct: DaffConfigurableProduct;
+  let configurableProductFactory: DaffConfigurableProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,7 +43,8 @@ describe('DaffConfigurableProductFacade', () => {
 
     store = TestBed.inject(Store);
     facade = TestBed.inject(DaffConfigurableProductFacade);
-    stubConfigurableProduct = new DaffConfigurableProductFactory().create();
+    configurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
+    stubConfigurableProduct = configurableProductFactory.create();
     store.dispatch(new DaffProductLoadSuccess({
       id: stubConfigurableProduct.id,
       products: [stubConfigurableProduct],
