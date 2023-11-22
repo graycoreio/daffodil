@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffCart,
   DaffCartShippingInformation,
@@ -34,7 +36,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
   let mockCartShippingInformation: DaffCartShippingInformation;
 
   beforeEach(() => {
-    cartFactory = new DaffCartFactory();
+    cartFactory = TestBed.inject(DaffCartFactory);
     cartShippingInformationFactory = new DaffCartShippingRateFactory();
 
     cart = cartFactory.create();

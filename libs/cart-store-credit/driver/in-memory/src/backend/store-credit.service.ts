@@ -22,7 +22,6 @@ import { DaffCustomerStoreCreditInMemoryBackendService } from '@daffodil/custome
 })
 export class DaffCartStoreCreditInMemoryBackendService implements InMemoryDbService {
   constructor(
-    private factory: DaffCartWithStoreCreditFactory,
     private customerStoreCredit: DaffCustomerStoreCreditInMemoryBackendService,
     private cart: DaffInMemoryBackendCartRootService,
   ) {}
@@ -55,7 +54,7 @@ export class DaffCartStoreCreditInMemoryBackendService implements InMemoryDbServ
   post(reqInfo: RequestInfo) {
     const cart = this.getCart(reqInfo);
     const { balance } = this.customerStoreCredit.storeCredit;
-    const grandTotal = cart?.totals.find(t => t.name === DaffCartTotalTypeEnum.grandTotal);
+    const grandTotal = cart?.totals[DaffCartTotalTypeEnum.grandTotal];
     if (grandTotal) {
       const appliedBalance = Math.min(balance, grandTotal.value);
       grandTotal.value -= appliedBalance;
@@ -70,7 +69,7 @@ export class DaffCartStoreCreditInMemoryBackendService implements InMemoryDbServ
 
   delete(reqInfo: RequestInfo) {
     const cart = this.getCart(reqInfo);
-    const grandTotal = cart?.totals.find(t => t.name === DaffCartTotalTypeEnum.grandTotal);
+    const grandTotal = cart?.totals[DaffCartTotalTypeEnum.grandTotal];
     if (grandTotal) {
       grandTotal.value += cart.appliedStoreCredit || 0;
       cart.appliedStoreCredit = 0;

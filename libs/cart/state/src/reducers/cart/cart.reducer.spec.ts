@@ -1,4 +1,6 @@
 
+import { TestBed } from '@angular/core/testing';
+
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartLoad,
@@ -40,7 +42,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
   let cart: DaffCart;
 
   beforeEach(() => {
-    cartFactory = new DaffCartFactory();
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     cart = cartFactory.create();
     error = {

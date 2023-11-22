@@ -52,7 +52,7 @@ describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
 
   describe('canActivate', () => {
     it('should allow activation when there is a payment method', () => {
-      const cart: DaffCart = new DaffCartFactory().create({
+      const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
         payment: new DaffCartPaymentFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
@@ -65,7 +65,7 @@ describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
 
       beforeEach(() => {
         spyOn(router, 'navigateByUrl');
-        const cart: DaffCart = new DaffCartFactory().create({
+        const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
           payment: null,
         });
         store.dispatch(new DaffCartLoadSuccess(cart));

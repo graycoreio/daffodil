@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { MockCart } from '@daffodil/cart/testing';
+import { DaffCartTotalFactory } from '@daffodil/cart/testing';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
@@ -19,7 +20,9 @@ export class MockDaffCartWithStoreCredit extends MockCart implements DaffCartWit
   providedIn: 'root',
 })
 export class DaffCartWithStoreCreditFactory extends DaffModelFactory<DaffCartWithStoreCredit>{
-  constructor() {
-    super(MockDaffCartWithStoreCredit);
+  constructor(
+    totalFactory: DaffCartTotalFactory,
+  ) {
+    super(MockDaffCartWithStoreCredit, totalFactory);
   }
 }

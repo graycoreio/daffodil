@@ -23,9 +23,6 @@ import {
 
 import { DemoCartViewComponent } from './cart-view.component';
 
-const cartFactory = new DaffCartFactory();
-const cart = cartFactory.create();
-
 @Component({
   selector: 'demo-cart',
   template: '',
@@ -38,6 +35,8 @@ describe('DemoCartViewComponent', () => {
   let component: DemoCartViewComponent;
   let fixture: ComponentFixture<DemoCartViewComponent>;
   let cartFacade: MockDaffCartFacade;
+  let cartFactory: DaffCartFactory;
+  let cart: DaffCart;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -55,6 +54,10 @@ describe('DemoCartViewComponent', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+
+    cart = cartFactory.create();
+
     fixture = TestBed.createComponent(DemoCartViewComponent);
     component = fixture.componentInstance;
     cartFacade = TestBed.inject(MockDaffCartFacade);

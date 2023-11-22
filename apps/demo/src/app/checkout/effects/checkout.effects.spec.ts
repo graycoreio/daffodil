@@ -20,7 +20,7 @@ describe('CheckoutEffects', () => {
   let actions$: Observable<any>;
   let effects: CheckoutEffects;
   let router: Router;
-  const cartFactory: DaffCartFactory = new DaffCartFactory();
+  let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
 
   beforeEach(() => {
@@ -34,9 +34,11 @@ describe('CheckoutEffects', () => {
       ],
     });
 
-    stubCart = cartFactory.create();
     effects = TestBed.inject(CheckoutEffects);
     router = TestBed.inject(Router);
+    cartFactory = TestBed.inject(DaffCartFactory);
+
+    stubCart = cartFactory.create();
     spyOn(router, 'navigateByUrl');
   });
 

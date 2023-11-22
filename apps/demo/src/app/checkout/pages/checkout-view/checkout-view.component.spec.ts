@@ -49,16 +49,9 @@ import { CheckoutViewComponent } from './checkout-view.component';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromDemoCheckout from '../../reducers/index';
 
-const daffodilAddressFactory = new DaffAddressFactory();
-const paymentFactory = new DaffPaymentFactory();
-const cartFactory = new DaffCartFactory();
-const cartItemFactory = new DaffCartItemFactory();
-
-const stubShippingAddress = daffodilAddressFactory.create();
-const stubPaymentInfo: PaymentInfo = paymentFactory.create();
-const stubBillingAddress: DaffAddress = daffodilAddressFactory.create();
-let stubCart: DaffCart;
-
+let stubShippingAddress;
+let stubPaymentInfo: PaymentInfo;
+let stubBillingAddress: DaffAddress;
 const stubIsShippingAddressValid = true;
 const stubSelectedShippingOptionIndex = 0;
 const stubShowPaymentView = true;
@@ -129,7 +122,12 @@ describe('CheckoutViewComponent', () => {
   let accordionItem: DaffAccordionItemComponent;
   let placeOrders;
   let store: MockStore<any>;
-  stubCart = cartFactory.create();
+  let addressFactory: DaffAddressFactory;
+  let paymentFactory: DaffPaymentFactory;
+  let cartFactory: DaffCartFactory;
+  let cartItemFactory: DaffCartItemFactory;
+
+  let stubCart: DaffCart;
   let cartFacade: MockDaffCartFacade;
 
   beforeEach(waitForAsync(() => {
@@ -158,15 +156,26 @@ describe('CheckoutViewComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckoutViewComponent);
-    component = fixture.componentInstance;
     store = TestBed.inject(MockStore);
+    cartFacade = TestBed.inject(MockDaffCartFacade);
+    addressFactory = TestBed.inject(DaffAddressFactory);
+    paymentFactory = TestBed.inject(DaffPaymentFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+
+    stubShippingAddress = addressFactory.create();
+    stubBillingAddress = addressFactory.create();
+    stubPaymentInfo = paymentFactory.create();
+    stubCart = cartFactory.create();
+    cartFacade.cart$ = new BehaviorSubject(stubCart);
+    cartFacade.loading$ = new BehaviorSubject(false);
+
     store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
     store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
     spyOn(store, 'dispatch');
-    cartFacade = TestBed.inject(MockDaffCartFacade);
-    cartFacade.cart$ = new BehaviorSubject(stubCart);
-    cartFacade.loading$ = new BehaviorSubject(false);
+
+    fixture = TestBed.createComponent(CheckoutViewComponent);
+    component = fixture.componentInstance;
 
     fixture.detectChanges();
 

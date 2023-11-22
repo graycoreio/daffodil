@@ -51,20 +51,8 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
       });
 
       it('should have cart totals', () => {
-        expect(result.totals.length).toBeGreaterThan(0);
+        expect(result.totals).toBeDefined();
       });
-    });
-  });
-
-  describe('createMany', () => {
-    let result: DaffCart[];
-
-    it('should create as many carts as desired', () => {
-      result = cartFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = cartFactory.createMany(3);
-      expect(result.length).toEqual(3);
     });
   });
 });

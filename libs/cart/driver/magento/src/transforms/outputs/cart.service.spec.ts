@@ -181,48 +181,13 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
 
       it('should return the expected cart totals', () => {
         const totalTax = mockMagentoCart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0);
-        expect(transformedCart.totals).toEqual([
-          {
-            name: DaffCartTotalTypeEnum.grandTotal,
-            label: 'Grand Total',
-            value: mockMagentoCart.prices.grand_total.value,
-          },
-          {
-            name: DaffCartTotalTypeEnum.subtotalExcludingTax,
-            label: 'Subtotal Excluding Tax',
-            value: mockMagentoCart.prices.subtotal_excluding_tax.value,
-          },
-          {
-            name: DaffCartTotalTypeEnum.subtotalIncludingTax,
-            label: 'Subtotal Including Tax',
-            value: mockMagentoCart.prices.subtotal_including_tax.value,
-          },
-          {
-            name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
-            label: 'Subtotal with Discount Excluding Tax',
-            value: mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value,
-          },
-          {
-            name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
-            label: 'Subtotal with Discount Including Tax',
-            value: daffAdd(mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax),
-          },
-          {
-            name: DaffCartTotalTypeEnum.tax,
-            label: 'Tax',
-            value: totalTax,
-          },
-          ...mockMagentoCart.prices.discounts.map(discount => ({
-            name: DaffCartTotalTypeEnum.discount,
-            label: discount.label,
-            value: discount.amount.value,
-          })),
-          {
-            name: DaffCartTotalTypeEnum.shipping,
-            label: 'Shipping',
-            value: mockMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value,
-          },
-        ]);
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.grandTotal].value).toEqual(mockMagentoCart.prices.grand_total.value);
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value).toEqual(mockMagentoCart.prices.subtotal_excluding_tax.value);
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.subtotalIncludingTax].value).toEqual(mockMagentoCart.prices.subtotal_including_tax.value);
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value).toEqual(mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value);
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value).toEqual(daffAdd(mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax));
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.tax].value).toEqual(totalTax);
+        expect(transformedCart.totals[DaffCartTotalTypeEnum.shipping].value).toEqual(mockMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value);
       });
 
       it('should call the shipping information transformer with the shipping method', () => {

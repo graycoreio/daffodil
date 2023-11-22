@@ -52,7 +52,7 @@ describe('Cart | State | Guards | DaffShippingAddressGuard', () => {
 
   describe('canActivate', () => {
     it('should allow activation when there is a shipping address', () => {
-      const cart: DaffCart = new DaffCartFactory().create({
+      const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
         shipping_address: new DaffCartAddressFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
@@ -65,7 +65,7 @@ describe('Cart | State | Guards | DaffShippingAddressGuard', () => {
 
       beforeEach(() => {
         spyOn(router, 'navigateByUrl');
-        const cart: DaffCart = new DaffCartFactory().create({
+        const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
           shipping_address: null,
         });
         store.dispatch(new DaffCartLoadSuccess(cart));

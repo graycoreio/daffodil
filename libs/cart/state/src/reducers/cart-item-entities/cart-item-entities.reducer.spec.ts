@@ -37,10 +37,12 @@ import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
 describe('Cart | Cart Item Entities Reducer', () => {
   let error: DaffStateError;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
+  let cartFactory: DaffCartFactory;
   const initialState = daffCartItemEntitiesAdapter().getInitialState();
 
   beforeEach(() => {
     statefulCartItemFactory = TestBed.inject(DaffStatefulCartItemFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     error = {
       code: 'code',
@@ -100,7 +102,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should retain the existing daffState when a CartItemDeleteSuccessAction is triggered', () => {
-      const cartItemDeleteSuccess = new DaffCartItemDeleteSuccess(new DaffCartFactory().create({
+      const cartItemDeleteSuccess = new DaffCartItemDeleteSuccess(cartFactory.create({
         items: [new DaffCartItemFactory().create({ id: stubStatefulCartItem.id })],
       }));
 
@@ -109,7 +111,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should retain the existing daffState when a CartLoadSuccessAction is triggered', () => {
-      const cartLoadSuccess = new DaffCartLoadSuccess(new DaffCartFactory().create({
+      const cartLoadSuccess = new DaffCartLoadSuccess(cartFactory.create({
         items: [new DaffCartItemFactory().create({ id: stubStatefulCartItem.id })],
       }));
 
@@ -118,7 +120,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('should retain the existing daffState when a CartClearSuccessAction is triggered', () => {
-      const cartClearSuccess = new DaffCartClearSuccess(new DaffCartFactory().create({
+      const cartClearSuccess = new DaffCartClearSuccess(cartFactory.create({
         items: [new DaffCartItemFactory().create({ id: stubStatefulCartItem.id })],
       }));
 
@@ -128,7 +130,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     it('should retain the existing daffState when a CartItemUpdateSuccessAction is triggered', () => {
       const cartItem = new DaffCartItemFactory().create();
-      const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(new DaffCartFactory().create({
+      const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cartFactory.create({
         items: [
           stubStatefulCartItem,
           cartItem,
@@ -196,7 +198,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
       cartItems = statefulCartItemFactory.createMany(2, {
         daffErrors: [error],
       });
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart, cartItems[0].id);
@@ -231,7 +233,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
       statefulCartItem = statefulCartItemFactory.create({
         daffErrors: [error],
       });
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: [statefulCartItem],
       });
       const cartItemAddSuccess = new DaffCartItemAddSuccess(cart);
@@ -266,7 +268,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
       statefulCartItem = statefulCartItemFactory.create({
         daffErrors: [error],
       });
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: [statefulCartItem],
       });
       const cartItemAddSuccess = new DaffCartItemAddSuccess({
@@ -302,7 +304,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const cartItemDeleteSuccess = new DaffCartItemDeleteSuccess(cart);
@@ -327,7 +329,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const cartItemDeleteOutOfStockSuccess = new DaffCartItemDeleteOutOfStockSuccess(cart);
@@ -352,7 +354,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const cartLoadSuccess = new DaffCartLoadSuccess(cart);
@@ -381,7 +383,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const resolveCartSuccess = new DaffResolveCartSuccess(cart);
@@ -410,7 +412,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const resolveCartPartialSuccess = new DaffResolveCartPartialSuccess(cart, []);
@@ -439,7 +441,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: cartItems,
       });
       const cartLoadPartialSuccess = new DaffCartLoadPartialSuccess(cart, []);
@@ -466,7 +468,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     let result: EntityState<DaffStatefulCartItem>;
 
     beforeEach(() => {
-      cart = new DaffCartFactory().create({
+      cart = cartFactory.create({
         items: [],
       });
       const cartItemAddSuccess = new DaffCartClearSuccess(cart);

@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
@@ -22,7 +24,7 @@ describe('Order | Order Reducer', () => {
 
   beforeEach(() => {
     orderFactory = new DaffOrderFactory();
-    stubCart = new DaffCartFactory().create();
+    stubCart = TestBed.inject(DaffCartFactory).create();
     stubOrder = orderFactory.create();
   });
 

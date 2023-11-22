@@ -52,7 +52,7 @@ describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
 
   describe('canActivate', () => {
     it('should allow activation when there is a billing address', () => {
-      const cart: DaffCart = new DaffCartFactory().create({
+      const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
         billing_address: new DaffCartAddressFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
@@ -65,7 +65,7 @@ describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
 
       beforeEach(() => {
         spyOn(router, 'navigateByUrl');
-        const cart: DaffCart = new DaffCartFactory().create({
+        const cart: DaffCart = TestBed.inject(DaffCartFactory).create({
           billing_address: null,
         });
         store.dispatch(new DaffCartLoadSuccess(cart));

@@ -66,8 +66,8 @@ describe('Cart', () => {
   let cartItemCountElement: DebugElement;
   let cartItemCountComponent: MockCartItemCountComponent;
 
-  const cartFactory = new DaffCartFactory();
-  const cart = cartFactory.create();
+  let cartFactory: DaffCartFactory;
+  let cart: DaffCart;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -89,9 +89,13 @@ describe('Cart', () => {
   }));
 
   beforeEach(() => {
+    daffCartFacade = TestBed.inject(MockDaffCartFacade);
+    cartFactory = TestBed.inject(DaffCartFactory);
+
+    cart = cartFactory.create();
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    daffCartFacade = TestBed.inject(MockDaffCartFacade);
     daffCartFacade.items$ = new BehaviorSubject(cart.items);
     daffCartFacade.isCartEmpty$ = new BehaviorSubject(true);
     wrapper.cartValue = cart;

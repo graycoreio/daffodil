@@ -1339,7 +1339,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartSubtotal', () => {
     it('returns cart subtotal', () => {
       const selector = store.pipe(select(selectCartSubtotal));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalExcludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1348,7 +1348,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartGrandTotal', () => {
     it('returns cart grand total', () => {
       const selector = store.pipe(select(selectCartGrandTotal));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.grandTotal).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.grandTotal].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1357,7 +1357,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartSubtotalExcludingTax', () => {
     it('returns cart subtotal excluding tax', () => {
       const selector = store.pipe(select(selectCartSubtotalExcludingTax));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalExcludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1366,7 +1366,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartSubtotalIncludingTax', () => {
     it('returns cart subtotal including tax', () => {
       const selector = store.pipe(select(selectCartSubtotalIncludingTax));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalIncludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalIncludingTax].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1375,7 +1375,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartSubtotalWithDiscountExcludingTax', () => {
     it('returns cart subtotal with discount excluding tax', () => {
       const selector = store.pipe(select(selectCartSubtotalWithDiscountExcludingTax));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1384,7 +1384,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartSubtotalWithDiscountIncludingTax', () => {
     it('returns cart subtotal with discount including tax', () => {
       const selector = store.pipe(select(selectCartSubtotalWithDiscountIncludingTax));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1393,7 +1393,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartTotalTax', () => {
     it('returns cart total tax', () => {
       const selector = store.pipe(select(selectCartTotalTax));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.tax).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.tax].value });
 
       expect(selector).toBeObservable(expected);
     });
@@ -1402,7 +1402,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartDiscountTotals', () => {
     it('returns cart discount totals', () => {
       const selector = store.pipe(select(selectCartDiscountTotals));
-      const expected = cold('a', { a: cart.totals.filter(total => total.name === DaffCartTotalTypeEnum.discount) });
+      const expected = cold('a', { a: [cart.totals[DaffCartTotalTypeEnum.discount]]});
 
       expect(selector).toBeObservable(expected);
     });
@@ -1411,7 +1411,7 @@ describe('Cart | Selector | Cart', () => {
   describe('selectCartShippingTotal', () => {
     it('returns cart shipping total', () => {
       const selector = store.pipe(select(selectCartShippingTotal));
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.shipping).value });
+      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.shipping].value });
 
       expect(selector).toBeObservable(expected);
     });

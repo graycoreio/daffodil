@@ -31,7 +31,10 @@ import {
   DaffCartDriver,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
-import { DaffCartStateRootSlice } from '@daffodil/cart/state';
+import {
+  DaffCartFacade,
+  DaffCartStateRootSlice,
+} from '@daffodil/cart/state';
 
 import { daffCartSelectors } from '../../selectors/cart-selector';
 import {
@@ -44,7 +47,7 @@ import {
 export class CartResolverEffects {
   constructor(
     private actions$: Actions,
-    private store: Store<DaffCartStateRootSlice>,
+    private facade: DaffCartFacade,
     private cartStorage: DaffCartStorageService,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface,
   ) {}
@@ -52,7 +55,7 @@ export class CartResolverEffects {
 
   onResolveCart$: Observable<Action> = createEffect(() => this.actions$.pipe(
 	  ofType(CartResolverActionTypes.ResolveCartAction),
-	  switchMap(() => this.selectStoreCart().pipe(
+	  switchMap(() => this.facade.cart$.pipe(
 	    take(1),
 	    switchMap(cart => {
 	      if (cart) {
@@ -63,10 +66,6 @@ export class CartResolverEffects {
 	    }),
 	  )),
   ));
-
-  selectStoreCart(): Observable<DaffCart> {
-	  return this.store.pipe(select(daffCartSelectors.selectCartValue));
-  }
 
   private getCartHandler(): Observable<Action> {
 	  return this.driver.get(this.cartStorage.getCartId()).pipe(

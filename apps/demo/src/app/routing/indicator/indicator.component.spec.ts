@@ -47,8 +47,9 @@ describe('DemoIndicatorComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DemoIndicatorComponent);
     router = TestBed.inject(MockRouter);
+
+    fixture = TestBed.createComponent(DemoIndicatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

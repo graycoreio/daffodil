@@ -51,8 +51,8 @@ describe('CartSidebar', () => {
 
   let summaryElement: DebugElement;
 
-  const cartFactory = new DaffCartFactory();
-  const cart = cartFactory.create();
+  let cartFactory: DaffCartFactory;
+  let cart: DaffCart;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -68,6 +68,10 @@ describe('CartSidebar', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+
+    cart = cartFactory.create();
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     wrapper.cartValue = cart;

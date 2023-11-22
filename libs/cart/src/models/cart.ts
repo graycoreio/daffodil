@@ -45,7 +45,7 @@ export interface DaffCart extends DaffIdentifiable {
   /**
    * A list of totals for the cart.
    */
-  totals: DaffCartTotal[];
+  totals: Record<DaffCartTotal['name'], DaffCartTotal>;
   /**
    * The selected shipping method.
    */

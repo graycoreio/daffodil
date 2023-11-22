@@ -28,11 +28,12 @@ class MockProductGridComponent {
 }
 
 describe('BestSellersComponent', () => {
+  let productFactory: DaffProductFactory;
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
   let bestSellersFacade: MockDaffBestSellersFacade;
   let productGridComponent: MockProductGridComponent;
-  const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
+  let stubProducts: DaffProduct[];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -49,8 +50,12 @@ describe('BestSellersComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BestSellersComponent);
+    productFactory = TestBed.inject(DaffProductFactory);
     bestSellersFacade = TestBed.inject(MockDaffBestSellersFacade);
+
+    stubProducts = productFactory.createMany(2);
+
+    fixture = TestBed.createComponent(BestSellersComponent);
     bestSellersFacade.bestSellers$.next(stubProducts);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -30,9 +30,9 @@ import {
 
 import { ThankYouViewComponent } from './thank-you-view.component';
 
-const cartFactory = new DaffCartFactory();
-const cartItemFactory = new DaffCartItemFactory();
-const stubCart: DaffCart = cartFactory.create({ items: [cartItemFactory.create()]});
+let cartFactory: DaffCartFactory;
+let cartItemFactory: DaffCartItemFactory;
+let stubCart: DaffCart;
 
 @Component({ selector: 'demo-thank-you', template: '' })
 class MockThankYouComponent {}
@@ -78,6 +78,11 @@ describe('ThankYouViewComponent', () => {
   }));
 
   beforeEach(() => {
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+
+    stubCart = cartFactory.create({ items: [cartItemFactory.create()]});
+
     fixture = TestBed.createComponent(ThankYouViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
