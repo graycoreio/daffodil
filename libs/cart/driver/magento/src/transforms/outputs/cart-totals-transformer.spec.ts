@@ -2,26 +2,36 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffCartTotalTypeEnum } from '@daffodil/cart';
 import { MagentoCart } from '@daffodil/cart/driver/magento';
-import { MagentoCartFactory } from '@daffodil/cart/driver/magento/testing';
+import {
+  MagentoCartFactory,
+  MagentoCartShippingMethodFactory,
+  MagentoShippingAddressFactory,
+} from '@daffodil/cart/driver/magento/testing';
 import { daffAdd } from '@daffodil/core';
 
 import { transformCartTotals } from './cart-totals-transformer';
 
 describe('transformCartTotals', () => {
+  let magentoShippingAddressFactory: MagentoShippingAddressFactory;
+  let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;
+
   let stubMagentoCart: MagentoCart;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
+    magentoShippingAddressFactory = TestBed.inject(MagentoShippingAddressFactory);
+    magentoShippingMethodFactory = TestBed.inject(MagentoCartShippingMethodFactory);
     stubMagentoCart = TestBed.inject(MagentoCartFactory).create({
       shipping_addresses: [
-        {
-          selected_shipping_method: {
+        magentoShippingAddressFactory.create({
+          selected_shipping_method: magentoShippingMethodFactory.create({
             amount: {
               value: 100,
+              currency: 'USD',
             },
-          },
-        },
+          }),
+        }),
       ],
     });
   });

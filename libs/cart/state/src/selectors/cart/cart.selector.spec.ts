@@ -175,7 +175,10 @@ describe('Cart | Selector | Cart', () => {
       shipping_address: cartAddressFactory.create(),
       billing_address: cartAddressFactory.create(),
       payment: paymentFactory.create(),
-      shipping_information: shippingMethodFactory.create(),
+      shipping_information: {
+        address_id: 'id',
+        ...shippingMethodFactory.create(),
+      },
     });
     loading = {
       [DaffCartOperationType.Cart]: DaffState.Complete,
