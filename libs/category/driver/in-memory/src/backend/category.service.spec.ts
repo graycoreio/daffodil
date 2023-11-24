@@ -71,13 +71,13 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryBackendCategoryServi
       });
 
       it('should set totalPages', () => {
-        const totalProducts = result.body.category.count;
+        const totalProducts = result.body.categoryPageMetadata.count;
         const pageSize = result.body.categoryPageMetadata.pageSize;
         expect(result.body.categoryPageMetadata.totalPages).toEqual(Math.ceil(totalProducts/pageSize));
       });
 
       it('should set no more products on the category than the pageSize', () => {
-        expect(result.body.categoryPageMetadata.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageMetadata.pageSize);
+        expect(result.body.categoryPageMetadata.ids.length).toBeLessThanOrEqual(result.body.categoryPageMetadata.pageSize);
       });
 
       it('should set pageSize when the pageSize is provided', () => {

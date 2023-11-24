@@ -133,11 +133,6 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryService', () =>
     mockMagentoProduct = magentoProductFactory.create();
     mockMagentoCategory = magentoCategoryFactory.create({
       uid: mockCategory.id,
-      products: {
-        items: [
-          mockMagentoProduct,
-        ],
-      },
     });
     mockMagentoProductSortFields = magentoSortFieldsFactory.create();
     mockMagentoPriceAggregation = priceAggregateFactory.create();

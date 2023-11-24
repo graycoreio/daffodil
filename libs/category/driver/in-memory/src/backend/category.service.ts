@@ -62,7 +62,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     ].map(id => {
       const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 
-      return this.categoryFactory.create({ id, url: `/${id}`, product_ids: allCategoryProductIds, count: allCategoryProductIds.length });
+      return this.categoryFactory.create({ id, url: `/${id}`, product_ids: allCategoryProductIds, total_products: allCategoryProductIds.length });
     });
   }
 
@@ -97,7 +97,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
         pageSize: this.generatePageSize(reqInfo),
         currentPage: this.getCurrentPageParam(reqInfo),
         totalPages: this.getTotalPages(category.product_ids, this.generatePageSize(reqInfo)),
-        product_ids: this.trimProductIdsToSinglePage(category.product_ids, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
+        ids: this.trimProductIdsToSinglePage(category.product_ids, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo)),
         count: category.total_products,
       });
 
