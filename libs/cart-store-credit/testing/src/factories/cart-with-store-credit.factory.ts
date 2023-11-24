@@ -20,7 +20,7 @@ export class MockDaffCartWithStoreCredit extends MockCart implements DaffCartWit
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCartWithStoreCreditFactory extends DaffModelFactory<DaffCartWithStoreCredit>{
+export class DaffCartWithStoreCreditFactory extends DaffModelFactory<DaffCartWithStoreCredit, typeof MockDaffCartWithStoreCredit>{
   constructor(
     totalFactory: DaffCartTotalFactory,
     shippingInformationFactory: DaffCartShippingInformationFactory,
