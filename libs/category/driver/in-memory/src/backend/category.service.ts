@@ -49,16 +49,16 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
   ) {
     this._categories = [
-      '1001',
-      '1002',
-      '1003',
-      '1004',
-      '1005',
-      '1006',
-      '1007',
-      '1008',
-      '1009',
-      '1010',
+      '2001',
+      '2002',
+      '2003',
+      '2004',
+      '2005',
+      '2006',
+      '2007',
+      '2008',
+      '2009',
+      '2010',
     ].map(id => {
       const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 

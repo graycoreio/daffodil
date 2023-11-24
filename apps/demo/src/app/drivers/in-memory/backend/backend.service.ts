@@ -9,6 +9,7 @@ import {
 import { DaffInMemoryBackendAuthService } from '@daffodil/auth/driver/in-memory';
 import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
+import { DaffInMemoryBackendCategoryService } from '@daffodil/category/driver/in-memory';
 import { DaffOrder } from '@daffodil/checkout';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendGeographyService } from '@daffodil/geography/driver/in-memory';
@@ -28,6 +29,7 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
     private navigationTestingService: DaffInMemoryBackendNavigationService,
     private authTestingService: DaffInMemoryBackendAuthService,
     private geographyTestingService: DaffInMemoryBackendGeographyService,
+    private categoryTestingService: DaffInMemoryBackendCategoryService,
   ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
@@ -57,6 +59,8 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
       return this.cartTestingService.get(reqInfo);
     } else if (collectionName === 'countries') {
       return this.geographyTestingService.get(reqInfo);
+    } else if (collectionName === 'category') {
+      return this.categoryTestingService.get(reqInfo);
     }
   }
 

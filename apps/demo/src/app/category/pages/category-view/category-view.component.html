@@ -1,0 +1,7 @@
+<daff-container size="lg">
+  <ng-container *ngIf="(loading$ | async) === false">
+    <h1>{{(category$ | async).name}}</h1>
+    <demo-product-grid [products]="products$ | async"></demo-product-grid>
+  </ng-container>
+  <daff-loading-icon *ngIf="loading$ | async"></daff-loading-icon>
+<daff-container>

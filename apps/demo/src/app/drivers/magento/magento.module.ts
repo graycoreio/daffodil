@@ -12,6 +12,7 @@ import { HttpLink } from 'apollo-angular/http';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
+import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magento';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
@@ -37,6 +38,7 @@ const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
     DaffNavigationMagentoDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
     DaffGeographyMagentoDriverModule.forRoot(),
+    DaffCategoryMagentoDriverModule.forRoot(),
     ApolloModule,
   ],
 })
