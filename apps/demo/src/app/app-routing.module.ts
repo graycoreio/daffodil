@@ -4,7 +4,16 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffProductPageIdResolver } from '@daffodil/product/routing';
+import {
+  DaffExternalRouterModule,
+  daffDataPathUrlMatcher,
+  daffInsertDataPathStrategy,
+} from '@daffodil/external-router';
+import { DaffExternalRouterExistenceGuard } from '@daffodil/external-router/routing';
+import {
+  DaffProductPageIdResolver,
+  DaffProductPageUrlResolver,
+} from '@daffodil/product/routing';
 
 import { EmptyCartResolver } from './cart/routing-resolvers/resolvers/empty-cart-resolver.service';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
@@ -32,6 +41,16 @@ export const appRoutes: Routes = [
         },
       },
       {
+        matcher: daffDataPathUrlMatcher,
+        data: {
+          daffExternalRouteType: 'PRODUCT',
+        },
+        component: ProductViewComponent,
+        resolve: {
+          product: DaffProductPageUrlResolver,
+        },
+      },
+      {
         path: 'checkout',
         loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule),
       },
@@ -40,7 +59,8 @@ export const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/404',
+    canActivate: [DaffExternalRouterExistenceGuard],
+    children: [],
   },
 ];
 
@@ -49,6 +69,20 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
     }),
+    DaffExternalRouterModule.forRoot({
+      failedResolutionPath: '404',
+      notFoundResolutionPath: '404',
+    }, [
+      // {
+      //   type: 'CATEGORY',
+      //   route: {},
+      // },
+      {
+        type: 'PRODUCT',
+        insertionStrategy: daffInsertDataPathStrategy,
+        route: {},
+      },
+    ]),
   ],
   exports: [
     RouterModule,
