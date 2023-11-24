@@ -1,46 +1,46 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartShippingRate } from '@daffodil/cart';
+import { DaffCartShippingInformation } from '@daffodil/cart';
 
-import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
+import { DaffCartShippingInformationFactory } from './cart-shipping-information.factory';
 
-describe('Cart | Testing | Factories | CartShippingRateFactory', () => {
+describe('@daffodil/cart/testing | DaffCartShippingInformationFactory', () => {
 
-  let cartShippingRateFactory: DaffCartShippingRateFactory;
+  let cartShippingInformationFactory: DaffCartShippingInformationFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCartShippingRateFactory],
+      providers: [DaffCartShippingInformationFactory],
     });
 
-    cartShippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
+    cartShippingInformationFactory = TestBed.inject(DaffCartShippingInformationFactory);
   });
 
   it('should be created', () => {
-    expect(cartShippingRateFactory).toBeTruthy();
+    expect(cartShippingInformationFactory).toBeTruthy();
   });
 
   describe('create', () => {
 
-    let result: DaffCartShippingRate;
+    let result: DaffCartShippingInformation;
 
     beforeEach(() => {
-      result = cartShippingRateFactory.create();
+      result = cartShippingInformationFactory.create();
     });
 
-    xit('should return a CartShippingRate with all required fields defined', () => {
+    xit('should return a CartShippingInformation with all required fields defined', () => {
 
     });
   });
 
   describe('createMany', () => {
-    let result: DaffCartShippingRate[];
+    let result: DaffCartShippingInformation[];
 
     it('should create as many cart shipping rates as desired', () => {
-      result = cartShippingRateFactory.createMany(2);
+      result = cartShippingInformationFactory.createMany(2);
       expect(result.length).toEqual(2);
 
-      result = cartShippingRateFactory.createMany(3);
+      result = cartShippingInformationFactory.createMany(3);
       expect(result.length).toEqual(3);
     });
   });

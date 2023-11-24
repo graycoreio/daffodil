@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { DaffCart } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+import { DaffCartShippingInformationFactory } from './cart-shipping-information.factory';
 import { DaffCartTotalFactory } from './cart-total.factory';
 
 export class MockCart implements DaffCart {
@@ -14,7 +15,7 @@ export class MockCart implements DaffCart {
   items = [];
   billing_address = null;
   shipping_address = null;
-  shipping_information = null;
+  shipping_information = this.shippingInformationFactory.create();
   totals = this.totalFactory.createAllTotals();
   payment = null;
   available_shipping_methods = [];
@@ -22,7 +23,8 @@ export class MockCart implements DaffCart {
   extra_attributes = {};
 
   constructor(
-    private totalFactory: DaffCartTotalFactory,
+    protected totalFactory: DaffCartTotalFactory,
+    protected shippingInformationFactory: DaffCartShippingInformationFactory,
   ) {}
 };
 
@@ -32,7 +34,8 @@ export class MockCart implements DaffCart {
 export class DaffCartFactory extends DaffModelFactory<DaffCart>{
   constructor(
     totalFactory: DaffCartTotalFactory,
+    shippingInformationFactory: DaffCartShippingInformationFactory,
   ) {
-    super(MockCart, totalFactory);
+    super(MockCart, totalFactory, shippingInformationFactory);
   }
 }

@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import { MockCart } from '@daffodil/cart/testing';
 import { DaffCartTotalFactory } from '@daffodil/cart/testing';
+import { DaffCartShippingInformationFactory } from '@daffodil/cart/testing';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
@@ -22,7 +23,8 @@ export class MockDaffCartWithStoreCredit extends MockCart implements DaffCartWit
 export class DaffCartWithStoreCreditFactory extends DaffModelFactory<DaffCartWithStoreCredit>{
   constructor(
     totalFactory: DaffCartTotalFactory,
+    shippingInformationFactory: DaffCartShippingInformationFactory,
   ) {
-    super(MockDaffCartWithStoreCredit, totalFactory);
+    super(MockDaffCartWithStoreCredit, totalFactory, shippingInformationFactory);
   }
 }

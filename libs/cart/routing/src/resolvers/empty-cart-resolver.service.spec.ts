@@ -107,7 +107,7 @@ describe('DaffEmptyCartResolver', () => {
             done();
           });
 
-          stubCart = cartFactory.create({ items: cartItemFactory.create() });
+          stubCart = cartFactory.create({ items: cartItemFactory.createMany(1) });
           cartResolverSubject.next(stubCart);
         });
       });
