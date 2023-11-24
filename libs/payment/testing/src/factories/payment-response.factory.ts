@@ -17,7 +17,7 @@ export class MockPaymentResponse implements DaffPaymentResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaymentResponseFactory extends DaffModelFactory<DaffPaymentResponse>{
+export class DaffPaymentResponseFactory extends DaffModelFactory<DaffPaymentResponse, typeof MockPaymentResponse>{
   constructor() {
     super(MockPaymentResponse);
   }

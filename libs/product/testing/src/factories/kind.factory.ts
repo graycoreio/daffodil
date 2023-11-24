@@ -33,7 +33,7 @@ export class DaffProductKindFactory extends DaffModelFactory<DaffProduct> {
    * Creates a mock product of random kind.
    * Includes extra product kinds that may be provided by optional product packages.
    */
-  create(partial = {}): DaffProduct {
+  create(partial: Partial<DaffProduct> = {}): DaffProduct {
     return this._randomFactory.create(partial);
   }
 }

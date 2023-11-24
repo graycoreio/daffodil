@@ -39,17 +39,17 @@ import { IDaffModelFactory } from './factory.interface';
  * }
  * ```
  */
-export abstract class DaffModelFactory<T extends Record<string, any>> implements IDaffModelFactory<T> {
-  _instantiationArgs: ConstructorParameters<Constructable<T>>;
+export abstract class DaffModelFactory<T extends Record<string, any>, Klass extends Constructable<T> = Constructable<T>> implements IDaffModelFactory<T> {
+  _instantiationArgs: ConstructorParameters<Klass>;
 
   constructor(
-    public type?: Constructable<T>,
-    ...args: ConstructorParameters<Constructable<T>>
+    public type?: Klass,
+    ...args: ConstructorParameters<Klass>
   ) {
     this._instantiationArgs = args;
   }
 
-  create(partial = {}): T {
+  create(partial: Partial<T> = {}): T {
     if (!this.type) {
       throw new Error('`type` is required if `create` is not overriden.');
     }
@@ -59,7 +59,7 @@ export abstract class DaffModelFactory<T extends Record<string, any>> implements
     };
   }
 
-  createMany(qty = 1, partial = {}): T[] {
+  createMany(qty = 1, partial: Partial<T> = {}): T[] {
     return range(0, qty - 1).map(() => this.create(partial));
   }
 }
