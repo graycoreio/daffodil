@@ -49,7 +49,7 @@ export abstract class DaffModelFactory<T extends Record<string, any>> implements
     this._instantiationArgs = args;
   }
 
-  create(partial = {}): T {
+  create(partial: Partial<T> = {}): T {
     if (!this.type) {
       throw new Error('`type` is required if `create` is not overriden.');
     }
@@ -59,7 +59,7 @@ export abstract class DaffModelFactory<T extends Record<string, any>> implements
     };
   }
 
-  createMany(qty = 1, partial = {}): T[] {
+  createMany(qty = 1, partial: Partial<T> = {}): T[] {
     return range(0, qty - 1).map(() => this.create(partial));
   }
 }
