@@ -180,7 +180,7 @@ describe('Cart | Selector | Cart', () => {
         ...shippingMethodFactory.create(),
       },
     });
-    cart.shipping_information.address_id = String(cart.shipping_address.address_id);
+    cart.shipping_information.address_id = String(cart.shipping_address.id);
     loading = {
       [DaffCartOperationType.Cart]: DaffState.Complete,
       [DaffCartOperationType.Item]: DaffState.Complete,
