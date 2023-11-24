@@ -30,7 +30,7 @@ export class DaffProductExtensionFactory<T extends DaffProduct = DaffProduct> ex
    * Includes extra product types that may be provided by optional product packages.
    * This includes all the extra extension factories that may be provided by optional product packages.
    */
-  create(partial = {}): T {
+  create(partial: Partial<T> = {}): T {
     const kind = this.productKindFactory.create(partial);
 
     return Object.assign(
