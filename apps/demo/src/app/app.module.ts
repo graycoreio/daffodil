@@ -11,6 +11,7 @@ import { DaffProgressIndicatorModule } from '@daffodil/design';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoCartRootModule } from './cart/cart-root.module';
+import { CategoryModule } from './category/category.module';
 import { TemplateModule } from './core/template/template/template.module';
 import { DemoDriverMap } from './drivers/map';
 import { NotFoundModule } from './misc/not-found/not-found.module';
@@ -43,6 +44,7 @@ import { environment } from '../environments/environment';
     DemoRoutingComponentModule,
     DemoCartRootModule,
     ProductModule,
+    CategoryModule,
     ThankYouModule,
     TemplateModule,
     NotFoundModule,

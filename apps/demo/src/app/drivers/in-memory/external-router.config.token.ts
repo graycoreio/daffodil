@@ -12,7 +12,7 @@ export const DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG
   = new InjectionToken<DaffExternalRouterDriverInMemoryConfig>('DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG', {
     factory: () => {
       const productBackend = inject(DaffInMemoryBackendProductService);
-      // const categoryBackend = inject(DaffInMemoryBackendCategoryService);
+      const categoryBackend = inject(DaffInMemoryBackendCategoryService);
 
       return {
         resolver: url => {
@@ -27,16 +27,16 @@ export const DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG
             };
           }
 
-          // const category = categoryBackend.categories.find(c => c.url === url);
-          // if (category) {
-          //   return {
-          //     id: category.id,
-          //     url,
-          //     // TODO(griest024): don't hardcode this
-          //     type: 'CATEGORY',
-          //     code: 200,
-          //   };
-          // }
+          const category = categoryBackend.categories.find(c => c.url === url);
+          if (category) {
+            return {
+              id: category.id,
+              url,
+              // TODO(griest024): don't hardcode this
+              type: 'CATEGORY',
+              code: 200,
+            };
+          }
 
           return DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION;
         },

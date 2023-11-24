@@ -51,6 +51,17 @@ export const appRoutes: Routes = [
         },
       },
       {
+        path: 'category',
+        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
+      },
+      {
+        matcher: daffDataPathUrlMatcher,
+        data: {
+          daffExternalRouteType: 'CATEGORY',
+        },
+        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
+      },
+      {
         path: 'checkout',
         loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule),
       },
@@ -73,10 +84,11 @@ export const appRoutes: Routes = [
       failedResolutionPath: '404',
       notFoundResolutionPath: '404',
     }, [
-      // {
-      //   type: 'CATEGORY',
-      //   route: {},
-      // },
+      {
+        type: 'CATEGORY',
+        insertionStrategy: daffInsertDataPathStrategy,
+        route: {},
+      },
       {
         type: 'PRODUCT',
         insertionStrategy: daffInsertDataPathStrategy,
