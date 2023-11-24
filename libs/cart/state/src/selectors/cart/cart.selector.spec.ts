@@ -48,7 +48,6 @@ import {
   DaffCartItemFactory,
   DaffCartAddressFactory,
   DaffCartPaymentFactory,
-  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 import {
   DaffState,
@@ -57,14 +56,13 @@ import {
 
 import { getCartSelectors } from './cart.selector';
 
-describe('Cart | Selector | Cart', () => {
+describe('@daffodil/cart/state | getCartSelectors', () => {
   let store: Store<DaffCartStateRootSlice>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let cartAddressFactory: DaffCartAddressFactory;
   let paymentFactory: DaffCartPaymentFactory;
-  let shippingMethodFactory: DaffCartShippingRateFactory;
 
   let orderId: string;
   let cart: DaffCart;
@@ -163,7 +161,6 @@ describe('Cart | Selector | Cart', () => {
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
     cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
     paymentFactory = TestBed.inject(DaffCartPaymentFactory);
-    shippingMethodFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     orderId = 'id';
     error = {
@@ -175,10 +172,6 @@ describe('Cart | Selector | Cart', () => {
       shipping_address: cartAddressFactory.create(),
       billing_address: cartAddressFactory.create(),
       payment: paymentFactory.create(),
-      shipping_information: {
-        address_id: 'id',
-        ...shippingMethodFactory.create(),
-      },
     });
     cart.shipping_information.address_id = String(cart.shipping_address.id);
     loading = {
