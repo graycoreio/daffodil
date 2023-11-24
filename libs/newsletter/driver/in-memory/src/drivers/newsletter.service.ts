@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffNewsletterUnion } from '@daffodil/newsletter';
+import {
+  DaffNewsletterSubmission,
+  DaffNewsletterResponse,
+} from '@daffodil/newsletter';
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 /**
@@ -13,7 +16,7 @@ import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{
+export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface {
   url = '/api/newsletters/';
 
   constructor(private http: HttpClient) { }
@@ -21,11 +24,11 @@ export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInter
   /**
    * Sends your newsletter submission data.
    *
-   * @param payload DaffNewsletterUnion
-   * @returns An Observable of DaffNewsletterUnion
+   * @param payload DaffNewsletterSubmission
+   * @returns An Observable of DaffNewsletterResponse
    */
-  send(payload: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
-    return this.http.post<DaffNewsletterUnion>(this.url, payload);
+  send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse> {
+    return this.http.post<DaffNewsletterResponse>(this.url, payload);
   }
 
 }

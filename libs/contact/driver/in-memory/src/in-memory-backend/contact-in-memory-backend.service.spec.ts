@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 
-import { DaffContactUnion } from '@daffodil/contact';
+import { DaffContactRequest } from '@daffodil/contact/driver';
 
 import { DaffInMemoryBackendContactService } from './contact-in-memory-backend.service';
 
@@ -26,25 +25,24 @@ describe('DaffContactInMemoryBackend', () => {
     });
 
     it('should intialize empty on createDb', () => {
-      expect(result.forums).toEqual([]);
+      expect(result.submissions).toEqual([]);
     });
 
     it('should validate that its not empty', () => {
-      const forumSubmission: DaffContactUnion = undefined;
-      expect(contactTestingService.post(forumSubmission)).toEqual(Error('Payload is undefined'));
+      const submission: DaffContactRequest = undefined;
+      expect(contactTestingService.post(submission)).toEqual(Error('Payload is undefined'));
     });
 
     it('should validate that it doesnt already exist', () => {
-
-      const forumSubmission: DaffContactUnion = { email: 'test@test.com' };
+      const forumSubmission: DaffContactRequest = { email: 'test@test.com' };
       contactTestingService.post(forumSubmission);
       expect(contactTestingService.post(forumSubmission)).toEqual(Error('Already contains submission'));
     });
 
     it('should be able to submit a valid form', () => {
-      const forumSubmission: DaffContactUnion = { email: 'new@test.com' };
+      const forumSubmission: DaffContactRequest = { email: 'new@test.com' };
       contactTestingService.post(forumSubmission).subscribe((resp) => {
-        expect(resp).toEqual(forumSubmission);
+        expect(resp).toEqual({ message: 'Success!' });
       });
     });
   });

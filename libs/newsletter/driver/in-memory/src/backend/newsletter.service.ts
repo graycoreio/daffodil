@@ -5,13 +5,18 @@ import {
   ParsedRequestUrl,
 } from 'angular-in-memory-web-api';
 
-import { DaffNewsletterUnion } from '@daffodil/newsletter';
+import { DaffNewsletterStorage } from '../models/newsletter_storage';
 
+/**
+ * An in-memory service that handles newsletter requests.
+ *
+ * @inheritdoc
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
-  newsletters: DaffNewsletterUnion[] = [];
+  newsletters: DaffNewsletterStorage[] = [];
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);

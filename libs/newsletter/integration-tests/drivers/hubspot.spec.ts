@@ -5,7 +5,6 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterDriver,
   DaffNewsletterServiceInterface,
@@ -13,7 +12,7 @@ import {
 import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
 
 describe('DaffNewsletterHubspotDriver', () => {
-  let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
+  let newsletterService: DaffNewsletterServiceInterface;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -39,9 +38,7 @@ describe('DaffNewsletterHubspotDriver', () => {
 
   it('should allow a developer to configure and send newsletter subscription requests to the HubspotForms API', () => {
     const newsletterSubmission = { email: 'test@email.com' };
-    newsletterService.send(newsletterSubmission).subscribe((resp) => {
-      expect(resp).toEqual(newsletterSubmission);
-    });
+    newsletterService.send(newsletterSubmission).subscribe();
     const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/123123/123123');
     expect(req.request.body).toEqual(jasmine.objectContaining({
       fields: [Object({ name: 'email', value: 'test@email.com' })],

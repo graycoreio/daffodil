@@ -9,7 +9,6 @@ import {
   of,
 } from 'rxjs';
 
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterServiceInterface,
   DaffNewsletterDriver,
@@ -28,12 +27,9 @@ import { DaffNewsletterEffects } from './newsletter.effects';
 
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
+  let effects: DaffNewsletterEffects;
   const mockNewsletter = { email: 'test@test.com' };
-  let daffNewsletterDriver: DaffNewsletterServiceInterface<
-  DaffNewsletterSubmission,
-  any
-  >;
+  let daffNewsletterDriver: DaffNewsletterServiceInterface;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -61,7 +57,7 @@ describe('NewsletterEffects', () => {
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of({ message: 'mystring' }));
 
         actions$ = hot('--a', { a: newsletterSubscribe });
         expected = cold('--b', { b: successAction });
@@ -90,7 +86,7 @@ describe('NewsletterEffects', () => {
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of({ message: 'mystring' }));
 
         actions$ = hot('--a', { a: newsletterRetry });
         expected = cold('--b', { b: successAction });
