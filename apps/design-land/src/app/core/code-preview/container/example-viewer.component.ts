@@ -14,11 +14,6 @@ import { CodeExampleService } from '../service/code-example.service';
 })
 export class DesignLandExampleViewerContainer implements OnInit {
   /**
-   * The title of the example
-   */
-  @Input() title: string;
-
-  /**
    * The lookup name of the example
    */
   @Input() example: string;
