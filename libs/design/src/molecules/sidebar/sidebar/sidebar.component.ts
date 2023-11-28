@@ -19,12 +19,17 @@ import {
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+import { isClosing } from './is-closing';
+import { isOpening } from './is-opening';
 import {
   daffFocusableElementsSelector,
   DaffFocusStackService,
 } from '../../../core/focus/public_api';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
+import {
+  DaffSidebarAnimationState,
+  getAnimationState,
+} from '../animation/sidebar-animation-state';
 import { getSidebarAnimationWidth } from '../animation/sidebar-animation-width';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarSide } from '../helper/sidebar-side';
@@ -135,37 +140,35 @@ export class DaffSidebarComponent {
    * transformSidebar animation is complete.
    */
   @HostListener('@transformSidebar.done', ['$event']) onAnimationComplete(e: AnimationEvent) {
+    if(isOpening(<DaffSidebarAnimationState>e.fromState, <DaffSidebarAnimationState>e.toState)) {
+      this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
+
+      const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(daffFocusableElementsSelector));
+
+      this._focusStack.push(this._doc.activeElement);
+
+      if(focusableChild) {
+        focusableChild.focus();
+      } else {
+        this._elementRef.nativeElement.tabIndex = 0;
+        (<HTMLElement>this._elementRef.nativeElement).focus();
+      }
+    }
+
+    if(isClosing(<DaffSidebarAnimationState>e.fromState, <DaffSidebarAnimationState>e.toState)) {
+      if(this._focusTrap) {
+        this._focusTrap.destroy();
+        this._focusTrap = undefined;
+        this._focusStack.pop();
+      }
+    }
+
     /**
      * This is used in sidebar to determine when to hide the visibility
      * of the sidebar so that the animation does not jump as the element is hidden.
      */
     if (e.toState === 'closed' || e.toState === 'under-closed') {
       this._elementRef.nativeElement.style.visibility = 'hidden';
-    }
-
-    if(!this.open && this._focusTrap) {
-      this._focusTrap.destroy();
-      this._focusTrap = undefined;
-      this._focusStack.pop();
-
-      return;
-    }
-
-    if(!(this.mode === 'over' || this.mode === 'under')) {
-      return;
-    }
-
-    this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
-
-    const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(daffFocusableElementsSelector));
-
-    this._focusStack.push(this._doc.activeElement);
-
-    if(focusableChild) {
-      focusableChild.focus();
-    } else {
-      this._elementRef.nativeElement.tabIndex = 0;
-      (<HTMLElement>this._elementRef.nativeElement).focus();
     }
   }
 }
