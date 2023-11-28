@@ -3,7 +3,7 @@ import { DaffSidebarMode } from '../helper/sidebar-mode';
 export type DaffSidebarAnimationState = 'open' | 'closed' | 'under-open' | 'under-closed' | 'none';
 
 export const getAnimationState = (open: boolean, mode: DaffSidebarMode): DaffSidebarAnimationState => {
-  if(mode === 'side') {
+  if(mode === 'side' || mode === 'side-fixed') {
     return 'none';
   }
 
