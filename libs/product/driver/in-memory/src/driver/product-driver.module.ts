@@ -5,7 +5,11 @@ import {
 } from '@angular/core';
 
 import { DaffProductDriver } from '@daffodil/product/driver';
-import { DaffProductTestingModule } from '@daffodil/product/testing';
+import {
+  DaffDefaultProductFactory,
+  DaffProductTestingModule,
+  daffProvideProductExtraFactoryTypes,
+} from '@daffodil/product/testing';
 
 import { DaffInMemoryProductService } from './product.service';
 
@@ -27,6 +31,7 @@ export class DaffProductInMemoryDriverModule {
           provide: DaffProductDriver,
           useExisting: DaffInMemoryProductService,
         },
+        daffProvideProductExtraFactoryTypes(DaffDefaultProductFactory),
       ],
     };
   }
