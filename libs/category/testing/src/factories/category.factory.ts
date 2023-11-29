@@ -39,6 +39,11 @@ export class DaffCategoryFactory extends DaffModelFactory<DaffCategory, typeof M
     super(MockCategory, breadcrumbFactory);
   }
 
+  /**
+   * Creates a category tree of specified depth, optionally using the passed product IDs.
+   * This is very useful for creating a category tree that closely resembles those found in the wild.
+   * Each child has a minimum of half of the parent's products.
+   */
   createTree(depth: number, productIds: DaffProduct['id'][] = [], partial: Partial<DaffCategory> = {}): DaffCategory {
     if (depth > 0) {
       const childrenCount = faker.datatype.number({ min: 1, max: depth * 2 });
