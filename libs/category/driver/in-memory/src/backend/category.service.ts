@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { faker } from '@faker-js/faker';
 import {
   InMemoryDbService,
   RequestInfoUtilities,
@@ -14,7 +15,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { randomSubset } from '@daffodil/core';
+import { collect } from '@daffodil/core';
 import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
@@ -48,22 +49,13 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private metadataFactory: DaffCategoryPageMetadataFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
   ) {
-    this._categories = [
-      '2001',
-      '2002',
-      '2003',
-      '2004',
-      '2005',
-      '2006',
-      '2007',
-      '2008',
-      '2009',
-      '2010',
-    ].map(id => {
-      const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
-
-      return this.categoryFactory.create({ id, url: `/${id}`, product_ids: allCategoryProductIds, total_products: allCategoryProductIds.length });
-    });
+    this._categories = collect(
+      this.categoryFactory.createTree(
+        3,
+        this.productInMemoryBackendService.products.map(({ id }) => id),
+      ),
+      (category) => category?.children || [],
+    );
   }
 
   /**
@@ -129,10 +121,6 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     tempIds.splice(pageSize, tempIds.length-pageSize);
 
     return tempIds;
-  }
-
-  protected generateProductIdSubset(products: DaffProduct[]): DaffProduct['id'][] {
-    return randomSubset(products).map(product => product.id);
   }
 
   protected generatePageSize(reqInfo) {
