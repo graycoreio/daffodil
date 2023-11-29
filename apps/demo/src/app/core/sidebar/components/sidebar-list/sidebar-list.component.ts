@@ -18,8 +18,4 @@ export class SidebarListComponent {
   get nextLevel() {
     return this.level + 1;
   }
-
-  getNavigationPath(path: DaffNavigationTree['path']) {
-    return '/' + path;
-  }
 }

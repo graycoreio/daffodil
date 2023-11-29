@@ -10,7 +10,6 @@ export class MockNavigationTree implements DaffNavigationTree {
   id = faker.datatype.uuid();
   name = '';
   url = randomUrl();
-  path = faker.commerce.department().toString().toLowerCase();
   total_products = faker.datatype.number({ min: 1, max: 10 });
   children = [...Array(faker.datatype.number({ min:1, max:3 }))].map(() => this.fakeTree(3));
   children_count = 0;
@@ -28,7 +27,6 @@ export class MockNavigationTree implements DaffNavigationTree {
 	      id,
 	      url: randomUrl(),
 	      name: faker.commerce.department(),
-	      path: faker.commerce.department().toString().toLowerCase(),
 	      total_products: faker.datatype.number({ min: 1, max: 20 }),
 	      children: [],
 	      children_count: 0,
@@ -46,7 +44,6 @@ export class MockNavigationTree implements DaffNavigationTree {
 	      id,
 	      url: randomUrl(),
 	      name: faker.commerce.department(),
-	      path: faker.commerce.department().toString().toLowerCase(),
 	      total_products: faker.datatype.number({ min: 1, max: 20 }),
 	      children,
 	      children_count: children.length,
@@ -64,7 +61,7 @@ export class MockNavigationTree implements DaffNavigationTree {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffNavigationTreeFactory extends DaffModelFactory<DaffNavigationTree>{
+export class DaffNavigationTreeFactory extends DaffModelFactory<DaffNavigationTree, typeof MockNavigationTree>{
   constructor(){
     super(MockNavigationTree);
   }

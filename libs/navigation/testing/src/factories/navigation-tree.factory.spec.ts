@@ -32,7 +32,6 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
       expect(result.id).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.url).toBeDefined();
-      expect(result.path).toBeDefined();
       expect(result.children_count).toBeDefined();
       expect(result.total_products).toBeDefined();
       expect(result.breadcrumbs).toBeDefined();
