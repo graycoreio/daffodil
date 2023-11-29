@@ -129,12 +129,15 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     }
 
     const viewportHeight = sidebarViewportHeight(this.sidebars);
-    if (this._viewportHasHeight !== viewportHeight) {
-      this._viewportHasHeight = viewportHeight;
+    if (viewportHeight) {
       this._elementRef.nativeElement.style.height = '100dvh';
       this._elementRef.nativeElement.style.minHeight = '100%';
-      this.cdRef.markForCheck();
+      
     }
+    else {
+
+    }
+    this._viewportHasHeight = viewportHeight;
   }
 
   /**
