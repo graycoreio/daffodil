@@ -1,4 +1,8 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfoUtilities,
@@ -9,14 +13,22 @@ import {
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
+import {
+  DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
+  DaffNavigationInMemorySeedDataProvider,
+} from '../seed-data-provider/public_api';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
   navigationTree: DaffNavigationTree;
 
-  constructor(private navigationTreeFactory: DaffNavigationTreeFactory) {
-    this.navigationTree = this.navigationTreeFactory.create();
+  constructor(
+    private navigationTreeFactory: DaffNavigationTreeFactory,
+    @Inject(DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER) @Optional() seedDataProvider: DaffNavigationInMemorySeedDataProvider | null,
+  ) {
+    this.navigationTree = seedDataProvider?.() || this.navigationTreeFactory.create();
   }
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
