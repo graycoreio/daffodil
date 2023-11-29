@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { DaffCategory } from '@daffodil/category';
 import {
   DaffCategoryPageLoadSuccess,
@@ -8,12 +10,11 @@ import { DaffCategoryFactory } from '@daffodil/category/testing';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 import { daffCategoryEntitiesReducer } from './category-entities.reducer';
 
-describe('Category | Category Entities Reducer', () => {
-
+describe('@daffodil/category/state | daffCategoryEntitiesReducer', () => {
   let categoryFactory: DaffCategoryFactory;
 
   beforeEach(() => {
-    categoryFactory = new DaffCategoryFactory();
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
   });
 
   describe('when an unknown action is triggered', () => {

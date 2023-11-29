@@ -1,5 +1,3 @@
-export { DaffCategoryFactory } from './category.factory';
-export {
-  DaffCategoryPageMetadataFactory,
-  MockCategoryPageMetadata,
-} from './category-page-metadata.factory';
+export * from './category.factory';
+export * from './category-breadcrumb.factory';
+export * from './category-page-metadata.factory';
