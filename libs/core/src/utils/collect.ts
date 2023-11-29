@@ -1,5 +1,3 @@
-type Dictionary = Record<string | number | symbol, any>;
-
 /**
  * Recurses through a tree, collecting each element in that tree and returning it in an array.
  * The value of getKey should be a field that contains a list of the same type of object.
