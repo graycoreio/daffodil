@@ -6,10 +6,11 @@
   [interactable]="_backdropInteractable"
   (backdropClicked)="_backdropClicked()"></daff-backdrop>
 
+<div class="daff-sidebar-viewport__nav" [@transformContent]="_animationState" [style.padding-left.px]="_navPadLeft" [style.padding-right.px]="_navPadRight">
+  <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
+</div> 
+
 <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
-  <div class="daff-sidebar-viewport__nav">
-    <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
-  </div>
   <div class="daff-sidebar-viewport__inner" [style.padding-left.px]="_contentPadLeft" [style.padding-right.px]="_contentPadRight">
     <ng-content></ng-content>
   </div>

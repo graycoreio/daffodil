@@ -19,7 +19,6 @@ import {
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { isClosing } from './is-closing';
 import { isOpening } from './is-opening';
 import {
   daffFocusableElementsSelector,
@@ -130,7 +129,7 @@ export class DaffSidebarComponent {
    * visibility of the sidebar so that the animation does not jump as the element is shown.
    */
   @HostListener('@transformSidebar.start', ['$event']) onAnimationStart(e: AnimationEvent) {
-    if (e.toState === 'open' || e.toState === 'under-open') {
+    if (e.toState === 'open' || e.toState === 'under-open' || e.toState === 'side-fixed-open') {
       this._elementRef.nativeElement.style.visibility = 'visible';
     }
   }
@@ -153,9 +152,7 @@ export class DaffSidebarComponent {
         this._elementRef.nativeElement.tabIndex = 0;
         (<HTMLElement>this._elementRef.nativeElement).focus();
       }
-    }
-
-    if(isClosing(<DaffSidebarAnimationState>e.fromState, <DaffSidebarAnimationState>e.toState)) {
+    } else {
       if(this._focusTrap) {
         this._focusTrap.destroy();
         this._focusTrap = undefined;
@@ -167,7 +164,7 @@ export class DaffSidebarComponent {
      * This is used in sidebar to determine when to hide the visibility
      * of the sidebar so that the animation does not jump as the element is hidden.
      */
-    if (e.toState === 'closed' || e.toState === 'under-closed') {
+    if (e.toState === 'closed' || e.toState === 'under-closed' || e.toState === 'side-fixed-closed') {
       this._elementRef.nativeElement.style.visibility = 'hidden';
     }
   }

@@ -8,9 +8,9 @@ describe('SidebarAnimationState Calculation', () => {
     expect(getAnimationState(true, DaffSidebarModeEnum.Side)).toEqual(DaffSidebarAnimationStates.NONE);
   });
 
-  it('should return `none` if the sidebar mode is `side-fixed`', () => {
-    expect(getAnimationState(false, DaffSidebarModeEnum.SideFixed)).toEqual(DaffSidebarAnimationStates.NONE);
-    expect(getAnimationState(true, DaffSidebarModeEnum.SideFixed)).toEqual(DaffSidebarAnimationStates.NONE);
+  it('should return `side-fixed-open` or `side-fixed-closed` if the sidebar mode is `side-fixed`', () => {
+    expect(getAnimationState(false, DaffSidebarModeEnum.SideFixed)).toEqual(DaffSidebarAnimationStates.SIDEFIXEDCLOSED);
+    expect(getAnimationState(true, DaffSidebarModeEnum.SideFixed)).toEqual(DaffSidebarAnimationStates.SIDEFIXEDOPEN);
   });
 
   it('should return `under-open` if it is open and the sidebar mode is `under', () => {

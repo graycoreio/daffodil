@@ -24,15 +24,20 @@
 		position: fixed;
 		top: 0;
 		width: 100%;
-		z-index: variables.$daff-sidebar-content-z-index;
+		z-index: variables.$daff-sidebar-nav-z-index;
 
 		&:empty {
 			display: none;
 		}
 		
 		&:not(:empty) {
-			+ #{$root}__inner {
+			+ #{$root}__content {
 				margin-top: var(--daff-sidebar-side-fixed-top-shift);
+			}
+
+			&.not-bounded + .side-fixed {
+				top: var(--daff-sidebar-side-fixed-top-shift);
+				height: calc(100dvh - var(--daff-sidebar-side-fixed-top-shift));
 			}
 		}
 	}
@@ -41,11 +46,14 @@
 		height: 100%;
 		position: absolute;
 		width: 100%;
+		pointer-events: auto;
 		z-index: variables.$daff-sidebar-backdrop-z-index;
 	}
 }
 
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {
+	transform: translateX(0px);
+
 	.daff-sidebar-viewport__inner {
 		padding-left: 0px !important;
 		padding-right: 0px !important;

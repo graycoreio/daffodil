@@ -8,6 +8,8 @@ import {
   QueryList,
   AfterContentChecked,
   ElementRef,
+  Input,
+  HostBinding,
 } from '@angular/core';
 
 import { sidebarViewportBackdropInteractable } from './utils/backdrop-interactable';
@@ -17,9 +19,15 @@ import {
   sidebarViewportContentShift,
 } from './utils/content-shift';
 import { sidebarViewportHeight } from './utils/viewport-height';
-import { daffSidebarAnimations } from '../animation/sidebar-animation';
+import {
+  DaffSidebarAnimationStates,
+  daffSidebarAnimations,
+} from '../animation/sidebar-animation';
 import { getAnimationState } from '../animation/sidebar-animation-state';
-import { DaffSidebarViewportAnimationState } from '../animation/sidebar-viewport-animation-state';
+import {
+  DaffSidebarViewportAnimationStateWithParams,
+  getSidebarViewportAnimationState,
+} from '../animation/sidebar-viewport-animation-state';
 import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
@@ -54,6 +62,17 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked {
 
+  /**
+   * Whether or not the navbar should be bounded.
+   * Note that this is really only available
+   * when there is a `side-fixed` sidebar.
+   */
+  @Input() boundedNav = true;
+
+  @HostBinding('class.boundedNav') get boundedNavClass() {
+    return this.boundedNav;
+  }
+
   constructor(
     private cdRef: ChangeDetectorRef,
     private _elementRef: ElementRef<HTMLElement>,
@@ -78,9 +97,19 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
   public _contentPadLeft = 0;
 
   /**
+   * The left padding on the nav when left side-fixed sidebars are open.
+   */
+  public _navPadLeft = 0;
+
+  /**
    * The right padding on the content when right side-fixed sidebars are open.
    */
   public _contentPadRight = 0;
+
+  /**
+   * The right padding on the content when right side-fixed sidebars are open.
+   */
+  public _navPadRight = 0;
 
   /**
    * Whether or not the backdrop is interactable
@@ -92,7 +121,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
   /**
    * The animation state
    */
-  _animationState: DaffSidebarViewportAnimationState = { value: 'closed', params: { shift: '0px' }};
+  _animationState: DaffSidebarViewportAnimationStateWithParams = { value: DaffSidebarAnimationStates.CLOSED, params: { shift: '0px' }};
 
   /**
    * Event fired when the backdrop is clicked. This is often used to close the sidebar.
@@ -117,6 +146,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextLeftPadding = sidebarViewportContentPadding(this.sidebars, 'left');
     if(this._contentPadLeft !== nextLeftPadding) {
       this._contentPadLeft = nextLeftPadding;
+      this._navPadLeft = this.boundedNav ? this._contentPadLeft : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
@@ -124,20 +154,10 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextRightPadding = sidebarViewportContentPadding(this.sidebars, 'right');
     if(this._contentPadRight !== nextRightPadding) {
       this._contentPadRight = nextRightPadding;
+      this._navPadRight = this.boundedNav ? this._contentPadRight : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
-
-    const viewportHeight = sidebarViewportHeight(this.sidebars);
-    if (viewportHeight) {
-      this._elementRef.nativeElement.style.height = '100dvh';
-      this._elementRef.nativeElement.style.minHeight = '100%';
-      
-    }
-    else {
-
-    }
-    this._viewportHasHeight = viewportHeight;
   }
 
   /**
@@ -148,8 +168,8 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
    */
   private updateAnimationState() {
     this._animationState = {
-      value: getAnimationState(
-        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open), false), DaffSidebarModeEnum.Over,
+      value: getSidebarViewportAnimationState(
+        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open), false),
       ),
       params: { shift: this._shift },
     };
