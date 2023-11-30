@@ -33,6 +33,12 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryBackendCategoryServi
     expect(backend.categories.length).toBeGreaterThan(0);
   });
 
+  it('should create a root category tree of depth 3 with products IDs from the product backend', () => {
+    expect(backend.rootCategory.children[0].children[0].children.length).toBeGreaterThan(0);
+    expect(backend.rootCategory.product_ids).toEqual(jasmine.arrayContaining(inMemoryBackendProductService.products.map(({ id }) => id)));
+    expect(backend.rootCategory.total_products).toEqual(inMemoryBackendProductService.products.length);
+  });
+
   describe('get', () => {
 
     let reqInfoStub;
@@ -46,7 +52,7 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryBackendCategoryServi
         const paramsMap = new Map()
           .set('pageSize', [stubPageSize])
           .set('currentPage', [stubCurrentPage]);
-        id = '2001';
+        id = backend.rootCategory.id;
         reqInfoStub = {
           id,
           req: {
@@ -64,7 +70,7 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryBackendCategoryServi
 
       it('should return a GetCategoryResponse', () => {
         expect(result.body).toEqual({
-          category: backend.categories[0],
+          category: backend.rootCategory,
           categoryPageMetadata: backend.categoryPageMetadata,
           products: inMemoryBackendProductService.products,
         });

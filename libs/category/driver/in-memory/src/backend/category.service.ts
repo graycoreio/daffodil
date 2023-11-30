@@ -27,8 +27,13 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
   providedIn: 'root',
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
+  protected _root: DaffCategory;
   protected _categories: DaffCategory[] = [];
   protected _categoryPageMetadata: DaffCategoryPageMetadata;
+
+  get rootCategory(): DaffCategory {
+    return this._root;
+  }
 
   /**
    * The collection of categories in the backend.
@@ -49,11 +54,12 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private metadataFactory: DaffCategoryPageMetadataFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService,
   ) {
+    this._root = this.categoryFactory.createTree(
+      3,
+      this.productInMemoryBackendService.products.map(({ id }) => id),
+    );
     this._categories = collect(
-      this.categoryFactory.createTree(
-        3,
-        this.productInMemoryBackendService.products.map(({ id }) => id),
-      ),
+      this._root,
       (category) => category?.children || [],
     );
   }
