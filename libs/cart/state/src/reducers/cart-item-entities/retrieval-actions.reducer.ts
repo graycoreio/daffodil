@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
 
+import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import {
   DaffCartRetrievalActionInjection,
   daffCartRetrievalGetResponse,
@@ -11,7 +12,6 @@ import {
   DaffCartItemStateEnum,
   DaffStatefulCartItem,
 } from '../../models/stateful-cart-item';
-import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 
 /**
  * Reducer function factory that updates cart item entities according to a list of passed cart retrieval actions.
