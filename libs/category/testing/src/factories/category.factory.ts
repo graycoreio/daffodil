@@ -2,25 +2,28 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffCategory } from '@daffodil/category';
+import { randomSubset } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffProduct } from '@daffodil/product';
+
+import { DaffCategoryBreadcrumbFactory } from './category-breadcrumb.factory';
 
 export class MockCategory implements DaffCategory {
   id = faker.datatype.uuid();
-  url = `/${faker.internet.domainWord()}.html`;
+  url = `/${faker.helpers.unique(faker.internet.domainWord)}.html`;
   canonicalUrl = faker.internet.url();
-  name = faker.commerce.productMaterial();
-  description = faker.random.words(Math.floor(Math.random() * 20));
-  meta_title = faker.commerce.productMaterial();
-  meta_description = faker.random.words(Math.floor(Math.random() * 20));
-  breadcrumbs = [{
-    id: faker.datatype.uuid(),
-    name: faker.commerce.productMaterial(),
-    level: faker.datatype.number({ min: 1, max: 5 }),
-    url: faker.commerce.productMaterial(),
-  }];
+  name = faker.commerce.department();
+  description = faker.commerce.productDescription();
+  meta_title = faker.commerce.department();
+  meta_description = faker.commerce.productDescription();
+  breadcrumbs = this.breadcrumbFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
   children_count = faker.datatype.number({ min: 1, max: 10 });
-  total_products = 1;
+  total_products = faker.datatype.number({ min: 0, max: 9999 });
   product_ids = [faker.datatype.number({ min: 1, max: 100 }).toString()];
+
+  constructor(
+    protected breadcrumbFactory: DaffCategoryBreadcrumbFactory,
+  ) {}
 }
 
 /**
@@ -29,8 +32,42 @@ export class MockCategory implements DaffCategory {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCategoryFactory extends DaffModelFactory<DaffCategory>{
-  constructor() {
-    super(MockCategory);
+export class DaffCategoryFactory extends DaffModelFactory<DaffCategory, typeof MockCategory>{
+  constructor(
+    breadcrumbFactory: DaffCategoryBreadcrumbFactory,
+  ) {
+    super(MockCategory, breadcrumbFactory);
+  }
+
+  /**
+   * Creates a category tree of specified depth, optionally using the passed product IDs.
+   * This is very useful for creating a category tree that closely resembles those found in the wild.
+   * Each child has a minimum of half of the parent's products.
+   */
+  createTree(depth: number, productIds: DaffProduct['id'][] = [], partial: Partial<DaffCategory> = {}): DaffCategory {
+    if (depth > 0) {
+      const childrenCount = faker.datatype.number({ min: 1, max: depth * 2 });
+
+      return this.create({
+        children: Array(childrenCount).fill(0).map(() =>
+          this.createTree(
+            depth - 1,
+            randomSubset(productIds, faker.datatype.number({ min: Math.floor(productIds.length / 2), max: productIds.length })),
+          ),
+        ),
+        children_count: childrenCount,
+        product_ids: productIds,
+        total_products: productIds.length,
+        ...partial,
+      });
+    }
+
+    return this.create({
+      children: [],
+      children_count: 0,
+      product_ids: productIds,
+      total_products: productIds.length,
+      ...partial,
+    });
   }
 }
