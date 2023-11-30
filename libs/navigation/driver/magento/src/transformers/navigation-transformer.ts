@@ -21,7 +21,6 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
     return {
       id,
       url: `/${node.url_path}${node.url_suffix}`,
-      path: id,
       name: node.name,
       total_products: node.product_count,
       children_count: node.children_count,

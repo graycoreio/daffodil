@@ -11,10 +11,6 @@ import { DaffNavigationBreadcrumb } from './navigation-breadcrumb';
  */
 export interface DaffGenericNavigationTree<T extends DaffGenericNavigationTree<T>> extends DaffLocatable, DaffIdentifiable {
   name: string;
-  /**
-   * @deprecated prefer the `url` field
-   */
-  path: ID;
   children_count?: number;
   total_products?: number;
   children?: T[];

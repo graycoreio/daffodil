@@ -5,16 +5,16 @@
 
 <ng-container *ngIf="level > 0">
   <daff-link-set class="demo-sidebar-list__level-{{ level }}">
-    <a *ngIf="level === 1" [routerLink]="getNavigationPath(tree.id)" daffLinkSetHeading daff-link-set-item>
+    <a *ngIf="level === 1" [routerLink]="tree.url" daffLinkSetHeading daff-link-set-item>
       {{ tree.name }}
     </a>
     <ng-container *ngFor="let child of tree.children">
-      <ng-container *ngIf="child.children.length > 0">
-        <a [routerLink]="getNavigationPath(tree.id)" daffLinkSetSubheading
+      <ng-container *ngIf="child.children?.length > 0">
+        <a [routerLink]="child.url" daffLinkSetSubheading
           daff-link-set-item>{{ child.name }}</a>
         <demo-sidebar-list [tree]="child" [level]="nextLevel"></demo-sidebar-list>
       </ng-container>
-      <a *ngIf="child.children.length === 0" [routerLink]="getNavigationPath(child.id)"
+      <a *ngIf="!child.children?.length" [routerLink]="child.url"
         daff-link-set-item>{{ child.name }}</a>
     </ng-container>
   </daff-link-set>
