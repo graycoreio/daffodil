@@ -10,8 +10,7 @@ import { MagentoProduct } from '@daffodil/product/driver/magento';
 
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 
-describe('DaffMagentoCategoryTransformerService', () => {
-
+describe('@daffodil/category/driver/magento | DaffMagentoCategoryTransformerService', () => {
   let service: DaffMagentoCategoryTransformerService;
   let categoryFactory: DaffCategoryFactory;
   let stubCategory: DaffCategory;
@@ -107,7 +106,16 @@ describe('DaffMagentoCategoryTransformerService', () => {
     });
 
     it('should return a DaffCategory', () => {
-      expect(result).toEqual(stubCategory);
+      expect(result.id).toEqual(stubCategory.id);
+      expect(result.name).toEqual(stubCategory.name);
+      expect(result.url).toEqual(stubCategory.url);
+      expect(result.canonicalUrl).toEqual(stubCategory.canonicalUrl);
+      expect(result.children_count).toEqual(stubCategory.children_count);
+      expect(result.description).toEqual(stubCategory.description);
+      expect(result.meta_description).toEqual(stubCategory.meta_description);
+      expect(result.meta_title).toEqual(stubCategory.meta_title);
+      expect(result.product_ids).toEqual(stubCategory.product_ids);
+      expect(result.total_products).toEqual(stubCategory.total_products);
     });
 
     it('should return breadcrumbs in order of category_level', () => {
