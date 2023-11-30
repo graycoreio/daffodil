@@ -62,6 +62,12 @@ export class DaffCategoryFactory extends DaffModelFactory<DaffCategory, typeof M
       });
     }
 
-    return this.create(partial);
+    return this.create({
+      children: [],
+      children_count: 0,
+      product_ids: productIds,
+      total_products: productIds.length,
+      ...partial,
+    });
   }
 }

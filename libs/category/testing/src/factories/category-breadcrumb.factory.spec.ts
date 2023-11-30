@@ -4,20 +4,19 @@ import { DaffCategoryBreadcrumb } from '@daffodil/category';
 
 import { DaffCategoryBreadcrumbFactory } from './category-breadcrumb.factory';
 
-describe('@daffodil/category | DaffCategoryBreadcrumbFactory', () => {
-
-  let categoryFactory;
+describe('@daffodil/category/testing | DaffCategoryBreadcrumbFactory', () => {
+  let factory: DaffCategoryBreadcrumbFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [DaffCategoryBreadcrumbFactory],
     });
 
-    categoryFactory = TestBed.inject(DaffCategoryBreadcrumbFactory);
+    factory = TestBed.inject(DaffCategoryBreadcrumbFactory);
   });
 
   it('should be created', () => {
-    expect(categoryFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
@@ -25,7 +24,7 @@ describe('@daffodil/category | DaffCategoryBreadcrumbFactory', () => {
     let result: DaffCategoryBreadcrumb;
 
     beforeEach(() => {
-      result = categoryFactory.create();
+      result = factory.create();
     });
 
     it('should return a Category with all required fields defined', () => {
