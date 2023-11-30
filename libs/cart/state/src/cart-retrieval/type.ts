@@ -40,7 +40,7 @@ export interface DaffCartRetrievalActionTransformedInjection<T extends Action = 
 /**
  * Represents an injection of a cart retrieval action.
  * These actions are typically dispatched when an operation that mutates or loads the cart completes.
- * These actions are natively understood by Daffodil reducers and will automatically
+ * Actions provided to {@link DAFF_CART_RETRIEVAL_ACTIONS} are natively understood by Daffodil reducers and will automatically
  * populate the appropriate pieces of state when they are dispatched.
  */
 export type DaffCartRetrievalActionInjection = DaffCartRetrievalActionDirectInjection | DaffCartRetrievalActionTransformedInjection;
