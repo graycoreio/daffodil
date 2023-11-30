@@ -114,8 +114,8 @@ describe('@daffodil/category/driver/magento | DaffMagentoCategoryTransformerServ
       expect(result.description).toEqual(stubCategory.description);
       expect(result.meta_description).toEqual(stubCategory.meta_description);
       expect(result.meta_title).toEqual(stubCategory.meta_title);
-      expect(result.product_ids).toEqual(stubCategory.product_ids);
-      expect(result.total_products).toEqual(stubCategory.total_products);
+      expect(result.product_ids).toEqual(jasmine.arrayContaining(mockProducts.map(({ sku }) => sku)));
+      expect(result.total_products).toEqual(mockProducts.length);
     });
 
     it('should return breadcrumbs in order of category_level', () => {
