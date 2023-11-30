@@ -22,13 +22,17 @@ import {
   providedIn: 'root',
 })
 export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
-  navigationTree: DaffNavigationTree;
+  private _navigationTree: DaffNavigationTree;
+
+  get navigationTree(): DaffNavigationTree {
+    return this.seedDataProvider?.() || this._navigationTree;
+  }
 
   constructor(
     private navigationTreeFactory: DaffNavigationTreeFactory,
-    @Inject(DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER) @Optional() seedDataProvider: DaffNavigationInMemorySeedDataProvider | null,
+    @Inject(DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER) @Optional() private seedDataProvider: DaffNavigationInMemorySeedDataProvider | null,
   ) {
-    this.navigationTree = seedDataProvider?.() || this.navigationTreeFactory.create();
+    this._navigationTree = seedDataProvider?.() || this.navigationTreeFactory.create();
   }
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
