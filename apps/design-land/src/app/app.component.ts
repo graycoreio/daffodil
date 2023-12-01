@@ -12,7 +12,6 @@ import { CALLOUT_EXAMPLES } from '@daffodil/design/callout/examples';
 import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
 import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
 import { CONTAINER_EXAMPLES } from '@daffodil/design/container/examples';
-import { DROPDOWN_EXAMPLES } from '@daffodil/design/dropdown/examples';
 import { HERO_EXAMPLES } from '@daffodil/design/hero/examples';
 import { IMAGE_EXAMPLES } from '@daffodil/design/image/examples';
 import { INPUT_EXAMPLES } from '@daffodil/design/input/examples';
@@ -27,6 +26,7 @@ import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
 import { PROGRESS_BAR_EXAMPLES } from '@daffodil/design/progress-bar/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
+import { SELECT_EXAMPLES } from '@daffodil/design/select/examples';
 import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 import { TOAST_EXAMPLES } from '@daffodil/design/toast/examples';
 import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
@@ -53,7 +53,7 @@ export class DesignLandAppComponent {
       ...CALLOUT_EXAMPLES,
       ...CHECKBOX_EXAMPLES,
       ...CONTAINER_EXAMPLES,
-      ...DROPDOWN_EXAMPLES,
+      ...SELECT_EXAMPLES,
       ...HERO_EXAMPLES,
       ...LOADING_ICON_EXAMPLES,
       ...MEDIA_GALLERY_EXAMPLES,

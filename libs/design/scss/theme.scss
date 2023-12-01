@@ -37,6 +37,7 @@
 @use '../navbar/src/navbar-theme' as navbar;
 @use '../notification/src/notification-theme' as notification;
 @use '../paginator/src/paginator-theme' as paginator;
+@use '../src/molecules/select/select-theme' as select;
 @use '../sidebar/src/sidebar-theme' as sidebar;
 @use '../progress-bar/src/progress-bar-theme' as progress-bar;
 @use '../scss/state/skeleton/mixins' as skeleton;
@@ -74,7 +75,7 @@
 	@include article.daff-article-theme($theme);
 	@include callout.daff-callout-theme($theme);
 	@include card.daff-card-theme($theme);
-	@include dropdown.daff-dropdown-theme($theme);
+	@include select.daff-select-theme($theme);
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
 	@include media-gallery.daff-media-gallery-theme($theme);
