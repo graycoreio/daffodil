@@ -27,7 +27,7 @@ export interface MagentoCart {
       amount: MagentoMoney;
       label: string;
     }[];
-    discounts: {
+    discounts?: {
       amount: MagentoMoney;
       label: string;
     }[];
