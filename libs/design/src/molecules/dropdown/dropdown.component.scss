@@ -1,0 +1,60 @@
+@use '../../../scss/interactions';
+
+.daff-dropdown {
+	$root: &;
+	display: inline-block;
+	min-width: 240px;
+
+	.daff-suffix {
+		transition: transform 150ms;
+	}
+
+	&#{$root}--open {
+		#{$root}__header {
+			border-radius: 4px 4px 0 0;
+		}
+
+		.daff-suffix {
+			transform: rotate(180deg);
+		}
+	}
+
+	&#{$root}.disabled {
+		#{$root}__header {
+			cursor: not-allowed;
+		}
+	}
+
+	&__header {
+		@include interactions.clickable();
+		display: flex;
+		justify-content: space-between;
+		appearance: none;
+		background: none;
+		border-radius: 4px;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		margin: 0;
+		padding: 16px;
+		text-align: left;
+		width: 100%;
+	}
+
+	&__option {
+		@include interactions.clickable();
+		display: block;
+		appearance: none;
+		background: none;
+		border: none;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		margin: 0;
+		padding: 16px;
+		text-align: left;
+		width: 100%;
+
+		&:last-of-type {
+			border-radius: 0 0 4px 4px;
+		}
+	}
+}
