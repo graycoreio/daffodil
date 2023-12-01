@@ -9,7 +9,8 @@ import {
 } from './type';
 
 /**
- * Gets the cart from the passed action if it is a recognized retrieval action and applying the transformation if needed.
+ * Gets the cart from the passed action if it is a recognized retrieval action and applies the transformation if needed.
+ * If the action is not recognized as a retrieval action, returns `null`.
  */
 export function daffCartRetrievalGetResponse<T extends DaffCart = DaffCart>(action: Action, retrievalActions: DaffCartRetrievalActionInjection[]): Partial<T> | null {
   const actionInjection = retrievalActions.find(({ type }) => type === action.type);

@@ -14,15 +14,23 @@ import {
   daffCartReducers,
   DaffCartLoadSuccess,
   DAFF_CART_STORE_FEATURE_KEY,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
+  daffCartRetrivalActions,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
 import { DaffShippingMethodGuard } from './shipping-method.guard';
 
-describe('Cart | State | Guards | DaffShippingMethodGuard', () => {
+describe('@daffodil/cart/routing | DaffShippingMethodGuard', () => {
 
   let service: DaffShippingMethodGuard;
   let store: Store<any>;
@@ -36,7 +44,14 @@ describe('Cart | State | Guards | DaffShippingMethodGuard', () => {
       ],
       imports: [
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
         RouterTestingModule,
       ],

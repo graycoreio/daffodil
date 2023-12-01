@@ -13,7 +13,7 @@ import { DaffCartStateTestingModule } from '@daffodil/cart/state/testing';
 
 import { DaffOrderResultGuard } from './order-result.guard';
 
-describe('Cart | State | Guards | DaffOrderResultGuard', () => {
+describe('@daffodil/cart/routing | DaffOrderResultGuard', () => {
   let guard: DaffOrderResultGuard;
   let facade;
   let router: Router;

@@ -14,15 +14,23 @@ import {
   DaffCartLoadSuccess,
   DAFF_CART_STORE_FEATURE_KEY,
   daffCartReducers,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
+  daffCartRetrivalActions,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
 import { DaffBillingAddressGuard } from './billing-address.guard';
 
-describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
+describe('@daffodil/cart/routing | DaffBillingAddressGuard', () => {
 
   let service: DaffBillingAddressGuard;
   let store: Store<any>;
@@ -36,7 +44,14 @@ describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
       ],
       imports: [
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
         RouterTestingModule,
       ],

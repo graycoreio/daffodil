@@ -12,7 +12,7 @@ import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
 
 import { DAFF_CART_REDUCERS } from './reducers.token';
 
-describe('daffCartProvideExtraReducers', () => {
+describe('@daffodil/cart/state | daffCartProvideExtraReducers', () => {
   let paymentFactory: DaffCartPaymentFactory;
   let payment: DaffCartPaymentMethod;
 

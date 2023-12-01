@@ -15,11 +15,19 @@ import {
   DaffCartLoadSuccess,
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
+  daffCartRetrivalActions,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
 import * as fromAddToCartNotification from './index';
 import { CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
@@ -39,7 +47,14 @@ describe('selectDemoAddToCartNotificationState', () => {
       imports: [
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
       ],
     });

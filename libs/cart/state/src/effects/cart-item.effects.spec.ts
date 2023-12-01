@@ -52,16 +52,24 @@ import {
   DaffCartItemDeleteOutOfStockSuccess,
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
+  daffCartRetrivalActions,
+  DaffCartLoadSuccess,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { DaffCartItemEffects } from './cart-item.effects';
-import { DaffCartLoadSuccess } from '../actions/public_api';
 
 describe('@daffodil/cart/state | DaffCartItemEffects', () => {
   let actions$: Observable<any>;
@@ -93,7 +101,14 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
       imports: [
         DaffTestingCartDriverModule.forRoot(),
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
       ],
       providers: [

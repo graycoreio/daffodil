@@ -7,6 +7,8 @@ import {
 
 import { daffPaymentProvideExtraReducers } from '@daffodil/payment/state';
 
+import { daffCartRetrivalActions } from './actions/cart-retrieval';
+import { daffCartProvideRetrievalActions } from './cart-retrieval/public_api';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartBillingAddressEffects } from './effects/cart-billing-address.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
@@ -23,11 +25,12 @@ import { DaffCartEffects } from './effects/cart.effects';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
 import { daffCartPaymentReducer } from './reducers/cart-payment/payment.reducer';
 import { DAFF_CART_STORE_FEATURE_KEY } from './reducers/public_api';
+import { DAFF_CART_STORE_CONFIG } from './reducers/token/config.token';
 import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature(DAFF_CART_STORE_FEATURE_KEY, DAFF_CART_REDUCERS),
+    StoreModule.forFeature(DAFF_CART_STORE_FEATURE_KEY, DAFF_CART_REDUCERS, DAFF_CART_STORE_CONFIG),
     EffectsModule.forFeature([
       DaffCartEffects,
       DaffCartItemEffects,
@@ -49,6 +52,7 @@ import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
     ...daffPaymentProvideExtraReducers(combineReducers({
       payment: daffCartPaymentReducer,
     })),
+    daffCartProvideRetrievalActions(...daffCartRetrivalActions),
   ],
 })
 export class DaffCartStateModule {}

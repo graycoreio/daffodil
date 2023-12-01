@@ -64,6 +64,10 @@ import {
   DaffCartResolveState,
   DAFF_CART_STORE_FEATURE_KEY,
   DaffCartStateRootSlice,
+  DaffCartItemUpdateFailure,
+  daffCartRetrivalActions,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -74,11 +78,14 @@ import {
   DaffConfigurableCartItemFactory,
   DaffCompositeCartItemFactory,
 } from '@daffodil/cart/testing';
-import { DaffState } from '@daffodil/core/state';
+import {
+  DaffState,
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartFacade } from './cart.facade';
-import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 
 describe('DaffCartFacade', () => {
   let store: Store<DaffCartStateRootSlice>;
@@ -101,7 +108,14 @@ describe('DaffCartFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
       ],
       providers: [

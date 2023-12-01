@@ -43,22 +43,14 @@ export function daffCartItemEntitiesReducer<
         daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
         daffErrors: [],
       })), state);
+
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
       return adapter.upsertOne({
         ...action.payload,
         daffState: getDaffState(state.entities[action.payload.id]) || DaffCartItemStateEnum.Default,
         daffErrors: [],
       }, state);
-    case DaffCartItemActionTypes.CartItemAddSuccessAction:
-      return adapter.setAll(
-        updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items),
-        state,
-      );
-    case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
-      return adapter.setAll(
-        updateMutatedCartItemState<T>(<T[]>action.payload.items, state.entities, action.itemId),
-        state,
-      );
+
     case DaffCartItemActionTypes.CartItemDeleteFailureAction:
     case DaffCartItemActionTypes.CartItemLoadFailureAction:
     case DaffCartItemActionTypes.CartItemUpdateFailureAction:
@@ -67,17 +59,7 @@ export function daffCartItemEntitiesReducer<
         daffState: DaffCartItemStateEnum.Error,
         daffErrors: state.entities[action.itemId]?.daffErrors?.concat(action.payload) || action.payload,
       }, state);
-    case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
-    case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
-    case DaffCartActionTypes.CartLoadSuccessAction:
-    case DaffCartActionTypes.ResolveCartSuccessAction:
-    case DaffCartActionTypes.CartLoadPartialSuccessAction:
-    case DaffCartActionTypes.ResolveCartPartialSuccessAction:
-    case DaffCartActionTypes.CartClearSuccessAction:
-      return adapter.setAll(<T[]><unknown>action.payload.items.map(item => ({
-        ...item,
-        daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
-      })), state);
+
     case DaffCartItemActionTypes.CartItemStateResetAction:
       return adapter.setAll(Object.keys(state.entities).map(key => ({
         ...state.entities[key],
@@ -103,22 +85,4 @@ function getDaffState<T extends DaffStatefulCartItem>(item: T): DaffCartItemStat
   return item?.daffState;
 }
 
-function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: Dictionary<T>, newCartItems: T[]): T[] {
-  return newCartItems.map(newItem => {
-    const oldItem = oldCartItems[newItem.id];
-    switch(true) {
-      case !oldItem:
-        return { ...newItem, daffState: DaffCartItemStateEnum.New, daffErrors: []};
-      case oldItem?.qty !== newItem.qty:
-        return { ...newItem, daffState: DaffCartItemStateEnum.Updated, daffErrors: []};
-      default:
-        return newItem;
-    }
-  });
-}
 
-function updateMutatedCartItemState<T extends DaffStatefulCartItem>(responseItems: T[], stateItems: Dictionary<T>, itemId: T['id']): T[] {
-  return responseItems.map(item => item.id === itemId ?
-    { ...item, daffState: DaffCartItemStateEnum.Updated, daffErrors: []} :
-    { ...item, daffState: getDaffState(stateItems[item.id]) || DaffCartItemStateEnum.Default });
-}
