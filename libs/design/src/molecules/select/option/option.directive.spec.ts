@@ -52,12 +52,4 @@ describe('DaffSelectOptionDirective', () => {
   it('should create', () => {
     expect(selectItemContent).toBeTruthy();
   });
-
-  describe('[daffSelectOption]', () => {
-    it('should add a class of "daff-select__option" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-select__option': true,
-      }));
-    });
-  });
 });

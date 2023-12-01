@@ -4,4 +4,6 @@ export { DisabledSelectComponent } from './disabled-select/disabled-select.compo
 export { DisabledSelectModule } from './disabled-select/disabled-select.module';
 export { SkeletonSelectComponent } from './skeleton-select/skeleton-select.component';
 export { SkeletonSelectModule } from './skeleton-select/skeleton-select.module';
+export { SelectWithErrorModule } from './select-with-error/select-with-error.module';
+export { SelectWithErrorComponent } from './select-with-error/select-with-error.component';
 export { SELECT_EXAMPLES } from './examples';

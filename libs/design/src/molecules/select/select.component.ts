@@ -44,7 +44,6 @@ import {
 } from './animation/select-animation';
 import { getAnimationState } from './animation/select-animation-state';
 import { DaffSelectOptionDirective } from './option/option.directive';
-import { DaffSelectSelectedOptionDirective } from './selected-option/selected-option.directive';
 
 class _base {
   constructor(
@@ -54,7 +53,9 @@ class _base {
 }
 
 /**
- * DaffSelectComponent provides a way to display content in an expandable view.
+ * DaffSelectComponent is a form control component that presents a list of selectable options,
+ * similar to the native `<select>` element we call `<daff-native-select>`.
+ *
  */
 @Component({
   selector: 'daff-select',
@@ -90,15 +91,13 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
     return this._open ? true : false;
   }
 
-  @HostBinding('class.disabled') get disabledClass() {
+  @HostBinding('class.daff-select--disabled') get disabledClass() {
     return this.disabled;
   }
 
-  @ViewChild('header') buttonElement: ElementRef;
+  @ViewChild('field') buttonElement: ElementRef;
   @ViewChild('optionsTemplate') optionsTemplatePortal: TemplatePortal<unknown>;
 
-  @ContentChild(DaffSelectSelectedOptionDirective)
-  selectedOptionTemplate?: DaffSelectSelectedOptionDirective;
   @ContentChild(DaffSelectOptionDirective)
   optionTemplate?: DaffSelectOptionDirective;
 
