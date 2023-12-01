@@ -8,17 +8,14 @@ import {
   daffCartReducerInitialState,
   DaffCartReducerState,
   DaffCartResolveState,
+  DaffCartCreateSuccess,
+  DaffCartLoadSuccess,
+  DaffResolveCartServerSide,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { cartResolveReducer as reducer } from './cart-resolve.reducer';
-import {
-  DaffCartCreateSuccess,
-  DaffCartLoadSuccess,
-  DaffResolveCartServerSide,
-} from '../../actions/public_api';
-
 
 describe('@daffodil/cart/state | cartResolveReducer', () => {
   let cartFactory: DaffCartFactory;

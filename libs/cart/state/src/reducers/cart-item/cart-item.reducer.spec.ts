@@ -103,10 +103,6 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
       result = cartItemReducer(state, cartItemUpdateSuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
-    });
-
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
@@ -177,10 +173,6 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
       const cartItemRemoveSuccess = new DaffCartItemDeleteSuccess(cart);
 
       result = cartItemReducer(state, cartItemRemoveSuccess);
-    });
-
-    it('should set cart from action.payload', () => {
-      expect(result.cart.id).toEqual(cart.id);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -260,10 +252,6 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
       result = cartItemReducer(state, cartItemRemoveSuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart.id).toEqual(cart.id);
-    });
-
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffState.Complete);
     });
@@ -336,10 +324,6 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
       };
 
       result = cartItemReducer(state, cartItemAddActionSuccess);
-    });
-
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
     });
 
     it('should indicate that the cart is not loading', () => {

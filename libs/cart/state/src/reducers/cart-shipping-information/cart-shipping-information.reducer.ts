@@ -51,12 +51,6 @@ export function cartShippingInformationReducer<T extends DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        cart: {
-          ...state.cart,
-          // ensure that shipping_information is set to null in case its not included in action.payload
-          shipping_information: null,
-          ...action.payload,
-        },
         ...setLoading(state.loading, DaffState.Complete),
       };
 

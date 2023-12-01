@@ -74,10 +74,6 @@ export function cartItemReducer<T extends DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        cart: {
-          ...state.cart,
-          ...action.payload,
-        },
         ...setLoading(state.loading, DaffState.Complete),
       };
 
@@ -89,10 +85,6 @@ export function cartItemReducer<T extends DaffCart>(
           [DaffCartOperationType.Item]: [],
           // out of stock errors can be in the main cart, remove them here
           [DaffCartOperationType.Cart]: state.errors[DaffCartOperationType.Cart].filter(({ code }) => code !== DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK),
-        },
-        cart: {
-          ...state.cart,
-          ...action.payload,
         },
         ...setLoading(state.loading, DaffState.Complete),
       };

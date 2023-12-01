@@ -20,11 +20,19 @@ import {
   DaffCartStateRootSlice,
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
+  daffCartRetrivalActions,
 }  from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
 import { EmptyCartResolver } from './empty-cart-resolver.service';
 import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
@@ -43,7 +51,14 @@ describe('EmptyCartResolver', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
         RouterTestingModule,
       ],

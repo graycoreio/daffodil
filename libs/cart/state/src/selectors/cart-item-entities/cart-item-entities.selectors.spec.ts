@@ -18,6 +18,11 @@ import {
   DaffStatefulCompositeCartItem,
   DaffCartShippingMethodsLoad,
   DaffCartItemUpdate,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
+  DaffCartItemUpdateFailure,
+  daffCartRetrivalActions,
 } from '@daffodil/cart/state';
 import {
   DaffStatefulCartItemFactory,
@@ -25,12 +30,15 @@ import {
   DaffStatefulConfigurableCartItemFactory,
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffStateError,
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
-import { DaffCartItemUpdateFailure } from '../../actions/public_api';
 
-describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
+describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
   let store: Store<DaffCartStateRootSlice>;
   let cartFactory: DaffCartFactory;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
@@ -66,16 +74,23 @@ describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
       ],
     });
 
     store = TestBed.inject(Store);
     cartFactory = TestBed.inject(DaffCartFactory);
-    statefulCartItemFactory = new DaffStatefulCartItemFactory();
-    statefulConfigurableCartItemFactory = new DaffStatefulConfigurableCartItemFactory();
-    statefulCompositeCartItemFactory = new DaffStatefulCompositeCartItemFactory();
+    statefulCartItemFactory = TestBed.inject(DaffStatefulCartItemFactory);
+    statefulConfigurableCartItemFactory = TestBed.inject(DaffStatefulConfigurableCartItemFactory);
+    statefulCompositeCartItemFactory = TestBed.inject(DaffStatefulCompositeCartItemFactory);
 
     mockCart = cartFactory.create();
     mockCartItems = statefulCartItemFactory.createMany(2);

@@ -8,7 +8,7 @@ import {
   DAFF_CART_EXTRA_REDUCERS,
 } from './extra.token';
 
-describe('daffCartProvideExtraReducers', () => {
+describe('@daffodil/cart/state | daffCartProvideExtraReducers', () => {
   let reducers: ActionReducer<DaffCartReducersState>[];
   let result: ActionReducer<DaffCartReducersState>[];
 

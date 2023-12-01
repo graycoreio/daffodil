@@ -157,10 +157,6 @@ describe('@daffodil/cart/state | cartShippingInformationReducer', () => {
       result = cartShippingInformationReducer(state, cartShippingInformationUpdateActionSuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
-    });
-
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.ShippingInformation]).toEqual(DaffState.Complete);
     });
@@ -227,24 +223,6 @@ describe('@daffodil/cart/state | cartShippingInformationReducer', () => {
       cart.shipping_information = null;
       const cartShippingInformationRemoveSuccess = new DaffCartShippingInformationDeleteSuccess(cart);
       result = cartShippingInformationReducer(daffCartReducerInitialState, cartShippingInformationRemoveSuccess);
-    });
-
-    it('should remove the shipping information from the cart', () => {
-
-      const expectedState = {
-        ...daffCartReducerInitialState,
-        cart: {
-          ...daffCartReducerInitialState.cart,
-          shipping_information: null,
-          ...cart,
-        },
-        loading: {
-          ...daffCartReducerInitialState.loading,
-          [DaffCartOperationType.ShippingInformation]: DaffState.Complete,
-        },
-      };
-
-      expect(result).toEqual(expectedState);
     });
 
     it('should reset the errors in the shipping information section of state.errors to an empty array', () => {

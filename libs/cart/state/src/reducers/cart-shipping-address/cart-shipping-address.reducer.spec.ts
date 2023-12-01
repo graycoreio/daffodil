@@ -143,10 +143,6 @@ describe('@daffodil/cart/state | cartShippingAddressReducer', () => {
       result = cartShippingAddressReducer(state, cartShippingAddressUpdateActionSuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
-    });
-
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.ShippingAddress]).toEqual(DaffState.Complete);
     });
@@ -215,10 +211,6 @@ describe('@daffodil/cart/state | cartShippingAddressReducer', () => {
       };
 
       result = cartShippingAddressReducer(state, cartAddressUpdateActionSuccess);
-    });
-
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
     });
 
     it('should indicate that the cart is not loading', () => {

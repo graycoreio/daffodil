@@ -43,11 +43,7 @@ export function cartReducer<T extends DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        cart: {
-          ...state.cart,
-          ...action.payload,
-        },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartActionTypes.CartCreateSuccessAction:
@@ -58,18 +54,13 @@ export function cartReducer<T extends DaffCart>(
           ...daffCartReducerInitialState.cart,
           ...action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
+
     case DaffCartActionTypes.CartClearFailureAction:
     case DaffCartActionTypes.AddToCartFailureAction:
     case DaffCartActionTypes.CartCreateFailureAction:
     case DaffCartActionTypes.CartStorageFailureAction:
-      return {
-        ...state,
-        ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
-      };
-
     case DaffCartActionTypes.CartLoadFailureAction:
     case DaffCartActionTypes.ResolveCartFailureAction:
       return {
@@ -82,10 +73,6 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartLoadPartialSuccessAction:
       return {
         ...state,
-        cart: {
-          ...state.cart,
-          ...action.payload,
-        },
         ...addError(state.errors, ...action.errors),
         ...setLoading(state.loading, DaffState.Stable),
       };

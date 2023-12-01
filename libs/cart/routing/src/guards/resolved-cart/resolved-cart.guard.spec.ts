@@ -13,7 +13,7 @@ import { DaffResolvedCartGuard } from './resolved-cart.guard';
 import { daffCartRoutingConfigurationDefault } from '../../config/config';
 import { daffCartRoutingResolutionConfigurationDefault } from '../../config/resolution/config';
 
-describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
+describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
   let service: DaffResolvedCartGuard;
   let facade;
   let router: Router;

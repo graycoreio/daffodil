@@ -295,23 +295,6 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
       result = reducer(daffCartReducerInitialState, cartClearSuccess);
     });
 
-    it('should set the cart payload on state', () => {
-      const expectedState = {
-        ...daffCartReducerInitialState,
-        cart: {
-          ...daffCartReducerInitialState.cart,
-          items: [],
-          ...cart,
-        },
-        loading: {
-          ...daffCartReducerInitialState.loading,
-          [DaffCartOperationType.Coupon]: DaffState.Complete,
-        },
-      };
-
-      expect(result).toEqual(expectedState);
-    });
-
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
       expect(result.errors[DaffCartOperationType.Coupon]).toEqual([]);
     });

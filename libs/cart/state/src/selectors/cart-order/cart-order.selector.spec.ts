@@ -16,13 +16,21 @@ import {
   DaffCartOrderReducerState,
   DaffCartPlaceOrder,
   DAFF_CART_STORE_FEATURE_KEY,
+  DaffCartReducersState,
+  daffCartItemEntitiesRetrievalActionsReducerFactory,
+  daffCartRetrievalActionsReducerFactory,
+  daffCartRetrivalActions,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffState } from '@daffodil/core/state';
+import {
+  DaffState,
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
 import { getCartOrderSelectors } from './cart-order.selector';
 
-describe('Cart | Selector | CartOrder', () => {
+describe('@daffodil/cart/state | getCartOrderSelectors', () => {
   let store: Store<DaffCartStateRootSlice>;
 
   let cartFactory: DaffCartFactory;
@@ -45,7 +53,14 @@ describe('Cart | Selector | CartOrder', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_CART_STORE_FEATURE_KEY]: combineReducers(daffCartReducers),
+          [DAFF_CART_STORE_FEATURE_KEY]: daffComposeReducers<DaffCartReducersState>([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(daffCartRetrivalActions),
+              order: daffIdentityReducer,
+            }),
+          ]),
         }),
       ],
     });
