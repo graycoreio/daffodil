@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   DebugElement,
@@ -99,6 +100,17 @@ describe('DaffDropdownComponent', () => {
         component.toggle();
       }
       fixture.detectChanges();
+    });
+
+    describe('and when the page is clicked', () => {
+      beforeEach(() => {
+        TestBed.inject(DOCUMENT).dispatchEvent(new MouseEvent('click'));
+        fixture.detectChanges();
+      });
+
+      it('should close the dropdown', () => {
+        expect(component.isOpen).toBeFalse();
+      });
     });
 
     it('should add the aria-expanded attribute to the button', () => {
