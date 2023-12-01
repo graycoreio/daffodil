@@ -1,9 +1,5 @@
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
 import {
-  DaffCartPaymentActions,
-  DaffCartPaymentActionTypes,
-} from '@daffodil/cart/state';
-import {
   DaffPaymentActions,
   DaffPaymentActionTypes,
 } from '@daffodil/payment/state';
@@ -17,7 +13,7 @@ import {
 
 export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>(
   state: DaffAuthorizeNetReducerState = daffAuthorizeNetReducerInitialState,
-  action: DaffAuthorizeNetActions<T> | DaffCartPaymentActions | DaffPaymentActions,
+  action: DaffAuthorizeNetActions<T> | DaffPaymentActions,
 ): DaffAuthorizeNetReducerState {
   switch (action.type) {
     case DaffAuthorizeNetActionTypes.UpdatePaymentAction:
