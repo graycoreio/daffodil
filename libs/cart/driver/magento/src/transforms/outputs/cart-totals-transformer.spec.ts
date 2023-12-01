@@ -88,4 +88,16 @@ describe('transformCartTotals', () => {
     expect(transformedTotals[DaffCartTotalTypeEnum.tax].value).toEqual(0);
     expect(transformedTotals[DaffCartTotalTypeEnum.shipping].value).toEqual(null);
   });
+
+  describe('when discounts is null', () => {
+    beforeEach(() => {
+      stubMagentoCart.prices.discounts = null;
+    });
+
+    it('should set discount value to 0', () => {
+      const transformedTotals = transformCartTotals(stubMagentoCart).totals;
+
+      expect(transformedTotals[DaffCartTotalTypeEnum.discount].value).toEqual(0);
+    });
+  });
 });

@@ -55,7 +55,7 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
       [DaffCartTotalTypeEnum.discount]: {
         name: DaffCartTotalTypeEnum.discount,
         label: 'Discounts',
-        value: daffAdd(...cart.prices.discounts.map((discount) => discount.amount.value)),
+        value: cart.prices.discounts ? daffAdd(...cart.prices.discounts.map((discount) => discount.amount.value)) : 0,
         order: 6,
       },
       [DaffCartTotalTypeEnum.shipping]: {
