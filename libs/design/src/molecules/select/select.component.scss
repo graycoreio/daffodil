@@ -1,5 +1,4 @@
 @use '@angular/cdk/overlay-prebuilt';
-
 @use '../../../scss/interactions';
 @use '../../../scss/state';
 
@@ -13,7 +12,7 @@
 	}
 
 	&#{$root}--open {
-		#{$root}__header {
+		#{$root}__field {
 			border-radius: 4px 4px 0 0;
 		}
 
@@ -22,19 +21,24 @@
 		}
 	}
 
-	&#{$root}.disabled {
-		#{$root}__header {
+	&#{$root}--disabled {
+		#{$root}__field {
 			cursor: not-allowed;
 		}
 	}
 
   &.daff-skeleton {
-    #{$root}__header {
-      @include state.skeleton-screen(120px, 54px);
+    #{$root}__field {
+      @include state.skeleton-screen(100%, 54px);
+			border: none;
+
+			> * {
+				visibility: hidden;
+			}
     }
 	}
 
-	&__header {
+	&__field {
 		@include interactions.clickable();
 		display: flex;
 		justify-content: space-between;
@@ -47,6 +51,11 @@
 		padding: 16px;
 		text-align: left;
 		width: 100%;
+	}
+
+	.daff-form-label {
+		font-size: 1rem;
+		line-height: 1.25rem;
 	}
 
   &__options {

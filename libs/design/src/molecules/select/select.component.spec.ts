@@ -93,7 +93,7 @@ describe('DaffSelectComponent', () => {
 
     fixture.detectChanges();
 
-    buttonElement = fixture.debugElement.query(By.css('.daff-select__header')).nativeElement;
+    buttonElement = fixture.debugElement.query(By.css('.daff-select__field')).nativeElement;
   });
 
   it('should create', () => {

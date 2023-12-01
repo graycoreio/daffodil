@@ -5,11 +5,5 @@
     <div>{{option.street}}</div>
     <div>{{option.city}}, {{option.state}} {{option.postcode}}</div>
   </ng-template>
+  <daff-error-message *ngIf="control.invalid">This field is required</daff-error-message>
 </daff-select>
-
-<div class="default-select__selected-value" *ngIf="control.value">
-  Selected Address:
-  <div>{{control.value.name}}</div>
-  <div>{{control.value.street}}</div>
-  <div>{{control.value.city}}, {{control.value.state}} {{control.value.postcode}}</div>
-</div>

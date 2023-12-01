@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { SELECT_EXAMPLE_ADDRESSES } from '../addresses';
+import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
