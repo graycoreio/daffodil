@@ -1,4 +1,5 @@
 @use '../../../scss/interactions';
+@use '../../../scss/state';
 
 .daff-dropdown {
 	$root: &;
@@ -23,6 +24,12 @@
 		#{$root}__header {
 			cursor: not-allowed;
 		}
+	}
+
+  &.daff-skeleton {
+    #{$root}__header {
+      @include state.skeleton-screen(120px, 54px);
+    }
 	}
 
 	&__header {
