@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -8,6 +9,7 @@ import {
   OnInit,
   ElementRef,
   Renderer2,
+  Inject,
 } from '@angular/core';
 import {
   faChevronDown,
@@ -79,17 +81,24 @@ export class DaffDropdownComponent extends daffSkeletonableMixin(_base) implemen
     private cd: ChangeDetectorRef,
     _elementRef: ElementRef,
     _renderer: Renderer2,
+    @Inject(DOCUMENT) private document: any,
   ) {
     super(_elementRef, _renderer);
   }
 
   ngOnInit() {
 	  this._animationState = getAnimationState(this._open);
+    (<Document>this.document).addEventListener('click', (evt) => {
+      if (this._open) {
+        this.toggle();
+      }
+    });
   }
 
   toggle(event?: KeyboardEvent | MouseEvent) {
 	  if (event) {
 	    event.preventDefault();
+      event.stopPropagation();
 	  }
 	  this._open = !this._open;
 	  this._animationState = getAnimationState(this._open);
