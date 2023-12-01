@@ -1,0 +1,33 @@
+<button #header class="daff-select__header"
+  (click)="toggle($event)"
+  [disabled]="disabled"
+  [tabindex]="tabIndex"
+  [attr.aria-expanded]="isOpen"
+  (keydown.enter)="toggle($event)"
+  (keydown.space)="toggle($event)">
+  <ng-container
+    [ngTemplateOutlet]="selectedOptionTemplate?.templateRef"
+    [ngTemplateOutletContext]="{
+      selected: value
+    }"
+  ></ng-container>
+  <fa-icon daffSuffix [icon]="faChevronDown"></fa-icon>
+</button>
+<ng-template cdkPortal #optionsTemplate="cdkPortal">
+  <div class="daff-select__options" [@openSelect]="animationState" (@openSelect.done)="animationFinished()">
+    <div
+      *ngFor="let option of options; trackBy:trackByIndex"
+      class="daff-select__option"
+      (click)="optionSelected(option)"
+    >
+      <ng-container
+        [ngTemplateOutlet]="optionTemplate?.templateRef"
+        [ngTemplateOutletContext]="{
+          isSelected: value === option,
+          option
+        }"
+      ></ng-container>
+    </div>
+  </div>
+</ng-template>
+<ng-content select="daff-error-message"></ng-content>

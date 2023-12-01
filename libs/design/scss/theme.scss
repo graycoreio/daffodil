@@ -29,7 +29,7 @@
 @use '../accordion/src/accordion-theme' as accordion;
 @use '../callout/src/callout-theme' as callout;
 @use '../src/molecules/card/card/card-theme' as card;
-@use '../src/molecules/dropdown/dropdown-theme' as dropdown;
+@use '../src/molecules/select/select-theme' as select;
 @use '../src/molecules/hero/hero-theme' as hero;
 @use '../src/molecules/list/list/list-theme' as list;
 @use '../src/molecules/media-gallery/media-gallery-theme' as media-gallery;
@@ -72,7 +72,7 @@
 	@include article.daff-article-theme($theme);
 	@include callout.daff-callout-theme($theme);
 	@include card.daff-card-theme($theme);
-	@include dropdown.daff-dropdown-theme($theme);
+	@include select.daff-select-theme($theme);
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
 	@include media-gallery.daff-media-gallery-theme($theme);
