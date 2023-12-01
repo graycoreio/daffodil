@@ -1,9 +1,4 @@
 <daff-select [options]="options" [formControl]="control" [disabled]="true">
-  <ng-template daffSelectSelectedOption let-selected="selected">
-    <div *ngIf="!selected">
-      Select an address
-    </div>
-  </ng-template>
-  <ng-template daffSelectOption let-isSelected="isSelected" let-option="option">
-  </ng-template>
+  <label daffFormLabel>Select an address</label>
+  <ng-template daffSelectOption let-option="option"></ng-template>
 </daff-select>

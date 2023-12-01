@@ -12,18 +12,20 @@
 	.daff-select {
 		$root: '.daff-select';
 
-		&#{$root}.disabled {
-			#{$root}__header {
+		&#{$root}--disabled {
+			#{$root}__field {
 				color: theming.daff-illuminate($base, $gray, 5);
 			}
 		}
 
-		&__header {
+		&__field {
+			background-color: $base;
 			border: 1px solid $border-color;
 			color: $base-contrast;
 		}
 
 		&__option {
+			background-color: $base;
 			border-bottom: 1px solid $border-color;
 			border-left: 1px solid $border-color;
 			border-right: 1px solid $border-color;
