@@ -6,6 +6,8 @@ import {
   HostBinding,
   ChangeDetectorRef,
   OnInit,
+  ElementRef,
+  Renderer2,
 } from '@angular/core';
 import {
   faChevronDown,
@@ -13,10 +15,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
+  DaffSkeletonable,
+  daffSkeletonableMixin,
+} from '../../core/skeletonable/public_api';
+import {
   daffDropdownAnimations,
   DaffDropdownAnimationState,
 } from './animation/dropdown-animation';
 import { getAnimationState } from './animation/dropdown-animation-state';
+
+class _base {
+  constructor(
+    public _elementRef: ElementRef,
+    public _renderer: Renderer2,
+  ) {}
+}
 
 /**
  * DaffDropdownComponent provides a way to display content in an expandable view.
@@ -30,13 +43,16 @@ import { getAnimationState } from './animation/dropdown-animation-state';
   animations: [
     daffDropdownAnimations.openDropdown,
   ],
+  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['skeleton'],
 })
-export class DaffDropdownComponent implements OnInit {
+export class DaffDropdownComponent extends daffSkeletonableMixin(_base) implements OnInit, DaffSkeletonable {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
 
-  _open = false;
-  _animationState: DaffDropdownAnimationState;
+  private _open = false;
+  private _animationState: DaffDropdownAnimationState;
 
   @Input() tabIndex: number;
   @Input() disabled = false;
@@ -51,7 +67,21 @@ export class DaffDropdownComponent implements OnInit {
     return this.disabled;
   }
 
-  constructor(private cd: ChangeDetectorRef) {}
+  get isOpen(): boolean {
+    return this._open;
+  }
+
+  get animationState() {
+    return this._animationState;
+  }
+
+  constructor(
+    private cd: ChangeDetectorRef,
+    _elementRef: ElementRef,
+    _renderer: Renderer2,
+  ) {
+    super(_elementRef, _renderer);
+  }
 
   ngOnInit() {
 	  this._animationState = getAnimationState(this._open);
