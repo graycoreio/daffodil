@@ -27,7 +27,6 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
         loading: true,
       };
     case DaffAuthorizeNetActionTypes.UpdatePaymentSuccessAction:
-    case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
     case DaffPaymentActionTypes.GenerateTokenSuccessAction:
       return {
         ...state,
@@ -35,7 +34,6 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
         paymentError: null,
       };
     case DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction:
-    case DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction:
     case DaffPaymentActionTypes.GenerateTokenFailureAction:
       return {
         ...state,
