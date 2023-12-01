@@ -38,7 +38,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartShippingInformationEffects } from './cart-shipping-information.effects';
 
-describe('Daffodil | Cart | CartShippingInformationEffects', () => {
+describe('@daffodil/cart/state | DaffCartShippingInformationEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartShippingInformationEffects<DaffCartShippingInformation, DaffCart>;
 
@@ -51,10 +51,10 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
   let daffShippingInformationDriver: DaffCartShippingInformationServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverUpdateSpy: jasmine.Spy;
-  let driverDeleteSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartShippingInformationServiceInterface['get']>;
+  let driverUpdateSpy: jasmine.Spy<DaffCartShippingInformationServiceInterface['update']>;
+  let driverDeleteSpy: jasmine.Spy<DaffCartShippingInformationServiceInterface['delete']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -114,7 +114,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart shipping information' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartShippingInformationLoadFailureAction = new DaffCartShippingInformationLoadFailure(error);
+        const cartShippingInformationLoadFailureAction = new DaffCartShippingInformationLoadFailure([error]);
         actions$ = hot('--a', { a: cartShippingInformationLoadAction });
         expected = cold('--b', { b: cartShippingInformationLoadFailureAction });
       });
@@ -153,7 +153,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart shipping information' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartShippingInformationUpdateFailure(error);
+        const cartCreateFailureAction = new DaffCartShippingInformationUpdateFailure([error]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
       });
@@ -187,7 +187,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to delete the cart shipping information' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
-        const cartShippingInformationDeleteFailureAction = new DaffCartShippingInformationDeleteFailure(error);
+        const cartShippingInformationDeleteFailureAction = new DaffCartShippingInformationDeleteFailure([error]);
         actions$ = hot('--a', { a: cartShippingInformationDeleteAction });
         expected = cold('--b', { b: cartShippingInformationDeleteFailureAction });
       });

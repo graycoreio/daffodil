@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 
 import { DaffCartPaymentMethod } from '@daffodil/cart';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffFailureAction,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 /**
  * An enum for the cart payment methods action types.
@@ -33,10 +36,10 @@ export class DaffCartPaymentMethodsLoadSuccess<T extends DaffCartPaymentMethod =
 /**
  * Indicates the failed load of the cart's available payment methods.
  */
-export class DaffCartPaymentMethodsLoadFailure implements Action {
+export class DaffCartPaymentMethodsLoadFailure implements DaffFailureAction {
   readonly type = DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**

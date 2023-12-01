@@ -142,7 +142,7 @@ describe('@daffodil/cart/state | cartResolveReducer', () => {
         resolved: DaffCartResolveState.Resolving,
       };
 
-      const serverSideResolve = new DaffResolveCartServerSide(error);
+      const serverSideResolve = new DaffResolveCartServerSide([error]);
 
       result = reducer(state, serverSideResolve);
     });

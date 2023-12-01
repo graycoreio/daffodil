@@ -37,6 +37,7 @@ import {
   DaffCartItemServiceInterface,
   daffCartDriverHandleCartNotFound,
 } from '@daffodil/cart/driver';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -87,7 +88,7 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemList) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartItemListSuccess(resp)),
-        catchError(error => of(new DaffCartItemListFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartItemListFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -98,7 +99,7 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemLoad<T>) =>
       this.driver.get(this.storage.getCartId(), action.itemId).pipe(
         map((resp: T) => new DaffCartItemLoadSuccess(resp)),
-        catchError(error => of(new DaffCartItemLoadFailure(this.errorMatcher(error), action.itemId))),
+        catchAndArrayifyErrors(error => of(new DaffCartItemLoadFailure(error.map(this.errorMatcher), action.itemId))),
       ),
     ),
   ));
@@ -111,8 +112,8 @@ export class DaffCartItemEffects<
       cartId,
       input,
     ).pipe(
-      map((resp: V) => new DaffCartItemAddSuccess(resp)),
-      catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error)))),
+      map((resp) => new DaffCartItemAddSuccess(resp)),
+      catchAndArrayifyErrors(error => of(new DaffCartItemAddFailure(error.map(this.errorMatcher)))),
     );
   }
 
@@ -129,7 +130,7 @@ export class DaffCartItemEffects<
       ),
     ),
     daffCartDriverHandleCartNotFound(this.storage),
-    catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error)))),
+    catchAndArrayifyErrors(error => of(new DaffCartItemAddFailure(error.map(this.errorMatcher)))),
   ));
 
 
@@ -142,7 +143,7 @@ export class DaffCartItemEffects<
         action.changes,
       ).pipe(
         map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
-        catchError(error => of(new DaffCartItemUpdateFailure(this.errorMatcher(error), action.itemId))),
+        catchAndArrayifyErrors(error => of(new DaffCartItemUpdateFailure(error.map(this.errorMatcher), action.itemId))),
       ),
     ),
   ));
@@ -169,8 +170,8 @@ export class DaffCartItemEffects<
     ofType(DaffCartItemActionTypes.CartItemDeleteAction),
     mergeMap((action: DaffCartItemDelete<T>) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
-        map((resp: V) => new DaffCartItemDeleteSuccess(resp)),
-        catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error), action.itemId))),
+        map((resp) => new DaffCartItemDeleteSuccess(resp)),
+        catchAndArrayifyErrors(error => of(new DaffCartItemDeleteFailure(error.map(this.errorMatcher), action.itemId))),
       ),
     ),
   ));
@@ -192,6 +193,6 @@ export class DaffCartItemEffects<
       ),
     ),
     map(cart => new DaffCartItemDeleteOutOfStockSuccess(cart)),
-    catchError(error => of(new DaffCartItemDeleteOutOfStockFailure(this.errorMatcher(error)))),
+    catchAndArrayifyErrors(error => of(new DaffCartItemDeleteOutOfStockFailure(error.map(this.errorMatcher)))),
   ));
 }

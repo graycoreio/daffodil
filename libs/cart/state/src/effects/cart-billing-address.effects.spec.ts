@@ -35,7 +35,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartBillingAddressEffects } from './cart-billing-address.effects';
 
-describe('Daffodil | Cart | CartBillingAddressEffects', () => {
+describe('@daffodil/cart/state | DaffCartBillingAddressEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartBillingAddressEffects<DaffCartAddress, DaffCart>;
 
@@ -48,9 +48,9 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
   let daffBillingAddressDriver: DaffCartBillingAddressServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverUpdateSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartBillingAddressServiceInterface['get']>;
+  let driverUpdateSpy: jasmine.Spy<DaffCartBillingAddressServiceInterface['update']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -106,7 +106,7 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart billing address' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartBillingAddressLoadFailureAction = new DaffCartBillingAddressLoadFailure(error);
+        const cartBillingAddressLoadFailureAction = new DaffCartBillingAddressLoadFailure([error]);
         actions$ = hot('--a', { a: cartBillingAddressLoadAction });
         expected = cold('--b', { b: cartBillingAddressLoadFailureAction });
       });
@@ -145,7 +145,7 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart billing address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartBillingAddressUpdateFailure(error);
+        const cartCreateFailureAction = new DaffCartBillingAddressUpdateFailure([error]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
       });

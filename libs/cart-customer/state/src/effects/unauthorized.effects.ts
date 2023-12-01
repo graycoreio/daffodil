@@ -101,7 +101,7 @@ export class DaffCartCustomerUnauthorizedEffects {
       DaffCartOrderActionTypes.CartPlaceOrderFailureAction,
     ),
     filter((action) =>
-      action.payload.code === DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART,
+      !!action.payload.find(({ code }) => code === DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART),
     ),
     map(() => new DaffAuthCheck()),
   ));

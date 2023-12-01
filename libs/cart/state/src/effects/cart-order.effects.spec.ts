@@ -39,7 +39,7 @@ import {
 
 import { DaffCartOrderEffects } from './cart-order.effects';
 
-describe('Cart | Effect | CartOrderEffects', () => {
+describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartOrderEffects;
 
@@ -53,10 +53,10 @@ describe('Cart | Effect | CartOrderEffects', () => {
   let cartOrderDriver: DaffCartOrderServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverPlaceOrderSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverPlaceOrderSpy: jasmine.Spy<DaffCartOrderServiceInterface['placeOrder']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
-  const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
+  const cartStorageFailureAction = new DaffCartStorageFailure([daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))]);
   const throwStorageError = () => {
     throw new DaffStorageServiceError('An error occurred during storage.');
   };
@@ -117,7 +117,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to place order' };
         const response = cold('#', {}, error);
-        const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure(error);
+        const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error]);
 
         driverPlaceOrderSpy.and.returnValue(response);
         actions$ = hot('--a', { a: cartPlaceOrderAction });

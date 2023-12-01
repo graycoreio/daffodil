@@ -35,7 +35,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartShippingAddressEffects } from './cart-shipping-address.effects';
 
-describe('Daffodil | Cart | CartShippingAddressEffects', () => {
+describe('@daffodil/cart/state | DaffCartShippingAddressEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartShippingAddressEffects<DaffCartAddress, DaffCart>;
 
@@ -48,9 +48,9 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
   let daffShippingAddressDriver: DaffCartShippingAddressServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverUpdateSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartShippingAddressServiceInterface['get']>;
+  let driverUpdateSpy: jasmine.Spy<DaffCartShippingAddressServiceInterface['update']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -106,7 +106,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart shipping address' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartShippingAddressLoadFailureAction = new DaffCartShippingAddressLoadFailure(error);
+        const cartShippingAddressLoadFailureAction = new DaffCartShippingAddressLoadFailure([error]);
         actions$ = hot('--a', { a: cartShippingAddressLoadAction });
         expected = cold('--b', { b: cartShippingAddressLoadFailureAction });
       });
@@ -145,7 +145,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart shipping address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartShippingAddressUpdateFailure(error);
+        const cartCreateFailureAction = new DaffCartShippingAddressUpdateFailure([error]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
       });

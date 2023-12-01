@@ -28,7 +28,11 @@ import {
   DaffCartOrderDriver,
   DaffCartOrderServiceInterface,
 } from '@daffodil/cart/driver';
-import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DAFF_STORAGE_SERVICE_ERROR_CODE,
+  DaffStorageServiceError,
+  catchAndArrayifyErrors,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -59,9 +63,9 @@ export class DaffCartOrderEffects<
     switchMap((action: DaffCartPlaceOrder<V>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.placeOrder(cartId, action.payload)),
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartPlaceOrderFailure(this.errorMatcher(error)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartPlaceOrderFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));

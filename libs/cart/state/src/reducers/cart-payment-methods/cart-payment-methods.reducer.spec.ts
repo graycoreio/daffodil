@@ -17,7 +17,7 @@ import {
 
 import { cartPaymentMethodsReducer } from './cart-payment-methods.reducer';
 
-describe('Cart | Reducer | Cart Payment Methods', () => {
+describe('@daffodil/cart/state | cartPaymentMethodsReducer', () => {
   let cartFactory: DaffCartFactory;
   let cart: DaffCart;
 
@@ -97,7 +97,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
         },
       };
 
-      const cartPaymentMethodsLoadFailure = new DaffCartPaymentMethodsLoadFailure(error);
+      const cartPaymentMethodsLoadFailure = new DaffCartPaymentMethodsLoadFailure([error]);
 
       result = cartPaymentMethodsReducer(state, cartPaymentMethodsLoadFailure);
     });

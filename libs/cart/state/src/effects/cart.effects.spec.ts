@@ -60,10 +60,10 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
   let driverCreateSpy: jasmine.Spy<DaffCartServiceInterface['create']>;
   let driverClearSpy: jasmine.Spy<DaffCartServiceInterface['clear']>;
   let driverAddToCartSpy: jasmine.Spy<DaffCartServiceInterface['addToCart']>;
-  let getCartIdSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
   let setCartIdSpy: jasmine.Spy;
 
-  const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
+  const cartStorageFailureAction = new DaffCartStorageFailure([daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))]);
   const throwStorageError = () => {
     throw new DaffStorageServiceError('An error occurred during storage.');
   };
@@ -190,7 +190,7 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to create cart' };
         const response = cold('#', {}, error);
         driverCreateSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartCreateFailure(error);
+        const cartCreateFailureAction = new DaffCartCreateFailure([error]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
       });
@@ -287,7 +287,7 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add item to cart' };
         const response = cold('#', {}, error);
         driverAddToCartSpy.and.returnValue(response);
-        const addToCartFailureAction = new DaffAddToCartFailure(error);
+        const addToCartFailureAction = new DaffAddToCartFailure([error]);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartFailureAction });
       });
@@ -320,7 +320,7 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to clear the cart.' };
         const response = cold('#', {}, error);
         driverClearSpy.and.returnValue(response);
-        const cartClearFailureAction = new DaffCartClearFailure(error);
+        const cartClearFailureAction = new DaffCartClearFailure([error]);
         actions$ = hot('--a', { a: cartClearAction });
         expected = cold('--b', { b: cartClearFailureAction });
       });

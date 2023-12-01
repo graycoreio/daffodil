@@ -23,6 +23,7 @@ import {
   DaffCartItemDeleteOutOfStockSuccess,
   DaffCartLoadPartialSuccess,
   DaffResolveCartPartialSuccess,
+  daffCartItemEntitiesAdapter,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -31,10 +32,9 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 
-import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
 
-describe('Cart | Cart Item Entities Reducer', () => {
+describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
   let error: DaffStateError;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
   let cartFactory: DaffCartFactory;
@@ -567,7 +567,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
       };
       statefulCartItem = statefulCartItemFactory.create();
       const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
-      const cartItemLoadFailure = new DaffCartItemLoadFailure(error, statefulCartItem.id);
+      const cartItemLoadFailure = new DaffCartItemLoadFailure([error], statefulCartItem.id);
 
       result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemLoadFailure);
     });
@@ -588,7 +588,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
       };
       statefulCartItem = statefulCartItemFactory.create();
       const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
-      const cartItemDeleteFailure = new DaffCartItemDeleteFailure(error, statefulCartItem.id);
+      const cartItemDeleteFailure = new DaffCartItemDeleteFailure([error], statefulCartItem.id);
 
       result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemDeleteFailure);
     });
@@ -609,7 +609,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
       };
       statefulCartItem = statefulCartItemFactory.create();
       const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
-      const cartItemUpdateFailure = new DaffCartItemUpdateFailure(error, statefulCartItem.id);
+      const cartItemUpdateFailure = new DaffCartItemUpdateFailure([error], statefulCartItem.id);
 
       result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemUpdateFailure);
     });

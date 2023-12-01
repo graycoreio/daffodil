@@ -4,7 +4,12 @@ import {
   DaffCartAddress,
   DaffCart,
 } from '@daffodil/cart';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffFailureAction,
+  DaffStateError,
+} from '@daffodil/core/state';
+
+import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
 
 /**
  * An enum for the cart billing address action types.
@@ -37,10 +42,10 @@ export class DaffCartBillingAddressLoadSuccess<T extends DaffCartAddress> implem
 /**
  * Indicates the failed load of the cart's billing address.
  */
-export class DaffCartBillingAddressLoadFailure implements Action {
+export class DaffCartBillingAddressLoadFailure implements DaffFailureAction {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressLoadFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -55,7 +60,7 @@ export class DaffCartBillingAddressUpdate<T extends DaffCartAddress = DaffCartAd
 /**
  * Indicates the successful update of the cart's billing address.
  */
-export class DaffCartBillingAddressUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartBillingAddressUpdateSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -64,10 +69,10 @@ export class DaffCartBillingAddressUpdateSuccess<T extends DaffCart = DaffCart> 
 /**
  * Indicates the failed update of the cart's billing address.
  */
-export class DaffCartBillingAddressUpdateFailure implements Action {
+export class DaffCartBillingAddressUpdateFailure implements DaffFailureAction {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**

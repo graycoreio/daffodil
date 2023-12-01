@@ -37,7 +37,7 @@ import {
 
 import { DaffCartAddressEffects } from './cart-address.effects';
 
-describe('Daffodil | Cart | CartAddressEffects', () => {
+describe('@daffodil/cart/state | DaffCartAddressEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartAddressEffects<DaffCartAddress, DaffCart>;
 
@@ -50,10 +50,10 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
   let daffAddressDriver: DaffCartAddressServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverUpdateSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverUpdateSpy: jasmine.Spy<DaffCartAddressServiceInterface['update']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
-  const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
+  const cartStorageFailureAction = new DaffCartStorageFailure([daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))]);
   const throwStorageError = () => {
     throw new DaffStorageServiceError('An error occurred during storage.');
   };
@@ -130,7 +130,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart address' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);
+        const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure([error]);
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--b', { b: cartAddressUpdateFailureAction });
       });

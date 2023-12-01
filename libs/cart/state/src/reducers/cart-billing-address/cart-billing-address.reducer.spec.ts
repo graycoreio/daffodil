@@ -23,7 +23,7 @@ import {
 
 import { cartBillingAddressReducer } from './cart-billing-address.reducer';
 
-describe('Cart | Reducer | Cart Billing Address', () => {
+describe('@daffodil/cart/state | cartBillingAddressReducer', () => {
   let cartFactory: DaffCartFactory;
   let cart: DaffCart;
 
@@ -102,7 +102,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         },
       };
 
-      const cartListLoadFailure = new DaffCartBillingAddressLoadFailure(error);
+      const cartListLoadFailure = new DaffCartBillingAddressLoadFailure([error]);
 
       result = cartBillingAddressReducer(state, cartListLoadFailure);
     });
@@ -176,7 +176,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartBillingAddressUpdateFailure = new DaffCartBillingAddressUpdateFailure(error);
+      const cartBillingAddressUpdateFailure = new DaffCartBillingAddressUpdateFailure([error]);
 
       result = cartBillingAddressReducer(state, cartBillingAddressUpdateFailure);
     });
@@ -250,7 +250,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartAddressUpdateFailure = new DaffCartAddressUpdateFailure(error);
+      const cartAddressUpdateFailure = new DaffCartAddressUpdateFailure([error]);
 
       result = cartBillingAddressReducer(state, cartAddressUpdateFailure);
     });

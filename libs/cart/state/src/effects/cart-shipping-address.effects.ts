@@ -24,6 +24,7 @@ import {
   DaffCartShippingAddressDriver,
   DaffCartShippingAddressServiceInterface,
 } from '@daffodil/cart/driver';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -51,7 +52,7 @@ export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends
     switchMap((action: DaffCartShippingAddressLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
         map((resp: T) => new DaffCartShippingAddressLoadSuccess(resp)),
-        catchError(error => of(new DaffCartShippingAddressLoadFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartShippingAddressLoadFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -62,7 +63,7 @@ export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends
     switchMap((action: DaffCartShippingAddressUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
         map((resp: V) => new DaffCartShippingAddressUpdateSuccess(resp)),
-        catchError(error => of(new DaffCartShippingAddressUpdateFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartShippingAddressUpdateFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));

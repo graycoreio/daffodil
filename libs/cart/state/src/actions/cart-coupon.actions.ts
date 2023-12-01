@@ -4,7 +4,12 @@ import {
   DaffCartCoupon,
   DaffCart,
 } from '@daffodil/cart';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffFailureAction,
+  DaffStateError,
+} from '@daffodil/core/state';
+
+import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
 
 /**
  * An enum for the cart coupon action types.
@@ -37,7 +42,7 @@ export class DaffCartCouponApply<T extends DaffCartCoupon = DaffCartCoupon> impl
 /**
  * Indicates the successful application of a cart coupon.
  */
-export class DaffCartCouponApplySuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartCouponApplySuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartCouponActionTypes.CartCouponApplySuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -46,10 +51,10 @@ export class DaffCartCouponApplySuccess<T extends DaffCart = DaffCart> implement
 /**
  * Indicates the failed application of a cart coupon.
  */
-export class DaffCartCouponApplyFailure implements Action {
+export class DaffCartCouponApplyFailure implements DaffFailureAction {
   readonly type = DaffCartCouponActionTypes.CartCouponApplyFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -71,10 +76,10 @@ export class DaffCartCouponListSuccess<T extends DaffCartCoupon = DaffCartCoupon
 /**
  * Indicates the failed load of the cart's coupons.
  */
-export class DaffCartCouponListFailure implements Action {
+export class DaffCartCouponListFailure implements DaffFailureAction {
   readonly type = DaffCartCouponActionTypes.CartCouponListFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -89,7 +94,7 @@ export class DaffCartCouponRemove<T extends DaffCartCoupon = DaffCartCoupon> imp
 /**
  * Indicates the successful removal of a cart coupon.
  */
-export class DaffCartCouponRemoveSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartCouponRemoveSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -98,10 +103,10 @@ export class DaffCartCouponRemoveSuccess<T extends DaffCart = DaffCart> implemen
 /**
  * Indicates the failed removal of a cart coupon.
  */
-export class DaffCartCouponRemoveFailure implements Action {
+export class DaffCartCouponRemoveFailure implements DaffFailureAction {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -114,7 +119,7 @@ export class DaffCartCouponRemoveAll implements Action {
 /**
  * Indicates the successful removal of all of the cart's coupons.
  */
-export class DaffCartCouponRemoveAllSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartCouponRemoveAllSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveAllSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -123,10 +128,10 @@ export class DaffCartCouponRemoveAllSuccess<T extends DaffCart = DaffCart> imple
 /**
  * Indicates the failed removal of all of the cart's coupons.
  */
-export class DaffCartCouponRemoveAllFailure implements Action {
+export class DaffCartCouponRemoveAllFailure implements DaffFailureAction {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveAllFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**

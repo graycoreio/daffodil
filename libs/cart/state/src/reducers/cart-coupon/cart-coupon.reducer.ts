@@ -72,7 +72,7 @@ export function cartCouponReducer<T extends DaffCart>(
     case DaffCartCouponActionTypes.CartCouponRemoveFailureAction:
       return {
         ...state,
-        ...addError(state.errors, action.payload),
+        ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Complete),
       };
 

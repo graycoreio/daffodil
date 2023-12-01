@@ -27,7 +27,11 @@ import {
   DaffCartCouponDriver,
   DaffCartCouponServiceInterface,
 } from '@daffodil/cart/driver';
-import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DAFF_STORAGE_SERVICE_ERROR_CODE,
+  DaffStorageServiceError,
+  catchAndArrayifyErrors,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -65,9 +69,9 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponApply<V>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.apply(cartId, action.payload)),
       map(resp => new DaffCartCouponApplySuccess(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponApplyFailure(this.errorMatcher(error)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartCouponApplyFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));
@@ -78,9 +82,9 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponList) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.list(cartId)),
       map(resp => new DaffCartCouponListSuccess<V>(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponListFailure(this.errorMatcher(error)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartCouponListFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));
@@ -91,9 +95,9 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponRemove<V>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.remove(cartId, action.payload)),
       map(resp => new DaffCartCouponRemoveSuccess(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponRemoveFailure(this.errorMatcher(error)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartCouponRemoveFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));
@@ -104,9 +108,9 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponRemoveAll) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.removeAll(cartId)),
       map(resp => new DaffCartCouponRemoveAllSuccess(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartCouponRemoveAllFailure(this.errorMatcher(error)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartCouponRemoveAllFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));

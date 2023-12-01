@@ -103,7 +103,7 @@ export function cartItemReducer<T extends DaffCart>(
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockFailureAction:
       return {
         ...state,
-        ...addError(state.errors, action.payload),
+        ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Complete),
       };
 

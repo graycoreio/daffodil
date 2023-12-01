@@ -65,7 +65,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteFailureAction:
       return {
         ...state,
-        ...addError(state.errors, action.payload),
+        ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Complete),
       };
 

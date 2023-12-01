@@ -46,7 +46,7 @@ import {
 
 import { DaffCartCouponEffects } from './cart-coupon.effects';
 
-describe('Daffodil | Cart | CartCouponEffects', () => {
+describe('@daffodil/cart/state | DaffCartCouponEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartCouponEffects<DaffCart>;
 
@@ -59,13 +59,13 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
   let daffDriver: DaffCartCouponServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverApplySpy: jasmine.Spy;
-  let driverListSpy: jasmine.Spy;
-  let driverRemoveSpy: jasmine.Spy;
-  let driverRemoveAllSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverApplySpy: jasmine.Spy<DaffCartCouponServiceInterface['apply']>;
+  let driverListSpy: jasmine.Spy<DaffCartCouponServiceInterface['list']>;
+  let driverRemoveSpy: jasmine.Spy<DaffCartCouponServiceInterface['remove']>;
+  let driverRemoveAllSpy: jasmine.Spy<DaffCartCouponServiceInterface['removeAll']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
-  const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
+  const cartStorageFailureAction = new DaffCartStorageFailure([daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))]);
   const throwStorageError = () => {
     throw new DaffStorageServiceError('An error occurred during storage.');
   };
@@ -124,7 +124,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to apply coupon to cart' };
         const response = cold('#', {}, error);
         driverApplySpy.and.returnValue(response);
-        const cartCouponApplyFailureAction = new DaffCartCouponApplyFailure(error);
+        const cartCouponApplyFailureAction = new DaffCartCouponApplyFailure([error]);
         actions$ = hot('--a', { a: cartCouponApplyAction });
         expected = cold('--b', { b: cartCouponApplyFailureAction });
       });
@@ -170,7 +170,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list coupons' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
-        const cartCouponListFailureAction = new DaffCartCouponListFailure(error);
+        const cartCouponListFailureAction = new DaffCartCouponListFailure([error]);
         actions$ = hot('--a', { a: cartCouponListAction });
         expected = cold('--b', { b: cartCouponListFailureAction });
       });
@@ -216,7 +216,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove a coupon from the cart' };
         const response = cold('#', {}, error);
         driverRemoveSpy.and.returnValue(response);
-        const cartCouponRemoveFailureAction = new DaffCartCouponRemoveFailure(error);
+        const cartCouponRemoveFailureAction = new DaffCartCouponRemoveFailure([error]);
         actions$ = hot('--a', { a: cartCouponRemoveAction });
         expected = cold('--b', { b: cartCouponRemoveFailureAction });
       });
@@ -262,7 +262,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove all coupons from the cart' };
         const response = cold('#', {}, error);
         driverRemoveAllSpy.and.returnValue(response);
-        const cartCouponRemoveAllFailureAction = new DaffCartCouponRemoveAllFailure(error);
+        const cartCouponRemoveAllFailureAction = new DaffCartCouponRemoveAllFailure([error]);
         actions$ = hot('--a', { a: cartCouponRemoveAllAction });
         expected = cold('--b', { b: cartCouponRemoveAllFailureAction });
       });

@@ -28,8 +28,8 @@ import {
   DaffCartStoreCreditDriverInterface,
 } from '@daffodil/cart-store-credit/driver';
 import {
-  DaffError,
-  DaffStorageServiceError,
+  DAFF_STORAGE_SERVICE_ERROR_CODE,
+  catchAndArrayifyErrors,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
@@ -59,9 +59,9 @@ export class DaffCartStoreCreditEffects<
       defer(() => of(this.storage.getCartId())).pipe(
         switchMap((cartId) => this.driver.apply(cartId)),
         map(resp => new DaffCartStoreCreditApplySuccess<T>(resp)),
-        catchError((error: DaffError) => of(error instanceof DaffStorageServiceError
-          ? new DaffCartStorageFailure(this.errorMatcher(error))
-          : new DaffCartStoreCreditApplyFailure([this.errorMatcher(error)]))),
+        catchAndArrayifyErrors((error) => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+          ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+          : new DaffCartStoreCreditApplyFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -72,9 +72,9 @@ export class DaffCartStoreCreditEffects<
       defer(() => of(this.storage.getCartId())).pipe(
         switchMap((cartId) => this.driver.remove(cartId)),
         map(resp => new DaffCartStoreCreditRemoveSuccess<T>(resp)),
-        catchError((error: DaffError) => of(error instanceof DaffStorageServiceError
-          ? new DaffCartStorageFailure(this.errorMatcher(error))
-          : new DaffCartStoreCreditRemoveFailure([this.errorMatcher(error)]))),
+        catchAndArrayifyErrors((error) => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+          ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+          : new DaffCartStoreCreditRemoveFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));

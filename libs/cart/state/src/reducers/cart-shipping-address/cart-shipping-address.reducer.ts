@@ -66,7 +66,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
     case DaffCartAddressActionTypes.CartAddressUpdateFailureAction:
       return {
         ...state,
-        ...addError(state.errors, action.payload),
+        ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Complete),
       };
 

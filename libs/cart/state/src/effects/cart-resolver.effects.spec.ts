@@ -50,7 +50,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
 
   let cartResolverSpy: jasmine.SpyObj<DaffCartDriverResolveService>;
   let cartStorageService: DaffCartStorageService;
-  let getCartIdSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     cartResolverSpy = jasmine.createSpyObj('DaffCartDriverResolveService', ['getCartOrFail']);
@@ -138,7 +138,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
 
       it('should emit an action indicating that server side resolution occurred', () => {
         const error = new DaffCartServerSideResolutionError(errorMessage);
-        const resolveCartServerSide = new DaffResolveCartServerSide(daffTransformErrorToStateError(error));
+        const resolveCartServerSide = new DaffResolveCartServerSide([daffTransformErrorToStateError(error)]);
         const expected = cold('--a', {
           a: resolveCartServerSide,
         });

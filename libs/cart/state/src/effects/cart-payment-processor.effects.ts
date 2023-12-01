@@ -29,6 +29,7 @@ import {
   DaffCartPaymentDriver,
   DaffCartPaymentServiceInterface,
 } from '@daffodil/cart/driver';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import {
   DaffPaymentResponse,
@@ -78,10 +79,10 @@ export class DaffCartPaymentProcessorEffects<
               payment_info: response.data,
             }, <R>act.address).pipe(
               map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
-              catchError(error => of(new DaffCartPaymentUpdateFailure(this.errorMatcher(error)))),
+              catchAndArrayifyErrors(error => of(new DaffCartPaymentUpdateFailure(error.map(this.errorMatcher)))),
             ),
           ),
-          catchError(error => of(new DaffPaymentGenerateTokenFailure(this.paymentErrorMatcher(error)))),
+          catchAndArrayifyErrors(error => of(new DaffPaymentGenerateTokenFailure(this.paymentErrorMatcher(error[0])))),
         ),
       ),
     ),

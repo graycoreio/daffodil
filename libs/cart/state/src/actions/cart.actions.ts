@@ -1,8 +1,13 @@
 import { Action } from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffFailureAction,
+  DaffStateError,
+} from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
+
+import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
 
 /**
  * An enum for the cart action types.
@@ -32,10 +37,10 @@ export enum DaffCartActionTypes {
 /**
  * Indicates that an error occured while either reading or writing the cart ID to or from storage.
  */
-export class DaffCartStorageFailure implements Action {
+export class DaffCartStorageFailure implements DaffFailureAction {
   readonly type = DaffCartActionTypes.CartStorageFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -48,7 +53,7 @@ export class DaffCartLoad implements Action {
 /**
  * Indicates the successful load of the cart.
  */
-export class DaffCartLoadSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartLoadSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartActionTypes.CartLoadSuccessAction;
 
   constructor(public payload: T) {}
@@ -60,7 +65,7 @@ export class DaffCartLoadSuccess<T extends DaffCart = DaffCart> implements Actio
  * but the user should probably be shown error messages as well.
  * A common example is some cart items being out of stock.
  */
-export class DaffCartLoadPartialSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartLoadPartialSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartActionTypes.CartLoadPartialSuccessAction;
 
   constructor(public payload: T, public errors: DaffStateError[]) {}
@@ -69,7 +74,7 @@ export class DaffCartLoadPartialSuccess<T extends DaffCart = DaffCart> implement
 /**
  * Indicates the failed load of the cart.
  */
-export class DaffCartLoadFailure implements Action {
+export class DaffCartLoadFailure implements DaffFailureAction {
   readonly type = DaffCartActionTypes.CartLoadFailureAction;
 
   constructor(public payload: DaffStateError[]) {}
@@ -88,16 +93,16 @@ export class DaffCartCreate implements Action {
 export class DaffCartCreateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartCreateSuccessAction;
 
-  constructor(public payload: {id: T['id']}) {}
+  constructor(public payload: Pick<T, 'id'>) {}
 }
 
 /**
  * Indicates the failed creation of a new cart.
  */
-export class DaffCartCreateFailure implements Action {
+export class DaffCartCreateFailure implements DaffFailureAction {
   readonly type = DaffCartActionTypes.CartCreateFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 // TODO: deprecate
@@ -115,10 +120,10 @@ export class DaffAddToCartSuccess implements Action {
 }
 
 // TODO: deprecate
-export class DaffAddToCartFailure implements Action {
+export class DaffAddToCartFailure implements DaffFailureAction {
   readonly type = DaffCartActionTypes.AddToCartFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -131,7 +136,7 @@ export class DaffCartClear implements Action {
 /**
  * Indicates the successful removal of all items from the cart.
  */
-export class DaffCartClearSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartClearSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartActionTypes.CartClearSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -140,10 +145,10 @@ export class DaffCartClearSuccess<T extends DaffCart = DaffCart> implements Acti
 /**
  * Indicates the failed removal of all items from the cart.
  */
-export class DaffCartClearFailure implements Action {
+export class DaffCartClearFailure implements DaffFailureAction {
   readonly type = DaffCartActionTypes.CartClearFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -157,7 +162,7 @@ export class DaffResolveCart implements Action {
 /**
  * An action that indicates a user's cart is resolved successfully.
  */
-export class DaffResolveCartSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffResolveCartSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartActionTypes.ResolveCartSuccessAction;
 
   constructor(public payload: T) {}
@@ -169,7 +174,7 @@ export class DaffResolveCartSuccess<T extends DaffCart = DaffCart> implements Ac
  * but the user should probably be shown error messages as well.
  * A common example is some cart items being out of stock.
  */
-export class DaffResolveCartPartialSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffResolveCartPartialSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartActionTypes.ResolveCartPartialSuccessAction;
 
   constructor(public payload: T, public errors: DaffStateError[]) {}
@@ -178,7 +183,7 @@ export class DaffResolveCartPartialSuccess<T extends DaffCart = DaffCart> implem
 /**
  * An action that indicates that a cart failed to resolve.
  */
-export class DaffResolveCartFailure implements Action {
+export class DaffResolveCartFailure implements DaffFailureAction {
   readonly type = DaffCartActionTypes.ResolveCartFailureAction;
 
   constructor(public payload: DaffStateError[]) {}
@@ -191,7 +196,7 @@ export class DaffResolveCartFailure implements Action {
 export class DaffResolveCartServerSide implements Action {
   readonly type = DaffCartActionTypes.ResolveCartServerSideAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**

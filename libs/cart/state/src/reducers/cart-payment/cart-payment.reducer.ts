@@ -76,7 +76,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction:
       return {
         ...state,
-        ...addError(state.errors, action.payload),
+        ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Complete),
       };
 

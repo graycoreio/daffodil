@@ -29,7 +29,7 @@ import {
 
 import { cartShippingInformationReducer } from './cart-shipping-information.reducer';
 
-describe('Cart | Reducer | Cart Shipping Information', () => {
+describe('@daffodil/cart/state | cartShippingInformationReducer', () => {
   let cartFactory: DaffCartFactory;
   let cartShippingInformationFactory: DaffCartShippingRateFactory;
   let cart: DaffCart;
@@ -116,7 +116,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
         },
       };
 
-      const cartShippingInformationLoadFailure = new DaffCartShippingInformationLoadFailure(error);
+      const cartShippingInformationLoadFailure = new DaffCartShippingInformationLoadFailure([error]);
 
       result = cartShippingInformationReducer(state, cartShippingInformationLoadFailure);
     });
@@ -190,7 +190,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartShippingInformationUpdateFailure = new DaffCartShippingInformationUpdateFailure(error);
+      const cartShippingInformationUpdateFailure = new DaffCartShippingInformationUpdateFailure([error]);
 
       result = cartShippingInformationReducer(state, cartShippingInformationUpdateFailure);
     });
@@ -272,7 +272,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartShippingInformationRemoveFailure = new DaffCartShippingInformationDeleteFailure(error);
+      const cartShippingInformationRemoveFailure = new DaffCartShippingInformationDeleteFailure([error]);
 
       result = cartShippingInformationReducer(state, cartShippingInformationRemoveFailure);
     });

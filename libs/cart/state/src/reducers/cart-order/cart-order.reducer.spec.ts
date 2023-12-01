@@ -38,7 +38,7 @@ import {
 
 import { daffCartOrderReducer as reducer } from './cart-order.reducer';
 
-describe('Cart | Reducer | CartOrder', () => {
+describe('@daffodil/cart/state | daffCartOrderReducer', () => {
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
       const action = <any>{};
@@ -109,7 +109,7 @@ describe('Cart | Reducer | CartOrder', () => {
         ],
       };
 
-      const cartPlaceOrderFailure = new DaffCartPlaceOrderFailure(error);
+      const cartPlaceOrderFailure = new DaffCartPlaceOrderFailure([error]);
 
       result = reducer(state, cartPlaceOrderFailure);
     });
@@ -118,8 +118,8 @@ describe('Cart | Reducer | CartOrder', () => {
       expect(result.loading).toEqual(DaffState.Complete);
     });
 
-    it('should add an error to state', () => {
-      expect(result.errors.length).toEqual(2);
+    it('should set the action errors in state', () => {
+      expect(result.errors).toEqual([error]);
     });
   });
 

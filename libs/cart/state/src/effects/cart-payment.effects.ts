@@ -25,6 +25,7 @@ import {
   DaffCartPaymentDriver,
   DaffCartPaymentServiceInterface,
 } from '@daffodil/cart/driver';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -62,7 +63,7 @@ export class DaffCartPaymentEffects<
     switchMap((action: DaffCartPaymentLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
         map((resp: T) => new DaffCartPaymentLoadSuccess(resp)),
-        catchError(error => of(new DaffCartPaymentLoadFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartPaymentLoadFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -73,7 +74,7 @@ export class DaffCartPaymentEffects<
     switchMap((action: DaffCartPaymentUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
         map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
-        catchError(error => of(new DaffCartPaymentUpdateFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartPaymentUpdateFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -84,7 +85,7 @@ export class DaffCartPaymentEffects<
     switchMap((action: DaffCartPaymentUpdateWithBilling<T, R>) =>
       this.driver.updateWithBilling(this.storage.getCartId(), action.payment, action.address).pipe(
         map(resp => new DaffCartPaymentUpdateWithBillingSuccess(resp)),
-        catchError(error => of(new DaffCartPaymentUpdateWithBillingFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartPaymentUpdateWithBillingFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -95,7 +96,7 @@ export class DaffCartPaymentEffects<
     switchMap((action: DaffCartPaymentRemove) =>
       this.driver.remove(this.storage.getCartId()).pipe(
         map(() => new DaffCartPaymentRemoveSuccess()),
-        catchError(error => of(new DaffCartPaymentRemoveFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartPaymentRemoveFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
