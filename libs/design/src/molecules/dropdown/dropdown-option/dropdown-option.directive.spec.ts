@@ -46,9 +46,9 @@ describe('DaffDropdownOptionDirective', () => {
   });
 
   describe('[daffDropdownOption]', () => {
-    it('should add a class of "daff-dropdown-item__content" to the host element', () => {
+    it('should add a class of "daff-dropdown__option" to the host element', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-dropdown-item__content': true,
+        'daff-dropdown__option': true,
       }));
     });
   });
