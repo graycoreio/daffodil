@@ -4,4 +4,6 @@ export { PreselectedDropdownComponent } from './preselected-dropdown/preselected
 export { PreselectedDropdownModule } from './preselected-dropdown/preselected-dropdown.module';
 export { DisabledDropdownComponent } from './disabled-dropdown/disabled-dropdown.component';
 export { DisabledDropdownModule } from './disabled-dropdown/disabled-dropdown.module';
+export { SkeletonDropdownComponent } from './skeleton-dropdown/skeleton-dropdown.component';
+export { SkeletonDropdownModule } from './skeleton-dropdown/skeleton-dropdown.module';
 export { DROPDOWN_EXAMPLES } from './examples';
