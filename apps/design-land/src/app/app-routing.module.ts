@@ -35,6 +35,7 @@ export const appRoutes: Routes = [
       { path: 'paginator', loadChildren: () => import('./paginator/paginator.module').then(m => m.DesignLandPaginatorModule) },
       { path: 'progress-bar', loadChildren: () => import('./progress-bar/progress-bar.module').then(m => m.DesignLandProgressBarModule) },
       { path: 'quantity-field', loadChildren: () => import('./quantity-field/quantity-field.module').then(m => m.DesignLandQuantityFieldModule) },
+      { path: 'select', loadChildren: () => import('./select/select.module').then(m => m.DesignLandSelectModule) },
       { path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.DesignLandSidebarModule) },
       { path: 'switch', loadChildren: () => import('./switch/switch.module').then(m => m.DesignLandSwitchModule) },
       { path: 'radio', loadChildren: () => import('./radio/radio.module').then(m => m.DesignLandRadioModule) },

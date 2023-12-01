@@ -44,6 +44,7 @@
 @use '../navbar/src/navbar-theme' as navbar;
 @use '../notification/src/notification-theme' as notification;
 @use '../paginator/src/paginator-theme' as paginator;
+@use '../src/molecules/select/select-theme' as select;
 @use '../sidebar/src/sidebar-theme' as sidebar;
 @use '../switch/src/switch-theme' as switch;
 @use '../progress-bar/src/progress-bar-theme' as progress-bar;
@@ -88,8 +89,15 @@
 	@include error-message.daff-error-message-theme($theme);
 	@include hint.daff-hint-theme($theme);
 	@include native-select.daff-native-select-theme($theme);
-	@include dropdown.daff-dropdown-theme($theme);
+	@include select.daff-select-theme($theme);
 
+	@include loading-icon.daff-loading-icon-theme($theme);
+	@include progress-bar.daff-progress-bar-theme($theme);
+
+	@include accordion.daff-accordion-theme($theme);
+	@include article.daff-article-theme($theme);
+	@include callout.daff-callout-theme($theme);
+	@include card.daff-card-theme($theme);
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
 	@include loading-icon.daff-loading-icon-theme($theme);
