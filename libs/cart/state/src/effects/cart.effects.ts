@@ -28,7 +28,11 @@ import {
   DaffCartDriver,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
-import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DAFF_STORAGE_SERVICE_ERROR_CODE,
+  DaffStorageServiceError,
+  catchAndArrayifyErrors,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -63,7 +67,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartCreateAction),
     switchMap((action: DaffCartCreate) => this.driver.create().pipe(
       map((resp: {id: T['id']}) => new DaffCartCreateSuccess(resp)),
-      catchError(error => of(new DaffCartCreateFailure(this.errorMatcher(error)))),
+      catchAndArrayifyErrors(error => of(new DaffCartCreateFailure(error.map(this.errorMatcher)))),
     )),
   ));
 
@@ -75,7 +79,7 @@ export class DaffCartEffects<T extends DaffCart> {
         this.storage.setCartId(action.payload.id);
       }),
       switchMap(() => EMPTY),
-      catchError(error => of(new DaffCartStorageFailure(this.errorMatcher(error)))),
+      catchAndArrayifyErrors(error => of(new DaffCartStorageFailure(error.map(this.errorMatcher)))),
     )),
   ));
 
@@ -92,14 +96,14 @@ export class DaffCartEffects<T extends DaffCart> {
         const hasOnlyRecoverableErrors = errors.reduce((acc, error) => acc && error.recoverable, true);
 
         if (hasOnlyRecoverableErrors) {
-          return new DaffCartLoadPartialSuccess(response, errors.map(error => this.errorMatcher(error)));
+          return new DaffCartLoadPartialSuccess(response, errors.map(this.errorMatcher));
         }
 
-        return new DaffCartLoadFailure(errors.map(error => this.errorMatcher(error)));
+        return new DaffCartLoadFailure(errors.map(this.errorMatcher));
       }),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartLoadFailure([this.errorMatcher(error)]),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartLoadFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));
@@ -110,7 +114,7 @@ export class DaffCartEffects<T extends DaffCart> {
     switchMap((action: DaffAddToCart) =>
       this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
         map((resp: T) => new DaffAddToCartSuccess(resp)),
-        catchError(error => of(new DaffAddToCartFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffAddToCartFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -121,9 +125,9 @@ export class DaffCartEffects<T extends DaffCart> {
     switchMap((action: DaffCartClear) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.clear(cartId)),
       map((resp: T) => new DaffCartClearSuccess(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartClearFailure(this.errorMatcher(error)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartClearFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));

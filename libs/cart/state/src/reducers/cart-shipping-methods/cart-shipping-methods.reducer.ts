@@ -41,7 +41,7 @@ export function cartShippingMethodsReducer<T extends DaffCart>(
     case DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadFailureAction:
       return {
         ...state,
-        ...addError(state.errors, action.payload),
+        ...addError(state.errors, ...action.payload),
         ...setLoading(state.loading, DaffState.Complete),
       };
 

@@ -78,12 +78,12 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
   let daffCartItemDriver: DaffCartItemServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverAddSpy: jasmine.Spy;
-  let driverListSpy: jasmine.Spy;
-  let driverUpdateSpy: jasmine.Spy;
-  let driverDeleteSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartItemServiceInterface['get']>;
+  let driverAddSpy: jasmine.Spy<DaffCartItemServiceInterface['add']>;
+  let driverListSpy: jasmine.Spy<DaffCartItemServiceInterface['list']>;
+  let driverUpdateSpy: jasmine.Spy<DaffCartItemServiceInterface['update']>;
+  let driverDeleteSpy: jasmine.Spy<DaffCartItemServiceInterface['delete']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
   let cartResolverSpy: jasmine.SpyObj<DaffCartDriverResolveService>;
 
   beforeEach(() => {
@@ -168,7 +168,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart items' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
-        const cartItemListFailureAction = new DaffCartItemListFailure(error);
+        const cartItemListFailureAction = new DaffCartItemListFailure([error]);
         actions$ = hot('--a', { a: cartItemListAction });
         expected = cold('--b', { b: cartItemListFailureAction });
       });
@@ -205,7 +205,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart item' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error, mockCartItem.id);
+        const cartItemLoadFailureAction = new DaffCartItemLoadFailure([error], mockCartItem.id);
         actions$ = hot('--a', { a: cartItemLoadAction });
         expected = cold('--b', { b: cartItemLoadFailureAction });
       });
@@ -249,7 +249,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
           const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add cart item' };
           const response = cold('#', {}, error);
           driverAddSpy.and.returnValue(response);
-          const cartItemAddFailureAction = new DaffCartItemAddFailure(error);
+          const cartItemAddFailureAction = new DaffCartItemAddFailure([error]);
           actions$ = hot('--a', { a: cartItemAddAction });
           expected = cold('--b', { b: cartItemAddFailureAction });
         });
@@ -263,7 +263,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
     describe('and the cart ID retrieval fails', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add cart item' };
-        const cartItemAddFailureAction = new DaffCartItemAddFailure(error);
+        const cartItemAddFailureAction = new DaffCartItemAddFailure([error]);
         actions$ = hot('--a', { a: cartItemAddAction });
         expected = cold('--(b|)', { b: cartItemAddFailureAction });
         cartResolverSpy.getCartIdOrFail.and.returnValue(throwError(() => error));
@@ -323,7 +323,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart item' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error, mockCartItem.id);
+        const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure([error], mockCartItem.id);
         actions$ = hot('--a', { a: cartItemUpdateAction });
         expected = cold('--b', { b: cartItemUpdateFailureAction });
       });
@@ -434,7 +434,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart item' };
         const response = cold('#', {}, error);
         driverDeleteSpy.and.returnValue(response);
-        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error, mockCartItem.id);
+        const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure([error], mockCartItem.id);
         actions$ = hot('--a', { a: cartItemDeleteAction });
         expected = cold('--b', { b: cartItemRemoveCartFailureAction });
       });
@@ -503,7 +503,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
           const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart item' };
           const response = cold('#', {}, error);
           driverDeleteSpy.and.returnValue(response);
-          const cartItemRemoveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);
+          const cartItemRemoveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure([error]);
           actions$ = hot('--a', { a: cartItemDeleteOutOfStockAction });
           expected = cold('--(b|)', { b: cartItemRemoveCartFailureAction });
         });

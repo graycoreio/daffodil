@@ -4,7 +4,10 @@ import {
   DaffCartPaymentMethod,
   DaffCartOrderResult,
 } from '@daffodil/cart';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffFailureAction,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 /**
  * An enum for the cart order action types.
@@ -36,10 +39,10 @@ export class DaffCartPlaceOrderSuccess<T extends DaffCartOrderResult = DaffCartO
 /**
  * Indicates the failed order placement for a cart.
  */
-export class DaffCartPlaceOrderFailure implements Action {
+export class DaffCartPlaceOrderFailure implements DaffFailureAction {
   readonly type = DaffCartOrderActionTypes.CartPlaceOrderFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**

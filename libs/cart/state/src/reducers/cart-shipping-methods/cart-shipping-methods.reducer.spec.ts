@@ -21,10 +21,9 @@ import {
   DaffStateError,
 } from '@daffodil/core/state';
 
-
 import { cartShippingMethodsReducer } from './cart-shipping-methods.reducer';
 
-describe('Cart | Reducer | Cart Shipping Methods', () => {
+describe('@daffodil/cart/state | cartShippingMethodsReducer', () => {
   let cartFactory: DaffCartFactory;
   let cartShippingRateFactory: DaffCartShippingRateFactory;
   let cart: DaffCart;
@@ -110,7 +109,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
         },
       };
 
-      const cartShippingMethodsLoadFailure = new DaffCartShippingMethodsLoadFailure(error);
+      const cartShippingMethodsLoadFailure = new DaffCartShippingMethodsLoadFailure([error]);
 
       result = cartShippingMethodsReducer(state, cartShippingMethodsLoadFailure);
     });

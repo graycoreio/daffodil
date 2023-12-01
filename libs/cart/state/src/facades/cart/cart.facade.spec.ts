@@ -832,7 +832,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed item load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartItemLoadFailure(error, 'itemId'));
+      facade.dispatch(new DaffCartItemLoadFailure([error], 'itemId'));
       expect(facade.itemErrors$).toBeObservable(expected);
     });
   });
@@ -846,7 +846,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed billing address load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartBillingAddressLoadFailure(error));
+      facade.dispatch(new DaffCartBillingAddressLoadFailure([error]));
       expect(facade.billingAddressErrors$).toBeObservable(expected);
     });
   });
@@ -860,7 +860,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed shipping address load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartShippingAddressLoadFailure(error));
+      facade.dispatch(new DaffCartShippingAddressLoadFailure([error]));
       expect(facade.shippingAddressErrors$).toBeObservable(expected);
     });
   });
@@ -874,7 +874,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed shipping information load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartShippingInformationLoadFailure(error));
+      facade.dispatch(new DaffCartShippingInformationLoadFailure([error]));
       expect(facade.shippingInformationErrors$).toBeObservable(expected);
     });
   });
@@ -888,7 +888,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed shipping methods load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartShippingMethodsLoadFailure(error));
+      facade.dispatch(new DaffCartShippingMethodsLoadFailure([error]));
       expect(facade.shippingMethodsErrors$).toBeObservable(expected);
     });
   });
@@ -902,7 +902,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed payment load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartPaymentLoadFailure(error));
+      facade.dispatch(new DaffCartPaymentLoadFailure([error]));
       expect(facade.paymentErrors$).toBeObservable(expected);
     });
   });
@@ -916,7 +916,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed payment methods load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartPaymentMethodsLoadFailure(error));
+      facade.dispatch(new DaffCartPaymentMethodsLoadFailure([error]));
       expect(facade.paymentMethodsErrors$).toBeObservable(expected);
     });
   });
@@ -930,7 +930,7 @@ describe('DaffCartFacade', () => {
     it('should contain an error upon a failed coupon list', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
       const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartCouponListFailure(error));
+      facade.dispatch(new DaffCartCouponListFailure([error]));
       expect(facade.couponErrors$).toBeObservable(expected);
     });
   });
@@ -1435,7 +1435,7 @@ describe('DaffCartFacade', () => {
 
       beforeEach(() => {
         error = 'error';
-        facade.dispatch(new DaffCartPlaceOrderFailure(error));
+        facade.dispatch(new DaffCartPlaceOrderFailure([error]));
       });
 
       it('should contain the error', () => {
@@ -1759,7 +1759,7 @@ describe('DaffCartFacade', () => {
       });
       const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      facade.dispatch(new DaffCartItemUpdateFailure(error, cart.items[0].id));
+      facade.dispatch(new DaffCartItemUpdateFailure([error], cart.items[0].id));
       expect(facade.getCartItemErrors(cart.items[0].id)).toBeObservable(expected);
     });
   });

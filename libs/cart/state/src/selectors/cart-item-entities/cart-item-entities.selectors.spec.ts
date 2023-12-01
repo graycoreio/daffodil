@@ -538,7 +538,7 @@ describe('@daffodil/cart/state | selectCartItemEntitiesState', () => {
 
     it('should return the errors of the cart item', () => {
       store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      store.dispatch(new DaffCartItemUpdateFailure(error, mockCartItems[0].id));
+      store.dispatch(new DaffCartItemUpdateFailure([error], mockCartItems[0].id));
       const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id)));
       const expected = cold('a', { a: [error]});
 

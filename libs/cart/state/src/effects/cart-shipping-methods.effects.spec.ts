@@ -32,7 +32,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartShippingMethodsEffects } from './cart-shipping-methods.effects';
 
-describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
+describe('@daffodil/cart/state | DaffCartShippingMethodsEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartShippingMethodsEffects<DaffCartShippingRate>;
 
@@ -45,8 +45,8 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
   let shippingMethodsDriver: DaffCartShippingMethodsServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverListSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverListSpy: jasmine.Spy<DaffCartShippingMethodsServiceInterface['list']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -101,7 +101,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart shipping methods' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure(error);
+        const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure([error]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
       });

@@ -58,10 +58,7 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
       return {
         ...state,
         loading: DaffState.Complete,
-        errors: [
-          ...state.errors,
-          action.payload,
-        ],
+        errors: action.payload,
       };
 
     case DaffCartActionTypes.CartClearSuccessAction:

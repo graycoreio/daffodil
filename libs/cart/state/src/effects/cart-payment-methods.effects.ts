@@ -23,6 +23,7 @@ import {
   DaffCartPaymentMethodsDriver,
   DaffCartPaymentMethodsServiceInterface,
 } from '@daffodil/cart/driver';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -48,7 +49,7 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
     switchMap((action: DaffCartPaymentMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartPaymentMethodsLoadSuccess(resp)),
-        catchError(error => of(new DaffCartPaymentMethodsLoadFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartPaymentMethodsLoadFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));

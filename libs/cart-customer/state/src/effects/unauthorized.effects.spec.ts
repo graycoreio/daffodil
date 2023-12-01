@@ -140,7 +140,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartItemAddFailure(error);
+        const resolveCartFailureAction = new DaffCartItemAddFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -154,7 +154,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartItemAddFailure(error);
+        const resolveCartFailureAction = new DaffCartItemAddFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -171,7 +171,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartItemDeleteFailure(error, 'itemId');
+        const resolveCartFailureAction = new DaffCartItemDeleteFailure([error], 'itemId');
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -185,7 +185,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartItemDeleteFailure(error, 'itemId');
+        const resolveCartFailureAction = new DaffCartItemDeleteFailure([error], 'itemId');
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -202,7 +202,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);
+        const resolveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -216,7 +216,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure(error);
+        const resolveCartFailureAction = new DaffCartItemDeleteOutOfStockFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -233,7 +233,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartItemUpdateFailure(error, 'itemId');
+        const resolveCartFailureAction = new DaffCartItemUpdateFailure([error], 'itemId');
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -247,7 +247,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartItemUpdateFailure(error, 'itemId');
+        const resolveCartFailureAction = new DaffCartItemUpdateFailure([error], 'itemId');
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -264,7 +264,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartBillingAddressUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartBillingAddressUpdateFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -278,7 +278,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartBillingAddressUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartBillingAddressUpdateFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -295,7 +295,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartAddressUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartAddressUpdateFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -309,7 +309,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartAddressUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartAddressUpdateFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -326,7 +326,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartShippingAddressUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartShippingAddressUpdateFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -340,7 +340,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartShippingAddressUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartShippingAddressUpdateFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -357,7 +357,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartShippingInformationDeleteFailure(error);
+        const resolveCartFailureAction = new DaffCartShippingInformationDeleteFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -371,7 +371,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartShippingInformationDeleteFailure(error);
+        const resolveCartFailureAction = new DaffCartShippingInformationDeleteFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -388,7 +388,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartShippingInformationUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartShippingInformationUpdateFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -402,7 +402,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartShippingInformationUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartShippingInformationUpdateFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -419,7 +419,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartPaymentRemoveFailure(error);
+        const resolveCartFailureAction = new DaffCartPaymentRemoveFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -433,7 +433,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartPaymentRemoveFailure(error);
+        const resolveCartFailureAction = new DaffCartPaymentRemoveFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -450,7 +450,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartPaymentUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartPaymentUpdateFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -464,7 +464,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartPaymentUpdateFailure(error);
+        const resolveCartFailureAction = new DaffCartPaymentUpdateFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -481,7 +481,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartPaymentUpdateWithBillingFailure(error);
+        const resolveCartFailureAction = new DaffCartPaymentUpdateWithBillingFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -495,7 +495,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartPaymentUpdateWithBillingFailure(error);
+        const resolveCartFailureAction = new DaffCartPaymentUpdateWithBillingFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -512,7 +512,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartCouponApplyFailure(error);
+        const resolveCartFailureAction = new DaffCartCouponApplyFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -526,7 +526,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartCouponApplyFailure(error);
+        const resolveCartFailureAction = new DaffCartCouponApplyFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -543,7 +543,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartCouponRemoveFailure(error);
+        const resolveCartFailureAction = new DaffCartCouponRemoveFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -557,7 +557,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartCouponRemoveFailure(error);
+        const resolveCartFailureAction = new DaffCartCouponRemoveFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -574,7 +574,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartCouponRemoveAllFailure(error);
+        const resolveCartFailureAction = new DaffCartCouponRemoveAllFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -588,7 +588,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartCouponRemoveAllFailure(error);
+        const resolveCartFailureAction = new DaffCartCouponRemoveAllFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });
@@ -605,7 +605,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART, recoverable: false, message: 'Unauthorized' };
-        const resolveCartFailureAction = new DaffCartPlaceOrderFailure(error);
+        const resolveCartFailureAction = new DaffCartPlaceOrderFailure([error]);
         const checkAction = new DaffAuthCheck();
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('--b', { b: checkAction });
@@ -619,7 +619,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerUnauthorizedEffects', 
     describe('and the error is not a DaffUnauthorizedForCartError', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Something went wrong' };
-        const resolveCartFailureAction = new DaffCartPlaceOrderFailure(error);
+        const resolveCartFailureAction = new DaffCartPlaceOrderFailure([error]);
         actions$ = hot('--a', { a: resolveCartFailureAction });
         expected = cold('---');
       });

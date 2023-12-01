@@ -133,7 +133,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
         },
       };
 
-      const cartItemUpdateFailure = new DaffCartItemUpdateFailure(error, cartItem.id);
+      const cartItemUpdateFailure = new DaffCartItemUpdateFailure([error], cartItem.id);
 
       result = cartItemReducer(state, cartItemUpdateFailure);
     });
@@ -209,7 +209,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
         },
       };
 
-      const cartItemRemoveFailure = new DaffCartItemDeleteFailure(error, cartItem.id);
+      const cartItemRemoveFailure = new DaffCartItemDeleteFailure([error], cartItem.id);
 
       result = cartItemReducer(state, cartItemRemoveFailure);
     });
@@ -294,7 +294,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
         },
       };
 
-      const cartItemRemoveFailure = new DaffCartItemDeleteOutOfStockFailure(error);
+      const cartItemRemoveFailure = new DaffCartItemDeleteOutOfStockFailure([error]);
 
       result = cartItemReducer(state, cartItemRemoveFailure);
     });
@@ -370,7 +370,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartItemAddFailure = new DaffCartItemAddFailure(error);
+      const cartItemAddFailure = new DaffCartItemAddFailure([error]);
 
       result = cartItemReducer(state, cartItemAddFailure);
     });
@@ -454,7 +454,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartItemLoadFailure = new DaffCartItemLoadFailure(error, cartItem.id);
+      const cartItemLoadFailure = new DaffCartItemLoadFailure([error], cartItem.id);
 
       result = cartItemReducer(state, cartItemLoadFailure);
     });
@@ -532,7 +532,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartItemListFailure = new DaffCartItemListFailure(error);
+      const cartItemListFailure = new DaffCartItemListFailure([error]);
 
       result = cartItemReducer(state, cartItemListFailure);
     });

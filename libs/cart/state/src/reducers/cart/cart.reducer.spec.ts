@@ -1,4 +1,3 @@
-
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCart } from '@daffodil/cart';
@@ -22,8 +21,8 @@ import {
   daffCartReducerInitialState,
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
-  DaffResolveCartServerSide,
   DaffResolveCartPartialSuccess,
+  DaffCartLoadPartialSuccess,
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
@@ -34,7 +33,6 @@ import {
 } from '@daffodil/core/state';
 
 import { cartReducer } from './cart.reducer';
-import { DaffCartLoadPartialSuccess } from '../../actions/public_api';
 
 describe('@daffodil/cart/state | cartReducer', () => {
   let cartFactory: DaffCartFactory;
@@ -295,7 +293,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
         },
       };
 
-      const cartStorageFailure = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
+      const cartStorageFailure = new DaffCartStorageFailure([daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))]);
 
       result = cartReducer(state, cartStorageFailure);
     });
@@ -371,7 +369,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
         },
       };
 
-      const cartCreateFailure = new DaffCartCreateFailure(error);
+      const cartCreateFailure = new DaffCartCreateFailure([error]);
 
       result = cartReducer(state, cartCreateFailure);
     });
@@ -445,7 +443,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
         },
       };
 
-      const addToCartFailure = new DaffAddToCartFailure(error);
+      const addToCartFailure = new DaffAddToCartFailure([error]);
 
       result = cartReducer(state, addToCartFailure);
     });
@@ -522,7 +520,7 @@ describe('@daffodil/cart/state | cartReducer', () => {
         },
       };
 
-      const cartClearFailure = new DaffCartClearFailure(error);
+      const cartClearFailure = new DaffCartClearFailure([error]);
 
       result = cartReducer(state, cartClearFailure);
     });

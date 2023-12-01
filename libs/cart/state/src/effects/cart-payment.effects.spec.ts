@@ -43,7 +43,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartPaymentEffects } from './cart-payment.effects';
 
-describe('Daffodil | Cart | CartPaymentEffects', () => {
+describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartPaymentEffects;
 
@@ -58,11 +58,11 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
   let daffPaymentDriver: DaffCartPaymentServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverGetSpy: jasmine.Spy;
-  let driverUpdateSpy: jasmine.Spy;
-  let driverUpdateWithBillingSpy: jasmine.Spy;
-  let driverRemoveSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverGetSpy: jasmine.Spy<DaffCartPaymentServiceInterface['get']>;
+  let driverUpdateSpy: jasmine.Spy<DaffCartPaymentServiceInterface['update']>;
+  let driverUpdateWithBillingSpy: jasmine.Spy<DaffCartPaymentServiceInterface['updateWithBilling']>;
+  let driverRemoveSpy: jasmine.Spy<DaffCartPaymentServiceInterface['remove']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -122,7 +122,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart payment' };
         const response = cold('#', {}, error);
         driverGetSpy.and.returnValue(response);
-        const cartPaymentLoadFailureAction = new DaffCartPaymentLoadFailure(error);
+        const cartPaymentLoadFailureAction = new DaffCartPaymentLoadFailure([error]);
         actions$ = hot('--a', { a: cartPaymentLoadAction });
         expected = cold('--b', { b: cartPaymentLoadFailureAction });
       });
@@ -161,7 +161,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
         const response = cold('#', {}, error);
         driverUpdateSpy.and.returnValue(response);
-        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure(error);
+        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure([error]);
         actions$ = hot('--a', { a: cartPaymentUpdateAction });
         expected = cold('--b', { b: cartPaymentUpdateFailureAction });
       });
@@ -200,7 +200,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment and billing address' };
         const response = cold('#', {}, error);
         driverUpdateWithBillingSpy.and.returnValue(response);
-        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure(error);
+        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure([error]);
         actions$ = hot('--a', { a: cartPaymentUpdateAction });
         expected = cold('--b', { b: cartPaymentUpdateFailureAction });
       });
@@ -233,7 +233,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart payment' };
         const response = cold('#', {}, error);
         driverRemoveSpy.and.returnValue(response);
-        const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure(error);
+        const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure([error]);
         actions$ = hot('--a', { a: cartPaymentRemoveAction });
         expected = cold('--b', { b: cartPaymentRemoveFailureAction });
       });

@@ -27,7 +27,11 @@ import {
   DaffCartAddressDriver,
   DaffCartAddressServiceInterface,
 } from '@daffodil/cart/driver';
-import { DaffStorageServiceError } from '@daffodil/core';
+import {
+  DAFF_STORAGE_SERVICE_ERROR_CODE,
+  DaffStorageServiceError,
+  catchAndArrayifyErrors,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -52,10 +56,10 @@ export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCar
     ofType(DaffCartAddressActionTypes.CartAddressUpdateAction),
     switchMap((action: DaffCartAddressUpdate<T>) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.update(cartId, action.payload)),
-      map((resp: V) => new DaffCartAddressUpdateSuccess(resp)),
-      catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure(this.errorMatcher(error))
-        : new DaffCartAddressUpdateFailure(this.errorMatcher(error)),
+      map((resp) => new DaffCartAddressUpdateSuccess(resp)),
+      catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)
+        ? new DaffCartStorageFailure(error.map(this.errorMatcher))
+        : new DaffCartAddressUpdateFailure(error.map(this.errorMatcher)),
       )),
     )),
   ));

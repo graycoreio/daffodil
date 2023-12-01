@@ -32,7 +32,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartPaymentMethodsEffects } from './cart-payment-methods.effects';
 
-describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
+describe('@daffodil/cart/state | DaffCartPaymentMethodsEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartPaymentMethodsEffects<DaffCartPaymentMethod>;
 
@@ -45,8 +45,8 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
   let paymentMethodsDriver: DaffCartPaymentMethodsServiceInterface;
   let daffCartStorageService: DaffCartStorageService;
 
-  let driverListSpy: jasmine.Spy;
-  let getCartIdSpy: jasmine.Spy;
+  let driverListSpy: jasmine.Spy<DaffCartPaymentMethodsServiceInterface['list']>;
+  let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -101,7 +101,7 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart payment methods' };
         const response = cold('#', {}, error);
         driverListSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartPaymentMethodsLoadFailure(error);
+        const cartCreateFailureAction = new DaffCartPaymentMethodsLoadFailure([error]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
       });

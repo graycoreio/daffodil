@@ -170,7 +170,7 @@ describe('@daffodil/cart/state | DaffCartPaymentProcessorEffects', () => {
           const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
           const response = cold('#', {}, error);
           driverUpdateSpy.and.returnValue(response);
-          const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure(error);
+          const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure([error]);
           expected = cold('--b', { b: cartPaymentUpdateFailureAction });
         });
 

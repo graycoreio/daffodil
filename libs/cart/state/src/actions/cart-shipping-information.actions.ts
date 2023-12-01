@@ -4,7 +4,12 @@ import {
   DaffCartShippingRate,
   DaffCart,
 } from '@daffodil/cart';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffFailureAction,
+  DaffStateError,
+} from '@daffodil/core/state';
+
+import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
 
 /**
  * An enum for the cart shipping information action types.
@@ -40,10 +45,10 @@ export class DaffCartShippingInformationLoadSuccess<T extends DaffCartShippingRa
 /**
  * Indicates the failed load of the cart's shipping information.
  */
-export class DaffCartShippingInformationLoadFailure implements Action {
+export class DaffCartShippingInformationLoadFailure implements DaffFailureAction {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -58,7 +63,7 @@ export class DaffCartShippingInformationUpdate<T extends DaffCartShippingRate = 
 /**
  * Indicates the successful update of the cart's shipping information.
  */
-export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -67,10 +72,10 @@ export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart = DaffC
 /**
  * Indicates the failed update of the cart's shipping information.
  */
-export class DaffCartShippingInformationUpdateFailure implements Action {
+export class DaffCartShippingInformationUpdateFailure implements DaffFailureAction {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**
@@ -82,16 +87,16 @@ export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate = 
   constructor(public id?: T['id']) {}
 }
 
-export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteSuccessAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
-export class DaffCartShippingInformationDeleteFailure implements Action {
+export class DaffCartShippingInformationDeleteFailure implements DaffFailureAction {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteFailureAction;
 
-  constructor(public payload: DaffStateError) {}
+  constructor(public payload: DaffStateError[]) {}
 }
 
 /**

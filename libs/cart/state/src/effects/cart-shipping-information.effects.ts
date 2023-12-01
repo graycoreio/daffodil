@@ -24,6 +24,7 @@ import {
   DaffCartShippingInformationDriver,
   DaffCartShippingInformationServiceInterface,
 } from '@daffodil/cart/driver';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
@@ -54,7 +55,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     switchMap((action: DaffCartShippingInformationLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
         map((resp: T) => new DaffCartShippingInformationLoadSuccess(resp)),
-        catchError(error => of(new DaffCartShippingInformationLoadFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartShippingInformationLoadFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -65,7 +66,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     switchMap((action: DaffCartShippingInformationUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
         map((resp: V) => new DaffCartShippingInformationUpdateSuccess(resp)),
-        catchError(error => of(new DaffCartShippingInformationUpdateFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartShippingInformationUpdateFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
@@ -76,7 +77,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     switchMap((action: DaffCartShippingInformationDelete<V['shipping_information']>) =>
       this.driver.delete(this.storage.getCartId()).pipe(
         map((resp: V) => new DaffCartShippingInformationDeleteSuccess(resp)),
-        catchError(error => of(new DaffCartShippingInformationDeleteFailure(this.errorMatcher(error)))),
+        catchAndArrayifyErrors(error => of(new DaffCartShippingInformationDeleteFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));

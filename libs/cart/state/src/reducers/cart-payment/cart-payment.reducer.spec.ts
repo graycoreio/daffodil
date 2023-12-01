@@ -27,7 +27,7 @@ import {
 
 import { cartPaymentReducer } from './cart-payment.reducer';
 
-describe('Cart | Reducer | Cart Payment', () => {
+describe('@daffodil/cart/state | cartPaymentReducer', () => {
   let cartFactory: DaffCartFactory;
   let cart: DaffCart;
 
@@ -106,7 +106,7 @@ describe('Cart | Reducer | Cart Payment', () => {
         },
       };
 
-      const cartListLoadFailure = new DaffCartPaymentLoadFailure(error);
+      const cartListLoadFailure = new DaffCartPaymentLoadFailure([error]);
 
       result = cartPaymentReducer(state, cartListLoadFailure);
     });
@@ -180,7 +180,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartPaymentUpdateFailure = new DaffCartPaymentUpdateFailure(error);
+      const cartPaymentUpdateFailure = new DaffCartPaymentUpdateFailure([error]);
 
       result = cartPaymentReducer(state, cartPaymentUpdateFailure);
     });
@@ -254,7 +254,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure(error);
+      const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure([error]);
 
       result = cartPaymentReducer(state, cartPaymentUpdateWithBillingFailure);
     });
@@ -327,7 +327,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartPaymentRemoveFailure = new DaffCartPaymentRemoveFailure(error);
+      const cartPaymentRemoveFailure = new DaffCartPaymentRemoveFailure([error]);
 
       result = cartPaymentReducer(state, cartPaymentRemoveFailure);
     });

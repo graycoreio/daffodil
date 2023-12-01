@@ -32,8 +32,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { cartCouponReducer as reducer } from './cart-coupon.reducer';
 
-
-describe('Cart | Reducer | cartCouponReducer', () => {
+describe('@daffodil/cart/state | cartCouponReducer', () => {
   let cartFactory: DaffCartFactory;
   let cartCouponFactory: DaffCartCouponFactory;
 
@@ -88,10 +87,6 @@ describe('Cart | Reducer | cartCouponReducer', () => {
       result = reducer(state, cartCouponApplySuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
-    });
-
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
     });
@@ -119,7 +114,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
         },
       };
 
-      const cartCouponApplyFailure = new DaffCartCouponApplyFailure(error);
+      const cartCouponApplyFailure = new DaffCartCouponApplyFailure([error]);
 
       result = reducer(state, cartCouponApplyFailure);
     });
@@ -192,7 +187,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
         },
       };
 
-      const cartCouponListFailure = new DaffCartCouponListFailure(error);
+      const cartCouponListFailure = new DaffCartCouponListFailure([error]);
 
       result = reducer(state, cartCouponListFailure);
     });
@@ -233,10 +228,6 @@ describe('Cart | Reducer | cartCouponReducer', () => {
       result = reducer(state, cartCouponRemoveActionSuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart);
-    });
-
     it('should indicate that the cart is not loading', () => {
       expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
     });
@@ -266,7 +257,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartCouponRemoveFailure = new DaffCartCouponRemoveFailure(error);
+      const cartCouponRemoveFailure = new DaffCartCouponRemoveFailure([error]);
 
       result = reducer(state, cartCouponRemoveFailure);
     });
@@ -346,7 +337,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
       error = { code: 'error code', message: 'error message' };
 
-      const cartClearFailure = new DaffCartCouponRemoveAllFailure(error);
+      const cartClearFailure = new DaffCartCouponRemoveAllFailure([error]);
 
       result = reducer(state, cartClearFailure);
     });

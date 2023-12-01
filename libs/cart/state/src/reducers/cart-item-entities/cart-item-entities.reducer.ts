@@ -65,7 +65,7 @@ export function daffCartItemEntitiesReducer<
       return adapter.upsertOne({
         ...state.entities[action.itemId],
         daffState: DaffCartItemStateEnum.Error,
-        daffErrors: state.entities[action.itemId]?.daffErrors?.concat(action.payload) || [action.payload],
+        daffErrors: state.entities[action.itemId]?.daffErrors?.concat(action.payload) || action.payload,
       }, state);
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
@@ -83,14 +83,17 @@ export function daffCartItemEntitiesReducer<
         ...state.entities[key],
         daffState: DaffCartItemStateEnum.Default,
       })), state);
+
     case DaffCartItemActionTypes.CartItemUpdateAction:
     case DaffCartItemActionTypes.CartItemDeleteAction:
       return adapter.upsertOne({
         ...state.entities[action.itemId],
         daffState: DaffCartItemStateEnum.Mutating,
       }, state);
+
     case DaffCartActionTypes.CartCreateSuccessAction:
       return adapter.removeAll(state);
+
     default:
       return state;
   }
