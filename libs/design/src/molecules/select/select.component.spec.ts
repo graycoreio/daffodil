@@ -35,9 +35,6 @@ import { DaffSelectModule } from './select.module';
       [options]="optionsValue"
       [formControl]="controlValue"
     >
-      <ng-template daffSelectSelectedOption let-selected="selected">
-        <div class="test-selected">{{selected}}</div>
-      </ng-template>
       <ng-template daffSelectOption let-isSelected="isSelected" let-option="option">
         <div class="test-option" [attr.data-value]="option" [attr.data-is-selected]="isSelected">
           <div>{{option}}</div>
@@ -123,7 +120,7 @@ describe('DaffSelectComponent', () => {
     });
 
     it('should add the disabled class', () => {
-      expect(de.classes.disabled).toBeTruthy();
+      expect(de.classes['daff-select--disabled']).toBeTruthy();
     });
 
     it('should disable the button', () => {
@@ -137,6 +134,17 @@ describe('DaffSelectComponent', () => {
         component.toggle();
       }
       fixture.detectChanges();
+    });
+
+    describe('and when the tab key is pressed', () => {
+      beforeEach(() => {
+        TestBed.inject(DOCUMENT).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+        fixture.detectChanges();
+      });
+
+      it('should not remove focus from the select', () => {
+        expect(TestBed.inject(DOCUMENT).activeElement).toEqual(buttonElement);
+      });
     });
 
     describe('and when the backdrop is clicked', () => {
@@ -163,30 +171,24 @@ describe('DaffSelectComponent', () => {
         expect(wrapper.controlValue.value).toEqual(1);
       });
 
-      it('should update the selected value in the selected option slot', () => {
-        expect(fixture.debugElement.query(By.css('.test-selected')).nativeElement.innerText).toEqual('1');
-      });
-
       it('should update the is selected value in the option slot', () => {
         expect(optionEl.getAttribute('data-is-selected')).toEqual('true');
       });
     });
 
     describe('and when the form control value is changed', () => {
+      let optionEl: HTMLElement;
       let value: number;
 
       beforeEach(() => {
+        optionEl = fixture.debugElement.query(By.css('.test-option[data-value="1"]')).nativeElement;
         value = 1;
-        wrapper.controlValue.setValue(value);
+        wrapper.controlValue.patchValue(value);
         fixture.detectChanges();
       });
 
-      it('should update the selected value in the selected option slot', () => {
-        expect(fixture.debugElement.query(By.css('.test-selected')).nativeElement.innerText).toEqual('1');
-      });
-
       it('should update the is selected value in the option slot', () => {
-        expect(fixture.debugElement.query(By.css('.test-option[data-value="1"]')).nativeElement.getAttribute('data-is-selected')).toEqual('true');
+        expect(optionEl.getAttribute('data-is-selected')).toEqual('true');
       });
     });
 
