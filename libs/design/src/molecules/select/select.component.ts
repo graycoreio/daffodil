@@ -35,15 +35,15 @@ import {
 } from 'rxjs';
 
 import {
-  DaffSkeletonable,
-  daffSkeletonableMixin,
-} from '../../core/skeletonable/public_api';
-import {
   daffSelectAnimations,
   DaffSelectAnimationState,
 } from './animation/select-animation';
 import { getAnimationState } from './animation/select-animation-state';
 import { DaffSelectOptionDirective } from './option/option.directive';
+import {
+  DaffSkeletonable,
+  daffSkeletonableMixin,
+} from '../../core/skeletonable/public_api';
 
 class _base {
   constructor(
@@ -95,11 +95,11 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
     return this.disabled;
   }
 
-  @ViewChild('field') buttonElement: ElementRef;
+  @ViewChild('field') buttonElement: ElementRef<HTMLButtonElement>;
   @ViewChild('optionsTemplate') optionsTemplatePortal: TemplatePortal<unknown>;
 
   @ContentChild(DaffSelectOptionDirective)
-  optionTemplate?: DaffSelectOptionDirective;
+    optionTemplate?: DaffSelectOptionDirective;
 
   get isOpen(): boolean {
     return this._open;
@@ -117,11 +117,18 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
     private cd: ChangeDetectorRef,
     _elementRef: ElementRef,
     _renderer: Renderer2,
-    @Inject(DOCUMENT) private document: any,
+    @Inject(DOCUMENT) private document: Document,
     @Optional() @Self() public ngControl: NgControl,
     private overlay: Overlay,
   ) {
     super(_elementRef, _renderer);
+    this.document.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && this._open) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.buttonElement.nativeElement.focus();
+      }
+    });
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
