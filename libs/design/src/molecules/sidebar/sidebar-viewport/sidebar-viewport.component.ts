@@ -18,17 +18,14 @@ import {
   isViewportContentShifted,
   sidebarViewportContentShift,
 } from './utils/content-shift';
-import { sidebarViewportHeight } from './utils/viewport-height';
 import {
   DaffSidebarAnimationStates,
   daffSidebarAnimations,
 } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
 import {
   DaffSidebarViewportAnimationStateWithParams,
   getSidebarViewportAnimationState,
 } from '../animation/sidebar-viewport-animation-state';
-import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
@@ -61,17 +58,18 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
   ],
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked {
+  @HostBinding('class.daff-sidebar-viewport') hostClass = true;
+
+  @HostBinding('class.bounded-nav') get boundedNavClass() {
+    return this.boundedNav;
+  }
 
   /**
    * Whether or not the navbar should be bounded.
    * Note that this is really only available
    * when there is a `side-fixed` sidebar.
    */
-  @Input() boundedNav = true;
-
-  @HostBinding('class.boundedNav') get boundedNavClass() {
-    return this.boundedNav;
-  }
+  @Input() boundedNav = false;
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -115,8 +113,6 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
    * Whether or not the backdrop is interactable
    */
   _backdropInteractable = false;
-
-  _viewportHasHeight = false;
 
   /**
    * The animation state

@@ -57,7 +57,7 @@
 	}
 }
 
-:host-context(.boundedNav) {
+:host-context(.daff-sidebar-viewport.bounded-nav) {
 	&.side-fixed {
 		top: 0;
 		height: 100dvh;

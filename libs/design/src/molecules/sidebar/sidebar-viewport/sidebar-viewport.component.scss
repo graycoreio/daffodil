@@ -34,11 +34,6 @@
 			+ #{$root}__content {
 				margin-top: var(--daff-sidebar-side-fixed-top-shift);
 			}
-
-			&.not-bounded + .side-fixed {
-				top: var(--daff-sidebar-side-fixed-top-shift);
-				height: calc(100dvh - var(--daff-sidebar-side-fixed-top-shift));
-			}
 		}
 	}
 
