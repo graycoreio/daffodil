@@ -29,7 +29,7 @@ export function transformMagentoAuthorizeNetResponse(response: AuthorizeNetRespo
   return {
     code: 'authorizenet_acceptjs',
     authorizenet_acceptjs: {
-      cc_last_4: parseInt(ccNumber.slice(12), 10),
+      cc_last_4: parseInt(ccNumber.slice(ccNumber.length - 4), 10),
       opaque_data_descriptor: 'COMMON.ACCEPT.INAPP.PAYMENT',
       opaque_data_value: response.opaqueData.dataValue,
     },
