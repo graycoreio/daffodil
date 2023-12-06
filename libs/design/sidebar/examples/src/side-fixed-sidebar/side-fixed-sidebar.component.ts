@@ -10,14 +10,4 @@ import {
   styleUrls: ['side-fixed-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SideFixedSidebarComponent {
-  overOpen = false;
-
-  openOverSidebar(){
-    this.overOpen = !this.overOpen;
-  }
-
-  closeOverSidebar(){
-    this.overOpen = false;
-  }
-}
+export class SideFixedSidebarComponent {}

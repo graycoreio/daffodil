@@ -2,10 +2,15 @@ daff-sidebar-viewport {
   height: 288px;
 }
 
-.side-fixed-sidebar {
+.sidebar-with-sticky-content {
 	border-right: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
 }
 
 .content {
   height: 480px;
+}
+
+.sticky {
+  top: 0;
+  position: sticky;
 }
