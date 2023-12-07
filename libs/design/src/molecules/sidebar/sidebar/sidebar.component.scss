@@ -7,10 +7,6 @@
 	flex-shrink: 0;
 	overflow-y: auto;
 
-	&.side {
-		margin-top: var(--daff-sidebar-side-fixed-top-shift);
-	}
-
 	&.side-fixed {
 		position: fixed;
 		bottom: 0;

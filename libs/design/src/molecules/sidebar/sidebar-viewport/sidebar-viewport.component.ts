@@ -10,8 +10,18 @@ import {
   ElementRef,
   Input,
   HostBinding,
+  Inject,
+  SkipSelf,
+  Optional,
 } from '@angular/core';
 
+import { hasParentViewport } from './helper/has-parent-viewport';
+import { DaffNavDesign } from './nav-design';
+import {
+  DAFF_SIDEBAR_SCROLL_TOKEN,
+  DaffSidebarScroll,
+  daffSidebarViewportScrollFactory,
+} from './scroll-token/scroll.token';
 import { sidebarViewportBackdropInteractable } from './utils/backdrop-interactable';
 import { sidebarViewportContentPadding } from './utils/content-pad';
 import {
@@ -56,12 +66,15 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
   animations: [
     daffSidebarAnimations.transformContent,
   ],
+  providers: [
+    { provide: DAFF_SIDEBAR_SCROLL_TOKEN, useFactory: daffSidebarViewportScrollFactory },
+  ],
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked {
   @HostBinding('class.daff-sidebar-viewport') hostClass = true;
 
-  @HostBinding('class.bounded-nav') get boundedNavClass() {
-    return this.boundedNav;
+  @HostBinding('class.bounded-nav') get isBoundedNav() {
+    return this.navDesign === DaffNavDesign.BOUNDED;
   }
 
   /**
@@ -69,11 +82,14 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
    * Note that this is really only available
    * when there is a `side-fixed` sidebar.
    */
-  @Input() boundedNav = false;
+  @Input() navDesign: DaffNavDesign = DaffNavDesign.UNBOUNDED;
 
   constructor(
     private cdRef: ChangeDetectorRef,
     private _elementRef: ElementRef<HTMLElement>,
+    @Inject(DAFF_SIDEBAR_SCROLL_TOKEN) @SkipSelf() private bodyScroll: DaffSidebarScroll,
+    @Inject(DaffSidebarViewportComponent) @SkipSelf() @Optional() private parentViewport,
+    @Inject(DAFF_SIDEBAR_SCROLL_TOKEN) private scroll: DaffSidebarScroll,
   ) { }
 
   /**
@@ -137,12 +153,25 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
       this._backdropInteractable = nextBackdropInteractable;
       this.updateAnimationState();
       this.cdRef.markForCheck();
+      if(nextBackdropInteractable) {
+        if(!this.parentViewport && !hasParentViewport(this._elementRef.nativeElement)) {
+          this.bodyScroll.disable();
+        } else {
+          this.scroll.disable();
+        }
+      } else { //if we are hiding the sidebars
+        if(!this.parentViewport && !hasParentViewport(this._elementRef.nativeElement)) {
+          this.bodyScroll.enable();
+        } else {
+          this.scroll.enable();
+        }
+      }
     };
 
     const nextLeftPadding = sidebarViewportContentPadding(this.sidebars, 'left');
     if(this._contentPadLeft !== nextLeftPadding) {
       this._contentPadLeft = nextLeftPadding;
-      this._navPadLeft = this.boundedNav ? this._contentPadLeft : null;
+      this._navPadLeft = this.isBoundedNav ? this._contentPadLeft : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
@@ -150,7 +179,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextRightPadding = sidebarViewportContentPadding(this.sidebars, 'right');
     if(this._contentPadRight !== nextRightPadding) {
       this._contentPadRight = nextRightPadding;
-      this._navPadRight = this.boundedNav ? this._contentPadRight : null;
+      this._navPadRight = this.isBoundedNav ? this._contentPadRight : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
