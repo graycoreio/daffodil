@@ -95,6 +95,25 @@ describe('@daffodil/core/state | daffCreateOperationEntityStateAdapter', () => {
       expect(result.entities[placeholderId].daffState).toEqual(DaffState.Adding);
       expect(result.entities[placeholderId].daffTemp).toBeTrue();
     });
+
+    describe('when the operation fails and another preadd is initiated', () => {
+      let errors: DaffStateError[];
+
+      beforeEach(() => {
+        errors = [
+          { code: 'code', message: 'message' },
+        ];
+        result = adapter.preadd(entity, adapter.operationFailed(placeholderId, errors, result), placeholderId);
+      });
+
+      it('should reset errors', () => {
+        expect(result.entities[placeholderId].daffErrors).toEqual([]);
+      });
+
+      it('should change state to adding', () => {
+        expect(result.entities[placeholderId].daffState).toEqual(DaffState.Adding);
+      });
+    });
   });
 
   describe('add', () => {

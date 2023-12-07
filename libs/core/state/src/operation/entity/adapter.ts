@@ -100,7 +100,7 @@ export function daffCreateOperationEntityStateAdapter<T extends DaffIdentifiable
       }, state),
     preadd: (entity, state, placeholderId) =>
       placeholderId
-        ? adapter.addOne({
+        ? adapter.upsertOne({
           ...entity,
           // TODO: allow for non identifiable entities?
           id: placeholderId,
