@@ -2,6 +2,65 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.65.0](https://github.com/graycoreio/daffodil/compare/v0.64.2...v0.65.0) (2023-12-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** failure actions' payload type has changed from `DaffStateError` to `DaffStateError[]`
+* **navigation,demo:** `DaffGenericNavigationTree#path` is removed in favor of `url`
+* **category:** `DaffCategoryFactory` now requires `DaffCategoryBreadcrumbFactory` as a constructor argument. It is recommended to DI the factory
+* **core,product,category:** partial arguments are now required to meet the model interfaces. Those that do not will cause a type check error
+* **product:** `DaffDefaultProductFactory` now requires passing the image factory to construct. It is recommended to use DI to construct factories.
+* **cart:** `DaffCart#totals` is now a dictionary
+* **all:** changes the name of many state testing modules
+
+### Features
+
+* **all:** prefix state testing modules with `State` ([#2606](https://github.com/graycoreio/daffodil/issues/2606)) ([f755ab8](https://github.com/graycoreio/daffodil/commit/f755ab8a359c0c41cf60a3c160ab72dae08457b8))
+* **authorizenet:** remove cart payment update reducer cases ([#2635](https://github.com/graycoreio/daffodil/issues/2635)) ([5a75c56](https://github.com/graycoreio/daffodil/commit/5a75c5600bea105f1336e7abfe0a95b6dbae3d1b))
+* **branding:** update daffodil logo to the new version ([#2597](https://github.com/graycoreio/daffodil/issues/2597)) ([8a2f596](https://github.com/graycoreio/daffodil/commit/8a2f596b12dca54db26148b1a9b17662ea352799))
+* **cart:** add cart retrieval action support ([#2557](https://github.com/graycoreio/daffodil/issues/2557)) ([98301f8](https://github.com/graycoreio/daffodil/commit/98301f86c895045dec33ca24b60c090dc3172b9f))
+* **cart:** add retrieval action reducer factories ([#2633](https://github.com/graycoreio/daffodil/issues/2633)) ([57c8f83](https://github.com/graycoreio/daffodil/commit/57c8f83fc641bea140c462a20c70fc92e452f1a0))
+* **cart:** change actions to implement `DaffCartRetrievalAction` and `DaffFailureAction` ([#2636](https://github.com/graycoreio/daffodil/issues/2636)) ([bd968f7](https://github.com/graycoreio/daffodil/commit/bd968f7b8f7d787533953e038ebd2e493e345e37))
+* **cart:** change cart totals to dict ([#2608](https://github.com/graycoreio/daffodil/issues/2608)) ([a4f408f](https://github.com/graycoreio/daffodil/commit/a4f408f97440a8da6d50d18553205262f1acf19d))
+* **cart:** compute cart prices for in-memory driver ([#2614](https://github.com/graycoreio/daffodil/issues/2614)) ([7a60ddb](https://github.com/graycoreio/daffodil/commit/7a60ddb9eebc6b16eeda05adc05c5bb3360989e0))
+* **cart:** store cart in state with retrieval actions ([#2637](https://github.com/graycoreio/daffodil/issues/2637)) ([a84491e](https://github.com/graycoreio/daffodil/commit/a84491e0ba0ea1d33369f362b9ff13837a441cbb))
+* **category,demo:** add category view to demo ([#2620](https://github.com/graycoreio/daffodil/issues/2620)) ([2149b99](https://github.com/graycoreio/daffodil/commit/2149b997e857e6605cfc44f788ba86a5dc34e1fa))
+* **category:** create breadcrumbs and add `createTree` method ([#2629](https://github.com/graycoreio/daffodil/issues/2629)) ([556e69c](https://github.com/graycoreio/daffodil/commit/556e69c7e467faefce71bf4cd8b621e40cd95240))
+* **category:** create tree in in-memory driver ([#2631](https://github.com/graycoreio/daffodil/issues/2631)) ([791cc7c](https://github.com/graycoreio/daffodil/commit/791cc7c39d9a596e768672391c5f0e4e313cd737))
+* **core,product,category:** type model factory create partial and constructor args ([#1835](https://github.com/graycoreio/daffodil/issues/1835)) ([6efc2c4](https://github.com/graycoreio/daffodil/commit/6efc2c446dd682338079706633115c8454990c98))
+* **core:** add `collect` ([#2626](https://github.com/graycoreio/daffodil/issues/2626)) ([260332b](https://github.com/graycoreio/daffodil/commit/260332b2ca894ce065b859ae78781cdb37437610))
+* **core:** add `DaffFailureAction` ([#2634](https://github.com/graycoreio/daffodil/issues/2634)) ([2a8cec3](https://github.com/graycoreio/daffodil/commit/2a8cec319c20711fd6e467b4b486c4bae5b4c2f9))
+* **customer-payment-authorizenet:** export `magentoCustomerPaymentAnetCCTypeRequestTransform` ([#2642](https://github.com/graycoreio/daffodil/issues/2642)) ([408921e](https://github.com/graycoreio/daffodil/commit/408921e4ec7d792b701ffd7b5fddaf13eb62bb4e))
+* **daffio:** add sponsor link to nav and footer ([#2599](https://github.com/graycoreio/daffodil/issues/2599)) ([80b8c9f](https://github.com/graycoreio/daffodil/commit/80b8c9fc5fb04e636853016dc36326af19f91006))
+* **daffio:** clean up why pwa page styles ([#2603](https://github.com/graycoreio/daffodil/issues/2603)) ([4a90668](https://github.com/graycoreio/daffodil/commit/4a90668fe29b195c29636b65ff81aac47218e45e))
+* **daffio:** update home hero illustration and add discord link ([#2598](https://github.com/graycoreio/daffodil/issues/2598)) ([5aec495](https://github.com/graycoreio/daffodil/commit/5aec495998239934f992a91c8045288a50868cde))
+* **demo:** add checkout form models and country field ([#2615](https://github.com/graycoreio/daffodil/issues/2615)) ([b90454e](https://github.com/graycoreio/daffodil/commit/b90454e1bb75d1e126542d45fee46ff8f672530b))
+* **demo:** add country form ([#2617](https://github.com/graycoreio/daffodil/issues/2617)) ([da882b1](https://github.com/graycoreio/daffodil/commit/da882b164034ba986ce888076853296ade8809ae))
+* **demo:** add geography driver modules ([#2616](https://github.com/graycoreio/daffodil/issues/2616)) ([2539cf6](https://github.com/graycoreio/daffodil/commit/2539cf62df5088e8b3ab5c3835426ec1f4926d4a))
+* **demo:** add product external resolution ([#1843](https://github.com/graycoreio/daffodil/issues/1843)) ([669fe5a](https://github.com/graycoreio/daffodil/commit/669fe5a291588fad1a158188da6538e1e0b77a7e))
+* **demo:** render cart totals from totals dict ([#2618](https://github.com/graycoreio/daffodil/issues/2618)) ([2bafc50](https://github.com/graycoreio/daffodil/commit/2bafc50dadf2b150de9483b985d612ec39d93b4e))
+* **design,design-land:** add link support to paginator ([#2589](https://github.com/graycoreio/daffodil/issues/2589)) ([57aa1b8](https://github.com/graycoreio/daffodil/commit/57aa1b83d912d136ab0a0229677279bea5fd6576))
+* **design:** update card's border-radius styles and set wrapper height ([#2602](https://github.com/graycoreio/daffodil/issues/2602)) ([6cec7e3](https://github.com/graycoreio/daffodil/commit/6cec7e3d7f72073d8467514412d0e5eeb3276186))
+* **docs:** remove title property from example viewer component ([#2625](https://github.com/graycoreio/daffodil/issues/2625)) ([bcab5c9](https://github.com/graycoreio/daffodil/commit/bcab5c95fe802d657176fdad914c3cbeeb075449))
+* **geography:** create subdivisions in country factory ([#2611](https://github.com/graycoreio/daffodil/issues/2611)) ([92a734b](https://github.com/graycoreio/daffodil/commit/92a734ba935a9d558e0c5da913ce52bf18a9d0af))
+* **navigation,demo:** pull navigation tree from category in-memory tree ([#2632](https://github.com/graycoreio/daffodil/issues/2632)) ([40cf496](https://github.com/graycoreio/daffodil/commit/40cf496e67f3e131357b025416c155d99cbec561))
+* **navigation,demo:** remove deprecated `DaffGenericNavigationTree#path` field ([#2628](https://github.com/graycoreio/daffodil/issues/2628)) ([7211acd](https://github.com/graycoreio/daffodil/commit/7211acd3d0f79b4f45a8180ad991782eb62d45ae))
+* **navigation:** add token for providing navigation in-memory seed data ([#2627](https://github.com/graycoreio/daffodil/issues/2627)) ([a033da4](https://github.com/graycoreio/daffodil/commit/a033da401277034319db625f1ff9c5ce4d9e80ad))
+* **product,demo:** create all product types in demo ([#2622](https://github.com/graycoreio/daffodil/issues/2622)) ([7893fcf](https://github.com/graycoreio/daffodil/commit/7893fcf95fb66ec921a92f236f2ab112b5769d47))
+* **product:** improve default product factory field generation ([#2609](https://github.com/graycoreio/daffodil/issues/2609)) ([48f4ba0](https://github.com/graycoreio/daffodil/commit/48f4ba084767658d5636bc947ba037cc69c11432))
+
+
+### Bug Fixes
+
+* **authorizenet:** CC last 4 is too short ([#2639](https://github.com/graycoreio/daffodil/issues/2639)) ([6ff51a6](https://github.com/graycoreio/daffodil/commit/6ff51a6117a7756666a5316ec3098b760dd8be22))
+* **cart:** magento driver resolution fails for no discounts ([#2638](https://github.com/graycoreio/daffodil/issues/2638)) ([1ea70a1](https://github.com/graycoreio/daffodil/commit/1ea70a10cd1bce2822a1e3bbae3447375d23da41))
+* **core:** subsequent preadds don't update entity after initial preadd ([#2640](https://github.com/graycoreio/daffodil/issues/2640)) ([92e06bb](https://github.com/graycoreio/daffodil/commit/92e06bbade6c7e4dd00b7d3f6d966fdff2ec8f20))
+* **design:** remove bogus combinator from sidebar style ([#2601](https://github.com/graycoreio/daffodil/issues/2601)) ([88205b7](https://github.com/graycoreio/daffodil/commit/88205b7911b95e34bbfb599c8db546005e112a8a))
+* **geography:** in-memory collection does not exist ([#2610](https://github.com/graycoreio/daffodil/issues/2610)) ([d9bbcb6](https://github.com/graycoreio/daffodil/commit/d9bbcb6ef161de251713229a53a851f69fc73350))
+* **paypal:** browser specific `window` access ([#2605](https://github.com/graycoreio/daffodil/issues/2605)) ([1eb1972](https://github.com/graycoreio/daffodil/commit/1eb1972fa92ec4d1a21b0abf48eb7998c45ae892))
+
 ## [0.64.2](https://github.com/graycoreio/daffodil/compare/v0.64.1...v0.64.2) (2023-11-09)
 
 
