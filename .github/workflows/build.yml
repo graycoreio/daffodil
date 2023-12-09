@@ -155,7 +155,7 @@ jobs:
         use-stamp-cache: true
         registry-url: 'https://registry.npmjs.org'
 
-    - run: npx lerna run build
+    - run: NX_REJECT_UNKNOWN_LOCAL_CACHE=0 npx lerna run build
 
     - uses: graycoreio/github-actions/set-versions-from-root@main
 
