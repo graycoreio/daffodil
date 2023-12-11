@@ -19,10 +19,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffProductReview,
-  DAFF_REVIEWS_ERROR_MATCHER,
-} from '@daffodil/reviews';
+import { DaffProductReview } from '@daffodil/reviews';
 import {
   DaffReviewsDriver,
   DaffProductReviewsServiceInterface,
@@ -34,6 +31,7 @@ import {
   DaffReviewsProductListFailure,
   DaffReviewsProductListSuccess,
 } from '../actions/product-reviews.actions';
+import { DAFF_REVIEWS_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 /**
  * Effects for handling product actions and for triggering corresponding service requests.

@@ -25,10 +25,7 @@ import {
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffProductPageFacade } from '@daffodil/product/state';
-import {
-  DaffProductReview,
-  DAFF_REVIEWS_ERROR_MATCHER,
-} from '@daffodil/reviews';
+import { DaffProductReview } from '@daffodil/reviews';
 import {
   DaffProductReviewsServiceInterface,
   DaffReviewsDriver,
@@ -41,6 +38,7 @@ import {
   DaffReviewsProductListSuccess,
 } from '../actions/public_api';
 import { DaffProductPageReviewsCollectionFacade } from '../facades/public_api';
+import { DAFF_REVIEWS_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 export const DAFF_PRODUCT_REVIEW_COLLECTION_ACTION_TYPES = [
   DaffProductReviewsCollectionActionTypes.ChangeCurrentPageAction,
