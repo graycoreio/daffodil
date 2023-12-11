@@ -16,10 +16,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffSearchResult,
-  DAFF_SEARCH_ERROR_MATCHER,
-} from '@daffodil/search';
+import { DaffSearchResult } from '@daffodil/search';
 import {
   DaffSearchDriverInterface,
   DaffSearchDriver,
@@ -31,6 +28,7 @@ import {
   DaffSearchLoadSuccess,
   DaffSearchLoadFailure,
 } from '../actions/search.actions';
+import { DAFF_SEARCH_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffSearchPageEffects<

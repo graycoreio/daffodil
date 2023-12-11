@@ -25,8 +25,8 @@ import {
   daffCollectionBuildRequestFromMetadata,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import { DAFF_SEARCH_ERROR_MATCHER } from '@daffodil/search';
 import { DaffSearchDriver } from '@daffodil/search/driver';
+import { DAFF_SEARCH_ERROR_MATCHER } from '@daffodil/search/state';
 import {
   DaffSearchPageFacade,
   DaffSearchLoadFailure,
