@@ -25,7 +25,6 @@ import { ErrorTransformer } from '@daffodil/core/state';
 import {
   DaffPaypalExpressTokenRequest,
   DaffPaypalExpressTokenResponse,
-  DAFF_PAYPAL_ERROR_MATCHER,
 } from '@daffodil/paypal';
 import {
   DaffPaypalExpressDriver,
@@ -38,6 +37,7 @@ import {
   DaffGeneratePaypalExpressTokenSuccess,
   DaffGeneratePaypalExpressTokenFailure,
 } from '../actions/paypal.actions';
+import { DAFF_PAYPAL_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffPaypalEffects<T extends DaffPaypalExpressTokenRequest, V extends DaffPaypalExpressTokenResponse>{

@@ -8,3 +8,4 @@ export { DaffPaypalStateModule } from './paypal-state.module';
 export { DaffPaypalPaymentStateModule } from './payment-state.module';
 
 export * from './reducers/public_api';
+export * from './injection-tokens/public_api';
