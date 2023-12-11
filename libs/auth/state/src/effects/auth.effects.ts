@@ -20,10 +20,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import {
-  DaffAuthStorageService,
-  DAFF_AUTH_ERROR_MATCHER,
-} from '@daffodil/auth';
+import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES,
   DaffAuthDriverTokenCheck,
@@ -55,7 +52,10 @@ import {
   DaffAuthStateConfig,
   DAFF_AUTH_STATE_CONFIG,
 } from '../config/public_api';
-import { DaffAuthUnauthenticatedHook } from '../injection-tokens/public_api';
+import {
+  DAFF_AUTH_ERROR_MATCHER,
+  DaffAuthUnauthenticatedHook,
+} from '../injection-tokens/public_api';
 import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
 
 @Injectable()

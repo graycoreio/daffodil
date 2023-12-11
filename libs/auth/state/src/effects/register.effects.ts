@@ -23,7 +23,6 @@ import {
 import {
   DaffAccountRegistration,
   DaffAuthStorageService,
-  DAFF_AUTH_ERROR_MATCHER,
 } from '@daffodil/auth';
 import {
   DaffRegisterDriver,
@@ -44,6 +43,7 @@ import {
   DaffAuthStorageFailure,
   DaffAuthRegisterActions,
 } from '../actions/public_api';
+import { DAFF_AUTH_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffAuthRegisterEffects<

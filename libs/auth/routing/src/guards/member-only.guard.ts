@@ -17,16 +17,16 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import {
-  DAFF_AUTH_ERROR_MATCHER,
-  DaffAuthStorageService,
-} from '@daffodil/auth';
+import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES,
   DaffAuthDriverErrorCodes,
   DaffAuthDriverTokenCheck,
 } from '@daffodil/auth/driver';
-import { DaffAuthGuardLogout } from '@daffodil/auth/state';
+import {
+  DAFF_AUTH_ERROR_MATCHER,
+  DaffAuthGuardLogout,
+} from '@daffodil/auth/state';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
