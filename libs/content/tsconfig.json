@@ -12,6 +12,9 @@
       "@daffodil/content/testing": [
         "libs/content/testing/src"
       ],
+      "@daffodil/content/state": [
+        "libs/content/state/src"
+      ],
       "@daffodil/content/driver": [
         "libs/content/driver/src"
       ],
