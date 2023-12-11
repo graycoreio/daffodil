@@ -19,10 +19,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffProduct,
-  DAFF_PRODUCT_ERROR_MATCHER,
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriver,
   DaffProductServiceInterface,
@@ -34,6 +31,7 @@ import {
   DaffBestSellersLoadFailure,
   DaffBestSellersLoadSuccess,
 } from '../actions/public_api';
+import { DAFF_PRODUCT_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 /**
  * Effects for handling best seller actions and best seller service requests.
