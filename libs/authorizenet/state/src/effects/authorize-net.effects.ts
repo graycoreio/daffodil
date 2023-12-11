@@ -22,7 +22,6 @@ import {
 import {
   DaffAcceptJsLoadingService,
   DaffAuthorizeNetTokenRequest,
-  DAFF_AUTHORIZENET_ERROR_MATCHER,
 } from '@daffodil/authorizenet';
 import {
   DaffAuthorizeNetDriver,
@@ -57,6 +56,7 @@ import {
   DAFF_AUTHORIZE_NET_STATE_CONFIG,
   DaffAuthorizeNetStateConfig,
 } from '../config/public_api';
+import { DAFF_AUTHORIZENET_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest> {
