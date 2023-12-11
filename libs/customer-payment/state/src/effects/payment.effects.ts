@@ -16,10 +16,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffCustomerPayment,
-  DAFF_CUSTOMER_PAYMENT_ERROR_MATCHER,
-} from '@daffodil/customer-payment';
+import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import {
   DaffCustomerPaymentDriver,
   DaffCustomerPaymentDriverInterface,
@@ -44,6 +41,7 @@ import {
   DaffCustomerPaymentListSuccess,
   DaffCustomerPaymentActions,
 } from '../actions/payment.actions';
+import { DAFF_CUSTOMER_PAYMENT_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCustomerPaymentEffects<
