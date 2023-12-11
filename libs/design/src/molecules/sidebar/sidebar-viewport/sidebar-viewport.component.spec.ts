@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  DebugElement,
   Input,
 } from '@angular/core';
 import {
@@ -11,6 +12,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DaffNavPlacement } from './nav-placement';
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import {
   DaffBackdropComponent,
@@ -20,7 +22,7 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({ template: `
   <div class="sidebar-content-wrapper">
-    <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()">
+    <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()" [navPlacement]="navPlacement">
     </daff-sidebar-viewport>
   </div>
 ` })
@@ -34,6 +36,7 @@ class WrapperComponent {
   reset() {
     this.backdropClickedCounter = 0;
   }
+  navPlacement: DaffNavPlacement = 'above';
 }
 
 describe('DaffSidebarViewportComponent | Usage', () => {
@@ -41,6 +44,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffSidebarViewportComponent;
   let backdrop: DaffBackdropComponent;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -61,13 +65,38 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    component = fixture.debugElement.query(By.css('daff-sidebar-viewport')).componentInstance;
+    de = fixture.debugElement.query(By.css('daff-sidebar-viewport'));
+
+    component = de.componentInstance;
 
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  describe('<daff-sidebar-viewport>', () => {
+    it('should add a class of "daff-sidebar-viewport" to the host element', () => {
+      expect(de.nativeElement.classList.contains('daff-sidebar-viewport')).toBeTruthy();
+    });
+  });
+
+  describe('navPlacement', () => {
+    it('should be able to take `navPlacement` as an input', () => {
+      expect(component.navPlacement).toEqual(wrapper.navPlacement);
+    });
+
+    it('should set the default navPlacement to above', () => {
+      expect(component.navPlacement).toEqual('above');
+    });
+
+    it('should add a class of `.nav-on-side` if navPlacement="beside"', () => {
+      wrapper.navPlacement = 'beside';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('nav-on-side')).toBeTruthy();
+    });
   });
 
   describe('when <backdrop> emits backdropClicked', () => {

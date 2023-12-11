@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 import { DaffBackdropModule } from '../../../backdrop/public_api';
+import { DaffSidebarAnimationStates } from '../../animation/sidebar-animation';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 describe('DaffSidebarViewportComponent | Defaults', () => {
@@ -43,6 +44,6 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
   });
 
   it('should have the _animationState should be `open` by default', () => {
-    expect(component._animationState).toEqual({ value: 'closed', params: { shift: '0px' }});
+    expect(component._animationState).toEqual({ value: DaffSidebarAnimationStates.CLOSED, params: { shift: '0px' }});
   });
 });
