@@ -41,9 +41,10 @@ import {
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
 } from '@daffodil/cart/state';
-import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '@daffodil/cart-customer';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
+
+import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 /**
  * Handles merging and creating carts in response to auth actions.
