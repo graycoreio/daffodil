@@ -19,10 +19,7 @@ import {
 
 import { DaffCartStorageService } from '@daffodil/cart';
 import { DaffCartStorageFailure } from '@daffodil/cart/state';
-import {
-  DaffCartWithStoreCredit,
-  DAFF_CART_STORE_CREDIT_ERROR_MATCHER,
-} from '@daffodil/cart-store-credit';
+import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import {
   DaffCartStoreCreditDriver,
   DaffCartStoreCreditDriverInterface,
@@ -41,6 +38,7 @@ import {
   DaffCartStoreCreditRemoveFailure,
   DaffCartStoreCreditRemoveSuccess,
 } from '../actions/store-credit.actions';
+import { DAFF_CART_STORE_CREDIT_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCartStoreCreditEffects<
