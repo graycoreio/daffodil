@@ -24,10 +24,7 @@ import {
   DaffError,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffOrder,
-  DAFF_ORDER_ERROR_MATCHER,
-} from '@daffodil/order';
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
   DaffOrderDriver,
@@ -40,6 +37,7 @@ import {
   DaffOrderListSuccess,
 } from '../actions/public_api';
 import { DaffOrderCollectionFacade } from '../facades/public_api';
+import { DAFF_ORDER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 export const DAFF_ORDER_COLLECTION_ACTION_TYPES = [
   DaffOrderCollectionActionTypes.ChangeCurrentPageAction,

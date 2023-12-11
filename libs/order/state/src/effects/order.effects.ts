@@ -17,10 +17,7 @@ import {
 import { DaffCart } from '@daffodil/cart';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffOrder,
-  DAFF_ORDER_ERROR_MATCHER,
-} from '@daffodil/order';
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
   DaffOrderDriver,
@@ -35,6 +32,7 @@ import {
   DaffOrderListSuccess,
   DaffOrderListFailure,
 } from '../actions/order.actions';
+import { DAFF_ORDER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffOrderEffects<
