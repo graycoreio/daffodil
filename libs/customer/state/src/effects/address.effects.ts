@@ -16,10 +16,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffCustomerAddress,
-  DAFF_CUSTOMER_ERROR_MATCHER,
-} from '@daffodil/customer';
+import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   DaffCustomerAddressDriver,
   DaffCustomerAddressDriverInterface,
@@ -43,6 +40,7 @@ import {
   DaffCustomerAddressListFailure,
   DaffCustomerAddressListSuccess,
 } from '../actions/address.actions';
+import { DAFF_CUSTOMER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCustomerAddressEffects<

@@ -16,10 +16,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffCustomer,
-  DAFF_CUSTOMER_ERROR_MATCHER,
-} from '@daffodil/customer';
+import { DaffCustomer } from '@daffodil/customer';
 import {
   DaffCustomerDriverInterface,
   DaffCustomerDriver,
@@ -40,6 +37,7 @@ import {
   DaffCustomerChangePasswordFailure,
   DaffCustomerChangePasswordSuccess,
 } from '../actions/customer.actions';
+import { DAFF_CUSTOMER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCustomerEffects<
