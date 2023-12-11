@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.66.0](https://github.com/graycoreio/daffodil/compare/v0.65.0...v0.66.0) (2023-12-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **search:** error matcher injection token has moved to state subpackage
+* **reviews:** error matcher injection token has moved to state subpackage
+* **product:** error matcher injection token has moved to state subpackage
+* **paypal:** error matcher injection token has moved to state subpackage
+* **payment:** error matcher injection token has moved to state subpackage
+* **order:** error matcher injection token has moved to state subpackage
+* **newsletter:** error matcher injection token has moved to state subpackage
+* **navigation:** error matcher injection token has moved to state subpackage
+* **geography:** error matcher injection token has moved to state subpackage
+* **customer-store-credit:** error matcher injection token has moved to state subpackage
+* **customer-payment-authorizenet:** error matcher injection token has moved to state subpackage
+* **customer-payment:** error matcher injection token has moved to state subpackage
+* **customer-order:** error matcher injection token has moved to state subpackage
+* **customer:** error matcher injection token has moved to state subpackage
+* **content:** error matcher injection token has moved to state subpackage
+* **category:** error matcher injection token has moved to state subpackage
+* **cart-store-credit:** error matcher injection token has moved to state subpackage
+* **cart-customer:** error matcher injection token has moved to state subpackage
+* **cart:** error matcher injection token has moved to state subpackage
+* **authorizenet:** error matcher injection token has moved to state subpackage
+* **auth:** error matcher injection token has moved to state subpackage
+
+### Features
+
+* **auth:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([770718b](https://github.com/graycoreio/daffodil/commit/770718b972428795253d406068a1dddee57725ca))
+* **authorizenet:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([53b788b](https://github.com/graycoreio/daffodil/commit/53b788b9756ae007074bb64b224542617876b159))
+* **cart-customer:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([7eb96a4](https://github.com/graycoreio/daffodil/commit/7eb96a4b59f07d3e7d593976ec631de17ffbe251))
+* **cart-store-credit:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([9caf019](https://github.com/graycoreio/daffodil/commit/9caf0197ba192a02f80999e99baaab265e795135))
+* **cart:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([81ac05a](https://github.com/graycoreio/daffodil/commit/81ac05a17ac022c5ce26d11ae189fbbe8232613b))
+* **category:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([9647c9c](https://github.com/graycoreio/daffodil/commit/9647c9c6772a53950e4a6f16759d394a3f7b6706))
+* **content:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([f8fc914](https://github.com/graycoreio/daffodil/commit/f8fc914693aeb53386870eae16d80fc9cc5e3670))
+* **customer-order:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([929e6ac](https://github.com/graycoreio/daffodil/commit/929e6acc53a42f6d32e8bd19a4fb8402c5b94e22))
+* **customer-payment-authorizenet:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([3343af0](https://github.com/graycoreio/daffodil/commit/3343af026599821c40aeaed1f26c53a86b3cec05))
+* **customer-payment:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([25bd578](https://github.com/graycoreio/daffodil/commit/25bd5780b0206064729de0352f81f74202c15651))
+* **customer-store-credit:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([5cacb5d](https://github.com/graycoreio/daffodil/commit/5cacb5d9c0075319a6115ba6f58b036612c48980))
+* **customer:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([a6ecaea](https://github.com/graycoreio/daffodil/commit/a6ecaeadb52cbcd8ac0172c10373631ecf653461))
+* **geography:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([d704e0b](https://github.com/graycoreio/daffodil/commit/d704e0b1f06eea9d99609fc7eaa4b7b826e33e2c))
+* **navigation:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([40a72e9](https://github.com/graycoreio/daffodil/commit/40a72e9583eb04847a5efb6cc7f5d5cbec813f77))
+* **newsletter:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([81a170e](https://github.com/graycoreio/daffodil/commit/81a170e20ea15f9b096b4b41e1f2b770c599005c))
+* **order:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([876d005](https://github.com/graycoreio/daffodil/commit/876d005a73a2207f963b78ee2e526d9c35a4f47c))
+* **payment:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([88bf320](https://github.com/graycoreio/daffodil/commit/88bf320fbb940342d11097793939eae94fa19d40))
+* **paypal:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([4b2b04e](https://github.com/graycoreio/daffodil/commit/4b2b04e68eb8168986f62b3503d3f0b0c9c3ed77))
+* **product:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([9ba661e](https://github.com/graycoreio/daffodil/commit/9ba661ec99dbbbe74ac0c65659f1e27075966e2d))
+* **reviews:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([ab2221a](https://github.com/graycoreio/daffodil/commit/ab2221a019a8ceeda661f2dbdbb1007442e30ab2))
+* **search:** move error matcher injection token to state subpackage ([#2645](https://github.com/graycoreio/daffodil/issues/2645)) ([8be4957](https://github.com/graycoreio/daffodil/commit/8be4957ae210d1ed8831900f39b7d34584ea604f))
+
 ## [0.65.0](https://github.com/graycoreio/daffodil/compare/v0.64.2...v0.65.0) (2023-12-08)
 
 
