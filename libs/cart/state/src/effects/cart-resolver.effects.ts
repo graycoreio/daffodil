@@ -27,7 +27,6 @@ import {
 import {
   DaffCart,
   DaffCartStorageService,
-  DAFF_CART_ERROR_MATCHER,
   DaffCartServerSideResolutionError,
   DaffCartStorageResolutionError,
   DaffCartResolutionError,
@@ -58,6 +57,7 @@ import {
   DaffResolveCartPartialSuccess,
   DaffCartActions,
 } from '../actions/public_api';
+import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 /**
  * An effect for resolving a guest cart for a customer.

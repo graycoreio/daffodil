@@ -29,7 +29,6 @@ import {
   DaffCartItemInput,
   DaffCart,
   DaffCartStorageService,
-  DAFF_CART_ERROR_MATCHER,
 } from '@daffodil/cart';
 import {
   DaffCartDriverResolveService,
@@ -63,6 +62,7 @@ import {
   DaffCartItemActions,
 } from '../actions/public_api';
 import { DaffCartItemStateDebounceTime } from '../injection-tokens/cart-item-state-debounce-time';
+import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 import { DaffStatefulCartItem } from '../models/public_api';
 import { getDaffCartSelectors } from '../selectors/public_api';
 

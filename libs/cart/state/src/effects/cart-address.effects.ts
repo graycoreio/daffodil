@@ -21,7 +21,6 @@ import {
   DaffCartAddress,
   DaffCart,
   DaffCartStorageService,
-  DAFF_CART_ERROR_MATCHER,
 } from '@daffodil/cart';
 import {
   DaffCartAddressDriver,
@@ -41,6 +40,7 @@ import {
   DaffCartAddressUpdateFailure,
   DaffCartStorageFailure,
 } from '../actions/public_api';
+import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCart> {

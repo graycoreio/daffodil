@@ -21,7 +21,6 @@ import {
   DaffCart,
   DaffCartCoupon,
   DaffCartStorageService,
-  DAFF_CART_ERROR_MATCHER,
 } from '@daffodil/cart';
 import {
   DaffCartCouponDriver,
@@ -50,6 +49,7 @@ import {
   DaffCartCouponApplyFailure,
   DaffCartStorageFailure,
 } from '../actions/public_api';
+import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCartCouponEffects<

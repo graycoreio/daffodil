@@ -18,7 +18,6 @@ import {
   DaffCartShippingInformation,
   DaffCart,
   DaffCartStorageService,
-  DAFF_CART_ERROR_MATCHER,
 } from '@daffodil/cart';
 import {
   DaffCartShippingInformationDriver,
@@ -39,6 +38,7 @@ import {
   DaffCartShippingInformationUpdateSuccess,
   DaffCartShippingInformationUpdateFailure,
 } from '../actions/public_api';
+import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCartShippingInformationEffects<T extends DaffCartShippingInformation, V extends DaffCart> {

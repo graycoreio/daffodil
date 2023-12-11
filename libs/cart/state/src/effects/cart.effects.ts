@@ -22,7 +22,6 @@ import {
 import {
   DaffCart,
   DaffCartStorageService,
-  DAFF_CART_ERROR_MATCHER,
 } from '@daffodil/cart';
 import {
   DaffCartDriver,
@@ -52,6 +51,7 @@ import {
   DaffCartStorageFailure,
   DaffCartLoadPartialSuccess,
 } from '../actions/public_api';
+import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCartEffects<T extends DaffCart> {
