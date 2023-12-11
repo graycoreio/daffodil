@@ -7,6 +7,7 @@ export {
 } from './actions/navigation.actions';
 export * from './selectors/navigation.selector';
 export * from './reducers/public_api';
+export * from './injection-tokens/public_api';
 export { DaffNavigationFacadeInterface } from './facades/navigation-facade.interface';
 export { DaffNavigationFacade } from './facades/navigation.facade';
 

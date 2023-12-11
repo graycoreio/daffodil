@@ -19,10 +19,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffGenericNavigationTree,
-  DAFF_NAVIGATION_ERROR_MATCHER,
-} from '@daffodil/navigation';
+import { DaffGenericNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationDriver,
   DaffNavigationServiceInterface,
@@ -34,6 +31,7 @@ import {
   DaffNavigationLoadSuccess,
   DaffNavigationLoadFailure,
 } from '../actions/navigation.actions';
+import { DAFF_NAVIGATION_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
