@@ -18,10 +18,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffNewsletterSubmission,
-  DAFF_NEWSLETTER_ERROR_MATCHER,
-} from '@daffodil/newsletter';
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterDriver,
   DaffNewsletterServiceInterface,
@@ -35,6 +32,7 @@ import {
   DaffNewsletterRetry,
   DaffNewsletterCancel,
 } from '../actions/newsletter.actions';
+import { DAFF_NEWSLETTER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{

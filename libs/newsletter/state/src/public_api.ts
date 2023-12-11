@@ -1,4 +1,5 @@
 export * from './actions/newsletter.actions';
+export * from './injection-tokens/public_api';
 export {
   DaffNewsletterState,
   reducer,
