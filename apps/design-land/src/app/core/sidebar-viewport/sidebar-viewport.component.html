@@ -1,4 +1,4 @@
-<daff-sidebar-viewport class="design-land-sidebar-viewport" (backdropClicked)="toggleOpen()" [navDesign]="'bounded'">
+<daff-sidebar-viewport class="design-land-sidebar-viewport" (backdropClicked)="toggleOpen()" navPlacement="beside">
   <daff-sidebar class="design-land-sidebar-viewport__sidebar" [mode]="mode$ | async" [open]="open" (escapePressed)="toggleOpen()">
     <design-land-nav></design-land-nav>
     <daff-sidebar-footer>

@@ -16,7 +16,10 @@ import {
 } from '@angular/core';
 
 import { hasParentViewport } from './helper/has-parent-viewport';
-import { DaffNavDesign } from './nav-design';
+import {
+  DaffNavPlacement,
+  DaffNavPlacementEnum,
+} from './nav-placement';
 import {
   DAFF_SIDEBAR_SCROLL_TOKEN,
   DaffSidebarScroll,
@@ -73,16 +76,15 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 export class DaffSidebarViewportComponent implements AfterContentChecked {
   @HostBinding('class.daff-sidebar-viewport') hostClass = true;
 
-  @HostBinding('class.bounded-nav') get isBoundedNav() {
-    return this.navDesign === DaffNavDesign.BOUNDED;
+  @HostBinding('class.nav-on-side') get isNavOnSide() {
+    return this.navPlacement === DaffNavPlacementEnum.BESIDE;
   }
 
   /**
-   * Whether or not the navbar should be bounded.
-   * Note that this is really only available
-   * when there is a `side-fixed` sidebar.
+   * The placement of the nav in relation to the sidebar. The default is set to `top`.
+   * Note that this is really only available when there is a `side-fixed` sidebar.
    */
-  @Input() navDesign: DaffNavDesign = DaffNavDesign.UNBOUNDED;
+  @Input() navPlacement: DaffNavPlacement = DaffNavPlacementEnum.ABOVE;
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -171,7 +173,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextLeftPadding = sidebarViewportContentPadding(this.sidebars, 'left');
     if(this._contentPadLeft !== nextLeftPadding) {
       this._contentPadLeft = nextLeftPadding;
-      this._navPadLeft = this.isBoundedNav ? this._contentPadLeft : null;
+      this._navPadLeft = this.isNavOnSide ? this._contentPadLeft : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
@@ -179,7 +181,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextRightPadding = sidebarViewportContentPadding(this.sidebars, 'right');
     if(this._contentPadRight !== nextRightPadding) {
       this._contentPadRight = nextRightPadding;
-      this._navPadRight = this.isBoundedNav ? this._contentPadRight : null;
+      this._navPadRight = this.isNavOnSide ? this._contentPadRight : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
