@@ -7,3 +7,4 @@ export * from './facades/public_api';
 export * from './actions/category.actions';
 export * from './actions/category-page.actions';
 export * from './actions/category-page-filter.actions';
+export * from './injection-tokens/public_api';

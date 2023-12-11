@@ -20,7 +20,6 @@ import {
 import {
   DaffGenericCategory,
   DaffGetCategoryResponse,
-  DAFF_CATEGORY_ERROR_MATCHER,
 } from '@daffodil/category';
 import {
   DaffCategoryDriver,
@@ -37,6 +36,7 @@ import {
   DaffCategoryLoadSuccess,
   DaffCategoryLoadFailure,
 } from '../actions/category.actions';
+import { DAFF_CATEGORY_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCategoryEffects<

@@ -24,7 +24,6 @@ import {
 import {
   DaffGenericCategory,
   DaffGetCategoryResponse,
-  DAFF_CATEGORY_ERROR_MATCHER,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
   DaffCategoryPageMetadata,
@@ -54,6 +53,7 @@ import {
   DaffCategoryPageActionTypes,
   DaffCategoryPageLoadByUrl,
 } from '../actions/category-page.actions';
+import { DAFF_CATEGORY_ERROR_MATCHER } from '../injection-tokens/public_api';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 
 @Injectable()

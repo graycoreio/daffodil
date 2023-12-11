@@ -24,7 +24,6 @@ import {
 import {
   DaffGenericCategory,
   DaffGetCategoryResponse,
-  DAFF_CATEGORY_ERROR_MATCHER,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
 } from '@daffodil/category';
@@ -50,6 +49,7 @@ import {
   DaffCategoryPageLoadFailure,
 } from '../actions/category-page.actions';
 import { DaffCategoryProductCollectionFacade } from '../facades/public_api';
+import { DAFF_CATEGORY_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCategoryPageFilterEffects<
