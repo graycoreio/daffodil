@@ -16,10 +16,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffCountry,
-  DAFF_GEOGRAPHY_ERROR_MATCHER,
-} from '@daffodil/geography';
+import { DaffCountry } from '@daffodil/geography';
 import {
   DaffGeographyServiceInterface,
   DaffGeographyDriver,
@@ -34,6 +31,7 @@ import {
   DaffCountryListSuccess,
   DaffCountryListFailure,
 } from '../actions/public_api';
+import { DAFF_GEOGRAPHY_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffGeographyEffects<T extends DaffCountry> {
