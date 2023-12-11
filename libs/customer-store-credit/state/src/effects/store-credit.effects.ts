@@ -16,10 +16,7 @@ import {
 
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import {
-  DaffCustomerStoreCredit,
-  DAFF_CUSTOMER_STORE_CREDIT_ERROR_MATCHER,
-} from '@daffodil/customer-store-credit';
+import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 import {
   DaffCustomerStoreCreditDriver,
   DaffCustomerStoreCreditDriverInterface,
@@ -31,6 +28,7 @@ import {
   DaffCustomerStoreCreditLoadSuccess,
   DaffCustomerStoreCreditActions,
 } from '../actions/store-credit.actions';
+import { DAFF_CUSTOMER_STORE_CREDIT_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
 export class DaffCustomerStoreCreditEffects<
