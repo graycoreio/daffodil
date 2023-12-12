@@ -35,15 +35,16 @@ import {
 } from 'rxjs';
 
 import {
-  daffSelectAnimations,
-  DaffSelectAnimationState,
-} from './animation/select-animation';
-import { getAnimationState } from './animation/select-animation-state';
-import { DaffSelectOptionDirective } from './option/option.directive';
-import {
   DaffSkeletonable,
   daffSkeletonableMixin,
-} from '../../core/skeletonable/public_api';
+} from '@daffodil/design';
+
+import {
+  daffSelectAnimations,
+  DaffSelectAnimationState,
+} from '../animation/select-animation';
+import { getAnimationState } from '../animation/select-animation-state';
+import { DaffSelectOptionDirective } from '../option/option.directive';
 
 class _base {
   constructor(

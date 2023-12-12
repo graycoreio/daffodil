@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../../scss/theming';
-@use '../../../scss/core';
+@use '../../scss/theming';
+@use '../../scss/core';
 
 @mixin daff-select-theme($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
