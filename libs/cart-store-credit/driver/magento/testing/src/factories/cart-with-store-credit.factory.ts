@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
 import { MockMagentoCart } from '@daffodil/cart/driver/magento/testing';
 import { MagentoCartWithStoreCredit } from '@daffodil/cart-store-credit/driver/magento';
