@@ -7,7 +7,7 @@ export * from './constructor/constructor';
 export * from './statusable/public_api';
 export * from './skeletonable/public_api';
 export * from './mutable/mutable';
-export * from './text-alignable/text-alignable';
+export * from './text-alignable/public_api';
 export * from './compactable/public_api';
 export * from './manage-container-layout/public_api';
 export * from './article-encapsulated/public_api';
