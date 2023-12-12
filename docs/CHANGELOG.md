@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.66.1](https://github.com/graycoreio/daffodil/compare/v0.66.0...v0.66.1) (2023-12-12)
+
+
+### Features
+
+* **design:** expose skeletonable public_api to design core's public_api ([#2648](https://github.com/graycoreio/daffodil/issues/2648)) ([4e0baf9](https://github.com/graycoreio/daffodil/commit/4e0baf917ea4295d321ad468d2d6dd2dce1ac803))
+
 ## [0.66.0](https://github.com/graycoreio/daffodil/compare/v0.65.0...v0.66.0) (2023-12-11)
 
 
