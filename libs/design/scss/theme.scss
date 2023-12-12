@@ -29,7 +29,6 @@
 @use '../accordion/src/accordion-theme' as accordion;
 @use '../callout/src/callout-theme' as callout;
 @use '../src/molecules/card/card/card-theme' as card;
-@use '../src/molecules/select/select-theme' as select;
 @use '../src/molecules/hero/hero-theme' as hero;
 @use '../src/molecules/list/list/list-theme' as list;
 @use '../src/molecules/media-gallery/media-gallery-theme' as media-gallery;
@@ -39,6 +38,7 @@
 @use '../notification/src/notification-theme' as notification;
 @use '../src/molecules/paginator/paginator-theme' as paginator;
 @use '../sidebar/src/sidebar-theme' as sidebar;
+@use '../select/src/select-theme' as select;
 @use '../scss/state/skeleton/mixins' as skeleton;
 @use '../tree/src/tree-theme' as tree;
 
@@ -72,7 +72,6 @@
 	@include article.daff-article-theme($theme);
 	@include callout.daff-callout-theme($theme);
 	@include card.daff-card-theme($theme);
-	@include select.daff-select-theme($theme);
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
 	@include media-gallery.daff-media-gallery-theme($theme);
@@ -81,6 +80,7 @@
 	@include navbar.daff-navbar-theme($theme);
 	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
+	@include select.daff-select-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
 	@include tree.daff-tree-theme($theme);
 }

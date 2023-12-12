@@ -24,7 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DaffPrefixSuffixModule } from '@daffodil/design';
 
 import { DaffSelectComponent } from './select.component';
-import { DaffSelectModule } from './select.module';
+import { DaffSelectModule } from '../select.module';
 
 @Component ({
   template: `
@@ -239,7 +239,7 @@ describe('DaffSelectComponent', () => {
     });
   });
 
-  describe('when the dropdown is closed', () => {
+  describe('when the select is closed', () => {
     beforeEach(() => {
       if (component.isOpen) {
         component.toggle();
