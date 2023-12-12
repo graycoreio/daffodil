@@ -5,7 +5,7 @@ export * from './colorable/public_api';
 export * from './breakpoints/breakpoints';
 export * from './constructor/constructor';
 export * from './statusable/public_api';
-export * from './skeletonable/skeletonable';
+export * from './skeletonable/public_api';
 export * from './mutable/mutable';
 export * from './text-alignable/text-alignable';
 export * from './compactable/public_api';
