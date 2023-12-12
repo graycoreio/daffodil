@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
 
@@ -13,7 +13,7 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisabledSelectComponent {
-  control = new FormControl();
+  disabled = new UntypedFormControl({ value : '' , disabled: true });
 
   options = SELECT_EXAMPLE_ADDRESSES;
 }
