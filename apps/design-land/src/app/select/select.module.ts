@@ -7,7 +7,6 @@ import { DesignLandSelectRoutingModule } from './select-routing.module';
 import { DesignLandSelectComponent } from './select.component';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
-
 @NgModule({
   declarations: [
     DesignLandSelectComponent,
@@ -19,6 +18,4 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
     DaffArticleModule,
   ],
 })
-export class DesignLandSelectModule {
-
-}
+export class DesignLandSelectModule {}
