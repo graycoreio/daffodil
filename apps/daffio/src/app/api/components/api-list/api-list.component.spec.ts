@@ -7,7 +7,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffContainerModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioApiListComponent } from './api-list.component';
 import { DaffioApiReference } from '../../models/api-reference';

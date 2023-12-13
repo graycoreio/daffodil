@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {
-  DaffContainerModule,
   DaffCalloutModule,
   DaffImageModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioHomeCalloutPlatformsComponent } from './home-callout-platforms.component';
-
 
 @NgModule({
   imports: [

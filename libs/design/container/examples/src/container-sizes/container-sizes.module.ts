@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DaffContainerModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { ContainerSizesComponent } from './container-sizes.component';
-
 
 @NgModule({
   declarations: [

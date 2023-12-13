@@ -15,7 +15,7 @@ import {
   DaffLogoModule,
   DaffCopyrightModule,
 } from '@daffodil/branding';
-import { DaffContainerModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioSimpleFooterComponent } from './simple-footer.component';
 

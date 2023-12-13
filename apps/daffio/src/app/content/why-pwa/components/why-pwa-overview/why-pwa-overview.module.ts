@@ -4,13 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-  DaffContainerModule,
   DaffCalloutModule,
   DaffCardModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioWhyPwaOverviewComponent } from './why-pwa-overview.component';
-
 
 @NgModule({
   imports: [

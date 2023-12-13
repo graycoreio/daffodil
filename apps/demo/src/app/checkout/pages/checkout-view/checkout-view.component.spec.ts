@@ -41,9 +41,9 @@ import { DaffAddressFactory } from '@daffodil/core/testing';
 import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
-  DaffContainerModule,
   DaffLoadingIconModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { CheckoutViewComponent } from './checkout-view.component';
 import { ShowPaymentView } from '../../actions/payment.actions';

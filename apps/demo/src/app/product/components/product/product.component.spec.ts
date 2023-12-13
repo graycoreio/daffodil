@@ -15,14 +15,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {
   DaffAccordionModule,
   DaffQtyDropdownModule,
-  DaffContainerModule,
   DaffQtyDropdownComponent,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
-
 
 @Component({ template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>' })
 class WrapperComponent {

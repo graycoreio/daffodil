@@ -11,10 +11,10 @@ import {
   DaffCalloutModule,
   DaffListModule,
   DaffButtonSetModule,
-  DaffContainerModule,
   DaffInputModule,
 } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioSimpleFooterComponent } from './simple-footer/simple-footer.component';
 import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';

@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { StateCheckoutModule } from '@daffodil/checkout';
 import {
-  DaffContainerModule,
   DaffAccordionModule,
   DaffLoadingIconModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { ThankYouComponentModule } from './components/thank-you/thank-you.module';
 import { ThankYouViewComponent } from './pages/thank-you-view.component';

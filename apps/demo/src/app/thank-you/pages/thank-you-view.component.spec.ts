@@ -24,9 +24,11 @@ import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
   DaffLoadingIconModule,
-  DaffContainerModule,
-  DaffContainerComponent,
 } from '@daffodil/design';
+import {
+  DaffContainerComponent,
+  DaffContainerModule,
+} from '@daffodil/design/container';
 
 import { ThankYouViewComponent } from './thank-you-view.component';
 

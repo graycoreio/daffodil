@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {
-  DaffContainerModule,
   DaffCalloutModule,
   DaffImageModule,
   DaffCardModule,
 } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioHomeCalloutPwaComponent } from './home-callout-pwa.component';
 

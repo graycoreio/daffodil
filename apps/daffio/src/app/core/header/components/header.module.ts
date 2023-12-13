@@ -2,10 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import {
-  DaffNavbarModule,
-  DaffContainerModule,
-} from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioHeaderComponent } from './header/header.component';
 import { DaffioHeaderItemDirective } from './header-item/header-item.directive';

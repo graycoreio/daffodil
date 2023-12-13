@@ -6,8 +6,8 @@ import { StateCheckoutModule } from '@daffodil/checkout';
 import {
   DaffAccordionModule,
   DaffLoadingIconModule,
-  DaffContainerModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { DemoCheckoutStateModule } from './checkout-state.module';
