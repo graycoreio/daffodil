@@ -10,8 +10,9 @@ import {
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffArticleComponent } from '@daffodil/design/article';
+
 import { DaffMediaRendererComponent } from './media-renderer.component';
-import { DaffArticleComponent } from '../../article/public_api';
 import { DaffCardComponent } from '../../card/public_api';
 import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
