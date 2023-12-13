@@ -10,13 +10,16 @@ import {
 import { By } from '@angular/platform-browser';
 
 import {
+  DaffPalette,
+  DaffStatus,
+  DaffLoadingIconComponent,
+  DaffLoadingIconModule,
+} from '@daffodil/design';
+
+import {
   DaffButtonComponent,
   DaffButtonSize,
 } from './button.component';
-import { DaffPalette } from '../../core/colorable/public_api';
-import { DaffStatus } from '../../core/statusable/statusable';
-import { DaffLoadingIconComponent } from '../loading-icon/loading-icon.component';
-import { DaffLoadingIconModule } from '../loading-icon/loading-icon.module';
 
 @Component({
   template: `

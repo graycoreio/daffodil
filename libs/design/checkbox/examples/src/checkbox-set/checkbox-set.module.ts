@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {
-  DaffButtonModule,
-  DaffCheckboxModule,
-} from '@daffodil/design';
+import { DaffCheckboxModule } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { CheckboxSetComponent } from './checkbox-set.component';
 

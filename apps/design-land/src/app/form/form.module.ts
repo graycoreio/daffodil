@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   DaffInputModule,
   DaffFormFieldModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DesignLandFormRoutingModule } from './form-routing.module';
 import { DesignLandFormComponent } from './form.component';

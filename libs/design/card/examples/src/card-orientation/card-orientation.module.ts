@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-  DaffButtonModule,
   DaffCardModule,
   DaffImageModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { CardOrientationComponent } from './card-orientation.component';
 

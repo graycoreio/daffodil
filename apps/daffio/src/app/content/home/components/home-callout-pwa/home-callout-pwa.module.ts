@@ -5,13 +5,12 @@ import { RouterModule } from '@angular/router';
 import {
   DaffContainerModule,
   DaffCalloutModule,
-  DaffButtonModule,
   DaffImageModule,
   DaffCardModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioHomeCalloutPwaComponent } from './home-callout-pwa.component';
-
 
 @NgModule({
   imports: [

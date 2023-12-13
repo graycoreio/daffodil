@@ -9,9 +9,9 @@ import {
   DaffLinkSetModule,
   DAFF_THEME_INITIALIZER,
   DaffNavbarModule,
-  DaffButtonModule,
 } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';

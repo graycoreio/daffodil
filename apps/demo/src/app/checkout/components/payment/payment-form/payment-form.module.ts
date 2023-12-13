@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   DaffInputModule,
   DaffNativeSelectModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { PaymentFormComponent } from './payment-form.component';
 import { AddressFormModule } from '../../forms/address-form/address-form.module';

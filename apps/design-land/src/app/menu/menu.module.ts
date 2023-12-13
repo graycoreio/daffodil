@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffButtonModule,
-  DaffMenuModule,
-} from '@daffodil/design';
+import { DaffMenuModule } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DesignLandMenuRoutingModule } from './menu-routing-module';
 import { DesignLandMenuComponent } from './menu.component';

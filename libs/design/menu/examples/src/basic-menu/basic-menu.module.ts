@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {
-  DaffButtonModule,
-  DaffMenuModule,
-} from '@daffodil/design';
+import { DaffMenuModule } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { BasicMenuComponent } from './basic-menu.component';
 import { MenuContentComponent } from './menu-content/menu-content.component';

@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import {
   DaffCardModule,
   DaffImageModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { StrokedCardComponent } from './stroked-card.component';
 

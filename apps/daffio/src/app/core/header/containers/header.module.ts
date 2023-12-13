@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffLogoModule } from '@daffodil/branding';
-import { DaffButtonModule } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DaffioHeaderContainer } from './header.component';

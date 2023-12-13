@@ -11,17 +11,14 @@ import {
   DaffCalloutModule,
   DaffListModule,
   DaffButtonSetModule,
-  DaffButtonModule,
   DaffContainerModule,
   DaffInputModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioSimpleFooterComponent } from './simple-footer/simple-footer.component';
 import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';
 import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
-
-
-
 
 @NgModule({
   imports: [

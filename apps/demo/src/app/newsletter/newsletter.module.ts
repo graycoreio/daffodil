@@ -4,14 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   DaffInputModule,
-  DaffButtonModule,
   DaffContainerModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffNewsletterStateModule } from '@daffodil/newsletter/state';
 
 import { NewsletterComponent } from './newsletter.component';
-
-
 
 @NgModule({
   imports: [
