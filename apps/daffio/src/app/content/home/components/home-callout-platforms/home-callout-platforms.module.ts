@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 
 import {
   DaffCalloutModule,
-  DaffImageModule,
 } from '@daffodil/design';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffImageModule } from '@daffodil/design/image';
 
 import { DaffioHomeCalloutPlatformsComponent } from './home-callout-platforms.component';
 

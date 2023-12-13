@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import {
-  DaffMediaGalleryModule,
-  DaffImageModule,
-} from '@daffodil/design';
+import { DaffMediaGalleryModule } from '@daffodil/design';
+import { DaffImageModule } from '@daffodil/design/image';
 
 import { BasicMediaGalleryComponent } from './basic-media-gallery.component';
 

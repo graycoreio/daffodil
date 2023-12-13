@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffImageModule } from '@daffodil/design';
+import { DaffImageModule } from '@daffodil/design/image';
 
 import { BasicImageComponent } from './basic-image.component';
 
