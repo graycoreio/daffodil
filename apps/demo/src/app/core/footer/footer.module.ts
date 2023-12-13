@@ -5,12 +5,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffListModule,
-  DaffButtonModule,
   DaffContainerModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { FooterComponent } from './footer.component';
-
 
 @NgModule({
   imports: [

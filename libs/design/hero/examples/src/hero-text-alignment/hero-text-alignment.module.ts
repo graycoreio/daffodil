@@ -6,8 +6,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   DaffHeroModule,
   DaffContainerModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { HeroTextAlignmentComponent } from './hero-text-alignment.component';
 

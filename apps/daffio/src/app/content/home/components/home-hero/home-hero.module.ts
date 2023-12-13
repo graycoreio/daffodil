@@ -5,12 +5,11 @@ import { RouterModule } from '@angular/router';
 import {
   DaffContainerModule,
   DaffHeroModule,
-  DaffButtonModule,
   DaffImageModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioHomeHeroComponent } from './home-hero.component';
-
 
 @NgModule({
   imports: [

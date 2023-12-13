@@ -10,26 +10,22 @@ import {
   Input,
 } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '../../core/article-encapsulated/public_api';
 import {
   daffColorMixin,
   DaffColorable,
-} from '../../core/colorable/public_api';
-import {
   DaffPrefixable,
   DaffSuffixable,
   daffPrefixableMixin,
   daffSuffixableMixin,
-} from '../../core/prefix-suffix/public_api';
-import {
   DaffSizeable,
   DaffSizeSmallType,
   DaffSizeMediumType,
   DaffSizeLargeType,
-} from '../../core/sizeable/sizeable';
-import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
-import { DaffStatusable } from '../../core/statusable/statusable';
-import { daffStatusMixin } from '../../core/statusable/statusable-mixin';
+  daffSizeMixin,
+  DaffStatusable,
+  daffStatusMixin,
+  daffArticleEncapsulatedMixin,
+} from '@daffodil/design';
 
 /**
  * List of classes to add to DaffButtonComponent instances based on host attributes to style as different variants.

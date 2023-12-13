@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 
 import {
   DaffInputModule,
-  DaffButtonModule,
   DaffContainerModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioNewsletterComponent } from './newsletter.component';
-
 
 @NgModule({
   imports: [

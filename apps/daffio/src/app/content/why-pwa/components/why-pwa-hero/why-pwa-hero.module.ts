@@ -5,11 +5,10 @@ import { RouterModule } from '@angular/router';
 import {
   DaffContainerModule,
   DaffHeroModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioWhyPwaHeroComponent } from './why-pwa-hero.component';
-
 
 @NgModule({
   imports: [

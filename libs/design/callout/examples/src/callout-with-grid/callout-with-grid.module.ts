@@ -6,8 +6,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   DaffCalloutModule,
   DaffContainerModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { CalloutWithGridComponent } from './callout-with-grid.component';
 

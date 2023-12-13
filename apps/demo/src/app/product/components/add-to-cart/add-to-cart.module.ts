@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { AddToCartComponent } from './add-to-cart.component';
 

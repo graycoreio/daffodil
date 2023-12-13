@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-  DaffButtonModule,
   DaffCalloutModule,
   DaffContainerModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { CalloutTextAlignmentComponent } from './callout-text-alignment.component';
 

@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   DaffCardModule,
   DaffImageModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { RaisedCardComponent } from './raised-card.component';
 

@@ -5,8 +5,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   DaffCardModule,
   DaffImageModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { BasicCardComponent } from './basic-card.component';
 

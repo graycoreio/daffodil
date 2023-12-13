@@ -6,13 +6,12 @@ import { RouterModule } from '@angular/router';
 import {
   DaffHeroModule,
   DaffContainerModule,
-  DaffButtonModule,
 } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioSupportComponent } from './component/support.component';
 import { DaffioSupportRoutingModule } from './support-routing.module';
 import { TemplateModule } from '../../core/template/template.module';
-
 
 @NgModule({
   imports: [
