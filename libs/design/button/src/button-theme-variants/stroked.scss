@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../../../scss/theming';
+@use '../../../scss/theming';
 
 @mixin daff-stroked-button-theme-variant(
 	$base-color,

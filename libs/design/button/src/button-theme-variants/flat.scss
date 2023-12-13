@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../../../scss/theming';
+@use '../../../scss/theming';
 
 @mixin daff-flat-button-theme-variant(
 	$base-color,
