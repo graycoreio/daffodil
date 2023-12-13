@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {
-  DaffContainerModule,
   DaffCalloutModule,
   DaffListModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioWhyPwaSolutionComponent } from './why-pwa-solution.component';
 import { DaffioFeatureComparisonModule } from '../feature-comparison/feature-comparison.module';

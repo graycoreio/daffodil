@@ -2,10 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffCategoryStateModule } from '@daffodil/category/state';
-import {
-  DaffContainerModule,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffProductStateModule } from '@daffodil/product/state';
 
 import { CategoryViewComponent } from './category-view.component';

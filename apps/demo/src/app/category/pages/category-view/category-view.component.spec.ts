@@ -11,10 +11,8 @@ import {
   MockDaffCategoryFacade,
 } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
-import {
-  DaffContainerModule,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductFactory,
@@ -24,7 +22,6 @@ import {
 import { CategoryViewComponent } from './category-view.component';
 import { ProductGridComponent } from '../../../product/components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../../product/components/product-grid/product-grid.module';
-
 
 describe('CategoryViewComponent', () => {
   let categoryFactory: DaffCategoryFactory;

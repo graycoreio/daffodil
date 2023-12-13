@@ -9,8 +9,9 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffSizeAllType } from '@daffodil/design';
+
 import { DaffContainerComponent } from './container.component';
-import { DaffSizeAllType } from '../../core/sizeable/sizeable';
 
 @Component({
   template: `<daff-container [size]="size"></daff-container>`,

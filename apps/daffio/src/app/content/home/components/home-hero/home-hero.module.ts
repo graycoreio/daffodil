@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {
-  DaffContainerModule,
   DaffHeroModule,
   DaffImageModule,
 } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioHomeHeroComponent } from './home-hero.component';
 

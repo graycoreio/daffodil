@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { DaffContainerModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DemoCartRoutingModule } from './cart-routing.module';
 import { CartModule } from './components/cart/cart.module';

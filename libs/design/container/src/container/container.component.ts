@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 
 import {
-  DaffSizeAllType,
   DaffSizeable,
-} from '../../core/sizeable/sizeable';
-import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
+  DaffSizeAllType,
+  daffSizeMixin,
+} from '@daffodil/design';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Sizeable mixin

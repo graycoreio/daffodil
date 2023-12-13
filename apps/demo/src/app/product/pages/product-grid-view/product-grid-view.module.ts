@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffContainerModule,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffProductStateModule } from '@daffodil/product/state';
 
 import { ProductGridViewComponent } from './product-grid-view.component';

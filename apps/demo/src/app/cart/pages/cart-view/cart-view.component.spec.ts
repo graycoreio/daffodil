@@ -16,10 +16,8 @@ import {
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import {
-  DaffContainerModule,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DemoCartViewComponent } from './cart-view.component';
 

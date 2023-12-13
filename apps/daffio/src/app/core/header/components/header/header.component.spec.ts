@@ -5,10 +5,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import {
-  DaffContainerModule,
-  DaffNavbarModule,
-} from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioHeaderComponent } from './header.component';
 

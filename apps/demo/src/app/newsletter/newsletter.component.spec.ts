@@ -6,12 +6,11 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffContainerModule } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 import {
   DaffNewsletterStateTestingModule,
   MockDaffNewsletterFacade,
 } from '@daffodil/newsletter/state/testing';
-
 
 import { NewsletterComponent } from './newsletter.component';
 

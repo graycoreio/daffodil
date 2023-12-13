@@ -8,10 +8,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-  DaffContainerModule,
   DaffListModule,
   DaffButtonSetModule,
 } from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 import { FooterComponent } from './footer.component';
 
