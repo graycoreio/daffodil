@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffArticleModule,
-  DaffQuantityFieldModule,
-} from '@daffodil/design';
+import { DaffQuantityFieldModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandQuantityFieldRoutingModule } from './quantity-field-routing.module';
 import { DesignLandQuantityFieldComponent } from './quantity-field.component';

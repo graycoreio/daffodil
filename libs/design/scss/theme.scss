@@ -19,6 +19,7 @@
 // @daffodil/design components
 @use './theming/theme-css-variables' as variables;
 @use '../src/atoms/button/button-theme' as button;
+@use '../article/src/article-theme' as article;
 @use '../src/atoms/form/error-message/error-message-theme' as error-message;
 @use '../src/atoms/form/form-field/form-field/form-field-theme' as form-field;
 @use '../src/atoms/form/input/input-theme' as input;
@@ -26,7 +27,6 @@
 @use '../src/atoms/loading-icon/loading-icon-theme' as loading-icon;
 @use '../src/atoms/progress-indicator/progress-indicator-theme' as progress-indicator;
 @use '../src/molecules/accordion/accordion-item/accordion-item-theme' as accordion-item;
-@use '../src/molecules/article/article/article-theme' as article;
 @use '../src/molecules/callout/callout-theme' as callout;
 @use '../src/molecules/card/card/card-theme' as card;
 @use '../src/molecules/hero/hero-theme' as hero;

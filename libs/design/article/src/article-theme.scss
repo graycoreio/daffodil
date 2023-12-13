@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use 'stops-article-cascade' as *;
-@use '../../../../scss/core';
-@use '../../../../scss/theming';
+@use './article/stops-article-cascade' as *;
+@use '../../scss/core';
+@use '../../scss/theming';
 
 @mixin daff-article-theme($theme) {
 	$primary: map.get($theme, primary);
