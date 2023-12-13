@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffArticleModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandAccordionRoutingModule } from './accordion-routing.module';
 import { DesignLandAccordionComponent } from './accordion.component';

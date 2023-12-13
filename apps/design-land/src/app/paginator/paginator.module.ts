@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffPaginatorModule,
-  DaffArticleModule,
-} from '@daffodil/design';
+import { DaffPaginatorModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandPaginatorRoutingModule } from './paginator-routing.module';
 import { DesignLandPaginatorComponent } from './paginator.component';

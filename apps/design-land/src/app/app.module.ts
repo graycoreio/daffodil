@@ -7,11 +7,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   DaffSidebarModule,
   DaffLinkSetModule,
-  DaffArticleModule,
   DAFF_THEME_INITIALIZER,
   DaffNavbarModule,
   DaffButtonModule,
 } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';

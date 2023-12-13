@@ -2,16 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import {
-  DaffArticleModule,
-  DaffNavbarModule,
-} from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
 import { DesignLandNavbarComponent } from './navbar.component';
 import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
-
 
 @NgModule({
   declarations: [
