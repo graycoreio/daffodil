@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { DaffLogoModule } from '@daffodil/branding';
 import {
   DaffNavbarModule,
   DaffSidebarModule,
@@ -26,6 +27,7 @@ import { DesignLandNavModule } from '../nav/nav.module';
     DaffArticleModule,
     DesignLandNavModule,
     DaffThemeSwitchButtonModule,
+    DaffLogoModule,
   ],
   declarations: [
     DesignLandSidebarViewportComponent,

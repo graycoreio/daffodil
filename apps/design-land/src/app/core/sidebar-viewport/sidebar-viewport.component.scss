@@ -28,4 +28,25 @@
     text-align: center;
     text-decoration: none;
   }
+
+  &__docs-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    max-width: 144px;
+  }
+
+  &__docs-tag {
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    padding: 4px;
+    text-transform: uppercase;
+  }
 }

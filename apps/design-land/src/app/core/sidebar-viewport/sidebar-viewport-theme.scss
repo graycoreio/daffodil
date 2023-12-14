@@ -4,6 +4,8 @@
 @mixin sidebar-viewport-theme($theme) {
 	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$primary: map.get($theme, primary);
 
 	.design-land-sidebar-viewport {
 		&__sidebar {
@@ -16,6 +18,11 @@
 			&:hover {
 				background: daff-theme.daff-illuminate($base, $gray, 2);
 			}
+		}
+
+		&__docs-tag {
+			background: $base-contrast;
+			color: $base;
 		}
 	}
 }

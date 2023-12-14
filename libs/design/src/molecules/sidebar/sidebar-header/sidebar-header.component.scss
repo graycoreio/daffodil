@@ -13,6 +13,7 @@
 	&__title {
 		@include t.text-truncate();
 		font-size: 1rem;
+		line-height: 1rem;
 		font-weight: 500;
 	}
 
@@ -28,7 +29,7 @@
 		&__action {
 			left: 0;
 			right: initial;
-			top: 3px;
+			top: 0;
 		}
 	}
 
