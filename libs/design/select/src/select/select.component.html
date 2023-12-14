@@ -3,6 +3,10 @@
   [disabled]="disabled"
   [tabindex]="tabIndex"
   [attr.aria-expanded]="isOpen"
+  (keydown.arrowdown)="selectNext($event)"
+  (keydown.arrowup)="selectPrevious($event)"
+  (keydown.alt.arrowup)="open()"
+  (keydown.alt.arrowdown)="open()"
   (keydown.enter)="toggle($event)"
   (keydown.space)="toggle($event)">
   <ng-container *ngIf="!value">
@@ -17,14 +21,24 @@
   <fa-icon daffSuffix [icon]="faChevronDown"></fa-icon>
 </button>
 <ng-template cdkPortal #optionsTemplate="cdkPortal">
-  <div class="daff-select__options" [@openSelect]="animationState" (@openSelect.done)="animationFinished()">
+  <div class="daff-select__options" #optionsEl
+    tabindex="0"
+    [@openSelect]="animationState"
+    (@openSelect.done)="animationFinished()"
+    (keydown.enter)="selectHighlighted($event)"
+    (keydown.space)="selectHighlighted($event)"
+    (keydown.escape)="close($event)"
+    (keydown.arrowdown)="highlightNext($event)"
+    (keydown.arrowup)="highlightPrevious($event)"
+  >
     <div class="daff-select__option" [class.selected]="value === option"
-      *ngFor="let option of options; trackBy:trackByIndex"
+      *ngFor="let option of options; index as i; trackBy:trackByIndex"
       (click)="optionSelected(option)">
       <ng-container
         [ngTemplateOutlet]="optionTemplate?.templateRef"
         [ngTemplateOutletContext]="{
           isSelected: value === option,
+          isHighlighted: highlighted === i,
           option
         }">
       </ng-container>

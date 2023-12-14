@@ -31,7 +31,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Subject,
+  delay,
   takeUntil,
+  tap,
 } from 'rxjs';
 
 import {
@@ -39,11 +41,9 @@ import {
   daffSkeletonableMixin,
 } from '@daffodil/design';
 
-import {
-  daffSelectAnimations,
-  DaffSelectAnimationState,
-} from '../animation/select-animation';
+import { daffSelectAnimations } from '../animation/select-animation';
 import { getAnimationState } from '../animation/select-animation-state';
+import { DaffSelectAnimationState } from '../animation/state.enum';
 import { DaffSelectOptionDirective } from '../option/option.directive';
 
 class _base {
@@ -79,6 +79,7 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
   private _overlay: OverlayRef;
   private _open = false;
   private _value = null;
+  private _highlighted = 0;
   private _animationState: DaffSelectAnimationState;
   private _animationFinishCallbackQueue: Array<() => void> = [];
 
@@ -89,7 +90,7 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
   @HostBinding('class.daff-select') class = true;
 
   @HostBinding('class.daff-select--open') get openClass() {
-    return this._open ? true : false;
+    return this._open;
   }
 
   @HostBinding('class.daff-select--disabled') get disabledClass() {
@@ -98,6 +99,7 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
 
   @ViewChild('field') buttonElement: ElementRef<HTMLButtonElement>;
   @ViewChild('optionsTemplate') optionsTemplatePortal: TemplatePortal<unknown>;
+  @ViewChild('optionsEl', { read: ElementRef<HTMLDivElement> }) optionsElement: ElementRef<HTMLDivElement>;
 
   @ContentChild(DaffSelectOptionDirective)
     optionTemplate?: DaffSelectOptionDirective;
@@ -114,6 +116,15 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
     return this._value;
   }
 
+  get highlighted(): number {
+    return this._highlighted;
+  }
+
+  set highlighted(val: number) {
+    this._highlighted = val;
+    this.cd.markForCheck();
+  }
+
   constructor(
     private cd: ChangeDetectorRef,
     _elementRef: ElementRef,
@@ -127,12 +138,20 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
       if (event.key === 'Tab' && this._open) {
         event.preventDefault();
         event.stopPropagation();
-        this.buttonElement.nativeElement.focus();
+        this.focusOptionsList();
       }
     });
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
+  }
+
+  private focusOptionsList() {
+    this.optionsElement?.nativeElement.focus();
+  }
+
+  private focusButton() {
+    this.buttonElement?.nativeElement.focus();
   }
 
   ngOnDestroy(): void {
@@ -185,49 +204,78 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
     this.toggle();
   }
 
-  open() {
-    this._open = true;
-    this._overlay = this.overlay.create({
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
-      scrollStrategy: this.overlay.scrollStrategies.block(),
-      disposeOnNavigation: true,
-      minWidth: '240px',
-      positionStrategy: this.overlay
-        .position()
-        .flexibleConnectedTo(this.buttonElement)
-        .withPositions([
-          {
-            originX: 'start',
-            originY: 'bottom',
-            overlayX: 'start',
-            overlayY: 'top',
-            offsetY: 0,
-          },
-          {
-            originX: 'start',
-            originY: 'top',
-            overlayX: 'start',
-            overlayY: 'bottom',
-          },
-        ]),
-    });
-    this._overlay.attach(this.optionsTemplatePortal);
+  /**
+   * Opens the options list.
+   */
+  open(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
 
-    this._overlay.backdropClick().pipe(
-      takeUntil(this._destroyed),
-    ).subscribe(() => {
-      this.toggle();
-    });
+    if (!this._open) {
+      this._open = true;
+      this._animationState = getAnimationState(this._open);
+      if (this._value) {
+        this._highlighted = this.options.findIndex((v) => v === this._value);
+      }
+      this._overlay = this.overlay.create({
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop',
+        scrollStrategy: this.overlay.scrollStrategies.block(),
+        disposeOnNavigation: true,
+        minWidth: '240px',
+        positionStrategy: this.overlay
+          .position()
+          .flexibleConnectedTo(this.buttonElement)
+          .withPositions([
+            {
+              originX: 'start',
+              originY: 'bottom',
+              overlayX: 'start',
+              overlayY: 'top',
+              offsetY: 0,
+            },
+            {
+              originX: 'start',
+              originY: 'top',
+              overlayX: 'start',
+              overlayY: 'bottom',
+            },
+          ]),
+      });
+      this._overlay.attachments().pipe(
+        takeUntil(this._destroyed),
+        delay(0),
+      ).subscribe(() => {
+        this.focusOptionsList();
+      });
+      this._overlay.attach(this.optionsTemplatePortal);
+
+      this._overlay.backdropClick().pipe(
+        takeUntil(this._destroyed),
+      ).subscribe(() => {
+        this.close();
+      });
+    }
   }
 
-  close() {
-	  this._open = false;
-    // do we actually have to dispose and recreate the overlay every time we want to close the dropdown?
-    this._animationFinishCallbackQueue.push(() => {
-      this._overlay?.dispose();
-      this._overlay = null;
-    });
+  /**
+   * Closes the options list.
+   */
+  close(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    if (this._open) {
+      this._open = false;
+      this._animationState = getAnimationState(this._open);
+      this.cd.markForCheck();
+      // do we actually have to dispose and recreate the overlay every time we want to close the dropdown?
+      this._animationFinishCallbackQueue.push(() => {
+        this._overlay?.dispose();
+        this._overlay = null;
+        this.focusButton();
+      });
+    }
   }
 
   toggle(event?: KeyboardEvent | MouseEvent) {
@@ -242,5 +290,82 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
 
     this._animationState = getAnimationState(this._open);
 	  this.cd.markForCheck();
+  }
+
+  /**
+   * Selects the value in a particular position in the options list.
+   */
+  selectValueInPosition(position: number) {
+    if (position >= 0 && position < this.options.length) {
+      this.writeValue(this.options[position]);
+    }
+    this.close();
+  }
+
+  /**
+   * Selects the option in the options list after the currently selected one.
+   * If there is not a currently selected option, selects the first option.
+   */
+  selectNext(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    if (this._value == null) {
+      this.selectValueInPosition(0);
+    } else {
+      const currentIndex = this.options.findIndex((v) => v === this._value);
+      if (currentIndex < this.options.length - 1) {
+        this.selectValueInPosition(currentIndex + 1);
+      }
+    }
+  }
+
+  /**
+   * Selects the option in the options list before the currently selected one.
+   * If there is not a currently selected option, selects the first option.
+   */
+  selectPrevious(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    if (this._value) {
+      const currentIndex = this.options.findIndex((v) => v === this._value);
+      if (currentIndex > 0) {
+        this.selectValueInPosition(currentIndex - 1);
+      } else {
+        this.selectValueInPosition(0);
+      }
+    } else {
+      this.selectValueInPosition(0);
+    }
+  }
+
+  /**
+   * Selects the option referenced by the highlighted index.
+   */
+  selectHighlighted(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+    this.selectValueInPosition(this._highlighted);
+  }
+
+  /**
+   * Highlights the next option in the list.
+   */
+  highlightNext(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+    this._highlighted = this._highlighted < this.options.length - 1 ? this._highlighted + 1 : this.options.length - 1;
+    (<HTMLElement>event?.target).children[this._highlighted].scrollIntoView();
+  }
+
+  /**
+   * Highlights the previous option in the list.
+   */
+  highlightPrevious(event?: KeyboardEvent | MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+    this._highlighted = this._highlighted > 0 ? this._highlighted - 1 : 0;
+    (<HTMLElement>event?.target).children[this._highlighted].scrollIntoView();
   }
 }
