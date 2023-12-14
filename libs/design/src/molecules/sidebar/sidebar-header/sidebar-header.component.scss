@@ -1,0 +1,48 @@
+@use '../../../../scss/typography' as t;
+
+.daff-sidebar-header {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 100%;
+
+	&__action {
+		position: absolute;
+	}
+
+	&__title {
+		@include t.text-truncate();
+		font-size: 1rem;
+		line-height: 1rem;
+		font-weight: 500;
+	}
+
+	&__action + &__title {
+		margin: 0 0 0 29px;
+	}
+}
+
+.daff-sidebar {
+	.daff-sidebar-header {
+		padding: 16px;
+
+		&__action {
+			left: 0;
+			right: initial;
+			top: 0;
+		}
+	}
+
+	&.right {
+		.daff-sidebar-header {
+			&__action {
+				left: initial;
+				right: 0;
+			}
+
+			&__title {
+				margin: 0 29px 0 0;
+			}
+		}
+	}
+}

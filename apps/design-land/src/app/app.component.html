@@ -1,16 +1,1 @@
-<daff-sidebar-viewport class="design-land__viewport" (backdropClicked)="toggleOpen()">
-  <daff-sidebar class="design-land__sidebar" [mode]="mode$ | async" [open]="open">
-    <design-land-nav></design-land-nav>
-  </daff-sidebar>
-  <nav daff-sidebar-viewport-nav daff-navbar>
-    <button daff-icon-button (click)="toggleOpen()" aria-label="Open Menu">
-      <fa-icon [icon]="faBars"></fa-icon>
-    </button>
-    <daff-theme-switch-button class="design-land__theme-switch"></daff-theme-switch-button>
-  </nav>
-  <div class="design-land__content">
-    <daff-article>
-      <router-outlet></router-outlet>
-    </daff-article>
-  </div>
-</daff-sidebar-viewport>
+<router-outlet></router-outlet>

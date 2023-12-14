@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {
   DaffSidebarModule,
   DaffNavbarModule,
+  DaffLinkSetModule,
 } from '@daffodil/design';
 
 import { BasicSidebarComponent } from './basic-sidebar.component';
@@ -11,6 +12,7 @@ import { BasicSidebarComponent } from './basic-sidebar.component';
   imports: [
     DaffSidebarModule,
     DaffNavbarModule,
+    DaffLinkSetModule,
   ],
   declarations: [
     BasicSidebarComponent,

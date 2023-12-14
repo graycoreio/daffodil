@@ -1,15 +1,12 @@
 @use '../helper/variables';
 
 :host {
-	overflow: hidden;
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
-	min-height: 100%;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 	z-index: variables.$daff-sidebar-viewport-z-index;
-	height: 100vh;
-	height: 100dvh;
 }
 
 .daff-sidebar-viewport {
@@ -23,22 +20,18 @@
 		height: 100%;
 	}
 
-	&__sidebar {
-		flex-shrink: 0;
-	}
-
 	&__nav {
 		position: fixed;
 		top: 0;
 		width: 100%;
-		z-index: variables.$daff-sidebar-content-z-index;
+		z-index: variables.$daff-sidebar-nav-z-index;
 
 		&:empty {
 			display: none;
 		}
 		
 		&:not(:empty) {
-			+ #{$root}__inner {
+			+ #{$root}__content {
 				margin-top: var(--daff-sidebar-side-fixed-top-shift);
 			}
 		}
@@ -48,11 +41,14 @@
 		height: 100%;
 		position: absolute;
 		width: 100%;
+		pointer-events: auto;
 		z-index: variables.$daff-sidebar-backdrop-z-index;
 	}
 }
 
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {
+	transform: translateX(0px);
+
 	.daff-sidebar-viewport__inner {
 		padding-left: 0px !important;
 		padding-right: 0px !important;

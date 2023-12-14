@@ -1,16 +1,17 @@
 @use '../helper/variables';
 
 :host {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	width: 240px;
 	flex-shrink: 0;
-	overflow: auto;
+	overflow-y: auto;
 
 	&.side-fixed {
 		position: fixed;
-		top: var(--daff-sidebar-side-fixed-top-shift);
 		bottom: 0;
 		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
+		top: var(--daff-sidebar-side-fixed-top-shift);
 		height: calc(100dvh - var(--daff-sidebar-side-fixed-top-shift));
 
 		&.left {
@@ -24,7 +25,7 @@
 
 	&.over,
 	&.under {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		bottom: 0;
 
@@ -36,7 +37,6 @@
 			right: 0;
 		}
 	}
-
 
 	&.over {
 		z-index: variables.$daff-sidebar-sidebar-over-z-index;
@@ -50,5 +50,20 @@
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {
 	&.side-fixed {
 		position: sticky;
+	}
+}
+
+:host-context(.daff-sidebar-viewport.beside) {
+	&.side-fixed {
+		top: 0;
+		height: 100dvh;
+	}
+}
+
+.daff-sidebar {
+	&__body {
+		flex-grow: 1;
+		height: 100%;
+		overflow-y: auto;
 	}
 }

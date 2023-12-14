@@ -1,6 +1,11 @@
+import { AnimationEvent } from '@angular/animations';
+import {
+  ConfigurableFocusTrap,
+  ConfigurableFocusTrapFactory,
+} from '@angular/cdk/a11y';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
-  ViewEncapsulation,
   NgZone,
   ElementRef,
   Output,
@@ -8,12 +13,22 @@ import {
   HostBinding,
   ChangeDetectionStrategy,
   Input,
+  HostListener,
+  Inject,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+import { isOpening } from './is-opening';
+import {
+  daffFocusableElementsSelector,
+  DaffFocusStackService,
+} from '../../../core/focus/public_api';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
+import {
+  DaffSidebarAnimationState,
+  getAnimationState,
+} from '../animation/sidebar-animation-state';
 import { getSidebarAnimationWidth } from '../animation/sidebar-animation-width';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarSide } from '../helper/sidebar-side';
@@ -25,8 +40,8 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
  */
 @Component({
   selector: 'daff-sidebar',
+  templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     daffSidebarAnimations.transformSidebar,
@@ -34,6 +49,8 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
 })
 export class DaffSidebarComponent {
   /**
+   * @docs-private
+   *
    * The CSS classes set.
    */
   @HostBinding('class') get classes() {
@@ -49,8 +66,8 @@ export class DaffSidebarComponent {
    */
   @HostBinding('@transformSidebar') get transformSidebar() {
     return {
-      value: getAnimationState(this.open, this.mode === 'over' || this.mode === 'side-fixed'),
-      params: { width:  getSidebarAnimationWidth(this.side, this.width) },
+      value: getAnimationState(this.open, this.mode),
+      params: { width: getSidebarAnimationWidth(this.side, this.width) },
     };
   }
 
@@ -84,6 +101,9 @@ export class DaffSidebarComponent {
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
+    private _focusStack: DaffFocusStackService,
+    @Inject(DOCUMENT) private _doc: any,
   ) {
 
     /**
@@ -99,5 +119,53 @@ export class DaffSidebarComponent {
         event.stopPropagation();
       }));
     });
+  }
+
+  private _focusTrap: ConfigurableFocusTrap;
+
+  /**
+   * Animation event that can be used to hook into when the transformSidebar
+   * animation begins. This is used in sidebar to determine when to show the
+   * visibility of the sidebar so that the animation does not jump as the element is shown.
+   */
+  @HostListener('@transformSidebar.start', ['$event']) onAnimationStart(e: AnimationEvent) {
+    if (e.toState === 'open' || e.toState === 'under-open' || e.toState === 'side-fixed-open') {
+      this._elementRef.nativeElement.style.visibility = 'visible';
+    }
+  }
+
+  /**
+   * Animation event that can be used to hook into when the
+   * transformSidebar animation is complete.
+   */
+  @HostListener('@transformSidebar.done', ['$event']) onAnimationComplete(e: AnimationEvent) {
+    if(isOpening(<DaffSidebarAnimationState>e.fromState, <DaffSidebarAnimationState>e.toState)) {
+      this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
+
+      const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(daffFocusableElementsSelector));
+
+      this._focusStack.push(this._doc.activeElement);
+
+      if(focusableChild) {
+        focusableChild.focus();
+      } else {
+        this._elementRef.nativeElement.tabIndex = 0;
+        (<HTMLElement>this._elementRef.nativeElement).focus();
+      }
+    } else {
+      if(this._focusTrap) {
+        this._focusTrap.destroy();
+        this._focusTrap = undefined;
+        this._focusStack.pop();
+      }
+    }
+
+    /**
+     * This is used in sidebar to determine when to hide the visibility
+     * of the sidebar so that the animation does not jump as the element is hidden.
+     */
+    if (e.toState === 'closed' || e.toState === 'under-closed' || e.toState === 'side-fixed-closed') {
+      this._elementRef.nativeElement.style.visibility = 'hidden';
+    }
   }
 }

@@ -3,7 +3,6 @@
 @mixin daff-sidebar-theme($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$black: core.daff-map-deep-get($theme, 'core.black');
 	$font-color: core.daff-map-deep-get($theme, 'core.font-color');
 
 	.daff-sidebar {

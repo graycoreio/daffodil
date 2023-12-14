@@ -1,0 +1,39 @@
+<daff-sidebar-viewport (backdropClicked)="closeSidebar()">
+  <daff-sidebar class="over-sidebar" [mode]="modeControl.value" [side]="sideControl.value" [open]="open" (escapePressed)="closeSidebar()">
+    <daff-sidebar-header>
+      <button daff-icon-button color="theme-contrast" daffSidebarHeaderAction (click)="closeSidebar()">
+        <fa-icon [icon]="faTimes" size="sm"></fa-icon>
+      </button>
+      <div daffSidebarHeaderTitle>Title</div>
+    </daff-sidebar-header>
+    <div class="over-and-under-sidebars__sidebar-content">
+      Sidebar content
+    </div>
+    <daff-sidebar-footer>
+      <div class="over-and-under-sidebars__footer">
+        Sidebar footer
+      </div>
+    </daff-sidebar-footer>
+  </daff-sidebar>
+  <div class="over-and-under-sidebars__body-content">
+    <div class="over-and-under-sidebars__options-container">
+      <div class="over-and-under-sidebars__option-text">Side:</div>
+      <select [formControl]="sideControl">
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+      </select>
+    </div>
+    
+    <div class="over-and-under-sidebars__options-container">
+      <div class="over-and-under-sidebars__option-text">Mode:</div>
+      <select [formControl]="modeControl">
+        <option value="over">Over</option>
+        <option value="under">Under</option>
+      </select>
+    </div>
+
+    <button daff-button (click)="openSidebar()">
+      Open
+    </button>
+  </div>
+</daff-sidebar-viewport>

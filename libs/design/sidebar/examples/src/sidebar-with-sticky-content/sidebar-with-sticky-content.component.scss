@@ -1,0 +1,22 @@
+daff-sidebar-viewport {
+  height: 288px;
+}
+
+.sidebar-with-sticky-content {
+	border-right: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
+}
+
+.content {
+  height: 480px;
+}
+
+.sticky {
+  position: sticky;
+  background: #fafafa;
+  padding: 16px;
+  top: 0;
+}
+
+.inner-content {
+  padding: 16px;
+}

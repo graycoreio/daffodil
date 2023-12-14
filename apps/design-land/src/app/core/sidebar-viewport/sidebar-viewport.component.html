@@ -1,0 +1,25 @@
+<daff-sidebar-viewport class="design-land-sidebar-viewport" (backdropClicked)="toggleOpen()" navPlacement="beside">
+  <daff-sidebar class="design-land-sidebar-viewport__sidebar" [mode]="mode$ | async" [open]="open" (escapePressed)="toggleOpen()">
+    <daff-sidebar-header>
+      <div class="design-land-sidebar-viewport__docs-logo">
+        <daff-branding-logo type="full" class="design-land-sidebar-viewport__logo"></daff-branding-logo>
+        <div class="design-land-sidebar-viewport__docs-tag">Docs</div>
+      </div>
+    </daff-sidebar-header>
+    <design-land-nav></design-land-nav>
+    <daff-sidebar-footer>
+      <a href="https://github.com/graycoreio/daffodil" target="_blank" class="design-land-sidebar-viewport__get-started-button">Get Started</a>
+    </daff-sidebar-footer>
+  </daff-sidebar>
+  <nav daff-sidebar-viewport-nav daff-navbar>
+    <button daff-icon-button color="theme-contrast" (click)="toggleOpen()" [attr.aria-label]="ariaLabel">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+    <daff-theme-switch-button class="design-land-sidebar-viewport__theme-switch"></daff-theme-switch-button>
+  </nav>
+  <div class="design-land-sidebar-viewport__content">
+    <daff-article>
+      <ng-content></ng-content>
+    </daff-article>
+  </div>
+</daff-sidebar-viewport>
