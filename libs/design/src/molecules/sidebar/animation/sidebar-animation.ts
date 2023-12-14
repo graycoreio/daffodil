@@ -17,8 +17,8 @@ export const daffSidebarAnimations: {
   readonly backdropTrigger: AnimationTriggerMetadata;
 } = {
   transformSidebar: trigger('transformSidebar', [
-    // We remove the `transform` here completely, rather than setting it to zero, because:
-    // 1. 3d transforms causes text to appear blurry on IE and Edge.
+    // We remove the `transform` here completely, rather than setting it to zero, because
+    // 3d transforms causes text to appear blurry on IE and Edge.
     state('open', style({
       transform: 'none',
     })),
@@ -29,8 +29,8 @@ export const daffSidebarAnimations: {
     transition('closed => open', animate(duration + ' ' + sidebarAnimateInTransition)),
   ]),
   transformContent: trigger('transformContent', [
-    // We remove the `transform` here completely, rather than setting it to zero, because:
-    // 1. 3d transforms causes text to appear blurry on IE and Edge.
+    // We remove the `transform` here completely, rather than setting it to zero, because
+    // 3d transforms causes text to appear blurry on IE and Edge.
     state('closed', style({
       transform: 'none',
     })),
