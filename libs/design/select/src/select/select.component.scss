@@ -27,15 +27,15 @@
 		}
 	}
 
-  &.daff-skeleton {
-    #{$root}__field {
-      @include state.skeleton-screen(100%, 54px);
+	&.daff-skeleton {
+		#{$root}__field {
+			@include state.skeleton-screen(100%, 54px);
 			border: none;
 
 			> * {
 				visibility: hidden;
 			}
-    }
+		}
 	}
 
 	&__field {
@@ -58,9 +58,9 @@
 		line-height: 1.25rem;
 	}
 
-  &__options {
+	&__options {
 		width: 100%;
-  }
+	}
 
 	&__option {
 		@include interactions.clickable();
