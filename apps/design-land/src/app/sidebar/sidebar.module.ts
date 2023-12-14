@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffArticleModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandSidebarRoutingModule } from './sidebar-routing.module';
 import { DesignLandSidebarComponent } from './sidebar.component';

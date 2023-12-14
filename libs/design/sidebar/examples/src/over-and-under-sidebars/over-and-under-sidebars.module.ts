@@ -5,9 +5,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   DaffSidebarModule,
   DaffNavbarModule,
-  DaffButtonModule,
   DaffLinkSetModule,
 } from '@daffodil/design';
+
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { OverandUnderSidebarsComponent } from './over-and-under-sidebars.component';
 
