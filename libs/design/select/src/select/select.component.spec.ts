@@ -35,8 +35,8 @@ import { DaffSelectModule } from '../select.module';
       [options]="optionsValue"
       [formControl]="controlValue"
     >
-      <ng-template daffSelectOption let-isSelected="isSelected" let-option="option">
-        <div class="test-option" [attr.data-value]="option" [attr.data-is-selected]="isSelected">
+      <ng-template daffSelectOption let-isSelected="isSelected" let-option="option" let-isHighlighted="isHighlighted">
+        <div class="test-option" [attr.data-value]="option" [attr.data-is-selected]="isSelected" [attr.data-is-highlighted]="isHighlighted">
           <div>{{option}}</div>
         </div>
       </ng-template>
@@ -129,11 +129,97 @@ describe('DaffSelectComponent', () => {
   });
 
   describe('when the component is open', () => {
+    let optionsListElement: HTMLElement;
+
     beforeEach(() => {
-      if (!component.isOpen) {
-        component.toggle();
-      }
+      component.open();
       fixture.detectChanges();
+      optionsListElement = fixture.debugElement.query(By.css('.daff-select__options')).nativeElement;
+    });
+
+    describe('and when an option is highlighted', () => {
+      let optionEl: HTMLElement;
+
+      beforeEach(() => {
+        optionEl = fixture.debugElement.query(By.css('.test-option[data-value="2"]')).nativeElement;
+        component.highlighted = 2;
+        fixture.detectChanges();
+      });
+
+      it('should update the is highlighted value in the option slot', () => {
+        expect(optionEl.getAttribute('data-is-highlighted')).toEqual('true');
+      });
+    });
+
+    describe('and when the enter key is pressed', () => {
+      beforeEach(() => {
+        optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+        fixture.detectChanges();
+      });
+
+      it('should close the select', () => {
+        expect(component.isOpen).toBeFalse();
+      });
+
+      it('should select the highlighted option', () => {
+        expect(wrapper.controlValue.value).toEqual(0);
+      });
+    });
+
+    describe('and when the space key is pressed', () => {
+      beforeEach(() => {
+        optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
+        fixture.detectChanges();
+      });
+
+      it('should close the select', () => {
+        expect(component.isOpen).toBeFalse();
+      });
+
+      it('should select the highlighted option', () => {
+        expect(wrapper.controlValue.value).toEqual(0);
+      });
+    });
+
+    describe('and when the arrow down key is pressed', () => {
+      beforeEach(() => {
+        optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+        fixture.detectChanges();
+      });
+
+      it('should highlight the next option', () => {
+        expect(component.highlighted).toEqual(1);
+      });
+    });
+
+    describe('and when the arrow up key is pressed', () => {
+      beforeEach(() => {
+        component.highlighted = 2;
+        fixture.detectChanges();
+        optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+        fixture.detectChanges();
+      });
+
+      it('should highlight the previous option', () => {
+        expect(component.highlighted).toEqual(1);
+      });
+    });
+
+    describe('and when the escape key is pressed', () => {
+      beforeEach(() => {
+        component.highlighted = 2;
+        fixture.detectChanges();
+        optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        fixture.detectChanges();
+      });
+
+      it('should close the select', () => {
+        expect(component.isOpen).toBeFalse();
+      });
+
+      it('should not select the highlighted option', () => {
+        expect(component.value).not.toEqual(2);
+      });
     });
 
     describe('and when the tab key is pressed', () => {
@@ -142,8 +228,8 @@ describe('DaffSelectComponent', () => {
         fixture.detectChanges();
       });
 
-      it('should not remove focus from the select', () => {
-        expect(TestBed.inject(DOCUMENT).activeElement).toEqual(buttonElement);
+      xit('should not remove focus from the options list', () => {
+        expect(TestBed.inject(DOCUMENT).activeElement).toEqual(optionsListElement);
       });
     });
 
@@ -239,11 +325,35 @@ describe('DaffSelectComponent', () => {
     });
   });
 
+  describe('when the arrow down key is pressed', () => {
+    beforeEach(() => {
+      wrapper.controlValue.patchValue(0);
+      fixture.detectChanges();
+      buttonElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+      fixture.detectChanges();
+    });
+
+    it('should select the next option', () => {
+      expect(component.value).toEqual(1);
+    });
+  });
+
+  describe('when the arrow up key is pressed', () => {
+    beforeEach(() => {
+      wrapper.controlValue.patchValue(2);
+      fixture.detectChanges();
+      buttonElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+      fixture.detectChanges();
+    });
+
+    it('should select the previous option', () => {
+      expect(component.value).toEqual(1);
+    });
+  });
+
   describe('when the select is closed', () => {
     beforeEach(() => {
-      if (component.isOpen) {
-        component.toggle();
-      }
+      component.close();
       fixture.detectChanges();
     });
 

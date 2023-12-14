@@ -10,4 +10,8 @@ export interface DaffSelectOptionDirectiveContext<T = unknown> {
    * Whether this option is the currently selected one.
    */
   isSelected: boolean;
+  /**
+   * Whether this option is the currently highlighted one in the options list.
+   */
+  isHighlighted?: boolean;
 }
