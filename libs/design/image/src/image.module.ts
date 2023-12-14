@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffImageComponent } from './image.component';
+import { DaffImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffImageModule } from '@daffodil/design';
+import { DaffImageModule } from '@daffodil/design/image';
 
 import { LoadImageComponent } from './load-image.component';
 

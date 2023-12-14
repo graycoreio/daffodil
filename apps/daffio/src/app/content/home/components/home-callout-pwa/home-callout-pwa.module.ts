@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import {
   DaffCalloutModule,
-  DaffImageModule,
   DaffCardModule,
 } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffImageModule } from '@daffodil/design/image';
 
 import { DaffioHomeCalloutPwaComponent } from './home-callout-pwa.component';
 
