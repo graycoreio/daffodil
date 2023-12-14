@@ -76,7 +76,14 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 export class DaffSidebarViewportComponent implements AfterContentChecked {
   @HostBinding('class.daff-sidebar-viewport') hostClass = true;
 
-  @HostBinding('class.nav-on-side') get isNavOnSide() {
+  @HostBinding('class') get classes() {
+    return {
+      'daff-sidebar-viewport': true,
+      [this.navPlacement]: true,
+    };
+  };
+
+  get isNavOnSide() {
     return this.navPlacement === DaffNavPlacementEnum.BESIDE;
   }
 

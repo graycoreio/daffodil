@@ -91,11 +91,11 @@ describe('DaffSidebarViewportComponent | Usage', () => {
       expect(component.navPlacement).toEqual('above');
     });
 
-    it('should add a class of `.nav-on-side` if navPlacement="beside"', () => {
+    it('should add a class of `.beside` if navPlacement="beside"', () => {
       wrapper.navPlacement = 'beside';
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('nav-on-side')).toBeTruthy();
+      expect(de.nativeElement.classList.contains('beside')).toBeTruthy();
     });
   });
 
