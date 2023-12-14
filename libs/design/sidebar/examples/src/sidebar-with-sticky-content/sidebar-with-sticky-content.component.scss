@@ -11,6 +11,12 @@ daff-sidebar-viewport {
 }
 
 .sticky {
-  top: 0;
   position: sticky;
+  background: #fafafa;
+  padding: 16px;
+  top: 0;
+}
+
+.inner-content {
+  padding: 16px;
 }
