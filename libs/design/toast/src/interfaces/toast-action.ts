@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 
 import {
-  DaffButtonSize,
   DaffPalette,
   DaffStatus,
 } from '@daffodil/design';
@@ -14,7 +13,10 @@ export interface DaffToastAction {
 
   content: string;
 
-  size?: DaffButtonSize;
+  /**
+   * The size of the button, as defined in the {@link DaffButtonComponent}.
+   */
+  size?: 'sm' | 'md' | 'lg' | undefined;
 
   color?: DaffPalette;
 

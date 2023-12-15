@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffArticleModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffToastModule } from '@daffodil/design/toast';
 
 import { DesignLandToastRoutingModule } from './toast-routing-module';

@@ -4,10 +4,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {
-  DaffButtonModule,
-  DaffPrefixSuffixModule,
-} from '@daffodil/design';
+import { DaffPrefixSuffixModule } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffToastPositionService } from './service/position.service';
 import { DaffToastTemplateComponent } from './toast/toast-template.component';

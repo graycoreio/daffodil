@@ -8,7 +8,6 @@ import {
 import {
   DaffToast,
   DaffToastAction,
-  DaffToastPositionService,
   DaffToastService,
 } from '@daffodil/design/toast';
 
