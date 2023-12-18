@@ -26,7 +26,7 @@
 @use '../src/atoms/form/native-select/native-select-theme' as native-select;
 @use '../src/atoms/loading-icon/loading-icon-theme' as loading-icon;
 @use '../src/atoms/progress-indicator/progress-indicator-theme' as progress-indicator;
-@use '../src/molecules/accordion/accordion-item/accordion-item-theme' as accordion-item;
+@use '../accordion/src/accordion-theme' as accordion;
 @use '../src/molecules/callout/callout-theme' as callout;
 @use '../src/molecules/card/card/card-theme' as card;
 @use '../src/molecules/hero/hero-theme' as hero;
@@ -68,7 +68,7 @@
 	@include progress-indicator.daff-progress-indicator-theme($theme);
 
 	// Molecules
-	@include accordion-item.daff-accordion-item-theme($theme);
+	@include accordion.daff-accordion-theme($theme);
 	@include article.daff-article-theme($theme);
 	@include callout.daff-callout-theme($theme);
 	@include card.daff-card-theme($theme);

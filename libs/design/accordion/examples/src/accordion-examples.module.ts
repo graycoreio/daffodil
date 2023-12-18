@@ -1,19 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffAccordionModule } from '@daffodil/design/accordion';
 
-import { BasicAccordionComponent } from './basic-accordion.component';
-
+import { ACCORDION_EXAMPLES } from './examples';
 
 @NgModule({
   declarations: [
-    BasicAccordionComponent,
-  ],
-  exports: [
-    BasicAccordionComponent,
+    ...ACCORDION_EXAMPLES,
   ],
   imports: [
+    CommonModule,
     DaffAccordionModule,
   ],
 })
-export class BasicAccordionModule { }
+export class AccordionExamplesModule { }

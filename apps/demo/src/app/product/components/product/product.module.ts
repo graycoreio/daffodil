@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 
 import {
   DaffQtyDropdownModule,
-  DaffAccordionModule,
   DaffLoadingIconModule,
 } from '@daffodil/design';
+import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { ProductComponent } from './product.component';

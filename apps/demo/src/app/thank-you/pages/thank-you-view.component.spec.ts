@@ -20,11 +20,11 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
+import { DaffLoadingIconModule } from '@daffodil/design';
 import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+} from '@daffodil/design/accordion';
 import {
   DaffContainerComponent,
   DaffContainerModule,

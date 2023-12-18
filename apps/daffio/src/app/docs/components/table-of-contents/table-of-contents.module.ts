@@ -5,11 +5,10 @@ import { RouterModule } from '@angular/router';
 import {
   DaffListModule,
   DaffLinkSetModule,
-  DaffAccordionModule,
 } from '@daffodil/design';
+import { DaffAccordionModule } from '@daffodil/design/accordion';
 
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
-
 
 @NgModule({
   declarations: [
