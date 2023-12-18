@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateTestingModule,

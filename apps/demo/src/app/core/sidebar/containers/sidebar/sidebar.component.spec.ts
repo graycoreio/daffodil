@@ -8,23 +8,16 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideMockStore } from '@ngrx/store/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { of } from 'rxjs';
 
 import {
   DaffSidebarModule,
   DaffSidebarComponent,
-  DaffLoadingIconModule,
   DaffLinkSetModule,
 } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffNavigationTree } from '@daffodil/navigation';
-import {
-  DaffNavigationFacade,
-  DaffNavigationLoad,
-} from '@daffodil/navigation/state';
+import { DaffNavigationLoad } from '@daffodil/navigation/state';
 import {
   DaffNavigationStateTestingModule,
   MockDaffNavigationFacade,

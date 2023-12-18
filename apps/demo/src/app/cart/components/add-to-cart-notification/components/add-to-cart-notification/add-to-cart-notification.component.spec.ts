@@ -34,7 +34,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
-import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,

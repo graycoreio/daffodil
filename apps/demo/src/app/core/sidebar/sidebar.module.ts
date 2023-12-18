@@ -5,9 +5,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffSidebarModule,
-  DaffLoadingIconModule,
   DaffLinkSetModule,
 } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffNavigationStateModule } from '@daffodil/navigation/state';
 
 import { SidebarListComponent } from './components/sidebar-list/sidebar-list.component';

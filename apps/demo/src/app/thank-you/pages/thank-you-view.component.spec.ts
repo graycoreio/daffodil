@@ -20,7 +20,6 @@ import {
   DaffCartFactory,
   DaffCartItemFactory,
 } from '@daffodil/cart/testing';
-import { DaffLoadingIconModule } from '@daffodil/design';
 import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
@@ -29,6 +28,7 @@ import {
   DaffContainerComponent,
   DaffContainerModule,
 } from '@daffodil/design/container';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 import { ThankYouViewComponent } from './thank-you-view.component';
 

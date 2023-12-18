@@ -10,7 +10,6 @@ export * from './atoms/form/input/public_api';
 export * from './atoms/form/native-select/public_api';
 export * from './atoms/form/checkbox/public_api';
 export * from './atoms/form/quantity-field/public_api';
-export * from './atoms/loading-icon/public_api';
 export * from './atoms/progress-indicator/public_api';
 export * from './atoms/form/radio/public_api';
 export * from './atoms/form/form-label/public_api';

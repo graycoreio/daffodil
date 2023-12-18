@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { DaffCartStateModule } from '@daffodil/cart/state';
 import { StateCheckoutModule } from '@daffodil/checkout';
-import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { DemoCheckoutStateModule } from './checkout-state.module';

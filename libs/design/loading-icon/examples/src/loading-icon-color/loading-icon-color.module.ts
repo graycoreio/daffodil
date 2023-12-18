@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {
-  DaffLoadingIconModule,
-  DaffRadioModule,
-} from '@daffodil/design';
+import { DaffRadioModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 import { LoadingIconColorComponent } from './loading-icon-color.component';
 

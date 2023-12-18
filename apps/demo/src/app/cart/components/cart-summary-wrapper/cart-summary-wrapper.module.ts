@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { HelpBoxModule } from '../../../misc/help-box/help-box.module';

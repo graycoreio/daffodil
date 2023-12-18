@@ -20,7 +20,7 @@ import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
-import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductLoad } from '@daffodil/product/state';
 import {

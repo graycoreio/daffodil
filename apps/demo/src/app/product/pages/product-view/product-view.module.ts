@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffCartStateModule } from '@daffodil/cart/state';
-import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProductStateModule } from '@daffodil/product/state';
 
 import { ProductViewComponent } from './product-view.component';
