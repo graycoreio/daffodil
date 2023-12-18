@@ -25,25 +25,35 @@ export function daffCartSetItemStateMetaReducer<T extends DaffStatefulCartItem =
   return (state, action) => {
     switch (action.type) {
       case DaffCartItemActionTypes.CartItemAddSuccessAction:
-        action.payload.items = updateAddedCartItemState<T>(state.cartItems.entities, (<T[]>action.payload.items).map((item) => ({
-          ...item,
-          daffErrors: [],
-        })));
         return reducer(
           state,
-          action,
+          {
+            ...action,
+            payload: {
+              ...action.payload,
+              items: updateAddedCartItemState<T>(state.cartItems.entities, (<T[]>action.payload.items).map((item) => ({
+                ...item,
+                daffErrors: [],
+              }))),
+            },
+          },
         );
 
       case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
-        action.payload.items = updateMutatedCartItemState<T>((<T[]>action.payload.items).map((item) => item.id === action.itemId
-          ? {
-            ...item,
-            daffErrors: [],
-          }
-          : item), state.cartItems.entities, action.itemId);
         return reducer(
           state,
-          action,
+          {
+            ...action,
+            payload: {
+              ...action.payload,
+              items: updateMutatedCartItemState<T>((<T[]>action.payload.items).map((item) => item.id === action.itemId
+                ? {
+                  ...item,
+                  daffErrors: [],
+                }
+                : item), state.cartItems.entities, action.itemId),
+            },
+          },
         );
 
       default:
