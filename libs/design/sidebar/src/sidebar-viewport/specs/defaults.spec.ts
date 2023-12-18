@@ -6,8 +6,9 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DaffBackdropModule } from '@daffodil/design';
+
 import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
-import { DaffBackdropModule } from '../../../backdrop/public_api';
 import { DaffSidebarAnimationStates } from '../../animation/sidebar-animation';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 

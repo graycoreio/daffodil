@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffSidebarModule } from '@daffodil/design';
+import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { TemplateComponent } from './template.component';
 import { NewsletterModule } from '../../../newsletter/newsletter.module';

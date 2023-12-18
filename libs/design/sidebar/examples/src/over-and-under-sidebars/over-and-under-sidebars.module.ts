@@ -3,11 +3,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-  DaffSidebarModule,
   DaffNavbarModule,
   DaffLinkSetModule,
 } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { OverandUnderSidebarsComponent } from './over-and-under-sidebars.component';
 

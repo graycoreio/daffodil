@@ -2,14 +2,8 @@ import {
   Component,
   HostBinding,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
-  Input,
   ViewEncapsulation,
-  ContentChild,
-  ElementRef,
 } from '@angular/core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'daff-sidebar-header',

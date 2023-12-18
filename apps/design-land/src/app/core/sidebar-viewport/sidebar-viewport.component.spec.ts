@@ -13,7 +13,7 @@ import {
   DaffSidebarModule,
   DaffSidebarViewportComponent,
   DaffSidebarComponent,
-} from '@daffodil/design';
+} from '@daffodil/design/sidebar';
 
 import { DesignLandSidebarViewportComponent } from './sidebar-viewport.component';
 

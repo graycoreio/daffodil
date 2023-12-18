@@ -19,7 +19,7 @@ import {
   DaffSidebarModule,
   DaffSidebarViewportComponent,
   DaffSidebarComponent,
-} from '@daffodil/design';
+} from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import {

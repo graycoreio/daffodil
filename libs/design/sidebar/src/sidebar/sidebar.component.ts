@@ -19,11 +19,12 @@ import {
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { isOpening } from './is-opening';
 import {
   daffFocusableElementsSelector,
   DaffFocusStackService,
-} from '../../../core/focus/public_api';
+} from '@daffodil/design';
+
+import { isOpening } from './is-opening';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
 import {
   DaffSidebarAnimationState,

@@ -37,8 +37,7 @@
 @use '../src/molecules/navbar/navbar-theme' as navbar;
 @use '../notification/src/notification-theme' as notification;
 @use '../src/molecules/paginator/paginator-theme' as paginator;
-@use '../src/molecules/sidebar/sidebar/sidebar-theme' as sidebar;
-@use '../src/molecules/sidebar/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;
+@use '../sidebar/src/sidebar-theme' as sidebar;
 @use '../scss/state/skeleton/mixins' as skeleton;
 @use '../tree/src/tree-theme' as tree;
 
@@ -81,6 +80,5 @@
 	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
-	@include sidebar-viewport.daff-sidebar-viewport-theme($theme);
 	@include tree.daff-tree-theme($theme);
 }
