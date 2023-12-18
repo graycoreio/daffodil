@@ -38,12 +38,12 @@ import {
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffLoadingIconModule } from '@daffodil/design';
 import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
 } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 import { CheckoutViewComponent } from './checkout-view.component';
 import { ShowPaymentView } from '../../actions/payment.actions';

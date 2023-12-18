@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {
-  DaffLoadingIconModule,
-  DaffPrefixSuffixModule,
-} from '@daffodil/design';
+import { DaffPrefixSuffixModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 import { DaffButtonComponent } from './button/button.component';
 

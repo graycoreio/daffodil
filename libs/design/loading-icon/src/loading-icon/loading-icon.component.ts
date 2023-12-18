@@ -10,7 +10,7 @@ import {
 import {
   daffColorMixin,
   DaffColorable,
-} from '../../core/colorable/public_api';
+} from '@daffodil/design';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin

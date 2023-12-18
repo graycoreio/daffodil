@@ -12,9 +12,11 @@ import { By } from '@angular/platform-browser';
 import {
   DaffPalette,
   DaffStatus,
-  DaffLoadingIconComponent,
-  DaffLoadingIconModule,
 } from '@daffodil/design';
+import {
+  DaffLoadingIconModule,
+  DaffLoadingIconComponent,
+} from '@daffodil/design/loading-icon';
 
 import {
   DaffButtonComponent,

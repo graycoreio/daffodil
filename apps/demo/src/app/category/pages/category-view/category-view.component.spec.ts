@@ -11,8 +11,8 @@ import {
   MockDaffCategoryFacade,
 } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
-import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductFactory,

@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffLoadingIconModule } from '@daffodil/design';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import {
   DaffProductStateTestingModule,
   MockDaffProductGridFacade,
