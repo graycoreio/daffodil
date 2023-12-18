@@ -31,7 +31,8 @@
 			border-right: 1px solid $border-color;
 			color: $base-contrast;
 
-			&:hover {
+			&:hover,
+			&.highlighted {
 				background-color: theming.daff-illuminate($base, $gray, 1);
 			}
 		}

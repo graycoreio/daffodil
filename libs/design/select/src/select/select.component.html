@@ -29,9 +29,10 @@
     (keydown.space)="selectHighlighted($event)"
     (keydown.escape)="close($event)"
     (keydown.arrowdown)="highlightNext($event)"
-    (keydown.arrowup)="highlightPrevious($event)"
-  >
-    <div class="daff-select__option" [class.selected]="value === option"
+    (keydown.arrowup)="highlightPrevious($event)">
+    <div class="daff-select__option"
+      [class.selected]="value === option"
+      [class.highlighted]="highlighted === i"
       *ngFor="let option of options; index as i; trackBy:trackByIndex"
       (click)="optionSelected(option)">
       <ng-container

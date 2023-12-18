@@ -5,10 +5,4 @@
 	&__selected-value {
 		margin: 16px 0 0;
 	}
-
-	&__option {
-		&--highlighted {
-			background-color: theming.daff-color(theming.$daff-gray, 80);
-		}
-	}
 }
