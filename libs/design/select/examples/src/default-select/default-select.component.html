@@ -1,11 +1,9 @@
 <daff-select [options]="options" [formControl]="control">
   <label daffFormLabel>Select an address</label>
-  <ng-template daffSelectOption let-option="option" let-isHighlighted="isHighlighted">
-    <div [class]="{'default-select__option--highlighted': isHighlighted}">
-      <div>{{option.name}}</div>
-      <div>{{option.street}}</div>
-      <div>{{option.city}}, {{option.state}} {{option.postcode}}</div>
-    </div>
+  <ng-template daffSelectOption let-option="option">
+    <div>{{option.name}}</div>
+    <div>{{option.street}}</div>
+    <div>{{option.city}}, {{option.state}} {{option.postcode}}</div>
   </ng-template>
 </daff-select>
 
