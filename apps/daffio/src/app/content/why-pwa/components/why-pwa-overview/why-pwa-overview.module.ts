@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {
-  DaffCalloutModule,
-  DaffCardModule,
-} from '@daffodil/design';
+import { DaffCardModule } from '@daffodil/design';
+import { DaffCalloutModule } from '@daffodil/design/callout';
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioWhyPwaOverviewComponent } from './why-pwa-overview.component';

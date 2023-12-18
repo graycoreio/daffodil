@@ -10,12 +10,15 @@ import {
 import { By } from '@angular/platform-browser';
 
 import {
+  DaffPalette,
+  DaffTextAlignment,
+} from '@daffodil/design';
+
+import {
   DaffCalloutComponent,
   DaffCalloutLayout,
   DaffCalloutSize,
 } from './callout.component';
-import { DaffPalette } from '../../../core/colorable/public_api';
-import { DaffTextAlignment } from '../../../core/text-alignable/text-alignable';
 
 @Component ({
   template: `

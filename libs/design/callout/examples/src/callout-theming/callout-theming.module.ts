@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffCalloutModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffCalloutModule } from '@daffodil/design/callout';
 
 import { CalloutThemingComponent } from './callout-theming.component';
 

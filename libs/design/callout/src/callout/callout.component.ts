@@ -8,18 +8,16 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
 import {
+  daffArticleEncapsulatedMixin,
   DaffColorable,
   daffColorMixin,
-} from '../../../core/colorable/public_api';
-import {
   DaffCompactable,
   daffCompactableMixin,
-} from '../../../core/compactable/public_api';
-import { daffManageContainerLayoutMixin } from '../../../core/manage-container-layout/public_api';
-import { DaffTextAlignable } from '../../../core/text-alignable/text-alignable';
-import { daffTextAlignmentMixin } from '../../../core/text-alignable/text-alignable-mixin';
+  daffManageContainerLayoutMixin,
+  DaffTextAlignable,
+  daffTextAlignmentMixin,
+} from '@daffodil/design';
 
 /**
  * @deprecated See {@link DaffTextAlignable}

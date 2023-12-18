@@ -2,10 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import {
-  DaffCalloutModule,
-  DaffListModule,
-} from '@daffodil/design';
+import { DaffListModule } from '@daffodil/design';
+import { DaffCalloutModule } from '@daffodil/design/callout';
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioWhyPwaSolutionComponent } from './why-pwa-solution.component';
