@@ -1,8 +1,8 @@
 @use 'sass:map';
-@use '../../../../scss/core';
-@use '../../../../scss/theming';
+@use '../../scss/core';
+@use '../../scss/theming';
 
-@mixin daff-accordion-item-theme($theme) {
+@mixin daff-accordion-theme($theme) {
 	$gray: core.daff-map-deep-get($theme, 'core.gray');
 	$base: core.daff-map-deep-get($theme, 'core.base');
 

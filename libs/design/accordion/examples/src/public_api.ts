@@ -1,15 +1,3 @@
-import { BasicAccordionComponent } from './basic-accordion/basic-accordion.component';
-import { NavAccordionComponent } from './nav-accordion/nav-accordion.component';
-
-export { BasicAccordionModule } from './basic-accordion/basic-accordion.module';
-export { NavAccordionModule } from './nav-accordion/nav-accordion.module';
-
-export const ACCORDION_EXAMPLES = [
-  BasicAccordionComponent,
-  NavAccordionComponent,
-];
-
-export {
-  BasicAccordionComponent,
-  NavAccordionComponent,
-};
+export { BasicAccordionComponent } from './basic-accordion/basic-accordion.component';
+export { AccordionExamplesModule } from './accordion-examples.module';
+export { ACCORDION_EXAMPLES } from './examples';

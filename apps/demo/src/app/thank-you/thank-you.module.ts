@@ -2,10 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StateCheckoutModule } from '@daffodil/checkout';
-import {
-  DaffAccordionModule,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { ThankYouComponentModule } from './components/thank-you/thank-you.module';

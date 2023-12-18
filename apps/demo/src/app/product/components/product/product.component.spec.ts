@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import {
-  DaffAccordionModule,
   DaffQtyDropdownModule,
   DaffQtyDropdownComponent,
 } from '@daffodil/design';
+import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';

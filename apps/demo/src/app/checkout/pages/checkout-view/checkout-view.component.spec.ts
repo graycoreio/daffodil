@@ -38,11 +38,11 @@ import {
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
+import { DaffLoadingIconModule } from '@daffodil/design';
 import {
   DaffAccordionModule,
   DaffAccordionItemComponent,
-  DaffLoadingIconModule,
-} from '@daffodil/design';
+} from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { CheckoutViewComponent } from './checkout-view.component';
