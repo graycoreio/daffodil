@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffArticleModule } from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandSelectRoutingModule } from './select-routing.module';
 import { DesignLandSelectComponent } from './select.component';
