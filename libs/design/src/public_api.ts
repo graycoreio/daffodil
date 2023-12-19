@@ -29,7 +29,6 @@ export * from './molecules/paginator/public_api';
 export * from './molecules/qty-dropdown/public_api';
 export * from './molecules/hero/public_api';
 export * from './molecules/feature/public_api';
-export * from './molecules/card/public_api';
 
 // Core
 export * from './core/public_api';

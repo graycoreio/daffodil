@@ -9,11 +9,11 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
 import {
+  daffArticleEncapsulatedMixin,
   DaffColorable,
   daffColorMixin,
-} from '../../../core/colorable/public_api';
+} from '@daffodil/design';
 
 export type DaffCardType = null | 'daff-raised-card' | 'daff-stroked-card';
 
