@@ -1,11 +1,10 @@
 <ng-content select="daff-sidebar:not([side=right])"></ng-content>
 
-<daff-backdrop
+<daff-sidebar-viewport-backdrop
   [@transformContent]="_animationState"
-  class="daff-sidebar-viewport__backdrop"
   [interactable]="_backdropInteractable"
   (backdropClicked)="_backdropClicked()">
-</daff-backdrop>
+</daff-sidebar-viewport-backdrop>
 
 <div class="daff-sidebar-viewport__nav"
   [@transformContent]="_animationState"
