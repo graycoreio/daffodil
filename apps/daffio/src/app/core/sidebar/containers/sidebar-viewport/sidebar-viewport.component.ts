@@ -11,7 +11,7 @@ import { DaffioDoc } from 'apps/daffio/src/app/docs/models/doc';
 import { DaffioDocsService } from 'apps/daffio/src/app/docs/services/docs.service';
 import { Observable } from 'rxjs';
 
-import { DaffSidebarMode } from '@daffodil/design';
+import { DaffSidebarMode } from '@daffodil/design/sidebar';
 
 import { DaffioGuideList } from '../../../../docs/models/guide-list';
 import {

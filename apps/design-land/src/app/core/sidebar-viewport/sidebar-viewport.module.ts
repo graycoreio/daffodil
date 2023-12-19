@@ -4,12 +4,10 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffLogoModule } from '@daffodil/branding';
-import {
-  DaffNavbarModule,
-  DaffSidebarModule,
-} from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandSidebarViewportComponent } from './sidebar-viewport.component';

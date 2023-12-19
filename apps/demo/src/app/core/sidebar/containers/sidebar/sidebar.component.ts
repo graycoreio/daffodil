@@ -15,7 +15,7 @@ import {
   DaffSidebarSide,
   DaffSidebarMode,
   DaffSidebarComponent,
-} from '@daffodil/design';
+} from '@daffodil/design/sidebar';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationFacade,

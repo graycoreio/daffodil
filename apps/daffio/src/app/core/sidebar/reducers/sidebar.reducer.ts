@@ -1,4 +1,4 @@
-import { DaffSidebarMode } from '@daffodil/design';
+import { DaffSidebarMode } from '@daffodil/design/sidebar';
 
 import {
   SidebarActionTypes,

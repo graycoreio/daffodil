@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import {
-  DaffNavbarModule,
-  DaffSidebarModule,
-} from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design';
+import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { SidebarWithStickyContentComponent } from './sidebar-with-sticky-content.component';
 

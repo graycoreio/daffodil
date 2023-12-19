@@ -10,11 +10,11 @@ import {
   Observable,
 } from 'rxjs';
 
+import { DaffBreakpoints } from '@daffodil/design';
 import {
-  DaffBreakpoints,
   DaffSidebarMode,
   DaffSidebarModeEnum,
-} from '@daffodil/design';
+} from '@daffodil/design/sidebar';
 
 @Component({
   selector: 'design-land-sidebar-viewport',

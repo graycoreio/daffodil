@@ -18,8 +18,8 @@ import {
   DaffSidebarModule,
   DaffSidebarSide,
   DaffSidebarViewportComponent,
-} from '@daffodil/design';
-import { DaffSidebarMode } from '@daffodil/design';
+  DaffSidebarMode,
+} from '@daffodil/design/sidebar';
 
 import { SidebarViewportContainer } from './sidebar-viewport.component';
 import {

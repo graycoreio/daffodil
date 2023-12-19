@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { DaffSidebarMode } from '@daffodil/design';
+import { DaffSidebarMode } from '@daffodil/design/sidebar';
 
 export enum SidebarActionTypes {
   ToggleSidebarAction = '[Daffio-Sidebar] Toggle Sidebar Action',

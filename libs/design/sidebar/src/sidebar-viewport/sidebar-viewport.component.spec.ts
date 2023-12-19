@@ -12,12 +12,13 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffNavPlacement } from './nav-placement';
-import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import {
   DaffBackdropComponent,
   DaffBackdropModule,
-} from '../../backdrop/public_api';
+} from '@daffodil/design';
+
+import { DaffNavPlacement } from './nav-placement';
+import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({ template: `

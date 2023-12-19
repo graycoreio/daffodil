@@ -10,12 +10,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
+import { DaffLinkSetModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import {
   DaffSidebarModule,
   DaffSidebarComponent,
-  DaffLinkSetModule,
-} from '@daffodil/design';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+} from '@daffodil/design/sidebar';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationLoad } from '@daffodil/navigation/state';
 import {

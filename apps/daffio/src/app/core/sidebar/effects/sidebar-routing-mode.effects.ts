@@ -6,32 +6,21 @@ import {
   ofType,
 } from '@ngrx/effects';
 import {
-  ROUTER_NAVIGATION,
   ROUTER_NAVIGATED,
   RouterNavigatedAction,
 } from '@ngrx/router-store';
 import { Action } from '@ngrx/store';
 import {
   Observable,
-  of,
-  asyncScheduler,
   combineLatest,
 } from 'rxjs';
-import {
-  switchMap,
-  delay,
-  map,
-  tap,
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import {
-  DaffBreakpoints,
-  DaffSidebarModeEnum,
-} from '@daffodil/design';
+import { DaffBreakpoints } from '@daffodil/design';
+import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
 
 import * as SidebarActions from '../actions/sidebar.actions';
 import { computeDeepestSidebarMode } from '../helpers/computeDeepestSidebarMode';
-
 
 @Injectable()
 export class DaffioSidebarRoutingModeEffects {
@@ -39,7 +28,6 @@ export class DaffioSidebarRoutingModeEffects {
     private actions$: Actions,
     private breakpointsObserver: BreakpointObserver,
   ) { }
-
 
   changeModeWhenVisitingConfiguredRoute$ = createEffect(() => (): Observable<Action> => combineLatest(
     this.actions$.pipe<RouterNavigatedAction>(ofType(ROUTER_NAVIGATED)),

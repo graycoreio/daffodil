@@ -1,4 +1,4 @@
-@use '../../../../scss/core';
+@use '../../scss/core';
 
 @mixin daff-sidebar-theme($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
@@ -8,5 +8,15 @@
 	.daff-sidebar {
 		background: $base;
 		color: $font-color;
+	}
+
+	.daff-sidebar-viewport {
+		background: $base;
+		color: $base-contrast;
+
+		&__content {
+			background: $base;
+			color: $base-contrast;
+		}
 	}
 }
