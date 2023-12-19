@@ -5,7 +5,7 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 
-import { DaffSidebarMode } from '@daffodil/design';
+import { DaffSidebarMode } from '@daffodil/design/sidebar';
 
 import * as fromDaffioSidebar from './sidebar.reducer';
 
