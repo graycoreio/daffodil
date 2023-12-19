@@ -13,7 +13,6 @@ import { BehaviorSubject } from 'rxjs';
 import { DaffArticleComponent } from '@daffodil/design/article';
 
 import { DaffMediaRendererComponent } from './media-renderer.component';
-import { DaffCardComponent } from '../../card/public_api';
 import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
@@ -60,7 +59,6 @@ describe('DaffMediaRendererComponent', () => {
       declarations: [
         DaffMediaRendererComponent,
         DaffArticleComponent,
-        DaffCardComponent,
         DaffMockThumbnail1Component,
         DaffMockThumbnail2Component,
       ],
