@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffCardModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffCalloutModule } from '@daffodil/design/callout';
+import { DaffCardModule } from '@daffodil/design/card';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffImageModule } from '@daffodil/design/image';
 

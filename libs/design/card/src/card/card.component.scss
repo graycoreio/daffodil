@@ -1,5 +1,5 @@
-@use '../../../../scss/typography' as t;
-@use '../../../../scss/layout';
+@use '../../../scss/typography' as t;
+@use '../../../scss/layout';
 
 $card-border-radius: 8px;
 $card-inner-border-radius: calc(#{$card-border-radius} - 1px);

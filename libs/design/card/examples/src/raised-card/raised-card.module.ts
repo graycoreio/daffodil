@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DaffCardModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffCardModule } from '@daffodil/design/card';
 import { DaffImageModule } from '@daffodil/design/image';
 
 import { RaisedCardComponent } from './raised-card.component';
