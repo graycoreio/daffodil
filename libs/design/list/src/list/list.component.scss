@@ -1,6 +1,6 @@
-@use '../../../../scss/typography' as t;
-@use '../../../../scss/interactions';
-@use '../../../../scss/layout';
+@use '../../../scss/typography' as t;
+@use '../../../scss/interactions';
+@use '../../../scss/layout';
 
 @mixin daff-list() {
 	$root: &;
