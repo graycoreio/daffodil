@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import {
-  DaffNavbarModule,
-  DaffLinkSetModule,
-} from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design';
+import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { BasicSidebarComponent } from './basic-sidebar.component';
