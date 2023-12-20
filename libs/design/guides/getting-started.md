@@ -72,7 +72,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { DaffHeroModule } from '@daffodil/design';
+import { DaffHeroModule } from '@daffodil/design/hero';
 
 @NgModule({
   imports: [
