@@ -13,8 +13,8 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
-import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
+import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../helpers/media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 /**
@@ -23,7 +23,7 @@ import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
  */
 @Component({
   selector: 'daff-media-renderer',
-  templateUrl: './media-renderer.component.html',
+  template: '<ng-template></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffMediaRendererComponent implements OnInit, OnDestroy {

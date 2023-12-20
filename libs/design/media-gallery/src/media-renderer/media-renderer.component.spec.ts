@@ -13,8 +13,8 @@ import { BehaviorSubject } from 'rxjs';
 import { DaffArticleComponent } from '@daffodil/design/article';
 
 import { DaffMediaRendererComponent } from './media-renderer.component';
-import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
-import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
+import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../helpers/media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';

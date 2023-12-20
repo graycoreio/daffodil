@@ -14,8 +14,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {
   daffSkeletonableMixin,
   DaffSkeletonable,
-  daffThumbnailCompatToken,
 } from '@daffodil/design';
+import { daffThumbnailCompatToken } from '@daffodil/design/media-gallery';
 
 const validateProperty = (object: Record<string, any>, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {

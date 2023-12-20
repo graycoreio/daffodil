@@ -10,9 +10,9 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffMediaGalleryComponent } from './media-gallery.component';
-import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
-import { daffThumbnailCompatToken } from './thumbnail/thumbnail-compat.token';
-import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
+import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
+import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
+import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
   template: `<daff-media-gallery [name]="nameValue" [skeleton]="skeleton">

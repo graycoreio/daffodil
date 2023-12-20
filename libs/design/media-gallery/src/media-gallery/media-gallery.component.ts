@@ -9,14 +9,15 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
-import { DAFF_MEDIA_GALLERY_TOKEN } from './media-gallery-token';
-import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
-import { daffArticleEncapsulatedMixin } from '../../core/article-encapsulated/public_api';
 import {
   daffSkeletonableMixin,
   DaffSkeletonable,
-} from '../../core/skeletonable/public_api';
+  daffArticleEncapsulatedMixin,
+} from '@daffodil/design';
+
+import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../helpers/media-gallery-token';
+import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 let uniqueGalleryId = 0;
 

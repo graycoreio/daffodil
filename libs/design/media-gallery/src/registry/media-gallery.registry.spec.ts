@@ -12,16 +12,14 @@ import {
   DaffMediaGallery,
   DaffMediaGalleryRegistry,
 } from './media-gallery.registry';
-import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({})
 export class FakeComponent {}
 
 export class ChangeDetectorRefMock implements Partial<ChangeDetectorRef> {
-  markForCheck() {
-
-  }
+  markForCheck() {}
 }
 
 describe('DaffMediaGalleryRegistry', () => {
