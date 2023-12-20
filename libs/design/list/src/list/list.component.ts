@@ -8,7 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
+import { daffArticleEncapsulatedMixin } from '@daffodil/design';
 
 /**
  * @deprecated

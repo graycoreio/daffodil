@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffListModule } from '@daffodil/design';
 import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import { DaffListModule } from '@daffodil/design/list';
 
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
 

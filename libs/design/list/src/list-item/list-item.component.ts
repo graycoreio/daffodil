@@ -9,7 +9,7 @@ import {
 import {
   DaffPrefixDirective,
   DaffSuffixDirective,
-} from '../../../core/prefix-suffix/public_api';
+} from '@daffodil/design';
 
 @Component({
   selector:
