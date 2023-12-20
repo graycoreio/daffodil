@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { DaffHeroModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffHeroModule } from '@daffodil/design/hero';
 
 import { DaffioSupportComponent } from './component/support.component';
 import { DaffioSupportRoutingModule } from './support-routing.module';
