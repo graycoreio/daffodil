@@ -1,4 +1,4 @@
-export * from './media-gallery.component';
+export * from './media-gallery/media-gallery.component';
 export * from './media-gallery.module';
 export * from './thumbnail/thumbnail.directive';
 

@@ -11,7 +11,7 @@ import { By } from '@angular/platform-browser';
 
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffThumbnailDirective } from './thumbnail.directive';
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
+import { DaffMediaGalleryComponent } from '../media-gallery/media-gallery.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 @Component({

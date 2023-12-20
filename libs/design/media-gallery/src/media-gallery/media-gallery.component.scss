@@ -3,8 +3,6 @@
 @use '../../../scss/state';
 
 :host(.daff-media-gallery) {
-	// stylelint-disable-next-line scss/comment-no-loud
-	/* autoprefixer grid: autoplace */
 	$root: '.daff-media-gallery';
 	display: flex;
 	flex-direction: column;

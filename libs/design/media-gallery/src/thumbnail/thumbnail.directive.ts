@@ -13,8 +13,8 @@ import {
 
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffThumbnailRegistration } from './thumbnail-registration.interface';
-import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
-import { DAFF_MEDIA_GALLERY_TOKEN } from '../media-gallery-token';
+import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
+import { DAFF_MEDIA_GALLERY_TOKEN } from '../helpers/media-gallery-token';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 /**

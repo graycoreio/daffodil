@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffMediaGalleryRegistration } from '../media-gallery-registration.interface';
+import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
 import { DaffThumbnailRegistration } from '../thumbnail/thumbnail-registration.interface';
 
 export interface DaffMediaGalleryDict {
