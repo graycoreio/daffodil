@@ -10,7 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffLinkSetModule } from '@daffodil/design';
+import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 

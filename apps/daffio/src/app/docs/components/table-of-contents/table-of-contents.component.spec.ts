@@ -6,7 +6,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffLinkSetModule } from '@daffodil/design';
+import { DaffLinkSetModule } from '@daffodil/design/link-set';
 
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
 import { DaffioDoc } from '../../models/doc';

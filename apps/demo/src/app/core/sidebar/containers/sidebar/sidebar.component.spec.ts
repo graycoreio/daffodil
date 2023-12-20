@@ -10,7 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
-import { DaffLinkSetModule } from '@daffodil/design';
+import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import {
   DaffSidebarModule,

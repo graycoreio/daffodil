@@ -5,12 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-  DaffLinkSetModule,
   DAFF_THEME_INITIALIZER,
   DaffNavbarModule,
 } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 

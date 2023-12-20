@@ -7,7 +7,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '../../../core/article-encapsulated/public_api';
+import { daffArticleEncapsulatedMixin } from '@daffodil/design';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the link set mixins
