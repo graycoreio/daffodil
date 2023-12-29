@@ -99,7 +99,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       map(([
         filterTypes,
         categoryAndProducts,
-      ]) => this.transformCategory(categoryAndProducts.data, filterTypes.data, categoryRequest ,this.productConfig.baseMediaUrl)),
+      ]) => this.transformCategory(categoryAndProducts.data, filterTypes.data, categoryRequest,this.productConfig.baseMediaUrl)),
       map(result => categoryRequest.filterRequests
         ? applyFiltersOnResponse(categoryRequest.filterRequests, result)
         : result,
