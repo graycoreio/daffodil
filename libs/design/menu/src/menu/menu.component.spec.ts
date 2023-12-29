@@ -13,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffMenuComponent } from './menu.component';
 import { DaffMenuModule } from '../menu.module';
-import { DaffMenuService } from '../service/menu.service';
+import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({ template: `

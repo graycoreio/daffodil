@@ -19,7 +19,8 @@ import {
   Observable,
 } from 'rxjs';
 
-import { DaffLazyComponent } from '../../../core/lazy/public_api';
+import { DaffLazyComponent } from '@daffodil/design';
+
 import { daffMenuCreateOverlay } from '../helpers/public_api';
 
 export interface DaffActivatedMenu {
