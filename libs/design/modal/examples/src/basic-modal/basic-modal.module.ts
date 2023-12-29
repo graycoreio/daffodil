@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { DaffModalModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffModalModule } from '@daffodil/design/modal';
 
 import { BasicModalComponent } from './basic-modal.component';
 import { BasicModalContentComponent } from './modal-content.component';

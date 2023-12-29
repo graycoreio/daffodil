@@ -1,4 +1,4 @@
-@use '../../../scss/core';
+@use '../../scss/core';
 
 @mixin daff-modal-theme($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');

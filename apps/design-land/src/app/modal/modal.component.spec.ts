@@ -4,7 +4,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { DaffModalModule } from '@daffodil/design';
+import { DaffModalModule } from '@daffodil/design/modal';
 
 import { DesignLandModalComponent } from './modal.component';
 

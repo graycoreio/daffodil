@@ -4,9 +4,6 @@ import {
 } from '@angular/cdk/portal';
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
   DebugElement,
   NgModule,
 } from '@angular/core';
@@ -18,7 +15,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalComponent } from '../modal.component';
+import { DaffModalComponent } from '../modal/modal.component';
 
 @Component({ template: `<daff-modal></daff-modal>` })
 class WrapperComponent {}

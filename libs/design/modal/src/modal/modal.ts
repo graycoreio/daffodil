@@ -1,7 +1,7 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ComponentRef } from '@angular/core';
 
-import { DaffModalComponent } from './modal/modal.component';
+import { DaffModalComponent } from './modal.component';
 
 export interface DaffModal {
   /**
