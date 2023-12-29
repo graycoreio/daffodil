@@ -16,8 +16,9 @@ import {
   fromEvent,
 } from 'rxjs';
 
-import { daffFocusableElementsSelector } from '../../../core/focus/public_api';
-import { DaffMenuService } from '../service/menu.service';
+import { daffFocusableElementsSelector } from '@daffodil/design';
+
+import { DaffMenuService } from '../services/menu.service';
 
 @Component({
   selector: 'daff-menu',

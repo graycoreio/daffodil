@@ -1,7 +1,7 @@
 import { Provider } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffMenuService } from '../service/menu.service';
+import { DaffMenuService } from '../services/menu.service';
 
 type PublicPart<T> = {[K in keyof T]: T[K]};
 

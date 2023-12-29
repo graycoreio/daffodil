@@ -1,5 +1,5 @@
-@use '../../../scss/core';
-@use '../../../scss/theming';
+@use '../../scss/core';
+@use '../../scss/theming';
 
 @mixin daff-menu-theme($theme) {
 	$white: core.daff-map-deep-get($theme, 'core.white');

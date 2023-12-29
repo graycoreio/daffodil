@@ -14,14 +14,13 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import { DaffMenuService } from '../service/menu.service';
+import { DaffMenuService } from '../services/menu.service';
 
 @Directive({
   selector: '[daffMenuActivator]',
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
 
-  @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
 
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
@@ -29,6 +28,8 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   @HostBinding('class.open') get openClass() {
 	  return this._open;
   }
+
+  @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
 
   constructor(
     private service: DaffMenuService,

@@ -3,13 +3,9 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   ContentChild,
-  ElementRef,
 } from '@angular/core';
 
-import {
-  DaffPrefixDirective,
-  DaffSuffixDirective,
-} from '../../../core/prefix-suffix/public_api';
+import { DaffPrefixDirective } from '@daffodil/design';
 
 @Component({
   selector:

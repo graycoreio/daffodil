@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffMenuActivatorDirective } from './menu-activator.component';
 import { DaffMenuModule } from '../menu.module';
-import { DaffMenuService } from '../service/menu.service';
+import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({ template: `
@@ -24,7 +24,6 @@ describe('DaffMenuActivatorDirective', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let component: DaffMenuActivatorDirective;
-  let menuActivatorButton: DebugElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
