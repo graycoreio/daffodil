@@ -8,7 +8,7 @@ import {
   ofType,
 } from '@ngrx/effects';
 import {
-  Observable ,
+  Observable,
   of,
 } from 'rxjs';
 import {

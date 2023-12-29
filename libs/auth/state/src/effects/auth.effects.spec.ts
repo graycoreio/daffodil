@@ -5,7 +5,7 @@ import {
   cold,
 } from 'jasmine-marbles';
 import {
-  Observable ,
+  Observable,
   of,
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';

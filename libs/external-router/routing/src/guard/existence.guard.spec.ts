@@ -99,7 +99,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
       ).subscribe();
 
       expect(router.config).toEqual([
-        <DaffRouteWithDataPath>{ path: '/some-resolved/path/with/file-endings.html', component: FakeComponent, daffExternalRouteType: STUB_RESOLVABLE_TYPE , data: {}} ,
+        <DaffRouteWithDataPath>{ path: '/some-resolved/path/with/file-endings.html', component: FakeComponent, daffExternalRouteType: STUB_RESOLVABLE_TYPE, data: {}},
         { path: '**', redirectTo: '/' },
       ]);
     });
@@ -219,7 +219,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
      * would result in incorrect resolutions, so we can't safely insert
      * them as Angular router redirects.
      */
-    it(`should NOT add the original route as a redirect to resolved route as 
+    it(`should NOT add the original route as a redirect to resolved route as
         @angular/router does not support matching based upon query params which
         some drivers may support`, () => {
       spyOn(driver, 'resolve').and.returnValue(of({
@@ -302,7 +302,7 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
      * would result in incorrect resolutions, so we can't safely insert
      * them as Angular router redirects.
      */
-    it(`should NOT cache the original route as a redirect to the failed resolution path 
+    it(`should NOT cache the original route as a redirect to the failed resolution path
     as @angular/router does not support matching based upon query params`, () => {
       spyOn(driver, 'resolve').and.returnValue(of({
         url: null,
