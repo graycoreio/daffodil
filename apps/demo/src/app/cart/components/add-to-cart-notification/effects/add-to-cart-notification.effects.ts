@@ -14,7 +14,7 @@ import { DaffCartActionTypes } from '@daffodil/cart/state';
 import {
   DaffModalService,
   DaffModal,
-} from '@daffodil/design';
+} from '@daffodil/design/modal';
 
 import {
   OpenAddToCartNotification,
