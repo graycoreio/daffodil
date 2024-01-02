@@ -1,8 +1,5 @@
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
   DebugElement,
 } from '@angular/core';
 import {
@@ -13,7 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalComponent } from '../modal.component';
+import { DaffModalComponent } from '../modal/modal.component';
 
 @Component({ template: `
   <div class="daff-modal-wrapper">
