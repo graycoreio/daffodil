@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffNavbarModule } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 import { DesignLandNavbarRoutingModule } from './navbar-routing.module';
 import { DesignLandNavbarComponent } from './navbar.component';

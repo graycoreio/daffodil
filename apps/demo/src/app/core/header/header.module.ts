@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffNavbarModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 import { DemoHeaderComponent } from './components/header/header.component';
 import { DemoHeaderContainer } from './containers/header/header.component';
