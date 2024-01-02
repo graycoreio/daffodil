@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffPaginatorComponent } from './paginator.component';
+import { DaffPaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   imports: [

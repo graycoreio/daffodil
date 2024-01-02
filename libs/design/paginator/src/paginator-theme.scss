@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../../scss/core';
-@use '../../../scss/theming';
+@use '../../scss/core';
+@use '../../scss/theming';
 
 @mixin daff-paginator-theme-variant($active-color) {
 	color: currentColor;
