@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffNavbarModule } from '@daffodil/design';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 import { DemoHeaderComponent } from './header.component';
 

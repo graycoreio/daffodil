@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffLogoModule } from '@daffodil/branding';
-import { DaffNavbarModule } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 

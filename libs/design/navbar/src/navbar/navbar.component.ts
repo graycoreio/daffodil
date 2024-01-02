@@ -10,8 +10,8 @@ import {
 import {
   DaffColorable,
   daffColorMixin,
-} from '../../core/colorable/public_api';
-import { daffManageContainerLayoutMixin } from '../../core/manage-container-layout/public_api';
+  daffManageContainerLayoutMixin,
+} from '@daffodil/design';
 
 /**
  * An _elementRef is needed for the Colorable mixin

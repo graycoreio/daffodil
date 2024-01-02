@@ -4,13 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {
-  DAFF_THEME_INITIALIZER,
-  DaffNavbarModule,
-} from '@daffodil/design';
+import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
