@@ -4,7 +4,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { DaffPaginatorModule } from '@daffodil/design';
+import { DaffPaginatorModule } from '@daffodil/design/paginator';
 
 import { DesignLandPaginatorComponent } from './paginator.component';
 

@@ -14,13 +14,12 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { DaffPaginatorComponent } from './paginator.component';
+import { DaffPaginatorModule } from '../paginator.module';
 import {
   DaffPaginatorNumberOfPagesErrorMessage,
   DaffPaginatorPageOutOfRangeErrorMessage,
-} from './paginator-errors';
-import { DaffPaginatorComponent } from './paginator.component';
-import { DaffPaginatorModule } from './paginator.module';
-
+} from '../utils/paginator-errors';
 
 @Component({ template: '' })
 class TestComponent {}

@@ -16,13 +16,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  DaffPaginatorNumberOfPagesErrorMessage,
-  DaffPaginatorPageOutOfRangeErrorMessage,
-} from './paginator-errors';
-import {
   daffColorMixin,
   DaffColorable,
-} from '../../core/colorable/public_api';
+} from '@daffodil/design';
+
+import {
+  DaffPaginatorNumberOfPagesErrorMessage,
+  DaffPaginatorPageOutOfRangeErrorMessage,
+} from '../utils/paginator-errors';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
